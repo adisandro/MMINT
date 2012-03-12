@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmtf.mid;singleton:=true
+Bundle-Version: 0.9.0
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ edu.toronto.cs.se.mmtf
+Export-Package: edu.toronto.cs.se.mmtf.mid,
+ edu.toronto.cs.se.mmtf.mid.util

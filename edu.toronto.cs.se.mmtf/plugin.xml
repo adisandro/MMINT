@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="edu.toronto.cs.se.mmtf.metamodels" name="MMTF Metamodels" schema="schema/edu.toronto.cs.se.mmtf.metamodels.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmtf.diagrams" name="MMTF Diagrams" schema="schema/edu.toronto.cs.se.mmtf.diagrams.exsd"/>
+
+</plugin>
