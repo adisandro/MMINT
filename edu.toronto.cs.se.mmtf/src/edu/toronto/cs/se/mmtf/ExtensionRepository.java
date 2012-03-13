@@ -25,11 +25,10 @@ public class ExtensionRepository {
 	private final static String DIAGRAMS_ATTR_EDITOR_ID = "editorId";
 
 	private final static String EDITORS_EXT_POINT = "org.eclipse.ui.editors";
-	private final static String EDITORS_EXT_POINT_GMF_ID = "gmf-editor";
 	private final static String EDITORS_ATTR_ID = "id";
 	private final static String EDITORS_ATTR_EXTENSIONS = "extensions";
 
-	public static ArrayList<String> getMetamodelFilenames() {
+	public static ArrayList<String> getMetamodelFileExtensions() {
 
 		ArrayList<String> filenames = new ArrayList<String>();
 
@@ -62,18 +61,33 @@ public class ExtensionRepository {
 		return filenames;
 	}
 
-	public static ArrayList<String> getModelReferenceDiagramFilenames(String metamodelUri) {
+	public static class DiagramID {
+		private String fileExtension;
+		private String editorId;
+		public DiagramID(String fileExtension, String editorId) {
+			this.fileExtension = fileExtension;
+			this.editorId = editorId;
+		}
+		public String getFileExtension() {
+			return fileExtension;
+		}
+		public String getEditorId() {
+			return editorId;
+		}
+	}
 
-		ArrayList<String> diagramFilenames = new ArrayList<String>();
+	public static ArrayList<DiagramID> getDiagramIds(String metamodelUri) {
+
+		ArrayList<DiagramID> diagramIds = new ArrayList<DiagramID>();
 
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry == null) {
-			return diagramFilenames;
+			return diagramIds;
 		}
 
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(DIAGRAMS_EXT_POINT);
 		String editorId;
-		//TODO ridurre in qualche modo
+		//TODO ridurre in qualche modo (credo che l'unico sia infilare i file extension nel mio point)
 		IConfigurationElement[] GMFconfig = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 
 		for (IConfigurationElement elem : config) {
@@ -81,14 +95,16 @@ public class ExtensionRepository {
 				editorId = elem.getAttribute(DIAGRAMS_ATTR_EDITOR_ID);
 				for (IConfigurationElement GMFelem : GMFconfig) {
 					if (GMFelem.getAttribute(EDITORS_ATTR_ID).equals(editorId)) {
-						diagramFilenames.add(GMFelem.getAttribute(EDITORS_ATTR_EXTENSIONS));
+						for (String fileExtension : GMFelem.getAttribute(EDITORS_ATTR_EXTENSIONS).split(",")) {
+							diagramIds.add(new DiagramID(fileExtension, editorId));
+						}
 						break;
 					}
 				}
 			}
 		}
 
-		return diagramFilenames;
+		return diagramIds;
 	}
 
 }
