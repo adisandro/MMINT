@@ -46,7 +46,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReference2ItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.OpenDiagramEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
@@ -54,12 +54,12 @@ import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
 /**
  * @generated
  */
-public class ModelReferenceEditPart extends ShapeNodeEditPart {
+public class ModelReference2EditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2002;
+	public static final int VISUAL_ID = 2003;
 
 	/**
 	 * @generated
@@ -74,7 +74,7 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public ModelReferenceEditPart(View view) {
+	public ModelReference2EditPart(View view) {
 		super(view);
 	}
 
@@ -84,7 +84,7 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelReferenceItemSemanticEditPolicy());
+				new ModelReference2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
 				new OpenDiagramEditPolicy());
@@ -136,8 +136,8 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelReferenceNameEditPart) {
-			((ModelReferenceNameEditPart) childEditPart)
+		if (childEditPart instanceof ModelReferenceName2EditPart) {
+			((ModelReferenceName2EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureModelReferenceNameFigure());
 			return true;
@@ -149,7 +149,7 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelReferenceNameEditPart) {
+		if (childEditPart instanceof ModelReferenceName2EditPart) {
 			return true;
 		}
 		return false;
@@ -273,7 +273,7 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(ModelReferenceNameEditPart.VISUAL_ID));
+				.getType(ModelReferenceName2EditPart.VISUAL_ID));
 	}
 
 	/**
@@ -294,10 +294,10 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof MappingReferenceEditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4002);
 		}
-		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart) {
+		if (targetEditPart instanceof ModelReferenceEditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4002);
 		}
-		if (targetEditPart instanceof ModelReference2EditPart) {
+		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4002);
 		}
 		return types;

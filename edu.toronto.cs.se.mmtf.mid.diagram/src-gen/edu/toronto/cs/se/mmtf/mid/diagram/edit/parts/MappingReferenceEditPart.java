@@ -295,10 +295,16 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof ModelReferenceEditPart) {
 			types.add(MIDElementTypes.MappingReferenceModels_4001);
 		}
+		if (targetEditPart instanceof ModelReference2EditPart) {
+			types.add(MIDElementTypes.MappingReferenceModels_4001);
+		}
 		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4002);
 		}
 		if (targetEditPart instanceof ModelReferenceEditPart) {
+			types.add(MIDElementTypes.BinaryMappingReference_4002);
+		}
+		if (targetEditPart instanceof ModelReference2EditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4002);
 		}
 		return types;
@@ -312,9 +318,11 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 		if (relationshipType == MIDElementTypes.MappingReferenceModels_4001) {
 			types.add(MIDElementTypes.MappingReference_2001);
 			types.add(MIDElementTypes.ModelReference_2002);
+			types.add(MIDElementTypes.ModelReference_2003);
 		} else if (relationshipType == MIDElementTypes.BinaryMappingReference_4002) {
 			types.add(MIDElementTypes.MappingReference_2001);
 			types.add(MIDElementTypes.ModelReference_2002);
+			types.add(MIDElementTypes.ModelReference_2003);
 		}
 		return types;
 	}
@@ -339,6 +347,7 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 		} else if (relationshipType == MIDElementTypes.BinaryMappingReference_4002) {
 			types.add(MIDElementTypes.MappingReference_2001);
 			types.add(MIDElementTypes.ModelReference_2002);
+			types.add(MIDElementTypes.ModelReference_2003);
 		}
 		return types;
 	}

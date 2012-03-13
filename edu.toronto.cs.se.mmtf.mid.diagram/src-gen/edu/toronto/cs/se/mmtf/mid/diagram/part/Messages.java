@@ -261,47 +261,62 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Mid1Group_title;
+	public static String Models1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymapping1CreationTool_title;
+	public static String Mappings2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymapping1CreationTool_desc;
+	public static String Importmodel1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmappingconnection2CreationTool_title;
+	public static String Importmodel1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmappingconnection2CreationTool_desc;
+	public static String Createmodel2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Importmodel3CreationTool_title;
+	public static String Createmodel2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Importmodel3CreationTool_desc;
+	public static String Newbinarymapping1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newbinarymapping4CreationTool_title;
+	public static String Newbinarymapping1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Newbinarymapping4CreationTool_desc;
+	public static String NewNarymapping2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String NewNarymapping2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String NewNarymappingconnection3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String NewNarymappingconnection3CreationTool_desc;
 
 	/**
 	 * @generated
@@ -352,6 +367,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_MappingReference_2001_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ModelReference_2003_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ModelReference_2003_outgoinglinks;
 
 	/**
 	 * @generated

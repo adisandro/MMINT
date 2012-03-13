@@ -38,6 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceModelsEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
@@ -89,6 +90,10 @@ public class MIDDiagramUpdater {
 				result.add(new MIDNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if (visualID == ModelReference2EditPart.VISUAL_ID) {
+				result.add(new MIDNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		return result;
 	}
@@ -104,6 +109,8 @@ public class MIDDiagramUpdater {
 			return getMappingReference_2001ContainedLinks(view);
 		case ModelReferenceEditPart.VISUAL_ID:
 			return getModelReference_2002ContainedLinks(view);
+		case ModelReference2EditPart.VISUAL_ID:
+			return getModelReference_2003ContainedLinks(view);
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getBinaryMappingReference_4002ContainedLinks(view);
 		}
@@ -119,6 +126,8 @@ public class MIDDiagramUpdater {
 			return getMappingReference_2001IncomingLinks(view);
 		case ModelReferenceEditPart.VISUAL_ID:
 			return getModelReference_2002IncomingLinks(view);
+		case ModelReference2EditPart.VISUAL_ID:
+			return getModelReference_2003IncomingLinks(view);
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getBinaryMappingReference_4002IncomingLinks(view);
 		}
@@ -134,6 +143,8 @@ public class MIDDiagramUpdater {
 			return getMappingReference_2001OutgoingLinks(view);
 		case ModelReferenceEditPart.VISUAL_ID:
 			return getModelReference_2002OutgoingLinks(view);
+		case ModelReference2EditPart.VISUAL_ID:
+			return getModelReference_2003OutgoingLinks(view);
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getBinaryMappingReference_4002OutgoingLinks(view);
 		}
@@ -166,6 +177,14 @@ public class MIDDiagramUpdater {
 	 * @generated
 	 */
 	public static List<MIDLinkDescriptor> getModelReference_2002ContainedLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<MIDLinkDescriptor> getModelReference_2003ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -217,6 +236,22 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<MIDLinkDescriptor> getModelReference_2003IncomingLinks(
+			View view) {
+		ModelReference modelElement = (ModelReference) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_MappingReference_Models_4001(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_BinaryMappingReference_4002(
+				modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<MIDLinkDescriptor> getBinaryMappingReference_4002IncomingLinks(
 			View view) {
 		BinaryMappingReference modelElement = (BinaryMappingReference) view
@@ -247,6 +282,17 @@ public class MIDDiagramUpdater {
 	 * @generated
 	 */
 	public static List<MIDLinkDescriptor> getModelReference_2002OutgoingLinks(
+			View view) {
+		ModelReference modelElement = (ModelReference) view.getElement();
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_BinaryMappingReference_4002(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<MIDLinkDescriptor> getModelReference_2003OutgoingLinks(
 			View view) {
 		ModelReference modelElement = (ModelReference) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();

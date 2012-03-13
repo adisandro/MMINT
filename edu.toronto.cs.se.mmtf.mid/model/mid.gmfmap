@@ -21,7 +21,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="mid.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="mid.gmftool#//@palette/@tools.1/@tools.1"/>
       <diagramNode
           href="mid.gmfgraph#MappingReference"/>
     </ownedChild>
@@ -41,7 +41,27 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="mid.gmftool#//@palette/@tools.0/@tools.2"/>
+          href="mid.gmftool#//@palette/@tools.0/@tools.0"/>
+      <diagramNode
+          href="mid.gmfgraph#ModelReference"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="mid.ecore#//MultiModel/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="mid.ecore#//ModelReference"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="mid.gmfgraph#ModelReferenceName"/>
+        <features
+            href="mid.ecore#//ModelReference/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="mid.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
           href="mid.gmfgraph#ModelReference"/>
     </ownedChild>
@@ -49,7 +69,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="mid.gmftool#//@palette/@tools.0/@tools.1"/>
+        href="mid.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="mid.gmfgraph#MappingReferenceModels"/>
     <linkMetaFeature
@@ -63,7 +83,7 @@
         href="mid.ecore#//MultiModel/elements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="mid.gmftool#//@palette/@tools.0/@tools.3"/>
+        href="mid.gmftool#//@palette/@tools.1/@tools.0"/>
     <diagramLink
         href="mid.gmfgraph#BinaryMappingReferenceModels"/>
     <sourceMetaFeature

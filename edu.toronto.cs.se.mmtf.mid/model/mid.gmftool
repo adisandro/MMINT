@@ -8,25 +8,7 @@
       title="midPalette">
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="mid">
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="New Nary mapping"
-          description="Create new Nary mapping">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="New mapping connection"
-          description="Create new mapping connection">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
+        title="Models">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Import model"
@@ -38,8 +20,39 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
+          title="Create model"
+          description="Create new model">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Mappings">
+      <tools
+          xsi:type="gmftool:CreationTool"
           title="New binary mapping"
           description="Create new binary mapping">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="New Nary mapping"
+          description="Create new Nary mapping">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="New Nary mapping connection"
+          description="Create new Nary mapping connection">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

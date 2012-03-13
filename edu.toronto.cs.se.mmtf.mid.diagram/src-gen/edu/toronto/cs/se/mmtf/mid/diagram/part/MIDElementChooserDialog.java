@@ -158,7 +158,8 @@ public class MIDElementChooserDialog extends Dialog {
 	private boolean isValidModelFile(IFile file) {
 
 		String fileExtension = file.getFullPath().getFileExtension();
-		ArrayList<String> registeredMetamodels = ExtensionRepository.getMetamodelFileExtensions();
+		ArrayList<String> registeredMetamodels = ExtensionRepository
+				.getMetamodelFileExtensions();
 
 		return registeredMetamodels.contains(fileExtension);
 	}
@@ -433,15 +434,16 @@ public class MIDElementChooserDialog extends Dialog {
 		public void selectionChanged(SelectionChangedEvent event) {
 
 			if (event.getSelection() instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) event
+						.getSelection();
 				if (selection.size() == 1) {
 					Object selectedElement = selection.getFirstElement();
 					if (selectedElement instanceof IFile) {
 						setOkButtonEnabled(true);
-						mySelectedModelElementURI = URI.createPlatformResourceURI(
-							((IFile) selectedElement).getFullPath().toString(),
-							true
-						);
+						mySelectedModelElementURI = URI
+								.createPlatformResourceURI(
+										((IFile) selectedElement).getFullPath()
+												.toString(), true);
 						return;
 					}
 				}

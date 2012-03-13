@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
@@ -35,21 +38,28 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramUpdater;
@@ -114,7 +124,8 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	private boolean isMyDiagramElement(View view) {
 		int visualID = MIDVisualIDRegistry.getVisualID(view);
 		return visualID == MappingReferenceEditPart.VISUAL_ID
-				|| visualID == ModelReferenceEditPart.VISUAL_ID;
+				|| visualID == ModelReferenceEditPart.VISUAL_ID
+				|| visualID == ModelReference2EditPart.VISUAL_ID;
 	}
 
 	/**
@@ -139,6 +150,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 		}
 		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
+		HashMap<MIDNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<MIDNodeDescriptor, LinkedList<View>>();
 		//
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
@@ -148,6 +160,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			MIDNodeDescriptor next = descriptorsIterator.next();
 			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
+			LinkedList<View> potentialMatch = new LinkedList<View>(); // semanticElement matches, hint does not
 			for (View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
 				if (next.getModelElement().equals(semanticElement)) {
@@ -156,6 +169,8 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 						// actually, can stop iteration over view children here, but
 						// may want to use not the first view but last one as a 'real' match (the way original CEP does
 						// with its trick with viewToSemanticMap inside #cleanCanonicalSemanticChildren
+					} else {
+						potentialMatch.add(childView);
 					}
 				}
 			}
@@ -163,12 +178,17 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				descriptorsIterator.remove(); // precise match found no need to create anything for the NodeDescriptor
 				// use only one view (first or last?), keep rest as orphaned for further consideration
 				knownViewChildren.remove(perfectMatch.getFirst());
+			} else if (potentialMatch.size() > 0) {
+				potentialViews.put(next, potentialMatch);
 			}
 		}
 		// those left in knownViewChildren are subject to removal - they are our diagram elements we didn't find match to,
 		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
 		orphaned.addAll(knownViewChildren);
 		//
+		CompositeTransactionalCommand boundsCommand = new CompositeTransactionalCommand(
+				host().getEditingDomain(),
+				DiagramUIMessages.SetLocationCommand_Label_Resize);
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
 				childDescriptors.size());
 		for (MIDNodeDescriptor next : childDescriptors) {
@@ -179,6 +199,40 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 					elementAdapter, Node.class, hint, ViewUtil.APPEND, false,
 					host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
+
+			LinkedList<View> possibleMatches = potentialViews.get(next);
+			if (possibleMatches != null) {
+				// from potential matches, leave those that were not eventually used for some other NodeDescriptor (i.e. those left as orphaned)
+				possibleMatches.retainAll(knownViewChildren);
+			}
+			if (possibleMatches != null && !possibleMatches.isEmpty()) {
+				View originalView = possibleMatches.getFirst();
+				knownViewChildren.remove(originalView); // remove not to copy properties of the same view again and again
+				// add command to copy properties
+				if (originalView instanceof Node) {
+					if (((Node) originalView).getLayoutConstraint() instanceof Bounds) {
+						Bounds b = (Bounds) ((Node) originalView)
+								.getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand
+								.getEditingDomain(), boundsCommand.getLabel(),
+								descriptor, new Rectangle(b.getX(), b.getY(), b
+										.getWidth(), b.getHeight())));
+					} else if (((Node) originalView).getLayoutConstraint() instanceof Location) {
+						Location l = (Location) ((Node) originalView)
+								.getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand
+								.getEditingDomain(), boundsCommand.getLabel(),
+								descriptor, new Point(l.getX(), l.getY())));
+					} else if (((Node) originalView).getLayoutConstraint() instanceof Size) {
+						Size s = (Size) ((Node) originalView)
+								.getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand
+								.getEditingDomain(), boundsCommand.getLabel(),
+								descriptor, new Dimension(s.getWidth(), s
+										.getHeight())));
+					}
+				}
+			}
 		}
 
 		boolean changed = deleteViews(orphaned.iterator());
@@ -189,6 +243,9 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			SetViewMutabilityCommand.makeMutable(
 					new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
+			if (boundsCommand.canExecute()) {
+				executeCommand(new ICommandProxy(boundsCommand.reduce()));
+			}
 			@SuppressWarnings("unchecked")
 			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
 			createdViews.addAll(nl);
@@ -291,6 +348,17 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
 						.getModelReference_2002ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ModelReference2EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(MIDDiagramUpdater
+						.getModelReference_2003ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.parsers.MessageFormatParser;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDVisualIDRegistry;
@@ -82,12 +83,32 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser modelReferenceName_5003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getModelReferenceName_5003Parser() {
+		if (modelReferenceName_5003Parser == null) {
+			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
+					.getModelReference_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			modelReferenceName_5003Parser = parser;
+		}
+		return modelReferenceName_5003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case MappingReferenceNameEditPart.VISUAL_ID:
 			return getMappingReferenceName_5001Parser();
 		case ModelReferenceNameEditPart.VISUAL_ID:
 			return getModelReferenceName_5002Parser();
+		case ModelReferenceName2EditPart.VISUAL_ID:
+			return getModelReferenceName_5003Parser();
 		}
 		return null;
 	}

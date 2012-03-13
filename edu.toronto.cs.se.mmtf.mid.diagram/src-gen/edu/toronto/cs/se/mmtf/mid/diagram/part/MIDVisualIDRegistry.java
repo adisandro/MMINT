@@ -29,7 +29,9 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 
@@ -150,6 +152,10 @@ public class MIDVisualIDRegistry {
 					domainElement.eClass())) {
 				return ModelReferenceEditPart.VISUAL_ID;
 			}
+			if (MidPackage.eINSTANCE.getModelReference().isSuperTypeOf(
+					domainElement.eClass())) {
+				return ModelReference2EditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -184,6 +190,9 @@ public class MIDVisualIDRegistry {
 			if (ModelReferenceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (ModelReference2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case MappingReferenceEditPart.VISUAL_ID:
 			if (MappingReferenceNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -192,6 +201,11 @@ public class MIDVisualIDRegistry {
 			break;
 		case ModelReferenceEditPart.VISUAL_ID:
 			if (ModelReferenceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ModelReference2EditPart.VISUAL_ID:
+			if (ModelReferenceName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

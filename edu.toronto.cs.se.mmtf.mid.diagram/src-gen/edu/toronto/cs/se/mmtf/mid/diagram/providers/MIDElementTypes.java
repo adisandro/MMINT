@@ -38,6 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceModelsEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorPlugin;
@@ -80,6 +81,11 @@ public class MIDElementTypes {
 	 * @generated
 	 */
 	public static final IElementType ModelReference_2002 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2002"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType ModelReference_2003 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2003"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -209,6 +215,9 @@ public class MIDElementTypes {
 			elements.put(ModelReference_2002,
 					MidPackage.eINSTANCE.getModelReference());
 
+			elements.put(ModelReference_2003,
+					MidPackage.eINSTANCE.getModelReference());
+
 			elements.put(MappingReferenceModels_4001,
 					MidPackage.eINSTANCE.getMappingReference_Models());
 
@@ -234,6 +243,7 @@ public class MIDElementTypes {
 			KNOWN_ELEMENT_TYPES.add(MultiModel_1000);
 			KNOWN_ELEMENT_TYPES.add(MappingReference_2001);
 			KNOWN_ELEMENT_TYPES.add(ModelReference_2002);
+			KNOWN_ELEMENT_TYPES.add(ModelReference_2003);
 			KNOWN_ELEMENT_TYPES.add(MappingReferenceModels_4001);
 			KNOWN_ELEMENT_TYPES.add(BinaryMappingReference_4002);
 		}
@@ -251,6 +261,8 @@ public class MIDElementTypes {
 			return MappingReference_2001;
 		case ModelReferenceEditPart.VISUAL_ID:
 			return ModelReference_2002;
+		case ModelReference2EditPart.VISUAL_ID:
+			return ModelReference_2003;
 		case MappingReferenceModelsEditPart.VISUAL_ID:
 			return MappingReferenceModels_4001;
 		case BinaryMappingReferenceEditPart.VISUAL_ID:

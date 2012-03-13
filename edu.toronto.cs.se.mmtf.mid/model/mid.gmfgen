@@ -32,6 +32,7 @@
         visualID="2001"
         editPartClassName="MappingReferenceEditPart"
         itemSemanticEditPolicyClassName="MappingReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="MappingReferenceViewFactory"
         canonicalEditPolicyClassName="MappingReferenceCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MappingReferenceGraphicalNodeEditPolicy"
         createCommandClassName="MappingReferenceCreateCommand">
@@ -56,6 +57,7 @@
           visualID="5001"
           editPartClassName="MappingReferenceNameEditPart"
           itemSemanticEditPolicyClassName="MappingReferenceNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="MappingReferenceNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -75,6 +77,7 @@
         visualID="2002"
         editPartClassName="ModelReferenceEditPart"
         itemSemanticEditPolicyClassName="ModelReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelReferenceViewFactory"
         canonicalEditPolicyClassName="ModelReferenceCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ModelReferenceGraphicalNodeEditPolicy"
         createCommandClassName="ModelReferenceCreateCommand">
@@ -103,6 +106,55 @@
           visualID="5002"
           editPartClassName="ModelReferenceNameEditPart"
           itemSemanticEditPolicyClassName="ModelReferenceNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ModelReferenceNameViewFactory"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureModelReferenceNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="mid.genmodel#//mid/ModelReference/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2003"
+        editPartClassName="ModelReference2EditPart"
+        itemSemanticEditPolicyClassName="ModelReference2ItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="ModelReference2CanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="ModelReference2GraphicalNodeEditPolicy"
+        createCommandClassName="ModelReference2CreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@topLevelNodes.1/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ModelReferenceFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelReferenceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelReferenceNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelReferenceFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureModelReferenceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureModelReferenceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureModelReferenceNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelReferenceNameFigure() {&#xA;&#x9;&#x9;return fFigureModelReferenceNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"
+          editPolicyClassName="OpenDiagramEditPolicy"
+          diagramKind="Mid"
+          editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorID"/>
+      <modelFacet>
+        <metaClass
+            href="mid.genmodel#//mid/ModelReference"/>
+        <containmentMetaFeature
+            href="mid.genmodel#//mid/MultiModel/elements"/>
+        <childMetaFeature
+            href="mid.genmodel#//mid/MultiModel/elements"/>
+      </modelFacet>
+      <labels
+          visualID="5003"
+          editPartClassName="ModelReferenceName2EditPart"
+          itemSemanticEditPolicyClassName="ModelReferenceName2ItemSemanticEditPolicy"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -122,6 +174,7 @@
         visualID="4001"
         editPartClassName="MappingReferenceModelsEditPart"
         itemSemanticEditPolicyClassName="MappingReferenceModelsItemSemanticEditPolicy"
+        notationViewFactoryClassName="MappingReferenceModelsViewFactory"
         createCommandClassName="MappingReferenceModelsCreateCommand"
         reorientCommandClassName="MappingReferenceModelsReorientCommand">
       <diagramRunTimeClass
@@ -142,6 +195,7 @@
         visualID="4002"
         editPartClassName="BinaryMappingReferenceEditPart"
         itemSemanticEditPolicyClassName="BinaryMappingReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="BinaryMappingReferenceViewFactory"
         createCommandClassName="BinaryMappingReferenceCreateCommand"
         reorientCommandClassName="BinaryMappingReferenceReorientCommand">
       <diagramRunTimeClass
@@ -168,17 +222,7 @@
     </links>
     <palette>
       <groups
-          title="mid">
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="New Nary mapping"
-            description="Create new Nary mapping"
-            genNodes="//@diagram/@topLevelNodes.0"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
-            title="New mapping connection"
-            description="Create new mapping connection"
-            genLinks="//@diagram/@links.0"/>
+          title="Models">
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Import model"
@@ -186,9 +230,27 @@
             genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
+            title="Create model"
+            description="Create new model"
+            genNodes="//@diagram/@topLevelNodes.2"/>
+      </groups>
+      <groups
+          title="Mappings">
+        <entries
+            xsi:type="gmfgen:ToolEntry"
             title="New binary mapping"
             description="Create new binary mapping"
             genLinks="//@diagram/@links.1"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="New Nary mapping"
+            description="Create new Nary mapping"
+            genNodes="//@diagram/@topLevelNodes.0"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="New Nary mapping connection"
+            description="Create new Nary mapping connection"
+            genLinks="//@diagram/@links.0"/>
       </groups>
     </palette>
     <preferencePages
@@ -235,6 +297,9 @@
         child="//@diagram/@topLevelNodes.1"/>
     <childReferences
         parent="//@diagram"
+        child="//@diagram/@topLevelNodes.2"/>
+    <childReferences
+        parent="//@diagram"
         child="//@diagram/@links.0"
         groupName="links"
         groupIcon="icons/linksNavigatorGroup.gif"/>
@@ -258,6 +323,18 @@
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
         child="//@diagram/@links.0"
         referenceType="in_source"
         groupName="incoming links"
@@ -305,6 +382,18 @@
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
         child="//@diagram/@links.1"
         referenceType="out_target"
         groupName="target"
@@ -335,6 +424,18 @@
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.1"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
         child="//@diagram/@links.1"
         referenceType="out_target"
         groupName="outgoing links"
@@ -378,7 +479,7 @@
       extensibleViaService="true">
     <implementations
         xsi:type="gmfgen:PredefinedParser"
-        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet"/>
+        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">

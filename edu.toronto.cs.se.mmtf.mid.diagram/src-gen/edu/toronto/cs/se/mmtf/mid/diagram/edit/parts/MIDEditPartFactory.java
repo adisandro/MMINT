@@ -62,6 +62,12 @@ public class MIDEditPartFactory implements EditPartFactory {
 			case ModelReferenceNameEditPart.VISUAL_ID:
 				return new ModelReferenceNameEditPart(view);
 
+			case ModelReference2EditPart.VISUAL_ID:
+				return new ModelReference2EditPart(view);
+
+			case ModelReferenceName2EditPart.VISUAL_ID:
+				return new ModelReferenceName2EditPart(view);
+
 			case MappingReferenceModelsEditPart.VISUAL_ID:
 				return new MappingReferenceModelsEditPart(view);
 

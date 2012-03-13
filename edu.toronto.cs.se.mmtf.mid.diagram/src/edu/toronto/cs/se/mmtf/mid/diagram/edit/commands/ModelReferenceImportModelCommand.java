@@ -40,7 +40,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDElementChooserDialog;
 
-public class ModelReferenceImportCommand extends ModelReferenceCreateCommand {
+public class ModelReferenceImportModelCommand extends ModelReferenceCreateCommand {
 
 	private URI selectModelToImport() {
 
@@ -57,7 +57,7 @@ public class ModelReferenceImportCommand extends ModelReferenceCreateCommand {
 		return modelUri;
 	}
 
-	public ModelReferenceImportCommand(CreateElementRequest req) {
+	public ModelReferenceImportModelCommand(CreateElementRequest req) {
 
 		super(req);
 	}
