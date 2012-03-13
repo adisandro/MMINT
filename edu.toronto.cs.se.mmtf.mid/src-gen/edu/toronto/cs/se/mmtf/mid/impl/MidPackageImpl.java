@@ -23,10 +23,12 @@ import edu.toronto.cs.se.mmtf.mid.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -66,6 +68,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EClass binaryMappingReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum modelReferenceOriginEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -187,6 +196,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getModelReference_Origin() {
+		return (EAttribute)modelReferenceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMappingReference() {
 		return mappingReferenceEClass;
 	}
@@ -207,6 +225,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EClass getBinaryMappingReference() {
 		return binaryMappingReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getModelReferenceOrigin() {
+		return modelReferenceOriginEEnum;
 	}
 
 	/**
@@ -244,11 +271,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelReferenceEClass, MODEL_REFERENCE__NAME);
 		createEAttribute(modelReferenceEClass, MODEL_REFERENCE__URI);
 		createEReference(modelReferenceEClass, MODEL_REFERENCE__ROOT);
+		createEAttribute(modelReferenceEClass, MODEL_REFERENCE__ORIGIN);
 
 		mappingReferenceEClass = createEClass(MAPPING_REFERENCE);
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__MODELS);
 
 		binaryMappingReferenceEClass = createEClass(BINARY_MAPPING_REFERENCE);
+
+		// Create enums
+		modelReferenceOriginEEnum = createEEnum(MODEL_REFERENCE_ORIGIN);
 	}
 
 	/**
@@ -290,11 +321,17 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getModelReference_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelReference_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelReference_Root(), ecorePackage.getEObject(), null, "root", null, 1, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelReference_Origin(), this.getModelReferenceOrigin(), "origin", null, 1, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingReferenceEClass, MappingReference.class, "MappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingReference_Models(), this.getModelReference(), null, "models", null, 1, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(binaryMappingReferenceEClass, BinaryMappingReference.class, "BinaryMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(modelReferenceOriginEEnum, ModelReferenceOrigin.class, "ModelReferenceOrigin");
+		addEEnumLiteral(modelReferenceOriginEEnum, ModelReferenceOrigin.IMPORTED);
+		addEEnumLiteral(modelReferenceOriginEEnum, ModelReferenceOrigin.CREATED);
 
 		// Create resource
 		createResource(eNS_URI);

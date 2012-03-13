@@ -36,6 +36,7 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDElementChooserDialog;
@@ -83,6 +84,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		newElement.setUri(modelUri.toPlatformString(true));
 		newElement.setName(modelUri.lastSegment());
 		newElement.setRoot(root);
+		newElement.setOrigin(ModelReferenceOrigin.IMPORTED);
 		MultiModel owner = (MultiModel) getElementToEdit();
 		owner.getElements().add(newElement);
 		doConfigure(newElement, monitor, info);

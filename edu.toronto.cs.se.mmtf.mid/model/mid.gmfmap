@@ -32,6 +32,8 @@
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//ModelReference"/>
+      <domainSpecialization
+          body="self.origin = ModelReferenceOrigin::IMPORTED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -52,6 +54,8 @@
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//ModelReference"/>
+      <domainSpecialization
+          body="self.origin = ModelReferenceOrigin::CREATED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel

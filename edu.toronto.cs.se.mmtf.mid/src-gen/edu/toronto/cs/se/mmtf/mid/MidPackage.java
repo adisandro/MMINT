@@ -20,6 +20,7 @@ package edu.toronto.cs.se.mmtf.mid;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -137,13 +138,22 @@ public interface MidPackage extends EPackage {
 	int MODEL_REFERENCE__ROOT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Origin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REFERENCE__ORIGIN = 3;
+
+	/**
 	 * The number of structural features of the '<em>Model Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE_FEATURE_COUNT = 3;
+	int MODEL_REFERENCE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.MappingReferenceImpl <em>Mapping Reference</em>}' class.
@@ -181,6 +191,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING_REFERENCE__ROOT = MODEL_REFERENCE__ROOT;
+
+	/**
+	 * The feature id for the '<em><b>Origin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE__ORIGIN = MODEL_REFERENCE__ORIGIN;
 
 	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
@@ -238,6 +257,15 @@ public interface MidPackage extends EPackage {
 	int BINARY_MAPPING_REFERENCE__ROOT = MAPPING_REFERENCE__ROOT;
 
 	/**
+	 * The feature id for the '<em><b>Origin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE__ORIGIN = MAPPING_REFERENCE__ORIGIN;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,6 +282,17 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelReferenceOrigin()
+	 * @generated
+	 */
+	int MODEL_REFERENCE_ORIGIN = 4;
 
 
 	/**
@@ -321,6 +360,17 @@ public interface MidPackage extends EPackage {
 	EReference getModelReference_Root();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getOrigin <em>Origin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Origin</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelReference#getOrigin()
+	 * @see #getModelReference()
+	 * @generated
+	 */
+	EAttribute getModelReference_Origin();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.MappingReference <em>Mapping Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,6 +400,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBinaryMappingReference();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Model Reference Origin</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin
+	 * @generated
+	 */
+	EEnum getModelReferenceOrigin();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -426,6 +486,14 @@ public interface MidPackage extends EPackage {
 		EReference MODEL_REFERENCE__ROOT = eINSTANCE.getModelReference_Root();
 
 		/**
+		 * The meta object literal for the '<em><b>Origin</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_REFERENCE__ORIGIN = eINSTANCE.getModelReference_Origin();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.MappingReferenceImpl <em>Mapping Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -452,6 +520,16 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BINARY_MAPPING_REFERENCE = eINSTANCE.getBinaryMappingReference();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelReferenceOrigin()
+		 * @generated
+		 */
+		EEnum MODEL_REFERENCE_ORIGIN = eINSTANCE.getModelReferenceOrigin();
 
 	}
 

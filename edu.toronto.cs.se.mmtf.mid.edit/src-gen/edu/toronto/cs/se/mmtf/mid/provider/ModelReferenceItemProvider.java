@@ -79,6 +79,7 @@ public class ModelReferenceItemProvider
 			addNamePropertyDescriptor(object);
 			addUriPropertyDescriptor(object);
 			addRootPropertyDescriptor(object);
+			addOriginPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -150,6 +151,28 @@ public class ModelReferenceItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Origin feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOriginPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelReference_origin_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelReference_origin_feature", "_UI_ModelReference_type"),
+				 MidPackage.Literals.MODEL_REFERENCE__ORIGIN,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ModelReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -188,6 +211,7 @@ public class ModelReferenceItemProvider
 		switch (notification.getFeatureID(ModelReference.class)) {
 			case MidPackage.MODEL_REFERENCE__NAME:
 			case MidPackage.MODEL_REFERENCE__URI:
+			case MidPackage.MODEL_REFERENCE__ORIGIN:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

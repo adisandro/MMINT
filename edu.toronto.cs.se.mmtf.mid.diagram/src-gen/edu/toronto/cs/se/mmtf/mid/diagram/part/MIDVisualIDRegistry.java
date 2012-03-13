@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
@@ -34,6 +35,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MIDOCLFactory;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -149,11 +151,13 @@ public class MIDVisualIDRegistry {
 				return MappingReferenceEditPart.VISUAL_ID;
 			}
 			if (MidPackage.eINSTANCE.getModelReference().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isModelReference_2002((ModelReference) domainElement)) {
 				return ModelReferenceEditPart.VISUAL_ID;
 			}
 			if (MidPackage.eINSTANCE.getModelReference().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isModelReference_2003((ModelReference) domainElement)) {
 				return ModelReference2EditPart.VISUAL_ID;
 			}
 			break;
@@ -235,6 +239,26 @@ public class MIDVisualIDRegistry {
 	 */
 	private static boolean isDiagram(MultiModel element) {
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isModelReference_2002(ModelReference domainElement) {
+		Object result = MIDOCLFactory.getExpression(0,
+				MidPackage.eINSTANCE.getModelReference(), null).evaluate(
+				domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isModelReference_2003(ModelReference domainElement) {
+		Object result = MIDOCLFactory.getExpression(1,
+				MidPackage.eINSTANCE.getModelReference(), null).evaluate(
+				domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 }

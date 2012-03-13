@@ -21,6 +21,7 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 
+import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -40,6 +41,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getRoot <em>Root</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getOrigin <em>Origin</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,6 +97,26 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	 * @ordered
 	 */
 	protected EObject root;
+
+	/**
+	 * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrigin()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ModelReferenceOrigin ORIGIN_EDEFAULT = ModelReferenceOrigin.IMPORTED;
+
+	/**
+	 * The cached value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrigin()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelReferenceOrigin origin = ORIGIN_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,6 +222,27 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ModelReferenceOrigin getOrigin() {
+		return origin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOrigin(ModelReferenceOrigin newOrigin) {
+		ModelReferenceOrigin oldOrigin = origin;
+		origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_REFERENCE__ORIGIN, oldOrigin, origin));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -210,6 +253,8 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 			case MidPackage.MODEL_REFERENCE__ROOT:
 				if (resolve) return getRoot();
 				return basicGetRoot();
+			case MidPackage.MODEL_REFERENCE__ORIGIN:
+				return getOrigin();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -230,6 +275,9 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 				return;
 			case MidPackage.MODEL_REFERENCE__ROOT:
 				setRoot((EObject)newValue);
+				return;
+			case MidPackage.MODEL_REFERENCE__ORIGIN:
+				setOrigin((ModelReferenceOrigin)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -252,6 +300,9 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 			case MidPackage.MODEL_REFERENCE__ROOT:
 				setRoot((EObject)null);
 				return;
+			case MidPackage.MODEL_REFERENCE__ORIGIN:
+				setOrigin(ORIGIN_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -270,6 +321,8 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case MidPackage.MODEL_REFERENCE__ROOT:
 				return root != null;
+			case MidPackage.MODEL_REFERENCE__ORIGIN:
+				return origin != ORIGIN_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -288,6 +341,8 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 		result.append(name);
 		result.append(", uri: ");
 		result.append(uri);
+		result.append(", origin: ");
+		result.append(origin);
 		result.append(')');
 		return result.toString();
 	}

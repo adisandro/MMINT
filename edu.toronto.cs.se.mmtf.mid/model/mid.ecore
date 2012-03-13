@@ -10,10 +10,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
+        eType="#//ModelReferenceOrigin"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingReference" eSuperTypes="#//ModelReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
         upperBound="-1" eType="#//ModelReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryMappingReference" eSuperTypes="#//MappingReference"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModelReferenceOrigin">
+    <eLiterals name="IMPORTED"/>
+    <eLiterals name="CREATED" value="1"/>
+  </eClassifiers>
 </ecore:EPackage>

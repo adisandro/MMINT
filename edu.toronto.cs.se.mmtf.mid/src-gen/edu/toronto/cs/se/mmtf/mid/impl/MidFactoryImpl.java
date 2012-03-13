@@ -21,6 +21,7 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -86,6 +87,36 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case MidPackage.MODEL_REFERENCE_ORIGIN:
+				return createModelReferenceOriginFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case MidPackage.MODEL_REFERENCE_ORIGIN:
+				return convertModelReferenceOriginToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MultiModel createMultiModel() {
 		MultiModelImpl multiModel = new MultiModelImpl();
 		return multiModel;
@@ -119,6 +150,26 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public BinaryMappingReference createBinaryMappingReference() {
 		BinaryMappingReferenceImpl binaryMappingReference = new BinaryMappingReferenceImpl();
 		return binaryMappingReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelReferenceOrigin createModelReferenceOriginFromString(EDataType eDataType, String initialValue) {
+		ModelReferenceOrigin result = ModelReferenceOrigin.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertModelReferenceOriginToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

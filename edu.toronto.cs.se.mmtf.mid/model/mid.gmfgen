@@ -94,7 +94,8 @@
           xsi:type="gmfgen:OpenDiagramBehaviour"
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorID"/>
-      <modelFacet>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
         <metaClass
             href="mid.genmodel#//mid/ModelReference"/>
         <containmentMetaFeature
@@ -126,6 +127,7 @@
         visualID="2003"
         editPartClassName="ModelReference2EditPart"
         itemSemanticEditPolicyClassName="ModelReference2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelReferenceViewFactory"
         canonicalEditPolicyClassName="ModelReference2CanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ModelReference2GraphicalNodeEditPolicy"
         createCommandClassName="ModelReference2CreateCommand">
@@ -140,10 +142,10 @@
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelReferenceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelReferenceNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelReferenceFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureModelReferenceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureModelReferenceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureModelReferenceNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelReferenceNameFigure() {&#xA;&#x9;&#x9;return fFigureModelReferenceNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <behaviour
           xsi:type="gmfgen:OpenDiagramBehaviour"
-          editPolicyClassName="OpenDiagramEditPolicy"
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorID"/>
-      <modelFacet>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.1">
         <metaClass
             href="mid.genmodel#//mid/ModelReference"/>
         <containmentMetaFeature
@@ -155,6 +157,7 @@
           visualID="5003"
           editPartClassName="ModelReferenceName2EditPart"
           itemSemanticEditPolicyClassName="ModelReferenceName2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="ModelReferenceNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -475,6 +478,17 @@
   </propertySheet>
   <domainGenModel
       href="mid.genmodel#/"/>
+  <expressionProviders>
+    <providers
+        xsi:type="gmfgen:GenExpressionInterpreter">
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="self.origin = ModelReferenceOrigin::IMPORTED"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="self.origin = ModelReferenceOrigin::CREATED"/>
+    </providers>
+  </expressionProviders>
   <labelParsers
       extensibleViaService="true">
     <implementations

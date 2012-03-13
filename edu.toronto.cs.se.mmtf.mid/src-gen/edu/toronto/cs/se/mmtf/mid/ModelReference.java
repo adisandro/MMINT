@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getRoot <em>Root</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getOrigin <em>Origin</em>}</li>
  * </ul>
  * </p>
  *
@@ -116,5 +117,34 @@ public interface ModelReference extends EObject {
 	 * @generated
 	 */
 	void setRoot(EObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Origin</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Origin</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Origin</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin
+	 * @see #setOrigin(ModelReferenceOrigin)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Origin()
+	 * @model required="true"
+	 * @generated
+	 */
+	ModelReferenceOrigin getOrigin();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getOrigin <em>Origin</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Origin</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin
+	 * @see #getOrigin()
+	 * @generated
+	 */
+	void setOrigin(ModelReferenceOrigin value);
 
 } // ModelReference
