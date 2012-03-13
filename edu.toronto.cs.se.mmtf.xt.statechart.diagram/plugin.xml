@@ -535,8 +535,9 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
    <extension
          point="edu.toronto.cs.se.mmtf.diagrams">
       <diagram
-            class="edu.toronto.cs.se.mmtf.xt.statechart.diagram.part.StatechartDiagramEditor"
-            metamodelUri="http:///edu/toronto/cs/se/mmtf/xt/statechart/model/statechart.ecore">
+            metamodelUri="http:///edu/toronto/cs/se/mmtf/xt/statechart/model/statechart.ecore"
+            pluginId="edu.toronto.cs.se.mmtf.xt.statechart.diagram"
+            editorId="edu.toronto.cs.se.mmtf.xt.statechart.diagram.part.StatechartDiagramEditorID">
       </diagram>
    </extension>
 

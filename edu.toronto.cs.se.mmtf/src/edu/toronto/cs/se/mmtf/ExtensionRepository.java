@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.gmf.runtime.notation.Diagram;
 
 /**
  * Methods in this class need to be dynamic, to support plugin uninstallations.
@@ -23,7 +22,12 @@ public class ExtensionRepository {
 	private final static String METAMODELS_ATTR_URI = "uri";
 	private final static String DIAGRAMS_EXT_POINT = "edu.toronto.cs.se.mmtf.diagrams";
 	private final static String DIAGRAMS_ATTR_METAMODEL_URI = "metamodelUri";
-	private final static String DIAGRAMS_ATTR_CLASS = "class";
+	private final static String DIAGRAMS_ATTR_EDITOR_ID = "editorId";
+
+	private final static String EDITORS_EXT_POINT = "org.eclipse.ui.editors";
+	private final static String EDITORS_EXT_POINT_GMF_ID = "gmf-editor";
+	private final static String EDITORS_ATTR_ID = "id";
+	private final static String EDITORS_ATTR_EXTENSIONS = "extensions";
 
 	public static ArrayList<String> getMetamodelFilenames() {
 
@@ -41,7 +45,6 @@ public class ExtensionRepository {
 		Map<String, Object> map = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
 
 		// assuming filenames for models are the same as package names from now on
-		//TODO filenames are actually decided by editors?
 		for (IConfigurationElement elem : config) {
 			metamodelUri = elem.getAttribute(METAMODELS_ATTR_URI);
 			metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(metamodelUri);
@@ -51,7 +54,6 @@ public class ExtensionRepository {
 				filenames.add(metamodelPackageName);
 				// possibly register file extension to load resources
 				if (!map.containsKey(metamodelPackageName)) {
-					//TODO dep on xmi in plugin: map.put(metamodelPackageName, metamodelPackage.getEFactoryInstance());
 					map.put(metamodelPackageName, new XMIResourceFactoryImpl());
 				}
 			}
@@ -60,13 +62,33 @@ public class ExtensionRepository {
 		return filenames;
 	}
 
-	public Diagram getModelReferenceDiagram(String metamodelUri) {
-		/*TODO we need to get the DiagramEditor class listed in the diagrams extension point
-		 *     there must be a pointer in the ModelReference.type that let us do this
-		 *     options are: the metamodel uri, the EPackage of the model which has .eNS_URI,
-		 *     the EObject representing the root of the model which has .getEPackage
-		 */
-		return null;
+	public static ArrayList<String> getModelReferenceDiagramFilenames(String metamodelUri) {
+
+		ArrayList<String> diagramFilenames = new ArrayList<String>();
+
+		IExtensionRegistry registry = RegistryFactory.getRegistry();
+		if (registry == null) {
+			return diagramFilenames;
+		}
+
+		IConfigurationElement[] config = registry.getConfigurationElementsFor(DIAGRAMS_EXT_POINT);
+		String editorId;
+		//TODO ridurre in qualche modo
+		IConfigurationElement[] GMFconfig = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
+
+		for (IConfigurationElement elem : config) {
+			if (elem.getAttribute(DIAGRAMS_ATTR_METAMODEL_URI).equals(metamodelUri)) {
+				editorId = elem.getAttribute(DIAGRAMS_ATTR_EDITOR_ID);
+				for (IConfigurationElement GMFelem : GMFconfig) {
+					if (GMFelem.getAttribute(EDITORS_ATTR_ID).equals(editorId)) {
+						diagramFilenames.add(GMFelem.getAttribute(EDITORS_ATTR_EXTENSIONS));
+						break;
+					}
+				}
+			}
+		}
+
+		return diagramFilenames;
 	}
 
 }

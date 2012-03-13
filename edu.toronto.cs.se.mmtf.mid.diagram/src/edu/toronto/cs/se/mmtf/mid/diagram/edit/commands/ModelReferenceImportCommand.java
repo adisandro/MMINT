@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -33,6 +34,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -64,18 +66,19 @@ public class ModelReferenceImportCommand extends ModelReferenceCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		URI modelUri = selectModelToImport();
-
-		if (modelUri == null) {
+		EObject root;
+		try {
+			if (modelUri == null) {
+				throw new MMTFException("Cancel button pressed in chooser dialog");
+			}
+			ResourceSet set = new ResourceSetImpl();
+			Resource resource = set.getResource(modelUri, true);
+			root = resource.getContents().get(0);
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No model imported", e);
 			return CommandResult.newErrorCommandResult("No model imported");
 		}
-
-		//TODO ok ci siamo, devo riuscire ad assegnare a type l'EObject
-		// 2: valutare se tutte quelle chiamate nell'Extension repository non appesantiscono, visto che saranno
-		//    fatte milioni di volte (ma d'altronde devo anche rispettare la dinamicità e le disinstallazioni)
-		ResourceSet set = new ResourceSetImpl();
-		Resource resource = set.getResource(modelUri, true);
-		EObject root = resource.getContents().get(0);
-		//TODO handle exceptions here, or print error and return error command
 
 		ModelReference newElement = MidFactory.eINSTANCE.createModelReference();
 		newElement.setUri(modelUri.toPlatformString(true));

@@ -57,14 +57,18 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="class" type="string" use="required">
+         <attribute name="pluginId" type="string" use="required">
             <annotation>
                <documentation>
-                  The diagram editor class.
+                  The diagram plugin id.
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor:"/>
-               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="editorId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The diagram editor id.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>
