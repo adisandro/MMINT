@@ -14,9 +14,9 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmtf.ExtensionRepository;
-import edu.toronto.cs.se.mmtf.ExtensionRepository.DiagramID;
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTF.DiagramID;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
 
@@ -36,7 +36,7 @@ public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalComma
 		ModelReference model = (ModelReference) ((Shape) diagramFacet.eContainer()).getElement();
 		String metamodelUri = model.getRoot().eClass().getEPackage().getNsURI();
 		String modelUri = model.getUri();
-		ArrayList<DiagramID> registeredDiagrams = ExtensionRepository.getDiagramIds(metamodelUri);
+		ArrayList<DiagramID> registeredDiagrams = MMTF.getDiagramIds(metamodelUri);
 
 		try {
 			if (registeredDiagrams.size() == 0) {

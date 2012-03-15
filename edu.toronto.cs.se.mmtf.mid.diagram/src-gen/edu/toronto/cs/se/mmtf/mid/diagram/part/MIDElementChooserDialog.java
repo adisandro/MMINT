@@ -63,7 +63,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
-import edu.toronto.cs.se.mmtf.ExtensionRepository;
+import edu.toronto.cs.se.mmtf.MMTF;
 
 /**
  * @generated
@@ -158,7 +158,7 @@ public class MIDElementChooserDialog extends Dialog {
 	private boolean isValidModelFile(IFile file) {
 
 		String fileExtension = file.getFullPath().getFileExtension();
-		ArrayList<String> registeredMetamodels = ExtensionRepository
+		ArrayList<String> registeredMetamodels = MMTF
 				.getMetamodelFileExtensions();
 
 		return registeredMetamodels.contains(fileExtension);

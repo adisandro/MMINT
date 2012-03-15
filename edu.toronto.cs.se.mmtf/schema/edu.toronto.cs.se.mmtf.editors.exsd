@@ -3,10 +3,10 @@
 <schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.diagrams" name="MMTF Diagrams"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.editors" name="MMTF Editors"/>
       </appinfo>
       <documentation>
-         Allows diagrams to be registered with MMTF.
+         Allows editors to be registered with MMTF.
 The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamodels extension point.
       </documentation>
    </annotation>
@@ -19,7 +19,7 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
       </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="diagram"/>
+            <element ref="editor"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -48,26 +48,33 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
       </complexType>
    </element>
 
-   <element name="diagram">
+   <element name="editor">
       <complexType>
          <attribute name="metamodelUri" type="string" use="required">
             <annotation>
                <documentation>
-                  The metamodel URI for which a diagram editor is being provided.
+                  The metamodel URI for which an editor is being provided.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isDiagram" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  Wheter this is a diagram editor.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="editorId" type="string" use="required">
             <annotation>
                <documentation>
-                  The diagram editor id.
+                  The editor id.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="wizardId" type="string" use="required">
             <annotation>
                <documentation>
-                  The diagram plugin id.
+                  The editor wizard id.
                </documentation>
             </annotation>
          </attribute>
