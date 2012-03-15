@@ -57,17 +57,17 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="pluginId" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The diagram plugin id.
-               </documentation>
-            </annotation>
-         </attribute>
          <attribute name="editorId" type="string" use="required">
             <annotation>
                <documentation>
                   The diagram editor id.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="wizardId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The diagram plugin id.
                </documentation>
             </annotation>
          </attribute>
