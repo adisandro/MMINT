@@ -2,15 +2,18 @@ package edu.toronto.cs.se.mmtf;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
-import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import edu.toronto.cs.se.mmtf.repository.Editor;
+import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.Metamodel;
 import edu.toronto.cs.se.mmtf.repository.MetamodelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.Repository;
@@ -36,123 +39,158 @@ public class MMTF {
 	private final static String ECLIPSE_EDITORS_ATTR_ID = "id";
 	private final static String ECLIPSE_EDITORS_ATTR_EXTENSIONS = "extensions";
 
-	private Repository repository;
+	private static Repository repository;
 
-	private void initRepository() {
+	public Metamodel addMetamodel(IConfigurationElement extensionConfig) {
+
+		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+		String uri = extensionConfig.getAttribute(METAMODELS_ATTR_URI);
+		Metamodel metamodel = RepositoryFactory.eINSTANCE.createMetamodel();
+		EPackage metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
+
+		metamodel.setUri(uri);
+		if (metamodelPackage != null) {
+			String metamodelPackageName = metamodelPackage.getName();
+			metamodel.setFileExtension(metamodelPackageName);
+			// possibly register file extension to load resources
+			if (!resourceMap.containsKey(metamodelPackageName)) {
+				resourceMap.put(metamodelPackageName, new XMIResourceFactoryImpl());
+			}
+		}
+		repository.getMetamodels().put(uri, metamodel);
+
+		return metamodel;
+	}
+
+	public void addMetamodelEditors(Metamodel metamodel) {
+
+		Editor editor;
+		for (Entry<String, Editor> entry : repository.getEditors().entrySet()) {
+			editor = entry.getValue();
+			if (editor.getMetamodelUri().equals(metamodel.getUri())) {
+				metamodel.getEditors().add(editor);
+			}
+		}
+	}
+
+	public void removeMetamodel(IConfigurationElement extensionConfig) {
+
+		String uri = extensionConfig.getAttribute(METAMODELS_ATTR_URI);
+		Metamodel metamodel = repository.getMetamodels().removeKey(uri);
+		metamodel.getEditors().clear();
+	}
+
+	public Editor addEditor(IConfigurationElement extensionConfig) {
+
+		String metamodelUri = extensionConfig.getAttribute(EDITORS_ATTR_METAMODEL_URI);
+		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_IS_DIAGRAM);
+		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
+		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARD_ID);
+		Editor editor;
+		if (Boolean.parseBoolean(isDiagram)) {
+			editor = RepositoryFactory.eINSTANCE.createDiagram();
+		}
+		else {
+			editor = RepositoryFactory.eINSTANCE.createEditor();
+		}
+		editor.setMetamodelUri(metamodelUri);
+		editor.setEditorId(editorId);
+		editor.setWizardId(wizardId);
+		repository.getEditors().put(editorId, editor);
+
+		return editor;
+	}
+
+	public void addMetamodelEditors(Editor editor) {
+
+		Metamodel metamodel = repository.getMetamodels().get(editor.getMetamodelUri());
+		if (metamodel != null) {
+			metamodel.getEditors().add(editor);
+		}
+	}
+
+	public void addEditorFilenames(IExtensionRegistry registry, Editor editor) {
+
+		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
+		for (IConfigurationElement elem : config) {
+			if (elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID).equals(editor.getEditorId())) {
+				for (String fileExtension : elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS).split(",")) {
+					editor.getFileExtensions().add(fileExtension);
+				}
+				break;
+			}
+		}
+	}
+
+	public void addEditorFilenames(IExtensionRegistry registry) {
+
+		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
+		Editor editor;
+		for (IConfigurationElement elem : config) {
+			editor = repository.getEditors().get(elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID));
+			if (editor != null) {
+				for (String fileExtension : elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS).split(",")) {
+					editor.getFileExtensions().add(fileExtension);
+				}
+			}
+		}
+	}
+
+	public void removeEditor(IConfigurationElement extensionConfig) {
+
+		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
+		Editor editor = repository.getEditors().removeKey(editorId);
+		Metamodel metamodel = repository.getMetamodels().get(editor.getMetamodelUri());
+		if (metamodel != null) {
+			metamodel.getEditors().remove(editor);
+		}
+	}
+
+	private void initRepository(IExtensionRegistry registry) {
 
 		repository = RepositoryFactory.eINSTANCE.createRepository();
-		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		IConfigurationElement[] config;
 
 		// metamodels
-		EMap<String, Metamodel> metamodels = repository.getMetamodels();
-		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-		EPackage metamodelPackage;
-		String uri, metamodelPackageName;
-		Metamodel metamodel;
 		config = registry.getConfigurationElementsFor(METAMODELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			uri = elem.getAttribute(METAMODELS_ATTR_URI);
-			metamodel = RepositoryFactory.eINSTANCE.createMetamodel();
-			metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
-			metamodel.setUri(uri);
-			if (metamodelPackage != null) {
-				metamodelPackageName = metamodelPackage.getName();
-				metamodel.setFileExtension(metamodelPackageName);
-				// possibly register file extension to load resources
-				if (!resourceMap.containsKey(metamodelPackageName)) {
-					resourceMap.put(metamodelPackageName, new XMIResourceFactoryImpl());
-				}
-			}
-			metamodels.put(uri, metamodel);
+			addMetamodel(elem);
 		}
+
+		// editors
+		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
+		Editor editor;
+		for (IConfigurationElement elem : config) {
+			editor = addEditor(elem);
+			addMetamodelEditors(editor);
+		}
+		addEditorFilenames(registry);
 	}
 
 	public MMTF() {
 
-		initRepository();
-		//TODO register registry listeners
-		RegistryFactory.getRegistry().addListener(new MetamodelsExtensionListener(), METAMODELS_EXT_POINT);
+		IExtensionRegistry registry = RegistryFactory.getRegistry();
+		if (registry != null) {
+			initRepository(registry);
+			registry.addListener(new MetamodelsExtensionListener(this), METAMODELS_EXT_POINT);
+			registry.addListener(new EditorsExtensionListener(this), EDITORS_EXT_POINT);
+		}
 	}
 
 	//TODO modify and move repository queries to own class
 	public static ArrayList<String> getMetamodelFileExtensions() {
 
 		ArrayList<String> filenames = new ArrayList<String>();
-
-		IExtensionRegistry registry = RegistryFactory.getRegistry();
-		if (registry == null) {
-			return filenames;
-		}
-
-		IConfigurationElement[] config = registry.getConfigurationElementsFor(METAMODELS_EXT_POINT);
-		String metamodelUri;
-		EPackage metamodelPackage;
-		String metamodelPackageName;
-		Map<String, Object> map = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-
-		// assuming filenames for models are the same as package names from now on
-		for (IConfigurationElement elem : config) {
-			metamodelUri = elem.getAttribute(METAMODELS_ATTR_URI);
-			metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(metamodelUri);
-
-			if (metamodelPackage != null) {
-				metamodelPackageName = metamodelPackage.getName();
-				filenames.add(metamodelPackageName);
-				// possibly register file extension to load resources
-				if (!map.containsKey(metamodelPackageName)) {
-					map.put(metamodelPackageName, new XMIResourceFactoryImpl());
-				}
-			}
+		for (Entry<String, Metamodel> entry : repository.getMetamodels().entrySet()) {
+			filenames.add(entry.getValue().getFileExtension());
 		}
 
 		return filenames;
 	}
 
-	public static class DiagramID {
-		private String fileExtension;
-		private String editorId;
-		public DiagramID(String fileExtension, String editorId) {
-			this.fileExtension = fileExtension;
-			this.editorId = editorId;
-		}
-		public String getFileExtension() {
-			return fileExtension;
-		}
-		public String getEditorId() {
-			return editorId;
-		}
-	}
+	public static EList<Editor> getEditorsForMetamodel(String metamodelUri) {
 
-	public static ArrayList<DiagramID> getDiagramIds(String metamodelUri) {
-
-		ArrayList<DiagramID> diagramIds = new ArrayList<DiagramID>();
-
-		IExtensionRegistry registry = RegistryFactory.getRegistry();
-		if (registry == null) {
-			return diagramIds;
-		}
-
-		IConfigurationElement[] config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
-		String editorId;
-		//TODO ridurre in qualche modo (credo che l'unico sia infilare i file extension nel mio point)
-		IConfigurationElement[] GMFconfig = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
-
-		for (IConfigurationElement elem : config) {
-			if (elem.getAttribute(EDITORS_ATTR_METAMODEL_URI).equals(metamodelUri)) {
-				editorId = elem.getAttribute(EDITORS_ATTR_EDITOR_ID);
-				for (IConfigurationElement GMFelem : GMFconfig) {
-					if (GMFelem.getAttribute(ECLIPSE_EDITORS_ATTR_ID).equals(editorId)) {
-						for (String fileExtension : GMFelem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS).split(",")) {
-							diagramIds.add(new DiagramID(fileExtension, editorId));
-						}
-						break;
-					}
-				}
-			}
-		}
-
-		return diagramIds;
+		return repository.getMetamodels().get(metamodelUri).getEditors();
 	}
 
 }

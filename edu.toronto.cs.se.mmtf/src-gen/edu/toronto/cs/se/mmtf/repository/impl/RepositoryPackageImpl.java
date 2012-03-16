@@ -256,8 +256,8 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEditor_Metamodel() {
-		return (EReference)editorEClass.getEStructuralFeatures().get(0);
+	public EAttribute getEditor_MetamodelUri() {
+		return (EAttribute)editorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEditor_ViewId() {
+	public EAttribute getEditor_EditorId() {
 		return (EAttribute)editorEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -392,8 +392,8 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 		createEReference(metamodelEClass, METAMODEL__EDITORS);
 
 		editorEClass = createEClass(EDITOR);
-		createEReference(editorEClass, EDITOR__METAMODEL);
-		createEAttribute(editorEClass, EDITOR__VIEW_ID);
+		createEAttribute(editorEClass, EDITOR__METAMODEL_URI);
+		createEAttribute(editorEClass, EDITOR__EDITOR_ID);
 		createEAttribute(editorEClass, EDITOR__WIZARD_ID);
 		createEAttribute(editorEClass, EDITOR__FILE_EXTENSIONS);
 
@@ -455,8 +455,8 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 		initEReference(getMetamodel_Editors(), this.getEditor(), null, "editors", null, 0, -1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(editorEClass, Editor.class, "Editor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEditor_Metamodel(), this.getMetamodel(), null, "metamodel", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEditor_ViewId(), ecorePackage.getEString(), "viewId", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEditor_MetamodelUri(), ecorePackage.getEString(), "metamodelUri", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEditor_EditorId(), ecorePackage.getEString(), "editorId", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEditor_WizardId(), ecorePackage.getEString(), "wizardId", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEditor_FileExtensions(), ecorePackage.getEString(), "fileExtensions", null, 1, -1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

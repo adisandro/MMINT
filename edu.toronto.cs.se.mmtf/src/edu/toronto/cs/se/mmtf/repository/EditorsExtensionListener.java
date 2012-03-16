@@ -2,12 +2,14 @@ package edu.toronto.cs.se.mmtf.repository;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.RegistryFactory;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 
-public class MetamodelsExtensionListener extends MMTFExtensionListener {
+public class EditorsExtensionListener extends MMTFExtensionListener {
 
-	public MetamodelsExtensionListener(MMTF mmtf) {
+	public EditorsExtensionListener(MMTF mmtf) {
 
 		super(mmtf);
 	}
@@ -15,13 +17,19 @@ public class MetamodelsExtensionListener extends MMTFExtensionListener {
 	@Override
 	public void added(IExtension[] extensions) {
 
+		IExtensionRegistry registry = RegistryFactory.getRegistry();
+		if (registry == null) {
+			return;
+		}
+
 		IConfigurationElement[] config;
-		Metamodel metamodel;
+		Editor editor;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				metamodel = mmtf.addMetamodel(elem);
-				mmtf.addMetamodelEditors(metamodel);
+				editor = mmtf.addEditor(elem);
+				mmtf.addMetamodelEditors(editor);
+				mmtf.addEditorFilenames(registry, editor);
 			}
 		}
 	}
@@ -33,7 +41,7 @@ public class MetamodelsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				mmtf.removeMetamodel(elem);
+				mmtf.removeEditor(elem);
 			}
 		}
 	}

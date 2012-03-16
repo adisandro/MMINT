@@ -12,4 +12,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.xmi
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: edu.toronto.cs.se.mmtf
+Export-Package: edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmtf.repository,
+ edu.toronto.cs.se.mmtf.repository.util

@@ -1,11 +1,10 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
 
-import java.util.ArrayList;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
@@ -16,9 +15,9 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.DiagramID;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
+import edu.toronto.cs.se.mmtf.repository.Editor;
 
 public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalCommand {
 
@@ -31,29 +30,30 @@ public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalComma
 	}
 
 	@Override
+	//TODO aggiustare alla luce del nuovo repository
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		ModelReference model = (ModelReference) ((Shape) diagramFacet.eContainer()).getElement();
 		String metamodelUri = model.getRoot().eClass().getEPackage().getNsURI();
 		String modelUri = model.getUri();
-		ArrayList<DiagramID> registeredDiagrams = MMTF.getDiagramIds(metamodelUri);
+		EList<Editor> registeredEditors = MMTF.getEditorsForMetamodel(metamodelUri);
 
 		try {
-			if (registeredDiagrams.size() == 0) {
-				throw new MMTFException("No diagram registered with metamodel " + metamodelUri);
+			if (registeredEditors.size() == 0) {
+				throw new MMTFException("No editor registered with metamodel " + metamodelUri);
 			}
-			if (registeredDiagrams.size() == 1) {
+			if (registeredEditors.size() == 1) {
 				// the diagram is supposed to be in the same directory as the model
 				// otherwise every time we should ask where it is
 				//TODO implement FileDialog as a fallback
-				DiagramID diagram = registeredDiagrams.get(0);
+				Editor editor = registeredEditors.get(0);
 				URI diagramUri = URI.createPlatformResourceURI(
-					modelUri.substring(0, modelUri.lastIndexOf('.')+1) + diagram.getFileExtension(),
+					modelUri.substring(0, modelUri.lastIndexOf('.')+1) + editor.getFileExtensions().get(0),
 					true
 				);
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
 					new URIEditorInput(diagramUri),
-					diagram.getEditorId()
+					editor.getEditorId()
 				);
 			}
 			else {
@@ -61,8 +61,8 @@ public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalComma
 			}
 		}
 		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "No diagram associated", e);
-			return CommandResult.newErrorCommandResult("No diagram associated");
+			MMTFException.print(MMTFException.Type.WARNING, "No editor associated", e);
+			return CommandResult.newErrorCommandResult("No editor associated");
 		}
 
 		return CommandResult.newOKCommandResult();

@@ -238,22 +238,22 @@ public interface RepositoryPackage extends EPackage {
 	int EDITOR__NAME = EXTENSION_POINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Metamodel</b></em>' reference.
+	 * The feature id for the '<em><b>Metamodel Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__METAMODEL = EXTENSION_POINT_FEATURE_COUNT + 0;
+	int EDITOR__METAMODEL_URI = EXTENSION_POINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>View Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Editor Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__VIEW_ID = EXTENSION_POINT_FEATURE_COUNT + 1;
+	int EDITOR__EDITOR_ID = EXTENSION_POINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
@@ -311,22 +311,22 @@ public interface RepositoryPackage extends EPackage {
 	int DIAGRAM__NAME = EDITOR__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Metamodel</b></em>' reference.
+	 * The feature id for the '<em><b>Metamodel Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM__METAMODEL = EDITOR__METAMODEL;
+	int DIAGRAM__METAMODEL_URI = EDITOR__METAMODEL_URI;
 
 	/**
-	 * The feature id for the '<em><b>View Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Editor Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM__VIEW_ID = EDITOR__VIEW_ID;
+	int DIAGRAM__EDITOR_ID = EDITOR__EDITOR_ID;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
@@ -548,26 +548,26 @@ public interface RepositoryPackage extends EPackage {
 	EClass getEditor();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.repository.Editor#getMetamodel <em>Metamodel</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.Editor#getMetamodelUri <em>Metamodel Uri</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Metamodel</em>'.
-	 * @see edu.toronto.cs.se.mmtf.repository.Editor#getMetamodel()
+	 * @return the meta object for the attribute '<em>Metamodel Uri</em>'.
+	 * @see edu.toronto.cs.se.mmtf.repository.Editor#getMetamodelUri()
 	 * @see #getEditor()
 	 * @generated
 	 */
-	EReference getEditor_Metamodel();
+	EAttribute getEditor_MetamodelUri();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.Editor#getViewId <em>View Id</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.Editor#getEditorId <em>Editor Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>View Id</em>'.
-	 * @see edu.toronto.cs.se.mmtf.repository.Editor#getViewId()
+	 * @return the meta object for the attribute '<em>Editor Id</em>'.
+	 * @see edu.toronto.cs.se.mmtf.repository.Editor#getEditorId()
 	 * @see #getEditor()
 	 * @generated
 	 */
-	EAttribute getEditor_ViewId();
+	EAttribute getEditor_EditorId();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.Editor#getWizardId <em>Wizard Id</em>}'.
@@ -788,20 +788,20 @@ public interface RepositoryPackage extends EPackage {
 		EClass EDITOR = eINSTANCE.getEditor();
 
 		/**
-		 * The meta object literal for the '<em><b>Metamodel</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Metamodel Uri</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EDITOR__METAMODEL = eINSTANCE.getEditor_Metamodel();
+		EAttribute EDITOR__METAMODEL_URI = eINSTANCE.getEditor_MetamodelUri();
 
 		/**
-		 * The meta object literal for the '<em><b>View Id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Editor Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EDITOR__VIEW_ID = eINSTANCE.getEditor_ViewId();
+		EAttribute EDITOR__EDITOR_ID = eINSTANCE.getEditor_EditorId();
 
 		/**
 		 * The meta object literal for the '<em><b>Wizard Id</b></em>' attribute feature.

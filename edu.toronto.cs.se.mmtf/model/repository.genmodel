@@ -22,8 +22,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference repository.ecore#//Metamodel/editors"/>
     </genClasses>
     <genClasses ecoreClass="repository.ecore#//Editor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference repository.ecore#//Editor/metamodel"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Editor/viewId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Editor/metamodelUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Editor/editorId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Editor/wizardId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Editor/fileExtensions"/>
     </genClasses>

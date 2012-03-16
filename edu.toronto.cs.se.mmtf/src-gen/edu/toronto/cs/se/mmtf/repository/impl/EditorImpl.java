@@ -19,7 +19,6 @@
 package edu.toronto.cs.se.mmtf.repository.impl;
 
 import edu.toronto.cs.se.mmtf.repository.Editor;
-import edu.toronto.cs.se.mmtf.repository.Metamodel;
 import edu.toronto.cs.se.mmtf.repository.RepositoryPackage;
 
 import java.util.Collection;
@@ -29,7 +28,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -42,8 +40,8 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.EditorImpl#getMetamodel <em>Metamodel</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.EditorImpl#getViewId <em>View Id</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.EditorImpl#getMetamodelUri <em>Metamodel Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.EditorImpl#getEditorId <em>Editor Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.EditorImpl#getWizardId <em>Wizard Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.EditorImpl#getFileExtensions <em>File Extensions</em>}</li>
  * </ul>
@@ -53,34 +51,44 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  */
 public class EditorImpl extends ExtensionPointImpl implements Editor {
 	/**
-	 * The cached value of the '{@link #getMetamodel() <em>Metamodel</em>}' reference.
+	 * The default value of the '{@link #getMetamodelUri() <em>Metamodel Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMetamodel()
+	 * @see #getMetamodelUri()
 	 * @generated
 	 * @ordered
 	 */
-	protected Metamodel metamodel;
+	protected static final String METAMODEL_URI_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getViewId() <em>View Id</em>}' attribute.
+	 * The cached value of the '{@link #getMetamodelUri() <em>Metamodel Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getViewId()
+	 * @see #getMetamodelUri()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VIEW_ID_EDEFAULT = null;
+	protected String metamodelUri = METAMODEL_URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getViewId() <em>View Id</em>}' attribute.
+	 * The default value of the '{@link #getEditorId() <em>Editor Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getViewId()
+	 * @see #getEditorId()
 	 * @generated
 	 * @ordered
 	 */
-	protected String viewId = VIEW_ID_EDEFAULT;
+	protected static final String EDITOR_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEditorId() <em>Editor Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEditorId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String editorId = EDITOR_ID_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getWizardId() <em>Wizard Id</em>}' attribute.
@@ -136,16 +144,8 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel getMetamodel() {
-		if (metamodel != null && metamodel.eIsProxy()) {
-			InternalEObject oldMetamodel = (InternalEObject)metamodel;
-			metamodel = (Metamodel)eResolveProxy(oldMetamodel);
-			if (metamodel != oldMetamodel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RepositoryPackage.EDITOR__METAMODEL, oldMetamodel, metamodel));
-			}
-		}
-		return metamodel;
+	public String getMetamodelUri() {
+		return metamodelUri;
 	}
 
 	/**
@@ -153,20 +153,11 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metamodel basicGetMetamodel() {
-		return metamodel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMetamodel(Metamodel newMetamodel) {
-		Metamodel oldMetamodel = metamodel;
-		metamodel = newMetamodel;
+	public void setMetamodelUri(String newMetamodelUri) {
+		String oldMetamodelUri = metamodelUri;
+		metamodelUri = newMetamodelUri;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EDITOR__METAMODEL, oldMetamodel, metamodel));
+			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EDITOR__METAMODEL_URI, oldMetamodelUri, metamodelUri));
 	}
 
 	/**
@@ -174,8 +165,8 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getViewId() {
-		return viewId;
+	public String getEditorId() {
+		return editorId;
 	}
 
 	/**
@@ -183,11 +174,11 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setViewId(String newViewId) {
-		String oldViewId = viewId;
-		viewId = newViewId;
+	public void setEditorId(String newEditorId) {
+		String oldEditorId = editorId;
+		editorId = newEditorId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EDITOR__VIEW_ID, oldViewId, viewId));
+			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EDITOR__EDITOR_ID, oldEditorId, editorId));
 	}
 
 	/**
@@ -231,11 +222,10 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RepositoryPackage.EDITOR__METAMODEL:
-				if (resolve) return getMetamodel();
-				return basicGetMetamodel();
-			case RepositoryPackage.EDITOR__VIEW_ID:
-				return getViewId();
+			case RepositoryPackage.EDITOR__METAMODEL_URI:
+				return getMetamodelUri();
+			case RepositoryPackage.EDITOR__EDITOR_ID:
+				return getEditorId();
 			case RepositoryPackage.EDITOR__WIZARD_ID:
 				return getWizardId();
 			case RepositoryPackage.EDITOR__FILE_EXTENSIONS:
@@ -253,11 +243,11 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RepositoryPackage.EDITOR__METAMODEL:
-				setMetamodel((Metamodel)newValue);
+			case RepositoryPackage.EDITOR__METAMODEL_URI:
+				setMetamodelUri((String)newValue);
 				return;
-			case RepositoryPackage.EDITOR__VIEW_ID:
-				setViewId((String)newValue);
+			case RepositoryPackage.EDITOR__EDITOR_ID:
+				setEditorId((String)newValue);
 				return;
 			case RepositoryPackage.EDITOR__WIZARD_ID:
 				setWizardId((String)newValue);
@@ -278,11 +268,11 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RepositoryPackage.EDITOR__METAMODEL:
-				setMetamodel((Metamodel)null);
+			case RepositoryPackage.EDITOR__METAMODEL_URI:
+				setMetamodelUri(METAMODEL_URI_EDEFAULT);
 				return;
-			case RepositoryPackage.EDITOR__VIEW_ID:
-				setViewId(VIEW_ID_EDEFAULT);
+			case RepositoryPackage.EDITOR__EDITOR_ID:
+				setEditorId(EDITOR_ID_EDEFAULT);
 				return;
 			case RepositoryPackage.EDITOR__WIZARD_ID:
 				setWizardId(WIZARD_ID_EDEFAULT);
@@ -302,10 +292,10 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RepositoryPackage.EDITOR__METAMODEL:
-				return metamodel != null;
-			case RepositoryPackage.EDITOR__VIEW_ID:
-				return VIEW_ID_EDEFAULT == null ? viewId != null : !VIEW_ID_EDEFAULT.equals(viewId);
+			case RepositoryPackage.EDITOR__METAMODEL_URI:
+				return METAMODEL_URI_EDEFAULT == null ? metamodelUri != null : !METAMODEL_URI_EDEFAULT.equals(metamodelUri);
+			case RepositoryPackage.EDITOR__EDITOR_ID:
+				return EDITOR_ID_EDEFAULT == null ? editorId != null : !EDITOR_ID_EDEFAULT.equals(editorId);
 			case RepositoryPackage.EDITOR__WIZARD_ID:
 				return WIZARD_ID_EDEFAULT == null ? wizardId != null : !WIZARD_ID_EDEFAULT.equals(wizardId);
 			case RepositoryPackage.EDITOR__FILE_EXTENSIONS:
@@ -324,8 +314,10 @@ public class EditorImpl extends ExtensionPointImpl implements Editor {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (viewId: ");
-		result.append(viewId);
+		result.append(" (metamodelUri: ");
+		result.append(metamodelUri);
+		result.append(", editorId: ");
+		result.append(editorId);
 		result.append(", wizardId: ");
 		result.append(wizardId);
 		result.append(", fileExtensions: ");

@@ -28,8 +28,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.Editor#getMetamodel <em>Metamodel</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.Editor#getViewId <em>View Id</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.Editor#getMetamodelUri <em>Metamodel Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.Editor#getEditorId <em>Editor Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.repository.Editor#getWizardId <em>Wizard Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.repository.Editor#getFileExtensions <em>File Extensions</em>}</li>
  * </ul>
@@ -41,56 +41,56 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Editor extends ExtensionPoint {
 	/**
-	 * Returns the value of the '<em><b>Metamodel</b></em>' reference.
+	 * Returns the value of the '<em><b>Metamodel Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Metamodel</em>' reference isn't clear,
+	 * If the meaning of the '<em>Metamodel Uri</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Metamodel</em>' reference.
-	 * @see #setMetamodel(Metamodel)
-	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getEditor_Metamodel()
+	 * @return the value of the '<em>Metamodel Uri</em>' attribute.
+	 * @see #setMetamodelUri(String)
+	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getEditor_MetamodelUri()
 	 * @model required="true"
 	 * @generated
 	 */
-	Metamodel getMetamodel();
+	String getMetamodelUri();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.Editor#getMetamodel <em>Metamodel</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.Editor#getMetamodelUri <em>Metamodel Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Metamodel</em>' reference.
-	 * @see #getMetamodel()
+	 * @param value the new value of the '<em>Metamodel Uri</em>' attribute.
+	 * @see #getMetamodelUri()
 	 * @generated
 	 */
-	void setMetamodel(Metamodel value);
+	void setMetamodelUri(String value);
 
 	/**
-	 * Returns the value of the '<em><b>View Id</b></em>' attribute.
+	 * Returns the value of the '<em><b>Editor Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>View Id</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Editor Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>View Id</em>' attribute.
-	 * @see #setViewId(String)
-	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getEditor_ViewId()
+	 * @return the value of the '<em>Editor Id</em>' attribute.
+	 * @see #setEditorId(String)
+	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getEditor_EditorId()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getViewId();
+	String getEditorId();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.Editor#getViewId <em>View Id</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.Editor#getEditorId <em>Editor Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>View Id</em>' attribute.
-	 * @see #getViewId()
+	 * @param value the new value of the '<em>Editor Id</em>' attribute.
+	 * @see #getEditorId()
 	 * @generated
 	 */
-	void setViewId(String value);
+	void setEditorId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Wizard Id</b></em>' attribute.
