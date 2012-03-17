@@ -13,10 +13,11 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
+import edu.toronto.cs.se.mmtf.repository.Diagram;
 import edu.toronto.cs.se.mmtf.repository.Editor;
 
 public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalCommand {
@@ -30,34 +31,35 @@ public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalComma
 	}
 
 	@Override
-	//TODO aggiustare alla luce del nuovo repository
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		ModelReference model = (ModelReference) ((Shape) diagramFacet.eContainer()).getElement();
 		String metamodelUri = model.getRoot().eClass().getEPackage().getNsURI();
 		String modelUri = model.getUri();
-		EList<Editor> registeredEditors = MMTF.getEditorsForMetamodel(metamodelUri);
+		EList<Editor> registeredEditors = MMTFRegistry.getEditorsForMetamodel(metamodelUri);
 
+		// the diagram file is supposed to be in the same directory as the model
+		// otherwise every time we should ask where it is
+		//TODO implement fallbacks (FileDialog, tree editor)?
 		try {
 			if (registeredEditors.size() == 0) {
 				throw new MMTFException("No editor registered with metamodel " + metamodelUri);
 			}
-			if (registeredEditors.size() == 1) {
-				// the diagram is supposed to be in the same directory as the model
-				// otherwise every time we should ask where it is
-				//TODO implement FileDialog as a fallback
-				Editor editor = registeredEditors.get(0);
-				URI diagramUri = URI.createPlatformResourceURI(
-					modelUri.substring(0, modelUri.lastIndexOf('.')+1) + editor.getFileExtensions().get(0),
-					true
-				);
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-					new URIEditorInput(diagramUri),
-					editor.getEditorId()
-				);
-			}
 			else {
-				//TODO figure out how to choose a single diagram
+				//TODO needs to be fixed with views support
+				for (Editor editor  : registeredEditors) {
+					if (editor instanceof Diagram) {
+						URI editorUri = URI.createPlatformResourceURI(
+							modelUri.substring(0, modelUri.lastIndexOf('.')+1) + editor.getFileExtensions().get(0),
+							true
+						);
+						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+							new URIEditorInput(editorUri),
+							editor.getEditorId()
+						);
+						break;
+					}
+				}
 			}
 		}
 		catch (Exception e) {

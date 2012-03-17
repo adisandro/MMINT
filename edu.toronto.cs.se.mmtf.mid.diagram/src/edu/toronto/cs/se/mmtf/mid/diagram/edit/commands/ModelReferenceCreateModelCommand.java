@@ -26,22 +26,32 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.repository.Metamodel;
 
 public class ModelReferenceCreateModelCommand extends ModelReference2CreateCommand {
 
 	private URI createModel() {
 
 		URI modelUri = null;
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getRepositoryAsDialog();
+		dialog.setTitle("Create new model");
+		dialog.setTitle("Choose model/editor to create");
+		if (dialog.open() == Window.OK) {
+			
+		}
 		//TODO show dialog to ask which model should be created (populated from repository)
 			//TODO get all metamodels, all wizards for each metamodel
 		//TODO get selected wizardID, launch wizard
@@ -56,6 +66,8 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 	}
 
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+		URI modelUri = createModel();
 
 		IWizardDescriptor descriptor = PlatformUI
 				.getWorkbench()

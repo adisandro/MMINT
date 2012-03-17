@@ -1,6 +1,7 @@
 package edu.toronto.cs.se.mmtf;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -11,6 +12,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmtf.repository.Editor;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
@@ -18,9 +22,11 @@ import edu.toronto.cs.se.mmtf.repository.Metamodel;
 import edu.toronto.cs.se.mmtf.repository.MetamodelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.Repository;
 import edu.toronto.cs.se.mmtf.repository.RepositoryFactory;
+import edu.toronto.cs.se.mmtf.repository.RepositoryLabelProvider;
+import edu.toronto.cs.se.mmtf.repository.RepositoryTreeContentProvider;
 
 /**
- * Methods in this class need to be dynamic, to support plugin uninstallations.
+ * 
  * 
  * @author Alessio Di Sandro
  *
@@ -151,6 +157,7 @@ public class MMTF {
 		repository = RepositoryFactory.eINSTANCE.createRepository();
 		IConfigurationElement[] config;
 
+		//TODO use id and names for mmtf ext points
 		// metamodels
 		config = registry.getConfigurationElementsFor(METAMODELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
@@ -177,20 +184,40 @@ public class MMTF {
 		}
 	}
 
-	//TODO modify and move repository queries to own class
-	public static ArrayList<String> getMetamodelFileExtensions() {
+	public static class MMTFRegistry {
 
-		ArrayList<String> filenames = new ArrayList<String>();
-		for (Entry<String, Metamodel> entry : repository.getMetamodels().entrySet()) {
-			filenames.add(entry.getValue().getFileExtension());
+		public static ArrayList<String> getMetamodelFileExtensions() {
+
+			ArrayList<String> filenames = new ArrayList<String>();
+			for (Entry<String, Metamodel> entry : repository.getMetamodels().entrySet()) {
+				filenames.add(entry.getValue().getFileExtension());
+			}
+
+			return filenames;
 		}
 
-		return filenames;
-	}
+		public static EList<Editor> getEditorsForMetamodel(String metamodelUri) {
 
-	public static EList<Editor> getEditorsForMetamodel(String metamodelUri) {
+			return repository.getMetamodels().get(metamodelUri).getEditors();
+		}
 
-		return repository.getMetamodels().get(metamodelUri).getEditors();
+		public static Collection<Metamodel> getMetamodels() {
+
+			return repository.getMetamodels().values();
+		}
+
+		public static ElementTreeSelectionDialog getRepositoryAsDialog() {
+
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
+				shell,
+				new RepositoryLabelProvider(),
+				new RepositoryTreeContentProvider(repository)
+			);
+			dialog.setInput(repository);
+
+			return dialog;
+		}
 	}
 
 }
