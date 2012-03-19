@@ -9,9 +9,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.gmf.runtime.notation,
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ui.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.mmtf.repository,
+ edu.toronto.cs.se.mmtf.repository.ui,
  edu.toronto.cs.se.mmtf.repository.util

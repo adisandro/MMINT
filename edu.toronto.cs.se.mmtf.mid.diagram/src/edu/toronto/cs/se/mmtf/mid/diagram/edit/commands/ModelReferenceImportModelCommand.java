@@ -43,19 +43,18 @@ import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDElementChooserDialog;
 
 public class ModelReferenceImportModelCommand extends ModelReferenceCreateCommand {
 
-	private URI selectModelToImport() {
+	private URI selectModelToImport() throws MMTFException {
 
-		URI modelUri = null;
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDDiagramEditor editor = (MIDDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		View view = editor.getDiagramEditPart().getNotationView();
 
 		MIDElementChooserDialog dialog = new MIDElementChooserDialog(shell, view);
-		if (dialog.open() == Window.OK) {
-			modelUri = dialog.getSelectedModelElementURI();
+		if (dialog.open() == Window.CANCEL) {
+			throw new MMTFException("Dialog cancel button pressed");
 		}
 
-		return modelUri;
+		return dialog.getSelectedModelElementURI();
 	}
 
 	public ModelReferenceImportModelCommand(CreateElementRequest req) {
@@ -63,14 +62,13 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		super(req);
 	}
 
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		URI modelUri = selectModelToImport();
+		URI modelUri;
 		EObject root;
 		try {
-			if (modelUri == null) {
-				throw new MMTFException("Dialog cancel button pressed");
-			}
+			modelUri = selectModelToImport();
 			ResourceSet set = new ResourceSetImpl();
 			Resource resource = set.getResource(modelUri, true);
 			root = resource.getContents().get(0);

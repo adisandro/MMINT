@@ -24,13 +24,13 @@ public class MMTFException extends Exception {
 
 		switch (type) {
 			case WARNING:
-				message = "WARNING:" + message;
+				message = "WARNING: " + message;
 				break;
 			case ERROR:
-				message = "ERROR:" + message;
+				message = "ERROR: " + message;
 				break;
 			default:
-				message = "UNKNOWN PROBLEM:" + message;
+				message = "UNKNOWN PROBLEM: " + message;
 		}
 		System.err.println(message);
 		System.err.println(" -> " + e.getMessage());

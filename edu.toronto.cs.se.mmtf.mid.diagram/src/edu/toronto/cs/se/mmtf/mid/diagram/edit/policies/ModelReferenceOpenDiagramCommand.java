@@ -43,11 +43,11 @@ public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalComma
 		//TODO implement fallbacks (FileDialog, tree editor)?
 		try {
 			if (registeredEditors.size() == 0) {
-				throw new MMTFException("No editor registered with metamodel " + metamodelUri);
+				throw new MMTFException("No editor registered for metamodel " + metamodelUri);
 			}
 			else {
 				//TODO needs to be fixed with views support
-				for (Editor editor  : registeredEditors) {
+				for (Editor editor : registeredEditors) {
 					if (editor instanceof Diagram) {
 						URI editorUri = URI.createPlatformResourceURI(
 							modelUri.substring(0, modelUri.lastIndexOf('.')+1) + editor.getFileExtensions().get(0),

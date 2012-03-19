@@ -1,13 +1,17 @@
-package edu.toronto.cs.se.mmtf.repository;
+package edu.toronto.cs.se.mmtf.repository.ui;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public class RepositoryTreeContentProvider implements ITreeContentProvider {
+import edu.toronto.cs.se.mmtf.repository.Editor;
+import edu.toronto.cs.se.mmtf.repository.Metamodel;
+import edu.toronto.cs.se.mmtf.repository.Repository;
+
+public class RepositoryDialogContentProvider implements ITreeContentProvider {
 
 	private Repository repository;
 
-	public RepositoryTreeContentProvider(Repository repository) {
+	public RepositoryDialogContentProvider(Repository repository) {
 
 		this.repository = repository;
 	}

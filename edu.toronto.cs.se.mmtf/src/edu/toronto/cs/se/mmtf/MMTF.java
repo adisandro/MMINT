@@ -22,8 +22,9 @@ import edu.toronto.cs.se.mmtf.repository.Metamodel;
 import edu.toronto.cs.se.mmtf.repository.MetamodelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.Repository;
 import edu.toronto.cs.se.mmtf.repository.RepositoryFactory;
-import edu.toronto.cs.se.mmtf.repository.RepositoryLabelProvider;
-import edu.toronto.cs.se.mmtf.repository.RepositoryTreeContentProvider;
+import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
+import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogSelectionValidator;
+import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
 
 /**
  * 
@@ -213,11 +214,11 @@ public class MMTF {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
-				new RepositoryLabelProvider(),
-				new RepositoryTreeContentProvider(repository)
+				new RepositoryDialogLabelProvider(),
+				new RepositoryDialogContentProvider(repository)
 			);
+			dialog.setValidator(new RepositoryDialogSelectionValidator());
 			dialog.setInput(repository);
-			//TODO add selection validator
 
 			return dialog;
 		}

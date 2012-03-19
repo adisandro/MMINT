@@ -1,10 +1,13 @@
-package edu.toronto.cs.se.mmtf.repository;
+package edu.toronto.cs.se.mmtf.repository.ui;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-public class RepositoryLabelProvider implements ILabelProvider {
+import edu.toronto.cs.se.mmtf.repository.Extension;
+import edu.toronto.cs.se.mmtf.repository.Repository;
+
+public class RepositoryDialogLabelProvider implements ILabelProvider {
 
 	@Override
 	public void addListener(ILabelProviderListener listener) {

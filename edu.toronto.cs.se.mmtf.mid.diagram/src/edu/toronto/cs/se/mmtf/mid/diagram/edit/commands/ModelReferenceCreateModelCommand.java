@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
@@ -44,37 +43,40 @@ import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.repository.Editor;
+import edu.toronto.cs.se.mmtf.repository.ui.RepositoryWizardDialog;
 
 public class ModelReferenceCreateModelCommand extends ModelReference2CreateCommand {
 
 	private URI createModel() throws Exception {
 
-		URI modelUri = null;
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getRepositoryAsDialog();
 		dialog.setTitle("Create new model");
-		dialog.setTitle("Choose model/editor to create");
+		dialog.setMessage("Choose wizard to create model");
 		dialog.setAllowMultiple(false);
-		//TODO rifare sia qui che nell'import, lanciare eccezioni da qui
-		if (dialog.open() == Window.OK) {
-			Object selection = dialog.getFirstResult();
-			if (selection != null) {
-				Editor editor = (Editor) selection;
-				IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editor.getWizardId());
-				if (descriptor != null) {//TODO gestire la CoreException che viene lanciata qui eventualmente?
-					IWorkbenchWizard wizard = descriptor.createWizard();
-					wizard.init(PlatformUI.getWorkbench(), new StructuredSelection());
-					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-					WizardDialog wizDialog = new WizardDialog(shell, wizard);
-					wizDialog.setTitle(wizard.getWindowTitle());
-					if (wizDialog.open() == Window.OK) {
-						//TODO check return
-					}
-				}
-			}
-		}
-		//TODO find a way to get the uri of the generated model/diagrams
 
-		return modelUri;
+		if (dialog.open() == Window.CANCEL) {
+			throw new MMTFException("Dialog cancel button pressed");
+		}
+		Object selection = dialog.getFirstResult();
+		if (selection == null) {
+			throw new MMTFException("Dialog ok button pressed with no selection");
+		}
+		Editor editor = (Editor) selection;
+		IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editor.getWizardId());
+		if (descriptor == null) {
+			throw new MMTFException("Wizard " + editor.getEditorId() + " not found");
+		}
+
+		IWorkbenchWizard wizard = descriptor.createWizard();
+		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection());
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		RepositoryWizardDialog wizDialog = new RepositoryWizardDialog(shell, wizard);
+		wizDialog.setTitle(wizard.getWindowTitle());
+		if (wizDialog.open() == Window.CANCEL) {
+			throw new MMTFException("Wizard dialog cancel button pressed");
+		}
+
+		return wizDialog.getCreatedModelUri();
 	}
 
 	public ModelReferenceCreateModelCommand(CreateElementRequest req) {
@@ -82,15 +84,13 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 		super(req);
 	}
 
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		URI modelUri;
 		EObject root;
 		try {
 			modelUri = createModel();
-			if (modelUri == null) {
-				throw new MMTFException("Dialog cancel button pressed");
-			}
 			ResourceSet set = new ResourceSetImpl();
 			Resource resource = set.getResource(modelUri, true);
 			root = resource.getContents().get(0);
