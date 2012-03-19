@@ -90,8 +90,8 @@ public class RepositoryAdapterFactory extends AdapterFactoryImpl {
 				return createRepositoryAdapter();
 			}
 			@Override
-			public Adapter caseExtensionPoint(ExtensionPoint object) {
-				return createExtensionPointAdapter();
+			public Adapter caseExtension(Extension object) {
+				return createExtensionAdapter();
 			}
 			@Override
 			public Adapter caseMetamodel(Metamodel object) {
@@ -148,16 +148,16 @@ public class RepositoryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint <em>Extension Point</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.repository.Extension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.repository.ExtensionPoint
+	 * @see edu.toronto.cs.se.mmtf.repository.Extension
 	 * @generated
 	 */
-	public Adapter createExtensionPointAdapter() {
+	public Adapter createExtensionAdapter() {
 		return null;
 	}
 

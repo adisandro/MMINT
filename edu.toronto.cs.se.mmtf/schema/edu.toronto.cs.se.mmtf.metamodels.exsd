@@ -35,7 +35,7 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="name" type="string">
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
                   

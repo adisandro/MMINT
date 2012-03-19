@@ -12,9 +12,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference repository.ecore#//Repository/metamodels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference repository.ecore#//Repository/editors"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="repository.ecore#//ExtensionPoint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//ExtensionPoint/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//ExtensionPoint/name"/>
+    <genClasses image="false" ecoreClass="repository.ecore#//Extension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Extension/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Extension/name"/>
     </genClasses>
     <genClasses ecoreClass="repository.ecore#//Metamodel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute repository.ecore#//Metamodel/uri"/>

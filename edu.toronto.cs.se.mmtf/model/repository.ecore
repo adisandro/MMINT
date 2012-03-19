@@ -8,18 +8,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
         eType="#//EStringToEditorMap" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtensionPoint" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Extension" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Metamodel" eSuperTypes="#//ExtensionPoint">
+  <eClassifiers xsi:type="ecore:EClass" name="Metamodel" eSuperTypes="#//Extension">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileExtension" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
         eType="#//Editor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//ExtensionPoint">
+  <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//Extension">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metamodelUri" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="editorId" lowerBound="1"

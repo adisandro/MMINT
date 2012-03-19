@@ -90,23 +90,23 @@ public class RepositorySwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RepositoryPackage.EXTENSION_POINT: {
-				ExtensionPoint extensionPoint = (ExtensionPoint)theEObject;
-				T result = caseExtensionPoint(extensionPoint);
+			case RepositoryPackage.EXTENSION: {
+				Extension extension = (Extension)theEObject;
+				T result = caseExtension(extension);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RepositoryPackage.METAMODEL: {
 				Metamodel metamodel = (Metamodel)theEObject;
 				T result = caseMetamodel(metamodel);
-				if (result == null) result = caseExtensionPoint(metamodel);
+				if (result == null) result = caseExtension(metamodel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RepositoryPackage.EDITOR: {
 				Editor editor = (Editor)theEObject;
 				T result = caseEditor(editor);
-				if (result == null) result = caseExtensionPoint(editor);
+				if (result == null) result = caseExtension(editor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,7 +114,7 @@ public class RepositorySwitch<T> extends Switch<T> {
 				Diagram diagram = (Diagram)theEObject;
 				T result = caseDiagram(diagram);
 				if (result == null) result = caseEditor(diagram);
-				if (result == null) result = caseExtensionPoint(diagram);
+				if (result == null) result = caseExtension(diagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -150,17 +150,17 @@ public class RepositorySwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extension Point</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Extension</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extension Point</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Extension</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExtensionPoint(ExtensionPoint object) {
+	public T caseExtension(Extension object) {
 		return null;
 	}
 

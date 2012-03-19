@@ -29,6 +29,7 @@
             genModel="model/mid.genmodel"/>
    </extension>
    <extension
+         name="MID metamodel"
          point="edu.toronto.cs.se.mmtf.metamodels">
       <metamodel
             uri="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore">

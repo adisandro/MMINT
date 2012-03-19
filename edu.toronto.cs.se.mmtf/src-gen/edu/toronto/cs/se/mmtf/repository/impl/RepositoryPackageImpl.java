@@ -20,7 +20,7 @@ package edu.toronto.cs.se.mmtf.repository.impl;
 
 import edu.toronto.cs.se.mmtf.repository.Diagram;
 import edu.toronto.cs.se.mmtf.repository.Editor;
-import edu.toronto.cs.se.mmtf.repository.ExtensionPoint;
+import edu.toronto.cs.se.mmtf.repository.Extension;
 import edu.toronto.cs.se.mmtf.repository.Metamodel;
 import edu.toronto.cs.se.mmtf.repository.Repository;
 import edu.toronto.cs.se.mmtf.repository.RepositoryFactory;
@@ -54,7 +54,7 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass extensionPointEClass = null;
+	private EClass extensionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,8 +184,8 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtensionPoint() {
-		return extensionPointEClass;
+	public EClass getExtension() {
+		return extensionEClass;
 	}
 
 	/**
@@ -193,8 +193,8 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtensionPoint_Id() {
-		return (EAttribute)extensionPointEClass.getEStructuralFeatures().get(0);
+	public EAttribute getExtension_Id() {
+		return (EAttribute)extensionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -202,8 +202,8 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtensionPoint_Name() {
-		return (EAttribute)extensionPointEClass.getEStructuralFeatures().get(1);
+	public EAttribute getExtension_Name() {
+		return (EAttribute)extensionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -382,9 +382,9 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 		createEReference(repositoryEClass, REPOSITORY__METAMODELS);
 		createEReference(repositoryEClass, REPOSITORY__EDITORS);
 
-		extensionPointEClass = createEClass(EXTENSION_POINT);
-		createEAttribute(extensionPointEClass, EXTENSION_POINT__ID);
-		createEAttribute(extensionPointEClass, EXTENSION_POINT__NAME);
+		extensionEClass = createEClass(EXTENSION);
+		createEAttribute(extensionEClass, EXTENSION__ID);
+		createEAttribute(extensionEClass, EXTENSION__NAME);
 
 		metamodelEClass = createEClass(METAMODEL);
 		createEAttribute(metamodelEClass, METAMODEL__URI);
@@ -436,8 +436,8 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		metamodelEClass.getESuperTypes().add(this.getExtensionPoint());
-		editorEClass.getESuperTypes().add(this.getExtensionPoint());
+		metamodelEClass.getESuperTypes().add(this.getExtension());
+		editorEClass.getESuperTypes().add(this.getExtension());
 		diagramEClass.getESuperTypes().add(this.getEditor());
 
 		// Initialize classes and features; add operations and parameters
@@ -445,9 +445,9 @@ public class RepositoryPackageImpl extends EPackageImpl implements RepositoryPac
 		initEReference(getRepository_Metamodels(), this.getEStringToMetamodelMap(), null, "metamodels", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRepository_Editors(), this.getEStringToEditorMap(), null, "editors", null, 0, -1, Repository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(extensionPointEClass, ExtensionPoint.class, "ExtensionPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExtensionPoint_Id(), ecorePackage.getEString(), "id", null, 0, 1, ExtensionPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExtensionPoint_Name(), ecorePackage.getEString(), "name", null, 0, 1, ExtensionPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(extensionEClass, Extension.class, "Extension", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExtension_Id(), ecorePackage.getEString(), "id", null, 0, 1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtension_Name(), ecorePackage.getEString(), "name", null, 0, 1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metamodelEClass, Metamodel.class, "Metamodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetamodel_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

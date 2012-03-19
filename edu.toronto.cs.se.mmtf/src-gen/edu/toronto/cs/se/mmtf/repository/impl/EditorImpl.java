@@ -49,7 +49,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *
  * @generated
  */
-public class EditorImpl extends ExtensionPointImpl implements Editor {
+public class EditorImpl extends ExtensionImpl implements Editor {
 	/**
 	 * The default value of the '{@link #getMetamodelUri() <em>Metamodel Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->

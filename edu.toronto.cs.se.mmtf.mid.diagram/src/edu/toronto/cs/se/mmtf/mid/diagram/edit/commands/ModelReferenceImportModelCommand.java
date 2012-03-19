@@ -69,7 +69,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		EObject root;
 		try {
 			if (modelUri == null) {
-				throw new MMTFException("Cancel button pressed in chooser dialog");
+				throw new MMTFException("Dialog cancel button pressed");
 			}
 			ResourceSet set = new ResourceSetImpl();
 			Resource resource = set.getResource(modelUri, true);

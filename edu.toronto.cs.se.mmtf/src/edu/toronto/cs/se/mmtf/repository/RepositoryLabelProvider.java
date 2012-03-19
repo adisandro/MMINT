@@ -37,12 +37,8 @@ public class RepositoryLabelProvider implements ILabelProvider {
 		if (element instanceof Repository) {
 			return "Repository";
 		}
-		if (element instanceof Metamodel) {
-			return ((Metamodel) element).getFileExtension();
-		}
-		if (element instanceof Editor) {
-			//TODO use name instead
-			return ((Editor) element).getEditorId();
+		if (element instanceof Extension) {
+			return ((Extension) element).getName();
 		}
 
 		return "";

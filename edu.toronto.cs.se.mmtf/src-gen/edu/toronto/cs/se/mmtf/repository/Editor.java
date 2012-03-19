@@ -39,7 +39,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Editor extends ExtensionPoint {
+public interface Editor extends Extension {
 	/**
 	 * Returns the value of the '<em><b>Metamodel Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->

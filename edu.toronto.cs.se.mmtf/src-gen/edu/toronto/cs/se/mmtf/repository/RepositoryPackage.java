@@ -109,14 +109,14 @@ public interface RepositoryPackage extends EPackage {
 	int REPOSITORY_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionPointImpl <em>Extension Point</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionImpl <em>Extension</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.repository.impl.ExtensionPointImpl
-	 * @see edu.toronto.cs.se.mmtf.repository.impl.RepositoryPackageImpl#getExtensionPoint()
+	 * @see edu.toronto.cs.se.mmtf.repository.impl.ExtensionImpl
+	 * @see edu.toronto.cs.se.mmtf.repository.impl.RepositoryPackageImpl#getExtension()
 	 * @generated
 	 */
-	int EXTENSION_POINT = 1;
+	int EXTENSION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -125,7 +125,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_POINT__ID = 0;
+	int EXTENSION__ID = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -134,16 +134,16 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_POINT__NAME = 1;
+	int EXTENSION__NAME = 1;
 
 	/**
-	 * The number of structural features of the '<em>Extension Point</em>' class.
+	 * The number of structural features of the '<em>Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_POINT_FEATURE_COUNT = 2;
+	int EXTENSION_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.repository.impl.MetamodelImpl <em>Metamodel</em>}' class.
@@ -162,7 +162,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__ID = EXTENSION_POINT__ID;
+	int METAMODEL__ID = EXTENSION__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -171,7 +171,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__NAME = EXTENSION_POINT__NAME;
+	int METAMODEL__NAME = EXTENSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -180,7 +180,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__URI = EXTENSION_POINT_FEATURE_COUNT + 0;
+	int METAMODEL__URI = EXTENSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -189,7 +189,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__FILE_EXTENSION = EXTENSION_POINT_FEATURE_COUNT + 1;
+	int METAMODEL__FILE_EXTENSION = EXTENSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -198,7 +198,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL__EDITORS = EXTENSION_POINT_FEATURE_COUNT + 2;
+	int METAMODEL__EDITORS = EXTENSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
@@ -207,7 +207,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = EXTENSION_POINT_FEATURE_COUNT + 3;
+	int METAMODEL_FEATURE_COUNT = EXTENSION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.repository.impl.EditorImpl <em>Editor</em>}' class.
@@ -226,7 +226,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__ID = EXTENSION_POINT__ID;
+	int EDITOR__ID = EXTENSION__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -235,7 +235,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__NAME = EXTENSION_POINT__NAME;
+	int EDITOR__NAME = EXTENSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Metamodel Uri</b></em>' attribute.
@@ -244,7 +244,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__METAMODEL_URI = EXTENSION_POINT_FEATURE_COUNT + 0;
+	int EDITOR__METAMODEL_URI = EXTENSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Editor Id</b></em>' attribute.
@@ -253,7 +253,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__EDITOR_ID = EXTENSION_POINT_FEATURE_COUNT + 1;
+	int EDITOR__EDITOR_ID = EXTENSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
@@ -262,7 +262,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__WIZARD_ID = EXTENSION_POINT_FEATURE_COUNT + 2;
+	int EDITOR__WIZARD_ID = EXTENSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>File Extensions</b></em>' attribute list.
@@ -271,7 +271,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__FILE_EXTENSIONS = EXTENSION_POINT_FEATURE_COUNT + 3;
+	int EDITOR__FILE_EXTENSIONS = EXTENSION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Editor</em>' class.
@@ -280,7 +280,7 @@ public interface RepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_FEATURE_COUNT = EXTENSION_POINT_FEATURE_COUNT + 4;
+	int EDITOR_FEATURE_COUNT = EXTENSION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.repository.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -463,36 +463,36 @@ public interface RepositoryPackage extends EPackage {
 	EReference getRepository_Editors();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint <em>Extension Point</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.repository.Extension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Extension Point</em>'.
-	 * @see edu.toronto.cs.se.mmtf.repository.ExtensionPoint
+	 * @return the meta object for class '<em>Extension</em>'.
+	 * @see edu.toronto.cs.se.mmtf.repository.Extension
 	 * @generated
 	 */
-	EClass getExtensionPoint();
+	EClass getExtension();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getId <em>Id</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.Extension#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getId()
-	 * @see #getExtensionPoint()
+	 * @see edu.toronto.cs.se.mmtf.repository.Extension#getId()
+	 * @see #getExtension()
 	 * @generated
 	 */
-	EAttribute getExtensionPoint_Id();
+	EAttribute getExtension_Id();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.repository.Extension#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getName()
-	 * @see #getExtensionPoint()
+	 * @see edu.toronto.cs.se.mmtf.repository.Extension#getName()
+	 * @see #getExtension()
 	 * @generated
 	 */
-	EAttribute getExtensionPoint_Name();
+	EAttribute getExtension_Name();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.repository.Metamodel <em>Metamodel</em>}'.
@@ -718,14 +718,14 @@ public interface RepositoryPackage extends EPackage {
 		EReference REPOSITORY__EDITORS = eINSTANCE.getRepository_Editors();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionPointImpl <em>Extension Point</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionImpl <em>Extension</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.repository.impl.ExtensionPointImpl
-		 * @see edu.toronto.cs.se.mmtf.repository.impl.RepositoryPackageImpl#getExtensionPoint()
+		 * @see edu.toronto.cs.se.mmtf.repository.impl.ExtensionImpl
+		 * @see edu.toronto.cs.se.mmtf.repository.impl.RepositoryPackageImpl#getExtension()
 		 * @generated
 		 */
-		EClass EXTENSION_POINT = eINSTANCE.getExtensionPoint();
+		EClass EXTENSION = eINSTANCE.getExtension();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -733,7 +733,7 @@ public interface RepositoryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENSION_POINT__ID = eINSTANCE.getExtensionPoint_Id();
+		EAttribute EXTENSION__ID = eINSTANCE.getExtension_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -741,7 +741,7 @@ public interface RepositoryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENSION_POINT__NAME = eINSTANCE.getExtensionPoint_Name();
+		EAttribute EXTENSION__NAME = eINSTANCE.getExtension_Name();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.repository.impl.MetamodelImpl <em>Metamodel</em>}' class.

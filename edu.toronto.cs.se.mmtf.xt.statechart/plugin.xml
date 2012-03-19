@@ -29,6 +29,7 @@
             genModel="model/statechart.genmodel"/>
    </extension>
    <extension
+         name="Statechart metamodel"
          point="edu.toronto.cs.se.mmtf.metamodels">
       <metamodel
             uri="http:///edu/toronto/cs/se/mmtf/xt/statechart/model/statechart.ecore">

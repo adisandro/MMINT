@@ -35,7 +35,7 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="name" type="string">
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
                   

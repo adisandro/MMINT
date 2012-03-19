@@ -54,6 +54,7 @@ public class MMTF {
 		Metamodel metamodel = RepositoryFactory.eINSTANCE.createMetamodel();
 		EPackage metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
 
+		metamodel.setName(extensionConfig.getDeclaringExtension().getLabel());
 		metamodel.setUri(uri);
 		if (metamodelPackage != null) {
 			String metamodelPackageName = metamodelPackage.getName();
@@ -93,12 +94,14 @@ public class MMTF {
 		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
 		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARD_ID);
 		Editor editor;
+
 		if (Boolean.parseBoolean(isDiagram)) {
 			editor = RepositoryFactory.eINSTANCE.createDiagram();
 		}
 		else {
 			editor = RepositoryFactory.eINSTANCE.createEditor();
 		}
+		editor.setName(extensionConfig.getDeclaringExtension().getLabel());
 		editor.setMetamodelUri(metamodelUri);
 		editor.setEditorId(editorId);
 		editor.setWizardId(wizardId);
@@ -157,7 +160,6 @@ public class MMTF {
 		repository = RepositoryFactory.eINSTANCE.createRepository();
 		IConfigurationElement[] config;
 
-		//TODO use id and names for mmtf ext points
 		// metamodels
 		config = registry.getConfigurationElementsFor(METAMODELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
@@ -215,6 +217,7 @@ public class MMTF {
 				new RepositoryTreeContentProvider(repository)
 			);
 			dialog.setInput(repository);
+			//TODO add selection validator
 
 			return dialog;
 		}

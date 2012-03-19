@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Extension Point</b></em>'.
+ * A representation of the model object '<em><b>Extension</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getId <em>Id</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.Extension#getId <em>Id</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.Extension#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getExtensionPoint()
+ * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getExtension()
  * @model abstract="true"
  * @generated
  */
-public interface ExtensionPoint extends EObject {
+public interface Extension extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,14 +48,14 @@ public interface ExtensionPoint extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getExtensionPoint_Id()
+	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getExtension_Id()
 	 * @model
 	 * @generated
 	 */
 	String getId();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getId <em>Id</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.Extension#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Id</em>' attribute.
@@ -74,14 +74,14 @@ public interface ExtensionPoint extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getExtensionPoint_Name()
+	 * @see edu.toronto.cs.se.mmtf.repository.RepositoryPackage#getExtension_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.ExtensionPoint#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.repository.Extension#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -90,4 +90,4 @@ public interface ExtensionPoint extends EObject {
 	 */
 	void setName(String value);
 
-} // ExtensionPoint
+} // Extension

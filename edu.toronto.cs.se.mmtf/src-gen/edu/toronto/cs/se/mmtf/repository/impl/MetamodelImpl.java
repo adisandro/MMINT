@@ -49,7 +49,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class MetamodelImpl extends ExtensionPointImpl implements Metamodel {
+public class MetamodelImpl extends ExtensionImpl implements Metamodel {
 	/**
 	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -533,6 +533,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <?gmfgen generated="true"?>
    </extension>
    <extension
+         name="Statechart diagram"
          point="edu.toronto.cs.se.mmtf.editors">
       <editor
             metamodelUri="http:///edu/toronto/cs/se/mmtf/xt/statechart/model/statechart.ecore"

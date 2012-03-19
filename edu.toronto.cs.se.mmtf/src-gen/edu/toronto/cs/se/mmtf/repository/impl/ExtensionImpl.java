@@ -18,7 +18,7 @@
  */
 package edu.toronto.cs.se.mmtf.repository.impl;
 
-import edu.toronto.cs.se.mmtf.repository.ExtensionPoint;
+import edu.toronto.cs.se.mmtf.repository.Extension;
 import edu.toronto.cs.se.mmtf.repository.RepositoryPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,19 +30,19 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Extension Point</b></em>'.
+ * An implementation of the model object '<em><b>Extension</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionPointImpl#getId <em>Id</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionPointImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionImpl#getId <em>Id</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.repository.impl.ExtensionImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ExtensionPointImpl extends EObjectImpl implements ExtensionPoint {
+public abstract class ExtensionImpl extends EObjectImpl implements Extension {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExtensionPointImpl() {
+	protected ExtensionImpl() {
 		super();
 	}
 
@@ -99,7 +99,7 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RepositoryPackage.Literals.EXTENSION_POINT;
+		return RepositoryPackage.Literals.EXTENSION;
 	}
 
 	/**
@@ -120,7 +120,7 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EXTENSION_POINT__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EXTENSION__ID, oldId, id));
 	}
 
 	/**
@@ -141,7 +141,7 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EXTENSION_POINT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, RepositoryPackage.EXTENSION__NAME, oldName, name));
 	}
 
 	/**
@@ -152,9 +152,9 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RepositoryPackage.EXTENSION_POINT__ID:
+			case RepositoryPackage.EXTENSION__ID:
 				return getId();
-			case RepositoryPackage.EXTENSION_POINT__NAME:
+			case RepositoryPackage.EXTENSION__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -168,10 +168,10 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RepositoryPackage.EXTENSION_POINT__ID:
+			case RepositoryPackage.EXTENSION__ID:
 				setId((String)newValue);
 				return;
-			case RepositoryPackage.EXTENSION_POINT__NAME:
+			case RepositoryPackage.EXTENSION__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -186,10 +186,10 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RepositoryPackage.EXTENSION_POINT__ID:
+			case RepositoryPackage.EXTENSION__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case RepositoryPackage.EXTENSION_POINT__NAME:
+			case RepositoryPackage.EXTENSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -204,9 +204,9 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RepositoryPackage.EXTENSION_POINT__ID:
+			case RepositoryPackage.EXTENSION__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case RepositoryPackage.EXTENSION_POINT__NAME:
+			case RepositoryPackage.EXTENSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
@@ -230,4 +230,4 @@ public abstract class ExtensionPointImpl extends EObjectImpl implements Extensio
 		return result.toString();
 	}
 
-} //ExtensionPointImpl
+} //ExtensionImpl
