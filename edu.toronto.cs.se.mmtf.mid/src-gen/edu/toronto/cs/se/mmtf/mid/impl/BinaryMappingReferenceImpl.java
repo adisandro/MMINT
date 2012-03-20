@@ -21,7 +21,26 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.BinaryMappingReference;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
+import edu.toronto.cs.se.mmtf.mid.MidTables;
+import edu.toronto.cs.se.mmtf.mid.bodies.BinaryMappingReferenceBodies;
+import edu.toronto.cs.se.mmtf.mid.util.MidValidator;
+import java.util.Map;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.examples.library.executor.ExecutorType;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,6 +69,40 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
 	@Override
 	protected EClass eStaticClass() {
 		return MidPackage.Literals.BINARY_MAPPING_REFERENCE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean nullisBinary(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		/*
+		models->size() = 2
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, MidTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = BinaryMappingReferenceBodies._invariant_isBinary.INSTANCE.evaluate(evaluator, returnType, self);
+			final boolean resultIsNull = result.isNull();
+			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
+				return true;
+			}
+			if (diagnostics != null) {
+				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"BinaryMappingReference", "isBinary", EObjectValidator.getObjectLabel(this, context)});
+			    diagnostics.add(new BasicDiagnostic(severity, MidValidator.DIAGNOSTIC_SOURCE, MidValidator.BINARY_MAPPING_REFERENCE__NULLIS_BINARY, message, new Object [] { this }));
+			}
+			return false;
+		} catch (InvalidValueException e) {
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"BinaryMappingReference", "isBinary", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
+		}
+		
 	}
 
 } //BinaryMappingReferenceImpl

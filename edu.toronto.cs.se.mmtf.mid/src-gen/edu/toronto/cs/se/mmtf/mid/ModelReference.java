@@ -51,7 +51,7 @@ public interface ModelReference extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Name()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!name'"
 	 * @generated
 	 */
 	String getName();
@@ -78,6 +78,7 @@ public interface ModelReference extends EObject {
 	 * @see #setUri(String)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Uri()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!uri'"
 	 * @generated
 	 */
 	String getUri();
@@ -104,6 +105,7 @@ public interface ModelReference extends EObject {
 	 * @see #setRoot(EObject)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Root()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!root'"
 	 * @generated
 	 */
 	EObject getRoot();
@@ -132,6 +134,7 @@ public interface ModelReference extends EObject {
 	 * @see #setOrigin(ModelReferenceOrigin)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Origin()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!origin'"
 	 * @generated
 	 */
 	ModelReferenceOrigin getOrigin();

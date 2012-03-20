@@ -7,6 +7,8 @@ Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmtf
+ edu.toronto.cs.se.mmtf,
+ org.eclipse.ocl.examples.domain,
+ org.eclipse.ocl.examples.library
 Export-Package: edu.toronto.cs.se.mmtf.mid,
  edu.toronto.cs.se.mmtf.mid.util

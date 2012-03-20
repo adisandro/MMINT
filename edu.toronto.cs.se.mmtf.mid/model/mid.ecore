@@ -2,6 +2,9 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mid" nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore"
     nsPrefix="mid">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="MultiModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ModelReference" containment="true"/>
@@ -17,7 +20,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
         upperBound="-1" eType="#//ModelReference"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BinaryMappingReference" eSuperTypes="#//MappingReference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryMappingReference" eSuperTypes="#//MappingReference">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="isBinary"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="isBinary" value="models->size() = 2"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModelReferenceOrigin">
     <eLiterals name="IMPORTED"/>
     <eLiterals name="CREATED" value="1"/>

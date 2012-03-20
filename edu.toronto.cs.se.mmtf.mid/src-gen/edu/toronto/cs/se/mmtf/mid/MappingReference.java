@@ -49,6 +49,7 @@ public interface MappingReference extends ModelReference {
 	 * @return the value of the '<em>Models</em>' reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMappingReference_Models()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!MappingReference!models'"
 	 * @generated
 	 */
 	EList<ModelReference> getModels();
