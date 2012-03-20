@@ -73,15 +73,15 @@ public class BinaryMappingReferenceBodies
 			final IntegerValue I_2 = valueFactory.integerValueOf(2);
 			
 			
-			Value A_symbol_0 = IP_MappingReference_models.evaluate(evaluator, T_OrderedSet_mid_ecore__mid__ModelReference_, self, P_MappingReference_models);
+			Value A_symbol_3 = IP_MappingReference_models.evaluate(evaluator, T_OrderedSet_mid_ecore__mid__ModelReference_, self, P_MappingReference_models);
 			
-			DomainType static_A_symbol_1 = valueFactory.typeOf(A_symbol_0);
-			LibraryUnaryOperation dynamic_A_symbol_1 = (LibraryUnaryOperation)static_A_symbol_1.lookupImplementation(standardLibrary, O_Collection_size);
-			Value A_symbol_1 = dynamic_A_symbol_1.evaluate(evaluator, T_Integer, A_symbol_0);
-			DomainType static_A_symbol_2 = valueFactory.typeOf(A_symbol_1, I_2);
-			LibraryBinaryOperation dynamic_A_symbol_2 = (LibraryBinaryOperation)static_A_symbol_2.lookupImplementation(standardLibrary, O_Real__eq_);
-			Value A_symbol_2 = dynamic_A_symbol_2.evaluate(evaluator, T_Boolean, A_symbol_1, I_2);
-			return A_symbol_2;
+			DomainType static_A_symbol_4 = valueFactory.typeOf(A_symbol_3);
+			LibraryUnaryOperation dynamic_A_symbol_4 = (LibraryUnaryOperation)static_A_symbol_4.lookupImplementation(standardLibrary, O_Collection_size);
+			Value A_symbol_4 = dynamic_A_symbol_4.evaluate(evaluator, T_Integer, A_symbol_3);
+			DomainType static_A_symbol_5 = valueFactory.typeOf(A_symbol_4, I_2);
+			LibraryBinaryOperation dynamic_A_symbol_5 = (LibraryBinaryOperation)static_A_symbol_5.lookupImplementation(standardLibrary, O_Real__eq_);
+			Value A_symbol_5 = dynamic_A_symbol_5.evaluate(evaluator, T_Boolean, A_symbol_4, I_2);
+			return A_symbol_5;
 		}
 	}
 }
