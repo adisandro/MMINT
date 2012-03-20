@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.mmtf.mid/src-gen" editDirectory="/edu.toronto.cs.se.mmtf.mid.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmtf.mid.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmtf.mid"
     modelName="MID" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
-    copyrightFields="false">
+    copyrightFields="false" operationReflection="true">
   <foreignModel>mid.ecore</foreignModel>
   <genPackages prefix="Mid" basePackage="edu.toronto.cs.se.mmtf" disposableProviderFactory="true"
       ecorePackage="mid.ecore#/">

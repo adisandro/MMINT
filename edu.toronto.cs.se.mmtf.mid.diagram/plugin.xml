@@ -147,7 +147,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
    <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
       <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDValidationDecoratorProvider">
-         <Priority name="Lowest"/>
+         <Priority name="Medium"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>

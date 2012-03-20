@@ -290,6 +290,40 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
+		case ModelReference2EditPart.VISUAL_ID: {
+			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
+					Messages.NavigatorGroupName_ModelReference_2003_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
+					Messages.NavigatorGroupName_ModelReference_2003_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(MappingReferenceModelsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(BinaryMappingReferenceEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(BinaryMappingReferenceEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
 		case ModelReferenceEditPart.VISUAL_ID: {
 			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 			Node sv = (Node) view;
@@ -361,79 +395,6 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case MappingReferenceModelsEditPart.VISUAL_ID: {
-			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			MIDNavigatorGroup target = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_MappingReferenceModels_4001_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			MIDNavigatorGroup source = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_MappingReferenceModels_4001_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(MappingReferenceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(ModelReferenceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(ModelReference2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(MappingReferenceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case ModelReference2EditPart.VISUAL_ID: {
-			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelReference_2003_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelReference_2003_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(MappingReferenceModelsEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(BinaryMappingReferenceEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(BinaryMappingReferenceEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
 		case BinaryMappingReferenceEditPart.VISUAL_ID: {
 			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
@@ -491,6 +452,45 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 			}
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case MappingReferenceModelsEditPart.VISUAL_ID: {
+			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			MIDNavigatorGroup target = new MIDNavigatorGroup(
+					Messages.NavigatorGroupName_MappingReferenceModels_4001_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			MIDNavigatorGroup source = new MIDNavigatorGroup(
+					Messages.NavigatorGroupName_MappingReferenceModels_4001_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(MappingReferenceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(ModelReferenceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(ModelReference2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(MappingReferenceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
 			}
 			return result.toArray();
 		}

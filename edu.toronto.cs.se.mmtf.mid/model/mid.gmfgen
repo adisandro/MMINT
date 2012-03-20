@@ -15,6 +15,7 @@
       validationProviderPriority="Low"
       validationEnabled="true"
       validationDecorators="true"
+      validationDecoratorProviderPriority="Medium"
       liveValidationUIFeedback="true">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -225,7 +226,8 @@
     </links>
     <palette>
       <groups
-          title="Models">
+          title="Models"
+          collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Import model"
@@ -238,7 +240,8 @@
             genNodes="//@diagram/@topLevelNodes.2"/>
       </groups>
       <groups
-          title="Mappings">
+          title="Mappings"
+          collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="New binary mapping"

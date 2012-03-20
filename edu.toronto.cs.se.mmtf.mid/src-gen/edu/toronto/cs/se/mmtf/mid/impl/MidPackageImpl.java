@@ -245,6 +245,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getBinaryMappingReference__NullisBinary__DiagnosticChain_Map() {
+		return binaryMappingReferenceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getModelReferenceOrigin() {
 		return modelReferenceOriginEEnum;
 	}
@@ -290,6 +299,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__MODELS);
 
 		binaryMappingReferenceEClass = createEClass(BINARY_MAPPING_REFERENCE);
+		createEOperation(binaryMappingReferenceEClass, BINARY_MAPPING_REFERENCE___NULLIS_BINARY__DIAGNOSTICCHAIN_MAP);
 
 		// Create enums
 		modelReferenceOriginEEnum = createEEnum(MODEL_REFERENCE_ORIGIN);
@@ -326,7 +336,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		mappingReferenceEClass.getESuperTypes().add(this.getModelReference());
 		binaryMappingReferenceEClass.getESuperTypes().add(this.getMappingReference());
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMultiModel_Elements(), this.getModelReference(), null, "elements", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -341,7 +351,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEClass(binaryMappingReferenceEClass, BinaryMappingReference.class, "BinaryMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(binaryMappingReferenceEClass, ecorePackage.getEBoolean(), "nullisBinary", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getBinaryMappingReference__NullisBinary__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "nullisBinary", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());

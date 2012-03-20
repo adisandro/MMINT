@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
@@ -50,7 +51,7 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private PaletteContainer createModels1Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
+		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Models1Group_title);
 		paletteContainer.setId("createModels1Group"); //$NON-NLS-1$
 		paletteContainer.add(createImportmodel1CreationTool());
@@ -63,7 +64,7 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private PaletteContainer createMappings2Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
+		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Mappings2Group_title);
 		paletteContainer.setId("createMappings2Group"); //$NON-NLS-1$
 		paletteContainer.add(createNewbinarymapping1CreationTool());

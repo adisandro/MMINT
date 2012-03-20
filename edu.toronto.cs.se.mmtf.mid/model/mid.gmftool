@@ -8,7 +8,8 @@
       title="midPalette">
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="Models">
+        title="Models"
+        collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Import model"
@@ -30,7 +31,8 @@
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="Mappings">
+        title="Mappings"
+        collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="New binary mapping"

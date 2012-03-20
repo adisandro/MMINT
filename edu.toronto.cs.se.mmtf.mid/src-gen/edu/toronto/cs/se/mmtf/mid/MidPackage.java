@@ -21,6 +21,7 @@ package edu.toronto.cs.se.mmtf.mid;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -101,6 +102,15 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Multi Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl <em>Model Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,6 +164,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REFERENCE_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Model Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REFERENCE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.MappingReferenceImpl <em>Mapping Reference</em>}' class.
@@ -220,6 +239,15 @@ public interface MidPackage extends EPackage {
 	int MAPPING_REFERENCE_FEATURE_COUNT = MODEL_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Mapping Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE_OPERATION_COUNT = MODEL_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.BinaryMappingReferenceImpl <em>Binary Mapping Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -283,6 +311,24 @@ public interface MidPackage extends EPackage {
 	 */
 	int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 0;
 
+
+	/**
+	 * The operation id for the '<em>Nullis Binary</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE___NULLIS_BINARY__DIAGNOSTICCHAIN_MAP = MAPPING_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Binary Mapping Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE_OPERATION_COUNT = MAPPING_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}' enum.
@@ -400,6 +446,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBinaryMappingReference();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.BinaryMappingReference#nullisBinary(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Nullis Binary</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Nullis Binary</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.BinaryMappingReference#nullisBinary(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getBinaryMappingReference__NullisBinary__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}'.
@@ -520,6 +576,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BINARY_MAPPING_REFERENCE = eINSTANCE.getBinaryMappingReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Nullis Binary</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation BINARY_MAPPING_REFERENCE___NULLIS_BINARY__DIAGNOSTICCHAIN_MAP = eINSTANCE.getBinaryMappingReference__NullisBinary__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}' enum.

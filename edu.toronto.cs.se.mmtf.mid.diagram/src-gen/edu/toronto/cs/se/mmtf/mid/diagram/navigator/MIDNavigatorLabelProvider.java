@@ -120,21 +120,21 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MappingReference", MIDElementTypes.MappingReference_2001); //$NON-NLS-1$
+		case ModelReference2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2003); //$NON-NLS-1$
 		case ModelReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2002); //$NON-NLS-1$
 		case MultiModelEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MultiModel", MIDElementTypes.MultiModel_1000); //$NON-NLS-1$
-		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MappingReference?models", MIDElementTypes.MappingReferenceModels_4001); //$NON-NLS-1$
-		case ModelReference2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2003); //$NON-NLS-1$
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?BinaryMappingReference", MIDElementTypes.BinaryMappingReference_4002); //$NON-NLS-1$
+		case MappingReferenceModelsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MappingReference?models", MIDElementTypes.MappingReferenceModels_4001); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -197,16 +197,16 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getMappingReference_2001Text(view);
+		case ModelReference2EditPart.VISUAL_ID:
+			return getModelReference_2003Text(view);
 		case ModelReferenceEditPart.VISUAL_ID:
 			return getModelReference_2002Text(view);
 		case MultiModelEditPart.VISUAL_ID:
 			return getMultiModel_1000Text(view);
-		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return getMappingReferenceModels_4001Text(view);
-		case ModelReference2EditPart.VISUAL_ID:
-			return getModelReference_2003Text(view);
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getBinaryMappingReference_4002Text(view);
+		case MappingReferenceModelsEditPart.VISUAL_ID:
+			return getMappingReferenceModels_4001Text(view);
 		}
 		return getUnknownElementText(view);
 	}

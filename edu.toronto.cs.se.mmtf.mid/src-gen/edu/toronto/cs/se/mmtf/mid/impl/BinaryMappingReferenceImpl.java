@@ -24,10 +24,12 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MidTables;
 import edu.toronto.cs.se.mmtf.mid.bodies.BinaryMappingReferenceBodies;
 import edu.toronto.cs.se.mmtf.mid.util.MidValidator;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -103,6 +105,21 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
 			throw new WrappedException(message, e);
 		}
 		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MidPackage.BINARY_MAPPING_REFERENCE___NULLIS_BINARY__DIAGNOSTICCHAIN_MAP:
+				return nullisBinary((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //BinaryMappingReferenceImpl
