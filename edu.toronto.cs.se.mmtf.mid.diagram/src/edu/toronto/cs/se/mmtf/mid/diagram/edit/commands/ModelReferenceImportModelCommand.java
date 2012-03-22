@@ -83,6 +83,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		newElement.setName(modelUri.lastSegment());
 		newElement.setRoot(root);
 		newElement.setOrigin(ModelReferenceOrigin.IMPORTED);
+		newElement.setContainer(MidFactory.eINSTANCE.createModelContainer());
 		MultiModel owner = (MultiModel) getElementToEdit();
 		owner.getElements().add(newElement);
 		doConfigure(newElement, monitor, info);

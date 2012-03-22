@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MappingReference#getModels <em>Models</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.MappingReference#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,5 +54,22 @@ public interface MappingReference extends ModelReference {
 	 * @generated
 	 */
 	EList<ModelReference> getModels();
+
+	/**
+	 * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.Mapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mappings</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMappingReference_Mappings()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!MappingReference!mappings'"
+	 * @generated
+	 */
+	EList<Mapping> getMappings();
 
 } // MappingReference

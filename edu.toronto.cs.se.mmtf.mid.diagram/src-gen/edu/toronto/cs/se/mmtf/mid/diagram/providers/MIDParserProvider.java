@@ -55,7 +55,7 @@ public class MIDParserProvider extends AbstractProvider implements
 	private IParser getMappingReferenceName_5001Parser() {
 		if (mappingReferenceName_5001Parser == null) {
 			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getModelReference_Name() };
+					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			mappingReferenceName_5001Parser = parser;
 		}
@@ -73,7 +73,7 @@ public class MIDParserProvider extends AbstractProvider implements
 	private IParser getModelReferenceName_5002Parser() {
 		if (modelReferenceName_5002Parser == null) {
 			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getModelReference_Name() };
+					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			modelReferenceName_5002Parser = parser;
 		}
@@ -91,7 +91,7 @@ public class MIDParserProvider extends AbstractProvider implements
 	private IParser getModelReferenceName_5003Parser() {
 		if (modelReferenceName_5003Parser == null) {
 			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getModelReference_Name() };
+					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			modelReferenceName_5003Parser = parser;
 		}

@@ -18,64 +18,54 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
-import edu.toronto.cs.se.mmtf.mid.Mapping;
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Reference</b></em>'.
+ * An implementation of the model object '<em><b>Model Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MappingReferenceImpl#getModels <em>Models</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MappingReferenceImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelContainerImpl#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MappingReferenceImpl extends ModelReferenceImpl implements MappingReference {
+public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	/**
-	 * The cached value of the '{@link #getModels() <em>Models</em>}' reference list.
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModels()
+	 * @see #getElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelReference> models;
-
-	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMappings()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Mapping> mappings;
+	protected EList<ModelElement> elements;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingReferenceImpl() {
+	protected ModelContainerImpl() {
 		super();
 	}
 
@@ -86,7 +76,7 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.MAPPING_REFERENCE;
+		return MidPackage.Literals.MODEL_CONTAINER;
 	}
 
 	/**
@@ -94,23 +84,11 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelReference> getModels() {
-		if (models == null) {
-			models = new EObjectResolvingEList<ModelReference>(ModelReference.class, this, MidPackage.MAPPING_REFERENCE__MODELS);
+	public EList<ModelElement> getElements() {
+		if (elements == null) {
+			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MidPackage.MODEL_CONTAINER__ELEMENTS);
 		}
-		return models;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Mapping> getMappings() {
-		if (mappings == null) {
-			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, MidPackage.MAPPING_REFERENCE__MAPPINGS);
-		}
-		return mappings;
+		return elements;
 	}
 
 	/**
@@ -121,8 +99,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
-				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -135,10 +113,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
-				return getModels();
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
-				return getMappings();
+			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+				return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,13 +128,9 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
-				getModels().clear();
-				getModels().addAll((Collection<? extends ModelReference>)newValue);
-				return;
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
-				getMappings().clear();
-				getMappings().addAll((Collection<? extends Mapping>)newValue);
+			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+				getElements().clear();
+				getElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,11 +144,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
-				getModels().clear();
-				return;
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
-				getMappings().clear();
+			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+				getElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -190,12 +159,10 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
-				return models != null && !models.isEmpty();
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
-				return mappings != null && !mappings.isEmpty();
+			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+				return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MappingReferenceImpl
+} //ModelContainerImpl

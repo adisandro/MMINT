@@ -19,14 +19,16 @@
 package edu.toronto.cs.se.mmtf.mid.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.NamedElement;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -35,15 +37,18 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.MappingReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.NamedElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingReferenceItemProvider
-	extends ModelReferenceItemProvider
+public class NamedElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -56,7 +61,7 @@ public class MappingReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingReferenceItemProvider(AdapterFactory adapterFactory) {
+	public NamedElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,65 +76,31 @@ public class MappingReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addModelsPropertyDescriptor(object);
-			addMappingsPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Models feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addModelsPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MappingReference_models_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingReference_models_feature", "_UI_MappingReference_type"),
-				 MidPackage.Literals.MAPPING_REFERENCE__MODELS,
+				 getString("_UI_NamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
+				 MidPackage.Literals.NAMED_ELEMENT__NAME,
 				 true,
 				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Mappings feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMappingsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingReference_mappings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingReference_mappings_feature", "_UI_MappingReference_type"),
-				 MidPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
-				 true,
 				 false,
-				 true,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns MappingReference.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingReference"));
 	}
 
 	/**
@@ -140,10 +111,10 @@ public class MappingReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingReference)object).getName();
+		String label = ((NamedElement)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MappingReference_type") :
-			getString("_UI_MappingReference_type") + " " + label;
+			getString("_UI_NamedElement_type") :
+			getString("_UI_NamedElement_type") + " " + label;
 	}
 
 	/**
@@ -156,6 +127,12 @@ public class MappingReferenceItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(NamedElement.class)) {
+			case MidPackage.NAMED_ELEMENT__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -169,6 +146,17 @@ public class MappingReferenceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return MIDEditPlugin.INSTANCE;
 	}
 
 }

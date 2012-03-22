@@ -12,18 +12,31 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelReferenceOrigin/IMPORTED"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelReferenceOrigin/CREATED"/>
     </genEnums>
+    <genClasses image="false" ecoreClass="mid.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//NamedElement/name"/>
+    </genClasses>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/elements"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelReference">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelReference/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelReference/uri"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelReference/root"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelReference/origin"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelReference/container"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//MappingReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//MappingReference/models"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//MappingReference/mappings"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//BinaryMappingReference"/>
+    <genClasses ecoreClass="mid.ecore#//ModelContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelContainer/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ModelElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/pointer"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//Mapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Mapping/elements"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

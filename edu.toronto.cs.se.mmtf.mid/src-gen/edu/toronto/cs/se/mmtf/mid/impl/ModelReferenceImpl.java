@@ -19,17 +19,18 @@
 package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,36 +39,16 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getOrigin <em>Origin</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
+public class ModelReferenceImpl extends NamedElementImpl implements ModelReference {
 	/**
 	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -119,6 +100,16 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	protected ModelReferenceOrigin origin = ORIGIN_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getContainer() <em>Container</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainer()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelContainer container;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -135,27 +126,6 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	@Override
 	protected EClass eStaticClass() {
 		return MidPackage.Literals.MODEL_REFERENCE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_REFERENCE__NAME, oldName, name));
 	}
 
 	/**
@@ -243,11 +213,66 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ModelContainer getContainer() {
+		return container;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainer(ModelContainer newContainer, NotificationChain msgs) {
+		ModelContainer oldContainer = container;
+		container = newContainer;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_REFERENCE__CONTAINER, oldContainer, newContainer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainer(ModelContainer newContainer) {
+		if (newContainer != container) {
+			NotificationChain msgs = null;
+			if (container != null)
+				msgs = ((InternalEObject)container).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL_REFERENCE__CONTAINER, null, msgs);
+			if (newContainer != null)
+				msgs = ((InternalEObject)newContainer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL_REFERENCE__CONTAINER, null, msgs);
+			msgs = basicSetContainer(newContainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_REFERENCE__CONTAINER, newContainer, newContainer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MidPackage.MODEL_REFERENCE__CONTAINER:
+				return basicSetContainer(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL_REFERENCE__NAME:
-				return getName();
 			case MidPackage.MODEL_REFERENCE__URI:
 				return getUri();
 			case MidPackage.MODEL_REFERENCE__ROOT:
@@ -255,6 +280,8 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 				return basicGetRoot();
 			case MidPackage.MODEL_REFERENCE__ORIGIN:
 				return getOrigin();
+			case MidPackage.MODEL_REFERENCE__CONTAINER:
+				return getContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -267,9 +294,6 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL_REFERENCE__NAME:
-				setName((String)newValue);
-				return;
 			case MidPackage.MODEL_REFERENCE__URI:
 				setUri((String)newValue);
 				return;
@@ -278,6 +302,9 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 				return;
 			case MidPackage.MODEL_REFERENCE__ORIGIN:
 				setOrigin((ModelReferenceOrigin)newValue);
+				return;
+			case MidPackage.MODEL_REFERENCE__CONTAINER:
+				setContainer((ModelContainer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -291,9 +318,6 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_REFERENCE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case MidPackage.MODEL_REFERENCE__URI:
 				setUri(URI_EDEFAULT);
 				return;
@@ -302,6 +326,9 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 				return;
 			case MidPackage.MODEL_REFERENCE__ORIGIN:
 				setOrigin(ORIGIN_EDEFAULT);
+				return;
+			case MidPackage.MODEL_REFERENCE__CONTAINER:
+				setContainer((ModelContainer)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -315,14 +342,14 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_REFERENCE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MidPackage.MODEL_REFERENCE__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case MidPackage.MODEL_REFERENCE__ROOT:
 				return root != null;
 			case MidPackage.MODEL_REFERENCE__ORIGIN:
 				return origin != ORIGIN_EDEFAULT;
+			case MidPackage.MODEL_REFERENCE__CONTAINER:
+				return container != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -337,9 +364,7 @@ public class ModelReferenceImpl extends EObjectImpl implements ModelReference {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", uri: ");
+		result.append(" (uri: ");
 		result.append(uri);
 		result.append(", origin: ");
 		result.append(origin);

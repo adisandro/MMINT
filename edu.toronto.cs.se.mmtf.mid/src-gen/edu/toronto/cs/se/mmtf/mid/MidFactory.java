@@ -74,6 +74,33 @@ public interface MidFactory extends EFactory {
 	BinaryMappingReference createBinaryMappingReference();
 
 	/**
+	 * Returns a new object of class '<em>Model Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Container</em>'.
+	 * @generated
+	 */
+	ModelContainer createModelContainer();
+
+	/**
+	 * Returns a new object of class '<em>Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Element</em>'.
+	 * @generated
+	 */
+	ModelElement createModelElement();
+
+	/**
+	 * Returns a new object of class '<em>Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapping</em>'.
+	 * @generated
+	 */
+	Mapping createMapping();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

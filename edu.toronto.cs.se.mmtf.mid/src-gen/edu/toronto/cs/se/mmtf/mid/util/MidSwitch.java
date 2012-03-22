@@ -82,6 +82,12 @@ public class MidSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case MidPackage.NAMED_ELEMENT: {
+				NamedElement namedElement = (NamedElement)theEObject;
+				T result = caseNamedElement(namedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MidPackage.MULTI_MODEL: {
 				MultiModel multiModel = (MultiModel)theEObject;
 				T result = caseMultiModel(multiModel);
@@ -91,6 +97,7 @@ public class MidSwitch<T> extends Switch<T> {
 			case MidPackage.MODEL_REFERENCE: {
 				ModelReference modelReference = (ModelReference)theEObject;
 				T result = caseModelReference(modelReference);
+				if (result == null) result = caseNamedElement(modelReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -98,6 +105,7 @@ public class MidSwitch<T> extends Switch<T> {
 				MappingReference mappingReference = (MappingReference)theEObject;
 				T result = caseMappingReference(mappingReference);
 				if (result == null) result = caseModelReference(mappingReference);
+				if (result == null) result = caseNamedElement(mappingReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -106,11 +114,47 @@ public class MidSwitch<T> extends Switch<T> {
 				T result = caseBinaryMappingReference(binaryMappingReference);
 				if (result == null) result = caseMappingReference(binaryMappingReference);
 				if (result == null) result = caseModelReference(binaryMappingReference);
+				if (result == null) result = caseNamedElement(binaryMappingReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MidPackage.MODEL_CONTAINER: {
+				ModelContainer modelContainer = (ModelContainer)theEObject;
+				T result = caseModelContainer(modelContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MidPackage.MODEL_ELEMENT: {
+				ModelElement modelElement = (ModelElement)theEObject;
+				T result = caseModelElement(modelElement);
+				if (result == null) result = caseNamedElement(modelElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MidPackage.MAPPING: {
+				Mapping mapping = (Mapping)theEObject;
+				T result = caseMapping(mapping);
+				if (result == null) result = caseNamedElement(mapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
+		return null;
 	}
 
 	/**
@@ -170,6 +214,51 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBinaryMappingReference(BinaryMappingReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelContainer(ModelContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMapping(Mapping object) {
 		return null;
 	}
 

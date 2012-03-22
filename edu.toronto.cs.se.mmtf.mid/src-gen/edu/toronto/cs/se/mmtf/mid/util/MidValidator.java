@@ -109,6 +109,8 @@ public class MidValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
+			case MidPackage.NAMED_ELEMENT:
+				return validateNamedElement((NamedElement)value, diagnostics, context);
 			case MidPackage.MULTI_MODEL:
 				return validateMultiModel((MultiModel)value, diagnostics, context);
 			case MidPackage.MODEL_REFERENCE:
@@ -117,11 +119,26 @@ public class MidValidator extends EObjectValidator {
 				return validateMappingReference((MappingReference)value, diagnostics, context);
 			case MidPackage.BINARY_MAPPING_REFERENCE:
 				return validateBinaryMappingReference((BinaryMappingReference)value, diagnostics, context);
+			case MidPackage.MODEL_CONTAINER:
+				return validateModelContainer((ModelContainer)value, diagnostics, context);
+			case MidPackage.MODEL_ELEMENT:
+				return validateModelElement((ModelElement)value, diagnostics, context);
+			case MidPackage.MAPPING:
+				return validateMapping((Mapping)value, diagnostics, context);
 			case MidPackage.MODEL_REFERENCE_ORIGIN:
 				return validateModelReferenceOrigin((ModelReferenceOrigin)value, diagnostics, context);
 			default:
 				return true;
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNamedElement(NamedElement namedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(namedElement, diagnostics, context);
 	}
 
 	/**
@@ -178,6 +195,33 @@ public class MidValidator extends EObjectValidator {
 	 */
 	public boolean validateBinaryMappingReference_nullisBinary(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return binaryMappingReference.nullisBinary(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelContainer(ModelContainer modelContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelContainer, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapping(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mapping, diagnostics, context);
 	}
 
 	/**

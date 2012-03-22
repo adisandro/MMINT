@@ -19,7 +19,7 @@
 package edu.toronto.cs.se.mmtf.mid.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
+import edu.toronto.cs.se.mmtf.mid.Mapping;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import java.util.Collection;
@@ -37,13 +37,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.MappingReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.Mapping} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingReferenceItemProvider
-	extends ModelReferenceItemProvider
+public class MappingItemProvider
+	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -56,7 +56,7 @@ public class MappingReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingReferenceItemProvider(AdapterFactory adapterFactory) {
+	public MappingItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,26 +71,25 @@ public class MappingReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addModelsPropertyDescriptor(object);
-			addMappingsPropertyDescriptor(object);
+			addElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Models feature.
+	 * This adds a property descriptor for the Elements feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addModelsPropertyDescriptor(Object object) {
+	protected void addElementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MappingReference_models_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingReference_models_feature", "_UI_MappingReference_type"),
-				 MidPackage.Literals.MAPPING_REFERENCE__MODELS,
+				 getString("_UI_Mapping_elements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_elements_feature", "_UI_Mapping_type"),
+				 MidPackage.Literals.MAPPING__ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -100,36 +99,14 @@ public class MappingReferenceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Mappings feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMappingsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingReference_mappings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingReference_mappings_feature", "_UI_MappingReference_type"),
-				 MidPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns MappingReference.gif.
+	 * This returns Mapping.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Mapping"));
 	}
 
 	/**
@@ -140,10 +117,10 @@ public class MappingReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingReference)object).getName();
+		String label = ((Mapping)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MappingReference_type") :
-			getString("_UI_MappingReference_type") + " " + label;
+			getString("_UI_Mapping_type") :
+			getString("_UI_Mapping_type") + " " + label;
 	}
 
 	/**

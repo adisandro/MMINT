@@ -61,17 +61,25 @@ public class MidTables
 	 */
 	public static class Types {
 	    public static final EcoreExecutorType _BinaryMappingReference = new EcoreExecutorType(MidPackage.Literals.BINARY_MAPPING_REFERENCE, PACKAGE, 0);
+	    public static final EcoreExecutorType _Mapping = new EcoreExecutorType(MidPackage.Literals.MAPPING, PACKAGE, 0);
 	    public static final EcoreExecutorType _MappingReference = new EcoreExecutorType(MidPackage.Literals.MAPPING_REFERENCE, PACKAGE, 0);
+	    public static final EcoreExecutorType _ModelContainer = new EcoreExecutorType(MidPackage.Literals.MODEL_CONTAINER, PACKAGE, 0);
+	    public static final EcoreExecutorType _ModelElement = new EcoreExecutorType(MidPackage.Literals.MODEL_ELEMENT, PACKAGE, 0);
 	    public static final EcoreExecutorType _ModelReference = new EcoreExecutorType(MidPackage.Literals.MODEL_REFERENCE, PACKAGE, 0);
 	    public static final EcoreExecutorEnumeration _ModelReferenceOrigin = new EcoreExecutorEnumeration(MidPackage.Literals.MODEL_REFERENCE_ORIGIN, PACKAGE, 0);
 	    public static final EcoreExecutorType _MultiModel = new EcoreExecutorType(MidPackage.Literals.MULTI_MODEL, PACKAGE, 0);
+	    public static final EcoreExecutorType _NamedElement = new EcoreExecutorType(MidPackage.Literals.NAMED_ELEMENT, PACKAGE, 0);
 	
 		private static final EcoreExecutorType[] types = {
 		    _BinaryMappingReference,
+		    _Mapping,
 		    _MappingReference,
+		    _ModelContainer,
+		    _ModelElement,
 		    _ModelReference,
 		    _ModelReferenceOrigin,
-		    _MultiModel
+		    _MultiModel,
+		    _NamedElement
 		};
 	
 		/*
@@ -93,15 +101,32 @@ public class MidTables
 		public static final ExecutorFragment _BinaryMappingReference__BinaryMappingReference = new ExecutorFragment(Types._BinaryMappingReference, MidTables.Types._BinaryMappingReference);
 		public static final ExecutorFragment _BinaryMappingReference__MappingReference = new ExecutorFragment(Types._BinaryMappingReference, MidTables.Types._MappingReference);
 		public static final ExecutorFragment _BinaryMappingReference__ModelReference = new ExecutorFragment(Types._BinaryMappingReference, MidTables.Types._ModelReference);
+		public static final ExecutorFragment _BinaryMappingReference__NamedElement = new ExecutorFragment(Types._BinaryMappingReference, MidTables.Types._NamedElement);
 		public static final ExecutorFragment _BinaryMappingReference__OclAny = new ExecutorFragment(Types._BinaryMappingReference, OCLstdlibTables.Types._OclAny);
 		public static final ExecutorFragment _BinaryMappingReference__OclElement = new ExecutorFragment(Types._BinaryMappingReference, OCLstdlibTables.Types._OclElement);
 		
+		public static final ExecutorFragment _Mapping__Mapping = new ExecutorFragment(Types._Mapping, MidTables.Types._Mapping);
+		public static final ExecutorFragment _Mapping__NamedElement = new ExecutorFragment(Types._Mapping, MidTables.Types._NamedElement);
+		public static final ExecutorFragment _Mapping__OclAny = new ExecutorFragment(Types._Mapping, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Mapping__OclElement = new ExecutorFragment(Types._Mapping, OCLstdlibTables.Types._OclElement);
+		
 		public static final ExecutorFragment _MappingReference__MappingReference = new ExecutorFragment(Types._MappingReference, MidTables.Types._MappingReference);
 		public static final ExecutorFragment _MappingReference__ModelReference = new ExecutorFragment(Types._MappingReference, MidTables.Types._ModelReference);
+		public static final ExecutorFragment _MappingReference__NamedElement = new ExecutorFragment(Types._MappingReference, MidTables.Types._NamedElement);
 		public static final ExecutorFragment _MappingReference__OclAny = new ExecutorFragment(Types._MappingReference, OCLstdlibTables.Types._OclAny);
 		public static final ExecutorFragment _MappingReference__OclElement = new ExecutorFragment(Types._MappingReference, OCLstdlibTables.Types._OclElement);
 		
+		public static final ExecutorFragment _ModelContainer__ModelContainer = new ExecutorFragment(Types._ModelContainer, MidTables.Types._ModelContainer);
+		public static final ExecutorFragment _ModelContainer__OclAny = new ExecutorFragment(Types._ModelContainer, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _ModelContainer__OclElement = new ExecutorFragment(Types._ModelContainer, OCLstdlibTables.Types._OclElement);
+		
+		public static final ExecutorFragment _ModelElement__ModelElement = new ExecutorFragment(Types._ModelElement, MidTables.Types._ModelElement);
+		public static final ExecutorFragment _ModelElement__NamedElement = new ExecutorFragment(Types._ModelElement, MidTables.Types._NamedElement);
+		public static final ExecutorFragment _ModelElement__OclAny = new ExecutorFragment(Types._ModelElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _ModelElement__OclElement = new ExecutorFragment(Types._ModelElement, OCLstdlibTables.Types._OclElement);
+		
 		public static final ExecutorFragment _ModelReference__ModelReference = new ExecutorFragment(Types._ModelReference, MidTables.Types._ModelReference);
+		public static final ExecutorFragment _ModelReference__NamedElement = new ExecutorFragment(Types._ModelReference, MidTables.Types._NamedElement);
 		public static final ExecutorFragment _ModelReference__OclAny = new ExecutorFragment(Types._ModelReference, OCLstdlibTables.Types._OclAny);
 		public static final ExecutorFragment _ModelReference__OclElement = new ExecutorFragment(Types._ModelReference, OCLstdlibTables.Types._OclElement);
 		
@@ -110,6 +135,10 @@ public class MidTables
 		public static final ExecutorFragment _MultiModel__MultiModel = new ExecutorFragment(Types._MultiModel, MidTables.Types._MultiModel);
 		public static final ExecutorFragment _MultiModel__OclAny = new ExecutorFragment(Types._MultiModel, OCLstdlibTables.Types._OclAny);
 		public static final ExecutorFragment _MultiModel__OclElement = new ExecutorFragment(Types._MultiModel, OCLstdlibTables.Types._OclElement);
+		
+		public static final ExecutorFragment _NamedElement__NamedElement = new ExecutorFragment(Types._NamedElement, MidTables.Types._NamedElement);
+		public static final ExecutorFragment _NamedElement__OclAny = new ExecutorFragment(Types._NamedElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _NamedElement__OclElement = new ExecutorFragment(Types._NamedElement, OCLstdlibTables.Types._OclElement);
 		
 	}
 
@@ -122,16 +151,29 @@ public class MidTables
 	 *	The property descriptors for each property of each type.
 	 */
 	public static class Properties {
-		public static final ExecutorProperty _MappingReference__models = new ExecutorProperty("models", Types._MappingReference, 0, new EcoreLibraryProperty(MidPackage.Literals.MAPPING_REFERENCE__MODELS));
+		public static final ExecutorProperty _Mapping__MappingReference = new ExecutorProperty("MappingReference", Types._Mapping, 0, new EcoreLibraryOppositeProperty(MidPackage.Literals.MAPPING_REFERENCE__MAPPINGS));
+		public static final ExecutorProperty _Mapping__elements = new ExecutorProperty("elements", Types._Mapping, 1, new EcoreLibraryProperty(MidPackage.Literals.MAPPING__ELEMENTS));
+	
+		public static final ExecutorProperty _MappingReference__mappings = new ExecutorProperty("mappings", Types._MappingReference, 0, new EcoreLibraryProperty(MidPackage.Literals.MAPPING_REFERENCE__MAPPINGS));
+		public static final ExecutorProperty _MappingReference__models = new ExecutorProperty("models", Types._MappingReference, 1, new EcoreLibraryProperty(MidPackage.Literals.MAPPING_REFERENCE__MODELS));
+	
+		public static final ExecutorProperty _ModelContainer__ModelReference = new ExecutorProperty("ModelReference", Types._ModelContainer, 0, new EcoreLibraryOppositeProperty(MidPackage.Literals.MODEL_REFERENCE__CONTAINER));
+		public static final ExecutorProperty _ModelContainer__elements = new ExecutorProperty("elements", Types._ModelContainer, 1, new EcoreLibraryProperty(MidPackage.Literals.MODEL_CONTAINER__ELEMENTS));
+	
+		public static final ExecutorProperty _ModelElement__Mapping = new ExecutorProperty("Mapping", Types._ModelElement, 0, new EcoreLibraryOppositeProperty(MidPackage.Literals.MAPPING__ELEMENTS));
+		public static final ExecutorProperty _ModelElement__ModelContainer = new ExecutorProperty("ModelContainer", Types._ModelElement, 1, new EcoreLibraryOppositeProperty(MidPackage.Literals.MODEL_CONTAINER__ELEMENTS));
+		public static final ExecutorProperty _ModelElement__pointer = new ExecutorProperty("pointer", Types._ModelElement, 2, new EcoreLibraryProperty(MidPackage.Literals.MODEL_ELEMENT__POINTER));
 	
 		public static final ExecutorProperty _ModelReference__MappingReference = new ExecutorProperty("MappingReference", Types._ModelReference, 0, new EcoreLibraryOppositeProperty(MidPackage.Literals.MAPPING_REFERENCE__MODELS));
 		public static final ExecutorProperty _ModelReference__MultiModel = new ExecutorProperty("MultiModel", Types._ModelReference, 1, new EcoreLibraryOppositeProperty(MidPackage.Literals.MULTI_MODEL__ELEMENTS));
-		public static final ExecutorProperty _ModelReference__name = new ExecutorProperty("name", Types._ModelReference, 2, new EcoreLibraryProperty(MidPackage.Literals.MODEL_REFERENCE__NAME));
+		public static final ExecutorProperty _ModelReference__container = new ExecutorProperty("container", Types._ModelReference, 2, new EcoreLibraryProperty(MidPackage.Literals.MODEL_REFERENCE__CONTAINER));
 		public static final ExecutorProperty _ModelReference__origin = new ExecutorProperty("origin", Types._ModelReference, 3, new EcoreLibraryProperty(MidPackage.Literals.MODEL_REFERENCE__ORIGIN));
 		public static final ExecutorProperty _ModelReference__root = new ExecutorProperty("root", Types._ModelReference, 4, new EcoreLibraryProperty(MidPackage.Literals.MODEL_REFERENCE__ROOT));
 		public static final ExecutorProperty _ModelReference__uri = new ExecutorProperty("uri", Types._ModelReference, 5, new EcoreLibraryProperty(MidPackage.Literals.MODEL_REFERENCE__URI));
 	
 		public static final ExecutorProperty _MultiModel__elements = new ExecutorProperty("elements", Types._MultiModel, 0, new EcoreLibraryProperty(MidPackage.Literals.MULTI_MODEL__ELEMENTS));
+	
+		public static final ExecutorProperty _NamedElement__name = new ExecutorProperty("name", Types._NamedElement, 0, new EcoreLibraryProperty(MidPackage.Literals.NAMED_ELEMENT__NAME));
 	}
 
 	/**
@@ -142,28 +184,57 @@ public class MidTables
 		{
 		    Fragments._BinaryMappingReference__OclAny /* 0 */,
 		    Fragments._BinaryMappingReference__OclElement /* 1 */,
-		    Fragments._BinaryMappingReference__ModelReference /* 2 */,
-		    Fragments._BinaryMappingReference__MappingReference /* 3 */,
-		    Fragments._BinaryMappingReference__BinaryMappingReference /* 4 */
+		    Fragments._BinaryMappingReference__NamedElement /* 2 */,
+		    Fragments._BinaryMappingReference__ModelReference /* 3 */,
+		    Fragments._BinaryMappingReference__MappingReference /* 4 */,
+		    Fragments._BinaryMappingReference__BinaryMappingReference /* 5 */
 		};
-		private static final int[] __BinaryMappingReference = { 1,1,1,1,1 };
+		private static final int[] __BinaryMappingReference = { 1,1,1,1,1,1 };
+	
+		private static final ExecutorFragment[] _Mapping =
+		{
+		    Fragments._Mapping__OclAny /* 0 */,
+		    Fragments._Mapping__OclElement /* 1 */,
+		    Fragments._Mapping__NamedElement /* 2 */,
+		    Fragments._Mapping__Mapping /* 3 */
+		};
+		private static final int[] __Mapping = { 1,1,1,1 };
 	
 		private static final ExecutorFragment[] _MappingReference =
 		{
 		    Fragments._MappingReference__OclAny /* 0 */,
 		    Fragments._MappingReference__OclElement /* 1 */,
-		    Fragments._MappingReference__ModelReference /* 2 */,
-		    Fragments._MappingReference__MappingReference /* 3 */
+		    Fragments._MappingReference__NamedElement /* 2 */,
+		    Fragments._MappingReference__ModelReference /* 3 */,
+		    Fragments._MappingReference__MappingReference /* 4 */
 		};
-		private static final int[] __MappingReference = { 1,1,1,1 };
+		private static final int[] __MappingReference = { 1,1,1,1,1 };
+	
+		private static final ExecutorFragment[] _ModelContainer =
+		{
+		    Fragments._ModelContainer__OclAny /* 0 */,
+		    Fragments._ModelContainer__OclElement /* 1 */,
+		    Fragments._ModelContainer__ModelContainer /* 2 */
+		};
+		private static final int[] __ModelContainer = { 1,1,1 };
+	
+		private static final ExecutorFragment[] _ModelElement =
+		{
+		    Fragments._ModelElement__OclAny /* 0 */,
+		    Fragments._ModelElement__OclElement /* 1 */,
+		    Fragments._ModelElement__NamedElement /* 2 */,
+		    Fragments._ModelElement__ModelElement /* 3 */
+		};
+		private static final int[] __ModelElement = { 1,1,1,1 };
 	
 		private static final ExecutorFragment[] _ModelReference =
 		{
 		    Fragments._ModelReference__OclAny /* 0 */,
 		    Fragments._ModelReference__OclElement /* 1 */,
-		    Fragments._ModelReference__ModelReference /* 2 */
+		    Fragments._ModelReference__NamedElement /* 2 */,
+		    Fragments._ModelReference__ModelReference /* 3 */
 		};
-		private static final int[] __ModelReference = { 1,1,1 };
+		private static final int[] __ModelReference = { 1,1,1,1 };
 	
 		private static final ExecutorFragment[] _ModelReferenceOrigin =
 		{
@@ -179,15 +250,27 @@ public class MidTables
 		};
 		private static final int[] __MultiModel = { 1,1,1 };
 	
+		private static final ExecutorFragment[] _NamedElement =
+		{
+		    Fragments._NamedElement__OclAny /* 0 */,
+		    Fragments._NamedElement__OclElement /* 1 */,
+		    Fragments._NamedElement__NamedElement /* 2 */
+		};
+		private static final int[] __NamedElement = { 1,1,1 };
+	
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
 		static {
 			Types._BinaryMappingReference.initFragments(_BinaryMappingReference, __BinaryMappingReference);
+			Types._Mapping.initFragments(_Mapping, __Mapping);
 			Types._MappingReference.initFragments(_MappingReference, __MappingReference);
+			Types._ModelContainer.initFragments(_ModelContainer, __ModelContainer);
+			Types._ModelElement.initFragments(_ModelElement, __ModelElement);
 			Types._ModelReference.initFragments(_ModelReference, __ModelReference);
 			Types._ModelReferenceOrigin.initFragments(_ModelReferenceOrigin, __ModelReferenceOrigin);
 			Types._MultiModel.initFragments(_MultiModel, __MultiModel);
+			Types._NamedElement.initFragments(_NamedElement, __NamedElement);
 		}
 	
 		public static void init() {}
@@ -201,6 +284,7 @@ public class MidTables
 		private static final ExecutorOperation[] _BinaryMappingReference__BinaryMappingReference = {};
 		private static final ExecutorOperation[] _BinaryMappingReference__MappingReference = {};
 		private static final ExecutorOperation[] _BinaryMappingReference__ModelReference = {};
+		private static final ExecutorOperation[] _BinaryMappingReference__NamedElement = {};
 		private static final ExecutorOperation[] _BinaryMappingReference__OclAny = {
 		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
 		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
@@ -220,8 +304,30 @@ public class MidTables
 		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 	
+		private static final ExecutorOperation[] _Mapping__Mapping = {};
+		private static final ExecutorOperation[] _Mapping__NamedElement = {};
+		private static final ExecutorOperation[] _Mapping__OclAny = {
+		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+		    OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _Mapping__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+	
 		private static final ExecutorOperation[] _MappingReference__MappingReference = {};
 		private static final ExecutorOperation[] _MappingReference__ModelReference = {};
+		private static final ExecutorOperation[] _MappingReference__NamedElement = {};
 		private static final ExecutorOperation[] _MappingReference__OclAny = {
 		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
 		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
@@ -241,7 +347,49 @@ public class MidTables
 		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 	
+		private static final ExecutorOperation[] _ModelContainer__ModelContainer = {};
+		private static final ExecutorOperation[] _ModelContainer__OclAny = {
+		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+		    OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _ModelContainer__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+	
+		private static final ExecutorOperation[] _ModelElement__ModelElement = {};
+		private static final ExecutorOperation[] _ModelElement__NamedElement = {};
+		private static final ExecutorOperation[] _ModelElement__OclAny = {
+		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+		    OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _ModelElement__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+	
 		private static final ExecutorOperation[] _ModelReference__ModelReference = {};
+		private static final ExecutorOperation[] _ModelReference__NamedElement = {};
 		private static final ExecutorOperation[] _ModelReference__OclAny = {
 		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
 		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
@@ -283,6 +431,26 @@ public class MidTables
 		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 	
+		private static final ExecutorOperation[] _NamedElement__NamedElement = {};
+		private static final ExecutorOperation[] _NamedElement__OclAny = {
+		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+		    OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _NamedElement__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+	
 		/*
 		 *	Install the operation descriptors in the fragment descriptors.
 		 */
@@ -290,15 +458,32 @@ public class MidTables
 			Fragments._BinaryMappingReference__BinaryMappingReference.initOperations(_BinaryMappingReference__BinaryMappingReference);
 			Fragments._BinaryMappingReference__MappingReference.initOperations(_BinaryMappingReference__MappingReference);
 			Fragments._BinaryMappingReference__ModelReference.initOperations(_BinaryMappingReference__ModelReference);
+			Fragments._BinaryMappingReference__NamedElement.initOperations(_BinaryMappingReference__NamedElement);
 			Fragments._BinaryMappingReference__OclAny.initOperations(_BinaryMappingReference__OclAny);
 			Fragments._BinaryMappingReference__OclElement.initOperations(_BinaryMappingReference__OclElement);
 	
+			Fragments._Mapping__Mapping.initOperations(_Mapping__Mapping);
+			Fragments._Mapping__NamedElement.initOperations(_Mapping__NamedElement);
+			Fragments._Mapping__OclAny.initOperations(_Mapping__OclAny);
+			Fragments._Mapping__OclElement.initOperations(_Mapping__OclElement);
+	
 			Fragments._MappingReference__MappingReference.initOperations(_MappingReference__MappingReference);
 			Fragments._MappingReference__ModelReference.initOperations(_MappingReference__ModelReference);
+			Fragments._MappingReference__NamedElement.initOperations(_MappingReference__NamedElement);
 			Fragments._MappingReference__OclAny.initOperations(_MappingReference__OclAny);
 			Fragments._MappingReference__OclElement.initOperations(_MappingReference__OclElement);
 	
+			Fragments._ModelContainer__ModelContainer.initOperations(_ModelContainer__ModelContainer);
+			Fragments._ModelContainer__OclAny.initOperations(_ModelContainer__OclAny);
+			Fragments._ModelContainer__OclElement.initOperations(_ModelContainer__OclElement);
+	
+			Fragments._ModelElement__ModelElement.initOperations(_ModelElement__ModelElement);
+			Fragments._ModelElement__NamedElement.initOperations(_ModelElement__NamedElement);
+			Fragments._ModelElement__OclAny.initOperations(_ModelElement__OclAny);
+			Fragments._ModelElement__OclElement.initOperations(_ModelElement__OclElement);
+	
 			Fragments._ModelReference__ModelReference.initOperations(_ModelReference__ModelReference);
+			Fragments._ModelReference__NamedElement.initOperations(_ModelReference__NamedElement);
 			Fragments._ModelReference__OclAny.initOperations(_ModelReference__OclAny);
 			Fragments._ModelReference__OclElement.initOperations(_ModelReference__OclElement);
 	
@@ -307,6 +492,10 @@ public class MidTables
 			Fragments._MultiModel__MultiModel.initOperations(_MultiModel__MultiModel);
 			Fragments._MultiModel__OclAny.initOperations(_MultiModel__OclAny);
 			Fragments._MultiModel__OclElement.initOperations(_MultiModel__OclElement);
+	
+			Fragments._NamedElement__NamedElement.initOperations(_NamedElement__NamedElement);
+			Fragments._NamedElement__OclAny.initOperations(_NamedElement__OclAny);
+			Fragments._NamedElement__OclElement.initOperations(_NamedElement__OclElement);
 		}
 	
 		public static void init() {}
@@ -319,27 +508,50 @@ public class MidTables
 		private static final ExecutorProperty[] _BinaryMappingReference = {
 		    MidTables.Properties._ModelReference__MappingReference,
 		    MidTables.Properties._ModelReference__MultiModel,
+		    MidTables.Properties._ModelReference__container,
+		    MidTables.Properties._MappingReference__mappings,
 		    MidTables.Properties._MappingReference__models,
-		    MidTables.Properties._ModelReference__name,
+		    MidTables.Properties._NamedElement__name,
 		    MidTables.Properties._ModelReference__origin,
 		    MidTables.Properties._ModelReference__root,
 		    MidTables.Properties._ModelReference__uri
+		};
+	
+		private static final ExecutorProperty[] _Mapping = {
+		    MidTables.Properties._Mapping__MappingReference,
+		    MidTables.Properties._Mapping__elements,
+		    MidTables.Properties._NamedElement__name
 		};
 	
 		private static final ExecutorProperty[] _MappingReference = {
 		    MidTables.Properties._ModelReference__MappingReference,
 		    MidTables.Properties._ModelReference__MultiModel,
+		    MidTables.Properties._ModelReference__container,
+		    MidTables.Properties._MappingReference__mappings,
 		    MidTables.Properties._MappingReference__models,
-		    MidTables.Properties._ModelReference__name,
+		    MidTables.Properties._NamedElement__name,
 		    MidTables.Properties._ModelReference__origin,
 		    MidTables.Properties._ModelReference__root,
 		    MidTables.Properties._ModelReference__uri
 		};
 	
+		private static final ExecutorProperty[] _ModelContainer = {
+		    MidTables.Properties._ModelContainer__ModelReference,
+		    MidTables.Properties._ModelContainer__elements
+		};
+	
+		private static final ExecutorProperty[] _ModelElement = {
+		    MidTables.Properties._ModelElement__Mapping,
+		    MidTables.Properties._ModelElement__ModelContainer,
+		    MidTables.Properties._NamedElement__name,
+		    MidTables.Properties._ModelElement__pointer
+		};
+	
 		private static final ExecutorProperty[] _ModelReference = {
 		    MidTables.Properties._ModelReference__MappingReference,
 		    MidTables.Properties._ModelReference__MultiModel,
-		    MidTables.Properties._ModelReference__name,
+		    MidTables.Properties._ModelReference__container,
+		    MidTables.Properties._NamedElement__name,
 		    MidTables.Properties._ModelReference__origin,
 		    MidTables.Properties._ModelReference__root,
 		    MidTables.Properties._ModelReference__uri
@@ -351,15 +563,23 @@ public class MidTables
 		    MidTables.Properties._MultiModel__elements
 		};
 	
+		private static final ExecutorProperty[] _NamedElement = {
+		    MidTables.Properties._NamedElement__name
+		};
+	
 		/**
 		 *	Install the property descriptors in the fragment descriptors.
 		 */
 		static {
 	  	 	Fragments._BinaryMappingReference__BinaryMappingReference.initProperties(_BinaryMappingReference);
+	  	 	Fragments._Mapping__Mapping.initProperties(_Mapping);
 	  	 	Fragments._MappingReference__MappingReference.initProperties(_MappingReference);
+	  	 	Fragments._ModelContainer__ModelContainer.initProperties(_ModelContainer);
+	  	 	Fragments._ModelElement__ModelElement.initProperties(_ModelElement);
 	  	 	Fragments._ModelReference__ModelReference.initProperties(_ModelReference);
 	  	 	Fragments._ModelReferenceOrigin__ModelReferenceOrigin.initProperties(_ModelReferenceOrigin);
 	  	 	Fragments._MultiModel__MultiModel.initProperties(_MultiModel);
+	  	 	Fragments._NamedElement__NamedElement.initProperties(_NamedElement);
 		}
 	
 		public static void init() {}

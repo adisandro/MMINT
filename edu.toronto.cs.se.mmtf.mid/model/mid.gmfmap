@@ -17,7 +17,7 @@
         <diagramLabel
             href="mid.gmfgraph#MappingReferenceName"/>
         <features
-            href="mid.ecore#//ModelReference/name"/>
+            href="mid.ecore#//NamedElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -39,7 +39,7 @@
         <diagramLabel
             href="mid.gmfgraph#ModelReferenceName"/>
         <features
-            href="mid.ecore#//ModelReference/name"/>
+            href="mid.ecore#//NamedElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -61,7 +61,7 @@
         <diagramLabel
             href="mid.gmfgraph#ModelReferenceName"/>
         <features
-            href="mid.ecore#//ModelReference/name"/>
+            href="mid.ecore#//NamedElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"

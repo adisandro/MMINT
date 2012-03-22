@@ -180,6 +180,75 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelContainer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelContainerItemProvider modelContainerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelContainer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelContainerAdapter() {
+		if (modelContainerItemProvider == null) {
+			modelContainerItemProvider = new ModelContainerItemProvider(this);
+		}
+
+		return modelContainerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelElementItemProvider modelElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementAdapter() {
+		if (modelElementItemProvider == null) {
+			modelElementItemProvider = new ModelElementItemProvider(this);
+		}
+
+		return modelElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.Mapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MappingItemProvider mappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.Mapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMappingAdapter() {
+		if (mappingItemProvider == null) {
+			mappingItemProvider = new MappingItemProvider(this);
+		}
+
+		return mappingItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -282,6 +351,9 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		if (modelReferenceItemProvider != null) modelReferenceItemProvider.dispose();
 		if (mappingReferenceItemProvider != null) mappingReferenceItemProvider.dispose();
 		if (binaryMappingReferenceItemProvider != null) binaryMappingReferenceItemProvider.dispose();
+		if (modelContainerItemProvider != null) modelContainerItemProvider.dispose();
+		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
+		if (mappingItemProvider != null) mappingItemProvider.dispose();
 	}
 
 }

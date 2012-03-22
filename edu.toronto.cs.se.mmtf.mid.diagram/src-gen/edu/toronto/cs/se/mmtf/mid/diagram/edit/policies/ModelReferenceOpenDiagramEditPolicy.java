@@ -58,7 +58,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
 /**
  * @generated
  */
-public class OpenDiagramEditPolicy extends OpenEditPolicy {
+public class ModelReferenceOpenDiagramEditPolicy extends OpenEditPolicy {
 
 	/**
 	 * @generated

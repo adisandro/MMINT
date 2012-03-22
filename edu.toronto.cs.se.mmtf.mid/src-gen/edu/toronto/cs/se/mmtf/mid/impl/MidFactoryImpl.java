@@ -77,6 +77,9 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 			case MidPackage.MODEL_REFERENCE: return createModelReference();
 			case MidPackage.MAPPING_REFERENCE: return createMappingReference();
 			case MidPackage.BINARY_MAPPING_REFERENCE: return createBinaryMappingReference();
+			case MidPackage.MODEL_CONTAINER: return createModelContainer();
+			case MidPackage.MODEL_ELEMENT: return createModelElement();
+			case MidPackage.MAPPING: return createMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -150,6 +153,36 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public BinaryMappingReference createBinaryMappingReference() {
 		BinaryMappingReferenceImpl binaryMappingReference = new BinaryMappingReferenceImpl();
 		return binaryMappingReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelContainer createModelContainer() {
+		ModelContainerImpl modelContainer = new ModelContainerImpl();
+		return modelContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElement createModelElement() {
+		ModelElementImpl modelElement = new ModelElementImpl();
+		return modelElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping createMapping() {
+		MappingImpl mapping = new MappingImpl();
+		return mapping;
 	}
 
 	/**

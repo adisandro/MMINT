@@ -105,6 +105,7 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 		newElement.setName(modelUri.lastSegment());
 		newElement.setRoot(root);
 		newElement.setOrigin(ModelReferenceOrigin.CREATED);
+		newElement.setContainer(MidFactory.eINSTANCE.createModelContainer());
 		MultiModel owner = (MultiModel) getElementToEdit();
 		owner.getElements().add(newElement);
 		doConfigure(newElement, monitor, info);
