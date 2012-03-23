@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.*;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 
@@ -56,20 +57,12 @@ public class MidValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "edu.toronto.cs.se.mmtf.mid";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Nullis Binary' of 'Binary Mapping Reference'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int BINARY_MAPPING_REFERENCE__NULLIS_BINARY = 1;
-
-	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -183,18 +176,37 @@ public class MidValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMappingReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryMappingReference_nullisBinary(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinary(binaryMappingReference, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the nullisBinary constraint of '<em>Binary Mapping Reference</em>'.
+	 * The cached validation expression for the isBinary constraint of '<em>Binary Mapping Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBinaryMappingReference_nullisBinary(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return binaryMappingReference.nullisBinary(diagnostics, context);
+	protected static final String BINARY_MAPPING_REFERENCE__IS_BINARY__EEXPRESSION = "models->size() = 2";
+
+	/**
+	 * Validates the isBinary constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMappingReference_isBinary(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MidPackage.Literals.BINARY_MAPPING_REFERENCE,
+				 binaryMappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "isBinary",
+				 BINARY_MAPPING_REFERENCE__IS_BINARY__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

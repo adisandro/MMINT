@@ -49,7 +49,6 @@ public interface ModelElement extends NamedElement {
 	 * @see #setPointer(EObject)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement_Pointer()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelElement!pointer'"
 	 * @generated
 	 */
 	EObject getPointer();

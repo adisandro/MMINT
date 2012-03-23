@@ -21,7 +21,6 @@ package edu.toronto.cs.se.mmtf.mid;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -32,12 +31,14 @@ import org.eclipse.emf.ecore.EReference;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.mmtf.mid.MidFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface MidPackage extends EPackage {
@@ -393,16 +394,6 @@ public interface MidPackage extends EPackage {
 	 */
 	int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 0;
 
-
-	/**
-	 * The operation id for the '<em>Nullis Binary</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAPPING_REFERENCE___NULLIS_BINARY__DIAGNOSTICCHAIN_MAP = MAPPING_REFERENCE_OPERATION_COUNT + 0;
-
 	/**
 	 * The number of operations of the '<em>Binary Mapping Reference</em>' class.
 	 * <!-- begin-user-doc -->
@@ -410,7 +401,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING_REFERENCE_OPERATION_COUNT = MAPPING_REFERENCE_OPERATION_COUNT + 1;
+	int BINARY_MAPPING_REFERENCE_OPERATION_COUNT = MAPPING_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelContainerImpl <em>Model Container</em>}' class.
@@ -691,16 +682,6 @@ public interface MidPackage extends EPackage {
 	EClass getBinaryMappingReference();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.BinaryMappingReference#nullisBinary(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Nullis Binary</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Nullis Binary</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.BinaryMappingReference#nullisBinary(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getBinaryMappingReference__NullisBinary__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelContainer <em>Model Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -788,6 +769,7 @@ public interface MidPackage extends EPackage {
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
@@ -908,14 +890,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BINARY_MAPPING_REFERENCE = eINSTANCE.getBinaryMappingReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Nullis Binary</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation BINARY_MAPPING_REFERENCE___NULLIS_BINARY__DIAGNOSTICCHAIN_MAP = eINSTANCE.getBinaryMappingReference__NullisBinary__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelContainerImpl <em>Model Container</em>}' class.

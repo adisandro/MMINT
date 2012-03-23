@@ -48,7 +48,7 @@ public interface Mapping extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMapping_Elements()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!Mapping!elements'"
+	 * @model
 	 * @generated
 	 */
 	EList<ModelElement> getElements();

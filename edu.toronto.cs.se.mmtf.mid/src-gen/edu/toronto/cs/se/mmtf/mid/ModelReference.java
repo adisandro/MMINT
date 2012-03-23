@@ -52,7 +52,6 @@ public interface ModelReference extends NamedElement {
 	 * @see #setUri(String)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Uri()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!uri'"
 	 * @generated
 	 */
 	String getUri();
@@ -79,7 +78,6 @@ public interface ModelReference extends NamedElement {
 	 * @see #setRoot(EObject)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Root()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!root'"
 	 * @generated
 	 */
 	EObject getRoot();
@@ -108,7 +106,6 @@ public interface ModelReference extends NamedElement {
 	 * @see #setOrigin(ModelReferenceOrigin)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Origin()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!origin'"
 	 * @generated
 	 */
 	ModelReferenceOrigin getOrigin();
@@ -136,7 +133,6 @@ public interface ModelReference extends NamedElement {
 	 * @see #setContainer(ModelContainer)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Container()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!ModelReference!container'"
 	 * @generated
 	 */
 	ModelContainer getContainer();

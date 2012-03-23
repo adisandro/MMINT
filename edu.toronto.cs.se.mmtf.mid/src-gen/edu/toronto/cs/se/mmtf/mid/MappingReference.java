@@ -50,7 +50,6 @@ public interface MappingReference extends ModelReference {
 	 * @return the value of the '<em>Models</em>' reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMappingReference_Models()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!MappingReference!models'"
 	 * @generated
 	 */
 	EList<ModelReference> getModels();
@@ -60,14 +59,13 @@ public interface MappingReference extends ModelReference {
 	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.Mapping}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Mappings</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Mappings</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mappings</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMappingReference_Mappings()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore!MappingReference!mappings'"
 	 * @generated
 	 */
 	EList<Mapping> getMappings();

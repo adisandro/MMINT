@@ -20,8 +20,8 @@ package edu.toronto.cs.se.mmtf.mid.provider;
 
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
-
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
+
 import java.util.Collection;
 import java.util.List;
 
