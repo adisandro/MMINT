@@ -43,7 +43,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 */
 	public static MappingFactory init() {
 		try {
-			MappingFactory theMappingFactory = (MappingFactory)EPackage.Registry.INSTANCE.getEFactory("http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore#mapping"); 
+			MappingFactory theMappingFactory = (MappingFactory)EPackage.Registry.INSTANCE.getEFactory("http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping"); 
 			if (theMappingFactory != null) {
 				return theMappingFactory;
 			}

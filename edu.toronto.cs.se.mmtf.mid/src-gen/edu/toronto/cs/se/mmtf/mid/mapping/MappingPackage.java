@@ -56,7 +56,7 @@ public interface MappingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore#mapping";
+	String eNS_URI = "http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping";
 
 	/**
 	 * The package namespace name.
