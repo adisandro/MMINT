@@ -30,10 +30,9 @@
     <domainDiagramElement
         href="mid.genmodel#//mid/MultiModel"/>
     <topLevelNodes
-        visualID="2001"
+        visualID="2004"
         editPartClassName="MappingReferenceEditPart"
         itemSemanticEditPolicyClassName="MappingReferenceItemSemanticEditPolicy"
-        notationViewFactoryClassName="MappingReferenceViewFactory"
         canonicalEditPolicyClassName="MappingReferenceCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MappingReferenceGraphicalNodeEditPolicy"
         createCommandClassName="MappingReferenceCreateCommand">
@@ -53,17 +52,16 @@
           editorID="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MappingDiagramEditorID"/>
       <modelFacet>
         <metaClass
-            href="mid.genmodel#//mid/MappingReference"/>
+            href="mid.genmodel#//mid/mapping/MappingReference"/>
         <containmentMetaFeature
             href="mid.genmodel#//mid/MultiModel/elements"/>
         <childMetaFeature
             href="mid.genmodel#//mid/MultiModel/elements"/>
       </modelFacet>
       <labels
-          visualID="5001"
+          visualID="5004"
           editPartClassName="MappingReferenceNameEditPart"
           itemSemanticEditPolicyClassName="MappingReferenceNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MappingReferenceNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -182,10 +180,9 @@
       </labels>
     </topLevelNodes>
     <links
-        visualID="4001"
+        visualID="4003"
         editPartClassName="MappingReferenceModelsEditPart"
         itemSemanticEditPolicyClassName="MappingReferenceModelsItemSemanticEditPolicy"
-        notationViewFactoryClassName="MappingReferenceModelsViewFactory"
         createCommandClassName="MappingReferenceModelsCreateCommand"
         reorientCommandClassName="MappingReferenceModelsReorientCommand">
       <diagramRunTimeClass
@@ -199,14 +196,13 @@
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="mid.genmodel#//mid/MappingReference/models"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/models"/>
       </modelFacet>
     </links>
     <links
-        visualID="4002"
+        visualID="4004"
         editPartClassName="BinaryMappingReferenceEditPart"
         itemSemanticEditPolicyClassName="BinaryMappingReferenceItemSemanticEditPolicy"
-        notationViewFactoryClassName="BinaryMappingReferenceViewFactory"
         createCommandClassName="BinaryMappingReferenceCreateCommand"
         reorientCommandClassName="BinaryMappingReferenceReorientCommand">
       <diagramRunTimeClass
@@ -220,15 +216,15 @@
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
-            href="mid.genmodel#//mid/BinaryMappingReference"/>
+            href="mid.genmodel#//mid/mapping/BinaryMappingReference"/>
         <containmentMetaFeature
             href="mid.genmodel#//mid/MultiModel/elements"/>
         <childMetaFeature
             href="mid.genmodel#//mid/MultiModel/elements"/>
         <sourceMetaFeature
-            href="mid.genmodel#//mid/MappingReference/models"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/models"/>
         <targetMetaFeature
-            href="mid.genmodel#//mid/MappingReference/models"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/models"/>
       </modelFacet>
     </links>
     <palette>
