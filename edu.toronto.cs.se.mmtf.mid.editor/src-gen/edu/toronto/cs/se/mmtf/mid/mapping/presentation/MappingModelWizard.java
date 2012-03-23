@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.presentation;
+package edu.toronto.cs.se.mmtf.mid.mapping.presentation;
 
 
 import java.util.ArrayList;
@@ -85,10 +85,12 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.provider.MIDEditPlugin;
 
+
+import edu.toronto.cs.se.mmtf.mid.presentation.MIDEditorPlugin;
 
 import org.eclipse.core.runtime.Path;
 
@@ -107,7 +109,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidModelWizard extends Wizard implements INewWizard {
+public class MappingModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -115,7 +117,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(MIDEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(MIDEditorPlugin.INSTANCE.getString("_UI_MappingEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -124,7 +126,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		MIDEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		MIDEditorPlugin.INSTANCE.getString("_UI_MappingEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -132,7 +134,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidPackage midPackage = MidPackage.eINSTANCE;
+	protected MappingPackage mappingPackage = MappingPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -140,7 +142,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidFactory midFactory = midPackage.getMidFactory();
+	protected MappingFactory mappingFactory = mappingPackage.getMappingFactory();
 
 	/**
 	 * This is the file creation page.
@@ -148,7 +150,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidModelWizardNewFileCreationPage newFileCreationPage;
+	protected MappingModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -156,7 +158,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected MappingModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -192,7 +194,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(MIDEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(MIDEditorPlugin.INSTANCE.getImage("full/wizban/NewMid")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(MIDEditorPlugin.INSTANCE.getImage("full/wizban/NewMapping")));
 	}
 
 	/**
@@ -204,7 +206,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : midPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : mappingPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -224,8 +226,8 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)midPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = midFactory.create(eClass);
+		EClass eClass = (EClass)mappingPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = mappingFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -326,14 +328,14 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class MidModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class MappingModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public MidModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public MappingModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -373,7 +375,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class MidModelWizardInitialObjectCreationPage extends WizardPage {
+	public class MappingModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -401,7 +403,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public MidModelWizardInitialObjectCreationPage(String pageId) {
+		public MappingModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -586,10 +588,10 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new MidModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(MIDEditorPlugin.INSTANCE.getString("_UI_MidModelWizard_label"));
-		newFileCreationPage.setDescription(MIDEditorPlugin.INSTANCE.getString("_UI_MidModelWizard_description"));
-		newFileCreationPage.setFileName(MIDEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new MappingModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(MIDEditorPlugin.INSTANCE.getString("_UI_MappingModelWizard_label"));
+		newFileCreationPage.setDescription(MIDEditorPlugin.INSTANCE.getString("_UI_MappingModelWizard_description"));
+		newFileCreationPage.setFileName(MIDEditorPlugin.INSTANCE.getString("_UI_MappingEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -615,7 +617,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = MIDEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = MIDEditorPlugin.INSTANCE.getString("_UI_MappingEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -625,8 +627,8 @@ public class MidModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new MidModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(MIDEditorPlugin.INSTANCE.getString("_UI_MidModelWizard_label"));
+		initialObjectCreationPage = new MappingModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(MIDEditorPlugin.INSTANCE.getString("_UI_MappingModelWizard_label"));
 		initialObjectCreationPage.setDescription(MIDEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

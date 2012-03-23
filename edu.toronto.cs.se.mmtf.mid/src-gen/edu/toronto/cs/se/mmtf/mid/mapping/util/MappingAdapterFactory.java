@@ -16,9 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.util;
+package edu.toronto.cs.se.mmtf.mid.mapping.util;
 
-import edu.toronto.cs.se.mmtf.mid.*;
+import edu.toronto.cs.se.mmtf.mid.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.NamedElement;
+
+import edu.toronto.cs.se.mmtf.mid.mapping.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -32,17 +35,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmtf.mid.MidPackage
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage
  * @generated
  */
-public class MidAdapterFactory extends AdapterFactoryImpl {
+public class MappingAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static MidPackage modelPackage;
+	protected static MappingPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -50,9 +53,9 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidAdapterFactory() {
+	public MappingAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = MidPackage.eINSTANCE;
+			modelPackage = MappingPackage.eINSTANCE;
 		}
 	}
 
@@ -81,15 +84,31 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidSwitch<Adapter> modelSwitch =
-		new MidSwitch<Adapter>() {
+	protected MappingSwitch<Adapter> modelSwitch =
+		new MappingSwitch<Adapter>() {
+			@Override
+			public Adapter caseMappingReference(MappingReference object) {
+				return createMappingReferenceAdapter();
+			}
+			@Override
+			public Adapter caseBinaryMappingReference(BinaryMappingReference object) {
+				return createBinaryMappingReferenceAdapter();
+			}
+			@Override
+			public Adapter caseModelContainer(ModelContainer object) {
+				return createModelContainerAdapter();
+			}
+			@Override
+			public Adapter caseModelElement(ModelElement object) {
+				return createModelElementAdapter();
+			}
+			@Override
+			public Adapter caseMapping(Mapping object) {
+				return createMappingAdapter();
+			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
-			}
-			@Override
-			public Adapter caseMultiModel(MultiModel object) {
-				return createMultiModelAdapter();
 			}
 			@Override
 			public Adapter caseModelReference(ModelReference object) {
@@ -116,6 +135,76 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference <em>Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingReference
+	 * @generated
+	 */
+	public Adapter createMappingReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference <em>Binary Mapping Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference
+	 * @generated
+	 */
+	public Adapter createBinaryMappingReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer <em>Model Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer
+	 * @generated
+	 */
+	public Adapter createModelContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement
+	 * @generated
+	 */
+	public Adapter createModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping <em>Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Mapping
+	 * @generated
+	 */
+	public Adapter createMappingAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -126,20 +215,6 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.MultiModel <em>Multi Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel
-	 * @generated
-	 */
-	public Adapter createMultiModelAdapter() {
 		return null;
 	}
 
@@ -169,4 +244,4 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //MidAdapterFactory
+} //MappingAdapterFactory

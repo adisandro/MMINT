@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.provider;
+package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.BinaryMappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,7 +35,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.BinaryMappingReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

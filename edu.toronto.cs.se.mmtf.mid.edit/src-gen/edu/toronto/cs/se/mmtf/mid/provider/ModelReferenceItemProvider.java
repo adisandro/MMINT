@@ -19,9 +19,10 @@
 package edu.toronto.cs.se.mmtf.mid.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
+
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 
 import java.util.Collection;
 import java.util.List;
@@ -241,7 +242,7 @@ public class ModelReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MODEL_REFERENCE__CONTAINER,
-				 MidFactory.eINSTANCE.createModelContainer()));
+				 MappingFactory.eINSTANCE.createModelContainer()));
 	}
 
 }

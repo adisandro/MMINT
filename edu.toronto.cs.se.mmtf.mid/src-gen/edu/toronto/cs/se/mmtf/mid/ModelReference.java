@@ -18,6 +18,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**

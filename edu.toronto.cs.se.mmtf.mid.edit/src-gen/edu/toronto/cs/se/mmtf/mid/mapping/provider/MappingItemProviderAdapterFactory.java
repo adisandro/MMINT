@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.provider;
+package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
-import edu.toronto.cs.se.mmtf.mid.util.MidAdapterFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.util.MappingAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,7 +48,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidItemProviderAdapterFactory extends MidAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class MappingItemProviderAdapterFactory extends MappingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -79,7 +79,7 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidItemProviderAdapterFactory() {
+	public MappingItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -88,49 +88,118 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.MultiModel} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultiModelItemProvider multiModelItemProvider;
+	protected MappingReferenceItemProvider mappingReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.MultiModel}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMultiModelAdapter() {
-		if (multiModelItemProvider == null) {
-			multiModelItemProvider = new MultiModelItemProvider(this);
+	public Adapter createMappingReferenceAdapter() {
+		if (mappingReferenceItemProvider == null) {
+			mappingReferenceItemProvider = new MappingReferenceItemProvider(this);
 		}
 
-		return multiModelItemProvider;
+		return mappingReferenceItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelReference} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelReferenceItemProvider modelReferenceItemProvider;
+	protected BinaryMappingReferenceItemProvider binaryMappingReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelReference}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelReferenceAdapter() {
-		if (modelReferenceItemProvider == null) {
-			modelReferenceItemProvider = new ModelReferenceItemProvider(this);
+	public Adapter createBinaryMappingReferenceAdapter() {
+		if (binaryMappingReferenceItemProvider == null) {
+			binaryMappingReferenceItemProvider = new BinaryMappingReferenceItemProvider(this);
 		}
 
-		return modelReferenceItemProvider;
+		return binaryMappingReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelContainerItemProvider modelContainerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelContainerAdapter() {
+		if (modelContainerItemProvider == null) {
+			modelContainerItemProvider = new ModelContainerItemProvider(this);
+		}
+
+		return modelContainerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelElementItemProvider modelElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementAdapter() {
+		if (modelElementItemProvider == null) {
+			modelElementItemProvider = new ModelElementItemProvider(this);
+		}
+
+		return modelElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MappingItemProvider mappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMappingAdapter() {
+		if (mappingItemProvider == null) {
+			mappingItemProvider = new MappingItemProvider(this);
+		}
+
+		return mappingItemProvider;
 	}
 
 	/**
@@ -232,8 +301,11 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	 * @generated
 	 */
 	public void dispose() {
-		if (multiModelItemProvider != null) multiModelItemProvider.dispose();
-		if (modelReferenceItemProvider != null) modelReferenceItemProvider.dispose();
+		if (mappingReferenceItemProvider != null) mappingReferenceItemProvider.dispose();
+		if (binaryMappingReferenceItemProvider != null) binaryMappingReferenceItemProvider.dispose();
+		if (modelContainerItemProvider != null) modelContainerItemProvider.dispose();
+		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
+		if (mappingItemProvider != null) mappingItemProvider.dispose();
 	}
 
 }

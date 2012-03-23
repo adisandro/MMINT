@@ -11,4 +11,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.examples.domain,
  org.eclipse.ocl.examples.library
 Export-Package: edu.toronto.cs.se.mmtf.mid,
+ edu.toronto.cs.se.mmtf.mid.mapping,
+ edu.toronto.cs.se.mmtf.mid.mapping.util,
  edu.toronto.cs.se.mmtf.mid.util

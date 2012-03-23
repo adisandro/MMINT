@@ -16,11 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.impl;
+package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.ModelContainer;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
 
 import java.util.Collection;
 
@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelContainerImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,7 +76,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.MODEL_CONTAINER;
+		return MappingPackage.Literals.MODEL_CONTAINER;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 */
 	public EList<ModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MidPackage.MODEL_CONTAINER__ELEMENTS);
+			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MappingPackage.MODEL_CONTAINER__ELEMENTS);
 		}
 		return elements;
 	}
@@ -99,7 +99,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -113,7 +113,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -128,7 +128,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				getElements().clear();
 				getElements().addAll((Collection<? extends ModelElement>)newValue);
 				return;
@@ -144,7 +144,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				getElements().clear();
 				return;
 		}
@@ -159,7 +159,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONTAINER__ELEMENTS:
+			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);

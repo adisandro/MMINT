@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.presentation;
+package edu.toronto.cs.se.mmtf.mid.mapping.presentation;
 
 
 import java.io.IOException;
@@ -169,20 +169,22 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import edu.toronto.cs.se.mmtf.mid.provider.MidItemProviderAdapterFactory;
-
 import edu.toronto.cs.se.mmtf.mid.mapping.provider.MappingItemProviderAdapterFactory;
+
+import edu.toronto.cs.se.mmtf.mid.presentation.MIDEditorPlugin;
+
+import edu.toronto.cs.se.mmtf.mid.provider.MidItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Mid model editor.
+ * This is an example of a Mapping model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidEditor
+public class MappingEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -344,18 +346,18 @@ public class MidEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(MidEditor.this);
+						getActionBarContributor().setActiveEditor(MappingEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-						getActionBarContributor().setActiveEditor(MidEditor.this);
+						getActionBarContributor().setActiveEditor(MappingEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == MidEditor.this) {
+				else if (p == MappingEditor.this) {
 					handleActivate();
 				}
 			}
@@ -518,7 +520,7 @@ public class MidEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(MidEditor.this, false);
+										 getSite().getPage().closeEditor(MappingEditor.this, false);
 									 }
 								 }
 							 });
@@ -529,7 +531,7 @@ public class MidEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == MidEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == MappingEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -561,7 +563,7 @@ public class MidEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(MidEditor.this, false);
+				getSite().getPage().closeEditor(MappingEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -691,7 +693,7 @@ public class MidEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidEditor() {
+	public MappingEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1023,7 +1025,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MappingEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1057,7 +1059,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MappingEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1086,7 +1088,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MappingEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1111,7 +1113,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MappingEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1138,7 +1140,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MappingEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1181,7 +1183,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MappingEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1402,8 +1404,8 @@ public class MidEditor
 				new ExtendedPropertySheetPage(editingDomain) {
 					@Override
 					public void setSelectionToViewer(List<?> selection) {
-						MidEditor.this.setSelectionToViewer(selection);
-						MidEditor.this.setFocus();
+						MappingEditor.this.setSelectionToViewer(selection);
+						MappingEditor.this.setFocus();
 					}
 
 					@Override

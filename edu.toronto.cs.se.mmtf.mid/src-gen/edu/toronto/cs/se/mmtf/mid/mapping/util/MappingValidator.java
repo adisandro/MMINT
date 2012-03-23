@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.util;
+package edu.toronto.cs.se.mmtf.mid.mapping.util;
 
-import edu.toronto.cs.se.mmtf.mid.*;
+import edu.toronto.cs.se.mmtf.mid.mapping.*;
 
 import java.util.Map;
 
@@ -34,17 +34,17 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmtf.mid.MidPackage
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage
  * @generated
  */
-public class MidValidator extends EObjectValidator {
+public class MappingValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final MidValidator INSTANCE = new MidValidator();
+	public static final MappingValidator INSTANCE = new MappingValidator();
 
 	/**
 	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
@@ -54,7 +54,7 @@ public class MidValidator extends EObjectValidator {
 	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
 	 * @generated
 	 */
-	public static final String DIAGNOSTIC_SOURCE = "edu.toronto.cs.se.mmtf.mid";
+	public static final String DIAGNOSTIC_SOURCE = "edu.toronto.cs.se.mmtf.mid.mapping";
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -78,7 +78,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidValidator() {
+	public MappingValidator() {
 		super();
 	}
 
@@ -90,7 +90,7 @@ public class MidValidator extends EObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-	  return MidPackage.eINSTANCE;
+	  return MappingPackage.eINSTANCE;
 	}
 
 	/**
@@ -102,54 +102,19 @@ public class MidValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case MidPackage.NAMED_ELEMENT:
-				return validateNamedElement((NamedElement)value, diagnostics, context);
-			case MidPackage.MULTI_MODEL:
-				return validateMultiModel((MultiModel)value, diagnostics, context);
-			case MidPackage.MODEL_REFERENCE:
-				return validateModelReference((ModelReference)value, diagnostics, context);
-			case MidPackage.MAPPING_REFERENCE:
+			case MappingPackage.MAPPING_REFERENCE:
 				return validateMappingReference((MappingReference)value, diagnostics, context);
-			case MidPackage.BINARY_MAPPING_REFERENCE:
+			case MappingPackage.BINARY_MAPPING_REFERENCE:
 				return validateBinaryMappingReference((BinaryMappingReference)value, diagnostics, context);
-			case MidPackage.MODEL_CONTAINER:
+			case MappingPackage.MODEL_CONTAINER:
 				return validateModelContainer((ModelContainer)value, diagnostics, context);
-			case MidPackage.MODEL_ELEMENT:
+			case MappingPackage.MODEL_ELEMENT:
 				return validateModelElement((ModelElement)value, diagnostics, context);
-			case MidPackage.MAPPING:
+			case MappingPackage.MAPPING:
 				return validateMapping((Mapping)value, diagnostics, context);
-			case MidPackage.MODEL_REFERENCE_ORIGIN:
-				return validateModelReferenceOrigin((ModelReferenceOrigin)value, diagnostics, context);
 			default:
 				return true;
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNamedElement(NamedElement namedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(namedElement, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMultiModel(MultiModel multiModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(multiModel, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelReference(ModelReference modelReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modelReference, diagnostics, context);
 	}
 
 	/**
@@ -197,7 +162,7 @@ public class MidValidator extends EObjectValidator {
 	public boolean validateBinaryMappingReference_isBinary(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(MidPackage.Literals.BINARY_MAPPING_REFERENCE,
+				(MappingPackage.Literals.BINARY_MAPPING_REFERENCE,
 				 binaryMappingReference,
 				 diagnostics,
 				 context,
@@ -237,15 +202,6 @@ public class MidValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelReferenceOrigin(ModelReferenceOrigin modelReferenceOrigin, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
 	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -259,4 +215,4 @@ public class MidValidator extends EObjectValidator {
 		return super.getResourceLocator();
 	}
 
-} //MidValidator
+} //MappingValidator

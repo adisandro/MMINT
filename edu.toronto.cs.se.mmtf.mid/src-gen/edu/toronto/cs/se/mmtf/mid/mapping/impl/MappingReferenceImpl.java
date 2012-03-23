@@ -16,12 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.impl;
+package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
-import edu.toronto.cs.se.mmtf.mid.Mapping;
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
+
+import edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl;
+
+import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
 import java.util.Collection;
 
@@ -38,13 +41,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Reference</b></em>'.
+ * An implementation of the model object '<em><b>Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MappingReferenceImpl#getModels <em>Models</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MappingReferenceImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getModels <em>Models</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,7 +90,7 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.MAPPING_REFERENCE;
+		return MappingPackage.Literals.MAPPING_REFERENCE;
 	}
 
 	/**
@@ -97,7 +100,7 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 */
 	public EList<ModelReference> getModels() {
 		if (models == null) {
-			models = new EObjectResolvingEList<ModelReference>(ModelReference.class, this, MidPackage.MAPPING_REFERENCE__MODELS);
+			models = new EObjectResolvingEList<ModelReference>(ModelReference.class, this, MappingPackage.MAPPING_REFERENCE__MODELS);
 		}
 		return models;
 	}
@@ -109,7 +112,7 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 */
 	public EList<Mapping> getMappings() {
 		if (mappings == null) {
-			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, MidPackage.MAPPING_REFERENCE__MAPPINGS);
+			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, MappingPackage.MAPPING_REFERENCE__MAPPINGS);
 		}
 		return mappings;
 	}
@@ -122,7 +125,7 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
+			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -136,9 +139,9 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
+			case MappingPackage.MAPPING_REFERENCE__MODELS:
 				return getModels();
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
+			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				return getMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -153,11 +156,11 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
+			case MappingPackage.MAPPING_REFERENCE__MODELS:
 				getModels().clear();
 				getModels().addAll((Collection<? extends ModelReference>)newValue);
 				return;
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
+			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				getMappings().clear();
 				getMappings().addAll((Collection<? extends Mapping>)newValue);
 				return;
@@ -173,10 +176,10 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
+			case MappingPackage.MAPPING_REFERENCE__MODELS:
 				getModels().clear();
 				return;
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
+			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				getMappings().clear();
 				return;
 		}
@@ -191,9 +194,9 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MAPPING_REFERENCE__MODELS:
+			case MappingPackage.MAPPING_REFERENCE__MODELS:
 				return models != null && !models.isEmpty();
-			case MidPackage.MAPPING_REFERENCE__MAPPINGS:
+			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				return mappings != null && !mappings.isEmpty();
 		}
 		return super.eIsSet(featureID);

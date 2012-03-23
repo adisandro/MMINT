@@ -16,51 +16,43 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid;
+package edu.toronto.cs.se.mmtf.mid.mapping;
 
-import org.eclipse.emf.ecore.EObject;
+import edu.toronto.cs.se.mmtf.mid.NamedElement;
+
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Model Element</b></em>'.
+ * A representation of the model object '<em><b>Mapping</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer <em>Pointer</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement()
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMapping()
  * @model
  * @generated
  */
-public interface ModelElement extends NamedElement {
+public interface Mapping extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Pointer</b></em>' reference.
+	 * Returns the value of the '<em><b>Elements</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pointer</em>' reference isn't clear,
+	 * If the meaning of the '<em>Elements</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pointer</em>' reference.
-	 * @see #setPointer(EObject)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement_Pointer()
-	 * @model required="true"
+	 * @return the value of the '<em>Elements</em>' reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMapping_Elements()
+	 * @model
 	 * @generated
 	 */
-	EObject getPointer();
+	EList<ModelElement> getElements();
 
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer <em>Pointer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pointer</em>' reference.
-	 * @see #getPointer()
-	 * @generated
-	 */
-	void setPointer(EObject value);
-
-} // ModelElement
+} // Mapping

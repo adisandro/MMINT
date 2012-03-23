@@ -23,6 +23,8 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -171,12 +173,12 @@ public class MultiModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__ELEMENTS,
-				 MidFactory.eINSTANCE.createMappingReference()));
+				 MappingFactory.eINSTANCE.createMappingReference()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__ELEMENTS,
-				 MidFactory.eINSTANCE.createBinaryMappingReference()));
+				 MappingFactory.eINSTANCE.createBinaryMappingReference()));
 	}
 
 	/**

@@ -16,24 +16,26 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid;
+package edu.toronto.cs.se.mmtf.mid.mapping;
+
+import edu.toronto.cs.se.mmtf.mid.ModelReference;
 
 import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mapping Reference</b></em>'.
+ * A representation of the model object '<em><b>Reference</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.MappingReference#getModels <em>Models</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.MappingReference#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getModels <em>Models</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMappingReference()
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingReference()
  * @model
  * @generated
  */
@@ -48,7 +50,7 @@ public interface MappingReference extends ModelReference {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Models</em>' reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMappingReference_Models()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingReference_Models()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -56,7 +58,7 @@ public interface MappingReference extends ModelReference {
 
 	/**
 	 * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.Mapping}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mappings</em>' containment reference list isn't clear,
@@ -64,7 +66,7 @@ public interface MappingReference extends ModelReference {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mappings</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMappingReference_Mappings()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingReference_Mappings()
 	 * @model containment="true"
 	 * @generated
 	 */

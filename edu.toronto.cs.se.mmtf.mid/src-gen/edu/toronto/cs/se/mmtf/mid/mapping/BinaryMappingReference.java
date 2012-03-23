@@ -16,40 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.impl;
+package edu.toronto.cs.se.mmtf.mid.mapping;
 
-import edu.toronto.cs.se.mmtf.mid.BinaryMappingReference;
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binary Mapping Reference</b></em>'.
+ * A representation of the model object '<em><b>Binary Mapping Reference</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
+ *
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMappingReference()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinary'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinary='models->size() = 2'"
  * @generated
  */
-public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements BinaryMappingReference {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BinaryMappingReferenceImpl() {
-		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MidPackage.Literals.BINARY_MAPPING_REFERENCE;
-	}
-
-} //BinaryMappingReferenceImpl
+public interface BinaryMappingReference extends MappingReference {
+} // BinaryMappingReference

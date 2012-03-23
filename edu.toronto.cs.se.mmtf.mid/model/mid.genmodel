@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay&#xA;&#xA;This file is part of MMTF ver. 0.9.0.&#xA;&#xA;MMTF is free software: you can redistribute it and/or modify&#xA;it under the terms of the GNU General Public License as published by&#xA;the Free Software Foundation, either version 3 of the License, or&#xA;(at your option) any later version.&#xA;&#xA;MMTF is distributed in the hope that it will be useful,&#xA;but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA;GNU General Public License for more details.&#xA;&#xA;You should have received a copy of the GNU General Public License&#xA;along with MMTF.  If not, see &lt;http://www.gnu.org/licenses/>."
     modelDirectory="/edu.toronto.cs.se.mmtf.mid/src-gen" editDirectory="/edu.toronto.cs.se.mmtf.mid.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmtf.mid.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmtf.mid"
-    modelName="MID" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    modelName="MID" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0"
     copyrightFields="false" operationReflection="true">
   <foreignModel>mid.ecore</foreignModel>
   <genPackages prefix="Mid" basePackage="edu.toronto.cs.se.mmtf" disposableProviderFactory="true"
@@ -24,19 +24,25 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelReference/origin"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelReference/container"/>
     </genClasses>
-    <genClasses ecoreClass="mid.ecore#//MappingReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//MappingReference/models"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//MappingReference/mappings"/>
-    </genClasses>
-    <genClasses ecoreClass="mid.ecore#//BinaryMappingReference"/>
-    <genClasses ecoreClass="mid.ecore#//ModelContainer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelContainer/elements"/>
-    </genClasses>
-    <genClasses ecoreClass="mid.ecore#//ModelElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/pointer"/>
-    </genClasses>
-    <genClasses ecoreClass="mid.ecore#//Mapping">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Mapping/elements"/>
-    </genClasses>
+    <nestedGenPackages prefix="Mapping" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
+        ecorePackage="mid.ecore#//mapping">
+      <genClasses ecoreClass="mid.ecore#//mapping/MappingReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/models"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/mappings"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//mapping/BinaryMappingReference"/>
+      <genClasses ecoreClass="mid.ecore#//mapping/ModelContainer">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/elements"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//mapping/ModelElement">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelElement/pointer"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//mapping/Mapping">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/Mapping/elements"/>
+      </genClasses>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>
