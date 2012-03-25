@@ -3,11 +3,10 @@
 <schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.metamodels" name="MMTF Metamodels"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.operators" name="MMTF Operators"/>
       </appinfo>
       <documentation>
-         Allows metamodels to be registered with MMTF.
-The metamodel package has to be registered too through the org.eclipse.emf.ecore.generated_package extension point.
+         Allows operators to be registered with MMTF.
       </documentation>
    </annotation>
 
@@ -19,7 +18,7 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
       </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="metamodel"/>
+            <element ref="operator"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -48,22 +47,57 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
       </complexType>
    </element>
 
-   <element name="metamodel">
+   <element name="operator">
       <complexType>
-         <attribute name="uri" type="string" use="required">
+         <sequence>
+            <element ref="input"/>
+            <element ref="output"/>
+         </sequence>
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  The metamodel URI to be registered with MMTF.
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":edu.toronto.cs.se.mmtf.repository.IOperator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="type">
+      <complexType>
+         <attribute name="className" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="supertypeUri" type="string">
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  The supertype metamodel URI (if any)
+                  
                </documentation>
             </annotation>
          </attribute>
+      </complexType>
+   </element>
+
+   <element name="input">
+      <complexType>
+         <sequence>
+            <element ref="type" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="output">
+      <complexType>
+         <sequence>
+            <element ref="type" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
       </complexType>
    </element>
 
