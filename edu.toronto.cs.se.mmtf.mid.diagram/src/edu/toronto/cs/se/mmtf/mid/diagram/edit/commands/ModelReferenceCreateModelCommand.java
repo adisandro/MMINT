@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.repository.Editor;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryWizardDialog;
 
@@ -105,7 +106,7 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 		newElement.setName(modelUri.lastSegment());
 		newElement.setRoot(root);
 		newElement.setOrigin(ModelReferenceOrigin.CREATED);
-		newElement.setContainer(MidFactory.eINSTANCE.createModelContainer());
+		newElement.setContainer(MappingFactory.eINSTANCE.createModelContainer());
 		MultiModel owner = (MultiModel) getElementToEdit();
 		owner.getElements().add(newElement);
 		doConfigure(newElement, monitor, info);
