@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmtf.xt.graph;singleton:=true
+Bundle-Version: 0.9.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.toronto.cs.se.mmtf.xt.graph,
+ edu.toronto.cs.se.mmtf.xt.graph.impl,
+ edu.toronto.cs.se.mmtf.xt.graph.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ edu.toronto.cs.se.mmtf
+Bundle-ActivationPolicy: lazy
