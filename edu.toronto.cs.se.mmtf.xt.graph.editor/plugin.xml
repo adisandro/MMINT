@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+ 
+ This file is part of MMTF ver. 0.9.0.
+ 
+ MMTF is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ MMTF is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.mmtf.xt.graph.presentation.GraphModelWizardID"
+            name="%_UI_GraphModelWizard_label"
+            class="edu.toronto.cs.se.mmtf.xt.graph.presentation.GraphModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GraphModelFile.gif">
+         <description>%_UI_GraphModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="edu.toronto.cs.se.mmtf.xt.graph.presentation.GraphEditorID"
+            name="%_UI_GraphEditor_label"
+            icon="icons/full/obj16/GraphModelFile.gif"
+            extensions="graph"
+            class="edu.toronto.cs.se.mmtf.xt.graph.presentation.GraphEditor"
+            contributorClass="edu.toronto.cs.se.mmtf.xt.graph.presentation.GraphActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         name="Graph editor"
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editor
+            metamodelUri="http:///edu/toronto/cs/se/mmtf/xt/graph/model/graph.ecore"
+            isDiagram="false"
+            editorId="edu.toronto.cs.se.mmtf.xt.graph.presentation.GraphEditorID"
+            wizardId="edu.toronto.cs.se.mmtf.xt.graph.presentation.GraphModelWizardID">
+      </editor>
+   </extension>
+
+</plugin>
