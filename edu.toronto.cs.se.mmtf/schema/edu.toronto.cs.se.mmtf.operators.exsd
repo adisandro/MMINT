@@ -17,7 +17,7 @@
          </appinfo>
       </annotation>
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
+         <sequence>
             <element ref="operator"/>
          </sequence>
          <attribute name="point" type="string" use="required">
@@ -66,29 +66,10 @@
       </complexType>
    </element>
 
-   <element name="type">
-      <complexType>
-         <attribute name="className" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="name" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
    <element name="input">
       <complexType>
          <sequence>
-            <element ref="type" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="parameter" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
    </element>
@@ -96,8 +77,45 @@
    <element name="output">
       <complexType>
          <sequence>
-            <element ref="type" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="parameter" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
+      </complexType>
+   </element>
+
+   <element name="parameter">
+      <complexType>
+         <attribute name="metamodelUri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.metamodels/metamodel/@uri"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="model">
+                  </enumeration>
+                  <enumeration value="mapping">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="isVarargs" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

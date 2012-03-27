@@ -3,4 +3,5 @@
 <plugin>
    <extension-point id="edu.toronto.cs.se.mmtf.metamodels" name="MMTF Metamodels" schema="schema/edu.toronto.cs.se.mmtf.metamodels.exsd"/>
    <extension-point id="edu.toronto.cs.se.mmtf.editors" name="MMTF Editors" schema="schema/edu.toronto.cs.se.mmtf.editors.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmtf.operators" name="MMTF Operators" schema="schema/edu.toronto.cs.se.mmtf.operators.exsd"/>
 </plugin>

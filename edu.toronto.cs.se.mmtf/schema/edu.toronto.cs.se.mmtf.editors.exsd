@@ -18,7 +18,7 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
          </appinfo>
       </annotation>
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
+         <sequence>
             <element ref="editor"/>
          </sequence>
          <attribute name="point" type="string" use="required">
@@ -55,6 +55,9 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
                <documentation>
                   The metamodel URI for which an editor is being provided.
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.metamodels/metamodel/@uri"/>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="isDiagram" type="boolean" use="required">
@@ -69,6 +72,9 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
                <documentation>
                   The editor id.
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.editors/editor/@id"/>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="wizardId" type="string" use="required">
@@ -76,6 +82,9 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
                <documentation>
                   The editor wizard id.
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.newWizards/wizard/@id"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>

@@ -18,7 +18,7 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
          </appinfo>
       </annotation>
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
+         <sequence>
             <element ref="metamodel"/>
          </sequence>
          <attribute name="point" type="string" use="required">
@@ -55,13 +55,19 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
                <documentation>
                   The metamodel URI to be registered with MMTF.
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.emf.ecore.generated_package/package/@uri"/>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="supertypeUri" type="string">
             <annotation>
                <documentation>
-                  The supertype metamodel URI (if any)
+                  The supertype metamodel URI.
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.emf.ecore.generated_package/package/@uri"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
