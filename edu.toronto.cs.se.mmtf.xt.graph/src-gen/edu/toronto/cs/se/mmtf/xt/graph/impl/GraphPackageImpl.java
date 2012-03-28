@@ -24,11 +24,13 @@ import edu.toronto.cs.se.mmtf.xt.graph.GraphFactory;
 import edu.toronto.cs.se.mmtf.xt.graph.GraphPackage;
 import edu.toronto.cs.se.mmtf.xt.graph.Node;
 
+import edu.toronto.cs.se.mmtf.xt.graph.util.GraphValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -110,6 +112,15 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 
 		// Initialize created meta-data
 		theGraphPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theGraphPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return GraphValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theGraphPackage.freeze();
@@ -286,6 +297,52 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+		   });		
+		addAnnotation
+		  (graphEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "uniqueNodeNames"
+		   });	
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";				
+		addAnnotation
+		  (graphEClass, 
+		   source, 
+		   new String[] {
+			 "uniqueNodeNames", "nodes->isUnique(name)"
+		   });
 	}
 
 } //GraphPackageImpl

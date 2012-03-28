@@ -36,7 +36,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.xt.graph.GraphPackage#getGraph()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueNodeNames'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot uniqueNodeNames='nodes->isUnique(name)'"
  * @generated
  */
 public interface Graph extends EObject {
