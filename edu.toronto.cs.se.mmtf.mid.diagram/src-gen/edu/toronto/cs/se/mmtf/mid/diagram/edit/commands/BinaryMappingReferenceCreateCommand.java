@@ -30,11 +30,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.BinaryMappingReference;
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 
 /**
  * @generated
@@ -88,7 +88,7 @@ public class BinaryMappingReferenceCreateCommand extends EditElementCommand {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateBinaryMappingReference_4002(getContainer(),
+				.canCreateBinaryMappingReference_4004(getContainer(),
 						getSource(), getTarget());
 	}
 
@@ -102,7 +102,7 @@ public class BinaryMappingReferenceCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		BinaryMappingReference newElement = MidFactory.eINSTANCE
+		BinaryMappingReference newElement = MappingFactory.eINSTANCE
 				.createBinaryMappingReference();
 		getContainer().getElements().add(newElement);
 		newElement.getModels().add(getSource());

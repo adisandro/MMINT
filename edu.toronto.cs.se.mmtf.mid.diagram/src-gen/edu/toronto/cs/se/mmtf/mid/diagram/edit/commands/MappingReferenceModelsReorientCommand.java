@@ -27,9 +27,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
 /**
  * @generated
@@ -92,7 +92,7 @@ public class MappingReferenceModelsReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistMappingReferenceModels_4001(getNewSource(),
+				.canExistMappingReferenceModels_4003(getNewSource(),
 						getOldTarget());
 	}
 
@@ -104,7 +104,7 @@ public class MappingReferenceModelsReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistMappingReferenceModels_4001(getOldSource(),
+				.canExistMappingReferenceModels_4003(getOldSource(),
 						getNewTarget());
 	}
 

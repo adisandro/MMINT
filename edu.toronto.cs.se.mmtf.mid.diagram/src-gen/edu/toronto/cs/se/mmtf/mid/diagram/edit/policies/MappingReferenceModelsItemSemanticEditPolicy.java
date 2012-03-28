@@ -34,7 +34,7 @@ public class MappingReferenceModelsItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public MappingReferenceModelsItemSemanticEditPolicy() {
-		super(MIDElementTypes.MappingReferenceModels_4001);
+		super(MIDElementTypes.MappingReferenceModels_4003);
 	}
 
 	/**

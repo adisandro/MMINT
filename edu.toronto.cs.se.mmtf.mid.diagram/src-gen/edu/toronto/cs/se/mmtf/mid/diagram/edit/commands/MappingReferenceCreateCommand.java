@@ -30,9 +30,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
 /**
  * @generated
@@ -72,7 +72,7 @@ public class MappingReferenceCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		MappingReference newElement = MidFactory.eINSTANCE
+		MappingReference newElement = MappingFactory.eINSTANCE
 				.createMappingReference();
 
 		MultiModel owner = (MultiModel) getElementToEdit();

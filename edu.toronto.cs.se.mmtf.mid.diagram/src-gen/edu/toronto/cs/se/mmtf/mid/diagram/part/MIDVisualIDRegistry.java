@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceName2EditPart
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MIDOCLFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -146,7 +147,7 @@ public class MIDVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case MultiModelEditPart.VISUAL_ID:
-			if (MidPackage.eINSTANCE.getMappingReference().isSuperTypeOf(
+			if (MappingPackage.eINSTANCE.getMappingReference().isSuperTypeOf(
 					domainElement.eClass())) {
 				return MappingReferenceEditPart.VISUAL_ID;
 			}
@@ -224,7 +225,7 @@ public class MIDVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (MidPackage.eINSTANCE.getBinaryMappingReference().isSuperTypeOf(
+		if (MappingPackage.eINSTANCE.getBinaryMappingReference().isSuperTypeOf(
 				domainElement.eClass())) {
 			return BinaryMappingReferenceEditPart.VISUAL_ID;
 		}

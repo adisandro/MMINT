@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorPlugin;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 
 /**
  * @generated
@@ -76,7 +77,7 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType MappingReference_2001 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2001"); //$NON-NLS-1$
+	public static final IElementType MappingReference_2004 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2004"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -85,16 +86,14 @@ public class MIDElementTypes {
 	 * @generated
 	 */
 	public static final IElementType ModelReference_2003 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2003"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
-	public static final IElementType MappingReferenceModels_4001 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4001"); //$NON-NLS-1$
-
+	public static final IElementType MappingReferenceModels_4003 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4003"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType BinaryMappingReference_4002 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.BinaryMappingReference_4002"); //$NON-NLS-1$
+	public static final IElementType BinaryMappingReference_4004 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.BinaryMappingReference_4004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -209,8 +208,8 @@ public class MIDElementTypes {
 
 			elements.put(MultiModel_1000, MidPackage.eINSTANCE.getMultiModel());
 
-			elements.put(MappingReference_2001,
-					MidPackage.eINSTANCE.getMappingReference());
+			elements.put(MappingReference_2004,
+					MappingPackage.eINSTANCE.getMappingReference());
 
 			elements.put(ModelReference_2002,
 					MidPackage.eINSTANCE.getModelReference());
@@ -218,11 +217,11 @@ public class MIDElementTypes {
 			elements.put(ModelReference_2003,
 					MidPackage.eINSTANCE.getModelReference());
 
-			elements.put(MappingReferenceModels_4001,
-					MidPackage.eINSTANCE.getMappingReference_Models());
+			elements.put(MappingReferenceModels_4003,
+					MappingPackage.eINSTANCE.getMappingReference_Models());
 
-			elements.put(BinaryMappingReference_4002,
-					MidPackage.eINSTANCE.getBinaryMappingReference());
+			elements.put(BinaryMappingReference_4004,
+					MappingPackage.eINSTANCE.getBinaryMappingReference());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -241,11 +240,11 @@ public class MIDElementTypes {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(MultiModel_1000);
-			KNOWN_ELEMENT_TYPES.add(MappingReference_2001);
+			KNOWN_ELEMENT_TYPES.add(MappingReference_2004);
 			KNOWN_ELEMENT_TYPES.add(ModelReference_2002);
 			KNOWN_ELEMENT_TYPES.add(ModelReference_2003);
-			KNOWN_ELEMENT_TYPES.add(MappingReferenceModels_4001);
-			KNOWN_ELEMENT_TYPES.add(BinaryMappingReference_4002);
+			KNOWN_ELEMENT_TYPES.add(MappingReferenceModels_4003);
+			KNOWN_ELEMENT_TYPES.add(BinaryMappingReference_4004);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -258,15 +257,15 @@ public class MIDElementTypes {
 		case MultiModelEditPart.VISUAL_ID:
 			return MultiModel_1000;
 		case MappingReferenceEditPart.VISUAL_ID:
-			return MappingReference_2001;
+			return MappingReference_2004;
 		case ModelReferenceEditPart.VISUAL_ID:
 			return ModelReference_2002;
 		case ModelReference2EditPart.VISUAL_ID:
 			return ModelReference_2003;
 		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return MappingReferenceModels_4001;
+			return MappingReferenceModels_4003;
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
-			return BinaryMappingReference_4002;
+			return BinaryMappingReference_4004;
 		}
 		return null;
 	}

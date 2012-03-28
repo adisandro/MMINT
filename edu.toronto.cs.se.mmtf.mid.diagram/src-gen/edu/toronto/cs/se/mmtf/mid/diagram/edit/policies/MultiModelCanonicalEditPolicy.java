@@ -336,7 +336,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case MappingReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
-						.getMappingReference_2001ContainedLinks(view));
+						.getMappingReference_2004ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -369,7 +369,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case BinaryMappingReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
-						.getBinaryMappingReference_4002ContainedLinks(view));
+						.getBinaryMappingReference_4004ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

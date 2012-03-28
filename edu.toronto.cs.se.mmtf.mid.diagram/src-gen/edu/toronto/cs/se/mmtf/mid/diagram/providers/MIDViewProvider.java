@@ -233,7 +233,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		switch (visualID) {
 		case MappingReferenceEditPart.VISUAL_ID:
-			return createMappingReference_2001(domainElement, containerView,
+			return createMappingReference_2004(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case ModelReferenceEditPart.VISUAL_ID:
 			return createModelReference_2002(domainElement, containerView,
@@ -256,10 +256,10 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		switch (MIDVisualIDRegistry.getVisualID(elementTypeHint)) {
 		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return createMappingReferenceModels_4001(containerView, index,
+			return createMappingReferenceModels_4003(containerView, index,
 					persisted, preferencesHint);
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
-			return createBinaryMappingReference_4002(
+			return createBinaryMappingReference_4004(
 					getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
 		}
@@ -270,7 +270,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createMappingReference_2001(EObject domainElement,
+	public Node createMappingReference_2004(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -314,7 +314,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5001 = createLabel(node,
+		Node label5004 = createLabel(node,
 				MIDVisualIDRegistry
 						.getType(MappingReferenceNameEditPart.VISUAL_ID));
 		return node;
@@ -429,7 +429,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createMappingReferenceModels_4001(View containerView,
+	public Edge createMappingReferenceModels_4003(View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -481,7 +481,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createBinaryMappingReference_4002(EObject domainElement,
+	public Edge createBinaryMappingReference_4004(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();

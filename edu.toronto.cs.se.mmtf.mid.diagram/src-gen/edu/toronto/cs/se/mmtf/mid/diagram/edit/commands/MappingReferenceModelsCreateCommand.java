@@ -26,9 +26,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
 /**
  * @generated
@@ -73,7 +73,7 @@ public class MappingReferenceModelsCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateMappingReferenceModels_4001(getSource(), getTarget());
+				.canCreateMappingReferenceModels_4003(getSource(), getTarget());
 	}
 
 	/**

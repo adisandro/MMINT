@@ -49,14 +49,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.BinaryMappingReference;
-import edu.toronto.cs.se.mmtf.mid.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.helpers.MIDBaseEditHelper;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
 /**
  * @generated
@@ -343,7 +343,7 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMappingReferenceModels_4001(
+		public boolean canCreateMappingReferenceModels_4003(
 				MappingReference source, ModelReference target) {
 			if (source != null) {
 				if (source.getModels().contains(target)) {
@@ -351,23 +351,23 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 			}
 
-			return canExistMappingReferenceModels_4001(source, target);
+			return canExistMappingReferenceModels_4003(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateBinaryMappingReference_4002(
+		public boolean canCreateBinaryMappingReference_4004(
 				MultiModel container, ModelReference source,
 				ModelReference target) {
-			return canExistBinaryMappingReference_4002(container, null, source,
+			return canExistBinaryMappingReference_4004(container, null, source,
 					target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMappingReferenceModels_4001(
+		public boolean canExistMappingReferenceModels_4003(
 				MappingReference source, ModelReference target) {
 			return true;
 		}
@@ -375,7 +375,7 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistBinaryMappingReference_4002(
+		public boolean canExistBinaryMappingReference_4004(
 				MultiModel container, BinaryMappingReference linkInstance,
 				ModelReference source, ModelReference target) {
 			return true;

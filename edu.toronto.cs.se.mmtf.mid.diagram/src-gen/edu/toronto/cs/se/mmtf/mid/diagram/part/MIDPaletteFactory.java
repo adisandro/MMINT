@@ -24,7 +24,6 @@ import java.util.List;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
-import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
@@ -111,10 +110,10 @@ public class MIDPaletteFactory {
 				Messages.Newbinarymapping1CreationTool_title,
 				Messages.Newbinarymapping1CreationTool_desc,
 				Collections
-						.singletonList(MIDElementTypes.BinaryMappingReference_4002));
+						.singletonList(MIDElementTypes.BinaryMappingReference_4004));
 		entry.setId("createNewbinarymapping1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
-				.getImageDescriptor(MIDElementTypes.BinaryMappingReference_4002));
+				.getImageDescriptor(MIDElementTypes.BinaryMappingReference_4004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -127,10 +126,10 @@ public class MIDPaletteFactory {
 				Messages.NewNarymapping2CreationTool_title,
 				Messages.NewNarymapping2CreationTool_desc,
 				Collections
-						.singletonList(MIDElementTypes.MappingReference_2001));
+						.singletonList(MIDElementTypes.MappingReference_2004));
 		entry.setId("createNewNarymapping2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
-				.getImageDescriptor(MIDElementTypes.MappingReference_2001));
+				.getImageDescriptor(MIDElementTypes.MappingReference_2004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -143,10 +142,10 @@ public class MIDPaletteFactory {
 				Messages.NewNarymappingconnection3CreationTool_title,
 				Messages.NewNarymappingconnection3CreationTool_desc,
 				Collections
-						.singletonList(MIDElementTypes.MappingReferenceModels_4001));
+						.singletonList(MIDElementTypes.MappingReferenceModels_4003));
 		entry.setId("createNewNarymappingconnection3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
-				.getImageDescriptor(MIDElementTypes.MappingReferenceModels_4001));
+				.getImageDescriptor(MIDElementTypes.MappingReferenceModels_4003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

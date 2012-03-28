@@ -281,7 +281,7 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(MIDElementTypes.BinaryMappingReference_4002);
+		types.add(MIDElementTypes.BinaryMappingReference_4004);
 		return types;
 	}
 
@@ -292,13 +292,13 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof MappingReferenceEditPart) {
-			types.add(MIDElementTypes.BinaryMappingReference_4002);
+			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart) {
-			types.add(MIDElementTypes.BinaryMappingReference_4002);
+			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
 		if (targetEditPart instanceof ModelReference2EditPart) {
-			types.add(MIDElementTypes.BinaryMappingReference_4002);
+			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
 		return types;
 	}
@@ -308,8 +308,8 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MIDElementTypes.BinaryMappingReference_4002) {
-			types.add(MIDElementTypes.MappingReference_2001);
+		if (relationshipType == MIDElementTypes.BinaryMappingReference_4004) {
+			types.add(MIDElementTypes.MappingReference_2004);
 			types.add(MIDElementTypes.ModelReference_2002);
 			types.add(MIDElementTypes.ModelReference_2003);
 		}
@@ -321,8 +321,8 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(MIDElementTypes.MappingReferenceModels_4001);
-		types.add(MIDElementTypes.BinaryMappingReference_4002);
+		types.add(MIDElementTypes.MappingReferenceModels_4003);
+		types.add(MIDElementTypes.BinaryMappingReference_4004);
 		return types;
 	}
 
@@ -331,10 +331,10 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MIDElementTypes.MappingReferenceModels_4001) {
-			types.add(MIDElementTypes.MappingReference_2001);
-		} else if (relationshipType == MIDElementTypes.BinaryMappingReference_4002) {
-			types.add(MIDElementTypes.MappingReference_2001);
+		if (relationshipType == MIDElementTypes.MappingReferenceModels_4003) {
+			types.add(MIDElementTypes.MappingReference_2004);
+		} else if (relationshipType == MIDElementTypes.BinaryMappingReference_4004) {
+			types.add(MIDElementTypes.MappingReference_2004);
 			types.add(MIDElementTypes.ModelReference_2002);
 			types.add(MIDElementTypes.ModelReference_2003);
 		}

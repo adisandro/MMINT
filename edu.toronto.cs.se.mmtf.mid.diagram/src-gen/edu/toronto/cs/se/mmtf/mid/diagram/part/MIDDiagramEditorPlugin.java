@@ -41,6 +41,7 @@ import org.osgi.framework.BundleContext;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.ElementInitializers;
+import edu.toronto.cs.se.mmtf.mid.mapping.provider.MappingItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmtf.mid.provider.MidItemProviderAdapterFactory;
 
 /**
@@ -140,6 +141,7 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		factories.add(new MidItemProviderAdapterFactory());
+		factories.add(new MappingItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());
 	}

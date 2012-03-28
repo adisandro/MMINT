@@ -326,27 +326,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_BinaryMappingReference_4002_target;
+	public static String NavigatorGroupName_MappingReferenceModels_4003_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_BinaryMappingReference_4002_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryMappingReference_4002_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryMappingReference_4002_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MultiModel_1000_links;
+	public static String NavigatorGroupName_MappingReferenceModels_4003_source;
 
 	/**
 	 * @generated
@@ -361,12 +346,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MappingReference_2001_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MappingReference_2001_outgoinglinks;
+	public static String NavigatorGroupName_MultiModel_1000_links;
 
 	/**
 	 * @generated
@@ -381,12 +361,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MappingReferenceModels_4001_target;
+	public static String NavigatorGroupName_MappingReference_2004_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MappingReferenceModels_4001_source;
+	public static String NavigatorGroupName_MappingReference_2004_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BinaryMappingReference_4004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BinaryMappingReference_4004_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BinaryMappingReference_4004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BinaryMappingReference_4004_outgoinglinks;
 
 	/**
 	 * @generated

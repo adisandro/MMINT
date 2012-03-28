@@ -49,7 +49,7 @@ public class MultiModelItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommandGen(CreateElementRequest req) {
-		if (MIDElementTypes.MappingReference_2001 == req.getElementType()) {
+		if (MIDElementTypes.MappingReference_2004 == req.getElementType()) {
 			return getGEFWrapper(new MappingReferenceCreateCommand(req));
 		}
 		if (MIDElementTypes.ModelReference_2002 == req.getElementType()) {
@@ -65,7 +65,7 @@ public class MultiModelItemSemanticEditPolicy extends
 	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MIDElementTypes.MappingReference_2001 == req.getElementType()) {
+		if (MIDElementTypes.MappingReference_2004 == req.getElementType()) {
 			return getGEFWrapper(new MappingReferenceCreateCommand(req));
 		}
 		if (MIDElementTypes.ModelReference_2002 == req.getElementType()) {

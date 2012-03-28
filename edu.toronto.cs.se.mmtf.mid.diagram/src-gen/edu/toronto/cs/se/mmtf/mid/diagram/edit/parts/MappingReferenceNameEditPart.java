@@ -71,7 +71,7 @@ public class MappingReferenceNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5001;
+	public static final int VISUAL_ID = 5004;
 
 	/**
 	 * @generated
@@ -313,7 +313,7 @@ public class MappingReferenceNameEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = MIDParserProvider
 					.getParser(
-							MIDElementTypes.MappingReference_2001,
+							MIDElementTypes.MappingReference_2004,
 							getParserElement(),
 							MIDVisualIDRegistry
 									.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceNameEditPart.VISUAL_ID));

@@ -263,8 +263,8 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="MID"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2004,2002,2003"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004"/>
       </viewProvider>
    </extension>
 
@@ -276,13 +276,13 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <method name="getType()" value="MID"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,2002,2003"/>
+            <method name="getType()" value="2004,2002,2003"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002"/>
+            <method name="getType()" value="4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5003"/>
+            <method name="getType()" value="5004,5002,5003"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -296,10 +296,10 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <modelingAssistantProvider class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart" id="MultiModel_1000"/>
-         <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart" id="MappingReference_2001"/>
+         <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart" id="MappingReference_2004"/>
          <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart" id="ModelReference_2002"/>
          <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart" id="ModelReference_2003"/>
-         <context elements="MultiModel_1000,MappingReference_2001,ModelReference_2002,ModelReference_2003"/>
+         <context elements="MultiModel_1000,MappingReference_2004,ModelReference_2002,ModelReference_2003"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -322,7 +322,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
-            <method name="getType()" value="2001,2002,2003"/>
+            <method name="getType()" value="2004,2002,2003"/>
          </object>
          <context decoratorTargets="generated-top-nodes"/>
       </decoratorProvider>
@@ -340,14 +340,14 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore">
+      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
          <metamodelType
-               id="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2001"
-               name="%metatype.name.MappingReference_2001"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2004"
+               name="%metatype.name.MappingReference_2004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MappingReference"
                edithelper="edu.toronto.cs.se.mmtf.mid.diagram.edit.helpers.MappingReferenceEditHelper">
-            <param name="semanticHint" value="2001"/>
+            <param name="semanticHint" value="2004"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore">
@@ -369,23 +369,23 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <param name="semanticHint" value="2003"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore">
+      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
          <specializationType
-               id="edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4001"
-               name="%metatype.name.MappingReferenceModels_4001"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4003"
+               name="%metatype.name.MappingReferenceModels_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4001"/>
+            <param name="semanticHint" value="4003"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore">
+      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
          <metamodelType
-               id="edu.toronto.cs.se.mmtf.mid.diagram.BinaryMappingReference_4002"
-               name="%metatype.name.BinaryMappingReference_4002"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.BinaryMappingReference_4004"
+               name="%metatype.name.BinaryMappingReference_4004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="BinaryMappingReference"
                edithelper="edu.toronto.cs.se.mmtf.mid.diagram.edit.helpers.BinaryMappingReferenceEditHelper">
-            <param name="semanticHint" value="4002"/>
+            <param name="semanticHint" value="4004"/>
          </metamodelType>
       </metamodel>
    </extension>
@@ -401,11 +401,11 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       </clientContext> 
       <binding context="edu.toronto.cs.se.mmtf.mid.diagram.TypeContext">
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MultiModel_1000"/>
-         <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2001"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2004"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2002"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2003"/>
-         <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4001"/>
-         <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.BinaryMappingReference_4002"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4003"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.BinaryMappingReference_4004"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -593,6 +593,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
+
    <extension
          name="MID diagram"
          point="edu.toronto.cs.se.mmtf.editors">

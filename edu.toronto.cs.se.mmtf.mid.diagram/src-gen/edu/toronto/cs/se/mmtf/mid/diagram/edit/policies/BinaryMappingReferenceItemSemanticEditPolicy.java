@@ -43,7 +43,7 @@ public class BinaryMappingReferenceItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public BinaryMappingReferenceItemSemanticEditPolicy() {
-		super(MIDElementTypes.BinaryMappingReference_4002);
+		super(MIDElementTypes.BinaryMappingReference_4004);
 	}
 
 	/**
@@ -68,11 +68,11 @@ public class BinaryMappingReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MIDElementTypes.MappingReferenceModels_4001 == req.getElementType()) {
+		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
 			return getGEFWrapper(new MappingReferenceModelsCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.BinaryMappingReference_4002 == req.getElementType()) {
+		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
 			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
@@ -84,11 +84,11 @@ public class BinaryMappingReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MIDElementTypes.MappingReferenceModels_4001 == req.getElementType()) {
+		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
 			return getGEFWrapper(new MappingReferenceModelsCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.BinaryMappingReference_4002 == req.getElementType()) {
+		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
 			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}

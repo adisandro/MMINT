@@ -26,10 +26,10 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.BinaryMappingReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
 
 /**
  * @generated
@@ -94,7 +94,7 @@ public class BinaryMappingReferenceReorientCommand extends EditElementCommand {
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryMappingReference_4002(container, getLink(),
+				.canExistBinaryMappingReference_4004(container, getLink(),
 						getNewSource(), target);
 	}
 
@@ -114,7 +114,7 @@ public class BinaryMappingReferenceReorientCommand extends EditElementCommand {
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryMappingReference_4002(container, getLink(),
+				.canExistBinaryMappingReference_4004(container, getLink(),
 						source, getNewTarget());
 	}
 

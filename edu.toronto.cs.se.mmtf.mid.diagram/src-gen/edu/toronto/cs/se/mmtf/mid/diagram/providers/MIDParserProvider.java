@@ -47,19 +47,19 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser mappingReferenceName_5001Parser;
+	private IParser mappingReferenceName_5004Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMappingReferenceName_5001Parser() {
-		if (mappingReferenceName_5001Parser == null) {
+	private IParser getMappingReferenceName_5004Parser() {
+		if (mappingReferenceName_5004Parser == null) {
 			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
 					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			mappingReferenceName_5001Parser = parser;
+			mappingReferenceName_5004Parser = parser;
 		}
-		return mappingReferenceName_5001Parser;
+		return mappingReferenceName_5004Parser;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class MIDParserProvider extends AbstractProvider implements
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case MappingReferenceNameEditPart.VISUAL_ID:
-			return getMappingReferenceName_5001Parser();
+			return getMappingReferenceName_5004Parser();
 		case ModelReferenceNameEditPart.VISUAL_ID:
 			return getModelReferenceName_5002Parser();
 		case ModelReferenceName2EditPart.VISUAL_ID:
