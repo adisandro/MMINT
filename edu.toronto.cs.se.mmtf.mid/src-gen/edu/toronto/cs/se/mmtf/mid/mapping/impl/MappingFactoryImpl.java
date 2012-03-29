@@ -75,7 +75,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MAPPING_REFERENCE: return createMappingReference();
 			case MappingPackage.BINARY_MAPPING_REFERENCE: return createBinaryMappingReference();
 			case MappingPackage.MODEL_CONTAINER: return createModelContainer();
-			case MappingPackage.MODEL_ELEMENT: return createModelElement();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE: return createModelElementReference();
 			case MappingPackage.MAPPING: return createMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -117,9 +117,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement createModelElement() {
-		ModelElementImpl modelElement = new ModelElementImpl();
-		return modelElement;
+	public ModelElementReference createModelElementReference() {
+		ModelElementReferenceImpl modelElementReference = new ModelElementReferenceImpl();
+		return modelElementReference;
 	}
 
 	/**

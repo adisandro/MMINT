@@ -20,10 +20,16 @@ package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
 import edu.toronto.cs.se.mmtf.mid.impl.NamedElementImpl;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -31,20 +37,24 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model Element</b></em>'.
+ * An implementation of the model object '<em><b>Model Element Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl#getPointer <em>Pointer</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl#getPointer <em>Pointer</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModelElementImpl extends NamedElementImpl implements ModelElement {
+public class ModelElementReferenceImpl extends NamedElementImpl implements ModelElementReference {
 	/**
 	 * The cached value of the '{@link #getPointer() <em>Pointer</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -56,11 +66,21 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	protected EObject pointer;
 
 	/**
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Mapping> mappings;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelElementImpl() {
+	protected ModelElementReferenceImpl() {
 		super();
 	}
 
@@ -71,7 +91,7 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODEL_ELEMENT;
+		return MappingPackage.Literals.MODEL_ELEMENT_REFERENCE;
 	}
 
 	/**
@@ -85,7 +105,7 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 			pointer = eResolveProxy(oldPointer);
 			if (pointer != oldPointer) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODEL_ELEMENT__POINTER, oldPointer, pointer));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER, oldPointer, pointer));
 			}
 		}
 		return pointer;
@@ -109,7 +129,48 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 		EObject oldPointer = pointer;
 		pointer = newPointer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_ELEMENT__POINTER, oldPointer, pointer));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER, oldPointer, pointer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Mapping> getMappings() {
+		if (mappings == null) {
+			mappings = new EObjectWithInverseResolvingEList.ManyInverse<Mapping>(Mapping.class, this, MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS, MappingPackage.MAPPING__ELEMENTS);
+		}
+		return mappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappings()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
+				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -120,9 +181,11 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MODEL_ELEMENT__POINTER:
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				if (resolve) return getPointer();
 				return basicGetPointer();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
+				return getMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,11 +195,16 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MODEL_ELEMENT__POINTER:
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				setPointer((EObject)newValue);
+				return;
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
+				getMappings().clear();
+				getMappings().addAll((Collection<? extends Mapping>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,8 +218,11 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODEL_ELEMENT__POINTER:
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				setPointer((EObject)null);
+				return;
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
+				getMappings().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -165,10 +236,12 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODEL_ELEMENT__POINTER:
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				return pointer != null;
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
+				return mappings != null && !mappings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ModelElementImpl
+} //ModelElementReferenceImpl

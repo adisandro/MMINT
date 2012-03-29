@@ -50,7 +50,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers.MIDBaseEditHelper;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
@@ -342,11 +342,14 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canCreateMappingElements_4002(Mapping source,
-				ModelElement target) {
+				ModelElementReference target) {
 			if (source != null) {
 				if (source.getElements().contains(target)) {
 					return false;
 				}
+			}
+			if (target != null && (target.getMappings().contains(target))) {
+				return false;
 			}
 
 			return canExistMappingElements_4002(source, target);
@@ -356,7 +359,7 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistMappingElements_4002(Mapping source,
-				ModelElement target) {
+				ModelElementReference target) {
 			return true;
 		}
 	}

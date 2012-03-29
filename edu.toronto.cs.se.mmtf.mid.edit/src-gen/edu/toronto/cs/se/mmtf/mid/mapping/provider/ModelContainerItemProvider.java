@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 
 import edu.toronto.cs.se.mmtf.mid.provider.MIDEditPlugin;
 
-import edu.toronto.cs.se.mmtf.mid.provider.NamedElementItemProvider;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,12 +35,15 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -51,7 +53,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ModelContainerItemProvider
-	extends NamedElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -79,8 +81,54 @@ public class ModelContainerItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addModelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelContainer_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_name_feature", "_UI_ModelContainer_type"),
+				 MappingPackage.Literals.MODEL_CONTAINER__NAME,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelContainer_model_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_model_feature", "_UI_ModelContainer_type"),
+				 MappingPackage.Literals.MODEL_CONTAINER__MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -150,6 +198,9 @@ public class ModelContainerItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelContainer.class)) {
+			case MappingPackage.MODEL_CONTAINER__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -171,7 +222,7 @@ public class ModelContainerItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONTAINER__ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelElement()));
+				 MappingFactory.eINSTANCE.createModelElementReference()));
 	}
 
 	/**

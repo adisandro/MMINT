@@ -20,7 +20,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 import edu.toronto.cs.se.mmtf.mid.provider.MIDEditPlugin;
 import edu.toronto.cs.se.mmtf.mid.provider.NamedElementItemProvider;
@@ -42,12 +42,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelElementItemProvider
+public class ModelElementReferenceItemProvider
 	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -61,7 +61,7 @@ public class ModelElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElementItemProvider(AdapterFactory adapterFactory) {
+	public ModelElementReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -77,6 +77,7 @@ public class ModelElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addPointerPropertyDescriptor(object);
+			addMappingsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -92,9 +93,9 @@ public class ModelElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelElement_pointer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_pointer_feature", "_UI_ModelElement_type"),
-				 MappingPackage.Literals.MODEL_ELEMENT__POINTER,
+				 getString("_UI_ModelElementReference_pointer_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementReference_pointer_feature", "_UI_ModelElementReference_type"),
+				 MappingPackage.Literals.MODEL_ELEMENT_REFERENCE__POINTER,
 				 true,
 				 false,
 				 true,
@@ -104,14 +105,36 @@ public class ModelElementItemProvider
 	}
 
 	/**
-	 * This returns ModelElement.gif.
+	 * This adds a property descriptor for the Mappings feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMappingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelElementReference_mappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementReference_mappings_feature", "_UI_ModelElementReference_type"),
+				 MappingPackage.Literals.MODEL_ELEMENT_REFERENCE__MAPPINGS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns ModelElementReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementReference"));
 	}
 
 	/**
@@ -122,10 +145,10 @@ public class ModelElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelElement)object).getName();
+		String label = ((ModelElementReference)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ModelElement_type") :
-			getString("_UI_ModelElement_type") + " " + label;
+			getString("_UI_ModelElementReference_type") :
+			getString("_UI_ModelElementReference_type") + " " + label;
 	}
 
 	/**

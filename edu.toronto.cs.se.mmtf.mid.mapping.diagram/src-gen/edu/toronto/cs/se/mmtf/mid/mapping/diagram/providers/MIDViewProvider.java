@@ -67,8 +67,8 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEdi
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 
 /**
@@ -162,7 +162,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 				switch (visualID) {
 				case ModelContainerEditPart.VISUAL_ID:
 				case MappingEditPart.VISUAL_ID:
-				case ModelElementEditPart.VISUAL_ID:
+				case ModelElementReferenceEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != MIDVisualIDRegistry.getNodeVisualID(
 									op.getContainerView(), domainElement)) {
@@ -176,7 +176,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		return ModelContainerEditPart.VISUAL_ID == visualID
 				|| MappingEditPart.VISUAL_ID == visualID
-				|| ModelElementEditPart.VISUAL_ID == visualID;
+				|| ModelElementReferenceEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -239,9 +239,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		case MappingEditPart.VISUAL_ID:
 			return createMapping_2004(domainElement, containerView, index,
 					persisted, preferencesHint);
-		case ModelElementEditPart.VISUAL_ID:
-			return createModelElement_3002(domainElement, containerView, index,
-					persisted, preferencesHint);
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return createModelElementReference_3003(domainElement,
+					containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -363,13 +363,13 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createModelElement_3002(EObject domainElement,
+	public Node createModelElementReference_3003(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(MIDVisualIDRegistry
-				.getType(ModelElementEditPart.VISUAL_ID));
+				.getType(ModelElementReferenceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
@@ -400,8 +400,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5003 = createLabel(node,
-				MIDVisualIDRegistry.getType(ModelElementNameEditPart.VISUAL_ID));
+		Node label5006 = createLabel(node,
+				MIDVisualIDRegistry
+						.getType(ModelElementReferenceNameEditPart.VISUAL_ID));
 		return node;
 	}
 

@@ -21,7 +21,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.ModelElementCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.ModelElementReferenceCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 /**
@@ -41,8 +41,8 @@ public class ModelContainerModelContainerCompartmentItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MIDElementTypes.ModelElement_3002 == req.getElementType()) {
-			return getGEFWrapper(new ModelElementCreateCommand(req));
+		if (MIDElementTypes.ModelElementReference_3003 == req.getElementType()) {
+			return getGEFWrapper(new ModelElementReferenceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

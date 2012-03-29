@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
@@ -88,7 +88,7 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof ModelElement && newEnd instanceof Mapping)) {
+		if (!(oldEnd instanceof ModelElementReference && newEnd instanceof Mapping)) {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
@@ -99,7 +99,7 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof ModelElement && newEnd instanceof ModelElement)) {
+		if (!(oldEnd instanceof ModelElementReference && newEnd instanceof ModelElementReference)) {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
@@ -159,14 +159,14 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected ModelElement getOldTarget() {
-		return (ModelElement) oldEnd;
+	protected ModelElementReference getOldTarget() {
+		return (ModelElementReference) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected ModelElement getNewTarget() {
-		return (ModelElement) newEnd;
+	protected ModelElementReference getNewTarget() {
+		return (ModelElementReference) newEnd;
 	}
 }

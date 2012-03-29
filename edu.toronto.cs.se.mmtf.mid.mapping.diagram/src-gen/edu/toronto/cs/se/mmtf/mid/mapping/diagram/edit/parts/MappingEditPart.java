@@ -285,7 +285,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof ModelElementEditPart) {
+		if (targetEditPart instanceof ModelElementReferenceEditPart) {
 			types.add(MIDElementTypes.MappingElements_4002);
 		}
 		return types;
@@ -297,7 +297,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == MIDElementTypes.MappingElements_4002) {
-			types.add(MIDElementTypes.ModelElement_3002);
+			types.add(MIDElementTypes.ModelElementReference_3003);
 		}
 		return types;
 	}

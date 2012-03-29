@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditorPlugin;
 
 /**
@@ -76,7 +76,6 @@ public class MIDElementTypes {
 	 * @generated
 	 */
 	public static final IElementType ModelContainer_2005 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2005"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -84,7 +83,7 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ModelElement_3002 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElement_3002"); //$NON-NLS-1$
+	public static final IElementType ModelElementReference_3003 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElementReference_3003"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -209,8 +208,8 @@ public class MIDElementTypes {
 
 			elements.put(Mapping_2004, MappingPackage.eINSTANCE.getMapping());
 
-			elements.put(ModelElement_3002,
-					MappingPackage.eINSTANCE.getModelElement());
+			elements.put(ModelElementReference_3003,
+					MappingPackage.eINSTANCE.getModelElementReference());
 
 			elements.put(MappingElements_4002,
 					MappingPackage.eINSTANCE.getMapping_Elements());
@@ -234,7 +233,7 @@ public class MIDElementTypes {
 			KNOWN_ELEMENT_TYPES.add(MappingReference_1000);
 			KNOWN_ELEMENT_TYPES.add(ModelContainer_2005);
 			KNOWN_ELEMENT_TYPES.add(Mapping_2004);
-			KNOWN_ELEMENT_TYPES.add(ModelElement_3002);
+			KNOWN_ELEMENT_TYPES.add(ModelElementReference_3003);
 			KNOWN_ELEMENT_TYPES.add(MappingElements_4002);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
@@ -251,8 +250,8 @@ public class MIDElementTypes {
 			return ModelContainer_2005;
 		case MappingEditPart.VISUAL_ID:
 			return Mapping_2004;
-		case ModelElementEditPart.VISUAL_ID:
-			return ModelElement_3002;
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return ModelElementReference_3003;
 		case MappingElementsEditPart.VISUAL_ID:
 			return MappingElements_4002;
 		}

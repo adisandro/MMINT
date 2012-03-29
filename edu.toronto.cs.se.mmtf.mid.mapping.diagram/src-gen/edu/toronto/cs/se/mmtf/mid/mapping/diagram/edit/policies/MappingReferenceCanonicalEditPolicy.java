@@ -53,7 +53,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramUpdater;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDLinkDescriptor;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDNodeDescriptor;
@@ -307,10 +307,10 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ModelElementEditPart.VISUAL_ID: {
+		case ModelElementReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
-						.getModelElement_3002ContainedLinks(view));
+						.getModelElementReference_3003ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

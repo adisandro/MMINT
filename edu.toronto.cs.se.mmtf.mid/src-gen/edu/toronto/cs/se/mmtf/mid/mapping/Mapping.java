@@ -41,7 +41,8 @@ import org.eclipse.emf.common.util.EList;
 public interface Mapping extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings <em>Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Elements</em>' reference list isn't clear,
@@ -50,9 +51,10 @@ public interface Mapping extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMapping_Elements()
-	 * @model
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings
+	 * @model opposite="mappings"
 	 * @generated
 	 */
-	EList<ModelElement> getElements();
+	EList<ModelElementReference> getElements();
 
 } // Mapping

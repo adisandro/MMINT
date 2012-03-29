@@ -48,17 +48,28 @@
         <details key="isBinary" value="models->size() = 2"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelContainer" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelContainer">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-          eType="#//mapping/ModelElement" containment="true"/>
+          eType="#//mapping/ModelElementReference" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="model.name"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
+          eType="#//ModelReference"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelElement" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pointer" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
+          eType="#//mapping/Mapping" eOpposite="#//mapping/Mapping/elements"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Mapping" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-          eType="#//mapping/ModelElement"/>
+          eType="#//mapping/ModelElementReference" eOpposite="#//mapping/ModelElementReference/mappings"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

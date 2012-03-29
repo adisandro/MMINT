@@ -10,6 +10,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 public class MappingReferenceDelModelCommand extends DestroyReferenceCommand {
 
@@ -20,11 +21,14 @@ public class MappingReferenceDelModelCommand extends DestroyReferenceCommand {
 
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MappingReference container = (MappingReference) getContainer();
-		ModelReference reference = (ModelReference) getReferencedObject();
-		for (ModelContainer modelContainer : container.getContainers()) {
-			if (modelContainer.getName().equals(reference.getName())) {//TODO modificare
-				container.getContainers().remove(modelContainer);
+		MappingReference mappingRef = (MappingReference) getContainer();
+		ModelReference modelRef = (ModelReference) getReferencedObject();
+		for (ModelContainer modelContainer : mappingRef.getContainers()) {
+			if (modelContainer.getModel() == modelRef) {
+				mappingRef.getContainers().remove(modelContainer);
+				for (ModelElementReference element : modelContainer.getElements()) {
+					element.getMappings().clear();
+				}
 				break;
 			}
 		}

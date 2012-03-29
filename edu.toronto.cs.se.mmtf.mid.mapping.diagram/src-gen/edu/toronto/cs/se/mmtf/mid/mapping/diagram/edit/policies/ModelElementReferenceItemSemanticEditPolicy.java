@@ -42,14 +42,14 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 /**
  * @generated
  */
-public class ModelElementItemSemanticEditPolicy extends
+public class ModelElementReferenceItemSemanticEditPolicy extends
 		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ModelElementItemSemanticEditPolicy() {
-		super(MIDElementTypes.ModelElement_3002);
+	public ModelElementReferenceItemSemanticEditPolicy() {
+		super(MIDElementTypes.ModelElementReference_3003);
 	}
 
 	/**

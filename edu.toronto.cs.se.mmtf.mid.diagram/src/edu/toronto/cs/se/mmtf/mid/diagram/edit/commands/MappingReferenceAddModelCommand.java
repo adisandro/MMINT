@@ -30,7 +30,7 @@ public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreat
 		if (source != null && target != null) {
 			source.getModels().add(target);
 			ModelContainer container = MappingFactory.eINSTANCE.createModelContainer();
-			container.setName(target.getName());
+			container.setModel(target);
 			source.getContainers().add(container);
 		}
 

@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceAddModelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
@@ -208,11 +209,26 @@ public class MappingReferenceItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
+	protected Command getReorientReferenceRelationshipCommandGen(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case MappingReferenceModelsEditPart.VISUAL_ID:
 			return getGEFWrapper(new MappingReferenceModelsReorientCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated NOT
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case MappingReferenceModelsEditPart.VISUAL_ID:
+			return getGEFWrapper(new MappingReferenceChangeModelCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

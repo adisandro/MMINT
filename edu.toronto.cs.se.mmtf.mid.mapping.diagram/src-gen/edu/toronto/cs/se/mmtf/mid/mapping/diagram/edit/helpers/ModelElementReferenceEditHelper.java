@@ -21,5 +21,5 @@ package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers;
 /**
  * @generated
  */
-public class ModelElementEditHelper extends MIDBaseEditHelper {
+public class ModelElementReferenceEditHelper extends MIDBaseEditHelper {
 }

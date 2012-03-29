@@ -32,8 +32,8 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEdi
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceNameEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -153,9 +153,9 @@ public class MIDVisualIDRegistry {
 			}
 			break;
 		case ModelContainerModelContainerCompartmentEditPart.VISUAL_ID:
-			if (MappingPackage.eINSTANCE.getModelElement().isSuperTypeOf(
-					domainElement.eClass())) {
-				return ModelElementEditPart.VISUAL_ID;
+			if (MappingPackage.eINSTANCE.getModelElementReference()
+					.isSuperTypeOf(domainElement.eClass())) {
+				return ModelElementReferenceEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -204,13 +204,13 @@ public class MIDVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ModelElementEditPart.VISUAL_ID:
-			if (ModelElementNameEditPart.VISUAL_ID == nodeVisualID) {
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			if (ModelElementReferenceNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case ModelContainerModelContainerCompartmentEditPart.VISUAL_ID:
-			if (ModelElementEditPart.VISUAL_ID == nodeVisualID) {
+			if (ModelElementReferenceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

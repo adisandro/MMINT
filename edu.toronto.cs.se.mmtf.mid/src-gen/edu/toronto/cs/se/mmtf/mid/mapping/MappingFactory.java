@@ -65,13 +65,13 @@ public interface MappingFactory extends EFactory {
 	ModelContainer createModelContainer();
 
 	/**
-	 * Returns a new object of class '<em>Model Element</em>'.
+	 * Returns a new object of class '<em>Model Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Element</em>'.
+	 * @return a new object of class '<em>Model Element Reference</em>'.
 	 * @generated
 	 */
-	ModelElement createModelElement();
+	ModelElementReference createModelElementReference();
 
 	/**
 	 * Returns a new object of class '<em>Mapping</em>'.

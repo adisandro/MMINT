@@ -22,15 +22,18 @@ import edu.toronto.cs.se.mmtf.mid.impl.NamedElementImpl;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +57,7 @@ public class MappingImpl extends NamedElementImpl implements Mapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> elements;
+	protected EList<ModelElementReference> elements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,11 +83,40 @@ public class MappingImpl extends NamedElementImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElement> getElements() {
+	public EList<ModelElementReference> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this, MappingPackage.MAPPING__ELEMENTS);
+			elements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElementReference>(ModelElementReference.class, this, MappingPackage.MAPPING__ELEMENTS, MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS);
 		}
 		return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MappingPackage.MAPPING__ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MappingPackage.MAPPING__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -112,7 +144,7 @@ public class MappingImpl extends NamedElementImpl implements Mapping {
 		switch (featureID) {
 			case MappingPackage.MAPPING__ELEMENTS:
 				getElements().clear();
-				getElements().addAll((Collection<? extends ModelElement>)newValue);
+				getElements().addAll((Collection<? extends ModelElementReference>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

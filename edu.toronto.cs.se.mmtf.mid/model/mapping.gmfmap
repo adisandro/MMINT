@@ -17,7 +17,7 @@
         <diagramLabel
             href="mapping.gmfgraph#ModelContainerName"/>
         <features
-            href="mid.ecore#//NamedElement/name"/>
+            href="mid.ecore#//mapping/ModelContainer/name"/>
       </labelMappings>
       <diagramNode
           href="mapping.gmfgraph#ModelContainer"/>
@@ -27,11 +27,11 @@
             href="mid.ecore#//mapping/ModelContainer/elements"/>
         <ownedChild>
           <domainMetaElement
-              href="mid.ecore#//mapping/ModelElement"/>
+              href="mid.ecore#//mapping/ModelElementReference"/>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping">
             <diagramLabel
-                href="mapping.gmfgraph#ModelElementName"/>
+                href="mapping.gmfgraph#ModelElementReferenceName"/>
             <features
                 href="mid.ecore#//NamedElement/name"/>
           </labelMappings>
@@ -39,7 +39,7 @@
               xsi:type="gmftool:CreationTool"
               href="mapping.gmftool#//@palette/@tools.0/@tools.0"/>
           <diagramNode
-              href="mapping.gmfgraph#ModelElement"/>
+              href="mapping.gmfgraph#ModelElementReference"/>
         </ownedChild>
       </children>
       <compartments

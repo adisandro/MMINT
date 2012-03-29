@@ -266,32 +266,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ModelElement1CreationTool_title;
+	public static String NewModelElementReference1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ModelElement1CreationTool_desc;
+	public static String NewModelElementReference1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Mapping2CreationTool_title;
+	public static String Newmapping2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Mapping2CreationTool_desc;
+	public static String Newmapping2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MappingElements3CreationTool_title;
+	public static String Newmappingconnection3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MappingElements3CreationTool_desc;
+	public static String Newmappingconnection3CreationTool_desc;
 
 	/**
 	 * @generated
@@ -306,12 +306,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MappingReference_1000_links;
+	public static String NavigatorGroupName_ModelElementReference_3003_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ModelElement_3002_incominglinks;
+	public static String NavigatorGroupName_MappingReference_1000_links;
 
 	/**
 	 * @generated

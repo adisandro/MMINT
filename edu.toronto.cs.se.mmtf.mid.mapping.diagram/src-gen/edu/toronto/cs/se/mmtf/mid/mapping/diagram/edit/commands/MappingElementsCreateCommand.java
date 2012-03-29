@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
@@ -65,7 +65,7 @@ public class MappingElementsCreateCommand extends EditElementCommand {
 		if (source != null && false == source instanceof Mapping) {
 			return false;
 		}
-		if (target != null && false == target instanceof ModelElement) {
+		if (target != null && false == target instanceof ModelElementReference) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -110,7 +110,7 @@ public class MappingElementsCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected ModelElement getTarget() {
-		return (ModelElement) target;
+	protected ModelElementReference getTarget() {
+		return (ModelElementReference) target;
 	}
 }

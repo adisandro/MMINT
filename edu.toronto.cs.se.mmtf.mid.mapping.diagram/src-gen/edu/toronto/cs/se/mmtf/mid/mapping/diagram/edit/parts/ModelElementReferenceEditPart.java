@@ -44,19 +44,19 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.ModelElementItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.ModelElementReferenceItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
-public class ModelElementEditPart extends ShapeNodeEditPart {
+public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3002;
+	public static final int VISUAL_ID = 3003;
 
 	/**
 	 * @generated
@@ -71,7 +71,7 @@ public class ModelElementEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public ModelElementEditPart(View view) {
+	public ModelElementReferenceEditPart(View view) {
 		super(view);
 	}
 
@@ -81,7 +81,7 @@ public class ModelElementEditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelElementItemSemanticEditPolicy());
+				new ModelElementReferenceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -117,22 +117,22 @@ public class ModelElementEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ModelElementFigure();
+		return primaryShape = new ModelElementReferenceFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ModelElementFigure getPrimaryShape() {
-		return (ModelElementFigure) primaryShape;
+	public ModelElementReferenceFigure getPrimaryShape() {
+		return (ModelElementReferenceFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelElementNameEditPart) {
-			((ModelElementNameEditPart) childEditPart)
+		if (childEditPart instanceof ModelElementReferenceNameEditPart) {
+			((ModelElementReferenceNameEditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureModelElementNameFigure());
 			return true;
@@ -144,7 +144,7 @@ public class ModelElementEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelElementNameEditPart) {
+		if (childEditPart instanceof ModelElementReferenceNameEditPart) {
 			return true;
 		}
 		return false;
@@ -268,7 +268,7 @@ public class ModelElementEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(ModelElementNameEditPart.VISUAL_ID));
+				.getType(ModelElementReferenceNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -294,7 +294,7 @@ public class ModelElementEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class ModelElementFigure extends RectangleFigure {
+	public class ModelElementReferenceFigure extends RectangleFigure {
 
 		/**
 		 * @generated
@@ -304,7 +304,7 @@ public class ModelElementEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public ModelElementFigure() {
+		public ModelElementReferenceFigure() {
 			createContents();
 		}
 

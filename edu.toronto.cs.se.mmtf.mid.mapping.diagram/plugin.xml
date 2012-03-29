@@ -235,7 +235,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <viewProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Mapping"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005,2004,3002"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005,2004,3003"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002"/>
       </viewProvider>
    </extension>
@@ -248,13 +248,13 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <method name="getType()" value="Mapping"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2005,2004,3002"/>
+            <method name="getType()" value="2005,2004,3003"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5005,5004,5003"/>
+            <method name="getType()" value="5005,5004,5006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7003"/>
@@ -322,12 +322,12 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
          <metamodelType
-               id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElement_3002"
-               name="%metatype.name.ModelElement_3002"
+               id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElementReference_3003"
+               name="%metatype.name.ModelElementReference_3003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ModelElement"
-               edithelper="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers.ModelElementEditHelper">
-            <param name="semanticHint" value="3002"/>
+               eclass="ModelElementReference"
+               edithelper="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers.ModelElementReferenceEditHelper">
+            <param name="semanticHint" value="3003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
@@ -354,7 +354,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingReference_1000"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2005"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.Mapping_2004"/>
-         <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElement_3002"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElementReference_3003"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingElements_4002"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
@@ -522,6 +522,28 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
+   </extension>
+
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDMarkerNavigationProvider">
+         <MarkerType name="edu.toronto.cs.se.mmtf.mid.mapping.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="Mapping Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
    </extension>
 
    <extension

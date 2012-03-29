@@ -37,6 +37,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceAddModelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceChangeModelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceDelModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
@@ -60,7 +62,7 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+	protected Command getDestroyElementCommandGen(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
@@ -72,6 +74,54 @@ public class ModelReferenceItemSemanticEditPolicy extends
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryMappingReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+		}
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge) it.next();
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryMappingReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+		}
+		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		if (annotation == null) {
+			// there are indirectly referenced children, need extra commands: false
+			addDestroyShortcutsCommand(cmd, view);
+			// delete host element
+			cmd.add(new DestroyElementCommand(req));
+		} else {
+			cmd.add(new DeleteCommand(getEditingDomain(), view));
+		}
+		return getGEFWrapper(cmd.reduce());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		View view = (View) getHost().getModel();
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
+				getEditingDomain(), null);
+		cmd.setTransactionNestingEnabled(false);
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == MappingReferenceModelsEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new MappingReferenceDelModelCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -183,11 +233,26 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
+	protected Command getReorientReferenceRelationshipCommandGen(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case MappingReferenceModelsEditPart.VISUAL_ID:
 			return getGEFWrapper(new MappingReferenceModelsReorientCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated NOT
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case MappingReferenceModelsEditPart.VISUAL_ID:
+			return getGEFWrapper(new MappingReferenceChangeModelCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

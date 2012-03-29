@@ -42,7 +42,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.Messages;
 
@@ -65,7 +65,7 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (editPart instanceof ModelContainerEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-			types.add(MIDElementTypes.ModelElement_3002);
+			types.add(MIDElementTypes.ModelElementReference_3003);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -89,8 +89,8 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof ModelElementEditPart) {
-			return ((ModelElementEditPart) targetEditPart)
+		if (targetEditPart instanceof ModelElementReferenceEditPart) {
+			return ((ModelElementReferenceEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
@@ -119,8 +119,8 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof ModelElementEditPart) {
-			return ((ModelElementEditPart) targetEditPart)
+		if (targetEditPart instanceof ModelElementReferenceEditPart) {
+			return ((ModelElementReferenceEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;

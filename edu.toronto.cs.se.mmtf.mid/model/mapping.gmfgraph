@@ -24,10 +24,10 @@
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="ModelElementFigure">
+        name="ModelElementReferenceFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="ModelElementFigure">
+          name="ModelElementReferenceFigure">
         <children
             xsi:type="gmfgraph:Label"
             name="ModelElementNameFigure"
@@ -61,8 +61,8 @@
       name="ModelContainer"
       figure="ModelContainerFigure"/>
   <nodes
-      name="ModelElement"
-      figure="ModelElementFigure"/>
+      name="ModelElementReference"
+      figure="ModelElementReferenceFigure"/>
   <nodes
       name="Mapping"
       figure="MappingFigure"/>
@@ -73,8 +73,8 @@
       name="ModelContainerCompartment"
       figure="ModelContainerFigure"/>
   <labels
-      name="ModelElementName"
-      figure="ModelElementFigure"
+      name="ModelElementReferenceName"
+      figure="ModelElementReferenceFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="MappingName"

@@ -40,7 +40,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramUpdater;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDNodeDescriptor;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
@@ -98,7 +98,7 @@ public class ModelContainerModelContainerCompartmentCanonicalEditPolicy extends
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return ModelElementEditPart.VISUAL_ID == MIDVisualIDRegistry
+		return ModelElementReferenceEditPart.VISUAL_ID == MIDVisualIDRegistry
 				.getVisualID(view);
 	}
 

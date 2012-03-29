@@ -16,7 +16,10 @@
       itemSemanticEditPolicyClassName="MappingReferenceItemSemanticEditPolicy"
       canonicalEditPolicyClassName="MappingReferenceCanonicalEditPolicy"
       iconProviderPriority="Low"
-      validationProviderPriority="Low">
+      validationProviderPriority="Low"
+      validationEnabled="true"
+      validationDecorators="true"
+      liveValidationUIFeedback="true">
     <diagramRunTimeClass
         href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
@@ -28,36 +31,34 @@
     <domainDiagramElement
         href="mid.genmodel#//mid/mapping/MappingReference"/>
     <childNodes
-        visualID="3002"
-        editPartClassName="ModelElementEditPart"
-        itemSemanticEditPolicyClassName="ModelElementItemSemanticEditPolicy"
-        notationViewFactoryClassName="ModelElementViewFactory"
-        canonicalEditPolicyClassName="ModelElementCanonicalEditPolicy"
-        graphicalNodeEditPolicyClassName="ModelElementGraphicalNodeEditPolicy"
-        createCommandClassName="ModelElementCreateCommand"
+        visualID="3003"
+        editPartClassName="ModelElementReferenceEditPart"
+        itemSemanticEditPolicyClassName="ModelElementReferenceItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="ModelElementReferenceCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="ModelElementReferenceGraphicalNodeEditPolicy"
+        createCommandClassName="ModelElementReferenceCreateCommand"
         containers="//@diagram/@compartments.0">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="ModelElementEditHelper"/>
+          editHelperClassName="ModelElementReferenceEditHelper"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
-          className="ModelElementFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelElementFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelElementNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelElementFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureModelElementNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureModelElementNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureModelElementNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelElementNameFigure() {&#xA;&#x9;&#x9;return fFigureModelElementNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          className="ModelElementReferenceFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelElementReferenceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelElementNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelElementReferenceFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureModelElementNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureModelElementNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureModelElementNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelElementNameFigure() {&#xA;&#x9;&#x9;return fFigureModelElementNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet>
         <metaClass
-            href="mid.genmodel#//mid/mapping/ModelElement"/>
+            href="mid.genmodel#//mid/mapping/ModelElementReference"/>
         <containmentMetaFeature
             href="mid.genmodel#//mid/mapping/ModelContainer/elements"/>
         <childMetaFeature
             href="mid.genmodel#//mid/mapping/ModelContainer/elements"/>
       </modelFacet>
       <labels
-          visualID="5003"
-          editPartClassName="ModelElementNameEditPart"
-          itemSemanticEditPolicyClassName="ModelElementNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="ModelElementNameViewFactory"
+          visualID="5006"
+          editPartClassName="ModelElementReferenceNameEditPart"
+          itemSemanticEditPolicyClassName="ModelElementReferenceNameItemSemanticEditPolicy"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -113,7 +114,7 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             parser="//@labelParsers/@implementations.0">
           <metaFeatures
-              href="mid.genmodel#//mid/NamedElement/name"/>
+              href="mid.genmodel#//mid/mapping/ModelContainer/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -121,7 +122,6 @@
         visualID="2004"
         editPartClassName="MappingEditPart"
         itemSemanticEditPolicyClassName="MappingItemSemanticEditPolicy"
-        notationViewFactoryClassName="MappingViewFactory"
         canonicalEditPolicyClassName="MappingCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MappingGraphicalNodeEditPolicy"
         createCommandClassName="MappingCreateCommand">
@@ -146,7 +146,6 @@
           visualID="5004"
           editPartClassName="MappingNameEditPart"
           itemSemanticEditPolicyClassName="MappingNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MappingNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -166,7 +165,6 @@
         visualID="4002"
         editPartClassName="MappingElementsEditPart"
         itemSemanticEditPolicyClassName="MappingElementsItemSemanticEditPolicy"
-        notationViewFactoryClassName="MappingElementsViewFactory"
         createCommandClassName="MappingElementsCreateCommand"
         reorientCommandClassName="MappingElementsReorientCommand">
       <diagramRunTimeClass
@@ -205,18 +203,18 @@
           title="mid">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="ModelElement"
-            description="Create new ModelElement"
+            title="New ModelElementReference"
+            description="Create new ModelElementReference"
             genNodes="//@diagram/@childNodes.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="Mapping"
-            description="Create new Mapping"
+            title="New mapping"
+            description="Create new mapping"
             genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="MappingElements"
-            description="Create new MappingElements"
+            title="New mapping connection"
+            description="Create new mapping connection"
             genLinks="//@diagram/@links.0"/>
       </groups>
     </palette>
@@ -250,8 +248,7 @@
       iD="edu.toronto.cs.se.mmtf.mid.mapping.diagram"
       name="Mapping Plugin"
       provider="Software Engineering Group, University of Toronto"
-      version="0.9.0"
-      activatorClassName="MIDDiagramEditorPlugin">
+      version="0.9.0">
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
   </plugin>

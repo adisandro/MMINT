@@ -99,8 +99,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModelContainerAdapter();
 			}
 			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
+			public Adapter caseModelElementReference(ModelElementReference object) {
+				return createModelElementReferenceAdapter();
 			}
 			@Override
 			public Adapter caseMapping(Mapping object) {
@@ -177,16 +177,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement <em>Model Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference
 	 * @generated
 	 */
-	public Adapter createModelElementAdapter() {
+	public Adapter createModelElementReferenceAdapter() {
 		return null;
 	}
 

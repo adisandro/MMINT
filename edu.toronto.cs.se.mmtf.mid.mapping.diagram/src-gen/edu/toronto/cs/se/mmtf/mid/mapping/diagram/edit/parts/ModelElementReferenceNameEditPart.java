@@ -65,13 +65,13 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDParserProvider;
 /**
  * @generated
  */
-public class ModelElementNameEditPart extends CompartmentEditPart implements
-		ITextAwareEditPart {
+public class ModelElementReferenceNameEditPart extends CompartmentEditPart
+		implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5003;
+	public static final int VISUAL_ID = 5006;
 
 	/**
 	 * @generated
@@ -96,7 +96,7 @@ public class ModelElementNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public ModelElementNameEditPart(View view) {
+	public ModelElementReferenceNameEditPart(View view) {
 		super(view);
 	}
 
@@ -313,10 +313,10 @@ public class ModelElementNameEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = MIDParserProvider
 					.getParser(
-							MIDElementTypes.ModelElement_3002,
+							MIDElementTypes.ModelElementReference_3003,
 							getParserElement(),
 							MIDVisualIDRegistry
-									.getType(edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementNameEditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

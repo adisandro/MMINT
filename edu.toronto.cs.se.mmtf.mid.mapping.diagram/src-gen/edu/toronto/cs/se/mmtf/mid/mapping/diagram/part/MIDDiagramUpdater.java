@@ -34,13 +34,13 @@ import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 /**
@@ -111,10 +111,11 @@ public class MIDDiagramUpdater {
 		LinkedList<MIDNodeDescriptor> result = new LinkedList<MIDNodeDescriptor>();
 		for (Iterator<?> it = modelElement.getElements().iterator(); it
 				.hasNext();) {
-			ModelElement childElement = (ModelElement) it.next();
+			ModelElementReference childElement = (ModelElementReference) it
+					.next();
 			int visualID = MIDVisualIDRegistry.getNodeVisualID(view,
 					childElement);
-			if (visualID == ModelElementEditPart.VISUAL_ID) {
+			if (visualID == ModelElementReferenceEditPart.VISUAL_ID) {
 				result.add(new MIDNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -133,8 +134,8 @@ public class MIDDiagramUpdater {
 			return getModelContainer_2005ContainedLinks(view);
 		case MappingEditPart.VISUAL_ID:
 			return getMapping_2004ContainedLinks(view);
-		case ModelElementEditPart.VISUAL_ID:
-			return getModelElement_3002ContainedLinks(view);
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getModelElementReference_3003ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -148,8 +149,8 @@ public class MIDDiagramUpdater {
 			return getModelContainer_2005IncomingLinks(view);
 		case MappingEditPart.VISUAL_ID:
 			return getMapping_2004IncomingLinks(view);
-		case ModelElementEditPart.VISUAL_ID:
-			return getModelElement_3002IncomingLinks(view);
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getModelElementReference_3003IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -163,8 +164,8 @@ public class MIDDiagramUpdater {
 			return getModelContainer_2005OutgoingLinks(view);
 		case MappingEditPart.VISUAL_ID:
 			return getMapping_2004OutgoingLinks(view);
-		case ModelElementEditPart.VISUAL_ID:
-			return getModelElement_3002OutgoingLinks(view);
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getModelElementReference_3003OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -199,7 +200,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelElement_3002ContainedLinks(
+	public static List<MIDLinkDescriptor> getModelElementReference_3003ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -222,9 +223,10 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelElement_3002IncomingLinks(
+	public static List<MIDLinkDescriptor> getModelElementReference_3003IncomingLinks(
 			View view) {
-		ModelElement modelElement = (ModelElement) view.getElement();
+		ModelElementReference modelElement = (ModelElementReference) view
+				.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -254,7 +256,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelElement_3002OutgoingLinks(
+	public static List<MIDLinkDescriptor> getModelElementReference_3003OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -263,7 +265,7 @@ public class MIDDiagramUpdater {
 	 * @generated
 	 */
 	private static Collection<MIDLinkDescriptor> getIncomingFeatureModelFacetLinks_Mapping_Elements_4002(
-			ModelElement target,
+			ModelElementReference target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences
@@ -287,7 +289,8 @@ public class MIDDiagramUpdater {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> destinations = source.getElements().iterator(); destinations
 				.hasNext();) {
-			ModelElement destination = (ModelElement) destinations.next();
+			ModelElementReference destination = (ModelElementReference) destinations
+					.next();
 			result.add(new MIDLinkDescriptor(source, destination,
 					MIDElementTypes.MappingElements_4002,
 					MappingElementsEditPart.VISUAL_ID));

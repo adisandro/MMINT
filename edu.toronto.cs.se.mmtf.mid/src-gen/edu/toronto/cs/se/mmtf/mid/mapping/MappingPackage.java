@@ -20,6 +20,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -267,22 +268,31 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONTAINER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CONTAINER__NAME = MidPackage.NAMED_ELEMENT__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__ELEMENTS = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_CONTAINER__ELEMENTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONTAINER__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONTAINER__MODEL = 2;
 
 	/**
 	 * The number of structural features of the '<em>Model Container</em>' class.
@@ -291,7 +301,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_CONTAINER_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Model Container</em>' class.
@@ -300,17 +310,17 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_OPERATION_COUNT = MidPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_CONTAINER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl <em>Model Element</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElement()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementReference()
 	 * @generated
 	 */
-	int MODEL_ELEMENT = 3;
+	int MODEL_ELEMENT_REFERENCE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -319,7 +329,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__NAME = MidPackage.NAMED_ELEMENT__NAME;
+	int MODEL_ELEMENT_REFERENCE__NAME = MidPackage.NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Pointer</b></em>' reference.
@@ -328,25 +338,34 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__POINTER = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT_REFERENCE__POINTER = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Model Element</em>' class.
+	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_REFERENCE__MAPPINGS = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Model Element</em>' class.
+	 * The number of structural features of the '<em>Model Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_OPERATION_COUNT = MidPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Model Element Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = MidPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingImpl <em>Mapping</em>}' class.
@@ -470,25 +489,58 @@ public interface MappingPackage extends EPackage {
 	EReference getModelContainer_Elements();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement <em>Model Element</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Element</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getName()
+	 * @see #getModelContainer()
 	 * @generated
 	 */
-	EClass getModelElement();
+	EAttribute getModelContainer_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getPointer <em>Pointer</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel()
+	 * @see #getModelContainer()
+	 * @generated
+	 */
+	EReference getModelContainer_Model();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference <em>Model Element Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model Element Reference</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference
+	 * @generated
+	 */
+	EClass getModelElementReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getPointer <em>Pointer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Pointer</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getPointer()
-	 * @see #getModelElement()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getPointer()
+	 * @see #getModelElementReference()
 	 * @generated
 	 */
-	EReference getModelElement_Pointer();
+	EReference getModelElementReference_Pointer();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings <em>Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Mappings</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings()
+	 * @see #getModelElementReference()
+	 * @generated
+	 */
+	EReference getModelElementReference_Mappings();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping <em>Mapping</em>}'.
@@ -597,14 +649,30 @@ public interface MappingPackage extends EPackage {
 		EReference MODEL_CONTAINER__ELEMENTS = eINSTANCE.getModelContainer_Elements();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl <em>Model Element</em>}' class.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElement()
 		 * @generated
 		 */
-		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
+		EAttribute MODEL_CONTAINER__NAME = eINSTANCE.getModelContainer_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_CONTAINER__MODEL = eINSTANCE.getModelContainer_Model();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementReference()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT_REFERENCE = eINSTANCE.getModelElementReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Pointer</b></em>' reference feature.
@@ -612,7 +680,15 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__POINTER = eINSTANCE.getModelElement_Pointer();
+		EReference MODEL_ELEMENT_REFERENCE__POINTER = eINSTANCE.getModelElementReference_Pointer();
+
+		/**
+		 * The meta object literal for the '<em><b>Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT_REFERENCE__MAPPINGS = eINSTANCE.getModelElementReference_Mappings();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingImpl <em>Mapping</em>}' class.

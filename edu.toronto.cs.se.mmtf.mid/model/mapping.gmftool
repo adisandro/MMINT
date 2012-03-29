@@ -11,8 +11,8 @@
         title="mid">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="ModelElement"
-          description="Create new ModelElement">
+          title="New ModelElementReference"
+          description="Create new ModelElementReference">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -20,8 +20,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Mapping"
-          description="Create new Mapping">
+          title="New mapping"
+          description="Create new mapping">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -29,8 +29,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MappingElements"
-          description="Create new MappingElements">
+          title="New mapping connection"
+          description="Create new mapping connection">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

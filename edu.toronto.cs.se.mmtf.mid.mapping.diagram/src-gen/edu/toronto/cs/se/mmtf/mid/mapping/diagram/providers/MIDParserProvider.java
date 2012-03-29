@@ -32,9 +32,10 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.parsers.MessageFormatParser;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 
@@ -54,8 +55,8 @@ public class MIDParserProvider extends AbstractProvider implements
 	 */
 	private IParser getModelContainerName_5005Parser() {
 		if (modelContainerName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] { MappingPackage.eINSTANCE
+					.getModelContainer_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			modelContainerName_5005Parser = parser;
 		}
@@ -83,19 +84,19 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser modelElementName_5003Parser;
+	private IParser modelElementReferenceName_5006Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getModelElementName_5003Parser() {
-		if (modelElementName_5003Parser == null) {
+	private IParser getModelElementReferenceName_5006Parser() {
+		if (modelElementReferenceName_5006Parser == null) {
 			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
 					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			modelElementName_5003Parser = parser;
+			modelElementReferenceName_5006Parser = parser;
 		}
-		return modelElementName_5003Parser;
+		return modelElementReferenceName_5006Parser;
 	}
 
 	/**
@@ -107,8 +108,8 @@ public class MIDParserProvider extends AbstractProvider implements
 			return getModelContainerName_5005Parser();
 		case MappingNameEditPart.VISUAL_ID:
 			return getMappingName_5004Parser();
-		case ModelElementNameEditPart.VISUAL_ID:
-			return getModelElementName_5003Parser();
+		case ModelElementReferenceNameEditPart.VISUAL_ID:
+			return getModelElementReferenceName_5006Parser();
 		}
 		return null;
 	}

@@ -32,17 +32,17 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 /**
  * @generated
  */
-public class ModelElementCreateCommand extends EditElementCommand {
+public class ModelElementReferenceCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
-	public ModelElementCreateCommand(CreateElementRequest req) {
+	public ModelElementReferenceCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -72,7 +72,8 @@ public class ModelElementCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		ModelElement newElement = MappingFactory.eINSTANCE.createModelElement();
+		ModelElementReference newElement = MappingFactory.eINSTANCE
+				.createModelElementReference();
 
 		ModelContainer owner = (ModelContainer) getElementToEdit();
 		owner.getElements().add(newElement);
@@ -86,7 +87,7 @@ public class ModelElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(ModelElement newElement,
+	protected void doConfigure(ModelElementReference newElement,
 			IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())

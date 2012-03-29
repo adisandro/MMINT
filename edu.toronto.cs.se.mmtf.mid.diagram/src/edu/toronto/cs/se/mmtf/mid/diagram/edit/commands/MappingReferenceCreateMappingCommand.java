@@ -24,12 +24,13 @@ public class MappingReferenceCreateMappingCommand extends MappingReferenceCreate
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		MappingReference newElement = MappingFactory.eINSTANCE.createMappingReference();
+		MultiModel owner = (MultiModel) getElementToEdit();
+		owner.getElements().add(newElement);
+
 		URI modelUri = EcoreUtil.getURI(newElement);
 		newElement.setUri(modelUri.toPlatformString(true));
 		newElement.setRoot(newElement);
 		newElement.setOrigin(ModelReferenceOrigin.CREATED);
-		MultiModel owner = (MultiModel) getElementToEdit();
-		owner.getElements().add(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 

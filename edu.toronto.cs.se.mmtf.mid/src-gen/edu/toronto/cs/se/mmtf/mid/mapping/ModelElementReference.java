@@ -20,25 +20,28 @@ package edu.toronto.cs.se.mmtf.mid.mapping;
 
 import edu.toronto.cs.se.mmtf.mid.NamedElement;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Model Element</b></em>'.
+ * A representation of the model object '<em><b>Model Element Reference</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getPointer <em>Pointer</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getPointer <em>Pointer</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElement()
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElementReference()
  * @model
  * @generated
  */
-public interface ModelElement extends NamedElement {
+public interface ModelElementReference extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Pointer</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -49,14 +52,14 @@ public interface ModelElement extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pointer</em>' reference.
 	 * @see #setPointer(EObject)
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElement_Pointer()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElementReference_Pointer()
 	 * @model required="true"
 	 * @generated
 	 */
 	EObject getPointer();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getPointer <em>Pointer</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getPointer <em>Pointer</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pointer</em>' reference.
@@ -65,4 +68,22 @@ public interface ModelElement extends NamedElement {
 	 */
 	void setPointer(EObject value);
 
-} // ModelElement
+	/**
+	 * Returns the value of the '<em><b>Mappings</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mappings</em>' reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElementReference_Mappings()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements
+	 * @model opposite="elements"
+	 * @generated
+	 */
+	EList<Mapping> getMappings();
+
+} // ModelElementReference

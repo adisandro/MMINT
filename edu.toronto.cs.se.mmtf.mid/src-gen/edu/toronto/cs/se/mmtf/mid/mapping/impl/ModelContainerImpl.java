@@ -18,20 +18,24 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
-import edu.toronto.cs.se.mmtf.mid.impl.NamedElementImpl;
+import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -43,12 +47,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getModel <em>Model</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModelContainerImpl extends NamedElementImpl implements ModelContainer {
+public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	/**
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -57,7 +63,26 @@ public class ModelContainerImpl extends NamedElementImpl implements ModelContain
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> elements;
+	protected EList<ModelElementReference> elements;
+
+	/**
+	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__NAME).getSettingDelegate();
+	/**
+	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelReference model;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,11 +108,58 @@ public class ModelContainerImpl extends NamedElementImpl implements ModelContain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElement> getElements() {
+	public EList<ModelElementReference> getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MappingPackage.MODEL_CONTAINER__ELEMENTS);
+			elements = new EObjectContainmentEList<ModelElementReference>(ModelElementReference.class, this, MappingPackage.MODEL_CONTAINER__ELEMENTS);
 		}
 		return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelReference getModel() {
+		if (model != null && model.eIsProxy()) {
+			InternalEObject oldModel = (InternalEObject)model;
+			model = (ModelReference)eResolveProxy(oldModel);
+			if (model != oldModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODEL_CONTAINER__MODEL, oldModel, model));
+			}
+		}
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelReference basicGetModel() {
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModel(ModelReference newModel) {
+		ModelReference oldModel = model;
+		model = newModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_CONTAINER__MODEL, oldModel, model));
 	}
 
 	/**
@@ -114,6 +186,11 @@ public class ModelContainerImpl extends NamedElementImpl implements ModelContain
 		switch (featureID) {
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return getElements();
+			case MappingPackage.MODEL_CONTAINER__NAME:
+				return getName();
+			case MappingPackage.MODEL_CONTAINER__MODEL:
+				if (resolve) return getModel();
+				return basicGetModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,7 +206,10 @@ public class ModelContainerImpl extends NamedElementImpl implements ModelContain
 		switch (featureID) {
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				getElements().clear();
-				getElements().addAll((Collection<? extends ModelElement>)newValue);
+				getElements().addAll((Collection<? extends ModelElementReference>)newValue);
+				return;
+			case MappingPackage.MODEL_CONTAINER__MODEL:
+				setModel((ModelReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -146,6 +226,9 @@ public class ModelContainerImpl extends NamedElementImpl implements ModelContain
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				getElements().clear();
 				return;
+			case MappingPackage.MODEL_CONTAINER__MODEL:
+				setModel((ModelReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,6 +243,10 @@ public class ModelContainerImpl extends NamedElementImpl implements ModelContain
 		switch (featureID) {
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return elements != null && !elements.isEmpty();
+			case MappingPackage.MODEL_CONTAINER__NAME:
+				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case MappingPackage.MODEL_CONTAINER__MODEL:
+				return model != null;
 		}
 		return super.eIsSet(featureID);
 	}

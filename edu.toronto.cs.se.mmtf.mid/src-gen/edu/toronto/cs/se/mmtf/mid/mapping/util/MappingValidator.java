@@ -108,8 +108,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateBinaryMappingReference((BinaryMappingReference)value, diagnostics, context);
 			case MappingPackage.MODEL_CONTAINER:
 				return validateModelContainer((ModelContainer)value, diagnostics, context);
-			case MappingPackage.MODEL_ELEMENT:
-				return validateModelElement((ModelElement)value, diagnostics, context);
+			case MappingPackage.MODEL_ELEMENT_REFERENCE:
+				return validateModelElementReference((ModelElementReference)value, diagnostics, context);
 			case MappingPackage.MAPPING:
 				return validateMapping((Mapping)value, diagnostics, context);
 			default:
@@ -228,8 +228,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modelElement, diagnostics, context);
+	public boolean validateModelElementReference(ModelElementReference modelElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelElementReference, diagnostics, context);
 	}
 
 	/**
