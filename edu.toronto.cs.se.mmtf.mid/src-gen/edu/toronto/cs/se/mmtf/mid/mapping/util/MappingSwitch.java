@@ -105,6 +105,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.MODEL_CONTAINER: {
 				ModelContainer modelContainer = (ModelContainer)theEObject;
 				T result = caseModelContainer(modelContainer);
+				if (result == null) result = caseNamedElement(modelContainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

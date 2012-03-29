@@ -53,6 +53,9 @@ public class MIDEditPartFactory implements EditPartFactory {
 			case ModelContainerEditPart.VISUAL_ID:
 				return new ModelContainerEditPart(view);
 
+			case ModelContainerNameEditPart.VISUAL_ID:
+				return new ModelContainerNameEditPart(view);
+
 			case MappingEditPart.VISUAL_ID:
 				return new MappingEditPart(view);
 

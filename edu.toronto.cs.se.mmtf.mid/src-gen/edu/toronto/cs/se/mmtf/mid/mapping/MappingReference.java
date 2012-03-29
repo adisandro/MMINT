@@ -32,11 +32,13 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getContainers <em>Containers</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingReference()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelContainers'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelContainers='models->size() = containers->size()'"
  * @generated
  */
 public interface MappingReference extends ModelReference {
@@ -71,5 +73,21 @@ public interface MappingReference extends ModelReference {
 	 * @generated
 	 */
 	EList<Mapping> getMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Containers</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Containers</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Containers</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingReference_Containers()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EList<ModelContainer> getContainers();
 
 } // MappingReference

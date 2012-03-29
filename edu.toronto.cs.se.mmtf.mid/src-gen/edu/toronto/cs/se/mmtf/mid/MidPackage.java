@@ -194,22 +194,13 @@ public interface MidPackage extends EPackage {
 	int MODEL_REFERENCE__ORIGIN = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REFERENCE__CONTAINER = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Model Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int MODEL_REFERENCE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Model Reference</em>' class.
@@ -317,17 +308,6 @@ public interface MidPackage extends EPackage {
 	EAttribute getModelReference_Origin();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Container</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelReference#getContainer()
-	 * @see #getModelReference()
-	 * @generated
-	 */
-	EReference getModelReference_Container();
-
-	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -429,14 +409,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_REFERENCE__ORIGIN = eINSTANCE.getModelReference_Origin();
-
-		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_REFERENCE__CONTAINER = eINSTANCE.getModelReference_Container();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin <em>Model Reference Origin</em>}' enum.

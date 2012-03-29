@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 
-public class RepositoryWizardDialog extends WizardDialog {
+public class ModelCreationWizardDialog extends WizardDialog {
 
 	private URI createdModelUri;
 
@@ -27,7 +27,7 @@ public class RepositoryWizardDialog extends WizardDialog {
 		super.finishPressed();
 	}
 
-	public RepositoryWizardDialog(Shell parentShell, IWizard newWizard) {
+	public ModelCreationWizardDialog(Shell parentShell, IWizard newWizard) {
 
 		super(parentShell, newWizard);
 	}

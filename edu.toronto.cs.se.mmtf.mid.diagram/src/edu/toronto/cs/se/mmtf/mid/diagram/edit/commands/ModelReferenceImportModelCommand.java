@@ -40,7 +40,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDElementChooserDialog;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 
 public class ModelReferenceImportModelCommand extends ModelReferenceCreateCommand {
 
@@ -84,7 +83,6 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		newElement.setName(modelUri.lastSegment());
 		newElement.setRoot(root);
 		newElement.setOrigin(ModelReferenceOrigin.IMPORTED);
-		newElement.setContainer(MappingFactory.eINSTANCE.createModelContainer());
 		MultiModel owner = (MultiModel) getElementToEdit();
 		owner.getElements().add(newElement);
 		doConfigure(newElement, monitor, info);

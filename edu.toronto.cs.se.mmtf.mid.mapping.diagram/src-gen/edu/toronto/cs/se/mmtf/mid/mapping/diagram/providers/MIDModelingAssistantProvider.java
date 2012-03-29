@@ -59,7 +59,7 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof MappingReferenceEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-			types.add(MIDElementTypes.ModelContainer_2003);
+			types.add(MIDElementTypes.ModelContainer_2005);
 			types.add(MIDElementTypes.Mapping_2004);
 			return types;
 		}

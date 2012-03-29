@@ -30,8 +30,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 
 /**
@@ -63,10 +63,6 @@ public class ModelContainerCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		ModelReference container = (ModelReference) getElementToEdit();
-		if (container.getContainer() != null) {
-			return false;
-		}
 		return true;
 
 	}
@@ -79,8 +75,8 @@ public class ModelContainerCreateCommand extends EditElementCommand {
 		ModelContainer newElement = MappingFactory.eINSTANCE
 				.createModelContainer();
 
-		ModelReference owner = (ModelReference) getElementToEdit();
-		owner.setContainer(newElement);
+		MappingReference owner = (MappingReference) getElementToEdit();
+		owner.getContainers().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 

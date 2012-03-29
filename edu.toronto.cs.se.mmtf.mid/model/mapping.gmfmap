@@ -8,10 +8,17 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="mid.ecore#//ModelReference/container"/>
+        href="mid.ecore#//mapping/MappingReference/containers"/>
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//mapping/ModelContainer"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="mapping.gmfgraph#ModelContainerName"/>
+        <features
+            href="mid.ecore#//NamedElement/name"/>
+      </labelMappings>
       <diagramNode
           href="mapping.gmfgraph#ModelContainer"/>
       <children

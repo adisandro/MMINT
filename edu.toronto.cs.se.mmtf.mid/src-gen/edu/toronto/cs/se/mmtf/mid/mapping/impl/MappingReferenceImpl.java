@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getContainers <em>Containers</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +75,16 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 * @ordered
 	 */
 	protected EList<Mapping> mappings;
+
+	/**
+	 * The cached value of the '{@link #getContainers() <em>Containers</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelContainer> containers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,11 +134,25 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelContainer> getContainers() {
+		if (containers == null) {
+			containers = new EObjectContainmentEList<ModelContainer>(ModelContainer.class, this, MappingPackage.MAPPING_REFERENCE__CONTAINERS);
+		}
+		return containers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
+				return ((InternalEList<?>)getContainers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -143,6 +169,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 				return getModels();
 			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				return getMappings();
+			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
+				return getContainers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -164,6 +192,10 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 				getMappings().clear();
 				getMappings().addAll((Collection<? extends Mapping>)newValue);
 				return;
+			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
+				getContainers().clear();
+				getContainers().addAll((Collection<? extends ModelContainer>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -182,6 +214,9 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				getMappings().clear();
 				return;
+			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
+				getContainers().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -198,6 +233,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 				return models != null && !models.isEmpty();
 			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
 				return mappings != null && !mappings.isEmpty();
+			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
+				return containers != null && !containers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

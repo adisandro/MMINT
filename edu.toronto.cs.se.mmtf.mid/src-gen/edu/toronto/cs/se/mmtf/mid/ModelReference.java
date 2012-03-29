@@ -18,8 +18,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -33,7 +31,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getOrigin <em>Origin</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -122,31 +119,5 @@ public interface ModelReference extends NamedElement {
 	 * @generated
 	 */
 	void setOrigin(ModelReferenceOrigin value);
-
-	/**
-	 * Returns the value of the '<em><b>Container</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Container</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container</em>' containment reference.
-	 * @see #setContainer(ModelContainer)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelReference_Container()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	ModelContainer getContainer();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelReference#getContainer <em>Container</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container</em>' containment reference.
-	 * @see #getContainer()
-	 * @generated
-	 */
-	void setContainer(ModelContainer value);
 
 } // ModelReference

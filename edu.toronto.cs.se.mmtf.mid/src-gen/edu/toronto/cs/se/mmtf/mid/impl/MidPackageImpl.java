@@ -215,15 +215,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelReference_Container() {
-		return (EReference)modelReferenceEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getModelReferenceOrigin() {
 		return modelReferenceOriginEEnum;
 	}
@@ -266,7 +257,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelReferenceEClass, MODEL_REFERENCE__URI);
 		createEReference(modelReferenceEClass, MODEL_REFERENCE__ROOT);
 		createEAttribute(modelReferenceEClass, MODEL_REFERENCE__ORIGIN);
-		createEReference(modelReferenceEClass, MODEL_REFERENCE__CONTAINER);
 
 		// Create enums
 		modelReferenceOriginEEnum = createEEnum(MODEL_REFERENCE_ORIGIN);
@@ -319,7 +309,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getModelReference_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelReference_Root(), ecorePackage.getEObject(), null, "root", null, 1, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelReference_Origin(), this.getModelReferenceOrigin(), "origin", null, 1, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelReference_Container(), theMappingPackage.getModelContainer(), null, "container", null, 1, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(modelReferenceOriginEEnum, ModelReferenceOrigin.class, "ModelReferenceOrigin");

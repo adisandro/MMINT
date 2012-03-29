@@ -46,7 +46,7 @@ public class MappingReferenceItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MIDElementTypes.ModelContainer_2003 == req.getElementType()) {
+		if (MIDElementTypes.ModelContainer_2005 == req.getElementType()) {
 			return getGEFWrapper(new ModelContainerCreateCommand(req));
 		}
 		if (MIDElementTypes.Mapping_2004 == req.getElementType()) {

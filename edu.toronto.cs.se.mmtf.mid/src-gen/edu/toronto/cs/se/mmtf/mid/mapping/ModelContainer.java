@@ -18,9 +18,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping;
 
+import edu.toronto.cs.se.mmtf.mid.NamedElement;
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ModelContainer extends EObject {
+public interface ModelContainer extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement}.

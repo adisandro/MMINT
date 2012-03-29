@@ -75,7 +75,8 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ModelContainer_2003 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2003"); //$NON-NLS-1$
+	public static final IElementType ModelContainer_2005 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2005"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -203,7 +204,7 @@ public class MIDElementTypes {
 			elements.put(MappingReference_1000,
 					MappingPackage.eINSTANCE.getMappingReference());
 
-			elements.put(ModelContainer_2003,
+			elements.put(ModelContainer_2005,
 					MappingPackage.eINSTANCE.getModelContainer());
 
 			elements.put(Mapping_2004, MappingPackage.eINSTANCE.getMapping());
@@ -231,7 +232,7 @@ public class MIDElementTypes {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(MappingReference_1000);
-			KNOWN_ELEMENT_TYPES.add(ModelContainer_2003);
+			KNOWN_ELEMENT_TYPES.add(ModelContainer_2005);
 			KNOWN_ELEMENT_TYPES.add(Mapping_2004);
 			KNOWN_ELEMENT_TYPES.add(ModelElement_3002);
 			KNOWN_ELEMENT_TYPES.add(MappingElements_4002);
@@ -247,7 +248,7 @@ public class MIDElementTypes {
 		case MappingReferenceEditPart.VISUAL_ID:
 			return MappingReference_1000;
 		case ModelContainerEditPart.VISUAL_ID:
-			return ModelContainer_2003;
+			return ModelContainer_2005;
 		case MappingEditPart.VISUAL_ID:
 			return Mapping_2004;
 		case ModelElementEditPart.VISUAL_ID:

@@ -34,7 +34,7 @@ public class ModelContainerModelContainerCompartmentItemSemanticEditPolicy
 	 * @generated
 	 */
 	public ModelContainerModelContainerCompartmentItemSemanticEditPolicy() {
-		super(MIDElementTypes.ModelContainer_2003);
+		super(MIDElementTypes.ModelContainer_2005);
 	}
 
 	/**

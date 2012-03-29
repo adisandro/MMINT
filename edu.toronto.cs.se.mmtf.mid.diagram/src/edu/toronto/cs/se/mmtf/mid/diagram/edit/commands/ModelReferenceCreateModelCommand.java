@@ -42,9 +42,8 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.repository.Editor;
-import edu.toronto.cs.se.mmtf.repository.ui.RepositoryWizardDialog;
+import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
 
 public class ModelReferenceCreateModelCommand extends ModelReference2CreateCommand {
 
@@ -71,7 +70,7 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 		IWorkbenchWizard wizard = descriptor.createWizard();
 		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection());
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		RepositoryWizardDialog wizDialog = new RepositoryWizardDialog(shell, wizard);
+		ModelCreationWizardDialog wizDialog = new ModelCreationWizardDialog(shell, wizard);
 		wizDialog.setTitle(wizard.getWindowTitle());
 		if (wizDialog.open() == Window.CANCEL) {
 			throw new MMTFException("Wizard dialog cancel button pressed");
@@ -106,7 +105,6 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 		newElement.setName(modelUri.lastSegment());
 		newElement.setRoot(root);
 		newElement.setOrigin(ModelReferenceOrigin.CREATED);
-		newElement.setContainer(MappingFactory.eINSTANCE.createModelContainer());
 		MultiModel owner = (MultiModel) getElementToEdit();
 		owner.getElements().add(newElement);
 		doConfigure(newElement, monitor, info);

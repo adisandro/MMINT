@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceAddModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
@@ -125,7 +126,7 @@ public class MappingReferenceItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
+	protected Command getStartCreateRelationshipCommandGen(
 			CreateRelationshipRequest req) {
 		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
 			return getGEFWrapper(new MappingReferenceModelsCreateCommand(req,
@@ -139,12 +140,44 @@ public class MappingReferenceItemSemanticEditPolicy extends
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
+			return getGEFWrapper(new MappingReferenceAddModelCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
+			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		return null;
+	}
+
+	/**
 	 * @generated
+	 */
+	protected Command getCompleteCreateRelationshipCommandGen(
+			CreateRelationshipRequest req) {
+		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
+			return getGEFWrapper(new MappingReferenceModelsCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
+			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		return null;
+	}
+
+	/**
+	 * @generated NOT
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
-			return getGEFWrapper(new MappingReferenceModelsCreateCommand(req,
+			return getGEFWrapper(new MappingReferenceAddModelCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {

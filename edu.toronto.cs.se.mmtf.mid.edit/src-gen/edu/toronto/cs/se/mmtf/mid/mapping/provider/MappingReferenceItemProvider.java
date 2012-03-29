@@ -120,6 +120,7 @@ public class MappingReferenceItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING_REFERENCE__CONTAINERS);
 		}
 		return childrenFeatures;
 	}
@@ -175,6 +176,7 @@ public class MappingReferenceItemProvider
 
 		switch (notification.getFeatureID(MappingReference.class)) {
 			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
+			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -196,6 +198,11 @@ public class MappingReferenceItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
 				 MappingFactory.eINSTANCE.createMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_REFERENCE__CONTAINERS,
+				 MappingFactory.eINSTANCE.createModelContainer()));
 	}
 
 	/**

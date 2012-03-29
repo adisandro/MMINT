@@ -123,7 +123,46 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingReference(MappingReference mappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingReference, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingReference_modelContainers(mappingReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the modelContainers constraint of '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String MAPPING_REFERENCE__MODEL_CONTAINERS__EEXPRESSION = "models->size() = containers->size()";
+
+	/**
+	 * Validates the modelContainers constraint of '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingReference_modelContainers(MappingReference mappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.MAPPING_REFERENCE,
+				 mappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "modelContainers",
+				 MAPPING_REFERENCE__MODEL_CONTAINERS__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -141,6 +180,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingReference_modelContainers(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinary(binaryMappingReference, diagnostics, context);
 		return result;
 	}

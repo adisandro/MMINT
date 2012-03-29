@@ -235,7 +235,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <viewProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Mapping"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2003,2004,3002"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005,2004,3002"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002"/>
       </viewProvider>
    </extension>
@@ -248,16 +248,16 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <method name="getType()" value="Mapping"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2003,2004,3002"/>
+            <method name="getType()" value="2005,2004,3002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5004,5003"/>
+            <method name="getType()" value="5005,5004,5003"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7002"/>
+            <method name="getType()" value="7003"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -268,9 +268,9 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <modelingAssistantProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart" id="MappingReference_1000"/>
-         <object class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart" id="ModelContainer_2003"/>
+         <object class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart" id="ModelContainer_2005"/>
          <object class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart" id="Mapping_2004"/>
-         <context elements="MappingReference_1000,ModelContainer_2003,Mapping_2004"/>
+         <context elements="MappingReference_1000,ModelContainer_2005,Mapping_2004"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -302,12 +302,12 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
          <metamodelType
-               id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2003"
-               name="%metatype.name.ModelContainer_2003"
+               id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2005"
+               name="%metatype.name.ModelContainer_2005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ModelContainer"
                edithelper="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers.ModelContainerEditHelper">
-            <param name="semanticHint" value="2003"/>
+            <param name="semanticHint" value="2005"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
@@ -352,7 +352,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       </clientContext> 
       <binding context="edu.toronto.cs.se.mmtf.mid.mapping.diagram.TypeContext">
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingReference_1000"/>
-         <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2003"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelContainer_2005"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.Mapping_2004"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElement_3002"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingElements_4002"/>

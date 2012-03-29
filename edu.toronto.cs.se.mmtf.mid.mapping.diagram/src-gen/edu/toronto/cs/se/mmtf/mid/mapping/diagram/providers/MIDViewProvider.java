@@ -66,6 +66,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
@@ -233,7 +234,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		switch (visualID) {
 		case ModelContainerEditPart.VISUAL_ID:
-			return createModelContainer_2003(domainElement, containerView,
+			return createModelContainer_2005(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case MappingEditPart.VISUAL_ID:
 			return createMapping_2004(domainElement, containerView, index,
@@ -266,7 +267,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createModelContainer_2003(EObject domainElement,
+	public Node createModelContainer_2005(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -304,6 +305,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5005 = createLabel(node,
+				MIDVisualIDRegistry
+						.getType(ModelContainerNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				MIDVisualIDRegistry

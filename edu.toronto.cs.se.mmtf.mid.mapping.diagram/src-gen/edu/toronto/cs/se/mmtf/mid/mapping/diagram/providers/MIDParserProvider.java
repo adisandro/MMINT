@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.parsers.MessageFormatParser;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
@@ -42,6 +43,24 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
  */
 public class MIDParserProvider extends AbstractProvider implements
 		IParserProvider {
+
+	/**
+	 * @generated
+	 */
+	private IParser modelContainerName_5005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getModelContainerName_5005Parser() {
+		if (modelContainerName_5005Parser == null) {
+			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			modelContainerName_5005Parser = parser;
+		}
+		return modelContainerName_5005Parser;
+	}
 
 	/**
 	 * @generated
@@ -84,6 +103,8 @@ public class MIDParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
+		case ModelContainerNameEditPart.VISUAL_ID:
+			return getModelContainerName_5005Parser();
 		case MappingNameEditPart.VISUAL_ID:
 			return getMappingName_5004Parser();
 		case ModelElementNameEditPart.VISUAL_ID:

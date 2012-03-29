@@ -49,7 +49,6 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
@@ -88,8 +87,8 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(MidPackage.eINSTANCE
-					.getModelReference_Container());
+			myFeaturesToSynchronize.add(MappingPackage.eINSTANCE
+					.getMappingReference_Containers());
 			myFeaturesToSynchronize.add(MappingPackage.eINSTANCE
 					.getMappingReference_Mappings());
 		}
@@ -289,7 +288,7 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ModelContainerEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
-						.getModelContainer_2003ContainedLinks(view));
+						.getModelContainer_2005ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

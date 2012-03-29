@@ -56,7 +56,7 @@ public class MIDDiagramUpdater {
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getMappingReference_1000SemanticChildren(view);
 		case ModelContainerModelContainerCompartmentEditPart.VISUAL_ID:
-			return getModelContainerModelContainerCompartment_7002SemanticChildren(view);
+			return getModelContainerModelContainerCompartment_7003SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -71,12 +71,14 @@ public class MIDDiagramUpdater {
 		}
 		MappingReference modelElement = (MappingReference) view.getElement();
 		LinkedList<MIDNodeDescriptor> result = new LinkedList<MIDNodeDescriptor>();
-		{
-			ModelContainer childElement = modelElement.getContainer();
+		for (Iterator<?> it = modelElement.getContainers().iterator(); it
+				.hasNext();) {
+			ModelContainer childElement = (ModelContainer) it.next();
 			int visualID = MIDVisualIDRegistry.getNodeVisualID(view,
 					childElement);
 			if (visualID == ModelContainerEditPart.VISUAL_ID) {
 				result.add(new MIDNodeDescriptor(childElement, visualID));
+				continue;
 			}
 		}
 		for (Iterator<?> it = modelElement.getMappings().iterator(); it
@@ -95,7 +97,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDNodeDescriptor> getModelContainerModelContainerCompartment_7002SemanticChildren(
+	public static List<MIDNodeDescriptor> getModelContainerModelContainerCompartment_7003SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -128,7 +130,7 @@ public class MIDDiagramUpdater {
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getMappingReference_1000ContainedLinks(view);
 		case ModelContainerEditPart.VISUAL_ID:
-			return getModelContainer_2003ContainedLinks(view);
+			return getModelContainer_2005ContainedLinks(view);
 		case MappingEditPart.VISUAL_ID:
 			return getMapping_2004ContainedLinks(view);
 		case ModelElementEditPart.VISUAL_ID:
@@ -143,7 +145,7 @@ public class MIDDiagramUpdater {
 	public static List<MIDLinkDescriptor> getIncomingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case ModelContainerEditPart.VISUAL_ID:
-			return getModelContainer_2003IncomingLinks(view);
+			return getModelContainer_2005IncomingLinks(view);
 		case MappingEditPart.VISUAL_ID:
 			return getMapping_2004IncomingLinks(view);
 		case ModelElementEditPart.VISUAL_ID:
@@ -158,7 +160,7 @@ public class MIDDiagramUpdater {
 	public static List<MIDLinkDescriptor> getOutgoingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case ModelContainerEditPart.VISUAL_ID:
-			return getModelContainer_2003OutgoingLinks(view);
+			return getModelContainer_2005OutgoingLinks(view);
 		case MappingEditPart.VISUAL_ID:
 			return getMapping_2004OutgoingLinks(view);
 		case ModelElementEditPart.VISUAL_ID:
@@ -178,7 +180,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelContainer_2003ContainedLinks(
+	public static List<MIDLinkDescriptor> getModelContainer_2005ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -205,7 +207,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelContainer_2003IncomingLinks(
+	public static List<MIDLinkDescriptor> getModelContainer_2005IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -234,7 +236,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelContainer_2003OutgoingLinks(
+	public static List<MIDLinkDescriptor> getModelContainer_2005OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}

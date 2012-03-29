@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts,
  edu.toronto.cs.se.mmtf.mid.mapping.diagram.part,
  edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,

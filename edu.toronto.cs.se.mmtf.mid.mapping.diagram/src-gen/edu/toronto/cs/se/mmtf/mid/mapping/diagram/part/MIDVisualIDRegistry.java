@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementNameEditPart;
 
@@ -191,6 +192,9 @@ public class MIDVisualIDRegistry {
 			}
 			break;
 		case ModelContainerEditPart.VISUAL_ID:
+			if (ModelContainerNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if (ModelContainerModelContainerCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

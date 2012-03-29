@@ -14,8 +14,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelReferenceOrigin"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
-        eType="#//mapping/ModelContainer" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModelReferenceOrigin">
     <eLiterals name="IMPORTED"/>
@@ -29,10 +27,18 @@
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MappingReference" eSuperTypes="#//ModelReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="modelContainers"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="modelContainers" value="models->size() = containers->size()"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
           upperBound="-1" eType="#//ModelReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
           eType="#//mapping/Mapping" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="1"
+          upperBound="-1" eType="#//mapping/ModelContainer" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BinaryMappingReference" eSuperTypes="#//mapping/MappingReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -42,7 +48,7 @@
         <details key="isBinary" value="models->size() = 2"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelContainer">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelContainer" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//mapping/ModelElement" containment="true"/>
     </eClassifiers>

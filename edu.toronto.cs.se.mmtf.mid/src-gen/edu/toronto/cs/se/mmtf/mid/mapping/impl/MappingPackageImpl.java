@@ -188,6 +188,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMappingReference_Containers() {
+		return (EReference)mappingReferenceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryMappingReference() {
 		return binaryMappingReferenceEClass;
 	}
@@ -277,6 +286,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingReferenceEClass = createEClass(MAPPING_REFERENCE);
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__MODELS);
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__MAPPINGS);
+		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__CONTAINERS);
 
 		binaryMappingReferenceEClass = createEClass(BINARY_MAPPING_REFERENCE);
 
@@ -323,6 +333,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		// Add supertypes to classes
 		mappingReferenceEClass.getESuperTypes().add(theMidPackage.getModelReference());
 		binaryMappingReferenceEClass.getESuperTypes().add(this.getMappingReference());
+		modelContainerEClass.getESuperTypes().add(theMidPackage.getNamedElement());
 		modelElementEClass.getESuperTypes().add(theMidPackage.getNamedElement());
 		mappingEClass.getESuperTypes().add(theMidPackage.getNamedElement());
 
@@ -330,6 +341,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(mappingReferenceEClass, MappingReference.class, "MappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingReference_Models(), theMidPackage.getModelReference(), null, "models", null, 1, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingReference_Mappings(), this.getMapping(), null, "mappings", null, 0, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingReference_Containers(), this.getModelContainer(), null, "containers", null, 1, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(binaryMappingReferenceEClass, BinaryMappingReference.class, "BinaryMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -366,6 +378,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
 		   });		
 		addAnnotation
+		  (mappingReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "modelContainers"
+		   });			
+		addAnnotation
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
@@ -381,6 +399,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";				
+		addAnnotation
+		  (mappingReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "modelContainers", "models->size() = containers->size()"
+		   });			
 		addAnnotation
 		  (binaryMappingReferenceEClass, 
 		   source, 

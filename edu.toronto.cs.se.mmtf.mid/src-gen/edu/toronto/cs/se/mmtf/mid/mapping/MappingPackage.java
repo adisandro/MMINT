@@ -121,15 +121,6 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_REFERENCE__ORIGIN = MidPackage.MODEL_REFERENCE__ORIGIN;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_REFERENCE__CONTAINER = MidPackage.MODEL_REFERENCE__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,13 +139,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_REFERENCE__MAPPINGS = MidPackage.MODEL_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE__CONTAINERS = MidPackage.MODEL_REFERENCE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_REFERENCE_FEATURE_COUNT = MidPackage.MODEL_REFERENCE_FEATURE_COUNT + 2;
+	int MAPPING_REFERENCE_FEATURE_COUNT = MidPackage.MODEL_REFERENCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Reference</em>' class.
@@ -212,15 +212,6 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MAPPING_REFERENCE__ORIGIN = MAPPING_REFERENCE__ORIGIN;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAPPING_REFERENCE__CONTAINER = MAPPING_REFERENCE__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,6 +228,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING_REFERENCE__MAPPINGS = MAPPING_REFERENCE__MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE__CONTAINERS = MAPPING_REFERENCE__CONTAINERS;
 
 	/**
 	 * The number of structural features of the '<em>Binary Mapping Reference</em>' class.
@@ -267,13 +267,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONTAINER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONTAINER__NAME = MidPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__ELEMENTS = 0;
+	int MODEL_CONTAINER__ELEMENTS = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Model Container</em>' class.
@@ -282,7 +291,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_FEATURE_COUNT = 1;
+	int MODEL_CONTAINER_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Model Container</em>' class.
@@ -291,7 +300,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_OPERATION_COUNT = 0;
+	int MODEL_CONTAINER_OPERATION_COUNT = MidPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl <em>Model Element</em>}' class.
@@ -419,6 +428,17 @@ public interface MappingPackage extends EPackage {
 	EReference getMappingReference_Mappings();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getContainers <em>Containers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Containers</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getContainers()
+	 * @see #getMappingReference()
+	 * @generated
+	 */
+	EReference getMappingReference_Containers();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference <em>Binary Mapping Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -539,6 +559,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_REFERENCE__MAPPINGS = eINSTANCE.getMappingReference_Mappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Containers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_REFERENCE__CONTAINERS = eINSTANCE.getMappingReference_Containers();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingReferenceImpl <em>Binary Mapping Reference</em>}' class.
