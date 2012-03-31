@@ -58,6 +58,7 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.navigator.MIDNavigatorItem;
 
@@ -118,7 +119,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	 * @generated
 	 */
 	@SuppressWarnings("rawtypes")
-	public Object getAdapter(Class type) {
+	public Object getAdapterGen(Class type) {
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
 				public String[] getShowInTargetIds() {
@@ -127,6 +128,17 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 			};
 		}
 		return super.getAdapter(type);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@SuppressWarnings("rawtypes")
+	public Object getAdapter(Class type) {
+		if (type == IContentOutlinePage.class) {
+			return new MappingContentOutlinePage(getDiagram());
+		}
+		return getAdapterGen(type);
 	}
 
 	/**
