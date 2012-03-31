@@ -1,4 +1,4 @@
-package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
+package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -24,7 +24,7 @@ public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalComma
 
 	private final HintedDiagramLinkStyle diagramFacet;
 
-	ModelReferenceOpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
+	public ModelReferenceOpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
 
 		super(DiagramEditingDomainFactory.getInstance().createEditingDomain(), Messages.CommandName_OpenDiagram, null);
 		diagramFacet = linkStyle;
