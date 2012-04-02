@@ -113,15 +113,15 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 		case ModelContainerEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?ModelContainer", MIDElementTypes.ModelContainer_2005); //$NON-NLS-1$
-		case MappingElementsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?Mapping?elements", MIDElementTypes.MappingElements_4002); //$NON-NLS-1$
-		case MappingEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?Mapping", MIDElementTypes.Mapping_2004); //$NON-NLS-1$
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference", MIDElementTypes.MappingReference_1000); //$NON-NLS-1$
+		case MappingEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?Mapping", MIDElementTypes.Mapping_2004); //$NON-NLS-1$
+		case MappingElementsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?Mapping?elements", MIDElementTypes.MappingElements_4002); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -178,12 +178,12 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 			return getModelElementReference_3003Text(view);
 		case ModelContainerEditPart.VISUAL_ID:
 			return getModelContainer_2005Text(view);
-		case MappingElementsEditPart.VISUAL_ID:
-			return getMappingElements_4002Text(view);
-		case MappingEditPart.VISUAL_ID:
-			return getMapping_2004Text(view);
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getMappingReference_1000Text(view);
+		case MappingEditPart.VISUAL_ID:
+			return getMapping_2004Text(view);
+		case MappingElementsEditPart.VISUAL_ID:
+			return getMappingElements_4002Text(view);
 		}
 		return getUnknownElementText(view);
 	}

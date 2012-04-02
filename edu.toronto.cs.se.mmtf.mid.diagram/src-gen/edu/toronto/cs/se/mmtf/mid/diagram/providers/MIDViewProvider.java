@@ -483,7 +483,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createBinaryMappingReference_4004(EObject domainElement,
+	public Edge createBinaryMappingReference_4004Gen(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -538,6 +538,23 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6001 = (Location) label6001.getLayoutConstraint();
 		location6001.setX(0);
 		location6001.setY(40);
+		return edge;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Edge createBinaryMappingReference_4004(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+
+		Edge edge = createBinaryMappingReference_4004Gen(domainElement,
+				containerView, index, persisted, preferencesHint);
+		HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE
+				.createHintedDiagramLinkStyle();
+		diagramFacet.setHint("Mapping"); //$NON-NLS-1$
+		edge.getStyles().add(diagramFacet);
+
 		return edge;
 	}
 
