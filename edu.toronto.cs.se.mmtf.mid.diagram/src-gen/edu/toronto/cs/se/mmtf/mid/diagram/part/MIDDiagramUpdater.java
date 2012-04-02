@@ -330,18 +330,8 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getModels();
-			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if (false == theTarget instanceof ModelReference) {
-				continue;
-			}
-			ModelReference dst = (ModelReference) theTarget;
-			List sources = link.getModels();
-			Object theSource = sources.size() == 1 ? sources.get(0) : null;
-			if (false == theSource instanceof ModelReference) {
-				continue;
-			}
-			ModelReference src = (ModelReference) theSource;
+			ModelReference dst = link.getModel1();
+			ModelReference src = link.getModel0();
 			result.add(new MIDLinkDescriptor(src, dst, link,
 					MIDElementTypes.BinaryMappingReference_4004,
 					BinaryMappingReferenceEditPart.VISUAL_ID));
@@ -380,7 +370,7 @@ public class MIDDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != MappingPackage.eINSTANCE
-					.getMappingReference_Models()
+					.getBinaryMappingReference_Model1()
 					|| false == setting.getEObject() instanceof BinaryMappingReference) {
 				continue;
 			}
@@ -390,12 +380,7 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List sources = link.getModels();
-			Object theSource = sources.size() == 1 ? sources.get(0) : null;
-			if (false == theSource instanceof ModelReference) {
-				continue;
-			}
-			ModelReference src = (ModelReference) theSource;
+			ModelReference src = link.getModel0();
 			result.add(new MIDLinkDescriptor(src, target, link,
 					MIDElementTypes.BinaryMappingReference_4004,
 					BinaryMappingReferenceEditPart.VISUAL_ID));
@@ -449,18 +434,8 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			List targets = link.getModels();
-			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if (false == theTarget instanceof ModelReference) {
-				continue;
-			}
-			ModelReference dst = (ModelReference) theTarget;
-			List sources = link.getModels();
-			Object theSource = sources.size() == 1 ? sources.get(0) : null;
-			if (false == theSource instanceof ModelReference) {
-				continue;
-			}
-			ModelReference src = (ModelReference) theSource;
+			ModelReference dst = link.getModel1();
+			ModelReference src = link.getModel0();
 			if (src != source) {
 				continue;
 			}

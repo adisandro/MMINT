@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceNameEditPart;
@@ -101,6 +102,24 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser binaryMappingReferenceName_6001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getBinaryMappingReferenceName_6001Parser() {
+		if (binaryMappingReferenceName_6001Parser == null) {
+			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			binaryMappingReferenceName_6001Parser = parser;
+		}
+		return binaryMappingReferenceName_6001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case MappingReferenceNameEditPart.VISUAL_ID:
@@ -109,6 +128,8 @@ public class MIDParserProvider extends AbstractProvider implements
 			return getModelReferenceName_5002Parser();
 		case ModelReferenceName2EditPart.VISUAL_ID:
 			return getModelReferenceName_5003Parser();
+		case BinaryMappingReferenceNameEditPart.VISUAL_ID:
+			return getBinaryMappingReferenceName_6001Parser();
 		}
 		return null;
 	}

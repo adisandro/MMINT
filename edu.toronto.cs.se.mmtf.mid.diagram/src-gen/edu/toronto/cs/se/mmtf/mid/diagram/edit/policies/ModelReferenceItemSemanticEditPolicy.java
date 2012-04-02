@@ -34,7 +34,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateMappingCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceAddModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceChangeModelCommand;
@@ -168,13 +170,28 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
+	protected Command getStartCreateRelationshipCommandGen(
 			CreateRelationshipRequest req) {
 		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
 			return null;
 		}
 		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
 			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		return null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
+			return null;
+		}
+		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
+			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -206,7 +223,7 @@ public class ModelReferenceItemSemanticEditPolicy extends
 					req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
+			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -218,11 +235,26 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
+	protected Command getReorientRelationshipCommandGen(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getGEFWrapper(new BinaryMappingReferenceReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated NOT
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case BinaryMappingReferenceEditPart.VISUAL_ID:
+			return getGEFWrapper(new BinaryMappingReferenceChangeModelCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

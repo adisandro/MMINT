@@ -22,10 +22,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -34,9 +30,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
-import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDElementChooserDialog;
@@ -65,30 +59,19 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		URI modelUri;
-		EObject root;
 		try {
-			modelUri = selectModelToImport();
-			ResourceSet set = new ResourceSetImpl();
-			Resource resource = set.getResource(modelUri, true);
-			root = resource.getContents().get(0);
+			URI modelUri = selectModelToImport();
+			MultiModel owner = (MultiModel) getElementToEdit();
+			ModelReference newElement = MultiModelCommandsTrait.createModelReference(owner, modelUri);
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+
+			return CommandResult.newOKCommandResult(newElement);
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model imported", e);
 			return CommandResult.newErrorCommandResult("No model imported");
 		}
-
-		ModelReference newElement = MidFactory.eINSTANCE.createModelReference();
-		newElement.setUri(modelUri.toPlatformString(true));
-		newElement.setName(modelUri.lastSegment());
-		newElement.setRoot(root);
-		newElement.setOrigin(ModelReferenceOrigin.IMPORTED);
-		MultiModel owner = (MultiModel) getElementToEdit();
-		owner.getElements().add(newElement);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-
-		return CommandResult.newOKCommandResult(newElement);
 	}
 
 }

@@ -85,10 +85,7 @@ public class BinaryMappingReferenceReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof ModelReference && newEnd instanceof ModelReference)) {
 			return false;
 		}
-		if (getLink().getModels().size() != 1) {
-			return false;
-		}
-		ModelReference target = (ModelReference) getLink().getModels().get(0);
+		ModelReference target = getLink().getModel1();
 		if (!(getLink().eContainer() instanceof MultiModel)) {
 			return false;
 		}
@@ -105,10 +102,7 @@ public class BinaryMappingReferenceReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof ModelReference && newEnd instanceof ModelReference)) {
 			return false;
 		}
-		if (getLink().getModels().size() != 1) {
-			return false;
-		}
-		ModelReference source = (ModelReference) getLink().getModels().get(0);
+		ModelReference source = getLink().getModel0();
 		if (!(getLink().eContainer() instanceof MultiModel)) {
 			return false;
 		}
@@ -140,8 +134,7 @@ public class BinaryMappingReferenceReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().getModels().remove(getOldSource());
-		getLink().getModels().add(getNewSource());
+		getLink().setModel0(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -149,8 +142,7 @@ public class BinaryMappingReferenceReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().getModels().remove(getOldTarget());
-		getLink().getModels().add(getNewTarget());
+		getLink().setModel1(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 

@@ -18,17 +18,78 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping;
 
+import edu.toronto.cs.se.mmtf.mid.ModelReference;
+
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Binary Mapping Reference</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel0 <em>Model0</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel1 <em>Model1</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMappingReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinary'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinary='models->size() = 2'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinary sourceModel targetModel'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinary='models->size() = 2' sourceModel='model0 = models->at(0)' targetModel='model1 = models->at(1)'"
  * @generated
  */
 public interface BinaryMappingReference extends MappingReference {
+
+	/**
+	 * Returns the value of the '<em><b>Model0</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model0</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model0</em>' reference.
+	 * @see #setModel0(ModelReference)
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMappingReference_Model0()
+	 * @model required="true"
+	 * @generated
+	 */
+	ModelReference getModel0();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel0 <em>Model0</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model0</em>' reference.
+	 * @see #getModel0()
+	 * @generated
+	 */
+	void setModel0(ModelReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Model1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model1</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model1</em>' reference.
+	 * @see #setModel1(ModelReference)
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMappingReference_Model1()
+	 * @model required="true"
+	 * @generated
+	 */
+	ModelReference getModel1();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel1 <em>Model1</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model1</em>' reference.
+	 * @see #getModel1()
+	 * @generated
+	 */
+	void setModel1(ModelReference value);
 } // BinaryMappingReference

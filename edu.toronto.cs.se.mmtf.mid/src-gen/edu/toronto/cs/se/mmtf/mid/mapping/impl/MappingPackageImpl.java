@@ -207,6 +207,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBinaryMappingReference_Model0() {
+		return (EReference)binaryMappingReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinaryMappingReference_Model1() {
+		return (EReference)binaryMappingReferenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelContainer() {
 		return modelContainerEClass;
 	}
@@ -317,6 +335,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__CONTAINERS);
 
 		binaryMappingReferenceEClass = createEClass(BINARY_MAPPING_REFERENCE);
+		createEReference(binaryMappingReferenceEClass, BINARY_MAPPING_REFERENCE__MODEL0);
+		createEReference(binaryMappingReferenceEClass, BINARY_MAPPING_REFERENCE__MODEL1);
 
 		modelContainerEClass = createEClass(MODEL_CONTAINER);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__ELEMENTS);
@@ -374,6 +394,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMappingReference_Containers(), this.getModelContainer(), null, "containers", null, 1, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(binaryMappingReferenceEClass, BinaryMappingReference.class, "BinaryMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBinaryMappingReference_Model0(), theMidPackage.getModelReference(), null, "model0", null, 1, 1, BinaryMappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryMappingReference_Model1(), theMidPackage.getModelReference(), null, "model1", null, 1, 1, BinaryMappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelContainerEClass, ModelContainer.class, "ModelContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelContainer_Elements(), this.getModelElementReference(), null, "elements", null, 0, -1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -420,7 +442,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "isBinary"
+			 "constraints", "isBinary sourceModel targetModel"
 		   });		
 	}
 
@@ -442,7 +464,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "isBinary", "models->size() = 2"
+			 "isBinary", "models->size() = 2",
+			 "sourceModel", "model0 = models->at(0)",
+			 "targetModel", "model1 = models->at(1)"
 		   });		
 		addAnnotation
 		  (getModelContainer_Name(), 

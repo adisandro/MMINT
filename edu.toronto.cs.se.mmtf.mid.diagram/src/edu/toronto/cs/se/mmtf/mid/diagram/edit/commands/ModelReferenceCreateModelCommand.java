@@ -22,10 +22,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -38,9 +34,7 @@ import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
-import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.repository.Editor;
 import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
@@ -87,30 +81,19 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		URI modelUri;
-		EObject root;
 		try {
-			modelUri = createModel();
-			ResourceSet set = new ResourceSetImpl();
-			Resource resource = set.getResource(modelUri, true);
-			root = resource.getContents().get(0);
+			URI modelUri = createModel();
+			MultiModel owner = (MultiModel) getElementToEdit();
+			ModelReference newElement = MultiModelCommandsTrait.createModelReference(owner, modelUri);
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+
+			return CommandResult.newOKCommandResult(newElement);
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model created", e);
 			return CommandResult.newErrorCommandResult("No model created");
 		}
-
-		ModelReference newElement = MidFactory.eINSTANCE.createModelReference();
-		newElement.setUri(modelUri.toPlatformString(true));
-		newElement.setName(modelUri.lastSegment());
-		newElement.setRoot(root);
-		newElement.setOrigin(ModelReferenceOrigin.CREATED);
-		MultiModel owner = (MultiModel) getElementToEdit();
-		owner.getElements().add(newElement);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-
-		return CommandResult.newOKCommandResult(newElement);
 	}
 
 }

@@ -31,7 +31,12 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/mappings"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/containers"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//mapping/BinaryMappingReference"/>
+      <genClasses ecoreClass="mid.ecore#//mapping/BinaryMappingReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/BinaryMappingReference/model0"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/BinaryMappingReference/model1"/>
+      </genClasses>
       <genClasses ecoreClass="mid.ecore#//mapping/ModelContainer">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/elements"/>
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelContainer/name"/>

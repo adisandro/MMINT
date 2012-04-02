@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
@@ -37,6 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -148,7 +150,8 @@ public class MIDVisualIDRegistry {
 		switch (containerVisualID) {
 		case MultiModelEditPart.VISUAL_ID:
 			if (MappingPackage.eINSTANCE.getMappingReference().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isMappingReference_2004((MappingReference) domainElement)) {
 				return MappingReferenceEditPart.VISUAL_ID;
 			}
 			if (MidPackage.eINSTANCE.getModelReference().isSuperTypeOf(
@@ -214,6 +217,11 @@ public class MIDVisualIDRegistry {
 				return true;
 			}
 			break;
+		case BinaryMappingReferenceEditPart.VISUAL_ID:
+			if (BinaryMappingReferenceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -245,8 +253,19 @@ public class MIDVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static boolean isModelReference_2002(ModelReference domainElement) {
+	private static boolean isMappingReference_2004(
+			MappingReference domainElement) {
 		Object result = MIDOCLFactory.getExpression(0,
+				MappingPackage.eINSTANCE.getMappingReference(), null).evaluate(
+				domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isModelReference_2002(ModelReference domainElement) {
+		Object result = MIDOCLFactory.getExpression(1,
 				MidPackage.eINSTANCE.getModelReference(), null).evaluate(
 				domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -256,7 +275,7 @@ public class MIDVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isModelReference_2003(ModelReference domainElement) {
-		Object result = MIDOCLFactory.getExpression(1,
+		Object result = MIDOCLFactory.getExpression(2,
 				MidPackage.eINSTANCE.getModelReference(), null).evaluate(
 				domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();

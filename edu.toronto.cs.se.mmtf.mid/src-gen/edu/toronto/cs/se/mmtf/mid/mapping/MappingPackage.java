@@ -240,13 +240,31 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MAPPING_REFERENCE__CONTAINERS = MAPPING_REFERENCE__CONTAINERS;
 
 	/**
+	 * The feature id for the '<em><b>Model0</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE__MODEL0 = MAPPING_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Model1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE__MODEL1 = MAPPING_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Binary Mapping Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 0;
+	int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Binary Mapping Reference</em>' class.
@@ -468,6 +486,28 @@ public interface MappingPackage extends EPackage {
 	EClass getBinaryMappingReference();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel0 <em>Model0</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model0</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel0()
+	 * @see #getBinaryMappingReference()
+	 * @generated
+	 */
+	EReference getBinaryMappingReference_Model0();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel1 <em>Model1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model1</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference#getModel1()
+	 * @see #getBinaryMappingReference()
+	 * @generated
+	 */
+	EReference getBinaryMappingReference_Model1();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer <em>Model Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -629,6 +669,22 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BINARY_MAPPING_REFERENCE = eINSTANCE.getBinaryMappingReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Model0</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_MAPPING_REFERENCE__MODEL0 = eINSTANCE.getBinaryMappingReference_Model0();
+
+		/**
+		 * The meta object literal for the '<em><b>Model1</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_MAPPING_REFERENCE__MODEL1 = eINSTANCE.getBinaryMappingReference_Model1();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl <em>Model Container</em>}' class.

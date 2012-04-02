@@ -33,6 +33,7 @@
         visualID="2004"
         editPartClassName="MappingReferenceEditPart"
         itemSemanticEditPolicyClassName="MappingReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="MappingReferenceViewFactory"
         canonicalEditPolicyClassName="MappingReferenceCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MappingReferenceGraphicalNodeEditPolicy"
         createCommandClassName="MappingReferenceCreateCommand">
@@ -50,7 +51,8 @@
           editPolicyClassName="MappingReferenceOpenDiagramEditPolicy"
           diagramKind="Mapping"
           editorID="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MappingDiagramEditorID"/>
-      <modelFacet>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
         <metaClass
             href="mid.genmodel#//mid/mapping/MappingReference"/>
         <containmentMetaFeature
@@ -62,6 +64,7 @@
           visualID="5004"
           editPartClassName="MappingReferenceNameEditPart"
           itemSemanticEditPolicyClassName="MappingReferenceNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="MappingReferenceNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -100,7 +103,7 @@
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorID"/>
       <modelFacet
-          modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.1">
         <metaClass
             href="mid.genmodel#//mid/ModelReference"/>
         <containmentMetaFeature
@@ -151,7 +154,7 @@
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorID"/>
       <modelFacet
-          modelElementSelector="//@expressionProviders/@providers.0/@expressions.1">
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.2">
         <metaClass
             href="mid.genmodel#//mid/ModelReference"/>
         <containmentMetaFeature
@@ -183,6 +186,7 @@
         visualID="4003"
         editPartClassName="MappingReferenceModelsEditPart"
         itemSemanticEditPolicyClassName="MappingReferenceModelsItemSemanticEditPolicy"
+        notationViewFactoryClassName="MappingReferenceModelsViewFactory"
         createCommandClassName="MappingReferenceModelsCreateCommand"
         reorientCommandClassName="MappingReferenceModelsReorientCommand">
       <diagramRunTimeClass
@@ -203,6 +207,7 @@
         visualID="4004"
         editPartClassName="BinaryMappingReferenceEditPart"
         itemSemanticEditPolicyClassName="BinaryMappingReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="BinaryMappingReferenceViewFactory"
         createCommandClassName="BinaryMappingReferenceCreateCommand"
         reorientCommandClassName="BinaryMappingReferenceReorientCommand">
       <diagramRunTimeClass
@@ -211,8 +216,14 @@
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="BinaryMappingReferenceEditHelper"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx"/>
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="BinaryMappingReferenceModelsFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class BinaryMappingReferenceModelsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureBinaryMappingReferenceNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public BinaryMappingReferenceModelsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureBinaryMappingReferenceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureBinaryMappingReferenceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureBinaryMappingReferenceNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureBinaryMappingReferenceNameFigure() {&#xA;&#x9;&#x9;return fFigureBinaryMappingReferenceNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"
+          editPolicyClassName="MappingReferenceOpenDiagramEditPolicy"
+          diagramKind="Mapping"
+          editorID="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MappingDiagramEditorID"/>
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
@@ -222,10 +233,32 @@
         <childMetaFeature
             href="mid.genmodel#//mid/MultiModel/elements"/>
         <sourceMetaFeature
-            href="mid.genmodel#//mid/mapping/MappingReference/models"/>
+            href="mid.genmodel#//mid/mapping/BinaryMappingReference/model0"/>
         <targetMetaFeature
-            href="mid.genmodel#//mid/mapping/MappingReference/models"/>
+            href="mid.genmodel#//mid/mapping/BinaryMappingReference/model1"/>
       </modelFacet>
+      <labels
+          visualID="6001"
+          editPartClassName="BinaryMappingReferenceNameEditPart"
+          itemSemanticEditPolicyClassName="BinaryMappingReferenceNameItemSemanticEditPolicy"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureBinaryMappingReferenceNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="40"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="mid.genmodel#//mid/NamedElement/name"/>
+        </modelFacet>
+      </labels>
     </links>
     <palette>
       <groups
@@ -489,6 +522,9 @@
         xsi:type="gmfgen:GenExpressionInterpreter">
       <expressions
           xsi:type="gmfgen:GenConstraint"
+          body="not self.oclIsTypeOf(BinaryMappingReference)"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
           body="self.origin = ModelReferenceOrigin::IMPORTED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
@@ -499,7 +535,7 @@
       extensibleViaService="true">
     <implementations
         xsi:type="gmfgen:PredefinedParser"
-        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet"/>
+        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">

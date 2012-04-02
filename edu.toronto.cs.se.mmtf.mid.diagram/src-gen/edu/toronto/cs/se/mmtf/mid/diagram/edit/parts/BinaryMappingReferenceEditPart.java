@@ -19,13 +19,16 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.BinaryMappingReferenceItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceOpenDiagramEditPolicy;
 
 /**
  * @generated
@@ -52,6 +55,51 @@ public class BinaryMappingReferenceEditPart extends ConnectionNodeEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new BinaryMappingReferenceItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new MappingReferenceOpenDiagramEditPolicy());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof BinaryMappingReferenceNameEditPart) {
+			((BinaryMappingReferenceNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureBinaryMappingReferenceNameFigure());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, index);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof BinaryMappingReferenceNameEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
 	}
 
 	/**
@@ -63,14 +111,54 @@ public class BinaryMappingReferenceEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new PolylineConnectionEx();
+		return new BinaryMappingReferenceModelsFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx) getFigure();
+	public BinaryMappingReferenceModelsFigure getPrimaryShape() {
+		return (BinaryMappingReferenceModelsFigure) getFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class BinaryMappingReferenceModelsFigure extends
+			PolylineConnectionEx {
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureBinaryMappingReferenceNameFigure;
+
+		/**
+		 * @generated
+		 */
+		public BinaryMappingReferenceModelsFigure() {
+
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			fFigureBinaryMappingReferenceNameFigure = new WrappingLabel();
+			fFigureBinaryMappingReferenceNameFigure.setText("<...>");
+
+			this.add(fFigureBinaryMappingReferenceNameFigure);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureBinaryMappingReferenceNameFigure() {
+			return fFigureBinaryMappingReferenceNameFigure;
+		}
+
 	}
 
 }

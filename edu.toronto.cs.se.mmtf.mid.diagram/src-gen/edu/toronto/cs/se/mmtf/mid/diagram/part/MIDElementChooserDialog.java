@@ -158,7 +158,8 @@ public class MIDElementChooserDialog extends Dialog {
 	private boolean isValidModelFile(IFile file) {
 
 		String fileExtension = file.getFullPath().getFileExtension();
-		ArrayList<String> registeredMetamodels = MMTFRegistry.getMetamodelFileExtensions();
+		ArrayList<String> registeredMetamodels = MMTFRegistry
+				.getMetamodelFileExtensions();
 
 		return registeredMetamodels.contains(fileExtension);
 	}

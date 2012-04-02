@@ -25,9 +25,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateMappingCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceAddModelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
@@ -90,7 +93,7 @@ public class BinaryMappingReferenceItemSemanticEditPolicy extends
 					req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
+			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -122,7 +125,7 @@ public class BinaryMappingReferenceItemSemanticEditPolicy extends
 					req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingReferenceCreateCommand(req,
+			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -134,11 +137,26 @@ public class BinaryMappingReferenceItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
+	protected Command getReorientRelationshipCommandGen(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getGEFWrapper(new BinaryMappingReferenceReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated NOT
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case BinaryMappingReferenceEditPart.VISUAL_ID:
+			return getGEFWrapper(new BinaryMappingReferenceChangeModelCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -149,11 +167,26 @@ public class BinaryMappingReferenceItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
+	protected Command getReorientReferenceRelationshipCommandGen(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case MappingReferenceModelsEditPart.VISUAL_ID:
 			return getGEFWrapper(new MappingReferenceModelsReorientCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated NOT
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case MappingReferenceModelsEditPart.VISUAL_ID:
+			return getGEFWrapper(new MappingReferenceChangeModelCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

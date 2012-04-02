@@ -12,6 +12,8 @@
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//mapping/MappingReference"/>
+      <domainSpecialization
+          body="not self.oclIsTypeOf(BinaryMappingReference)"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -83,6 +85,13 @@
   <links>
     <domainMetaElement
         href="mid.ecore#//mapping/BinaryMappingReference"/>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="mid.gmfgraph#BinaryMappingReferenceName"/>
+      <features
+          href="mid.ecore#//NamedElement/name"/>
+    </labelMappings>
     <containmentFeature
         href="mid.ecore#//MultiModel/elements"/>
     <tool
@@ -92,10 +101,10 @@
         href="mid.gmfgraph#BinaryMappingReferenceModels"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/MappingReference/models"/>
+        href="mid.ecore#//mapping/BinaryMappingReference/model0"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/MappingReference/models"/>
+        href="mid.ecore#//mapping/BinaryMappingReference/model1"/>
   </links>
   <diagram>
     <diagramCanvas

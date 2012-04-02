@@ -42,11 +42,17 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BinaryMappingReference" eSuperTypes="#//mapping/MappingReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="isBinary"/>
+        <details key="constraints" value="isBinary sourceModel targetModel"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="isBinary" value="models->size() = 2"/>
+        <details key="sourceModel" value="model0 = models->at(0)"/>
+        <details key="targetModel" value="model1 = models->at(1)"/>
       </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="model0" lowerBound="1"
+          eType="#//ModelReference"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="model1" lowerBound="1"
+          eType="#//ModelReference"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelContainer">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"

@@ -182,6 +182,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingReference_modelContainers(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinary(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_sourceModel(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_targetModel(binaryMappingReference, diagnostics, context);
 		return result;
 	}
 
@@ -209,6 +211,64 @@ public class MappingValidator extends EObjectValidator {
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "isBinary",
 				 BINARY_MAPPING_REFERENCE__IS_BINARY__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the sourceModel constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BINARY_MAPPING_REFERENCE__SOURCE_MODEL__EEXPRESSION = "model0 = models->at(0)";
+
+	/**
+	 * Validates the sourceModel constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMappingReference_sourceModel(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.BINARY_MAPPING_REFERENCE,
+				 binaryMappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "sourceModel",
+				 BINARY_MAPPING_REFERENCE__SOURCE_MODEL__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the targetModel constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BINARY_MAPPING_REFERENCE__TARGET_MODEL__EEXPRESSION = "model1 = models->at(1)";
+
+	/**
+	 * Validates the targetModel constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMappingReference_targetModel(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.BINARY_MAPPING_REFERENCE,
+				 binaryMappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "targetModel",
+				 BINARY_MAPPING_REFERENCE__TARGET_MODEL__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

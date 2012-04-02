@@ -7,11 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.ModelReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-
 public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreateCommand {
 
 	public MappingReferenceAddModelCommand(CreateRelationshipRequest request, EObject source, EObject target) {
@@ -25,13 +20,9 @@ public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreat
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 
-		MappingReference source = getSource();
-		ModelReference target = getTarget();
-		if (source != null && target != null) {
-			source.getModels().add(target);
-			ModelContainer container = MappingFactory.eINSTANCE.createModelContainer();
-			container.setModel(target);
-			source.getContainers().add(container);
+		if (getSource() != null && getTarget() != null) {
+			getSource().getModels().add(getTarget());
+			MultiModelCommandsTrait.addMappingReferenceModel(getSource(), getTarget());
 		}
 
 		return CommandResult.newOKCommandResult();

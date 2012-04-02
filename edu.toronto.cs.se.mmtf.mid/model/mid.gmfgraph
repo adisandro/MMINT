@@ -47,7 +47,14 @@
         name="BinaryMappingReferenceModelsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="BinaryMappingReferenceModelsFigure"/>
+          name="BinaryMappingReferenceModelsFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="BinaryMappingReferenceNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -70,4 +77,8 @@
       name="MappingReferenceName"
       figure="MappingReferenceFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels
+      name="BinaryMappingReferenceName"
+      figure="BinaryMappingReferenceModelsFigure"
+      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
 </gmfgraph:Canvas>
