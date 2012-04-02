@@ -62,7 +62,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		try {
 			URI modelUri = selectModelToImport();
 			MultiModel owner = (MultiModel) getElementToEdit();
-			ModelReference newElement = MultiModelCommandsTrait.createModelReference(owner, modelUri);
+			ModelReference newElement = MultiModelCommandsTrait.importModelReference(owner, modelUri);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
