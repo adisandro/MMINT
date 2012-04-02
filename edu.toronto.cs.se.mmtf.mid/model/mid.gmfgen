@@ -241,6 +241,7 @@
           visualID="6001"
           editPartClassName="BinaryMappingReferenceNameEditPart"
           itemSemanticEditPolicyClassName="BinaryMappingReferenceNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="BinaryMappingReferenceNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -522,13 +523,13 @@
         xsi:type="gmfgen:GenExpressionInterpreter">
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="not self.oclIsTypeOf(BinaryMappingReference)"/>
+          body="not self.oclIsTypeOf(mapping::BinaryMappingReference)"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="self.origin = ModelReferenceOrigin::IMPORTED"/>
+          body="not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="self.origin = ModelReferenceOrigin::CREATED"/>
+          body="not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
     </providers>
   </expressionProviders>
   <labelParsers

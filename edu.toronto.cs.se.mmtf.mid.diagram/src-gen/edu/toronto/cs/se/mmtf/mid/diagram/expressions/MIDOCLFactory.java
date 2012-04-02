@@ -69,9 +69,9 @@ public class MIDOCLFactory {
 		}
 		if (cached.expressions[index] == null) {
 			final String[] exprBodies = new String[] {
-					"not self.oclIsTypeOf(BinaryMappingReference)", //$NON-NLS-1$
-					"self.origin = ModelReferenceOrigin::IMPORTED", //$NON-NLS-1$
-					"self.origin = ModelReferenceOrigin::CREATED", //$NON-NLS-1$
+					"not self.oclIsTypeOf(mapping::BinaryMappingReference)", //$NON-NLS-1$
+					"not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED", //$NON-NLS-1$
+					"not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(
 					exprBodies[index],

@@ -209,8 +209,8 @@ public class MappingReferenceItemSemanticEditPolicy extends
 					req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -241,8 +241,8 @@ public class MappingReferenceItemSemanticEditPolicy extends
 					req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -272,7 +272,8 @@ public class MappingReferenceItemSemanticEditPolicy extends
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
-			return getGEFWrapper(new BinaryMappingReferenceChangeModelCommand(req));
+			return getGEFWrapper(new BinaryMappingReferenceChangeModelCommand(
+					req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
