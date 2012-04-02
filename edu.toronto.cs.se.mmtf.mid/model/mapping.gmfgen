@@ -34,6 +34,7 @@
         visualID="3003"
         editPartClassName="ModelElementReferenceEditPart"
         itemSemanticEditPolicyClassName="ModelElementReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelElementReferenceViewFactory"
         canonicalEditPolicyClassName="ModelElementReferenceCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ModelElementReferenceGraphicalNodeEditPolicy"
         createCommandClassName="ModelElementReferenceCreateCommand"
@@ -59,6 +60,7 @@
           visualID="5006"
           editPartClassName="ModelElementReferenceNameEditPart"
           itemSemanticEditPolicyClassName="ModelElementReferenceNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ModelElementReferenceNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -78,6 +80,7 @@
         visualID="2005"
         editPartClassName="ModelContainerEditPart"
         itemSemanticEditPolicyClassName="ModelContainerItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelContainerViewFactory"
         canonicalEditPolicyClassName="ModelContainerCanonicalEditPolicy"
         compartments="//@diagram/@compartments.0"
         graphicalNodeEditPolicyClassName="ModelContainerGraphicalNodeEditPolicy"
@@ -103,6 +106,7 @@
           visualID="5005"
           editPartClassName="ModelContainerNameEditPart"
           itemSemanticEditPolicyClassName="ModelContainerNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ModelContainerNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -122,6 +126,7 @@
         visualID="2004"
         editPartClassName="MappingEditPart"
         itemSemanticEditPolicyClassName="MappingItemSemanticEditPolicy"
+        notationViewFactoryClassName="MappingViewFactory"
         canonicalEditPolicyClassName="MappingCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MappingGraphicalNodeEditPolicy"
         createCommandClassName="MappingCreateCommand">
@@ -146,6 +151,7 @@
           visualID="5004"
           editPartClassName="MappingNameEditPart"
           itemSemanticEditPolicyClassName="MappingNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="MappingNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -165,6 +171,7 @@
         visualID="4002"
         editPartClassName="MappingElementsEditPart"
         itemSemanticEditPolicyClassName="MappingElementsItemSemanticEditPolicy"
+        notationViewFactoryClassName="MappingElementsViewFactory"
         createCommandClassName="MappingElementsCreateCommand"
         reorientCommandClassName="MappingElementsReorientCommand">
       <diagramRunTimeClass
@@ -185,6 +192,7 @@
         visualID="7003"
         editPartClassName="ModelContainerModelContainerCompartmentEditPart"
         itemSemanticEditPolicyClassName="ModelContainerModelContainerCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelContainerModelContainerCompartmentViewFactory"
         canonicalEditPolicyClassName="ModelContainerModelContainerCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="ModelContainerCompartment"
