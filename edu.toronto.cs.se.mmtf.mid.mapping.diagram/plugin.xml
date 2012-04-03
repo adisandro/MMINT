@@ -234,6 +234,10 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <?gmfgen generated="true"?>
       <viewProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDViewProvider">
          <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="mapping"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Mapping"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005,2004,3003"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002"/>
@@ -403,11 +407,17 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
         	      <test property="org.eclipse.core.resources.extension" value="mapping_diagram"/>
                </and>
                <instanceof value="edu.toronto.cs.se.mmtf.mid.mapping.diagram.navigator.MIDAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.mmtf.mid.mapping.diagram.isShortcut"/>
+           	   </adapt>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
          	   <instanceof value="edu.toronto.cs.se.mmtf.mid.mapping.diagram.navigator.MIDAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.mmtf.mid.mapping.diagram.isShortcut"/>
+           	   </adapt>
             </or>
          </possibleChildren>
          <commonSorter 
@@ -451,6 +461,9 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          <enablement>
             <or>
                <instanceof value="edu.toronto.cs.se.mmtf.mid.mapping.diagram.navigator.MIDAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.mmtf.mid.mapping.diagram.isShortcut"/>
+           	   </adapt>
             </or>
          </enablement>
       </actionProvider>
@@ -544,6 +557,28 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
+   </extension>
+
+<extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2005,2004"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+<extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="edu.toronto.cs.se.mmtf.mid.mapping.diagram"
+           properties="isShortcut"
+           class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDShortcutPropertyTester">
+       </propertyTester>
    </extension>
 
    <extension

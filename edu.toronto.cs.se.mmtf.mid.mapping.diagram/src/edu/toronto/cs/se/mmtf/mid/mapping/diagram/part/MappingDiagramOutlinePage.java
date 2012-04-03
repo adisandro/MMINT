@@ -6,10 +6,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -20,13 +20,13 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
-public class MappingContentOutlinePage extends ContentOutlinePage {
+public class MappingDiagramOutlinePage extends ContentOutlinePage {
 
 	protected TreeViewer contentOutlineViewer;
 	protected ComposedAdapterFactory adapterFactory;
 	protected Diagram diagram;
 
-	public MappingContentOutlinePage(Diagram diagram) {
+	public MappingDiagramOutlinePage(Diagram diagram) {
 
 		super();
 
@@ -47,9 +47,9 @@ public class MappingContentOutlinePage extends ContentOutlinePage {
 		contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 		// add drag support
-		int ops = DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
-		contentOutlineViewer.addDragSupport(ops, transfers, new MappingContentOutlineDragListener(contentOutlineViewer));
+		int ops = DND.DROP_LINK | DND.DROP_MOVE;
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+		contentOutlineViewer.addDragSupport(ops, transfers, new MappingDiagramOutlineDragListener(contentOutlineViewer));
 
 		// loads only the resources of this mapping reference
 		ResourceSet resourceSet = new ResourceSetImpl();

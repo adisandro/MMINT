@@ -115,6 +115,9 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	protected boolean isOrphaned(Collection<EObject> semanticChildren,
 			final View view) {
+		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+			return MIDDiagramUpdater.isShortcutOrphaned(view);
+		}
 		return isMyDiagramElement(view)
 				&& !semanticChildren.contains(view.getElement());
 	}
@@ -145,6 +148,9 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 		for (View v : getViewChildren()) {
 			if (isMyDiagramElement(v)) {
 				knownViewChildren.add(v);
+			}
+			if (v.getEAnnotation("Shortcut") != null && MIDDiagramUpdater.isShortcutOrphaned(v)) { //$NON-NLS-1$
+				orphaned.add(v);
 			}
 		}
 		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)

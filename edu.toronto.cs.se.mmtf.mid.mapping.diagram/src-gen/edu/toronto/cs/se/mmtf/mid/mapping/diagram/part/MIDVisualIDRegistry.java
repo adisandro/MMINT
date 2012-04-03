@@ -127,7 +127,8 @@ public class MIDVisualIDRegistry {
 		}
 		String containerModelID = edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry
 				.getModelID(containerView);
-		if (!MappingReferenceEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!MappingReferenceEditPart.MODEL_ID.equals(containerModelID)
+				&& !"mapping".equals(containerModelID)) { //$NON-NLS-1$
 			return -1;
 		}
 		int containerVisualID;
@@ -168,7 +169,8 @@ public class MIDVisualIDRegistry {
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry
 				.getModelID(containerView);
-		if (!MappingReferenceEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!MappingReferenceEditPart.MODEL_ID.equals(containerModelID)
+				&& !"mapping".equals(containerModelID)) { //$NON-NLS-1$
 			return false;
 		}
 		int containerVisualID;

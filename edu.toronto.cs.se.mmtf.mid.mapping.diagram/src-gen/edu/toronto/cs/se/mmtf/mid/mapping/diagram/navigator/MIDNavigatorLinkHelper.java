@@ -19,6 +19,7 @@
 package edu.toronto.cs.se.mmtf.mid.mapping.diagram.navigator;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -112,6 +113,9 @@ public class MIDNavigatorLinkHelper implements ILinkHelper {
 			if (navigatorGroup.getParent() instanceof MIDNavigatorItem) {
 				navigatorView = ((MIDNavigatorItem) navigatorGroup.getParent())
 						.getView();
+			} else if (navigatorGroup.getParent() instanceof IAdaptable) {
+				navigatorView = (View) ((IAdaptable) navigatorGroup.getParent())
+						.getAdapter(View.class);
 			}
 		}
 		if (navigatorView == null) {

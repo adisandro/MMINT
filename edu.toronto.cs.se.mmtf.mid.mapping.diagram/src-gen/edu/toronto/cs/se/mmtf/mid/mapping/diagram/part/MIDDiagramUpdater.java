@@ -51,6 +51,14 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static boolean isShortcutOrphaned(View view) {
+		return !view.isSetElement() || view.getElement() == null
+				|| view.getElement().eIsProxy();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<MIDNodeDescriptor> getSemanticChildren(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case MappingReferenceEditPart.VISUAL_ID:

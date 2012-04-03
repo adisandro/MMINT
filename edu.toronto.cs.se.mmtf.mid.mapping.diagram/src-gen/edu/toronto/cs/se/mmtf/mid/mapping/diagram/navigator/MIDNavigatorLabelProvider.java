@@ -18,6 +18,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping.diagram.navigator;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -99,6 +100,14 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 			return getImage(navigatorItem.getView());
 		}
 
+		// Due to plugin.xml content will be called only for "own" views
+		if (element instanceof IAdaptable) {
+			View view = (View) ((IAdaptable) element).getAdapter(View.class);
+			if (view != null && isOwnView(view)) {
+				return getImage(view);
+			}
+		}
+
 		return super.getImage(element);
 	}
 
@@ -110,18 +119,18 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 		case ModelElementReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?ModelElementReference", MIDElementTypes.ModelElementReference_3003); //$NON-NLS-1$
-		case ModelContainerEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?ModelContainer", MIDElementTypes.ModelContainer_2005); //$NON-NLS-1$
-		case MappingReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference", MIDElementTypes.MappingReference_1000); //$NON-NLS-1$
 		case MappingEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?Mapping", MIDElementTypes.Mapping_2004); //$NON-NLS-1$
 		case MappingElementsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?Mapping?elements", MIDElementTypes.MappingElements_4002); //$NON-NLS-1$
+		case ModelContainerEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?ModelContainer", MIDElementTypes.ModelContainer_2005); //$NON-NLS-1$
+		case MappingReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference", MIDElementTypes.MappingReference_1000); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -163,6 +172,14 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 			return getText(navigatorItem.getView());
 		}
 
+		// Due to plugin.xml content will be called only for "own" views
+		if (element instanceof IAdaptable) {
+			View view = (View) ((IAdaptable) element).getAdapter(View.class);
+			if (view != null && isOwnView(view)) {
+				return getText(view);
+			}
+		}
+
 		return super.getText(element);
 	}
 
@@ -176,14 +193,14 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case ModelElementReferenceEditPart.VISUAL_ID:
 			return getModelElementReference_3003Text(view);
-		case ModelContainerEditPart.VISUAL_ID:
-			return getModelContainer_2005Text(view);
-		case MappingReferenceEditPart.VISUAL_ID:
-			return getMappingReference_1000Text(view);
 		case MappingEditPart.VISUAL_ID:
 			return getMapping_2004Text(view);
 		case MappingElementsEditPart.VISUAL_ID:
 			return getMappingElements_4002Text(view);
+		case ModelContainerEditPart.VISUAL_ID:
+			return getModelContainer_2005Text(view);
+		case MappingReferenceEditPart.VISUAL_ID:
+			return getMappingReference_1000Text(view);
 		}
 		return getUnknownElementText(view);
 	}

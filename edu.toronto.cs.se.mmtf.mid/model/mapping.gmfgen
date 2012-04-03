@@ -28,6 +28,8 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <containsShortcutsTo>mapping</containsShortcutsTo>
+    <shortcutsProvidedFor>mapping</shortcutsProvidedFor>
     <domainDiagramElement
         href="mid.genmodel#//mid/mapping/MappingReference"/>
     <childNodes
