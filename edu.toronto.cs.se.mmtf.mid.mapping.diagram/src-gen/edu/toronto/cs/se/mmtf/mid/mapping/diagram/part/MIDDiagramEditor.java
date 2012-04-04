@@ -367,7 +367,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
-			new MappinDiagramOutlineDropListener(
+			new MappingDiagramOutlineDropListener(
 				getDiagramGraphicalViewer(),
 				LocalSelectionTransfer.getTransfer()
 			)

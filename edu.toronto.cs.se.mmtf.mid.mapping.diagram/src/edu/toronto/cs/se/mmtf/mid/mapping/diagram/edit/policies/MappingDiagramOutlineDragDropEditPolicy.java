@@ -1,21 +1,26 @@
 package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MIDCreateShortcutDecorationsCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.ModelElementReferenceDropCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 public class MappingDiagramOutlineDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
@@ -27,29 +32,33 @@ public class MappingDiagramOutlineDragDropEditPolicy extends DiagramDragDropEdit
 	}
 
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
-		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>();
+
+		MappingReference root = (MappingReference) ((View) editPart.getModel()).getElement();
+		CompoundCommand command = new CompoundCommand("Add model element references");
+		IElementType elementType = MIDElementTypes.getElementType(ModelElementReferenceEditPart.VISUAL_ID);
+
 		for (Iterator<?> it = dropRequest.getObjects().iterator(); it.hasNext();) {
 			Object nextObject = it.next();
-			if (false == nextObject instanceof EObject) {
+			if (!(nextObject instanceof EObject)) {
 				continue;
 			}
-			viewDescriptors.add(new CreateViewRequest.ViewDescriptor(
-					new EObjectAdapter((EObject) nextObject), Node.class, null,
-					editPart.getDiagramPreferencesHint()));
-		}
-		return createShortcutsCommand(dropRequest, viewDescriptors);
-	}
+			EObject droppedElement = (EObject) nextObject;
+			String modelUri = EcoreUtil.getURI(droppedElement).toPlatformString(true);
 
-	private Command createShortcutsCommand(DropObjectsRequest dropRequest,
-			List<CreateViewRequest.ViewDescriptor> viewDescriptors) {
-		Command command = createViewsAndArrangeCommand(dropRequest,
-				viewDescriptors);
-		if (command != null) {
-			return command.chain(new ICommandProxy(
-					new MIDCreateShortcutDecorationsCommand(editPart.getEditingDomain(),
-							(View) editPart.getModel(), viewDescriptors)));
+			for (ModelContainer container : root.getContainers()) {
+				if (modelUri.equals(container.getModel().getUri())) {
+					EReference containment = (EReference) container.eClass().getEStructuralFeature(MappingPackage.MODEL_CONTAINER__ELEMENTS);
+					CreateElementRequest createReq = new CreateElementRequest(editPart.getEditingDomain(), container, elementType, containment);
+					command.add(
+						new ICommandProxy( // convert GMF command to GEF command
+							new ModelElementReferenceDropCommand(createReq, droppedElement)
+						)
+					);
+				}
+			}
 		}
-		return null;
+
+		return command;
 	}
 
 }
