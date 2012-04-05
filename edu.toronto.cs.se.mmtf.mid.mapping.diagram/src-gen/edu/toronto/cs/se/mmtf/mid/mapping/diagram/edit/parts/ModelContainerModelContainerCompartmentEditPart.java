@@ -89,6 +89,7 @@ public class ModelContainerModelContainerCompartmentEditPart extends
 		installEditPolicy(
 				EditPolicyRoles.CANONICAL_ROLE,
 				new ModelContainerModelContainerCompartmentCanonicalEditPolicy());
+		removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 	}
 
 	/**

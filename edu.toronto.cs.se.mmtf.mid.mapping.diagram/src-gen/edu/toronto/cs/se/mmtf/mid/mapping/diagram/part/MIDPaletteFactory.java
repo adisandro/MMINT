@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
@@ -41,48 +42,31 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createMid1Group());
+		paletteRoot.add(createMappings1Group());
 	}
 
 	/**
-	 * Creates "mid" palette tool group
+	 * Creates "Mappings" palette tool group
 	 * @generated
 	 */
-	private PaletteContainer createMid1Group() {
-		PaletteGroup paletteContainer = new PaletteGroup(
-				Messages.Mid1Group_title);
-		paletteContainer.setId("createMid1Group"); //$NON-NLS-1$
-		paletteContainer.add(createNewModelElementReference1CreationTool());
-		paletteContainer.add(createNewmapping2CreationTool());
-		paletteContainer.add(createNewmappingconnection3CreationTool());
+	private PaletteContainer createMappings1Group() {
+		PaletteDrawer paletteContainer = new PaletteDrawer(
+				Messages.Mappings1Group_title);
+		paletteContainer.setId("createMappings1Group"); //$NON-NLS-1$
+		paletteContainer.add(createNewmapping1CreationTool());
+		paletteContainer.add(createNewmappingconnection2CreationTool());
 		return paletteContainer;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createNewModelElementReference1CreationTool() {
+	private ToolEntry createNewmapping1CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.NewModelElementReference1CreationTool_title,
-				Messages.NewModelElementReference1CreationTool_desc,
-				Collections
-						.singletonList(MIDElementTypes.ModelElementReference_3003));
-		entry.setId("createNewModelElementReference1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(MIDElementTypes
-				.getImageDescriptor(MIDElementTypes.ModelElementReference_3003));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createNewmapping2CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Newmapping2CreationTool_title,
-				Messages.Newmapping2CreationTool_desc,
+				Messages.Newmapping1CreationTool_title,
+				Messages.Newmapping1CreationTool_desc,
 				Collections.singletonList(MIDElementTypes.Mapping_2004));
-		entry.setId("createNewmapping2CreationTool"); //$NON-NLS-1$
+		entry.setId("createNewmapping1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
 				.getImageDescriptor(MIDElementTypes.Mapping_2004));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -92,12 +76,12 @@ public class MIDPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createNewmappingconnection3CreationTool() {
+	private ToolEntry createNewmappingconnection2CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Newmappingconnection3CreationTool_title,
-				Messages.Newmappingconnection3CreationTool_desc,
+				Messages.Newmappingconnection2CreationTool_title,
+				Messages.Newmappingconnection2CreationTool_desc,
 				Collections.singletonList(MIDElementTypes.MappingElements_4002));
-		entry.setId("createNewmappingconnection3CreationTool"); //$NON-NLS-1$
+		entry.setId("createNewmappingconnection2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
 				.getImageDescriptor(MIDElementTypes.MappingElements_4002));
 		entry.setLargeIcon(entry.getSmallIcon());

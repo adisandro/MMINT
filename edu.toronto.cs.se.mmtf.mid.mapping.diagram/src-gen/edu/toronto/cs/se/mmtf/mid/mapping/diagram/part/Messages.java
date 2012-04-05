@@ -261,37 +261,27 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Mid1Group_title;
+	public static String Mappings1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewModelElementReference1CreationTool_title;
+	public static String Newmapping1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewModelElementReference1CreationTool_desc;
+	public static String Newmapping1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmapping2CreationTool_title;
+	public static String Newmappingconnection2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmapping2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Newmappingconnection3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Newmappingconnection3CreationTool_desc;
+	public static String Newmappingconnection2CreationTool_desc;
 
 	/**
 	 * @generated

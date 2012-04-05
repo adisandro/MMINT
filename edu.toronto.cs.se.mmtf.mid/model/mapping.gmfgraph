@@ -15,6 +15,9 @@
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="ModelContainerFigure">
+        <minimumSize
+            dx="200"
+            dy="200"/>
         <children
             xsi:type="gmfgraph:Label"
             name="ModelContainerNameFigure"

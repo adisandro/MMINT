@@ -8,16 +8,8 @@
       title="mappingPalette">
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="mid">
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="New ModelElementReference"
-          description="Create new ModelElementReference">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
+        title="Mappings"
+        collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="New mapping"

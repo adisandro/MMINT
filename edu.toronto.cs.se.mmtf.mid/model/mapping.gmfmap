@@ -35,9 +35,6 @@
             <features
                 href="mid.ecore#//NamedElement/name"/>
           </labelMappings>
-          <tool
-              xsi:type="gmftool:CreationTool"
-              href="mapping.gmftool#//@palette/@tools.0/@tools.0"/>
           <diagramNode
               href="mapping.gmfgraph#ModelElementReference"/>
         </ownedChild>
@@ -64,7 +61,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="mapping.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="mapping.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="mapping.gmfgraph#Mapping"/>
     </ownedChild>
@@ -72,7 +69,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="mapping.gmftool#//@palette/@tools.0/@tools.2"/>
+        href="mapping.gmftool#//@palette/@tools.0/@tools.1"/>
     <diagramLink
         href="mapping.gmfgraph#MappingElements"/>
     <linkMetaFeature
