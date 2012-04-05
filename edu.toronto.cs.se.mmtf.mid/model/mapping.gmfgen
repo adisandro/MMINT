@@ -28,6 +28,14 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <behaviour
+        xsi:type="gmfgen:CustomBehaviour"
+        key="EditPolicyRoles.DRAG_DROP_ROLE"
+        editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramOutlineDragDropEditPolicy"/>
+    <behaviour
+        xsi:type="gmfgen:CustomBehaviour"
+        key="EditPolicyRoles.POPUPBAR_ROLE"
+        editPolicyQualifiedClassName=""/>
     <containsShortcutsTo>mapping</containsShortcutsTo>
     <shortcutsProvidedFor>mapping</shortcutsProvidedFor>
     <domainDiagramElement

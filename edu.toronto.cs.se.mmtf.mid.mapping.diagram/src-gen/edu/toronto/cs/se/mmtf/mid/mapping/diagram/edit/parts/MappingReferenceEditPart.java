@@ -69,7 +69,7 @@ public class MappingReferenceEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	protected void createDefaultEditPoliciesGen() {
+	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new MappingReferenceItemSemanticEditPolicy());
@@ -113,20 +113,9 @@ public class MappingReferenceEditPart extends DiagramEditPart {
 						return null;
 					}
 				});
-		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new MappingReferenceItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new MappingReferenceCanonicalEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new MappingDiagramOutlineDragDropEditPolicy(this));
+				new MappingDiagramOutlineDragDropEditPolicy());
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

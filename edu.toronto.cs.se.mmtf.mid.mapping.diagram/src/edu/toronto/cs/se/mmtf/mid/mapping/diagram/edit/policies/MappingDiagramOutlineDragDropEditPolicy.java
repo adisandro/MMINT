@@ -24,15 +24,9 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 public class MappingDiagramOutlineDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
-	private MappingReferenceEditPart editPart;
-
-	public MappingDiagramOutlineDragDropEditPolicy(MappingReferenceEditPart editPart) {
-
-		this.editPart = editPart;
-	}
-
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 
+		MappingReferenceEditPart editPart = (MappingReferenceEditPart) getHost();
 		MappingReference root = (MappingReference) ((View) editPart.getModel()).getElement();
 		CompoundCommand command = new CompoundCommand("Add model element references");
 		IElementType elementType = MIDElementTypes.getElementType(ModelElementReferenceEditPart.VISUAL_ID);
