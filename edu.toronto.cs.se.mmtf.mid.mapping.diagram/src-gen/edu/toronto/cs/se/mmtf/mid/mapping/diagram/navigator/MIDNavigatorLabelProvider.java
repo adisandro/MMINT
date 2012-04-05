@@ -116,12 +116,12 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case ModelElementReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?ModelElementReference", MIDElementTypes.ModelElementReference_3003); //$NON-NLS-1$
 		case MappingElementsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?Mapping?elements", MIDElementTypes.MappingElements_4002); //$NON-NLS-1$
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?ModelElementReference", MIDElementTypes.ModelElementReference_3003); //$NON-NLS-1$
 		case ModelContainerEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?ModelContainer", MIDElementTypes.ModelContainer_2005); //$NON-NLS-1$
@@ -191,10 +191,10 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case ModelElementReferenceEditPart.VISUAL_ID:
-			return getModelElementReference_3003Text(view);
 		case MappingElementsEditPart.VISUAL_ID:
 			return getMappingElements_4002Text(view);
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getModelElementReference_3003Text(view);
 		case ModelContainerEditPart.VISUAL_ID:
 			return getModelContainer_2005Text(view);
 		case MappingEditPart.VISUAL_ID:

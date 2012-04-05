@@ -251,24 +251,6 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 
-		case ModelElementReferenceEditPart.VISUAL_ID: {
-			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementReference_3003_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(MappingElementsEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
 		case MappingElementsEditPart.VISUAL_ID: {
 			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
@@ -293,6 +275,24 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 			}
 			if (!source.isEmpty()) {
 				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case ModelElementReferenceEditPart.VISUAL_ID: {
+			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
+					Messages.NavigatorGroupName_ModelElementReference_3003_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(MappingElementsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
 			}
 			return result.toArray();
 		}
