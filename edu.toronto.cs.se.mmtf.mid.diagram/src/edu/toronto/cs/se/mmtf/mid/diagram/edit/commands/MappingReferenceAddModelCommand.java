@@ -7,8 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
-
 public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreateCommand {
 
 	public MappingReferenceAddModelCommand(CreateRelationshipRequest request, EObject source, EObject target) {
@@ -28,15 +26,6 @@ public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreat
 		}
 
 		return CommandResult.newOKCommandResult();
-	}
-
-	public boolean canExecute() {
-
-		if (getSource() != null && getSource() instanceof BinaryMappingReference) {
-			return false;
-		}
-
-		return super.canExecute();
 	}
 
 }

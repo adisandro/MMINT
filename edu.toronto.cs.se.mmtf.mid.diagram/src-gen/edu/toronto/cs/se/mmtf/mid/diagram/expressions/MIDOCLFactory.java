@@ -50,7 +50,7 @@ public class MIDOCLFactory {
 	 * @generated
 	 */
 	protected MIDOCLFactory() {
-		this.expressions = new MIDAbstractExpression[3];
+		this.expressions = new MIDAbstractExpression[5];
 	}
 
 	/**
@@ -69,9 +69,11 @@ public class MIDOCLFactory {
 		}
 		if (cached.expressions[index] == null) {
 			final String[] exprBodies = new String[] {
-					"not self.oclIsTypeOf(mapping::BinaryMappingReference)", //$NON-NLS-1$
-					"not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED", //$NON-NLS-1$
-					"not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::BinaryMappingReference)", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::BinaryMappingReference)", //$NON-NLS-1$
+					"self <> oppositeEnd", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(
 					exprBodies[index],

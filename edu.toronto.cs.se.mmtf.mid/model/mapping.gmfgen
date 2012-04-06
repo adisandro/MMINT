@@ -222,11 +222,14 @@
         <metaFeature
             href="mid.genmodel#//mid/mapping/Mapping/elements"/>
       </modelFacet>
+      <creationConstraints
+          sourceEnd="//@expressionProviders/@providers.0/@expressions.1"/>
     </links>
     <links
         visualID="4003"
         editPartClassName="BinaryMappingEditPart"
         itemSemanticEditPolicyClassName="BinaryMappingItemSemanticEditPolicy"
+        notationViewFactoryClassName="BinaryMappingViewFactory"
         createCommandClassName="BinaryMappingCreateCommand"
         reorientCommandClassName="BinaryMappingReorientCommand">
       <diagramRunTimeClass
@@ -255,6 +258,7 @@
           visualID="6001"
           editPartClassName="BinaryMappingNameEditPart"
           itemSemanticEditPolicyClassName="BinaryMappingNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="BinaryMappingNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -273,6 +277,8 @@
               href="mid.genmodel#//mid/NamedElement/name"/>
         </modelFacet>
       </labels>
+      <creationConstraints
+          targetEnd="//@expressionProviders/@providers.0/@expressions.2"/>
     </links>
     <compartments
         visualID="7003"
@@ -460,7 +466,13 @@
         xsi:type="gmfgen:GenExpressionInterpreter">
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="not self.oclIsTypeOf(mapping::BinaryMapping)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="self &lt;> oppositeEnd"/>
     </providers>
   </expressionProviders>
   <labelParsers

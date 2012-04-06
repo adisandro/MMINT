@@ -56,7 +56,7 @@
       <domainMetaElement
           href="mid.ecore#//mapping/Mapping"/>
       <domainSpecialization
-          body="not self.oclIsTypeOf(mapping::BinaryMapping)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -80,6 +80,10 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//mapping/Mapping/elements"/>
+    <creationConstraints>
+      <sourceEnd
+          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
+    </creationConstraints>
   </links>
   <links>
     <domainMetaElement
@@ -104,6 +108,10 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//mapping/BinaryMapping/element1"/>
+    <creationConstraints>
+      <targetEnd
+          body="self &lt;> oppositeEnd"/>
+    </creationConstraints>
   </links>
   <diagram>
     <diagramCanvas

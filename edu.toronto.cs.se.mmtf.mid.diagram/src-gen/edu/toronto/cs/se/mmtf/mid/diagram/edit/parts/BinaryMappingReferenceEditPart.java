@@ -56,10 +56,10 @@ public class BinaryMappingReferenceEditPart extends ConnectionNodeEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new BinaryMappingReferenceItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new MappingReferenceOpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new BinaryMappingReferenceSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new MappingReferenceOpenDiagramEditPolicy());
 	}
 
 	/**

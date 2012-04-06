@@ -13,7 +13,7 @@
       <domainMetaElement
           href="mid.ecore#//mapping/MappingReference"/>
       <domainSpecialization
-          body="not self.oclIsTypeOf(mapping::BinaryMappingReference)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference)"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -38,7 +38,7 @@
       <domainMetaElement
           href="mid.ecore#//ModelReference"/>
       <domainSpecialization
-          body="not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -61,7 +61,7 @@
       <domainMetaElement
           href="mid.ecore#//ModelReference"/>
       <domainSpecialization
-          body="not self.oclIsTypeOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -85,6 +85,10 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//mapping/MappingReference/models"/>
+    <creationConstraints>
+      <sourceEnd
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference)"/>
+    </creationConstraints>
   </links>
   <links>
     <domainMetaElement
@@ -111,6 +115,10 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//mapping/BinaryMappingReference/model1"/>
+    <creationConstraints>
+      <targetEnd
+          body="self &lt;> oppositeEnd"/>
+    </creationConstraints>
   </links>
   <diagram>
     <diagramCanvas
