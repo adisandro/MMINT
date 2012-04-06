@@ -24,8 +24,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
@@ -34,6 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModel
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.expressions.MIDOCLFactory;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -149,7 +153,8 @@ public class MIDVisualIDRegistry {
 				return ModelContainerEditPart.VISUAL_ID;
 			}
 			if (MappingPackage.eINSTANCE.getMapping().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isMapping_2004((Mapping) domainElement)) {
 				return MappingEditPart.VISUAL_ID;
 			}
 			break;
@@ -216,6 +221,11 @@ public class MIDVisualIDRegistry {
 				return true;
 			}
 			break;
+		case BinaryMappingEditPart.VISUAL_ID:
+			if (BinaryMappingNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -226,6 +236,10 @@ public class MIDVisualIDRegistry {
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
+		}
+		if (MappingPackage.eINSTANCE.getBinaryMapping().isSuperTypeOf(
+				domainElement.eClass())) {
+			return BinaryMappingEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -238,6 +252,16 @@ public class MIDVisualIDRegistry {
 	 */
 	private static boolean isDiagram(MappingReference element) {
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isMapping_2004(Mapping domainElement) {
+		Object result = MIDOCLFactory.getExpression(0,
+				MappingPackage.eINSTANCE.getMapping(), null).evaluate(
+				domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 }

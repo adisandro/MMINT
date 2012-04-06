@@ -39,6 +39,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.ElementInitializers;
 import edu.toronto.cs.se.mmtf.mid.mapping.provider.MappingItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmtf.mid.provider.MidItemProviderAdapterFactory;
@@ -87,6 +88,11 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	private MIDOCLFactory oclFactory;
+
+	/**
+	 * @generated
+	 */
 	public MIDDiagramEditorPlugin() {
 	}
 
@@ -109,6 +115,7 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 		adapterFactory = null;
 		linkConstraints = null;
 		initializers = null;
+		oclFactory = null;
 		instance = null;
 		super.stop(context);
 	}
@@ -253,6 +260,20 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	public void setElementInitializers(ElementInitializers i) {
 		this.initializers = i;
+	}
+
+	/**
+	 * @generated
+	 */
+	public MIDOCLFactory getMIDOCLFactory() {
+		return oclFactory;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setMIDOCLFactory(MIDOCLFactory f) {
+		this.oclFactory = f;
 	}
 
 	/**

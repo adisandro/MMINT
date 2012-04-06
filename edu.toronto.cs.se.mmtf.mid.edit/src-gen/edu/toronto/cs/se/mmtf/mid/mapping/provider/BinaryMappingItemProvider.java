@@ -19,22 +19,14 @@
 package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
-
-import edu.toronto.cs.se.mmtf.mid.provider.MIDEditPlugin;
-import edu.toronto.cs.se.mmtf.mid.provider.ModelReferenceItemProvider;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -43,16 +35,15 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingReferenceItemProvider
-	extends ModelReferenceItemProvider
+public class BinaryMappingItemProvider
+	extends MappingItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -65,7 +56,7 @@ public class MappingReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingReferenceItemProvider(AdapterFactory adapterFactory) {
+	public BinaryMappingItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -80,25 +71,26 @@ public class MappingReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addModelsPropertyDescriptor(object);
+			addElement0PropertyDescriptor(object);
+			addElement1PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Models feature.
+	 * This adds a property descriptor for the Element0 feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addModelsPropertyDescriptor(Object object) {
+	protected void addElement0PropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MappingReference_models_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingReference_models_feature", "_UI_MappingReference_type"),
-				 MappingPackage.Literals.MAPPING_REFERENCE__MODELS,
+				 getString("_UI_BinaryMapping_element0_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMapping_element0_feature", "_UI_BinaryMapping_type"),
+				 MappingPackage.Literals.BINARY_MAPPING__ELEMENT0,
 				 true,
 				 false,
 				 true,
@@ -108,45 +100,36 @@ public class MappingReferenceItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Element1 feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_REFERENCE__CONTAINERS);
-		}
-		return childrenFeatures;
+	protected void addElement1PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BinaryMapping_element1_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMapping_element1_feature", "_UI_BinaryMapping_type"),
+				 MappingPackage.Literals.BINARY_MAPPING__ELEMENT1,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns MappingReference.gif.
+	 * This returns BinaryMapping.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryMapping"));
 	}
 
 	/**
@@ -157,10 +140,10 @@ public class MappingReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingReference)object).getName();
+		String label = ((BinaryMapping)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MappingReference_type") :
-			getString("_UI_MappingReference_type") + " " + label;
+			getString("_UI_BinaryMapping_type") :
+			getString("_UI_BinaryMapping_type") + " " + label;
 	}
 
 	/**
@@ -173,13 +156,6 @@ public class MappingReferenceItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(MappingReference.class)) {
-			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
-			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -193,32 +169,6 @@ public class MappingReferenceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
-				 MappingFactory.eINSTANCE.createMapping()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
-				 MappingFactory.eINSTANCE.createBinaryMapping()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_REFERENCE__CONTAINERS,
-				 MappingFactory.eINSTANCE.createModelContainer()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MIDEditPlugin.INSTANCE;
 	}
 
 }

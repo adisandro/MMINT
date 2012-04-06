@@ -83,6 +83,15 @@ public interface MappingFactory extends EFactory {
 	Mapping createMapping();
 
 	/**
+	 * Returns a new object of class '<em>Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Binary Mapping</em>'.
+	 * @generated
+	 */
+	BinaryMapping createBinaryMapping();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

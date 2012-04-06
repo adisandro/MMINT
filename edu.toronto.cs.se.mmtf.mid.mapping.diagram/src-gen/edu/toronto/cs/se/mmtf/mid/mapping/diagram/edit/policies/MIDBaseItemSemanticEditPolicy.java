@@ -49,7 +49,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers.MIDBaseEditHelper;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditorPlugin;
@@ -358,7 +360,24 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateBinaryMapping_4003(MappingReference container,
+				ModelElementReference source, ModelElementReference target) {
+			return canExistBinaryMapping_4003(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistMappingElements_4002(Mapping source,
+				ModelElementReference target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistBinaryMapping_4003(MappingReference container,
+				BinaryMapping linkInstance, ModelElementReference source,
 				ModelElementReference target) {
 			return true;
 		}

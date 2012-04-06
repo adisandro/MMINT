@@ -391,7 +391,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_MappingReference_Models_4003(
+	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_MappingReference_Models_4003Gen(
 			MappingReference source) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> destinations = source.getModels().iterator(); destinations
@@ -402,6 +402,18 @@ public class MIDDiagramUpdater {
 					MappingReferenceModelsEditPart.VISUAL_ID));
 		}
 		return result;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_MappingReference_Models_4003(
+			MappingReference source) {
+
+		if (source instanceof BinaryMappingReference) {
+			return new LinkedList<MIDLinkDescriptor>();
+		}
+		return getOutgoingFeatureModelFacetLinks_MappingReference_Models_4003Gen(source);
 	}
 
 	/**

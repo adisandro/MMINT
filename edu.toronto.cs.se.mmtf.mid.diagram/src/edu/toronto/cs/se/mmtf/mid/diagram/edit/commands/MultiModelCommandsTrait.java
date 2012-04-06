@@ -11,7 +11,9 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
@@ -111,6 +113,13 @@ public class MultiModelCommandsTrait {
 			if (modelContainer.getModel() == modelRef) {
 				mappingRef.getContainers().remove(modelContainer);
 				for (ModelElementReference element : modelContainer.getElements()) {
+					for (Mapping mapping : element.getMappings()) {
+						// binary mappings have no longer sense
+						if (mapping instanceof BinaryMapping) {
+							mapping.getElements().clear();
+							mappingRef.getMappings().remove(mapping);
+						}
+					}
 					element.getMappings().clear();
 				}
 				break;

@@ -433,6 +433,71 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl <em>Binary Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getBinaryMapping()
+	 * @generated
+	 */
+	int BINARY_MAPPING = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING__NAME = MAPPING__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING__ELEMENTS = MAPPING__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Element0</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING__ELEMENT0 = MAPPING_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Element1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING__ELEMENT1 = MAPPING_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Binary Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_FEATURE_COUNT = MAPPING_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Binary Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_OPERATION_COUNT = MAPPING_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -604,6 +669,38 @@ public interface MappingPackage extends EPackage {
 	EReference getMapping_Elements();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping <em>Binary Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Binary Mapping</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping
+	 * @generated
+	 */
+	EClass getBinaryMapping();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement0 <em>Element0</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element0</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement0()
+	 * @see #getBinaryMapping()
+	 * @generated
+	 */
+	EReference getBinaryMapping_Element0();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement1 <em>Element1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element1</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement1()
+	 * @see #getBinaryMapping()
+	 * @generated
+	 */
+	EReference getBinaryMapping_Element1();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -763,6 +860,32 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING__ELEMENTS = eINSTANCE.getMapping_Elements();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl <em>Binary Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getBinaryMapping()
+		 * @generated
+		 */
+		EClass BINARY_MAPPING = eINSTANCE.getBinaryMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Element0</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_MAPPING__ELEMENT0 = eINSTANCE.getBinaryMapping_Element0();
+
+		/**
+		 * The meta object literal for the '<em><b>Element1</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_MAPPING__ELEMENT1 = eINSTANCE.getBinaryMapping_Element1();
 
 	}
 

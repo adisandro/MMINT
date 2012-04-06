@@ -74,6 +74,12 @@ public class MIDEditPartFactory implements EditPartFactory {
 			case MappingElementsEditPart.VISUAL_ID:
 				return new MappingElementsEditPart(view);
 
+			case BinaryMappingEditPart.VISUAL_ID:
+				return new BinaryMappingEditPart(view);
+
+			case BinaryMappingNameEditPart.VISUAL_ID:
+				return new BinaryMappingNameEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

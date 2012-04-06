@@ -203,6 +203,29 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BinaryMappingItemProvider binaryMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBinaryMappingAdapter() {
+		if (binaryMappingItemProvider == null) {
+			binaryMappingItemProvider = new BinaryMappingItemProvider(this);
+		}
+
+		return binaryMappingItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -306,6 +329,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (modelContainerItemProvider != null) modelContainerItemProvider.dispose();
 		if (modelElementReferenceItemProvider != null) modelElementReferenceItemProvider.dispose();
 		if (mappingItemProvider != null) mappingItemProvider.dispose();
+		if (binaryMappingItemProvider != null) binaryMappingItemProvider.dispose();
 	}
 
 }

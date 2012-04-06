@@ -261,27 +261,52 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Mappings1Group_title;
+	public static String Models1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmapping1CreationTool_title;
+	public static String Mappings2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmapping1CreationTool_desc;
+	public static String Addmodel1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmappingconnection2CreationTool_title;
+	public static String Addmodel1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Newmappingconnection2CreationTool_desc;
+	public static String Newbinarymapping1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Newbinarymapping1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String NewNarymapping2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String NewNarymapping2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String NewNarymappingconnection3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String NewNarymappingconnection3CreationTool_desc;
 
 	/**
 	 * @generated
@@ -297,6 +322,21 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ModelElementReference_3003_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ModelElementReference_3003_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BinaryMapping_4003_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BinaryMapping_4003_source;
 
 	/**
 	 * @generated

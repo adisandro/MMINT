@@ -112,6 +112,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateModelElementReference((ModelElementReference)value, diagnostics, context);
 			case MappingPackage.MAPPING:
 				return validateMapping((Mapping)value, diagnostics, context);
+			case MappingPackage.BINARY_MAPPING:
+				return validateBinaryMapping((BinaryMapping)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -181,27 +183,27 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingReference_modelContainers(binaryMappingReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinary(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinaryReference(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMappingReference_sourceModel(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMappingReference_targetModel(binaryMappingReference, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the isBinary constraint of '<em>Binary Mapping Reference</em>'.
+	 * The cached validation expression for the isBinaryReference constraint of '<em>Binary Mapping Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BINARY_MAPPING_REFERENCE__IS_BINARY__EEXPRESSION = "models->size() = 2";
+	protected static final String BINARY_MAPPING_REFERENCE__IS_BINARY_REFERENCE__EEXPRESSION = "models->size() = 2";
 
 	/**
-	 * Validates the isBinary constraint of '<em>Binary Mapping Reference</em>'.
+	 * Validates the isBinaryReference constraint of '<em>Binary Mapping Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBinaryMappingReference_isBinary(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBinaryMappingReference_isBinaryReference(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(MappingPackage.Literals.BINARY_MAPPING_REFERENCE,
@@ -209,8 +211,8 @@ public class MappingValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "isBinary",
-				 BINARY_MAPPING_REFERENCE__IS_BINARY__EEXPRESSION,
+				 "isBinaryReference",
+				 BINARY_MAPPING_REFERENCE__IS_BINARY_REFERENCE__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
@@ -222,7 +224,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BINARY_MAPPING_REFERENCE__SOURCE_MODEL__EEXPRESSION = "model0 = models->at(0)";
+	protected static final String BINARY_MAPPING_REFERENCE__SOURCE_MODEL__EEXPRESSION = "model0 = models->at(1)";
 
 	/**
 	 * Validates the sourceModel constraint of '<em>Binary Mapping Reference</em>'.
@@ -251,7 +253,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BINARY_MAPPING_REFERENCE__TARGET_MODEL__EEXPRESSION = "model1 = models->at(1)";
+	protected static final String BINARY_MAPPING_REFERENCE__TARGET_MODEL__EEXPRESSION = "model1 = models->at(2)";
 
 	/**
 	 * Validates the targetModel constraint of '<em>Binary Mapping Reference</em>'.
@@ -299,6 +301,114 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMapping(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mapping, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMapping(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(binaryMapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_isBinaryMapping(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_sourceElement(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_targetElement(binaryMapping, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the isBinaryMapping constraint of '<em>Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BINARY_MAPPING__IS_BINARY_MAPPING__EEXPRESSION = "elements->size() = 2";
+
+	/**
+	 * Validates the isBinaryMapping constraint of '<em>Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMapping_isBinaryMapping(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.BINARY_MAPPING,
+				 binaryMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "isBinaryMapping",
+				 BINARY_MAPPING__IS_BINARY_MAPPING__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the sourceElement constraint of '<em>Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BINARY_MAPPING__SOURCE_ELEMENT__EEXPRESSION = "element0 = elements->at(1)";
+
+	/**
+	 * Validates the sourceElement constraint of '<em>Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMapping_sourceElement(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.BINARY_MAPPING,
+				 binaryMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "sourceElement",
+				 BINARY_MAPPING__SOURCE_ELEMENT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the targetElement constraint of '<em>Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BINARY_MAPPING__TARGET_ELEMENT__EEXPRESSION = "element1 = elements->at(2)";
+
+	/**
+	 * Validates the targetElement constraint of '<em>Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMapping_targetElement(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.BINARY_MAPPING,
+				 binaryMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "targetElement",
+				 BINARY_MAPPING__TARGET_ELEMENT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

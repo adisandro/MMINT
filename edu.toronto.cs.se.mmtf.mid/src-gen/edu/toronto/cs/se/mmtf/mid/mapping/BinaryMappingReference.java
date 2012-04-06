@@ -35,8 +35,8 @@ import edu.toronto.cs.se.mmtf.mid.ModelReference;
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMappingReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinary sourceModel targetModel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinary='models->size() = 2' sourceModel='model0 = models->at(0)' targetModel='model1 = models->at(1)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryReference sourceModel targetModel'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryReference='models->size() = 2' sourceModel='model0 = models->at(1)' targetModel='model1 = models->at(2)'"
  * @generated
  */
 public interface BinaryMappingReference extends MappingReference {

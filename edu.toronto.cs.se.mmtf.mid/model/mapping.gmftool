@@ -8,12 +8,26 @@
       title="mappingPalette">
     <tools
         xsi:type="gmftool:ToolGroup"
+        title="Models"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Add model"
+          description="Add an existing model">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
         title="Mappings"
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New mapping"
-          description="Create new mapping">
+          title="New binary mapping"
+          description="Create new binary mapping">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -21,8 +35,17 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New mapping connection"
-          description="Create new mapping connection">
+          title="New Nary mapping"
+          description="Create new Nary mapping">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="New Nary mapping connection"
+          description="Create new Nary mapping connection">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

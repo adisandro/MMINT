@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
@@ -81,6 +82,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass mappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass binaryMappingEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -306,6 +314,33 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBinaryMapping() {
+		return binaryMappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinaryMapping_Element0() {
+		return (EReference)binaryMappingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinaryMapping_Element1() {
+		return (EReference)binaryMappingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -349,6 +384,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		mappingEClass = createEClass(MAPPING);
 		createEReference(mappingEClass, MAPPING__ELEMENTS);
+
+		binaryMappingEClass = createEClass(BINARY_MAPPING);
+		createEReference(binaryMappingEClass, BINARY_MAPPING__ELEMENT0);
+		createEReference(binaryMappingEClass, BINARY_MAPPING__ELEMENT1);
 	}
 
 	/**
@@ -386,6 +425,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		binaryMappingReferenceEClass.getESuperTypes().add(this.getMappingReference());
 		modelElementReferenceEClass.getESuperTypes().add(theMidPackage.getNamedElement());
 		mappingEClass.getESuperTypes().add(theMidPackage.getNamedElement());
+		binaryMappingEClass.getESuperTypes().add(this.getMapping());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingReferenceEClass, MappingReference.class, "MappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -408,6 +448,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMapping_Elements(), this.getModelElementReference(), this.getModelElementReference_Mappings(), "elements", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(binaryMappingEClass, BinaryMapping.class, "BinaryMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBinaryMapping_Element0(), this.getModelElementReference(), null, "element0", null, 1, 1, BinaryMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryMapping_Element1(), this.getModelElementReference(), null, "element1", null, 1, 1, BinaryMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -442,8 +486,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "isBinary sourceModel targetModel"
-		   });		
+			 "constraints", "isBinaryReference sourceModel targetModel"
+		   });				
+		addAnnotation
+		  (binaryMappingEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "isBinaryMapping sourceElement targetElement"
+		   });	
 	}
 
 	/**
@@ -464,15 +514,23 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "isBinary", "models->size() = 2",
-			 "sourceModel", "model0 = models->at(0)",
-			 "targetModel", "model1 = models->at(1)"
+			 "isBinaryReference", "models->size() = 2",
+			 "sourceModel", "model0 = models->at(1)",
+			 "targetModel", "model1 = models->at(2)"
 		   });		
 		addAnnotation
 		  (getModelContainer_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "model.name"
+		   });			
+		addAnnotation
+		  (binaryMappingEClass, 
+		   source, 
+		   new String[] {
+			 "isBinaryMapping", "elements->size() = 2",
+			 "sourceElement", "element0 = elements->at(1)",
+			 "targetElement", "element1 = elements->at(2)"
 		   });
 	}
 

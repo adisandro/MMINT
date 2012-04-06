@@ -129,6 +129,30 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
    </extension>
 
 
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDMarkerNavigationProvider">
+         <MarkerType name="edu.toronto.cs.se.mmtf.mid.mapping.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+   <extension id="diagnostic" name="Mapping Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>   
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
    <extension point="org.eclipse.core.runtime.preferences" id="prefs">
       <?gmfgen generated="true"?>
       <initializer class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.preferences.DiagramPreferenceInitializer"/>
@@ -240,7 +264,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Mapping"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005,2004,3003"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002,4003"/>
       </viewProvider>
    </extension>
 
@@ -255,7 +279,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <method name="getType()" value="2005,2004,3003"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4002"/>
+            <method name="getType()" value="4002,4003"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5005,5004,5006"/>
@@ -290,6 +314,17 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <ParserProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2005,2004"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
@@ -343,6 +378,16 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <param name="semanticHint" value="4002"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
+         <metamodelType
+               id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.BinaryMapping_4003"
+               name="%metatype.name.BinaryMapping_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="BinaryMapping"
+               edithelper="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers.BinaryMappingEditHelper">
+            <param name="semanticHint" value="4003"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -360,6 +405,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.Mapping_2004"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ModelElementReference_3003"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingElements_4002"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.mid.mapping.diagram.BinaryMapping_4003"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -371,6 +417,17 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
            namespace="edu.toronto.cs.se.mmtf.mid.mapping.diagram"
            properties="isURIEditorInput"
            class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="edu.toronto.cs.se.mmtf.mid.mapping.diagram"
+           properties="isShortcut"
+           class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDShortcutPropertyTester">
        </propertyTester>
    </extension>
 
@@ -535,50 +592,6 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
-   </extension>
-
-<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
-      <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDMarkerNavigationProvider">
-         <MarkerType name="edu.toronto.cs.se.mmtf.mid.mapping.diagram.diagnostic"/>
-         <Priority name="Lowest"/>
-      </MarkerNavigationProvider>
-   </extension>
-
-<extension id="diagnostic" name="Mapping Plugin problems" point="org.eclipse.core.resources.markers">
-      <?gmfgen generated="true"?>
-      <super type="org.eclipse.core.resources.problemmarker"/>
-      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
-      <persistent value="true"/>
-   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-      <?gmfgen generated="true"?>
-      <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDValidationDecoratorProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
-         <context decoratorTargets="PRIMARY_VIEW"/>
-      </decoratorProvider>
-   </extension>
-
-<extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
-      <?gmfgen generated="true"?>
-      <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDShortcutsDecoratorProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
-            <method name="getType()" value="2005,2004"/>
-         </object>
-         <context decoratorTargets="generated-top-nodes"/>
-      </decoratorProvider>
-   </extension>
-
-<extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="edu.toronto.cs.se.mmtf.mid.mapping.diagram.ShortcutPropertyTester"
-           type="org.eclipse.gmf.runtime.notation.View"
-           namespace="edu.toronto.cs.se.mmtf.mid.mapping.diagram"
-           properties="isShortcut"
-           class="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDShortcutPropertyTester">
-       </propertyTester>
    </extension>
 
    <extension

@@ -19,6 +19,9 @@
         <features
             href="mid.ecore#//mapping/ModelContainer/name"/>
       </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="mapping.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="mapping.gmfgraph#ModelContainer"/>
       <children
@@ -52,6 +55,8 @@
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//mapping/Mapping"/>
+      <domainSpecialization
+          body="not self.oclIsTypeOf(mapping::BinaryMapping)"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -61,7 +66,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="mapping.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="mapping.gmftool#//@palette/@tools.1/@tools.1"/>
       <diagramNode
           href="mapping.gmfgraph#Mapping"/>
     </ownedChild>
@@ -69,12 +74,36 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="mapping.gmftool#//@palette/@tools.0/@tools.1"/>
+        href="mapping.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="mapping.gmfgraph#MappingElements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//mapping/Mapping/elements"/>
+  </links>
+  <links>
+    <domainMetaElement
+        href="mid.ecore#//mapping/BinaryMapping"/>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="mapping.gmfgraph#BinaryMappingName"/>
+      <features
+          href="mid.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <containmentFeature
+        href="mid.ecore#//mapping/MappingReference/mappings"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="mapping.gmftool#//@palette/@tools.1/@tools.0"/>
+    <diagramLink
+        href="mapping.gmfgraph#BinaryMappingElements"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="mid.ecore#//mapping/BinaryMapping/element0"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="mid.ecore#//mapping/BinaryMapping/element1"/>
   </links>
   <diagram>
     <diagramCanvas

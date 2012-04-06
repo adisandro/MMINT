@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -41,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MIDCreateShortcutDecorationsCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramOutlineDragDropEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingReferenceCanonicalEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingReferenceItemSemanticEditPolicy;
 
@@ -116,6 +118,8 @@ public class MappingReferenceEditPart extends DiagramEditPart {
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new MappingDiagramOutlineDragDropEditPolicy());
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new MappingDiagramSemanticEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
@@ -147,6 +151,23 @@ public class MappingReferenceEditPart extends DiagramEditPart {
 		 */
 		public boolean understandsRequest(Request request) {
 			return false;
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	/*package-local*/static class LinkLabelDragPolicy extends
+			NonResizableLabelEditPolicy {
+
+		/**
+		 * @generated
+		 */
+		@SuppressWarnings("rawtypes")
+		protected List createSelectionHandles() {
+			MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+			mh.setBorder(null);
+			return Collections.singletonList(mh);
 		}
 	}
 

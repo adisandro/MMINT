@@ -35,6 +35,7 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
@@ -88,6 +89,11 @@ public class MIDElementTypes {
 	 * @generated
 	 */
 	public static final IElementType MappingElements_4002 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingElements_4002"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType BinaryMapping_4003 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.BinaryMapping_4003"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -213,6 +219,9 @@ public class MIDElementTypes {
 
 			elements.put(MappingElements_4002,
 					MappingPackage.eINSTANCE.getMapping_Elements());
+
+			elements.put(BinaryMapping_4003,
+					MappingPackage.eINSTANCE.getBinaryMapping());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -235,6 +244,7 @@ public class MIDElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Mapping_2004);
 			KNOWN_ELEMENT_TYPES.add(ModelElementReference_3003);
 			KNOWN_ELEMENT_TYPES.add(MappingElements_4002);
+			KNOWN_ELEMENT_TYPES.add(BinaryMapping_4003);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -254,6 +264,8 @@ public class MIDElementTypes {
 			return ModelElementReference_3003;
 		case MappingElementsEditPart.VISUAL_ID:
 			return MappingElements_4002;
+		case BinaryMappingEditPart.VISUAL_ID:
+			return BinaryMapping_4003;
 		}
 		return null;
 	}

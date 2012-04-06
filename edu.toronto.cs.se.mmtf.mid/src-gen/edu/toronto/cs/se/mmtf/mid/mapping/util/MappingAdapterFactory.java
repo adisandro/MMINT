@@ -107,6 +107,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingAdapter();
 			}
 			@Override
+			public Adapter caseBinaryMapping(BinaryMapping object) {
+				return createBinaryMappingAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -201,6 +205,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping <em>Binary Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping
+	 * @generated
+	 */
+	public Adapter createBinaryMappingAdapter() {
 		return null;
 	}
 

@@ -30,11 +30,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingElementsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingElementsReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
@@ -70,6 +74,23 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryMappingEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+		}
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge) it.next();
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryMappingEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
@@ -101,6 +122,10 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 		if (MIDElementTypes.MappingElements_4002 == req.getElementType()) {
 			return null;
 		}
+		if (MIDElementTypes.BinaryMapping_4003 == req.getElementType()) {
+			return getGEFWrapper(new BinaryMappingCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -113,7 +138,26 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 			return getGEFWrapper(new MappingElementsCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
+		if (MIDElementTypes.BinaryMapping_4003 == req.getElementType()) {
+			return getGEFWrapper(new BinaryMappingCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
 		return null;
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case BinaryMappingEditPart.VISUAL_ID:
+			return getGEFWrapper(new BinaryMappingReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
 	}
 
 	/**

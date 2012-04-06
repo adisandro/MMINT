@@ -59,6 +59,19 @@
           name="MappingElementsFigure"
           targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
+    <descriptors
+        name="BinaryMappingElementsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="BinaryMappingElementsFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="BinaryMappingNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+    </descriptors>
   </figures>
   <nodes
       name="ModelContainer"
@@ -72,6 +85,9 @@
   <connections
       name="MappingElements"
       figure="MappingElementsFigure"/>
+  <connections
+      name="BinaryMappingElements"
+      figure="BinaryMappingElementsFigure"/>
   <compartments
       name="ModelContainerCompartment"
       figure="ModelContainerFigure"/>
@@ -87,4 +103,8 @@
       name="ModelContainerName"
       figure="ModelContainerFigure"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels
+      name="BinaryMappingName"
+      figure="BinaryMappingElementsFigure"
+      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
 </gmfgraph:Canvas>

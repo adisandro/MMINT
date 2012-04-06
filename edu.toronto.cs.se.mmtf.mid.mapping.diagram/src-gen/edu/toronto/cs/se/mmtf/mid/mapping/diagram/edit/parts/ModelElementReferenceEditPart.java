@@ -46,6 +46,7 @@ import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.ModelElementReferenceHighlightEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.ModelElementReferenceItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.ModelElementReferenceSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
@@ -86,6 +87,8 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
 				new ModelElementReferenceHighlightEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ModelElementReferenceSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -277,9 +280,42 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnTarget() {
+	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(MIDElementTypes.BinaryMapping_4003);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnSourceAndTarget(
+			IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart) {
+			types.add(MIDElementTypes.BinaryMapping_4003);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (relationshipType == MIDElementTypes.BinaryMapping_4003) {
+			types.add(MIDElementTypes.ModelElementReference_3003);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(MIDElementTypes.MappingElements_4002);
+		types.add(MIDElementTypes.BinaryMapping_4003);
 		return types;
 	}
 
@@ -290,6 +326,8 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == MIDElementTypes.MappingElements_4002) {
 			types.add(MIDElementTypes.Mapping_2004);
+		} else if (relationshipType == MIDElementTypes.BinaryMapping_4003) {
+			types.add(MIDElementTypes.ModelElementReference_3003);
 		}
 		return types;
 	}

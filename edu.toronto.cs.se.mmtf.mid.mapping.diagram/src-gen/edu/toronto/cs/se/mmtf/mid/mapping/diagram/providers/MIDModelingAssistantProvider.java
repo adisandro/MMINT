@@ -80,6 +80,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 		if (sourceEditPart instanceof MappingEditPart) {
 			return ((MappingEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof ModelElementReferenceEditPart) {
+			return ((ModelElementReferenceEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -109,6 +113,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((MappingEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof ModelElementReferenceEditPart) {
+			return ((ModelElementReferenceEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -135,6 +143,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof MappingEditPart) {
 			return ((MappingEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ModelElementReferenceEditPart) {
+			return ((ModelElementReferenceEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
