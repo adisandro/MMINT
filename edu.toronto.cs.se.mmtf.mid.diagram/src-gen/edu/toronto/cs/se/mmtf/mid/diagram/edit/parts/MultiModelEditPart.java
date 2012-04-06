@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MIDCreateShortcutDecorationsCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDDiagramSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MultiModelCanonicalEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MultiModelItemSemanticEditPolicy;
 
@@ -113,6 +114,9 @@ public class MultiModelEditPart extends DiagramEditPart {
 						return null;
 					}
 				});
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new MIDDiagramSemanticEditPolicy());
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

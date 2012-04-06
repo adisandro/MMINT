@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceModelsItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceModelsSemanticEditPolicy;
 
 /**
  * @generated
@@ -54,6 +55,8 @@ public class MappingReferenceModelsEditPart extends ConnectionNodeEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new MappingReferenceModelsItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new MappingReferenceModelsSemanticEditPolicy());
 	}
 
 	/**

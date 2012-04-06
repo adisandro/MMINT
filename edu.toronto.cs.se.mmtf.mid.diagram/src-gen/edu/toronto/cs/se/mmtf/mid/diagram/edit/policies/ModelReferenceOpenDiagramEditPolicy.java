@@ -51,7 +51,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelReferenceOpenDiagramCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorUtil;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
@@ -64,24 +63,6 @@ public class ModelReferenceOpenDiagramEditPolicy extends OpenEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getOpenCommandGen(Request request) {
-		EditPart targetEditPart = getTargetEditPart(request);
-		if (false == targetEditPart.getModel() instanceof View) {
-			return null;
-		}
-		View view = (View) targetEditPart.getModel();
-		Style link = view.getStyle(NotationPackage.eINSTANCE
-				.getHintedDiagramLinkStyle());
-		if (false == link instanceof HintedDiagramLinkStyle) {
-			return null;
-		}
-		return new ICommandProxy(new OpenDiagramCommand(
-				(HintedDiagramLinkStyle) link));
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	protected Command getOpenCommand(Request request) {
 		EditPart targetEditPart = getTargetEditPart(request);
 		if (false == targetEditPart.getModel() instanceof View) {
@@ -93,7 +74,7 @@ public class ModelReferenceOpenDiagramEditPolicy extends OpenEditPolicy {
 		if (false == link instanceof HintedDiagramLinkStyle) {
 			return null;
 		}
-		return new ICommandProxy(new ModelReferenceOpenDiagramCommand(
+		return new ICommandProxy(new OpenDiagramCommand(
 				(HintedDiagramLinkStyle) link));
 	}
 

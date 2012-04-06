@@ -117,24 +117,24 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case MappingReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference", MIDElementTypes.MappingReference_2004); //$NON-NLS-1$
-		case MultiModelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MultiModel", MIDElementTypes.MultiModel_1000); //$NON-NLS-1$
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?BinaryMappingReference", MIDElementTypes.BinaryMappingReference_4004); //$NON-NLS-1$
-		case ModelReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2002); //$NON-NLS-1$
 		case ModelReference2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2003); //$NON-NLS-1$
 		case MappingReferenceModelsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference?models", MIDElementTypes.MappingReferenceModels_4003); //$NON-NLS-1$
+		case MultiModelEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MultiModel", MIDElementTypes.MultiModel_1000); //$NON-NLS-1$
+		case MappingReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference", MIDElementTypes.MappingReference_2004); //$NON-NLS-1$
+		case ModelReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2002); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -195,18 +195,18 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case MappingReferenceEditPart.VISUAL_ID:
-			return getMappingReference_2004Text(view);
-		case MultiModelEditPart.VISUAL_ID:
-			return getMultiModel_1000Text(view);
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
 			return getBinaryMappingReference_4004Text(view);
-		case ModelReferenceEditPart.VISUAL_ID:
-			return getModelReference_2002Text(view);
 		case ModelReference2EditPart.VISUAL_ID:
 			return getModelReference_2003Text(view);
 		case MappingReferenceModelsEditPart.VISUAL_ID:
 			return getMappingReferenceModels_4003Text(view);
+		case MultiModelEditPart.VISUAL_ID:
+			return getMultiModel_1000Text(view);
+		case MappingReferenceEditPart.VISUAL_ID:
+			return getMappingReference_2004Text(view);
+		case ModelReferenceEditPart.VISUAL_ID:
+			return getModelReference_2002Text(view);
 		}
 		return getUnknownElementText(view);
 	}

@@ -34,13 +34,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceCreateMappingCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryMappingReferenceReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceAddModelCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceChangeModelCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceDelModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceModelsReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
@@ -64,54 +59,6 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getDestroyElementCommandGen(DestroyElementRequest req) {
-		View view = (View) getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
-		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge) it.next();
-			if (MIDVisualIDRegistry.getVisualID(incomingLink) == MappingReferenceModelsEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryMappingReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-		}
-		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge) it.next();
-			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryMappingReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-		}
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			cmd.add(new DestroyElementCommand(req));
-		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
-		}
-		return getGEFWrapper(cmd.reduce());
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
@@ -123,7 +70,7 @@ public class ModelReferenceItemSemanticEditPolicy extends
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
-				cmd.add(new MappingReferenceDelModelCommand(r));
+				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -170,7 +117,7 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommandGen(
+	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
 			return null;
@@ -183,24 +130,9 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
-			return null;
-		}
-		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(
-					req, req.getSource(), req.getTarget()));
-		}
-		return null;
-	}
-
-	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommandGen(
+	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
 			return getGEFWrapper(new MappingReferenceModelsCreateCommand(req,
@@ -214,28 +146,12 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
-			return getGEFWrapper(new MappingReferenceAddModelCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		if (MIDElementTypes.BinaryMappingReference_4004 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingReferenceCreateMappingCommand(
-					req, req.getSource(), req.getTarget()));
-		}
-		return null;
-	}
-
-	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommandGen(
+	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case BinaryMappingReferenceEditPart.VISUAL_ID:
@@ -245,47 +161,16 @@ public class ModelReferenceItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
-	 * 
-	 * @generated NOT
-	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
-		case BinaryMappingReferenceEditPart.VISUAL_ID:
-			return getGEFWrapper(new BinaryMappingReferenceChangeModelCommand(
-					req));
-		}
-		return super.getReorientRelationshipCommand(req);
-	}
-
-	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommandGen(
-			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
-		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return getGEFWrapper(new MappingReferenceModelsReorientCommand(req));
-		}
-		return super.getReorientReferenceRelationshipCommand(req);
-	}
-
-	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
-	 * 
-	 * @generated NOT
-	 */
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return getGEFWrapper(new MappingReferenceChangeModelCommand(req));
+			return getGEFWrapper(new MappingReferenceModelsReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

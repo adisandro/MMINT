@@ -25,6 +25,14 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <behaviour
+        xsi:type="gmfgen:CustomBehaviour"
+        key="EditPolicyRoles.SEMANTIC_ROLE"
+        editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDDiagramSemanticEditPolicy"/>
+    <behaviour
+        xsi:type="gmfgen:CustomBehaviour"
+        key="EditPolicyRoles.POPUPBAR_ROLE"
+        editPolicyQualifiedClassName=""/>
     <containsShortcutsTo>mid</containsShortcutsTo>
     <shortcutsProvidedFor>mid</shortcutsProvidedFor>
     <domainDiagramElement
@@ -51,6 +59,10 @@
           editPolicyClassName="MappingReferenceOpenDiagramEditPolicy"
           diagramKind="Mapping"
           editorID="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MappingDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceSemanticEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
         <metaClass
@@ -102,6 +114,14 @@
           editPolicyClassName="ModelReferenceOpenDiagramEditPolicy"
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceImportedSemanticEditPolicy"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.OPEN_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceOpenExternalDiagramEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.1">
         <metaClass
@@ -153,6 +173,14 @@
           editPolicyClassName="ModelReferenceOpenDiagramEditPolicy"
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceCreatedSemanticEditPolicy"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.OPEN_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceOpenExternalDiagramEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.2">
         <metaClass
@@ -197,6 +225,10 @@
           xsi:type="gmfgen:InnerClassViewmap"
           className="MappingReferenceModelsFigure"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MappingReferenceModelsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MappingReferenceModelsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceModelsSemanticEditPolicy"/>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
@@ -224,6 +256,10 @@
           editPolicyClassName="MappingReferenceOpenDiagramEditPolicy"
           diagramKind="Mapping"
           editorID="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MappingDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.BinaryMappingReferenceSemanticEditPolicy"/>
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass

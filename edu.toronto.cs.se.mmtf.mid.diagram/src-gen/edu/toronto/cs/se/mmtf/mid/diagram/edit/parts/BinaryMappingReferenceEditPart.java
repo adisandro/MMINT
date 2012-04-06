@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.BinaryMappingReferenceItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.BinaryMappingReferenceSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceOpenDiagramEditPolicy;
 
 /**
@@ -57,6 +58,8 @@ public class BinaryMappingReferenceEditPart extends ConnectionNodeEditPart
 				new BinaryMappingReferenceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
 				new MappingReferenceOpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new BinaryMappingReferenceSemanticEditPolicy());
 	}
 
 	/**
