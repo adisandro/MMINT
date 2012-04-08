@@ -18,8 +18,11 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 
+import java.util.Collections;
 import java.util.Iterator;
 
+import java.util.Map;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -51,9 +54,11 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers.MIDBaseEditHelper;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
@@ -370,7 +375,30 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistMappingElements_4002(Mapping source,
 				ModelElementReference target) {
-			return true;
+			try {
+				if (source == null) {
+					return true;
+				} else {
+					Map<String, EClassifier> env = Collections
+							.<String, EClassifier> singletonMap(
+									"oppositeEnd", MappingPackage.eINSTANCE.getModelElementReference()); //$NON-NLS-1$
+					Object sourceVal = MIDOCLFactory.getExpression(1,
+							MappingPackage.eINSTANCE.getMapping(), env)
+							.evaluate(
+									source,
+									Collections.singletonMap(
+											"oppositeEnd", target)); //$NON-NLS-1$
+					if (false == sourceVal instanceof Boolean
+							|| !((Boolean) sourceVal).booleanValue()) {
+						return false;
+					} // else fall-through
+				}
+				return true;
+			} catch (Exception e) {
+				MIDDiagramEditorPlugin.getInstance().logError(
+						"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
@@ -379,7 +407,33 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistBinaryMapping_4003(MappingReference container,
 				BinaryMapping linkInstance, ModelElementReference source,
 				ModelElementReference target) {
-			return true;
+			try {
+				if (target == null) {
+					return true;
+				} else {
+					Map<String, EClassifier> env = Collections
+							.<String, EClassifier> singletonMap(
+									"oppositeEnd", MappingPackage.eINSTANCE.getModelElementReference()); //$NON-NLS-1$
+					Object targetVal = MIDOCLFactory
+							.getExpression(
+									2,
+									MappingPackage.eINSTANCE
+											.getModelElementReference(), env)
+							.evaluate(
+									target,
+									Collections.singletonMap(
+											"oppositeEnd", source)); //$NON-NLS-1$
+					if (false == targetVal instanceof Boolean
+							|| !((Boolean) targetVal).booleanValue()) {
+						return false;
+					} // else fall-through
+				}
+				return true;
+			} catch (Exception e) {
+				MIDDiagramEditorPlugin.getInstance().logError(
+						"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 	}
 
