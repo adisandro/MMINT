@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
  * 
  * This file is part of MMTF ver. 0.9.0.

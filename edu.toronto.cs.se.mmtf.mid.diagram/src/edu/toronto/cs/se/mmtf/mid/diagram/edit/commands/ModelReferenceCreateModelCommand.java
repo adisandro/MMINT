@@ -39,8 +39,23 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.repository.Editor;
 import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
 
+/**
+ * The command to create a model reference by also creating the referenced
+ * model.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class ModelReferenceCreateModelCommand extends ModelReference2CreateCommand {
 
+	/**
+	 * Shows a tree dialog to create a model choosing from the registered
+	 * metamodels and executes its wizard.
+	 * 
+	 * @return The uri of the created model.
+	 * @throws Exception
+	 *             If the model creation was not completed for any reason.
+	 */
 	private URI createModel() throws Exception {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getRepositoryAsDialog();
@@ -73,11 +88,29 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 		return wizDialog.getCreatedModelUri();
 	}
 
+	/**
+	 * Constructor: initialises the superclass.
+	 * 
+	 * @param request
+	 *            The request.
+	 */
 	public ModelReferenceCreateModelCommand(CreateElementRequest req) {
 
 		super(req);
 	}
 
+	/**
+	 * Creates a new model reference by creating a model.
+	 * 
+	 * @param monitor
+	 *            The progress monitor.
+	 * @param info
+	 *            Additional parameter, not used.
+	 * @return The ok result, or the error result if the model could not be
+	 *         created.
+	 * @throws ExecutionException
+	 *             If configuration command execution goes wrong.
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -89,6 +122,9 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
 			return CommandResult.newOKCommandResult(newElement);
+		}
+		catch (ExecutionException ee) {
+			throw ee;
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model created", e);

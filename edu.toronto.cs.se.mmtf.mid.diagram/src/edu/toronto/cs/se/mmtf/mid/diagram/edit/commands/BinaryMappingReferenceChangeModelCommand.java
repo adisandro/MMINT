@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
  * 
  * This file is part of MMTF ver. 0.9.0.
@@ -42,9 +42,11 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 	}
 
 	/**
-	 * Changes the source of a binary mapping reference.
+	 * Changes the source model reference of a binary mapping reference.
 	 * 
-	 * @return The result of the overridden function.
+	 * @return The ok result.
+	 * @throws ExecutionException
+	 *             Never thrown.
 	 */
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
@@ -57,9 +59,11 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 	}
 
 	/**
-	 * Changes the target of a binary mapping reference.
+	 * Changes the target model reference of a binary mapping reference.
 	 * 
-	 * @return The result of the overridden function.
+	 * @return The ok result.
+	 * @throws ExecutionException
+	 *             Never thrown.
 	 */
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {

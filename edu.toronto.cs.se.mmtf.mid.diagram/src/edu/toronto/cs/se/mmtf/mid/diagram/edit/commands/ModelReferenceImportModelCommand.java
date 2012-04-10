@@ -35,8 +35,22 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDElementChooserDialog;
 
+/**
+ * The command to create a model reference by importing an existing model.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class ModelReferenceImportModelCommand extends ModelReferenceCreateCommand {
 
+	/**
+	 * Shows a dialog to choose one among existing models conformant to the
+	 * registered metamodels and imports it.
+	 * 
+	 * @return The uri of the imported model.
+	 * @throws Exception
+	 *             If the model import was not completed for any reason.
+	 */
 	private URI selectModelToImport() throws MMTFException {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -51,11 +65,29 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		return dialog.getSelectedModelElementURI();
 	}
 
+	/**
+	 * Constructor: initialises the superclass.
+	 * 
+	 * @param request
+	 *            The request.
+	 */
 	public ModelReferenceImportModelCommand(CreateElementRequest req) {
 
 		super(req);
 	}
 
+	/**
+	 * Creates a new model reference by importing a model.
+	 * 
+	 * @param monitor
+	 *            The progress monitor.
+	 * @param info
+	 *            Additional parameter, not used.
+	 * @return The ok result, or the error result if the model could not be
+	 *         imported.
+	 * @throws ExecutionException
+	 *             If configuration command execution goes wrong.
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -67,6 +99,9 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
 			return CommandResult.newOKCommandResult(newElement);
+		}
+		catch (ExecutionException ee) {
+			throw ee;
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model imported", e);
