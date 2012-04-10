@@ -1,3 +1,21 @@
+/**
+ * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+ * 
+ * This file is part of MMTF ver. 0.9.0.
+ * 
+ * MMTF is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * MMTF is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
 
 import java.util.Iterator;
@@ -25,8 +43,22 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceModelsEditP
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
 
+/**
+ * The semantic edit policy for imported model references.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class ModelReferenceImportedSemanticEditPolicy extends ModelReferenceItemSemanticEditPolicy {
 
+	/**
+	 * Gets the command to destroy a model reference.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @return The executable command.
+	 */
+	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
 		View view = (View) getHost().getModel();
@@ -73,6 +105,15 @@ public class ModelReferenceImportedSemanticEditPolicy extends ModelReferenceItem
 		return getGEFWrapper(cmd.reduce());
 	}
 
+	/**
+	 * Gets the command to start creating a new link originating from a model
+	 * reference.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @return The executable command.
+	 */
+	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
@@ -85,6 +126,15 @@ public class ModelReferenceImportedSemanticEditPolicy extends ModelReferenceItem
 		return null;
 	}
 
+	/**
+	 * Gets the command to complete the creation of a new link originating from
+	 * a model reference.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @return The executable command.
+	 */
+	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		if (MIDElementTypes.MappingReferenceModels_4003 == req.getElementType()) {
@@ -98,6 +148,15 @@ public class ModelReferenceImportedSemanticEditPolicy extends ModelReferenceItem
 		return null;
 	}
 
+	/**
+	 * Gets the command to reorient a link (represented in the model with an
+	 * EClass) originating from a model reference.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @return The executable command.
+	 */
+	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 
 		switch (getVisualID(req)) {
@@ -107,6 +166,15 @@ public class ModelReferenceImportedSemanticEditPolicy extends ModelReferenceItem
 		return super.getReorientRelationshipCommand(req);
 	}
 
+	/**
+	 * Gets the command to reorient a link (represented in the model with an
+	 * EReference) originating from a model reference.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @return The executable command.
+	 */
+	@Override
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 
 		switch (getVisualID(req)) {

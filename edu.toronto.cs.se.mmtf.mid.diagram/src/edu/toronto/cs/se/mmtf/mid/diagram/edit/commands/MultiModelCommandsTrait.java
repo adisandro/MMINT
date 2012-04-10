@@ -1,5 +1,7 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -112,15 +114,19 @@ public class MultiModelCommandsTrait {
 		for (ModelContainer modelContainer : mappingRef.getContainers()) {
 			if (modelContainer.getModel() == modelRef) {
 				mappingRef.getContainers().remove(modelContainer);
+				ArrayList<Mapping> delMappings = new ArrayList<Mapping>();
 				for (ModelElementReference element : modelContainer.getElements()) {
 					for (Mapping mapping : element.getMappings()) {
-						// binary mappings have no longer sense
+						// binary mappings have no longer sense, delete them later
 						if (mapping instanceof BinaryMapping) {
-							mapping.getElements().clear();
-							mappingRef.getMappings().remove(mapping);
+							delMappings.add(mapping);
 						}
 					}
 					element.getMappings().clear();
+				}
+				for (Mapping delMapping : delMappings) {
+					delMapping.getElements().clear();
+					mappingRef.getMappings().remove(delMapping);
 				}
 				break;
 			}
