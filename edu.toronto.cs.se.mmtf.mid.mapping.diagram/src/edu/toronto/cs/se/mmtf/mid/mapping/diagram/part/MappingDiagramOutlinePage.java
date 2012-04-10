@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+ * 
+ * This file is part of MMTF ver. 0.9.0.
+ * 
+ * MMTF is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * MMTF is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package edu.toronto.cs.se.mmtf.mid.mapping.diagram.part;
 
 import org.eclipse.emf.common.util.URI;
@@ -20,12 +38,28 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
+/**
+ * The outline page of the Mapping diagram.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class MappingDiagramOutlinePage extends ContentOutlinePage {
 
+	/** The tree viewer of the outline. */
 	protected TreeViewer contentOutlineViewer;
+	/** The adapter factory for content and labels of the tree viewer. */
 	protected ComposedAdapterFactory adapterFactory;
+	/** The mapping diagram. */
 	protected Diagram diagram;
 
+	/**
+	 * Constructor: initialises superclass, diagram and creates the adapter
+	 * factory.
+	 * 
+	 * @param diagram
+	 *            The mapping diagram.
+	 */
 	public MappingDiagramOutlinePage(Diagram diagram) {
 
 		super();
@@ -36,6 +70,14 @@ public class MappingDiagramOutlinePage extends ContentOutlinePage {
 		this.diagram = diagram;
 	}
 
+	/**
+	 * {@inheritDoc}<br />
+	 * Initialises the tree viewer with a content and label provider, enables
+	 * drag and drop, sets the input of the tree viewer.
+	 * 
+	 * @param parent
+	 *            The parent.
+	 */
 	@Override
 	public void createControl(Composite parent) {
 

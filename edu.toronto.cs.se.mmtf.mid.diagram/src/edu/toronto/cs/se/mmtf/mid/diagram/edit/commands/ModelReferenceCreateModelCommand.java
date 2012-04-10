@@ -91,7 +91,7 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 	/**
 	 * Constructor: initialises the superclass.
 	 * 
-	 * @param request
+	 * @param req
 	 *            The request.
 	 */
 	public ModelReferenceCreateModelCommand(CreateElementRequest req) {

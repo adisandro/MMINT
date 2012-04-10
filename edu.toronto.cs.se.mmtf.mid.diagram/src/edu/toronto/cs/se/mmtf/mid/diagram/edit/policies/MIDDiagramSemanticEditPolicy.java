@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelReferenceImportMode
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
 
 /**
- * The semantic edit policy for the MID diagram (i.e. the multimodel).
+ * The semantic edit policy for the MID diagram (i.e. a multimodel).
  * 
  * @author Alessio Di Sandro
  * 

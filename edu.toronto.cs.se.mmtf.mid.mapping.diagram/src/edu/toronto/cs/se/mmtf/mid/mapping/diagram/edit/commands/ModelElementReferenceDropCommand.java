@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+ * 
+ * This file is part of MMTF ver. 0.9.0.
+ * 
+ * MMTF is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * MMTF is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -12,24 +30,51 @@ import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
+/**
+ * The command to create a model element reference from a dropped object.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class ModelElementReferenceDropCommand extends ModelElementReferenceCreateCommand {
 
-	EObject droppedElement;
+	/** The dropped object. */
+	EObject droppedObject;
 
-	public ModelElementReferenceDropCommand(CreateElementRequest req, EObject droppedElement) {
+	/**
+	 * Constructor: initialises the superclass and the dropped object.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @param droppedObject
+	 *            The dropped object.
+	 */
+	public ModelElementReferenceDropCommand(CreateElementRequest req, EObject droppedObject) {
 
 		super(req);
-		this.droppedElement = droppedElement;
+		this.droppedObject = droppedObject;
 	}
 
+	/**
+	 * Creates a new model element reference from a dropped object.
+	 * 
+	 * @param monitor
+	 *            The progress monitor.
+	 * @param info
+	 *            Additional parameter, not used.
+	 * @return The ok result.
+	 * @throws ExecutionException
+	 *             If configuration command execution goes wrong.
+	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		ModelElementReference newElement = MappingFactory.eINSTANCE.createModelElementReference();
-		newElement.setPointer(droppedElement);
+		newElement.setPointer(droppedObject);
 		String name = "";
-		if (!droppedElement.eAdapters().isEmpty()) {
-			ItemProviderAdapter adapter = (ItemProviderAdapter) droppedElement.eAdapters().get(0);
-			name = adapter.getText(droppedElement);
+		if (!droppedObject.eAdapters().isEmpty()) {
+			ItemProviderAdapter adapter = (ItemProviderAdapter) droppedObject.eAdapters().get(0);
+			name = adapter.getText(droppedObject);
 		}
 		newElement.setName(name);
 		ModelContainer owner = (ModelContainer) getElementToEdit();

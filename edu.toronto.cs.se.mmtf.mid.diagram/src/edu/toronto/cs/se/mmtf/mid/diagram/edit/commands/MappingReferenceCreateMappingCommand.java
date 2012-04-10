@@ -38,7 +38,7 @@ public class MappingReferenceCreateMappingCommand extends MappingReferenceCreate
 	/**
 	 * Constructor: initialises the superclass.
 	 * 
-	 * @param request
+	 * @param req
 	 *            The request.
 	 */
 	public MappingReferenceCreateMappingCommand(CreateElementRequest req) {

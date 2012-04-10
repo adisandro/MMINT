@@ -68,7 +68,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 	/**
 	 * Constructor: initialises the superclass.
 	 * 
-	 * @param request
+	 * @param req
 	 *            The request.
 	 */
 	public ModelReferenceImportModelCommand(CreateElementRequest req) {
