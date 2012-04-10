@@ -408,6 +408,7 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
+	 * Avoids element links to go out from binary mappings. 
 	 * @generated NOT
 	 */
 	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002(

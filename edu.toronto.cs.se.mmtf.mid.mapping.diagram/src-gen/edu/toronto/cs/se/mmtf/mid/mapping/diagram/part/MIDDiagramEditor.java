@@ -147,6 +147,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
+	 * Adds the custom outline page.
 	 * @generated NOT
 	 */
 	@SuppressWarnings("rawtypes")
@@ -361,6 +362,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
+	 * Registers the custom drop listener.
 	 * @generated NOT
 	 */
 	protected void initializeGraphicalViewer() {

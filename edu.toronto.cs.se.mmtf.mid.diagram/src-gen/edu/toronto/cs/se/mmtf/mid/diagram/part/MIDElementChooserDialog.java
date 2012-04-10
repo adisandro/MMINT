@@ -153,6 +153,7 @@ public class MIDElementChooserDialog extends Dialog {
 	}
 
 	/**
+	 * Selects files from registered metamodel file extensions.
 	 * @generated NOT
 	 */
 	private boolean isValidModelFile(IFile file) {
@@ -429,6 +430,7 @@ public class MIDElementChooserDialog extends Dialog {
 		}
 
 		/**
+		 * Sets the ok button enabled when a file is selected.
 		 * @generated NOT
 		 */
 		public void selectionChanged(SelectionChangedEvent event) {

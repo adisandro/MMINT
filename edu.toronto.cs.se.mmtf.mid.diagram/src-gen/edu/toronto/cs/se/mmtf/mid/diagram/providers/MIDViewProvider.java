@@ -542,6 +542,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
+	 * Adds missing diagram hint for binary mapping references.
 	 * @generated NOT
 	 */
 	public Edge createBinaryMappingReference_4004(EObject domainElement,
