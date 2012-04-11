@@ -38,7 +38,7 @@
       <domainMetaElement
           href="mid.ecore#//ModelReference"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
+          body="not self.oclIsKindOf(mapping::MappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -61,7 +61,7 @@
       <domainMetaElement
           href="mid.ecore#//ModelReference"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
+          body="not self.oclIsKindOf(mapping::MappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel

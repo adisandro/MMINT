@@ -214,6 +214,7 @@
         visualID="2005"
         editPartClassName="MappingReference2EditPart"
         itemSemanticEditPolicyClassName="MappingReference2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="MappingReferenceViewFactory"
         canonicalEditPolicyClassName="MappingReference2CanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="MappingReference2GraphicalNodeEditPolicy"
         createCommandClassName="MappingReference2CreateCommand">
@@ -248,6 +249,7 @@
           visualID="5005"
           editPartClassName="MappingReferenceName2EditPart"
           itemSemanticEditPolicyClassName="MappingReferenceName2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="MappingReferenceNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -675,10 +677,10 @@
           body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
+          body="not self.oclIsKindOf(mapping::MappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
+          body="not self.oclIsKindOf(mapping::MappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
           body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>

@@ -70,8 +70,8 @@ public class MIDOCLFactory {
 		if (cached.expressions[index] == null) {
 			final String[] exprBodies = new String[] {
 					"not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED", //$NON-NLS-1$
-					"not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED", //$NON-NLS-1$
-					"not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::MappingReference) and self.origin = ModelReferenceOrigin::IMPORTED", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::MappingReference) and self.origin = ModelReferenceOrigin::CREATED", //$NON-NLS-1$
 					"not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED", //$NON-NLS-1$
 					"not self.oclIsKindOf(mapping::BinaryMappingReference)", //$NON-NLS-1$
 					"self <> oppositeEnd", //$NON-NLS-1$
