@@ -25,6 +25,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardPage;
 
 /**
  * A wizard dialog to create a new model through MMTF.
@@ -45,12 +46,18 @@ public class ModelCreationWizardDialog extends WizardDialog {
 	protected void finishPressed() {
 
 		IWizardPage page = getCurrentPage();
-		while (!(page instanceof WizardNewFileCreationPage)) {
+		while (page.getPreviousPage() != null && !(page instanceof WizardNewFileCreationPage)) {
 			page = page.getPreviousPage();
 		}
-		WizardNewFileCreationPage filePage = (WizardNewFileCreationPage) page;
-		String modelPath = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-		createdModelUri = URI.createPlatformResourceURI(modelPath, true);
+		
+		if (page instanceof EcoreCreationWizardPage) {
+			EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
+			createdModelUri = filePage.getDomainModelURI();
+		} else {
+			WizardNewFileCreationPage filePage = (WizardNewFileCreationPage) page;
+			String modelPath = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
+			createdModelUri = URI.createPlatformResourceURI(modelPath, true);
+		}
 
 		super.finishPressed();
 	}
