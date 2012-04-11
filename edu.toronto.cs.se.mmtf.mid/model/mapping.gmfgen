@@ -309,7 +309,7 @@
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Add model"
-            description="Add an existing model"
+            description="Add existing model"
             genNodes="//@diagram/@topLevelNodes.0"/>
       </groups>
       <groups
