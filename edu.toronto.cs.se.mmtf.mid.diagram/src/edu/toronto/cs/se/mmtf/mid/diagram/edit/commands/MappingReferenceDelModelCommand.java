@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
  * The command to delete a model of a mapping reference.
@@ -63,7 +64,7 @@ public class MappingReferenceDelModelCommand extends DestroyReferenceCommand {
 
 		MappingReference mappingRef = (MappingReference) getContainer();
 		ModelReference modelRef = (ModelReference) getReferencedObject();
-		MultiModelCommandsTrait.removeMappingReferenceModel(mappingRef, modelRef);
+		MultiModelTrait.removeMappingReferenceModelContainer(mappingRef, modelRef);
 
 		return super.doExecuteWithResult(monitor, info);
 	}

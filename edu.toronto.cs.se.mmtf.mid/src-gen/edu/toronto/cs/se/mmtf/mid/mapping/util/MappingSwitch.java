@@ -130,6 +130,25 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.HOMOMORPHIC_MAPPING_REFERENCE: {
+				HomomorphicMappingReference homomorphicMappingReference = (HomomorphicMappingReference)theEObject;
+				T result = caseHomomorphicMappingReference(homomorphicMappingReference);
+				if (result == null) result = caseBinaryMappingReference(homomorphicMappingReference);
+				if (result == null) result = caseMappingReference(homomorphicMappingReference);
+				if (result == null) result = caseModelReference(homomorphicMappingReference);
+				if (result == null) result = caseNamedElement(homomorphicMappingReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.HOMOMORPHIC_MAPPING: {
+				HomomorphicMapping homomorphicMapping = (HomomorphicMapping)theEObject;
+				T result = caseHomomorphicMapping(homomorphicMapping);
+				if (result == null) result = caseBinaryMapping(homomorphicMapping);
+				if (result == null) result = caseMapping(homomorphicMapping);
+				if (result == null) result = caseNamedElement(homomorphicMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -221,6 +240,36 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBinaryMapping(BinaryMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Homomorphic Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Homomorphic Mapping Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHomomorphicMappingReference(HomomorphicMappingReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Homomorphic Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Homomorphic Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHomomorphicMapping(HomomorphicMapping object) {
 		return null;
 	}
 

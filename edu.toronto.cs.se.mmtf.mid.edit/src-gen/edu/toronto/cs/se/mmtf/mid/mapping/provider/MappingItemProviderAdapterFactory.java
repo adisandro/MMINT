@@ -226,6 +226,52 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected HomomorphicMappingReferenceItemProvider homomorphicMappingReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createHomomorphicMappingReferenceAdapter() {
+		if (homomorphicMappingReferenceItemProvider == null) {
+			homomorphicMappingReferenceItemProvider = new HomomorphicMappingReferenceItemProvider(this);
+		}
+
+		return homomorphicMappingReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected HomomorphicMappingItemProvider homomorphicMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createHomomorphicMappingAdapter() {
+		if (homomorphicMappingItemProvider == null) {
+			homomorphicMappingItemProvider = new HomomorphicMappingItemProvider(this);
+		}
+
+		return homomorphicMappingItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -330,6 +376,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (modelElementReferenceItemProvider != null) modelElementReferenceItemProvider.dispose();
 		if (mappingItemProvider != null) mappingItemProvider.dispose();
 		if (binaryMappingItemProvider != null) binaryMappingItemProvider.dispose();
+		if (homomorphicMappingReferenceItemProvider != null) homomorphicMappingReferenceItemProvider.dispose();
+		if (homomorphicMappingItemProvider != null) homomorphicMappingItemProvider.dispose();
 	}
 
 }

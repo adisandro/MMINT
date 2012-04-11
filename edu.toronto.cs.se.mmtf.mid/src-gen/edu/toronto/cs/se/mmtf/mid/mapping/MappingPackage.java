@@ -313,13 +313,31 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONTAINER__MODEL = 2;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONTAINER__REFERENCED_MODEL = 3;
+
+	/**
+	 * The feature id for the '<em><b>Contained Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONTAINER__CONTAINED_MODEL = 4;
+
+	/**
 	 * The number of structural features of the '<em>Model Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_FEATURE_COUNT = 3;
+	int MODEL_CONTAINER_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Model Container</em>' class.
@@ -498,6 +516,180 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingReferenceImpl <em>Homomorphic Mapping Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingReferenceImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMappingReference()
+	 * @generated
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__NAME = BINARY_MAPPING_REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__URI = BINARY_MAPPING_REFERENCE__URI;
+
+	/**
+	 * The feature id for the '<em><b>Root</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__ROOT = BINARY_MAPPING_REFERENCE__ROOT;
+
+	/**
+	 * The feature id for the '<em><b>Origin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__ORIGIN = BINARY_MAPPING_REFERENCE__ORIGIN;
+
+	/**
+	 * The feature id for the '<em><b>Models</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__MODELS = BINARY_MAPPING_REFERENCE__MODELS;
+
+	/**
+	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__MAPPINGS = BINARY_MAPPING_REFERENCE__MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__CONTAINERS = BINARY_MAPPING_REFERENCE__CONTAINERS;
+
+	/**
+	 * The feature id for the '<em><b>Model0</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__MODEL0 = BINARY_MAPPING_REFERENCE__MODEL0;
+
+	/**
+	 * The feature id for the '<em><b>Model1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__MODEL1 = BINARY_MAPPING_REFERENCE__MODEL1;
+
+	/**
+	 * The number of structural features of the '<em>Homomorphic Mapping Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE_FEATURE_COUNT = BINARY_MAPPING_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Homomorphic Mapping Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE_OPERATION_COUNT = BINARY_MAPPING_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl <em>Homomorphic Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMapping()
+	 * @generated
+	 */
+	int HOMOMORPHIC_MAPPING = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING__NAME = BINARY_MAPPING__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING__ELEMENTS = BINARY_MAPPING__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Element0</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING__ELEMENT0 = BINARY_MAPPING__ELEMENT0;
+
+	/**
+	 * The feature id for the '<em><b>Element1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING__ELEMENT1 = BINARY_MAPPING__ELEMENT1;
+
+	/**
+	 * The number of structural features of the '<em>Homomorphic Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_FEATURE_COUNT = BINARY_MAPPING_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Homomorphic Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_OPERATION_COUNT = BINARY_MAPPING_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -616,6 +808,28 @@ public interface MappingPackage extends EPackage {
 	EReference getModelContainer_Model();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel <em>Referenced Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referenced Model</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel()
+	 * @see #getModelContainer()
+	 * @generated
+	 */
+	EReference getModelContainer_ReferencedModel();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel <em>Contained Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Contained Model</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel()
+	 * @see #getModelContainer()
+	 * @generated
+	 */
+	EReference getModelContainer_ContainedModel();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -699,6 +913,26 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBinaryMapping_Element1();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference <em>Homomorphic Mapping Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Homomorphic Mapping Reference</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference
+	 * @generated
+	 */
+	EClass getHomomorphicMappingReference();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping <em>Homomorphic Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Homomorphic Mapping</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping
+	 * @generated
+	 */
+	EClass getHomomorphicMapping();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -818,6 +1052,22 @@ public interface MappingPackage extends EPackage {
 		EReference MODEL_CONTAINER__MODEL = eINSTANCE.getModelContainer_Model();
 
 		/**
+		 * The meta object literal for the '<em><b>Referenced Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_CONTAINER__REFERENCED_MODEL = eINSTANCE.getModelContainer_ReferencedModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Contained Model</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_CONTAINER__CONTAINED_MODEL = eINSTANCE.getModelContainer_ContainedModel();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -886,6 +1136,26 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BINARY_MAPPING__ELEMENT1 = eINSTANCE.getBinaryMapping_Element1();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingReferenceImpl <em>Homomorphic Mapping Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingReferenceImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMappingReference()
+		 * @generated
+		 */
+		EClass HOMOMORPHIC_MAPPING_REFERENCE = eINSTANCE.getHomomorphicMappingReference();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl <em>Homomorphic Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMapping()
+		 * @generated
+		 */
+		EClass HOMOMORPHIC_MAPPING = eINSTANCE.getHomomorphicMapping();
 
 	}
 

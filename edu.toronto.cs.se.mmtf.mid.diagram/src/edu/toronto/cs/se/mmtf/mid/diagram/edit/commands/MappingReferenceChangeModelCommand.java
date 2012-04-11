@@ -22,6 +22,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+
 /**
  * The command to change a model of a mapping reference.
  * 
@@ -51,8 +53,8 @@ public class MappingReferenceChangeModelCommand extends MappingReferenceModelsRe
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
-		MultiModelCommandsTrait.removeMappingReferenceModel(getOldSource(), getOldTarget());
-		MultiModelCommandsTrait.addMappingReferenceModel(getNewSource(), getOldTarget());
+		MultiModelTrait.removeMappingReferenceModelContainer(getOldSource(), getOldTarget());
+		MultiModelTrait.addMappingReferenceModelContainer(getNewSource(), getOldTarget());
 
 		return super.reorientSource();
 	}
@@ -67,8 +69,8 @@ public class MappingReferenceChangeModelCommand extends MappingReferenceModelsRe
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		MultiModelCommandsTrait.removeMappingReferenceModel(getOldSource(), getOldTarget());
-		MultiModelCommandsTrait.addMappingReferenceModel(getOldSource(), getNewTarget());
+		MultiModelTrait.removeMappingReferenceModelContainer(getOldSource(), getOldTarget());
+		MultiModelTrait.addMappingReferenceModelContainer(getOldSource(), getNewTarget());
 
 		return super.reorientTarget();
 	}

@@ -19,6 +19,7 @@
 package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 
+import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
@@ -83,6 +84,7 @@ public class ModelContainerItemProvider
 
 			addNamePropertyDescriptor(object);
 			addModelPropertyDescriptor(object);
+			addReferencedModelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -132,6 +134,28 @@ public class ModelContainerItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Referenced Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferencedModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelContainer_referencedModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_referencedModel_feature", "_UI_ModelContainer_type"),
+				 MappingPackage.Literals.MODEL_CONTAINER__REFERENCED_MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -144,6 +168,7 @@ public class ModelContainerItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MappingPackage.Literals.MODEL_CONTAINER__ELEMENTS);
+			childrenFeatures.add(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL);
 		}
 		return childrenFeatures;
 	}
@@ -202,6 +227,7 @@ public class ModelContainerItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
+			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -223,6 +249,26 @@ public class ModelContainerItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONTAINER__ELEMENTS,
 				 MappingFactory.eINSTANCE.createModelElementReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
+				 MappingFactory.eINSTANCE.createMappingReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
+				 MappingFactory.eINSTANCE.createBinaryMappingReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
+				 MappingFactory.eINSTANCE.createHomomorphicMappingReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
+				 MidFactory.eINSTANCE.createModelReference()));
 	}
 
 	/**

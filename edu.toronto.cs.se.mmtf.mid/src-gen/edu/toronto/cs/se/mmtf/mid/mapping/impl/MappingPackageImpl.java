@@ -24,6 +24,8 @@ import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
@@ -89,6 +91,20 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass binaryMappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass homomorphicMappingReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass homomorphicMappingEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -269,6 +285,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getModelContainer_ReferencedModel() {
+		return (EReference)modelContainerEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelContainer_ContainedModel() {
+		return (EReference)modelContainerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelElementReference() {
 		return modelElementReferenceEClass;
 	}
@@ -341,6 +375,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getHomomorphicMappingReference() {
+		return homomorphicMappingReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHomomorphicMapping() {
+		return homomorphicMappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -377,6 +429,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(modelContainerEClass, MODEL_CONTAINER__ELEMENTS);
 		createEAttribute(modelContainerEClass, MODEL_CONTAINER__NAME);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__MODEL);
+		createEReference(modelContainerEClass, MODEL_CONTAINER__REFERENCED_MODEL);
+		createEReference(modelContainerEClass, MODEL_CONTAINER__CONTAINED_MODEL);
 
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__POINTER);
@@ -388,6 +442,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		binaryMappingEClass = createEClass(BINARY_MAPPING);
 		createEReference(binaryMappingEClass, BINARY_MAPPING__ELEMENT0);
 		createEReference(binaryMappingEClass, BINARY_MAPPING__ELEMENT1);
+
+		homomorphicMappingReferenceEClass = createEClass(HOMOMORPHIC_MAPPING_REFERENCE);
+
+		homomorphicMappingEClass = createEClass(HOMOMORPHIC_MAPPING);
 	}
 
 	/**
@@ -426,6 +484,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		modelElementReferenceEClass.getESuperTypes().add(theMidPackage.getNamedElement());
 		mappingEClass.getESuperTypes().add(theMidPackage.getNamedElement());
 		binaryMappingEClass.getESuperTypes().add(this.getMapping());
+		homomorphicMappingReferenceEClass.getESuperTypes().add(this.getBinaryMappingReference());
+		homomorphicMappingEClass.getESuperTypes().add(this.getBinaryMapping());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingReferenceEClass, MappingReference.class, "MappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -440,7 +500,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(modelContainerEClass, ModelContainer.class, "ModelContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelContainer_Elements(), this.getModelElementReference(), null, "elements", null, 0, -1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelContainer_Name(), ecorePackage.getEString(), "name", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getModelContainer_Model(), theMidPackage.getModelReference(), null, "model", null, 1, 1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelContainer_Model(), theMidPackage.getModelReference(), null, "model", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getModelContainer_ReferencedModel(), theMidPackage.getModelReference(), null, "referencedModel", null, 0, 1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelContainer_ContainedModel(), theMidPackage.getModelReference(), null, "containedModel", null, 0, 1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementReference_Pointer(), ecorePackage.getEObject(), null, "pointer", null, 1, 1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -452,6 +514,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(binaryMappingEClass, BinaryMapping.class, "BinaryMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBinaryMapping_Element0(), this.getModelElementReference(), null, "element0", null, 1, 1, BinaryMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinaryMapping_Element1(), this.getModelElementReference(), null, "element1", null, 1, 1, BinaryMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(homomorphicMappingReferenceEClass, HomomorphicMappingReference.class, "HomomorphicMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(homomorphicMappingEClass, HomomorphicMapping.class, "HomomorphicMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -486,13 +552,31 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "isBinaryReference sourceModel targetModel"
-		   });				
+			 "constraints", "targetModel isBinaryReference sourceModel"
+		   });			
+		addAnnotation
+		  (modelContainerEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "oneModel"
+		   });					
 		addAnnotation
 		  (binaryMappingEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "isBinaryMapping sourceElement targetElement"
+			 "constraints", "targetElement isBinaryMapping sourceElement"
+		   });			
+		addAnnotation
+		  (homomorphicMappingReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sameModelTypes"
+		   });			
+		addAnnotation
+		  (homomorphicMappingEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sameElementTypes"
 		   });	
 	}
 
@@ -514,23 +598,47 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
+			 "targetModel", "model1 = models->at(2)",
 			 "isBinaryReference", "models->size() = 2",
-			 "sourceModel", "model0 = models->at(1)",
-			 "targetModel", "model1 = models->at(2)"
+			 "sourceModel", "model0 = models->at(1)"
+		   });			
+		addAnnotation
+		  (modelContainerEClass, 
+		   source, 
+		   new String[] {
+			 "oneModel", "referencedModel.oclIsUndefined() xor containedModel.oclIsUndefined()"
 		   });		
 		addAnnotation
 		  (getModelContainer_Name(), 
 		   source, 
 		   new String[] {
-			 "derivation", "model.name"
+			 "derivation", "if model.oclIsUndefined() then \'\' else model.name endif"
+		   });		
+		addAnnotation
+		  (getModelContainer_Model(), 
+		   source, 
+		   new String[] {
+			 "derivation", "if containedModel.oclIsUndefined() then referencedModel else containedModel endif"
 		   });			
 		addAnnotation
 		  (binaryMappingEClass, 
 		   source, 
 		   new String[] {
+			 "targetElement", "element1 = elements->at(2)",
 			 "isBinaryMapping", "elements->size() = 2",
-			 "sourceElement", "element0 = elements->at(1)",
-			 "targetElement", "element1 = elements->at(2)"
+			 "sourceElement", "element0 = elements->at(1)"
+		   });			
+		addAnnotation
+		  (homomorphicMappingReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "sameModelTypes", "models->forAll(m1 : ModelReference, m2 : ModelReference | m1.root.oclType() = m2.root.oclType())"
+		   });			
+		addAnnotation
+		  (homomorphicMappingEClass, 
+		   source, 
+		   new String[] {
+			 "sameElementTypes", "elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())"
 		   });
 	}
 

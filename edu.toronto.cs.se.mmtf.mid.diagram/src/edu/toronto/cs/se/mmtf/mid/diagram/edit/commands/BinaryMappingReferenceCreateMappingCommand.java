@@ -26,7 +26,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
  * The command to create a binary mapping reference.
@@ -70,13 +72,13 @@ public class BinaryMappingReferenceCreateMappingCommand extends BinaryMappingRef
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 
-		BinaryMappingReference newElement = MultiModelCommandsTrait.createBinaryMappingReference(getContainer());
+		BinaryMappingReference newElement = MultiModelTrait.createBinaryMappingReference(getContainer(), ModelReferenceOrigin.CREATED);
 		newElement.getModels().add(getSource());
 		newElement.setModel0(getSource());
 		newElement.getModels().add(getTarget());
 		newElement.setModel1(getTarget());
-		MultiModelCommandsTrait.addMappingReferenceModel(newElement, getSource());
-		MultiModelCommandsTrait.addMappingReferenceModel(newElement, getTarget());
+		MultiModelTrait.addMappingReferenceModelContainer(newElement, getSource());
+		MultiModelTrait.addMappingReferenceModelContainer(newElement, getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 

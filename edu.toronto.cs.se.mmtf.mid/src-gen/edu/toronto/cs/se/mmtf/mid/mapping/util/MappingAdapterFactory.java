@@ -111,6 +111,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createBinaryMappingAdapter();
 			}
 			@Override
+			public Adapter caseHomomorphicMappingReference(HomomorphicMappingReference object) {
+				return createHomomorphicMappingReferenceAdapter();
+			}
+			@Override
+			public Adapter caseHomomorphicMapping(HomomorphicMapping object) {
+				return createHomomorphicMappingAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -219,6 +227,34 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBinaryMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference <em>Homomorphic Mapping Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference
+	 * @generated
+	 */
+	public Adapter createHomomorphicMappingReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping <em>Homomorphic Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping
+	 * @generated
+	 */
+	public Adapter createHomomorphicMappingAdapter() {
 		return null;
 	}
 

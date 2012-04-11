@@ -33,8 +33,8 @@ package edu.toronto.cs.se.mmtf.mid.mapping;
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryMapping sourceElement targetElement'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryMapping='elements->size() = 2' sourceElement='element0 = elements->at(1)' targetElement='element1 = elements->at(2)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetElement isBinaryMapping sourceElement'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot targetElement='element1 = elements->at(2)' isBinaryMapping='elements->size() = 2' sourceElement='element0 = elements->at(1)'"
  * @generated
  */
 public interface BinaryMapping extends Mapping {

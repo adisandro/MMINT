@@ -49,6 +49,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getReferencedModel <em>Referenced Model</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getContainedModel <em>Contained Model</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,14 +77,34 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__NAME).getSettingDelegate();
 	/**
-	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * The cached setting delegate for the '{@link #getModel() <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelReference model;
+	protected EStructuralFeature.Internal.SettingDelegate MODEL__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__MODEL).getSettingDelegate();
+
+	/**
+	 * The cached value of the '{@link #getReferencedModel() <em>Referenced Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelReference referencedModel;
+
+	/**
+	 * The cached value of the '{@link #getContainedModel() <em>Contained Model</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainedModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelReference containedModel;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,15 +152,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 * @generated
 	 */
 	public ModelReference getModel() {
-		if (model != null && model.eIsProxy()) {
-			InternalEObject oldModel = (InternalEObject)model;
-			model = (ModelReference)eResolveProxy(oldModel);
-			if (model != oldModel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODEL_CONTAINER__MODEL, oldModel, model));
-			}
-		}
-		return model;
+		return (ModelReference)MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -147,7 +161,7 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 * @generated
 	 */
 	public ModelReference basicGetModel() {
-		return model;
+		return (ModelReference)MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -155,11 +169,80 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModel(ModelReference newModel) {
-		ModelReference oldModel = model;
-		model = newModel;
+	public ModelReference getReferencedModel() {
+		if (referencedModel != null && referencedModel.eIsProxy()) {
+			InternalEObject oldReferencedModel = (InternalEObject)referencedModel;
+			referencedModel = (ModelReference)eResolveProxy(oldReferencedModel);
+			if (referencedModel != oldReferencedModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL, oldReferencedModel, referencedModel));
+			}
+		}
+		return referencedModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelReference basicGetReferencedModel() {
+		return referencedModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferencedModel(ModelReference newReferencedModel) {
+		ModelReference oldReferencedModel = referencedModel;
+		referencedModel = newReferencedModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_CONTAINER__MODEL, oldModel, model));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL, oldReferencedModel, referencedModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelReference getContainedModel() {
+		return containedModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainedModel(ModelReference newContainedModel, NotificationChain msgs) {
+		ModelReference oldContainedModel = containedModel;
+		containedModel = newContainedModel;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL, oldContainedModel, newContainedModel);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainedModel(ModelReference newContainedModel) {
+		if (newContainedModel != containedModel) {
+			NotificationChain msgs = null;
+			if (containedModel != null)
+				msgs = ((InternalEObject)containedModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL, null, msgs);
+			if (newContainedModel != null)
+				msgs = ((InternalEObject)newContainedModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL, null, msgs);
+			msgs = basicSetContainedModel(newContainedModel, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL, newContainedModel, newContainedModel));
 	}
 
 	/**
@@ -172,6 +255,8 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 		switch (featureID) {
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
+				return basicSetContainedModel(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -191,6 +276,11 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 			case MappingPackage.MODEL_CONTAINER__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
+			case MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL:
+				if (resolve) return getReferencedModel();
+				return basicGetReferencedModel();
+			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
+				return getContainedModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -208,8 +298,11 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 				getElements().clear();
 				getElements().addAll((Collection<? extends ModelElementReference>)newValue);
 				return;
-			case MappingPackage.MODEL_CONTAINER__MODEL:
-				setModel((ModelReference)newValue);
+			case MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL:
+				setReferencedModel((ModelReference)newValue);
+				return;
+			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
+				setContainedModel((ModelReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -226,8 +319,11 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				getElements().clear();
 				return;
-			case MappingPackage.MODEL_CONTAINER__MODEL:
-				setModel((ModelReference)null);
+			case MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL:
+				setReferencedModel((ModelReference)null);
+				return;
+			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
+				setContainedModel((ModelReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -246,7 +342,11 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 			case MappingPackage.MODEL_CONTAINER__NAME:
 				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case MappingPackage.MODEL_CONTAINER__MODEL:
-				return model != null;
+				return MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL:
+				return referencedModel != null;
+			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
+				return containedModel != null;
 		}
 		return super.eIsSet(featureID);
 	}

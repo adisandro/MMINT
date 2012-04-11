@@ -206,6 +206,11 @@ public class MappingReferenceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
+				 MappingFactory.eINSTANCE.createHomomorphicMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_REFERENCE__CONTAINERS,
 				 MappingFactory.eINSTANCE.createModelContainer()));
 	}

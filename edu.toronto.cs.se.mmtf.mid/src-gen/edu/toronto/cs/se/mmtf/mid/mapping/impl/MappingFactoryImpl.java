@@ -78,6 +78,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MODEL_ELEMENT_REFERENCE: return createModelElementReference();
 			case MappingPackage.MAPPING: return createMapping();
 			case MappingPackage.BINARY_MAPPING: return createBinaryMapping();
+			case MappingPackage.HOMOMORPHIC_MAPPING_REFERENCE: return createHomomorphicMappingReference();
+			case MappingPackage.HOMOMORPHIC_MAPPING: return createHomomorphicMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -141,6 +143,26 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public BinaryMapping createBinaryMapping() {
 		BinaryMappingImpl binaryMapping = new BinaryMappingImpl();
 		return binaryMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HomomorphicMappingReference createHomomorphicMappingReference() {
+		HomomorphicMappingReferenceImpl homomorphicMappingReference = new HomomorphicMappingReferenceImpl();
+		return homomorphicMappingReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HomomorphicMapping createHomomorphicMapping() {
+		HomomorphicMappingImpl homomorphicMapping = new HomomorphicMappingImpl();
+		return homomorphicMapping;
 	}
 
 	/**

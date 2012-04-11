@@ -11,4 +11,5 @@ Require-Bundle: org.eclipse.core.runtime,
 Export-Package: edu.toronto.cs.se.mmtf.mid,
  edu.toronto.cs.se.mmtf.mid.mapping,
  edu.toronto.cs.se.mmtf.mid.mapping.util,
+ edu.toronto.cs.se.mmtf.mid.trait,
  edu.toronto.cs.se.mmtf.mid.util

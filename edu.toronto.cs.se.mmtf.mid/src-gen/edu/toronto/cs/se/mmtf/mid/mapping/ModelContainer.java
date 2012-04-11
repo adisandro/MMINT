@@ -33,11 +33,14 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getElements <em>Elements</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel <em>Model</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel <em>Referenced Model</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel <em>Contained Model</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelContainer()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='oneModel'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot oneModel='referencedModel.oclIsUndefined() xor containedModel.oclIsUndefined()'"
  * @generated
  */
 public interface ModelContainer extends EObject {
@@ -68,7 +71,7 @@ public interface ModelContainer extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelContainer_Name()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='model.name'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if model.oclIsUndefined() then \'\' else model.name endif'"
 	 * @generated
 	 */
 	String getName();
@@ -82,21 +85,63 @@ public interface ModelContainer extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
-	 * @see #setModel(ModelReference)
 	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelContainer_Model()
-	 * @model required="true"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if containedModel.oclIsUndefined() then referencedModel else containedModel endif'"
 	 * @generated
 	 */
 	ModelReference getModel();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel <em>Model</em>}' reference.
+	 * Returns the value of the '<em><b>Referenced Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referenced Model</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model</em>' reference.
-	 * @see #getModel()
+	 * @return the value of the '<em>Referenced Model</em>' reference.
+	 * @see #setReferencedModel(ModelReference)
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelContainer_ReferencedModel()
+	 * @model
 	 * @generated
 	 */
-	void setModel(ModelReference value);
+	ModelReference getReferencedModel();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel <em>Referenced Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referenced Model</em>' reference.
+	 * @see #getReferencedModel()
+	 * @generated
+	 */
+	void setReferencedModel(ModelReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Contained Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Contained Model</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Contained Model</em>' containment reference.
+	 * @see #setContainedModel(ModelReference)
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelContainer_ContainedModel()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ModelReference getContainedModel();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel <em>Contained Model</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Contained Model</em>' containment reference.
+	 * @see #getContainedModel()
+	 * @generated
+	 */
+	void setContainedModel(ModelReference value);
 
 } // ModelContainer

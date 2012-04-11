@@ -114,6 +114,10 @@ public class MappingValidator extends EObjectValidator {
 				return validateMapping((Mapping)value, diagnostics, context);
 			case MappingPackage.BINARY_MAPPING:
 				return validateBinaryMapping((BinaryMapping)value, diagnostics, context);
+			case MappingPackage.HOMOMORPHIC_MAPPING_REFERENCE:
+				return validateHomomorphicMappingReference((HomomorphicMappingReference)value, diagnostics, context);
+			case MappingPackage.HOMOMORPHIC_MAPPING:
+				return validateHomomorphicMapping((HomomorphicMapping)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -183,9 +187,9 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingReference_modelContainers(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_targetModel(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinaryReference(binaryMappingReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMappingReference_sourceModel(binaryMappingReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryMappingReference_targetModel(binaryMappingReference, diagnostics, context);
 		return result;
 	}
 
@@ -282,7 +286,46 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModelContainer(ModelContainer modelContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modelContainer, diagnostics, context);
+		if (!validate_NoCircularContainment(modelContainer, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelContainer, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelContainer_oneModel(modelContainer, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the oneModel constraint of '<em>Model Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String MODEL_CONTAINER__ONE_MODEL__EEXPRESSION = "referencedModel.oclIsUndefined() xor containedModel.oclIsUndefined()";
+
+	/**
+	 * Validates the oneModel constraint of '<em>Model Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelContainer_oneModel(ModelContainer modelContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.MODEL_CONTAINER,
+				 modelContainer,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "oneModel",
+				 MODEL_CONTAINER__ONE_MODEL__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -318,9 +361,9 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_targetElement(binaryMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMapping_isBinaryMapping(binaryMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryMapping_sourceElement(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryMapping_targetElement(binaryMapping, diagnostics, context);
 		return result;
 	}
 
@@ -377,6 +420,109 @@ public class MappingValidator extends EObjectValidator {
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "sourceElement",
 				 BINARY_MAPPING__SOURCE_ELEMENT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHomomorphicMappingReference(HomomorphicMappingReference homomorphicMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(homomorphicMappingReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingReference_modelContainers(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_targetModel(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinaryReference(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_sourceModel(homomorphicMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateHomomorphicMappingReference_sameModelTypes(homomorphicMappingReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the sameModelTypes constraint of '<em>Homomorphic Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String HOMOMORPHIC_MAPPING_REFERENCE__SAME_MODEL_TYPES__EEXPRESSION = "models->forAll(m1 : ModelReference, m2 : ModelReference | m1.root.oclType() = m2.root.oclType())";
+
+	/**
+	 * Validates the sameModelTypes constraint of '<em>Homomorphic Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHomomorphicMappingReference_sameModelTypes(HomomorphicMappingReference homomorphicMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.HOMOMORPHIC_MAPPING_REFERENCE,
+				 homomorphicMappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "sameModelTypes",
+				 HOMOMORPHIC_MAPPING_REFERENCE__SAME_MODEL_TYPES__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHomomorphicMapping(HomomorphicMapping homomorphicMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(homomorphicMapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_targetElement(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_isBinaryMapping(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_sourceElement(homomorphicMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateHomomorphicMapping_sameElementTypes(homomorphicMapping, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the sameElementTypes constraint of '<em>Homomorphic Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String HOMOMORPHIC_MAPPING__SAME_ELEMENT_TYPES__EEXPRESSION = "elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())";
+
+	/**
+	 * Validates the sameElementTypes constraint of '<em>Homomorphic Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHomomorphicMapping_sameElementTypes(HomomorphicMapping homomorphicMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.HOMOMORPHIC_MAPPING,
+				 homomorphicMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "sameElementTypes",
+				 HOMOMORPHIC_MAPPING__SAME_ELEMENT_TYPES__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

@@ -42,12 +42,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BinaryMappingReference" eSuperTypes="#//mapping/MappingReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="isBinaryReference sourceModel targetModel"/>
+        <details key="constraints" value="targetModel isBinaryReference sourceModel"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="targetModel" value="model1 = models->at(2)"/>
         <details key="isBinaryReference" value="models->size() = 2"/>
         <details key="sourceModel" value="model0 = models->at(1)"/>
-        <details key="targetModel" value="model1 = models->at(2)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="model0" lowerBound="1"
           eType="#//ModelReference"/>
@@ -55,17 +55,31 @@
           eType="#//ModelReference"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelContainer">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="oneModel"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="oneModel" value="referencedModel.oclIsUndefined() xor containedModel.oclIsUndefined()"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//mapping/ModelElementReference" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           changeable="false" volatile="true" transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="model.name"/>
+          <details key="derivation" value="if model.oclIsUndefined() then '' else model.name endif"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
-          eType="#//ModelReference"/>
+          eType="#//ModelReference" changeable="false" volatile="true" transient="true"
+          derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if containedModel.oclIsUndefined() then referencedModel else containedModel endif"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModel" eType="#//ModelReference"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedModel" eType="#//ModelReference"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pointer" lowerBound="1"
@@ -79,17 +93,33 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BinaryMapping" eSuperTypes="#//mapping/Mapping">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="isBinaryMapping sourceElement targetElement"/>
+        <details key="constraints" value="targetElement isBinaryMapping sourceElement"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="targetElement" value="element1 = elements->at(2)"/>
         <details key="isBinaryMapping" value="elements->size() = 2"/>
         <details key="sourceElement" value="element0 = elements->at(1)"/>
-        <details key="targetElement" value="element1 = elements->at(2)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="element0" lowerBound="1"
           eType="#//mapping/ModelElementReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="element1" lowerBound="1"
           eType="#//mapping/ModelElementReference"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="HomomorphicMappingReference" eSuperTypes="#//mapping/BinaryMappingReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="sameModelTypes"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="sameModelTypes" value="models->forAll(m1 : ModelReference, m2 : ModelReference | m1.root.oclType() = m2.root.oclType())"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="HomomorphicMapping" eSuperTypes="#//mapping/BinaryMapping">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="sameElementTypes"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="sameElementTypes" value="elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())"/>
+      </eAnnotations>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

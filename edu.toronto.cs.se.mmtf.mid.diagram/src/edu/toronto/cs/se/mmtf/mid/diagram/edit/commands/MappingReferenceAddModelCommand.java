@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+
 /**
  * The command to add a model of a mapping reference.
  * 
@@ -69,7 +71,7 @@ public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreat
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getModels().add(getTarget());
-			MultiModelCommandsTrait.addMappingReferenceModel(getSource(), getTarget());
+			MultiModelTrait.addMappingReferenceModelContainer(getSource(), getTarget());
 		}
 
 		return CommandResult.newOKCommandResult();

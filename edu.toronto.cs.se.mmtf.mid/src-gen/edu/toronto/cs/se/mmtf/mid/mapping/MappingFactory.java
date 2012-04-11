@@ -92,6 +92,24 @@ public interface MappingFactory extends EFactory {
 	BinaryMapping createBinaryMapping();
 
 	/**
+	 * Returns a new object of class '<em>Homomorphic Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Homomorphic Mapping Reference</em>'.
+	 * @generated
+	 */
+	HomomorphicMappingReference createHomomorphicMappingReference();
+
+	/**
+	 * Returns a new object of class '<em>Homomorphic Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Homomorphic Mapping</em>'.
+	 * @generated
+	 */
+	HomomorphicMapping createHomomorphicMapping();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

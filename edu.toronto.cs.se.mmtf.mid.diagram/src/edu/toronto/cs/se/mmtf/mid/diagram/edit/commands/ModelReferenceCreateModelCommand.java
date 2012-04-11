@@ -24,20 +24,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
-import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.repository.Editor;
-import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.MIDDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
  * The command to create a model reference by also creating the referenced
@@ -47,46 +40,6 @@ import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
  * 
  */
 public class ModelReferenceCreateModelCommand extends ModelReference2CreateCommand {
-
-	/**
-	 * Shows a tree dialog to create a model choosing from the registered
-	 * metamodels and executes its wizard.
-	 * 
-	 * @return The uri of the created model.
-	 * @throws Exception
-	 *             If the model creation was not completed for any reason.
-	 */
-	private URI createModel() throws Exception {
-
-		ElementTreeSelectionDialog dialog = MMTFRegistry.getRepositoryAsDialog();
-		dialog.setTitle("Create new model");
-		dialog.setMessage("Choose wizard to create model");
-		dialog.setAllowMultiple(false);
-
-		if (dialog.open() == Window.CANCEL) {
-			throw new MMTFException("Dialog cancel button pressed");
-		}
-		Object selection = dialog.getFirstResult();
-		if (selection == null) {
-			throw new MMTFException("Dialog ok button pressed with no selection");
-		}
-		Editor editor = (Editor) selection;
-		IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editor.getWizardId());
-		if (descriptor == null) {
-			throw new MMTFException("Wizard " + editor.getEditorId() + " not found");
-		}
-
-		IWorkbenchWizard wizard = descriptor.createWizard();
-		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection());
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ModelCreationWizardDialog wizDialog = new ModelCreationWizardDialog(shell, wizard);
-		wizDialog.setTitle(wizard.getWindowTitle());
-		if (wizDialog.open() == Window.CANCEL) {
-			throw new MMTFException("Wizard dialog cancel button pressed");
-		}
-
-		return wizDialog.getCreatedModelUri();
-	}
 
 	/**
 	 * Constructor: initialises the superclass.
@@ -115,9 +68,9 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			URI modelUri = createModel();
+			URI modelUri = MIDDiagramTrait.createModel();
 			MultiModel owner = (MultiModel) getElementToEdit();
-			ModelReference newElement = MultiModelCommandsTrait.createModelReference(owner, modelUri);
+			ModelReference newElement = MultiModelTrait.createModelReference(owner, modelUri, ModelReferenceOrigin.CREATED);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

@@ -22,6 +22,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+
 /**
  * The command to change a model of a binary mapping reference.
  * 
@@ -51,8 +53,8 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
-		MultiModelCommandsTrait.removeMappingReferenceModel(getLink(), getOldSource());
-		MultiModelCommandsTrait.addMappingReferenceModel(getLink(), getNewSource());
+		MultiModelTrait.removeMappingReferenceModelContainer(getLink(), getOldSource());
+		MultiModelTrait.addMappingReferenceModelContainer(getLink(), getNewSource());
 		getLink().getModels().set(0, getNewSource());
 
 		return super.reorientSource();
@@ -68,8 +70,8 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		MultiModelCommandsTrait.removeMappingReferenceModel(getLink(), getOldTarget());
-		MultiModelCommandsTrait.addMappingReferenceModel(getLink(), getNewTarget());
+		MultiModelTrait.removeMappingReferenceModelContainer(getLink(), getOldTarget());
+		MultiModelTrait.addMappingReferenceModelContainer(getLink(), getNewTarget());
 		getLink().getModels().set(1, getNewTarget());
 
 		return super.reorientTarget();
