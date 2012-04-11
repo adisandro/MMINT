@@ -48,7 +48,7 @@ import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceOpenDiagramEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceCreatedSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
 
@@ -90,7 +90,7 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
 				new MappingReferenceOpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new MappingReferenceSemanticEditPolicy());
+				new MappingReferenceCreatedSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -304,6 +304,9 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof ModelReference2EditPart) {
 			types.add(MIDElementTypes.MappingReferenceModels_4003);
 		}
+		if (targetEditPart instanceof MappingReference2EditPart) {
+			types.add(MIDElementTypes.MappingReferenceModels_4003);
+		}
 		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
@@ -311,6 +314,9 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
 		if (targetEditPart instanceof ModelReference2EditPart) {
+			types.add(MIDElementTypes.BinaryMappingReference_4004);
+		}
+		if (targetEditPart instanceof MappingReference2EditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
 		return types;
@@ -325,10 +331,12 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 			types.add(MIDElementTypes.MappingReference_2004);
 			types.add(MIDElementTypes.ModelReference_2002);
 			types.add(MIDElementTypes.ModelReference_2003);
+			types.add(MIDElementTypes.MappingReference_2005);
 		} else if (relationshipType == MIDElementTypes.BinaryMappingReference_4004) {
 			types.add(MIDElementTypes.MappingReference_2004);
 			types.add(MIDElementTypes.ModelReference_2002);
 			types.add(MIDElementTypes.ModelReference_2003);
+			types.add(MIDElementTypes.MappingReference_2005);
 		}
 		return types;
 	}
@@ -350,10 +358,12 @@ public class MappingReferenceEditPart extends ShapeNodeEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == MIDElementTypes.MappingReferenceModels_4003) {
 			types.add(MIDElementTypes.MappingReference_2004);
+			types.add(MIDElementTypes.MappingReference_2005);
 		} else if (relationshipType == MIDElementTypes.BinaryMappingReference_4004) {
 			types.add(MIDElementTypes.MappingReference_2004);
 			types.add(MIDElementTypes.ModelReference_2002);
 			types.add(MIDElementTypes.ModelReference_2003);
+			types.add(MIDElementTypes.MappingReference_2005);
 		}
 		return types;
 	}

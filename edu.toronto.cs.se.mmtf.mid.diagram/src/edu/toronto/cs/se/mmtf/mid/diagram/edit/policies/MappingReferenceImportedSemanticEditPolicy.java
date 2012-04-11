@@ -44,12 +44,12 @@ import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
 
 /**
- * The semantic edit policy for mapping references.
+ * The semantic edit policy for imported mapping references.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class MappingReferenceSemanticEditPolicy extends MappingReferenceItemSemanticEditPolicy {
+public class MappingReferenceImportedSemanticEditPolicy extends MappingReference2ItemSemanticEditPolicy {
 
 	/**
 	 * Gets the command to destroy a mapping reference.
@@ -60,7 +60,6 @@ public class MappingReferenceSemanticEditPolicy extends MappingReferenceItemSema
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);

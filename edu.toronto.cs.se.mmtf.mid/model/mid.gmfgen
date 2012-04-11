@@ -62,7 +62,7 @@
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="EditPolicyRoles.SEMANTIC_ROLE"
-          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceSemanticEditPolicy"/>
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceCreatedSemanticEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
         <metaClass
@@ -210,6 +210,59 @@
         </modelFacet>
       </labels>
     </topLevelNodes>
+    <topLevelNodes
+        visualID="2005"
+        editPartClassName="MappingReference2EditPart"
+        itemSemanticEditPolicyClassName="MappingReference2ItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="MappingReference2CanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="MappingReference2GraphicalNodeEditPolicy"
+        createCommandClassName="MappingReference2CreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@topLevelNodes.0/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="MappingReferenceFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MappingReferenceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMappingReferenceNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MappingReferenceFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMappingReferenceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureMappingReferenceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureMappingReferenceNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMappingReferenceNameFigure() {&#xA;&#x9;&#x9;return fFigureMappingReferenceNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"
+          editPolicyClassName="MappingReferenceOpenDiagramEditPolicy"
+          diagramKind="Mapping"
+          editorID="edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MappingDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceImportedSemanticEditPolicy"/>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.3">
+        <metaClass
+            href="mid.genmodel#//mid/mapping/MappingReference"/>
+        <containmentMetaFeature
+            href="mid.genmodel#//mid/MultiModel/elements"/>
+        <childMetaFeature
+            href="mid.genmodel#//mid/MultiModel/elements"/>
+      </modelFacet>
+      <labels
+          visualID="5005"
+          editPartClassName="MappingReferenceName2EditPart"
+          itemSemanticEditPolicyClassName="MappingReferenceName2ItemSemanticEditPolicy"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureMappingReferenceNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="mid.genmodel#//mid/NamedElement/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
     <links
         visualID="4003"
         editPartClassName="MappingReferenceModelsEditPart"
@@ -235,7 +288,7 @@
             href="mid.genmodel#//mid/mapping/MappingReference/models"/>
       </modelFacet>
       <creationConstraints
-          sourceEnd="//@expressionProviders/@providers.0/@expressions.3"/>
+          sourceEnd="//@expressionProviders/@providers.0/@expressions.4"/>
     </links>
     <links
         visualID="4004"
@@ -299,7 +352,7 @@
         </modelFacet>
       </labels>
       <creationConstraints
-          targetEnd="//@expressionProviders/@providers.0/@expressions.4"/>
+          targetEnd="//@expressionProviders/@providers.0/@expressions.5"/>
     </links>
     <palette>
       <groups
@@ -321,17 +374,22 @@
           collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="New binary mapping"
+            title="Import Nary mapping"
+            description="Import existing Nary mapping"
+            genNodes="//@diagram/@topLevelNodes.3"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Create binary mapping"
             description="Create new binary mapping"
             genLinks="//@diagram/@links.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="New Nary mapping"
+            title="Create Nary mapping"
             description="Create new Nary mapping"
             genNodes="//@diagram/@topLevelNodes.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="New Nary mapping connection"
+            title="Create Nary mapping connection"
             description="Create new Nary mapping connection"
             genLinks="//@diagram/@links.0"/>
       </groups>
@@ -383,6 +441,9 @@
         child="//@diagram/@topLevelNodes.2"/>
     <childReferences
         parent="//@diagram"
+        child="//@diagram/@topLevelNodes.3"/>
+    <childReferences
+        parent="//@diagram"
         child="//@diagram/@links.0"
         groupName="links"
         groupIcon="icons/linksNavigatorGroup.gif"/>
@@ -424,12 +485,36 @@
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
         child="//@diagram/@topLevelNodes.0"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.0"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
         child="//@diagram/@links.0"
         referenceType="out_target"
         groupName="outgoing links"
@@ -477,6 +562,18 @@
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
         child="//@diagram/@links.1"
         referenceType="out_target"
         groupName="target"
@@ -525,6 +622,18 @@
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.1"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
         child="//@diagram/@links.1"
         referenceType="in_source"
         groupName="source"
@@ -563,13 +672,16 @@
         xsi:type="gmfgen:GenExpressionInterpreter">
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="not self.oclIsKindOf(mapping::BinaryMappingReference)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
           body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
           body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
           body="not self.oclIsKindOf(mapping::BinaryMappingReference)"/>
@@ -582,7 +694,7 @@
       extensibleViaService="true">
     <implementations
         xsi:type="gmfgen:PredefinedParser"
-        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet"/>
+        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@links.1/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">

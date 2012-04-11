@@ -46,22 +46,21 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReference2ItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceCreatedSemanticEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceOpenDiagramEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelReferenceOpenExternalDiagramEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReference2ItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceImportedSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MappingReferenceOpenDiagramEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
-public class ModelReference2EditPart extends ShapeNodeEditPart {
+public class MappingReference2EditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2003;
+	public static final int VISUAL_ID = 2005;
 
 	/**
 	 * @generated
@@ -76,7 +75,7 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public ModelReference2EditPart(View view) {
+	public MappingReference2EditPart(View view) {
 		super(view);
 	}
 
@@ -86,14 +85,12 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelReference2ItemSemanticEditPolicy());
+				new MappingReference2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ModelReferenceOpenDiagramEditPolicy());
+				new MappingReferenceOpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelReferenceCreatedSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ModelReferenceOpenExternalDiagramEditPolicy());
+				new MappingReferenceImportedSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -128,24 +125,24 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ModelReferenceFigure();
+		return primaryShape = new MappingReferenceFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ModelReferenceFigure getPrimaryShape() {
-		return (ModelReferenceFigure) primaryShape;
+	public MappingReferenceFigure getPrimaryShape() {
+		return (MappingReferenceFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelReferenceName2EditPart) {
-			((ModelReferenceName2EditPart) childEditPart)
+		if (childEditPart instanceof MappingReferenceName2EditPart) {
+			((MappingReferenceName2EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
-							.getFigureModelReferenceNameFigure());
+							.getFigureMappingReferenceNameFigure());
 			return true;
 		}
 		return false;
@@ -155,7 +152,7 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelReferenceName2EditPart) {
+		if (childEditPart instanceof MappingReferenceName2EditPart) {
 			return true;
 		}
 		return false;
@@ -279,14 +276,15 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(ModelReferenceName2EditPart.VISUAL_ID));
+				.getType(MappingReferenceName2EditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(MIDElementTypes.MappingReferenceModels_4003);
 		types.add(MIDElementTypes.BinaryMappingReference_4004);
 		return types;
 	}
@@ -298,15 +296,27 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof MappingReferenceEditPart) {
+			types.add(MIDElementTypes.MappingReferenceModels_4003);
+		}
+		if (targetEditPart instanceof ModelReferenceEditPart) {
+			types.add(MIDElementTypes.MappingReferenceModels_4003);
+		}
+		if (targetEditPart instanceof ModelReference2EditPart) {
+			types.add(MIDElementTypes.MappingReferenceModels_4003);
+		}
+		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReference2EditPart) {
+			types.add(MIDElementTypes.MappingReferenceModels_4003);
+		}
+		if (targetEditPart instanceof MappingReferenceEditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
 		if (targetEditPart instanceof ModelReferenceEditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
-		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart) {
+		if (targetEditPart instanceof ModelReference2EditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
-		if (targetEditPart instanceof MappingReference2EditPart) {
+		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReference2EditPart) {
 			types.add(MIDElementTypes.BinaryMappingReference_4004);
 		}
 		return types;
@@ -317,7 +327,12 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MIDElementTypes.BinaryMappingReference_4004) {
+		if (relationshipType == MIDElementTypes.MappingReferenceModels_4003) {
+			types.add(MIDElementTypes.MappingReference_2004);
+			types.add(MIDElementTypes.ModelReference_2002);
+			types.add(MIDElementTypes.ModelReference_2003);
+			types.add(MIDElementTypes.MappingReference_2005);
+		} else if (relationshipType == MIDElementTypes.BinaryMappingReference_4004) {
 			types.add(MIDElementTypes.MappingReference_2004);
 			types.add(MIDElementTypes.ModelReference_2002);
 			types.add(MIDElementTypes.ModelReference_2003);
@@ -369,17 +384,17 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class ModelReferenceFigure extends RectangleFigure {
+	public class MappingReferenceFigure extends RectangleFigure {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureModelReferenceNameFigure;
+		private WrappingLabel fFigureMappingReferenceNameFigure;
 
 		/**
 		 * @generated
 		 */
-		public ModelReferenceFigure() {
+		public MappingReferenceFigure() {
 			createContents();
 		}
 
@@ -388,18 +403,18 @@ public class ModelReference2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureModelReferenceNameFigure = new WrappingLabel();
-			fFigureModelReferenceNameFigure.setText("<...>");
+			fFigureMappingReferenceNameFigure = new WrappingLabel();
+			fFigureMappingReferenceNameFigure.setText("<...>");
 
-			this.add(fFigureModelReferenceNameFigure);
+			this.add(fFigureMappingReferenceNameFigure);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureModelReferenceNameFigure() {
-			return fFigureModelReferenceNameFigure;
+		public WrappingLabel getFigureMappingReferenceNameFigure() {
+			return fFigureMappingReferenceNameFigure;
 		}
 
 	}

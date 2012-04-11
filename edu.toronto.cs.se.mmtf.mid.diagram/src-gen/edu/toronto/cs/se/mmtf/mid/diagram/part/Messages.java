@@ -291,32 +291,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Newbinarymapping1CreationTool_title;
+	public static String ImportNarymapping1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newbinarymapping1CreationTool_desc;
+	public static String ImportNarymapping1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymapping2CreationTool_title;
+	public static String Createbinarymapping2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymapping2CreationTool_desc;
+	public static String Createbinarymapping2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymappingconnection3CreationTool_title;
+	public static String CreateNarymapping3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymappingconnection3CreationTool_desc;
+	public static String CreateNarymapping3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String CreateNarymappingconnection4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String CreateNarymappingconnection4CreationTool_desc;
 
 	/**
 	 * @generated
@@ -387,6 +397,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_BinaryMappingReference_4004_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MappingReference_2005_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MappingReference_2005_outgoinglinks;
 
 	/**
 	 * @generated

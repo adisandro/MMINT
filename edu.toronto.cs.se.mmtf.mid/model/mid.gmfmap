@@ -13,7 +13,7 @@
       <domainMetaElement
           href="mid.ecore#//mapping/MappingReference"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::BinaryMappingReference)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::CREATED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -25,7 +25,7 @@
           href="mapping.gmfmap#//@diagram"/>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="mid.gmftool#//@palette/@tools.1/@tools.1"/>
+          href="mid.gmftool#//@palette/@tools.1/@tools.2"/>
       <diagramNode
           href="mid.gmfgraph#MappingReference"/>
     </ownedChild>
@@ -76,10 +76,34 @@
           href="mid.gmfgraph#ModelReference"/>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="mid.ecore#//MultiModel/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="mid.ecore#//mapping/MappingReference"/>
+      <domainSpecialization
+          body="not self.oclIsKindOf(mapping::BinaryMappingReference) and self.origin = ModelReferenceOrigin::IMPORTED"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="mid.gmfgraph#MappingReferenceName"/>
+        <features
+            href="mid.ecore#//NamedElement/name"/>
+      </labelMappings>
+      <relatedDiagrams
+          href="mapping.gmfmap#//@diagram"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="mid.gmftool#//@palette/@tools.1/@tools.0"/>
+      <diagramNode
+          href="mid.gmfgraph#MappingReference"/>
+    </ownedChild>
+  </nodes>
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="mid.gmftool#//@palette/@tools.1/@tools.2"/>
+        href="mid.gmftool#//@palette/@tools.1/@tools.3"/>
     <diagramLink
         href="mid.gmfgraph#MappingReferenceModels"/>
     <linkMetaFeature
@@ -106,7 +130,7 @@
         href="mid.ecore#//MultiModel/elements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="mid.gmftool#//@palette/@tools.1/@tools.0"/>
+        href="mid.gmftool#//@palette/@tools.1/@tools.1"/>
     <diagramLink
         href="mid.gmfgraph#BinaryMappingReferenceModels"/>
     <sourceMetaFeature

@@ -36,6 +36,7 @@ import org.eclipse.swt.graphics.Image;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceModelsEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
@@ -86,6 +87,11 @@ public class MIDElementTypes {
 	 * @generated
 	 */
 	public static final IElementType ModelReference_2003 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2003"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType MappingReference_2005 = getElementType("edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2005"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -217,6 +223,9 @@ public class MIDElementTypes {
 			elements.put(ModelReference_2003,
 					MidPackage.eINSTANCE.getModelReference());
 
+			elements.put(MappingReference_2005,
+					MappingPackage.eINSTANCE.getMappingReference());
+
 			elements.put(MappingReferenceModels_4003,
 					MappingPackage.eINSTANCE.getMappingReference_Models());
 
@@ -243,6 +252,7 @@ public class MIDElementTypes {
 			KNOWN_ELEMENT_TYPES.add(MappingReference_2004);
 			KNOWN_ELEMENT_TYPES.add(ModelReference_2002);
 			KNOWN_ELEMENT_TYPES.add(ModelReference_2003);
+			KNOWN_ELEMENT_TYPES.add(MappingReference_2005);
 			KNOWN_ELEMENT_TYPES.add(MappingReferenceModels_4003);
 			KNOWN_ELEMENT_TYPES.add(BinaryMappingReference_4004);
 		}
@@ -262,6 +272,8 @@ public class MIDElementTypes {
 			return ModelReference_2002;
 		case ModelReference2EditPart.VISUAL_ID:
 			return ModelReference_2003;
+		case MappingReference2EditPart.VISUAL_ID:
+			return MappingReference_2005;
 		case MappingReferenceModelsEditPart.VISUAL_ID:
 			return MappingReferenceModels_4003;
 		case BinaryMappingReferenceEditPart.VISUAL_ID:

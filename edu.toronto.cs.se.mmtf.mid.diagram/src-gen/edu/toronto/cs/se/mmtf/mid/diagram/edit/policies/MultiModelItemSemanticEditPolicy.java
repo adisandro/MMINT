@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsComma
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReference2CreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.MappingReferenceCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelReference2CreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelReferenceCreateCommand;
@@ -55,6 +56,9 @@ public class MultiModelItemSemanticEditPolicy extends
 		}
 		if (MIDElementTypes.ModelReference_2003 == req.getElementType()) {
 			return getGEFWrapper(new ModelReference2CreateCommand(req));
+		}
+		if (MIDElementTypes.MappingReference_2005 == req.getElementType()) {
+			return getGEFWrapper(new MappingReference2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

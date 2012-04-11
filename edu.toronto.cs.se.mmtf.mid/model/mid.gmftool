@@ -35,7 +35,16 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New binary mapping"
+          title="Import Nary mapping"
+          description="Import existing Nary mapping">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Create binary mapping"
           description="Create new binary mapping">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -44,7 +53,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New Nary mapping"
+          title="Create Nary mapping"
           description="Create new Nary mapping">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -53,7 +62,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New Nary mapping connection"
+          title="Create Nary mapping connection"
           description="Create new Nary mapping connection">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>

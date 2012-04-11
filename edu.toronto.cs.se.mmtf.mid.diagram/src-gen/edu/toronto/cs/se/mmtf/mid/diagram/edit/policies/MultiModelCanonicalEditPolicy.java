@@ -58,6 +58,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
@@ -123,9 +124,14 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = MIDVisualIDRegistry.getVisualID(view);
-		return visualID == MappingReferenceEditPart.VISUAL_ID
-				|| visualID == ModelReferenceEditPart.VISUAL_ID
-				|| visualID == ModelReference2EditPart.VISUAL_ID;
+		switch (visualID) {
+		case MappingReferenceEditPart.VISUAL_ID:
+		case ModelReferenceEditPart.VISUAL_ID:
+		case ModelReference2EditPart.VISUAL_ID:
+		case MappingReference2EditPart.VISUAL_ID:
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -359,6 +365,17 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
 						.getModelReference_2003ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case MappingReference2EditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(MIDDiagramUpdater
+						.getMappingReference_2005ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

@@ -30,13 +30,13 @@ import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
- * The command to create a mapping reference by also creating the underlying
- * mapping structure.
+ * The command to create a mapping reference by importing an existing mapping
+ * structure.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class MappingReferenceCreateMappingCommand extends MappingReferenceCreateCommand {
+public class MappingReferenceImportMappingCommand extends MappingReference2CreateCommand {
 
 	/**
 	 * Constructor: initialises the superclass.
@@ -44,13 +44,13 @@ public class MappingReferenceCreateMappingCommand extends MappingReferenceCreate
 	 * @param req
 	 *            The request.
 	 */
-	public MappingReferenceCreateMappingCommand(CreateElementRequest req) {
+	public MappingReferenceImportMappingCommand(CreateElementRequest req) {
 
 		super(req);
 	}
 
 	/**
-	 * Creates a new mapping reference by also creating the underlying mapping
+	 * Creates a new mapping reference by importing an existing mapping
 	 * structure.
 	 * 
 	 * @param monitor
@@ -64,8 +64,11 @@ public class MappingReferenceCreateMappingCommand extends MappingReferenceCreate
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+		//TODO invece bisogna:
+		// 1 mostrare un dialog per scegliere il mapping file
+		// 2 copiare tutto l'albero della mapping reference nel mid
 		MultiModel owner = (MultiModel) getElementToEdit();
-		MappingReference newElement = MultiModelTrait.createMappingReference(owner, ModelReferenceOrigin.CREATED);
+		MappingReference newElement = MultiModelTrait.createMappingReference(owner, ModelReferenceOrigin.IMPORTED);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 

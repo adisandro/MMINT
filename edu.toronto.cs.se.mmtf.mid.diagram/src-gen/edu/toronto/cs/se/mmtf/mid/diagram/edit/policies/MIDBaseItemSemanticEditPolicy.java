@@ -384,7 +384,7 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 									"oppositeEnd", MidPackage.eINSTANCE.getModelReference()); //$NON-NLS-1$
 					Object sourceVal = MIDOCLFactory
 							.getExpression(
-									3,
+									4,
 									MappingPackage.eINSTANCE
 											.getMappingReference(), env)
 							.evaluate(
@@ -417,7 +417,7 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					Map<String, EClassifier> env = Collections
 							.<String, EClassifier> singletonMap(
 									"oppositeEnd", MidPackage.eINSTANCE.getModelReference()); //$NON-NLS-1$
-					Object targetVal = MIDOCLFactory.getExpression(4,
+					Object targetVal = MIDOCLFactory.getExpression(5,
 							MidPackage.eINSTANCE.getModelReference(), env)
 							.evaluate(
 									target,

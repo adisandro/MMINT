@@ -37,8 +37,10 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryMappingReferenceNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceModelsEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
@@ -117,24 +119,27 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case BinaryMappingReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?BinaryMappingReference", MIDElementTypes.BinaryMappingReference_4004); //$NON-NLS-1$
-		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference?models", MIDElementTypes.MappingReferenceModels_4003); //$NON-NLS-1$
-		case MultiModelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MultiModel", MIDElementTypes.MultiModel_1000); //$NON-NLS-1$
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference", MIDElementTypes.MappingReference_2004); //$NON-NLS-1$
-		case ModelReference2EditPart.VISUAL_ID:
+		case MultiModelEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2003); //$NON-NLS-1$
+					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?MultiModel", MIDElementTypes.MultiModel_1000); //$NON-NLS-1$
 		case ModelReferenceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2002); //$NON-NLS-1$
+		case MappingReference2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference", MIDElementTypes.MappingReference_2005); //$NON-NLS-1$
+		case BinaryMappingReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?BinaryMappingReference", MIDElementTypes.BinaryMappingReference_4004); //$NON-NLS-1$
+		case ModelReference2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore?ModelReference", MIDElementTypes.ModelReference_2003); //$NON-NLS-1$
+		case MappingReferenceModelsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping?MappingReference?models", MIDElementTypes.MappingReferenceModels_4003); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -195,18 +200,20 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case BinaryMappingReferenceEditPart.VISUAL_ID:
-			return getBinaryMappingReference_4004Text(view);
-		case MappingReferenceModelsEditPart.VISUAL_ID:
-			return getMappingReferenceModels_4003Text(view);
-		case MultiModelEditPart.VISUAL_ID:
-			return getMultiModel_1000Text(view);
 		case MappingReferenceEditPart.VISUAL_ID:
 			return getMappingReference_2004Text(view);
-		case ModelReference2EditPart.VISUAL_ID:
-			return getModelReference_2003Text(view);
+		case MultiModelEditPart.VISUAL_ID:
+			return getMultiModel_1000Text(view);
 		case ModelReferenceEditPart.VISUAL_ID:
 			return getModelReference_2002Text(view);
+		case MappingReference2EditPart.VISUAL_ID:
+			return getMappingReference_2005Text(view);
+		case BinaryMappingReferenceEditPart.VISUAL_ID:
+			return getBinaryMappingReference_4004Text(view);
+		case ModelReference2EditPart.VISUAL_ID:
+			return getModelReference_2003Text(view);
+		case MappingReferenceModelsEditPart.VISUAL_ID:
+			return getMappingReferenceModels_4003Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -301,6 +308,26 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			MIDDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 6001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getMappingReference_2005Text(View view) {
+		IParser parser = MIDParserProvider.getParser(
+				MIDElementTypes.MappingReference_2005,
+				view.getElement() != null ? view.getElement() : view,
+				MIDVisualIDRegistry
+						.getType(MappingReferenceName2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			MIDDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5005); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

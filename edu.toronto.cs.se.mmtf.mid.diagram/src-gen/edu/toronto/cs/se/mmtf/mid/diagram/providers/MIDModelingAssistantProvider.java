@@ -39,6 +39,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart;
@@ -58,10 +59,11 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof MultiModelEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 			types.add(MIDElementTypes.MappingReference_2004);
 			types.add(MIDElementTypes.ModelReference_2002);
 			types.add(MIDElementTypes.ModelReference_2003);
+			types.add(MIDElementTypes.MappingReference_2005);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -85,6 +87,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((ModelReference2EditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof MappingReference2EditPart) {
+			return ((MappingReference2EditPart) sourceEditPart)
+					.getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -104,6 +110,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof ModelReference2EditPart) {
 			return ((ModelReference2EditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof MappingReference2EditPart) {
+			return ((MappingReference2EditPart) targetEditPart)
 					.getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
@@ -130,6 +140,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((ModelReference2EditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof MappingReference2EditPart) {
+			return ((MappingReference2EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -152,6 +166,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((ModelReference2EditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof MappingReference2EditPart) {
+			return ((MappingReference2EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -172,6 +190,10 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof ModelReference2EditPart) {
 			return ((ModelReference2EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof MappingReference2EditPart) {
+			return ((MappingReference2EditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;

@@ -66,9 +66,10 @@ public class MIDPaletteFactory {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Mappings2Group_title);
 		paletteContainer.setId("createMappings2Group"); //$NON-NLS-1$
-		paletteContainer.add(createNewbinarymapping1CreationTool());
-		paletteContainer.add(createNewNarymapping2CreationTool());
-		paletteContainer.add(createNewNarymappingconnection3CreationTool());
+		paletteContainer.add(createImportNarymapping1CreationTool());
+		paletteContainer.add(createCreatebinarymapping2CreationTool());
+		paletteContainer.add(createCreateNarymapping3CreationTool());
+		paletteContainer.add(createCreateNarymappingconnection4CreationTool());
 		return paletteContainer;
 	}
 
@@ -105,13 +106,29 @@ public class MIDPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createNewbinarymapping1CreationTool() {
+	private ToolEntry createImportNarymapping1CreationTool() {
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.ImportNarymapping1CreationTool_title,
+				Messages.ImportNarymapping1CreationTool_desc,
+				Collections
+						.singletonList(MIDElementTypes.MappingReference_2005));
+		entry.setId("createImportNarymapping1CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(MIDElementTypes
+				.getImageDescriptor(MIDElementTypes.MappingReference_2005));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createCreatebinarymapping2CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Newbinarymapping1CreationTool_title,
-				Messages.Newbinarymapping1CreationTool_desc,
+				Messages.Createbinarymapping2CreationTool_title,
+				Messages.Createbinarymapping2CreationTool_desc,
 				Collections
 						.singletonList(MIDElementTypes.BinaryMappingReference_4004));
-		entry.setId("createNewbinarymapping1CreationTool"); //$NON-NLS-1$
+		entry.setId("createCreatebinarymapping2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
 				.getImageDescriptor(MIDElementTypes.BinaryMappingReference_4004));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -121,13 +138,13 @@ public class MIDPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createNewNarymapping2CreationTool() {
+	private ToolEntry createCreateNarymapping3CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.NewNarymapping2CreationTool_title,
-				Messages.NewNarymapping2CreationTool_desc,
+				Messages.CreateNarymapping3CreationTool_title,
+				Messages.CreateNarymapping3CreationTool_desc,
 				Collections
 						.singletonList(MIDElementTypes.MappingReference_2004));
-		entry.setId("createNewNarymapping2CreationTool"); //$NON-NLS-1$
+		entry.setId("createCreateNarymapping3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
 				.getImageDescriptor(MIDElementTypes.MappingReference_2004));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -137,13 +154,13 @@ public class MIDPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createNewNarymappingconnection3CreationTool() {
+	private ToolEntry createCreateNarymappingconnection4CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.NewNarymappingconnection3CreationTool_title,
-				Messages.NewNarymappingconnection3CreationTool_desc,
+				Messages.CreateNarymappingconnection4CreationTool_title,
+				Messages.CreateNarymappingconnection4CreationTool_desc,
 				Collections
 						.singletonList(MIDElementTypes.MappingReferenceModels_4003));
-		entry.setId("createNewNarymappingconnection3CreationTool"); //$NON-NLS-1$
+		entry.setId("createCreateNarymappingconnection4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
 				.getImageDescriptor(MIDElementTypes.MappingReferenceModels_4003));
 		entry.setLargeIcon(entry.getSmallIcon());

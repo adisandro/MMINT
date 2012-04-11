@@ -263,7 +263,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="MID"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2004,2002,2003"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2004,2002,2003,2005"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004"/>
       </viewProvider>
    </extension>
@@ -276,13 +276,13 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
             <method name="getType()" value="MID"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2004,2002,2003"/>
+            <method name="getType()" value="2004,2002,2003,2005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5004,5002,5003"/>
+            <method name="getType()" value="5004,5002,5003,5005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -299,7 +299,8 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReferenceEditPart" id="MappingReference_2004"/>
          <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReferenceEditPart" id="ModelReference_2002"/>
          <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelReference2EditPart" id="ModelReference_2003"/>
-         <context elements="MultiModel_1000,MappingReference_2004,ModelReference_2002,ModelReference_2003"/>
+         <object class="edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MappingReference2EditPart" id="MappingReference_2005"/>
+         <context elements="MultiModel_1000,MappingReference_2004,ModelReference_2002,ModelReference_2003,MappingReference_2005"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -322,7 +323,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       <decoratorProvider class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MIDShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
-            <method name="getType()" value="2004,2002,2003"/>
+            <method name="getType()" value="2004,2002,2003,2005"/>
          </object>
          <context decoratorTargets="generated-top-nodes"/>
       </decoratorProvider>
@@ -371,6 +372,15 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
          <specializationType
+               id="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2005"
+               name="%metatype.name.MappingReference_2005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2004"/>
+            <param name="semanticHint" value="2005"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/mid/model/mid.ecore/mapping">
+         <specializationType
                id="edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4003"
                name="%metatype.name.MappingReferenceModels_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
@@ -404,6 +414,7 @@ along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2004"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2002"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.ModelReference_2003"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MappingReference_2005"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.MappingReferenceModels_4003"/>
          <elementType ref="edu.toronto.cs.se.mmtf.mid.diagram.BinaryMappingReference_4004"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
