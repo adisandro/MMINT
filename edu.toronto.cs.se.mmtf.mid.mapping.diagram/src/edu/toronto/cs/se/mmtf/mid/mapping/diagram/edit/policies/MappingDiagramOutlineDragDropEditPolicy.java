@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.ModelElementReferenceDropCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
@@ -71,8 +72,14 @@ public class MappingDiagramOutlineDragDropEditPolicy extends DiagramDragDropEdit
 			EObject droppedElement = (EObject) nextObject;
 			String modelUri = EcoreUtil.getURI(droppedElement).toPlatformString(true);
 
+containers:
 			for (ModelContainer container : root.getContainers()) {
 				if (modelUri.equals(container.getModel().getUri())) {
+					for (ModelElementReference element : container.getElements()) { // avoid duplicates
+						if (element.getPointer() == droppedElement) {
+							continue containers;
+						}
+					}
 					EReference containment = (EReference) container.eClass().getEStructuralFeature(MappingPackage.MODEL_CONTAINER__ELEMENTS);
 					CreateElementRequest createReq = new CreateElementRequest(editPart.getEditingDomain(), container, elementType, containment);
 					command.add(

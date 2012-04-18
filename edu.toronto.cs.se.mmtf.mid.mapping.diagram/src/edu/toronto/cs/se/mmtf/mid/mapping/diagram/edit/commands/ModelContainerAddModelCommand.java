@@ -70,17 +70,17 @@ public class ModelContainerAddModelCommand extends ModelContainerCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			URI modelUri = MIDDiagramTrait.selectModelToImport();
+			URI modelUri = MIDDiagramTrait.selectModelToImport(false);
 			MappingReference owner = (MappingReference) getElementToEdit();
 			ModelReference modelRef;
 
 			if (owner.eContainer() == null) { // standalone mapping reference
-				modelRef = MultiModelTrait.createModelReference(null, modelUri, ModelReferenceOrigin.IMPORTED);
+				modelRef = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, null, modelUri);
 			}
 			else {
-				modelRef = MultiModelTrait.createModelReference((MultiModel) owner.eContainer(), modelUri, ModelReferenceOrigin.IMPORTED);
+				modelRef = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
 			}
-			ModelContainer newElement = MultiModelTrait.addMappingReferenceModelContainer(owner, modelRef);
+			ModelContainer newElement = MultiModelTrait.createMappingReferenceModelContainer(owner, modelRef);
 			owner.getModels().add(modelRef);
 
 			doConfigure(newElement, monitor, info);

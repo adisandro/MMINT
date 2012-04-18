@@ -26,8 +26,10 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
@@ -72,17 +74,31 @@ public class BinaryMappingReferenceCreateMappingCommand extends BinaryMappingRef
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 
-		BinaryMappingReference newElement = MultiModelTrait.createBinaryMappingReference(getContainer(), ModelReferenceOrigin.CREATED);
-		newElement.getModels().add(getSource());
-		newElement.setModel0(getSource());
-		newElement.getModels().add(getTarget());
-		newElement.setModel1(getTarget());
-		MultiModelTrait.addMappingReferenceModelContainer(newElement, getSource());
-		MultiModelTrait.addMappingReferenceModelContainer(newElement, getTarget());
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-
-		return CommandResult.newOKCommandResult(newElement);
+		try {
+			BinaryMappingReference newElement = (BinaryMappingReference) MultiModelTrait.createMappingReference(
+				ModelReferenceOrigin.CREATED,
+				getContainer(),
+				null,
+				MappingPackage.eINSTANCE.getBinaryMappingReference()
+			);
+			newElement.getModels().add(getSource());
+			newElement.setModel0(getSource());
+			newElement.getModels().add(getTarget());
+			newElement.setModel1(getTarget());
+			MultiModelTrait.createMappingReferenceModelContainer(newElement, getSource());
+			MultiModelTrait.createMappingReferenceModelContainer(newElement, getTarget());
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+	
+			return CommandResult.newOKCommandResult(newElement);
+		}
+		catch (ExecutionException ee) {
+			throw ee;
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No binary mapping created", e);
+			return CommandResult.newErrorCommandResult("No binary mapping created");
+		}
 	}
 
 }

@@ -71,7 +71,7 @@ public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreat
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getModels().add(getTarget());
-			MultiModelTrait.addMappingReferenceModelContainer(getSource(), getTarget());
+			MultiModelTrait.createMappingReferenceModelContainer(getSource(), getTarget());
 		}
 
 		return CommandResult.newOKCommandResult();

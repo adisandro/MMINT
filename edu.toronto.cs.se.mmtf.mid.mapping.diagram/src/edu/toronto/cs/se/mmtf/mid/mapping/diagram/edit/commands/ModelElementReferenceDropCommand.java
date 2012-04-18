@@ -22,13 +22,12 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
  * The command to create a model element reference from a dropped object.
@@ -69,16 +68,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelElementReference newElement = MappingFactory.eINSTANCE.createModelElementReference();
-		newElement.setPointer(droppedObject);
-		String name = "";
-		if (!droppedObject.eAdapters().isEmpty()) {
-			ItemProviderAdapter adapter = (ItemProviderAdapter) droppedObject.eAdapters().get(0);
-			name = adapter.getText(droppedObject);
-		}
-		newElement.setName(name);
 		ModelContainer owner = (ModelContainer) getElementToEdit();
-		owner.getElements().add(newElement);
+		ModelElementReference newElement = MultiModelTrait.createModelElementReference(owner, droppedObject);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 

@@ -21,11 +21,13 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.MIDDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
@@ -64,15 +66,22 @@ public class MappingReferenceImportMappingCommand extends MappingReference2Creat
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		//TODO invece bisogna:
-		// 1 mostrare un dialog per scegliere il mapping file
-		// 2 copiare tutto l'albero della mapping reference nel mid
-		MultiModel owner = (MultiModel) getElementToEdit();
-		MappingReference newElement = MultiModelTrait.createMappingReference(owner, ModelReferenceOrigin.IMPORTED);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		try {
+			MultiModel owner = (MultiModel) getElementToEdit();
+			URI mappingUri = MIDDiagramTrait.selectModelToImport(true);
+			MappingReference newElement = MultiModelTrait.copyMappingReference(owner, mappingUri);
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
-		return CommandResult.newOKCommandResult(newElement);
+			return CommandResult.newOKCommandResult(newElement);
+		}
+		catch (ExecutionException ee) {
+			throw ee;
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No mapping imported", e);
+			return CommandResult.newErrorCommandResult("No mapping imported");
+		}
 	}
 
 }

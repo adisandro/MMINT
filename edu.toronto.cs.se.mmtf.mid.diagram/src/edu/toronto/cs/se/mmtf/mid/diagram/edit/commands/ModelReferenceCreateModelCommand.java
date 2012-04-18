@@ -70,7 +70,7 @@ public class ModelReferenceCreateModelCommand extends ModelReference2CreateComma
 		try {
 			URI modelUri = MIDDiagramTrait.createModel();
 			MultiModel owner = (MultiModel) getElementToEdit();
-			ModelReference newElement = MultiModelTrait.createModelReference(owner, modelUri, ModelReferenceOrigin.CREATED);
+			ModelReference newElement = MultiModelTrait.createModelReference(ModelReferenceOrigin.CREATED, owner, modelUri);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

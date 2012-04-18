@@ -54,7 +54,7 @@ public class MappingReferenceChangeModelCommand extends MappingReferenceModelsRe
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		MultiModelTrait.removeMappingReferenceModelContainer(getOldSource(), getOldTarget());
-		MultiModelTrait.addMappingReferenceModelContainer(getNewSource(), getOldTarget());
+		MultiModelTrait.createMappingReferenceModelContainer(getNewSource(), getOldTarget());
 
 		return super.reorientSource();
 	}
@@ -70,7 +70,7 @@ public class MappingReferenceChangeModelCommand extends MappingReferenceModelsRe
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		MultiModelTrait.removeMappingReferenceModelContainer(getOldSource(), getOldTarget());
-		MultiModelTrait.addMappingReferenceModelContainer(getOldSource(), getNewTarget());
+		MultiModelTrait.createMappingReferenceModelContainer(getOldSource(), getNewTarget());
 
 		return super.reorientTarget();
 	}

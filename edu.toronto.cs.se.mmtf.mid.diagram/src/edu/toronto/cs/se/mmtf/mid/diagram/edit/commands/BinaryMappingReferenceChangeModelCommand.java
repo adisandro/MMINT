@@ -54,7 +54,7 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		MultiModelTrait.removeMappingReferenceModelContainer(getLink(), getOldSource());
-		MultiModelTrait.addMappingReferenceModelContainer(getLink(), getNewSource());
+		MultiModelTrait.createMappingReferenceModelContainer(getLink(), getNewSource());
 		getLink().getModels().set(0, getNewSource());
 
 		return super.reorientSource();
@@ -71,7 +71,7 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		MultiModelTrait.removeMappingReferenceModelContainer(getLink(), getOldTarget());
-		MultiModelTrait.addMappingReferenceModelContainer(getLink(), getNewTarget());
+		MultiModelTrait.createMappingReferenceModelContainer(getLink(), getNewTarget());
 		getLink().getModels().set(1, getNewTarget());
 
 		return super.reorientTarget();

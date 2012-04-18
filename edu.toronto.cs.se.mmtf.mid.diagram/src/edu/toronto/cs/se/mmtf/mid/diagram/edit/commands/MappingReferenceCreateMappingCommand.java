@@ -24,8 +24,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
@@ -64,12 +66,26 @@ public class MappingReferenceCreateMappingCommand extends MappingReferenceCreate
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModel owner = (MultiModel) getElementToEdit();
-		MappingReference newElement = MultiModelTrait.createMappingReference(owner, ModelReferenceOrigin.CREATED);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-
-		return CommandResult.newOKCommandResult(newElement);
+		try {
+			MultiModel owner = (MultiModel) getElementToEdit();
+			MappingReference newElement = MultiModelTrait.createMappingReference(
+				ModelReferenceOrigin.CREATED,
+				owner,
+				null,
+				MappingPackage.eINSTANCE.getMappingReference()
+			);
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+	
+			return CommandResult.newOKCommandResult(newElement);
+		}
+		catch (ExecutionException ee) {
+			throw ee;
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No mapping created", e);
+			return CommandResult.newErrorCommandResult("No mapping created");
+		}
 	}
 
 }

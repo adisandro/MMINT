@@ -47,17 +47,20 @@ public class MIDDiagramTrait {
 	 * Shows a dialog to choose one among existing models conformant to the
 	 * registered metamodels and imports it.
 	 * 
+	 * @param mappingOnly
+	 *            True to allow the selection of mapping files only, false to
+	 *            allow all registered model files.
 	 * @return The uri of the imported model.
 	 * @throws Exception
 	 *             If the model import was not completed for any reason.
 	 */
-	public static URI selectModelToImport() throws MMTFException {
+	public static URI selectModelToImport(boolean mappingOnly) throws MMTFException {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		DiagramDocumentEditor editor = (DiagramDocumentEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		View view = editor.getDiagramEditPart().getNotationView();
 
-		MIDElementChooserDialog dialog = new MIDElementChooserDialog(shell, view);
+		MIDElementChooserDialog dialog = new MIDElementChooserDialog(shell, view, mappingOnly);
 		if (dialog.open() == Window.CANCEL) {
 			throw new MMTFException("Dialog cancel button pressed");
 		}

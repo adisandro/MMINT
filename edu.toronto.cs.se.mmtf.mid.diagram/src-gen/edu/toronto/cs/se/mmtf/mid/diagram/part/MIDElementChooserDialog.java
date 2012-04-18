@@ -86,6 +86,14 @@ public class MIDElementChooserDialog extends Dialog {
 	private View myView;
 
 	/**
+	 * True if this dialog allows the selection of mapping files only, false if
+	 * it allows all registered model files.
+	 * 
+	 * @generated NOT
+	 */
+	private boolean mappingOnly;
+
+	/**
 	 * @generated
 	 */
 	private TransactionalEditingDomain myEditingDomain = GMFEditingDomainFactory.INSTANCE
@@ -98,6 +106,18 @@ public class MIDElementChooserDialog extends Dialog {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
 		myView = view;
+	}
+
+	/**
+	 * Constructor: initialises the dialog selection of mapping files only or
+	 * all registered model files.
+	 * 
+	 * @generated NOT
+	 */
+	public MIDElementChooserDialog(Shell parentShell, View view, boolean mappingOnly) {
+
+		this(parentShell, view);
+		this.mappingOnly = mappingOnly;
 	}
 
 	/**
@@ -153,16 +173,21 @@ public class MIDElementChooserDialog extends Dialog {
 	}
 
 	/**
-	 * Selects files from registered metamodel file extensions.
+	 * Selects mapping files or registered models.
+	 * 
 	 * @generated NOT
 	 */
 	private boolean isValidModelFile(IFile file) {
 
 		String fileExtension = file.getFullPath().getFileExtension();
-		ArrayList<String> registeredMetamodels = MMTFRegistry
-				.getMetamodelFileExtensions();
 
-		return registeredMetamodels.contains(fileExtension);
+		if (mappingOnly) {
+			return "mapping".equals(fileExtension);
+		}
+		else {
+			ArrayList<String> registeredMetamodels = MMTFRegistry.getMetamodelFileExtensions();
+			return registeredMetamodels.contains(fileExtension);
+		}
 	}
 
 	/**
