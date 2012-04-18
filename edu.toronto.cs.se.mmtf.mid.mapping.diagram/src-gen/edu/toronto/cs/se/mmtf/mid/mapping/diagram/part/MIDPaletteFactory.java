@@ -24,7 +24,6 @@ import java.util.List;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
-import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
@@ -54,7 +53,7 @@ public class MIDPaletteFactory {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				Messages.Models1Group_title);
 		paletteContainer.setId("createModels1Group"); //$NON-NLS-1$
-		paletteContainer.add(createAddmodel1CreationTool());
+		paletteContainer.add(createImportmodel1CreationTool());
 		return paletteContainer;
 	}
 
@@ -75,12 +74,12 @@ public class MIDPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createAddmodel1CreationTool() {
+	private ToolEntry createImportmodel1CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Addmodel1CreationTool_title,
-				Messages.Addmodel1CreationTool_desc,
+				Messages.Importmodel1CreationTool_title,
+				Messages.Importmodel1CreationTool_desc,
 				Collections.singletonList(MIDElementTypes.ModelContainer_2005));
-		entry.setId("createAddmodel1CreationTool"); //$NON-NLS-1$
+		entry.setId("createImportmodel1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes
 				.getImageDescriptor(MIDElementTypes.ModelContainer_2005));
 		entry.setLargeIcon(entry.getSmallIcon());

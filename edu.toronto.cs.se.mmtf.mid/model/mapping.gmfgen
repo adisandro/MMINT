@@ -308,8 +308,8 @@
           collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="Add model"
-            description="Add existing model"
+            title="Import model"
+            description="Import existing model"
             genNodes="//@diagram/@topLevelNodes.0"/>
       </groups>
       <groups

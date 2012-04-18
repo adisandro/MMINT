@@ -36,12 +36,12 @@ import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
- * The command to add a model reference to a model container.
+ * The command to create a model container by importing an existing model.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class ModelContainerAddModelCommand extends ModelContainerCreateCommand {
+public class ModelContainerImportModelCommand extends ModelContainerCreateCommand {
 
 	/**
 	 * Constructor: initialises the superclass.
@@ -49,7 +49,7 @@ public class ModelContainerAddModelCommand extends ModelContainerCreateCommand {
 	 * @param req
 	 *            The request.
 	 */
-	public ModelContainerAddModelCommand(CreateElementRequest req) {
+	public ModelContainerImportModelCommand(CreateElementRequest req) {
 
 		super(req);
 	}
@@ -78,7 +78,13 @@ public class ModelContainerAddModelCommand extends ModelContainerCreateCommand {
 				modelRef = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, null, modelUri);
 			}
 			else {
-				modelRef = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
+				// check model uniqueness
+				try {
+					modelRef = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
+				}
+				catch (MMTFException e) {
+					modelRef = MultiModelTrait.getModelUnique((MultiModel) owner.eContainer(), modelUri);
+				}
 			}
 			ModelContainer newElement = MultiModelTrait.createMappingReferenceModelContainer(owner, modelRef);
 			owner.getModels().add(modelRef);
@@ -99,7 +105,7 @@ public class ModelContainerAddModelCommand extends ModelContainerCreateCommand {
 
 	/**
 	 * Disallows the command to be executed when the diagram root is a binary
-	 * mapping references, since they already have two models.
+	 * mapping reference, since it already has two models.
 	 * 
 	 * @return False if the diagram root is a binary mapping reference, true
 	 *         otherwise.

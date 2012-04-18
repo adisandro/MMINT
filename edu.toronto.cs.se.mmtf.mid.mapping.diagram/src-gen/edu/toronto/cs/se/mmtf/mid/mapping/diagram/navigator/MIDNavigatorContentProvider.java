@@ -252,19 +252,21 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 
-		case ModelContainerEditPart.VISUAL_ID: {
+		case MappingEditPart.VISUAL_ID: {
 			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 			Node sv = (Node) view;
+			MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
+					Messages.NavigatorGroupName_Mapping_2004_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
 					MIDVisualIDRegistry
-							.getType(ModelContainerModelContainerCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					MIDVisualIDRegistry
-							.getType(ModelElementReferenceEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
+							.getType(MappingElementsEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
 			return result.toArray();
 		}
 
@@ -294,6 +296,22 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 			if (!source.isEmpty()) {
 				result.add(source);
 			}
+			return result.toArray();
+		}
+
+		case ModelContainerEditPart.VISUAL_ID: {
+			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(ModelContainerModelContainerCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					MIDVisualIDRegistry
+							.getType(ModelElementReferenceEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
 			return result.toArray();
 		}
 
@@ -331,20 +349,33 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case MappingEditPart.VISUAL_ID: {
+		case MappingReferenceEditPart.VISUAL_ID: {
 			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_Mapping_2004_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
+			Diagram sv = (Diagram) view;
+			MIDNavigatorGroup links = new MIDNavigatorGroup(
+					Messages.NavigatorGroupName_MappingReference_1000_links,
+					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(ModelContainerEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+					MIDVisualIDRegistry.getType(MappingEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					MIDVisualIDRegistry
 							.getType(MappingElementsEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
+					MIDVisualIDRegistry
+							.getType(BinaryMappingEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			if (!links.isEmpty()) {
+				result.add(links);
 			}
 			return result.toArray();
 		}
@@ -373,37 +404,6 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 			}
 			if (!source.isEmpty()) {
 				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case MappingReferenceEditPart.VISUAL_ID: {
-			LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
-			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
-			Diagram sv = (Diagram) view;
-			MIDNavigatorGroup links = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_MappingReference_1000_links,
-					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(ModelContainerEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					MIDVisualIDRegistry.getType(MappingEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(MappingElementsEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					MIDVisualIDRegistry
-							.getType(BinaryMappingEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			if (!links.isEmpty()) {
-				result.add(links);
 			}
 			return result.toArray();
 		}

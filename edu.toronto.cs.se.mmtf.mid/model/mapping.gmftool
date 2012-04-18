@@ -12,8 +12,8 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Add model"
-          description="Add existing model">
+          title="Import model"
+          description="Import existing model">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

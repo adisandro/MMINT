@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
@@ -51,6 +52,49 @@ import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 public class MultiModelTrait {
 
 	/**
+	 * Checks the uniqueness of a model to be imported in a MID.
+	 * 
+	 * @param multiModel
+	 *            The root multimodel.
+	 * @param modelUri
+	 *            The uri of the model to be imported.
+	 * @return Null if the model is unique, the model reference already in the
+	 *         MID otherwise.
+	 */
+	public static ModelReference getModelUnique(MultiModel multiModel, URI modelUri) {
+
+		String platformUri = modelUri.toPlatformString(true);
+		for (ModelReference modelRef : multiModel.getElements()) {
+			if (platformUri.equals(modelRef.getUri())) {
+				return modelRef;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Checks the uniqueness of a model to be imported in a Mapping diagram.
+	 * 
+	 * @param mappingRef
+	 *            The root mapping reference.
+	 * @param modelUri
+	 *            The uri of the model to be imported.
+	 * @return Null if the model is unique, the model reference already in the
+	 *         MID otherwise.
+	 */
+	private static ModelReference getModelUnique(MappingReference mappingRef, String modelUri) {
+
+		for (ModelReference modelRef : mappingRef.getModels()) {
+			if (modelUri.equals(modelRef.getUri())) {
+				return modelRef;
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * Adds a model reference to a multimodel.
 	 * 
 	 * @param modelRef
@@ -62,16 +106,21 @@ public class MultiModelTrait {
 	 * @param modelUri
 	 *            The uri of the model to add (possibly null).
 	 * @throws Exception
-	 *             If the resource pointed by the model uri could not be get.
+	 *             If the resource pointed by the model uri could not be get, or
+	 *             if the added model is not unique.
 	 */
 	private static void addModelReference(ModelReference modelRef, ModelReferenceOrigin origin, MultiModel multiModel, URI modelUri) throws Exception {
 
-		// possibly raise exception as first thing
+		// possibly raise exceptions as first thing
 		EObject root;
 		if (modelUri == null) { // mapping reference
 			root = modelRef;
 		}
 		else { // model reference or standalone mapping reference
+			// check model uniqueness
+			if (multiModel != null && origin == ModelReferenceOrigin.IMPORTED && getModelUnique(multiModel, modelUri) != null) {
+				throw new MMTFException("Imported model " + modelUri + " is already in the diagram");
+			}
 			ResourceSet set = new ResourceSetImpl();
 			Resource resource = set.getResource(modelUri, true);
 			root = resource.getContents().get(0);
@@ -103,7 +152,8 @@ public class MultiModelTrait {
 	 *            The uri of the model to add.
 	 * @return The model reference just created.
 	 * @throws Exception
-	 *             If the resource pointed by the model uri could not be get.
+	 *             If the resource pointed by the model uri could not be get, or
+	 *             if the added model is not unique.
 	 */
 	public static ModelReference createModelReference(ModelReferenceOrigin origin, MultiModel multiModel, URI modelUri) throws Exception {
 
@@ -126,7 +176,8 @@ public class MultiModelTrait {
 	 *            The specific mapping reference class type.
 	 * @return The mapping reference just created.
 	 * @throws Exception
-	 *             If the resource pointed by the mapping uri could not be get.
+	 *             If the resource pointed by the mapping uri could not be get,
+	 *             or if the added mapping is not unique.
 	 */
 	public static MappingReference createMappingReference(ModelReferenceOrigin origin, MultiModel multiModel, URI mappingUri, EClass mappingRefType) throws Exception {
 
@@ -144,17 +195,23 @@ public class MultiModelTrait {
 	 * @param modelRef
 	 *            The model reference that corresponds to the model container.
 	 * @return The model container just created.
+	 * @throws MMTFException
+	 *             If the added model in a standalone mapping is not unique.
 	 */
-	public static ModelContainer createMappingReferenceModelContainer(MappingReference mappingRef, ModelReference modelRef) {
+	public static ModelContainer createMappingReferenceModelContainer(MappingReference mappingRef, ModelReference modelRef) throws MMTFException {
 
 		ModelContainer container = MappingFactory.eINSTANCE.createModelContainer();
-		mappingRef.getContainers().add(container);
 		if (mappingRef.eContainer() == null) { // standalone mapping reference
+			// check model uniqueness
+			if (getModelUnique(mappingRef, modelRef.getUri()) != null) {
+				throw new MMTFException("Added model " + modelRef.getUri() + " is already in the diagram");
+			}
 			container.setContainedModel(modelRef);
 		}
 		else {
 			container.setReferencedModel(modelRef);
 		}
+		mappingRef.getContainers().add(container);
 
 		return container;
 	}
@@ -211,15 +268,22 @@ public class MultiModelTrait {
 		// copy mapping structure
 		MappingReference origMappingRef = (MappingReference) mappingRef.getRoot();
 		HashMap<EObject, ModelElementReference> modelElements = new HashMap<EObject, ModelElementReference>();
+		ModelReference modelRef;
 		for (ModelContainer origContainer : origMappingRef.getContainers()) {
 			URI modelUri = URI.createPlatformResourceURI(origContainer.getContainedModel().getUri(), true);
-			// TODO cercare modelli già esistenti
-			ModelReference modelRef = createModelReference(ModelReferenceOrigin.IMPORTED, multiModel, modelUri);
+			// check model uniqueness
+			try {
+				modelRef = createModelReference(ModelReferenceOrigin.IMPORTED, multiModel, modelUri);
+			}
+			catch (MMTFException e) {
+				modelRef = getModelUnique(multiModel, modelUri);
+			}
 			mappingRef.getModels().add(modelRef);
 			ModelContainer container = createMappingReferenceModelContainer(mappingRef, modelRef);
 			for (ModelElementReference origElementRef : origContainer.getElements()) {
-				ModelElementReference elementRef = createModelElementReference(container, origElementRef.getPointer());//TODO perchè il nome non funziona?
-				modelElements.put(elementRef.getPointer(), elementRef);//TODO e più container che puntano allo stesso modello?
+				ModelElementReference elementRef = createModelElementReference(container, origElementRef.getPointer());
+				elementRef.setName(origElementRef.getName());
+				modelElements.put(elementRef.getPointer(), elementRef);
 			}
 		}
 		if (mappingRef instanceof BinaryMappingReference) {

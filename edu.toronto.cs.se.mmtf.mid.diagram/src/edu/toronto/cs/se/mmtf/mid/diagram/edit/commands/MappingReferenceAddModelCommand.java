@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
@@ -71,7 +72,12 @@ public class MappingReferenceAddModelCommand extends MappingReferenceModelsCreat
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getModels().add(getTarget());
-			MultiModelTrait.createMappingReferenceModelContainer(getSource(), getTarget());
+			try {
+				MultiModelTrait.createMappingReferenceModelContainer(getSource(), getTarget());
+			}
+			catch (MMTFException e) {
+				// here this exception can't just happen
+			}
 		}
 
 		return CommandResult.newOKCommandResult();

@@ -54,7 +54,7 @@ public class MIDDiagramTrait {
 	 * @throws Exception
 	 *             If the model import was not completed for any reason.
 	 */
-	public static URI selectModelToImport(boolean mappingOnly) throws MMTFException {
+	public static URI selectModelToImport(boolean mappingOnly) throws Exception {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		DiagramDocumentEditor editor = (DiagramDocumentEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
