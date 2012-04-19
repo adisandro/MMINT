@@ -83,13 +83,13 @@ public class ModelReferenceOpenDiagramCommand extends AbstractTransactionalComma
 
 		// the diagram file is supposed to be in the same directory as the model
 		// otherwise every time we should ask where it is
-		//TODO implement fallbacks when the model files are deleted from file system?
+		//TODO MMTF: implement fallbacks when the model files are deleted from file system?
 		try {
 			if (registeredEditors.size() == 0) {
 				throw new MMTFException("No editor registered for metamodel " + metamodelUri);
 			}
 			else {
-				//TODO needs to be fixed with views support
+				//TODO MMTF: needs to be fixed with views support
 				for (Editor editor : registeredEditors) {
 					if (editor instanceof Diagram) {
 						URI editorUri = URI.createPlatformResourceURI(

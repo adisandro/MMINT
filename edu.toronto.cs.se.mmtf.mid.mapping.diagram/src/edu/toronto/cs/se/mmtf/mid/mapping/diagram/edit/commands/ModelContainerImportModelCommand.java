@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
@@ -33,6 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.trait.MIDDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
@@ -86,6 +88,10 @@ public class ModelContainerImportModelCommand extends ModelContainerCreateComman
 			}
 			ModelContainer newElement = MultiModelTrait.createMappingReferenceModelContainer(owner, modelRef);
 			owner.getModels().add(modelRef);
+
+			// update outline
+			MIDDiagramEditor editor = (MIDDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			editor.getOutlinePage().addInput(modelUri);
 
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);

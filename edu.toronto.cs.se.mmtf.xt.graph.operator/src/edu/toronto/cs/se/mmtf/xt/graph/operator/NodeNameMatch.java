@@ -36,7 +36,7 @@ public class NodeNameMatch implements IOperator {
 			}
 		}
 
-		//TODO scorrere la hashmap, quando il vettore è più lungo di 1 allora devo creare un mapping da ritornare
+		//TODO MMTF: scorrere la hashmap, quando il vettore è più lungo di 1 allora devo creare un mapping da ritornare
 
 		return null;
 	}

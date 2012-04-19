@@ -67,9 +67,12 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
+import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
  * @generated
@@ -236,8 +239,28 @@ public class MIDDiagramEditorUtil {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static MappingReference createInitialModel() {
+	private static MappingReference createInitialModelGen() {
 		return MappingFactory.eINSTANCE.createMappingReference();
+	}
+
+	/**
+	 * Better creates the new instance of domain element associated with canvas.
+	 * @generated NOT
+	 */
+	private static MappingReference createInitialModel() {
+
+		try {
+			return MultiModelTrait.createMappingReference(
+				ModelReferenceOrigin.CREATED,
+				null,
+				null,
+				MappingPackage.eINSTANCE.getMappingReference()
+			);
+			//TODO MMTF: let the user choose the root type
+		}
+		catch (Exception e) {
+			return createInitialModelGen();
+		}
 	}
 
 	/**

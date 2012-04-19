@@ -85,6 +85,12 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 		IGotoMarker {
 
 	/**
+	 * The custom outline page.
+	 * @generated NOT
+	 */
+	private MappingDiagramOutlinePage outlinePage;
+
+	/**
 	 * @generated
 	 */
 	public static final String ID = "edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MappingDiagramEditorID"; //$NON-NLS-1$
@@ -153,9 +159,21 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class type) {
 		if (type == IContentOutlinePage.class) {
-			return new MappingDiagramOutlinePage(getDiagram());
+			outlinePage = new MappingDiagramOutlinePage(getDiagram());
+			return outlinePage;
 		}
 		return getAdapterGen(type);
+	}
+
+	/**
+	 * Gets the custom outline page.
+	 * 
+	 * @return The custom outline page.
+	 * @generated NOT
+	 */
+	public MappingDiagramOutlinePage getOutlinePage() {
+
+		return outlinePage;
 	}
 
 	/**

@@ -108,4 +108,15 @@ public class MappingDiagramOutlinePage extends ContentOutlinePage {
 		contentOutlineViewer.setInput(resourceSet);
 	}
 
+	public void addInput(URI modelUri) {
+
+		ResourceSet resourceSet = (ResourceSet) contentOutlineViewer.getInput();
+		try {
+			resourceSet.getResource(modelUri, true);
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Model " + modelUri + " unavailable", e);
+		}
+	}
+
 }

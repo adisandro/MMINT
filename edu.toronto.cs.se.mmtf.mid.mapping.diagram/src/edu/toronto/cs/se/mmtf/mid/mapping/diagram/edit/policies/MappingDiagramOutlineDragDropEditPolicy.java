@@ -76,7 +76,7 @@ containers:
 			for (ModelContainer container : root.getContainers()) {
 				if (modelUri.equals(container.getModel().getUri())) {
 					for (ModelElementReference element : container.getElements()) { // avoid duplicates
-						if (element.getPointer() == droppedElement) {
+						if (EcoreUtil.equals(element.getPointer(), droppedElement)) {
 							continue containers;
 						}
 					}
