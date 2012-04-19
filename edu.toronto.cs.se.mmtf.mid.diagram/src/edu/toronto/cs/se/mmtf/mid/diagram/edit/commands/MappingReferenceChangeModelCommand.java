@@ -22,7 +22,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
@@ -55,12 +54,7 @@ public class MappingReferenceChangeModelCommand extends MappingReferenceModelsRe
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		MultiModelTrait.removeMappingReferenceModelContainer(getOldSource(), getOldTarget());
-		try {
-			MultiModelTrait.createMappingReferenceModelContainer(getNewSource(), getOldTarget());
-		}
-		catch (MMTFException e) {
-			// here this exception can't just happen
-		}
+		MultiModelTrait.createMappingReferenceModelContainer(getNewSource(), getOldTarget());
 
 		return super.reorientSource();
 	}
@@ -76,12 +70,7 @@ public class MappingReferenceChangeModelCommand extends MappingReferenceModelsRe
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		MultiModelTrait.removeMappingReferenceModelContainer(getOldSource(), getOldTarget());
-		try {
-			MultiModelTrait.createMappingReferenceModelContainer(getOldSource(), getNewTarget());
-		}
-		catch (MMTFException e) {
-			// here this exception can't just happen
-		}
+		MultiModelTrait.createMappingReferenceModelContainer(getOldSource(), getNewTarget());
 
 		return super.reorientTarget();
 	}

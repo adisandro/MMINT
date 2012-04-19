@@ -74,16 +74,14 @@ public class ModelContainerImportModelCommand extends ModelContainerCreateComman
 			MappingReference owner = (MappingReference) getElementToEdit();
 			ModelReference modelRef;
 
+			MultiModelTrait.assertModelUnique(owner, modelUri); // model must not be already in the mapping
 			if (owner.eContainer() == null) { // standalone mapping reference
 				modelRef = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, null, modelUri);
 			}
 			else {
-				// check model uniqueness
-				try {
+				modelRef = MultiModelTrait.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
+				if (modelRef == null) {
 					modelRef = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
-				}
-				catch (MMTFException e) {
-					modelRef = MultiModelTrait.getModelUnique((MultiModel) owner.eContainer(), modelUri);
 				}
 			}
 			ModelContainer newElement = MultiModelTrait.createMappingReferenceModelContainer(owner, modelRef);

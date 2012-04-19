@@ -69,6 +69,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 		try {
 			URI modelUri = MIDDiagramTrait.selectModelToImport(false);
 			MultiModel owner = (MultiModel) getElementToEdit();
+			MultiModelTrait.assertModelUnique(owner, modelUri);
 			ModelReference newElement = MultiModelTrait.createModelReference(ModelReferenceOrigin.IMPORTED, owner, modelUri);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
