@@ -53,7 +53,8 @@ public class ModelCreationWizardDialog extends WizardDialog {
 		if (page instanceof EcoreCreationWizardPage) {
 			EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
 			createdModelUri = filePage.getDomainModelURI();
-		} else {
+		}
+		else {
 			WizardNewFileCreationPage filePage = (WizardNewFileCreationPage) page;
 			String modelPath = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
 			createdModelUri = URI.createPlatformResourceURI(modelPath, true);

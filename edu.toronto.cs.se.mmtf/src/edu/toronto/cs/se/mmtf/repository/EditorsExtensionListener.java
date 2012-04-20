@@ -64,7 +64,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 			for (IConfigurationElement elem : config) {
 				editor = mmtf.addEditor(elem);
 				mmtf.addMetamodelEditors(editor);
-				mmtf.addEditorFilenames(registry, editor);
+				mmtf.addEditorFileExtensions(registry, editor);
 			}
 		}
 	}

@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
+import edu.toronto.cs.se.mmtf.repository.EcoreExtension;
 import edu.toronto.cs.se.mmtf.repository.Editor;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.Metamodel;
@@ -112,29 +113,6 @@ public class MMTF {
 
 		return metamodel;
 	}
-
-	/**
-	 * Adds the Ecore metamodel to the repository.
-	 * 
-	 * @return The created metamodel.
-	 */
-	public Metamodel addEcoreMetamodel() {
-		String uri = "http://www.eclipse.org/emf/2002/Ecore";
-		Metamodel metamodel = RepositoryFactory.eINSTANCE.createMetamodel();
-		EPackage metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
-		
-		metamodel.setName("Ecore Metamodel");
-		metamodel.setUri(uri);
-
-		if (metamodelPackage != null) {
-			String metamodelPackageName = metamodelPackage.getName();
-			metamodel.setFileExtension(metamodelPackageName);
-		}
-		
-		repository.getMetamodels().put(uri, metamodel);
-		
-		return metamodel;
-	}
 	
 	/**
 	 * Adds existing editors to a new metamodel.
@@ -195,42 +173,6 @@ public class MMTF {
 
 		return editor;
 	}
-
-	/**
-	 * Adds the ecore editors to the repository.
-	 * 
-	 */
-	public void addEcoreEditors() {
-		
-		final String metamodelUri = "http://www.eclipse.org/emf/2002/Ecore";
-		
-		// Ecore tree editor, Ecore diagram editor (Ecoretools)
-		final String[] isDiagram = {"false", "true"};
-		final String editorIds[] = {"org.eclipse.emf.ecore.presentation.EcoreEditorID", 
-							  "org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"};
-		final String wizardIds[] = {"org.eclipse.emf.ecore.presentation.EcoreModelWizardID",
-							  "org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID"};
-		final String names[] = {"Sample Ecore Editor", "Ecore Diagram Editing"};
-		final String extensions[] = {"ecore", "ecorediag"};
-		Editor editor;
-
-		for (int i = 0; i < isDiagram.length; i++) {
-			if (Boolean.parseBoolean(isDiagram[i])) {
-				editor = RepositoryFactory.eINSTANCE.createDiagram();
-			}
-			else {
-				editor = RepositoryFactory.eINSTANCE.createEditor();
-			}
-			editor.setName(names[i]);
-			editor.setMetamodelUri(metamodelUri);
-			editor.setEditorId(editorIds[i]);
-			editor.setWizardId(wizardIds[i]);
-			repository.getEditors().put(editorIds[i], editor);
-			editor.getFileExtensions().add(extensions[i]);
-			
-			addMetamodelEditors(editor);
-		}
-	}
 	
 	/**
 	 * Adds a new editor to an existing metamodel.
@@ -247,15 +189,15 @@ public class MMTF {
 	}
 
 	/**
-	 * Adds filenames to a new editor. Requires the editor to be registered too
-	 * through the org.eclipse.ui.editors extension point.
+	 * Adds file extensions to a new editor. Requires the editor to be
+	 * registered too through the org.eclipse.ui.editors extension point.
 	 * 
 	 * @param registry
 	 *            The Eclipse extension registry.
 	 * @param editor
 	 *            The new editor.
 	 */
-	public void addEditorFilenames(IExtensionRegistry registry, Editor editor) {
+	public void addEditorFileExtensions(IExtensionRegistry registry, Editor editor) {
 
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
@@ -269,13 +211,13 @@ public class MMTF {
 	}
 
 	/**
-	 * Adds filenames to all initial editors at once. Requires the editors to be
-	 * registered too through the org.eclipse.ui.editors extension point.
+	 * Adds file extensions to all initial editors at once. Requires the editors
+	 * to be registered too through the org.eclipse.ui.editors extension point.
 	 * 
 	 * @param registry
 	 *            The Eclipse extension registry.
 	 */
-	public void addEditorFilenames(IExtensionRegistry registry) {
+	public void addEditorFileExtensions(IExtensionRegistry registry) {
 
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
 		Editor editor;
@@ -321,7 +263,6 @@ public class MMTF {
 		for (IConfigurationElement elem : config) {
 			addMetamodel(elem);
 		}
-		addEcoreMetamodel();
 
 		// editors
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
@@ -330,9 +271,11 @@ public class MMTF {
 			editor = addEditor(elem);
 			addMetamodelEditors(editor);
 		}		
-		addEditorFilenames(registry);
-		
-		addEcoreEditors();
+		addEditorFileExtensions(registry);
+
+		// built-in ecore extension
+		EcoreExtension ecore = new EcoreExtension(repository);
+		ecore.addToRepository();
 	}
 
 	/**

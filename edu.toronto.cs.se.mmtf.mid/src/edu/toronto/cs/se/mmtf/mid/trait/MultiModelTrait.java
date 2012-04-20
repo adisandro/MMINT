@@ -21,6 +21,7 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -194,11 +195,14 @@ public class MultiModelTrait {
 
 		ModelElementReference elementRef = MappingFactory.eINSTANCE.createModelElementReference();
 		elementRef.setPointer(modelElement);
-		String name = "";
-		if (!modelElement.eAdapters().isEmpty()) {
-			ItemProviderAdapter adapter = (ItemProviderAdapter) modelElement.eAdapters().get(0);
-			name = adapter.getText(modelElement);
+		ItemProviderAdapter itemAdapter = null;
+		for (Adapter adapter : modelElement.eAdapters()) {
+			if (adapter instanceof ItemProviderAdapter) {
+				itemAdapter = (ItemProviderAdapter) adapter;
+				break;
+			}
 		}
+		String name = (itemAdapter == null) ? "" : itemAdapter.getText(modelElement);
 		elementRef.setName(name);
 		container.getElements().add(elementRef);
 
