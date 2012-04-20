@@ -20,6 +20,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
@@ -30,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.ModelContainerDelCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 
 /**
@@ -53,22 +55,28 @@ public class ModelContainerSemanticEditPolicy extends ModelContainerItemSemantic
 		ModelContainerEditPart editPart = (ModelContainerEditPart) getHost();
 		ModelContainer container = (ModelContainer) ((View) editPart.getModel()).getElement();
 		MappingReference mappingRef = (MappingReference) container.eContainer();
-		Command command = null;
 
 		if (container.getContainedModel() == null && mappingRef instanceof BinaryMappingReference) {
 			// a binary mapping which is not standalone can be only modified through the MID
-			command = UnexecutableCommand.INSTANCE;
+			return UnexecutableCommand.INSTANCE;
 		}
 		else {
 			// this is equivalent to delete a model of a mapping reference in the MID
+			// plus handling a standalone binary mapping reference and refreshing the outline
+			CompoundCommand ccommand = new CompoundCommand("Delete model reference");
 			EReference containing = (EReference) mappingRef.eClass().getEStructuralFeature(MappingPackage.MAPPING_REFERENCE__MODELS);
-			DestroyReferenceRequest destroyReq = new DestroyReferenceRequest(editPart.getEditingDomain(), mappingRef, containing, container.getModel(), false);
-			command = getGEFWrapper(new MappingReferenceDelModelCommand(destroyReq));
-			//TODO una binary mapping reference standalone invece non deve distruggere anche model0 e model1? faccio il mio comando che estende quello sopra?
-			//TODO delinput nella outline
-		}
+			DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(editPart.getEditingDomain(), mappingRef, containing, container.getModel(), false);
+			ccommand.add(
+				getGEFWrapper(new MappingReferenceDelModelCommand(destroyRefReq))
+			);
+			DestroyElementRequest destroyElemReq = new DestroyElementRequest(editPart.getEditingDomain(), container, false);
+			ccommand.add(
+				getGEFWrapper(new ModelContainerDelCommand(destroyElemReq, mappingRef))
+			);
 
-		return command;
+			return ccommand;
+			//TODO MMTF: add outline support for mappingreferencedelmodelcommand and undo operations (always refresh is the solution?)
+		}
 	}
 
 }

@@ -93,7 +93,15 @@ public class MappingDiagramOutlinePage extends ContentOutlinePage {
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
 		contentOutlineViewer.addDragSupport(ops, transfers, new MappingDiagramOutlineDragListener(contentOutlineViewer));
 
-		// loads only the resources of this mapping reference
+		// populate tree viewer
+		loadOutlineModels();
+	}
+
+	/**
+	 * Loads the resources (models) of this mapping reference.
+	 */
+	public void loadOutlineModels() {
+
 		ResourceSet resourceSet = new ResourceSetImpl();
 		MappingReference root = (MappingReference) diagram.getElement();
 		for (ModelReference model : root.getModels()) {
@@ -108,6 +116,12 @@ public class MappingDiagramOutlinePage extends ContentOutlinePage {
 		contentOutlineViewer.setInput(resourceSet);
 	}
 
+	/**
+	 * Adds a new model to the outline tree viewer.
+	 * 
+	 * @param modelUri
+	 *            The uri of the model to add.
+	 */
 	public void addInput(URI modelUri) {
 
 		ResourceSet resourceSet = (ResourceSet) contentOutlineViewer.getInput();
