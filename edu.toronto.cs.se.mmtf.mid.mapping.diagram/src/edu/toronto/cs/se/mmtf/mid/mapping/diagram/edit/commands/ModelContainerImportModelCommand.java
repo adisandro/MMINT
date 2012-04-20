@@ -87,7 +87,18 @@ public class ModelContainerImportModelCommand extends ModelContainerCreateComman
 				}
 			}
 			ModelContainer newElement = MultiModelTrait.createMappingReferenceModelContainer(owner, modelRef);
+
+			// add model to mapping reference
 			owner.getModels().add(modelRef);
+			if (owner instanceof BinaryMappingReference) { // only if standalone, due to canExecute restrictions
+				BinaryMappingReference binaryOwner = (BinaryMappingReference) owner;
+				if (binaryOwner.getModel0() == null) {
+					binaryOwner.setModel0(modelRef);
+				}
+				else {
+					binaryOwner.setModel1(modelRef);
+				}
+			}
 
 			// update outline
 			MIDDiagramEditor editor = (MIDDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -109,16 +120,20 @@ public class ModelContainerImportModelCommand extends ModelContainerCreateComman
 
 	/**
 	 * Disallows the command to be executed when the diagram root is a binary
-	 * mapping reference, since it already has two models.
+	 * mapping reference and is either not standalone or has already two models.
 	 * 
-	 * @return False if the diagram root is a binary mapping reference, true
-	 *         otherwise.
+	 * @return False if the command can't be executed, true otherwise.
 	 */
 	@Override
 	public boolean canExecute() {
 
-		if (getElementToEdit() instanceof BinaryMappingReference) {
-			return false;
+		MappingReference owner = (MappingReference) getElementToEdit();
+		if (owner instanceof BinaryMappingReference) {
+			// a binary mapping which is not standalone can be only modified through the MID
+			// a binary mapping which is standalone must have at most 2 models
+			if (owner.eContainer() != null || owner.getModels().size() >= 2) {
+				return false;
+			}
 		}
 		return super.canExecute();
 	}

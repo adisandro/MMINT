@@ -7,7 +7,8 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmtf.mid.diagram.part.MIDDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.mmtf.mid.diagram.edit.parts,
+Export-Package: edu.toronto.cs.se.mmtf.mid.diagram.edit.commands,
+ edu.toronto.cs.se.mmtf.mid.diagram.edit.parts,
  edu.toronto.cs.se.mmtf.mid.diagram.part,
  edu.toronto.cs.se.mmtf.mid.diagram.providers,
  edu.toronto.cs.se.mmtf.mid.diagram.trait

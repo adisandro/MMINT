@@ -123,11 +123,11 @@
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="EditPolicyRoles.SEMANTIC_ROLE"
-          editPolicyQualifiedClassName=""/>
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.ModelContainerSemanticEditPolicy"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="EditPolicy.COMPONENT_ROLE"
-          editPolicyQualifiedClassName="org.eclipse.gef.editpolicies.RootComponentEditPolicy"/>
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.ModelContainerComponentEditPolicy"/>
       <modelFacet>
         <metaClass
             href="mid.genmodel#//mid/mapping/ModelContainer"/>

@@ -251,14 +251,10 @@ public class MIDDiagramEditorUtil {
 
 		try {
 			return MultiModelTrait.createMappingReference(
-				ModelReferenceOrigin.CREATED,
-				null,
-				null,
-				MappingPackage.eINSTANCE.getMappingReference()
-			);
+					ModelReferenceOrigin.CREATED, null, null,
+					MappingPackage.eINSTANCE.getMappingReference());
 			//TODO MMTF: let the user choose the root type
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return createInitialModelGen();
 		}
 	}

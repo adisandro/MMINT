@@ -272,7 +272,8 @@ public class MultiModelTrait {
 	}
 
 	/**
-	 * Removes a model container from a mapping reference.
+	 * Removes a model container from a mapping reference following the removal
+	 * of a model reference.
 	 * 
 	 * @param mappingRef
 	 *            The mapping reference.
