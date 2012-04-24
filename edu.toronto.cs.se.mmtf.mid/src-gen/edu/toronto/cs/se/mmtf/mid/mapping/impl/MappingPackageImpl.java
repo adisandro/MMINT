@@ -231,24 +231,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBinaryMappingReference_Model0() {
-		return (EReference)binaryMappingReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBinaryMappingReference_Model1() {
-		return (EReference)binaryMappingReferenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getModelContainer() {
 		return modelContainerEClass;
 	}
@@ -357,24 +339,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBinaryMapping_Element0() {
-		return (EReference)binaryMappingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBinaryMapping_Element1() {
-		return (EReference)binaryMappingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getHomomorphicMappingReference() {
 		return homomorphicMappingReferenceEClass;
 	}
@@ -422,8 +386,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__CONTAINERS);
 
 		binaryMappingReferenceEClass = createEClass(BINARY_MAPPING_REFERENCE);
-		createEReference(binaryMappingReferenceEClass, BINARY_MAPPING_REFERENCE__MODEL0);
-		createEReference(binaryMappingReferenceEClass, BINARY_MAPPING_REFERENCE__MODEL1);
 
 		modelContainerEClass = createEClass(MODEL_CONTAINER);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__ELEMENTS);
@@ -440,8 +402,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingEClass, MAPPING__ELEMENTS);
 
 		binaryMappingEClass = createEClass(BINARY_MAPPING);
-		createEReference(binaryMappingEClass, BINARY_MAPPING__ELEMENT0);
-		createEReference(binaryMappingEClass, BINARY_MAPPING__ELEMENT1);
 
 		homomorphicMappingReferenceEClass = createEClass(HOMOMORPHIC_MAPPING_REFERENCE);
 
@@ -494,8 +454,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMappingReference_Containers(), this.getModelContainer(), null, "containers", null, 1, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(binaryMappingReferenceEClass, BinaryMappingReference.class, "BinaryMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBinaryMappingReference_Model0(), theMidPackage.getModelReference(), null, "model0", null, 1, 1, BinaryMappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBinaryMappingReference_Model1(), theMidPackage.getModelReference(), null, "model1", null, 1, 1, BinaryMappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelContainerEClass, ModelContainer.class, "ModelContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelContainer_Elements(), this.getModelElementReference(), null, "elements", null, 0, -1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -512,8 +470,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMapping_Elements(), this.getModelElementReference(), this.getModelElementReference_Mappings(), "elements", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(binaryMappingEClass, BinaryMapping.class, "BinaryMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBinaryMapping_Element0(), this.getModelElementReference(), null, "element0", null, 1, 1, BinaryMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBinaryMapping_Element1(), this.getModelElementReference(), null, "element1", null, 1, 1, BinaryMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(homomorphicMappingReferenceEClass, HomomorphicMappingReference.class, "HomomorphicMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -552,7 +508,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "targetModel isBinaryReference sourceModel"
+			 "constraints", "isBinaryReference"
 		   });			
 		addAnnotation
 		  (modelContainerEClass, 
@@ -564,7 +520,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "targetElement isBinaryMapping sourceElement"
+			 "constraints", "isBinaryMapping"
 		   });			
 		addAnnotation
 		  (homomorphicMappingReferenceEClass, 
@@ -598,9 +554,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "targetModel", "model1 = models->at(2)",
-			 "isBinaryReference", "models->size() = 2",
-			 "sourceModel", "model0 = models->at(1)"
+			 "isBinaryReference", "models->size() = 2"
 		   });			
 		addAnnotation
 		  (modelContainerEClass, 
@@ -624,9 +578,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (binaryMappingEClass, 
 		   source, 
 		   new String[] {
-			 "targetElement", "element1 = elements->at(2)",
-			 "isBinaryMapping", "elements->size() = 2",
-			 "sourceElement", "element0 = elements->at(1)"
+			 "isBinaryMapping", "elements->size() = 2"
 		   });			
 		addAnnotation
 		  (homomorphicMappingReferenceEClass, 

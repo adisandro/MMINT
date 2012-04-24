@@ -319,6 +319,43 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMapping_4003Gen(
+			MappingReference container) {
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		for (Iterator<?> links = container.getMappings().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof BinaryMapping) {
+				continue;
+			}
+			BinaryMapping link = (BinaryMapping) linkObject;
+			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List targets = link.getElements();
+			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
+			if (false == theTarget instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference dst = (ModelElementReference) theTarget;
+			List sources = link.getElements();
+			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
+			result.add(new MIDLinkDescriptor(src, dst, link,
+					MIDElementTypes.BinaryMapping_4003,
+					BinaryMappingEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary mapping.
+	 * @generated NOT
+	 */
 	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMapping_4003(
 			MappingReference container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -333,8 +370,18 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			ModelElementReference dst = link.getElement1();
-			ModelElementReference src = link.getElement0();
+			List targets = link.getElements();
+			Object theTarget = targets.size() == 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference dst = (ModelElementReference) theTarget;
+			List sources = link.getElements();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
 			result.add(new MIDLinkDescriptor(src, dst, link,
 					MIDElementTypes.BinaryMapping_4003,
 					BinaryMappingEditPart.VISUAL_ID));
@@ -365,7 +412,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMapping_4003(
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMapping_4003Gen(
 			ModelElementReference target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -373,7 +420,7 @@ public class MIDDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != MappingPackage.eINSTANCE
-					.getBinaryMapping_Element1()
+					.getMapping_Elements()
 					|| false == setting.getEObject() instanceof BinaryMapping) {
 				continue;
 			}
@@ -382,7 +429,46 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			ModelElementReference src = link.getElement0();
+			List sources = link.getElements();
+			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
+			result.add(new MIDLinkDescriptor(src, target, link,
+					MIDElementTypes.BinaryMapping_4003,
+					BinaryMappingEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary mapping.
+	 * @generated NOT
+	 */
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMapping_4003(
+			ModelElementReference target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != MappingPackage.eINSTANCE
+					.getMapping_Elements()
+					|| false == setting.getEObject() instanceof BinaryMapping) {
+				continue;
+			}
+			BinaryMapping link = (BinaryMapping) setting.getEObject();
+			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List sources = link.getElements();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
 			result.add(new MIDLinkDescriptor(src, target, link,
 					MIDElementTypes.BinaryMapping_4003,
 					BinaryMappingEditPart.VISUAL_ID));
@@ -423,6 +509,59 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMapping_4003Gen(
+			ModelElementReference source) {
+		MappingReference container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null && container == null; element = element
+				.eContainer()) {
+			if (element instanceof MappingReference) {
+				container = (MappingReference) element;
+			}
+		}
+		if (container == null) {
+			return Collections.emptyList();
+		}
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		for (Iterator<?> links = container.getMappings().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof BinaryMapping) {
+				continue;
+			}
+			BinaryMapping link = (BinaryMapping) linkObject;
+			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List targets = link.getElements();
+			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
+			if (false == theTarget instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference dst = (ModelElementReference) theTarget;
+			List sources = link.getElements();
+			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
+			if (src != source) {
+				continue;
+			}
+			result.add(new MIDLinkDescriptor(src, dst, link,
+					MIDElementTypes.BinaryMapping_4003,
+					BinaryMappingEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary mapping.
+	 * @generated NOT
+	 */
 	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMapping_4003(
 			ModelElementReference source) {
 		MappingReference container = null;
@@ -450,8 +589,18 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			ModelElementReference dst = link.getElement1();
-			ModelElementReference src = link.getElement0();
+			List targets = link.getElements();
+			Object theTarget = targets.size() == 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference dst = (ModelElementReference) theTarget;
+			List sources = link.getElements();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
 			if (src != source) {
 				continue;
 			}

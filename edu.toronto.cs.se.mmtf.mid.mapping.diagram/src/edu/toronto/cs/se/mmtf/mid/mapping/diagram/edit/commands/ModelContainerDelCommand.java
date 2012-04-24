@@ -26,10 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmtf.mid.ModelReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditor;
 
 /**
@@ -40,22 +36,15 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDDiagramEditor;
  */
 public class ModelContainerDelCommand extends DestroyElementCommand {
 
-	/** The Mapping diagram root. */
-	private MappingReference diagramRoot;
-
 	/**
-	 * Constructor: initialises the superclass and the Mapping diagram root.
+	 * Constructor: initialises the superclass.
 	 * 
 	 * @param request
 	 *            The request.
-	 * @param root
-	 *            The Mapping diagram root, which will no longer contain the
-	 *            model container to destroy when this command is executed.
 	 */
-	public ModelContainerDelCommand(DestroyElementRequest request, MappingReference root) {
+	public ModelContainerDelCommand(DestroyElementRequest request) {
 
 		super(request);
-		diagramRoot = root;
 	}
 
 	/**
@@ -71,26 +60,6 @@ public class ModelContainerDelCommand extends DestroyElementCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-		ModelContainer destructee = (ModelContainer) getElementToDestroy();
-		ModelReference modelRef = (ModelReference) destructee.getModel();
-
-		// handle standalone binary mapping reference
-		if (diagramRoot instanceof BinaryMappingReference) {
-			BinaryMappingReference binaryMappingRef = (BinaryMappingReference) diagramRoot;
-			if (binaryMappingRef.getModel1() == modelRef) {
-				binaryMappingRef.setModel1(null);
-			}
-			else {
-				if (binaryMappingRef.getModel0() == modelRef) {
-					binaryMappingRef.setModel0(binaryMappingRef.getModel1());
-					binaryMappingRef.setModel1(null);
-				}
-				else {
-					binaryMappingRef.setModel0(null);
-				}
-			}
-		}
 
 		// refresh outline
 		MIDDiagramEditor editor = (MIDDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();

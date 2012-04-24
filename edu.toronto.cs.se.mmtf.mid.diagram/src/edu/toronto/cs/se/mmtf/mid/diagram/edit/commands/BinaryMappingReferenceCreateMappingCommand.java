@@ -82,9 +82,7 @@ public class BinaryMappingReferenceCreateMappingCommand extends BinaryMappingRef
 				MappingPackage.eINSTANCE.getBinaryMappingReference()
 			);
 			newElement.getModels().add(getSource());
-			newElement.setModel0(getSource());
 			newElement.getModels().add(getTarget());
-			newElement.setModel1(getTarget());
 			MultiModelTrait.createMappingReferenceModelContainer(newElement, getSource());
 			MultiModelTrait.createMappingReferenceModelContainer(newElement, getTarget());
 			doConfigure(newElement, monitor, info);

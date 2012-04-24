@@ -22,6 +22,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
@@ -44,6 +47,54 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 	}
 
 	/**
+	 * Checks if the source can be reoriented.
+	 * 
+	 * @return True if the source can be reoriented, false otherwise.
+	 */
+	protected boolean canReorientSource() {
+
+		if (!(getOldSource() instanceof ModelReference && getNewSource() instanceof ModelReference)) {
+			return false;
+		}
+		if (getLink().getModels().size() != 2) {
+			return false;
+		}
+		ModelReference target = (ModelReference) getLink().getModels().get(1);
+		if (!(getLink().eContainer() instanceof MultiModel)) {
+			return false;
+		}
+		MultiModel container = (MultiModel) getLink().eContainer();
+
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistBinaryMappingReference_4004(container, getLink(),
+						getNewSource(), target);
+	}
+
+	/**
+	 * Checks if the target can be reoriented.
+	 * 
+	 * @return True if the target can be reoriented, false otherwise.
+	 */
+	protected boolean canReorientTarget() {
+
+		if (!(getOldSource() instanceof ModelReference && getNewSource() instanceof ModelReference)) {
+			return false;
+		}
+		if (getLink().getModels().size() != 2) {
+			return false;
+		}
+		ModelReference source = (ModelReference) getLink().getModels().get(0);
+		if (!(getLink().eContainer() instanceof MultiModel)) {
+			return false;
+		}
+		MultiModel container = (MultiModel) getLink().eContainer();
+
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistBinaryMappingReference_4004(container, getLink(),
+						source, getNewTarget());
+	}
+
+	/**
 	 * Changes the source model reference of a binary mapping reference.
 	 * 
 	 * @return The ok result.
@@ -57,7 +108,7 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 		MultiModelTrait.createMappingReferenceModelContainer(getLink(), getNewSource());
 		getLink().getModels().set(0, getNewSource());
 
-		return super.reorientSource();
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
@@ -74,7 +125,7 @@ public class BinaryMappingReferenceChangeModelCommand extends BinaryMappingRefer
 		MultiModelTrait.createMappingReferenceModelContainer(getLink(), getNewTarget());
 		getLink().getModels().set(1, getNewTarget());
 
-		return super.reorientTarget();
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 }

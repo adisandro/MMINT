@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MIDCreateShortcutDecorationsCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramCanonicalEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramOutlineDragDropEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingReferenceCanonicalEditPolicy;
@@ -120,6 +121,8 @@ public class MappingReferenceEditPart extends DiagramEditPart {
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new MappingDiagramSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new MappingDiagramCanonicalEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

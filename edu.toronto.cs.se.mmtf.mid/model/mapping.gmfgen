@@ -40,6 +40,10 @@
         xsi:type="gmfgen:CustomBehaviour"
         key="EditPolicyRoles.SEMANTIC_ROLE"
         editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramSemanticEditPolicy"/>
+    <behaviour
+        xsi:type="gmfgen:CustomBehaviour"
+        key="EditPolicyRoles.CANONICAL_ROLE"
+        editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingDiagramCanonicalEditPolicy"/>
     <containsShortcutsTo>mapping</containsShortcutsTo>
     <shortcutsProvidedFor>mapping</shortcutsProvidedFor>
     <domainDiagramElement
@@ -250,9 +254,9 @@
         <childMetaFeature
             href="mid.genmodel#//mid/mapping/MappingReference/mappings"/>
         <sourceMetaFeature
-            href="mid.genmodel#//mid/mapping/BinaryMapping/element0"/>
+            href="mid.genmodel#//mid/mapping/Mapping/elements"/>
         <targetMetaFeature
-            href="mid.genmodel#//mid/mapping/BinaryMapping/element1"/>
+            href="mid.genmodel#//mid/mapping/Mapping/elements"/>
       </modelFacet>
       <labels
           visualID="6001"

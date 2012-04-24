@@ -21,14 +21,12 @@ package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -71,54 +69,8 @@ public class BinaryMappingReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addModel0PropertyDescriptor(object);
-			addModel1PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Model0 feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModel0PropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BinaryMappingReference_model0_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMappingReference_model0_feature", "_UI_BinaryMappingReference_type"),
-				 MappingPackage.Literals.BINARY_MAPPING_REFERENCE__MODEL0,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Model1 feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModel1PropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BinaryMappingReference_model1_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMappingReference_model1_feature", "_UI_BinaryMappingReference_type"),
-				 MappingPackage.Literals.BINARY_MAPPING_REFERENCE__MODEL1,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

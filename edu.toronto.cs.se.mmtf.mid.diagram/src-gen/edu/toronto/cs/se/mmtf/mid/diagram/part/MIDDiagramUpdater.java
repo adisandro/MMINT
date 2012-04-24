@@ -366,6 +366,43 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMappingReference_4004Gen(
+			MultiModel container) {
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		for (Iterator<?> links = container.getElements().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof BinaryMappingReference) {
+				continue;
+			}
+			BinaryMappingReference link = (BinaryMappingReference) linkObject;
+			if (BinaryMappingReferenceEditPart.VISUAL_ID != MIDVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List targets = link.getModels();
+			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
+			if (false == theTarget instanceof ModelReference) {
+				continue;
+			}
+			ModelReference dst = (ModelReference) theTarget;
+			List sources = link.getModels();
+			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelReference) {
+				continue;
+			}
+			ModelReference src = (ModelReference) theSource;
+			result.add(new MIDLinkDescriptor(src, dst, link,
+					MIDElementTypes.BinaryMappingReference_4004,
+					BinaryMappingReferenceEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary mapping reference.
+	 * @generated NOT
+	 */
 	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMappingReference_4004(
 			MultiModel container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -380,8 +417,18 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			ModelReference dst = link.getModel1();
-			ModelReference src = link.getModel0();
+			List targets = link.getModels();
+			Object theTarget = targets.size() == 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof ModelReference) {
+				continue;
+			}
+			ModelReference dst = (ModelReference) theTarget;
+			List sources = link.getModels();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelReference) {
+				continue;
+			}
+			ModelReference src = (ModelReference) theSource;
 			result.add(new MIDLinkDescriptor(src, dst, link,
 					MIDElementTypes.BinaryMappingReference_4004,
 					BinaryMappingReferenceEditPart.VISUAL_ID));
@@ -412,7 +459,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMappingReference_4004(
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMappingReference_4004Gen(
 			ModelReference target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -420,7 +467,7 @@ public class MIDDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != MappingPackage.eINSTANCE
-					.getBinaryMappingReference_Model1()
+					.getMappingReference_Models()
 					|| false == setting.getEObject() instanceof BinaryMappingReference) {
 				continue;
 			}
@@ -430,7 +477,47 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			ModelReference src = link.getModel0();
+			List sources = link.getModels();
+			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelReference) {
+				continue;
+			}
+			ModelReference src = (ModelReference) theSource;
+			result.add(new MIDLinkDescriptor(src, target, link,
+					MIDElementTypes.BinaryMappingReference_4004,
+					BinaryMappingReferenceEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary mapping reference.
+	 * @generated NOT
+	 */
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMappingReference_4004(
+			ModelReference target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != MappingPackage.eINSTANCE
+					.getMappingReference_Models()
+					|| false == setting.getEObject() instanceof BinaryMappingReference) {
+				continue;
+			}
+			BinaryMappingReference link = (BinaryMappingReference) setting
+					.getEObject();
+			if (BinaryMappingReferenceEditPart.VISUAL_ID != MIDVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List sources = link.getModels();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelReference) {
+				continue;
+			}
+			ModelReference src = (ModelReference) theSource;
 			result.add(new MIDLinkDescriptor(src, target, link,
 					MIDElementTypes.BinaryMappingReference_4004,
 					BinaryMappingReferenceEditPart.VISUAL_ID));
@@ -455,7 +542,7 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	 * Avoids model links to go out from binary mapping references. 
+	 * Avoids model links to go out from binary mapping references.
 	 * @generated NOT
 	 */
 	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_MappingReference_Models_4003(
@@ -469,6 +556,59 @@ public class MIDDiagramUpdater {
 
 	/**
 	 * @generated
+	 */
+	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMappingReference_4004Gen(
+			ModelReference source) {
+		MultiModel container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null && container == null; element = element
+				.eContainer()) {
+			if (element instanceof MultiModel) {
+				container = (MultiModel) element;
+			}
+		}
+		if (container == null) {
+			return Collections.emptyList();
+		}
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		for (Iterator<?> links = container.getElements().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof BinaryMappingReference) {
+				continue;
+			}
+			BinaryMappingReference link = (BinaryMappingReference) linkObject;
+			if (BinaryMappingReferenceEditPart.VISUAL_ID != MIDVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List targets = link.getModels();
+			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
+			if (false == theTarget instanceof ModelReference) {
+				continue;
+			}
+			ModelReference dst = (ModelReference) theTarget;
+			List sources = link.getModels();
+			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelReference) {
+				continue;
+			}
+			ModelReference src = (ModelReference) theSource;
+			if (src != source) {
+				continue;
+			}
+			result.add(new MIDLinkDescriptor(src, dst, link,
+					MIDElementTypes.BinaryMappingReference_4004,
+					BinaryMappingReferenceEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary mapping reference.
+	 * @generated NOT
 	 */
 	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMappingReference_4004(
 			ModelReference source) {
@@ -497,8 +637,18 @@ public class MIDDiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			ModelReference dst = link.getModel1();
-			ModelReference src = link.getModel0();
+			List targets = link.getModels();
+			Object theTarget = targets.size() == 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof ModelReference) {
+				continue;
+			}
+			ModelReference dst = (ModelReference) theTarget;
+			List sources = link.getModels();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelReference) {
+				continue;
+			}
+			ModelReference src = (ModelReference) theSource;
 			if (src != source) {
 				continue;
 			}

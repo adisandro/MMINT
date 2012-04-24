@@ -87,18 +87,7 @@ public class ModelContainerImportModelCommand extends ModelContainerCreateComman
 				}
 			}
 			ModelContainer newElement = MultiModelTrait.createMappingReferenceModelContainer(owner, modelRef);
-
-			// add model to mapping reference
 			owner.getModels().add(modelRef);
-			if (owner instanceof BinaryMappingReference) { // only if standalone, due to canExecute restrictions
-				BinaryMappingReference binaryOwner = (BinaryMappingReference) owner;
-				if (binaryOwner.getModel0() == null) {
-					binaryOwner.setModel0(modelRef);
-				}
-				else {
-					binaryOwner.setModel1(modelRef);
-				}
-			}
 
 			// update outline
 			MIDDiagramEditor editor = (MIDDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();

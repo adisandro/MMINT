@@ -135,10 +135,10 @@
         href="mid.gmfgraph#BinaryMappingReferenceModels"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/BinaryMappingReference/model0"/>
+        href="mid.ecore#//mapping/MappingReference/models"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/BinaryMappingReference/model1"/>
+        href="mid.ecore#//mapping/MappingReference/models"/>
     <creationConstraints>
       <targetEnd
           body="self &lt;> oppositeEnd"/>

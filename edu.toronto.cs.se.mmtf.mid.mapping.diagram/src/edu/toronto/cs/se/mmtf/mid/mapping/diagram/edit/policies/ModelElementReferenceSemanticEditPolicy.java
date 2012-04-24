@@ -19,14 +19,10 @@
 package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingChangeElementCommand;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingCreateMappingCommand;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingElementsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 /**
  * The semantic edit policy for model element references.
@@ -35,49 +31,6 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
  * 
  */
 public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferenceItemSemanticEditPolicy {
-
-	/**
-	 * Gets the command to start creating a new link originating from a model
-	 * element reference.
-	 * 
-	 * @param req
-	 *            The request.
-	 * @return The executable command.
-	 */
-	@Override
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-
-		if (MIDElementTypes.MappingElements_4002 == req.getElementType()) {
-			return null;
-		}
-		if (MIDElementTypes.BinaryMapping_4003 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingCreateMappingCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		return null;
-	}
-
-	/**
-	 * Gets the command to complete the creation of a new link originating from
-	 * a model element reference.
-	 * 
-	 * @param req
-	 *            The request.
-	 * @return The executable command.
-	 */
-	@Override
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-
-		if (MIDElementTypes.MappingElements_4002 == req.getElementType()) {
-			return getGEFWrapper(new MappingElementsCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		if (MIDElementTypes.BinaryMapping_4003 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingCreateMappingCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		return null;
-	}
 
 	/**
 	 * Gets the command to reorient a link (represented in the model with an

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
  * 
  * This file is part of MMTF ver. 0.9.0.
@@ -16,40 +16,29 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.mapping.impl;
+package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.common.notify.Notification;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binary Mapping</b></em>'.
- * <!-- end-user-doc -->
- * <p>
- * </p>
- *
- * @generated
+ * The canonical edit policy for the Mapping diagram (i.e. a mapping reference).
+ * 
+ * @author Alessio Di Sandro
+ * 
  */
-public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BinaryMappingImpl() {
-		super();
-	}
+public class MappingDiagramCanonicalEditPolicy extends MappingReferenceCanonicalEditPolicy {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * Workaround for bug #148021.
+	 * 
+	 * @param event
+	 *            The notification event.
+	 * @return False.
 	 */
 	@Override
-	protected EClass eStaticClass() {
-		return MappingPackage.Literals.BINARY_MAPPING;
+	protected boolean shouldHandleNotificationEvent(Notification event) {
+
+		return false;
 	}
 
-} //BinaryMappingImpl
+}

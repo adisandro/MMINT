@@ -105,8 +105,8 @@ public class BinaryMappingCreateCommand extends EditElementCommand {
 		BinaryMapping newElement = MappingFactory.eINSTANCE
 				.createBinaryMapping();
 		getContainer().getMappings().add(newElement);
-		newElement.setElement0(getSource());
-		newElement.setElement1(getTarget());
+		newElement.getElements().add(getSource());
+		newElement.getElements().add(getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

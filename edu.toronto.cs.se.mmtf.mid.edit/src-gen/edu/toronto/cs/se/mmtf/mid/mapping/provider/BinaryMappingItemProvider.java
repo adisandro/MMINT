@@ -20,7 +20,6 @@ package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,7 +27,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -71,54 +69,8 @@ public class BinaryMappingItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElement0PropertyDescriptor(object);
-			addElement1PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Element0 feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addElement0PropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BinaryMapping_element0_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMapping_element0_feature", "_UI_BinaryMapping_type"),
-				 MappingPackage.Literals.BINARY_MAPPING__ELEMENT0,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Element1 feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addElement1PropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BinaryMapping_element1_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMapping_element1_feature", "_UI_BinaryMapping_type"),
-				 MappingPackage.Literals.BINARY_MAPPING__ELEMENT1,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

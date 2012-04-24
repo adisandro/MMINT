@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
@@ -251,20 +250,12 @@ public class MultiModelTrait {
 				modelElements.put(elementRef.getPointer(), elementRef);
 			}
 		}
-		if (mappingRef instanceof BinaryMappingReference) {
-			((BinaryMappingReference) mappingRef).setModel0(mappingRef.getModels().get(0));
-			((BinaryMappingReference) mappingRef).setModel1(mappingRef.getModels().get(1));
-		}
 		for (Mapping origMapping : origMappingRef.getMappings()) {
 			Mapping mapping = (Mapping) MappingFactory.eINSTANCE.create(origMapping.eClass());
 			mapping.setName(origMapping.getName());
 			mappingRef.getMappings().add(mapping);
 			for (ModelElementReference origElementRef : origMapping.getElements()) {
 				mapping.getElements().add(modelElements.get(origElementRef.getPointer()));
-			}
-			if (mapping instanceof BinaryMapping) {
-				((BinaryMapping) mapping).setElement0(mapping.getElements().get(0));
-				((BinaryMapping) mapping).setElement1(mapping.getElements().get(1));
 			}
 		}
 

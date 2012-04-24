@@ -114,7 +114,8 @@ public class MIDElementChooserDialog extends Dialog {
 	 * 
 	 * @generated NOT
 	 */
-	public MIDElementChooserDialog(Shell parentShell, View view, boolean mappingOnly) {
+	public MIDElementChooserDialog(Shell parentShell, View view,
+			boolean mappingOnly) {
 
 		this(parentShell, view);
 		this.mappingOnly = mappingOnly;
@@ -183,9 +184,9 @@ public class MIDElementChooserDialog extends Dialog {
 
 		if (mappingOnly) {
 			return "mapping".equals(fileExtension);
-		}
-		else {
-			ArrayList<String> registeredMetamodels = MMTFRegistry.getMetamodelFileExtensions();
+		} else {
+			ArrayList<String> registeredMetamodels = MMTFRegistry
+					.getMetamodelFileExtensions();
 			return registeredMetamodels.contains(fileExtension);
 		}
 	}

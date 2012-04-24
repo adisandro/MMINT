@@ -62,7 +62,7 @@ public class ModelContainerSemanticEditPolicy extends ModelContainerItemSemantic
 		}
 		else {
 			// this is equivalent to delete a model of a mapping reference in the MID
-			// plus handling a standalone binary mapping reference and refreshing the outline
+			// plus refreshing the outline
 			CompoundCommand ccommand = new CompoundCommand("Delete model reference");
 			EReference containing = (EReference) mappingRef.eClass().getEStructuralFeature(MappingPackage.MAPPING_REFERENCE__MODELS);
 			DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(editPart.getEditingDomain(), mappingRef, containing, container.getModel(), false);
@@ -71,7 +71,7 @@ public class ModelContainerSemanticEditPolicy extends ModelContainerItemSemantic
 			);
 			DestroyElementRequest destroyElemReq = new DestroyElementRequest(editPart.getEditingDomain(), container, false);
 			ccommand.add(
-				getGEFWrapper(new ModelContainerDelCommand(destroyElemReq, mappingRef))
+				getGEFWrapper(new ModelContainerDelCommand(destroyElemReq))
 			);
 
 			return ccommand;

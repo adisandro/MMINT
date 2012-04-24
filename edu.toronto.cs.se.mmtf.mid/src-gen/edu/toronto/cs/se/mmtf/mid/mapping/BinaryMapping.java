@@ -24,70 +24,12 @@ package edu.toronto.cs.se.mmtf.mid.mapping;
  * A representation of the model object '<em><b>Binary Mapping</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement0 <em>Element0</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement1 <em>Element1</em>}</li>
- * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetElement isBinaryMapping sourceElement'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot targetElement='element1 = elements->at(2)' isBinaryMapping='elements->size() = 2' sourceElement='element0 = elements->at(1)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryMapping'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryMapping='elements->size() = 2'"
  * @generated
  */
 public interface BinaryMapping extends Mapping {
-	/**
-	 * Returns the value of the '<em><b>Element0</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Element0</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element0</em>' reference.
-	 * @see #setElement0(ModelElementReference)
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMapping_Element0()
-	 * @model required="true"
-	 * @generated
-	 */
-	ModelElementReference getElement0();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement0 <em>Element0</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element0</em>' reference.
-	 * @see #getElement0()
-	 * @generated
-	 */
-	void setElement0(ModelElementReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Element1</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Element1</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element1</em>' reference.
-	 * @see #setElement1(ModelElementReference)
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMapping_Element1()
-	 * @model required="true"
-	 * @generated
-	 */
-	ModelElementReference getElement1();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping#getElement1 <em>Element1</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element1</em>' reference.
-	 * @see #getElement1()
-	 * @generated
-	 */
-	void setElement1(ModelElementReference value);
 
 } // BinaryMapping

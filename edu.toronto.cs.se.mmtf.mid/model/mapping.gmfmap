@@ -104,10 +104,10 @@
         href="mapping.gmfgraph#BinaryMappingElements"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/BinaryMapping/element0"/>
+        href="mid.ecore#//mapping/Mapping/elements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/BinaryMapping/element1"/>
+        href="mid.ecore#//mapping/Mapping/elements"/>
     <creationConstraints>
       <targetEnd
           body="self &lt;> oppositeEnd"/>

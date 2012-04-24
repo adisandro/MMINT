@@ -22,6 +22,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
+
 /**
  * The command to change a model element reference of a binary mapping.
  * 
@@ -42,6 +46,56 @@ public class BinaryMappingChangeElementCommand extends BinaryMappingReorientComm
 	}
 
 	/**
+	 * Checks if the source can be reoriented.
+	 * 
+	 * @return True if the source can be reoriented, false otherwise.
+	 */
+	protected boolean canReorientSource() {
+
+		if (!(getOldSource() instanceof ModelElementReference && getNewSource() instanceof ModelElementReference)) {
+			return false;
+		}
+		if (getLink().getElements().size() != 2) {
+			return false;
+		}
+		ModelElementReference target = (ModelElementReference) getLink()
+				.getElements().get(1);
+		if (!(getLink().eContainer() instanceof MappingReference)) {
+			return false;
+		}
+		MappingReference container = (MappingReference) getLink().eContainer();
+
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistBinaryMapping_4003(container, getLink(),
+						getNewSource(), target);
+	}
+
+	/**
+	 * Checks if the target can be reoriented.
+	 * 
+	 * @return True if the target can be reoriented, false otherwise.
+	 */
+	protected boolean canReorientTarget() {
+
+		if (!(getOldSource() instanceof ModelElementReference && getNewSource() instanceof ModelElementReference)) {
+			return false;
+		}
+		if (getLink().getElements().size() != 2) {
+			return false;
+		}
+		ModelElementReference source = (ModelElementReference) getLink()
+				.getElements().get(0);
+		if (!(getLink().eContainer() instanceof MappingReference)) {
+			return false;
+		}
+		MappingReference container = (MappingReference) getLink().eContainer();
+
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistBinaryMapping_4003(container, getLink(), source,
+						getNewTarget());
+	}
+
+	/**
 	 * Changes the source model element reference of a binary mapping.
 	 * 
 	 * @return The ok result.
@@ -53,7 +107,7 @@ public class BinaryMappingChangeElementCommand extends BinaryMappingReorientComm
 
 		getLink().getElements().set(0, getNewSource());
 
-		return super.reorientSource();
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
@@ -68,7 +122,7 @@ public class BinaryMappingChangeElementCommand extends BinaryMappingReorientComm
 
 		getLink().getElements().set(1, getNewTarget());
 
-		return super.reorientTarget();
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 }

@@ -326,9 +326,9 @@
         <childMetaFeature
             href="mid.genmodel#//mid/MultiModel/elements"/>
         <sourceMetaFeature
-            href="mid.genmodel#//mid/mapping/BinaryMappingReference/model0"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/models"/>
         <targetMetaFeature
-            href="mid.genmodel#//mid/mapping/BinaryMappingReference/model1"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/models"/>
       </modelFacet>
       <labels
           visualID="6001"
