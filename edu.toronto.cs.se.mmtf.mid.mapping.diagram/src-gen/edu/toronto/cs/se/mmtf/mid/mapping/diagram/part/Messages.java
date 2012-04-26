@@ -281,32 +281,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Newbinarymapping1CreationTool_title;
+	public static String Newbinarymappinglink1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Newbinarymapping1CreationTool_desc;
+	public static String Newbinarymappinglink1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymapping2CreationTool_title;
+	public static String NewNarymappinglink2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymapping2CreationTool_desc;
+	public static String NewNarymappinglink2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymappingconnection3CreationTool_title;
+	public static String NewNarymappinglinkelement3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNarymappingconnection3CreationTool_desc;
+	public static String NewNarymappinglinkelement3CreationTool_desc;
 
 	/**
 	 * @generated
@@ -321,6 +321,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_BinaryMappingLink_4005_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_BinaryMappingLink_4005_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ModelElementReference_3003_incominglinks;
 
 	/**
@@ -331,32 +341,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_BinaryMapping_4003_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryMapping_4003_source;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_MappingReference_1000_links;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MappingElements_4002_target;
+	public static String NavigatorGroupName_MappingLinkElements_4004_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MappingElements_4002_source;
+	public static String NavigatorGroupName_MappingLinkElements_4004_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Mapping_2004_outgoinglinks;
+	public static String NavigatorGroupName_MappingLink_2006_outgoinglinks;
 
 	/**
 	 * @generated

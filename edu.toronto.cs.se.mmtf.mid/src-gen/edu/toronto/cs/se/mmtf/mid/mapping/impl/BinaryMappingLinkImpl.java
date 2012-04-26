@@ -16,20 +16,40 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.mapping;
+package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
+
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Binary Mapping</b></em>'.
+ * An implementation of the model object '<em><b>Binary Mapping Link</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * </p>
  *
- *
- * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryMapping'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryMapping='elements->size() = 2'"
  * @generated
  */
-public interface BinaryMapping extends Mapping {
+public class BinaryMappingLinkImpl extends MappingLinkImpl implements BinaryMappingLink {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BinaryMappingLinkImpl() {
+		super();
+	}
 
-} // BinaryMapping
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MappingPackage.Literals.BINARY_MAPPING_LINK;
+	}
+
+} //BinaryMappingLinkImpl

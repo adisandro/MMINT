@@ -40,6 +40,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference} object.
@@ -77,7 +79,8 @@ public class ModelElementReferenceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addPointerPropertyDescriptor(object);
-			addMappingsPropertyDescriptor(object);
+			addMappingLinksPropertyDescriptor(object);
+			addCategoryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -105,23 +108,45 @@ public class ModelElementReferenceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Mappings feature.
+	 * This adds a property descriptor for the Mapping Links feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMappingsPropertyDescriptor(Object object) {
+	protected void addMappingLinksPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelElementReference_mappings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementReference_mappings_feature", "_UI_ModelElementReference_type"),
-				 MappingPackage.Literals.MODEL_ELEMENT_REFERENCE__MAPPINGS,
+				 getString("_UI_ModelElementReference_mappingLinks_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementReference_mappingLinks_feature", "_UI_ModelElementReference_type"),
+				 MappingPackage.Literals.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS,
 				 true,
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Category feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCategoryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelElementReference_category_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementReference_category_feature", "_UI_ModelElementReference_type"),
+				 MappingPackage.Literals.MODEL_ELEMENT_REFERENCE__CATEGORY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -161,6 +186,12 @@ public class ModelElementReferenceItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ModelElementReference.class)) {
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__CATEGORY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

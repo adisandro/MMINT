@@ -103,20 +103,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModelElementReferenceAdapter();
 			}
 			@Override
-			public Adapter caseMapping(Mapping object) {
-				return createMappingAdapter();
+			public Adapter caseMappingLink(MappingLink object) {
+				return createMappingLinkAdapter();
 			}
 			@Override
-			public Adapter caseBinaryMapping(BinaryMapping object) {
-				return createBinaryMappingAdapter();
+			public Adapter caseBinaryMappingLink(BinaryMappingLink object) {
+				return createBinaryMappingLinkAdapter();
 			}
 			@Override
 			public Adapter caseHomomorphicMappingReference(HomomorphicMappingReference object) {
 				return createHomomorphicMappingReferenceAdapter();
 			}
 			@Override
-			public Adapter caseHomomorphicMapping(HomomorphicMapping object) {
-				return createHomomorphicMappingAdapter();
+			public Adapter caseHomomorphicMappingLink(HomomorphicMappingLink object) {
+				return createHomomorphicMappingLinkAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -203,30 +203,30 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping <em>Mapping</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink <em>Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Mapping
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingLink
 	 * @generated
 	 */
-	public Adapter createMappingAdapter() {
+	public Adapter createMappingLinkAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping <em>Binary Mapping</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink <em>Binary Mapping Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink
 	 * @generated
 	 */
-	public Adapter createBinaryMappingAdapter() {
+	public Adapter createBinaryMappingLinkAdapter() {
 		return null;
 	}
 
@@ -245,16 +245,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping <em>Homomorphic Mapping</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink <em>Homomorphic Mapping Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink
 	 * @generated
 	 */
-	public Adapter createHomomorphicMappingAdapter() {
+	public Adapter createHomomorphicMappingLinkAdapter() {
 		return null;
 	}
 

@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSeman
 /**
  * @generated
  */
-public class BinaryMappingCreateCommand extends EditElementCommand {
+public class BinaryMappingLinkCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -59,7 +59,7 @@ public class BinaryMappingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public BinaryMappingCreateCommand(CreateRelationshipRequest request,
+	public BinaryMappingLinkCreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -88,7 +88,7 @@ public class BinaryMappingCreateCommand extends EditElementCommand {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateBinaryMapping_4003(getContainer(), getSource(),
+				.canCreateBinaryMappingLink_4005(getContainer(), getSource(),
 						getTarget());
 	}
 
@@ -102,9 +102,9 @@ public class BinaryMappingCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		BinaryMapping newElement = MappingFactory.eINSTANCE
-				.createBinaryMapping();
-		getContainer().getMappings().add(newElement);
+		BinaryMappingLink newElement = MappingFactory.eINSTANCE
+				.createBinaryMappingLink();
+		getContainer().getMappingLinks().add(newElement);
 		newElement.getElements().add(getSource());
 		newElement.getElements().add(getTarget());
 		doConfigure(newElement, monitor, info);
@@ -116,7 +116,7 @@ public class BinaryMappingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(BinaryMapping newElement,
+	protected void doConfigure(BinaryMappingLink newElement,
 			IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())

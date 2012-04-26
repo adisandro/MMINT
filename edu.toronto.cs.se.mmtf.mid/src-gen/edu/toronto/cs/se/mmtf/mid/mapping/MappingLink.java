@@ -24,25 +24,25 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mapping</b></em>'.
+ * A representation of the model object '<em><b>Link</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMapping()
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingLink()
  * @model
  * @generated
  */
-public interface Mapping extends NamedElement {
+public interface MappingLink extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings <em>Mappings</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappingLinks <em>Mapping Links</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Elements</em>' reference list isn't clear,
@@ -50,11 +50,11 @@ public interface Mapping extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMapping_Elements()
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings
-	 * @model opposite="mappings"
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingLink_Elements()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappingLinks
+	 * @model opposite="mappingLinks"
 	 * @generated
 	 */
 	EList<ModelElementReference> getElements();
 
-} // Mapping
+} // MappingLink

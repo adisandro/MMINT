@@ -180,49 +180,49 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingItemProvider mappingItemProvider;
+	protected MappingLinkItemProvider mappingLinkItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMappingAdapter() {
-		if (mappingItemProvider == null) {
-			mappingItemProvider = new MappingItemProvider(this);
+	public Adapter createMappingLinkAdapter() {
+		if (mappingLinkItemProvider == null) {
+			mappingLinkItemProvider = new MappingLinkItemProvider(this);
 		}
 
-		return mappingItemProvider;
+		return mappingLinkItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BinaryMappingItemProvider binaryMappingItemProvider;
+	protected BinaryMappingLinkItemProvider binaryMappingLinkItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBinaryMappingAdapter() {
-		if (binaryMappingItemProvider == null) {
-			binaryMappingItemProvider = new BinaryMappingItemProvider(this);
+	public Adapter createBinaryMappingLinkAdapter() {
+		if (binaryMappingLinkItemProvider == null) {
+			binaryMappingLinkItemProvider = new BinaryMappingLinkItemProvider(this);
 		}
 
-		return binaryMappingItemProvider;
+		return binaryMappingLinkItemProvider;
 	}
 
 	/**
@@ -249,26 +249,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected HomomorphicMappingItemProvider homomorphicMappingItemProvider;
+	protected HomomorphicMappingLinkItemProvider homomorphicMappingLinkItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createHomomorphicMappingAdapter() {
-		if (homomorphicMappingItemProvider == null) {
-			homomorphicMappingItemProvider = new HomomorphicMappingItemProvider(this);
+	public Adapter createHomomorphicMappingLinkAdapter() {
+		if (homomorphicMappingLinkItemProvider == null) {
+			homomorphicMappingLinkItemProvider = new HomomorphicMappingLinkItemProvider(this);
 		}
 
-		return homomorphicMappingItemProvider;
+		return homomorphicMappingLinkItemProvider;
 	}
 
 	/**
@@ -374,10 +374,10 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (binaryMappingReferenceItemProvider != null) binaryMappingReferenceItemProvider.dispose();
 		if (modelContainerItemProvider != null) modelContainerItemProvider.dispose();
 		if (modelElementReferenceItemProvider != null) modelElementReferenceItemProvider.dispose();
-		if (mappingItemProvider != null) mappingItemProvider.dispose();
-		if (binaryMappingItemProvider != null) binaryMappingItemProvider.dispose();
+		if (mappingLinkItemProvider != null) mappingLinkItemProvider.dispose();
+		if (binaryMappingLinkItemProvider != null) binaryMappingLinkItemProvider.dispose();
 		if (homomorphicMappingReferenceItemProvider != null) homomorphicMappingReferenceItemProvider.dispose();
-		if (homomorphicMappingItemProvider != null) homomorphicMappingItemProvider.dispose();
+		if (homomorphicMappingLinkItemProvider != null) homomorphicMappingLinkItemProvider.dispose();
 	}
 
 }

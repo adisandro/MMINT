@@ -30,15 +30,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
@@ -91,12 +91,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getMappings().iterator(); it
+		for (Iterator<?> it = modelElement.getMappingLinks().iterator(); it
 				.hasNext();) {
-			Mapping childElement = (Mapping) it.next();
+			MappingLink childElement = (MappingLink) it.next();
 			int visualID = MIDVisualIDRegistry.getNodeVisualID(view,
 					childElement);
-			if (visualID == MappingEditPart.VISUAL_ID) {
+			if (visualID == MappingLinkEditPart.VISUAL_ID) {
 				result.add(new MIDNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -142,12 +142,12 @@ public class MIDDiagramUpdater {
 			return getMappingReference_1000ContainedLinks(view);
 		case ModelContainerEditPart.VISUAL_ID:
 			return getModelContainer_2005ContainedLinks(view);
-		case MappingEditPart.VISUAL_ID:
-			return getMapping_2004ContainedLinks(view);
+		case MappingLinkEditPart.VISUAL_ID:
+			return getMappingLink_2006ContainedLinks(view);
 		case ModelElementReferenceEditPart.VISUAL_ID:
 			return getModelElementReference_3003ContainedLinks(view);
-		case BinaryMappingEditPart.VISUAL_ID:
-			return getBinaryMapping_4003ContainedLinks(view);
+		case BinaryMappingLinkEditPart.VISUAL_ID:
+			return getBinaryMappingLink_4005ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -159,12 +159,12 @@ public class MIDDiagramUpdater {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case ModelContainerEditPart.VISUAL_ID:
 			return getModelContainer_2005IncomingLinks(view);
-		case MappingEditPart.VISUAL_ID:
-			return getMapping_2004IncomingLinks(view);
+		case MappingLinkEditPart.VISUAL_ID:
+			return getMappingLink_2006IncomingLinks(view);
 		case ModelElementReferenceEditPart.VISUAL_ID:
 			return getModelElementReference_3003IncomingLinks(view);
-		case BinaryMappingEditPart.VISUAL_ID:
-			return getBinaryMapping_4003IncomingLinks(view);
+		case BinaryMappingLinkEditPart.VISUAL_ID:
+			return getBinaryMappingLink_4005IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -176,12 +176,12 @@ public class MIDDiagramUpdater {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case ModelContainerEditPart.VISUAL_ID:
 			return getModelContainer_2005OutgoingLinks(view);
-		case MappingEditPart.VISUAL_ID:
-			return getMapping_2004OutgoingLinks(view);
+		case MappingLinkEditPart.VISUAL_ID:
+			return getMappingLink_2006OutgoingLinks(view);
 		case ModelElementReferenceEditPart.VISUAL_ID:
 			return getModelElementReference_3003OutgoingLinks(view);
-		case BinaryMappingEditPart.VISUAL_ID:
-			return getBinaryMapping_4003OutgoingLinks(view);
+		case BinaryMappingLinkEditPart.VISUAL_ID:
+			return getBinaryMappingLink_4005OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -193,7 +193,7 @@ public class MIDDiagramUpdater {
 			View view) {
 		MappingReference modelElement = (MappingReference) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_BinaryMapping_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_BinaryMappingLink_4005(modelElement));
 		return result;
 	}
 
@@ -208,11 +208,11 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getMapping_2004ContainedLinks(
+	public static List<MIDLinkDescriptor> getMappingLink_2006ContainedLinks(
 			View view) {
-		Mapping modelElement = (Mapping) view.getElement();
+		MappingLink modelElement = (MappingLink) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MappingLink_Elements_4004(modelElement));
 		return result;
 	}
 
@@ -227,11 +227,11 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getBinaryMapping_4003ContainedLinks(
+	public static List<MIDLinkDescriptor> getBinaryMappingLink_4005ContainedLinks(
 			View view) {
-		BinaryMapping modelElement = (BinaryMapping) view.getElement();
+		BinaryMappingLink modelElement = (BinaryMappingLink) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MappingLink_Elements_4004(modelElement));
 		return result;
 	}
 
@@ -246,7 +246,8 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getMapping_2004IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getMappingLink_2006IncomingLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
@@ -260,9 +261,9 @@ public class MIDDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Mapping_Elements_4002(
+		result.addAll(getIncomingFeatureModelFacetLinks_MappingLink_Elements_4004(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_BinaryMapping_4003(
+		result.addAll(getIncomingTypeModelFacetLinks_BinaryMappingLink_4005(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -270,7 +271,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getBinaryMapping_4003IncomingLinks(
+	public static List<MIDLinkDescriptor> getBinaryMappingLink_4005IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -286,10 +287,11 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getMapping_2004OutgoingLinks(View view) {
-		Mapping modelElement = (Mapping) view.getElement();
+	public static List<MIDLinkDescriptor> getMappingLink_2006OutgoingLinks(
+			View view) {
+		MappingLink modelElement = (MappingLink) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MappingLink_Elements_4004(modelElement));
 		return result;
 	}
 
@@ -301,35 +303,35 @@ public class MIDDiagramUpdater {
 		ModelElementReference modelElement = (ModelElementReference) view
 				.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_BinaryMapping_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_BinaryMappingLink_4005(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getBinaryMapping_4003OutgoingLinks(
+	public static List<MIDLinkDescriptor> getBinaryMappingLink_4005OutgoingLinks(
 			View view) {
-		BinaryMapping modelElement = (BinaryMapping) view.getElement();
+		BinaryMappingLink modelElement = (BinaryMappingLink) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_MappingLink_Elements_4004(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMapping_4003Gen(
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMappingLink_4005Gen(
 			MappingReference container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		for (Iterator<?> links = container.getMappings().iterator(); links
+		for (Iterator<?> links = container.getMappingLinks().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof BinaryMapping) {
+			if (false == linkObject instanceof BinaryMappingLink) {
 				continue;
 			}
-			BinaryMapping link = (BinaryMapping) linkObject;
-			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+			BinaryMappingLink link = (BinaryMappingLink) linkObject;
+			if (BinaryMappingLinkEditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -346,27 +348,27 @@ public class MIDDiagramUpdater {
 			}
 			ModelElementReference src = (ModelElementReference) theSource;
 			result.add(new MIDLinkDescriptor(src, dst, link,
-					MIDElementTypes.BinaryMapping_4003,
-					BinaryMappingEditPart.VISUAL_ID));
+					MIDElementTypes.BinaryMappingLink_4005,
+					BinaryMappingLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * Uses the same list for source and target of a binary mapping.
+	 * Uses the same list for source and target of a binary mapping link.
 	 * @generated NOT
 	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMapping_4003(
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryMappingLink_4005(
 			MappingReference container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		for (Iterator<?> links = container.getMappings().iterator(); links
+		for (Iterator<?> links = container.getMappingLinks().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof BinaryMapping) {
+			if (false == linkObject instanceof BinaryMappingLink) {
 				continue;
 			}
-			BinaryMapping link = (BinaryMapping) linkObject;
-			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+			BinaryMappingLink link = (BinaryMappingLink) linkObject;
+			if (BinaryMappingLinkEditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -383,8 +385,8 @@ public class MIDDiagramUpdater {
 			}
 			ModelElementReference src = (ModelElementReference) theSource;
 			result.add(new MIDLinkDescriptor(src, dst, link,
-					MIDElementTypes.BinaryMapping_4003,
-					BinaryMappingEditPart.VISUAL_ID));
+					MIDElementTypes.BinaryMappingLink_4005,
+					BinaryMappingLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -392,7 +394,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingFeatureModelFacetLinks_Mapping_Elements_4002(
+	private static Collection<MIDLinkDescriptor> getIncomingFeatureModelFacetLinks_MappingLink_Elements_4004(
 			ModelElementReference target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -400,10 +402,10 @@ public class MIDDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == MappingPackage.eINSTANCE
-					.getMapping_Elements()) {
+					.getMappingLink_Elements()) {
 				result.add(new MIDLinkDescriptor(setting.getEObject(), target,
-						MIDElementTypes.MappingElements_4002,
-						MappingElementsEditPart.VISUAL_ID));
+						MIDElementTypes.MappingLinkElements_4004,
+						MappingLinkElementsEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -412,7 +414,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMapping_4003Gen(
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMappingLink_4005Gen(
 			ModelElementReference target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -420,12 +422,12 @@ public class MIDDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != MappingPackage.eINSTANCE
-					.getMapping_Elements()
-					|| false == setting.getEObject() instanceof BinaryMapping) {
+					.getMappingLink_Elements()
+					|| false == setting.getEObject() instanceof BinaryMappingLink) {
 				continue;
 			}
-			BinaryMapping link = (BinaryMapping) setting.getEObject();
-			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+			BinaryMappingLink link = (BinaryMappingLink) setting.getEObject();
+			if (BinaryMappingLinkEditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -436,17 +438,17 @@ public class MIDDiagramUpdater {
 			}
 			ModelElementReference src = (ModelElementReference) theSource;
 			result.add(new MIDLinkDescriptor(src, target, link,
-					MIDElementTypes.BinaryMapping_4003,
-					BinaryMappingEditPart.VISUAL_ID));
+					MIDElementTypes.BinaryMappingLink_4005,
+					BinaryMappingLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * Uses the same list for source and target of a binary mapping.
+	 * Uses the same list for source and target of a binary mapping link.
 	 * @generated NOT
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMapping_4003(
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryMappingLink_4005(
 			ModelElementReference target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -454,12 +456,12 @@ public class MIDDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != MappingPackage.eINSTANCE
-					.getMapping_Elements()
-					|| false == setting.getEObject() instanceof BinaryMapping) {
+					.getMappingLink_Elements()
+					|| false == setting.getEObject() instanceof BinaryMappingLink) {
 				continue;
 			}
-			BinaryMapping link = (BinaryMapping) setting.getEObject();
-			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+			BinaryMappingLink link = (BinaryMappingLink) setting.getEObject();
+			if (BinaryMappingLinkEditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -470,8 +472,8 @@ public class MIDDiagramUpdater {
 			}
 			ModelElementReference src = (ModelElementReference) theSource;
 			result.add(new MIDLinkDescriptor(src, target, link,
-					MIDElementTypes.BinaryMapping_4003,
-					BinaryMappingEditPart.VISUAL_ID));
+					MIDElementTypes.BinaryMappingLink_4005,
+					BinaryMappingLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -479,37 +481,37 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002Gen(
-			Mapping source) {
+	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_MappingLink_Elements_4004Gen(
+			MappingLink source) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> destinations = source.getElements().iterator(); destinations
 				.hasNext();) {
 			ModelElementReference destination = (ModelElementReference) destinations
 					.next();
 			result.add(new MIDLinkDescriptor(source, destination,
-					MIDElementTypes.MappingElements_4002,
-					MappingElementsEditPart.VISUAL_ID));
+					MIDElementTypes.MappingLinkElements_4004,
+					MappingLinkElementsEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * Avoids element links to go out from binary mappings. 
+	 * Avoids element links to go out from a binary mapping link. 
 	 * @generated NOT
 	 */
-	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002(
-			Mapping source) {
+	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_MappingLink_Elements_4004(
+			MappingLink source) {
 
-		if (source instanceof BinaryMapping) {
+		if (source instanceof BinaryMappingLink) {
 			return new LinkedList<MIDLinkDescriptor>();
 		}
-		return getOutgoingFeatureModelFacetLinks_Mapping_Elements_4002Gen(source);
+		return getOutgoingFeatureModelFacetLinks_MappingLink_Elements_4004Gen(source);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMapping_4003Gen(
+	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMappingLink_4005Gen(
 			ModelElementReference source) {
 		MappingReference container = null;
 		// Find container element for the link.
@@ -525,14 +527,14 @@ public class MIDDiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		for (Iterator<?> links = container.getMappings().iterator(); links
+		for (Iterator<?> links = container.getMappingLinks().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof BinaryMapping) {
+			if (false == linkObject instanceof BinaryMappingLink) {
 				continue;
 			}
-			BinaryMapping link = (BinaryMapping) linkObject;
-			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+			BinaryMappingLink link = (BinaryMappingLink) linkObject;
+			if (BinaryMappingLinkEditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -552,17 +554,17 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			result.add(new MIDLinkDescriptor(src, dst, link,
-					MIDElementTypes.BinaryMapping_4003,
-					BinaryMappingEditPart.VISUAL_ID));
+					MIDElementTypes.BinaryMappingLink_4005,
+					BinaryMappingLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * Uses the same list for source and target of a binary mapping.
+	 * Uses the same list for source and target of a binary mapping link.
 	 * @generated NOT
 	 */
-	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMapping_4003(
+	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryMappingLink_4005(
 			ModelElementReference source) {
 		MappingReference container = null;
 		// Find container element for the link.
@@ -578,14 +580,14 @@ public class MIDDiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		for (Iterator<?> links = container.getMappings().iterator(); links
+		for (Iterator<?> links = container.getMappingLinks().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof BinaryMapping) {
+			if (false == linkObject instanceof BinaryMappingLink) {
 				continue;
 			}
-			BinaryMapping link = (BinaryMapping) linkObject;
-			if (BinaryMappingEditPart.VISUAL_ID != MIDVisualIDRegistry
+			BinaryMappingLink link = (BinaryMappingLink) linkObject;
+			if (BinaryMappingLinkEditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -605,8 +607,8 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			result.add(new MIDLinkDescriptor(src, dst, link,
-					MIDElementTypes.BinaryMapping_4003,
-					BinaryMappingEditPart.VISUAL_ID));
+					MIDElementTypes.BinaryMappingLink_4005,
+					BinaryMappingLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}

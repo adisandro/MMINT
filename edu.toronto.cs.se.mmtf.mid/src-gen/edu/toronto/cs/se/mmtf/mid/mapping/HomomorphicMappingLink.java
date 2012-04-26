@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
  * 
  * This file is part of MMTF ver. 0.9.0.
@@ -16,32 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
+package edu.toronto.cs.se.mmtf.mid.mapping;
 
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
-
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 /**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Homomorphic Mapping Link</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getHomomorphicMappingLink()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sameElementTypes'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sameElementTypes='elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())'"
  * @generated
  */
-public class MappingElementsItemSemanticEditPolicy extends
-		MIDBaseItemSemanticEditPolicy {
-
-	/**
-	 * @generated
-	 */
-	public MappingElementsItemSemanticEditPolicy() {
-		super(MIDElementTypes.MappingElements_4002);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return getGEFWrapper(new DestroyReferenceCommand(req));
-	}
-
-}
+public interface HomomorphicMappingLink extends BinaryMappingLink {
+} // HomomorphicMappingLink

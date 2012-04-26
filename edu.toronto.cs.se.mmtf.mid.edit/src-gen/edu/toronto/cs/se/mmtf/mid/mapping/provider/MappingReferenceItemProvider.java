@@ -119,7 +119,7 @@ public class MappingReferenceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING_REFERENCE__MAPPING_LINKS);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING_REFERENCE__CONTAINERS);
 		}
 		return childrenFeatures;
@@ -175,7 +175,7 @@ public class MappingReferenceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingReference.class)) {
-			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
+			case MappingPackage.MAPPING_REFERENCE__MAPPING_LINKS:
 			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -196,18 +196,18 @@ public class MappingReferenceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
-				 MappingFactory.eINSTANCE.createMapping()));
+				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPING_LINKS,
+				 MappingFactory.eINSTANCE.createMappingLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
-				 MappingFactory.eINSTANCE.createBinaryMapping()));
+				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPING_LINKS,
+				 MappingFactory.eINSTANCE.createBinaryMappingLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPINGS,
-				 MappingFactory.eINSTANCE.createHomomorphicMapping()));
+				(MappingPackage.Literals.MAPPING_REFERENCE__MAPPING_LINKS,
+				 MappingFactory.eINSTANCE.createHomomorphicMappingLink()));
 
 		newChildDescriptors.add
 			(createChildParameter

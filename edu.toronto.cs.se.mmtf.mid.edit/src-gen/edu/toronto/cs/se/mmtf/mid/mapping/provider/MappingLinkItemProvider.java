@@ -19,7 +19,7 @@
 package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 
 import edu.toronto.cs.se.mmtf.mid.provider.MIDEditPlugin;
@@ -42,12 +42,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingItemProvider
+public class MappingLinkItemProvider
 	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -61,7 +61,7 @@ public class MappingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingItemProvider(AdapterFactory adapterFactory) {
+	public MappingLinkItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -92,9 +92,9 @@ public class MappingItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Mapping_elements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_elements_feature", "_UI_Mapping_type"),
-				 MappingPackage.Literals.MAPPING__ELEMENTS,
+				 getString("_UI_MappingLink_elements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappingLink_elements_feature", "_UI_MappingLink_type"),
+				 MappingPackage.Literals.MAPPING_LINK__ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -104,14 +104,14 @@ public class MappingItemProvider
 	}
 
 	/**
-	 * This returns Mapping.gif.
+	 * This returns MappingLink.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Mapping"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingLink"));
 	}
 
 	/**
@@ -122,10 +122,10 @@ public class MappingItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Mapping)object).getName();
+		String label = ((MappingLink)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Mapping_type") :
-			getString("_UI_Mapping_type") + " " + label;
+			getString("_UI_MappingLink_type") :
+			getString("_UI_MappingLink_type") + " " + label;
 	}
 
 	/**

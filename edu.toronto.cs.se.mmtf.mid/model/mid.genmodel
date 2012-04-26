@@ -14,6 +14,7 @@
     </genEnums>
     <genClasses image="false" ecoreClass="mid.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//NamedElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//NamedElement/type"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/elements"/>
@@ -25,16 +26,21 @@
     </genClasses>
     <nestedGenPackages prefix="Mapping" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
         ecorePackage="mid.ecore#//mapping">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//mapping/ModelElementCategory">
+        <genEnumLiterals ecoreEnumLiteral="mid.ecore#//mapping/ModelElementCategory/CLASS"/>
+        <genEnumLiterals ecoreEnumLiteral="mid.ecore#//mapping/ModelElementCategory/REFERENCE"/>
+      </genEnums>
       <genClasses ecoreClass="mid.ecore#//mapping/MappingReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/models"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/mappings"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/mappingLinks"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingReference/containers"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//mapping/BinaryMappingReference"/>
       <genClasses ecoreClass="mid.ecore#//mapping/ModelContainer">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/elements"/>
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelContainer/name"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelContainer/type"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/model"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -45,15 +51,16 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelElementReference/pointer"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelElementReference/mappings"/>
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelElementReference/mappingLinks"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelElementReference/category"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//mapping/Mapping">
+      <genClasses ecoreClass="mid.ecore#//mapping/MappingLink">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//mapping/Mapping/elements"/>
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/MappingLink/elements"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//mapping/BinaryMapping"/>
+      <genClasses ecoreClass="mid.ecore#//mapping/BinaryMappingLink"/>
       <genClasses ecoreClass="mid.ecore#//mapping/HomomorphicMappingReference"/>
-      <genClasses ecoreClass="mid.ecore#//mapping/HomomorphicMapping"/>
+      <genClasses ecoreClass="mid.ecore#//mapping/HomomorphicMappingLink"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

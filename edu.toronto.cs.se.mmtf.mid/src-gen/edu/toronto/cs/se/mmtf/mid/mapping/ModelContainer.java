@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getElements <em>Elements</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel <em>Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel <em>Referenced Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel <em>Contained Model</em>}</li>
@@ -75,6 +76,22 @@ public interface ModelContainer extends EObject {
 	 * @generated
 	 */
 	String getName();
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelContainer_Type()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if model.oclIsUndefined() then \'\' else model.type endif'"
+	 * @generated
+	 */
+	String getType();
 
 	/**
 	 * Returns the value of the '<em><b>Model</b></em>' reference.

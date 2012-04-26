@@ -61,11 +61,11 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingNameEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkNameTypeEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkElementsEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
@@ -164,7 +164,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 				}
 				switch (visualID) {
 				case ModelContainerEditPart.VISUAL_ID:
-				case MappingEditPart.VISUAL_ID:
+				case MappingLinkEditPart.VISUAL_ID:
 				case ModelElementReferenceEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != MIDVisualIDRegistry.getNodeVisualID(
@@ -178,7 +178,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			}
 		}
 		return ModelContainerEditPart.VISUAL_ID == visualID
-				|| MappingEditPart.VISUAL_ID == visualID
+				|| MappingLinkEditPart.VISUAL_ID == visualID
 				|| ModelElementReferenceEditPart.VISUAL_ID == visualID;
 	}
 
@@ -239,8 +239,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		case ModelContainerEditPart.VISUAL_ID:
 			return createModelContainer_2005(domainElement, containerView,
 					index, persisted, preferencesHint);
-		case MappingEditPart.VISUAL_ID:
-			return createMapping_2004(domainElement, containerView, index,
+		case MappingLinkEditPart.VISUAL_ID:
+			return createMappingLink_2006(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case ModelElementReferenceEditPart.VISUAL_ID:
 			return createModelElementReference_3003(domainElement,
@@ -259,11 +259,11 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		switch (MIDVisualIDRegistry.getVisualID(elementTypeHint)) {
-		case MappingElementsEditPart.VISUAL_ID:
-			return createMappingElements_4002(containerView, index, persisted,
-					preferencesHint);
-		case BinaryMappingEditPart.VISUAL_ID:
-			return createBinaryMapping_4003(
+		case MappingLinkElementsEditPart.VISUAL_ID:
+			return createMappingLinkElements_4004(containerView, index,
+					persisted, preferencesHint);
+		case BinaryMappingLinkEditPart.VISUAL_ID:
+			return createBinaryMappingLink_4005(
 					getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
 		}
@@ -326,11 +326,12 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createMapping_2004(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createMappingLink_2006(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry.getType(MappingEditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(MappingLinkEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
@@ -362,8 +363,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5004 = createLabel(node,
-				MIDVisualIDRegistry.getType(MappingNameEditPart.VISUAL_ID));
+		Node label5007 = createLabel(node,
+				MIDVisualIDRegistry
+						.getType(MappingLinkNameTypeEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -416,7 +418,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createMappingElements_4002(View containerView, int index,
+	public Edge createMappingLinkElements_4004(View containerView, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -430,7 +432,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(MIDVisualIDRegistry
-				.getType(MappingElementsEditPart.VISUAL_ID));
+				.getType(MappingLinkElementsEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -468,7 +470,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createBinaryMapping_4003(EObject domainElement,
+	public Edge createBinaryMappingLink_4005(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -483,7 +485,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(MIDVisualIDRegistry
-				.getType(BinaryMappingEditPart.VISUAL_ID));
+				.getType(BinaryMappingLinkEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -515,14 +517,14 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6001 = createLabel(edge,
+		Node label6002 = createLabel(edge,
 				MIDVisualIDRegistry
-						.getType(BinaryMappingNameEditPart.VISUAL_ID));
-		label6001.setLayoutConstraint(NotationFactory.eINSTANCE
+						.getType(BinaryMappingLinkNameTypeEditPart.VISUAL_ID));
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6001 = (Location) label6001.getLayoutConstraint();
-		location6001.setX(0);
-		location6001.setY(40);
+		Location location6002 = (Location) label6002.getLayoutConstraint();
+		location6002.setX(0);
+		location6002.setY(40);
 		return edge;
 	}
 

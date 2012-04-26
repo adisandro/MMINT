@@ -21,8 +21,8 @@ package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingChangeElementCommand;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingLinkChangeElementCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
 
 /**
  * The semantic edit policy for model element references.
@@ -44,8 +44,8 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 
 		switch (getVisualID(req)) {
-			case BinaryMappingEditPart.VISUAL_ID:
-				return getGEFWrapper(new BinaryMappingChangeElementCommand(req));
+			case BinaryMappingLinkEditPart.VISUAL_ID:
+				return getGEFWrapper(new BinaryMappingLinkChangeElementCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

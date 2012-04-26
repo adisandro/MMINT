@@ -110,14 +110,16 @@ public class MappingValidator extends EObjectValidator {
 				return validateModelContainer((ModelContainer)value, diagnostics, context);
 			case MappingPackage.MODEL_ELEMENT_REFERENCE:
 				return validateModelElementReference((ModelElementReference)value, diagnostics, context);
-			case MappingPackage.MAPPING:
-				return validateMapping((Mapping)value, diagnostics, context);
-			case MappingPackage.BINARY_MAPPING:
-				return validateBinaryMapping((BinaryMapping)value, diagnostics, context);
+			case MappingPackage.MAPPING_LINK:
+				return validateMappingLink((MappingLink)value, diagnostics, context);
+			case MappingPackage.BINARY_MAPPING_LINK:
+				return validateBinaryMappingLink((BinaryMappingLink)value, diagnostics, context);
 			case MappingPackage.HOMOMORPHIC_MAPPING_REFERENCE:
 				return validateHomomorphicMappingReference((HomomorphicMappingReference)value, diagnostics, context);
-			case MappingPackage.HOMOMORPHIC_MAPPING:
-				return validateHomomorphicMapping((HomomorphicMapping)value, diagnostics, context);
+			case MappingPackage.HOMOMORPHIC_MAPPING_LINK:
+				return validateHomomorphicMappingLink((HomomorphicMappingLink)value, diagnostics, context);
+			case MappingPackage.MODEL_ELEMENT_CATEGORY:
+				return validateModelElementCategory((ModelElementCategory)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -282,8 +284,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMapping(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mapping, diagnostics, context);
+	public boolean validateMappingLink(MappingLink mappingLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingLink, diagnostics, context);
 	}
 
 	/**
@@ -291,44 +293,44 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBinaryMapping(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(binaryMapping, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryMapping_isBinaryMapping(binaryMapping, diagnostics, context);
+	public boolean validateBinaryMappingLink(BinaryMappingLink binaryMappingLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(binaryMappingLink, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingLink_isBinaryMapping(binaryMappingLink, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the isBinaryMapping constraint of '<em>Binary Mapping</em>'.
+	 * The cached validation expression for the isBinaryMapping constraint of '<em>Binary Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BINARY_MAPPING__IS_BINARY_MAPPING__EEXPRESSION = "elements->size() = 2";
+	protected static final String BINARY_MAPPING_LINK__IS_BINARY_MAPPING__EEXPRESSION = "elements->size() = 2";
 
 	/**
-	 * Validates the isBinaryMapping constraint of '<em>Binary Mapping</em>'.
+	 * Validates the isBinaryMapping constraint of '<em>Binary Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBinaryMapping_isBinaryMapping(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBinaryMappingLink_isBinaryMapping(BinaryMappingLink binaryMappingLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(MappingPackage.Literals.BINARY_MAPPING,
-				 binaryMapping,
+				(MappingPackage.Literals.BINARY_MAPPING_LINK,
+				 binaryMappingLink,
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "isBinaryMapping",
-				 BINARY_MAPPING__IS_BINARY_MAPPING__EEXPRESSION,
+				 BINARY_MAPPING_LINK__IS_BINARY_MAPPING__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
@@ -389,48 +391,57 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateHomomorphicMapping(HomomorphicMapping homomorphicMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(homomorphicMapping, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryMapping_isBinaryMapping(homomorphicMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validateHomomorphicMapping_sameElementTypes(homomorphicMapping, diagnostics, context);
+	public boolean validateHomomorphicMappingLink(HomomorphicMappingLink homomorphicMappingLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(homomorphicMappingLink, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingLink_isBinaryMapping(homomorphicMappingLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validateHomomorphicMappingLink_sameElementTypes(homomorphicMappingLink, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the sameElementTypes constraint of '<em>Homomorphic Mapping</em>'.
+	 * The cached validation expression for the sameElementTypes constraint of '<em>Homomorphic Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String HOMOMORPHIC_MAPPING__SAME_ELEMENT_TYPES__EEXPRESSION = "elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())";
+	protected static final String HOMOMORPHIC_MAPPING_LINK__SAME_ELEMENT_TYPES__EEXPRESSION = "elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())";
 
 	/**
-	 * Validates the sameElementTypes constraint of '<em>Homomorphic Mapping</em>'.
+	 * Validates the sameElementTypes constraint of '<em>Homomorphic Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateHomomorphicMapping_sameElementTypes(HomomorphicMapping homomorphicMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateHomomorphicMappingLink_sameElementTypes(HomomorphicMappingLink homomorphicMappingLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(MappingPackage.Literals.HOMOMORPHIC_MAPPING,
-				 homomorphicMapping,
+				(MappingPackage.Literals.HOMOMORPHIC_MAPPING_LINK,
+				 homomorphicMappingLink,
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "sameElementTypes",
-				 HOMOMORPHIC_MAPPING__SAME_ELEMENT_TYPES__EEXPRESSION,
+				 HOMOMORPHIC_MAPPING_LINK__SAME_ELEMENT_TYPES__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelElementCategory(ModelElementCategory modelElementCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
 	}
 
 	/**

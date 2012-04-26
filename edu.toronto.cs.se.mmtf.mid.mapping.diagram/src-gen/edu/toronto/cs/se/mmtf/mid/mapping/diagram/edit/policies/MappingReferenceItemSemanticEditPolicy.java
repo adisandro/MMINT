@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsComma
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingLinkCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.ModelContainerCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
@@ -49,8 +49,8 @@ public class MappingReferenceItemSemanticEditPolicy extends
 		if (MIDElementTypes.ModelContainer_2005 == req.getElementType()) {
 			return getGEFWrapper(new ModelContainerCreateCommand(req));
 		}
-		if (MIDElementTypes.Mapping_2004 == req.getElementType()) {
-			return getGEFWrapper(new MappingCreateCommand(req));
+		if (MIDElementTypes.MappingLink_2006 == req.getElementType()) {
+			return getGEFWrapper(new MappingLinkCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

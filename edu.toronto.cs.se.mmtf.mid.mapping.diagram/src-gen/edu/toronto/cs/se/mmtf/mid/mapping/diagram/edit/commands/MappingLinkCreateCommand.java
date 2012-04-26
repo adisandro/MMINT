@@ -30,19 +30,19 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
 /**
  * @generated
  */
-public class MappingCreateCommand extends EditElementCommand {
+public class MappingLinkCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
-	public MappingCreateCommand(CreateElementRequest req) {
+	public MappingLinkCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -72,10 +72,10 @@ public class MappingCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		Mapping newElement = MappingFactory.eINSTANCE.createMapping();
+		MappingLink newElement = MappingFactory.eINSTANCE.createMappingLink();
 
 		MappingReference owner = (MappingReference) getElementToEdit();
-		owner.getMappings().add(newElement);
+		owner.getMappingLinks().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -86,8 +86,9 @@ public class MappingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Mapping newElement, IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected void doConfigure(MappingLink newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())
 				.getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(

@@ -21,7 +21,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingLinkCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.ModelContainerImportModelCommand;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
@@ -46,8 +46,8 @@ public class MappingDiagramSemanticEditPolicy extends MappingReferenceItemSemant
 		if (MIDElementTypes.ModelContainer_2005 == req.getElementType()) {
 			return getGEFWrapper(new ModelContainerImportModelCommand(req));
 		}
-		if (MIDElementTypes.Mapping_2004 == req.getElementType()) {
-			return getGEFWrapper(new MappingCreateCommand(req));
+		if (MIDElementTypes.MappingLink_2006 == req.getElementType()) {
+			return getGEFWrapper(new MappingLinkCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

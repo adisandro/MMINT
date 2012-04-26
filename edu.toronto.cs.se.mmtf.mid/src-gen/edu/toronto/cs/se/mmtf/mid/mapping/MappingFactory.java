@@ -74,22 +74,22 @@ public interface MappingFactory extends EFactory {
 	ModelElementReference createModelElementReference();
 
 	/**
-	 * Returns a new object of class '<em>Mapping</em>'.
+	 * Returns a new object of class '<em>Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mapping</em>'.
+	 * @return a new object of class '<em>Link</em>'.
 	 * @generated
 	 */
-	Mapping createMapping();
+	MappingLink createMappingLink();
 
 	/**
-	 * Returns a new object of class '<em>Binary Mapping</em>'.
+	 * Returns a new object of class '<em>Binary Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Mapping</em>'.
+	 * @return a new object of class '<em>Binary Mapping Link</em>'.
 	 * @generated
 	 */
-	BinaryMapping createBinaryMapping();
+	BinaryMappingLink createBinaryMappingLink();
 
 	/**
 	 * Returns a new object of class '<em>Homomorphic Mapping Reference</em>'.
@@ -101,13 +101,13 @@ public interface MappingFactory extends EFactory {
 	HomomorphicMappingReference createHomomorphicMappingReference();
 
 	/**
-	 * Returns a new object of class '<em>Homomorphic Mapping</em>'.
+	 * Returns a new object of class '<em>Homomorphic Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Homomorphic Mapping</em>'.
+	 * @return a new object of class '<em>Homomorphic Mapping Link</em>'.
 	 * @generated
 	 */
-	HomomorphicMapping createHomomorphicMapping();
+	HomomorphicMappingLink createHomomorphicMappingLink();
 
 	/**
 	 * Returns the package supported by this factory.

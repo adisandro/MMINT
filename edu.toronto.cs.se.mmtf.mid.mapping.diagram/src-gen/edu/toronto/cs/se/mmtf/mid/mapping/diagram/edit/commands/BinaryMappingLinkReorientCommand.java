@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSeman
 /**
  * @generated
  */
-public class BinaryMappingReorientCommand extends EditElementCommand {
+public class BinaryMappingLinkReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -54,7 +54,7 @@ public class BinaryMappingReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public BinaryMappingReorientCommand(ReorientRelationshipRequest request) {
+	public BinaryMappingLinkReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -65,7 +65,7 @@ public class BinaryMappingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof BinaryMapping) {
+		if (false == getElementToEdit() instanceof BinaryMappingLink) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -94,7 +94,7 @@ public class BinaryMappingReorientCommand extends EditElementCommand {
 		}
 		MappingReference container = (MappingReference) getLink().eContainer();
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryMapping_4003(container, getLink(),
+				.canExistBinaryMappingLink_4005(container, getLink(),
 						getNewSource(), target);
 	}
 
@@ -115,7 +115,7 @@ public class BinaryMappingReorientCommand extends EditElementCommand {
 		}
 		MappingReference container = (MappingReference) getLink().eContainer();
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryMapping_4003(container, getLink(), source,
+				.canExistBinaryMappingLink_4005(container, getLink(), source,
 						getNewTarget());
 	}
 
@@ -158,8 +158,8 @@ public class BinaryMappingReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected BinaryMapping getLink() {
-		return (BinaryMapping) getElementToEdit();
+	protected BinaryMappingLink getLink() {
+		return (BinaryMappingLink) getElementToEdit();
 	}
 
 	/**

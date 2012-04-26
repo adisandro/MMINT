@@ -37,9 +37,9 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.ModelReferenceOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
@@ -250,12 +250,12 @@ public class MultiModelTrait {
 				modelElements.put(elementRef.getPointer(), elementRef);
 			}
 		}
-		for (Mapping origMapping : origMappingRef.getMappings()) {
-			Mapping mapping = (Mapping) MappingFactory.eINSTANCE.create(origMapping.eClass());
-			mapping.setName(origMapping.getName());
-			mappingRef.getMappings().add(mapping);
-			for (ModelElementReference origElementRef : origMapping.getElements()) {
-				mapping.getElements().add(modelElements.get(origElementRef.getPointer()));
+		for (MappingLink origLink : origMappingRef.getMappingLinks()) {
+			MappingLink link = (MappingLink) MappingFactory.eINSTANCE.create(origLink.eClass());
+			link.setName(origLink.getName());
+			mappingRef.getMappingLinks().add(link);
+			for (ModelElementReference origElementRef : origLink.getElements()) {
+				link.getElements().add(modelElements.get(origElementRef.getPointer()));
 			}
 		}
 
@@ -276,19 +276,19 @@ public class MultiModelTrait {
 		for (ModelContainer modelContainer : mappingRef.getContainers()) {
 			if (modelContainer.getModel() == modelRef) {
 				mappingRef.getContainers().remove(modelContainer);
-				ArrayList<Mapping> delMappings = new ArrayList<Mapping>();
+				ArrayList<MappingLink> delLinks = new ArrayList<MappingLink>();
 				for (ModelElementReference element : modelContainer.getElements()) {
-					for (Mapping mapping : element.getMappings()) {
+					for (MappingLink link : element.getMappingLinks()) {
 						// binary mappings have no longer sense, delete them later to avoid concurrent modification problems
-						if (mapping instanceof BinaryMapping) {
-							delMappings.add(mapping);
+						if (link instanceof BinaryMappingLink) {
+							delLinks.add(link);
 						}
 					}
-					element.getMappings().clear();
+					element.getMappingLinks().clear();
 				}
-				for (Mapping delMapping : delMappings) {
-					delMapping.getElements().clear();
-					mappingRef.getMappings().remove(delMapping);
+				for (MappingLink delLink : delLinks) {
+					delLink.getElements().clear();
+					mappingRef.getMappingLinks().remove(delLink);
 				}
 				break;
 			}

@@ -35,9 +35,9 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
@@ -80,7 +80,8 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Mapping_2004 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.Mapping_2004"); //$NON-NLS-1$
+	public static final IElementType MappingLink_2006 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingLink_2006"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -88,12 +89,12 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType MappingElements_4002 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingElements_4002"); //$NON-NLS-1$
+	public static final IElementType MappingLinkElements_4004 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.MappingLinkElements_4004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType BinaryMapping_4003 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.BinaryMapping_4003"); //$NON-NLS-1$
+	public static final IElementType BinaryMappingLink_4005 = getElementType("edu.toronto.cs.se.mmtf.mid.mapping.diagram.BinaryMappingLink_4005"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -212,16 +213,17 @@ public class MIDElementTypes {
 			elements.put(ModelContainer_2005,
 					MappingPackage.eINSTANCE.getModelContainer());
 
-			elements.put(Mapping_2004, MappingPackage.eINSTANCE.getMapping());
+			elements.put(MappingLink_2006,
+					MappingPackage.eINSTANCE.getMappingLink());
 
 			elements.put(ModelElementReference_3003,
 					MappingPackage.eINSTANCE.getModelElementReference());
 
-			elements.put(MappingElements_4002,
-					MappingPackage.eINSTANCE.getMapping_Elements());
+			elements.put(MappingLinkElements_4004,
+					MappingPackage.eINSTANCE.getMappingLink_Elements());
 
-			elements.put(BinaryMapping_4003,
-					MappingPackage.eINSTANCE.getBinaryMapping());
+			elements.put(BinaryMappingLink_4005,
+					MappingPackage.eINSTANCE.getBinaryMappingLink());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -241,10 +243,10 @@ public class MIDElementTypes {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(MappingReference_1000);
 			KNOWN_ELEMENT_TYPES.add(ModelContainer_2005);
-			KNOWN_ELEMENT_TYPES.add(Mapping_2004);
+			KNOWN_ELEMENT_TYPES.add(MappingLink_2006);
 			KNOWN_ELEMENT_TYPES.add(ModelElementReference_3003);
-			KNOWN_ELEMENT_TYPES.add(MappingElements_4002);
-			KNOWN_ELEMENT_TYPES.add(BinaryMapping_4003);
+			KNOWN_ELEMENT_TYPES.add(MappingLinkElements_4004);
+			KNOWN_ELEMENT_TYPES.add(BinaryMappingLink_4005);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -258,14 +260,14 @@ public class MIDElementTypes {
 			return MappingReference_1000;
 		case ModelContainerEditPart.VISUAL_ID:
 			return ModelContainer_2005;
-		case MappingEditPart.VISUAL_ID:
-			return Mapping_2004;
+		case MappingLinkEditPart.VISUAL_ID:
+			return MappingLink_2006;
 		case ModelElementReferenceEditPart.VISUAL_ID:
 			return ModelElementReference_3003;
-		case MappingElementsEditPart.VISUAL_ID:
-			return MappingElements_4002;
-		case BinaryMappingEditPart.VISUAL_ID:
-			return BinaryMapping_4003;
+		case MappingLinkElementsEditPart.VISUAL_ID:
+			return MappingLinkElements_4004;
+		case BinaryMappingLinkEditPart.VISUAL_ID:
+			return BinaryMappingLink_4005;
 		}
 		return null;
 	}

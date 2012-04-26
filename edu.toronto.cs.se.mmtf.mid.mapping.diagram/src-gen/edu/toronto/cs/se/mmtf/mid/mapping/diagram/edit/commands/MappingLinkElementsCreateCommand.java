@@ -26,14 +26,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class MappingElementsCreateCommand extends EditElementCommand {
+public class MappingLinkElementsCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class MappingElementsCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public MappingElementsCreateCommand(CreateRelationshipRequest request,
+	public MappingLinkElementsCreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -62,7 +62,7 @@ public class MappingElementsCreateCommand extends EditElementCommand {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Mapping) {
+		if (source != null && false == source instanceof MappingLink) {
 			return false;
 		}
 		if (target != null && false == target instanceof ModelElementReference) {
@@ -73,7 +73,7 @@ public class MappingElementsCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateMappingElements_4002(getSource(), getTarget());
+				.canCreateMappingLinkElements_4004(getSource(), getTarget());
 	}
 
 	/**
@@ -103,8 +103,8 @@ public class MappingElementsCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Mapping getSource() {
-		return (Mapping) source;
+	protected MappingLink getSource() {
+		return (MappingLink) source;
 	}
 
 	/**

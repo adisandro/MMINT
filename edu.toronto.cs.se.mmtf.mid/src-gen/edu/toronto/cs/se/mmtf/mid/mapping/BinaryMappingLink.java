@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
  * 
  * This file is part of MMTF ver. 0.9.0.
@@ -16,10 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers;
+package edu.toronto.cs.se.mmtf.mid.mapping;
+
 
 /**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Binary Mapping Link</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryMappingLink()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryMapping'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryMapping='elements->size() = 2'"
  * @generated
  */
-public class BinaryMappingEditHelper extends MIDBaseEditHelper {
-}
+public interface BinaryMappingLink extends MappingLink {
+} // BinaryMappingLink

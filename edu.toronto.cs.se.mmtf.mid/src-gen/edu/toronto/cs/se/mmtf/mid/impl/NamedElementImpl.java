@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.NamedElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.NamedElementImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,6 +62,26 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,11 +128,34 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.NAMED_ELEMENT__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MidPackage.NAMED_ELEMENT__NAME:
 				return getName();
+			case MidPackage.NAMED_ELEMENT__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,6 +170,9 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 		switch (featureID) {
 			case MidPackage.NAMED_ELEMENT__NAME:
 				setName((String)newValue);
+				return;
+			case MidPackage.NAMED_ELEMENT__TYPE:
+				setType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,6 +189,9 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 			case MidPackage.NAMED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case MidPackage.NAMED_ELEMENT__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -156,6 +206,8 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 		switch (featureID) {
 			case MidPackage.NAMED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MidPackage.NAMED_ELEMENT__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -172,6 +224,8 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

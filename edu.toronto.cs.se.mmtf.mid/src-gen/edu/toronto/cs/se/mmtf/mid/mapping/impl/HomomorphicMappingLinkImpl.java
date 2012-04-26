@@ -18,27 +18,27 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Homomorphic Mapping</b></em>'.
+ * An implementation of the model object '<em><b>Homomorphic Mapping Link</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class HomomorphicMappingImpl extends BinaryMappingImpl implements HomomorphicMapping {
+public class HomomorphicMappingLinkImpl extends BinaryMappingLinkImpl implements HomomorphicMappingLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected HomomorphicMappingImpl() {
+	protected HomomorphicMappingLinkImpl() {
 		super();
 	}
 
@@ -49,7 +49,7 @@ public class HomomorphicMappingImpl extends BinaryMappingImpl implements Homomor
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.HOMOMORPHIC_MAPPING;
+		return MappingPackage.Literals.HOMOMORPHIC_MAPPING_LINK;
 	}
 
-} //HomomorphicMappingImpl
+} //HomomorphicMappingLinkImpl

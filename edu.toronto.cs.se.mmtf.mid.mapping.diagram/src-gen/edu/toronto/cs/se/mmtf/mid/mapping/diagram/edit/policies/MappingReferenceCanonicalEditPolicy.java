@@ -50,8 +50,8 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
@@ -91,7 +91,7 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 			myFeaturesToSynchronize.add(MappingPackage.eINSTANCE
 					.getMappingReference_Containers());
 			myFeaturesToSynchronize.add(MappingPackage.eINSTANCE
-					.getMappingReference_Mappings());
+					.getMappingReference_MappingLinks());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -129,7 +129,7 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 	private boolean isMyDiagramElement(View view) {
 		int visualID = MIDVisualIDRegistry.getVisualID(view);
 		return visualID == ModelContainerEditPart.VISUAL_ID
-				|| visualID == MappingEditPart.VISUAL_ID;
+				|| visualID == MappingLinkEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -303,10 +303,10 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case MappingEditPart.VISUAL_ID: {
+		case MappingLinkEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
-						.getMapping_2004ContainedLinks(view));
+						.getMappingLink_2006ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -325,10 +325,10 @@ public class MappingReferenceCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case BinaryMappingEditPart.VISUAL_ID: {
+		case BinaryMappingLinkEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MIDDiagramUpdater
-						.getBinaryMapping_4003ContainedLinks(view));
+						.getBinaryMappingLink_4005ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

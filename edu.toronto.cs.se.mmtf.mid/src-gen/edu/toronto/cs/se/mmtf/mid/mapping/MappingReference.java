@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getModels <em>Models</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappingLinks <em>Mapping Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getContainers <em>Containers</em>}</li>
  * </ul>
  * </p>
@@ -59,20 +59,20 @@ public interface MappingReference extends ModelReference {
 	EList<ModelReference> getModels();
 
 	/**
-	 * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping}.
+	 * Returns the value of the '<em><b>Mapping Links</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Mappings</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Mapping Links</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mappings</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingReference_Mappings()
+	 * @return the value of the '<em>Mapping Links</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getMappingReference_MappingLinks()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Mapping> getMappings();
+	EList<MappingLink> getMappingLinks();
 
 	/**
 	 * Returns the value of the '<em><b>Containers</b></em>' containment reference list.

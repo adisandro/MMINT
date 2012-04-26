@@ -9,7 +9,7 @@
       name="Default">
     <figures
         xsi:type="gmfgraph:PolylineDecoration"
-        name="MappingElementsTargetDecoration"/>
+        name="MappingLinkElementsTargetDecoration"/>
     <descriptors
         name="ModelContainerFigure">
       <actualFigure
@@ -40,33 +40,33 @@
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="MappingFigure">
+        name="MappingLinkFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="MappingFigure">
+          name="MappingLinkFigure">
         <children
             xsi:type="gmfgraph:Label"
-            name="MappingNameFigure"
+            name="MappingLinkNameFigure"
             text="&lt;...>"/>
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="MappingElementsFigure">
+        name="MappingLinkElementsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="MappingElementsFigure"
+          name="MappingLinkElementsFigure"
           targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
     <descriptors
-        name="BinaryMappingElementsFigure">
+        name="BinaryMappingLinkElementsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="BinaryMappingElementsFigure">
+          name="BinaryMappingLinkElementsFigure">
         <children
             xsi:type="gmfgraph:Label"
-            name="BinaryMappingNameFigure"
+            name="BinaryMappingLinkNameFigure"
             text="&lt;...>"/>
       </actualFigure>
       <accessors
@@ -80,14 +80,14 @@
       name="ModelElementReference"
       figure="ModelElementReferenceFigure"/>
   <nodes
-      name="Mapping"
-      figure="MappingFigure"/>
+      name="MappingLink"
+      figure="MappingLinkFigure"/>
   <connections
-      name="MappingElements"
-      figure="MappingElementsFigure"/>
+      name="MappingLinkElements"
+      figure="MappingLinkElementsFigure"/>
   <connections
-      name="BinaryMappingElements"
-      figure="BinaryMappingElementsFigure"/>
+      name="BinaryMappingLinkElements"
+      figure="BinaryMappingLinkElementsFigure"/>
   <compartments
       name="ModelContainerCompartment"
       figure="ModelContainerFigure"/>
@@ -96,15 +96,15 @@
       figure="ModelElementReferenceFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
-      name="MappingName"
-      figure="MappingFigure"
+      name="MappingLinkName"
+      figure="MappingLinkFigure"
       accessor="//@figures.0/@descriptors.2/@accessors.0"/>
   <labels
       name="ModelContainerName"
       figure="ModelContainerFigure"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <labels
-      name="BinaryMappingName"
-      figure="BinaryMappingElementsFigure"
+      name="BinaryMappingLinkName"
+      figure="BinaryMappingLinkElementsFigure"
       accessor="//@figures.0/@descriptors.4/@accessors.0"/>
 </gmfgraph:Canvas>

@@ -56,11 +56,11 @@ public class MIDEditPartFactory implements EditPartFactory {
 			case ModelContainerNameEditPart.VISUAL_ID:
 				return new ModelContainerNameEditPart(view);
 
-			case MappingEditPart.VISUAL_ID:
-				return new MappingEditPart(view);
+			case MappingLinkEditPart.VISUAL_ID:
+				return new MappingLinkEditPart(view);
 
-			case MappingNameEditPart.VISUAL_ID:
-				return new MappingNameEditPart(view);
+			case MappingLinkNameTypeEditPart.VISUAL_ID:
+				return new MappingLinkNameTypeEditPart(view);
 
 			case ModelElementReferenceEditPart.VISUAL_ID:
 				return new ModelElementReferenceEditPart(view);
@@ -71,14 +71,14 @@ public class MIDEditPartFactory implements EditPartFactory {
 			case ModelContainerModelContainerCompartmentEditPart.VISUAL_ID:
 				return new ModelContainerModelContainerCompartmentEditPart(view);
 
-			case MappingElementsEditPart.VISUAL_ID:
-				return new MappingElementsEditPart(view);
+			case MappingLinkElementsEditPart.VISUAL_ID:
+				return new MappingLinkElementsEditPart(view);
 
-			case BinaryMappingEditPart.VISUAL_ID:
-				return new BinaryMappingEditPart(view);
+			case BinaryMappingLinkEditPart.VISUAL_ID:
+				return new BinaryMappingLinkEditPart(view);
 
-			case BinaryMappingNameEditPart.VISUAL_ID:
-				return new BinaryMappingNameEditPart(view);
+			case BinaryMappingLinkNameTypeEditPart.VISUAL_ID:
+				return new BinaryMappingLinkNameTypeEditPart(view);
 
 			}
 		}

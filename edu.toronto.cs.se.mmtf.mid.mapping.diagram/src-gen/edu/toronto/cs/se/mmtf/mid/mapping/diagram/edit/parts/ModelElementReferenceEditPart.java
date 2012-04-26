@@ -282,7 +282,7 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(MIDElementTypes.BinaryMapping_4003);
+		types.add(MIDElementTypes.BinaryMappingLink_4005);
 		return types;
 	}
 
@@ -293,7 +293,7 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart) {
-			types.add(MIDElementTypes.BinaryMapping_4003);
+			types.add(MIDElementTypes.BinaryMappingLink_4005);
 		}
 		return types;
 	}
@@ -303,7 +303,7 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MIDElementTypes.BinaryMapping_4003) {
+		if (relationshipType == MIDElementTypes.BinaryMappingLink_4005) {
 			types.add(MIDElementTypes.ModelElementReference_3003);
 		}
 		return types;
@@ -314,8 +314,8 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(MIDElementTypes.MappingElements_4002);
-		types.add(MIDElementTypes.BinaryMapping_4003);
+		types.add(MIDElementTypes.MappingLinkElements_4004);
+		types.add(MIDElementTypes.BinaryMappingLink_4005);
 		return types;
 	}
 
@@ -324,9 +324,9 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MIDElementTypes.MappingElements_4002) {
-			types.add(MIDElementTypes.Mapping_2004);
-		} else if (relationshipType == MIDElementTypes.BinaryMapping_4003) {
+		if (relationshipType == MIDElementTypes.MappingLinkElements_4004) {
+			types.add(MIDElementTypes.MappingLink_2006);
+		} else if (relationshipType == MIDElementTypes.BinaryMappingLink_4005) {
 			types.add(MIDElementTypes.ModelElementReference_3003);
 		}
 		return types;

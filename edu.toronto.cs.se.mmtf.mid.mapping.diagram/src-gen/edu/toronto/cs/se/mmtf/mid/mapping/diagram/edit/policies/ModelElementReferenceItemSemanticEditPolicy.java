@@ -34,12 +34,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingCreateCommand;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingElementsCreateCommand;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingElementsReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingLinkCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.BinaryMappingLinkReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingLinkElementsCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.commands.MappingLinkElementsReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
@@ -66,7 +66,7 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (MIDVisualIDRegistry.getVisualID(incomingLink) == MappingElementsEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == MappingLinkElementsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -74,7 +74,7 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryMappingEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryMappingLinkEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -84,7 +84,7 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryMappingEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryMappingLinkEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -119,11 +119,11 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MIDElementTypes.MappingElements_4002 == req.getElementType()) {
+		if (MIDElementTypes.MappingLinkElements_4004 == req.getElementType()) {
 			return null;
 		}
-		if (MIDElementTypes.BinaryMapping_4003 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingCreateCommand(req,
+		if (MIDElementTypes.BinaryMappingLink_4005 == req.getElementType()) {
+			return getGEFWrapper(new BinaryMappingLinkCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -134,12 +134,12 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MIDElementTypes.MappingElements_4002 == req.getElementType()) {
-			return getGEFWrapper(new MappingElementsCreateCommand(req,
+		if (MIDElementTypes.MappingLinkElements_4004 == req.getElementType()) {
+			return getGEFWrapper(new MappingLinkElementsCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.BinaryMapping_4003 == req.getElementType()) {
-			return getGEFWrapper(new BinaryMappingCreateCommand(req,
+		if (MIDElementTypes.BinaryMappingLink_4005 == req.getElementType()) {
+			return getGEFWrapper(new BinaryMappingLinkCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -154,8 +154,8 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case BinaryMappingEditPart.VISUAL_ID:
-			return getGEFWrapper(new BinaryMappingReorientCommand(req));
+		case BinaryMappingLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new BinaryMappingLinkReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -169,8 +169,8 @@ public class ModelElementReferenceItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case MappingElementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new MappingElementsReorientCommand(req));
+		case MappingLinkElementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new MappingLinkElementsReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

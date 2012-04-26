@@ -27,23 +27,23 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingElementsItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingLinkElementsItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class MappingElementsEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class MappingLinkElementsEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4002;
+	public static final int VISUAL_ID = 4004;
 
 	/**
 	 * @generated
 	 */
-	public MappingElementsEditPart(View view) {
+	public MappingLinkElementsEditPart(View view) {
 		super(view);
 	}
 
@@ -53,7 +53,7 @@ public class MappingElementsEditPart extends ConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new MappingElementsItemSemanticEditPolicy());
+				new MappingLinkElementsItemSemanticEditPolicy());
 	}
 
 	/**
@@ -66,25 +66,25 @@ public class MappingElementsEditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new MappingElementsFigure();
+		return new MappingLinkElementsFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public MappingElementsFigure getPrimaryShape() {
-		return (MappingElementsFigure) getFigure();
+	public MappingLinkElementsFigure getPrimaryShape() {
+		return (MappingLinkElementsFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class MappingElementsFigure extends PolylineConnectionEx {
+	public class MappingLinkElementsFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		public MappingElementsFigure() {
+		public MappingLinkElementsFigure() {
 
 			setTargetDecoration(createTargetDecoration());
 		}

@@ -33,8 +33,8 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingElementsEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkElementsEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
@@ -91,7 +91,7 @@ public class ModelContainerItemSemanticEditPolicy extends
 						for (Iterator<?> it = cnode.getTargetEdges().iterator(); it
 								.hasNext();) {
 							Edge incomingLink = (Edge) it.next();
-							if (MIDVisualIDRegistry.getVisualID(incomingLink) == MappingElementsEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(incomingLink) == MappingLinkElementsEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -101,7 +101,7 @@ public class ModelContainerItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryMappingEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryMappingLinkEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -113,7 +113,7 @@ public class ModelContainerItemSemanticEditPolicy extends
 						for (Iterator<?> it = cnode.getSourceEdges().iterator(); it
 								.hasNext();) {
 							Edge outgoingLink = (Edge) it.next();
-							if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryMappingEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryMappingLinkEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));

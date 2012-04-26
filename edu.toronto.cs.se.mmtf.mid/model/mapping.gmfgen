@@ -87,6 +87,7 @@
           editPartClassName="ModelElementReferenceNameEditPart"
           itemSemanticEditPolicyClassName="ModelElementReferenceNameItemSemanticEditPolicy"
           notationViewFactoryClassName="ModelElementReferenceNameViewFactory"
+          readOnly="true"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -96,9 +97,13 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.0">
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="{0} : {1}"
+            editPattern="{0}">
           <metaFeatures
               href="mid.genmodel#//mid/NamedElement/name"/>
+          <metaFeatures
+              href="mid.genmodel#//mid/NamedElement/type"/>
         </modelFacet>
       </labels>
     </childNodes>
@@ -145,6 +150,7 @@
           editPartClassName="ModelContainerNameEditPart"
           itemSemanticEditPolicyClassName="ModelContainerNameItemSemanticEditPolicy"
           notationViewFactoryClassName="ModelContainerNameViewFactory"
+          readOnly="true"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -154,121 +160,124 @@
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.0">
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="{0} : {1}"
+            editPattern="{0}">
           <metaFeatures
               href="mid.genmodel#//mid/mapping/ModelContainer/name"/>
+          <metaFeatures
+              href="mid.genmodel#//mid/mapping/ModelContainer/type"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2004"
-        editPartClassName="MappingEditPart"
-        itemSemanticEditPolicyClassName="MappingItemSemanticEditPolicy"
-        notationViewFactoryClassName="MappingViewFactory"
-        canonicalEditPolicyClassName="MappingCanonicalEditPolicy"
-        graphicalNodeEditPolicyClassName="MappingGraphicalNodeEditPolicy"
-        createCommandClassName="MappingCreateCommand">
+        visualID="2006"
+        editPartClassName="MappingLinkEditPart"
+        itemSemanticEditPolicyClassName="MappingLinkItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="MappingLinkCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="MappingLinkGraphicalNodeEditPolicy"
+        createCommandClassName="MappingLinkCreateCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="MappingEditHelper"/>
+          editHelperClassName="MappingLinkEditHelper"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
-          className="MappingFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MappingFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMappingNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MappingFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMappingNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureMappingNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureMappingNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMappingNameFigure() {&#xA;&#x9;&#x9;return fFigureMappingNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          className="MappingLinkFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MappingLinkFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMappingLinkNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MappingLinkFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMappingLinkNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureMappingLinkNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureMappingLinkNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMappingLinkNameFigure() {&#xA;&#x9;&#x9;return fFigureMappingLinkNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
         <metaClass
-            href="mid.genmodel#//mid/mapping/Mapping"/>
+            href="mid.genmodel#//mid/mapping/MappingLink"/>
         <containmentMetaFeature
-            href="mid.genmodel#//mid/mapping/MappingReference/mappings"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/mappingLinks"/>
         <childMetaFeature
-            href="mid.genmodel#//mid/mapping/MappingReference/mappings"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/mappingLinks"/>
       </modelFacet>
       <labels
-          visualID="5004"
-          editPartClassName="MappingNameEditPart"
-          itemSemanticEditPolicyClassName="MappingNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="MappingNameViewFactory"
+          visualID="5007"
+          editPartClassName="MappingLinkNameTypeEditPart"
+          itemSemanticEditPolicyClassName="MappingLinkNameTypeItemSemanticEditPolicy"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureMappingNameFigure"
+            getterName="getFigureMappingLinkNameFigure"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.0">
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="{0} : {1}"
+            editPattern="{0}">
           <metaFeatures
               href="mid.genmodel#//mid/NamedElement/name"/>
+          <metaFeatures
+              href="mid.genmodel#//mid/NamedElement/type"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
     <links
-        visualID="4002"
-        editPartClassName="MappingElementsEditPart"
-        itemSemanticEditPolicyClassName="MappingElementsItemSemanticEditPolicy"
-        notationViewFactoryClassName="MappingElementsViewFactory"
-        createCommandClassName="MappingElementsCreateCommand"
-        reorientCommandClassName="MappingElementsReorientCommand">
+        visualID="4004"
+        editPartClassName="MappingLinkElementsEditPart"
+        itemSemanticEditPolicyClassName="MappingLinkElementsItemSemanticEditPolicy"
+        createCommandClassName="MappingLinkElementsCreateCommand"
+        reorientCommandClassName="MappingLinkElementsReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
-          className="MappingElementsFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MappingElementsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MappingElementsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          className="MappingLinkElementsFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MappingLinkElementsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MappingLinkElementsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="mid.genmodel#//mid/mapping/Mapping/elements"/>
+            href="mid.genmodel#//mid/mapping/MappingLink/elements"/>
       </modelFacet>
       <creationConstraints
           sourceEnd="//@expressionProviders/@providers.0/@expressions.1"/>
     </links>
     <links
-        visualID="4003"
-        editPartClassName="BinaryMappingEditPart"
-        itemSemanticEditPolicyClassName="BinaryMappingItemSemanticEditPolicy"
-        notationViewFactoryClassName="BinaryMappingViewFactory"
-        createCommandClassName="BinaryMappingCreateCommand"
-        reorientCommandClassName="BinaryMappingReorientCommand">
+        visualID="4005"
+        editPartClassName="BinaryMappingLinkEditPart"
+        itemSemanticEditPolicyClassName="BinaryMappingLinkItemSemanticEditPolicy"
+        createCommandClassName="BinaryMappingLinkCreateCommand"
+        reorientCommandClassName="BinaryMappingLinkReorientCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
-          editHelperClassName="BinaryMappingEditHelper"/>
+          editHelperClassName="BinaryMappingLinkEditHelper"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
-          className="BinaryMappingElementsFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class BinaryMappingElementsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureBinaryMappingNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public BinaryMappingElementsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureBinaryMappingNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureBinaryMappingNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureBinaryMappingNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureBinaryMappingNameFigure() {&#xA;&#x9;&#x9;return fFigureBinaryMappingNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          className="BinaryMappingLinkElementsFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class BinaryMappingLinkElementsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureBinaryMappingLinkNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public BinaryMappingLinkElementsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureBinaryMappingLinkNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureBinaryMappingLinkNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureBinaryMappingLinkNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureBinaryMappingLinkNameFigure() {&#xA;&#x9;&#x9;return fFigureBinaryMappingLinkNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
-            href="mid.genmodel#//mid/mapping/BinaryMapping"/>
+            href="mid.genmodel#//mid/mapping/BinaryMappingLink"/>
         <containmentMetaFeature
-            href="mid.genmodel#//mid/mapping/MappingReference/mappings"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/mappingLinks"/>
         <childMetaFeature
-            href="mid.genmodel#//mid/mapping/MappingReference/mappings"/>
+            href="mid.genmodel#//mid/mapping/MappingReference/mappingLinks"/>
         <sourceMetaFeature
-            href="mid.genmodel#//mid/mapping/Mapping/elements"/>
+            href="mid.genmodel#//mid/mapping/MappingLink/elements"/>
         <targetMetaFeature
-            href="mid.genmodel#//mid/mapping/Mapping/elements"/>
+            href="mid.genmodel#//mid/mapping/MappingLink/elements"/>
       </modelFacet>
       <labels
-          visualID="6001"
-          editPartClassName="BinaryMappingNameEditPart"
-          itemSemanticEditPolicyClassName="BinaryMappingNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="BinaryMappingNameViewFactory"
+          visualID="6002"
+          editPartClassName="BinaryMappingLinkNameTypeEditPart"
+          itemSemanticEditPolicyClassName="BinaryMappingLinkNameTypeItemSemanticEditPolicy"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureBinaryMappingNameFigure"
+            getterName="getFigureBinaryMappingLinkNameFigure"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
@@ -276,9 +285,13 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.0">
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="{0} : {1}"
+            editPattern="{0}">
           <metaFeatures
               href="mid.genmodel#//mid/NamedElement/name"/>
+          <metaFeatures
+              href="mid.genmodel#//mid/NamedElement/type"/>
         </modelFacet>
       </labels>
       <creationConstraints
@@ -321,18 +334,18 @@
           collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="New binary mapping"
-            description="Create new binary mapping"
+            title="New binary mapping link"
+            description="Create new binary mapping link"
             genLinks="//@diagram/@links.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="New Nary mapping"
-            description="Create new Nary mapping"
+            title="New Nary mapping link"
+            description="Create new Nary mapping link"
             genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="New Nary mapping connection"
-            description="Create new Nary mapping connection"
+            title="New Nary mapping link element"
+            description="Create new Nary mapping link element"
             genLinks="//@diagram/@links.0"/>
       </groups>
     </palette>
@@ -470,10 +483,10 @@
         xsi:type="gmfgen:GenExpressionInterpreter">
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingLink)"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
-          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingLink)"/>
       <expressions
           xsi:type="gmfgen:GenConstraint"
           body="self &lt;> oppositeEnd"/>

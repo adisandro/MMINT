@@ -19,7 +19,7 @@
 package edu.toronto.cs.se.mmtf.mid.mapping.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,13 +35,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HomomorphicMappingItemProvider
-	extends BinaryMappingItemProvider
+public class BinaryMappingLinkItemProvider
+	extends MappingLinkItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -54,7 +54,7 @@ public class HomomorphicMappingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HomomorphicMappingItemProvider(AdapterFactory adapterFactory) {
+	public BinaryMappingLinkItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,14 +74,14 @@ public class HomomorphicMappingItemProvider
 	}
 
 	/**
-	 * This returns HomomorphicMapping.gif.
+	 * This returns BinaryMappingLink.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/HomomorphicMapping"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryMappingLink"));
 	}
 
 	/**
@@ -92,10 +92,10 @@ public class HomomorphicMappingItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((HomomorphicMapping)object).getName();
+		String label = ((BinaryMappingLink)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_HomomorphicMapping_type") :
-			getString("_UI_HomomorphicMapping_type") + " " + label;
+			getString("_UI_BinaryMappingLink_type") :
+			getString("_UI_BinaryMappingLink_type") + " " + label;
 	}
 
 	/**

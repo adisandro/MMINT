@@ -83,6 +83,7 @@ public class ModelContainerItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 			addModelPropertyDescriptor(object);
 			addReferencedModelPropertyDescriptor(object);
 		}
@@ -103,6 +104,28 @@ public class ModelContainerItemProvider
 				 getString("_UI_ModelContainer_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_name_feature", "_UI_ModelContainer_type"),
 				 MappingPackage.Literals.MODEL_CONTAINER__NAME,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelContainer_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_type_feature", "_UI_ModelContainer_type"),
+				 MappingPackage.Literals.MODEL_CONTAINER__TYPE,
 				 false,
 				 false,
 				 false,
@@ -224,6 +247,7 @@ public class ModelContainerItemProvider
 
 		switch (notification.getFeatureID(ModelContainer.class)) {
 			case MappingPackage.MODEL_CONTAINER__NAME:
+			case MappingPackage.MODEL_CONTAINER__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:

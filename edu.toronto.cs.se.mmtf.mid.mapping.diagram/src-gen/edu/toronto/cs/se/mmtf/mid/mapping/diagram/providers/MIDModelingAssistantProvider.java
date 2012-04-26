@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceEditPart;
@@ -60,7 +60,7 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 		if (editPart instanceof MappingReferenceEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(MIDElementTypes.ModelContainer_2005);
-			types.add(MIDElementTypes.Mapping_2004);
+			types.add(MIDElementTypes.MappingLink_2006);
 			return types;
 		}
 		if (editPart instanceof ModelContainerEditPart) {
@@ -77,8 +77,9 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof MappingEditPart) {
-			return ((MappingEditPart) sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof MappingLinkEditPart) {
+			return ((MappingLinkEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof ModelElementReferenceEditPart) {
 			return ((ModelElementReferenceEditPart) sourceEditPart)
@@ -109,8 +110,8 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof MappingEditPart) {
-			return ((MappingEditPart) sourceEditPart)
+		if (sourceEditPart instanceof MappingLinkEditPart) {
+			return ((MappingLinkEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof ModelElementReferenceEditPart) {
@@ -141,8 +142,8 @@ public class MIDModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof MappingEditPart) {
-			return ((MappingEditPart) sourceEditPart)
+		if (sourceEditPart instanceof MappingLinkEditPart) {
+			return ((MappingLinkEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof ModelElementReferenceEditPart) {

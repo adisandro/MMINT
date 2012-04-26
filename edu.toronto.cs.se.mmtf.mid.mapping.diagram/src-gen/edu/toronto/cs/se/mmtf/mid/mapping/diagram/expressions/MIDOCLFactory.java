@@ -69,8 +69,8 @@ public class MIDOCLFactory {
 		}
 		if (cached.expressions[index] == null) {
 			final String[] exprBodies = new String[] {
-					"not self.oclIsKindOf(mapping::BinaryMapping)", //$NON-NLS-1$
-					"not self.oclIsKindOf(mapping::BinaryMapping)", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::BinaryMappingLink)", //$NON-NLS-1$
+					"not self.oclIsKindOf(mapping::BinaryMappingLink)", //$NON-NLS-1$
 					"self <> oppositeEnd", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(

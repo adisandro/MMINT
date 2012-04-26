@@ -22,21 +22,23 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.util.MappingValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
@@ -83,14 +85,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass mappingEClass = null;
+	private EClass mappingLinkEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass binaryMappingEClass = null;
+	private EClass binaryMappingLinkEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,7 +106,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass homomorphicMappingEClass = null;
+	private EClass homomorphicMappingLinkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum modelElementCategoryEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -204,7 +213,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappingReference_Mappings() {
+	public EReference getMappingReference_MappingLinks() {
 		return (EReference)mappingReferenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -258,8 +267,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelContainer_Model() {
-		return (EReference)modelContainerEClass.getEStructuralFeatures().get(2);
+	public EAttribute getModelContainer_Type() {
+		return (EAttribute)modelContainerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -267,7 +276,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelContainer_ReferencedModel() {
+	public EReference getModelContainer_Model() {
 		return (EReference)modelContainerEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -276,8 +285,17 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelContainer_ContainedModel() {
+	public EReference getModelContainer_ReferencedModel() {
 		return (EReference)modelContainerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelContainer_ContainedModel() {
+		return (EReference)modelContainerEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -303,7 +321,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElementReference_Mappings() {
+	public EReference getModelElementReference_MappingLinks() {
 		return (EReference)modelElementReferenceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -312,8 +330,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMapping() {
-		return mappingEClass;
+	public EAttribute getModelElementReference_Category() {
+		return (EAttribute)modelElementReferenceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -321,8 +339,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMapping_Elements() {
-		return (EReference)mappingEClass.getEStructuralFeatures().get(0);
+	public EClass getMappingLink() {
+		return mappingLinkEClass;
 	}
 
 	/**
@@ -330,8 +348,17 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBinaryMapping() {
-		return binaryMappingEClass;
+	public EReference getMappingLink_Elements() {
+		return (EReference)mappingLinkEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBinaryMappingLink() {
+		return binaryMappingLinkEClass;
 	}
 
 	/**
@@ -348,8 +375,17 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getHomomorphicMapping() {
-		return homomorphicMappingEClass;
+	public EClass getHomomorphicMappingLink() {
+		return homomorphicMappingLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getModelElementCategory() {
+		return modelElementCategoryEEnum;
 	}
 
 	/**
@@ -382,7 +418,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		// Create classes and their features
 		mappingReferenceEClass = createEClass(MAPPING_REFERENCE);
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__MODELS);
-		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__MAPPINGS);
+		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__MAPPING_LINKS);
 		createEReference(mappingReferenceEClass, MAPPING_REFERENCE__CONTAINERS);
 
 		binaryMappingReferenceEClass = createEClass(BINARY_MAPPING_REFERENCE);
@@ -390,22 +426,27 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		modelContainerEClass = createEClass(MODEL_CONTAINER);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__ELEMENTS);
 		createEAttribute(modelContainerEClass, MODEL_CONTAINER__NAME);
+		createEAttribute(modelContainerEClass, MODEL_CONTAINER__TYPE);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__MODEL);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__REFERENCED_MODEL);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__CONTAINED_MODEL);
 
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__POINTER);
-		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__MAPPINGS);
+		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__MAPPING_LINKS);
+		createEAttribute(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__CATEGORY);
 
-		mappingEClass = createEClass(MAPPING);
-		createEReference(mappingEClass, MAPPING__ELEMENTS);
+		mappingLinkEClass = createEClass(MAPPING_LINK);
+		createEReference(mappingLinkEClass, MAPPING_LINK__ELEMENTS);
 
-		binaryMappingEClass = createEClass(BINARY_MAPPING);
+		binaryMappingLinkEClass = createEClass(BINARY_MAPPING_LINK);
 
 		homomorphicMappingReferenceEClass = createEClass(HOMOMORPHIC_MAPPING_REFERENCE);
 
-		homomorphicMappingEClass = createEClass(HOMOMORPHIC_MAPPING);
+		homomorphicMappingLinkEClass = createEClass(HOMOMORPHIC_MAPPING_LINK);
+
+		// Create enums
+		modelElementCategoryEEnum = createEEnum(MODEL_ELEMENT_CATEGORY);
 	}
 
 	/**
@@ -442,15 +483,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingReferenceEClass.getESuperTypes().add(theMidPackage.getModelReference());
 		binaryMappingReferenceEClass.getESuperTypes().add(this.getMappingReference());
 		modelElementReferenceEClass.getESuperTypes().add(theMidPackage.getNamedElement());
-		mappingEClass.getESuperTypes().add(theMidPackage.getNamedElement());
-		binaryMappingEClass.getESuperTypes().add(this.getMapping());
+		mappingLinkEClass.getESuperTypes().add(theMidPackage.getNamedElement());
+		binaryMappingLinkEClass.getESuperTypes().add(this.getMappingLink());
 		homomorphicMappingReferenceEClass.getESuperTypes().add(this.getBinaryMappingReference());
-		homomorphicMappingEClass.getESuperTypes().add(this.getBinaryMapping());
+		homomorphicMappingLinkEClass.getESuperTypes().add(this.getBinaryMappingLink());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingReferenceEClass, MappingReference.class, "MappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingReference_Models(), theMidPackage.getModelReference(), null, "models", null, 1, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappingReference_Mappings(), this.getMapping(), null, "mappings", null, 0, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingReference_MappingLinks(), this.getMappingLink(), null, "mappingLinks", null, 0, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingReference_Containers(), this.getModelContainer(), null, "containers", null, 1, -1, MappingReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(binaryMappingReferenceEClass, BinaryMappingReference.class, "BinaryMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -458,22 +499,29 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(modelContainerEClass, ModelContainer.class, "ModelContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelContainer_Elements(), this.getModelElementReference(), null, "elements", null, 0, -1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelContainer_Name(), ecorePackage.getEString(), "name", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelContainer_Type(), ecorePackage.getEString(), "type", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getModelContainer_Model(), theMidPackage.getModelReference(), null, "model", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getModelContainer_ReferencedModel(), theMidPackage.getModelReference(), null, "referencedModel", null, 0, 1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelContainer_ContainedModel(), theMidPackage.getModelReference(), null, "containedModel", null, 0, 1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementReference_Pointer(), ecorePackage.getEObject(), null, "pointer", null, 1, 1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementReference_Mappings(), this.getMapping(), this.getMapping_Elements(), "mappings", null, 0, -1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElementReference_MappingLinks(), this.getMappingLink(), this.getMappingLink_Elements(), "mappingLinks", null, 0, -1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElementReference_Category(), this.getModelElementCategory(), "category", null, 1, 1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMapping_Elements(), this.getModelElementReference(), this.getModelElementReference_Mappings(), "elements", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(mappingLinkEClass, MappingLink.class, "MappingLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMappingLink_Elements(), this.getModelElementReference(), this.getModelElementReference_MappingLinks(), "elements", null, 0, -1, MappingLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(binaryMappingEClass, BinaryMapping.class, "BinaryMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(binaryMappingLinkEClass, BinaryMappingLink.class, "BinaryMappingLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(homomorphicMappingReferenceEClass, HomomorphicMappingReference.class, "HomomorphicMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(homomorphicMappingEClass, HomomorphicMapping.class, "HomomorphicMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(homomorphicMappingLinkEClass, HomomorphicMappingLink.class, "HomomorphicMappingLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(modelElementCategoryEEnum, ModelElementCategory.class, "ModelElementCategory");
+		addEEnumLiteral(modelElementCategoryEEnum, ModelElementCategory.CLASS);
+		addEEnumLiteral(modelElementCategoryEEnum, ModelElementCategory.REFERENCE);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -515,9 +563,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "oneModel"
-		   });					
+		   });						
 		addAnnotation
-		  (binaryMappingEClass, 
+		  (binaryMappingLinkEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "isBinaryMapping"
@@ -529,7 +577,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "constraints", "sameModelTypes"
 		   });			
 		addAnnotation
-		  (homomorphicMappingEClass, 
+		  (homomorphicMappingLinkEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "sameElementTypes"
@@ -569,13 +617,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "derivation", "if model.oclIsUndefined() then \'\' else model.name endif"
 		   });		
 		addAnnotation
+		  (getModelContainer_Type(), 
+		   source, 
+		   new String[] {
+			 "derivation", "if model.oclIsUndefined() then \'\' else model.type endif"
+		   });		
+		addAnnotation
 		  (getModelContainer_Model(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if containedModel.oclIsUndefined() then referencedModel else containedModel endif"
 		   });			
 		addAnnotation
-		  (binaryMappingEClass, 
+		  (binaryMappingLinkEClass, 
 		   source, 
 		   new String[] {
 			 "isBinaryMapping", "elements->size() = 2"
@@ -587,7 +641,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "sameModelTypes", "models->forAll(m1 : ModelReference, m2 : ModelReference | m1.root.oclType() = m2.root.oclType())"
 		   });			
 		addAnnotation
-		  (homomorphicMappingEClass, 
+		  (homomorphicMappingLinkEClass, 
 		   source, 
 		   new String[] {
 			 "sameElementTypes", "elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())"

@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -95,6 +96,15 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_REFERENCE__NAME = MidPackage.MODEL_REFERENCE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE__TYPE = MidPackage.MODEL_REFERENCE__TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -131,13 +141,13 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_REFERENCE__MODELS = MidPackage.MODEL_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Mapping Links</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_REFERENCE__MAPPINGS = MidPackage.MODEL_REFERENCE_FEATURE_COUNT + 1;
+	int MAPPING_REFERENCE__MAPPING_LINKS = MidPackage.MODEL_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
@@ -186,6 +196,15 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MAPPING_REFERENCE__NAME = MAPPING_REFERENCE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE__TYPE = MAPPING_REFERENCE__TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,13 +241,13 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MAPPING_REFERENCE__MODELS = MAPPING_REFERENCE__MODELS;
 
 	/**
-	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Mapping Links</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING_REFERENCE__MAPPINGS = MAPPING_REFERENCE__MAPPINGS;
+	int BINARY_MAPPING_REFERENCE__MAPPING_LINKS = MAPPING_REFERENCE__MAPPING_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
@@ -286,13 +305,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONTAINER__NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONTAINER__TYPE = 2;
+
+	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__MODEL = 2;
+	int MODEL_CONTAINER__MODEL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Model</b></em>' reference.
@@ -301,7 +329,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__REFERENCED_MODEL = 3;
+	int MODEL_CONTAINER__REFERENCED_MODEL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Contained Model</b></em>' containment reference.
@@ -310,7 +338,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__CONTAINED_MODEL = 4;
+	int MODEL_CONTAINER__CONTAINED_MODEL = 5;
 
 	/**
 	 * The number of structural features of the '<em>Model Container</em>' class.
@@ -319,7 +347,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_FEATURE_COUNT = 5;
+	int MODEL_CONTAINER_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Model Container</em>' class.
@@ -350,6 +378,15 @@ public interface MappingPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE__NAME = MidPackage.NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE__TYPE = MidPackage.NAMED_ELEMENT__TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Pointer</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -359,13 +396,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE__POINTER = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
+	 * The feature id for the '<em><b>Mapping Links</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__MAPPINGS = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_REFERENCE__MAPPING_LINKS = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Category</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE__CATEGORY = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Model Element Reference</em>' class.
@@ -374,7 +420,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Model Element Reference</em>' class.
@@ -386,14 +432,14 @@ public interface MappingPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = MidPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingImpl <em>Mapping</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingLinkImpl <em>Link</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getMapping()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingLinkImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getMappingLink()
 	 * @generated
 	 */
-	int MAPPING = 4;
+	int MAPPING_LINK = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -402,7 +448,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__NAME = MidPackage.NAMED_ELEMENT__NAME;
+	int MAPPING_LINK__NAME = MidPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_LINK__TYPE = MidPackage.NAMED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -411,36 +466,35 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__ELEMENTS = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int MAPPING_LINK__ELEMENTS = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Mapping</em>' class.
+	 * The number of structural features of the '<em>Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MAPPING_LINK_FEATURE_COUNT = MidPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Mapping</em>' class.
+	 * The number of operations of the '<em>Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_OPERATION_COUNT = MidPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
+	int MAPPING_LINK_OPERATION_COUNT = MidPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl <em>Binary Mapping</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingLinkImpl <em>Binary Mapping Link</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getBinaryMapping()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingLinkImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getBinaryMappingLink()
 	 * @generated
 	 */
-	int BINARY_MAPPING = 5;
+	int BINARY_MAPPING_LINK = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -449,7 +503,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING__NAME = MAPPING__NAME;
+	int BINARY_MAPPING_LINK__NAME = MAPPING_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_LINK__TYPE = MAPPING_LINK__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -458,26 +521,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING__ELEMENTS = MAPPING__ELEMENTS;
+	int BINARY_MAPPING_LINK__ELEMENTS = MAPPING_LINK__ELEMENTS;
 
 	/**
-	 * The number of structural features of the '<em>Binary Mapping</em>' class.
+	 * The number of structural features of the '<em>Binary Mapping Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING_FEATURE_COUNT = MAPPING_FEATURE_COUNT + 0;
+	int BINARY_MAPPING_LINK_FEATURE_COUNT = MAPPING_LINK_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Binary Mapping</em>' class.
+	 * The number of operations of the '<em>Binary Mapping Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING_OPERATION_COUNT = MAPPING_OPERATION_COUNT + 0;
-
+	int BINARY_MAPPING_LINK_OPERATION_COUNT = MAPPING_LINK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingReferenceImpl <em>Homomorphic Mapping Reference</em>}' class.
@@ -497,6 +559,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHIC_MAPPING_REFERENCE__NAME = BINARY_MAPPING_REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_REFERENCE__TYPE = BINARY_MAPPING_REFERENCE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -535,13 +606,13 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHIC_MAPPING_REFERENCE__MODELS = BINARY_MAPPING_REFERENCE__MODELS;
 
 	/**
-	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Mapping Links</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHIC_MAPPING_REFERENCE__MAPPINGS = BINARY_MAPPING_REFERENCE__MAPPINGS;
+	int HOMOMORPHIC_MAPPING_REFERENCE__MAPPING_LINKS = BINARY_MAPPING_REFERENCE__MAPPING_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
@@ -571,14 +642,14 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHIC_MAPPING_REFERENCE_OPERATION_COUNT = BINARY_MAPPING_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl <em>Homomorphic Mapping</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingLinkImpl <em>Homomorphic Mapping Link</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMapping()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingLinkImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMappingLink()
 	 * @generated
 	 */
-	int HOMOMORPHIC_MAPPING = 7;
+	int HOMOMORPHIC_MAPPING_LINK = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -587,7 +658,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHIC_MAPPING__NAME = BINARY_MAPPING__NAME;
+	int HOMOMORPHIC_MAPPING_LINK__NAME = BINARY_MAPPING_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHIC_MAPPING_LINK__TYPE = BINARY_MAPPING_LINK__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -596,26 +676,35 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHIC_MAPPING__ELEMENTS = BINARY_MAPPING__ELEMENTS;
+	int HOMOMORPHIC_MAPPING_LINK__ELEMENTS = BINARY_MAPPING_LINK__ELEMENTS;
 
 	/**
-	 * The number of structural features of the '<em>Homomorphic Mapping</em>' class.
+	 * The number of structural features of the '<em>Homomorphic Mapping Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHIC_MAPPING_FEATURE_COUNT = BINARY_MAPPING_FEATURE_COUNT + 0;
+	int HOMOMORPHIC_MAPPING_LINK_FEATURE_COUNT = BINARY_MAPPING_LINK_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Homomorphic Mapping</em>' class.
+	 * The number of operations of the '<em>Homomorphic Mapping Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHIC_MAPPING_OPERATION_COUNT = BINARY_MAPPING_OPERATION_COUNT + 0;
+	int HOMOMORPHIC_MAPPING_LINK_OPERATION_COUNT = BINARY_MAPPING_LINK_OPERATION_COUNT + 0;
 
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory <em>Model Element Category</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementCategory()
+	 * @generated
+	 */
+	int MODEL_ELEMENT_CATEGORY = 8;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference <em>Reference</em>}'.
@@ -639,15 +728,15 @@ public interface MappingPackage extends EPackage {
 	EReference getMappingReference_Models();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappings <em>Mappings</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappingLinks <em>Mapping Links</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Mappings</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappings()
+	 * @return the meta object for the containment reference list '<em>Mapping Links</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getMappingLinks()
 	 * @see #getMappingReference()
 	 * @generated
 	 */
-	EReference getMappingReference_Mappings();
+	EReference getMappingReference_MappingLinks();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingReference#getContainers <em>Containers</em>}'.
@@ -701,6 +790,17 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelContainer_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType()
+	 * @see #getModelContainer()
+	 * @generated
+	 */
+	EAttribute getModelContainer_Type();
 
 	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel <em>Model</em>}'.
@@ -757,46 +857,57 @@ public interface MappingPackage extends EPackage {
 	EReference getModelElementReference_Pointer();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings <em>Mappings</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappingLinks <em>Mapping Links</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Mappings</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings()
+	 * @return the meta object for the reference list '<em>Mapping Links</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappingLinks()
 	 * @see #getModelElementReference()
 	 * @generated
 	 */
-	EReference getModelElementReference_Mappings();
+	EReference getModelElementReference_MappingLinks();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping <em>Mapping</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getCategory <em>Category</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mapping</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Mapping
+	 * @return the meta object for the attribute '<em>Category</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getCategory()
+	 * @see #getModelElementReference()
 	 * @generated
 	 */
-	EClass getMapping();
+	EAttribute getModelElementReference_Category();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements <em>Elements</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink <em>Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Link</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingLink
+	 * @generated
+	 */
+	EClass getMappingLink();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink#getElements <em>Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Elements</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements()
-	 * @see #getMapping()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingLink#getElements()
+	 * @see #getMappingLink()
 	 * @generated
 	 */
-	EReference getMapping_Elements();
+	EReference getMappingLink_Elements();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping <em>Binary Mapping</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink <em>Binary Mapping Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Binary Mapping</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping
+	 * @return the meta object for class '<em>Binary Mapping Link</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink
 	 * @generated
 	 */
-	EClass getBinaryMapping();
+	EClass getBinaryMappingLink();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingReference <em>Homomorphic Mapping Reference</em>}'.
@@ -809,14 +920,24 @@ public interface MappingPackage extends EPackage {
 	EClass getHomomorphicMappingReference();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping <em>Homomorphic Mapping</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink <em>Homomorphic Mapping Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Homomorphic Mapping</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMapping
+	 * @return the meta object for class '<em>Homomorphic Mapping Link</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.HomomorphicMappingLink
 	 * @generated
 	 */
-	EClass getHomomorphicMapping();
+	EClass getHomomorphicMappingLink();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory <em>Model Element Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Model Element Category</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
+	 * @generated
+	 */
+	EEnum getModelElementCategory();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -860,12 +981,12 @@ public interface MappingPackage extends EPackage {
 		EReference MAPPING_REFERENCE__MODELS = eINSTANCE.getMappingReference_Models();
 
 		/**
-		 * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Mapping Links</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_REFERENCE__MAPPINGS = eINSTANCE.getMappingReference_Mappings();
+		EReference MAPPING_REFERENCE__MAPPING_LINKS = eINSTANCE.getMappingReference_MappingLinks();
 
 		/**
 		 * The meta object literal for the '<em><b>Containers</b></em>' containment reference list feature.
@@ -912,6 +1033,14 @@ public interface MappingPackage extends EPackage {
 		EAttribute MODEL_CONTAINER__NAME = eINSTANCE.getModelContainer_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_CONTAINER__TYPE = eINSTANCE.getModelContainer_Type();
+
+		/**
 		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -954,22 +1083,30 @@ public interface MappingPackage extends EPackage {
 		EReference MODEL_ELEMENT_REFERENCE__POINTER = eINSTANCE.getModelElementReference_Pointer();
 
 		/**
-		 * The meta object literal for the '<em><b>Mappings</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Mapping Links</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT_REFERENCE__MAPPINGS = eINSTANCE.getModelElementReference_Mappings();
+		EReference MODEL_ELEMENT_REFERENCE__MAPPING_LINKS = eINSTANCE.getModelElementReference_MappingLinks();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingImpl <em>Mapping</em>}' class.
+		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getMapping()
 		 * @generated
 		 */
-		EClass MAPPING = eINSTANCE.getMapping();
+		EAttribute MODEL_ELEMENT_REFERENCE__CATEGORY = eINSTANCE.getModelElementReference_Category();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingLinkImpl <em>Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingLinkImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getMappingLink()
+		 * @generated
+		 */
+		EClass MAPPING_LINK = eINSTANCE.getMappingLink();
 
 		/**
 		 * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
@@ -977,17 +1114,17 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING__ELEMENTS = eINSTANCE.getMapping_Elements();
+		EReference MAPPING_LINK__ELEMENTS = eINSTANCE.getMappingLink_Elements();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl <em>Binary Mapping</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingLinkImpl <em>Binary Mapping Link</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getBinaryMapping()
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryMappingLinkImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getBinaryMappingLink()
 		 * @generated
 		 */
-		EClass BINARY_MAPPING = eINSTANCE.getBinaryMapping();
+		EClass BINARY_MAPPING_LINK = eINSTANCE.getBinaryMappingLink();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingReferenceImpl <em>Homomorphic Mapping Reference</em>}' class.
@@ -1000,14 +1137,24 @@ public interface MappingPackage extends EPackage {
 		EClass HOMOMORPHIC_MAPPING_REFERENCE = eINSTANCE.getHomomorphicMappingReference();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl <em>Homomorphic Mapping</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingLinkImpl <em>Homomorphic Mapping Link</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMapping()
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.HomomorphicMappingLinkImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getHomomorphicMappingLink()
 		 * @generated
 		 */
-		EClass HOMOMORPHIC_MAPPING = eINSTANCE.getHomomorphicMapping();
+		EClass HOMOMORPHIC_MAPPING_LINK = eINSTANCE.getHomomorphicMappingLink();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory <em>Model Element Category</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementCategory()
+		 * @generated
+		 */
+		EEnum MODEL_ELEMENT_CATEGORY = eINSTANCE.getModelElementCategory();
 
 	}
 

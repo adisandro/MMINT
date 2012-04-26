@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelReference;
 
 import edu.toronto.cs.se.mmtf.mid.impl.ModelReferenceImpl;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 
@@ -48,7 +48,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getModels <em>Models</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getMappingLinks <em>Mapping Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingReferenceImpl#getContainers <em>Containers</em>}</li>
  * </ul>
  * </p>
@@ -67,14 +67,14 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	protected EList<ModelReference> models;
 
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
+	 * The cached value of the '{@link #getMappingLinks() <em>Mapping Links</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMappings()
+	 * @see #getMappingLinks()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Mapping> mappings;
+	protected EList<MappingLink> mappingLinks;
 
 	/**
 	 * The cached value of the '{@link #getContainers() <em>Containers</em>}' containment reference list.
@@ -122,11 +122,11 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Mapping> getMappings() {
-		if (mappings == null) {
-			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, MappingPackage.MAPPING_REFERENCE__MAPPINGS);
+	public EList<MappingLink> getMappingLinks() {
+		if (mappingLinks == null) {
+			mappingLinks = new EObjectContainmentEList<MappingLink>(MappingLink.class, this, MappingPackage.MAPPING_REFERENCE__MAPPING_LINKS);
 		}
-		return mappings;
+		return mappingLinks;
 	}
 
 	/**
@@ -149,8 +149,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
-				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MAPPING_REFERENCE__MAPPING_LINKS:
+				return ((InternalEList<?>)getMappingLinks()).basicRemove(otherEnd, msgs);
 			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
 				return ((InternalEList<?>)getContainers()).basicRemove(otherEnd, msgs);
 		}
@@ -167,8 +167,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 		switch (featureID) {
 			case MappingPackage.MAPPING_REFERENCE__MODELS:
 				return getModels();
-			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
-				return getMappings();
+			case MappingPackage.MAPPING_REFERENCE__MAPPING_LINKS:
+				return getMappingLinks();
 			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
 				return getContainers();
 		}
@@ -188,9 +188,9 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 				getModels().clear();
 				getModels().addAll((Collection<? extends ModelReference>)newValue);
 				return;
-			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
-				getMappings().clear();
-				getMappings().addAll((Collection<? extends Mapping>)newValue);
+			case MappingPackage.MAPPING_REFERENCE__MAPPING_LINKS:
+				getMappingLinks().clear();
+				getMappingLinks().addAll((Collection<? extends MappingLink>)newValue);
 				return;
 			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
 				getContainers().clear();
@@ -211,8 +211,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 			case MappingPackage.MAPPING_REFERENCE__MODELS:
 				getModels().clear();
 				return;
-			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
-				getMappings().clear();
+			case MappingPackage.MAPPING_REFERENCE__MAPPING_LINKS:
+				getMappingLinks().clear();
 				return;
 			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
 				getContainers().clear();
@@ -231,8 +231,8 @@ public class MappingReferenceImpl extends ModelReferenceImpl implements MappingR
 		switch (featureID) {
 			case MappingPackage.MAPPING_REFERENCE__MODELS:
 				return models != null && !models.isEmpty();
-			case MappingPackage.MAPPING_REFERENCE__MAPPINGS:
-				return mappings != null && !mappings.isEmpty();
+			case MappingPackage.MAPPING_REFERENCE__MAPPING_LINKS:
+				return mappingLinks != null && !mappingLinks.isEmpty();
 			case MappingPackage.MAPPING_REFERENCE__CONTAINERS:
 				return containers != null && !containers.isEmpty();
 		}

@@ -27,12 +27,12 @@ import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
- * The command to change a model element reference of a binary mapping.
+ * The command to change a model element reference of a binary mapping link.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class BinaryMappingChangeElementCommand extends BinaryMappingReorientCommand {
+public class BinaryMappingLinkChangeElementCommand extends BinaryMappingLinkReorientCommand {
 
 	/**
 	 * Constructor: initialises the superclass.
@@ -40,7 +40,7 @@ public class BinaryMappingChangeElementCommand extends BinaryMappingReorientComm
 	 * @param request
 	 *            The request.
 	 */
-	public BinaryMappingChangeElementCommand(ReorientRelationshipRequest request) {
+	public BinaryMappingLinkChangeElementCommand(ReorientRelationshipRequest request) {
 
 		super(request);
 	}
@@ -66,7 +66,7 @@ public class BinaryMappingChangeElementCommand extends BinaryMappingReorientComm
 		MappingReference container = (MappingReference) getLink().eContainer();
 
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryMapping_4003(container, getLink(),
+				.canExistBinaryMappingLink_4005(container, getLink(),
 						getNewSource(), target);
 	}
 
@@ -91,12 +91,12 @@ public class BinaryMappingChangeElementCommand extends BinaryMappingReorientComm
 		MappingReference container = (MappingReference) getLink().eContainer();
 
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryMapping_4003(container, getLink(), source,
+				.canExistBinaryMappingLink_4005(container, getLink(), source,
 						getNewTarget());
 	}
 
 	/**
-	 * Changes the source model element reference of a binary mapping.
+	 * Changes the source model element reference of a binary mapping link.
 	 * 
 	 * @return The ok result.
 	 * @throws ExecutionException
@@ -111,7 +111,7 @@ public class BinaryMappingChangeElementCommand extends BinaryMappingReorientComm
 	}
 
 	/**
-	 * Changes the target model element reference of a binary mapping.
+	 * Changes the target model element reference of a binary mapping link.
 	 * 
 	 * @return The ok result.
 	 * @throws ExecutionException

@@ -13,11 +13,16 @@
       <domainMetaElement
           href="mid.ecore#//mapping/ModelContainer"/>
       <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
+          xsi:type="gmfmap:FeatureLabelMapping"
+          readOnly="true"
+          viewPattern="{0} : {1}"
+          editPattern="{0}">
         <diagramLabel
             href="mapping.gmfgraph#ModelContainerName"/>
         <features
             href="mid.ecore#//mapping/ModelContainer/name"/>
+        <features
+            href="mid.ecore#//mapping/ModelContainer/type"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -32,11 +37,16 @@
           <domainMetaElement
               href="mid.ecore#//mapping/ModelElementReference"/>
           <labelMappings
-              xsi:type="gmfmap:FeatureLabelMapping">
+              xsi:type="gmfmap:FeatureLabelMapping"
+              readOnly="true"
+              viewPattern="{0} : {1}"
+              editPattern="{0}">
             <diagramLabel
                 href="mapping.gmfgraph#ModelElementReferenceName"/>
             <features
                 href="mid.ecore#//NamedElement/name"/>
+            <features
+                href="mid.ecore#//NamedElement/type"/>
           </labelMappings>
           <diagramNode
               href="mapping.gmfgraph#ModelElementReference"/>
@@ -51,24 +61,28 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//mapping/MappingReference/mappings"/>
+        href="mid.ecore#//mapping/MappingReference/mappingLinks"/>
     <ownedChild>
       <domainMetaElement
-          href="mid.ecore#//mapping/Mapping"/>
+          href="mid.ecore#//mapping/MappingLink"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingLink)"/>
       <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="{0} : {1}"
+          editPattern="{0}">
         <diagramLabel
-            href="mapping.gmfgraph#MappingName"/>
+            href="mapping.gmfgraph#MappingLinkName"/>
         <features
             href="mid.ecore#//NamedElement/name"/>
+        <features
+            href="mid.ecore#//NamedElement/type"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="mapping.gmftool#//@palette/@tools.1/@tools.1"/>
       <diagramNode
-          href="mapping.gmfgraph#Mapping"/>
+          href="mapping.gmfgraph#MappingLink"/>
     </ownedChild>
   </nodes>
   <links>
@@ -76,38 +90,42 @@
         xsi:type="gmftool:CreationTool"
         href="mapping.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
-        href="mapping.gmfgraph#MappingElements"/>
+        href="mapping.gmfgraph#MappingLinkElements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/Mapping/elements"/>
+        href="mid.ecore#//mapping/MappingLink/elements"/>
     <creationConstraints>
       <sourceEnd
-          body="not self.oclIsKindOf(mapping::BinaryMapping)"/>
+          body="not self.oclIsKindOf(mapping::BinaryMappingLink)"/>
     </creationConstraints>
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//mapping/BinaryMapping"/>
+        href="mid.ecore#//mapping/BinaryMappingLink"/>
     <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="{0} : {1}"
+        editPattern="{0}">
       <diagramLabel
-          href="mapping.gmfgraph#BinaryMappingName"/>
+          href="mapping.gmfgraph#BinaryMappingLinkName"/>
       <features
           href="mid.ecore#//NamedElement/name"/>
+      <features
+          href="mid.ecore#//NamedElement/type"/>
     </labelMappings>
     <containmentFeature
-        href="mid.ecore#//mapping/MappingReference/mappings"/>
+        href="mid.ecore#//mapping/MappingReference/mappingLinks"/>
     <tool
         xsi:type="gmftool:CreationTool"
         href="mapping.gmftool#//@palette/@tools.1/@tools.0"/>
     <diagramLink
-        href="mapping.gmfgraph#BinaryMappingElements"/>
+        href="mapping.gmfgraph#BinaryMappingLinkElements"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/Mapping/elements"/>
+        href="mid.ecore#//mapping/MappingLink/elements"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/Mapping/elements"/>
+        href="mid.ecore#//mapping/MappingLink/elements"/>
     <creationConstraints>
       <targetEnd
           body="self &lt;> oppositeEnd"/>

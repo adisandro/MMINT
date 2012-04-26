@@ -52,8 +52,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMapping;
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryMappingLink;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
@@ -348,32 +348,34 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMappingElements_4002(Mapping source,
+		public boolean canCreateMappingLinkElements_4004(MappingLink source,
 				ModelElementReference target) {
 			if (source != null) {
 				if (source.getElements().contains(target)) {
 					return false;
 				}
 			}
-			if (target != null && (target.getMappings().contains(target))) {
+			if (target != null && (target.getMappingLinks().contains(target))) {
 				return false;
 			}
 
-			return canExistMappingElements_4002(source, target);
+			return canExistMappingLinkElements_4004(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateBinaryMapping_4003(MappingReference container,
-				ModelElementReference source, ModelElementReference target) {
-			return canExistBinaryMapping_4003(container, null, source, target);
+		public boolean canCreateBinaryMappingLink_4005(
+				MappingReference container, ModelElementReference source,
+				ModelElementReference target) {
+			return canExistBinaryMappingLink_4005(container, null, source,
+					target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistMappingElements_4002(Mapping source,
+		public boolean canExistMappingLinkElements_4004(MappingLink source,
 				ModelElementReference target) {
 			try {
 				if (source == null) {
@@ -383,7 +385,7 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 							.<String, EClassifier> singletonMap(
 									"oppositeEnd", MappingPackage.eINSTANCE.getModelElementReference()); //$NON-NLS-1$
 					Object sourceVal = MIDOCLFactory.getExpression(1,
-							MappingPackage.eINSTANCE.getMapping(), env)
+							MappingPackage.eINSTANCE.getMappingLink(), env)
 							.evaluate(
 									source,
 									Collections.singletonMap(
@@ -404,9 +406,9 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistBinaryMapping_4003(MappingReference container,
-				BinaryMapping linkInstance, ModelElementReference source,
-				ModelElementReference target) {
+		public boolean canExistBinaryMappingLink_4005(
+				MappingReference container, BinaryMappingLink linkInstance,
+				ModelElementReference source, ModelElementReference target) {
 			try {
 				if (target == null) {
 					return true;

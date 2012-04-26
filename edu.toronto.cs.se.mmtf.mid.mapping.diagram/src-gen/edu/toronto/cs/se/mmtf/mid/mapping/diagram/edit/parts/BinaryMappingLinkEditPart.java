@@ -27,23 +27,23 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.BinaryMappingItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.BinaryMappingLinkItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class BinaryMappingEditPart extends ConnectionNodeEditPart implements
+public class BinaryMappingLinkEditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4003;
+	public static final int VISUAL_ID = 4005;
 
 	/**
 	 * @generated
 	 */
-	public BinaryMappingEditPart(View view) {
+	public BinaryMappingLinkEditPart(View view) {
 		super(view);
 	}
 
@@ -53,17 +53,17 @@ public class BinaryMappingEditPart extends ConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new BinaryMappingItemSemanticEditPolicy());
+				new BinaryMappingLinkItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof BinaryMappingNameEditPart) {
-			((BinaryMappingNameEditPart) childEditPart)
+		if (childEditPart instanceof BinaryMappingLinkNameTypeEditPart) {
+			((BinaryMappingLinkNameTypeEditPart) childEditPart)
 					.setLabel(getPrimaryShape()
-							.getFigureBinaryMappingNameFigure());
+							.getFigureBinaryMappingLinkNameFigure());
 			return true;
 		}
 		return false;
@@ -83,7 +83,7 @@ public class BinaryMappingEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof BinaryMappingNameEditPart) {
+		if (childEditPart instanceof BinaryMappingLinkNameTypeEditPart) {
 			return true;
 		}
 		return false;
@@ -109,30 +109,30 @@ public class BinaryMappingEditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new BinaryMappingElementsFigure();
+		return new BinaryMappingLinkElementsFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public BinaryMappingElementsFigure getPrimaryShape() {
-		return (BinaryMappingElementsFigure) getFigure();
+	public BinaryMappingLinkElementsFigure getPrimaryShape() {
+		return (BinaryMappingLinkElementsFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class BinaryMappingElementsFigure extends PolylineConnectionEx {
+	public class BinaryMappingLinkElementsFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureBinaryMappingNameFigure;
+		private WrappingLabel fFigureBinaryMappingLinkNameFigure;
 
 		/**
 		 * @generated
 		 */
-		public BinaryMappingElementsFigure() {
+		public BinaryMappingLinkElementsFigure() {
 
 			createContents();
 		}
@@ -142,18 +142,18 @@ public class BinaryMappingEditPart extends ConnectionNodeEditPart implements
 		 */
 		private void createContents() {
 
-			fFigureBinaryMappingNameFigure = new WrappingLabel();
-			fFigureBinaryMappingNameFigure.setText("<...>");
+			fFigureBinaryMappingLinkNameFigure = new WrappingLabel();
+			fFigureBinaryMappingLinkNameFigure.setText("<...>");
 
-			this.add(fFigureBinaryMappingNameFigure);
+			this.add(fFigureBinaryMappingLinkNameFigure);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureBinaryMappingNameFigure() {
-			return fFigureBinaryMappingNameFigure;
+		public WrappingLabel getFigureBinaryMappingLinkNameFigure() {
+			return fFigureBinaryMappingLinkNameFigure;
 		}
 
 	}

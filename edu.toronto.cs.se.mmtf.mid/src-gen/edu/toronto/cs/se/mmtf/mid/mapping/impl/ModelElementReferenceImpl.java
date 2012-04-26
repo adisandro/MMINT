@@ -20,8 +20,9 @@ package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
 import edu.toronto.cs.se.mmtf.mid.impl.NamedElementImpl;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 import java.util.Collection;
@@ -48,7 +49,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl#getPointer <em>Pointer</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl#getMappingLinks <em>Mapping Links</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl#getCategory <em>Category</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,14 +68,34 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 	protected EObject pointer;
 
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' reference list.
+	 * The cached value of the '{@link #getMappingLinks() <em>Mapping Links</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMappings()
+	 * @see #getMappingLinks()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Mapping> mappings;
+	protected EList<MappingLink> mappingLinks;
+
+	/**
+	 * The default value of the '{@link #getCategory() <em>Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCategory()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ModelElementCategory CATEGORY_EDEFAULT = ModelElementCategory.CLASS;
+
+	/**
+	 * The cached value of the '{@link #getCategory() <em>Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCategory()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelElementCategory category = CATEGORY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,11 +159,32 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Mapping> getMappings() {
-		if (mappings == null) {
-			mappings = new EObjectWithInverseResolvingEList.ManyInverse<Mapping>(Mapping.class, this, MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS, MappingPackage.MAPPING__ELEMENTS);
+	public EList<MappingLink> getMappingLinks() {
+		if (mappingLinks == null) {
+			mappingLinks = new EObjectWithInverseResolvingEList.ManyInverse<MappingLink>(MappingLink.class, this, MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS, MappingPackage.MAPPING_LINK__ELEMENTS);
 		}
-		return mappings;
+		return mappingLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementCategory getCategory() {
+		return category;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCategory(ModelElementCategory newCategory) {
+		ModelElementCategory oldCategory = category;
+		category = newCategory == null ? CATEGORY_EDEFAULT : newCategory;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_ELEMENT_REFERENCE__CATEGORY, oldCategory, category));
 	}
 
 	/**
@@ -153,8 +196,8 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappings()).basicAdd(otherEnd, msgs);
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMappingLinks()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -167,8 +210,8 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
-				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS:
+				return ((InternalEList<?>)getMappingLinks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -184,8 +227,10 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				if (resolve) return getPointer();
 				return basicGetPointer();
-			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
-				return getMappings();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS:
+				return getMappingLinks();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__CATEGORY:
+				return getCategory();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,9 +247,12 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				setPointer((EObject)newValue);
 				return;
-			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
-				getMappings().clear();
-				getMappings().addAll((Collection<? extends Mapping>)newValue);
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS:
+				getMappingLinks().clear();
+				getMappingLinks().addAll((Collection<? extends MappingLink>)newValue);
+				return;
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__CATEGORY:
+				setCategory((ModelElementCategory)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -221,8 +269,11 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				setPointer((EObject)null);
 				return;
-			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
-				getMappings().clear();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS:
+				getMappingLinks().clear();
+				return;
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__CATEGORY:
+				setCategory(CATEGORY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -238,10 +289,28 @@ public class ModelElementReferenceImpl extends NamedElementImpl implements Model
 		switch (featureID) {
 			case MappingPackage.MODEL_ELEMENT_REFERENCE__POINTER:
 				return pointer != null;
-			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPINGS:
-				return mappings != null && !mappings.isEmpty();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__MAPPING_LINKS:
+				return mappingLinks != null && !mappingLinks.isEmpty();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE__CATEGORY:
+				return category != CATEGORY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (category: ");
+		result.append(category);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ModelElementReferenceImpl

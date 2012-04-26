@@ -21,6 +21,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -36,9 +37,9 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
@@ -65,13 +66,13 @@ import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDParserProvider;
 /**
  * @generated
  */
-public class MappingNameEditPart extends CompartmentEditPart implements
+public class BinaryMappingLinkNameTypeEditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5004;
+	public static final int VISUAL_ID = 6002;
 
 	/**
 	 * @generated
@@ -96,7 +97,17 @@ public class MappingNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public MappingNameEditPart(View view) {
+	static {
+		registerSnapBackPosition(
+				MIDVisualIDRegistry
+						.getType(edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkNameTypeEditPart.VISUAL_ID),
+				new Point(0, 40));
+	}
+
+	/**
+	 * @generated
+	 */
+	public BinaryMappingLinkNameTypeEditPart(View view) {
 		super(view);
 	}
 
@@ -105,12 +116,19 @@ public class MappingNameEditPart extends CompartmentEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
-				new MIDTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
 				new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
+				new MIDTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new MappingReferenceEditPart.NodeLabelDragPolicy());
+				new MappingReferenceEditPart.LinkLabelDragPolicy());
+	}
+
+	/**
+	 * @generated
+	 */
+	public int getKeyPoint() {
+		return ConnectionLocator.MIDDLE;
 	}
 
 	/**
@@ -313,10 +331,10 @@ public class MappingNameEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = MIDParserProvider
 					.getParser(
-							MIDElementTypes.Mapping_2004,
+							MIDElementTypes.BinaryMappingLink_4005,
 							getParserElement(),
 							MIDVisualIDRegistry
-									.getType(edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkNameTypeEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -523,22 +541,6 @@ public class MappingNameEditPart extends CompartmentEditPart implements
 	 */
 	private View getFontStyleOwnerView() {
 		return getPrimaryView();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
 	/**

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
  * 
  * This file is part of MMTF ver. 0.9.0.
@@ -16,19 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.toronto.cs.se.mmtf.mid.mapping;
-
+package edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.helpers;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Homomorphic Mapping</b></em>'.
- * <!-- end-user-doc -->
- *
- *
- * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getHomomorphicMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sameElementTypes'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sameElementTypes='elements->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.pointer.oclType() = e2.pointer.oclType())'"
  * @generated
  */
-public interface HomomorphicMapping extends BinaryMapping {
-} // HomomorphicMapping
+public class MappingLinkEditHelper extends MIDBaseEditHelper {
+}

@@ -77,6 +77,7 @@ public class NamedElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,6 +96,28 @@ public class NamedElementItemProvider
 				 getString("_UI_NamedElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
 				 MidPackage.Literals.NAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NamedElement_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_type_feature", "_UI_NamedElement_type"),
+				 MidPackage.Literals.NAMED_ELEMENT__TYPE,
 				 true,
 				 false,
 				 false,
@@ -130,6 +153,7 @@ public class NamedElementItemProvider
 
 		switch (notification.getFeatureID(NamedElement.class)) {
 			case MidPackage.NAMED_ELEMENT__NAME:
+			case MidPackage.NAMED_ELEMENT__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

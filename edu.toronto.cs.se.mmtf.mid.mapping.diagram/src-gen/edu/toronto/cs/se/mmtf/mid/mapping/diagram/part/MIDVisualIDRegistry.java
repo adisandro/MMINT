@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingNameEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkNameTypeEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerModelContainerCompartmentEditPart;
@@ -152,10 +152,10 @@ public class MIDVisualIDRegistry {
 					domainElement.eClass())) {
 				return ModelContainerEditPart.VISUAL_ID;
 			}
-			if (MappingPackage.eINSTANCE.getMapping().isSuperTypeOf(
+			if (MappingPackage.eINSTANCE.getMappingLink().isSuperTypeOf(
 					domainElement.eClass())
-					&& isMapping_2004((Mapping) domainElement)) {
-				return MappingEditPart.VISUAL_ID;
+					&& isMappingLink_2006((MappingLink) domainElement)) {
+				return MappingLinkEditPart.VISUAL_ID;
 			}
 			break;
 		case ModelContainerModelContainerCompartmentEditPart.VISUAL_ID:
@@ -194,7 +194,7 @@ public class MIDVisualIDRegistry {
 			if (ModelContainerEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (MappingEditPart.VISUAL_ID == nodeVisualID) {
+			if (MappingLinkEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -206,8 +206,8 @@ public class MIDVisualIDRegistry {
 				return true;
 			}
 			break;
-		case MappingEditPart.VISUAL_ID:
-			if (MappingNameEditPart.VISUAL_ID == nodeVisualID) {
+		case MappingLinkEditPart.VISUAL_ID:
+			if (MappingLinkNameTypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -221,8 +221,8 @@ public class MIDVisualIDRegistry {
 				return true;
 			}
 			break;
-		case BinaryMappingEditPart.VISUAL_ID:
-			if (BinaryMappingNameEditPart.VISUAL_ID == nodeVisualID) {
+		case BinaryMappingLinkEditPart.VISUAL_ID:
+			if (BinaryMappingLinkNameTypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -237,9 +237,9 @@ public class MIDVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (MappingPackage.eINSTANCE.getBinaryMapping().isSuperTypeOf(
+		if (MappingPackage.eINSTANCE.getBinaryMappingLink().isSuperTypeOf(
 				domainElement.eClass())) {
-			return BinaryMappingEditPart.VISUAL_ID;
+			return BinaryMappingLinkEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -257,9 +257,9 @@ public class MIDVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static boolean isMapping_2004(Mapping domainElement) {
+	private static boolean isMappingLink_2006(MappingLink domainElement) {
 		Object result = MIDOCLFactory.getExpression(0,
-				MappingPackage.eINSTANCE.getMapping(), null).evaluate(
+				MappingPackage.eINSTANCE.getMappingLink(), null).evaluate(
 				domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}

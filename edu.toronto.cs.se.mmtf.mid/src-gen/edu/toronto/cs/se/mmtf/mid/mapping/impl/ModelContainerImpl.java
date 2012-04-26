@@ -48,6 +48,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getModel <em>Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getReferencedModel <em>Referenced Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getContainedModel <em>Contained Model</em>}</li>
@@ -76,6 +77,16 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__NAME).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__TYPE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getModel() <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -144,6 +155,15 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 */
 	public String getName() {
 		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getType() {
+		return (String)TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -273,6 +293,8 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 				return getElements();
 			case MappingPackage.MODEL_CONTAINER__NAME:
 				return getName();
+			case MappingPackage.MODEL_CONTAINER__TYPE:
+				return getType();
 			case MappingPackage.MODEL_CONTAINER__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
@@ -341,6 +363,8 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 				return elements != null && !elements.isEmpty();
 			case MappingPackage.MODEL_CONTAINER__NAME:
 				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case MappingPackage.MODEL_CONTAINER__TYPE:
+				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case MappingPackage.MODEL_CONTAINER__MODEL:
 				return MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL:

@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getPointer <em>Pointer</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getMappingLinks <em>Mapping Links</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getCategory <em>Category</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,21 +70,50 @@ public interface ModelElementReference extends NamedElement {
 	void setPointer(EObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Mappings</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements <em>Elements</em>}'.
+	 * Returns the value of the '<em><b>Mapping Links</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.MappingLink#getElements <em>Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Mappings</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Mapping Links</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mappings</em>' reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElementReference_Mappings()
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Mapping#getElements
+	 * @return the value of the '<em>Mapping Links</em>' reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElementReference_MappingLinks()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingLink#getElements
 	 * @model opposite="elements"
 	 * @generated
 	 */
-	EList<Mapping> getMappings();
+	EList<MappingLink> getMappingLinks();
+
+	/**
+	 * Returns the value of the '<em><b>Category</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Category</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Category</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
+	 * @see #setCategory(ModelElementCategory)
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelElementReference_Category()
+	 * @model required="true"
+	 * @generated
+	 */
+	ModelElementCategory getCategory();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getCategory <em>Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Category</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
+	 * @see #getCategory()
+	 * @generated
+	 */
+	void setCategory(ModelElementCategory value);
 
 } // ModelElementReference

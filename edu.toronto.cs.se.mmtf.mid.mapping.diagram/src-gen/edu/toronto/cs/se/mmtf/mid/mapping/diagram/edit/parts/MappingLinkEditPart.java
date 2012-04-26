@@ -46,19 +46,19 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MappingLinkItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
-public class MappingEditPart extends ShapeNodeEditPart {
+public class MappingLinkEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2004;
+	public static final int VISUAL_ID = 2006;
 
 	/**
 	 * @generated
@@ -73,7 +73,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public MappingEditPart(View view) {
+	public MappingLinkEditPart(View view) {
 		super(view);
 	}
 
@@ -83,7 +83,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new MappingItemSemanticEditPolicy());
+				new MappingLinkItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -119,23 +119,24 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new MappingFigure();
+		return primaryShape = new MappingLinkFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public MappingFigure getPrimaryShape() {
-		return (MappingFigure) primaryShape;
+	public MappingLinkFigure getPrimaryShape() {
+		return (MappingLinkFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MappingNameEditPart) {
-			((MappingNameEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureMappingNameFigure());
+		if (childEditPart instanceof MappingLinkNameTypeEditPart) {
+			((MappingLinkNameTypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMappingLinkNameFigure());
 			return true;
 		}
 		return false;
@@ -145,7 +146,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MappingNameEditPart) {
+		if (childEditPart instanceof MappingLinkNameTypeEditPart) {
 			return true;
 		}
 		return false;
@@ -269,7 +270,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(MappingNameEditPart.VISUAL_ID));
+				.getType(MappingLinkNameTypeEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -277,7 +278,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(MIDElementTypes.MappingElements_4002);
+		types.add(MIDElementTypes.MappingLinkElements_4004);
 		return types;
 	}
 
@@ -288,7 +289,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof ModelElementReferenceEditPart) {
-			types.add(MIDElementTypes.MappingElements_4002);
+			types.add(MIDElementTypes.MappingLinkElements_4004);
 		}
 		return types;
 	}
@@ -298,7 +299,7 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MIDElementTypes.MappingElements_4002) {
+		if (relationshipType == MIDElementTypes.MappingLinkElements_4004) {
 			types.add(MIDElementTypes.ModelElementReference_3003);
 		}
 		return types;
@@ -320,17 +321,17 @@ public class MappingEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class MappingFigure extends RectangleFigure {
+	public class MappingLinkFigure extends RectangleFigure {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMappingNameFigure;
+		private WrappingLabel fFigureMappingLinkNameFigure;
 
 		/**
 		 * @generated
 		 */
-		public MappingFigure() {
+		public MappingLinkFigure() {
 			createContents();
 		}
 
@@ -339,18 +340,18 @@ public class MappingEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureMappingNameFigure = new WrappingLabel();
-			fFigureMappingNameFigure.setText("<...>");
+			fFigureMappingLinkNameFigure = new WrappingLabel();
+			fFigureMappingLinkNameFigure.setText("<...>");
 
-			this.add(fFigureMappingNameFigure);
+			this.add(fFigureMappingLinkNameFigure);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMappingNameFigure() {
-			return fFigureMappingNameFigure;
+		public WrappingLabel getFigureMappingLinkNameFigure() {
+			return fFigureMappingLinkNameFigure;
 		}
 
 	}

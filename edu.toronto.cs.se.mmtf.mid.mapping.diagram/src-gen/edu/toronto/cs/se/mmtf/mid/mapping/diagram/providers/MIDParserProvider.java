@@ -33,8 +33,8 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingNameEditPart;
-import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.BinaryMappingLinkNameTypeEditPart;
+import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.MappingLinkNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelContainerNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.parts.ModelElementReferenceNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.parsers.MessageFormatParser;
@@ -49,73 +49,89 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser modelContainerName_5005Parser;
+	private IParser modelContainerNameType_5005Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getModelContainerName_5005Parser() {
-		if (modelContainerName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { MappingPackage.eINSTANCE
-					.getModelContainer_Name() };
+	private IParser getModelContainerNameType_5005Parser() {
+		if (modelContainerNameType_5005Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					MappingPackage.eINSTANCE.getModelContainer_Name(),
+					MappingPackage.eINSTANCE.getModelContainer_Type() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			modelContainerName_5005Parser = parser;
+			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			modelContainerNameType_5005Parser = parser;
 		}
-		return modelContainerName_5005Parser;
+		return modelContainerNameType_5005Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser mappingName_5004Parser;
+	private IParser mappingLinkNameType_5007Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMappingName_5004Parser() {
-		if (mappingName_5004Parser == null) {
-			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getNamedElement_Name() };
+	private IParser getMappingLinkNameType_5007Parser() {
+		if (mappingLinkNameType_5007Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					MidPackage.eINSTANCE.getNamedElement_Name(),
+					MidPackage.eINSTANCE.getNamedElement_Type() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			mappingName_5004Parser = parser;
+			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			mappingLinkNameType_5007Parser = parser;
 		}
-		return mappingName_5004Parser;
+		return mappingLinkNameType_5007Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser modelElementReferenceName_5006Parser;
+	private IParser modelElementReferenceNameType_5006Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getModelElementReferenceName_5006Parser() {
-		if (modelElementReferenceName_5006Parser == null) {
-			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getNamedElement_Name() };
+	private IParser getModelElementReferenceNameType_5006Parser() {
+		if (modelElementReferenceNameType_5006Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					MidPackage.eINSTANCE.getNamedElement_Name(),
+					MidPackage.eINSTANCE.getNamedElement_Type() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			modelElementReferenceName_5006Parser = parser;
+			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			modelElementReferenceNameType_5006Parser = parser;
 		}
-		return modelElementReferenceName_5006Parser;
+		return modelElementReferenceNameType_5006Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser binaryMappingName_6001Parser;
+	private IParser binaryMappingLinkNameType_6002Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getBinaryMappingName_6001Parser() {
-		if (binaryMappingName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getNamedElement_Name() };
+	private IParser getBinaryMappingLinkNameType_6002Parser() {
+		if (binaryMappingLinkNameType_6002Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					MidPackage.eINSTANCE.getNamedElement_Name(),
+					MidPackage.eINSTANCE.getNamedElement_Type() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			binaryMappingName_6001Parser = parser;
+			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			binaryMappingLinkNameType_6002Parser = parser;
 		}
-		return binaryMappingName_6001Parser;
+		return binaryMappingLinkNameType_6002Parser;
 	}
 
 	/**
@@ -124,13 +140,13 @@ public class MIDParserProvider extends AbstractProvider implements
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case ModelContainerNameEditPart.VISUAL_ID:
-			return getModelContainerName_5005Parser();
-		case MappingNameEditPart.VISUAL_ID:
-			return getMappingName_5004Parser();
+			return getModelContainerNameType_5005Parser();
+		case MappingLinkNameTypeEditPart.VISUAL_ID:
+			return getMappingLinkNameType_5007Parser();
 		case ModelElementReferenceNameEditPart.VISUAL_ID:
-			return getModelElementReferenceName_5006Parser();
-		case BinaryMappingNameEditPart.VISUAL_ID:
-			return getBinaryMappingName_6001Parser();
+			return getModelElementReferenceNameType_5006Parser();
+		case BinaryMappingLinkNameTypeEditPart.VISUAL_ID:
+			return getBinaryMappingLinkNameType_6002Parser();
 		}
 		return null;
 	}

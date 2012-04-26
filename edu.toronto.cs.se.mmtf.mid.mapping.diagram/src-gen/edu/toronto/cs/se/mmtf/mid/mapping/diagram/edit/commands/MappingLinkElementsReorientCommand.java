@@ -27,14 +27,14 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.Mapping;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class MappingElementsReorientCommand extends EditElementCommand {
+public class MappingLinkElementsReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -59,7 +59,7 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public MappingElementsReorientCommand(
+	public MappingLinkElementsReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -72,7 +72,7 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Mapping) {
+		if (false == referenceOwner instanceof MappingLink) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -88,11 +88,12 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof ModelElementReference && newEnd instanceof Mapping)) {
+		if (!(oldEnd instanceof ModelElementReference && newEnd instanceof MappingLink)) {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistMappingElements_4002(getNewSource(), getOldTarget());
+				.canExistMappingLinkElements_4004(getNewSource(),
+						getOldTarget());
 	}
 
 	/**
@@ -103,7 +104,8 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistMappingElements_4002(getOldSource(), getNewTarget());
+				.canExistMappingLinkElements_4004(getOldSource(),
+						getNewTarget());
 	}
 
 	/**
@@ -145,15 +147,15 @@ public class MappingElementsReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Mapping getOldSource() {
-		return (Mapping) referenceOwner;
+	protected MappingLink getOldSource() {
+		return (MappingLink) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Mapping getNewSource() {
-		return (Mapping) newEnd;
+	protected MappingLink getNewSource() {
+		return (MappingLink) newEnd;
 	}
 
 	/**

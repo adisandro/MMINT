@@ -115,18 +115,18 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MAPPING: {
-				Mapping mapping = (Mapping)theEObject;
-				T result = caseMapping(mapping);
-				if (result == null) result = caseNamedElement(mapping);
+			case MappingPackage.MAPPING_LINK: {
+				MappingLink mappingLink = (MappingLink)theEObject;
+				T result = caseMappingLink(mappingLink);
+				if (result == null) result = caseNamedElement(mappingLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.BINARY_MAPPING: {
-				BinaryMapping binaryMapping = (BinaryMapping)theEObject;
-				T result = caseBinaryMapping(binaryMapping);
-				if (result == null) result = caseMapping(binaryMapping);
-				if (result == null) result = caseNamedElement(binaryMapping);
+			case MappingPackage.BINARY_MAPPING_LINK: {
+				BinaryMappingLink binaryMappingLink = (BinaryMappingLink)theEObject;
+				T result = caseBinaryMappingLink(binaryMappingLink);
+				if (result == null) result = caseMappingLink(binaryMappingLink);
+				if (result == null) result = caseNamedElement(binaryMappingLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,12 +140,12 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.HOMOMORPHIC_MAPPING: {
-				HomomorphicMapping homomorphicMapping = (HomomorphicMapping)theEObject;
-				T result = caseHomomorphicMapping(homomorphicMapping);
-				if (result == null) result = caseBinaryMapping(homomorphicMapping);
-				if (result == null) result = caseMapping(homomorphicMapping);
-				if (result == null) result = caseNamedElement(homomorphicMapping);
+			case MappingPackage.HOMOMORPHIC_MAPPING_LINK: {
+				HomomorphicMappingLink homomorphicMappingLink = (HomomorphicMappingLink)theEObject;
+				T result = caseHomomorphicMappingLink(homomorphicMappingLink);
+				if (result == null) result = caseBinaryMappingLink(homomorphicMappingLink);
+				if (result == null) result = caseMappingLink(homomorphicMappingLink);
+				if (result == null) result = caseNamedElement(homomorphicMappingLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -214,32 +214,32 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mapping</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mapping</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Link</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMapping(Mapping object) {
+	public T caseMappingLink(MappingLink object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Mapping</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Mapping</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Mapping Link</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBinaryMapping(BinaryMapping object) {
+	public T caseBinaryMappingLink(BinaryMappingLink object) {
 		return null;
 	}
 
@@ -259,17 +259,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Homomorphic Mapping</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Homomorphic Mapping Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Homomorphic Mapping</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Homomorphic Mapping Link</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseHomomorphicMapping(HomomorphicMapping object) {
+	public T caseHomomorphicMappingLink(HomomorphicMappingLink object) {
 		return null;
 	}
 
