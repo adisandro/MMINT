@@ -3,18 +3,22 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmtf;singleton:=true
 Bundle-Version: 0.9.0
-Bundle-Activator: edu.toronto.cs.se.mmtf.Activator
+Bundle-ClassPath: .
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmtf.mid,
+ edu.toronto.cs.se.mmtf.mid.impl,
+ edu.toronto.cs.se.mmtf.mid.mapping,
+ edu.toronto.cs.se.mmtf.mid.mapping.impl,
+ edu.toronto.cs.se.mmtf.mid.mapping.util,
+ edu.toronto.cs.se.mmtf.mid.util
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- org.eclipse.gmf.runtime.notation,
+ org.eclipse.ui,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ui.ide,
  org.eclipse.emf.ecoretools.diagram
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.mmtf.repository,
- edu.toronto.cs.se.mmtf.repository.ui,
- edu.toronto.cs.se.mmtf.repository.util
+Bundle-Activator: edu.toronto.cs.se.mmtf.Activator

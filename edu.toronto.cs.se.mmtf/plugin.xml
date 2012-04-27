@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay, Vivien Suen.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
 <plugin>
+
    <extension-point id="edu.toronto.cs.se.mmtf.metamodels" name="MMTF Metamodels" schema="schema/edu.toronto.cs.se.mmtf.metamodels.exsd"/>
    <extension-point id="edu.toronto.cs.se.mmtf.editors" name="MMTF Editors" schema="schema/edu.toronto.cs.se.mmtf.editors.exsd"/>
    <extension-point id="edu.toronto.cs.se.mmtf.operators" name="MMTF Operators" schema="schema/edu.toronto.cs.se.mmtf.operators.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore"
+            class="edu.toronto.cs.se.mmtf.mid.MidPackage"
+            genModel="model/mid.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping"
+            class="edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage"
+            genModel="model/mid.genmodel"/>
+   </extension>
+
 </plugin>

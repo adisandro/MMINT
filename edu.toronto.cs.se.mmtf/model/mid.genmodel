@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Vivien Suen.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    modelDirectory="/edu.toronto.cs.se.mmtf/src-gen" editDirectory="/edu.toronto.cs.se.mmtf.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.mmtf.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmtf"
+    modelName="Mid" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false" operationReflection="true">
+  <foreignModel>mid.ecore</foreignModel>
+  <genPackages prefix="Mid" basePackage="edu.toronto.cs.se.mmtf" disposableProviderFactory="true"
+      ecorePackage="mid.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//MidLevel">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MidLevel/INSTANCES"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MidLevel/TYPES"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelOrigin">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/IMPORTED"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/CREATED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ParameterType">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ParameterType/MODEL"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ParameterType/MODEL_REL"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ParameterType/BOOL"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/level"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//MultiModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/editors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/operators"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/uri"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/root"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/origin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/fileExtension"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/supertype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//Operator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Operator/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Operator/outputs"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//EStringToModelMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToModelMap/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToModelMap/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//EStringToEditorMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToEditorMap/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToEditorMap/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//EStringToOperatorMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToOperatorMap/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToOperatorMap/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Parameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Parameter/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Parameter/vararg"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ModelParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelParameter/modelUri"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelParameter/model"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//Editor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Editor/modelUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Editor/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Editor/wizardId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Editor/fileExtensions"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//Diagram"/>
+    <genClasses ecoreClass="mid.ecore#//EStringToParameterMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToParameterMap/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToParameterMap/value"/>
+    </genClasses>
+    <nestedGenPackages prefix="Mapping" disposableProviderFactory="true" ecorePackage="mid.ecore#//mapping">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//mapping/ModelElementCategory">
+        <genEnumLiterals ecoreEnumLiteral="mid.ecore#//mapping/ModelElementCategory/ENTITY"/>
+        <genEnumLiterals ecoreEnumLiteral="mid.ecore#//mapping/ModelElementCategory/RELATIONSHIP"/>
+      </genEnums>
+      <genClasses ecoreClass="mid.ecore#//mapping/ModelRel">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/models"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/links"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/containers"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//mapping/BinaryModelRel"/>
+      <genClasses ecoreClass="mid.ecore#//mapping/HomomorphismModelRel"/>
+      <genClasses ecoreClass="mid.ecore#//mapping/ModelContainer">
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelContainer/name"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/type"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/referencedModel"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/containedModel"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/model"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/elements"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//mapping/ModelElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelElement/category"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelElement/pointer"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelElement/links"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//mapping/Link">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//mapping/Link/elements"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//mapping/BinaryLink"/>
+      <genClasses ecoreClass="mid.ecore#//mapping/HomomorphismLink"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
