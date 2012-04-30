@@ -3,12 +3,15 @@
 <schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.operators" name="MMTF operators"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.relationships" name="MMTF model relationships"/>
       </appinfo>
       <documentation>
-         Allows operators to be registered with MMTF.
+         Allows model relationships to be registered with MMTF.
+The relationship&apos;s enpoints model packages have to be registered too through the edu.toronto.cs.se.mmtf.models extension point.
       </documentation>
    </annotation>
+
+   <include schemaLocation="edu.toronto.cs.se.mmtf.models.exsd"/>
 
    <element name="extension">
       <annotation>
@@ -18,7 +21,8 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="operator"/>
+            <element ref="modelType"/>
+            <element ref="modelRelationship"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,102 +51,128 @@
       </complexType>
    </element>
 
-   <element name="operator">
+   <element name="modelRelationship">
       <annotation>
          <documentation>
-            An operator.
+            A model relationship.
          </documentation>
       </annotation>
       <complexType>
          <sequence>
-            <element ref="input"/>
-            <element ref="output"/>
+            <element ref="model" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="relationshipLink" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
-         <attribute name="class" type="string" use="required">
+         <attribute name="isNary" type="boolean" use="required">
             <annotation>
                <documentation>
-                  The operator implementation.
+                  Whether this is a Nary relationship.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="model">
+      <annotation>
+         <documentation>
+            A relationship&apos;s endpoint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="modelElement" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="modelTypeUri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The relationship&apos;s endpoint model type URI.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":edu.toronto.cs.se.mmtf.repository.IOperator"/>
+                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/modelType/@uri"/>
                </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
-   <element name="input">
+   <element name="modelElement">
       <annotation>
          <documentation>
-            The input of the operator.
-         </documentation>
-      </annotation>
-      <complexType>
-         <sequence>
-            <element ref="parameter" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
-      </complexType>
-   </element>
-
-   <element name="output">
-      <annotation>
-         <documentation>
-            The output of the operator.
-         </documentation>
-      </annotation>
-      <complexType>
-         <sequence>
-            <element ref="parameter" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
-      </complexType>
-   </element>
-
-   <element name="parameter">
-      <annotation>
-         <documentation>
-            An input or output parameter of the operator.
+            An endpoint&apos;s model element.
          </documentation>
       </annotation>
       <complexType>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The model element&apos;s name.
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="type" use="required">
+         <attribute name="category" use="required">
             <annotation>
                <documentation>
-                  
+                  The model element&apos;s category.
                </documentation>
             </annotation>
             <simpleType>
                <restriction base="string">
-                  <enumeration value="MODEL">
+                  <enumeration value="ENTITY">
                   </enumeration>
-                  <enumeration value="MODEL_REL">
-                  </enumeration>
-                  <enumeration value="BOOL">
+                  <enumeration value="RELATIONSHIP">
                   </enumeration>
                </restriction>
             </simpleType>
          </attribute>
-         <attribute name="isVararg" type="boolean" use="required">
+         <attribute name="classLiteral" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The model element&apos;s meta object literal.
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="modelTypeUri" type="string">
+      </complexType>
+   </element>
+
+   <element name="relationshipLink">
+      <annotation>
+         <documentation>
+            A relationship&apos;s link.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="linkElement" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The link name.
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/modelType/@uri"/>
-               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="isNary" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  Whether this link is Nary.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="linkElement">
+      <annotation>
+         <documentation>
+            A link&apos;s endpoint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="elementName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The link&apos;s endpoint&apos;s name (must be one of the model elements&apos; names).
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

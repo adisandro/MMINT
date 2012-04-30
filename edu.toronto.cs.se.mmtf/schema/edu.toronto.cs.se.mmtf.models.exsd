@@ -3,11 +3,11 @@
 <schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.metamodels" name="MMTF Metamodels"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.models" name="MMTF model types"/>
       </appinfo>
       <documentation>
-         Allows metamodels to be registered with MMTF.
-The metamodel package has to be registered too through the org.eclipse.emf.ecore.generated_package extension point.
+         Allows model types to be registered with MMTF.
+The model package has to be registered too through the org.eclipse.emf.ecore.generated_package extension point.
       </documentation>
    </annotation>
 
@@ -19,7 +19,7 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
       </annotation>
       <complexType>
          <sequence>
-            <element ref="metamodel"/>
+            <element ref="modelType"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -48,12 +48,17 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
       </complexType>
    </element>
 
-   <element name="metamodel">
+   <element name="modelType">
+      <annotation>
+         <documentation>
+            A model type.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="uri" type="string" use="required">
             <annotation>
                <documentation>
-                  The metamodel URI to be registered with MMTF.
+                  The model type URI to be registered with MMTF.
                </documentation>
                <appinfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.emf.ecore.generated_package/package/@uri"/>
@@ -63,7 +68,7 @@ The metamodel package has to be registered too through the org.eclipse.emf.ecore
          <attribute name="supertypeUri" type="string">
             <annotation>
                <documentation>
-                  The supertype metamodel URI.
+                  The supertype model type URI.
                </documentation>
                <appinfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.emf.ecore.generated_package/package/@uri"/>

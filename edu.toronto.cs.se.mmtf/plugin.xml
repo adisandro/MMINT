@@ -15,9 +15,10 @@
 
 <plugin>
 
-   <extension-point id="edu.toronto.cs.se.mmtf.metamodels" name="MMTF Metamodels" schema="schema/edu.toronto.cs.se.mmtf.metamodels.exsd"/>
-   <extension-point id="edu.toronto.cs.se.mmtf.editors" name="MMTF Editors" schema="schema/edu.toronto.cs.se.mmtf.editors.exsd"/>
-   <extension-point id="edu.toronto.cs.se.mmtf.operators" name="MMTF Operators" schema="schema/edu.toronto.cs.se.mmtf.operators.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmtf.models" name="MMTF model types" schema="schema/edu.toronto.cs.se.mmtf.models.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmtf.relationships" name="MMTF model relationships" schema="schema/edu.toronto.cs.se.mmtf.relationships.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmtf.editors" name="MMTF editors" schema="schema/edu.toronto.cs.se.mmtf.editors.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmtf.operators" name="MMTF operators" schema="schema/edu.toronto.cs.se.mmtf.operators.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
@@ -26,11 +27,27 @@
             genModel="model/mid.genmodel"/>
    </extension>
 
+   <extension
+         name="MID model type"
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore">
+      </modelType>
+   </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping"
             class="edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage"
             genModel="model/mid.genmodel"/>
+   </extension>
+
+   <extension
+         name="Mapping model type"
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping">
+      </modelType>
    </extension>
 
 </plugin>

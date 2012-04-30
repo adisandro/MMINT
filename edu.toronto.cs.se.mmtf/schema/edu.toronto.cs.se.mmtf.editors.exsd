@@ -3,11 +3,11 @@
 <schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.editors" name="MMTF Editors"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.editors" name="MMTF editors"/>
       </appinfo>
       <documentation>
          Allows editors to be registered with MMTF.
-The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamodels extension point.
+The model type has to be registered too through the edu.toronto.cs.se.mmtf.models extension point.
       </documentation>
    </annotation>
 
@@ -49,21 +49,26 @@ The metamodel has to be registered too through the edu.toronto.cs.se.mmtf.metamo
    </element>
 
    <element name="editor">
+      <annotation>
+         <documentation>
+            A model type editor.
+         </documentation>
+      </annotation>
       <complexType>
-         <attribute name="metamodelUri" type="string" use="required">
+         <attribute name="modelTypeUri" type="string" use="required">
             <annotation>
                <documentation>
-                  The metamodel URI for which an editor is being provided.
+                  The model type URI for which an editor is being provided.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.metamodels/metamodel/@uri"/>
+                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/modelType/@uri"/>
                </appinfo>
             </annotation>
          </attribute>
          <attribute name="isDiagram" type="boolean" use="required">
             <annotation>
                <documentation>
-                  Wheter this is a diagram editor.
+                  Whether this is a diagram editor.
                </documentation>
             </annotation>
          </attribute>

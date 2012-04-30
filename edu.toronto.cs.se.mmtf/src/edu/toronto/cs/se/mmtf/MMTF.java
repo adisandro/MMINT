@@ -34,13 +34,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
+import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.repository.EcoreExtension;
-import edu.toronto.cs.se.mmtf.repository.Editor;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
-import edu.toronto.cs.se.mmtf.repository.Metamodel;
-import edu.toronto.cs.se.mmtf.repository.MetamodelsExtensionListener;
-import edu.toronto.cs.se.mmtf.repository.Repository;
-import edu.toronto.cs.se.mmtf.repository.RepositoryFactory;
+import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogSelectionValidator;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
@@ -58,45 +57,45 @@ import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
  */
 public class MMTF {
 
-	/** The Metamodels extension point id. */
-	private final static String METAMODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.metamodels";
-	/** The Metamodels extension point uri attribute. */
-	private final static String METAMODELS_ATTR_URI = "uri";
-	/** The Editors extension point id. */
+	/** The Models extension point's id. */
+	private final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.models";
+	/** The Models extension point's uri attribute. */
+	private final static String MODELS_ATTR_URI = "uri";
+	/** The Editors extension point's id. */
 	private final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
-	/** The Editors extension point metamodelUri attribute. */
-	private final static String EDITORS_ATTR_METAMODEL_URI = "metamodelUri";
-	/** The Editors extension point isDiagram attribute. */
+	/** The Editors extension point's modelTypeUri attribute. */
+	private final static String EDITORS_ATTR_MODEL_TYPE_URI = "modelTypeUri";
+	/** The Editors extension point's isDiagram attribute. */
 	private final static String EDITORS_ATTR_IS_DIAGRAM = "isDiagram";
-	/** The Editors extension point editorId attribute. */
+	/** The Editors extension point's editorId attribute. */
 	private final static String EDITORS_ATTR_EDITOR_ID = "editorId";
-	/** The Editors extension point wizardId attribute. */
+	/** The Editors extension point's wizardId attribute. */
 	private final static String EDITORS_ATTR_WIZARD_ID = "wizardId";
 
-	/** The Eclipse's Editors extension point id. */
+	/** The Eclipse's Editors extension point's id. */
 	private final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";
-	/** The Eclipse's Editors extension id attribute. */
+	/** The Eclipse's Editors extension's id attribute. */
 	private final static String ECLIPSE_EDITORS_ATTR_ID = "id";
-	/** The Eclipse's Editors extension extensions attribute. */
+	/** The Eclipse's Editors extension's extensions attribute. */
 	private final static String ECLIPSE_EDITORS_ATTR_EXTENSIONS = "extensions";
 
 	/** The repository of registered extensions. */
-	private static Repository repository;
+	private static MultiModel repository;
 
 	/**
-	 * Adds a metamodel to the repository. Requires the metamodel package to be
+	 * Adds a model type to the repository. Requires the metamodel package to be
 	 * registered too through the org.eclipse.emf.ecore.generated_package
 	 * extension point.
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
-	 * @return The created metamodel.
+	 * @return The created model type.
 	 */
-	public Metamodel addMetamodel(IConfigurationElement extensionConfig) {
+	public Model addModelType(IConfigurationElement extensionConfig) {
 
 		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-		String uri = extensionConfig.getAttribute(METAMODELS_ATTR_URI);
-		Metamodel metamodel = RepositoryFactory.eINSTANCE.createMetamodel();
+		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
+		Model model = MidFactory.eINSTANCE.createModel();
 		EPackage metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
 
 		metamodel.setName(extensionConfig.getDeclaringExtension().getLabel());
@@ -255,13 +254,14 @@ public class MMTF {
 	 */
 	private void initRepository(IExtensionRegistry registry) {
 
-		repository = RepositoryFactory.eINSTANCE.createRepository();
+		repository = MidFactory.eINSTANCE.createMultiModel();
 		IConfigurationElement[] config;
 
-		// metamodels
-		config = registry.getConfigurationElementsFor(METAMODELS_EXT_POINT);
+		//TODO MMTF: add default Model and ModelRel
+		// model types
+		config = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			addMetamodel(elem);
+			addModelType(elem);
 		}
 
 		// editors
@@ -272,6 +272,8 @@ public class MMTF {
 			addMetamodelEditors(editor);
 		}		
 		addEditorFileExtensions(registry);
+
+		//TODO MMTF: relationships and operators
 
 		// built-in ecore extension
 		EcoreExtension ecore = new EcoreExtension(repository);
@@ -287,7 +289,7 @@ public class MMTF {
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
 			initRepository(registry);
-			registry.addListener(new MetamodelsExtensionListener(this), METAMODELS_EXT_POINT);
+			registry.addListener(new ModelsExtensionListener(this), MODELS_EXT_POINT);
 			registry.addListener(new EditorsExtensionListener(this), EDITORS_EXT_POINT);
 		}
 	}

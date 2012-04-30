@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
  * @author Alessio Di Sandro
  * 
  */
-public class MetamodelsExtensionListener extends MMTFExtensionListener {
+public class ModelsExtensionListener extends MMTFExtensionListener {
 
 	/**
 	 * Constructor: initializes the MMTF instance.
@@ -38,7 +38,7 @@ public class MetamodelsExtensionListener extends MMTFExtensionListener {
 	 * @param mmtf
 	 *            The MMTF instance.
 	 */
-	public MetamodelsExtensionListener(MMTF mmtf) {
+	public ModelsExtensionListener(MMTF mmtf) {
 
 		super(mmtf);
 	}
