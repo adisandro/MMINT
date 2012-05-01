@@ -22,6 +22,20 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
+            uri="http:///edu/toronto/cs/se/mmtf/Model"
+            class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
+   </extension>
+
+   <extension
+         name="Root model type"
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            uri="http:///edu/toronto/cs/se/mmtf/Model">
+      </modelType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
             uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore"
             class="edu.toronto.cs.se.mmtf.mid.MidPackage"
             genModel="model/mid.genmodel"/>
@@ -48,6 +62,36 @@
       <modelType
             uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping">
       </modelType>
+   </extension>
+
+   <extension
+         name="Ecore model type"
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            uri="http://www.eclipse.org/emf/2002/Ecore">
+      </modelType>
+   </extension>
+
+   <extension
+         name="Sample Ecore Editor"
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editor
+            modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
+            isDiagram="false"
+            editorId="org.eclipse.emf.ecore.presentation.EcoreEditorID"
+            wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
+      </editor>
+   </extension>
+
+   <extension
+         name="Ecore Diagram Editing"
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editor
+            modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
+            isDiagram="true"
+            editorId="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
+            wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
+      </editor>
    </extension>
 
 </plugin>

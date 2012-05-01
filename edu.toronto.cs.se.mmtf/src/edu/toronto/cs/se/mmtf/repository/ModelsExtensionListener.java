@@ -1,20 +1,13 @@
-/*
- * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+/**
+ * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay, Vivien Suen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * This file is part of MMTF ver. 0.9.0.
- * 
- * MMTF is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * MMTF is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmtf.repository;
 
@@ -22,10 +15,11 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.mid.Model;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
- * Metamodels extension point.
+ * Models extension point.
  * 
  * @author Alessio Di Sandro
  * 
@@ -45,25 +39,25 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 
 	/**
 	 * {@inheritDoc}
-	 * Installs a new Metamodels extension.
+	 * Installs a new Models extension.
 	 */
 	@Override
 	public void added(IExtension[] extensions) {
 
 		IConfigurationElement[] config;
-		Metamodel metamodel;
+		Model model;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				metamodel = mmtf.addMetamodel(elem);
-				mmtf.addMetamodelEditors(metamodel);
+				model = mmtf.createModelType(elem);
+				mmtf.addModelTypeEditors(model);
 			}
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * Uninstalls a Metamodels extension.
+	 * Uninstalls a Models extension.
 	 */
 	@Override
 	public void removed(IExtension[] extensions) {
@@ -72,7 +66,7 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				mmtf.removeMetamodel(elem);
+				mmtf.removeModelType(elem);
 			}
 		}
 	}

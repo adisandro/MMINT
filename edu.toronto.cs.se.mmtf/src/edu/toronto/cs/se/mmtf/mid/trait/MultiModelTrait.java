@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +31,8 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.mapping.BinaryLink;
+import edu.toronto.cs.se.mmtf.mid.mapping.Link;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
@@ -78,36 +79,20 @@ public class MultiModelTrait {
 
 		// add to multimodel container
 		if (multiModel != null) {
-			multiModel.getModels().put(modelUri, model);
+			multiModel.getModels().put(modelUri.toPlatformString(true), model);
 		}
-		// point to uri and root
+		// set basic attributes
 		if (modelUri == null) {
 			modelUri = EcoreUtil.getURI(model);
+			//TODO MMTF: occhio devo rendere l'uri univoco qui
 		}
+		//TODO MMTF: setType: prendo uri dal root, ma le relationships?
+		//TODO MMTF: model.setType(MMTFRegistry.getModelType(modelTypeUri));
+		model.setLevel(MidLevel.INSTANCES);
 		model.setRoot(root);
 		model.setUri(modelUri.toPlatformString(true));
 		model.setOrigin(origin);
-	}
-
-	/**
-	 * Checks the uniqueness of a model in a list of models.
-	 * 
-	 * @param models
-	 *            The list of models.
-	 * @param modelUri
-	 *            The uri of the model to be imported.
-	 * @return Null if the model is unique, the model reference already in the
-	 *         list otherwise.
-	 */
-	private static Model getModelUnique(EList<Model> models, String modelUri) {
-
-		for (Model model : models) {
-			if (modelUri.equals(model.getUri())) {
-				return model;
-			}
-		}
-
-		return null;
+		model.setSupertype(null);
 	}
 
 	/**
@@ -243,60 +228,60 @@ public class MultiModelTrait {
 
 		// copy mapping structure
 		ModelRel origModelRel = (ModelRel) modelRel.getRoot();
-		HashMap<EObject, ModelElement> modelElements = new HashMap<EObject, ModelElementReference>();
-		for (ModelContainer origContainer : origMappingRef.getContainers()) {
+		HashMap<EObject, ModelElement> elements = new HashMap<EObject, ModelElement>();
+		for (ModelContainer origContainer : origModelRel.getContainers()) {
 			URI modelUri = URI.createPlatformResourceURI(origContainer.getContainedModel().getUri(), true);
-			ModelReference modelRef = getModelUnique(multiModel, modelUri); // model can be already in the MID
-			if (modelRef == null) {
-				modelRef = createModelReference(ModelReferenceOrigin.IMPORTED, multiModel, modelUri);
+			Model model = getModelUnique(multiModel, modelUri); // the model can already be in the MID
+			if (model == null) {
+				model = createModel(ModelOrigin.IMPORTED, multiModel, modelUri);
 			}
-			mappingRef.getModels().add(modelRef);
-			ModelContainer container = createMappingReferenceModelContainer(mappingRef, modelRef);
-			for (ModelElementReference origElementRef : origContainer.getElements()) {
-				ModelElementReference elementRef = createModelElementReference(container, origElementRef.getPointer());
-				elementRef.setName(origElementRef.getName());
-				modelElements.put(elementRef.getPointer(), elementRef);
+			modelRel.getModels().add(model);
+			ModelContainer container = createModelRelContainer(modelRel, model);
+			for (ModelElement origElement : origContainer.getElements()) {
+				ModelElement element = createModelElement(container, origElement.getPointer());
+				element.setName(origElement.getName());
+				elements.put(element.getPointer(), element);
 			}
 		}
-		for (MappingLink origLink : origMappingRef.getMappingLinks()) {
-			MappingLink link = (MappingLink) MappingFactory.eINSTANCE.create(origLink.eClass());
+		for (Link origLink : origModelRel.getLinks()) {
+			Link link = (Link) MappingFactory.eINSTANCE.create(origLink.eClass());
 			link.setName(origLink.getName());
-			mappingRef.getMappingLinks().add(link);
-			for (ModelElementReference origElementRef : origLink.getElements()) {
-				link.getElements().add(modelElements.get(origElementRef.getPointer()));
+			modelRel.getLinks().add(link);
+			for (ModelElement origElement : origLink.getElements()) {
+				link.getElements().add(elements.get(origElement.getPointer()));
 			}
 		}
 
-		return mappingRef;
+		return modelRel;
 	}
 
 	/**
-	 * Removes a model container from a mapping reference following the removal
-	 * of a model reference.
+	 * Removes a model container from a model relationship following the removal
+	 * of a model.
 	 * 
-	 * @param mappingRef
-	 *            The mapping reference.
-	 * @param modelRef
-	 *            The model reference to be removed.
+	 * @param modelRel
+	 *            The model relationship.
+	 * @param model
+	 *            The model to be removed.
 	 */
-	public static void removeMappingReferenceModelContainer(MappingReference mappingRef, ModelReference modelRef) {
+	public static void removeModelRelContainer(ModelRel modelRel, Model model) {
 
-		for (ModelContainer modelContainer : mappingRef.getContainers()) {
-			if (modelContainer.getModel() == modelRef) {
-				mappingRef.getContainers().remove(modelContainer);
-				ArrayList<MappingLink> delLinks = new ArrayList<MappingLink>();
-				for (ModelElementReference element : modelContainer.getElements()) {
-					for (MappingLink link : element.getMappingLinks()) {
-						// binary mappings have no longer sense, delete them later to avoid concurrent modification problems
-						if (link instanceof BinaryMappingLink) {
+		for (ModelContainer container : modelRel.getContainers()) {
+			if (container.getModel() == model) {
+				modelRel.getContainers().remove(container);
+				ArrayList<Link> delLinks = new ArrayList<Link>();
+				for (ModelElement element : container.getElements()) {
+					for (Link link : element.getLinks()) {
+						// binary links have no longer sense, delete them later to avoid concurrent modification problems
+						if (link instanceof BinaryLink) {
 							delLinks.add(link);
 						}
 					}
-					element.getMappingLinks().clear();
+					element.getLinks().clear();
 				}
-				for (MappingLink delLink : delLinks) {
+				for (Link delLink : delLinks) {
 					delLink.getElements().clear();
-					mappingRef.getMappingLinks().remove(delLink);
+					modelRel.getLinks().remove(delLink);
 				}
 				break;
 			}
@@ -310,27 +295,33 @@ public class MultiModelTrait {
 	 *            The root multimodel.
 	 * @param modelUri
 	 *            The uri of the model to be imported.
-	 * @return Null if the model is unique, the model reference already in the
-	 *         MID otherwise.
+	 * @return Null if the model is unique, the model already in the MID
+	 *         otherwise.
 	 */
-	public static ModelReference getModelUnique(MultiModel multiModel, URI modelUri) {
+	public static Model getModelUnique(MultiModel multiModel, URI modelUri) {
 
-		return getModelUnique(multiModel.getElements(), modelUri.toPlatformString(true));
+		return multiModel.getModels().get(modelUri.toPlatformString(true));
 	}
 
 	/**
 	 * Checks the uniqueness of a model to be imported in a Mapping diagram.
 	 * 
-	 * @param mappingRef
-	 *            The root mapping reference.
+	 * @param modelRel
+	 *            The root model relationship.
 	 * @param modelUri
 	 *            The uri of the model to be imported.
-	 * @return Null if the model is unique, the model reference already in the
-	 *         MID otherwise.
+	 * @return Null if the model is unique, the model already in the MID
+	 *         otherwise.
 	 */
-	public static ModelReference getModelUnique(MappingReference mappingRef, URI modelUri) {
+	public static Model getModelUnique(ModelRel modelRel, URI modelUri) {
 
-		return getModelUnique(mappingRef.getModels(), modelUri.toPlatformString(true));
+		for (Model model : modelRel.getModels()) {
+			if (modelUri.equals(model.getUri())) {
+				return model;
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -356,17 +347,17 @@ public class MultiModelTrait {
 	/**
 	 * Checks the uniqueness of a model to be imported in a Mapping diagram.
 	 * 
-	 * @param mappingRef
-	 *            The root mapping reference.
+	 * @param modelRel
+	 *            The root model relationship.
 	 * @param modelUri
 	 *            The uri of the model to be imported.
 	 * @return True if the model is unique.
 	 * @throws MMTFException
 	 *             If the model is not unique.
 	 */
-	public static boolean assertModelUnique(MappingReference mappingRef, URI modelUri) throws MMTFException {
+	public static boolean assertModelUnique(ModelRel modelRel, URI modelUri) throws MMTFException {
 
-		if (getModelUnique(mappingRef, modelUri) != null) {
+		if (getModelUnique(modelRel, modelUri) != null) {
 			throw new MMTFException("Imported model " + modelUri + " is already in the diagram");
 		}
 

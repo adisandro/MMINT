@@ -20,5 +20,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ui.ide,
  org.eclipse.emf.ecoretools.diagram
-Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmtf.Activator
+Bundle-ActivationPolicy: lazy

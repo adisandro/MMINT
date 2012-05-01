@@ -1,20 +1,13 @@
-/*
- * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+/**
+ * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay, Vivien Suen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * This file is part of MMTF ver. 0.9.0.
- * 
- * MMTF is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * MMTF is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmtf;
 
@@ -34,10 +27,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
+import edu.toronto.cs.se.mmtf.mid.Editor;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.repository.EcoreExtension;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
@@ -48,19 +43,24 @@ import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
  * The Model Management Tool Framework adds the ability to create and manage
  * Model Interconnection Diagrams (MIDs). A MID is a diagram to represent a
  * collection of models (a multimodel) and the relationships among them at a
- * high level of abstraction (mappings). Multimodels can be used to support the
+ * high level of abstraction. Multimodels can be used to support the
  * development, comprehension, consistency management and evolution of sets of
- * related models
+ * related models.
  * 
  * @author Alessio Di Sandro
  * 
  */
 public class MMTF {
 
+	/** The root model type's uri. */
+	private final static String ROOT_MODEL_TYPE_URI = "http:///edu/toronto/cs/se/mmtf/Model";
+
 	/** The Models extension point's id. */
 	private final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.models";
 	/** The Models extension point's uri attribute. */
 	private final static String MODELS_ATTR_URI = "uri";
+	/** The Models extension point's supertypeUri attribute. */
+	private final static String MODELS_ATTR_SUPERTYPE_URI = "supertypeUri";
 	/** The Editors extension point's id. */
 	private final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
 	/** The Editors extension point's modelTypeUri attribute. */
@@ -83,107 +83,136 @@ public class MMTF {
 	private static MultiModel repository;
 
 	/**
-	 * Adds a model type to the repository. Requires the metamodel package to be
-	 * registered too through the org.eclipse.emf.ecore.generated_package
-	 * extension point.
+	 * Creates and adds a model type to the repository. Requires the model
+	 * package to be registered too through the
+	 * org.eclipse.emf.ecore.generated_package extension point.
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 * @return The created model type.
 	 */
-	public Model addModelType(IConfigurationElement extensionConfig) {
+	public Model createModelType(IConfigurationElement extensionConfig) {
 
-		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
+		// create
 		Model model = MidFactory.eINSTANCE.createModel();
-		EPackage metamodelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
 
-		metamodel.setName(extensionConfig.getDeclaringExtension().getLabel());
-		metamodel.setUri(uri);
-		if (metamodelPackage != null) {
-			String metamodelPackageName = metamodelPackage.getName();
-			metamodel.setFileExtension(metamodelPackageName);
-			// possibly register file extension to load resources
-			if (!resourceMap.containsKey(metamodelPackageName)) {
-				resourceMap.put(metamodelPackageName, new XMIResourceFactoryImpl());
+		// set basic attributes
+		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
+		model.setName(extensionConfig.getDeclaringExtension().getLabel());
+		model.setType(null);
+		model.setLevel(MidLevel.TYPES);
+		model.setUri(uri);
+		model.setOrigin(ModelOrigin.IMPORTED);
+
+		// possibly set supertype
+		String supertypeUri = extensionConfig.getAttribute(MODELS_ATTR_SUPERTYPE_URI);
+		Model superModel = null;
+		if (supertypeUri == null) {
+			if (!uri.equals(ROOT_MODEL_TYPE_URI)) {
+				superModel = MMTFRegistry.getModelType(ROOT_MODEL_TYPE_URI);
 			}
 		}
-		repository.getMetamodels().put(uri, metamodel);
+		else {
+			superModel = MMTFRegistry.getModelType(supertypeUri);
+		}
+		model.setSupertype(superModel);
 
-		return metamodel;
+		// look for model package
+		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+		EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
+		if (modelPackage != null) {
+			model.setRoot(modelPackage);
+			String modelPackageName = modelPackage.getName();
+			model.setFileExtension(modelPackageName);
+			// possibly register file extension to load resources
+			if (!resourceMap.containsKey(modelPackageName)) {
+				resourceMap.put(modelPackageName, new XMIResourceFactoryImpl());
+			}
+		}
+
+		// register model type
+		repository.getModels().put(uri, model);
+
+		return model;
 	}
-	
+
 	/**
-	 * Adds existing editors to a new metamodel.
+	 * Adds existing editors to a new model type.
 	 * 
-	 * @param metamodel
-	 *            The new metamodel.
+	 * @param model
+	 *            The new model type.
 	 */
-	public void addMetamodelEditors(Metamodel metamodel) {
+	public void addModelTypeEditors(Model model) {
 
 		Editor editor;
 		for (Entry<String, Editor> entry : repository.getEditors().entrySet()) {
 			editor = entry.getValue();
-			if (editor.getMetamodelUri().equals(metamodel.getUri())) {
-				metamodel.getEditors().add(editor);
+			if (editor.getModelUri().equals(model.getUri())) {
+				model.getEditors().add(editor);
 			}
 		}
 	}
 
 	/**
-	 * Removes a metamodel from the repository.
+	 * Removes a model type from the repository.
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 */
-	public void removeMetamodel(IConfigurationElement extensionConfig) {
+	public void removeModelType(IConfigurationElement extensionConfig) {
 
-		String uri = extensionConfig.getAttribute(METAMODELS_ATTR_URI);
-		Metamodel metamodel = repository.getMetamodels().removeKey(uri);
-		metamodel.getEditors().clear();
+		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
+		Model model = repository.getModels().removeKey(uri);
+		model.getEditors().clear();
 	}
 
 	/**
-	 * Adds an editor to the repository.
+	 * Creates and adds an editor to the repository.
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 * @return The created editor.
 	 */
-	public Editor addEditor(IConfigurationElement extensionConfig) {
+	public Editor createEditor(IConfigurationElement extensionConfig) {
 
-		String metamodelUri = extensionConfig.getAttribute(EDITORS_ATTR_METAMODEL_URI);
+		// create
 		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_IS_DIAGRAM);
-		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
-		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARD_ID);
 		Editor editor;
-
 		if (Boolean.parseBoolean(isDiagram)) {
-			editor = RepositoryFactory.eINSTANCE.createDiagram();
+			editor = MidFactory.eINSTANCE.createDiagram();
 		}
 		else {
-			editor = RepositoryFactory.eINSTANCE.createEditor();
+			editor = MidFactory.eINSTANCE.createEditor();
 		}
+
+		// set basic attributes
+		String modelUri = extensionConfig.getAttribute(EDITORS_ATTR_MODEL_TYPE_URI);
+		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
+		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARD_ID);
 		editor.setName(extensionConfig.getDeclaringExtension().getLabel());
-		editor.setMetamodelUri(metamodelUri);
-		editor.setEditorId(editorId);
+		editor.setType(null);
+		editor.setLevel(MidLevel.TYPES);
+		editor.setModelUri(modelUri);
+		editor.setId(editorId);
 		editor.setWizardId(wizardId);
+
+		// register editor
 		repository.getEditors().put(editorId, editor);
 
 		return editor;
 	}
 	
 	/**
-	 * Adds a new editor to an existing metamodel.
+	 * Adds a new editor to an existing model type.
 	 * 
 	 * @param editor
 	 *            The new editor.
 	 */
-	public void addMetamodelEditors(Editor editor) {
+	public void addModelTypeEditors(Editor editor) {
 
-		Metamodel metamodel = repository.getMetamodels().get(editor.getMetamodelUri());
-		if (metamodel != null) {
-			metamodel.getEditors().add(editor);
+		Model model = repository.getModels().get(editor.getModelUri());
+		if (model != null) {
+			model.getEditors().add(editor);
 		}
 	}
 
@@ -200,7 +229,7 @@ public class MMTF {
 
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			if (elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID).equals(editor.getEditorId())) {
+			if (elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID).equals(editor.getId())) {
 				for (String fileExtension : elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS).split(",")) {
 					editor.getFileExtensions().add(fileExtension);
 				}
@@ -223,7 +252,11 @@ public class MMTF {
 		for (IConfigurationElement elem : config) {
 			editor = repository.getEditors().get(elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID));
 			if (editor != null) {
-				for (String fileExtension : elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS).split(",")) {
+				String extensions = elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS);
+				if (extensions == null) {
+					extensions = repository.getModels().get(editor.getModelUri()).getFileExtension();
+				}
+				for (String fileExtension : extensions.split(",")) {
 					editor.getFileExtensions().add(fileExtension);
 				}
 			}
@@ -240,9 +273,9 @@ public class MMTF {
 
 		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
 		Editor editor = repository.getEditors().removeKey(editorId);
-		Metamodel metamodel = repository.getMetamodels().get(editor.getMetamodelUri());
-		if (metamodel != null) {
-			metamodel.getEditors().remove(editor);
+		Model model = repository.getModels().get(editor.getModelUri());
+		if (model != null) {
+			model.getEditors().remove(editor);
 		}
 	}
 
@@ -257,27 +290,22 @@ public class MMTF {
 		repository = MidFactory.eINSTANCE.createMultiModel();
 		IConfigurationElement[] config;
 
-		//TODO MMTF: add default Model and ModelRel
 		// model types
 		config = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			addModelType(elem);
+			createModelType(elem);
 		}
 
 		// editors
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		Editor editor;
 		for (IConfigurationElement elem : config) {
-			editor = addEditor(elem);
-			addMetamodelEditors(editor);
+			editor = createEditor(elem);
+			addModelTypeEditors(editor);
 		}		
 		addEditorFileExtensions(registry);
 
 		//TODO MMTF: relationships and operators
-
-		// built-in ecore extension
-		EcoreExtension ecore = new EcoreExtension(repository);
-		ecore.addToRepository();
 	}
 
 	/**
@@ -303,15 +331,20 @@ public class MMTF {
 	 */
 	public static class MMTFRegistry {
 
+		public static Model getModelType(String modelTypeUri) {
+
+			return repository.getModels().get(modelTypeUri);
+		}
+
 		/**
-		 * Gets the list of registered file extensions for metamodels.
+		 * Gets the list of registered file extensions for all model types.
 		 * 
 		 * @return The list of registered file extensions.
 		 */
-		public static ArrayList<String> getMetamodelFileExtensions() {
+		public static ArrayList<String> getModelTypeFileExtensions() {
 
 			ArrayList<String> filenames = new ArrayList<String>();
-			for (Entry<String, Metamodel> entry : repository.getMetamodels().entrySet()) {
+			for (Entry<String, Model> entry : repository.getModels().entrySet()) {
 				filenames.add(entry.getValue().getFileExtension());
 			}
 
@@ -319,30 +352,30 @@ public class MMTF {
 		}
 
 		/**
-		 * Gets the list of registered editors for a metamodel (identified by
+		 * Gets the list of registered editors for a model type (identified by
 		 * its uri).
 		 * 
-		 * @param metamodelUri
-		 *            The metamodel uri.
-		 * @return The list of registered editors
+		 * @param modelUri
+		 *            The model type uri.
+		 * @return The list of registered editors.
 		 */
-		public static EList<Editor> getEditorsForMetamodel(String metamodelUri) {
+		public static EList<Editor> getEditorsForModelType(String modelUri) {
 
-			return repository.getMetamodels().get(metamodelUri).getEditors();
+			return repository.getModels().get(modelUri).getEditors();
 		}
 
 		/**
-		 * Gets the list of registered metamodels.
+		 * Gets the list of registered model types.
 		 * 
-		 * @return The list of registered metamodels.
+		 * @return The list of registered model types.
 		 */
-		public static Collection<Metamodel> getMetamodels() {
+		public static Collection<Model> getModelTypes() {
 
-			return repository.getMetamodels().values();
+			return repository.getModels().values();
 		}
 
 		/**
-		 * Gets a tree dialog to select among registered metamodels and their
+		 * Gets a tree dialog to select among registered model types and their
 		 * editors.
 		 * 
 		 * @return The tree dialog.

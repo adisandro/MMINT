@@ -1,20 +1,13 @@
-/*
- * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+/**
+ * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay, Vivien Suen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * This file is part of MMTF ver. 0.9.0.
- * 
- * MMTF is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * MMTF is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmtf.repository.ui;
 
@@ -22,8 +15,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-import edu.toronto.cs.se.mmtf.repository.Extension;
-import edu.toronto.cs.se.mmtf.repository.Repository;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
 /**
  * The label provider for the repository tree dialog.
@@ -84,11 +77,11 @@ public class RepositoryDialogLabelProvider implements ILabelProvider {
 	@Override
 	public String getText(Object element) {
 
-		if (element instanceof Repository) {
+		if (element instanceof MultiModel) {
 			return "Repository";
 		}
-		if (element instanceof Extension) {
-			return ((Extension) element).getName();
+		if (element instanceof ExtendibleElement) {
+			return ((ExtendibleElement) element).getName();
 		}
 
 		return "";

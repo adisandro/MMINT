@@ -1,29 +1,22 @@
-/*
- * Copyright (C) 2012 Marsha Chechik, Alessio Di Sandro, Rick Salay
+/**
+ * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay, Vivien Suen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * This file is part of MMTF ver. 0.9.0.
- * 
- * MMTF is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * MMTF is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with MMTF.  If not, see <http://www.gnu.org/licenses/>.
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmtf.repository.ui;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmtf.repository.Editor;
-import edu.toronto.cs.se.mmtf.repository.Metamodel;
-import edu.toronto.cs.se.mmtf.repository.Repository;
+import edu.toronto.cs.se.mmtf.mid.Editor;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
 /**
  * The content provider for the repository tree dialog.
@@ -34,7 +27,7 @@ import edu.toronto.cs.se.mmtf.repository.Repository;
 public class RepositoryDialogContentProvider implements ITreeContentProvider {
 
 	/** The repository. */
-	private Repository repository;
+	private MultiModel repository;
 
 	/**
 	 * Constructor: initialises the repository.
@@ -42,7 +35,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 	 * @param repository
 	 *            The repository.
 	 */
-	public RepositoryDialogContentProvider(Repository repository) {
+	public RepositoryDialogContentProvider(MultiModel repository) {
 
 		this.repository = repository;
 	}
@@ -80,11 +73,11 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 	@Override
 	public Object[] getChildren(Object parentElement) {
 
-		if (parentElement instanceof Repository) {
-			return ((Repository) parentElement).getMetamodels().values().toArray();
+		if (parentElement instanceof MultiModel) {
+			return ((MultiModel) parentElement).getModels().values().toArray();
 		}
-		if (parentElement instanceof Metamodel) {
-			return ((Metamodel) parentElement).getEditors().toArray();
+		if (parentElement instanceof Model) {
+			return ((Model) parentElement).getEditors().toArray();
 		}
 
 		return new Object[] {};
@@ -96,11 +89,11 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 	@Override
 	public Object getParent(Object element) {
 
-		if (element instanceof Metamodel) {
+		if (element instanceof Model) {
 			return repository;
 		}
 		if (element instanceof Editor) {
-			return repository.getMetamodels().get(((Editor) element).getMetamodelUri());
+			return repository.getModels().get(((Editor) element).getModelUri());
 		}
 
 		return null;
@@ -112,11 +105,11 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 	@Override
 	public boolean hasChildren(Object element) {
 
-		if (element instanceof Repository  ) {
-			return !((Repository) element).getMetamodels().isEmpty();
+		if (element instanceof MultiModel  ) {
+			return !((MultiModel) element).getModels().isEmpty();
 		}
-		if (element instanceof Metamodel) {
-			return !((Metamodel) element).getEditors().isEmpty();
+		if (element instanceof Model) {
+			return !((Model) element).getEditors().isEmpty();
 		}
 
 		return false;
