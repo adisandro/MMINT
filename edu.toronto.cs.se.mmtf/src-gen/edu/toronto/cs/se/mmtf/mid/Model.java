@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='supertypeType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot supertypeType='if supertype.oclIsUndefined() then true else self.oclIsKindOf(supertype.oclType()) endif'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot supertypeType='not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())'"
  * @generated
  */
 public interface Model extends ExtendibleElement {

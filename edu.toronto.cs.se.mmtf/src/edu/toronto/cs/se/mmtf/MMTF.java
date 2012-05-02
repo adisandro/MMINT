@@ -61,6 +61,7 @@ public class MMTF {
 	private final static String MODELS_ATTR_URI = "uri";
 	/** The Models extension point's supertypeUri attribute. */
 	private final static String MODELS_ATTR_SUPERTYPE_URI = "supertypeUri";
+
 	/** The Editors extension point's id. */
 	private final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
 	/** The Editors extension point's modelTypeUri attribute. */
@@ -71,6 +72,11 @@ public class MMTF {
 	private final static String EDITORS_ATTR_EDITOR_ID = "editorId";
 	/** The Editors extension point's wizardId attribute. */
 	private final static String EDITORS_ATTR_WIZARD_ID = "wizardId";
+
+	/** The Relationships extension point's id. */
+	private final static String RELATIONSHIPS_EXT_POINT = "edu.toronto.cs.se.mmtf.relationships";
+	/** The Relationships extension point's isNary attribute. */
+	private final static String RELATIONSHIPS_ATTR_IS_NARY = "isNary";
 
 	/** The Eclipse's Editors extension point's id. */
 	private final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";

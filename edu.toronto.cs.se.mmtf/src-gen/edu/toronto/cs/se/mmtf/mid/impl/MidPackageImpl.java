@@ -906,7 +906,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (modelEClass, 
 		   source, 
 		   new String[] {
-			 "supertypeType", "if supertype.oclIsUndefined() then true else self.oclIsKindOf(supertype.oclType()) endif"
+			 "supertypeType", "not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())"
 		   });			
 		addAnnotation
 		  (parameterEClass, 

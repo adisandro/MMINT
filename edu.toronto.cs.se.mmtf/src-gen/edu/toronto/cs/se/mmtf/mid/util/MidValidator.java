@@ -214,7 +214,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MODEL__SUPERTYPE_TYPE__EEXPRESSION = "if supertype.oclIsUndefined() then true else self.oclIsKindOf(supertype.oclType()) endif";
+	protected static final String MODEL__SUPERTYPE_TYPE__EEXPRESSION = "not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())";
 
 	/**
 	 * Validates the supertypeType constraint of '<em>Model</em>'.

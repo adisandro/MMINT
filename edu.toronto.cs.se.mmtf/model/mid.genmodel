@@ -75,7 +75,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToParameterMap/key"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToParameterMap/value"/>
     </genClasses>
-    <nestedGenPackages prefix="Mapping" disposableProviderFactory="true" ecorePackage="mid.ecore#//mapping">
+    <nestedGenPackages prefix="Mapping" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
+        ecorePackage="mid.ecore#//mapping">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//mapping/ModelElementCategory">
         <genEnumLiterals ecoreEnumLiteral="mid.ecore#//mapping/ModelElementCategory/ENTITY"/>
         <genEnumLiterals ecoreEnumLiteral="mid.ecore#//mapping/ModelElementCategory/RELATIONSHIP"/>
