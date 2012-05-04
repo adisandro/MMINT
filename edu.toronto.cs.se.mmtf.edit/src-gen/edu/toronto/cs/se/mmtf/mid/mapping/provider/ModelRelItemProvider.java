@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -74,6 +75,7 @@ public class ModelRelItemProvider
 			super.getPropertyDescriptors(object);
 
 			addModelsPropertyDescriptor(object);
+			addUnboundedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -96,6 +98,28 @@ public class ModelRelItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Unbounded feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUnboundedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelRel_unbounded_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelRel_unbounded_feature", "_UI_ModelRel_type"),
+				 MappingPackage.Literals.MODEL_REL__UNBOUNDED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -168,6 +192,9 @@ public class ModelRelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelRel.class)) {
+			case MappingPackage.MODEL_REL__UNBOUNDED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case MappingPackage.MODEL_REL__LINKS:
 			case MappingPackage.MODEL_REL__CONTAINERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

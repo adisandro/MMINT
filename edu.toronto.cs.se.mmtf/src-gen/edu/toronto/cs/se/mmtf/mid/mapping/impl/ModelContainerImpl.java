@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
@@ -43,11 +42,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getReferencedModel <em>Referenced Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getContainedModel <em>Contained Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getModel <em>Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,16 +62,6 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__NAME).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__TYPE).getSettingDelegate();
 
 	/**
 	 * The cached value of the '{@link #getReferencedModel() <em>Referenced Model</em>}' reference.
@@ -115,6 +104,16 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	protected EList<ModelElement> elements;
 
 	/**
+	 * The cached setting delegate for the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MappingPackage.Literals.MODEL_CONTAINER__TYPE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -147,17 +146,8 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendibleElement getType() {
-		return (ExtendibleElement)TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExtendibleElement basicGetType() {
-		return (ExtendibleElement)TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	public String getType() {
+		return (String)TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -297,9 +287,6 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 		switch (featureID) {
 			case MappingPackage.MODEL_CONTAINER__NAME:
 				return getName();
-			case MappingPackage.MODEL_CONTAINER__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 			case MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL:
 				if (resolve) return getReferencedModel();
 				return basicGetReferencedModel();
@@ -310,6 +297,8 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 				return basicGetModel();
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return getElements();
+			case MappingPackage.MODEL_CONTAINER__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -368,8 +357,6 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 		switch (featureID) {
 			case MappingPackage.MODEL_CONTAINER__NAME:
 				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case MappingPackage.MODEL_CONTAINER__TYPE:
-				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case MappingPackage.MODEL_CONTAINER__REFERENCED_MODEL:
 				return referencedModel != null;
 			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
@@ -378,6 +365,8 @@ public class ModelContainerImpl extends EObjectImpl implements ModelContainer {
 				return MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
 				return elements != null && !elements.isEmpty();
+			case MappingPackage.MODEL_CONTAINER__TYPE:
+				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

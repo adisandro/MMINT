@@ -26,12 +26,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getLinks <em>Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getContainers <em>Containers</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#isUnbounded <em>Unbounded</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelRel()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelContainers'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelContainers='models->size() = containers->size()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelContainers unboundedLevel'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelContainers='models->size() = containers->size()' unboundedLevel='unbounded = true implies level = MidLevel::TYPES'"
  * @generated
  */
 public interface ModelRel extends Model {
@@ -82,5 +83,31 @@ public interface ModelRel extends Model {
 	 * @generated
 	 */
 	EList<ModelContainer> getContainers();
+
+	/**
+	 * Returns the value of the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unbounded</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unbounded</em>' attribute.
+	 * @see #setUnbounded(boolean)
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelRel_Unbounded()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isUnbounded();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#isUnbounded <em>Unbounded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unbounded</em>' attribute.
+	 * @see #isUnbounded()
+	 * @generated
+	 */
+	void setUnbounded(boolean value);
 
 } // ModelRel

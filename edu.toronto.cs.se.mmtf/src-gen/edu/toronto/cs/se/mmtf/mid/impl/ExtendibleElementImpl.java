@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,64 +28,43 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getLevel <em>Level</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getSupertype <em>Supertype</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ExtendibleElementImpl extends EObjectImpl implements ExtendibleElement {
+public abstract class ExtendibleElementImpl extends TypedElementImpl implements ExtendibleElement {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getUri()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getUri()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String uri = URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getSupertype()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExtendibleElement type;
-
-	/**
-	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLevel()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final MidLevel LEVEL_EDEFAULT = MidLevel.INSTANCES;
-
-	/**
-	 * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLevel()
-	 * @generated
-	 * @ordered
-	 */
-	protected MidLevel level = LEVEL_EDEFAULT;
+	protected ExtendibleElement supertype;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,8 +90,8 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public String getUri() {
+		return uri;
 	}
 
 	/**
@@ -122,11 +99,11 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setUri(String newUri) {
+		String oldUri = uri;
+		uri = newUri;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__URI, oldUri, uri));
 	}
 
 	/**
@@ -134,16 +111,16 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendibleElement getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (ExtendibleElement)eResolveProxy(oldType);
-			if (type != oldType) {
+	public ExtendibleElement getSupertype() {
+		if (supertype != null && supertype.eIsProxy()) {
+			InternalEObject oldSupertype = (InternalEObject)supertype;
+			supertype = (ExtendibleElement)eResolveProxy(oldSupertype);
+			if (supertype != oldSupertype) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.EXTENDIBLE_ELEMENT__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
 			}
 		}
-		return type;
+		return supertype;
 	}
 
 	/**
@@ -151,8 +128,8 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendibleElement basicGetType() {
-		return type;
+	public ExtendibleElement basicGetSupertype() {
+		return supertype;
 	}
 
 	/**
@@ -160,32 +137,11 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(ExtendibleElement newType) {
-		ExtendibleElement oldType = type;
-		type = newType;
+	public void setSupertype(ExtendibleElement newSupertype) {
+		ExtendibleElement oldSupertype = supertype;
+		supertype = newSupertype;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__TYPE, oldType, type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MidLevel getLevel() {
-		return level;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLevel(MidLevel newLevel) {
-		MidLevel oldLevel = level;
-		level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, level));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
 	}
 
 	/**
@@ -196,13 +152,11 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
-				return getName();
-			case MidPackage.EXTENDIBLE_ELEMENT__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
-				return getLevel();
+			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+				return getUri();
+			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+				if (resolve) return getSupertype();
+				return basicGetSupertype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -215,14 +169,11 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
-				setName((String)newValue);
+			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+				setUri((String)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__TYPE:
-				setType((ExtendibleElement)newValue);
-				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
-				setLevel((MidLevel)newValue);
+			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+				setSupertype((ExtendibleElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,14 +187,11 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
+			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+				setUri(URI_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__TYPE:
-				setType((ExtendibleElement)null);
-				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
-				setLevel(LEVEL_EDEFAULT);
+			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+				setSupertype((ExtendibleElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -257,12 +205,10 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MidPackage.EXTENDIBLE_ELEMENT__TYPE:
-				return type != null;
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
-				return level != LEVEL_EDEFAULT;
+			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+				return supertype != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -277,10 +223,8 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", level: ");
-		result.append(level);
+		result.append(" (uri: ");
+		result.append(uri);
 		result.append(')');
 		return result.toString();
 	}

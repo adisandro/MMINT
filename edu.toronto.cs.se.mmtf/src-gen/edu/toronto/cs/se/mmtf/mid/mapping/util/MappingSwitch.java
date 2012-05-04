@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping.util;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
+import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.mapping.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -83,6 +84,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseModelRel(modelRel);
 				if (result == null) result = caseModel(modelRel);
 				if (result == null) result = caseExtendibleElement(modelRel);
+				if (result == null) result = caseTypedElement(modelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -92,6 +94,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModelRel(binaryModelRel);
 				if (result == null) result = caseModel(binaryModelRel);
 				if (result == null) result = caseExtendibleElement(binaryModelRel);
+				if (result == null) result = caseTypedElement(binaryModelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,6 +105,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModelRel(homomorphismModelRel);
 				if (result == null) result = caseModel(homomorphismModelRel);
 				if (result == null) result = caseExtendibleElement(homomorphismModelRel);
+				if (result == null) result = caseTypedElement(homomorphismModelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -115,6 +119,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				ModelElement modelElement = (ModelElement)theEObject;
 				T result = caseModelElement(modelElement);
 				if (result == null) result = caseExtendibleElement(modelElement);
+				if (result == null) result = caseTypedElement(modelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -122,6 +127,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				Link link = (Link)theEObject;
 				T result = caseLink(link);
 				if (result == null) result = caseExtendibleElement(link);
+				if (result == null) result = caseTypedElement(link);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -130,6 +136,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseBinaryLink(binaryLink);
 				if (result == null) result = caseLink(binaryLink);
 				if (result == null) result = caseExtendibleElement(binaryLink);
+				if (result == null) result = caseTypedElement(binaryLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -139,6 +146,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseBinaryLink(homomorphismLink);
 				if (result == null) result = caseLink(homomorphismLink);
 				if (result == null) result = caseExtendibleElement(homomorphismLink);
+				if (result == null) result = caseTypedElement(homomorphismLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -263,6 +271,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseHomomorphismLink(HomomorphismLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedElement(TypedElement object) {
 		return null;
 	}
 

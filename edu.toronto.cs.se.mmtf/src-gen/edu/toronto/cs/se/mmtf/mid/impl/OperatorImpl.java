@@ -40,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class OperatorImpl extends ExtendibleElementImpl implements Operator {
+public class OperatorImpl extends TypedElementImpl implements Operator {
 	/**
 	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' map.
 	 * <!-- begin-user-doc -->

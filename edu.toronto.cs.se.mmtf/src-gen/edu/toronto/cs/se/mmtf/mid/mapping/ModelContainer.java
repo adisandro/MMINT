@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.mapping;
 
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
 import org.eclipse.emf.common.util.EList;
@@ -27,11 +26,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel <em>Referenced Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel <em>Contained Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel <em>Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,20 +57,20 @@ public interface ModelContainer extends EObject {
 	String getName();
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
+	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelContainer_Type()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if model.oclIsUndefined() then null else model.type endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if model.oclIsUndefined() then \'\' else model.type endif'"
 	 * @generated
 	 */
-	ExtendibleElement getType();
+	String getType();
 
 	/**
 	 * Returns the value of the '<em><b>Referenced Model</b></em>' reference.

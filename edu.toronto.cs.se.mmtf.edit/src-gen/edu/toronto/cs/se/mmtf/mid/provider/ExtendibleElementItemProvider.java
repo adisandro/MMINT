@@ -21,8 +21,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,7 +29,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -41,7 +38,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ExtendibleElementItemProvider
-	extends ItemProviderAdapter
+	extends TypedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -69,27 +66,26 @@ public class ExtendibleElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
-			addLevelPropertyDescriptor(object);
+			addUriPropertyDescriptor(object);
+			addSupertypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Uri feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addUriPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ExtendibleElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_name_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__NAME,
+				 getString("_UI_ExtendibleElement_uri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_uri_feature", "_UI_ExtendibleElement_type"),
+				 MidPackage.Literals.EXTENDIBLE_ELEMENT__URI,
 				 true,
 				 false,
 				 false,
@@ -99,45 +95,23 @@ public class ExtendibleElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
+	 * This adds a property descriptor for the Supertype feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addSupertypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ExtendibleElement_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_type_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__TYPE,
+				 getString("_UI_ExtendibleElement_supertype_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_supertype_feature", "_UI_ExtendibleElement_type"),
+				 MidPackage.Literals.EXTENDIBLE_ELEMENT__SUPERTYPE,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Level feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLevelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExtendibleElement_level_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_level_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__LEVEL,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -168,8 +142,7 @@ public class ExtendibleElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExtendibleElement.class)) {
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
+			case MidPackage.EXTENDIBLE_ELEMENT__URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -186,17 +159,6 @@ public class ExtendibleElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MidEditPlugin.INSTANCE;
 	}
 
 }

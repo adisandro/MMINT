@@ -23,47 +23,18 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getFileExtension <em>File Extension</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getSupertype <em>Supertype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getEditors <em>Editors</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='supertypeType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot supertypeType='not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())'"
+ * @model
  * @generated
  */
 public interface Model extends ExtendibleElement {
-	/**
-	 * Returns the value of the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Uri</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Uri</em>' attribute.
-	 * @see #setUri(String)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Uri()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getUri();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.Model#getUri <em>Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Uri</em>' attribute.
-	 * @see #getUri()
-	 * @generated
-	 */
-	void setUri(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Root</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -144,32 +115,6 @@ public interface Model extends ExtendibleElement {
 	 * @generated
 	 */
 	void setFileExtension(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Supertype</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supertype</em>' reference.
-	 * @see #setSupertype(Model)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Supertype()
-	 * @model
-	 * @generated
-	 */
-	Model getSupertype();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.Model#getSupertype <em>Supertype</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Supertype</em>' reference.
-	 * @see #getSupertype()
-	 * @generated
-	 */
-	void setSupertype(Model value);
 
 	/**
 	 * Returns the value of the '<em><b>Editors</b></em>' reference list.

@@ -7,16 +7,15 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true" eSuperTypes="#//TypedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="typeLevel"/>
+      <details key="constraints" value="supertypeType"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="typeLevel" value="level = MidLevel::INSTANCES implies type.level = MidLevel::TYPES"/>
+      <details key="supertypeType" value="not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//ExtendibleElement"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//ExtendibleElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1"
@@ -27,23 +26,15 @@
         eType="#//EStringToOperatorMap" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="supertypeType"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="supertypeType" value="not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileExtension" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//Model"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
         eType="#//Editor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//ExtendibleElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//TypedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
         eType="#//EStringToParameterMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
@@ -94,7 +85,7 @@
     <eLiterals name="MODEL_REL" value="1"/>
     <eLiterals name="BOOL" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//ExtendibleElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//TypedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUri" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -109,6 +100,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Parameter"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="typeLevel"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="typeLevel" value="level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metatype" eType="#//TypedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="if metaType.oclIsUndefined() then '' else metaType.name endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eSubpackages name="mapping" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping"
       nsPrefix="mapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -118,10 +126,11 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ModelRel" eSuperTypes="#//Model">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="modelContainers"/>
+        <details key="constraints" value="modelContainers unboundedLevel"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="modelContainers" value="models->size() = containers->size()"/>
+        <details key="unboundedLevel" value="unbounded = true implies level = MidLevel::TYPES"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
           upperBound="-1" eType="#//Model"/>
@@ -129,6 +138,8 @@
           eType="#//mapping/Link" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="1"
           upperBound="-1" eType="#//mapping/ModelContainer" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unbounded" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BinaryModelRel" eSuperTypes="#//mapping/ModelRel">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -160,13 +171,6 @@
           <details key="derivation" value="if model.oclIsUndefined() then '' else model.name endif"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
-          eType="#//ExtendibleElement" changeable="false" volatile="true" transient="true"
-          derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="if model.oclIsUndefined() then null else model.type endif"/>
-        </eAnnotations>
-      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModel" eType="#//Model"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedModel" eType="#//Model"
           containment="true"/>
@@ -178,6 +182,13 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//mapping/ModelElement" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if model.oclIsUndefined() then '' else model.type endif"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelElement" eSuperTypes="#//ExtendibleElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" lowerBound="1"

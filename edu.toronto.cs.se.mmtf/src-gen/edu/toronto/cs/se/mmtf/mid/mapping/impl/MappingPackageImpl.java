@@ -224,6 +224,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getModelRel_Unbounded() {
+		return (EAttribute)modelRelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryModelRel() {
 		return binaryModelRelEClass;
 	}
@@ -260,8 +269,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelContainer_Type() {
-		return (EReference)modelContainerEClass.getEStructuralFeatures().get(1);
+	public EAttribute getModelContainer_Type() {
+		return (EAttribute)modelContainerEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -270,7 +279,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EReference getModelContainer_ReferencedModel() {
-		return (EReference)modelContainerEClass.getEStructuralFeatures().get(2);
+		return (EReference)modelContainerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -279,7 +288,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EReference getModelContainer_ContainedModel() {
-		return (EReference)modelContainerEClass.getEStructuralFeatures().get(3);
+		return (EReference)modelContainerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -288,7 +297,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EReference getModelContainer_Model() {
-		return (EReference)modelContainerEClass.getEStructuralFeatures().get(4);
+		return (EReference)modelContainerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -297,7 +306,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EReference getModelContainer_Elements() {
-		return (EReference)modelContainerEClass.getEStructuralFeatures().get(5);
+		return (EReference)modelContainerEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -413,6 +422,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(modelRelEClass, MODEL_REL__MODELS);
 		createEReference(modelRelEClass, MODEL_REL__LINKS);
 		createEReference(modelRelEClass, MODEL_REL__CONTAINERS);
+		createEAttribute(modelRelEClass, MODEL_REL__UNBOUNDED);
 
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 
@@ -420,11 +430,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		modelContainerEClass = createEClass(MODEL_CONTAINER);
 		createEAttribute(modelContainerEClass, MODEL_CONTAINER__NAME);
-		createEReference(modelContainerEClass, MODEL_CONTAINER__TYPE);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__REFERENCED_MODEL);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__CONTAINED_MODEL);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__MODEL);
 		createEReference(modelContainerEClass, MODEL_CONTAINER__ELEMENTS);
+		createEAttribute(modelContainerEClass, MODEL_CONTAINER__TYPE);
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CATEGORY);
@@ -486,6 +496,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getModelRel_Models(), theMidPackage.getModel(), null, "models", null, 1, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRel_Links(), this.getLink(), null, "links", null, 0, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRel_Containers(), this.getModelContainer(), null, "containers", null, 1, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelRel_Unbounded(), ecorePackage.getEBoolean(), "unbounded", null, 1, 1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -493,11 +504,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(modelContainerEClass, ModelContainer.class, "ModelContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelContainer_Name(), ecorePackage.getEString(), "name", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getModelContainer_Type(), theMidPackage.getExtendibleElement(), null, "type", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getModelContainer_ReferencedModel(), theMidPackage.getModel(), null, "referencedModel", null, 0, 1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelContainer_ContainedModel(), theMidPackage.getModel(), null, "containedModel", null, 0, 1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelContainer_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getModelContainer_Elements(), this.getModelElement(), null, "elements", null, 0, -1, ModelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelContainer_Type(), ecorePackage.getEString(), "type", null, 1, 1, ModelContainer.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelElement_Category(), this.getModelElementCategory(), "category", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -543,7 +554,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (modelRelEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "modelContainers"
+			 "constraints", "modelContainers unboundedLevel"
 		   });			
 		addAnnotation
 		  (binaryModelRelEClass, 
@@ -589,7 +600,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (modelRelEClass, 
 		   source, 
 		   new String[] {
-			 "modelContainers", "models->size() = containers->size()"
+			 "modelContainers", "models->size() = containers->size()",
+			 "unboundedLevel", "unbounded = true implies level = MidLevel::TYPES"
 		   });			
 		addAnnotation
 		  (binaryModelRelEClass, 
@@ -616,16 +628,16 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "derivation", "if model.oclIsUndefined() then \'\' else model.name endif"
 		   });		
 		addAnnotation
-		  (getModelContainer_Type(), 
-		   source, 
-		   new String[] {
-			 "derivation", "if model.oclIsUndefined() then null else model.type endif"
-		   });		
-		addAnnotation
 		  (getModelContainer_Model(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if containedModel.oclIsUndefined() then referencedModel else containedModel endif"
+		   });		
+		addAnnotation
+		  (getModelContainer_Type(), 
+		   source, 
+		   new String[] {
+			 "derivation", "if model.oclIsUndefined() then \'\' else model.type endif"
 		   });			
 		addAnnotation
 		  (binaryLinkEClass, 

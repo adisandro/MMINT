@@ -89,13 +89,13 @@ public interface MappingPackage extends EPackage {
 	int MODEL_REL__NAME = MidPackage.MODEL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__TYPE = MidPackage.MODEL__TYPE;
+	int MODEL_REL__METATYPE = MidPackage.MODEL__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -107,6 +107,15 @@ public interface MappingPackage extends EPackage {
 	int MODEL_REL__LEVEL = MidPackage.MODEL__LEVEL;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__TYPE = MidPackage.MODEL__TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,6 +123,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL__URI = MidPackage.MODEL__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__SUPERTYPE = MidPackage.MODEL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -141,15 +159,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL__FILE_EXTENSION = MidPackage.MODEL__FILE_EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__SUPERTYPE = MidPackage.MODEL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -188,13 +197,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_REL__CONTAINERS = MidPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__UNBOUNDED = MidPackage.MODEL_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_FEATURE_COUNT = MidPackage.MODEL_FEATURE_COUNT + 3;
+	int MODEL_REL_FEATURE_COUNT = MidPackage.MODEL_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -225,13 +243,13 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MODEL_REL__NAME = MODEL_REL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL__TYPE = MODEL_REL__TYPE;
+	int BINARY_MODEL_REL__METATYPE = MODEL_REL__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -243,6 +261,15 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MODEL_REL__LEVEL = MODEL_REL__LEVEL;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__TYPE = MODEL_REL__TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,6 +277,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__URI = MODEL_REL__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__SUPERTYPE = MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -277,15 +313,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__FILE_EXTENSION = MODEL_REL__FILE_EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__SUPERTYPE = MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -322,6 +349,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__CONTAINERS = MODEL_REL__CONTAINERS;
+
+	/**
+	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__UNBOUNDED = MODEL_REL__UNBOUNDED;
 
 	/**
 	 * The number of structural features of the '<em>Binary Model Rel</em>' class.
@@ -361,13 +397,13 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL__NAME = BINARY_MODEL_REL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHISM_MODEL_REL__TYPE = BINARY_MODEL_REL__TYPE;
+	int HOMOMORPHISM_MODEL_REL__METATYPE = BINARY_MODEL_REL__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -379,6 +415,15 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL__LEVEL = BINARY_MODEL_REL__LEVEL;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__TYPE = BINARY_MODEL_REL__TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -386,6 +431,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__URI = BINARY_MODEL_REL__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__SUPERTYPE = BINARY_MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -413,15 +467,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__FILE_EXTENSION = BINARY_MODEL_REL__FILE_EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HOMOMORPHISM_MODEL_REL__SUPERTYPE = BINARY_MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -458,6 +503,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__CONTAINERS = BINARY_MODEL_REL__CONTAINERS;
+
+	/**
+	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__UNBOUNDED = BINARY_MODEL_REL__UNBOUNDED;
 
 	/**
 	 * The number of structural features of the '<em>Homomorphism Model Rel</em>' class.
@@ -497,22 +551,13 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONTAINER__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CONTAINER__TYPE = 1;
-
-	/**
 	 * The feature id for the '<em><b>Referenced Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__REFERENCED_MODEL = 2;
+	int MODEL_CONTAINER__REFERENCED_MODEL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Contained Model</b></em>' containment reference.
@@ -521,7 +566,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__CONTAINED_MODEL = 3;
+	int MODEL_CONTAINER__CONTAINED_MODEL = 2;
 
 	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
@@ -530,7 +575,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__MODEL = 4;
+	int MODEL_CONTAINER__MODEL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -539,7 +584,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__ELEMENTS = 5;
+	int MODEL_CONTAINER__ELEMENTS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONTAINER__TYPE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Model Container</em>' class.
@@ -579,13 +633,13 @@ public interface MappingPackage extends EPackage {
 	int MODEL_ELEMENT__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
+	int MODEL_ELEMENT__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -595,6 +649,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -661,13 +742,13 @@ public interface MappingPackage extends EPackage {
 	int LINK__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
+	int LINK__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -677,6 +758,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINK__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -725,13 +833,13 @@ public interface MappingPackage extends EPackage {
 	int BINARY_LINK__NAME = LINK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_LINK__TYPE = LINK__TYPE;
+	int BINARY_LINK__METATYPE = LINK__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -741,6 +849,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LINK__LEVEL = LINK__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__TYPE = LINK__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__URI = LINK__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__SUPERTYPE = LINK__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -789,13 +924,13 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHISM_LINK__NAME = BINARY_LINK__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHISM_LINK__TYPE = BINARY_LINK__TYPE;
+	int HOMOMORPHISM_LINK__METATYPE = BINARY_LINK__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -805,6 +940,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_LINK__LEVEL = BINARY_LINK__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__TYPE = BINARY_LINK__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__URI = BINARY_LINK__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__SUPERTYPE = BINARY_LINK__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -888,6 +1050,17 @@ public interface MappingPackage extends EPackage {
 	EReference getModelRel_Containers();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#isUnbounded <em>Unbounded</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unbounded</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#isUnbounded()
+	 * @see #getModelRel()
+	 * @generated
+	 */
+	EAttribute getModelRel_Unbounded();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryModelRel <em>Binary Model Rel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -929,15 +1102,15 @@ public interface MappingPackage extends EPackage {
 	EAttribute getModelContainer_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType()
 	 * @see #getModelContainer()
 	 * @generated
 	 */
-	EReference getModelContainer_Type();
+	EAttribute getModelContainer_Type();
 
 	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel <em>Referenced Model</em>}'.
@@ -1135,6 +1308,14 @@ public interface MappingPackage extends EPackage {
 		EReference MODEL_REL__CONTAINERS = eINSTANCE.getModelRel_Containers();
 
 		/**
+		 * The meta object literal for the '<em><b>Unbounded</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_REL__UNBOUNDED = eINSTANCE.getModelRel_Unbounded();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1173,12 +1354,12 @@ public interface MappingPackage extends EPackage {
 		EAttribute MODEL_CONTAINER__NAME = eINSTANCE.getModelContainer_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_CONTAINER__TYPE = eINSTANCE.getModelContainer_Type();
+		EAttribute MODEL_CONTAINER__TYPE = eINSTANCE.getModelContainer_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Referenced Model</b></em>' reference feature.

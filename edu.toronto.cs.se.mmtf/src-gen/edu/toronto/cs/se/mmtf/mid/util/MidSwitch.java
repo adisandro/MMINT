@@ -80,6 +80,7 @@ public class MidSwitch<T> extends Switch<T> {
 			case MidPackage.EXTENDIBLE_ELEMENT: {
 				ExtendibleElement extendibleElement = (ExtendibleElement)theEObject;
 				T result = caseExtendibleElement(extendibleElement);
+				if (result == null) result = caseTypedElement(extendibleElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -93,13 +94,14 @@ public class MidSwitch<T> extends Switch<T> {
 				Model model = (Model)theEObject;
 				T result = caseModel(model);
 				if (result == null) result = caseExtendibleElement(model);
+				if (result == null) result = caseTypedElement(model);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MidPackage.OPERATOR: {
 				Operator operator = (Operator)theEObject;
 				T result = caseOperator(operator);
-				if (result == null) result = caseExtendibleElement(operator);
+				if (result == null) result = caseTypedElement(operator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,7 +139,7 @@ public class MidSwitch<T> extends Switch<T> {
 			case MidPackage.EDITOR: {
 				Editor editor = (Editor)theEObject;
 				T result = caseEditor(editor);
-				if (result == null) result = caseExtendibleElement(editor);
+				if (result == null) result = caseTypedElement(editor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -145,13 +147,19 @@ public class MidSwitch<T> extends Switch<T> {
 				Diagram diagram = (Diagram)theEObject;
 				T result = caseDiagram(diagram);
 				if (result == null) result = caseEditor(diagram);
-				if (result == null) result = caseExtendibleElement(diagram);
+				if (result == null) result = caseTypedElement(diagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MidPackage.ESTRING_TO_PARAMETER_MAP: {
 				@SuppressWarnings("unchecked") Map.Entry<String, Parameter> eStringToParameterMap = (Map.Entry<String, Parameter>)theEObject;
 				T result = caseEStringToParameterMap(eStringToParameterMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MidPackage.TYPED_ELEMENT: {
+				TypedElement typedElement = (TypedElement)theEObject;
+				T result = caseTypedElement(typedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -336,6 +344,21 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEStringToParameterMap(Map.Entry<String, Parameter> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedElement(TypedElement object) {
 		return null;
 	}
 

@@ -105,7 +105,6 @@ public class MMTF {
 		// set basic attributes
 		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
 		model.setName(extensionConfig.getDeclaringExtension().getLabel());
-		model.setType(null);
 		model.setLevel(MidLevel.TYPES);
 		model.setUri(uri);
 		model.setOrigin(ModelOrigin.IMPORTED);
@@ -196,7 +195,6 @@ public class MMTF {
 		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
 		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARD_ID);
 		editor.setName(extensionConfig.getDeclaringExtension().getLabel());
-		editor.setType(null);
 		editor.setLevel(MidLevel.TYPES);
 		editor.setModelUri(modelUri);
 		editor.setId(editorId);

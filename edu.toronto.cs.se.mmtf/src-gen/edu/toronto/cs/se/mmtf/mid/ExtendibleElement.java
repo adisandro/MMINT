@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Extendible Element</b></em>'.
@@ -21,98 +19,68 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getLevel <em>Level</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getUri <em>Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getSupertype <em>Supertype</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MidLevel::INSTANCES implies type.level = MidLevel::TYPES'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='supertypeType'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot supertypeType='not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())'"
  * @generated
  */
-public interface ExtendibleElement extends EObject {
+public interface ExtendibleElement extends TypedElement {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Uri</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement_Name()
+	 * @return the value of the '<em>Uri</em>' attribute.
+	 * @see #setUri(String)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement_Uri()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getName();
+	String getUri();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getUri <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Uri</em>' attribute.
+	 * @see #getUri()
 	 * @generated
 	 */
-	void setName(String value);
+	void setUri(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
+	 * If the meaning of the '<em>Supertype</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(ExtendibleElement)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement_Type()
-	 * @model required="true"
+	 * @return the value of the '<em>Supertype</em>' reference.
+	 * @see #setSupertype(ExtendibleElement)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement_Supertype()
+	 * @model
 	 * @generated
 	 */
-	ExtendibleElement getType();
+	ExtendibleElement getSupertype();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getSupertype <em>Supertype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Supertype</em>' reference.
+	 * @see #getSupertype()
 	 * @generated
 	 */
-	void setType(ExtendibleElement value);
-
-	/**
-	 * Returns the value of the '<em><b>Level</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.MidLevel}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Level</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Level</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidLevel
-	 * @see #setLevel(MidLevel)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement_Level()
-	 * @model required="true"
-	 * @generated
-	 */
-	MidLevel getLevel();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getLevel <em>Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Level</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidLevel
-	 * @see #getLevel()
-	 * @generated
-	 */
-	void setLevel(MidLevel value);
+	void setSupertype(ExtendibleElement value);
 
 } // ExtendibleElement

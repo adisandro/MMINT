@@ -144,9 +144,10 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateModel_supertypeType(modelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(modelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_modelContainers(modelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(modelRel, diagnostics, context);
 		return result;
 	}
 
@@ -180,6 +181,35 @@ public class MappingValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the unboundedLevel constraint of '<em>Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String MODEL_REL__UNBOUNDED_LEVEL__EEXPRESSION = "unbounded = true implies level = MidLevel::TYPES";
+
+	/**
+	 * Validates the unboundedLevel constraint of '<em>Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelRel_unboundedLevel(ModelRel modelRel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.MODEL_REL,
+				 modelRel,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "unboundedLevel",
+				 MODEL_REL__UNBOUNDED_LEVEL__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -194,9 +224,10 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateModel_supertypeType(binaryModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(binaryModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_modelContainers(binaryModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(binaryModelRel, diagnostics, context);
 		return result;
 	}
@@ -245,9 +276,10 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphismModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(homomorphismModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateModel_supertypeType(homomorphismModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(homomorphismModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_modelContainers(homomorphismModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateHomomorphismModelRel_sameModelTypes(homomorphismModelRel, diagnostics, context);
 		return result;
@@ -345,7 +377,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelElement, diagnostics, context);
 		return result;
 	}
 
@@ -364,7 +397,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(link, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(link, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(link, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(link, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(link, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(link, diagnostics, context);
 		return result;
 	}
 
@@ -383,7 +417,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(binaryLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(binaryLink, diagnostics, context);
 		return result;
 	}
@@ -432,7 +467,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphismLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(homomorphismLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(homomorphismLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateHomomorphismLink_sameElementTypes(homomorphismLink, diagnostics, context);
 		return result;

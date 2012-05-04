@@ -102,6 +102,20 @@ The relationship&apos;s enpoints model packages have to be registered too throug
          </documentation>
       </annotation>
       <complexType>
+         <attribute name="uri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The model element URI to be registered with MMTF.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="supertypeUri" type="string">
+            <annotation>
+               <documentation>
+                  The supertype model element URI.
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
@@ -144,6 +158,20 @@ The relationship&apos;s enpoints model packages have to be registered too throug
          <sequence>
             <element ref="linkElement" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
+         <attribute name="uri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The relationship link URI to be registered with MMTF.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="supertypeUri" type="string">
+            <annotation>
+               <documentation>
+                  The supertype relationship link URI.
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
@@ -168,10 +196,10 @@ The relationship&apos;s enpoints model packages have to be registered too throug
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="elementName" type="string" use="required">
+         <attribute name="elementUri" type="string" use="required">
             <annotation>
                <documentation>
-                  The link&apos;s endpoint&apos;s name (must be one of the model elements&apos; names).
+                  The link&apos;s endpoint&apos;s URI (one of the model elements&apos; URIs).
                </documentation>
             </annotation>
          </attribute>

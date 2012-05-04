@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -29,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -43,6 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#getLinks <em>Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#getContainers <em>Containers</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#isUnbounded <em>Unbounded</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,6 +81,26 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @ordered
 	 */
 	protected EList<ModelContainer> containers;
+
+	/**
+	 * The default value of the '{@link #isUnbounded() <em>Unbounded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnbounded()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UNBOUNDED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUnbounded() <em>Unbounded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnbounded()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean unbounded = UNBOUNDED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,6 +162,27 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isUnbounded() {
+		return unbounded;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnbounded(boolean newUnbounded) {
+		boolean oldUnbounded = unbounded;
+		unbounded = newUnbounded;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_REL__UNBOUNDED, oldUnbounded, unbounded));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -164,6 +208,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return getLinks();
 			case MappingPackage.MODEL_REL__CONTAINERS:
 				return getContainers();
+			case MappingPackage.MODEL_REL__UNBOUNDED:
+				return isUnbounded();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,6 +235,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				getContainers().clear();
 				getContainers().addAll((Collection<? extends ModelContainer>)newValue);
 				return;
+			case MappingPackage.MODEL_REL__UNBOUNDED:
+				setUnbounded((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -210,6 +259,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			case MappingPackage.MODEL_REL__CONTAINERS:
 				getContainers().clear();
 				return;
+			case MappingPackage.MODEL_REL__UNBOUNDED:
+				setUnbounded(UNBOUNDED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -228,8 +280,26 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return links != null && !links.isEmpty();
 			case MappingPackage.MODEL_REL__CONTAINERS:
 				return containers != null && !containers.isEmpty();
+			case MappingPackage.MODEL_REL__UNBOUNDED:
+				return unbounded != UNBOUNDED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (unbounded: ");
+		result.append(unbounded);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ModelRelImpl

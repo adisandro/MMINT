@@ -9,16 +9,11 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.mapping.provider;
+package edu.toronto.cs.se.mmtf.mid.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
-
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-
-import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
+import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,8 +22,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -42,12 +35,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.TypedElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelContainerItemProvider
+public class TypedElementItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -61,7 +54,7 @@ public class ModelContainerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelContainerItemProvider(AdapterFactory adapterFactory) {
+	public TypedElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -77,8 +70,8 @@ public class ModelContainerItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addReferencedModelPropertyDescriptor(object);
-			addModelPropertyDescriptor(object);
+			addMetatypePropertyDescriptor(object);
+			addLevelPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -95,10 +88,54 @@ public class ModelContainerItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelContainer_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_name_feature", "_UI_ModelContainer_type"),
-				 MappingPackage.Literals.MODEL_CONTAINER__NAME,
+				 getString("_UI_TypedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_name_feature", "_UI_TypedElement_type"),
+				 MidPackage.Literals.TYPED_ELEMENT__NAME,
+				 true,
 				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Metatype feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMetatypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TypedElement_metatype_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_metatype_feature", "_UI_TypedElement_type"),
+				 MidPackage.Literals.TYPED_ELEMENT__METATYPE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Level feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLevelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TypedElement_level_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_level_feature", "_UI_TypedElement_type"),
+				 MidPackage.Literals.TYPED_ELEMENT__LEVEL,
+				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -117,101 +154,15 @@ public class ModelContainerItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelContainer_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_type_feature", "_UI_ModelContainer_type"),
-				 MappingPackage.Literals.MODEL_CONTAINER__TYPE,
+				 getString("_UI_TypedElement_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_type_feature", "_UI_TypedElement_type"),
+				 MidPackage.Literals.TYPED_ELEMENT__TYPE,
 				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Referenced Model feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReferencedModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelContainer_referencedModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_referencedModel_feature", "_UI_ModelContainer_type"),
-				 MappingPackage.Literals.MODEL_CONTAINER__REFERENCED_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Model feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelContainer_model_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelContainer_model_feature", "_UI_ModelContainer_type"),
-				 MappingPackage.Literals.MODEL_CONTAINER__MODEL,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL);
-			childrenFeatures.add(MappingPackage.Literals.MODEL_CONTAINER__ELEMENTS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns ModelContainer.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelContainer"));
 	}
 
 	/**
@@ -222,10 +173,10 @@ public class ModelContainerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelContainer)object).getName();
+		String label = ((TypedElement)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ModelContainer_type") :
-			getString("_UI_ModelContainer_type") + " " + label;
+			getString("_UI_TypedElement_type") :
+			getString("_UI_TypedElement_type") + " " + label;
 	}
 
 	/**
@@ -239,13 +190,11 @@ public class ModelContainerItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ModelContainer.class)) {
-			case MappingPackage.MODEL_CONTAINER__NAME:
+		switch (notification.getFeatureID(TypedElement.class)) {
+			case MidPackage.TYPED_ELEMENT__NAME:
+			case MidPackage.TYPED_ELEMENT__LEVEL:
+			case MidPackage.TYPED_ELEMENT__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MappingPackage.MODEL_CONTAINER__CONTAINED_MODEL:
-			case MappingPackage.MODEL_CONTAINER__ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -261,31 +210,6 @@ public class ModelContainerItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
-				 MappingFactory.eINSTANCE.createModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
-				 MappingFactory.eINSTANCE.createBinaryModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
-				 MappingFactory.eINSTANCE.createHomomorphismModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONTAINER__CONTAINED_MODEL,
-				 MidFactory.eINSTANCE.createModel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MODEL_CONTAINER__ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelElement()));
 	}
 
 	/**

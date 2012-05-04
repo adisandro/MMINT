@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Editor extends ExtendibleElement {
+public interface Editor extends TypedElement {
 	/**
 	 * Returns the value of the '<em><b>Model Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->

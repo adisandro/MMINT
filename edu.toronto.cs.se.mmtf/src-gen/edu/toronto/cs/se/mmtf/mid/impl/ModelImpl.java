@@ -37,11 +37,9 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getFileExtension <em>File Extension</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getSupertype <em>Supertype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
  * </ul>
  * </p>
@@ -49,26 +47,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * @generated
  */
 public class ModelImpl extends ExtendibleElementImpl implements Model {
-	/**
-	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String URI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected String uri = URI_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getRoot() <em>Root</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -120,16 +98,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	protected String fileExtension = FILE_EXTENSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSupertype()
-	 * @generated
-	 * @ordered
-	 */
-	protected Model supertype;
-
-	/**
 	 * The cached value of the '{@link #getEditors() <em>Editors</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,27 +124,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	protected EClass eStaticClass() {
 		return MidPackage.Literals.MODEL;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getUri() {
-		return uri;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUri(String newUri) {
-		String oldUri = uri;
-		uri = newUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__URI, oldUri, uri));
 	}
 
 	/**
@@ -264,44 +211,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Model getSupertype() {
-		if (supertype != null && supertype.eIsProxy()) {
-			InternalEObject oldSupertype = (InternalEObject)supertype;
-			supertype = (Model)eResolveProxy(oldSupertype);
-			if (supertype != oldSupertype) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.MODEL__SUPERTYPE, oldSupertype, supertype));
-			}
-		}
-		return supertype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Model basicGetSupertype() {
-		return supertype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSupertype(Model newSupertype) {
-		Model oldSupertype = supertype;
-		supertype = newSupertype;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__SUPERTYPE, oldSupertype, supertype));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Editor> getEditors() {
 		if (editors == null) {
 			editors = new EObjectResolvingEList<Editor>(Editor.class, this, MidPackage.MODEL__EDITORS);
@@ -317,8 +226,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL__URI:
-				return getUri();
 			case MidPackage.MODEL__ROOT:
 				if (resolve) return getRoot();
 				return basicGetRoot();
@@ -326,9 +233,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getOrigin();
 			case MidPackage.MODEL__FILE_EXTENSION:
 				return getFileExtension();
-			case MidPackage.MODEL__SUPERTYPE:
-				if (resolve) return getSupertype();
-				return basicGetSupertype();
 			case MidPackage.MODEL__EDITORS:
 				return getEditors();
 		}
@@ -344,9 +248,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL__URI:
-				setUri((String)newValue);
-				return;
 			case MidPackage.MODEL__ROOT:
 				setRoot((EObject)newValue);
 				return;
@@ -355,9 +256,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return;
 			case MidPackage.MODEL__FILE_EXTENSION:
 				setFileExtension((String)newValue);
-				return;
-			case MidPackage.MODEL__SUPERTYPE:
-				setSupertype((Model)newValue);
 				return;
 			case MidPackage.MODEL__EDITORS:
 				getEditors().clear();
@@ -375,9 +273,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL__URI:
-				setUri(URI_EDEFAULT);
-				return;
 			case MidPackage.MODEL__ROOT:
 				setRoot((EObject)null);
 				return;
@@ -386,9 +281,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return;
 			case MidPackage.MODEL__FILE_EXTENSION:
 				setFileExtension(FILE_EXTENSION_EDEFAULT);
-				return;
-			case MidPackage.MODEL__SUPERTYPE:
-				setSupertype((Model)null);
 				return;
 			case MidPackage.MODEL__EDITORS:
 				getEditors().clear();
@@ -405,16 +297,12 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL__URI:
-				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case MidPackage.MODEL__ROOT:
 				return root != null;
 			case MidPackage.MODEL__ORIGIN:
 				return origin != ORIGIN_EDEFAULT;
 			case MidPackage.MODEL__FILE_EXTENSION:
 				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
-			case MidPackage.MODEL__SUPERTYPE:
-				return supertype != null;
 			case MidPackage.MODEL__EDITORS:
 				return editors != null && !editors.isEmpty();
 		}
@@ -431,9 +319,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (uri: ");
-		result.append(uri);
-		result.append(", origin: ");
+		result.append(" (origin: ");
 		result.append(origin);
 		result.append(", fileExtension: ");
 		result.append(fileExtension);

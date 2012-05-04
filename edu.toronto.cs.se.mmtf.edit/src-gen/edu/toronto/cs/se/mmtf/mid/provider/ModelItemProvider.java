@@ -66,36 +66,12 @@ public class ModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addUriPropertyDescriptor(object);
 			addRootPropertyDescriptor(object);
 			addOriginPropertyDescriptor(object);
 			addFileExtensionPropertyDescriptor(object);
-			addSupertypePropertyDescriptor(object);
 			addEditorsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Uri feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUriPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Model_uri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Model_uri_feature", "_UI_Model_type"),
-				 MidPackage.Literals.MODEL__URI,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -165,28 +141,6 @@ public class ModelItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Supertype feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSupertypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Model_supertype_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Model_supertype_feature", "_UI_Model_type"),
-				 MidPackage.Literals.MODEL__SUPERTYPE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Editors feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -245,7 +199,6 @@ public class ModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Model.class)) {
-			case MidPackage.MODEL__URI:
 			case MidPackage.MODEL__ORIGIN:
 			case MidPackage.MODEL__FILE_EXTENSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

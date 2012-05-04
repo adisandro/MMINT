@@ -22,9 +22,8 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ParameterType/BOOL"/>
     </genEnums>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/level"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/uri"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/supertype"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
@@ -32,11 +31,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/operators"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//Model">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/uri"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/root"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/origin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/fileExtension"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/supertype"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//Operator">
@@ -75,6 +72,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToParameterMap/key"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToParameterMap/value"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="mid.ecore#//TypedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//TypedElement/metatype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/level"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/type"/>
+    </genClasses>
     <nestedGenPackages prefix="Mapping" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
         ecorePackage="mid.ecore#//mapping">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//mapping/ModelElementCategory">
@@ -86,17 +89,18 @@
             ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/models"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/links"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/containers"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelRel/unbounded"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//mapping/BinaryModelRel"/>
       <genClasses ecoreClass="mid.ecore#//mapping/HomomorphismModelRel"/>
       <genClasses ecoreClass="mid.ecore#//mapping/ModelContainer">
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelContainer/name"/>
-        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/type"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/referencedModel"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/containedModel"/>
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/model"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelContainer/elements"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelContainer/type"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//mapping/ModelElement">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelElement/category"/>
