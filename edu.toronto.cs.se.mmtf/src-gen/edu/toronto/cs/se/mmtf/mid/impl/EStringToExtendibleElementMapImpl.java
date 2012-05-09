@@ -11,11 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.Operator;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
@@ -29,19 +28,19 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EString To Operator Map</b></em>'.
+ * An implementation of the model object '<em><b>EString To Extendible Element Map</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToOperatorMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToOperatorMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.Entry<String,Operator> {
+public class EStringToExtendibleElementMapImpl extends EObjectImpl implements BasicEMap.Entry<String,ExtendibleElement> {
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,21 +62,21 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	protected String key = KEY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTypedValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected Operator value;
+	protected ExtendibleElement value;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStringToOperatorMapImpl() {
+	protected EStringToExtendibleElementMapImpl() {
 		super();
 	}
 
@@ -88,7 +87,7 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.ESTRING_TO_OPERATOR_MAP;
+		return MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP;
 	}
 
 	/**
@@ -109,7 +108,7 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 		String oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.ESTRING_TO_OPERATOR_MAP__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY, oldKey, key));
 	}
 
 	/**
@@ -117,7 +116,15 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getTypedValue() {
+	public ExtendibleElement getTypedValue() {
+		if (value != null && value.eIsProxy()) {
+			InternalEObject oldValue = (InternalEObject)value;
+			value = (ExtendibleElement)eResolveProxy(oldValue);
+			if (value != oldValue) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+			}
+		}
 		return value;
 	}
 
@@ -126,47 +133,20 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypedValue(Operator newValue, NotificationChain msgs) {
-		Operator oldValue = value;
+	public ExtendibleElement basicGetTypedValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypedValue(ExtendibleElement newValue) {
+		ExtendibleElement oldValue = value;
 		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTypedValue(Operator newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE, null, msgs);
-			msgs = basicSetTypedValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE, newValue, newValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
-				return basicSetTypedValue(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
 	}
 
 	/**
@@ -177,10 +157,11 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__KEY:
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				return getTypedKey();
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
-				return getTypedValue();
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+				if (resolve) return getTypedValue();
+				return basicGetTypedValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,11 +174,11 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__KEY:
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				setTypedKey((String)newValue);
 				return;
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
-				setTypedValue((Operator)newValue);
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+				setTypedValue((ExtendibleElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -211,11 +192,11 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__KEY:
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				setTypedKey(KEY_EDEFAULT);
 				return;
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
-				setTypedValue((Operator)null);
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+				setTypedValue((ExtendibleElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -229,9 +210,9 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__KEY:
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);
@@ -305,7 +286,7 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getValue() {
+	public ExtendibleElement getValue() {
 		return getTypedValue();
 	}
 
@@ -314,8 +295,8 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator setValue(Operator value) {
-		Operator oldValue = getValue();
+	public ExtendibleElement setValue(ExtendibleElement value) {
+		ExtendibleElement oldValue = getValue();
 		setTypedValue(value);
 		return oldValue;
 	}
@@ -326,9 +307,9 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EMap<String, Operator> getEMap() {
+	public EMap<String, ExtendibleElement> getEMap() {
 		EObject container = eContainer();
-		return container == null ? null : (EMap<String, Operator>)container.eGet(eContainmentFeature());
+		return container == null ? null : (EMap<String, ExtendibleElement>)container.eGet(eContainmentFeature());
 	}
 
-} //EStringToOperatorMapImpl
+} //EStringToExtendibleElementMapImpl

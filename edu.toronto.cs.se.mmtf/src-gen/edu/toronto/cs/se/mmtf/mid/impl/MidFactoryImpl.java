@@ -71,14 +71,13 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 			case MidPackage.MULTI_MODEL: return createMultiModel();
 			case MidPackage.MODEL: return createModel();
 			case MidPackage.OPERATOR: return createOperator();
-			case MidPackage.ESTRING_TO_MODEL_MAP: return (EObject)createEStringToModelMap();
 			case MidPackage.ESTRING_TO_EDITOR_MAP: return (EObject)createEStringToEditorMap();
-			case MidPackage.ESTRING_TO_OPERATOR_MAP: return (EObject)createEStringToOperatorMap();
 			case MidPackage.PARAMETER: return createParameter();
 			case MidPackage.MODEL_PARAMETER: return createModelParameter();
 			case MidPackage.EDITOR: return createEditor();
 			case MidPackage.DIAGRAM: return createDiagram();
 			case MidPackage.ESTRING_TO_PARAMETER_MAP: return (EObject)createEStringToParameterMap();
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -157,29 +156,9 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<String, Model> createEStringToModelMap() {
-		EStringToModelMapImpl eStringToModelMap = new EStringToModelMapImpl();
-		return eStringToModelMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Map.Entry<String, Editor> createEStringToEditorMap() {
 		EStringToEditorMapImpl eStringToEditorMap = new EStringToEditorMapImpl();
 		return eStringToEditorMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<String, Operator> createEStringToOperatorMap() {
-		EStringToOperatorMapImpl eStringToOperatorMap = new EStringToOperatorMapImpl();
-		return eStringToOperatorMap;
 	}
 
 	/**
@@ -230,6 +209,16 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public Map.Entry<String, Parameter> createEStringToParameterMap() {
 		EStringToParameterMapImpl eStringToParameterMap = new EStringToParameterMapImpl();
 		return eStringToParameterMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<String, ExtendibleElement> createEStringToExtendibleElementMap() {
+		EStringToExtendibleElementMapImpl eStringToExtendibleElementMap = new EStringToExtendibleElementMapImpl();
+		return eStringToExtendibleElementMap;
 	}
 
 	/**

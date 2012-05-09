@@ -16,6 +16,7 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
 import java.util.Collection;
 import java.util.List;
 
@@ -89,6 +90,7 @@ public class MultiModelItemProvider
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__MODELS);
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EDITORS);
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__OPERATORS);
+			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EXTENDIBLES);
 		}
 		return childrenFeatures;
 	}
@@ -143,6 +145,7 @@ public class MultiModelItemProvider
 			case MidPackage.MULTI_MODEL__MODELS:
 			case MidPackage.MULTI_MODEL__EDITORS:
 			case MidPackage.MULTI_MODEL__OPERATORS:
+			case MidPackage.MULTI_MODEL__EXTENDIBLES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -163,7 +166,22 @@ public class MultiModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__MODELS,
-				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_MODEL_MAP)));
+				 MidFactory.eINSTANCE.createModel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__MODELS,
+				 MappingFactory.eINSTANCE.createModelRel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__MODELS,
+				 MappingFactory.eINSTANCE.createBinaryModelRel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__MODELS,
+				 MappingFactory.eINSTANCE.createHomomorphismModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -173,7 +191,12 @@ public class MultiModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
-				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_OPERATOR_MAP)));
+				 MidFactory.eINSTANCE.createOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__EXTENDIBLES,
+				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
 	}
 
 	/**

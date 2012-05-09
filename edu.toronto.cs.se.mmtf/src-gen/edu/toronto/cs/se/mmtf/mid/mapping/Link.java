@@ -24,11 +24,13 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#isUnbounded <em>Unbounded</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getLink()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='unboundedLevel'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot unboundedLevel='unbounded = true implies level = MidLevel::TYPES'"
  * @generated
  */
 public interface Link extends ExtendibleElement {
@@ -49,5 +51,31 @@ public interface Link extends ExtendibleElement {
 	 * @generated
 	 */
 	EList<ModelElement> getElements();
+
+	/**
+	 * Returns the value of the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unbounded</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unbounded</em>' attribute.
+	 * @see #setUnbounded(boolean)
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getLink_Unbounded()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isUnbounded();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#isUnbounded <em>Unbounded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unbounded</em>' attribute.
+	 * @see #isUnbounded()
+	 * @generated
+	 */
+	void setUnbounded(boolean value);
 
 } // Link

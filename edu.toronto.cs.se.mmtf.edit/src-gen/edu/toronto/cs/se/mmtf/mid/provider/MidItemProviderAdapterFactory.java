@@ -155,29 +155,6 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStringToModelMapItemProvider eStringToModelMapItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEStringToModelMapAdapter() {
-		if (eStringToModelMapItemProvider == null) {
-			eStringToModelMapItemProvider = new EStringToModelMapItemProvider(this);
-		}
-
-		return eStringToModelMapItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected EStringToEditorMapItemProvider eStringToEditorMapItemProvider;
 
 	/**
@@ -193,29 +170,6 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		}
 
 		return eStringToEditorMapItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStringToOperatorMapItemProvider eStringToOperatorMapItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEStringToOperatorMapAdapter() {
-		if (eStringToOperatorMapItemProvider == null) {
-			eStringToOperatorMapItemProvider = new EStringToOperatorMapItemProvider(this);
-		}
-
-		return eStringToOperatorMapItemProvider;
 	}
 
 	/**
@@ -334,6 +288,29 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EStringToExtendibleElementMapItemProvider eStringToExtendibleElementMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link java.util.Map.Entry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEStringToExtendibleElementMapAdapter() {
+		if (eStringToExtendibleElementMapItemProvider == null) {
+			eStringToExtendibleElementMapItemProvider = new EStringToExtendibleElementMapItemProvider(this);
+		}
+
+		return eStringToExtendibleElementMapItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -435,14 +412,13 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		if (multiModelItemProvider != null) multiModelItemProvider.dispose();
 		if (modelItemProvider != null) modelItemProvider.dispose();
 		if (operatorItemProvider != null) operatorItemProvider.dispose();
-		if (eStringToModelMapItemProvider != null) eStringToModelMapItemProvider.dispose();
 		if (eStringToEditorMapItemProvider != null) eStringToEditorMapItemProvider.dispose();
-		if (eStringToOperatorMapItemProvider != null) eStringToOperatorMapItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
 		if (modelParameterItemProvider != null) modelParameterItemProvider.dispose();
 		if (editorItemProvider != null) editorItemProvider.dispose();
 		if (diagramItemProvider != null) diagramItemProvider.dispose();
 		if (eStringToParameterMapItemProvider != null) eStringToParameterMapItemProvider.dispose();
+		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
 	}
 
 }

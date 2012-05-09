@@ -68,6 +68,20 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="uri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The operator URI to be registered with MMTF.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="supertypeUri" type="string">
+            <annotation>
+               <documentation>
+                  The supertype operator URI.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

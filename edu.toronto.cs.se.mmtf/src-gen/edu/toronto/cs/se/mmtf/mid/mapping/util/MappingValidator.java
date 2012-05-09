@@ -399,7 +399,37 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(link, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(link, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(link, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLink_unboundedLevel(link, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * The cached validation expression for the unboundedLevel constraint of '<em>Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String LINK__UNBOUNDED_LEVEL__EEXPRESSION = "unbounded = true implies level = MidLevel::TYPES";
+
+	/**
+	 * Validates the unboundedLevel constraint of '<em>Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLink_unboundedLevel(Link link, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.LINK,
+				 link,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "unboundedLevel",
+				 LINK__UNBOUNDED_LEVEL__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -419,6 +449,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLink_unboundedLevel(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(binaryLink, diagnostics, context);
 		return result;
 	}
@@ -469,6 +500,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(homomorphismLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLink_unboundedLevel(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateHomomorphismLink_sameElementTypes(homomorphismLink, diagnostics, context);
 		return result;

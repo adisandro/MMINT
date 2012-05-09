@@ -101,25 +101,14 @@ public class MidSwitch<T> extends Switch<T> {
 			case MidPackage.OPERATOR: {
 				Operator operator = (Operator)theEObject;
 				T result = caseOperator(operator);
+				if (result == null) result = caseExtendibleElement(operator);
 				if (result == null) result = caseTypedElement(operator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.ESTRING_TO_MODEL_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Model> eStringToModelMap = (Map.Entry<String, Model>)theEObject;
-				T result = caseEStringToModelMap(eStringToModelMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MidPackage.ESTRING_TO_EDITOR_MAP: {
 				@SuppressWarnings("unchecked") Map.Entry<String, Editor> eStringToEditorMap = (Map.Entry<String, Editor>)theEObject;
 				T result = caseEStringToEditorMap(eStringToEditorMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.ESTRING_TO_OPERATOR_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Operator> eStringToOperatorMap = (Map.Entry<String, Operator>)theEObject;
-				T result = caseEStringToOperatorMap(eStringToOperatorMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -160,6 +149,12 @@ public class MidSwitch<T> extends Switch<T> {
 			case MidPackage.TYPED_ELEMENT: {
 				TypedElement typedElement = (TypedElement)theEObject;
 				T result = caseTypedElement(typedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<String, ExtendibleElement> eStringToExtendibleElementMap = (Map.Entry<String, ExtendibleElement>)theEObject;
+				T result = caseEStringToExtendibleElementMap(eStringToExtendibleElementMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -228,21 +223,6 @@ public class MidSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EString To Model Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EString To Model Map</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEStringToModelMap(Map.Entry<String, Model> object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EString To Editor Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -254,21 +234,6 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEStringToEditorMap(Map.Entry<String, Editor> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EString To Operator Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EString To Operator Map</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEStringToOperatorMap(Map.Entry<String, Operator> object) {
 		return null;
 	}
 
@@ -359,6 +324,21 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EString To Extendible Element Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EString To Extendible Element Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEStringToExtendibleElementMap(Map.Entry<String, ExtendibleElement> object) {
 		return null;
 	}
 

@@ -104,12 +104,8 @@ public class MidValidator extends EObjectValidator {
 				return validateModel((Model)value, diagnostics, context);
 			case MidPackage.OPERATOR:
 				return validateOperator((Operator)value, diagnostics, context);
-			case MidPackage.ESTRING_TO_MODEL_MAP:
-				return validateEStringToModelMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.ESTRING_TO_EDITOR_MAP:
 				return validateEStringToEditorMap((Map.Entry<?, ?>)value, diagnostics, context);
-			case MidPackage.ESTRING_TO_OPERATOR_MAP:
-				return validateEStringToOperatorMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
 			case MidPackage.MODEL_PARAMETER:
@@ -122,6 +118,8 @@ public class MidValidator extends EObjectValidator {
 				return validateEStringToParameterMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.TYPED_ELEMENT:
 				return validateTypedElement((TypedElement)value, diagnostics, context);
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP:
+				return validateEStringToExtendibleElementMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.MID_LEVEL:
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
@@ -227,16 +225,8 @@ public class MidValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(operator, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_supertypeType(operator, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEStringToModelMap(Map.Entry<?, ?> eStringToModelMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)eStringToModelMap, diagnostics, context);
 	}
 
 	/**
@@ -246,15 +236,6 @@ public class MidValidator extends EObjectValidator {
 	 */
 	public boolean validateEStringToEditorMap(Map.Entry<?, ?> eStringToEditorMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)eStringToEditorMap, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEStringToOperatorMap(Map.Entry<?, ?> eStringToOperatorMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)eStringToOperatorMap, diagnostics, context);
 	}
 
 	/**
@@ -417,6 +398,15 @@ public class MidValidator extends EObjectValidator {
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEStringToExtendibleElementMap(Map.Entry<?, ?> eStringToExtendibleElementMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)eStringToExtendibleElementMap, diagnostics, context);
 	}
 
 	/**

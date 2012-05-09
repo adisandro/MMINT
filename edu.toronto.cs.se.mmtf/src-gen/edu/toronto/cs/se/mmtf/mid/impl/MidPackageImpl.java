@@ -83,21 +83,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eStringToModelMapEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass eStringToEditorMapEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eStringToOperatorMapEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,6 +126,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EClass typedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eStringToExtendibleElementMapEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -305,6 +298,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMultiModel_Extendibles() {
+		return (EReference)multiModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModel() {
 		return modelEClass;
 	}
@@ -377,33 +379,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEStringToModelMap() {
-		return eStringToModelMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToModelMap_Key() {
-		return (EAttribute)eStringToModelMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEStringToModelMap_Value() {
-		return (EReference)eStringToModelMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEStringToEditorMap() {
 		return eStringToEditorMapEClass;
 	}
@@ -424,33 +399,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EReference getEStringToEditorMap_Value() {
 		return (EReference)eStringToEditorMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEStringToOperatorMap() {
-		return eStringToOperatorMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToOperatorMap_Key() {
-		return (EAttribute)eStringToOperatorMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEStringToOperatorMap_Value() {
-		return (EReference)eStringToOperatorMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -647,6 +595,33 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEStringToExtendibleElementMap() {
+		return eStringToExtendibleElementMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEStringToExtendibleElementMap_Key() {
+		return (EAttribute)eStringToExtendibleElementMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEStringToExtendibleElementMap_Value() {
+		return (EReference)eStringToExtendibleElementMapEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMidLevel() {
 		return midLevelEEnum;
 	}
@@ -705,6 +680,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(multiModelEClass, MULTI_MODEL__MODELS);
 		createEReference(multiModelEClass, MULTI_MODEL__EDITORS);
 		createEReference(multiModelEClass, MULTI_MODEL__OPERATORS);
+		createEReference(multiModelEClass, MULTI_MODEL__EXTENDIBLES);
 
 		modelEClass = createEClass(MODEL);
 		createEReference(modelEClass, MODEL__ROOT);
@@ -716,17 +692,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(operatorEClass, OPERATOR__INPUTS);
 		createEReference(operatorEClass, OPERATOR__OUTPUTS);
 
-		eStringToModelMapEClass = createEClass(ESTRING_TO_MODEL_MAP);
-		createEAttribute(eStringToModelMapEClass, ESTRING_TO_MODEL_MAP__KEY);
-		createEReference(eStringToModelMapEClass, ESTRING_TO_MODEL_MAP__VALUE);
-
 		eStringToEditorMapEClass = createEClass(ESTRING_TO_EDITOR_MAP);
 		createEAttribute(eStringToEditorMapEClass, ESTRING_TO_EDITOR_MAP__KEY);
 		createEReference(eStringToEditorMapEClass, ESTRING_TO_EDITOR_MAP__VALUE);
-
-		eStringToOperatorMapEClass = createEClass(ESTRING_TO_OPERATOR_MAP);
-		createEAttribute(eStringToOperatorMapEClass, ESTRING_TO_OPERATOR_MAP__KEY);
-		createEReference(eStringToOperatorMapEClass, ESTRING_TO_OPERATOR_MAP__VALUE);
 
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__NAME);
@@ -754,6 +722,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(typedElementEClass, TYPED_ELEMENT__METATYPE);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__LEVEL);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__TYPE);
+
+		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
+		createEAttribute(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY);
+		createEReference(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -797,7 +769,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		// Add supertypes to classes
 		extendibleElementEClass.getESuperTypes().add(this.getTypedElement());
 		modelEClass.getESuperTypes().add(this.getExtendibleElement());
-		operatorEClass.getESuperTypes().add(this.getTypedElement());
+		operatorEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelParameterEClass.getESuperTypes().add(this.getParameter());
 		editorEClass.getESuperTypes().add(this.getTypedElement());
 		diagramEClass.getESuperTypes().add(this.getEditor());
@@ -808,9 +780,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getExtendibleElement_Supertype(), this.getExtendibleElement(), null, "supertype", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiModel_Models(), this.getEStringToModelMap(), null, "models", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiModel_Models(), this.getModel(), null, "models", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultiModel_Editors(), this.getEStringToEditorMap(), null, "editors", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiModel_Operators(), this.getEStringToOperatorMap(), null, "operators", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiModel_Operators(), this.getOperator(), null, "operators", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiModel_Extendibles(), this.getEStringToExtendibleElementMap(), null, "extendibles", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModel_Root(), ecorePackage.getEObject(), null, "root", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -822,17 +795,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getOperator_Inputs(), this.getEStringToParameterMap(), null, "inputs", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_Outputs(), this.getEStringToParameterMap(), null, "outputs", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eStringToModelMapEClass, Map.Entry.class, "EStringToModelMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEStringToModelMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEStringToModelMap_Value(), this.getModel(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(eStringToEditorMapEClass, Map.Entry.class, "EStringToEditorMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToEditorMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEStringToEditorMap_Value(), this.getEditor(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eStringToOperatorMapEClass, Map.Entry.class, "EStringToOperatorMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEStringToOperatorMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEStringToOperatorMap_Value(), this.getOperator(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -860,6 +825,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getTypedElement_Metatype(), this.getTypedElement(), null, "metatype", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_Level(), this.getMidLevel(), "level", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_Type(), ecorePackage.getEString(), "type", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEStringToExtendibleElementMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEStringToExtendibleElementMap_Value(), this.getExtendibleElement(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MidLevel.class, "MidLevel");
@@ -951,7 +920,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (getTypedElement_Type(), 
 		   source, 
 		   new String[] {
-			 "derivation", "if metaType.oclIsUndefined() then \'\' else metaType.name endif"
+			 "derivation", "if metatype.oclIsUndefined() then \'\' else metatype.name endif"
 		   });
 	}
 

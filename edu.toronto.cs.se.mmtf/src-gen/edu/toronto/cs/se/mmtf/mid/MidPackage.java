@@ -75,7 +75,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 12;
+	int TYPED_ELEMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -224,7 +224,7 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Models</b></em>' map.
+	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -242,7 +242,7 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL__EDITORS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Operators</b></em>' map.
+	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -251,13 +251,22 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL__OPERATORS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Extendibles</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__EXTENDIBLES = 3;
+
+	/**
 	 * The number of structural features of the '<em>Multi Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL_FEATURE_COUNT = 3;
+	int MULTI_MODEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Multi Model</em>' class.
@@ -403,7 +412,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__NAME = TYPED_ELEMENT__NAME;
+	int OPERATOR__NAME = EXTENDIBLE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -412,7 +421,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE = TYPED_ELEMENT__METATYPE;
+	int OPERATOR__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -421,7 +430,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__LEVEL = TYPED_ELEMENT__LEVEL;
+	int OPERATOR__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -430,7 +439,25 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__TYPE = TYPED_ELEMENT__TYPE;
+	int OPERATOR__TYPE = EXTENDIBLE_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__URI = EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' map.
@@ -439,7 +466,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUTS = TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATOR__INPUTS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' map.
@@ -448,7 +475,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__OUTPUTS = TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATOR__OUTPUTS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
@@ -457,7 +484,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATOR_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -466,53 +493,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToModelMapImpl <em>EString To Model Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToModelMapImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToModelMap()
-	 * @generated
-	 */
-	int ESTRING_TO_MODEL_MAP = 4;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_MODEL_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_MODEL_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To Model Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_MODEL_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>EString To Model Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_MODEL_MAP_OPERATION_COUNT = 0;
+	int OPERATOR_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToEditorMapImpl <em>EString To Editor Map</em>}' class.
@@ -522,7 +503,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToEditorMap()
 	 * @generated
 	 */
-	int ESTRING_TO_EDITOR_MAP = 5;
+	int ESTRING_TO_EDITOR_MAP = 4;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -561,52 +542,6 @@ public interface MidPackage extends EPackage {
 	int ESTRING_TO_EDITOR_MAP_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToOperatorMapImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToOperatorMap()
-	 * @generated
-	 */
-	int ESTRING_TO_OPERATOR_MAP = 6;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To Operator Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>EString To Operator Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ParameterImpl <em>Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -614,7 +549,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 7;
+	int PARAMETER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -669,7 +604,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelParameter()
 	 * @generated
 	 */
-	int MODEL_PARAMETER = 8;
+	int MODEL_PARAMETER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -742,7 +677,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEditor()
 	 * @generated
 	 */
-	int EDITOR = 9;
+	int EDITOR = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -842,7 +777,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getDiagram()
 	 * @generated
 	 */
-	int DIAGRAM = 10;
+	int DIAGRAM = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -942,7 +877,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToParameterMap()
 	 * @generated
 	 */
-	int ESTRING_TO_PARAMETER_MAP = 11;
+	int ESTRING_TO_PARAMETER_MAP = 9;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -981,6 +916,52 @@ public interface MidPackage extends EPackage {
 	int ESTRING_TO_PARAMETER_MAP_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToExtendibleElementMap()
+	 * @generated
+	 */
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = 11;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>EString To Extendible Element Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>EString To Extendible Element Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -988,7 +969,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMidLevel()
 	 * @generated
 	 */
-	int MID_LEVEL = 13;
+	int MID_LEVEL = 12;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelOrigin <em>Model Origin</em>}' enum.
@@ -998,7 +979,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelOrigin()
 	 * @generated
 	 */
-	int MODEL_ORIGIN = 14;
+	int MODEL_ORIGIN = 13;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ParameterType <em>Parameter Type</em>}' enum.
@@ -1008,7 +989,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getParameterType()
 	 * @generated
 	 */
-	int PARAMETER_TYPE = 15;
+	int PARAMETER_TYPE = 14;
 
 
 	/**
@@ -1054,10 +1035,10 @@ public interface MidPackage extends EPackage {
 	EClass getMultiModel();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getModels <em>Models</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getModels <em>Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Models</em>'.
+	 * @return the meta object for the containment reference list '<em>Models</em>'.
 	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getModels()
 	 * @see #getMultiModel()
 	 * @generated
@@ -1076,15 +1057,26 @@ public interface MidPackage extends EPackage {
 	EReference getMultiModel_Editors();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators <em>Operators</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators <em>Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Operators</em>'.
+	 * @return the meta object for the containment reference list '<em>Operators</em>'.
 	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators()
 	 * @see #getMultiModel()
 	 * @generated
 	 */
 	EReference getMultiModel_Operators();
+
+	/**
+	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibles <em>Extendibles</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Extendibles</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibles()
+	 * @see #getMultiModel()
+	 * @generated
+	 */
+	EReference getMultiModel_Extendibles();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Model <em>Model</em>}'.
@@ -1173,40 +1165,6 @@ public interface MidPackage extends EPackage {
 	EReference getOperator_Outputs();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Model Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To Model Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.Model" valueContainment="true" valueRequired="true"
-	 * @generated
-	 */
-	EClass getEStringToModelMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToModelMap()
-	 * @generated
-	 */
-	EAttribute getEStringToModelMap_Key();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToModelMap()
-	 * @generated
-	 */
-	EReference getEStringToModelMap_Value();
-
-	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Editor Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1239,40 +1197,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEStringToEditorMap_Value();
-
-	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Operator Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To Operator Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.Operator" valueContainment="true" valueRequired="true"
-	 * @generated
-	 */
-	EClass getEStringToOperatorMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToOperatorMap()
-	 * @generated
-	 */
-	EAttribute getEStringToOperatorMap_Key();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToOperatorMap()
-	 * @generated
-	 */
-	EReference getEStringToOperatorMap_Value();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Parameter <em>Parameter</em>}'.
@@ -1502,6 +1426,40 @@ public interface MidPackage extends EPackage {
 	EAttribute getTypedElement_Type();
 
 	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EString To Extendible Element Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
+	 *        valueType="edu.toronto.cs.se.mmtf.mid.ExtendibleElement" valueRequired="true"
+	 * @generated
+	 */
+	EClass getEStringToExtendibleElementMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToExtendibleElementMap()
+	 * @generated
+	 */
+	EAttribute getEStringToExtendibleElementMap_Key();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToExtendibleElementMap()
+	 * @generated
+	 */
+	EReference getEStringToExtendibleElementMap_Value();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1591,7 +1549,7 @@ public interface MidPackage extends EPackage {
 		EClass MULTI_MODEL = eINSTANCE.getMultiModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Models</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Models</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1607,12 +1565,20 @@ public interface MidPackage extends EPackage {
 		EReference MULTI_MODEL__EDITORS = eINSTANCE.getMultiModel_Editors();
 
 		/**
-		 * The meta object literal for the '<em><b>Operators</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Operators</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference MULTI_MODEL__OPERATORS = eINSTANCE.getMultiModel_Operators();
+
+		/**
+		 * The meta object literal for the '<em><b>Extendibles</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_MODEL__EXTENDIBLES = eINSTANCE.getMultiModel_Extendibles();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl <em>Model</em>}' class.
@@ -1683,32 +1649,6 @@ public interface MidPackage extends EPackage {
 		EReference OPERATOR__OUTPUTS = eINSTANCE.getOperator_Outputs();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToModelMapImpl <em>EString To Model Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToModelMapImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToModelMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_MODEL_MAP = eINSTANCE.getEStringToModelMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_MODEL_MAP__KEY = eINSTANCE.getEStringToModelMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ESTRING_TO_MODEL_MAP__VALUE = eINSTANCE.getEStringToModelMap_Value();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToEditorMapImpl <em>EString To Editor Map</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1733,32 +1673,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ESTRING_TO_EDITOR_MAP__VALUE = eINSTANCE.getEStringToEditorMap_Value();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToOperatorMapImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToOperatorMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_OPERATOR_MAP = eINSTANCE.getEStringToOperatorMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_OPERATOR_MAP__KEY = eINSTANCE.getEStringToOperatorMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ESTRING_TO_OPERATOR_MAP__VALUE = eINSTANCE.getEStringToOperatorMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -1939,6 +1853,32 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToExtendibleElementMap()
+		 * @generated
+		 */
+		EClass ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = eINSTANCE.getEStringToExtendibleElementMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY = eINSTANCE.getEStringToExtendibleElementMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE = eINSTANCE.getEStringToExtendibleElementMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.

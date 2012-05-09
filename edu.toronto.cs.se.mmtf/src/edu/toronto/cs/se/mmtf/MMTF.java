@@ -12,13 +12,13 @@
 package edu.toronto.cs.se.mmtf;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -28,11 +28,16 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmtf.mid.Editor;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
@@ -52,31 +57,55 @@ import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
  */
 public class MMTF {
 
-	/** The root model type's uri. */
-	private final static String ROOT_MODEL_TYPE_URI = "http:///edu/toronto/cs/se/mmtf/Model";
+	/** The uri of the root model type. */
+	private final static String ROOT_MODEL_URI = "http:///edu/toronto/cs/se/mmtf/Model";
+	/** The uri of the root model relationship. */
+	private final static String ROOT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel";
+	/** The uri of the root model element of category entity. */
+	private final static String ROOT_MODEL_ELEMENT_ENTITY_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/ENTITY";
+	/** The uri of the root model element of category relationship. */
+	private final static String ROOT_MODEL_ELEMENT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/RELATIONSHIP";
+	/** The uri of the root link among model elements. */
+	private final static String ROOT_RELATIONSHIP_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
 
 	/** The Models extension point's id. */
 	private final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.models";
 	/** The Models extension point's uri attribute. */
 	private final static String MODELS_ATTR_URI = "uri";
 	/** The Models extension point's supertypeUri attribute. */
-	private final static String MODELS_ATTR_SUPERTYPE_URI = "supertypeUri";
+	private final static String MODELS_ATTR_SUPERTYPEURI = "supertypeUri";
 
 	/** The Editors extension point's id. */
 	private final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
 	/** The Editors extension point's modelTypeUri attribute. */
-	private final static String EDITORS_ATTR_MODEL_TYPE_URI = "modelTypeUri";
+	private final static String EDITORS_ATTR_MODELTYPEURI = "modelTypeUri";
 	/** The Editors extension point's isDiagram attribute. */
-	private final static String EDITORS_ATTR_IS_DIAGRAM = "isDiagram";
+	private final static String EDITORS_ATTR_ISDIAGRAM = "isDiagram";
 	/** The Editors extension point's editorId attribute. */
-	private final static String EDITORS_ATTR_EDITOR_ID = "editorId";
+	private final static String EDITORS_ATTR_EDITORID = "editorId";
 	/** The Editors extension point's wizardId attribute. */
-	private final static String EDITORS_ATTR_WIZARD_ID = "wizardId";
+	private final static String EDITORS_ATTR_WIZARDID = "wizardId";
 
 	/** The Relationships extension point's id. */
 	private final static String RELATIONSHIPS_EXT_POINT = "edu.toronto.cs.se.mmtf.relationships";
 	/** The Relationships extension point's isNary attribute. */
-	private final static String RELATIONSHIPS_ATTR_IS_NARY = "isNary";
+	private final static String RELATIONSHIPS_ATTR_ISNARY = "isNary";
+	/** The Relationships extension point's model child. */
+	private final static String RELATIONSHIPS_CHILD_MODEL = "model";
+	/** The Relationships extension point's model child's modelTypeUri attribute. */
+	private final static String RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI = "modelTypeUri";
+	/** The Relationships extension point's model's modelElement child. */
+	private final static String RELATIONSHIPS_MODEL_CHILD_MODELELEMENT = "modelElement";
+	/** The Relationships extension point's model's modelElement child's uri attribute. */
+	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_URI = "uri";
+	/** The Relationships extension point's model's modelElement child's supertypeUri attribute. */
+	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_SUPERTYPEURI = "supertypeUri";
+	/** The Relationships extension point's model's modelElement child's name attribute. */
+	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME = "name";
+	/** The Relationships extension point's model's modelElement child's category attribute. */
+	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY = "category";
+	/** The Relationships extension point's model's modelElement child's classLiteral attribute. */
+	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL = "classLiteral";
 
 	/** The Eclipse's Editors extension point's id. */
 	private final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";
@@ -89,18 +118,16 @@ public class MMTF {
 	private static MultiModel repository;
 
 	/**
-	 * Creates and adds a model type to the repository. Requires the model
-	 * package to be registered too through the
-	 * org.eclipse.emf.ecore.generated_package extension point.
+	 * Adds a model type to the repository. Requires the model package to be
+	 * registered too through the org.eclipse.emf.ecore.generated_package
+	 * extension point.
 	 * 
+	 * @param model
+	 *            The model type to add.
 	 * @param extensionConfig
 	 *            The extension configuration.
-	 * @return The created model type.
 	 */
-	public Model createModelType(IConfigurationElement extensionConfig) {
-
-		// create
-		Model model = MidFactory.eINSTANCE.createModel();
+	private void addModelType(Model model, IConfigurationElement extensionConfig) {
 
 		// set basic attributes
 		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
@@ -110,15 +137,16 @@ public class MMTF {
 		model.setOrigin(ModelOrigin.IMPORTED);
 
 		// possibly set supertype
-		String supertypeUri = extensionConfig.getAttribute(MODELS_ATTR_SUPERTYPE_URI);
-		Model superModel = null;
+		String supertypeUri = extensionConfig.getAttribute(MODELS_ATTR_SUPERTYPEURI);
+		String rootUri = (model instanceof ModelRel) ? ROOT_RELATIONSHIP_URI : ROOT_MODEL_URI;
+		ExtendibleElement superModel = null;
 		if (supertypeUri == null) {
-			if (!uri.equals(ROOT_MODEL_TYPE_URI)) {
-				superModel = MMTFRegistry.getModelType(ROOT_MODEL_TYPE_URI);
+			if (!uri.equals(rootUri)) {
+				superModel = MMTFRegistry.getExtendibleElement(rootUri);
 			}
 		}
 		else {
-			superModel = MMTFRegistry.getModelType(supertypeUri);
+			superModel = MMTFRegistry.getExtendibleElement(supertypeUri);
 		}
 		model.setSupertype(superModel);
 
@@ -136,9 +164,73 @@ public class MMTF {
 		}
 
 		// register model type
-		repository.getModels().put(uri, model);
+		repository.getModels().add(model);
+		repository.getExtendibles().put(uri, model);
+	}
+
+	/**
+	 * Creates and adds a model type to the repository. Requires the model
+	 * package to be registered too through the
+	 * org.eclipse.emf.ecore.generated_package extension point.
+	 * 
+	 * @param extensionConfig
+	 *            The extension configuration.
+	 * @return The created model type.
+	 */
+	public Model createModelType(IConfigurationElement extensionConfig) {
+
+		// create and add
+		Model model = MidFactory.eINSTANCE.createModel();
+		addModelType(model, extensionConfig);
 
 		return model;
+	}
+
+	/**
+	 * Creates and adds a model type relationship to the repository. Requires
+	 * the model package to be registered too through the
+	 * org.eclipse.emf.ecore.generated_package extension point.
+	 * 
+	 * @param extensionConfig
+	 *            The extension configuration.
+	 * @return The created model type relationship.
+	 */
+	public ModelRel createModelTypeRel(IConfigurationElement extensionConfig) {
+
+		// create and add
+		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_ATTR_ISNARY));
+		IConfigurationElement[] modelConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_MODEL);
+		ModelRel modelRel = (!unbounded && modelConfig.length == 2) ? // unbounded with any two model types is a ModelRel
+			MappingFactory.eINSTANCE.createBinaryModelRel() :
+			MappingFactory.eINSTANCE.createModelRel();
+		addModelType(modelRel, extensionConfig);
+
+		// handle relationship structure
+		modelRel.setUnbounded(unbounded);
+		//TODO MMTF: an unbounded relationship automatically creates binary and homomorphism subclasses for each of its model types (2^n)?
+		//TODO MMTF: same for links?
+		for (IConfigurationElement modelConfigElem : modelConfig) {
+			// models and containers
+			String modelUri = modelConfigElem.getAttribute(RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI);
+			ExtendibleElement model = MMTFRegistry.getExtendibleElement(modelUri);
+			if (model != null && model instanceof Model) {
+				modelRel.getModels().add((Model) model);
+				ModelContainer container = MappingFactory.eINSTANCE.createModelContainer();
+				container.setReferencedModel((Model) model);
+				// model elements
+				IConfigurationElement[] modelElementConfig = extensionConfig.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
+				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
+					String modelElementUri = modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_URI);
+					//ExtendibleElement modelElement = repository.getExtendibles().get(modelElementUri);
+					//if (modelElement == null || true){}
+					//modelElement = MappingFactory.eINSTANCE.createModelElement();
+					//container.getElements().add(modelElement);
+				}
+				//TODO MMTF: check for model elements with same uri before creating a new one?
+			}
+		}
+
+		return modelRel;
 	}
 
 	/**
@@ -167,8 +259,11 @@ public class MMTF {
 	public void removeModelType(IConfigurationElement extensionConfig) {
 
 		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
-		Model model = repository.getModels().removeKey(uri);
-		model.getEditors().clear();
+		ExtendibleElement model = repository.getExtendibles().removeKey(uri);
+		if (model != null && model instanceof Model) {
+			repository.getModels().remove(model);
+			((Model) model).getEditors().clear();
+		}
 	}
 
 	/**
@@ -181,7 +276,7 @@ public class MMTF {
 	public Editor createEditor(IConfigurationElement extensionConfig) {
 
 		// create
-		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_IS_DIAGRAM);
+		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM);
 		Editor editor;
 		if (Boolean.parseBoolean(isDiagram)) {
 			editor = MidFactory.eINSTANCE.createDiagram();
@@ -191,9 +286,9 @@ public class MMTF {
 		}
 
 		// set basic attributes
-		String modelUri = extensionConfig.getAttribute(EDITORS_ATTR_MODEL_TYPE_URI);
-		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
-		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARD_ID);
+		String modelUri = extensionConfig.getAttribute(EDITORS_ATTR_MODELTYPEURI);
+		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITORID);
+		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDID);
 		editor.setName(extensionConfig.getDeclaringExtension().getLabel());
 		editor.setLevel(MidLevel.TYPES);
 		editor.setModelUri(modelUri);
@@ -214,9 +309,9 @@ public class MMTF {
 	 */
 	public void addModelTypeEditors(Editor editor) {
 
-		Model model = repository.getModels().get(editor.getModelUri());
-		if (model != null) {
-			model.getEditors().add(editor);
+		ExtendibleElement model = repository.getExtendibles().get(editor.getModelUri());
+		if (model != null && model instanceof Model) {
+			((Model) model).getEditors().add(editor);
 		}
 	}
 
@@ -258,7 +353,10 @@ public class MMTF {
 			if (editor != null) {
 				String extensions = elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS);
 				if (extensions == null) {
-					extensions = repository.getModels().get(editor.getModelUri()).getFileExtension();
+					ExtendibleElement model = repository.getExtendibles().get(editor.getModelUri());
+					extensions = (model != null && model instanceof Model) ?
+						((Model) model).getFileExtension() :
+						"";
 				}
 				for (String fileExtension : extensions.split(",")) {
 					editor.getFileExtensions().add(fileExtension);
@@ -275,11 +373,11 @@ public class MMTF {
 	 */
 	public void removeEditor(IConfigurationElement extensionConfig) {
 
-		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITOR_ID);
+		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITORID);
 		Editor editor = repository.getEditors().removeKey(editorId);
-		Model model = repository.getModels().get(editor.getModelUri());
-		if (model != null) {
-			model.getEditors().remove(editor);
+		ExtendibleElement model = repository.getExtendibles().get(editor.getModelUri());
+		if (model != null && model instanceof Model) {
+			((Model) model).getEditors().remove(editor);
 		}
 	}
 
@@ -300,6 +398,12 @@ public class MMTF {
 			createModelType(elem);
 		}
 
+		// model type relationships
+		config = registry.getConfigurationElementsFor(RELATIONSHIPS_EXT_POINT);
+		for (IConfigurationElement elem : config) {
+			createModelTypeRel(elem);
+		}
+
 		// editors
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		Editor editor;
@@ -309,7 +413,7 @@ public class MMTF {
 		}		
 		addEditorFileExtensions(registry);
 
-		//TODO MMTF: relationships and operators
+		//TODO MMTF: operators
 	}
 
 	/**
@@ -335,9 +439,16 @@ public class MMTF {
 	 */
 	public static class MMTFRegistry {
 
-		public static Model getModelType(String modelTypeUri) {
+		/**
+		 * Gets an extendible element.
+		 * 
+		 * @param uri
+		 *            The uri of the extendible element.
+		 * @return The extendible element, or null if uri is not found.
+		 */
+		public static ExtendibleElement getExtendibleElement(String uri) {
 
-			return repository.getModels().get(modelTypeUri);
+			return repository.getExtendibles().get(uri);
 		}
 
 		/**
@@ -348,8 +459,8 @@ public class MMTF {
 		public static ArrayList<String> getModelTypeFileExtensions() {
 
 			ArrayList<String> filenames = new ArrayList<String>();
-			for (Entry<String, Model> entry : repository.getModels().entrySet()) {
-				filenames.add(entry.getValue().getFileExtension());
+			for (Model model : repository.getModels()) {
+				filenames.add(model.getFileExtension());
 			}
 
 			return filenames;
@@ -365,7 +476,13 @@ public class MMTF {
 		 */
 		public static EList<Editor> getEditorsForModelType(String modelUri) {
 
-			return repository.getModels().get(modelUri).getEditors();
+			ExtendibleElement model = repository.getExtendibles().get(modelUri);
+			if (model != null && model instanceof Model) {
+				return ((Model) model).getEditors();
+			}
+			else {
+				return ECollections.emptyEList();
+			}
 		}
 
 		/**
@@ -373,9 +490,9 @@ public class MMTF {
 		 * 
 		 * @return The list of registered model types.
 		 */
-		public static Collection<Model> getModelTypes() {
+		public static EList<Model> getModelTypes() {
 
-			return repository.getModels().values();
+			return repository.getModels();
 		}
 
 		/**

@@ -29,6 +29,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/operators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/extendibles"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//Model">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/root"/>
@@ -40,17 +41,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Operator/inputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Operator/outputs"/>
     </genClasses>
-    <genClasses ecoreClass="mid.ecore#//EStringToModelMap">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToModelMap/key"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToModelMap/value"/>
-    </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToEditorMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToEditorMap/key"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToEditorMap/value"/>
-    </genClasses>
-    <genClasses ecoreClass="mid.ecore#//EStringToOperatorMap">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToOperatorMap/key"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToOperatorMap/value"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Parameter/name"/>
@@ -77,6 +70,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//TypedElement/metatype"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/level"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/type"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToExtendibleElementMap/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToExtendibleElementMap/value"/>
     </genClasses>
     <nestedGenPackages prefix="Mapping" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
         ecorePackage="mid.ecore#//mapping">
@@ -112,6 +109,7 @@
       <genClasses ecoreClass="mid.ecore#//mapping/Link">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//mapping/Link/elements"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/Link/unbounded"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//mapping/BinaryLink"/>
       <genClasses ecoreClass="mid.ecore#//mapping/HomomorphismLink"/>

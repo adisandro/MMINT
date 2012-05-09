@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -79,7 +80,8 @@ public class MultiModelTrait {
 
 		// add to multimodel container
 		if (multiModel != null) {
-			multiModel.getModels().put(modelUri.toPlatformString(true), model);
+			multiModel.getModels().add(model);
+			multiModel.getExtendibles().put(modelUri.toPlatformString(true), model);
 		}
 		// set basic attributes
 		if (modelUri == null) {
@@ -300,7 +302,13 @@ public class MultiModelTrait {
 	 */
 	public static Model getModelUnique(MultiModel multiModel, URI modelUri) {
 
-		return multiModel.getModels().get(modelUri.toPlatformString(true));
+		ExtendibleElement model = multiModel.getExtendibles().get(modelUri.toPlatformString(true));
+		if (model != null && model instanceof Model) {
+			return (Model) model;
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EObject;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators <em>Operators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibles <em>Extendibles</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,21 +37,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface MultiModel extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Models</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.Model},
+	 * Returns the value of the '<em><b>Models</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.Model}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Models</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Models</em>' map.
+	 * @return the value of the '<em>Models</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMultiModel_Models()
-	 * @model mapType="edu.toronto.cs.se.mmtf.mid.EStringToModelMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.Model>"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EMap<String, Model> getModels();
+	EList<Model> getModels();
 
 	/**
 	 * Returns the value of the '<em><b>Editors</b></em>' map.
@@ -69,20 +70,36 @@ public interface MultiModel extends EObject {
 	EMap<String, Editor> getEditors();
 
 	/**
-	 * Returns the value of the '<em><b>Operators</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.Operator},
+	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.Operator}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operators</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operators</em>' map.
+	 * @return the value of the '<em>Operators</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMultiModel_Operators()
-	 * @model mapType="edu.toronto.cs.se.mmtf.mid.EStringToOperatorMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.Operator>"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EMap<String, Operator> getOperators();
+	EList<Operator> getOperators();
+
+	/**
+	 * Returns the value of the '<em><b>Extendibles</b></em>' map.
+	 * The key is of type {@link java.lang.String},
+	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extendibles</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extendibles</em>' map.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMultiModel_Extendibles()
+	 * @model mapType="edu.toronto.cs.se.mmtf.mid.EStringToExtendibleElementMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.ExtendibleElement>"
+	 * @generated
+	 */
+	EMap<String, ExtendibleElement> getExtendibles();
 
 } // MultiModel

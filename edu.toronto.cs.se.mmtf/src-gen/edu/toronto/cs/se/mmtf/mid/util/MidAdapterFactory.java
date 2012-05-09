@@ -95,16 +95,8 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 				return createOperatorAdapter();
 			}
 			@Override
-			public Adapter caseEStringToModelMap(Map.Entry<String, Model> object) {
-				return createEStringToModelMapAdapter();
-			}
-			@Override
 			public Adapter caseEStringToEditorMap(Map.Entry<String, Editor> object) {
 				return createEStringToEditorMapAdapter();
-			}
-			@Override
-			public Adapter caseEStringToOperatorMap(Map.Entry<String, Operator> object) {
-				return createEStringToOperatorMapAdapter();
 			}
 			@Override
 			public Adapter caseParameter(Parameter object) {
@@ -129,6 +121,10 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
+			}
+			@Override
+			public Adapter caseEStringToExtendibleElementMap(Map.Entry<String, ExtendibleElement> object) {
+				return createEStringToExtendibleElementMapAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -207,20 +203,6 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Model Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createEStringToModelMapAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Editor Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -231,20 +213,6 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEStringToEditorMapAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Operator Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createEStringToOperatorMapAdapter() {
 		return null;
 	}
 
@@ -329,6 +297,20 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createEStringToExtendibleElementMapAdapter() {
 		return null;
 	}
 

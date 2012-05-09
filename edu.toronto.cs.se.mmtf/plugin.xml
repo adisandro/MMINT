@@ -65,16 +65,11 @@
          </model>
          <relationshipLink
                isNary="true"
-               name="Root model element entity link"
-               uri="http:///edu/toronto/cs/se/mmtf/ModelRel/Link/ENTITY">
+               name="Root model element link"
+               uri="http:///edu/toronto/cs/se/mmtf/ModelRel/Link">
             <linkElement
                   elementUri="http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/ENTITY">
             </linkElement>
-         </relationshipLink>
-         <relationshipLink
-               isNary="true"
-               name="Root model element relationship link"
-               uri="http:///edu/toronto/cs/se/mmtf/ModelRel/Link/RELATIONSHIP">
             <linkElement
                   elementUri="http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/RELATIONSHIP">
             </linkElement>

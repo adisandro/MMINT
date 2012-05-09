@@ -74,7 +74,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof MultiModel) {
-			return ((MultiModel) parentElement).getModels().values().toArray();
+			return ((MultiModel) parentElement).getModels().toArray();
 		}
 		if (parentElement instanceof Model) {
 			return ((Model) parentElement).getEditors().toArray();
@@ -93,7 +93,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 			return repository;
 		}
 		if (element instanceof Editor) {
-			return repository.getModels().get(((Editor) element).getModelUri());
+			return repository.getExtendibles().get(((Editor) element).getModelUri());
 		}
 
 		return null;

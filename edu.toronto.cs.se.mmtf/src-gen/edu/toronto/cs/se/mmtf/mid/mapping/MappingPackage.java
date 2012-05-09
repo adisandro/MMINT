@@ -796,13 +796,22 @@ public interface MappingPackage extends EPackage {
 	int LINK__ELEMENTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__UNBOUNDED = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int LINK_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Link</em>' class.
@@ -885,6 +894,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LINK__ELEMENTS = LINK__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__UNBOUNDED = LINK__UNBOUNDED;
 
 	/**
 	 * The number of structural features of the '<em>Binary Link</em>' class.
@@ -976,6 +994,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_LINK__ELEMENTS = BINARY_LINK__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__UNBOUNDED = BINARY_LINK__UNBOUNDED;
 
 	/**
 	 * The number of structural features of the '<em>Homomorphism Link</em>' class.
@@ -1221,6 +1248,17 @@ public interface MappingPackage extends EPackage {
 	EReference getLink_Elements();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#isUnbounded <em>Unbounded</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unbounded</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Link#isUnbounded()
+	 * @see #getLink()
+	 * @generated
+	 */
+	EAttribute getLink_Unbounded();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.BinaryLink <em>Binary Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1444,6 +1482,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LINK__ELEMENTS = eINSTANCE.getLink_Elements();
+
+		/**
+		 * The meta object literal for the '<em><b>Unbounded</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LINK__UNBOUNDED = eINSTANCE.getLink_Unbounded();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.BinaryLinkImpl <em>Binary Link</em>}' class.

@@ -19,11 +19,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1"
-        eType="#//EStringToModelMap" containment="true"/>
+        eType="#//Model" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
         eType="#//EStringToEditorMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
-        eType="#//EStringToOperatorMap" containment="true"/>
+        eType="#//Operator" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendibles" upperBound="-1"
+        eType="#//EStringToExtendibleElementMap" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -34,25 +36,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
         eType="#//Editor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//TypedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//ExtendibleElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
         eType="#//EStringToParameterMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
         eType="#//EStringToParameterMap" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EStringToModelMap" instanceClassName="java.util.Map$Entry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Model"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStringToEditorMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Editor"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EStringToOperatorMap" instanceClassName="java.util.Map$Entry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Operator"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
@@ -113,9 +105,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if metaType.oclIsUndefined() then '' else metaType.name endif"/>
+        <details key="derivation" value="if metatype.oclIsUndefined() then '' else metatype.name endif"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EStringToExtendibleElementMap" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//ExtendibleElement"/>
   </eClassifiers>
   <eSubpackages name="mapping" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping"
       nsPrefix="mapping">
@@ -199,8 +195,16 @@
           eType="#//mapping/Link" eOpposite="#//mapping/Link/elements"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="unboundedLevel"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="unboundedLevel" value="unbounded = true implies level = MidLevel::TYPES"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//mapping/ModelElement" eOpposite="#//mapping/ModelElement/links"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unbounded" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BinaryLink" eSuperTypes="#//mapping/Link">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

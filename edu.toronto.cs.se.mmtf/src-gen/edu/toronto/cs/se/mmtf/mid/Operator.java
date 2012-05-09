@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface Operator extends TypedElement {
+public interface Operator extends ExtendibleElement {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' map.
 	 * The key is of type {@link java.lang.String},

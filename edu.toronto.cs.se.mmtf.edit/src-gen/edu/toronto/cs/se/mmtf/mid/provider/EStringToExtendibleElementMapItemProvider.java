@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import java.util.Collection;
@@ -23,8 +22,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -43,7 +40,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EStringToOperatorMapItemProvider
+public class EStringToExtendibleElementMapItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -57,7 +54,7 @@ public class EStringToOperatorMapItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStringToOperatorMapItemProvider(AdapterFactory adapterFactory) {
+	public EStringToExtendibleElementMapItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -73,6 +70,7 @@ public class EStringToOperatorMapItemProvider
 			super.getPropertyDescriptors(object);
 
 			addKeyPropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -88,9 +86,9 @@ public class EStringToOperatorMapItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EStringToOperatorMap_key_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EStringToOperatorMap_key_feature", "_UI_EStringToOperatorMap_type"),
-				 MidPackage.Literals.ESTRING_TO_OPERATOR_MAP__KEY,
+				 getString("_UI_EStringToExtendibleElementMap_key_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EStringToExtendibleElementMap_key_feature", "_UI_EStringToExtendibleElementMap_type"),
+				 MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY,
 				 true,
 				 false,
 				 false,
@@ -100,44 +98,36 @@ public class EStringToOperatorMapItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(MidPackage.Literals.ESTRING_TO_OPERATOR_MAP__VALUE);
-		}
-		return childrenFeatures;
+	protected void addValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EStringToExtendibleElementMap_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EStringToExtendibleElementMap_value_feature", "_UI_EStringToExtendibleElementMap_type"),
+				 MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns EStringToOperatorMap.gif.
+	 * This returns EStringToExtendibleElementMap.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EStringToOperatorMap"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EStringToExtendibleElementMap"));
 	}
 
 	/**
@@ -148,8 +138,8 @@ public class EStringToOperatorMapItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Map.Entry<?, ?> eStringToOperatorMap = (Map.Entry<?, ?>)object;
-		return "" + eStringToOperatorMap.getKey() + " -> " + eStringToOperatorMap.getValue();
+		Map.Entry<?, ?> eStringToExtendibleElementMap = (Map.Entry<?, ?>)object;
+		return "" + eStringToExtendibleElementMap.getKey() + " -> " + eStringToExtendibleElementMap.getValue();
 	}
 
 	/**
@@ -164,11 +154,8 @@ public class EStringToOperatorMapItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Map.Entry.class)) {
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__KEY:
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MidPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -184,11 +171,6 @@ public class EStringToOperatorMapItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.ESTRING_TO_OPERATOR_MAP__VALUE,
-				 MidFactory.eINSTANCE.createOperator()));
 	}
 
 	/**

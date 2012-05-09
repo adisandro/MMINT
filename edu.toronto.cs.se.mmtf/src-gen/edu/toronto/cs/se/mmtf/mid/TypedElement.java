@@ -127,7 +127,7 @@ public interface TypedElement extends EObject {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getTypedElement_Type()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if metaType.oclIsUndefined() then \'\' else metaType.name endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if metatype.oclIsUndefined() then \'\' else metatype.name endif'"
 	 * @generated
 	 */
 	String getType();

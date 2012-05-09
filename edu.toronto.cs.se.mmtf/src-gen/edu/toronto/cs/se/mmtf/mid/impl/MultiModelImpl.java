@@ -12,13 +12,16 @@
 package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.mid.Editor;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.Operator;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EClass;
@@ -27,6 +30,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getOperators <em>Operators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getExtendibles <em>Extendibles</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,14 +52,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	/**
-	 * The cached value of the '{@link #getModels() <em>Models</em>}' map.
+	 * The cached value of the '{@link #getModels() <em>Models</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModels()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, Model> models;
+	protected EList<Model> models;
 
 	/**
 	 * The cached value of the '{@link #getEditors() <em>Editors</em>}' map.
@@ -67,14 +72,24 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	protected EMap<String, Editor> editors;
 
 	/**
-	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' map.
+	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOperators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, Operator> operators;
+	protected EList<Operator> operators;
+
+	/**
+	 * The cached value of the '{@link #getExtendibles() <em>Extendibles</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendibles()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<String, ExtendibleElement> extendibles;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,9 +115,9 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, Model> getModels() {
+	public EList<Model> getModels() {
 		if (models == null) {
-			models = new EcoreEMap<String,Model>(MidPackage.Literals.ESTRING_TO_MODEL_MAP, EStringToModelMapImpl.class, this, MidPackage.MULTI_MODEL__MODELS);
+			models = new EObjectContainmentEList<Model>(Model.class, this, MidPackage.MULTI_MODEL__MODELS);
 		}
 		return models;
 	}
@@ -124,11 +139,23 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, Operator> getOperators() {
+	public EList<Operator> getOperators() {
 		if (operators == null) {
-			operators = new EcoreEMap<String,Operator>(MidPackage.Literals.ESTRING_TO_OPERATOR_MAP, EStringToOperatorMapImpl.class, this, MidPackage.MULTI_MODEL__OPERATORS);
+			operators = new EObjectContainmentEList<Operator>(Operator.class, this, MidPackage.MULTI_MODEL__OPERATORS);
 		}
 		return operators;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EMap<String, ExtendibleElement> getExtendibles() {
+		if (extendibles == null) {
+			extendibles = new EcoreEMap<String,ExtendibleElement>(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP, EStringToExtendibleElementMapImpl.class, this, MidPackage.MULTI_MODEL__EXTENDIBLES);
+		}
+		return extendibles;
 	}
 
 	/**
@@ -145,6 +172,8 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				return ((InternalEList<?>)getEditors()).basicRemove(otherEnd, msgs);
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
+			case MidPackage.MULTI_MODEL__EXTENDIBLES:
+				return ((InternalEList<?>)getExtendibles()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -158,14 +187,15 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MidPackage.MULTI_MODEL__MODELS:
-				if (coreType) return getModels();
-				else return getModels().map();
+				return getModels();
 			case MidPackage.MULTI_MODEL__EDITORS:
 				if (coreType) return getEditors();
 				else return getEditors().map();
 			case MidPackage.MULTI_MODEL__OPERATORS:
-				if (coreType) return getOperators();
-				else return getOperators().map();
+				return getOperators();
+			case MidPackage.MULTI_MODEL__EXTENDIBLES:
+				if (coreType) return getExtendibles();
+				else return getExtendibles().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -175,17 +205,23 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MidPackage.MULTI_MODEL__MODELS:
-				((EStructuralFeature.Setting)getModels()).set(newValue);
+				getModels().clear();
+				getModels().addAll((Collection<? extends Model>)newValue);
 				return;
 			case MidPackage.MULTI_MODEL__EDITORS:
 				((EStructuralFeature.Setting)getEditors()).set(newValue);
 				return;
 			case MidPackage.MULTI_MODEL__OPERATORS:
-				((EStructuralFeature.Setting)getOperators()).set(newValue);
+				getOperators().clear();
+				getOperators().addAll((Collection<? extends Operator>)newValue);
+				return;
+			case MidPackage.MULTI_MODEL__EXTENDIBLES:
+				((EStructuralFeature.Setting)getExtendibles()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -208,6 +244,9 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				getOperators().clear();
 				return;
+			case MidPackage.MULTI_MODEL__EXTENDIBLES:
+				getExtendibles().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -226,6 +265,8 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				return editors != null && !editors.isEmpty();
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				return operators != null && !operators.isEmpty();
+			case MidPackage.MULTI_MODEL__EXTENDIBLES:
+				return extendibles != null && !extendibles.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
