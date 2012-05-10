@@ -20,7 +20,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping;
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getBinaryLink()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryLink'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryLink='elements->size() = 2'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryLink='elementRefs->size() = 2'"
  * @generated
  */
 public interface BinaryLink extends Link {

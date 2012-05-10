@@ -17,7 +17,7 @@ import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.Link;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 
 import java.util.Collection;
@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#getLinks <em>Links</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#getContainers <em>Containers</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#getModelRefs <em>Model Refs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelRelImpl#isUnbounded <em>Unbounded</em>}</li>
  * </ul>
  * </p>
@@ -73,14 +73,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	protected EList<Link> links;
 
 	/**
-	 * The cached value of the '{@link #getContainers() <em>Containers</em>}' containment reference list.
+	 * The cached value of the '{@link #getModelRefs() <em>Model Refs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContainers()
+	 * @see #getModelRefs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelContainer> containers;
+	protected EList<ModelReference> modelRefs;
 
 	/**
 	 * The default value of the '{@link #isUnbounded() <em>Unbounded</em>}' attribute.
@@ -150,11 +150,11 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelContainer> getContainers() {
-		if (containers == null) {
-			containers = new EObjectContainmentEList<ModelContainer>(ModelContainer.class, this, MappingPackage.MODEL_REL__CONTAINERS);
+	public EList<ModelReference> getModelRefs() {
+		if (modelRefs == null) {
+			modelRefs = new EObjectContainmentEList<ModelReference>(ModelReference.class, this, MappingPackage.MODEL_REL__MODEL_REFS);
 		}
-		return containers;
+		return modelRefs;
 	}
 
 	/**
@@ -188,8 +188,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		switch (featureID) {
 			case MappingPackage.MODEL_REL__LINKS:
 				return ((InternalEList<?>)getLinks()).basicRemove(otherEnd, msgs);
-			case MappingPackage.MODEL_REL__CONTAINERS:
-				return ((InternalEList<?>)getContainers()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MODEL_REL__MODEL_REFS:
+				return ((InternalEList<?>)getModelRefs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -206,8 +206,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return getModels();
 			case MappingPackage.MODEL_REL__LINKS:
 				return getLinks();
-			case MappingPackage.MODEL_REL__CONTAINERS:
-				return getContainers();
+			case MappingPackage.MODEL_REL__MODEL_REFS:
+				return getModelRefs();
 			case MappingPackage.MODEL_REL__UNBOUNDED:
 				return isUnbounded();
 		}
@@ -231,9 +231,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				getLinks().clear();
 				getLinks().addAll((Collection<? extends Link>)newValue);
 				return;
-			case MappingPackage.MODEL_REL__CONTAINERS:
-				getContainers().clear();
-				getContainers().addAll((Collection<? extends ModelContainer>)newValue);
+			case MappingPackage.MODEL_REL__MODEL_REFS:
+				getModelRefs().clear();
+				getModelRefs().addAll((Collection<? extends ModelReference>)newValue);
 				return;
 			case MappingPackage.MODEL_REL__UNBOUNDED:
 				setUnbounded((Boolean)newValue);
@@ -256,8 +256,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			case MappingPackage.MODEL_REL__LINKS:
 				getLinks().clear();
 				return;
-			case MappingPackage.MODEL_REL__CONTAINERS:
-				getContainers().clear();
+			case MappingPackage.MODEL_REL__MODEL_REFS:
+				getModelRefs().clear();
 				return;
 			case MappingPackage.MODEL_REL__UNBOUNDED:
 				setUnbounded(UNBOUNDED_EDEFAULT);
@@ -278,8 +278,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return models != null && !models.isEmpty();
 			case MappingPackage.MODEL_REL__LINKS:
 				return links != null && !links.isEmpty();
-			case MappingPackage.MODEL_REL__CONTAINERS:
-				return containers != null && !containers.isEmpty();
+			case MappingPackage.MODEL_REL__MODEL_REFS:
+				return modelRefs != null && !modelRefs.isEmpty();
 			case MappingPackage.MODEL_REL__UNBOUNDED:
 				return unbounded != UNBOUNDED_EDEFAULT;
 		}

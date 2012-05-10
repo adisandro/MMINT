@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -55,7 +57,7 @@ public interface MultiModel extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Editors</b></em>' map.
 	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.Editor},
+	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.editor.Editor},
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Editors</em>' map isn't clear,
@@ -64,14 +66,14 @@ public interface MultiModel extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Editors</em>' map.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMultiModel_Editors()
-	 * @model mapType="edu.toronto.cs.se.mmtf.mid.EStringToEditorMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.Editor>"
+	 * @model mapType="edu.toronto.cs.se.mmtf.mid.editor.EStringToEditorMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.editor.Editor>"
 	 * @generated
 	 */
 	EMap<String, Editor> getEditors();
 
 	/**
 	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.Operator}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.operator.Operator}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operators</em>' map isn't clear,

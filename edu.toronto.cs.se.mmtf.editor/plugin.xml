@@ -89,4 +89,56 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.mmtf.mid.editor.presentation.EditorModelWizardID"
+            name="%_UI_EditorModelWizard_label"
+            class="edu.toronto.cs.se.mmtf.mid.editor.presentation.EditorModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/EditorModelFile.gif">
+         <description>%_UI_EditorModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="edu.toronto.cs.se.mmtf.mid.editor.presentation.EditorEditorID"
+            name="%_UI_EditorEditor_label"
+            icon="icons/full/obj16/EditorModelFile.gif"
+            extensions="editor"
+            class="edu.toronto.cs.se.mmtf.mid.editor.presentation.EditorEditor"
+            contributorClass="edu.toronto.cs.se.mmtf.mid.editor.presentation.EditorActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.mmtf.mid.operator.presentation.OperatorModelWizardID"
+            name="%_UI_OperatorModelWizard_label"
+            class="edu.toronto.cs.se.mmtf.mid.operator.presentation.OperatorModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/OperatorModelFile.gif">
+         <description>%_UI_OperatorModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="edu.toronto.cs.se.mmtf.mid.operator.presentation.OperatorEditorID"
+            name="%_UI_OperatorEditor_label"
+            icon="icons/full/obj16/OperatorModelFile.gif"
+            extensions="operator"
+            class="edu.toronto.cs.se.mmtf.mid.operator.presentation.OperatorEditor"
+            contributorClass="edu.toronto.cs.se.mmtf.mid.operator.presentation.OperatorActionBarContributor">
+      </editor>
+   </extension>
+
 </plugin>

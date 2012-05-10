@@ -75,7 +75,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 10;
+	int TYPED_ELEMENT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -378,13 +378,22 @@ public interface MidPackage extends EPackage {
 	int MODEL__EDITORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__ELEMENTS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -396,526 +405,6 @@ public interface MidPackage extends EPackage {
 	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.OperatorImpl <em>Operator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.OperatorImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getOperator()
-	 * @generated
-	 */
-	int OPERATOR = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__NAME = EXTENDIBLE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__TYPE = EXTENDIBLE_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__URI = EXTENDIBLE_ELEMENT__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
-
-	/**
-	 * The feature id for the '<em><b>Inputs</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__INPUTS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Outputs</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__OUTPUTS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Operator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Operator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToEditorMapImpl <em>EString To Editor Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToEditorMapImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToEditorMap()
-	 * @generated
-	 */
-	int ESTRING_TO_EDITOR_MAP = 4;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To Editor Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>EString To Editor Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ParameterImpl <em>Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.ParameterImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getParameter()
-	 * @generated
-	 */
-	int PARAMETER = 5;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__TYPE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Vararg</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__VARARG = 2;
-
-	/**
-	 * The number of structural features of the '<em>Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelParameterImpl <em>Model Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelParameterImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelParameter()
-	 * @generated
-	 */
-	int MODEL_PARAMETER = 6;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__NAME = PARAMETER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__TYPE = PARAMETER__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Vararg</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__VARARG = PARAMETER__VARARG;
-
-	/**
-	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__MODEL_URI = PARAMETER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__MODEL = PARAMETER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Model Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER_FEATURE_COUNT = PARAMETER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Model Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER_OPERATION_COUNT = PARAMETER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EditorImpl <em>Editor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.EditorImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEditor()
-	 * @generated
-	 */
-	int EDITOR = 7;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__NAME = TYPED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__METATYPE = TYPED_ELEMENT__METATYPE;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__LEVEL = TYPED_ELEMENT__LEVEL;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__TYPE = TYPED_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__MODEL_URI = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__ID = TYPED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__WIZARD_ID = TYPED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>File Extensions</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__FILE_EXTENSIONS = TYPED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Editor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Editor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.DiagramImpl <em>Diagram</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.DiagramImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getDiagram()
-	 * @generated
-	 */
-	int DIAGRAM = 8;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__NAME = EDITOR__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__METATYPE = EDITOR__METATYPE;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__LEVEL = EDITOR__LEVEL;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__TYPE = EDITOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__MODEL_URI = EDITOR__MODEL_URI;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__ID = EDITOR__ID;
-
-	/**
-	 * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__WIZARD_ID = EDITOR__WIZARD_ID;
-
-	/**
-	 * The feature id for the '<em><b>File Extensions</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__FILE_EXTENSIONS = EDITOR__FILE_EXTENSIONS;
-
-	/**
-	 * The number of structural features of the '<em>Diagram</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM_FEATURE_COUNT = EDITOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Diagram</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM_OPERATION_COUNT = EDITOR_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToParameterMapImpl <em>EString To Parameter Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToParameterMapImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToParameterMap()
-	 * @generated
-	 */
-	int ESTRING_TO_PARAMETER_MAP = 9;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To Parameter Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>EString To Parameter Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -923,7 +412,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToExtendibleElementMap()
 	 * @generated
 	 */
-	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = 11;
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = 4;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -962,6 +451,106 @@ public interface MidPackage extends EPackage {
 	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl <em>Model Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElement()
+	 * @generated
+	 */
+	int MODEL_ELEMENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__NAME = EXTENDIBLE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__TYPE = EXTENDIBLE_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__URI = EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Category</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__CATEGORY = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Pointer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__POINTER = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Model Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Model Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -969,7 +558,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMidLevel()
 	 * @generated
 	 */
-	int MID_LEVEL = 12;
+	int MID_LEVEL = 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelOrigin <em>Model Origin</em>}' enum.
@@ -979,18 +568,17 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelOrigin()
 	 * @generated
 	 */
-	int MODEL_ORIGIN = 13;
+	int MODEL_ORIGIN = 7;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ParameterType <em>Parameter Type</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.ParameterType
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getParameterType()
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementCategory()
 	 * @generated
 	 */
-	int PARAMETER_TYPE = 14;
-
+	int MODEL_ELEMENT_CATEGORY = 8;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -1133,243 +721,15 @@ public interface MidPackage extends EPackage {
 	EReference getModel_Editors();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Operator <em>Operator</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.Model#getElements <em>Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Operator</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Operator
+	 * @return the meta object for the containment reference list '<em>Elements</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getElements()
+	 * @see #getModel()
 	 * @generated
 	 */
-	EClass getOperator();
-
-	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.Operator#getInputs <em>Inputs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Inputs</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Operator#getInputs()
-	 * @see #getOperator()
-	 * @generated
-	 */
-	EReference getOperator_Inputs();
-
-	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.Operator#getOutputs <em>Outputs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Outputs</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Operator#getOutputs()
-	 * @see #getOperator()
-	 * @generated
-	 */
-	EReference getOperator_Outputs();
-
-	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Editor Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To Editor Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.Editor" valueContainment="true" valueRequired="true"
-	 * @generated
-	 */
-	EClass getEStringToEditorMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToEditorMap()
-	 * @generated
-	 */
-	EAttribute getEStringToEditorMap_Key();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToEditorMap()
-	 * @generated
-	 */
-	EReference getEStringToEditorMap_Value();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Parameter <em>Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Parameter</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Parameter
-	 * @generated
-	 */
-	EClass getParameter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.Parameter#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Parameter#getName()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EAttribute getParameter_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.Parameter#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Parameter#getType()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EAttribute getParameter_Type();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.Parameter#isVararg <em>Vararg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Vararg</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Parameter#isVararg()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EAttribute getParameter_Vararg();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelParameter <em>Model Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Parameter</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelParameter
-	 * @generated
-	 */
-	EClass getModelParameter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelParameter#getModelUri <em>Model Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Model Uri</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelParameter#getModelUri()
-	 * @see #getModelParameter()
-	 * @generated
-	 */
-	EAttribute getModelParameter_ModelUri();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.ModelParameter#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelParameter#getModel()
-	 * @see #getModelParameter()
-	 * @generated
-	 */
-	EReference getModelParameter_Model();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Editor <em>Editor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Editor</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Editor
-	 * @generated
-	 */
-	EClass getEditor();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.Editor#getModelUri <em>Model Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Model Uri</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Editor#getModelUri()
-	 * @see #getEditor()
-	 * @generated
-	 */
-	EAttribute getEditor_ModelUri();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.Editor#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Editor#getId()
-	 * @see #getEditor()
-	 * @generated
-	 */
-	EAttribute getEditor_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.Editor#getWizardId <em>Wizard Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Wizard Id</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Editor#getWizardId()
-	 * @see #getEditor()
-	 * @generated
-	 */
-	EAttribute getEditor_WizardId();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link edu.toronto.cs.se.mmtf.mid.Editor#getFileExtensions <em>File Extensions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>File Extensions</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Editor#getFileExtensions()
-	 * @see #getEditor()
-	 * @generated
-	 */
-	EAttribute getEditor_FileExtensions();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Diagram <em>Diagram</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Diagram</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Diagram
-	 * @generated
-	 */
-	EClass getDiagram();
-
-	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Parameter Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To Parameter Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.Parameter" valueContainment="true" valueRequired="true"
-	 * @generated
-	 */
-	EClass getEStringToParameterMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToParameterMap()
-	 * @generated
-	 */
-	EAttribute getEStringToParameterMap_Key();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToParameterMap()
-	 * @generated
-	 */
-	EReference getEStringToParameterMap_Value();
+	EReference getModel_Elements();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.TypedElement <em>Typed Element</em>}'.
@@ -1460,6 +820,38 @@ public interface MidPackage extends EPackage {
 	EReference getEStringToExtendibleElementMap_Value();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model Element</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement
+	 * @generated
+	 */
+	EClass getModelElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getCategory <em>Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Category</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getCategory()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EAttribute getModelElement_Category();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer <em>Pointer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Pointer</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_Pointer();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1480,14 +872,14 @@ public interface MidPackage extends EPackage {
 	EEnum getModelOrigin();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ParameterType <em>Parameter Type</em>}'.
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Parameter Type</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ParameterType
+	 * @return the meta object for enum '<em>Model Element Category</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
 	 * @generated
 	 */
-	EEnum getParameterType();
+	EEnum getModelElementCategory();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1623,194 +1015,12 @@ public interface MidPackage extends EPackage {
 		EReference MODEL__EDITORS = eINSTANCE.getModel_Editors();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.OperatorImpl <em>Operator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.OperatorImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getOperator()
-		 * @generated
-		 */
-		EClass OPERATOR = eINSTANCE.getOperator();
-
-		/**
-		 * The meta object literal for the '<em><b>Inputs</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATOR__INPUTS = eINSTANCE.getOperator_Inputs();
-
-		/**
-		 * The meta object literal for the '<em><b>Outputs</b></em>' map feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR__OUTPUTS = eINSTANCE.getOperator_Outputs();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToEditorMapImpl <em>EString To Editor Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToEditorMapImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToEditorMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_EDITOR_MAP = eINSTANCE.getEStringToEditorMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_EDITOR_MAP__KEY = eINSTANCE.getEStringToEditorMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ESTRING_TO_EDITOR_MAP__VALUE = eINSTANCE.getEStringToEditorMap_Value();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ParameterImpl <em>Parameter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.ParameterImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getParameter()
-		 * @generated
-		 */
-		EClass PARAMETER = eINSTANCE.getParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER__TYPE = eINSTANCE.getParameter_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Vararg</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER__VARARG = eINSTANCE.getParameter_Vararg();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelParameterImpl <em>Model Parameter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelParameterImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelParameter()
-		 * @generated
-		 */
-		EClass MODEL_PARAMETER = eINSTANCE.getModelParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_PARAMETER__MODEL_URI = eINSTANCE.getModelParameter_ModelUri();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_PARAMETER__MODEL = eINSTANCE.getModelParameter_Model();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EditorImpl <em>Editor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.EditorImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEditor()
-		 * @generated
-		 */
-		EClass EDITOR = eINSTANCE.getEditor();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EDITOR__MODEL_URI = eINSTANCE.getEditor_ModelUri();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EDITOR__ID = eINSTANCE.getEditor_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Wizard Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EDITOR__WIZARD_ID = eINSTANCE.getEditor_WizardId();
-
-		/**
-		 * The meta object literal for the '<em><b>File Extensions</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EDITOR__FILE_EXTENSIONS = eINSTANCE.getEditor_FileExtensions();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.DiagramImpl <em>Diagram</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.DiagramImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getDiagram()
-		 * @generated
-		 */
-		EClass DIAGRAM = eINSTANCE.getDiagram();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToParameterMapImpl <em>EString To Parameter Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.EStringToParameterMapImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToParameterMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_PARAMETER_MAP = eINSTANCE.getEStringToParameterMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_PARAMETER_MAP__KEY = eINSTANCE.getEStringToParameterMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ESTRING_TO_PARAMETER_MAP__VALUE = eINSTANCE.getEStringToParameterMap_Value();
+		EReference MODEL__ELEMENTS = eINSTANCE.getModel_Elements();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -1881,6 +1091,32 @@ public interface MidPackage extends EPackage {
 		EReference ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE = eINSTANCE.getEStringToExtendibleElementMap_Value();
 
 		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl <em>Model Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElement()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_ELEMENT__CATEGORY = eINSTANCE.getModelElement_Category();
+
+		/**
+		 * The meta object literal for the '<em><b>Pointer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__POINTER = eINSTANCE.getModelElement_Pointer();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1901,14 +1137,14 @@ public interface MidPackage extends EPackage {
 		EEnum MODEL_ORIGIN = eINSTANCE.getModelOrigin();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ParameterType <em>Parameter Type</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.ParameterType
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getParameterType()
+		 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementCategory()
 		 * @generated
 		 */
-		EEnum PARAMETER_TYPE = eINSTANCE.getParameterType();
+		EEnum MODEL_ELEMENT_CATEGORY = eINSTANCE.getModelElementCategory();
 
 	}
 

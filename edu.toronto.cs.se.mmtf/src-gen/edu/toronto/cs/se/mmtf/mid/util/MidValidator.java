@@ -102,30 +102,18 @@ public class MidValidator extends EObjectValidator {
 				return validateMultiModel((MultiModel)value, diagnostics, context);
 			case MidPackage.MODEL:
 				return validateModel((Model)value, diagnostics, context);
-			case MidPackage.OPERATOR:
-				return validateOperator((Operator)value, diagnostics, context);
-			case MidPackage.ESTRING_TO_EDITOR_MAP:
-				return validateEStringToEditorMap((Map.Entry<?, ?>)value, diagnostics, context);
-			case MidPackage.PARAMETER:
-				return validateParameter((Parameter)value, diagnostics, context);
-			case MidPackage.MODEL_PARAMETER:
-				return validateModelParameter((ModelParameter)value, diagnostics, context);
-			case MidPackage.EDITOR:
-				return validateEditor((Editor)value, diagnostics, context);
-			case MidPackage.DIAGRAM:
-				return validateDiagram((Diagram)value, diagnostics, context);
-			case MidPackage.ESTRING_TO_PARAMETER_MAP:
-				return validateEStringToParameterMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.TYPED_ELEMENT:
 				return validateTypedElement((TypedElement)value, diagnostics, context);
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP:
 				return validateEStringToExtendibleElementMap((Map.Entry<?, ?>)value, diagnostics, context);
+			case MidPackage.MODEL_ELEMENT:
+				return validateModelElement((ModelElement)value, diagnostics, context);
 			case MidPackage.MID_LEVEL:
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
-			case MidPackage.PARAMETER_TYPE:
-				return validateParameterType((ParameterType)value, diagnostics, context);
+			case MidPackage.MODEL_ELEMENT_CATEGORY:
+				return validateModelElementCategory((ModelElementCategory)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -214,149 +202,6 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOperator(Operator operator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(operator, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExtendibleElement_supertypeType(operator, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEStringToEditorMap(Map.Entry<?, ?> eStringToEditorMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)eStringToEditorMap, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(parameter, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validateParameter_isModelParameter(parameter, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the isModelParameter constraint of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String PARAMETER__IS_MODEL_PARAMETER__EEXPRESSION = "type = ParameterType::MODEL or type = ParameterType::MODEL_REL implies self.oclIsKindOf(ModelParameter)";
-
-	/**
-	 * Validates the isModelParameter constraint of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParameter_isModelParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(MidPackage.Literals.PARAMETER,
-				 parameter,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "isModelParameter",
-				 PARAMETER__IS_MODEL_PARAMETER__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelParameter(ModelParameter modelParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(modelParameter, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validateParameter_isModelParameter(modelParameter, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEditor(Editor editor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(editor, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(editor, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(editor, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateDiagram(Diagram diagram, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(diagram, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(diagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(diagram, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEStringToParameterMap(Map.Entry<?, ?> eStringToParameterMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)eStringToParameterMap, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateTypedElement(TypedElement typedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(typedElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(typedElement, diagnostics, context);
@@ -414,6 +259,26 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(modelElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_supertypeType(modelElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMidLevel(MidLevel midLevel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -432,7 +297,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateParameterType(ParameterType parameterType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelElementCategory(ModelElementCategory modelElementCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

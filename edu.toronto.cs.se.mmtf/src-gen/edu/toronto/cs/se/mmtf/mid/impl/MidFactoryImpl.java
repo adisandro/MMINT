@@ -70,14 +70,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 		switch (eClass.getClassifierID()) {
 			case MidPackage.MULTI_MODEL: return createMultiModel();
 			case MidPackage.MODEL: return createModel();
-			case MidPackage.OPERATOR: return createOperator();
-			case MidPackage.ESTRING_TO_EDITOR_MAP: return (EObject)createEStringToEditorMap();
-			case MidPackage.PARAMETER: return createParameter();
-			case MidPackage.MODEL_PARAMETER: return createModelParameter();
-			case MidPackage.EDITOR: return createEditor();
-			case MidPackage.DIAGRAM: return createDiagram();
-			case MidPackage.ESTRING_TO_PARAMETER_MAP: return (EObject)createEStringToParameterMap();
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
+			case MidPackage.MODEL_ELEMENT: return createModelElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -95,8 +89,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return createMidLevelFromString(eDataType, initialValue);
 			case MidPackage.MODEL_ORIGIN:
 				return createModelOriginFromString(eDataType, initialValue);
-			case MidPackage.PARAMETER_TYPE:
-				return createParameterTypeFromString(eDataType, initialValue);
+			case MidPackage.MODEL_ELEMENT_CATEGORY:
+				return createModelElementCategoryFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -114,8 +108,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return convertMidLevelToString(eDataType, instanceValue);
 			case MidPackage.MODEL_ORIGIN:
 				return convertModelOriginToString(eDataType, instanceValue);
-			case MidPackage.PARAMETER_TYPE:
-				return convertParameterTypeToString(eDataType, instanceValue);
+			case MidPackage.MODEL_ELEMENT_CATEGORY:
+				return convertModelElementCategoryToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -146,79 +140,19 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator createOperator() {
-		OperatorImpl operator = new OperatorImpl();
-		return operator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<String, Editor> createEStringToEditorMap() {
-		EStringToEditorMapImpl eStringToEditorMap = new EStringToEditorMapImpl();
-		return eStringToEditorMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Parameter createParameter() {
-		ParameterImpl parameter = new ParameterImpl();
-		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelParameter createModelParameter() {
-		ModelParameterImpl modelParameter = new ModelParameterImpl();
-		return modelParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Editor createEditor() {
-		EditorImpl editor = new EditorImpl();
-		return editor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Diagram createDiagram() {
-		DiagramImpl diagram = new DiagramImpl();
-		return diagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<String, Parameter> createEStringToParameterMap() {
-		EStringToParameterMapImpl eStringToParameterMap = new EStringToParameterMapImpl();
-		return eStringToParameterMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Map.Entry<String, ExtendibleElement> createEStringToExtendibleElementMap() {
 		EStringToExtendibleElementMapImpl eStringToExtendibleElementMap = new EStringToExtendibleElementMapImpl();
 		return eStringToExtendibleElementMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElement createModelElement() {
+		ModelElementImpl modelElement = new ModelElementImpl();
+		return modelElement;
 	}
 
 	/**
@@ -266,8 +200,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterType createParameterTypeFromString(EDataType eDataType, String initialValue) {
-		ParameterType result = ParameterType.get(initialValue);
+	public ModelElementCategory createModelElementCategoryFromString(EDataType eDataType, String initialValue) {
+		ModelElementCategory result = ModelElementCategory.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -277,7 +211,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertParameterTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertModelElementCategoryToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

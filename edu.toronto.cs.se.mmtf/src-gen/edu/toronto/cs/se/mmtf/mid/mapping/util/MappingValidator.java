@@ -112,18 +112,18 @@ public class MappingValidator extends EObjectValidator {
 				return validateBinaryModelRel((BinaryModelRel)value, diagnostics, context);
 			case MappingPackage.HOMOMORPHISM_MODEL_REL:
 				return validateHomomorphismModelRel((HomomorphismModelRel)value, diagnostics, context);
-			case MappingPackage.MODEL_CONTAINER:
-				return validateModelContainer((ModelContainer)value, diagnostics, context);
-			case MappingPackage.MODEL_ELEMENT:
-				return validateModelElement((ModelElement)value, diagnostics, context);
+			case MappingPackage.MODEL_REFERENCE:
+				return validateModelReference((ModelReference)value, diagnostics, context);
+			case MappingPackage.MODEL_ELEMENT_REFERENCE:
+				return validateModelElementReference((ModelElementReference)value, diagnostics, context);
 			case MappingPackage.LINK:
 				return validateLink((Link)value, diagnostics, context);
 			case MappingPackage.BINARY_LINK:
 				return validateBinaryLink((BinaryLink)value, diagnostics, context);
 			case MappingPackage.HOMOMORPHISM_LINK:
 				return validateHomomorphismLink((HomomorphismLink)value, diagnostics, context);
-			case MappingPackage.MODEL_ELEMENT_CATEGORY:
-				return validateModelElementCategory((ModelElementCategory)value, diagnostics, context);
+			case MappingPackage.TYPED_ELEMENT_REFERENCE:
+				return validateTypedElementReference((TypedElementReference)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -146,26 +146,26 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelContainers(modelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_modelRefs(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(modelRel, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the modelContainers constraint of '<em>Model Rel</em>'.
+	 * The cached validation expression for the modelRefs constraint of '<em>Model Rel</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MODEL_REL__MODEL_CONTAINERS__EEXPRESSION = "models->size() = containers->size()";
+	protected static final String MODEL_REL__MODEL_REFS__EEXPRESSION = "models->size() = modelRefs->size()";
 
 	/**
-	 * Validates the modelContainers constraint of '<em>Model Rel</em>'.
+	 * Validates the modelRefs constraint of '<em>Model Rel</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelRel_modelContainers(ModelRel modelRel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelRel_modelRefs(ModelRel modelRel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(MappingPackage.Literals.MODEL_REL,
@@ -173,8 +173,8 @@ public class MappingValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "modelContainers",
-				 MODEL_REL__MODEL_CONTAINERS__EEXPRESSION,
+				 "modelRefs",
+				 MODEL_REL__MODEL_REFS__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
@@ -226,7 +226,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelContainers(binaryModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_modelRefs(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(binaryModelRel, diagnostics, context);
 		return result;
@@ -278,7 +278,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(homomorphismModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelContainers(homomorphismModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_modelRefs(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateHomomorphismModelRel_sameModelTypes(homomorphismModelRel, diagnostics, context);
@@ -291,7 +291,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String HOMOMORPHISM_MODEL_REL__SAME_MODEL_TYPES__EEXPRESSION = "models->forAll(m1 : Model, m2 : Model | m1.root.oclType() = m2.root.oclType())";
+	protected static final String HOMOMORPHISM_MODEL_REL__SAME_MODEL_TYPES__EEXPRESSION = "models->forAll(m1 : Model, m2 : Model | m1.type = m2.type)";
 
 	/**
 	 * Validates the sameModelTypes constraint of '<em>Homomorphism Model Rel</em>'.
@@ -319,66 +319,36 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelContainer(ModelContainer modelContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(modelContainer, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelContainer, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelContainer_oneModel(modelContainer, diagnostics, context);
+	public boolean validateModelReference(ModelReference modelReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(modelReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElementReference_oneObject(modelReference, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the oneModel constraint of '<em>Model Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MODEL_CONTAINER__ONE_MODEL__EEXPRESSION = "referencedModel.oclIsUndefined() xor containedModel.oclIsUndefined()";
-
-	/**
-	 * Validates the oneModel constraint of '<em>Model Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelContainer_oneModel(ModelContainer modelContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(MappingPackage.Literals.MODEL_CONTAINER,
-				 modelContainer,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "oneModel",
-				 MODEL_CONTAINER__ONE_MODEL__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(modelElement, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelElement, diagnostics, context);
+	public boolean validateModelElementReference(ModelElementReference modelElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(modelElementReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElementReference_oneObject(modelElementReference, diagnostics, context);
 		return result;
 	}
 
@@ -460,7 +430,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BINARY_LINK__IS_BINARY_LINK__EEXPRESSION = "elements->size() = 2";
+	protected static final String BINARY_LINK__IS_BINARY_LINK__EEXPRESSION = "elementRefs->size() = 2";
 
 	/**
 	 * Validates the isBinaryLink constraint of '<em>Binary Link</em>'.
@@ -540,8 +510,47 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelElementCategory(ModelElementCategory modelElementCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
+	public boolean validateTypedElementReference(TypedElementReference typedElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(typedElementReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(typedElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElementReference_oneObject(typedElementReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the oneObject constraint of '<em>Typed Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String TYPED_ELEMENT_REFERENCE__ONE_OBJECT__EEXPRESSION = "referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()";
+
+	/**
+	 * Validates the oneObject constraint of '<em>Typed Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTypedElementReference_oneObject(TypedElementReference typedElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.TYPED_ELEMENT_REFERENCE,
+				 typedElementReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "oneObject",
+				 TYPED_ELEMENT_REFERENCE__ONE_OBJECT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

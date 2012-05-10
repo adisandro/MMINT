@@ -7,12 +7,17 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.mmtf.mid,
+Export-Package: edu.toronto.cs.se.mmtf.mid,
+ edu.toronto.cs.se.mmtf.mid.editor,
+ edu.toronto.cs.se.mmtf.mid.editor.impl,
+ edu.toronto.cs.se.mmtf.mid.editor.util,
  edu.toronto.cs.se.mmtf.mid.impl,
  edu.toronto.cs.se.mmtf.mid.mapping,
  edu.toronto.cs.se.mmtf.mid.mapping.impl,
  edu.toronto.cs.se.mmtf.mid.mapping.util,
+ edu.toronto.cs.se.mmtf.mid.operator,
+ edu.toronto.cs.se.mmtf.mid.operator.impl,
+ edu.toronto.cs.se.mmtf.mid.operator.util,
  edu.toronto.cs.se.mmtf.mid.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
@@ -20,5 +25,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ui.ide,
  org.eclipse.emf.ecoretools.diagram
-Bundle-Activator: edu.toronto.cs.se.mmtf.Activator
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: edu.toronto.cs.se.mmtf.Activator

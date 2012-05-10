@@ -20,7 +20,7 @@ package edu.toronto.cs.se.mmtf.mid.mapping;
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getHomomorphismModelRel()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sameModelTypes'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sameModelTypes='models->forAll(m1 : Model, m2 : Model | m1.root.oclType() = m2.root.oclType())'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sameModelTypes='models->forAll(m1 : Model, m2 : Model | m1.type = m2.type)'"
  * @generated
  */
 public interface HomomorphismModelRel extends BinaryModelRel {

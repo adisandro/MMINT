@@ -15,7 +15,7 @@ import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.Link;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 
 import java.util.Collection;
 
@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.LinkImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.LinkImpl#getElementRefs <em>Element Refs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.LinkImpl#isUnbounded <em>Unbounded</em>}</li>
  * </ul>
  * </p>
@@ -47,14 +47,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class LinkImpl extends ExtendibleElementImpl implements Link {
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
+	 * The cached value of the '{@link #getElementRefs() <em>Element Refs</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElements()
+	 * @see #getElementRefs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> elements;
+	protected EList<ModelElementReference> elementRefs;
 
 	/**
 	 * The default value of the '{@link #isUnbounded() <em>Unbounded</em>}' attribute.
@@ -99,11 +99,11 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElement> getElements() {
-		if (elements == null) {
-			elements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class, this, MappingPackage.LINK__ELEMENTS, MappingPackage.MODEL_ELEMENT__LINKS);
+	public EList<ModelElementReference> getElementRefs() {
+		if (elementRefs == null) {
+			elementRefs = new EObjectWithInverseResolvingEList.ManyInverse<ModelElementReference>(ModelElementReference.class, this, MappingPackage.LINK__ELEMENT_REFS, MappingPackage.MODEL_ELEMENT_REFERENCE__LINKS);
 		}
-		return elements;
+		return elementRefs;
 	}
 
 	/**
@@ -136,8 +136,8 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.LINK__ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
+			case MappingPackage.LINK__ELEMENT_REFS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElementRefs()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -150,8 +150,8 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.LINK__ELEMENTS:
-				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+			case MappingPackage.LINK__ELEMENT_REFS:
+				return ((InternalEList<?>)getElementRefs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -164,8 +164,8 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.LINK__ELEMENTS:
-				return getElements();
+			case MappingPackage.LINK__ELEMENT_REFS:
+				return getElementRefs();
 			case MappingPackage.LINK__UNBOUNDED:
 				return isUnbounded();
 		}
@@ -181,9 +181,9 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.LINK__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends ModelElement>)newValue);
+			case MappingPackage.LINK__ELEMENT_REFS:
+				getElementRefs().clear();
+				getElementRefs().addAll((Collection<? extends ModelElementReference>)newValue);
 				return;
 			case MappingPackage.LINK__UNBOUNDED:
 				setUnbounded((Boolean)newValue);
@@ -200,8 +200,8 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.LINK__ELEMENTS:
-				getElements().clear();
+			case MappingPackage.LINK__ELEMENT_REFS:
+				getElementRefs().clear();
 				return;
 			case MappingPackage.LINK__UNBOUNDED:
 				setUnbounded(UNBOUNDED_EDEFAULT);
@@ -218,8 +218,8 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.LINK__ELEMENTS:
-				return elements != null && !elements.isEmpty();
+			case MappingPackage.LINK__ELEMENT_REFS:
+				return elementRefs != null && !elementRefs.isEmpty();
 			case MappingPackage.LINK__UNBOUNDED:
 				return unbounded != UNBOUNDED_EDEFAULT;
 		}

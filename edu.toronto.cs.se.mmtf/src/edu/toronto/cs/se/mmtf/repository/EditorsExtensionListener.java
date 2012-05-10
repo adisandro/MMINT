@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.Editor;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the

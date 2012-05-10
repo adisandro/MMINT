@@ -93,12 +93,12 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createHomomorphismModelRelAdapter();
 			}
 			@Override
-			public Adapter caseModelContainer(ModelContainer object) {
-				return createModelContainerAdapter();
+			public Adapter caseModelReference(ModelReference object) {
+				return createModelReferenceAdapter();
 			}
 			@Override
-			public Adapter caseModelElement(ModelElement object) {
-				return createModelElementAdapter();
+			public Adapter caseModelElementReference(ModelElementReference object) {
+				return createModelElementReferenceAdapter();
 			}
 			@Override
 			public Adapter caseLink(Link object) {
@@ -111,6 +111,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseHomomorphismLink(HomomorphismLink object) {
 				return createHomomorphismLinkAdapter();
+			}
+			@Override
+			public Adapter caseTypedElementReference(TypedElementReference object) {
+				return createTypedElementReferenceAdapter();
 			}
 			@Override
 			public Adapter caseTypedElement(TypedElement object) {
@@ -187,30 +191,30 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer <em>Model Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelReference <em>Model Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelReference
 	 * @generated
 	 */
-	public Adapter createModelContainerAdapter() {
+	public Adapter createModelReferenceAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement <em>Model Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference
 	 * @generated
 	 */
-	public Adapter createModelElementAdapter() {
+	public Adapter createModelElementReferenceAdapter() {
 		return null;
 	}
 
@@ -253,6 +257,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createHomomorphismLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference <em>Typed Element Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference
+	 * @generated
+	 */
+	public Adapter createTypedElementReferenceAdapter() {
 		return null;
 	}
 

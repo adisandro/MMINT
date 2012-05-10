@@ -49,49 +49,13 @@ public interface MidFactory extends EFactory {
 	Model createModel();
 
 	/**
-	 * Returns a new object of class '<em>Operator</em>'.
+	 * Returns a new object of class '<em>Model Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operator</em>'.
+	 * @return a new object of class '<em>Model Element</em>'.
 	 * @generated
 	 */
-	Operator createOperator();
-
-	/**
-	 * Returns a new object of class '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parameter</em>'.
-	 * @generated
-	 */
-	Parameter createParameter();
-
-	/**
-	 * Returns a new object of class '<em>Model Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Parameter</em>'.
-	 * @generated
-	 */
-	ModelParameter createModelParameter();
-
-	/**
-	 * Returns a new object of class '<em>Editor</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Editor</em>'.
-	 * @generated
-	 */
-	Editor createEditor();
-
-	/**
-	 * Returns a new object of class '<em>Diagram</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Diagram</em>'.
-	 * @generated
-	 */
-	Diagram createDiagram();
+	ModelElement createModelElement();
 
 	/**
 	 * Returns the package supported by this factory.

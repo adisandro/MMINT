@@ -8,7 +8,9 @@ Bundle-Activator: edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin$Implementati
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.toronto.cs.se.mmtf.mid.mapping.provider,
+Export-Package: edu.toronto.cs.se.mmtf.mid.editor.provider,
+ edu.toronto.cs.se.mmtf.mid.mapping.provider,
+ edu.toronto.cs.se.mmtf.mid.operator.provider,
  edu.toronto.cs.se.mmtf.mid.provider
 Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmtf;visibility:=reexport,

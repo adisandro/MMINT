@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmtf.mid.mapping.impl;
 import edu.toronto.cs.se.mmtf.mid.mapping.*;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -69,43 +68,13 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MODEL_REL: return createModelRel();
 			case MappingPackage.BINARY_MODEL_REL: return createBinaryModelRel();
 			case MappingPackage.HOMOMORPHISM_MODEL_REL: return createHomomorphismModelRel();
-			case MappingPackage.MODEL_CONTAINER: return createModelContainer();
-			case MappingPackage.MODEL_ELEMENT: return createModelElement();
+			case MappingPackage.MODEL_REFERENCE: return createModelReference();
+			case MappingPackage.MODEL_ELEMENT_REFERENCE: return createModelElementReference();
 			case MappingPackage.LINK: return createLink();
 			case MappingPackage.BINARY_LINK: return createBinaryLink();
 			case MappingPackage.HOMOMORPHISM_LINK: return createHomomorphismLink();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case MappingPackage.MODEL_ELEMENT_CATEGORY:
-				return createModelElementCategoryFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case MappingPackage.MODEL_ELEMENT_CATEGORY:
-				return convertModelElementCategoryToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -144,9 +113,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelContainer createModelContainer() {
-		ModelContainerImpl modelContainer = new ModelContainerImpl();
-		return modelContainer;
+	public ModelReference createModelReference() {
+		ModelReferenceImpl modelReference = new ModelReferenceImpl();
+		return modelReference;
 	}
 
 	/**
@@ -154,9 +123,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement createModelElement() {
-		ModelElementImpl modelElement = new ModelElementImpl();
-		return modelElement;
+	public ModelElementReference createModelElementReference() {
+		ModelElementReferenceImpl modelElementReference = new ModelElementReferenceImpl();
+		return modelElementReference;
 	}
 
 	/**
@@ -187,26 +156,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public HomomorphismLink createHomomorphismLink() {
 		HomomorphismLinkImpl homomorphismLink = new HomomorphismLinkImpl();
 		return homomorphismLink;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelElementCategory createModelElementCategoryFromString(EDataType eDataType, String initialValue) {
-		ModelElementCategory result = ModelElementCategory.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertModelElementCategoryToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

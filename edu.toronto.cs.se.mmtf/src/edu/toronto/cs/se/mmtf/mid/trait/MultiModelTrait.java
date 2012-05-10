@@ -35,9 +35,8 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.mapping.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.mapping.Link;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 
 /**
@@ -144,49 +143,49 @@ public class MultiModelTrait {
 	}
 
 	/**
-	 * Creates and adds a model container to a model relationship.
+	 * Creates and adds a model reference to a model relationship.
 	 * 
 	 * @param modelRel
 	 *            The model relationship.
 	 * @param model
-	 *            The model that corresponds to the model container.
-	 * @return The model container just created.
+	 *            The model that corresponds to the model reference.
+	 * @return The model reference just created.
 	 */
-	public static ModelContainer createModelRelContainer(ModelRel modelRel, Model model) {
+	public static ModelReference createModelReference(ModelRel modelRel, Model model) {
 
-		ModelContainer container = MappingFactory.eINSTANCE.createModelContainer();
+		ModelReference modelRef = MappingFactory.eINSTANCE.createModelReference();
 		if (modelRel.eContainer() == null) { // standalone model relationship
-			container.setContainedModel(model);
+			modelRef.setContainedObject(model);
 		}
 		else {
-			container.setReferencedModel(model);
+			modelRef.setReferencedObject(model);
 		}
-		modelRel.getContainers().add(container);
+		modelRel.getModelRefs().add(modelRef);
 
-		return container;
+		return modelRef;
 	}
 
 	/**
-	 * Creates and adds a model element to a model container.
+	 * Creates and adds a model element reference to a model reference.
 	 * 
-	 * @param container
-	 *            The model container
+	 * @param modelRef
+	 *            The model reference.
 	 * @param elementPointer
 	 *            The pointer to the real model element.
-	 * @return The model element just created.
+	 * @return The model element reference just created.
 	 */
-	public static ModelElement createModelElement(ModelContainer container, EObject elementPointer) {
+	public static ModelElementReference createModelElementReference(ModelReference modelRef, EObject elementPointer) {
 
-		ModelElement element = MappingFactory.eINSTANCE.createModelElement();
-		if (elementPointer instanceof EReference) {
-			element.setCategory(ModelElementCategory.RELATIONSHIP);
-		}
-		else {
-			element.setCategory(ModelElementCategory.ENTITY);
-		}
-		element.setPointer(elementPointer);
-		element.setLevel(container.getModel().getLevel());
-		//TODO MMTF: who pass/lookup the element type?
+		ModelElementReference elementRef = MappingFactory.eINSTANCE.createModelElementReference();
+//		if (elementPointer instanceof EReference) {
+//			element.setCategory(ModelElementCategory.RELATIONSHIP);
+//		}
+//		else {
+//			element.setCategory(ModelElementCategory.ENTITY);
+//		}
+//		element.setPointer(elementPointer);
+//		element.setLevel(container.getModel().getLevel());
+		//TODO MMTF: the referenced element is passed or checked/created here?
 
 		ItemProviderAdapter itemAdapter = null;
 		for (Adapter adapter : elementPointer.eAdapters()) {
@@ -196,11 +195,11 @@ public class MultiModelTrait {
 			}
 		}
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
-		element.setName(name);
+//		element.setName(name);
 
-		container.getElements().add(element);
+		modelRef.getElementRefs().add(elementRef);
 
-		return element;
+		return elementRef;
 	}
 
 	/**
@@ -230,27 +229,28 @@ public class MultiModelTrait {
 
 		// copy mapping structure
 		ModelRel origModelRel = (ModelRel) modelRel.getRoot();
-		HashMap<EObject, ModelElement> elements = new HashMap<EObject, ModelElement>();
-		for (ModelContainer origContainer : origModelRel.getContainers()) {
-			URI modelUri = URI.createPlatformResourceURI(origContainer.getContainedModel().getUri(), true);
+		HashMap<EObject, ModelElementReference> elementRefs = new HashMap<EObject, ModelElementReference>();
+		for (ModelReference origModelRef : origModelRel.getModelRefs()) {
+			URI modelUri = URI.createPlatformResourceURI(((Model) origModelRef.getContainedObject()).getUri(), true);
 			Model model = getModelUnique(multiModel, modelUri); // the model can already be in the MID
 			if (model == null) {
 				model = createModel(ModelOrigin.IMPORTED, multiModel, modelUri);
 			}
 			modelRel.getModels().add(model);
-			ModelContainer container = createModelRelContainer(modelRel, model);
-			for (ModelElement origElement : origContainer.getElements()) {
-				ModelElement element = createModelElement(container, origElement.getPointer());
-				element.setName(origElement.getName());
-				elements.put(element.getPointer(), element);
+			ModelReference modelRef = createModelReference(modelRel, model);
+			for (ModelElementReference origElementRef : origModelRef.getElementRefs()) {
+//				ModelElementReference elementRef = createModelElementReference(modelRef, origElementRef.getPointer());
+//				elementRef.setName(origElement.getName());
+//				elementRefs.put(elementRef.getPointer(), elementRef);
+				//TODO MMTF: fix when createModelElementReference is finalized
 			}
 		}
 		for (Link origLink : origModelRel.getLinks()) {
 			Link link = (Link) MappingFactory.eINSTANCE.create(origLink.eClass());
 			link.setName(origLink.getName());
 			modelRel.getLinks().add(link);
-			for (ModelElement origElement : origLink.getElements()) {
-				link.getElements().add(elements.get(origElement.getPointer()));
+			for (ModelElementReference origElementRef : origLink.getElementRefs()) {
+//				link.getElementRefs().add(elementRefs.get(origElementRef.getPointer()));
 			}
 		}
 
@@ -258,7 +258,7 @@ public class MultiModelTrait {
 	}
 
 	/**
-	 * Removes a model container from a model relationship following the removal
+	 * Removes a model reference from a model relationship following the removal
 	 * of a model.
 	 * 
 	 * @param modelRel
@@ -266,23 +266,23 @@ public class MultiModelTrait {
 	 * @param model
 	 *            The model to be removed.
 	 */
-	public static void removeModelRelContainer(ModelRel modelRel, Model model) {
+	public static void removeModelReference(ModelRel modelRel, Model model) {
 
-		for (ModelContainer container : modelRel.getContainers()) {
-			if (container.getModel() == model) {
-				modelRel.getContainers().remove(container);
+		for (ModelReference modelRef : modelRel.getModelRefs()) {
+			if (modelRef.getObject() == model) {
+				modelRel.getModelRefs().remove(modelRef);
 				ArrayList<Link> delLinks = new ArrayList<Link>();
-				for (ModelElement element : container.getElements()) {
-					for (Link link : element.getLinks()) {
+				for (ModelElementReference elementRef : modelRef.getElementRefs()) {
+					for (Link link : elementRef.getLinks()) {
 						// binary links have no longer sense, delete them later to avoid concurrent modification problems
 						if (link instanceof BinaryLink) {
 							delLinks.add(link);
 						}
 					}
-					element.getLinks().clear();
+					elementRef.getLinks().clear();
 				}
 				for (Link delLink : delLinks) {
-					delLink.getElements().clear();
+					delLink.getElementRefs().clear();
 					modelRel.getLinks().remove(delLink);
 				}
 				break;

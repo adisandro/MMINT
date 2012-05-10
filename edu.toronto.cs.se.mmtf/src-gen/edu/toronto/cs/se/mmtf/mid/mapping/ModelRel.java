@@ -25,14 +25,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getLinks <em>Links</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getContainers <em>Containers</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getModelRefs <em>Model Refs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#isUnbounded <em>Unbounded</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelRel()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelContainers unboundedLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelContainers='models->size() = containers->size()' unboundedLevel='unbounded = true implies level = MidLevel::TYPES'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelRefs unboundedLevel'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelRefs='models->size() = modelRefs->size()' unboundedLevel='unbounded = true implies level = MidLevel::TYPES'"
  * @generated
  */
 public interface ModelRel extends Model {
@@ -69,20 +69,20 @@ public interface ModelRel extends Model {
 	EList<Link> getLinks();
 
 	/**
-	 * Returns the value of the '<em><b>Containers</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer}.
+	 * Returns the value of the '<em><b>Model Refs</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Containers</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Model Refs</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containers</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelRel_Containers()
+	 * @return the value of the '<em>Model Refs</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelRel_ModelRefs()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ModelContainer> getContainers();
+	EList<ModelReference> getModelRefs();
 
 	/**
 	 * Returns the value of the '<em><b>Unbounded</b></em>' attribute.

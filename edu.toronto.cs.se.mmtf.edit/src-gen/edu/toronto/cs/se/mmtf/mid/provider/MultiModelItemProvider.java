@@ -16,7 +16,10 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
+import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
+import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import java.util.Collection;
 import java.util.List;
 
@@ -186,12 +189,12 @@ public class MultiModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__EDITORS,
-				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_EDITOR_MAP)));
+				 EditorFactory.eINSTANCE.create(EditorPackage.Literals.ESTRING_TO_EDITOR_MAP)));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
-				 MidFactory.eINSTANCE.createOperator()));
+				 OperatorFactory.eINSTANCE.createOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter

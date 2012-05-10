@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#getElementRefs <em>Element Refs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#isUnbounded <em>Unbounded</em>}</li>
  * </ul>
  * </p>
@@ -35,22 +35,22 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Link extends ExtendibleElement {
 	/**
-	 * Returns the value of the '<em><b>Elements</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getLinks <em>Links</em>}'.
+	 * Returns the value of the '<em><b>Element Refs</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getLinks <em>Links</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Elements</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Element Refs</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Elements</em>' reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getLink_Elements()
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getLinks
+	 * @return the value of the '<em>Element Refs</em>' reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getLink_ElementRefs()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getLinks
 	 * @model opposite="links"
 	 * @generated
 	 */
-	EList<ModelElement> getElements();
+	EList<ModelElementReference> getElementRefs();
 
 	/**
 	 * Returns the value of the '<em><b>Unbounded</b></em>' attribute.

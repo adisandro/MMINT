@@ -150,49 +150,49 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelContainerItemProvider modelContainerItemProvider;
+	protected ModelReferenceItemProvider modelReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelContainerAdapter() {
-		if (modelContainerItemProvider == null) {
-			modelContainerItemProvider = new ModelContainerItemProvider(this);
+	public Adapter createModelReferenceAdapter() {
+		if (modelReferenceItemProvider == null) {
+			modelReferenceItemProvider = new ModelReferenceItemProvider(this);
 		}
 
-		return modelContainerItemProvider;
+		return modelReferenceItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelElementItemProvider modelElementItemProvider;
+	protected ModelElementReferenceItemProvider modelElementReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createModelElementAdapter() {
-		if (modelElementItemProvider == null) {
-			modelElementItemProvider = new ModelElementItemProvider(this);
+	public Adapter createModelElementReferenceAdapter() {
+		if (modelElementReferenceItemProvider == null) {
+			modelElementReferenceItemProvider = new ModelElementReferenceItemProvider(this);
 		}
 
-		return modelElementItemProvider;
+		return modelElementReferenceItemProvider;
 	}
 
 	/**
@@ -366,8 +366,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (modelRelItemProvider != null) modelRelItemProvider.dispose();
 		if (binaryModelRelItemProvider != null) binaryModelRelItemProvider.dispose();
 		if (homomorphismModelRelItemProvider != null) homomorphismModelRelItemProvider.dispose();
-		if (modelContainerItemProvider != null) modelContainerItemProvider.dispose();
-		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
+		if (modelReferenceItemProvider != null) modelReferenceItemProvider.dispose();
+		if (modelElementReferenceItemProvider != null) modelElementReferenceItemProvider.dispose();
 		if (linkItemProvider != null) linkItemProvider.dispose();
 		if (binaryLinkItemProvider != null) binaryLinkItemProvider.dispose();
 		if (homomorphismLinkItemProvider != null) homomorphismLinkItemProvider.dispose();

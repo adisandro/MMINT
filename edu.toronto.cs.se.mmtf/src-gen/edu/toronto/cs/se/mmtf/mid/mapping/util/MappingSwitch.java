@@ -109,17 +109,17 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MODEL_CONTAINER: {
-				ModelContainer modelContainer = (ModelContainer)theEObject;
-				T result = caseModelContainer(modelContainer);
+			case MappingPackage.MODEL_REFERENCE: {
+				ModelReference modelReference = (ModelReference)theEObject;
+				T result = caseModelReference(modelReference);
+				if (result == null) result = caseTypedElementReference(modelReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MODEL_ELEMENT: {
-				ModelElement modelElement = (ModelElement)theEObject;
-				T result = caseModelElement(modelElement);
-				if (result == null) result = caseExtendibleElement(modelElement);
-				if (result == null) result = caseTypedElement(modelElement);
+			case MappingPackage.MODEL_ELEMENT_REFERENCE: {
+				ModelElementReference modelElementReference = (ModelElementReference)theEObject;
+				T result = caseModelElementReference(modelElementReference);
+				if (result == null) result = caseTypedElementReference(modelElementReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,6 +147,12 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLink(homomorphismLink);
 				if (result == null) result = caseExtendibleElement(homomorphismLink);
 				if (result == null) result = caseTypedElement(homomorphismLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.TYPED_ELEMENT_REFERENCE: {
+				TypedElementReference typedElementReference = (TypedElementReference)theEObject;
+				T result = caseTypedElementReference(typedElementReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,32 +206,32 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Container</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Container</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelContainer(ModelContainer object) {
+	public T caseModelReference(ModelReference object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(ModelElement object) {
+	public T caseModelElementReference(ModelElementReference object) {
 		return null;
 	}
 
@@ -271,6 +277,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseHomomorphismLink(HomomorphismLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Element Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedElementReference(TypedElementReference object) {
 		return null;
 	}
 

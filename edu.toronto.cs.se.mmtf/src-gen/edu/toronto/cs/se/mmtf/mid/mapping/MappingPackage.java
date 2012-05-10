@@ -15,7 +15,6 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -170,6 +169,15 @@ public interface MappingPackage extends EPackage {
 	int MODEL_REL__EDITORS = MidPackage.MODEL__EDITORS;
 
 	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__ELEMENTS = MidPackage.MODEL__ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -188,13 +196,13 @@ public interface MappingPackage extends EPackage {
 	int MODEL_REL__LINKS = MidPackage.MODEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Model Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__CONTAINERS = MidPackage.MODEL_FEATURE_COUNT + 2;
+	int MODEL_REL__MODEL_REFS = MidPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
@@ -324,6 +332,15 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MODEL_REL__EDITORS = MODEL_REL__EDITORS;
 
 	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__ELEMENTS = MODEL_REL__ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,13 +359,13 @@ public interface MappingPackage extends EPackage {
 	int BINARY_MODEL_REL__LINKS = MODEL_REL__LINKS;
 
 	/**
-	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Model Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL__CONTAINERS = MODEL_REL__CONTAINERS;
+	int BINARY_MODEL_REL__MODEL_REFS = MODEL_REL__MODEL_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
@@ -478,6 +495,15 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL__EDITORS = BINARY_MODEL_REL__EDITORS;
 
 	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__ELEMENTS = BINARY_MODEL_REL__ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -496,13 +522,13 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL__LINKS = BINARY_MODEL_REL__LINKS;
 
 	/**
-	 * The feature id for the '<em><b>Containers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Model Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHISM_MODEL_REL__CONTAINERS = BINARY_MODEL_REL__CONTAINERS;
+	int HOMOMORPHISM_MODEL_REL__MODEL_REFS = BINARY_MODEL_REL__MODEL_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
@@ -532,14 +558,41 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL_OPERATION_COUNT = BINARY_MODEL_REL_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl <em>Model Container</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.TypedElementReferenceImpl <em>Typed Element Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelContainer()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.TypedElementReferenceImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getTypedElementReference()
 	 * @generated
 	 */
-	int MODEL_CONTAINER = 3;
+	int TYPED_ELEMENT_REFERENCE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_REFERENCE__OBJECT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -548,43 +601,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Referenced Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CONTAINER__REFERENCED_MODEL = 1;
-
-	/**
-	 * The feature id for the '<em><b>Contained Model</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CONTAINER__CONTAINED_MODEL = 2;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CONTAINER__MODEL = 3;
-
-	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CONTAINER__ELEMENTS = 4;
+	int TYPED_ELEMENT_REFERENCE__NAME = 3;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -593,35 +610,62 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER__TYPE = 5;
+	int TYPED_ELEMENT_REFERENCE__TYPE = 4;
 
 	/**
-	 * The number of structural features of the '<em>Model Container</em>' class.
+	 * The number of structural features of the '<em>Typed Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_FEATURE_COUNT = 6;
+	int TYPED_ELEMENT_REFERENCE_FEATURE_COUNT = 5;
 
 	/**
-	 * The number of operations of the '<em>Model Container</em>' class.
+	 * The number of operations of the '<em>Typed Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONTAINER_OPERATION_COUNT = 0;
+	int TYPED_ELEMENT_REFERENCE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl <em>Model Element</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelReferenceImpl <em>Model Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElement()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelReferenceImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelReference()
 	 * @generated
 	 */
-	int MODEL_ELEMENT = 4;
+	int MODEL_REFERENCE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REFERENCE__REFERENCED_OBJECT = TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REFERENCE__CONTAINED_OBJECT = TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REFERENCE__OBJECT = TYPED_ELEMENT_REFERENCE__OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -630,25 +674,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
+	int MODEL_REFERENCE__NAME = TYPED_ELEMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -657,43 +683,89 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
+	int MODEL_REFERENCE__TYPE = TYPED_ELEMENT_REFERENCE__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * The feature id for the '<em><b>Element Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+	int MODEL_REFERENCE__ELEMENT_REFS = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * The number of structural features of the '<em>Model Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+	int MODEL_REFERENCE_FEATURE_COUNT = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Category</b></em>' attribute.
+	 * The number of operations of the '<em>Model Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__CATEGORY = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_REFERENCE_OPERATION_COUNT = TYPED_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Pointer</b></em>' reference.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementReference()
+	 * @generated
+	 */
+	int MODEL_ELEMENT_REFERENCE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__POINTER = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_REFERENCE__REFERENCED_OBJECT = TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT = TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE__OBJECT = TYPED_ELEMENT_REFERENCE__OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE__NAME = TYPED_ELEMENT_REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE__TYPE = TYPED_ELEMENT_REFERENCE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Links</b></em>' reference list.
@@ -702,25 +774,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__LINKS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT_REFERENCE__LINKS = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Model Element</em>' class.
+	 * The number of structural features of the '<em>Model Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Model Element</em>' class.
+	 * The number of operations of the '<em>Model Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = TYPED_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.LinkImpl <em>Link</em>}' class.
@@ -787,13 +859,13 @@ public interface MappingPackage extends EPackage {
 	int LINK__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__ELEMENTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int LINK__ELEMENT_REFS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
@@ -887,13 +959,13 @@ public interface MappingPackage extends EPackage {
 	int BINARY_LINK__SUPERTYPE = LINK__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_LINK__ELEMENTS = LINK__ELEMENTS;
+	int BINARY_LINK__ELEMENT_REFS = LINK__ELEMENT_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
@@ -987,13 +1059,13 @@ public interface MappingPackage extends EPackage {
 	int HOMOMORPHISM_LINK__SUPERTYPE = BINARY_LINK__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHISM_LINK__ELEMENTS = BINARY_LINK__ELEMENTS;
+	int HOMOMORPHISM_LINK__ELEMENT_REFS = BINARY_LINK__ELEMENT_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Unbounded</b></em>' attribute.
@@ -1021,17 +1093,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_LINK_OPERATION_COUNT = BINARY_LINK_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory <em>Model Element Category</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementCategory()
-	 * @generated
-	 */
-	int MODEL_ELEMENT_CATEGORY = 8;
-
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel <em>Model Rel</em>}'.
@@ -1066,15 +1127,15 @@ public interface MappingPackage extends EPackage {
 	EReference getModelRel_Links();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getContainers <em>Containers</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getModelRefs <em>Model Refs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Containers</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getContainers()
+	 * @return the meta object for the containment reference list '<em>Model Refs</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#getModelRefs()
 	 * @see #getModelRel()
 	 * @generated
 	 */
-	EReference getModelRel_Containers();
+	EReference getModelRel_ModelRefs();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelRel#isUnbounded <em>Unbounded</em>}'.
@@ -1108,123 +1169,46 @@ public interface MappingPackage extends EPackage {
 	EClass getHomomorphismModelRel();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer <em>Model Container</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelReference <em>Model Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Container</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer
+	 * @return the meta object for class '<em>Model Reference</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelReference
 	 * @generated
 	 */
-	EClass getModelContainer();
+	EClass getModelReference();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getName <em>Name</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelReference#getElementRefs <em>Element Refs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getName()
-	 * @see #getModelContainer()
+	 * @return the meta object for the containment reference list '<em>Element Refs</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelReference#getElementRefs()
+	 * @see #getModelReference()
 	 * @generated
 	 */
-	EAttribute getModelContainer_Name();
+	EReference getModelReference_ElementRefs();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType <em>Type</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getType()
-	 * @see #getModelContainer()
+	 * @return the meta object for class '<em>Model Element Reference</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference
 	 * @generated
 	 */
-	EAttribute getModelContainer_Type();
+	EClass getModelElementReference();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel <em>Referenced Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referenced Model</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getReferencedModel()
-	 * @see #getModelContainer()
-	 * @generated
-	 */
-	EReference getModelContainer_ReferencedModel();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel <em>Contained Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Contained Model</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getContainedModel()
-	 * @see #getModelContainer()
-	 * @generated
-	 */
-	EReference getModelContainer_ContainedModel();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getModel()
-	 * @see #getModelContainer()
-	 * @generated
-	 */
-	EReference getModelContainer_Model();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getElements <em>Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Elements</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer#getElements()
-	 * @see #getModelContainer()
-	 * @generated
-	 */
-	EReference getModelContainer_Elements();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement <em>Model Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Element</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement
-	 * @generated
-	 */
-	EClass getModelElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getCategory <em>Category</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Category</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getCategory()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_Category();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getPointer <em>Pointer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pointer</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getPointer()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EReference getModelElement_Pointer();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getLinks <em>Links</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getLinks <em>Links</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Links</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElement#getLinks()
-	 * @see #getModelElement()
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference#getLinks()
+	 * @see #getModelElementReference()
 	 * @generated
 	 */
-	EReference getModelElement_Links();
+	EReference getModelElementReference_Links();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.Link <em>Link</em>}'.
@@ -1237,15 +1221,15 @@ public interface MappingPackage extends EPackage {
 	EClass getLink();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#getElements <em>Elements</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#getElementRefs <em>Element Refs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Elements</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Link#getElements()
+	 * @return the meta object for the reference list '<em>Element Refs</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.Link#getElementRefs()
 	 * @see #getLink()
 	 * @generated
 	 */
-	EReference getLink_Elements();
+	EReference getLink_ElementRefs();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.Link#isUnbounded <em>Unbounded</em>}'.
@@ -1279,14 +1263,69 @@ public interface MappingPackage extends EPackage {
 	EClass getHomomorphismLink();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory <em>Model Element Category</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference <em>Typed Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Model Element Category</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
+	 * @return the meta object for class '<em>Typed Element Reference</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference
 	 * @generated
 	 */
-	EEnum getModelElementCategory();
+	EClass getTypedElementReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getReferencedObject <em>Referenced Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referenced Object</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getReferencedObject()
+	 * @see #getTypedElementReference()
+	 * @generated
+	 */
+	EReference getTypedElementReference_ReferencedObject();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getContainedObject <em>Contained Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Contained Object</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getContainedObject()
+	 * @see #getTypedElementReference()
+	 * @generated
+	 */
+	EReference getTypedElementReference_ContainedObject();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Object</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getObject()
+	 * @see #getTypedElementReference()
+	 * @generated
+	 */
+	EReference getTypedElementReference_Object();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getName()
+	 * @see #getTypedElementReference()
+	 * @generated
+	 */
+	EAttribute getTypedElementReference_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.mapping.TypedElementReference#getType()
+	 * @see #getTypedElementReference()
+	 * @generated
+	 */
+	EAttribute getTypedElementReference_Type();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1338,12 +1377,12 @@ public interface MappingPackage extends EPackage {
 		EReference MODEL_REL__LINKS = eINSTANCE.getModelRel_Links();
 
 		/**
-		 * The meta object literal for the '<em><b>Containers</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Model Refs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_REL__CONTAINERS = eINSTANCE.getModelRel_Containers();
+		EReference MODEL_REL__MODEL_REFS = eINSTANCE.getModelRel_ModelRefs();
 
 		/**
 		 * The meta object literal for the '<em><b>Unbounded</b></em>' attribute feature.
@@ -1374,88 +1413,32 @@ public interface MappingPackage extends EPackage {
 		EClass HOMOMORPHISM_MODEL_REL = eINSTANCE.getHomomorphismModelRel();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl <em>Model Container</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelReferenceImpl <em>Model Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelContainerImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelContainer()
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelReferenceImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelReference()
 		 * @generated
 		 */
-		EClass MODEL_CONTAINER = eINSTANCE.getModelContainer();
+		EClass MODEL_REFERENCE = eINSTANCE.getModelReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Element Refs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_CONTAINER__NAME = eINSTANCE.getModelContainer_Name();
+		EReference MODEL_REFERENCE__ELEMENT_REFS = eINSTANCE.getModelReference_ElementRefs();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementReferenceImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementReference()
 		 * @generated
 		 */
-		EAttribute MODEL_CONTAINER__TYPE = eINSTANCE.getModelContainer_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Referenced Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_CONTAINER__REFERENCED_MODEL = eINSTANCE.getModelContainer_ReferencedModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Contained Model</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_CONTAINER__CONTAINED_MODEL = eINSTANCE.getModelContainer_ContainedModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_CONTAINER__MODEL = eINSTANCE.getModelContainer_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_CONTAINER__ELEMENTS = eINSTANCE.getModelContainer_Elements();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl <em>Model Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.ModelElementImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElement()
-		 * @generated
-		 */
-		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__CATEGORY = eINSTANCE.getModelElement_Category();
-
-		/**
-		 * The meta object literal for the '<em><b>Pointer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT__POINTER = eINSTANCE.getModelElement_Pointer();
+		EClass MODEL_ELEMENT_REFERENCE = eINSTANCE.getModelElementReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Links</b></em>' reference list feature.
@@ -1463,7 +1446,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__LINKS = eINSTANCE.getModelElement_Links();
+		EReference MODEL_ELEMENT_REFERENCE__LINKS = eINSTANCE.getModelElementReference_Links();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.LinkImpl <em>Link</em>}' class.
@@ -1476,12 +1459,12 @@ public interface MappingPackage extends EPackage {
 		EClass LINK = eINSTANCE.getLink();
 
 		/**
-		 * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Element Refs</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LINK__ELEMENTS = eINSTANCE.getLink_Elements();
+		EReference LINK__ELEMENT_REFS = eINSTANCE.getLink_ElementRefs();
 
 		/**
 		 * The meta object literal for the '<em><b>Unbounded</b></em>' attribute feature.
@@ -1512,14 +1495,54 @@ public interface MappingPackage extends EPackage {
 		EClass HOMOMORPHISM_LINK = eINSTANCE.getHomomorphismLink();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory <em>Model Element Category</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.mapping.impl.TypedElementReferenceImpl <em>Typed Element Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.ModelElementCategory
-		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getModelElementCategory()
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.TypedElementReferenceImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl#getTypedElementReference()
 		 * @generated
 		 */
-		EEnum MODEL_ELEMENT_CATEGORY = eINSTANCE.getModelElementCategory();
+		EClass TYPED_ELEMENT_REFERENCE = eINSTANCE.getTypedElementReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT = eINSTANCE.getTypedElementReference_ReferencedObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Contained Object</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT = eINSTANCE.getTypedElementReference_ContainedObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_ELEMENT_REFERENCE__OBJECT = eINSTANCE.getTypedElementReference_Object();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT_REFERENCE__NAME = eINSTANCE.getTypedElementReference_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT_REFERENCE__TYPE = eINSTANCE.getTypedElementReference_Type();
 
 	}
 

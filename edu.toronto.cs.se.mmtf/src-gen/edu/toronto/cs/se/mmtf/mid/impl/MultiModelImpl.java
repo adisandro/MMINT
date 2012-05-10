@@ -11,12 +11,14 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
-import edu.toronto.cs.se.mmtf.mid.Editor;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.Operator;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
+import edu.toronto.cs.se.mmtf.mid.editor.impl.EStringToEditorMapImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -129,7 +131,7 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 */
 	public EMap<String, Editor> getEditors() {
 		if (editors == null) {
-			editors = new EcoreEMap<String,Editor>(MidPackage.Literals.ESTRING_TO_EDITOR_MAP, EStringToEditorMapImpl.class, this, MidPackage.MULTI_MODEL__EDITORS);
+			editors = new EcoreEMap<String,Editor>(EditorPackage.Literals.ESTRING_TO_EDITOR_MAP, EStringToEditorMapImpl.class, this, MidPackage.MULTI_MODEL__EDITORS);
 		}
 		return editors;
 	}

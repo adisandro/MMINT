@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getEditors <em>Editors</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -118,7 +120,7 @@ public interface Model extends ExtendibleElement {
 
 	/**
 	 * Returns the value of the '<em><b>Editors</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.Editor}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.editor.Editor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Editors</em>' reference list isn't clear,
@@ -131,5 +133,21 @@ public interface Model extends ExtendibleElement {
 	 * @generated
 	 */
 	EList<Editor> getEditors();
+
+	/**
+	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.ModelElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Elements()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ModelElement> getElements();
 
 } // Model

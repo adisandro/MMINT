@@ -8,7 +8,9 @@ Bundle-Activator: edu.toronto.cs.se.mmtf.mid.presentation.MidEditorPlugin$Implem
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.toronto.cs.se.mmtf.mid.mapping.presentation,
+Export-Package: edu.toronto.cs.se.mmtf.mid.editor.presentation,
+ edu.toronto.cs.se.mmtf.mid.mapping.presentation,
+ edu.toronto.cs.se.mmtf.mid.operator.presentation,
  edu.toronto.cs.se.mmtf.mid.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,

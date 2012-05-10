@@ -14,9 +14,9 @@ package edu.toronto.cs.se.mmtf.repository.ui;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmtf.mid.Editor;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 
 /**
  * The content provider for the repository tree dialog.

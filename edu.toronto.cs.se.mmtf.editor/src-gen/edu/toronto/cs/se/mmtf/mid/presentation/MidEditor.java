@@ -164,8 +164,10 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import edu.toronto.cs.se.mmtf.mid.provider.MidItemProviderAdapterFactory;
 
+import edu.toronto.cs.se.mmtf.mid.editor.provider.EditorItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.provider.MappingItemProviderAdapterFactory;
 
+import edu.toronto.cs.se.mmtf.mid.operator.provider.OperatorItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -703,6 +705,8 @@ public class MidEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MidItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EditorItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new OperatorItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

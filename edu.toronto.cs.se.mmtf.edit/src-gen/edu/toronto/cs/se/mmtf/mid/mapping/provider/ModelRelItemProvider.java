@@ -137,7 +137,7 @@ public class ModelRelItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MappingPackage.Literals.MODEL_REL__LINKS);
-			childrenFeatures.add(MappingPackage.Literals.MODEL_REL__CONTAINERS);
+			childrenFeatures.add(MappingPackage.Literals.MODEL_REL__MODEL_REFS);
 		}
 		return childrenFeatures;
 	}
@@ -196,7 +196,7 @@ public class ModelRelItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MODEL_REL__LINKS:
-			case MappingPackage.MODEL_REL__CONTAINERS:
+			case MappingPackage.MODEL_REL__MODEL_REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -231,8 +231,8 @@ public class ModelRelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MODEL_REL__CONTAINERS,
-				 MappingFactory.eINSTANCE.createModelContainer()));
+				(MappingPackage.Literals.MODEL_REL__MODEL_REFS,
+				 MappingFactory.eINSTANCE.createModelReference()));
 	}
 
 	/**

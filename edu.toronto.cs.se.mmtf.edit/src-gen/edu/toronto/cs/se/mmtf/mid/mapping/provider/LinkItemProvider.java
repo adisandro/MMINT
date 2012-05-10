@@ -71,26 +71,26 @@ public class LinkItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElementsPropertyDescriptor(object);
+			addElementRefsPropertyDescriptor(object);
 			addUnboundedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Elements feature.
+	 * This adds a property descriptor for the Element Refs feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElementsPropertyDescriptor(Object object) {
+	protected void addElementRefsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Link_elements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Link_elements_feature", "_UI_Link_type"),
-				 MappingPackage.Literals.LINK__ELEMENTS,
+				 getString("_UI_Link_elementRefs_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Link_elementRefs_feature", "_UI_Link_type"),
+				 MappingPackage.Literals.LINK__ELEMENT_REFS,
 				 true,
 				 false,
 				 true,

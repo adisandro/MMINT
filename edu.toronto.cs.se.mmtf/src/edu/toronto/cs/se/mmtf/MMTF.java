@@ -27,16 +27,16 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
-import edu.toronto.cs.se.mmtf.mid.Editor;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelContainer;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
@@ -207,26 +207,27 @@ public class MMTF {
 
 		// handle relationship structure
 		modelRel.setUnbounded(unbounded);
-		//TODO MMTF: an unbounded relationship automatically creates binary and homomorphism subclasses for each of its model types (2^n)?
-		//TODO MMTF: same for links?
+		//TODO MMTF: well, we don't care about the meaning of inheritance here, we just trust it has been set up properly
+		//TODO MMTF: a pluggable checker, following some reasoning, should enforce that
 		for (IConfigurationElement modelConfigElem : modelConfig) {
 			// models and containers
 			String modelUri = modelConfigElem.getAttribute(RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI);
 			ExtendibleElement model = MMTFRegistry.getExtendibleElement(modelUri);
 			if (model != null && model instanceof Model) {
 				modelRel.getModels().add((Model) model);
-				ModelContainer container = MappingFactory.eINSTANCE.createModelContainer();
-				container.setReferencedModel((Model) model);
+				ModelReference modelRef = MappingFactory.eINSTANCE.createModelReference();
+				modelRef.setReferencedObject(model);
 				// model elements
 				IConfigurationElement[] modelElementConfig = extensionConfig.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
 					String modelElementUri = modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_URI);
+
 					//ExtendibleElement modelElement = repository.getExtendibles().get(modelElementUri);
 					//if (modelElement == null || true){}
 					//modelElement = MappingFactory.eINSTANCE.createModelElement();
 					//container.getElements().add(modelElement);
 				}
-				//TODO MMTF: check for model elements with same uri before creating a new one?
+				//TODO MMTF: check for model elements with same uri before creating a new one? think about how to let them be unique
 			}
 		}
 
@@ -279,10 +280,10 @@ public class MMTF {
 		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM);
 		Editor editor;
 		if (Boolean.parseBoolean(isDiagram)) {
-			editor = MidFactory.eINSTANCE.createDiagram();
+			editor = EditorFactory.eINSTANCE.createDiagram();
 		}
 		else {
-			editor = MidFactory.eINSTANCE.createEditor();
+			editor = EditorFactory.eINSTANCE.createEditor();
 		}
 
 		// set basic attributes

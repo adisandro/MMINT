@@ -11,15 +11,17 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
-import edu.toronto.cs.se.mmtf.mid.Editor;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -28,7 +30,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +45,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,6 +111,16 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @ordered
 	 */
 	protected EList<Editor> editors;
+
+	/**
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelElement> elements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -223,6 +238,32 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelElement> getElements() {
+		if (elements == null) {
+			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MidPackage.MODEL__ELEMENTS);
+		}
+		return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MidPackage.MODEL__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -235,6 +276,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getFileExtension();
 			case MidPackage.MODEL__EDITORS:
 				return getEditors();
+			case MidPackage.MODEL__ELEMENTS:
+				return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -261,6 +304,10 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				getEditors().clear();
 				getEditors().addAll((Collection<? extends Editor>)newValue);
 				return;
+			case MidPackage.MODEL__ELEMENTS:
+				getElements().clear();
+				getElements().addAll((Collection<? extends ModelElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -285,6 +332,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MidPackage.MODEL__EDITORS:
 				getEditors().clear();
 				return;
+			case MidPackage.MODEL__ELEMENTS:
+				getElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -305,6 +355,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
 			case MidPackage.MODEL__EDITORS:
 				return editors != null && !editors.isEmpty();
+			case MidPackage.MODEL__ELEMENTS:
+				return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

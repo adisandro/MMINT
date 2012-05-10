@@ -127,167 +127,6 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.Operator} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OperatorItemProvider operatorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.Operator}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOperatorAdapter() {
-		if (operatorItemProvider == null) {
-			operatorItemProvider = new OperatorItemProvider(this);
-		}
-
-		return operatorItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStringToEditorMapItemProvider eStringToEditorMapItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEStringToEditorMapAdapter() {
-		if (eStringToEditorMapItemProvider == null) {
-			eStringToEditorMapItemProvider = new EStringToEditorMapItemProvider(this);
-		}
-
-		return eStringToEditorMapItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.Parameter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ParameterItemProvider parameterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.Parameter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createParameterAdapter() {
-		if (parameterItemProvider == null) {
-			parameterItemProvider = new ParameterItemProvider(this);
-		}
-
-		return parameterItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelParameter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelParameterItemProvider modelParameterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelParameter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelParameterAdapter() {
-		if (modelParameterItemProvider == null) {
-			modelParameterItemProvider = new ModelParameterItemProvider(this);
-		}
-
-		return modelParameterItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.Editor} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EditorItemProvider editorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.Editor}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEditorAdapter() {
-		if (editorItemProvider == null) {
-			editorItemProvider = new EditorItemProvider(this);
-		}
-
-		return editorItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.Diagram} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DiagramItemProvider diagramItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.Diagram}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDiagramAdapter() {
-		if (diagramItemProvider == null) {
-			diagramItemProvider = new DiagramItemProvider(this);
-		}
-
-		return diagramItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStringToParameterMapItemProvider eStringToParameterMapItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEStringToParameterMapAdapter() {
-		if (eStringToParameterMapItemProvider == null) {
-			eStringToParameterMapItemProvider = new EStringToParameterMapItemProvider(this);
-		}
-
-		return eStringToParameterMapItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -308,6 +147,29 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		}
 
 		return eStringToExtendibleElementMapItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelElementItemProvider modelElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementAdapter() {
+		if (modelElementItemProvider == null) {
+			modelElementItemProvider = new ModelElementItemProvider(this);
+		}
+
+		return modelElementItemProvider;
 	}
 
 	/**
@@ -411,14 +273,8 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	public void dispose() {
 		if (multiModelItemProvider != null) multiModelItemProvider.dispose();
 		if (modelItemProvider != null) modelItemProvider.dispose();
-		if (operatorItemProvider != null) operatorItemProvider.dispose();
-		if (eStringToEditorMapItemProvider != null) eStringToEditorMapItemProvider.dispose();
-		if (parameterItemProvider != null) parameterItemProvider.dispose();
-		if (modelParameterItemProvider != null) modelParameterItemProvider.dispose();
-		if (editorItemProvider != null) editorItemProvider.dispose();
-		if (diagramItemProvider != null) diagramItemProvider.dispose();
-		if (eStringToParameterMapItemProvider != null) eStringToParameterMapItemProvider.dispose();
 		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
+		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
 	}
 
 }

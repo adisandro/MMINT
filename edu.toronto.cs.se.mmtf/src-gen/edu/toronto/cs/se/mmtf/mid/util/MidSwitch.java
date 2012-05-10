@@ -98,54 +98,6 @@ public class MidSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidPackage.OPERATOR: {
-				Operator operator = (Operator)theEObject;
-				T result = caseOperator(operator);
-				if (result == null) result = caseExtendibleElement(operator);
-				if (result == null) result = caseTypedElement(operator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.ESTRING_TO_EDITOR_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Editor> eStringToEditorMap = (Map.Entry<String, Editor>)theEObject;
-				T result = caseEStringToEditorMap(eStringToEditorMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.PARAMETER: {
-				Parameter parameter = (Parameter)theEObject;
-				T result = caseParameter(parameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.MODEL_PARAMETER: {
-				ModelParameter modelParameter = (ModelParameter)theEObject;
-				T result = caseModelParameter(modelParameter);
-				if (result == null) result = caseParameter(modelParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.EDITOR: {
-				Editor editor = (Editor)theEObject;
-				T result = caseEditor(editor);
-				if (result == null) result = caseTypedElement(editor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.DIAGRAM: {
-				Diagram diagram = (Diagram)theEObject;
-				T result = caseDiagram(diagram);
-				if (result == null) result = caseEditor(diagram);
-				if (result == null) result = caseTypedElement(diagram);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.ESTRING_TO_PARAMETER_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Parameter> eStringToParameterMap = (Map.Entry<String, Parameter>)theEObject;
-				T result = caseEStringToParameterMap(eStringToParameterMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MidPackage.TYPED_ELEMENT: {
 				TypedElement typedElement = (TypedElement)theEObject;
 				T result = caseTypedElement(typedElement);
@@ -155,6 +107,14 @@ public class MidSwitch<T> extends Switch<T> {
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: {
 				@SuppressWarnings("unchecked") Map.Entry<String, ExtendibleElement> eStringToExtendibleElementMap = (Map.Entry<String, ExtendibleElement>)theEObject;
 				T result = caseEStringToExtendibleElementMap(eStringToExtendibleElementMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MidPackage.MODEL_ELEMENT: {
+				ModelElement modelElement = (ModelElement)theEObject;
+				T result = caseModelElement(modelElement);
+				if (result == null) result = caseExtendibleElement(modelElement);
+				if (result == null) result = caseTypedElement(modelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -208,111 +168,6 @@ public class MidSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOperator(Operator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EString To Editor Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EString To Editor Map</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEStringToEditorMap(Map.Entry<String, Editor> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParameter(Parameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelParameter(ModelParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Editor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Editor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEditor(Editor object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Diagram</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Diagram</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDiagram(Diagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EString To Parameter Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EString To Parameter Map</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEStringToParameterMap(Map.Entry<String, Parameter> object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -339,6 +194,21 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEStringToExtendibleElementMap(Map.Entry<String, ExtendibleElement> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElement(ModelElement object) {
 		return null;
 	}
 
