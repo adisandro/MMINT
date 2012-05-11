@@ -46,7 +46,7 @@
       <modelType
             uri="http:///edu/toronto/cs/se/mmtf/ModelRel">
       </modelType>
-      <modelRelationship
+      <modelTypeRelationship
             isNary="true">
          <model
                modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
@@ -63,7 +63,7 @@
                   uri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/RELATIONSHIP">
             </modelElement>
          </model>
-         <relationshipLink
+         <link
                isNary="true"
                name="Root model element link"
                uri="http:///edu/toronto/cs/se/mmtf/ModelRel/Link">
@@ -73,8 +73,8 @@
             <linkElement
                   elementUri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/RELATIONSHIP">
             </linkElement>
-         </relationshipLink>
-      </modelRelationship>
+         </link>
+      </modelTypeRelationship>
    </extension>
 
 

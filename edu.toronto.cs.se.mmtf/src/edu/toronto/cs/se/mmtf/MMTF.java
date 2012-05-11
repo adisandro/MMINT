@@ -31,11 +31,15 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.Link;
 import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
+import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
@@ -68,12 +72,13 @@ public class MMTF {
 	/** The uri of the root link among model elements. */
 	private final static String ROOT_RELATIONSHIP_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
 
+	/** An extension point's extendible element's uri attribute. */
+	private final static String EXTENDIBLEELEMENT_ATTR_URI = "uri";
+	/** An extension point's extendible element's supertypeUri attribute. */
+	private final static String EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI = "supertypeUri";
+
 	/** The Models extension point's id. */
 	private final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.models";
-	/** The Models extension point's uri attribute. */
-	private final static String MODELS_ATTR_URI = "uri";
-	/** The Models extension point's supertypeUri attribute. */
-	private final static String MODELS_ATTR_SUPERTYPEURI = "supertypeUri";
 
 	/** The Editors extension point's id. */
 	private final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
@@ -96,10 +101,6 @@ public class MMTF {
 	private final static String RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI = "modelTypeUri";
 	/** The Relationships extension point's model's modelElement child. */
 	private final static String RELATIONSHIPS_MODEL_CHILD_MODELELEMENT = "modelElement";
-	/** The Relationships extension point's model's modelElement child's uri attribute. */
-	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_URI = "uri";
-	/** The Relationships extension point's model's modelElement child's supertypeUri attribute. */
-	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_SUPERTYPEURI = "supertypeUri";
 	/** The Relationships extension point's model's modelElement child's name attribute. */
 	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME = "name";
 	/** The Relationships extension point's model's modelElement child's category attribute. */
@@ -118,6 +119,61 @@ public class MMTF {
 	private static MultiModel repository;
 
 	/**
+	 * Adds an extendible element to the repository.
+	 * 
+	 * @param element
+	 *            The extendible element to add.
+	 * @param name
+	 *            The name of the extendible element.
+	 * @param extensionConfig
+	 *            The extension configuration.
+	 */
+	private void addExtendibleElement(ExtendibleElement element, String name, IConfigurationElement extensionConfig) {
+
+		// basic attributes
+		element.setName(name);
+		element.setLevel(MidLevel.TYPES);
+		element.setMetatype(null);
+
+		// uri
+		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
+		element.setUri(uri);
+
+		// supertype
+		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);
+		String rootUri = "";
+		if (element instanceof Model) {
+			rootUri = ROOT_MODEL_URI;
+		}
+		else if (element instanceof ModelRel) {
+			rootUri = ROOT_RELATIONSHIP_URI;
+		}
+		else if (element instanceof ModelElement) {
+			if (((ModelElement) element).getCategory() == ModelElementCategory.ENTITY) {
+				rootUri = ROOT_MODEL_ELEMENT_ENTITY_URI;
+			}
+			else if (((ModelElement) element).getCategory() == ModelElementCategory.RELATIONSHIP) {
+				rootUri = ROOT_MODEL_ELEMENT_RELATIONSHIP_URI;
+			}
+		}
+		else if (element instanceof Link) {
+			rootUri = ROOT_RELATIONSHIP_LINK_URI;
+		}
+		ExtendibleElement superElement = null;
+		if (supertypeUri == null) {
+			if (!uri.equals(rootUri)) {
+				superElement = MMTFRegistry.getExtendibleElement(rootUri);
+			}
+		}
+		else {
+			superElement = MMTFRegistry.getExtendibleElement(supertypeUri);
+		}
+		element.setSupertype(superElement);
+
+		repository.getExtendibles().put(uri, element);
+	}
+
+	/**
 	 * Adds a model type to the repository. Requires the model package to be
 	 * registered too through the org.eclipse.emf.ecore.generated_package
 	 * extension point.
@@ -130,28 +186,12 @@ public class MMTF {
 	private void addModelType(Model model, IConfigurationElement extensionConfig) {
 
 		// set basic attributes
-		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
-		model.setName(extensionConfig.getDeclaringExtension().getLabel());
-		model.setLevel(MidLevel.TYPES);
-		model.setUri(uri);
+		addExtendibleElement(model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
 		model.setOrigin(ModelOrigin.IMPORTED);
-
-		// possibly set supertype
-		String supertypeUri = extensionConfig.getAttribute(MODELS_ATTR_SUPERTYPEURI);
-		String rootUri = (model instanceof ModelRel) ? ROOT_RELATIONSHIP_URI : ROOT_MODEL_URI;
-		ExtendibleElement superModel = null;
-		if (supertypeUri == null) {
-			if (!uri.equals(rootUri)) {
-				superModel = MMTFRegistry.getExtendibleElement(rootUri);
-			}
-		}
-		else {
-			superModel = MMTFRegistry.getExtendibleElement(supertypeUri);
-		}
-		model.setSupertype(superModel);
 
 		// look for model package
 		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
 		EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
 		if (modelPackage != null) {
 			model.setRoot(modelPackage);
@@ -165,7 +205,6 @@ public class MMTF {
 
 		// register model type
 		repository.getModels().add(model);
-		repository.getExtendibles().put(uri, model);
 	}
 
 	/**
@@ -217,19 +256,34 @@ public class MMTF {
 				modelRel.getModels().add((Model) model);
 				ModelReference modelRef = MappingFactory.eINSTANCE.createModelReference();
 				modelRef.setReferencedObject(model);
+				modelRel.getModelRefs().add(modelRef);
 				// model elements
-				IConfigurationElement[] modelElementConfig = extensionConfig.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
+				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
-					String modelElementUri = modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_URI);
-
-					//ExtendibleElement modelElement = repository.getExtendibles().get(modelElementUri);
-					//if (modelElement == null || true){}
-					//modelElement = MappingFactory.eINSTANCE.createModelElement();
-					//container.getElements().add(modelElement);
+					String modelElementUri = modelElementConfigElem.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
+					ExtendibleElement element = repository.getExtendibles().get(modelElementUri);
+					if (element == null) { // create new model element
+						element = MidFactory.eINSTANCE.createModelElement();
+						((ModelElement) element).setCategory(
+							ModelElementCategory.get(
+								modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY)
+							)
+						);
+						((ModelElement) element).setPointer(null);//TODO MMTF: how to get get the ecore feature from class literal?
+						addExtendibleElement(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
+						((Model) model).getElements().add((ModelElement) element);
+					}
+					// model element reference
+					ModelElementReference elementRef = MappingFactory.eINSTANCE.createModelElementReference();
+					elementRef.setReferencedObject(element);
+					modelRef.getElementRefs().add(elementRef);
 				}
-				//TODO MMTF: check for model elements with same uri before creating a new one? think about how to let them be unique
 			}
 		}
+//		IConfigurationElement[] linkConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_LINK);
+//		for (IConfigurationElement linkConfigElem : linkConfig) {
+//			
+//		}
 
 		return modelRel;
 	}
@@ -259,7 +313,7 @@ public class MMTF {
 	 */
 	public void removeModelType(IConfigurationElement extensionConfig) {
 
-		String uri = extensionConfig.getAttribute(MODELS_ATTR_URI);
+		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
 		ExtendibleElement model = repository.getExtendibles().removeKey(uri);
 		if (model != null && model instanceof Model) {
 			repository.getModels().remove(model);

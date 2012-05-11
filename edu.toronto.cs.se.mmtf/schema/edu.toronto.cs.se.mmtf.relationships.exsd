@@ -22,7 +22,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       <complexType>
          <sequence>
             <element ref="modelType"/>
-            <element ref="modelRelationship"/>
+            <element ref="modelTypeRelationship"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -51,16 +51,16 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </complexType>
    </element>
 
-   <element name="modelRelationship">
+   <element name="modelTypeRelationship">
       <annotation>
          <documentation>
-            A model relationship.
+            A model type relationship.
          </documentation>
       </annotation>
       <complexType>
          <sequence>
             <element ref="model" minOccurs="1" maxOccurs="unbounded"/>
-            <element ref="relationshipLink" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="link" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="isNary" type="boolean" use="required">
             <annotation>
@@ -148,7 +148,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </complexType>
    </element>
 
-   <element name="relationshipLink">
+   <element name="link">
       <annotation>
          <documentation>
             A relationship&apos;s link.
