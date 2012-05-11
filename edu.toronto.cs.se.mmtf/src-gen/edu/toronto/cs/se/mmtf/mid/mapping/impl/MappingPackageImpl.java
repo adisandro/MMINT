@@ -549,7 +549,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (modelRelEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "modelRefs unboundedLevel"
+			 "constraints", "unboundedLevel modelRefs"
 		   });			
 		addAnnotation
 		  (binaryModelRelEClass, 
@@ -601,8 +601,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (modelRelEClass, 
 		   source, 
 		   new String[] {
-			 "modelRefs", "models->size() = modelRefs->size()",
-			 "unboundedLevel", "unbounded = true implies level = MidLevel::TYPES"
+			 "unboundedLevel", "unbounded = true implies level = MidLevel::TYPES",
+			 "modelRefs", "models->size() = modelRefs->size()"
 		   });			
 		addAnnotation
 		  (binaryModelRelEClass, 

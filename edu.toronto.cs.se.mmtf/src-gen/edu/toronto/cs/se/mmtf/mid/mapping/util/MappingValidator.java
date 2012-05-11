@@ -146,8 +146,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelRefs(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(modelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_modelRefs(modelRel, diagnostics, context);
 		return result;
 	}
 
@@ -226,8 +226,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelRefs(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(binaryModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_modelRefs(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(binaryModelRel, diagnostics, context);
 		return result;
 	}
@@ -278,8 +278,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(homomorphismModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelRefs(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(homomorphismModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelRel_modelRefs(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateHomomorphismModelRel_sameModelTypes(homomorphismModelRel, diagnostics, context);
 		return result;

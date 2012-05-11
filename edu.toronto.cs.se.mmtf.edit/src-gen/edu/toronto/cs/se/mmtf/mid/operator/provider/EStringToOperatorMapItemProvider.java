@@ -12,15 +12,14 @@
 package edu.toronto.cs.se.mmtf.mid.operator.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
 import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
 
-import edu.toronto.cs.se.mmtf.mid.provider.TypedElementItemProvider;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -29,22 +28,25 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.Operator} object.
+ * This is the item provider adapter for a {@link java.util.Map.Entry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OperatorItemProvider
-	extends TypedElementItemProvider
+public class EStringToOperatorMapItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -57,7 +59,7 @@ public class OperatorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperatorItemProvider(AdapterFactory adapterFactory) {
+	public EStringToOperatorMapItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -72,8 +74,31 @@ public class OperatorItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addKeyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Key feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addKeyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EStringToOperatorMap_key_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EStringToOperatorMap_key_feature", "_UI_EStringToOperatorMap_type"),
+				 OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP__KEY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -88,8 +113,7 @@ public class OperatorItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
-			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
+			childrenFeatures.add(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -108,14 +132,14 @@ public class OperatorItemProvider
 	}
 
 	/**
-	 * This returns Operator.gif.
+	 * This returns EStringToOperatorMap.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Operator"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EStringToOperatorMap"));
 	}
 
 	/**
@@ -126,10 +150,8 @@ public class OperatorItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Operator)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Operator_type") :
-			getString("_UI_Operator_type") + " " + label;
+		Map.Entry<?, ?> eStringToOperatorMap = (Map.Entry<?, ?>)object;
+		return "" + eStringToOperatorMap.getKey() + " -> " + eStringToOperatorMap.getValue();
 	}
 
 	/**
@@ -143,9 +165,11 @@ public class OperatorItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Operator.class)) {
-			case OperatorPackage.OPERATOR__INPUTS:
-			case OperatorPackage.OPERATOR__OUTPUTS:
+		switch (notification.getFeatureID(Map.Entry.class)) {
+			case OperatorPackage.ESTRING_TO_OPERATOR_MAP__KEY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -165,36 +189,13 @@ public class OperatorItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR__INPUTS,
-				 OperatorFactory.eINSTANCE.create(OperatorPackage.Literals.ESTRING_TO_PARAMETER_MAP)));
+				(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP__VALUE,
+				 OperatorFactory.eINSTANCE.createOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR__OUTPUTS,
-				 OperatorFactory.eINSTANCE.create(OperatorPackage.Literals.ESTRING_TO_PARAMETER_MAP)));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
-			childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+				(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP__VALUE,
+				 OperatorFactory.eINSTANCE.createCoercionOperator()));
 	}
 
 	/**

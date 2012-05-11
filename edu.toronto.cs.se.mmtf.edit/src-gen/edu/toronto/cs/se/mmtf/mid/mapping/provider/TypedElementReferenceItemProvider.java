@@ -308,6 +308,11 @@ public class TypedElementReferenceItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 OperatorFactory.eINSTANCE.createOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				 OperatorFactory.eINSTANCE.createCoercionOperator()));
 	}
 
 	/**

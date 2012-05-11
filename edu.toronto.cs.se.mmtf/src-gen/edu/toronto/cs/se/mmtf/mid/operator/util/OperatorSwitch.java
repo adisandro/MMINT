@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.util;
 
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import edu.toronto.cs.se.mmtf.mid.operator.*;
@@ -89,7 +88,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 			case OperatorPackage.OPERATOR: {
 				Operator operator = (Operator)theEObject;
 				T result = caseOperator(operator);
-				if (result == null) result = caseExtendibleElement(operator);
 				if (result == null) result = caseTypedElement(operator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -104,6 +102,20 @@ public class OperatorSwitch<T> extends Switch<T> {
 				ModelParameter modelParameter = (ModelParameter)theEObject;
 				T result = caseModelParameter(modelParameter);
 				if (result == null) result = caseParameter(modelParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperatorPackage.ESTRING_TO_OPERATOR_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<String, Operator> eStringToOperatorMap = (Map.Entry<String, Operator>)theEObject;
+				T result = caseEStringToOperatorMap(eStringToOperatorMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperatorPackage.COERCION_OPERATOR: {
+				CoercionOperator coercionOperator = (CoercionOperator)theEObject;
+				T result = caseCoercionOperator(coercionOperator);
+				if (result == null) result = caseOperator(coercionOperator);
+				if (result == null) result = caseTypedElement(coercionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -172,6 +184,36 @@ public class OperatorSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EString To Operator Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EString To Operator Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEStringToOperatorMap(Map.Entry<String, Operator> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Coercion Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Coercion Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCoercionOperator(CoercionOperator object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -183,21 +225,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElement(TypedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExtendibleElement(ExtendibleElement object) {
 		return null;
 	}
 

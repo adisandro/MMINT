@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
 
 import edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl;
 
+import edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
@@ -77,6 +78,20 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EClass modelParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eStringToOperatorMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass coercionOperatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -288,6 +303,42 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEStringToOperatorMap() {
+		return eStringToOperatorMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEStringToOperatorMap_Key() {
+		return (EAttribute)eStringToOperatorMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEStringToOperatorMap_Value() {
+		return (EReference)eStringToOperatorMapEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCoercionOperator() {
+		return coercionOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getParameterType() {
 		return parameterTypeEEnum;
 	}
@@ -337,6 +388,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEAttribute(modelParameterEClass, MODEL_PARAMETER__MODEL_URI);
 		createEReference(modelParameterEClass, MODEL_PARAMETER__MODEL);
 
+		eStringToOperatorMapEClass = createEClass(ESTRING_TO_OPERATOR_MAP);
+		createEAttribute(eStringToOperatorMapEClass, ESTRING_TO_OPERATOR_MAP__KEY);
+		createEReference(eStringToOperatorMapEClass, ESTRING_TO_OPERATOR_MAP__VALUE);
+
+		coercionOperatorEClass = createEClass(COERCION_OPERATOR);
+
 		// Create enums
 		parameterTypeEEnum = createEEnum(PARAMETER_TYPE);
 	}
@@ -372,8 +429,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		operatorEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
+		operatorEClass.getESuperTypes().add(theMidPackage.getTypedElement());
 		modelParameterEClass.getESuperTypes().add(this.getParameter());
+		coercionOperatorEClass.getESuperTypes().add(this.getOperator());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(eStringToParameterMapEClass, Map.Entry.class, "EStringToParameterMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -392,6 +450,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEClass(modelParameterEClass, ModelParameter.class, "ModelParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelParameter_ModelUri(), ecorePackage.getEString(), "modelUri", null, 1, 1, ModelParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelParameter_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, ModelParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eStringToOperatorMapEClass, Map.Entry.class, "EStringToOperatorMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEStringToOperatorMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEStringToOperatorMap_Value(), this.getOperator(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(coercionOperatorEClass, CoercionOperator.class, "CoercionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(parameterTypeEEnum, ParameterType.class, "ParameterType");
@@ -415,10 +479,24 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore";		
 		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+		   });		
+		addAnnotation
 		  (parameterEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "isModelParameter"
+		   });			
+		addAnnotation
+		  (coercionOperatorEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "coercion"
 		   });	
 	}
 
@@ -429,12 +507,18 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";			
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";				
 		addAnnotation
 		  (parameterEClass, 
 		   source, 
 		   new String[] {
 			 "isModelParameter", "type = ParameterType::MODEL or type = ParameterType::MODEL_REL implies self.oclIsKindOf(ModelParameter)"
+		   });			
+		addAnnotation
+		  (coercionOperatorEClass, 
+		   source, 
+		   new String[] {
+			 "coercion", "inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(value.oclIsKindOf(ModelParameter)) and outputs->forAll(value.oclIsKindOf(ModelParameter)) and inputs->at(1).value.oclAsType(ModelParameter).model.supertype = outputs->at(1).value.oclAsType(ModelParameter).model"
 		   });
 	}
 

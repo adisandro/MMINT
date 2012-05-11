@@ -115,6 +115,10 @@ public class OperatorValidator extends EObjectValidator {
 				return validateParameter((Parameter)value, diagnostics, context);
 			case OperatorPackage.MODEL_PARAMETER:
 				return validateModelParameter((ModelParameter)value, diagnostics, context);
+			case OperatorPackage.ESTRING_TO_OPERATOR_MAP:
+				return validateEStringToOperatorMap((Map.Entry<?, ?>)value, diagnostics, context);
+			case OperatorPackage.COERCION_OPERATOR:
+				return validateCoercionOperator((CoercionOperator)value, diagnostics, context);
 			case OperatorPackage.PARAMETER_TYPE:
 				return validateParameterType((ParameterType)value, diagnostics, context);
 			default:
@@ -147,7 +151,6 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(operator, diagnostics, context);
 		return result;
 	}
 
@@ -171,31 +174,32 @@ public class OperatorValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the isModelParameter constraint of '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PARAMETER__IS_MODEL_PARAMETER__EEXPRESSION = "type = ParameterType::MODEL or type = ParameterType::MODEL_REL implies self.oclIsKindOf(ModelParameter)";
+
+	/**
 	 * Validates the isModelParameter constraint of '<em>Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateParameter_isModelParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "isModelParameter", getObjectLabel(parameter, context) },
-						 new Object[] { parameter },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(OperatorPackage.Literals.PARAMETER,
+				 parameter,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "isModelParameter",
+				 PARAMETER__IS_MODEL_PARAMETER__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -215,6 +219,64 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelParameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validateParameter_isModelParameter(modelParameter, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEStringToOperatorMap(Map.Entry<?, ?> eStringToOperatorMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)eStringToOperatorMap, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCoercionOperator(CoercionOperator coercionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(coercionOperator, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(coercionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCoercionOperator_coercion(coercionOperator, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the coercion constraint of '<em>Coercion Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COERCION_OPERATOR__COERCION__EEXPRESSION = "inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(value.oclIsKindOf(ModelParameter)) and outputs->forAll(value.oclIsKindOf(ModelParameter)) and inputs->at(1).value.oclAsType(ModelParameter).model.supertype = outputs->at(1).value.oclAsType(ModelParameter).model";
+
+	/**
+	 * Validates the coercion constraint of '<em>Coercion Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCoercionOperator_coercion(CoercionOperator coercionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(OperatorPackage.Literals.COERCION_OPERATOR,
+				 coercionOperator,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "coercion",
+				 COERCION_OPERATOR__COERCION__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

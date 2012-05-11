@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator;
 
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import org.eclipse.emf.common.util.EMap;
 
@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface Operator extends ExtendibleElement {
+public interface Operator extends TypedElement {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' map.
 	 * The key is of type {@link java.lang.String},

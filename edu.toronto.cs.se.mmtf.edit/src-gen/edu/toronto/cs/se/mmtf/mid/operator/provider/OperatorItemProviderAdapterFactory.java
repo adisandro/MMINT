@@ -173,6 +173,52 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EStringToOperatorMapItemProvider eStringToOperatorMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link java.util.Map.Entry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEStringToOperatorMapAdapter() {
+		if (eStringToOperatorMapItemProvider == null) {
+			eStringToOperatorMapItemProvider = new EStringToOperatorMapItemProvider(this);
+		}
+
+		return eStringToOperatorMapItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CoercionOperatorItemProvider coercionOperatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCoercionOperatorAdapter() {
+		if (coercionOperatorItemProvider == null) {
+			coercionOperatorItemProvider = new CoercionOperatorItemProvider(this);
+		}
+
+		return coercionOperatorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,6 +321,8 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (operatorItemProvider != null) operatorItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
 		if (modelParameterItemProvider != null) modelParameterItemProvider.dispose();
+		if (eStringToOperatorMapItemProvider != null) eStringToOperatorMapItemProvider.dispose();
+		if (coercionOperatorItemProvider != null) coercionOperatorItemProvider.dispose();
 	}
 
 }

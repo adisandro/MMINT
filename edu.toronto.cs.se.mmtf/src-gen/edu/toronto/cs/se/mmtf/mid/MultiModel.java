@@ -72,20 +72,21 @@ public interface MultiModel extends EObject {
 	EMap<String, Editor> getEditors();
 
 	/**
-	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.operator.Operator}.
+	 * Returns the value of the '<em><b>Operators</b></em>' map.
+	 * The key is of type {@link java.lang.String},
+	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.operator.Operator},
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operators</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operators</em>' containment reference list.
+	 * @return the value of the '<em>Operators</em>' map.
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMultiModel_Operators()
-	 * @model containment="true"
+	 * @model mapType="edu.toronto.cs.se.mmtf.mid.operator.EStringToOperatorMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.operator.Operator>"
 	 * @generated
 	 */
-	EList<Operator> getOperators();
+	EMap<String, Operator> getOperators();
 
 	/**
 	 * Returns the value of the '<em><b>Extendibles</b></em>' map.

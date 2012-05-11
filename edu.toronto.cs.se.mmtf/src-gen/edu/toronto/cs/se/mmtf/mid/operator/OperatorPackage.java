@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface OperatorPackage extends EPackage {
@@ -131,7 +132,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
+	int OPERATOR__NAME = MidPackage.TYPED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -140,7 +141,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
+	int OPERATOR__METATYPE = MidPackage.TYPED_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -149,7 +150,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
+	int OPERATOR__LEVEL = MidPackage.TYPED_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -158,25 +159,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+	int OPERATOR__TYPE = MidPackage.TYPED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' map.
@@ -185,7 +168,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATOR__INPUTS = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' map.
@@ -194,7 +177,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__OUTPUTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATOR__OUTPUTS = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
@@ -203,7 +186,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATOR_FEATURE_COUNT = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -212,7 +195,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int OPERATOR_OPERATION_COUNT = MidPackage.TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -343,6 +326,134 @@ public interface OperatorPackage extends EPackage {
 	int MODEL_PARAMETER_OPERATION_COUNT = PARAMETER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getEStringToOperatorMap()
+	 * @generated
+	 */
+	int ESTRING_TO_OPERATOR_MAP = 4;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_OPERATOR_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_OPERATOR_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>EString To Operator Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_OPERATOR_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>EString To Operator Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_OPERATOR_MAP_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl <em>Coercion Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getCoercionOperator()
+	 * @generated
+	 */
+	int COERCION_OPERATOR = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR__NAME = OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR__METATYPE = OPERATOR__METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR__LEVEL = OPERATOR__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR__TYPE = OPERATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR__INPUTS = OPERATOR__INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+
+	/**
+	 * The number of structural features of the '<em>Coercion Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Coercion Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,7 +461,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getParameterType()
 	 * @generated
 	 */
-	int PARAMETER_TYPE = 4;
+	int PARAMETER_TYPE = 6;
 
 
 	/**
@@ -493,6 +604,50 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelParameter_Model();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Operator Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EString To Operator Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
+	 *        valueType="edu.toronto.cs.se.mmtf.mid.operator.Operator" valueContainment="true" valueRequired="true"
+	 * @generated
+	 */
+	EClass getEStringToOperatorMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToOperatorMap()
+	 * @generated
+	 */
+	EAttribute getEStringToOperatorMap_Key();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToOperatorMap()
+	 * @generated
+	 */
+	EReference getEStringToOperatorMap_Value();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator <em>Coercion Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Coercion Operator</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator
+	 * @generated
+	 */
+	EClass getCoercionOperator();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}'.
@@ -638,6 +793,42 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_PARAMETER__MODEL = eINSTANCE.getModelParameter_Model();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getEStringToOperatorMap()
+		 * @generated
+		 */
+		EClass ESTRING_TO_OPERATOR_MAP = eINSTANCE.getEStringToOperatorMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ESTRING_TO_OPERATOR_MAP__KEY = eINSTANCE.getEStringToOperatorMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ESTRING_TO_OPERATOR_MAP__VALUE = eINSTANCE.getEStringToOperatorMap_Value();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl <em>Coercion Operator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getCoercionOperator()
+		 * @generated
+		 */
+		EClass COERCION_OPERATOR = eINSTANCE.getCoercionOperator();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.

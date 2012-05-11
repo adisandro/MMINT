@@ -31,8 +31,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage#getModelRel()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelRefs unboundedLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelRefs='models->size() = modelRefs->size()' unboundedLevel='unbounded = true implies level = MidLevel::TYPES'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='unboundedLevel modelRefs'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot unboundedLevel='unbounded = true implies level = MidLevel::TYPES' modelRefs='models->size() = modelRefs->size()'"
  * @generated
  */
 public interface ModelRel extends Model {

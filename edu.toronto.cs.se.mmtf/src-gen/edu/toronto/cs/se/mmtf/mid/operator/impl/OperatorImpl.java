@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
-import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
+import edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class OperatorImpl extends ExtendibleElementImpl implements Operator {
+public class OperatorImpl extends TypedElementImpl implements Operator {
 	/**
 	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' map.
 	 * <!-- begin-user-doc -->

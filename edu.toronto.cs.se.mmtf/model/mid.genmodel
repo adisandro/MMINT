@@ -124,6 +124,11 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//operator/ModelParameter/model"/>
       </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/EStringToOperatorMap">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToOperatorMap/key"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToOperatorMap/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/CoercionOperator"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

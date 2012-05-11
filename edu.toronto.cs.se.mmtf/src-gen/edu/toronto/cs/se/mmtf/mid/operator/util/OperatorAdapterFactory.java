@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.util;
 
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import edu.toronto.cs.se.mmtf.mid.operator.*;
@@ -98,12 +97,16 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createModelParameterAdapter();
 			}
 			@Override
-			public Adapter caseTypedElement(TypedElement object) {
-				return createTypedElementAdapter();
+			public Adapter caseEStringToOperatorMap(Map.Entry<String, Operator> object) {
+				return createEStringToOperatorMapAdapter();
 			}
 			@Override
-			public Adapter caseExtendibleElement(ExtendibleElement object) {
-				return createExtendibleElementAdapter();
+			public Adapter caseCoercionOperator(CoercionOperator object) {
+				return createCoercionOperatorAdapter();
+			}
+			@Override
+			public Adapter caseTypedElement(TypedElement object) {
+				return createTypedElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -182,6 +185,34 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Operator Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createEStringToOperatorMapAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator <em>Coercion Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator
+	 * @generated
+	 */
+	public Adapter createCoercionOperatorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -192,20 +223,6 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement
-	 * @generated
-	 */
-	public Adapter createExtendibleElementAdapter() {
 		return null;
 	}
 

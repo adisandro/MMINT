@@ -23,7 +23,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
         eType="#//editor/EStringToEditorMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
-        eType="#//operator/Operator" containment="true"/>
+        eType="#//operator/EStringToOperatorMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendibles" upperBound="-1"
         eType="#//EStringToExtendibleElementMap" containment="true"/>
   </eClassifiers>
@@ -86,11 +86,11 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ModelRel" eSuperTypes="#//Model">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="modelRefs unboundedLevel"/>
+        <details key="constraints" value="unboundedLevel modelRefs"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="modelRefs" value="models->size() = modelRefs->size()"/>
         <details key="unboundedLevel" value="unbounded = true implies level = MidLevel::TYPES"/>
+        <details key="modelRefs" value="models->size() = modelRefs->size()"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
           upperBound="-1" eType="#//Model"/>
@@ -206,12 +206,17 @@
   </eSubpackages>
   <eSubpackages name="operator" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator"
       nsPrefix="operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="EStringToParameterMap" instanceClassName="java.util.Map$Entry">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
           eType="#//operator/Parameter" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//ExtendibleElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//TypedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//operator/EStringToParameterMap" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
@@ -241,6 +246,19 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
           eType="#//Model"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EStringToOperatorMap" instanceClassName="java.util.Map$Entry">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="#//operator/Operator" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CoercionOperator" eSuperTypes="#//operator/Operator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="coercion"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="coercion" value="inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(value.oclIsKindOf(ModelParameter)) and outputs->forAll(value.oclIsKindOf(ModelParameter)) and inputs->at(1).value.oclAsType(ModelParameter).model.supertype = outputs->at(1).value.oclAsType(ModelParameter).model"/>
+      </eAnnotations>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
