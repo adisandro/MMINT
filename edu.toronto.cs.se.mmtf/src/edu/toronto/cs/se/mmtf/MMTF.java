@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -44,6 +46,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
+import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogSelectionValidator;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
@@ -73,7 +76,7 @@ public class MMTF {
 	private final static String ROOT_RELATIONSHIP_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
 
 	/** An extension point's extendible element's uri attribute. */
-	private final static String EXTENDIBLEELEMENT_ATTR_URI = "uri";
+	public final static String EXTENDIBLEELEMENT_ATTR_URI = "uri";
 	/** An extension point's extendible element's supertypeUri attribute. */
 	private final static String EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI = "supertypeUri";
 
@@ -91,6 +94,7 @@ public class MMTF {
 	/** The Editors extension point's wizardId attribute. */
 	private final static String EDITORS_ATTR_WIZARDID = "wizardId";
 
+	//TODO MMTF: is there a way not to use all this crap?
 	/** The Relationships extension point's id. */
 	private final static String RELATIONSHIPS_EXT_POINT = "edu.toronto.cs.se.mmtf.relationships";
 	/** The Relationships extension point's isNary attribute. */
@@ -107,6 +111,16 @@ public class MMTF {
 	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY = "category";
 	/** The Relationships extension point's model's modelElement child's classLiteral attribute. */
 	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL = "classLiteral";
+	/** The Relationships extension point's link child. */
+	private final static String RELATIONSHIPS_CHILD_LINK = "link";
+	/** The Relationships extension point's link child's isNary attribute. */
+	private final static String RELATIONSHIPS_LINK_ATTR_ISNARY = "isNary";
+	/** The Relationships extension point's link child's name attribute. */
+	private final static String RELATIONSHIPS_LINK_ATTR_NAME = "name";
+	/** The Relationships extension point's link's linkElement child. */
+	private final static String RELATIONSHIPS_LINK_CHILD_LINKELEMENT = "linkElement";
+	/** The Relationships extension point's link's linkElement child's elementName attribute. */
+	private final static String RELATIONSHIPS_LINK_LINKELEMENT_ATTR_ELEMENTNAME = "elementName";
 
 	/** The Eclipse's Editors extension point's id. */
 	private final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";
@@ -236,6 +250,10 @@ public class MMTF {
 	 */
 	public ModelRel createModelTypeRel(IConfigurationElement extensionConfig) {
 
+		//TODO MMTF: simplify everything with subfunctions and make it safer
+		//TODO MMTF: review relationship semantics, I feel we need to change something in the extension schema
+		//TODO MMTF: then, we don't care about the meaning of inheritance here, we just trust it has been set up properly
+		//TODO MMTF: a pluggable checker, following some reasoning, should enforce that
 		// create and add
 		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_ATTR_ISNARY));
 		IConfigurationElement[] modelConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_MODEL);
@@ -243,13 +261,11 @@ public class MMTF {
 			MappingFactory.eINSTANCE.createBinaryModelRel() :
 			MappingFactory.eINSTANCE.createModelRel();
 		addModelType(modelRel, extensionConfig);
-
-		// handle relationship structure
 		modelRel.setUnbounded(unbounded);
-		//TODO MMTF: well, we don't care about the meaning of inheritance here, we just trust it has been set up properly
-		//TODO MMTF: a pluggable checker, following some reasoning, should enforce that
+
+		// handle relationship structure:
+		// models and containers
 		for (IConfigurationElement modelConfigElem : modelConfig) {
-			// models and containers
 			String modelUri = modelConfigElem.getAttribute(RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI);
 			ExtendibleElement model = MMTFRegistry.getExtendibleElement(modelUri);
 			if (model != null && model instanceof Model) {
@@ -269,21 +285,49 @@ public class MMTF {
 								modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY)
 							)
 						);
-						((ModelElement) element).setPointer(null);//TODO MMTF: how to get get the ecore feature from class literal?
+						// get feature from model
+						//TODO MMTF: useful? if yes, make it safe
+						String[] elemLiterals = modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL).split(".");
+						EObject elemPointer = ((EPackage) ((Model) model).getRoot()).getEClassifier(elemLiterals[0]);
+						if (elemLiterals.length > 1) {
+							elemPointer = ((EClass) elemPointer).getEStructuralFeature(elemLiterals[1]);
+						}
+						((ModelElement) element).setPointer(elemPointer);
 						addExtendibleElement(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
 						((Model) model).getElements().add((ModelElement) element);
 					}
-					// model element reference
-					ModelElementReference elementRef = MappingFactory.eINSTANCE.createModelElementReference();
-					elementRef.setReferencedObject(element);
-					modelRef.getElementRefs().add(elementRef);
+					if (element instanceof ModelElement) { // reference model element
+						ModelElementReference elementRef = MappingFactory.eINSTANCE.createModelElementReference();
+						elementRef.setReferencedObject(element);
+						modelRef.getElementRefs().add(elementRef);
+					}
 				}
 			}
 		}
-//		IConfigurationElement[] linkConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_LINK);
-//		for (IConfigurationElement linkConfigElem : linkConfig) {
-//			
-//		}
+		// links
+		IConfigurationElement[] linkConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_LINK);
+		for (IConfigurationElement linkConfigElem : linkConfig) {
+			boolean linkUnbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_LINK_ATTR_ISNARY));
+			IConfigurationElement[] linkElementConfig = linkConfigElem.getChildren(RELATIONSHIPS_LINK_CHILD_LINKELEMENT);
+			Link link = (!linkUnbounded && linkElementConfig.length == 2) ? // unbounded with any two link elements is a Link
+				MappingFactory.eINSTANCE.createBinaryLink() :
+				MappingFactory.eINSTANCE.createLink();
+			addExtendibleElement(link, linkConfigElem.getAttribute(RELATIONSHIPS_LINK_ATTR_NAME), linkConfigElem);
+			link.setUnbounded(linkUnbounded);
+			modelRel.getLinks().add(link);
+			// link elements
+			for (IConfigurationElement linkElementConfigElem : linkElementConfig) {
+				String linkElementName = linkElementConfigElem.getAttribute(RELATIONSHIPS_LINK_LINKELEMENT_ATTR_ELEMENTNAME);
+modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
+					for (ModelElementReference elementRef : modelRef.getElementRefs()) {
+						if (elementRef.getName().equals(linkElementName)) {
+							link.getElementRefs().add(elementRef);
+							break modelRef;
+						}
+					}
+				}
+			}
+		}
 
 		return modelRel;
 	}
@@ -308,16 +352,37 @@ public class MMTF {
 	/**
 	 * Removes a model type from the repository.
 	 * 
-	 * @param extensionConfig
-	 *            The extension configuration.
+	 * @param uri
+	 *            The model type uri.
 	 */
-	public void removeModelType(IConfigurationElement extensionConfig) {
+	public void removeModelType(String uri) {
 
-		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
 		ExtendibleElement model = repository.getExtendibles().removeKey(uri);
 		if (model != null && model instanceof Model) {
 			repository.getModels().remove(model);
-			((Model) model).getEditors().clear();
+			// remove model elements, if any
+			for (ModelElement element : ((Model) model).getElements()) {
+				repository.getExtendibles().removeKey(element.getUri());
+			}
+			// remove model relationship specific structures
+			if (model instanceof ModelRel) {
+				for (Link link : ((ModelRel) model).getLinks()) {
+					repository.getExtendibles().removeKey(link.getUri());
+				}
+			}
+			// remove model relationships that use this model, and subtypes
+			for (ExtendibleElement extendible : repository.getExtendibles().values()) {
+				// model relationships
+				if (model instanceof Model && extendible instanceof ModelRel) {
+					if (((ModelRel) extendible).getModels().contains(model)) {
+						removeModelType(extendible.getUri());
+					}
+				}
+				// subtypes
+				if (extendible instanceof Model && ((Model) model).getSupertype().getUri().equals(uri)) {
+					removeModelType(extendible.getUri());
+				}
+			}
 		}
 	}
 
@@ -481,6 +546,7 @@ public class MMTF {
 		if (registry != null) {
 			initRepository(registry);
 			registry.addListener(new ModelsExtensionListener(this), MODELS_EXT_POINT);
+			registry.addListener(new RelationshipsExtensionListener(this), RELATIONSHIPS_EXT_POINT);
 			registry.addListener(new EditorsExtensionListener(this), EDITORS_EXT_POINT);
 		}
 	}

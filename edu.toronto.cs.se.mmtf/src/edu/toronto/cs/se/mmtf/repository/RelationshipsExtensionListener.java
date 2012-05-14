@@ -15,16 +15,15 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.Model;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
- * Models extension point.
+ * Relationships extension point.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class ModelsExtensionListener extends MMTFExtensionListener {
+public class RelationshipsExtensionListener extends MMTFExtensionListener {
 
 	/**
 	 * Constructor: initializes the MMTF instance.
@@ -32,32 +31,30 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 	 * @param mmtf
 	 *            The MMTF instance.
 	 */
-	public ModelsExtensionListener(MMTF mmtf) {
+	public RelationshipsExtensionListener(MMTF mmtf) {
 
 		super(mmtf);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * Installs a new Models extension.
+	 * Installs a new Relationships extension.
 	 */
 	@Override
 	public void added(IExtension[] extensions) {
 
 		IConfigurationElement[] config;
-		Model model;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				model = mmtf.createModelType(elem);
-				mmtf.addModelTypeEditors(model);
+				mmtf.createModelTypeRel(elem);
 			}
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * Uninstalls a Models extension.
+	 * Uninstalls a Relationships extension.
 	 */
 	@Override
 	public void removed(IExtension[] extensions) {

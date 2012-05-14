@@ -196,10 +196,10 @@ The relationship&apos;s enpoints model packages have to be registered too throug
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="elementUri" type="string" use="required">
+         <attribute name="elementName" type="string" use="required">
             <annotation>
                <documentation>
-                  The link&apos;s endpoint&apos;s URI (one of the model elements&apos; URIs).
+                  The link&apos;s endpoint&apos;s name (one of the model elements&apos; names).
                </documentation>
             </annotation>
          </attribute>

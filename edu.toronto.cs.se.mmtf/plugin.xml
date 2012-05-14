@@ -52,13 +52,13 @@
                modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
             <modelElement
                   category="ENTITY"
-                  classLiteral="MODEL_ELEMENT"
+                  classLiteral="ModelElement"
                   name="Root model element entity"
                   uri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/ENTITY">
             </modelElement>
             <modelElement
                   category="RELATIONSHIP"
-                  classLiteral="MODEL_ELEMENT"
+                  classLiteral="ModelElement"
                   name="Root model element relationship"
                   uri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/RELATIONSHIP">
             </modelElement>
@@ -68,10 +68,10 @@
                name="Root model element link"
                uri="http:///edu/toronto/cs/se/mmtf/ModelRel/Link">
             <linkElement
-                  elementUri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/ENTITY">
+                  elementName="Root model element entity">
             </linkElement>
             <linkElement
-                  elementUri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/RELATIONSHIP">
+                  elementName="Root model element relationship">
             </linkElement>
          </link>
       </modelTypeRelationship>
