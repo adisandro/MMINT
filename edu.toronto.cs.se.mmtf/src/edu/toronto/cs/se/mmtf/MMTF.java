@@ -45,6 +45,7 @@ import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
+import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
@@ -62,72 +63,7 @@ import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
  * @author Alessio Di Sandro
  * 
  */
-public class MMTF {
-
-	/** The uri of the root model type. */
-	private final static String ROOT_MODEL_URI = "http:///edu/toronto/cs/se/mmtf/Model";
-	/** The uri of the root model relationship. */
-	private final static String ROOT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel";
-	/** The uri of the root model element of category entity. */
-	private final static String ROOT_MODEL_ELEMENT_ENTITY_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/ENTITY";
-	/** The uri of the root model element of category relationship. */
-	private final static String ROOT_MODEL_ELEMENT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/RELATIONSHIP";
-	/** The uri of the root link among model elements. */
-	private final static String ROOT_RELATIONSHIP_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
-
-	/** An extension point's extendible element's uri attribute. */
-	public final static String EXTENDIBLEELEMENT_ATTR_URI = "uri";
-	/** An extension point's extendible element's supertypeUri attribute. */
-	private final static String EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI = "supertypeUri";
-
-	/** The Models extension point's id. */
-	private final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.models";
-
-	/** The Editors extension point's id. */
-	private final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
-	/** The Editors extension point's modelTypeUri attribute. */
-	private final static String EDITORS_ATTR_MODELTYPEURI = "modelTypeUri";
-	/** The Editors extension point's isDiagram attribute. */
-	private final static String EDITORS_ATTR_ISDIAGRAM = "isDiagram";
-	/** The Editors extension point's editorId attribute. */
-	private final static String EDITORS_ATTR_EDITORID = "editorId";
-	/** The Editors extension point's wizardId attribute. */
-	private final static String EDITORS_ATTR_WIZARDID = "wizardId";
-
-	//TODO MMTF: is there a way not to use all this crap?
-	/** The Relationships extension point's id. */
-	private final static String RELATIONSHIPS_EXT_POINT = "edu.toronto.cs.se.mmtf.relationships";
-	/** The Relationships extension point's isNary attribute. */
-	private final static String RELATIONSHIPS_ATTR_ISNARY = "isNary";
-	/** The Relationships extension point's model child. */
-	private final static String RELATIONSHIPS_CHILD_MODEL = "model";
-	/** The Relationships extension point's model child's modelTypeUri attribute. */
-	private final static String RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI = "modelTypeUri";
-	/** The Relationships extension point's model's modelElement child. */
-	private final static String RELATIONSHIPS_MODEL_CHILD_MODELELEMENT = "modelElement";
-	/** The Relationships extension point's model's modelElement child's name attribute. */
-	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME = "name";
-	/** The Relationships extension point's model's modelElement child's category attribute. */
-	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY = "category";
-	/** The Relationships extension point's model's modelElement child's classLiteral attribute. */
-	private final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL = "classLiteral";
-	/** The Relationships extension point's link child. */
-	private final static String RELATIONSHIPS_CHILD_LINK = "link";
-	/** The Relationships extension point's link child's isNary attribute. */
-	private final static String RELATIONSHIPS_LINK_ATTR_ISNARY = "isNary";
-	/** The Relationships extension point's link child's name attribute. */
-	private final static String RELATIONSHIPS_LINK_ATTR_NAME = "name";
-	/** The Relationships extension point's link's linkElement child. */
-	private final static String RELATIONSHIPS_LINK_CHILD_LINKELEMENT = "linkElement";
-	/** The Relationships extension point's link's linkElement child's elementName attribute. */
-	private final static String RELATIONSHIPS_LINK_LINKELEMENT_ATTR_ELEMENTNAME = "elementName";
-
-	/** The Eclipse's Editors extension point's id. */
-	private final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";
-	/** The Eclipse's Editors extension's id attribute. */
-	private final static String ECLIPSE_EDITORS_ATTR_ID = "id";
-	/** The Eclipse's Editors extension's extensions attribute. */
-	private final static String ECLIPSE_EDITORS_ATTR_EXTENSIONS = "extensions";
+public class MMTF implements MMTFExtensionPoints {
 
 	/** The repository of registered extensions. */
 	private static MultiModel repository;
