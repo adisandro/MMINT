@@ -57,35 +57,35 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="edu.toronto.cs.se.mmtf.mid.mapping.presentation.MappingModelWizardID"
-            name="%_UI_MappingModelWizard_label"
-            class="edu.toronto.cs.se.mmtf.mid.mapping.presentation.MappingModelWizard"
+            id="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipModelWizardID"
+            name="%_UI_RelationshipModelWizard_label"
+            class="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/MappingModelFile.gif">
-         <description>%_UI_MappingModelWizard_description</description>
+            icon="icons/full/obj16/RelationshipModelFile.gif">
+         <description>%_UI_RelationshipModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="edu.toronto.cs.se.mmtf.mid.mapping.presentation.MappingEditorID"
-            name="%_UI_MappingEditor_label"
-            icon="icons/full/obj16/MappingModelFile.gif"
-            extensions="mapping"
-            class="edu.toronto.cs.se.mmtf.mid.mapping.presentation.MappingEditor"
-            contributorClass="edu.toronto.cs.se.mmtf.mid.mapping.presentation.MappingActionBarContributor">
+            id="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipEditorID"
+            name="%_UI_RelationshipEditor_label"
+            icon="icons/full/obj16/RelationshipModelFile.gif"
+            extensions="relationship"
+            class="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipEditor"
+            contributorClass="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipActionBarContributor">
       </editor>
    </extension>
 
    <extension
-         name="Mapping editor"
+         name="Relationship editor"
          point="edu.toronto.cs.se.mmtf.editors">
       <editor
-            modelTypeUri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping"
+            modelTypeUri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship"
             isDiagram="false"
-            editorId="edu.toronto.cs.se.mmtf.mid.mapping.presentation.MappingEditorID"
-            wizardId="edu.toronto.cs.se.mmtf.mid.mapping.presentation.MappingModelWizardID">
+            editorId="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipEditorID"
+            wizardId="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipModelWizardID">
       </editor>
    </extension>
 

@@ -51,38 +51,38 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/category"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/pointer"/>
     </genClasses>
-    <nestedGenPackages prefix="Mapping" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
-        ecorePackage="mid.ecore#//mapping">
-      <genClasses ecoreClass="mid.ecore#//mapping/ModelRel">
+    <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
+        disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelRel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/models"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/links"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelRel/modelRefs"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/ModelRel/unbounded"/>
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/models"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/links"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/modelRefs"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ModelRel/unbounded"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//mapping/BinaryModelRel"/>
-      <genClasses ecoreClass="mid.ecore#//mapping/HomomorphismModelRel"/>
-      <genClasses ecoreClass="mid.ecore#//mapping/ModelReference">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelReference/elementRefs"/>
+      <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel"/>
+      <genClasses ecoreClass="mid.ecore#//relationship/HomomorphismModelRel"/>
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelReference">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelReference/elementRefs"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//mapping/ModelElementReference">
+      <genClasses ecoreClass="mid.ecore#//relationship/ModelElementReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//mapping/ModelElementReference/links"/>
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelElementReference/links"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//mapping/Link">
+      <genClasses ecoreClass="mid.ecore#//relationship/Link">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//mapping/Link/elementRefs"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/Link/unbounded"/>
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/Link/elementRefs"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/Link/unbounded"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//mapping/BinaryLink"/>
-      <genClasses ecoreClass="mid.ecore#//mapping/HomomorphismLink"/>
-      <genClasses image="false" ecoreClass="mid.ecore#//mapping/TypedElementReference">
+      <genClasses ecoreClass="mid.ecore#//relationship/BinaryLink"/>
+      <genClasses ecoreClass="mid.ecore#//relationship/HomomorphismLink"/>
+      <genClasses image="false" ecoreClass="mid.ecore#//relationship/TypedElementReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//mapping/TypedElementReference/referencedObject"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//mapping/TypedElementReference/containedObject"/>
-        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//mapping/TypedElementReference/object"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/TypedElementReference/name"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//mapping/TypedElementReference/type"/>
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/TypedElementReference/referencedObject"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/TypedElementReference/containedObject"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//relationship/TypedElementReference/object"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/TypedElementReference/name"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/TypedElementReference/type"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Editor" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"

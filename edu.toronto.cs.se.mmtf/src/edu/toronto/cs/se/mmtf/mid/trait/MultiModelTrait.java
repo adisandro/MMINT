@@ -32,12 +32,12 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.mapping.BinaryLink;
-import edu.toronto.cs.se.mmtf.mid.mapping.Link;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
  * A container for common functions of a mid/mapping model.
@@ -136,7 +136,7 @@ public class MultiModelTrait {
 	 */
 	public static ModelRel createModelRel(ModelOrigin origin, MultiModel multiModel, URI modelRelUri, EClass modelRelType) throws Exception {
 
-		ModelRel modelRel = (ModelRel) MappingFactory.eINSTANCE.create(modelRelType);
+		ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelType);
 		addModel(modelRel, origin, multiModel, modelRelUri);
 
 		return modelRel;
@@ -153,7 +153,7 @@ public class MultiModelTrait {
 	 */
 	public static ModelReference createModelReference(ModelRel modelRel, Model model) {
 
-		ModelReference modelRef = MappingFactory.eINSTANCE.createModelReference();
+		ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
 		if (modelRel.eContainer() == null) { // standalone model relationship
 			modelRef.setContainedObject(model);
 		}
@@ -176,7 +176,7 @@ public class MultiModelTrait {
 	 */
 	public static ModelElementReference createModelElementReference(ModelReference modelRef, EObject elementPointer) {
 
-		ModelElementReference elementRef = MappingFactory.eINSTANCE.createModelElementReference();
+		ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 //		if (elementPointer instanceof EReference) {
 //			element.setCategory(ModelElementCategory.RELATIONSHIP);
 //		}
@@ -246,7 +246,7 @@ public class MultiModelTrait {
 			}
 		}
 		for (Link origLink : origModelRel.getLinks()) {
-			Link link = (Link) MappingFactory.eINSTANCE.create(origLink.eClass());
+			Link link = (Link) RelationshipFactory.eINSTANCE.create(origLink.eClass());
 			link.setName(origLink.getName());
 			modelRel.getLinks().add(link);
 			for (ModelElementReference origElementRef : origLink.getElementRefs()) {

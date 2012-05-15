@@ -24,12 +24,11 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-
-import edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl;
 import edu.toronto.cs.se.mmtf.mid.util.MidValidator;
 
 import java.util.Map;
@@ -160,19 +159,19 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
+		RelationshipPackageImpl theRelationshipPackage = (RelationshipPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) instanceof RelationshipPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) : RelationshipPackage.eINSTANCE);
 		EditorPackageImpl theEditorPackage = (EditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) instanceof EditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) : EditorPackage.eINSTANCE);
 		OperatorPackageImpl theOperatorPackage = (OperatorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) instanceof OperatorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) : OperatorPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMidPackage.createPackageContents();
-		theMappingPackage.createPackageContents();
+		theRelationshipPackage.createPackageContents();
 		theEditorPackage.createPackageContents();
 		theOperatorPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMidPackage.initializePackageContents();
-		theMappingPackage.initializePackageContents();
+		theRelationshipPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
 		theOperatorPackage.initializePackageContents();
 
@@ -535,12 +534,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
+		RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
 		EditorPackage theEditorPackage = (EditorPackage)EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI);
 		OperatorPackage theOperatorPackage = (OperatorPackage)EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI);
 
 		// Add subpackages
-		getESubpackages().add(theMappingPackage);
+		getESubpackages().add(theRelationshipPackage);
 		getESubpackages().add(theEditorPackage);
 		getESubpackages().add(theOperatorPackage);
 

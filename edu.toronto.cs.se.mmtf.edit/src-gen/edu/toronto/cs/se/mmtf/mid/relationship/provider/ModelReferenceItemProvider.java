@@ -9,25 +9,18 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.provider;
+package edu.toronto.cs.se.mmtf.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
-
-import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
-import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -37,17 +30,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.MultiModel} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.relationship.ModelReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MultiModelItemProvider
-	extends ItemProviderAdapter
+public class ModelReferenceItemProvider
+	extends TypedElementReferenceItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -60,7 +52,7 @@ public class MultiModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiModelItemProvider(AdapterFactory adapterFactory) {
+	public ModelReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -91,10 +83,7 @@ public class MultiModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__MODELS);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EDITORS);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__OPERATORS);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EXTENDIBLES);
+			childrenFeatures.add(RelationshipPackage.Literals.MODEL_REFERENCE__ELEMENT_REFS);
 		}
 		return childrenFeatures;
 	}
@@ -113,14 +102,14 @@ public class MultiModelItemProvider
 	}
 
 	/**
-	 * This returns MultiModel.gif.
+	 * This returns ModelReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MultiModel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelReference"));
 	}
 
 	/**
@@ -131,7 +120,10 @@ public class MultiModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_MultiModel_type");
+		String label = ((ModelReference)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ModelReference_type") :
+			getString("_UI_ModelReference_type") + " " + label;
 	}
 
 	/**
@@ -145,11 +137,8 @@ public class MultiModelItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MultiModel.class)) {
-			case MidPackage.MULTI_MODEL__MODELS:
-			case MidPackage.MULTI_MODEL__EDITORS:
-			case MidPackage.MULTI_MODEL__OPERATORS:
-			case MidPackage.MULTI_MODEL__EXTENDIBLES:
+		switch (notification.getFeatureID(ModelReference.class)) {
+			case RelationshipPackage.MODEL_REFERENCE__ELEMENT_REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -169,49 +158,8 @@ public class MultiModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__MODELS,
-				 MidFactory.eINSTANCE.createModel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__MODELS,
-				 RelationshipFactory.eINSTANCE.createModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__MODELS,
-				 RelationshipFactory.eINSTANCE.createBinaryModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__MODELS,
-				 RelationshipFactory.eINSTANCE.createHomomorphismModelRel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__EDITORS,
-				 EditorFactory.eINSTANCE.create(EditorPackage.Literals.ESTRING_TO_EDITOR_MAP)));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
-				 OperatorFactory.eINSTANCE.create(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP)));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__EXTENDIBLES,
-				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MidEditPlugin.INSTANCE;
+				(RelationshipPackage.Literals.MODEL_REFERENCE__ELEMENT_REFS,
+				 RelationshipFactory.eINSTANCE.createModelElementReference()));
 	}
 
 }

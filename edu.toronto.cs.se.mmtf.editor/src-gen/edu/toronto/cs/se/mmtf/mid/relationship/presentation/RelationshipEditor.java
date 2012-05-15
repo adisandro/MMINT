@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.operator.presentation;
+package edu.toronto.cs.se.mmtf.mid.relationship.presentation;
 
 
 import java.io.IOException;
@@ -162,25 +162,26 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import edu.toronto.cs.se.mmtf.mid.operator.provider.OperatorItemProviderAdapterFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
 
 import edu.toronto.cs.se.mmtf.mid.editor.provider.EditorItemProviderAdapterFactory;
+
+import edu.toronto.cs.se.mmtf.mid.operator.provider.OperatorItemProviderAdapterFactory;
 
 import edu.toronto.cs.se.mmtf.mid.presentation.MidEditorPlugin;
 
 import edu.toronto.cs.se.mmtf.mid.provider.MidItemProviderAdapterFactory;
 
-import edu.toronto.cs.se.mmtf.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Operator model editor.
+ * This is an example of a Relationship model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OperatorEditor
+public class RelationshipEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -342,18 +343,18 @@ public class OperatorEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(OperatorEditor.this);
+						getActionBarContributor().setActiveEditor(RelationshipEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-						getActionBarContributor().setActiveEditor(OperatorEditor.this);
+						getActionBarContributor().setActiveEditor(RelationshipEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == OperatorEditor.this) {
+				else if (p == RelationshipEditor.this) {
 					handleActivate();
 				}
 			}
@@ -516,7 +517,7 @@ public class OperatorEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(OperatorEditor.this, false);
+										 getSite().getPage().closeEditor(RelationshipEditor.this, false);
 									 }
 								 }
 							 });
@@ -527,7 +528,7 @@ public class OperatorEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == OperatorEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == RelationshipEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -559,7 +560,7 @@ public class OperatorEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(OperatorEditor.this, false);
+				getSite().getPage().closeEditor(RelationshipEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -689,7 +690,7 @@ public class OperatorEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperatorEditor() {
+	public RelationshipEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1023,7 +1024,7 @@ public class OperatorEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OperatorEditor.this) {
+					new ViewerPane(getSite().getPage(), RelationshipEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1057,7 +1058,7 @@ public class OperatorEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OperatorEditor.this) {
+					new ViewerPane(getSite().getPage(), RelationshipEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1086,7 +1087,7 @@ public class OperatorEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OperatorEditor.this) {
+					new ViewerPane(getSite().getPage(), RelationshipEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1111,7 +1112,7 @@ public class OperatorEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OperatorEditor.this) {
+					new ViewerPane(getSite().getPage(), RelationshipEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1138,7 +1139,7 @@ public class OperatorEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OperatorEditor.this) {
+					new ViewerPane(getSite().getPage(), RelationshipEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1181,7 +1182,7 @@ public class OperatorEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), OperatorEditor.this) {
+					new ViewerPane(getSite().getPage(), RelationshipEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1402,8 +1403,8 @@ public class OperatorEditor
 				new ExtendedPropertySheetPage(editingDomain) {
 					@Override
 					public void setSelectionToViewer(List<?> selection) {
-						OperatorEditor.this.setSelectionToViewer(selection);
-						OperatorEditor.this.setFocus();
+						RelationshipEditor.this.setSelectionToViewer(selection);
+						RelationshipEditor.this.setFocus();
 					}
 
 					@Override

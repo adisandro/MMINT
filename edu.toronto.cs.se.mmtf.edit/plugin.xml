@@ -29,8 +29,8 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping"
-            class="edu.toronto.cs.se.mmtf.mid.mapping.provider.MappingItemProviderAdapterFactory"
+            uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship"
+            class="edu.toronto.cs.se.mmtf.mid.relationship.provider.RelationshipItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

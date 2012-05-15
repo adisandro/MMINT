@@ -77,8 +77,8 @@
     <eLiterals name="ENTITY"/>
     <eLiterals name="RELATIONSHIP" value="1"/>
   </eClassifiers>
-  <eSubpackages name="mapping" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/mapping"
-      nsPrefix="mapping">
+  <eSubpackages name="relationship" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship"
+      nsPrefix="relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
@@ -95,13 +95,13 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
           upperBound="-1" eType="#//Model"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
-          eType="#//mapping/Link" containment="true"/>
+          eType="#//relationship/Link" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelRefs" lowerBound="1"
-          upperBound="-1" eType="#//mapping/ModelReference" containment="true"/>
+          upperBound="-1" eType="#//relationship/ModelReference" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unbounded" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="BinaryModelRel" eSuperTypes="#//mapping/ModelRel">
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryModelRel" eSuperTypes="#//relationship/ModelRel">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="isBinaryRel"/>
       </eAnnotations>
@@ -109,7 +109,7 @@
         <details key="isBinaryRel" value="models->size() = 2"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="HomomorphismModelRel" eSuperTypes="#//mapping/BinaryModelRel">
+    <eClassifiers xsi:type="ecore:EClass" name="HomomorphismModelRel" eSuperTypes="#//relationship/BinaryModelRel">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sameModelTypes"/>
       </eAnnotations>
@@ -117,13 +117,13 @@
         <details key="sameModelTypes" value="models->forAll(m1 : Model, m2 : Model | m1.type = m2.type)"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelReference" eSuperTypes="#//mapping/TypedElementReference">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelReference" eSuperTypes="#//relationship/TypedElementReference">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elementRefs" upperBound="-1"
-          eType="#//mapping/ModelElementReference" containment="true"/>
+          eType="#//relationship/ModelElementReference" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference" eSuperTypes="#//mapping/TypedElementReference">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference" eSuperTypes="#//relationship/TypedElementReference">
       <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
-          eType="#//mapping/Link" eOpposite="#//mapping/Link/elementRefs"/>
+          eType="#//relationship/Link" eOpposite="#//relationship/Link/elementRefs"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -133,11 +133,11 @@
         <details key="unboundedLevel" value="unbounded = true implies level = MidLevel::TYPES"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="elementRefs" upperBound="-1"
-          eType="#//mapping/ModelElementReference" eOpposite="#//mapping/ModelElementReference/links"/>
+          eType="#//relationship/ModelElementReference" eOpposite="#//relationship/ModelElementReference/links"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unbounded" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="BinaryLink" eSuperTypes="#//mapping/Link">
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryLink" eSuperTypes="#//relationship/Link">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="isBinaryLink"/>
       </eAnnotations>
@@ -145,7 +145,7 @@
         <details key="isBinaryLink" value="elementRefs->size() = 2"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="HomomorphismLink" eSuperTypes="#//mapping/BinaryLink">
+    <eClassifiers xsi:type="ecore:EClass" name="HomomorphismLink" eSuperTypes="#//relationship/BinaryLink">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sameElementTypes"/>
       </eAnnotations>

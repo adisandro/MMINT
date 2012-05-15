@@ -19,10 +19,6 @@ import edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-
-import edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl;
-
 import edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -33,6 +29,8 @@ import edu.toronto.cs.se.mmtf.mid.operator.ParameterType;
 
 import edu.toronto.cs.se.mmtf.mid.operator.util.OperatorValidator;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -148,19 +146,19 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		// Obtain or create and register interdependencies
 		MidPackageImpl theMidPackage = (MidPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) instanceof MidPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) : MidPackage.eINSTANCE);
-		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
+		RelationshipPackageImpl theRelationshipPackage = (RelationshipPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) instanceof RelationshipPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) : RelationshipPackage.eINSTANCE);
 		EditorPackageImpl theEditorPackage = (EditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) instanceof EditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) : EditorPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOperatorPackage.createPackageContents();
 		theMidPackage.createPackageContents();
-		theMappingPackage.createPackageContents();
+		theRelationshipPackage.createPackageContents();
 		theEditorPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theOperatorPackage.initializePackageContents();
 		theMidPackage.initializePackageContents();
-		theMappingPackage.initializePackageContents();
+		theRelationshipPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
 
 		// Register package validator

@@ -20,14 +20,12 @@ import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 
 import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingPackage;
-
-import edu.toronto.cs.se.mmtf.mid.mapping.impl.MappingPackageImpl;
-
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -113,19 +111,19 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 
 		// Obtain or create and register interdependencies
 		MidPackageImpl theMidPackage = (MidPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) instanceof MidPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) : MidPackage.eINSTANCE);
-		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
+		RelationshipPackageImpl theRelationshipPackage = (RelationshipPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) instanceof RelationshipPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) : RelationshipPackage.eINSTANCE);
 		OperatorPackageImpl theOperatorPackage = (OperatorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) instanceof OperatorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) : OperatorPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEditorPackage.createPackageContents();
 		theMidPackage.createPackageContents();
-		theMappingPackage.createPackageContents();
+		theRelationshipPackage.createPackageContents();
 		theOperatorPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEditorPackage.initializePackageContents();
 		theMidPackage.initializePackageContents();
-		theMappingPackage.initializePackageContents();
+		theRelationshipPackage.initializePackageContents();
 		theOperatorPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

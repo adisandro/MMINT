@@ -14,7 +14,7 @@
       <domainMetaElement
           href="mid.ecore#//Model"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::ModelRel) and self.origin = ModelOrigin::CREATED"/>
+          body="not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::CREATED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
@@ -41,7 +41,7 @@
       <domainMetaElement
           href="mid.ecore#//Model"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::ModelRel) and self.origin = ModelOrigin::IMPORTED"/>
+          body="not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::IMPORTED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
@@ -65,9 +65,9 @@
         href="mid.ecore#//MultiModel/models"/>
     <ownedChild>
       <domainMetaElement
-          href="mid.ecore#//mapping/ModelRel"/>
+          href="mid.ecore#//relationship/ModelRel"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::BinaryModelRel) and self.origin = ModelOrigin::CREATED"/>
+          body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::CREATED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
@@ -91,9 +91,9 @@
         href="mid.ecore#//MultiModel/models"/>
     <ownedChild>
       <domainMetaElement
-          href="mid.ecore#//mapping/ModelRel"/>
+          href="mid.ecore#//relationship/ModelRel"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(mapping::BinaryModelRel) and self.origin = ModelOrigin::IMPORTED"/>
+          body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::IMPORTED"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
@@ -142,7 +142,7 @@
       <diagramLabel
           href="mid.gmfgraph#ModelRelModelsLabel"/>
       <features
-          href="mid.ecore#//mapping/ModelRel/unbounded"/>
+          href="mid.ecore#//relationship/ModelRel/unbounded"/>
     </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
@@ -151,15 +151,15 @@
         href="mid.gmfgraph#ModelRelModels"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/ModelRel/models"/>
+        href="mid.ecore#//relationship/ModelRel/models"/>
     <creationConstraints>
       <sourceEnd
-          body="not self.oclIsKindOf(mapping::BinaryModelRel)"/>
+          body="not self.oclIsKindOf(relationship::BinaryModelRel)"/>
     </creationConstraints>
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//mapping/BinaryModelRel"/>
+        href="mid.ecore#//relationship/BinaryModelRel"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         viewPattern="{0} : {1}"
@@ -180,10 +180,10 @@
         href="mid.gmfgraph#BinaryModelRel"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/ModelRel/models"/>
+        href="mid.ecore#//relationship/ModelRel/models"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//mapping/ModelRel/models"/>
+        href="mid.ecore#//relationship/ModelRel/models"/>
   </links>
   <links>
     <labelMappings

@@ -39,11 +39,11 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
-import edu.toronto.cs.se.mmtf.mid.mapping.Link;
-import edu.toronto.cs.se.mmtf.mid.mapping.MappingFactory;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelReference;
-import edu.toronto.cs.se.mmtf.mid.mapping.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
@@ -194,8 +194,8 @@ public class MMTF implements MMTFExtensionPoints {
 		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_ATTR_ISNARY));
 		IConfigurationElement[] modelConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_MODEL);
 		ModelRel modelRel = (!unbounded && modelConfig.length == 2) ? // unbounded with any two model types is a ModelRel
-			MappingFactory.eINSTANCE.createBinaryModelRel() :
-			MappingFactory.eINSTANCE.createModelRel();
+			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
+			RelationshipFactory.eINSTANCE.createModelRel();
 		addModelType(modelRel, extensionConfig);
 		modelRel.setUnbounded(unbounded);
 
@@ -206,7 +206,7 @@ public class MMTF implements MMTFExtensionPoints {
 			ExtendibleElement model = MMTFRegistry.getExtendibleElement(modelUri);
 			if (model != null && model instanceof Model) {
 				modelRel.getModels().add((Model) model);
-				ModelReference modelRef = MappingFactory.eINSTANCE.createModelReference();
+				ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
 				modelRef.setReferencedObject(model);
 				modelRel.getModelRefs().add(modelRef);
 				// model elements
@@ -233,7 +233,7 @@ public class MMTF implements MMTFExtensionPoints {
 						((Model) model).getElements().add((ModelElement) element);
 					}
 					if (element instanceof ModelElement) { // reference model element
-						ModelElementReference elementRef = MappingFactory.eINSTANCE.createModelElementReference();
+						ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 						elementRef.setReferencedObject(element);
 						modelRef.getElementRefs().add(elementRef);
 					}
@@ -246,8 +246,8 @@ public class MMTF implements MMTFExtensionPoints {
 			boolean linkUnbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_LINK_ATTR_ISNARY));
 			IConfigurationElement[] linkElementConfig = linkConfigElem.getChildren(RELATIONSHIPS_LINK_CHILD_LINKELEMENT);
 			Link link = (!linkUnbounded && linkElementConfig.length == 2) ? // unbounded with any two link elements is a Link
-				MappingFactory.eINSTANCE.createBinaryLink() :
-				MappingFactory.eINSTANCE.createLink();
+				RelationshipFactory.eINSTANCE.createBinaryLink() :
+				RelationshipFactory.eINSTANCE.createLink();
 			addExtendibleElement(link, linkConfigElem.getAttribute(RELATIONSHIPS_LINK_ATTR_NAME), linkConfigElem);
 			link.setUnbounded(linkUnbounded);
 			modelRel.getLinks().add(link);
