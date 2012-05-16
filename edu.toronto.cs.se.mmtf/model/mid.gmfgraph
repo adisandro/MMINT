@@ -1,70 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="mid">
+<gmfgraph:Canvas
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition"
+    name="mid">
   <figures name="Default">
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="ModelSupertypeTgtDecoration" lineKind="LINE_DASH"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="ModelRelModelsTgtDecoration" lineWidth="2"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="BinaryModelRelTgtDecoration" lineWidth="2"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorInputsTgtDecoration"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorOutputsTgtDecoration"/>
-    <descriptors name="ModelFigure">
-      <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelFigure">
-        <children xsi:type="gmfgraph:Label" name="ModelLabelFigure" text="&lt;...>"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="ModelSupertypeTgtDecoration"
+        lineKind="LINE_DASH"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="ModelRelModelsTgtDecoration"
+        lineWidth="2"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="BinaryModelRelTgtDecoration"
+        lineWidth="2"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="OperatorInputsTgtDecoration"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="OperatorOutputsTgtDecoration"/>
+    <descriptors
+        name="ModelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ModelFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ModelLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="ModelRelFigure">
-      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ModelRelFigure">
-        <children xsi:type="gmfgraph:Label" name="ModelRelLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="ModelRelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ModelRelFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ModelRelLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="OperatorFigure">
-      <actualFigure xsi:type="gmfgraph:Ellipse" name="OperatorFigure">
-        <children xsi:type="gmfgraph:Label" name="OperatorLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="OperatorFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="OperatorFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="OperatorLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="ModelSupertypeFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ModelSupertypeFigure" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.0"/>
+    <descriptors
+        name="ModelSupertypeFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ModelSupertypeFigure"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
-    <descriptors name="ModelRelModelsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ModelRelModelsFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.1">
-        <children xsi:type="gmfgraph:Label" name="ModelRelModelsLabelFigure"/>
+    <descriptors
+        name="ModelRelModelsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ModelRelModelsFigure"
+          lineWidth="2"
+          targetDecoration="//@figures.0/@figures.1"/>
+    </descriptors>
+    <descriptors
+        name="BinaryModelRelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="BinaryModelRelFigure"
+          lineWidth="2"
+          targetDecoration="//@figures.0/@figures.2">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="BinaryModelRelLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="BinaryModelRelFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BinaryModelRelFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.2">
-        <children xsi:type="gmfgraph:Label" name="BinaryModelRelLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="OperatorInputsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="OperatorInputsFigure"
+          targetDecoration="//@figures.0/@figures.3">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="OperatorInputsLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="OperatorInputsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorInputsFigure" targetDecoration="//@figures.0/@figures.3">
-        <children xsi:type="gmfgraph:Label" name="OperatorInputsLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="OperatorOutputsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="OperatorOutputsFigure"
+          targetDecoration="//@figures.0/@figures.4">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="OperatorOutputsLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors name="OperatorOutputsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorOutputsFigure" targetDecoration="//@figures.0/@figures.4">
-        <children xsi:type="gmfgraph:Label" name="OperatorOutputsLabelFigure" text="&lt;...>"/>
-      </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
-  <nodes name="Model" figure="ModelFigure"/>
-  <nodes name="ModelRel" figure="ModelRelFigure"/>
-  <nodes name="Operator" figure="OperatorFigure"/>
-  <connections name="ModelSupertype" figure="ModelSupertypeFigure"/>
-  <connections name="ModelRelModels" figure="ModelRelModelsFigure"/>
-  <connections name="BinaryModelRel" figure="BinaryModelRelFigure"/>
-  <connections name="OperatorInputs" figure="OperatorInputsFigure"/>
-  <connections name="OperatorOutputs" figure="OperatorOutputsFigure"/>
-  <labels name="ModelLabel" figure="ModelFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels name="ModelRelLabel" figure="ModelRelFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels name="OperatorLabel" figure="OperatorFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels name="BinaryModelRelLabel" figure="BinaryModelRelFigure" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
-  <labels name="OperatorInputsLabel" figure="OperatorInputsFigure" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
-  <labels name="OperatorOutputsLabel" figure="OperatorOutputsFigure" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
-  <labels name="ModelRelModelsLabel" figure="ModelRelModelsFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <nodes name="Model"
+      figure="ModelFigure"/>
+  <nodes name="ModelRel"
+      figure="ModelRelFigure"/>
+  <nodes name="Operator"
+      figure="OperatorFigure"/>
+  <connections
+      name="ModelSupertype"
+      figure="ModelSupertypeFigure"/>
+  <connections
+      name="ModelRelModels"
+      figure="ModelRelModelsFigure"/>
+  <connections
+      name="BinaryModelRel"
+      figure="BinaryModelRelFigure"/>
+  <connections
+      name="OperatorInputs"
+      figure="OperatorInputsFigure"/>
+  <connections
+      name="OperatorOutputs"
+      figure="OperatorOutputsFigure"/>
+  <labels name="ModelLabel"
+      figure="ModelFigure"
+      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="ModelRelLabel"
+      figure="ModelRelFigure"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="OperatorLabel"
+      figure="OperatorFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="BinaryModelRelLabel"
+      figure="BinaryModelRelFigure"
+      accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+  <labels name="OperatorInputsLabel"
+      figure="OperatorInputsFigure"
+      accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels name="OperatorOutputsLabel"
+      figure="OperatorOutputsFigure"
+      accessor="//@figures.0/@descriptors.7/@accessors.0"/>
 </gmfgraph:Canvas>

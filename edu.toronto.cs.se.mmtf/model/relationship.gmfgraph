@@ -1,54 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="relationship">
+<gmfgraph:Canvas
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition"
+    name="relationship">
   <figures name="Default">
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="LinkElementRefsTgtDecoration"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="BinaryLinkTgtDecoration"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="ExtendibleSupertypeTgtDecoration" lineKind="LINE_DASH"/>
-    <descriptors name="ModelReferenceFigure">
-      <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelReferenceFigure">
-        <minimumSize dx="200" dy="200"/>
-        <children xsi:type="gmfgraph:Label" name="ModelReferenceLabelFigure" text="&lt;...>"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="LinkElementRefsTgtDecoration"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="BinaryLinkTgtDecoration"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="ExtendibleSupertypeTgtDecoration"
+        lineKind="LINE_DASH"/>
+    <descriptors
+        name="ModelReferenceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ModelReferenceFigure">
+        <minimumSize
+            dx="200"
+            dy="200"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ModelReferenceLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="ModelElementReferenceFigure">
-      <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelElementReferenceFigure">
-        <children xsi:type="gmfgraph:Label" name="ModelElementReferenceLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="ModelElementReferenceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ModelElementReferenceFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ModelElementReferenceLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="LinkFigure">
-      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="LinkFigure">
-        <children xsi:type="gmfgraph:Label" name="LinkLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="LinkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="LinkFigure">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="LinkLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="LinkElementRefsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="LinkElementRefsFigure" targetDecoration="//@figures.0/@figures.0">
-        <children xsi:type="gmfgraph:Label" name="LinkElementRefsLabelFigure"/>
+    <descriptors
+        name="LinkElementRefsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="LinkElementRefsFigure"
+          targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors
+        name="BinaryLinkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="BinaryLinkFigure"
+          targetDecoration="//@figures.0/@figures.1">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="BinaryLinkLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="BinaryLinkFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BinaryLinkFigure" targetDecoration="//@figures.0/@figures.1">
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkLabelFigure" text="&lt;...>"/>
-      </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors name="ExtendibleSupertypeFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ExtendibleSupertypeFigure" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.2"/>
+    <descriptors
+        name="ExtendibleSupertypeFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ExtendibleSupertypeFigure"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.2"/>
     </descriptors>
   </figures>
-  <nodes name="ModelReference" figure="ModelReferenceFigure"/>
-  <nodes name="ModelElementReference" figure="ModelElementReferenceFigure"/>
-  <nodes name="Link" figure="LinkFigure"/>
-  <connections name="LinkElementRefs" figure="LinkElementRefsFigure"/>
-  <connections name="BinaryLink" figure="BinaryLinkFigure"/>
-  <connections name="ExtendibleSupertype" figure="ExtendibleSupertypeFigure"/>
-  <compartments name="ModelReferenceCompartment" figure="ModelReferenceFigure"/>
-  <labels name="ModelReferenceLabel" figure="ModelReferenceFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels name="ModelElementReferenceLabel" figure="ModelElementReferenceFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels name="LinkLabel" figure="LinkFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels name="LinkElementRefsLabel" figure="LinkElementRefsFigure" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
-  <labels name="BinaryLinkLabel" figure="BinaryLinkFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <nodes name="ModelReference"
+      figure="ModelReferenceFigure"/>
+  <nodes name="ModelElementReference"
+      figure="ModelElementReferenceFigure"/>
+  <nodes name="Link"
+      figure="LinkFigure"/>
+  <connections
+      name="LinkElementRefs"
+      figure="LinkElementRefsFigure"/>
+  <connections
+      name="BinaryLink"
+      figure="BinaryLinkFigure"/>
+  <connections
+      name="ExtendibleSupertype"
+      figure="ExtendibleSupertypeFigure"/>
+  <compartments
+      name="ModelReferenceCompartment"
+      figure="ModelReferenceFigure"/>
+  <labels name="ModelReferenceLabel"
+      figure="ModelReferenceFigure"
+      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="ModelElementReferenceLabel"
+      figure="ModelElementReferenceFigure"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="LinkLabel"
+      figure="LinkFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="BinaryLinkLabel"
+      figure="BinaryLinkFigure"
+      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
 </gmfgraph:Canvas>
