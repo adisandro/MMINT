@@ -12,7 +12,7 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Binary Link"
+          title="New Binary Link"
           description="Create new Binary Link">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -21,7 +21,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Nary Link"
+          title="New Nary Link"
           description="Create new Nary Link">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -30,7 +30,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Nary Link Element"
+          title="New Nary Link Elem"
           description="Create new Nary Link Element">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -44,7 +44,7 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Model"
+          title="Import Model"
           description="Import existing Model">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>

@@ -12,7 +12,7 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Model"
+          title="New Model"
           description="Create new Model">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -21,7 +21,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Binary Rel"
+          title="New Binary Rel"
           description="Create new Binary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -30,7 +30,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Nary Rel"
+          title="New Nary Rel"
           description="Create new Nary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -39,7 +39,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Nary Rel Link"
+          title="New Nary Rel Link"
           description="Create new Nary Relationship Link">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -53,7 +53,7 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Model"
+          title="Import Model"
           description="Import existing Model">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
@@ -62,7 +62,7 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Nary Rel"
+          title="Import Nary Rel"
           description="Import existing Nary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
