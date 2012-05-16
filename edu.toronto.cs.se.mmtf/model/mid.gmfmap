@@ -100,6 +100,8 @@
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
           editPattern="{0}">
+        <diagramLabel
+            href="mid.gmfgraph#ModelRelLabel"/>
         <features
             href="mid.ecore#//TypedElement/name"/>
         <features

@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
@@ -77,17 +78,22 @@ public class MMTF implements MMTFExtensionPoints {
 	 *            The name of the extendible element.
 	 * @param extensionConfig
 	 *            The extension configuration.
+	 * @throws MMTFException
+	 *             If the extendible element's uri is already registered.
 	 */
-	private void addExtendibleElement(ExtendibleElement element, String name, IConfigurationElement extensionConfig) {
+	private void addExtendibleElement(ExtendibleElement element, String name, IConfigurationElement extensionConfig) throws MMTFException {
+
+		// uri
+		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
+		if (repository.getExtendibles().containsKey(uri)) {
+			throw new MMTFException("Extendible element's URI " + uri + " is  already registered");
+		}
+		element.setUri(uri);
 
 		// basic attributes
 		element.setName(name);
 		element.setLevel(MidLevel.TYPES);
 		element.setMetatype(null);
-
-		// uri
-		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
-		element.setUri(uri);
 
 		// supertype
 		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);
@@ -132,25 +138,29 @@ public class MMTF implements MMTFExtensionPoints {
 	 *            The model type to add.
 	 * @param extensionConfig
 	 *            The extension configuration.
+	 * @throws MMTFException
+	 *             If the model type's package is not registered, or if the
+	 *             model type's uri is already registered.
 	 */
-	private void addModelType(Model model, IConfigurationElement extensionConfig) {
-
-		// set basic attributes
-		addExtendibleElement(model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
-		model.setOrigin(ModelOrigin.IMPORTED);
+	private void addModelType(Model model, IConfigurationElement extensionConfig) throws MMTFException {
 
 		// look for model package
 		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
 		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
 		EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
-		if (modelPackage != null) {
-			model.setRoot(modelPackage);
-			String modelPackageName = modelPackage.getName();
-			model.setFileExtension(modelPackageName);
-			// possibly register file extension to load resources
-			if (!resourceMap.containsKey(modelPackageName)) {
-				resourceMap.put(modelPackageName, new XMIResourceFactoryImpl());
-			}
+		if (modelPackage == null) {
+			throw new MMTFException("EPackage for URI " + uri + "is not registered");
+		}
+
+		// set attributes
+		addExtendibleElement(model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
+		model.setOrigin(ModelOrigin.IMPORTED);
+		model.setRoot(modelPackage);
+		String modelPackageName = modelPackage.getName();
+		model.setFileExtension(modelPackageName);
+		// possibly register file extension to load resources
+		if (!resourceMap.containsKey(modelPackageName)) {
+			resourceMap.put(modelPackageName, new XMIResourceFactoryImpl());
 		}
 
 		// register model type
@@ -164,13 +174,20 @@ public class MMTF implements MMTFExtensionPoints {
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
-	 * @return The created model type.
+	 * @return The created model type, null if the model type can't be
+	 *         registered.
 	 */
 	public Model createModelType(IConfigurationElement extensionConfig) {
 
 		// create and add
 		Model model = MidFactory.eINSTANCE.createModel();
-		addModelType(model, extensionConfig);
+		try {
+			addModelType(model, extensionConfig);
+		}
+		catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Model type can't be registered", e);
+			model = null;
+		}
 
 		return model;
 	}
@@ -182,7 +199,8 @@ public class MMTF implements MMTFExtensionPoints {
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
-	 * @return The created model type relationship.
+	 * @return The created model type relationship, null if the relationship
+	 *         can't be registered.
 	 */
 	public ModelRel createModelTypeRel(IConfigurationElement extensionConfig) {
 
@@ -196,7 +214,13 @@ public class MMTF implements MMTFExtensionPoints {
 		ModelRel modelRel = (!unbounded && modelConfig.length == 2) ? // unbounded with any two model types is a ModelRel
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
 			RelationshipFactory.eINSTANCE.createModelRel();
-		addModelType(modelRel, extensionConfig);
+		try {
+			addModelType(modelRel, extensionConfig);
+		}
+		catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Model type relationship can't be registered", e);
+			return null;
+		}
 		modelRel.setUnbounded(unbounded);
 
 		// handle relationship structure:
@@ -229,7 +253,14 @@ public class MMTF implements MMTFExtensionPoints {
 							elemPointer = ((EClass) elemPointer).getEStructuralFeature(elemLiterals[1]);
 						}
 						((ModelElement) element).setPointer(elemPointer);
-						addExtendibleElement(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
+						try {
+							addExtendibleElement(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
+						}
+						catch (MMTFException e) {
+							MMTFException.print(Type.WARNING, "Model element can't be registered", e);
+							removeModelType(modelRel.getUri());
+							return null;
+						}
 						((Model) model).getElements().add((ModelElement) element);
 					}
 					if (element instanceof ModelElement) { // reference model element
@@ -248,7 +279,14 @@ public class MMTF implements MMTFExtensionPoints {
 			Link link = (!linkUnbounded && linkElementConfig.length == 2) ? // unbounded with any two link elements is a Link
 				RelationshipFactory.eINSTANCE.createBinaryLink() :
 				RelationshipFactory.eINSTANCE.createLink();
-			addExtendibleElement(link, linkConfigElem.getAttribute(RELATIONSHIPS_LINK_ATTR_NAME), linkConfigElem);
+			try {
+				addExtendibleElement(link, linkConfigElem.getAttribute(RELATIONSHIPS_LINK_ATTR_NAME), linkConfigElem);
+			}
+			catch (MMTFException e) {
+				MMTFException.print(Type.WARNING, "Link can't be registered", e);
+				removeModelType(modelRel.getUri());
+				return null;
+			}
 			link.setUnbounded(linkUnbounded);
 			modelRel.getLinks().add(link);
 			// link elements
@@ -275,6 +313,10 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 *            The new model type.
 	 */
 	public void addModelTypeEditors(Model model) {
+
+		if (model == null) {
+			return;
+		}
 
 		Editor editor;
 		for (Entry<String, Editor> entry : repository.getEditors().entrySet()) {
