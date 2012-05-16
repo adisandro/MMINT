@@ -242,7 +242,7 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL__EDITORS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Operators</b></em>' map.
+	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -251,13 +251,22 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL__OPERATORS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Extendibles</b></em>' map.
+	 * The feature id for the '<em><b>Extendible Table</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL__EXTENDIBLES = 3;
+	int MULTI_MODEL__EXTENDIBLE_TABLE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Operator Table</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__OPERATOR_TABLE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Multi Model</em>' class.
@@ -266,7 +275,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL_FEATURE_COUNT = 4;
+	int MULTI_MODEL_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Multi Model</em>' class.
@@ -645,10 +654,10 @@ public interface MidPackage extends EPackage {
 	EReference getMultiModel_Editors();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators <em>Operators</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators <em>Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Operators</em>'.
+	 * @return the meta object for the containment reference list '<em>Operators</em>'.
 	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators()
 	 * @see #getMultiModel()
 	 * @generated
@@ -656,15 +665,26 @@ public interface MidPackage extends EPackage {
 	EReference getMultiModel_Operators();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibles <em>Extendibles</em>}'.
+	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibleTable <em>Extendible Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Extendibles</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibles()
+	 * @return the meta object for the map '<em>Extendible Table</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibleTable()
 	 * @see #getMultiModel()
 	 * @generated
 	 */
-	EReference getMultiModel_Extendibles();
+	EReference getMultiModel_ExtendibleTable();
+
+	/**
+	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperatorTable <em>Operator Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Operator Table</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getOperatorTable()
+	 * @see #getMultiModel()
+	 * @generated
+	 */
+	EReference getMultiModel_OperatorTable();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Model <em>Model</em>}'.
@@ -957,7 +977,7 @@ public interface MidPackage extends EPackage {
 		EReference MULTI_MODEL__EDITORS = eINSTANCE.getMultiModel_Editors();
 
 		/**
-		 * The meta object literal for the '<em><b>Operators</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Operators</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -965,12 +985,20 @@ public interface MidPackage extends EPackage {
 		EReference MULTI_MODEL__OPERATORS = eINSTANCE.getMultiModel_Operators();
 
 		/**
-		 * The meta object literal for the '<em><b>Extendibles</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Extendible Table</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_MODEL__EXTENDIBLES = eINSTANCE.getMultiModel_Extendibles();
+		EReference MULTI_MODEL__EXTENDIBLE_TABLE = eINSTANCE.getMultiModel_ExtendibleTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator Table</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_MODEL__OPERATOR_TABLE = eINSTANCE.getMultiModel_OperatorTable();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl <em>Model</em>}' class.

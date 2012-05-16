@@ -48,7 +48,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getOperators <em>Operators</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getExtendibles <em>Extendibles</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getExtendibleTable <em>Extendible Table</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getOperatorTable <em>Operator Table</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,24 +77,34 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	protected EMap<String, Editor> editors;
 
 	/**
-	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' map.
+	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOperators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, Operator> operators;
+	protected EList<Operator> operators;
 
 	/**
-	 * The cached value of the '{@link #getExtendibles() <em>Extendibles</em>}' map.
+	 * The cached value of the '{@link #getExtendibleTable() <em>Extendible Table</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtendibles()
+	 * @see #getExtendibleTable()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, ExtendibleElement> extendibles;
+	protected EMap<String, ExtendibleElement> extendibleTable;
+
+	/**
+	 * The cached value of the '{@link #getOperatorTable() <em>Operator Table</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperatorTable()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<String, Operator> operatorTable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,9 +154,9 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, Operator> getOperators() {
+	public EList<Operator> getOperators() {
 		if (operators == null) {
-			operators = new EcoreEMap<String,Operator>(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP, EStringToOperatorMapImpl.class, this, MidPackage.MULTI_MODEL__OPERATORS);
+			operators = new EObjectContainmentEList<Operator>(Operator.class, this, MidPackage.MULTI_MODEL__OPERATORS);
 		}
 		return operators;
 	}
@@ -155,11 +166,23 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, ExtendibleElement> getExtendibles() {
-		if (extendibles == null) {
-			extendibles = new EcoreEMap<String,ExtendibleElement>(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP, EStringToExtendibleElementMapImpl.class, this, MidPackage.MULTI_MODEL__EXTENDIBLES);
+	public EMap<String, ExtendibleElement> getExtendibleTable() {
+		if (extendibleTable == null) {
+			extendibleTable = new EcoreEMap<String,ExtendibleElement>(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP, EStringToExtendibleElementMapImpl.class, this, MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE);
 		}
-		return extendibles;
+		return extendibleTable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EMap<String, Operator> getOperatorTable() {
+		if (operatorTable == null) {
+			operatorTable = new EcoreEMap<String,Operator>(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP, EStringToOperatorMapImpl.class, this, MidPackage.MULTI_MODEL__OPERATOR_TABLE);
+		}
+		return operatorTable;
 	}
 
 	/**
@@ -176,8 +199,10 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				return ((InternalEList<?>)getEditors()).basicRemove(otherEnd, msgs);
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
-			case MidPackage.MULTI_MODEL__EXTENDIBLES:
-				return ((InternalEList<?>)getExtendibles()).basicRemove(otherEnd, msgs);
+			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
+				return ((InternalEList<?>)getExtendibleTable()).basicRemove(otherEnd, msgs);
+			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
+				return ((InternalEList<?>)getOperatorTable()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -196,11 +221,13 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				if (coreType) return getEditors();
 				else return getEditors().map();
 			case MidPackage.MULTI_MODEL__OPERATORS:
-				if (coreType) return getOperators();
-				else return getOperators().map();
-			case MidPackage.MULTI_MODEL__EXTENDIBLES:
-				if (coreType) return getExtendibles();
-				else return getExtendibles().map();
+				return getOperators();
+			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
+				if (coreType) return getExtendibleTable();
+				else return getExtendibleTable().map();
+			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
+				if (coreType) return getOperatorTable();
+				else return getOperatorTable().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,10 +249,14 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				((EStructuralFeature.Setting)getEditors()).set(newValue);
 				return;
 			case MidPackage.MULTI_MODEL__OPERATORS:
-				((EStructuralFeature.Setting)getOperators()).set(newValue);
+				getOperators().clear();
+				getOperators().addAll((Collection<? extends Operator>)newValue);
 				return;
-			case MidPackage.MULTI_MODEL__EXTENDIBLES:
-				((EStructuralFeature.Setting)getExtendibles()).set(newValue);
+			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
+				((EStructuralFeature.Setting)getExtendibleTable()).set(newValue);
+				return;
+			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
+				((EStructuralFeature.Setting)getOperatorTable()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -248,8 +279,11 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				getOperators().clear();
 				return;
-			case MidPackage.MULTI_MODEL__EXTENDIBLES:
-				getExtendibles().clear();
+			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
+				getExtendibleTable().clear();
+				return;
+			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
+				getOperatorTable().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -269,8 +303,10 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				return editors != null && !editors.isEmpty();
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				return operators != null && !operators.isEmpty();
-			case MidPackage.MULTI_MODEL__EXTENDIBLES:
-				return extendibles != null && !extendibles.isEmpty();
+			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
+				return extendibleTable != null && !extendibleTable.isEmpty();
+			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
+				return operatorTable != null && !operatorTable.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.operator;
 
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 /**
@@ -25,6 +26,7 @@ import org.eclipse.emf.common.util.EMap;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getSignatureTable <em>Signature Table</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,37 +36,52 @@ import org.eclipse.emf.common.util.EMap;
  */
 public interface Operator extends TypedElement {
 	/**
-	 * Returns the value of the '<em><b>Inputs</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.operator.Parameter},
+	 * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.operator.Parameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Inputs</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inputs</em>' map.
+	 * @return the value of the '<em>Inputs</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_Inputs()
-	 * @model mapType="edu.toronto.cs.se.mmtf.mid.operator.EStringToParameterMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.operator.Parameter>"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EMap<String, Parameter> getInputs();
+	EList<Parameter> getInputs();
 
 	/**
-	 * Returns the value of the '<em><b>Outputs</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.operator.Parameter},
+	 * Returns the value of the '<em><b>Outputs</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.operator.Parameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outputs</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Outputs</em>' map.
+	 * @return the value of the '<em>Outputs</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_Outputs()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Parameter> getOutputs();
+
+	/**
+	 * Returns the value of the '<em><b>Signature Table</b></em>' map.
+	 * The key is of type {@link java.lang.String},
+	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.operator.Parameter},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Signature Table</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Signature Table</em>' map.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_SignatureTable()
 	 * @model mapType="edu.toronto.cs.se.mmtf.mid.operator.EStringToParameterMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.operator.Parameter>"
 	 * @generated
 	 */
-	EMap<String, Parameter> getOutputs();
+	EMap<String, Parameter> getSignatureTable();
 
 } // Operator

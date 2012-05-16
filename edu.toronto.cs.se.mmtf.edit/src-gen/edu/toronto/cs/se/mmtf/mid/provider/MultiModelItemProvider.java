@@ -94,7 +94,8 @@ public class MultiModelItemProvider
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__MODELS);
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EDITORS);
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__OPERATORS);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EXTENDIBLES);
+			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE);
+			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__OPERATOR_TABLE);
 		}
 		return childrenFeatures;
 	}
@@ -149,7 +150,8 @@ public class MultiModelItemProvider
 			case MidPackage.MULTI_MODEL__MODELS:
 			case MidPackage.MULTI_MODEL__EDITORS:
 			case MidPackage.MULTI_MODEL__OPERATORS:
-			case MidPackage.MULTI_MODEL__EXTENDIBLES:
+			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
+			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -195,12 +197,22 @@ public class MultiModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
-				 OperatorFactory.eINSTANCE.create(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP)));
+				 OperatorFactory.eINSTANCE.createOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__EXTENDIBLES,
+				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
+				 OperatorFactory.eINSTANCE.createCoercionOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE,
 				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__OPERATOR_TABLE,
+				 OperatorFactory.eINSTANCE.create(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP)));
 	}
 
 	/**

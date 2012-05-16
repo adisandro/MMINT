@@ -89,7 +89,7 @@ public interface OperatorPackage extends EPackage {
 	int ESTRING_TO_PARAMETER_MAP__KEY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -162,7 +162,7 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__TYPE = MidPackage.TYPED_ELEMENT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Inputs</b></em>' map.
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -171,7 +171,7 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__INPUTS = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Outputs</b></em>' map.
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -180,13 +180,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__OUTPUTS = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Signature Table</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__SIGNATURE_TABLE = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATOR_FEATURE_COUNT = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -345,7 +354,7 @@ public interface OperatorPackage extends EPackage {
 	int ESTRING_TO_OPERATOR_MAP__KEY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -418,7 +427,7 @@ public interface OperatorPackage extends EPackage {
 	int COERCION_OPERATOR__TYPE = OPERATOR__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Inputs</b></em>' map.
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -427,13 +436,22 @@ public interface OperatorPackage extends EPackage {
 	int COERCION_OPERATOR__INPUTS = OPERATOR__INPUTS;
 
 	/**
-	 * The feature id for the '<em><b>Outputs</b></em>' map.
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int COERCION_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Signature Table</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COERCION_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
 
 	/**
 	 * The number of structural features of the '<em>Coercion Operator</em>' class.
@@ -471,7 +489,7 @@ public interface OperatorPackage extends EPackage {
 	 * @return the meta object for class '<em>EString To Parameter Map</em>'.
 	 * @see java.util.Map.Entry
 	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.operator.Parameter" valueContainment="true" valueRequired="true"
+	 *        valueType="edu.toronto.cs.se.mmtf.mid.operator.Parameter" valueRequired="true"
 	 * @generated
 	 */
 	EClass getEStringToParameterMap();
@@ -488,10 +506,10 @@ public interface OperatorPackage extends EPackage {
 	EAttribute getEStringToParameterMap_Key();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @return the meta object for the reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
 	 * @see #getEStringToParameterMap()
 	 * @generated
@@ -509,10 +527,10 @@ public interface OperatorPackage extends EPackage {
 	EClass getOperator();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputs <em>Inputs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputs <em>Inputs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Inputs</em>'.
+	 * @return the meta object for the containment reference list '<em>Inputs</em>'.
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputs()
 	 * @see #getOperator()
 	 * @generated
@@ -520,15 +538,26 @@ public interface OperatorPackage extends EPackage {
 	EReference getOperator_Inputs();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getOutputs <em>Outputs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getOutputs <em>Outputs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Outputs</em>'.
+	 * @return the meta object for the containment reference list '<em>Outputs</em>'.
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getOutputs()
 	 * @see #getOperator()
 	 * @generated
 	 */
 	EReference getOperator_Outputs();
+
+	/**
+	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getSignatureTable <em>Signature Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Signature Table</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getSignatureTable()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EReference getOperator_SignatureTable();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter <em>Parameter</em>}'.
@@ -612,7 +641,7 @@ public interface OperatorPackage extends EPackage {
 	 * @return the meta object for class '<em>EString To Operator Map</em>'.
 	 * @see java.util.Map.Entry
 	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.operator.Operator" valueContainment="true" valueRequired="true"
+	 *        valueType="edu.toronto.cs.se.mmtf.mid.operator.Operator" valueRequired="true"
 	 * @generated
 	 */
 	EClass getEStringToOperatorMap();
@@ -629,10 +658,10 @@ public interface OperatorPackage extends EPackage {
 	EAttribute getEStringToOperatorMap_Key();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @return the meta object for the reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
 	 * @see #getEStringToOperatorMap()
 	 * @generated
@@ -701,7 +730,7 @@ public interface OperatorPackage extends EPackage {
 		EAttribute ESTRING_TO_PARAMETER_MAP__KEY = eINSTANCE.getEStringToParameterMap_Key();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -719,7 +748,7 @@ public interface OperatorPackage extends EPackage {
 		EClass OPERATOR = eINSTANCE.getOperator();
 
 		/**
-		 * The meta object literal for the '<em><b>Inputs</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Inputs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -727,12 +756,20 @@ public interface OperatorPackage extends EPackage {
 		EReference OPERATOR__INPUTS = eINSTANCE.getOperator_Inputs();
 
 		/**
-		 * The meta object literal for the '<em><b>Outputs</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Outputs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference OPERATOR__OUTPUTS = eINSTANCE.getOperator_Outputs();
+
+		/**
+		 * The meta object literal for the '<em><b>Signature Table</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR__SIGNATURE_TABLE = eINSTANCE.getOperator_SignatureTable();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -813,7 +850,7 @@ public interface OperatorPackage extends EPackage {
 		EAttribute ESTRING_TO_OPERATOR_MAP__KEY = eINSTANCE.getEStringToOperatorMap_Key();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -93,7 +93,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 			return repository;
 		}
 		if (element instanceof Editor) {
-			return repository.getExtendibles().get(((Editor) element).getModelUri());
+			return repository.getExtendibleTable().get(((Editor) element).getModelUri());
 		}
 
 		return null;

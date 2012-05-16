@@ -23,9 +23,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
         eType="#//editor/EStringToEditorMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
-        eType="#//operator/EStringToOperatorMap" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extendibles" upperBound="-1"
+        eType="#//operator/Operator" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendibleTable" upperBound="-1"
         eType="#//EStringToExtendibleElementMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operatorTable" upperBound="-1"
+        eType="#//operator/EStringToOperatorMap" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -214,12 +216,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="EStringToParameterMap" instanceClassName="java.util.Map$Entry">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="#//operator/Parameter" containment="true"/>
+          eType="#//operator/Parameter"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//TypedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
-          eType="#//operator/EStringToParameterMap" containment="true"/>
+          eType="#//operator/Parameter" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
+          eType="#//operator/Parameter" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="signatureTable" upperBound="-1"
           eType="#//operator/EStringToParameterMap" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter">
@@ -250,7 +254,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="EStringToOperatorMap" instanceClassName="java.util.Map$Entry">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="#//operator/Operator" containment="true"/>
+          eType="#//operator/Operator"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CoercionOperator" eSuperTypes="#//operator/Operator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

@@ -93,16 +93,6 @@
         href="mid.ecore#//ExtendibleElement/supertype"/>
   </links>
   <links>
-    <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping"
-        readOnly="true"
-        viewPattern="{0,choice,0#|1&lt;N}"
-        editPattern="{0}">
-      <diagramLabel
-          href="relationship.gmfgraph#LinkElementRefsLabel"/>
-      <features
-          href="mid.ecore#//relationship/Link/unbounded"/>
-    </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
         href="relationship.gmftool#//@palette/@tools.0/@tools.2"/>

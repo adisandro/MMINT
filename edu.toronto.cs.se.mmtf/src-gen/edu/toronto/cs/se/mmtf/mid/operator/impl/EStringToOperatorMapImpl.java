@@ -15,7 +15,6 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
@@ -63,7 +62,7 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	protected String key = KEY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTypedValue()
@@ -118,6 +117,14 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * @generated
 	 */
 	public Operator getTypedValue() {
+		if (value != null && value.eIsProxy()) {
+			InternalEObject oldValue = (InternalEObject)value;
+			value = (Operator)eResolveProxy(oldValue);
+			if (value != oldValue) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE, oldValue, value));
+			}
+		}
 		return value;
 	}
 
@@ -126,14 +133,8 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypedValue(Operator newValue, NotificationChain msgs) {
-		Operator oldValue = value;
-		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Operator basicGetTypedValue() {
+		return value;
 	}
 
 	/**
@@ -142,31 +143,10 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 	 * @generated
 	 */
 	public void setTypedValue(Operator newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE, null, msgs);
-			msgs = basicSetTypedValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE, newValue, newValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
-				return basicSetTypedValue(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		Operator oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE, oldValue, value));
 	}
 
 	/**
@@ -180,7 +160,8 @@ public class EStringToOperatorMapImpl extends EObjectImpl implements BasicEMap.E
 			case OperatorPackage.ESTRING_TO_OPERATOR_MAP__KEY:
 				return getTypedKey();
 			case OperatorPackage.ESTRING_TO_OPERATOR_MAP__VALUE:
-				return getTypedValue();
+				if (resolve) return getTypedValue();
+				return basicGetTypedValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

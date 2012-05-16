@@ -85,7 +85,7 @@ public class MMTF implements MMTFExtensionPoints {
 
 		// uri
 		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
-		if (repository.getExtendibles().containsKey(uri)) {
+		if (repository.getExtendibleTable().containsKey(uri)) {
 			throw new MMTFException("Extendible element's URI " + uri + " is  already registered");
 		}
 		element.setUri(uri);
@@ -126,7 +126,7 @@ public class MMTF implements MMTFExtensionPoints {
 		}
 		element.setSupertype(superElement);
 
-		repository.getExtendibles().put(uri, element);
+		repository.getExtendibleTable().put(uri, element);
 	}
 
 	/**
@@ -237,7 +237,7 @@ public class MMTF implements MMTFExtensionPoints {
 				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
 					String modelElementUri = modelElementConfigElem.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
-					ExtendibleElement element = repository.getExtendibles().get(modelElementUri);
+					ExtendibleElement element = repository.getExtendibleTable().get(modelElementUri);
 					if (element == null) { // create new model element
 						element = MidFactory.eINSTANCE.createModelElement();
 						((ModelElement) element).setCategory(
@@ -335,21 +335,21 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 */
 	public void removeModelType(String uri) {
 
-		ExtendibleElement model = repository.getExtendibles().removeKey(uri);
+		ExtendibleElement model = repository.getExtendibleTable().removeKey(uri);
 		if (model != null && model instanceof Model) {
 			repository.getModels().remove(model);
 			// remove model elements, if any
 			for (ModelElement element : ((Model) model).getElements()) {
-				repository.getExtendibles().removeKey(element.getUri());
+				repository.getExtendibleTable().removeKey(element.getUri());
 			}
 			// remove model relationship specific structures
 			if (model instanceof ModelRel) {
 				for (Link link : ((ModelRel) model).getLinks()) {
-					repository.getExtendibles().removeKey(link.getUri());
+					repository.getExtendibleTable().removeKey(link.getUri());
 				}
 			}
 			// remove model relationships that use this model, and subtypes
-			for (ExtendibleElement extendible : repository.getExtendibles().values()) {
+			for (ExtendibleElement extendible : repository.getExtendibleTable().values()) {
 				// model relationships
 				if (model instanceof Model && extendible instanceof ModelRel) {
 					if (((ModelRel) extendible).getModels().contains(model)) {
@@ -407,7 +407,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 */
 	public void addModelTypeEditors(Editor editor) {
 
-		ExtendibleElement model = repository.getExtendibles().get(editor.getModelUri());
+		ExtendibleElement model = repository.getExtendibleTable().get(editor.getModelUri());
 		if (model != null && model instanceof Model) {
 			((Model) model).getEditors().add(editor);
 		}
@@ -451,7 +451,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			if (editor != null) {
 				String extensions = elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS);
 				if (extensions == null) {
-					ExtendibleElement model = repository.getExtendibles().get(editor.getModelUri());
+					ExtendibleElement model = repository.getExtendibleTable().get(editor.getModelUri());
 					extensions = (model != null && model instanceof Model) ?
 						((Model) model).getFileExtension() :
 						"";
@@ -473,7 +473,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITORID);
 		Editor editor = repository.getEditors().removeKey(editorId);
-		ExtendibleElement model = repository.getExtendibles().get(editor.getModelUri());
+		ExtendibleElement model = repository.getExtendibleTable().get(editor.getModelUri());
 		if (model != null && model instanceof Model) {
 			((Model) model).getEditors().remove(editor);
 		}
@@ -547,7 +547,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		 */
 		public static ExtendibleElement getExtendibleElement(String uri) {
 
-			return repository.getExtendibles().get(uri);
+			return repository.getExtendibleTable().get(uri);
 		}
 
 		/**
@@ -575,7 +575,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		 */
 		public static EList<Editor> getEditorsForModelType(String modelUri) {
 
-			ExtendibleElement model = repository.getExtendibles().get(modelUri);
+			ExtendibleElement model = repository.getExtendibleTable().get(modelUri);
 			if (model != null && model instanceof Model) {
 				return ((Model) model).getEditors();
 			}

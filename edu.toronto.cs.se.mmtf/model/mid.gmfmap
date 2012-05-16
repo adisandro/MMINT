@@ -118,7 +118,7 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//operator/EStringToOperatorMap/value"/>
+        href="mid.ecore#//MultiModel/operators"/>
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//operator/Operator"/>
@@ -141,16 +141,6 @@
         href="mid.ecore#//ExtendibleElement/supertype"/>
   </links>
   <links>
-    <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping"
-        readOnly="true"
-        viewPattern="{0,choice,0#|1&lt;N}"
-        editPattern="{0}">
-      <diagramLabel
-          href="mid.gmfgraph#ModelRelModelsLabel"/>
-      <features
-          href="mid.ecore#//relationship/ModelRel/unbounded"/>
-    </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
         href="mid.gmftool#//@palette/@tools.0/@tools.3"/>
@@ -195,6 +185,8 @@
         href="mid.ecore#//relationship/ModelRel/models"/>
   </links>
   <links>
+    <domainMetaElement
+        href="mid.ecore#//operator/ModelParameter"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
@@ -202,6 +194,8 @@
       <features
           href="mid.ecore#//operator/Parameter/name"/>
     </labelMappings>
+    <containmentFeature
+        href="mid.ecore#//operator/Operator/inputs"/>
     <diagramLink
         href="mid.gmfgraph#OperatorInputs"/>
     <linkMetaFeature
@@ -209,6 +203,8 @@
         href="mid.ecore#//operator/ModelParameter/model"/>
   </links>
   <links>
+    <domainMetaElement
+        href="mid.ecore#//operator/ModelParameter"/>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping">
       <diagramLabel
@@ -216,6 +212,8 @@
       <features
           href="mid.ecore#//operator/Parameter/name"/>
     </labelMappings>
+    <containmentFeature
+        href="mid.ecore#//operator/Operator/outputs"/>
     <diagramLink
         href="mid.gmfgraph#OperatorOutputs"/>
     <linkMetaFeature

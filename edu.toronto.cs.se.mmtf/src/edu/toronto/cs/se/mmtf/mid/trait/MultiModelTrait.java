@@ -80,7 +80,7 @@ public class MultiModelTrait {
 		// add to multimodel container
 		if (multiModel != null) {
 			multiModel.getModels().add(model);
-			multiModel.getExtendibles().put(modelUri.toPlatformString(true), model);
+			multiModel.getExtendibleTable().put(modelUri.toPlatformString(true), model);
 		}
 		// set basic attributes
 		if (modelUri == null) {
@@ -302,7 +302,7 @@ public class MultiModelTrait {
 	 */
 	public static Model getModelUnique(MultiModel multiModel, URI modelUri) {
 
-		ExtendibleElement model = multiModel.getExtendibles().get(modelUri.toPlatformString(true));
+		ExtendibleElement model = multiModel.getExtendibleTable().get(modelUri.toPlatformString(true));
 		if (model != null && model instanceof Model) {
 			return (Model) model;
 		}
