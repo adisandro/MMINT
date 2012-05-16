@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.part;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import org.eclipse.core.resources.IContainer;
@@ -55,6 +56,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+
 /**
  * @generated
  */
@@ -69,6 +72,14 @@ public class MidElementChooserDialog extends Dialog {
 	 * @generated
 	 */
 	private URI mySelectedModelElementURI;
+
+	/**
+	 * True if this dialog allows the selection of relationship files only,
+	 * false if it allows all registered model files.
+	 * 
+	 * @generated NOT
+	 */
+	private boolean relOnly;
 
 	/**
 	 * @generated
@@ -88,6 +99,18 @@ public class MidElementChooserDialog extends Dialog {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
 		myView = view;
+	}
+
+	/**
+	 * Constructor: initialises the dialog selection of relationship files only
+	 * or all registered model files.
+	 * 
+	 * @generated NOT
+	 */
+	public MidElementChooserDialog(Shell parentShell, View view, boolean relOnly) {
+
+		this(parentShell, view);
+		this.relOnly = relOnly;
 	}
 
 	/**
@@ -137,9 +160,27 @@ public class MidElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
-	private boolean isValidModelFile(IFile file) {
+	private boolean isValidModelFileGen(IFile file) {
 		String fileExtension = file.getFullPath().getFileExtension();
 		return "mid".equals(fileExtension); //$NON-NLS-1$
+	}
+
+	/**
+	 * Selects relationship files or registered models.
+	 * 
+	 * @generated NOT
+	 */
+	private boolean isValidModelFile(IFile file) {
+
+		String fileExtension = file.getFullPath().getFileExtension();
+
+		if (relOnly) {
+			return "relationship".equals(fileExtension);
+		} else {
+			ArrayList<String> registeredExtensions = MMTFRegistry
+					.getModelTypeFileExtensions();
+			return registeredExtensions.contains(fileExtension);
+		}
 	}
 
 	/**
@@ -370,7 +411,7 @@ public class MidElementChooserDialog extends Dialog {
 		/**
 		 * @generated
 		 */
-		public void selectionChanged(SelectionChangedEvent event) {
+		public void selectionChangedGen(SelectionChangedEvent event) {
 			if (event.getSelection() instanceof IStructuredSelection) {
 				IStructuredSelection selection = (IStructuredSelection) event
 						.getSelection();
@@ -398,6 +439,32 @@ public class MidElementChooserDialog extends Dialog {
 										MidDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 						mySelectedModelElementURI = EcoreUtil
 								.getURI(selectedModelElement);
+						return;
+					}
+				}
+			}
+			mySelectedModelElementURI = null;
+			setOkButtonEnabled(false);
+		}
+
+		/**
+		 * Sets the ok button enabled when a file is selected.
+		 * 
+		 * @generated NOT
+		 */
+		public void selectionChanged(SelectionChangedEvent event) {
+
+			if (event.getSelection() instanceof IStructuredSelection) {
+				IStructuredSelection selection = (IStructuredSelection) event
+						.getSelection();
+				if (selection.size() == 1) {
+					Object selectedElement = selection.getFirstElement();
+					if (selectedElement instanceof IFile) {
+						setOkButtonEnabled(true);
+						mySelectedModelElementURI = URI
+								.createPlatformResourceURI(
+										((IFile) selectedElement).getFullPath()
+												.toString(), true);
 						return;
 					}
 				}

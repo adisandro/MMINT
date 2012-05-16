@@ -569,13 +569,13 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		 * Gets the list of registered editors for a model type (identified by
 		 * its uri).
 		 * 
-		 * @param modelUri
+		 * @param modelTypeUri
 		 *            The model type uri.
 		 * @return The list of registered editors.
 		 */
-		public static EList<Editor> getEditorsForModelType(String modelUri) {
+		public static EList<Editor> getEditorsForModelType(String modelTypeUri) {
 
-			ExtendibleElement model = repository.getExtendibleTable().get(modelUri);
+			ExtendibleElement model = repository.getExtendibleTable().get(modelTypeUri);
 			if (model != null && model instanceof Model) {
 				return ((Model) model).getEditors();
 			}

@@ -7,7 +7,8 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.toronto.cs.se.mmtf.mid,
+Export-Package: edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmtf.mid,
  edu.toronto.cs.se.mmtf.mid.editor,
  edu.toronto.cs.se.mmtf.mid.editor.impl,
  edu.toronto.cs.se.mmtf.mid.editor.util,
@@ -18,7 +19,9 @@ Export-Package: edu.toronto.cs.se.mmtf.mid,
  edu.toronto.cs.se.mmtf.mid.relationship,
  edu.toronto.cs.se.mmtf.mid.relationship.impl,
  edu.toronto.cs.se.mmtf.mid.relationship.util,
- edu.toronto.cs.se.mmtf.mid.util
+ edu.toronto.cs.se.mmtf.mid.trait,
+ edu.toronto.cs.se.mmtf.mid.util,
+ edu.toronto.cs.se.mmtf.repository.ui
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.ui,

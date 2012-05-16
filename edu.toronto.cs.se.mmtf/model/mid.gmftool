@@ -39,8 +39,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New Nary Rel Link"
-          description="Create new Nary Relationship Link">
+          title="Add Nary Rel Model"
+          description="Add model to Nary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
