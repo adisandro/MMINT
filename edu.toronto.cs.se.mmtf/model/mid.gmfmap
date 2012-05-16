@@ -79,6 +79,8 @@
         <features
             href="mid.ecore#//TypedElement/type"/>
       </labelMappings>
+      <relatedDiagrams
+          href="relationship.gmfmap#//@diagram"/>
       <tool
           xsi:type="gmftool:CreationTool"
           href="mid.gmftool#//@palette/@tools.0/@tools.2"/>
@@ -103,6 +105,8 @@
         <features
             href="mid.ecore#//TypedElement/type"/>
       </labelMappings>
+      <relatedDiagrams
+          href="relationship.gmfmap#//@diagram"/>
       <tool
           xsi:type="gmftool:CreationTool"
           href="mid.gmftool#//@palette/@tools.1/@tools.1"/>
@@ -137,6 +141,7 @@
   <links>
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
+        readOnly="true"
         viewPattern="{0,choice,0#|1&lt;N}"
         editPattern="{0}">
       <diagramLabel
@@ -171,6 +176,8 @@
       <features
           href="mid.ecore#//TypedElement/type"/>
     </labelMappings>
+    <relatedDiagrams
+        href="relationship.gmfmap#//@diagram"/>
     <containmentFeature
         href="mid.ecore#//MultiModel/models"/>
     <tool
