@@ -68,6 +68,7 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.navigator.MidNavigatorItem;
 
@@ -76,6 +77,13 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.navigator.MidNavigatorIte
  */
 public class MidDiagramEditor extends DiagramDocumentEditor implements
 		IGotoMarker {
+
+	/**
+	 * The custom outline page.
+	 * 
+	 * @generated NOT
+	 */
+	private RelationshipDiagramOutlinePage outlinePage;
 
 	/**
 	 * @generated
@@ -128,7 +136,7 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 	 * @generated
 	 */
 	@SuppressWarnings("rawtypes")
-	public Object getAdapter(Class type) {
+	public Object getAdapterGen(Class type) {
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
 				public String[] getShowInTargetIds() {
@@ -137,6 +145,31 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 			};
 		}
 		return super.getAdapter(type);
+	}
+
+	/**
+	 * Adds the custom outline page.
+	 * 
+	 * @generated NOT
+	 */
+	@SuppressWarnings("rawtypes")
+	public Object getAdapter(Class type) {
+		if (type == IContentOutlinePage.class) {
+			outlinePage = new RelationshipDiagramOutlinePage(getDiagram());
+			return outlinePage;
+		}
+		return getAdapterGen(type);
+	}
+
+	/**
+	 * Gets the custom outline page.
+	 * 
+	 * @return The custom outline page.
+	 * @generated NOT
+	 */
+	public RelationshipDiagramOutlinePage getOutlinePage() {
+
+		return outlinePage;
 	}
 
 	/**
@@ -319,7 +352,7 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
-	protected void initializeGraphicalViewer() {
+	protected void initializeGraphicalViewerGen() {
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(),
@@ -340,6 +373,20 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 					}
 
 				});
+	}
+
+	/**
+	 * Registers the custom drop listener.
+	 * 
+	 * @generated NOT
+	 */
+	protected void initializeGraphicalViewer() {
+
+		super.initializeGraphicalViewer();
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new RelationshipDiagramOutlineDropListener(
+						getDiagramGraphicalViewer(), LocalSelectionTransfer
+								.getTransfer()));
 	}
 
 	/**

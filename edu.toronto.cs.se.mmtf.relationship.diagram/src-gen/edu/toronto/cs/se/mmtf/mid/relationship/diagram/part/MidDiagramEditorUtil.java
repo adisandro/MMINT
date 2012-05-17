@@ -60,9 +60,12 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
+import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
 
 /**
  * @generated
@@ -229,8 +232,25 @@ public class MidDiagramEditorUtil {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static ModelRel createInitialModel() {
+	private static ModelRel createInitialModelGen() {
 		return RelationshipFactory.eINSTANCE.createModelRel();
+	}
+
+	/**
+	 * Better creates the new instance of domain element associated with canvas.
+	 * 
+	 * @generated NOT
+	 */
+	private static ModelRel createInitialModel() {
+
+		try {
+			return MultiModelTrait.createModelRel(
+					ModelOrigin.CREATED, null, null,
+					RelationshipPackage.eINSTANCE.getModelRel());
+			//TODO MMTF: let the user choose the root type
+		} catch (Exception e) {
+			return createInitialModelGen();
+		}
 	}
 
 	/**

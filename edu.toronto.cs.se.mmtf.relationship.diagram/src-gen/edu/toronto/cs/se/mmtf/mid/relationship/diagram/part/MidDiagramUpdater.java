@@ -330,7 +330,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getContainedTypeModelFacetLinks_BinaryLink_4003(
+	private static Collection<MidLinkDescriptor> getContainedTypeModelFacetLinks_BinaryLink_4003Gen(
 			ModelRel container) {
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
 		for (Iterator<?> links = container.getLinks().iterator(); links
@@ -352,6 +352,44 @@ public class MidDiagramUpdater {
 			ModelElementReference dst = (ModelElementReference) theTarget;
 			List sources = link.getElementRefs();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
+			result.add(new MidLinkDescriptor(src, dst, link,
+					MidElementTypes.BinaryLink_4003,
+					BinaryLinkEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary link.
+	 * 
+	 * @generated NOT
+	 */
+	private static Collection<MidLinkDescriptor> getContainedTypeModelFacetLinks_BinaryLink_4003(
+			ModelRel container) {
+		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
+		for (Iterator<?> links = container.getLinks().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof BinaryLink) {
+				continue;
+			}
+			BinaryLink link = (BinaryLink) linkObject;
+			if (BinaryLinkEditPart.VISUAL_ID != MidVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List targets = link.getElementRefs();
+			Object theTarget = targets.size() == 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference dst = (ModelElementReference) theTarget;
+			List sources = link.getElementRefs();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
 			if (false == theSource instanceof ModelElementReference) {
 				continue;
 			}
@@ -406,7 +444,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryLink_4003(
+	private static Collection<MidLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryLink_4003Gen(
 			ModelElementReference target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
@@ -437,6 +475,41 @@ public class MidDiagramUpdater {
 	}
 
 	/**
+	 * Uses the same list for source and target of a binary link.
+	 * 
+	 * @generated NOT
+	 */
+	private static Collection<MidLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryLink_4003(
+			ModelElementReference target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != RelationshipPackage.eINSTANCE
+					.getLink_ElementRefs()
+					|| false == setting.getEObject() instanceof BinaryLink) {
+				continue;
+			}
+			BinaryLink link = (BinaryLink) setting.getEObject();
+			if (BinaryLinkEditPart.VISUAL_ID != MidVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List sources = link.getElementRefs();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
+			result.add(new MidLinkDescriptor(src, target, link,
+					MidElementTypes.BinaryLink_4003,
+					BinaryLinkEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
 	 * @generated
 	 */
 	private static Collection<MidLinkDescriptor> getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(
@@ -455,7 +528,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getOutgoingFeatureModelFacetLinks_Link_ElementRefs_4002(
+	private static Collection<MidLinkDescriptor> getOutgoingFeatureModelFacetLinks_Link_ElementRefs_4002Gen(
 			Link source) {
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
 		for (Iterator<?> destinations = source.getElementRefs().iterator(); destinations
@@ -470,9 +543,23 @@ public class MidDiagramUpdater {
 	}
 
 	/**
+	 * Avoids element links to go out from a binary link. 
+	 * 
+	 * @generated NOT
+	 */
+	private static Collection<MidLinkDescriptor> getOutgoingFeatureModelFacetLinks_Link_ElementRefs_4002(
+			Link source) {
+
+		if (source instanceof BinaryLink) {
+			return new LinkedList<MidLinkDescriptor>();
+		}
+		return getOutgoingFeatureModelFacetLinks_Link_ElementRefs_4002Gen(source);
+	}
+
+	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryLink_4003(
+	private static Collection<MidLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryLink_4003Gen(
 			ModelElementReference source) {
 		ModelRel container = null;
 		// Find container element for the link.
@@ -507,6 +594,60 @@ public class MidDiagramUpdater {
 			ModelElementReference dst = (ModelElementReference) theTarget;
 			List sources = link.getElementRefs();
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
+			if (false == theSource instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference src = (ModelElementReference) theSource;
+			if (src != source) {
+				continue;
+			}
+			result.add(new MidLinkDescriptor(src, dst, link,
+					MidElementTypes.BinaryLink_4003,
+					BinaryLinkEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * Uses the same list for source and target of a binary link.
+	 * 
+	 * @generated NOT
+	 */
+	private static Collection<MidLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryLink_4003(
+			ModelElementReference source) {
+		ModelRel container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null && container == null; element = element
+				.eContainer()) {
+			if (element instanceof ModelRel) {
+				container = (ModelRel) element;
+			}
+		}
+		if (container == null) {
+			return Collections.emptyList();
+		}
+		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
+		for (Iterator<?> links = container.getLinks().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof BinaryLink) {
+				continue;
+			}
+			BinaryLink link = (BinaryLink) linkObject;
+			if (BinaryLinkEditPart.VISUAL_ID != MidVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			List targets = link.getElementRefs();
+			Object theTarget = targets.size() == 2 ? targets.get(1) : null;
+			if (false == theTarget instanceof ModelElementReference) {
+				continue;
+			}
+			ModelElementReference dst = (ModelElementReference) theTarget;
+			List sources = link.getElementRefs();
+			Object theSource = sources.size() == 2 ? sources.get(0) : null;
 			if (false == theSource instanceof ModelElementReference) {
 				continue;
 			}
