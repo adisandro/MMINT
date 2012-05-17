@@ -23,6 +23,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.BinaryModelRelItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.BinaryModelRelSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelOpenDiagramEditPolicy;
 
 /**
  * @generated
@@ -49,6 +51,10 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new BinaryModelRelItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new ModelRelOpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new BinaryModelRelSemanticEditPolicy());
 	}
 
 	/**

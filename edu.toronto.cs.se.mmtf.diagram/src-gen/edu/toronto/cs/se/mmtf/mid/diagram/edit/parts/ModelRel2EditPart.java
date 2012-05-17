@@ -41,7 +41,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRel2ItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.OpenDiagramEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelImportedSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelOpenDiagramEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
 
@@ -81,7 +82,9 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 				new ModelRel2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+				new ModelRelOpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ModelRelImportedSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

@@ -51,7 +51,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorUtil;
 /**
  * @generated
  */
-public class OpenDiagramEditPolicy extends OpenEditPolicy {
+public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 
 	/**
 	 * @generated
@@ -196,14 +196,14 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		protected String getDiagramKind() {
-			return "FIXME put GenEditorGenerator.modelID value here";
+			return "Relationship";
 		}
 
 		/**
 		 * @generated
 		 */
 		protected String getEditorID() {
-			return "FIXME put GenEditorView.id value here";
+			return "edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID";
 		}
 	}
 

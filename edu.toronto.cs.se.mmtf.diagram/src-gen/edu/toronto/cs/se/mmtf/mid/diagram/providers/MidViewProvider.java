@@ -401,8 +401,7 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		{
 			HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE
 					.createHintedDiagramLinkStyle();
-			diagramFacet
-					.setHint("FIXME put GenEditorGenerator.modelID value here"); //$NON-NLS-1$
+			diagramFacet.setHint("Relationship"); //$NON-NLS-1$
 			node.getStyles().add(diagramFacet);
 		}
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -452,8 +451,7 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		{
 			HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE
 					.createHintedDiagramLinkStyle();
-			diagramFacet
-					.setHint("FIXME put GenEditorGenerator.modelID value here"); //$NON-NLS-1$
+			diagramFacet.setHint("Relationship"); //$NON-NLS-1$
 			node.getStyles().add(diagramFacet);
 		}
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -646,7 +644,7 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createBinaryModelRel_4003(EObject domainElement,
+	public Edge createBinaryModelRel_4003Gen(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -701,6 +699,25 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6001 = (Location) label6001.getLayoutConstraint();
 		location6001.setX(0);
 		location6001.setY(40);
+		return edge;
+	}
+
+	/**
+	 * Adds missing diagram hint for binary model relationships.
+	 * 
+	 * @generated NOT
+	 */
+	public Edge createBinaryModelRel_4003(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+
+		Edge edge = createBinaryModelRel_4003Gen(domainElement,
+				containerView, index, persisted, preferencesHint);
+		HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE
+				.createHintedDiagramLinkStyle();
+		diagramFacet.setHint("Relationship"); //$NON-NLS-1$
+		edge.getStyles().add(diagramFacet);
+
 		return edge;
 	}
 

@@ -25,6 +25,14 @@
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <behaviour
+        xsi:type="gmfgen:CustomBehaviour"
+        key="EditPolicyRoles.SEMANTIC_ROLE"
+        editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidDiagramSemanticEditPolicy"/>
+    <behaviour
+        xsi:type="gmfgen:CustomBehaviour"
+        key="EditPolicyRoles.POPUPBAR_ROLE"
+        editPolicyQualifiedClassName=""/>
     <containsShortcutsTo>mid</containsShortcutsTo>
     <shortcutsProvidedFor>mid</shortcutsProvidedFor>
     <domainDiagramElement
@@ -51,6 +59,14 @@
           editPolicyClassName="ModelOpenDiagramEditPolicy"
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelCreatedSemanticEditPolicy"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.OPEN_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelOpenEditorEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
         <metaClass
@@ -106,6 +122,14 @@
           editPolicyClassName="ModelOpenDiagramEditPolicy"
           diagramKind="Mid"
           editorID="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelImportedSemanticEditPolicy"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.OPEN_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelOpenEditorEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.1">
         <metaClass
@@ -158,8 +182,13 @@
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelRelFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelRelLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelRelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureModelRelLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureModelRelLabelFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureModelRelLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelRelLabelFigure() {&#xA;&#x9;&#x9;return fFigureModelRelLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <behaviour
           xsi:type="gmfgen:OpenDiagramBehaviour"
-          diagramKind="FIXME put GenEditorGenerator.modelID value here"
-          editorID="FIXME put GenEditorView.id value here"/>
+          editPolicyClassName="ModelRelOpenDiagramEditPolicy"
+          diagramKind="Relationship"
+          editorID="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelCreatedSemanticEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.2">
         <metaClass
@@ -212,8 +241,13 @@
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelRelFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelRelLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelRelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureModelRelLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureModelRelLabelFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureModelRelLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelRelLabelFigure() {&#xA;&#x9;&#x9;return fFigureModelRelLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <behaviour
           xsi:type="gmfgen:OpenDiagramBehaviour"
-          diagramKind="FIXME put GenEditorGenerator.modelID value here"
-          editorID="FIXME put GenEditorView.id value here"/>
+          editPolicyClassName="ModelRelOpenDiagramEditPolicy"
+          diagramKind="Relationship"
+          editorID="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelImportedSemanticEditPolicy"/>
       <modelFacet
           modelElementSelector="//@expressionProviders/@providers.0/@expressions.3">
         <metaClass
@@ -328,6 +362,10 @@
           xsi:type="gmfgen:InnerClassViewmap"
           className="ModelRelModelsFigure"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelRelModelsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelRelModelsFigure() {&#xA;&#x9;&#x9;this.setLineWidth(2);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(2);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelModelsSemanticEditPolicy"/>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
@@ -352,6 +390,15 @@
           xsi:type="gmfgen:InnerClassViewmap"
           className="BinaryModelRelFigure"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class BinaryModelRelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureBinaryModelRelLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public BinaryModelRelFigure() {&#xA;&#x9;&#x9;this.setLineWidth(2);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureBinaryModelRelLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureBinaryModelRelLabelFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureBinaryModelRelLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(2);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureBinaryModelRelLabelFigure() {&#xA;&#x9;&#x9;return fFigureBinaryModelRelLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"
+          editPolicyClassName="ModelRelOpenDiagramEditPolicy"
+          diagramKind="Relationship"
+          editorID="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.BinaryModelRelSemanticEditPolicy"/>
       <modelFacet
           xsi:type="gmfgen:TypeLinkModelFacet">
         <metaClass
