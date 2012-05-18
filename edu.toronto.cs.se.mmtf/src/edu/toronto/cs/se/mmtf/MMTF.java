@@ -93,7 +93,6 @@ public class MMTF implements MMTFExtensionPoints {
 		// basic attributes
 		element.setName(name);
 		element.setLevel(MidLevel.TYPES);
-		element.setMetatype(null);
 
 		// supertype
 		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);

@@ -70,22 +70,11 @@ public interface TypedElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Metatype</em>' reference.
-	 * @see #setMetatype(TypedElement)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getTypedElement_Metatype()
-	 * @model
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	TypedElement getMetatype();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatype <em>Metatype</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Metatype</em>' reference.
-	 * @see #getMetatype()
-	 * @generated
-	 */
-	void setMetatype(TypedElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.

@@ -195,7 +195,7 @@ public class EStringToOperatorMapItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP__VALUE,
-				 OperatorFactory.eINSTANCE.createCoercionOperator()));
+				 OperatorFactory.eINSTANCE.createConversionOperator()));
 	}
 
 	/**

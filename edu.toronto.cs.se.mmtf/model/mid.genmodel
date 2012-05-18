@@ -130,7 +130,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToOperatorMap/key"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToOperatorMap/value"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//operator/CoercionOperator"/>
+      <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

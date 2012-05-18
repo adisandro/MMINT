@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.operator.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
 import java.util.Collection;
@@ -29,12 +29,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CoercionOperatorItemProvider
+public class ConversionOperatorItemProvider
 	extends OperatorItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +48,7 @@ public class CoercionOperatorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CoercionOperatorItemProvider(AdapterFactory adapterFactory) {
+	public ConversionOperatorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,14 +68,14 @@ public class CoercionOperatorItemProvider
 	}
 
 	/**
-	 * This returns CoercionOperator.gif.
+	 * This returns ConversionOperator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CoercionOperator"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ConversionOperator"));
 	}
 
 	/**
@@ -86,10 +86,10 @@ public class CoercionOperatorItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CoercionOperator)object).getName();
+		String label = ((ConversionOperator)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_CoercionOperator_type") :
-			getString("_UI_CoercionOperator_type") + " " + label;
+			getString("_UI_ConversionOperator_type") :
+			getString("_UI_ConversionOperator_type") + " " + label;
 	}
 
 	/**

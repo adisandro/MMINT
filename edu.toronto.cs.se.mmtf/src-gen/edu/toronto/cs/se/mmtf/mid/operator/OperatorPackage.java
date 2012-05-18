@@ -381,14 +381,14 @@ public interface OperatorPackage extends EPackage {
 	int ESTRING_TO_OPERATOR_MAP_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl <em>Coercion Operator</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getCoercionOperator()
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperator()
 	 * @generated
 	 */
-	int COERCION_OPERATOR = 5;
+	int CONVERSION_OPERATOR = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -397,7 +397,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR__NAME = OPERATOR__NAME;
+	int CONVERSION_OPERATOR__NAME = OPERATOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -406,7 +406,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR__METATYPE = OPERATOR__METATYPE;
+	int CONVERSION_OPERATOR__METATYPE = OPERATOR__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -415,7 +415,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR__LEVEL = OPERATOR__LEVEL;
+	int CONVERSION_OPERATOR__LEVEL = OPERATOR__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -424,7 +424,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR__TYPE = OPERATOR__TYPE;
+	int CONVERSION_OPERATOR__TYPE = OPERATOR__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -433,7 +433,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR__INPUTS = OPERATOR__INPUTS;
+	int CONVERSION_OPERATOR__INPUTS = OPERATOR__INPUTS;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -442,7 +442,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+	int CONVERSION_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
 
 	/**
 	 * The feature id for the '<em><b>Signature Table</b></em>' map.
@@ -451,25 +451,25 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
+	int CONVERSION_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
 
 	/**
-	 * The number of structural features of the '<em>Coercion Operator</em>' class.
+	 * The number of structural features of the '<em>Conversion Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+	int CONVERSION_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Coercion Operator</em>' class.
+	 * The number of operations of the '<em>Conversion Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COERCION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+	int CONVERSION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.
@@ -669,14 +669,14 @@ public interface OperatorPackage extends EPackage {
 	EReference getEStringToOperatorMap_Value();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator <em>Coercion Operator</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Coercion Operator</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator
+	 * @return the meta object for class '<em>Conversion Operator</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator
 	 * @generated
 	 */
-	EClass getCoercionOperator();
+	EClass getConversionOperator();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}'.
@@ -858,14 +858,14 @@ public interface OperatorPackage extends EPackage {
 		EReference ESTRING_TO_OPERATOR_MAP__VALUE = eINSTANCE.getEStringToOperatorMap_Value();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl <em>Coercion Operator</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.CoercionOperatorImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getCoercionOperator()
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperator()
 		 * @generated
 		 */
-		EClass COERCION_OPERATOR = eINSTANCE.getCoercionOperator();
+		EClass CONVERSION_OPERATOR = eINSTANCE.getConversionOperator();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.

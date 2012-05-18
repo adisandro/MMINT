@@ -73,7 +73,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.PARAMETER: return createParameter();
 			case OperatorPackage.MODEL_PARAMETER: return createModelParameter();
 			case OperatorPackage.ESTRING_TO_OPERATOR_MAP: return (EObject)createEStringToOperatorMap();
-			case OperatorPackage.COERCION_OPERATOR: return createCoercionOperator();
+			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -164,9 +164,9 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CoercionOperator createCoercionOperator() {
-		CoercionOperatorImpl coercionOperator = new CoercionOperatorImpl();
-		return coercionOperator;
+	public ConversionOperator createConversionOperator() {
+		ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
+		return conversionOperator;
 	}
 
 	/**

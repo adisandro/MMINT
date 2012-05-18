@@ -11,27 +11,27 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
-import edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Coercion Operator</b></em>'.
+ * An implementation of the model object '<em><b>Conversion Operator</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class CoercionOperatorImpl extends OperatorImpl implements CoercionOperator {
+public class ConversionOperatorImpl extends OperatorImpl implements ConversionOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CoercionOperatorImpl() {
+	protected ConversionOperatorImpl() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public class CoercionOperatorImpl extends OperatorImpl implements CoercionOperat
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OperatorPackage.Literals.COERCION_OPERATOR;
+		return OperatorPackage.Literals.CONVERSION_OPERATOR;
 	}
 
-} //CoercionOperatorImpl
+} //ConversionOperatorImpl

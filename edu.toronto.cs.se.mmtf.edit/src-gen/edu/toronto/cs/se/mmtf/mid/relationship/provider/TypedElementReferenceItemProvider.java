@@ -312,7 +312,7 @@ public class TypedElementReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 OperatorFactory.eINSTANCE.createCoercionOperator()));
+				 OperatorFactory.eINSTANCE.createConversionOperator()));
 	}
 
 	/**

@@ -202,7 +202,7 @@ public class MultiModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
-				 OperatorFactory.eINSTANCE.createCoercionOperator()));
+				 OperatorFactory.eINSTANCE.createConversionOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter

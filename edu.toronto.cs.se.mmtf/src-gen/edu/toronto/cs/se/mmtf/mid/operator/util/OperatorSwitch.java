@@ -111,11 +111,11 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OperatorPackage.COERCION_OPERATOR: {
-				CoercionOperator coercionOperator = (CoercionOperator)theEObject;
-				T result = caseCoercionOperator(coercionOperator);
-				if (result == null) result = caseOperator(coercionOperator);
-				if (result == null) result = caseTypedElement(coercionOperator);
+			case OperatorPackage.CONVERSION_OPERATOR: {
+				ConversionOperator conversionOperator = (ConversionOperator)theEObject;
+				T result = caseConversionOperator(conversionOperator);
+				if (result == null) result = caseOperator(conversionOperator);
+				if (result == null) result = caseTypedElement(conversionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -199,17 +199,17 @@ public class OperatorSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Coercion Operator</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Coercion Operator</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Conversion Operator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCoercionOperator(CoercionOperator object) {
+	public T caseConversionOperator(ConversionOperator object) {
 		return null;
 	}
 

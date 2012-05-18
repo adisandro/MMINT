@@ -101,8 +101,8 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createEStringToOperatorMapAdapter();
 			}
 			@Override
-			public Adapter caseCoercionOperator(CoercionOperator object) {
-				return createCoercionOperatorAdapter();
+			public Adapter caseConversionOperator(ConversionOperator object) {
+				return createConversionOperatorAdapter();
 			}
 			@Override
 			public Adapter caseTypedElement(TypedElement object) {
@@ -199,16 +199,16 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator <em>Coercion Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator
 	 * @generated
 	 */
-	public Adapter createCoercionOperatorAdapter() {
+	public Adapter createConversionOperatorAdapter() {
 		return null;
 	}
 

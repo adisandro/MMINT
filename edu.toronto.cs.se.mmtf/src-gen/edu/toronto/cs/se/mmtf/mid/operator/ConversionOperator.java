@@ -14,14 +14,14 @@ package edu.toronto.cs.se.mmtf.mid.operator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Coercion Operator</b></em>'.
+ * A representation of the model object '<em><b>Conversion Operator</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getCoercionOperator()
+ * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getConversionOperator()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='coercion'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot coercion='inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(value.oclIsKindOf(ModelParameter)) and outputs->forAll(value.oclIsKindOf(ModelParameter)) and inputs->at(1).value.oclAsType(ModelParameter).model.supertype = outputs->at(1).value.oclAsType(ModelParameter).model'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot coercion='inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(oclIsKindOf(ModelParameter)) and outputs->forAll(oclIsKindOf(ModelParameter)) and inputs->at(1).oclAsType(ModelParameter).model.supertype = outputs->at(1).oclAsType(ModelParameter).model'"
  * @generated
  */
-public interface CoercionOperator extends Operator {
-} // CoercionOperator
+public interface ConversionOperator extends Operator {
+} // ConversionOperator

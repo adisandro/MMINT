@@ -117,8 +117,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateModelParameter((ModelParameter)value, diagnostics, context);
 			case OperatorPackage.ESTRING_TO_OPERATOR_MAP:
 				return validateEStringToOperatorMap((Map.Entry<?, ?>)value, diagnostics, context);
-			case OperatorPackage.COERCION_OPERATOR:
-				return validateCoercionOperator((CoercionOperator)value, diagnostics, context);
+			case OperatorPackage.CONVERSION_OPERATOR:
+				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
 			case OperatorPackage.PARAMETER_TYPE:
 				return validateParameterType((ParameterType)value, diagnostics, context);
 			default:
@@ -235,45 +235,45 @@ public class OperatorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCoercionOperator(CoercionOperator coercionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(coercionOperator, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(coercionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoercionOperator_coercion(coercionOperator, diagnostics, context);
+	public boolean validateConversionOperator(ConversionOperator conversionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(conversionOperator, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConversionOperator_coercion(conversionOperator, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the coercion constraint of '<em>Coercion Operator</em>'.
+	 * The cached validation expression for the coercion constraint of '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String COERCION_OPERATOR__COERCION__EEXPRESSION = "inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(value.oclIsKindOf(ModelParameter)) and outputs->forAll(value.oclIsKindOf(ModelParameter)) and inputs->at(1).value.oclAsType(ModelParameter).model.supertype = outputs->at(1).value.oclAsType(ModelParameter).model";
+	protected static final String CONVERSION_OPERATOR__COERCION__EEXPRESSION = "inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(oclIsKindOf(ModelParameter)) and outputs->forAll(oclIsKindOf(ModelParameter)) and inputs->at(1).oclAsType(ModelParameter).model.supertype = outputs->at(1).oclAsType(ModelParameter).model";
 
 	/**
-	 * Validates the coercion constraint of '<em>Coercion Operator</em>'.
+	 * Validates the coercion constraint of '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCoercionOperator_coercion(CoercionOperator coercionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateConversionOperator_coercion(ConversionOperator conversionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(OperatorPackage.Literals.COERCION_OPERATOR,
-				 coercionOperator,
+				(OperatorPackage.Literals.CONVERSION_OPERATOR,
+				 conversionOperator,
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "coercion",
-				 COERCION_OPERATOR__COERCION__EEXPRESSION,
+				 CONVERSION_OPERATOR__COERCION__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

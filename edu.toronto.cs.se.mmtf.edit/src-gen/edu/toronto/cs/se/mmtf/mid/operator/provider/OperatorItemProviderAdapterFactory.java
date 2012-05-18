@@ -196,26 +196,26 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CoercionOperatorItemProvider coercionOperatorItemProvider;
+	protected ConversionOperatorItemProvider conversionOperatorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.CoercionOperator}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCoercionOperatorAdapter() {
-		if (coercionOperatorItemProvider == null) {
-			coercionOperatorItemProvider = new CoercionOperatorItemProvider(this);
+	public Adapter createConversionOperatorAdapter() {
+		if (conversionOperatorItemProvider == null) {
+			conversionOperatorItemProvider = new ConversionOperatorItemProvider(this);
 		}
 
-		return coercionOperatorItemProvider;
+		return conversionOperatorItemProvider;
 	}
 
 	/**
@@ -322,7 +322,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
 		if (modelParameterItemProvider != null) modelParameterItemProvider.dispose();
 		if (eStringToOperatorMapItemProvider != null) eStringToOperatorMapItemProvider.dispose();
-		if (coercionOperatorItemProvider != null) coercionOperatorItemProvider.dispose();
+		if (conversionOperatorItemProvider != null) conversionOperatorItemProvider.dispose();
 	}
 
 }

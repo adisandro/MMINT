@@ -58,13 +58,13 @@ public interface OperatorFactory extends EFactory {
 	ModelParameter createModelParameter();
 
 	/**
-	 * Returns a new object of class '<em>Coercion Operator</em>'.
+	 * Returns a new object of class '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Coercion Operator</em>'.
+	 * @return a new object of class '<em>Conversion Operator</em>'.
 	 * @generated
 	 */
-	CoercionOperator createCoercionOperator();
+	ConversionOperator createConversionOperator();
 
 	/**
 	 * Returns the package supported by this factory.

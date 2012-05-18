@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeInference;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -60,16 +61,6 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getMetatype() <em>Metatype</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMetatype()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypedElement metatype;
 
 	/**
 	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
@@ -147,36 +138,18 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 * @generated
 	 */
 	public TypedElement getMetatype() {
-		if (metatype != null && metatype.eIsProxy()) {
-			InternalEObject oldMetatype = (InternalEObject)metatype;
-			metatype = (TypedElement)eResolveProxy(oldMetatype);
-			if (metatype != oldMetatype) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.TYPED_ELEMENT__METATYPE, oldMetatype, metatype));
-			}
-		}
-		return metatype;
+		TypedElement metatype = basicGetMetatype();
+		return metatype != null && metatype.eIsProxy() ? (TypedElement)eResolveProxy((InternalEObject)metatype) : metatype;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public TypedElement basicGetMetatype() {
-		return metatype;
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMetatype(TypedElement newMetatype) {
-		TypedElement oldMetatype = metatype;
-		metatype = newMetatype;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.TYPED_ELEMENT__METATYPE, oldMetatype, metatype));
+		return MultiModelTypeInference.inferType(this);
 	}
 
 	/**
@@ -241,9 +214,6 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 			case MidPackage.TYPED_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case MidPackage.TYPED_ELEMENT__METATYPE:
-				setMetatype((TypedElement)newValue);
-				return;
 			case MidPackage.TYPED_ELEMENT__LEVEL:
 				setLevel((MidLevel)newValue);
 				return;
@@ -261,9 +231,6 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 		switch (featureID) {
 			case MidPackage.TYPED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case MidPackage.TYPED_ELEMENT__METATYPE:
-				setMetatype((TypedElement)null);
 				return;
 			case MidPackage.TYPED_ELEMENT__LEVEL:
 				setLevel(LEVEL_EDEFAULT);
@@ -283,7 +250,7 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 			case MidPackage.TYPED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MidPackage.TYPED_ELEMENT__METATYPE:
-				return metatype != null;
+				return basicGetMetatype() != null;
 			case MidPackage.TYPED_ELEMENT__LEVEL:
 				return level != LEVEL_EDEFAULT;
 			case MidPackage.TYPED_ELEMENT__TYPE:
