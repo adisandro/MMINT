@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts,
  edu.toronto.cs.se.mmtf.mid.relationship.diagram.part,
  edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,

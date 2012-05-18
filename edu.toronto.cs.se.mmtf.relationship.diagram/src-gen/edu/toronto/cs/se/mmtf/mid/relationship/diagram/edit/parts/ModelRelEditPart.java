@@ -36,6 +36,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.MidCreateShortcutDecorationsCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.ModelRelCanonicalEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.ModelRelItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.RelationshipDiagramCanonicalEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.RelationshipDiagramOutlineDragDropEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.RelationshipDiagramSemanticEditPolicy;
 
 /**
  * @generated
@@ -106,6 +109,13 @@ public class ModelRelEditPart extends DiagramEditPart {
 						return null;
 					}
 				});
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new RelationshipDiagramOutlineDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+				new RelationshipDiagramCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new RelationshipDiagramSemanticEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

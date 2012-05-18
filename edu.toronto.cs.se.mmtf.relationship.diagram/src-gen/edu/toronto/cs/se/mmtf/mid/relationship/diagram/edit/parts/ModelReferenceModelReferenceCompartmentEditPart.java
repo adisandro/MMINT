@@ -82,6 +82,7 @@ public class ModelReferenceModelReferenceCompartmentEditPart extends
 		installEditPolicy(
 				EditPolicyRoles.CANONICAL_ROLE,
 				new ModelReferenceModelReferenceCompartmentCanonicalEditPolicy());
+		removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 	}
 
 	/**
