@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to create a model relationship.
@@ -59,7 +59,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		try {
 			MultiModel owner = (MultiModel) getElementToEdit();
-			ModelRel newElement = MultiModelTrait.createModelRel(
+			ModelRel newElement = MultiModelFactoryUtils.createModelRel(
 				ModelOrigin.CREATED,
 				owner,
 				null,

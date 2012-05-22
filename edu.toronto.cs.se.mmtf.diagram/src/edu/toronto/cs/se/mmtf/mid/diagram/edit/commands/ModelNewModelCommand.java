@@ -23,7 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to create a model.
@@ -62,7 +62,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		try {
 			URI modelUri = MidDiagramTrait.createModel();
 			MultiModel owner = (MultiModel) getElementToEdit();
-			Model newElement = MultiModelTrait.createModel(ModelOrigin.CREATED, owner, modelUri);
+			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

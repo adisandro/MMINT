@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to add a model to a model relationship.
@@ -64,7 +64,7 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getModels().add(getTarget());
-			MultiModelTrait.createModelReference(getSource(), getTarget());
+			MultiModelFactoryUtils.createModelReference(getSource(), getTarget());
 		}
 
 		return CommandResult.newOKCommandResult();

@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to remove a model from a model relationship.
@@ -57,7 +57,7 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 
 		ModelRel container = (ModelRel) getContainer();
 		Model reference = (Model) getReferencedObject();
-		MultiModelTrait.removeModelReference(container, reference);
+		MultiModelFactoryUtils.removeModelReference(container, reference);
 
 		return super.doExecuteWithResult(monitor, info);
 	}

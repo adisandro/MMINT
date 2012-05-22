@@ -23,7 +23,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to create a binary model relationship.
@@ -68,7 +68,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 
 		try {
-			BinaryModelRel newElement = (BinaryModelRel) MultiModelTrait.createModelRel(
+			BinaryModelRel newElement = (BinaryModelRel) MultiModelFactoryUtils.createModelRel(
 				ModelOrigin.CREATED,
 				getContainer(),
 				null,
@@ -76,8 +76,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			);
 			newElement.getModels().add(getSource());
 			newElement.getModels().add(getTarget());
-			MultiModelTrait.createModelReference(newElement, getSource());
-			MultiModelTrait.createModelReference(newElement, getTarget());
+			MultiModelFactoryUtils.createModelReference(newElement, getSource());
+			MultiModelFactoryUtils.createModelReference(newElement, getTarget());
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

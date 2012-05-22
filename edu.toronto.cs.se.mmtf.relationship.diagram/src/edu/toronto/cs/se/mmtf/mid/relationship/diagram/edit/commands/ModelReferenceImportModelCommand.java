@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditor;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to create a model reference by importing an existing model.
@@ -69,17 +69,17 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 			ModelRel owner = (ModelRel) getElementToEdit();
 			Model model;
 
-			MultiModelTrait.assertModelUnique(owner, modelUri); // model must not be already in the mapping
+			MultiModelFactoryUtils.assertModelUnique(owner, modelUri); // model must not be already in the mapping
 			if (owner.eContainer() == null) { // standalone mapping reference
-				model = MultiModelTrait.createModel(ModelOrigin.IMPORTED, null, modelUri);
+				model = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, null, modelUri);
 			}
 			else {
-				model = MultiModelTrait.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
+				model = MultiModelFactoryUtils.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
 				if (model == null) {
-					model = MultiModelTrait.createModel(ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
+					model = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
 				}
 			}
-			ModelReference newElement = MultiModelTrait.createModelReference(owner, model);
+			ModelReference newElement = MultiModelFactoryUtils.createModelReference(owner, model);
 			owner.getModels().add(model);
 
 			// update outline

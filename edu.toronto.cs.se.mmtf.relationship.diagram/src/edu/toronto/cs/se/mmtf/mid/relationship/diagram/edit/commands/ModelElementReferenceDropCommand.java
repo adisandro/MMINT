@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to create a model element reference from a dropped object.
@@ -62,7 +62,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		ModelReference owner = (ModelReference) getElementToEdit();
-		ModelElementReference newElement = MultiModelTrait.createModelElementReference(owner, droppedObject);
+		ModelElementReference newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 

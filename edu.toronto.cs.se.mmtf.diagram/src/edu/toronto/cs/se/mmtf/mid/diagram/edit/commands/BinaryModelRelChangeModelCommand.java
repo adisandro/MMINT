@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to change a model of a binary model relationship.
@@ -97,8 +97,8 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
-		MultiModelTrait.removeModelReference(getLink(), getOldSource());
-		MultiModelTrait.createModelReference(getLink(), getNewSource());
+		MultiModelFactoryUtils.removeModelReference(getLink(), getOldSource());
+		MultiModelFactoryUtils.createModelReference(getLink(), getNewSource());
 		getLink().getModels().set(0, getNewSource());
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -114,8 +114,8 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		MultiModelTrait.removeModelReference(getLink(), getOldTarget());
-		MultiModelTrait.createModelReference(getLink(), getNewTarget());
+		MultiModelFactoryUtils.removeModelReference(getLink(), getOldTarget());
+		MultiModelFactoryUtils.createModelReference(getLink(), getNewTarget());
 		getLink().getModels().set(1, getNewTarget());
 
 		return CommandResult.newOKCommandResult(getLink());

@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to import an existing model relationship.
@@ -60,7 +60,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 		try {
 			MultiModel owner = (MultiModel) getElementToEdit();
 			URI modelRelUri = MidDiagramTrait.selectModelToImport(true);
-			ModelRel newElement = MultiModelTrait.copyModelRel(owner, modelRelUri);
+			ModelRel newElement = MultiModelFactoryUtils.copyModelRel(owner, modelRelUri);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

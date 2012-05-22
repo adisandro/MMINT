@@ -23,7 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
  * The command to import an existing model.
@@ -62,8 +62,8 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 		try {
 			URI modelUri = MidDiagramTrait.selectModelToImport(false);
 			MultiModel owner = (MultiModel) getElementToEdit();
-			MultiModelTrait.assertModelUnique(owner, modelUri);
-			Model newElement = MultiModelTrait.createModel(ModelOrigin.IMPORTED, owner, modelUri);
+			MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
+			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, owner, modelUri);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

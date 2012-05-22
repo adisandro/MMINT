@@ -45,7 +45,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelTrait {
+public class MultiModelFactoryUtils {
 
 	/**
 	 * Adds a model to a multimodel.
