@@ -72,6 +72,8 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
+			//TODO here is different, we must go through the registered editors to create an editor (code in modelopeneditorcommand)
+			//TODO then, modeleditor becomes as easy as opening the uri contained in the editor
 			URI modelUri = MidDiagramTrait.selectModelToImport(false);
 			MultiModel owner = (MultiModel) getElementToEdit();
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, owner, modelUri);

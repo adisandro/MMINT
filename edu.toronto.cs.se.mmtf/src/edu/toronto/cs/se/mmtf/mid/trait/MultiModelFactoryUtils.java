@@ -237,6 +237,15 @@ public class MultiModelFactoryUtils {
 		return elementRef;
 	}
 
+	/**
+	 * Creates an editor for a model.
+	 * 
+	 * @param editorType
+	 *            The editor type.
+	 * @param modelUri
+	 *            The uri of the model that will use the editor.
+	 * @return The editor just created.
+	 */
 	public static Editor createEditor(Editor editorType, URI modelUri) {
 
 		Editor editor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
@@ -245,8 +254,25 @@ public class MultiModelFactoryUtils {
 		editor.setModelUri(modelUri.toPlatformString(true));
 		editor.setId(editor.getId());
 		editor.setWizardId(editor.getWizardId());
+		// no need to put the editor in the Editors map at the INSTANCES level
 
 		return editor;
+	}
+
+	/**
+	 * Adds a new editor to an existing model.
+	 * 
+	 * @param editor
+	 *            The new editor.
+	 * @param multiModel
+	 *            The root multimodel.
+	 */
+	public static void addModelEditor(Editor editor, MultiModel multiModel) {
+
+		ExtendibleElement model = multiModel.getExtendibleTable().get(editor.getModelUri());
+		if (model != null && model instanceof Model) {
+			((Model) model).getEditors().add(editor);
+		}
 	}
 
 	/**

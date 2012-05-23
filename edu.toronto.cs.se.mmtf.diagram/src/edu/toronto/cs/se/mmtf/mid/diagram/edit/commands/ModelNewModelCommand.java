@@ -77,6 +77,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 			URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
 			MultiModel owner = (MultiModel) getElementToEdit();
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);
+			MultiModelFactoryUtils.addModelEditor(editor, owner);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

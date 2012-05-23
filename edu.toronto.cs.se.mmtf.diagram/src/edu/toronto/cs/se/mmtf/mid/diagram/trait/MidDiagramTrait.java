@@ -97,8 +97,9 @@ public class MidDiagramTrait {
 		if (wizDialog.open() == Window.CANCEL) {
 			throw new MMTFException("Wizard dialog cancel button pressed");
 		}
+		Editor editor = MultiModelFactoryUtils.createEditor(editorType, wizDialog.getCreatedModelUri());
 
-		return MultiModelFactoryUtils.createEditor(editorType, wizDialog.getCreatedModelUri());
+		return editor;
 	}
 
 }
