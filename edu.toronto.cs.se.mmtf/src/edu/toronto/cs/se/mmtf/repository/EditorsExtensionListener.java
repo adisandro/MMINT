@@ -56,9 +56,9 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				editor = mmtf.createEditor(elem);
-				mmtf.addModelTypeEditors(editor);
-				mmtf.addEditorFileExtensions(registry, editor);
+				editor = mmtf.createEditorType(elem);
+				mmtf.addModelTypeEditor(editor);
+				mmtf.addEditorTypeFileExtensions(registry, editor);
 			}
 		}
 	}
@@ -74,7 +74,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				mmtf.removeEditor(elem);
+				mmtf.removeEditorType(elem);
 			}
 		}
 	}

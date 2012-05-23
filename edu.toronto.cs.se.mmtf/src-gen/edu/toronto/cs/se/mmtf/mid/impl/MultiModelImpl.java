@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl;
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -50,6 +53,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getOperators <em>Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getExtendibleTable <em>Extendible Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getOperatorTable <em>Operator Table</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getLevel <em>Level</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,6 +109,26 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * @ordered
 	 */
 	protected EMap<String, Operator> operatorTable;
+
+	/**
+	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final MidLevel LEVEL_EDEFAULT = MidLevel.INSTANCES;
+
+	/**
+	 * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected MidLevel level = LEVEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,6 +214,27 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MidLevel getLevel() {
+		return level;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLevel(MidLevel newLevel) {
+		MidLevel oldLevel = level;
+		level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MULTI_MODEL__LEVEL, oldLevel, level));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -228,6 +273,8 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
 				if (coreType) return getOperatorTable();
 				else return getOperatorTable().map();
+			case MidPackage.MULTI_MODEL__LEVEL:
+				return getLevel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,6 +305,9 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
 				((EStructuralFeature.Setting)getOperatorTable()).set(newValue);
 				return;
+			case MidPackage.MULTI_MODEL__LEVEL:
+				setLevel((MidLevel)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -285,6 +335,9 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
 				getOperatorTable().clear();
 				return;
+			case MidPackage.MULTI_MODEL__LEVEL:
+				setLevel(LEVEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -307,8 +360,26 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				return extendibleTable != null && !extendibleTable.isEmpty();
 			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
 				return operatorTable != null && !operatorTable.isEmpty();
+			case MidPackage.MULTI_MODEL__LEVEL:
+				return level != LEVEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (level: ");
+		result.append(level);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MultiModelImpl

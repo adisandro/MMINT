@@ -61,6 +61,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 
@@ -229,8 +230,21 @@ public class MidDiagramEditorUtil {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static MultiModel createInitialModel() {
+	private static MultiModel createInitialModelGen() {
 		return MidFactory.eINSTANCE.createMultiModel();
+	}
+
+	/**
+	 * Better creates the new instance of domain element associated with canvas.
+	 * 
+	 * @generated NOT
+	 */
+	private static MultiModel createInitialModel() {
+
+		MultiModel multimodel = createInitialModelGen();
+		multimodel.setLevel(MidLevel.INSTANCES);
+
+		return multimodel;
 	}
 
 	/**

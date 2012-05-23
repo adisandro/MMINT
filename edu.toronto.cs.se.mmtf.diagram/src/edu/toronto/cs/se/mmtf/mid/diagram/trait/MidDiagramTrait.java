@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
 
 /**
@@ -64,11 +65,11 @@ public class MidDiagramTrait {
 	 * Shows a tree dialog to create a model choosing from the registered model
 	 * types and executes its wizard.
 	 * 
-	 * @return The uri of the created model.
+	 * @return The editor for the created model.
 	 * @throws Exception
 	 *             If the model creation was not completed for any reason.
 	 */
-	public static URI createModel() throws Exception {
+	public static Editor createModel() throws Exception {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getRepositoryAsDialog();
 		dialog.setTitle("Create new model");
@@ -82,10 +83,10 @@ public class MidDiagramTrait {
 		if (selection == null) {
 			throw new MMTFException("Dialog ok button pressed with no selection");
 		}
-		Editor editor = (Editor) selection;
-		IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editor.getWizardId());
+		Editor editorType = (Editor) selection;
+		IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
 		if (descriptor == null) {
-			throw new MMTFException("Wizard " + editor.getId() + " not found");
+			throw new MMTFException("Wizard " + editorType.getId() + " not found");
 		}
 
 		IWorkbenchWizard wizard = descriptor.createWizard();
@@ -97,7 +98,7 @@ public class MidDiagramTrait {
 			throw new MMTFException("Wizard dialog cancel button pressed");
 		}
 
-		return wizDialog.getCreatedModelUri();
+		return MultiModelFactoryUtils.createEditor(editorType, wizDialog.getCreatedModelUri());
 	}
 
 }

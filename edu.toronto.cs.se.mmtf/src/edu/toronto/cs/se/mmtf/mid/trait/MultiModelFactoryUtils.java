@@ -32,6 +32,9 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
+import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
@@ -46,6 +49,39 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  * 
  */
 public class MultiModelFactoryUtils {
+
+	/**
+	 * Adds an extendible element to a multimodel.
+	 * 
+	 * @param element
+	 *            The extendible element to add.
+	 * @param multiModel
+	 *            The root multimodel (possibly null).
+	 * @param elementUri
+	 *            The uri of the extendible element to add (possibly null).
+	 * @param name
+	 *            The name of the extendible element.
+	 * @throws MMTFException
+	 *             If the extendible element is not unique.
+	 */
+	private static void addExtendibleElement(ExtendibleElement element, MultiModel multiModel, URI elementUri, String name) throws MMTFException {
+
+		// uri
+		if (elementUri == null) {
+			elementUri = EcoreUtil.getURI(element);
+		}
+		else if (multiModel != null) {
+			multiModel.getExtendibleTable().put(elementUri.toPlatformString(true), element);
+		}
+		element.setUri(elementUri.toPlatformString(true));
+
+		// basic attributes
+		element.setName(name);
+		element.setLevel(MidLevel.INSTANCES);
+
+		// supertype
+		element.setSupertype(null);
+	}
 
 	/**
 	 * Adds a model to a multimodel.
@@ -65,35 +101,29 @@ public class MultiModelFactoryUtils {
 
 		// possibly raise exceptions as first thing
 		EObject root;
+		String fileName;
 		if (modelUri == null) { // model relationship
 			root = model;
+			fileName = null;
 		}
 		else { // model or standalone model relationship
 			ResourceSet set = new ResourceSetImpl();
 			Resource resource = set.getResource(modelUri, true);
 			root = resource.getContents().get(0);
-			String fileName = modelUri.lastSegment();
-			model.setName(fileName.substring(0, fileName.lastIndexOf('.')));
-			model.setFileExtension(modelUri.fileExtension());
+			fileName = modelUri.lastSegment();
+			fileName = fileName.substring(0, fileName.lastIndexOf('.'));
 		}
 
 		// add to multimodel container
 		if (multiModel != null) {
 			multiModel.getModels().add(model);
-			multiModel.getExtendibleTable().put(modelUri.toPlatformString(true), model);
 		}
-		// set basic attributes
-		if (modelUri == null) {
-			modelUri = EcoreUtil.getURI(model);
-			//TODO MMTF: occhio devo rendere l'uri univoco qui
-		}
-		//TODO MMTF: setType: prendo uri dal root, ma le relationships?
-		//TODO MMTF: model.setType(MMTFRegistry.getModelType(modelTypeUri));
-		model.setLevel(MidLevel.INSTANCES);
-		model.setRoot(root);
-		model.setUri(modelUri.toPlatformString(true));
+		addExtendibleElement(model, multiModel, modelUri, fileName);
+
+		// set attributes
 		model.setOrigin(origin);
-		model.setSupertype(null);
+		model.setRoot(root);
+		model.setFileExtension(modelUri.fileExtension());
 	}
 
 	/**
@@ -107,10 +137,14 @@ public class MultiModelFactoryUtils {
 	 *            The uri of the model to add.
 	 * @return The model just created.
 	 * @throws Exception
-	 *             If the resource pointed by the model uri could not be get.
+	 *             If the model is not unique, or if the resource pointed by the
+	 *             model uri could not be get.
 	 */
 	public static Model createModel(ModelOrigin origin, MultiModel multiModel, URI modelUri) throws Exception {
 
+		if (multiModel != null) {
+			assertModelUnique(multiModel, modelUri);
+		}
 		Model model = MidFactory.eINSTANCE.createModel();
 		addModel(model, origin, multiModel, modelUri);
 
@@ -138,6 +172,7 @@ public class MultiModelFactoryUtils {
 
 		ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelType);
 		addModel(modelRel, origin, multiModel, modelRelUri);
+		modelRel.setUnbounded(false);
 
 		return modelRel;
 	}
@@ -202,6 +237,18 @@ public class MultiModelFactoryUtils {
 		return elementRef;
 	}
 
+	public static Editor createEditor(Editor editorType, URI modelUri) {
+
+		Editor editor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
+		editor.setName(editorType.getName() + " for model " + modelUri);
+		editor.setLevel(MidLevel.INSTANCES);
+		editor.setModelUri(modelUri.toPlatformString(true));
+		editor.setId(editor.getId());
+		editor.setWizardId(editor.getWizardId());
+
+		return editor;
+	}
+
 	/**
 	 * Creates and adds a copy of a model relationship to a multimodel.
 	 * 
@@ -257,6 +304,11 @@ public class MultiModelFactoryUtils {
 		return modelRel;
 	}
 
+	//TODO MMTF: implement and link to deletion in diagram
+	public static void removeModel(Model model) {
+		
+	}
+
 	/**
 	 * Removes a model reference from a model relationship following the removal
 	 * of a model.
@@ -291,12 +343,12 @@ public class MultiModelFactoryUtils {
 	}
 
 	/**
-	 * Checks the uniqueness of a model to be imported in a MID.
+	 * Checks the uniqueness of a model in a MID.
 	 * 
 	 * @param multiModel
 	 *            The root multimodel.
 	 * @param modelUri
-	 *            The uri of the model to be imported.
+	 *            The uri of the model to be checked.
 	 * @return Null if the model is unique, the model already in the MID
 	 *         otherwise.
 	 */
@@ -312,12 +364,12 @@ public class MultiModelFactoryUtils {
 	}
 
 	/**
-	 * Checks the uniqueness of a model to be imported in a Mapping diagram.
+	 * Checks the uniqueness of a model in a Relationship diagram.
 	 * 
 	 * @param modelRel
 	 *            The root model relationship.
 	 * @param modelUri
-	 *            The uri of the model to be imported.
+	 *            The uri of the model to be checked.
 	 * @return Null if the model is unique, the model already in the MID
 	 *         otherwise.
 	 */
@@ -333,12 +385,12 @@ public class MultiModelFactoryUtils {
 	}
 
 	/**
-	 * Checks the uniqueness of a model to be imported in a MID.
+	 * Checks the uniqueness of a model in a MID.
 	 * 
 	 * @param multiModel
 	 *            The root multimodel.
 	 * @param modelUri
-	 *            The uri of the model to be imported.
+	 *            The uri of the model to be checked.
 	 * @return True if the model is unique.
 	 * @throws MMTFException
 	 *             If the model is not unique.
@@ -346,19 +398,19 @@ public class MultiModelFactoryUtils {
 	public static boolean assertModelUnique(MultiModel multiModel, URI modelUri) throws MMTFException {
 
 		if (getModelUnique(multiModel, modelUri) != null) {
-			throw new MMTFException("Imported model " + modelUri + " is already in the diagram");
+			throw new MMTFException("Model " + modelUri + " is already in the diagram");
 		}
 
 		return true;
 	}
 
 	/**
-	 * Checks the uniqueness of a model to be imported in a Mapping diagram.
+	 * Checks the uniqueness of a model in a Relationship diagram.
 	 * 
 	 * @param modelRel
 	 *            The root model relationship.
 	 * @param modelUri
-	 *            The uri of the model to be imported.
+	 *            The uri of the model to be checked.
 	 * @return True if the model is unique.
 	 * @throws MMTFException
 	 *             If the model is not unique.
@@ -366,7 +418,7 @@ public class MultiModelFactoryUtils {
 	public static boolean assertModelUnique(ModelRel modelRel, URI modelUri) throws MMTFException {
 
 		if (getModelUnique(modelRel, modelUri) != null) {
-			throw new MMTFException("Imported model " + modelUri + " is already in the diagram");
+			throw new MMTFException("Model " + modelUri + " is already in the diagram");
 		}
 
 		return true;

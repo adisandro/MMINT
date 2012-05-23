@@ -269,13 +269,22 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL__OPERATOR_TABLE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__LEVEL = 5;
+
+	/**
 	 * The number of structural features of the '<em>Multi Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL_FEATURE_COUNT = 5;
+	int MULTI_MODEL_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Multi Model</em>' class.
@@ -687,6 +696,17 @@ public interface MidPackage extends EPackage {
 	EReference getMultiModel_OperatorTable();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getLevel <em>Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Level</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getLevel()
+	 * @see #getMultiModel()
+	 * @generated
+	 */
+	EAttribute getMultiModel_Level();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -999,6 +1019,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MULTI_MODEL__OPERATOR_TABLE = eINSTANCE.getMultiModel_OperatorTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTI_MODEL__LEVEL = eINSTANCE.getMultiModel_Level();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl <em>Model</em>}' class.

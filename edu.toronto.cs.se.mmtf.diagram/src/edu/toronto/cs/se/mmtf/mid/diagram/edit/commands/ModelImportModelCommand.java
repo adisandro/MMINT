@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -45,6 +46,17 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	}
 
 	/**
+	 * Checks if a model can be imported.
+	 * 
+	 * @return True if a model can be imported, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit());
+	}
+
+	/**
 	 * Imports a model.
 	 * 
 	 * @param monitor
@@ -62,7 +74,6 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 		try {
 			URI modelUri = MidDiagramTrait.selectModelToImport(false);
 			MultiModel owner = (MultiModel) getElementToEdit();
-			MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, owner, modelUri);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);

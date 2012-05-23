@@ -70,62 +70,62 @@ public class MMTF implements MMTFExtensionPoints {
 	private static MultiModel repository;
 
 	/**
-	 * Adds an extendible element to the repository.
+	 * Adds an extendible type to the repository.
 	 * 
-	 * @param element
-	 *            The extendible element to add.
+	 * @param type
+	 *            The extendible type to add.
 	 * @param name
-	 *            The name of the extendible element.
+	 *            The name of the extendible type.
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 * @throws MMTFException
-	 *             If the extendible element's uri is already registered.
+	 *             If the extendible type's uri is already registered.
 	 */
-	private void addExtendibleElement(ExtendibleElement element, String name, IConfigurationElement extensionConfig) throws MMTFException {
+	private void addExtendibleType(ExtendibleElement type, String name, IConfigurationElement extensionConfig) throws MMTFException {
 
 		// uri
 		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
 		if (repository.getExtendibleTable().containsKey(uri)) {
-			throw new MMTFException("Extendible element's URI " + uri + " is  already registered");
+			throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
 		}
-		element.setUri(uri);
+		type.setUri(uri);
 
 		// basic attributes
-		element.setName(name);
-		element.setLevel(MidLevel.TYPES);
+		type.setName(name);
+		type.setLevel(MidLevel.TYPES);
 
 		// supertype
 		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);
 		String rootUri = "";
-		if (element instanceof Model) {
+		if (type instanceof Model) {
 			rootUri = ROOT_MODEL_URI;
 		}
-		else if (element instanceof ModelRel) {
+		else if (type instanceof ModelRel) {
 			rootUri = ROOT_RELATIONSHIP_URI;
 		}
-		else if (element instanceof ModelElement) {
-			if (((ModelElement) element).getCategory() == ModelElementCategory.ENTITY) {
+		else if (type instanceof ModelElement) {
+			if (((ModelElement) type).getCategory() == ModelElementCategory.ENTITY) {
 				rootUri = ROOT_MODEL_ELEMENT_ENTITY_URI;
 			}
-			else if (((ModelElement) element).getCategory() == ModelElementCategory.RELATIONSHIP) {
+			else if (((ModelElement) type).getCategory() == ModelElementCategory.RELATIONSHIP) {
 				rootUri = ROOT_MODEL_ELEMENT_RELATIONSHIP_URI;
 			}
 		}
-		else if (element instanceof Link) {
+		else if (type instanceof Link) {
 			rootUri = ROOT_RELATIONSHIP_LINK_URI;
 		}
-		ExtendibleElement superElement = null;
+		ExtendibleElement supertype = null;
 		if (supertypeUri == null) {
 			if (!uri.equals(rootUri)) {
-				superElement = MMTFRegistry.getExtendibleElement(rootUri);
+				supertype = MMTFRegistry.getExtendibleType(rootUri);
 			}
 		}
 		else {
-			superElement = MMTFRegistry.getExtendibleElement(supertypeUri);
+			supertype = MMTFRegistry.getExtendibleType(supertypeUri);
 		}
-		element.setSupertype(superElement);
+		type.setSupertype(supertype);
 
-		repository.getExtendibleTable().put(uri, element);
+		repository.getExtendibleTable().put(uri, type);
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class MMTF implements MMTFExtensionPoints {
 		}
 
 		// set attributes
-		addExtendibleElement(model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
+		addExtendibleType(model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
 		model.setOrigin(ModelOrigin.IMPORTED);
 		model.setRoot(modelPackage);
 		String modelPackageName = modelPackage.getName();
@@ -192,7 +192,7 @@ public class MMTF implements MMTFExtensionPoints {
 	}
 
 	/**
-	 * Creates and adds a model type relationship to the repository. Requires
+	 * Creates and adds a model relationship type to the repository. Requires
 	 * the model package to be registered too through the
 	 * org.eclipse.emf.ecore.generated_package extension point.
 	 * 
@@ -201,7 +201,7 @@ public class MMTF implements MMTFExtensionPoints {
 	 * @return The created model type relationship, null if the relationship
 	 *         can't be registered.
 	 */
-	public ModelRel createModelTypeRel(IConfigurationElement extensionConfig) {
+	public ModelRel createModelRelType(IConfigurationElement extensionConfig) {
 
 		//TODO MMTF: simplify everything with subfunctions and make it safer
 		//TODO MMTF: review relationship semantics, I feel we need to change something in the extension schema
@@ -226,7 +226,7 @@ public class MMTF implements MMTFExtensionPoints {
 		// models and containers
 		for (IConfigurationElement modelConfigElem : modelConfig) {
 			String modelUri = modelConfigElem.getAttribute(RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI);
-			ExtendibleElement model = MMTFRegistry.getExtendibleElement(modelUri);
+			ExtendibleElement model = MMTFRegistry.getExtendibleType(modelUri);
 			if (model != null && model instanceof Model) {
 				modelRel.getModels().add((Model) model);
 				ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
@@ -253,7 +253,7 @@ public class MMTF implements MMTFExtensionPoints {
 						}
 						((ModelElement) element).setPointer(elemPointer);
 						try {
-							addExtendibleElement(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
+							addExtendibleType(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
 						}
 						catch (MMTFException e) {
 							MMTFException.print(Type.WARNING, "Model element can't be registered", e);
@@ -279,7 +279,7 @@ public class MMTF implements MMTFExtensionPoints {
 				RelationshipFactory.eINSTANCE.createBinaryLink() :
 				RelationshipFactory.eINSTANCE.createLink();
 			try {
-				addExtendibleElement(link, linkConfigElem.getAttribute(RELATIONSHIPS_LINK_ATTR_NAME), linkConfigElem);
+				addExtendibleType(link, linkConfigElem.getAttribute(RELATIONSHIPS_LINK_ATTR_NAME), linkConfigElem);
 			}
 			catch (MMTFException e) {
 				MMTFException.print(Type.WARNING, "Link can't be registered", e);
@@ -306,7 +306,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 
 	/**
-	 * Adds existing editors to a new model type.
+	 * Adds existing editor types to a new model type.
 	 * 
 	 * @param model
 	 *            The new model type.
@@ -364,13 +364,13 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 
 	/**
-	 * Creates and adds an editor to the repository.
+	 * Creates and adds an editor type to the repository.
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
-	 * @return The created editor.
+	 * @return The created editor type.
 	 */
-	public Editor createEditor(IConfigurationElement extensionConfig) {
+	public Editor createEditorType(IConfigurationElement extensionConfig) {
 
 		// create
 		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM);
@@ -399,12 +399,12 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 	
 	/**
-	 * Adds a new editor to an existing model type.
+	 * Adds a new editor type to an existing model type.
 	 * 
 	 * @param editor
 	 *            The new editor.
 	 */
-	public void addModelTypeEditors(Editor editor) {
+	public void addModelTypeEditor(Editor editor) {
 
 		ExtendibleElement model = repository.getExtendibleTable().get(editor.getModelUri());
 		if (model != null && model instanceof Model) {
@@ -413,15 +413,15 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 
 	/**
-	 * Adds file extensions to a new editor. Requires the editor to be
+	 * Adds file extensions to a new editor type. Requires the editor type to be
 	 * registered too through the org.eclipse.ui.editors extension point.
 	 * 
 	 * @param registry
 	 *            The Eclipse extension registry.
 	 * @param editor
-	 *            The new editor.
+	 *            The new editor type.
 	 */
-	public void addEditorFileExtensions(IExtensionRegistry registry, Editor editor) {
+	public void addEditorTypeFileExtensions(IExtensionRegistry registry, Editor editor) {
 
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
@@ -435,13 +435,14 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 
 	/**
-	 * Adds file extensions to all initial editors at once. Requires the editors
-	 * to be registered too through the org.eclipse.ui.editors extension point.
+	 * Adds file extensions to all initial editor types at once. Requires the
+	 * editor types to be registered too through the org.eclipse.ui.editors
+	 * extension point.
 	 * 
 	 * @param registry
 	 *            The Eclipse extension registry.
 	 */
-	public void addEditorFileExtensions(IExtensionRegistry registry) {
+	public void addEditorTypesFileExtensions(IExtensionRegistry registry) {
 
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
 		Editor editor;
@@ -463,12 +464,12 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 
 	/**
-	 * Removes an editor from the repository.
+	 * Removes an editor type from the repository.
 	 * 
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 */
-	public void removeEditor(IConfigurationElement extensionConfig) {
+	public void removeEditorType(IConfigurationElement extensionConfig) {
 
 		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITORID);
 		Editor editor = repository.getEditors().removeKey(editorId);
@@ -487,6 +488,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	private void initRepository(IExtensionRegistry registry) {
 
 		repository = MidFactory.eINSTANCE.createMultiModel();
+		repository.setLevel(MidLevel.TYPES);
 		IConfigurationElement[] config;
 
 		// model types
@@ -498,17 +500,17 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		// model type relationships
 		config = registry.getConfigurationElementsFor(RELATIONSHIPS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			createModelTypeRel(elem);
+			createModelRelType(elem);
 		}
 
 		// editors
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		Editor editor;
 		for (IConfigurationElement elem : config) {
-			editor = createEditor(elem);
-			addModelTypeEditors(editor);
+			editor = createEditorType(elem);
+			addModelTypeEditor(editor);
 		}		
-		addEditorFileExtensions(registry);
+		addEditorTypesFileExtensions(registry);
 
 		//TODO MMTF: operators
 	}
@@ -538,13 +540,13 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	public static class MMTFRegistry {
 
 		/**
-		 * Gets an extendible element.
+		 * Gets an extendible type.
 		 * 
 		 * @param uri
-		 *            The uri of the extendible element.
-		 * @return The extendible element, or null if uri is not found.
+		 *            The uri of the extendible type.
+		 * @return The extendible type, or null if uri is not found.
 		 */
-		public static ExtendibleElement getExtendibleElement(String uri) {
+		public static ExtendibleElement getExtendibleType(String uri) {
 
 			return repository.getExtendibleTable().get(uri);
 		}
@@ -581,6 +583,18 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			else {
 				return ECollections.emptyEList();
 			}
+		}
+
+		/**
+		 * Gets an editor type.
+		 * 
+		 * @param editorId
+		 *            The id of the editor type.
+		 * @return The editor type, or null if the id is not found.
+		 */
+		public static Editor getEditorType(String editorId) {
+
+			return repository.getEditors().get(editorId);
 		}
 
 		/**

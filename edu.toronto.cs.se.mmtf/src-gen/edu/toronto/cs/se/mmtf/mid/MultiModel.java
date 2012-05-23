@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators <em>Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibleTable <em>Extendible Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperatorTable <em>Operator Table</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getLevel <em>Level</em>}</li>
  * </ul>
  * </p>
  *
@@ -121,5 +122,34 @@ public interface MultiModel extends EObject {
 	 * @generated
 	 */
 	EMap<String, Operator> getOperatorTable();
+
+	/**
+	 * Returns the value of the '<em><b>Level</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.MidLevel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Level</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Level</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidLevel
+	 * @see #setLevel(MidLevel)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMultiModel_Level()
+	 * @model required="true"
+	 * @generated
+	 */
+	MidLevel getLevel();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getLevel <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Level</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidLevel
+	 * @see #getLevel()
+	 * @generated
+	 */
+	void setLevel(MidLevel value);
 
 } // MultiModel

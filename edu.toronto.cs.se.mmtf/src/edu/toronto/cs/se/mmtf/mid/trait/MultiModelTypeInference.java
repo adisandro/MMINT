@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
@@ -31,21 +32,17 @@ import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
  */
 public class MultiModelTypeInference implements MMTFExtensionPoints {
 
-	private static TypedElement inferType(Link link) {
+	private static TypedElement inferType(Model model) {
+
+		String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
+		TypedElement inferred = MMTFRegistry.getExtendibleType(modelTypeUri);
 
 		// fallback to root type
-		return MMTFRegistry.getExtendibleElement(ROOT_RELATIONSHIP_LINK_URI);
-	}
-
-	private static TypedElement inferType(ModelElement modelElem) {
-
-		// fallback to root type
-		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
-			return MMTFRegistry.getExtendibleElement(ROOT_MODEL_ELEMENT_ENTITY_URI);
+		if (inferred == null) {
+			inferred = MMTFRegistry.getExtendibleType(ROOT_MODEL_URI);
 		}
-		else {
-			return MMTFRegistry.getExtendibleElement(ROOT_MODEL_ELEMENT_RELATIONSHIP_URI);
-		}
+
+		return inferred;
 	}
 
 	private static TypedElement inferType(ModelRel modelRel) {
@@ -87,23 +84,32 @@ modelTypes:
 
 		// fallback to root type
 		if (inferred == null) {
-			inferred = MMTFRegistry.getExtendibleElement(ROOT_RELATIONSHIP_URI);
+			inferred = MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI);
 		}
 
 		return inferred;
 	}
 
-	private static TypedElement inferType(Model model) {
-
-		String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
-		TypedElement inferred = MMTFRegistry.getExtendibleElement(modelTypeUri);
+	private static TypedElement inferType(ModelElement modelElem) {
 
 		// fallback to root type
-		if (inferred == null) {
-			inferred = MMTFRegistry.getExtendibleElement(ROOT_MODEL_URI);
+		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
+			return MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_ENTITY_URI);
 		}
+		else {
+			return MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_RELATIONSHIP_URI);
+		}
+	}
 
-		return inferred;
+	private static TypedElement inferType(Link link) {
+
+		// fallback to root type
+		return MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI);
+	}
+
+	private static TypedElement inferType(Editor editor) {
+
+		return MMTFRegistry.getEditorType(editor.getId());
 	}
 
 	public static TypedElement inferType(TypedElement element) {
@@ -123,6 +129,9 @@ modelTypes:
 		}
 		if (element instanceof Model) {
 			return inferType((Model) element);
+		}
+		if (element instanceof Editor) {
+			return inferType((Editor) element);
 		}
 		return null;
 	}

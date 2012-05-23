@@ -23,6 +23,8 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -45,6 +47,17 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	}
 
 	/**
+	 * Checks if a model can be created.
+	 * 
+	 * @return True if a model can be created, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit());
+	}
+
+	/**
 	 * Creates a new model.
 	 * 
 	 * @param monitor
@@ -60,7 +73,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			URI modelUri = MidDiagramTrait.createModel();
+			Editor editor = MidDiagramTrait.createModel();
+			URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
 			MultiModel owner = (MultiModel) getElementToEdit();
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);
 			doConfigure(newElement, monitor, info);

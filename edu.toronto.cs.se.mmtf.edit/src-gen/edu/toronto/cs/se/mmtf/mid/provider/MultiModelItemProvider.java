@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.provider;
 
 
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
@@ -31,12 +32,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -75,8 +78,31 @@ public class MultiModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addLevelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Level feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLevelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MultiModel_level_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiModel_level_feature", "_UI_MultiModel_type"),
+				 MidPackage.Literals.MULTI_MODEL__LEVEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -132,7 +158,11 @@ public class MultiModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_MultiModel_type");
+		MidLevel labelValue = ((MultiModel)object).getLevel();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_MultiModel_type") :
+			getString("_UI_MultiModel_type") + " " + label;
 	}
 
 	/**
@@ -147,6 +177,9 @@ public class MultiModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiModel.class)) {
+			case MidPackage.MULTI_MODEL__LEVEL:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case MidPackage.MULTI_MODEL__MODELS:
 			case MidPackage.MULTI_MODEL__EDITORS:
 			case MidPackage.MULTI_MODEL__OPERATORS:

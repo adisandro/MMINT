@@ -28,6 +28,7 @@
         eType="#//EStringToExtendibleElementMap" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operatorTable" upperBound="-1"
         eType="#//operator/EStringToOperatorMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>

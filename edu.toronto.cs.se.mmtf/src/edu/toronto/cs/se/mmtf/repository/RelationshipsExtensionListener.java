@@ -47,7 +47,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				mmtf.createModelTypeRel(elem);
+				mmtf.createModelRelType(elem);
 			}
 		}
 	}
