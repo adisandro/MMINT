@@ -22,9 +22,9 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
  */
 public class MultiModelConstraintChecker {
 
-	public static boolean canExecute(MultiModel multimodel) {
+	public static boolean canExecute(MultiModel multiModel) {
 
-		if (multimodel.getLevel() == MidLevel.TYPES) {
+		if (multiModel.getLevel() == MidLevel.TYPES) {
 			return false;
 		}
 		return true;

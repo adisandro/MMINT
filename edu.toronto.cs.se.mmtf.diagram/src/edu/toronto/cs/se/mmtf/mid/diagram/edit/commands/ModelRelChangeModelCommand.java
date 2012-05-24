@@ -15,6 +15,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -34,6 +36,17 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	public ModelRelChangeModelCommand(ReorientReferenceRelationshipRequest request) {
 
 		super(request);
+	}
+
+	/**
+	 * Checks if a model can be changed.
+	 * 
+	 * @return True if a model can be changed, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute((MultiModel) getOldSource().eContainer()) && super.canExecute();
 	}
 
 	/**

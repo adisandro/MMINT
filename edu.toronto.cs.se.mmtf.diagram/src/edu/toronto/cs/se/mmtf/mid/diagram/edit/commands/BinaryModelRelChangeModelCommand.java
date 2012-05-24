@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -40,9 +41,20 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	}
 
 	/**
-	 * Checks if the source can be reoriented.
+	 * Checks if a model can be changed.
 	 * 
-	 * @return True if the source can be reoriented, false otherwise.
+	 * @return True if a model can be changed, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute((MultiModel) getLink().eContainer()) && super.canExecute();
+	}
+
+	/**
+	 * Checks if the source model can be changed.
+	 * 
+	 * @return True if the source model can be changed, false otherwise.
 	 */
 	protected boolean canReorientSource() {
 
@@ -64,9 +76,9 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	}
 
 	/**
-	 * Checks if the target can be reoriented.
+	 * Checks if the target model can be changed.
 	 * 
-	 * @return True if the target can be reoriented, false otherwise.
+	 * @return True if the target model can be changed, false otherwise.
 	 */
 	protected boolean canReorientTarget() {
 

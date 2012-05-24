@@ -72,6 +72,8 @@ public class MultiModelFactoryUtils {
 			elementUri = EcoreUtil.getURI(element);
 		}
 		else if (multiModel != null) {
+			// only models get added to the table, excluding the ones in a standalone model relationship
+			//TODO MMTF: check also standalone modelrel when they get imported
 			multiModel.getExtendibleTable().put(elementUri.toPlatformString(true), element);
 		}
 		element.setUri(elementUri.toPlatformString(true));
@@ -362,9 +364,15 @@ public class MultiModelFactoryUtils {
 		return modelRel;
 	}
 
-	//TODO MMTF: implement and link to deletion in diagram
-	public static void removeModel(Model model, MultiModel multiModel) {
+	/**
+	 * Removes a model from a multimodel.
+	 * 
+	 * @param model
+	 *            The model to be removed.
+	 */
+	public static void removeModel(Model model) {
 
+		MultiModel multiModel = (MultiModel) model.eContainer();
 		multiModel.getExtendibleTable().removeKey(model.getUri());
 	}
 
@@ -374,7 +382,7 @@ public class MultiModelFactoryUtils {
 	 * @param modelRel
 	 *            The model relationship.
 	 * @param model
-	 *            The model to be removed.
+	 *            The model to be removed, referenced by the model reference.
 	 */
 	public static void removeModelReference(ModelRel modelRel, Model model) {
 

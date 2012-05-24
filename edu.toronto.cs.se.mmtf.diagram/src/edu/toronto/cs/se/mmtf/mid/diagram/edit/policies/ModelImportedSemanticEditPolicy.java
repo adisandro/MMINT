@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelNewBinaryRelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelDelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelAddModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelRemoveModelCommand;
@@ -125,7 +126,7 @@ public class ModelImportedSemanticEditPolicy extends Model2ItemSemanticEditPolic
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			cmd.add(new DestroyElementCommand(req));
+			cmd.add(new ModelDelCommand(req));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
