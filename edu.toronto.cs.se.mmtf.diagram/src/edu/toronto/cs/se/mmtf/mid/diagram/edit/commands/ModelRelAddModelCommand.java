@@ -53,7 +53,7 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit().eContainer()) && super.canExecute();
+		return MultiModelConstraintChecker.canExecute((MultiModel) getSource().eContainer()) && super.canExecute();
 	}
 
 	/**

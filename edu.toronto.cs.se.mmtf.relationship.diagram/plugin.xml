@@ -600,14 +600,14 @@ Contributors:
    <extension
          name="Relationship diagram"
          point="edu.toronto.cs.se.mmtf.editors">
-      <extendibleElement
-            uri="http:///edu/toronto/cs/se/mmtf/mid/relationship/diagram">
-      </extendibleElement>
       <editor
             modelTypeUri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship"
             id="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidCreationWizardID">
+         <extendibleElement
+               uri="http:///edu/toronto/cs/se/mmtf/mid/relationship/diagram">
+         </extendibleElement>
       </editor>
    </extension>
 

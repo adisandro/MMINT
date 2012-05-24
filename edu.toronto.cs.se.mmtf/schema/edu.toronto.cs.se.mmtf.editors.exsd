@@ -21,7 +21,6 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleElement"/>
             <element ref="editor"/>
          </sequence>
          <attribute name="point" type="string" use="required">
@@ -58,6 +57,9 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
          </documentation>
       </annotation>
       <complexType>
+         <sequence>
+            <element ref="extendibleElement"/>
+         </sequence>
          <attribute name="modelTypeUri" type="string" use="required">
             <annotation>
                <documentation>

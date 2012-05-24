@@ -27,7 +27,7 @@
    </extension>
 
    <extension
-         name="Root model type"
+         name="Model"
          point="edu.toronto.cs.se.mmtf.models">
       <extendibleElement
             uri="http:///edu/toronto/cs/se/mmtf/Model">
@@ -41,13 +41,13 @@
    </extension>
 
    <extension
-         name="Root model relationship"
+         name="ModelRel"
          point="edu.toronto.cs.se.mmtf.relationships">
-      <extendibleElement
-            uri="http:///edu/toronto/cs/se/mmtf/ModelRel">
-      </extendibleElement>
       <relationship
             isNary="true">
+         <extendibleElement
+               uri="http:///edu/toronto/cs/se/mmtf/ModelRel">
+         </extendibleElement>
          <model
                modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
             <modelElement
@@ -77,7 +77,6 @@
       </relationship>
    </extension>
 
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore"
@@ -86,7 +85,7 @@
    </extension>
 
    <extension
-         name="MID model type"
+         name="MID"
          point="edu.toronto.cs.se.mmtf.models">
       <extendibleElement
             uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore">
@@ -101,7 +100,7 @@
    </extension>
 
    <extension
-         name="Relationship model type"
+         name="Relationship"
          point="edu.toronto.cs.se.mmtf.models">
       <extendibleElement
             uri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship">
@@ -123,7 +122,7 @@
    </extension>
 
    <extension
-         name="Ecore model type"
+         name="Ecore"
          point="edu.toronto.cs.se.mmtf.models">
       <extendibleElement
             uri="http://www.eclipse.org/emf/2002/Ecore">
@@ -133,28 +132,28 @@
    <extension
          name="Sample Ecore Editor"
          point="edu.toronto.cs.se.mmtf.editors">
-      <extendibleElement
-            uri="http:///org/eclipse/emf/ecore/presentation">
-      </extendibleElement>
       <editor
             modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
             id="org.eclipse.emf.ecore.presentation.EcoreEditorID"
             isDiagram="false"
             wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
+         <extendibleElement
+               uri="http:///org/eclipse/emf/ecore/presentation">
+         </extendibleElement>
       </editor>
    </extension>
 
    <extension
          name="Ecore Diagram Editing"
          point="edu.toronto.cs.se.mmtf.editors">
-      <extendibleElement
-            uri="http:///org/eclipse/emf/ecoretools/diagram">
-      </extendibleElement>
       <editor
             modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
             id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
             isDiagram="true"
             wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
+         <extendibleElement
+               uri="http:///org/eclipse/emf/ecoretools/diagram">
+         </extendibleElement>
       </editor>
    </extension>
 

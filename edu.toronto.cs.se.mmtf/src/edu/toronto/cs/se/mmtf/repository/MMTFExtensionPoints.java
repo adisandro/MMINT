@@ -30,9 +30,11 @@ public interface MMTFExtensionPoints {
 	/** The uri of the root link among model elements. */
 	public final static String ROOT_RELATIONSHIP_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
 
-	/** An extension point's extendible element's uri attribute. */
+	/** An extension point's extendibleElement child. */
+	public final static String CHILD_EXTENDIBLEELEMENT = "extendibleElement";
+	/** An extension point's extendibleElement child's uri attribute. */
 	public final static String EXTENDIBLEELEMENT_ATTR_URI = "uri";
-	/** An extension point's extendible element's supertypeUri attribute. */
+	/** An extension point's extendibleElement child's supertypeUri attribute. */
 	public final static String EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI = "supertypeUri";
 
 	/** The Models extension point's id. */

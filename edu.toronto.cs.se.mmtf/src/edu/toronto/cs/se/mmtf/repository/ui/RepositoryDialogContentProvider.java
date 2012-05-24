@@ -11,12 +11,15 @@
  */
 package edu.toronto.cs.se.mmtf.repository.ui;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 
 /**
  * The content provider for the repository tree dialog.
@@ -24,7 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
  * @author Alessio Di Sandro
  * 
  */
-public class RepositoryDialogContentProvider implements ITreeContentProvider {
+public class RepositoryDialogContentProvider implements ITreeContentProvider, MMTFExtensionPoints {
 
 	/** The repository. */
 	private MultiModel repository;
@@ -74,7 +77,14 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider {
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof MultiModel) {
-			return ((MultiModel) parentElement).getModels().toArray();
+			// remove root models TODO fix
+			EList<Model> userModels = new BasicEList<Model>();
+			for (Model model : ((MultiModel) parentElement).getModels()) {
+				if (!model.getUri().equals(ROOT_MODEL_URI) && !model.getUri().equals(ROOT_RELATIONSHIP_URI)) {
+					userModels.add(model);
+				}
+			}
+			return userModels.toArray();
 		}
 		if (parentElement instanceof Model) {
 			return ((Model) parentElement).getEditors().toArray();

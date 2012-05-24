@@ -154,7 +154,7 @@ public class MMTF implements MMTFExtensionPoints {
 		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
 		EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(uri);
 		if (modelPackage == null) {
-			throw new MMTFException("EPackage for URI " + uri + "is not registered");
+			throw new MMTFException("EPackage for URI " + uri + " is not registered");
 		}
 
 		// set attributes
@@ -215,15 +215,16 @@ public class MMTF implements MMTFExtensionPoints {
 		//TODO MMTF: a pluggable checker, following some reasoning, should enforce that
 		// create and add
 		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_ATTR_ISNARY));
+		IConfigurationElement extendibleConfig = extensionConfig.getChildren(CHILD_EXTENDIBLEELEMENT)[0];
 		IConfigurationElement[] modelConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_MODEL);
 		ModelRel modelRel = (!unbounded && modelConfig.length == 2) ? // unbounded with any two model types is a ModelRel
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
 			RelationshipFactory.eINSTANCE.createModelRel();
 		try {
-			addModelType(modelRel, extensionConfig);
+			addModelType(modelRel, extendibleConfig);
 		}
 		catch (MMTFException e) {
-			MMTFException.print(Type.WARNING, "Model type relationship can't be registered", e);
+			MMTFException.print(Type.WARNING, "Model relationship type can't be registered", e);
 			return null;
 		}
 		modelRel.setUnbounded(unbounded);
@@ -252,7 +253,7 @@ public class MMTF implements MMTFExtensionPoints {
 						);
 						// get feature from model
 						//TODO MMTF: useful? if yes, make it safe
-						String[] elemLiterals = modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL).split(".");
+						String[] elemLiterals = modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL).split("\\.");
 						EObject elemPointer = ((EPackage) ((Model) model).getRoot()).getEClassifier(elemLiterals[0]);
 						if (elemLiterals.length > 1) {
 							elemPointer = ((EClass) elemPointer).getEStructuralFeature(elemLiterals[1]);
@@ -378,6 +379,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		// create
 		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM);
+		IConfigurationElement extendibleConfig = extensionConfig.getChildren(CHILD_EXTENDIBLEELEMENT)[0];
 		Editor editor;
 		if (Boolean.parseBoolean(isDiagram)) {
 			editor = EditorFactory.eINSTANCE.createDiagram();
@@ -387,7 +389,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		}
 
 		try {
-			addExtendibleType(editor, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
+			addExtendibleType(editor, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
 		}
 		catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Editor type can't be registered", e);

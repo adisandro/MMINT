@@ -44,14 +44,14 @@
    <extension
          name="MID editor"
          point="edu.toronto.cs.se.mmtf.editors">
-      <extendibleElement
-            uri="http:///edu/toronto/cs/se/mmtf/mid/presentation">
-      </extendibleElement>
       <editor
             modelTypeUri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore"
             id="edu.toronto.cs.se.mmtf.mid.presentation.MidEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmtf.mid.presentation.MidModelWizardID">
+         <extendibleElement
+               uri="http:///edu/toronto/cs/se/mmtf/mid/presentation">
+         </extendibleElement>
       </editor>
    </extension>
 
@@ -84,14 +84,14 @@
    <extension
          name="Relationship editor"
          point="edu.toronto.cs.se.mmtf.editors">
-      <extendibleElement
-            uri="http:///edu/toronto/cs/se/mmtf/mid/relationship/presentation">
-      </extendibleElement>
       <editor
             modelTypeUri="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship"
             id="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipModelWizardID">
+         <extendibleElement
+               uri="http:///edu/toronto/cs/se/mmtf/mid/relationship/presentation">
+         </extendibleElement>
       </editor>
    </extension>
 

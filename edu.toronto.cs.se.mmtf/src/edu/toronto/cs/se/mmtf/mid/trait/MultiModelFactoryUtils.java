@@ -104,10 +104,11 @@ public class MultiModelFactoryUtils {
 
 		// possibly raise exceptions as first thing
 		EObject root;
-		String fileName;
+		String fileName, fileExtension;
 		if (modelUri == null) { // model relationship
 			root = model;
 			fileName = null;
+			fileExtension = null;
 		}
 		else { // model or standalone model relationship
 			ResourceSet set = new ResourceSetImpl();
@@ -115,6 +116,7 @@ public class MultiModelFactoryUtils {
 			root = resource.getContents().get(0);
 			fileName = modelUri.lastSegment();
 			fileName = fileName.substring(0, fileName.lastIndexOf('.'));
+			fileExtension = modelUri.fileExtension();
 		}
 
 		// add to multimodel container
@@ -126,7 +128,7 @@ public class MultiModelFactoryUtils {
 		// set attributes
 		model.setOrigin(origin);
 		model.setRoot(root);
-		model.setFileExtension(modelUri.fileExtension());
+		model.setFileExtension(fileExtension);
 	}
 
 	/**
@@ -287,17 +289,17 @@ public class MultiModelFactoryUtils {
 		addExtendibleElement(editor, null, editorUri, editorName);
 
 		editor.setModelUri(stringModelUri);
-		editor.setId(editor.getId());
-		editor.setWizardId(editor.getWizardId());
+		editor.setId(editorType.getId());
+		editor.setWizardId(editorType.getWizardId());
 
 		return editor;
 	}
 
 	/**
-	 * Adds a new editor to an existing model.
+	 * Adds an editor to a model.
 	 * 
 	 * @param editor
-	 *            The new editor.
+	 *            The editor.
 	 * @param multiModel
 	 *            The root multimodel.
 	 */
@@ -306,6 +308,7 @@ public class MultiModelFactoryUtils {
 		ExtendibleElement model = multiModel.getExtendibleTable().get(editor.getModelUri());
 		if (model != null && model instanceof Model) {
 			((Model) model).getEditors().add(editor);
+			multiModel.getEditors().add(editor);
 		}
 	}
 
