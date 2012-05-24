@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +22,13 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -527,6 +532,19 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		addEditorTypesFileExtensions(registry);
 
 		//TODO MMTF: operators
+
+		//TODO MMTF: do this on demand, with a button somewhere
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(
+			URI.createPlatformResourceURI("/try/demo/types.mid", true)
+		);
+		resource.getContents().add(repository);
+		try {
+			resource.save(Collections.EMPTY_MAP);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -374,6 +374,21 @@ public class MultiModelFactoryUtils {
 
 		MultiModel multiModel = (MultiModel) model.eContainer();
 		multiModel.getExtendibleTable().removeKey(model.getUri());
+		for (Editor editor : model.getEditors()) {
+			removeEditor(editor);
+		}
+	}
+
+	/**
+	 * Removes an editor from a multimodel.
+	 * 
+	 * @param editor
+	 *            The editor to be removed.
+	 */
+	public static void removeEditor(Editor editor) {
+
+		MultiModel multiModel = (MultiModel) editor.eContainer();
+		multiModel.getEditors().remove(editor);
 	}
 
 	/**
