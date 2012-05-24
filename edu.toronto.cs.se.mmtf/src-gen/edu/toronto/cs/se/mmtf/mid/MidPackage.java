@@ -233,7 +233,7 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL__MODELS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Editors</b></em>' map.
+	 * The feature id for the '<em><b>Editors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -652,10 +652,10 @@ public interface MidPackage extends EPackage {
 	EReference getMultiModel_Models();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getEditors <em>Editors</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getEditors <em>Editors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Editors</em>'.
+	 * @return the meta object for the containment reference list '<em>Editors</em>'.
 	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getEditors()
 	 * @see #getMultiModel()
 	 * @generated
@@ -989,7 +989,7 @@ public interface MidPackage extends EPackage {
 		EReference MULTI_MODEL__MODELS = eINSTANCE.getMultiModel_Models();
 
 		/**
-		 * The meta object literal for the '<em><b>Editors</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Editors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

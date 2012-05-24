@@ -11,6 +11,8 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
       </documentation>
    </annotation>
 
+   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
+
    <element name="extension">
       <annotation>
          <appinfo>
@@ -19,6 +21,7 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
       </annotation>
       <complexType>
          <sequence>
+            <element ref="extendibleElement"/>
             <element ref="editor"/>
          </sequence>
          <attribute name="point" type="string" use="required">
@@ -61,7 +64,17 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
                   The model type URI for which an editor is being provided.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/modelType/@uri"/>
+                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/extendibleElement/@uri"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The editor id.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.editors/editor/@id"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -70,16 +83,6 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
                <documentation>
                   Whether this is a diagram editor.
                </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="editorId" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The editor id.
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.editors/editor/@id"/>
-               </appinfo>
             </annotation>
          </attribute>
          <attribute name="wizardId" type="string" use="required">

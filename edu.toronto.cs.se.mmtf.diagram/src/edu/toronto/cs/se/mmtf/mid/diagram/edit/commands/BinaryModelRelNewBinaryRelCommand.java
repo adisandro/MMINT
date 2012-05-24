@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -49,6 +50,17 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	}
 
 	/**
+	 * Checks if a binary model relationship can be created.
+	 * 
+	 * @return True if a binary model relationship can be created, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute(getContainer()) && super.canExecute();
+	}
+
+	/**
 	 * Creates a new binary model relationship.
 	 * 
 	 * @param monitor
@@ -57,8 +69,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	 *            Additional parameter, not used.
 	 * @return The ok result.
 	 * @throws ExecutionException
-	 *             If source or target are null or instances of disallowed
-	 *             types, or if configuration command execution goes wrong.
+	 *             If this command can't be executed.
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

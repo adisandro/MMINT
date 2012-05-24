@@ -69,7 +69,7 @@ public class MidDiagramTrait {
 	 * @throws Exception
 	 *             If the model creation was not completed for any reason.
 	 */
-	public static Editor createModel() throws Exception {
+	public static Editor selectModelToCreate() throws Exception {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getRepositoryAsDialog();
 		dialog.setTitle("Create new model");

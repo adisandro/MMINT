@@ -11,11 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid.editor.util;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import edu.toronto.cs.se.mmtf.mid.editor.*;
-
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -81,10 +80,6 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
 	protected EditorSwitch<Adapter> modelSwitch =
 		new EditorSwitch<Adapter>() {
 			@Override
-			public Adapter caseEStringToEditorMap(Map.Entry<String, Editor> object) {
-				return createEStringToEditorMapAdapter();
-			}
-			@Override
 			public Adapter caseEditor(Editor object) {
 				return createEditorAdapter();
 			}
@@ -95,6 +90,10 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElement(ExtendibleElement object) {
+				return createExtendibleElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -115,20 +114,6 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Editor Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createEStringToEditorMapAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor <em>Editor</em>}'.
@@ -169,6 +154,20 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement
+	 * @generated
+	 */
+	public Adapter createExtendibleElementAdapter() {
 		return null;
 	}
 

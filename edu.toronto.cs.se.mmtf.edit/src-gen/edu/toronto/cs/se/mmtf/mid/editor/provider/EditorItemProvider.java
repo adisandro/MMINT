@@ -15,8 +15,8 @@ package edu.toronto.cs.se.mmtf.mid.editor.provider;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 
+import edu.toronto.cs.se.mmtf.mid.provider.ExtendibleElementItemProvider;
 import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
-import edu.toronto.cs.se.mmtf.mid.provider.TypedElementItemProvider;
 
 import java.util.Collection;
 import java.util.List;
@@ -43,7 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class EditorItemProvider
-	extends TypedElementItemProvider
+	extends ExtendibleElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

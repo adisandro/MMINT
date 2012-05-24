@@ -42,10 +42,10 @@ public interface MMTFExtensionPoints {
 	public final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
 	/** The Editors extension point's modelTypeUri attribute. */
 	public final static String EDITORS_ATTR_MODELTYPEURI = "modelTypeUri";
+	/** The Editors extension point's id attribute. */
+	public final static String EDITORS_ATTR_ID = "id";
 	/** The Editors extension point's isDiagram attribute. */
 	public final static String EDITORS_ATTR_ISDIAGRAM = "isDiagram";
-	/** The Editors extension point's editorId attribute. */
-	public final static String EDITORS_ATTR_EDITORID = "editorId";
 	/** The Editors extension point's wizardId attribute. */
 	public final static String EDITORS_ATTR_WIZARDID = "wizardId";
 

@@ -21,7 +21,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1"
         eType="#//Model" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
-        eType="#//editor/EStringToEditorMap" containment="true"/>
+        eType="#//editor/Editor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
         eType="#//operator/Operator" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendibleTable" upperBound="-1"
@@ -192,12 +192,7 @@
   </eSubpackages>
   <eSubpackages name="editor" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/editor"
       nsPrefix="editor">
-    <eClassifiers xsi:type="ecore:EClass" name="EStringToEditorMap" instanceClassName="java.util.Map$Entry">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="#//editor/Editor" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//TypedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//ExtendibleElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUri" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

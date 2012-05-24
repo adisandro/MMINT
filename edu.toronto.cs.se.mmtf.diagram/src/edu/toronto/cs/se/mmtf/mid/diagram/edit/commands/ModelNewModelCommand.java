@@ -54,7 +54,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit());
+		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit()) && super.canExecute();
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Editor editor = MidDiagramTrait.createModel();
+			Editor editor = MidDiagramTrait.selectModelToCreate();
 			URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
 			MultiModel owner = (MultiModel) getElementToEdit();
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);

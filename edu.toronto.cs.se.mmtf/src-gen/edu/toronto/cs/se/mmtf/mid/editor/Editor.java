@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.editor;
 
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Editor extends TypedElement {
+public interface Editor extends ExtendibleElement {
 	/**
 	 * Returns the value of the '<em><b>Model Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->

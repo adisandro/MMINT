@@ -11,7 +11,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </documentation>
    </annotation>
 
-   <include schemaLocation="edu.toronto.cs.se.mmtf.models.exsd"/>
+   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
 
    <element name="extension">
       <annotation>
@@ -21,8 +21,8 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </annotation>
       <complexType>
          <sequence>
-            <element ref="modelType"/>
-            <element ref="modelTypeRelationship"/>
+            <element ref="extendibleElement"/>
+            <element ref="relationship"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -51,10 +51,10 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </complexType>
    </element>
 
-   <element name="modelTypeRelationship">
+   <element name="relationship">
       <annotation>
          <documentation>
-            A model type relationship.
+            A model relationship type.
          </documentation>
       </annotation>
       <complexType>
@@ -88,7 +88,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
                   The relationship&apos;s endpoint model type URI.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/modelType/@uri"/>
+                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/extendibleElement/@uri"/>
                </appinfo>
             </annotation>
          </attribute>

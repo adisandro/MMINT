@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -44,6 +46,17 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 	}
 
 	/**
+	 * Checks if a model can be added.
+	 * 
+	 * @return True if a model can be added, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit().eContainer()) && super.canExecute();
+	}
+
+	/**
 	 * Adds a model to a model relationship.
 	 * 
 	 * @param monitor
@@ -52,8 +65,7 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 	 *            Additional parameter, not used.
 	 * @return The ok result.
 	 * @throws ExecutionException
-	 *             If source or target are null or instances of disallowed
-	 *             types.
+	 *             If this command can't be executed.
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

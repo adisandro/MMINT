@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
@@ -53,7 +54,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit());
+		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit()) && super.canExecute();
 	}
 
 	/**
@@ -72,11 +73,11 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			//TODO here is different, we must go through the registered editors to create an editor (code in modelopeneditorcommand)
-			//TODO then, modeleditor becomes as easy as opening the uri contained in the editor
 			URI modelUri = MidDiagramTrait.selectModelToImport(false);
 			MultiModel owner = (MultiModel) getElementToEdit();
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, owner, modelUri);
+			Editor editor = MultiModelFactoryUtils.createEditor(newElement);
+			MultiModelFactoryUtils.addModelEditor(editor, owner);
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

@@ -18,7 +18,6 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
-import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
@@ -225,7 +224,12 @@ public class MultiModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__EDITORS,
-				 EditorFactory.eINSTANCE.create(EditorPackage.Literals.ESTRING_TO_EDITOR_MAP)));
+				 EditorFactory.eINSTANCE.createEditor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__EDITORS,
+				 EditorFactory.eINSTANCE.createDiagram()));
 
 		newChildDescriptors.add
 			(createChildParameter

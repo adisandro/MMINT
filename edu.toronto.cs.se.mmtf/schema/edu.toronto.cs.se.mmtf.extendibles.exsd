@@ -3,15 +3,12 @@
 <schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.models" name="MMTF model types"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.extendibles" name="MMTF extendible elements"/>
       </appinfo>
       <documentation>
-         Allows model types to be registered with MMTF.
-The model package has to be registered too through the org.eclipse.emf.ecore.generated_package extension point.
+         Allows extendible elements to be registered with MMTF.
       </documentation>
    </annotation>
-
-   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
 
    <element name="extension">
       <annotation>
@@ -45,6 +42,30 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
                <appinfo>
                   <meta.attribute translatable="true"/>
                </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="extendibleElement">
+      <annotation>
+         <documentation>
+            An extendible element.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="uri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The extendible element URI to be registered with MMTF.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="supertypeUri" type="string">
+            <annotation>
+               <documentation>
+                  The extendible element&apos;s supertype URI.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

@@ -81,29 +81,6 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStringToEditorMapItemProvider eStringToEditorMapItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEStringToEditorMapAdapter() {
-		if (eStringToEditorMapItemProvider == null) {
-			eStringToEditorMapItemProvider = new EStringToEditorMapItemProvider(this);
-		}
-
-		return eStringToEditorMapItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.editor.Editor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,7 +225,6 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
 	 * @generated
 	 */
 	public void dispose() {
-		if (eStringToEditorMapItemProvider != null) eStringToEditorMapItemProvider.dispose();
 		if (editorItemProvider != null) editorItemProvider.dispose();
 		if (diagramItemProvider != null) diagramItemProvider.dispose();
 	}

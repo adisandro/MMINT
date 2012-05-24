@@ -13,8 +13,6 @@ package edu.toronto.cs.se.mmtf.mid.editor.impl;
 
 import edu.toronto.cs.se.mmtf.mid.editor.*;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -67,22 +65,11 @@ public class EditorFactoryImpl extends EFactoryImpl implements EditorFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case EditorPackage.ESTRING_TO_EDITOR_MAP: return (EObject)createEStringToEditorMap();
 			case EditorPackage.EDITOR: return createEditor();
 			case EditorPackage.DIAGRAM: return createDiagram();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<String, Editor> createEStringToEditorMap() {
-		EStringToEditorMapImpl eStringToEditorMap = new EStringToEditorMapImpl();
-		return eStringToEditorMap;
 	}
 
 	/**

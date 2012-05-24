@@ -19,7 +19,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -39,6 +41,17 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 	public ModelRelRemoveModelCommand(DestroyReferenceRequest request) {
 
 		super(request);
+	}
+
+	/**
+	 * Checks if a model can be removed.
+	 * 
+	 * @return True if a model can be removed, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute((MultiModel) getContainer().eContainer()) && super.canExecute();
 	}
 
 	/**

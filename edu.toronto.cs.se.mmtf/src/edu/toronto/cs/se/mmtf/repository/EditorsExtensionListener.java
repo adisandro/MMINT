@@ -74,7 +74,8 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				mmtf.removeEditorType(elem);
+				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
+				mmtf.removeEditorType(uri);
 			}
 		}
 	}

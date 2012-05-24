@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.editor.impl;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 
-import edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl;
+import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 
 import java.util.Collection;
 
@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *
  * @generated
  */
-public class EditorImpl extends TypedElementImpl implements Editor {
+public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	/**
 	 * The default value of the '{@link #getModelUri() <em>Model Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -11,11 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid.editor.util;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import edu.toronto.cs.se.mmtf.mid.editor.*;
-
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -79,15 +78,10 @@ public class EditorSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case EditorPackage.ESTRING_TO_EDITOR_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Editor> eStringToEditorMap = (Map.Entry<String, Editor>)theEObject;
-				T result = caseEStringToEditorMap(eStringToEditorMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EditorPackage.EDITOR: {
 				Editor editor = (Editor)theEObject;
 				T result = caseEditor(editor);
+				if (result == null) result = caseExtendibleElement(editor);
 				if (result == null) result = caseTypedElement(editor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -96,27 +90,13 @@ public class EditorSwitch<T> extends Switch<T> {
 				Diagram diagram = (Diagram)theEObject;
 				T result = caseDiagram(diagram);
 				if (result == null) result = caseEditor(diagram);
+				if (result == null) result = caseExtendibleElement(diagram);
 				if (result == null) result = caseTypedElement(diagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EString To Editor Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EString To Editor Map</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEStringToEditorMap(Map.Entry<String, Editor> object) {
-		return null;
 	}
 
 	/**
@@ -161,6 +141,21 @@ public class EditorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendibleElement(ExtendibleElement object) {
 		return null;
 	}
 

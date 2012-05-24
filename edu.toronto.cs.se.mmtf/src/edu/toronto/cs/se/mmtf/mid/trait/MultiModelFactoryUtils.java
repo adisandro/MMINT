@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
@@ -32,6 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
@@ -61,10 +64,8 @@ public class MultiModelFactoryUtils {
 	 *            The uri of the extendible element to add (possibly null).
 	 * @param name
 	 *            The name of the extendible element.
-	 * @throws MMTFException
-	 *             If the extendible element is not unique.
 	 */
-	private static void addExtendibleElement(ExtendibleElement element, MultiModel multiModel, URI elementUri, String name) throws MMTFException {
+	private static void addExtendibleElement(ExtendibleElement element, MultiModel multiModel, URI elementUri, String name) {
 
 		// uri
 		if (elementUri == null) {
@@ -240,6 +241,32 @@ public class MultiModelFactoryUtils {
 	/**
 	 * Creates an editor for a model.
 	 * 
+	 * @param model
+	 *            The model.
+	 * @return The editor just created.
+	 */
+	public static Editor createEditor(Model model) {
+
+		URI modelUri = URI.createPlatformResourceURI(model.getUri(), true);
+		EList<Editor> editorTypes = MMTFRegistry.getEditorsForModelType(
+			((ExtendibleElement) model.getMetatype()).getUri()
+		);
+		if (editorTypes.size() != 0) {
+			//TODO MMTF: prioritize editors list
+			for (Editor editorType : editorTypes) {
+				//TODO MMTF: check if editor file really exists in model directory
+				if (editorType instanceof Diagram) {
+					return createEditor(editorType, modelUri);
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Creates an editor for a model.
+	 * 
 	 * @param editorType
 	 *            The editor type.
 	 * @param modelUri
@@ -249,12 +276,17 @@ public class MultiModelFactoryUtils {
 	public static Editor createEditor(Editor editorType, URI modelUri) {
 
 		Editor editor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
-		editor.setName(editorType.getName() + " for model " + modelUri);
-		editor.setLevel(MidLevel.INSTANCES);
-		editor.setModelUri(modelUri.toPlatformString(true));
+		String editorName = editorType.getName() + " for model " + modelUri;
+		String stringModelUri = modelUri.toPlatformString(true);
+		URI editorUri = URI.createPlatformResourceURI(
+			stringModelUri.substring(0, stringModelUri.lastIndexOf('.')+1) + editorType.getFileExtensions().get(0),
+			true
+		);
+		addExtendibleElement(editor, null, editorUri, editorName);
+
+		editor.setModelUri(stringModelUri);
 		editor.setId(editor.getId());
 		editor.setWizardId(editor.getWizardId());
-		// no need to put the editor in the Editors map at the INSTANCES level
 
 		return editor;
 	}
@@ -331,13 +363,13 @@ public class MultiModelFactoryUtils {
 	}
 
 	//TODO MMTF: implement and link to deletion in diagram
-	public static void removeModel(Model model) {
-		
+	public static void removeModel(Model model, MultiModel multiModel) {
+
+		multiModel.getExtendibleTable().removeKey(model.getUri());
 	}
 
 	/**
-	 * Removes a model reference from a model relationship following the removal
-	 * of a model.
+	 * Removes a model reference from a model relationship.
 	 * 
 	 * @param modelRel
 	 *            The model relationship.

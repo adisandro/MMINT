@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -41,6 +42,17 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 	public ModelRelImportNaryRelCommand(CreateElementRequest req) {
 
 		super(req);
+	}
+
+	/**
+	 * Checks if a model relationship can be created.
+	 * 
+	 * @return True if a model relationship can be created, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit()) && super.canExecute();
 	}
 
 	/**

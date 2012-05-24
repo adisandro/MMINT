@@ -89,10 +89,6 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Editor" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
         ecorePackage="mid.ecore#//editor">
-      <genClasses ecoreClass="mid.ecore#//editor/EStringToEditorMap">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/EStringToEditorMap/key"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//editor/EStringToEditorMap/value"/>
-      </genClasses>
       <genClasses ecoreClass="mid.ecore#//editor/Editor">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/modelUri"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/id"/>

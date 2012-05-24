@@ -16,7 +16,6 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,52 +67,6 @@ public interface EditorPackage extends EPackage {
 	EditorPackage eINSTANCE = edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EStringToEditorMapImpl <em>EString To Editor Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EStringToEditorMapImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getEStringToEditorMap()
-	 * @generated
-	 */
-	int ESTRING_TO_EDITOR_MAP = 0;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To Editor Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>EString To Editor Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_EDITOR_MAP_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EditorImpl <em>Editor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,7 +74,7 @@ public interface EditorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getEditor()
 	 * @generated
 	 */
-	int EDITOR = 1;
+	int EDITOR = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -130,7 +83,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__NAME = MidPackage.TYPED_ELEMENT__NAME;
+	int EDITOR__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -139,7 +92,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__METATYPE = MidPackage.TYPED_ELEMENT__METATYPE;
+	int EDITOR__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -148,7 +101,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__LEVEL = MidPackage.TYPED_ELEMENT__LEVEL;
+	int EDITOR__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -157,7 +110,25 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__TYPE = MidPackage.TYPED_ELEMENT__TYPE;
+	int EDITOR__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
@@ -166,7 +137,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__MODEL_URI = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int EDITOR__MODEL_URI = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -175,7 +146,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__ID = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int EDITOR__ID = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
@@ -184,7 +155,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__WIZARD_ID = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int EDITOR__WIZARD_ID = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>File Extensions</b></em>' attribute list.
@@ -193,7 +164,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__FILE_EXTENSIONS = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int EDITOR__FILE_EXTENSIONS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Editor</em>' class.
@@ -202,7 +173,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_FEATURE_COUNT = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+	int EDITOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Editor</em>' class.
@@ -211,7 +182,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_OPERATION_COUNT = MidPackage.TYPED_ELEMENT_OPERATION_COUNT + 0;
+	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -221,7 +192,7 @@ public interface EditorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getDiagram()
 	 * @generated
 	 */
-	int DIAGRAM = 2;
+	int DIAGRAM = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -258,6 +229,24 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM__TYPE = EDITOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__URI = EDITOR__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__SUPERTYPE = EDITOR__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
@@ -313,40 +302,6 @@ public interface EditorPackage extends EPackage {
 	 */
 	int DIAGRAM_OPERATION_COUNT = EDITOR_OPERATION_COUNT + 0;
 
-
-	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Editor Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To Editor Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.editor.Editor" valueContainment="true" valueRequired="true"
-	 * @generated
-	 */
-	EClass getEStringToEditorMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToEditorMap()
-	 * @generated
-	 */
-	EAttribute getEStringToEditorMap_Key();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToEditorMap()
-	 * @generated
-	 */
-	EReference getEStringToEditorMap_Value();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor <em>Editor</em>}'.
@@ -435,32 +390,6 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EStringToEditorMapImpl <em>EString To Editor Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EStringToEditorMapImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getEStringToEditorMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_EDITOR_MAP = eINSTANCE.getEStringToEditorMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_EDITOR_MAP__KEY = eINSTANCE.getEStringToEditorMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ESTRING_TO_EDITOR_MAP__VALUE = eINSTANCE.getEStringToEditorMap_Value();
-
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EditorImpl <em>Editor</em>}' class.
 		 * <!-- begin-user-doc -->

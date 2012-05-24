@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.mmtf;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
@@ -97,11 +97,11 @@ public class MMTF implements MMTFExtensionPoints {
 		// supertype
 		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);
 		String rootUri = "";
-		if (type instanceof Model) {
-			rootUri = ROOT_MODEL_URI;
-		}
-		else if (type instanceof ModelRel) {
+		if (type instanceof ModelRel) {
 			rootUri = ROOT_RELATIONSHIP_URI;
+		}
+		else if (type instanceof Model) {
+			rootUri = ROOT_MODEL_URI;
 		}
 		else if (type instanceof ModelElement) {
 			if (((ModelElement) type).getCategory() == ModelElementCategory.ENTITY) {
@@ -114,6 +114,7 @@ public class MMTF implements MMTFExtensionPoints {
 		else if (type instanceof Link) {
 			rootUri = ROOT_RELATIONSHIP_LINK_URI;
 		}
+		//TODO MMTF: root text editor?
 		ExtendibleElement supertype = null;
 		if (supertypeUri == null) {
 			if (!uri.equals(rootUri)) {
@@ -317,9 +318,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			return;
 		}
 
-		Editor editor;
-		for (Entry<String, Editor> entry : repository.getEditors().entrySet()) {
-			editor = entry.getValue();
+		for (Editor editor : repository.getEditors()) {
 			if (editor.getModelUri().equals(model.getUri())) {
 				model.getEditors().add(editor);
 			}
@@ -382,18 +381,24 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			editor = EditorFactory.eINSTANCE.createEditor();
 		}
 
+		try {
+			addExtendibleType(editor, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
+		}
+		catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Editor type can't be registered", e);
+			return null;
+		}
+
 		// set basic attributes
 		String modelUri = extensionConfig.getAttribute(EDITORS_ATTR_MODELTYPEURI);
-		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITORID);
+		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_ID);
 		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDID);
-		editor.setName(extensionConfig.getDeclaringExtension().getLabel());
-		editor.setLevel(MidLevel.TYPES);
 		editor.setModelUri(modelUri);
 		editor.setId(editorId);
 		editor.setWizardId(wizardId);
 
 		// register editor
-		repository.getEditors().put(editorId, editor);
+		repository.getEditors().add(editor);
 
 		return editor;
 	}
@@ -444,10 +449,17 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 */
 	public void addEditorTypesFileExtensions(IExtensionRegistry registry) {
 
+		// create temp editor table using ids
+		HashMap<String, Editor> tempEditorTable = new HashMap<String, Editor>();
+		for (Editor editor : repository.getEditors()) {
+			tempEditorTable.put(editor.getId(), editor);
+		}
+
+		// loop through eclipse editors
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
 		Editor editor;
 		for (IConfigurationElement elem : config) {
-			editor = repository.getEditors().get(elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID));
+			editor = tempEditorTable.get(elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID));
 			if (editor != null) {
 				String extensions = elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS);
 				if (extensions == null) {
@@ -466,16 +478,18 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	/**
 	 * Removes an editor type from the repository.
 	 * 
-	 * @param extensionConfig
-	 *            The extension configuration.
+	 * @param uri
+	 *            The editor type uri.
 	 */
-	public void removeEditorType(IConfigurationElement extensionConfig) {
+	public void removeEditorType(String uri) {
 
-		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_EDITORID);
-		Editor editor = repository.getEditors().removeKey(editorId);
-		ExtendibleElement model = repository.getExtendibleTable().get(editor.getModelUri());
-		if (model != null && model instanceof Model) {
-			((Model) model).getEditors().remove(editor);
+		ExtendibleElement editor = repository.getExtendibleTable().removeKey(uri);
+		if (editor != null && editor instanceof Editor) {
+			repository.getEditors().remove(editor);
+			ExtendibleElement model = repository.getExtendibleTable().get(((Editor) editor).getModelUri());
+			if (model != null && model instanceof Model) {
+				((Model) model).getEditors().remove(editor);
+			}
 		}
 	}
 
@@ -552,6 +566,16 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		}
 
 		/**
+		 * Gets the list of registered model types.
+		 * 
+		 * @return The list of registered model types.
+		 */
+		public static EList<Model> getModelTypes() {
+
+			return repository.getModels();
+		}
+
+		/**
 		 * Gets the list of registered file extensions for all model types.
 		 * 
 		 * @return The list of registered file extensions.
@@ -576,35 +600,13 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		 */
 		public static EList<Editor> getEditorsForModelType(String modelTypeUri) {
 
-			ExtendibleElement model = repository.getExtendibleTable().get(modelTypeUri);
+			ExtendibleElement model = getExtendibleType(modelTypeUri);
 			if (model != null && model instanceof Model) {
 				return ((Model) model).getEditors();
 			}
 			else {
 				return ECollections.emptyEList();
 			}
-		}
-
-		/**
-		 * Gets an editor type.
-		 * 
-		 * @param editorId
-		 *            The id of the editor type.
-		 * @return The editor type, or null if the id is not found.
-		 */
-		public static Editor getEditorType(String editorId) {
-
-			return repository.getEditors().get(editorId);
-		}
-
-		/**
-		 * Gets the list of registered model types.
-		 * 
-		 * @return The list of registered model types.
-		 */
-		public static EList<Model> getModelTypes() {
-
-			return repository.getModels();
 		}
 
 		/**

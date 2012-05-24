@@ -17,8 +17,6 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmtf.mid.editor.impl.EStringToEditorMapImpl;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
@@ -71,14 +69,14 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	protected EList<Model> models;
 
 	/**
-	 * The cached value of the '{@link #getEditors() <em>Editors</em>}' map.
+	 * The cached value of the '{@link #getEditors() <em>Editors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEditors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, Editor> editors;
+	protected EList<Editor> editors;
 
 	/**
 	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
@@ -166,9 +164,9 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, Editor> getEditors() {
+	public EList<Editor> getEditors() {
 		if (editors == null) {
-			editors = new EcoreEMap<String,Editor>(EditorPackage.Literals.ESTRING_TO_EDITOR_MAP, EStringToEditorMapImpl.class, this, MidPackage.MULTI_MODEL__EDITORS);
+			editors = new EObjectContainmentEList<Editor>(Editor.class, this, MidPackage.MULTI_MODEL__EDITORS);
 		}
 		return editors;
 	}
@@ -263,8 +261,7 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__MODELS:
 				return getModels();
 			case MidPackage.MULTI_MODEL__EDITORS:
-				if (coreType) return getEditors();
-				else return getEditors().map();
+				return getEditors();
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				return getOperators();
 			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
@@ -293,7 +290,8 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				getModels().addAll((Collection<? extends Model>)newValue);
 				return;
 			case MidPackage.MULTI_MODEL__EDITORS:
-				((EStructuralFeature.Setting)getEditors()).set(newValue);
+				getEditors().clear();
+				getEditors().addAll((Collection<? extends Editor>)newValue);
 				return;
 			case MidPackage.MULTI_MODEL__OPERATORS:
 				getOperators().clear();

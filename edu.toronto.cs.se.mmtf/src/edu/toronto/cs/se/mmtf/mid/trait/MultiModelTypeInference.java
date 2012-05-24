@@ -109,7 +109,8 @@ modelTypes:
 
 	private static TypedElement inferType(Editor editor) {
 
-		return MMTFRegistry.getEditorType(editor.getId());
+		return MMTFRegistry.getExtendibleType(editor.getUri());
+		//TODO MMTF: fallback to root text editor?
 	}
 
 	public static TypedElement inferType(TypedElement element) {

@@ -26,12 +26,10 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -42,13 +40,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eStringToEditorMapEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,33 +131,6 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEStringToEditorMap() {
-		return eStringToEditorMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToEditorMap_Key() {
-		return (EAttribute)eStringToEditorMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEStringToEditorMap_Value() {
-		return (EReference)eStringToEditorMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEditor() {
 		return editorEClass;
 	}
@@ -244,10 +208,6 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		eStringToEditorMapEClass = createEClass(ESTRING_TO_EDITOR_MAP);
-		createEAttribute(eStringToEditorMapEClass, ESTRING_TO_EDITOR_MAP__KEY);
-		createEReference(eStringToEditorMapEClass, ESTRING_TO_EDITOR_MAP__VALUE);
-
 		editorEClass = createEClass(EDITOR);
 		createEAttribute(editorEClass, EDITOR__MODEL_URI);
 		createEAttribute(editorEClass, EDITOR__ID);
@@ -288,14 +248,10 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		editorEClass.getESuperTypes().add(theMidPackage.getTypedElement());
+		editorEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
 		diagramEClass.getESuperTypes().add(this.getEditor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(eStringToEditorMapEClass, Map.Entry.class, "EStringToEditorMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEStringToEditorMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEStringToEditorMap_Value(), this.getEditor(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(editorEClass, Editor.class, "Editor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEditor_ModelUri(), ecorePackage.getEString(), "modelUri", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEditor_Id(), ecorePackage.getEString(), "id", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
