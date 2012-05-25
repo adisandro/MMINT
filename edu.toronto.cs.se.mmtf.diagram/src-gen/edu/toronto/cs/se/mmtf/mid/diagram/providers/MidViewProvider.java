@@ -711,8 +711,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 
-		Edge edge = createBinaryModelRel_4003Gen(domainElement,
-				containerView, index, persisted, preferencesHint);
+		Edge edge = createBinaryModelRel_4003Gen(domainElement, containerView,
+				index, persisted, preferencesHint);
 		HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE
 				.createHintedDiagramLinkStyle();
 		diagramFacet.setHint("Relationship"); //$NON-NLS-1$

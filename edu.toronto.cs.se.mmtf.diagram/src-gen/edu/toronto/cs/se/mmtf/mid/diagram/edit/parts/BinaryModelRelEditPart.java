@@ -51,10 +51,10 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new BinaryModelRelItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ModelRelOpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new BinaryModelRelSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new ModelRelOpenDiagramEditPolicy());
 	}
 
 	/**

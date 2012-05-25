@@ -18,6 +18,7 @@
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
+          editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
             href="mid.gmfgraph#ModelLabel"/>
@@ -25,6 +26,8 @@
             href="mid.ecore#//TypedElement/name"/>
         <features
             href="mid.ecore#//TypedElement/type"/>
+        <editableFeatures
+            href="mid.ecore#//TypedElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -45,6 +48,7 @@
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
+          editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
             href="mid.gmfgraph#ModelLabel"/>
@@ -52,6 +56,8 @@
             href="mid.ecore#//TypedElement/name"/>
         <features
             href="mid.ecore#//TypedElement/type"/>
+        <editableFeatures
+            href="mid.ecore#//TypedElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -71,6 +77,7 @@
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
+          editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
             href="mid.gmfgraph#ModelRelLabel"/>
@@ -78,6 +85,8 @@
             href="mid.ecore#//TypedElement/name"/>
         <features
             href="mid.ecore#//TypedElement/type"/>
+        <editableFeatures
+            href="mid.ecore#//TypedElement/name"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -99,6 +108,7 @@
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
+          editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
             href="mid.gmfgraph#ModelRelLabel"/>
@@ -106,6 +116,8 @@
             href="mid.ecore#//TypedElement/name"/>
         <features
             href="mid.ecore#//TypedElement/type"/>
+        <editableFeatures
+            href="mid.ecore#//TypedElement/name"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -160,6 +172,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         viewPattern="{0} : {1}"
+        editorPattern="{0}"
         editPattern="{0}">
       <diagramLabel
           href="mid.gmfgraph#BinaryModelRelLabel"/>
@@ -167,6 +180,8 @@
           href="mid.ecore#//TypedElement/name"/>
       <features
           href="mid.ecore#//TypedElement/type"/>
+      <editableFeatures
+          href="mid.ecore#//TypedElement/name"/>
     </labelMappings>
     <relatedDiagrams
         href="relationship.gmfmap#//@diagram"/>
