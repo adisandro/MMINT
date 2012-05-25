@@ -52,6 +52,7 @@
         visualID="3001"
         editPartClassName="ModelElementReferenceEditPart"
         itemSemanticEditPolicyClassName="ModelElementReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelElementReferenceViewFactory"
         canonicalEditPolicyClassName="ModelElementReferenceCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="ModelElementReferenceGraphicalNodeEditPolicy"
         createCommandClassName="ModelElementReferenceCreateCommand"
@@ -85,6 +86,7 @@
           visualID="5001"
           editPartClassName="ModelElementReferenceNameTypeEditPart"
           itemSemanticEditPolicyClassName="ModelElementReferenceNameTypeItemSemanticEditPolicy"
+          notationViewFactoryClassName="ModelElementReferenceNameTypeViewFactory"
           readOnly="true"
           elementIcon="true">
         <diagramRunTimeClass
@@ -109,6 +111,7 @@
         visualID="2001"
         editPartClassName="ModelReferenceEditPart"
         itemSemanticEditPolicyClassName="ModelReferenceItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelReferenceViewFactory"
         canonicalEditPolicyClassName="ModelReferenceCanonicalEditPolicy"
         compartments="//@diagram/@compartments.0"
         graphicalNodeEditPolicyClassName="ModelReferenceGraphicalNodeEditPolicy"
@@ -146,6 +149,7 @@
           visualID="5002"
           editPartClassName="ModelReferenceNameTypeEditPart"
           itemSemanticEditPolicyClassName="ModelReferenceNameTypeItemSemanticEditPolicy"
+          notationViewFactoryClassName="ModelReferenceNameTypeViewFactory"
           readOnly="true"
           elementIcon="true">
         <diagramRunTimeClass
@@ -170,6 +174,7 @@
         visualID="2002"
         editPartClassName="LinkEditPart"
         itemSemanticEditPolicyClassName="LinkItemSemanticEditPolicy"
+        notationViewFactoryClassName="LinkViewFactory"
         canonicalEditPolicyClassName="LinkCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="LinkGraphicalNodeEditPolicy"
         createCommandClassName="LinkCreateCommand">
@@ -195,6 +200,7 @@
           visualID="5003"
           editPartClassName="LinkNameTypeEditPart"
           itemSemanticEditPolicyClassName="LinkNameTypeItemSemanticEditPolicy"
+          notationViewFactoryClassName="LinkNameTypeViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -206,11 +212,14 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             parser="//@labelParsers/@implementations.0"
             viewPattern="{0} : {1}"
+            editorPattern="{0}"
             editPattern="{0}">
           <metaFeatures
               href="mid.genmodel#//mid/TypedElement/name"/>
           <metaFeatures
               href="mid.genmodel#//mid/TypedElement/type"/>
+          <editableMetaFeatures
+              href="mid.genmodel#//mid/TypedElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -218,6 +227,7 @@
         visualID="4001"
         editPartClassName="ExtendibleElementSupertypeEditPart"
         itemSemanticEditPolicyClassName="ExtendibleElementSupertypeItemSemanticEditPolicy"
+        notationViewFactoryClassName="ExtendibleElementSupertypeViewFactory"
         createCommandClassName="ExtendibleElementSupertypeCreateCommand"
         reorientCommandClassName="ExtendibleElementSupertypeReorientCommand">
       <diagramRunTimeClass
@@ -238,6 +248,7 @@
         visualID="4002"
         editPartClassName="LinkElementRefsEditPart"
         itemSemanticEditPolicyClassName="LinkElementRefsItemSemanticEditPolicy"
+        notationViewFactoryClassName="LinkElementRefsViewFactory"
         createCommandClassName="LinkElementRefsCreateCommand"
         reorientCommandClassName="LinkElementRefsReorientCommand">
       <diagramRunTimeClass
@@ -260,6 +271,7 @@
         visualID="4003"
         editPartClassName="BinaryLinkEditPart"
         itemSemanticEditPolicyClassName="BinaryLinkItemSemanticEditPolicy"
+        notationViewFactoryClassName="BinaryLinkViewFactory"
         createCommandClassName="BinaryLinkCreateCommand"
         reorientCommandClassName="BinaryLinkReorientCommand">
       <diagramRunTimeClass
@@ -288,6 +300,7 @@
           visualID="6001"
           editPartClassName="BinaryLinkNameTypeEditPart"
           itemSemanticEditPolicyClassName="BinaryLinkNameTypeItemSemanticEditPolicy"
+          notationViewFactoryClassName="BinaryLinkNameTypeViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -303,11 +316,14 @@
             xsi:type="gmfgen:FeatureLabelModelFacet"
             parser="//@labelParsers/@implementations.0"
             viewPattern="{0} : {1}"
+            editorPattern="{0}"
             editPattern="{0}">
           <metaFeatures
               href="mid.genmodel#//mid/TypedElement/name"/>
           <metaFeatures
               href="mid.genmodel#//mid/TypedElement/type"/>
+          <editableMetaFeatures
+              href="mid.genmodel#//mid/TypedElement/name"/>
         </modelFacet>
       </labels>
     </links>
@@ -315,6 +331,7 @@
         visualID="7001"
         editPartClassName="ModelReferenceModelReferenceCompartmentEditPart"
         itemSemanticEditPolicyClassName="ModelReferenceModelReferenceCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="ModelReferenceModelReferenceCompartmentViewFactory"
         canonicalEditPolicyClassName="ModelReferenceModelReferenceCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="ModelReferenceCompartment"

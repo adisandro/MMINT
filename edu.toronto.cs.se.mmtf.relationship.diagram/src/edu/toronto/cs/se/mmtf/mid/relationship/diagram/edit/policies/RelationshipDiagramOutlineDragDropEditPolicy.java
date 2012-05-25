@@ -71,6 +71,7 @@ references:
 			for (ModelReference modelRef : root.getModelRefs()) {
 				if (modelUri.equals(((Model) modelRef.getObject()).getUri())) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) { // avoid duplicates
+						//TODO MMTF: is this a proper check? two different pointer refs with same structures and values can exist
 						if (EcoreUtil.equals(((ModelElement) elementRef.getObject()).getPointer(), droppedElement)) {
 							continue references;
 						}

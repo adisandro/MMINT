@@ -54,6 +54,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	@Override
 	public boolean canExecute() {
 
+		//TODO MMTF: allow TYPES level to run when light type creation is implemented
 		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit()) && super.canExecute();
 	}
 
@@ -73,9 +74,11 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
+			//TODO MMTF: implement light type creation -> select supertype + insert text constraint
 			Editor editor = MidDiagramTrait.selectModelToCreate();
 			URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
 			MultiModel owner = (MultiModel) getElementToEdit();
+			MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);
 			MultiModelFactoryUtils.addModelEditor(editor, owner);
 			doConfigure(newElement, monitor, info);

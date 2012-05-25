@@ -36,6 +36,7 @@ public class MultiModelTypeInference implements MMTFExtensionPoints {
 
 		String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
 		TypedElement inferred = MMTFRegistry.getExtendibleType(modelTypeUri);
+		//TODO MMTF: look for light types and evaluate constraints
 
 		// fallback to root type
 		if (inferred == null) {

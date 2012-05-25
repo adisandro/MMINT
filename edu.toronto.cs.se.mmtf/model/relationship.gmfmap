@@ -70,6 +70,7 @@
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern="{0} : {1}"
+          editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
             href="relationship.gmfgraph#LinkLabel"/>
@@ -77,6 +78,8 @@
             href="mid.ecore#//TypedElement/name"/>
         <features
             href="mid.ecore#//TypedElement/type"/>
+        <editableFeatures
+            href="mid.ecore#//TypedElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -112,6 +115,7 @@
     <labelMappings
         xsi:type="gmfmap:FeatureLabelMapping"
         viewPattern="{0} : {1}"
+        editorPattern="{0}"
         editPattern="{0}">
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkLabel"/>
@@ -119,6 +123,8 @@
           href="mid.ecore#//TypedElement/name"/>
       <features
           href="mid.ecore#//TypedElement/type"/>
+      <editableFeatures
+          href="mid.ecore#//TypedElement/name"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/ModelRel/links"/>

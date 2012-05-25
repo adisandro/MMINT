@@ -76,9 +76,12 @@ public class MidParserProvider extends AbstractProvider implements
 			EAttribute[] features = new EAttribute[] {
 					MidPackage.eINSTANCE.getTypedElement_Name(),
 					MidPackage.eINSTANCE.getTypedElement_Type() };
-			MessageFormatParser parser = new MessageFormatParser(features);
+			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
+					.getTypedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features,
+					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			linkNameType_5003Parser = parser;
 		}
@@ -122,9 +125,12 @@ public class MidParserProvider extends AbstractProvider implements
 			EAttribute[] features = new EAttribute[] {
 					MidPackage.eINSTANCE.getTypedElement_Name(),
 					MidPackage.eINSTANCE.getTypedElement_Type() };
-			MessageFormatParser parser = new MessageFormatParser(features);
+			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
+					.getTypedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features,
+					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			binaryLinkNameType_6001Parser = parser;
 		}

@@ -24,10 +24,12 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditor;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -47,6 +49,31 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 	public ModelReferenceImportModelCommand(CreateElementRequest req) {
 
 		super(req);
+	}
+
+	/**
+	 * Disallows the command to be executed when the diagram root is a binary
+	 * model relationship and is either not standalone or has already two
+	 * models.
+	 * 
+	 * @return True if a model can be imported, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		ModelRel owner = (ModelRel) getElementToEdit();
+		if (owner instanceof BinaryModelRel) {
+			// a binary relationship which is not standalone can be only modified through the mid diagram
+			// a binary relationship which is standalone must have at most 2 models
+			if (owner.eContainer() != null || owner.getModels().size() >= 2) {
+				return false;
+			}
+		}
+		boolean constraints = (owner.eContainer() != null) ?
+			MultiModelConstraintChecker.canExecute((MultiModel) owner.eContainer()) :
+			true;
+
+		return constraints && super.canExecute();
 	}
 
 	/**
@@ -77,6 +104,8 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 				model = MultiModelFactoryUtils.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
 				if (model == null) {
 					model = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
+					Editor editor = MultiModelFactoryUtils.createEditor(model);
+					MultiModelFactoryUtils.addModelEditor(editor, (MultiModel) owner.eContainer());
 				}
 			}
 			ModelReference newElement = MultiModelFactoryUtils.createModelReference(owner, model);
@@ -95,30 +124,9 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 			throw ee;
 		}
 		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "No model added", e);
-			return CommandResult.newErrorCommandResult("No model added");
+			MMTFException.print(MMTFException.Type.WARNING, "No model imported", e);
+			return CommandResult.newErrorCommandResult("No model imported");
 		}
-	}
-
-	/**
-	 * Disallows the command to be executed when the diagram root is a binary
-	 * model relationship and is either not standalone or has already two
-	 * models.
-	 * 
-	 * @return False if the command can't be executed, true otherwise.
-	 */
-	@Override
-	public boolean canExecute() {
-
-		ModelRel owner = (ModelRel) getElementToEdit();
-		if (owner instanceof BinaryModelRel) {
-			// a binary relationship which is not standalone can be only modified through the mid diagram
-			// a binary relationship which is standalone must have at most 2 models
-			if (owner.eContainer() != null || owner.getModels().size() >= 2) {
-				return false;
-			}
-		}
-		return super.canExecute();
 	}
 
 }

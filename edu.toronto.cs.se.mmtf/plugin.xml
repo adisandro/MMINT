@@ -53,25 +53,25 @@
             <modelElement
                   category="ENTITY"
                   classLiteral="ModelElement"
-                  name="Root model element entity"
+                  name="EntityElem"
                   uri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/ENTITY">
             </modelElement>
             <modelElement
                   category="RELATIONSHIP"
                   classLiteral="ModelElement"
-                  name="Root model element relationship"
+                  name="RelElem"
                   uri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/RELATIONSHIP">
             </modelElement>
          </model>
          <link
                isNary="true"
-               name="Root model element link"
+               name="Link"
                uri="http:///edu/toronto/cs/se/mmtf/ModelRel/Link">
             <linkElement
-                  elementName="Root model element entity">
+                  elementName="EntityElement">
             </linkElement>
             <linkElement
-                  elementName="Root model element relationship">
+                  elementName="RelElement">
             </linkElement>
          </link>
       </relationship>

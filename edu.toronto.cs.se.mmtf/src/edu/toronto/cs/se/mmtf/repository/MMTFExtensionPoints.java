@@ -24,9 +24,9 @@ public interface MMTFExtensionPoints {
 	/** The uri of the root model relationship. */
 	public final static String ROOT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel";
 	/** The uri of the root model element of category entity. */
-	public final static String ROOT_MODEL_ELEMENT_ENTITY_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/ENTITY";
+	public final static String ROOT_MODEL_ELEMENT_ENTITY_URI = "http:///edu/toronto/cs/se/mmtf/Model/ModelElement/ENTITY";
 	/** The uri of the root model element of category relationship. */
-	public final static String ROOT_MODEL_ELEMENT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElement/RELATIONSHIP";
+	public final static String ROOT_MODEL_ELEMENT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/Model/ModelElement/RELATIONSHIP";
 	/** The uri of the root link among model elements. */
 	public final static String ROOT_RELATIONSHIP_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
 

@@ -32,6 +32,8 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
@@ -142,14 +144,10 @@ public class MultiModelFactoryUtils {
 	 *            The uri of the model to add.
 	 * @return The model just created.
 	 * @throws Exception
-	 *             If the model is not unique, or if the resource pointed by the
-	 *             model uri could not be get.
+	 *             If the resource pointed by the model uri could not be get.
 	 */
 	public static Model createModel(ModelOrigin origin, MultiModel multiModel, URI modelUri) throws Exception {
 
-		if (multiModel != null) {
-			assertModelUnique(multiModel, modelUri);
-		}
 		Model model = MidFactory.eINSTANCE.createModel();
 		addModel(model, origin, multiModel, modelUri);
 
@@ -216,17 +214,13 @@ public class MultiModelFactoryUtils {
 	 */
 	public static ModelElementReference createModelElementReference(ModelReference modelRef, EObject elementPointer) {
 
-		ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-//		if (elementPointer instanceof EReference) {
-//			element.setCategory(ModelElementCategory.RELATIONSHIP);
-//		}
-//		else {
-//			element.setCategory(ModelElementCategory.ENTITY);
-//		}
-//		element.setPointer(elementPointer);
-//		element.setLevel(container.getModel().getLevel());
-		//TODO MMTF: the referenced element is passed or checked/created here?
-
+		// create model element (duplicates are avoided by dnd policy)
+		ModelElement modelElem = MidFactory.eINSTANCE.createModelElement();
+		ModelElementCategory category = (elementPointer instanceof EReference) ?
+			ModelElementCategory.RELATIONSHIP :
+			ModelElementCategory.ENTITY;
+		modelElem.setCategory(category);
+		modelElem.setPointer(elementPointer);
 		ItemProviderAdapter itemAdapter = null;
 		for (Adapter adapter : elementPointer.eAdapters()) {
 			if (adapter instanceof ItemProviderAdapter) {
@@ -235,11 +229,20 @@ public class MultiModelFactoryUtils {
 			}
 		}
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
-//		element.setName(name);
+		((Model) modelRef.getObject()).getElements().add(modelElem);
+		addExtendibleElement(modelElem, null, null, name);
 
-		modelRef.getElementRefs().add(elementRef);
+		// create model element reference
+		ModelElementReference modelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+		if (modelRef.eContainer().eContainer() == null) { // standalone model relationship
+			modelElemRef.setContainedObject(modelElem);
+		}
+		else {
+			modelElemRef.setReferencedObject(modelElem);
+		}
+		modelRef.getElementRefs().add(modelElemRef);
 
-		return elementRef;
+		return modelElemRef;
 	}
 
 	/**
