@@ -57,6 +57,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				editor = mmtf.createEditorType(elem);
+				mmtf.setSupertypes();
 				mmtf.addModelTypeEditor(editor);
 				mmtf.addEditorTypeFileExtensions(registry, editor);
 			}

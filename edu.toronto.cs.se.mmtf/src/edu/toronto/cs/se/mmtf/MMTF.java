@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
@@ -74,6 +75,9 @@ public class MMTF implements MMTFExtensionPoints {
 	/** The repository of registered extensions. */
 	private static MultiModel repository;
 
+	/** A temporary map for the subtypes to be assigned a supertype. */
+	private static HashMap<ExtendibleElement, String> tempSubtypes;
+
 	/**
 	 * Adds an extendible type to the repository.
 	 * 
@@ -120,16 +124,14 @@ public class MMTF implements MMTFExtensionPoints {
 			rootUri = ROOT_RELATIONSHIP_LINK_URI;
 		}
 		//TODO MMTF: root text editor?
-		ExtendibleElement supertype = null;
 		if (supertypeUri == null) {
 			if (!uri.equals(rootUri)) {
-				supertype = MMTFRegistry.getExtendibleType(rootUri);
+				tempSubtypes.put(type, rootUri);
 			}
 		}
 		else {
-			supertype = MMTFRegistry.getExtendibleType(supertypeUri);
+			tempSubtypes.put(type, supertypeUri);
 		}
-		type.setSupertype(supertype);
 
 		repository.getExtendibleTable().put(uri, type);
 	}
@@ -501,6 +503,21 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 
 	/**
+	 * Set all the supertypes at once, to decouple from the order in which
+	 * extensions are read.
+	 */
+	public void setSupertypes() {
+
+		for (Entry<ExtendibleElement, String> entry : tempSubtypes.entrySet()) {
+			ExtendibleElement subtype = entry.getKey();
+			String supertypeUri = entry.getValue();
+			ExtendibleElement supertype = MMTFRegistry.getExtendibleType(supertypeUri);
+			subtype.setSupertype(supertype);
+		}
+		tempSubtypes.clear();
+	}
+
+	/**
 	 * Creates the repository from the registered extensions.
 	 * 
 	 * @param registry
@@ -510,6 +527,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		repository = MidFactory.eINSTANCE.createMultiModel();
 		repository.setLevel(MidLevel.TYPES);
+		tempSubtypes = new HashMap<ExtendibleElement, String>();
 		IConfigurationElement[] config;
 
 		// model types
@@ -534,6 +552,9 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		addEditorTypesFileExtensions(registry);
 
 		//TODO MMTF: operators
+
+		// extendible elements' supertypes
+		setSupertypes();
 
 		//TODO MMTF: do this on demand, with a button somewhere
 		ResourceSet resourceSet = new ResourceSetImpl();

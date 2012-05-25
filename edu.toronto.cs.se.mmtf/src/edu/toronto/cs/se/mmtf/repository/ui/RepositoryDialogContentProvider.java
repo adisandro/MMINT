@@ -19,6 +19,7 @@ import org.eclipse.jface.viewers.Viewer;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 
 /**
@@ -77,9 +78,13 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof MultiModel) {
-			// remove root models TODO fix
 			EList<Model> userModels = new BasicEList<Model>();
 			for (Model model : ((MultiModel) parentElement).getModels()) {
+				// remove model relationships
+				if (model instanceof ModelRel) {
+					continue;
+				}
+				// remove root models
 				if (!model.getUri().equals(ROOT_MODEL_URI) && !model.getUri().equals(ROOT_RELATIONSHIP_URI)) {
 					userModels.add(model);
 				}

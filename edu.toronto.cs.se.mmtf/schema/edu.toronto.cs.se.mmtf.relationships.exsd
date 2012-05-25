@@ -60,7 +60,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
          <sequence>
             <element ref="extendibleElement"/>
             <element ref="model" minOccurs="1" maxOccurs="unbounded"/>
-            <element ref="link" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="link" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="isNary" type="boolean" use="required">
             <annotation>
@@ -80,7 +80,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </annotation>
       <complexType>
          <sequence>
-            <element ref="modelElement" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="modelElement" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="modelTypeUri" type="string" use="required">
             <annotation>

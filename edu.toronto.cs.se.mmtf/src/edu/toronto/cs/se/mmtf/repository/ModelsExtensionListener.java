@@ -50,6 +50,7 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				model = mmtf.createModelType(elem);
+				mmtf.setSupertypes();
 				mmtf.addModelTypeEditors(model);
 			}
 		}

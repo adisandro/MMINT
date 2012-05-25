@@ -48,6 +48,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				mmtf.createModelRelType(elem);
+				mmtf.setSupertypes();
 			}
 		}
 	}
