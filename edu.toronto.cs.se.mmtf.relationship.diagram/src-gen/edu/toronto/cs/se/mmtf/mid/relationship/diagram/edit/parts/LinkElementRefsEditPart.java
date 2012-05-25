@@ -78,6 +78,7 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public LinkElementRefsFigure() {
+			this.setLineWidth(2);
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -87,6 +88,7 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
+			df.setLineWidth(2);
 			return df;
 		}
 

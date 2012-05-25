@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkNewNaryLinkCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ModelReferenceImportModelCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
 
@@ -38,6 +39,9 @@ public class RelationshipDiagramSemanticEditPolicy extends ModelRelItemSemanticE
 
 		if (MidElementTypes.ModelReference_2001 == req.getElementType()) {
 			return getGEFWrapper(new ModelReferenceImportModelCommand(req));
+		}
+		if (MidElementTypes.Link_2002 == req.getElementType()) {
+			return getGEFWrapper(new LinkNewNaryLinkCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

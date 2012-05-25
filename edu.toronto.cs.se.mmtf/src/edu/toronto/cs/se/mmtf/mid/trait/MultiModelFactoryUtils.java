@@ -39,7 +39,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
-import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
@@ -75,7 +74,6 @@ public class MultiModelFactoryUtils {
 		}
 		else if (multiModel != null) {
 			// only models get added to the table, excluding the ones in a standalone model relationship
-			//TODO MMTF: check also standalone modelrel when they get imported
 			multiModel.getExtendibleTable().put(elementUri.toPlatformString(true), element);
 		}
 		element.setUri(elementUri.toPlatformString(true));
@@ -164,16 +162,16 @@ public class MultiModelFactoryUtils {
 	 * @param modelRelUri
 	 *            The uri of the model relationship to add, null if not
 	 *            imported.
-	 * @param modelRelType
-	 *            The specific model relationship class type.
+	 * @param modelRelClass
+	 *            The specific model relationship class.
 	 * @return The model relationship just created.
 	 * @throws Exception
 	 *             If the resource pointed by the model relationship uri could
 	 *             not be get.
 	 */
-	public static ModelRel createModelRel(ModelOrigin origin, MultiModel multiModel, URI modelRelUri, EClass modelRelType) throws Exception {
+	public static ModelRel createModelRel(ModelOrigin origin, MultiModel multiModel, URI modelRelUri, EClass modelRelClass) throws Exception {
 
-		ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelType);
+		ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelClass);
 		addModel(modelRel, origin, multiModel, modelRelUri);
 		modelRel.setUnbounded(false);
 
@@ -243,6 +241,25 @@ public class MultiModelFactoryUtils {
 		modelRef.getElementRefs().add(modelElemRef);
 
 		return modelElemRef;
+	}
+
+	/**
+	 * Creates and adds a link to a model relationship.
+	 * 
+	 * @param modelRel
+	 *            The model relationship.
+	 * @param linkClass
+	 *            The specific link class.
+	 * @return The link just created.
+	 */
+	public static Link createLink(ModelRel modelRel, EClass linkClass) {
+
+		Link link = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
+		link.setUnbounded(false);
+		modelRel.getLinks().add(link);
+		addExtendibleElement(link, null, null, "");
+
+		return link;
 	}
 
 	/**
@@ -342,28 +359,31 @@ public class MultiModelFactoryUtils {
 
 		// copy mapping structure
 		ModelRel origModelRel = (ModelRel) modelRel.getRoot();
+		modelRel.setName(origModelRel.getName());
 		HashMap<EObject, ModelElementReference> elementRefs = new HashMap<EObject, ModelElementReference>();
 		for (ModelReference origModelRef : origModelRel.getModelRefs()) {
-			URI modelUri = URI.createPlatformResourceURI(((Model) origModelRef.getContainedObject()).getUri(), true);
+			Model origModel = (Model) origModelRef.getContainedObject();
+			URI modelUri = URI.createPlatformResourceURI(origModel.getUri(), true);
 			Model model = getModelUnique(multiModel, modelUri); // the model can already be in the MID
 			if (model == null) {
 				model = createModel(ModelOrigin.IMPORTED, multiModel, modelUri);
+				model.setName(origModel.getName());
+				Editor editor = createEditor(model);
+				addModelEditor(editor, multiModel);
 			}
 			modelRel.getModels().add(model);
 			ModelReference modelRef = createModelReference(modelRel, model);
 			for (ModelElementReference origElementRef : origModelRef.getElementRefs()) {
-//				ModelElementReference elementRef = createModelElementReference(modelRef, origElementRef.getPointer());
-//				elementRef.setName(origElement.getName());
-//				elementRefs.put(elementRef.getPointer(), elementRef);
-				//TODO MMTF: fix when createModelElementReference is finalized
+				//TODO MMTF: duplicates not filtered by dnd?
+				ModelElementReference elementRef = createModelElementReference(modelRef, ((ModelElement) origElementRef.getObject()).getPointer());
+				elementRefs.put(((ModelElement) elementRef.getObject()).getPointer(), elementRef);
 			}
 		}
 		for (Link origLink : origModelRel.getLinks()) {
-			Link link = (Link) RelationshipFactory.eINSTANCE.create(origLink.eClass());
+			Link link = createLink(modelRel, origLink.eClass());
 			link.setName(origLink.getName());
-			modelRel.getLinks().add(link);
 			for (ModelElementReference origElementRef : origLink.getElementRefs()) {
-//				link.getElementRefs().add(elementRefs.get(origElementRef.getPointer()));
+				link.getElementRefs().add(elementRefs.get(((ModelElement) origElementRef.getObject()).getPointer()));
 			}
 		}
 

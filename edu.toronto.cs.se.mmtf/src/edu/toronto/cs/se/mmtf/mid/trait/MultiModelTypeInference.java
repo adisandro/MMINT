@@ -48,6 +48,11 @@ public class MultiModelTypeInference implements MMTFExtensionPoints {
 
 	private static TypedElement inferType(ModelRel modelRel) {
 
+		// not specialized yet
+		if (modelRel.getModels().size() == 0) {
+			return MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI);
+		}
+
 		TypedElement inferred = null;
 
 modelTypes:

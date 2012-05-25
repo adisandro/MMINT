@@ -128,6 +128,7 @@ public class BinaryLinkEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public BinaryLinkFigure() {
+			this.setLineWidth(2);
 
 			createContents();
 			setTargetDecoration(createTargetDecoration());
@@ -150,6 +151,7 @@ public class BinaryLinkEditPart extends ConnectionNodeEditPart implements
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
+			df.setLineWidth(2);
 			return df;
 		}
 

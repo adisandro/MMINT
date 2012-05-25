@@ -5,14 +5,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition"
     name="relationship">
-  <figures
-      name="Default">
+  <figures name="Default">
     <figures
         xsi:type="gmfgraph:PolylineDecoration"
-        name="LinkElementRefsTgtDecoration"/>
+        name="LinkElementRefsTgtDecoration"
+        lineWidth="2"/>
     <figures
         xsi:type="gmfgraph:PolylineDecoration"
-        name="BinaryLinkTgtDecoration"/>
+        name="BinaryLinkTgtDecoration"
+        lineWidth="2"/>
     <figures
         xsi:type="gmfgraph:PolylineDecoration"
         name="ExtendibleSupertypeTgtDecoration"
@@ -64,6 +65,7 @@
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="LinkElementRefsFigure"
+          lineWidth="2"
           targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
     <descriptors
@@ -71,6 +73,7 @@
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="BinaryLinkFigure"
+          lineWidth="2"
           targetDecoration="//@figures.0/@figures.1">
         <children
             xsi:type="gmfgraph:Label"
@@ -89,14 +92,11 @@
           targetDecoration="//@figures.0/@figures.2"/>
     </descriptors>
   </figures>
-  <nodes
-      name="ModelReference"
+  <nodes name="ModelReference"
       figure="ModelReferenceFigure"/>
-  <nodes
-      name="ModelElementReference"
+  <nodes name="ModelElementReference"
       figure="ModelElementReferenceFigure"/>
-  <nodes
-      name="Link"
+  <nodes name="Link"
       figure="LinkFigure"/>
   <connections
       name="LinkElementRefs"
@@ -110,20 +110,16 @@
   <compartments
       name="ModelReferenceCompartment"
       figure="ModelReferenceFigure"/>
-  <labels
-      name="ModelReferenceLabel"
+  <labels name="ModelReferenceLabel"
       figure="ModelReferenceFigure"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels
-      name="ModelElementReferenceLabel"
+  <labels name="ModelElementReferenceLabel"
       figure="ModelElementReferenceFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels
-      name="LinkLabel"
+  <labels name="LinkLabel"
       figure="LinkFigure"
       accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels
-      name="BinaryLinkLabel"
+  <labels name="BinaryLinkLabel"
       figure="BinaryLinkFigure"
       accessor="//@figures.0/@descriptors.4/@accessors.0"/>
 </gmfgraph:Canvas>
