@@ -40,6 +40,8 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -195,6 +197,42 @@ public class MMTF implements MMTFExtensionPoints {
 			MMTFException.print(Type.WARNING, "Model type can't be registered", e);
 			model = null;
 		}
+
+		return model;
+	}
+
+	public static Model createLightModelType(Model superModel, String subModelName, String constraint) throws MMTFException {
+
+		// create and set uri
+		String uri = superModel.getUri();
+		uri += "/" + subModelName;
+		if (repository.getExtendibleTable().containsKey(uri)) {
+			throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
+		}
+		Model model = MidFactory.eINSTANCE.createModel();
+		model.setUri(uri);
+		repository.getExtendibleTable().put(uri, model);
+
+		// set specific attributes
+		model.setName(subModelName);
+		model.setSupertype(superModel);
+		model.setOrigin(ModelOrigin.CREATED);
+		ModelConstraint modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
+		modelConstraint.setBody(constraint);
+		modelConstraint.setEngine(ModelConstraintEngine.OCL);
+		model.setConstraint(modelConstraint);
+
+		// copy attributes from supertype
+		model.setLevel(superModel.getLevel());
+		model.setRoot(superModel.getRoot());
+		model.setFileExtension(superModel.getFileExtension());
+		for (Editor editor : superModel.getEditors()) {
+			model.getEditors().add(editor);
+		}
+		//TODO MMTF: model elements?
+
+		// register light model type
+		repository.getModels().add(model);
 
 		return model;
 	}
@@ -651,24 +689,42 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		}
 
 		/**
-		 * Gets a tree dialog to select among registered model types and their
-		 * editors.
+		 * Gets a tree dialog to select among registered model types' editors.
 		 * 
 		 * @return The tree dialog.
 		 */
-		public static ElementTreeSelectionDialog getRepositoryAsDialog() {
+		public static ElementTreeSelectionDialog getModelCreationDialog() {
 
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
 				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository)
+				new RepositoryDialogContentProvider(repository, false)
 			);
 			dialog.setValidator(new RepositoryDialogSelectionValidator());
 			dialog.setInput(repository);
 
 			return dialog;
 		}
+
+		/**
+		 * Gets a tree dialog to select among registered model types.
+		 * 
+		 * @return The tree dialog.
+		 */
+		public static ElementTreeSelectionDialog getModelTypeCreationDialog() {
+
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
+				shell,
+				new RepositoryDialogLabelProvider(),
+				new RepositoryDialogContentProvider(repository, true)
+			);
+			dialog.setInput(repository);
+
+			return dialog;
+		}
+
 	}
 
 }

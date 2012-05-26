@@ -46,7 +46,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute((MultiModel) getOldSource().eContainer()) && super.canExecute();
+		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getOldSource().eContainer()) && super.canExecute();
 	}
 
 	/**

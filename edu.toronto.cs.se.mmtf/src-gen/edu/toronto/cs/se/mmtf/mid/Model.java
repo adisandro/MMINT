@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -149,5 +150,31 @@ public interface Model extends ExtendibleElement {
 	 * @generated
 	 */
 	EList<ModelElement> getElements();
+
+	/**
+	 * Returns the value of the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constraint</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constraint</em>' containment reference.
+	 * @see #setConstraint(ModelConstraint)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Constraint()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ModelConstraint getConstraint();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Constraint</em>' containment reference.
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	void setConstraint(ModelConstraint value);
 
 } // Model

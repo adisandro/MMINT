@@ -58,6 +58,15 @@ public interface MidFactory extends EFactory {
 	ModelElement createModelElement();
 
 	/**
+	 * Returns a new object of class '<em>Model Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Constraint</em>'.
+	 * @generated
+	 */
+	ModelConstraint createModelConstraint();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -53,6 +53,7 @@ public class MultiModelTypeInference implements MMTFExtensionPoints {
 			return MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI);
 		}
 
+		//TODO MMTF: look for light types and evaluate constraints
 		TypedElement inferred = null;
 
 modelTypes:

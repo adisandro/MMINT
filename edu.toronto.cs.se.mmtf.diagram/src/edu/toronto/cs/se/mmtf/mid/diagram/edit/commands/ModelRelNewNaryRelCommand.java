@@ -52,7 +52,8 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute((MultiModel) getElementToEdit()) && super.canExecute();
+		//TODO MMTF: allow TYPES level to run when light type creation is implemented
+		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit()) && super.canExecute();
 	}
 
 	/**
@@ -69,6 +70,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+		//TODO MMTF: implement light type creation -> select supertype + insert text constraint
 		try {
 			MultiModel owner = (MultiModel) getElementToEdit();
 			ModelRel newElement = MultiModelFactoryUtils.createModelRel(

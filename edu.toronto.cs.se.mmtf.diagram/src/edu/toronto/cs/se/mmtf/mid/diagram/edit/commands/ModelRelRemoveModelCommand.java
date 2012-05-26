@@ -51,7 +51,7 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute((MultiModel) getContainer().eContainer()) && super.canExecute();
+		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getContainer().eContainer()) && super.canExecute();
 	}
 
 	/**

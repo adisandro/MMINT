@@ -20,6 +20,9 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelElementCategory/ENTITY"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelElementCategory/RELATIONSHIP"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelConstraintEngine">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintEngine/OCL"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/uri"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/supertype"/>
@@ -38,6 +41,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/fileExtension"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/constraint"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//TypedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/name"/>
@@ -52,6 +56,10 @@
     <genClasses ecoreClass="mid.ecore#//ModelElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/category"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/pointer"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ModelConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/engine"/>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">

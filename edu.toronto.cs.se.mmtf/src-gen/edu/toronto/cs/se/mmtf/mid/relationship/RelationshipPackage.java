@@ -178,6 +178,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__ELEMENTS = MidPackage.MODEL__ELEMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__CONSTRAINT = MidPackage.MODEL__CONSTRAINT;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -341,6 +350,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__ELEMENTS = MODEL_REL__ELEMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__CONSTRAINT = MODEL_REL__CONSTRAINT;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -502,6 +520,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__ELEMENTS = BINARY_MODEL_REL__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__CONSTRAINT = BINARY_MODEL_REL__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.

@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.diagram.trait;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
@@ -24,6 +25,7 @@ import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
@@ -71,7 +73,7 @@ public class MidDiagramTrait {
 	 */
 	public static Editor selectModelToCreate() throws Exception {
 
-		ElementTreeSelectionDialog dialog = MMTFRegistry.getRepositoryAsDialog();
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelCreationDialog();
 		dialog.setTitle("Create new model");
 		dialog.setMessage("Choose wizard to create model");
 		dialog.setAllowMultiple(false);
@@ -100,6 +102,60 @@ public class MidDiagramTrait {
 		Editor editor = MultiModelFactoryUtils.createEditor(editorType, wizDialog.getCreatedModelUri());
 
 		return editor;
+	}
+
+	/**
+	 * Shows a tree dialog to select a model choosing from the registered model
+	 * types.
+	 * 
+	 * @return The choosen model.
+	 * @throws MMTFException
+	 *             If the model selection was not completed for any reason.
+	 */
+	public static Model selectModelToExtend() throws MMTFException {
+
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelTypeCreationDialog();
+		dialog.setTitle("Create new light model type");
+		dialog.setMessage("Choose model supertype");
+		dialog.setAllowMultiple(false);
+
+		if (dialog.open() == Window.CANCEL) {
+			throw new MMTFException("Dialog cancel button pressed");
+		}
+		Object selection = dialog.getFirstResult();
+		if (selection == null) {
+			throw new MMTFException("Dialog ok button pressed with no selection");
+		}
+		Model supertype = (Model) selection;
+
+		return supertype;
+	}
+
+	/**
+	 * Shows an input dialog to get text from the user.
+	 * 
+	 * @param dialogTitle
+	 *            The dialog title.
+	 * @param dialogMessage
+	 *            The dialog message.
+	 * @return The text input from the user.
+	 * @throws MMTFException
+	 *             If the text input was not completed for any reason.
+	 */
+	public static String getStringInput(String dialogTitle, String dialogMessage) throws MMTFException {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, null, null);
+
+		if (dialog.open() == Window.CANCEL) {
+			throw new MMTFException("Dialog cancel button pressed");
+		}
+		String text = dialog.getValue();
+		if (text == null || text.equals("")) {
+			throw new MMTFException("Dialog ok button pressed with no text");
+		}
+
+		return text;
 	}
 
 }

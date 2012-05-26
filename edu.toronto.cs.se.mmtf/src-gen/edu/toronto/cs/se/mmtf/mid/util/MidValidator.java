@@ -108,12 +108,16 @@ public class MidValidator extends EObjectValidator {
 				return validateEStringToExtendibleElementMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.MODEL_ELEMENT:
 				return validateModelElement((ModelElement)value, diagnostics, context);
+			case MidPackage.MODEL_CONSTRAINT:
+				return validateModelConstraint((ModelConstraint)value, diagnostics, context);
 			case MidPackage.MID_LEVEL:
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
 			case MidPackage.MODEL_ELEMENT_CATEGORY:
 				return validateModelElementCategory((ModelElementCategory)value, diagnostics, context);
+			case MidPackage.MODEL_CONSTRAINT_ENGINE:
+				return validateModelConstraintEngine((ModelConstraintEngine)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -279,6 +283,15 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateModelConstraint(ModelConstraint modelConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelConstraint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMidLevel(MidLevel midLevel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -298,6 +311,15 @@ public class MidValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModelElementCategory(ModelElementCategory modelElementCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelConstraintEngine(ModelConstraintEngine modelConstraintEngine, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

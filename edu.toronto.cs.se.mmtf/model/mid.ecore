@@ -40,6 +40,8 @@
         eType="#//editor/Editor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ModelElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//ModelConstraint"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MidLevel">
     <eLiterals name="INSTANCES"/>
@@ -80,6 +82,14 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ModelElementCategory">
     <eLiterals name="ENTITY"/>
     <eLiterals name="RELATIONSHIP" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="engine" lowerBound="1"
+        eType="#//ModelConstraintEngine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModelConstraintEngine">
+    <eLiterals name="OCL"/>
   </eClassifiers>
   <eSubpackages name="relationship" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship"
       nsPrefix="relationship">

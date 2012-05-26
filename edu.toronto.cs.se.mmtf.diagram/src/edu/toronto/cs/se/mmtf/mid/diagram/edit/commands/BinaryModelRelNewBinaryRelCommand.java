@@ -57,7 +57,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute(getContainer()) && super.canExecute();
+		return MultiModelConstraintChecker.isInstanceLevel(getContainer()) && super.canExecute();
 	}
 
 	/**

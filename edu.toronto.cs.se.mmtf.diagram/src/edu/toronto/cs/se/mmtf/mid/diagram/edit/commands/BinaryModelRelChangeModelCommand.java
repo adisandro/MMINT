@@ -48,7 +48,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.canExecute((MultiModel) getLink().eContainer()) && super.canExecute();
+		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getLink().eContainer()) && super.canExecute();
 	}
 
 	/**

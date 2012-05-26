@@ -72,6 +72,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 			case MidPackage.MODEL: return createModel();
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
 			case MidPackage.MODEL_ELEMENT: return createModelElement();
+			case MidPackage.MODEL_CONSTRAINT: return createModelConstraint();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -91,6 +92,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return createModelOriginFromString(eDataType, initialValue);
 			case MidPackage.MODEL_ELEMENT_CATEGORY:
 				return createModelElementCategoryFromString(eDataType, initialValue);
+			case MidPackage.MODEL_CONSTRAINT_ENGINE:
+				return createModelConstraintEngineFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -110,6 +113,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return convertModelOriginToString(eDataType, instanceValue);
 			case MidPackage.MODEL_ELEMENT_CATEGORY:
 				return convertModelElementCategoryToString(eDataType, instanceValue);
+			case MidPackage.MODEL_CONSTRAINT_ENGINE:
+				return convertModelConstraintEngineToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -153,6 +158,16 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public ModelElement createModelElement() {
 		ModelElementImpl modelElement = new ModelElementImpl();
 		return modelElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelConstraint createModelConstraint() {
+		ModelConstraintImpl modelConstraint = new ModelConstraintImpl();
+		return modelConstraint;
 	}
 
 	/**
@@ -212,6 +227,26 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * @generated
 	 */
 	public String convertModelElementCategoryToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelConstraintEngine createModelConstraintEngineFromString(EDataType eDataType, String initialValue) {
+		ModelConstraintEngine result = ModelConstraintEngine.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertModelConstraintEngineToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

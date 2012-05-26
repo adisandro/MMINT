@@ -70,7 +70,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 			}
 		}
 		boolean constraints = (owner.eContainer() != null) ?
-			MultiModelConstraintChecker.canExecute((MultiModel) owner.eContainer()) :
+			MultiModelConstraintChecker.isInstanceLevel((MultiModel) owner.eContainer()) :
 			true;
 
 		return constraints && super.canExecute();

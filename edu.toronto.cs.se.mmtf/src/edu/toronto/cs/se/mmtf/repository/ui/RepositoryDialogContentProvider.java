@@ -32,16 +32,21 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 
 	/** The repository. */
 	private MultiModel repository;
+	/** True if editors are not going to be shown. */
+	private boolean modelsOnly;
 
 	/**
 	 * Constructor: initialises the repository.
 	 * 
 	 * @param repository
 	 *            The repository.
+	 * @param modelsOnly
+	 *            True if editors are not going to be shown.
 	 */
-	public RepositoryDialogContentProvider(MultiModel repository) {
+	public RepositoryDialogContentProvider(MultiModel repository, boolean modelsOnly) {
 
 		this.repository = repository;
+		this.modelsOnly = modelsOnly;
 	}
 
 	/**
@@ -91,7 +96,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 			}
 			return userModels.toArray();
 		}
-		if (parentElement instanceof Model) {
+		if (parentElement instanceof Model && !modelsOnly) {
 			return ((Model) parentElement).getEditors().toArray();
 		}
 
@@ -123,7 +128,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 		if (element instanceof MultiModel  ) {
 			return !((MultiModel) element).getModels().isEmpty();
 		}
-		if (element instanceof Model) {
+		if (element instanceof Model && !modelsOnly) {
 			return !((Model) element).getEditors().isEmpty();
 		}
 
