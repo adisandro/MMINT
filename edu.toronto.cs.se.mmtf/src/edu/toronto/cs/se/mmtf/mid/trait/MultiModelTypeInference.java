@@ -13,7 +13,12 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 
 import java.util.HashSet;
 
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -35,8 +40,29 @@ public class MultiModelTypeInference implements MMTFExtensionPoints {
 	private static TypedElement inferType(Model model) {
 
 		String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
-		TypedElement inferred = MMTFRegistry.getExtendibleType(modelTypeUri);
-		//TODO MMTF: look for light types and evaluate constraints
+		ExtendibleElement inferred = MMTFRegistry.getExtendibleType(modelTypeUri);
+
+		//TODO MMTF: polish, a lot
+		for (Model lightModelSubtype : MMTFRegistry.getModelTypes()) {
+			if (lightModelSubtype instanceof ModelRel) {
+				continue;
+			}
+			if (lightModelSubtype.getSupertype() == inferred && lightModelSubtype.getConstraint() != null) {
+				OCL ocl = OCL.newInstance();
+				OCLHelper helper = ocl.createOCLHelper();
+				helper.setInstanceContext(model.getRoot());
+				try {
+					ExpressionInOcl constraint = helper.createInvariant(lightModelSubtype.getConstraint().getBody());
+					if (ocl.check(model.getRoot(), constraint)) {
+						inferred = lightModelSubtype;
+						break;
+					}
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 		// fallback to root type
 		if (inferred == null) {

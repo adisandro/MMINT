@@ -82,9 +82,11 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 				String constraint = MidDiagramTrait.getStringInput("Create new light model type", "Insert new light model type constraint");
 				newElement = MMTF.createLightModelType(superModelType, subModelTypeName, constraint);
 				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
-				owner.getModels().add(newElement);
+				//TODO MMTF: plus I can't add the same newElement to two lists, need to create a copy
+				//owner.getModels().add(newElement);
 			}
 			else {
+				//TODO MMTF: show light types or not? they should get inferred anyway, but maybe I need some indication
 				Editor editor = MidDiagramTrait.selectModelToCreate();
 				URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
 				MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
