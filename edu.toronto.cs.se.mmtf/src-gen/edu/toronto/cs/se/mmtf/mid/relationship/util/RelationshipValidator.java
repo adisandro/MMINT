@@ -482,7 +482,7 @@ public class RelationshipValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String HOMOMORPHISM_LINK__SAME_ELEMENT_TYPES__EEXPRESSION = "invalid->forAll(e1 : ModelElement, e2 : ModelElement | e1.pointer.oclType() = e2.pointer.oclType())";
+	protected static final String HOMOMORPHISM_LINK__SAME_ELEMENT_TYPES__EEXPRESSION = "elementRefs->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.object.oclAsType(ModelElement).pointer.oclType() = e2.object.oclAsType(ModelElement).pointer.oclType())";
 
 	/**
 	 * Validates the sameElementTypes constraint of '<em>Homomorphism Link</em>'.

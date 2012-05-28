@@ -636,7 +636,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		  (homomorphismLinkEClass, 
 		   source, 
 		   new String[] {
-			 "sameElementTypes", "invalid->forAll(e1 : ModelElement, e2 : ModelElement | e1.pointer.oclType() = e2.pointer.oclType())"
+			 "sameElementTypes", "elementRefs->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.object.oclAsType(ModelElement).pointer.oclType() = e2.object.oclAsType(ModelElement).pointer.oclType())"
 		   });			
 		addAnnotation
 		  (typedElementReferenceEClass, 

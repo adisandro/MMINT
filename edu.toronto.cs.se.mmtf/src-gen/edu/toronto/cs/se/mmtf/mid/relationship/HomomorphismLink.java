@@ -20,7 +20,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship;
  *
  * @see edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage#getHomomorphismLink()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sameElementTypes'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sameElementTypes='invalid->forAll(e1 : ModelElement, e2 : ModelElement | e1.pointer.oclType() = e2.pointer.oclType())'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sameElementTypes='elementRefs->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.object.oclAsType(ModelElement).pointer.oclType() = e2.object.oclAsType(ModelElement).pointer.oclType())'"
  * @generated
  */
 public interface HomomorphismLink extends BinaryLink {
