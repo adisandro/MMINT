@@ -78,6 +78,27 @@ public interface MMTFExtensionPoints {
 	/** The Relationships extension point's link's linkElement child's elementName attribute. */
 	public final static String RELATIONSHIPS_LINK_LINKELEMENT_ATTR_ELEMENTNAME = "elementName";
 
+	/** The Operators extension point's id. */
+	public final static String OPERATORS_EXT_POINT = "edu.toronto.cs.se.mmtf.operators";
+	/** The Operators extension point's class attribute. */
+	public final static String OPERATORS_ATTR_CLASS = "class";
+	/** The Operators extension point's isConversion attribute. */
+	public final static String OPERATORS_ATTR_ISCONVERSION = "isConversion";
+	/** The Operators extension point's input child. */
+	public final static String OPERATORS_CHILD_INPUT = "input";
+	/** The Operators extension point's output child. */
+	public final static String OPERATORS_CHILD_OUTPUT = "output";
+	/** The Operators extension point's input/output's parameter child. */
+	public final static String OPERATORS_INPUTOUTPUT_CHILD_PARAMETER = "parameter";
+	/** The Operators extension point's input/output's parameter child's name attribute. */
+	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME = "name";
+	/** The Operators extension point's input/output's parameter child's type attribute. */
+	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_TYPE = "type";
+	/** The Operators extension point's input/output's parameter child's isVararg attribute. */
+	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG = "isVararg";
+	/** The Operators extension point's input/output's parameter child's modelTypeUri attribute. */
+	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI = "modelTypeUri";
+
 	/** The Eclipse's Editors extension point's id. */
 	public final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";
 	/** The Eclipse's Editors extension's id attribute. */

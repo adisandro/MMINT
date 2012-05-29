@@ -87,9 +87,6 @@ The relationship&apos;s enpoints model packages have to be registered too throug
                <documentation>
                   The relationship&apos;s endpoint model type URI.
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/extendibleElement/@uri"/>
-               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -201,6 +198,9 @@ The relationship&apos;s enpoints model packages have to be registered too throug
                <documentation>
                   The link&apos;s endpoint&apos;s name (one of the model elements&apos; names).
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.relationships/relationship/model/modelElement/@name"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>

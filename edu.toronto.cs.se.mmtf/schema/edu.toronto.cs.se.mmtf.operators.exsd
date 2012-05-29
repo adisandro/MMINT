@@ -68,17 +68,10 @@
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="uri" type="string" use="required">
+         <attribute name="isConversion" type="boolean" use="required">
             <annotation>
                <documentation>
-                  The operator URI to be registered with MMTF.
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="supertypeUri" type="string">
-            <annotation>
-               <documentation>
-                  The supertype operator URI.
+                  Whether this is a conversion operator.
                </documentation>
             </annotation>
          </attribute>
@@ -121,14 +114,14 @@
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The parameter name (must be unique in this operator).
                </documentation>
             </annotation>
          </attribute>
          <attribute name="type" use="required">
             <annotation>
                <documentation>
-                  
+                  The parameter type.
                </documentation>
             </annotation>
             <simpleType>
@@ -145,18 +138,15 @@
          <attribute name="isVararg" type="boolean" use="required">
             <annotation>
                <documentation>
-                  
+                  Whether this parameter represents a variable number of actual parameters.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="modelTypeUri" type="string">
             <annotation>
                <documentation>
-                  
+                  The parameter&apos;s model type URI (only if type is MODEL or MODEL_REL).
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="identifier" basedOn="edu.toronto.cs.se.mmtf.models/modelType/@uri"/>
-               </appinfo>
             </annotation>
          </attribute>
       </complexType>

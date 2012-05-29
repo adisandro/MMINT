@@ -21,6 +21,7 @@ Export-Package: edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.mmtf.mid.relationship.util,
  edu.toronto.cs.se.mmtf.mid.trait,
  edu.toronto.cs.se.mmtf.mid.util,
+ edu.toronto.cs.se.mmtf.repository,
  edu.toronto.cs.se.mmtf.repository.ui
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,

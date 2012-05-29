@@ -81,7 +81,7 @@ public class ModelNameMatch implements IOperator {
 				//TODO MMTF: now create link, then create model element references and model elements
 			}
 		}
-		return null;
+		return new EObject[] {modelRel};
 	}
 
 }

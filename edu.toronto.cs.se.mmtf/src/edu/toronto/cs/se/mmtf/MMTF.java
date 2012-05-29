@@ -48,14 +48,21 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
+import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
+import edu.toronto.cs.se.mmtf.mid.operator.ParameterType;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
+import edu.toronto.cs.se.mmtf.repository.IOperator;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
+import edu.toronto.cs.se.mmtf.repository.OperatorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogSelectionValidator;
@@ -353,62 +360,6 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	}
 
 	/**
-	 * Adds existing editor types to a new model type.
-	 * 
-	 * @param model
-	 *            The new model type.
-	 */
-	public void addModelTypeEditors(Model model) {
-
-		if (model == null) {
-			return;
-		}
-
-		for (Editor editor : repository.getEditors()) {
-			if (editor.getModelUri().equals(model.getUri())) {
-				model.getEditors().add(editor);
-			}
-		}
-	}
-
-	/**
-	 * Removes a model type from the repository.
-	 * 
-	 * @param uri
-	 *            The model type uri.
-	 */
-	public void removeModelType(String uri) {
-
-		ExtendibleElement model = repository.getExtendibleTable().removeKey(uri);
-		if (model != null && model instanceof Model) {
-			repository.getModels().remove(model);
-			// remove model elements, if any
-			for (ModelElement element : ((Model) model).getElements()) {
-				repository.getExtendibleTable().removeKey(element.getUri());
-			}
-			// remove model relationship specific structures
-			if (model instanceof ModelRel) {
-				for (Link link : ((ModelRel) model).getLinks()) {
-					repository.getExtendibleTable().removeKey(link.getUri());
-				}
-			}
-			// remove model relationships that use this model, and subtypes
-			for (ExtendibleElement extendible : repository.getExtendibleTable().values()) {
-				// model relationships
-				if (model instanceof Model && extendible instanceof ModelRel) {
-					if (((ModelRel) extendible).getModels().contains(model)) {
-						removeModelType(extendible.getUri());
-					}
-				}
-				// subtypes
-				if (extendible instanceof Model && ((Model) model).getSupertype().getUri().equals(uri)) {
-					removeModelType(extendible.getUri());
-				}
-			}
-		}
-	}
-
-	/**
 	 * Creates and adds an editor type to the repository.
 	 * 
 	 * @param extensionConfig
@@ -449,7 +400,90 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		return editor;
 	}
-	
+
+	/**
+	 * Creates and adds an operator to the repository.
+	 * 
+	 * @param extensionConfig
+	 *            The extension configuration.
+	 * @return The created operator.
+	 */
+	private void addOperatorParameters(Operator operator, EList<Parameter> parameterList, IConfigurationElement parameterConfig) {
+
+		IConfigurationElement[] parameterElems = parameterConfig.getChildren(OPERATORS_INPUTOUTPUT_CHILD_PARAMETER);
+		for (IConfigurationElement parameterElem : parameterElems) {
+			// read configuration
+			String name = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME);
+			ParameterType type = ParameterType.get(
+				parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_TYPE)
+			);
+			boolean vararg = Boolean.parseBoolean(parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG));
+			String modelTypeUri = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
+			// create parameter
+			Model model = null;
+			if ((type == ParameterType.MODEL || type == ParameterType.MODEL_REL) && modelTypeUri != null) {
+				model = MMTFRegistry.getModelType(modelTypeUri);
+			}
+			Parameter parameter;
+			if (model == null) {
+				parameter = OperatorFactory.eINSTANCE.createParameter();
+			}
+			else {
+				parameter = OperatorFactory.eINSTANCE.createModelParameter();
+				((ModelParameter) parameter).setModelUri(modelTypeUri);
+				((ModelParameter) parameter).setModel(model);
+			}
+			// set attributes
+			parameter.setName(name);
+			parameter.setType(type);
+			parameter.setVararg(vararg);
+			parameterList.add(parameter);
+			operator.getSignatureTable().put(name, parameter);
+		}
+	}
+
+	/**
+	 * Creates and adds an operator to the repository.
+	 * 
+	 * @param extensionConfig
+	 *            The extension configuration.
+	 * @return The created operator.
+	 */
+	public Operator createOperator(IConfigurationElement extensionConfig) {
+
+		// java implementation
+		Object executable;
+		try {
+			executable = extensionConfig.createExecutableExtension(OPERATORS_ATTR_CLASS);
+			if (!(executable instanceof IOperator)) {
+				throw new MMTFException("Operator's executable doesn't extend IOperator interface");
+			}
+		}
+		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Operator can't be registered", e);
+			return null;
+		}
+
+		// create and set basic attributes
+		boolean conversion = Boolean.parseBoolean(extensionConfig.getAttribute(OPERATORS_ATTR_ISCONVERSION));
+		Operator operator = (conversion) ?
+			OperatorFactory.eINSTANCE.createConversionOperator() :
+			OperatorFactory.eINSTANCE.createOperator();
+		operator.setName(extensionConfig.getDeclaringExtension().getLabel());
+		operator.setLevel(MidLevel.TYPES);
+
+		// handle operator structure
+		IConfigurationElement inputConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
+		addOperatorParameters(operator, operator.getInputs(), inputConfig);
+		IConfigurationElement outputConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
+		addOperatorParameters(operator, operator.getOutputs(), outputConfig);
+
+		repository.getOperators().add(operator);
+		repository.getOperatorTable().put(MMTFRegistry.getOperatorSignature(operator), operator);
+
+		return operator;
+	}
+
 	/**
 	 * Adds a new editor type to an existing model type.
 	 * 
@@ -461,6 +495,25 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		ExtendibleElement model = repository.getExtendibleTable().get(editor.getModelUri());
 		if (model != null && model instanceof Model) {
 			((Model) model).getEditors().add(editor);
+		}
+	}
+
+	/**
+	 * Adds existing editor types to a new model type.
+	 * 
+	 * @param model
+	 *            The new model type.
+	 */
+	public void addModelTypeEditors(Model model) {
+
+		if (model == null) {
+			return;
+		}
+
+		for (Editor editor : repository.getEditors()) {
+			if (editor.getModelUri().equals(model.getUri())) {
+				model.getEditors().add(editor);
+			}
 		}
 	}
 
@@ -517,6 +570,43 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 				}
 				for (String fileExtension : extensions.split(",")) {
 					editor.getFileExtensions().add(fileExtension);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Removes a model type from the repository.
+	 * 
+	 * @param uri
+	 *            The model type uri.
+	 */
+	public void removeModelType(String uri) {
+
+		ExtendibleElement model = repository.getExtendibleTable().removeKey(uri);
+		if (model != null && model instanceof Model) {
+			repository.getModels().remove(model);
+			// remove model elements, if any
+			for (ModelElement element : ((Model) model).getElements()) {
+				repository.getExtendibleTable().removeKey(element.getUri());
+			}
+			// remove model relationship specific structures
+			if (model instanceof ModelRel) {
+				for (Link link : ((ModelRel) model).getLinks()) {
+					repository.getExtendibleTable().removeKey(link.getUri());
+				}
+			}
+			// remove model relationships that use this model, and subtypes
+			for (ExtendibleElement extendible : repository.getExtendibleTable().values()) {
+				// model relationships
+				if (model instanceof Model && extendible instanceof ModelRel) {
+					if (((ModelRel) extendible).getModels().contains(model)) {
+						removeModelType(extendible.getUri());
+					}
+				}
+				// subtypes
+				if (extendible instanceof Model && ((Model) model).getSupertype().getUri().equals(uri)) {
+					removeModelType(extendible.getUri());
 				}
 			}
 		}
@@ -582,14 +672,17 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		// editors
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
-		Editor editor;
 		for (IConfigurationElement elem : config) {
-			editor = createEditorType(elem);
+			Editor editor = createEditorType(elem);
 			addModelTypeEditor(editor);
 		}		
 		addEditorTypesFileExtensions(registry);
 
-		//TODO MMTF: operators
+		// operators
+		config = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
+		for (IConfigurationElement elem : config) {
+			createOperator(elem);
+		}
 
 		// extendible elements' supertypes
 		setSupertypes();
@@ -620,6 +713,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			registry.addListener(new ModelsExtensionListener(this), MODELS_EXT_POINT);
 			registry.addListener(new RelationshipsExtensionListener(this), RELATIONSHIPS_EXT_POINT);
 			registry.addListener(new EditorsExtensionListener(this), EDITORS_EXT_POINT);
+			registry.addListener(new OperatorsExtensionListener(this), OPERATORS_EXT_POINT);
 		}
 	}
 
@@ -642,6 +736,25 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		public static ExtendibleElement getExtendibleType(String uri) {
 
 			return repository.getExtendibleTable().get(uri);
+		}
+
+		/**
+		 * Gets a model type.
+		 * 
+		 * @param uri
+		 *            The uri of the model type.
+		 * @return The model type, or null if uri is not found or found not to
+		 *         be a model.
+		 */
+		public static Model getModelType(String uri) {
+
+			ExtendibleElement model = getExtendibleType(uri);
+			if (!(model instanceof Model)) {
+				return null;
+			}
+			else {
+				return (Model) model;
+			}
 		}
 
 		/**
@@ -723,6 +836,60 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			dialog.setInput(repository);
 
 			return dialog;
+		}
+
+		/**
+		 * Gets a parameter's signature.
+		 * 
+		 * @param parameter
+		 *            The parameter.
+		 * @return The parameter's signature.
+		 */
+		private static String getParameterSignature(Parameter parameter) {
+
+			String signature = "";
+			if (parameter instanceof ModelParameter) {
+				signature += ((ModelParameter) parameter).getModel().getName();
+			}
+			else {
+				signature += parameter.getType();
+			}
+			if (parameter.isVararg()) {
+				signature += "...";
+			}
+			signature += " " + parameter.getName();
+
+			return signature;
+		}
+
+		/**
+		 * Gets an operator's signature.
+		 * 
+		 * @param operator
+		 *            The operator.
+		 * @return The operator's signature.
+		 */
+		public static String getOperatorSignature(Operator operator) {
+
+			// output parameters
+			String signature = "[";
+			for (Parameter parameter : operator.getOutputs()) {
+				signature += getParameterSignature(parameter) + ", ";
+			}
+			signature = signature.substring(0, signature.length() - 2);
+			signature += "] ";
+
+			// operator name
+			signature += operator.getName() + "(";
+
+			// input parameters
+			for (Parameter parameter : operator.getInputs()) {
+				signature += getParameterSignature(parameter) + ", ";
+			}
+			signature = signature.substring(0, signature.length() - 2);
+			signature += ")";
+
+			return signature;
 		}
 
 	}

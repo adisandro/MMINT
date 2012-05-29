@@ -15,4 +15,29 @@
 
 <plugin>
 
+   <extension
+         name="ModelNameMatch"
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operator
+            class="edu.toronto.cs.se.modelepedia.operator.ModelNameMatch"
+            isConversion="false">
+         <input>
+            <parameter
+                  isVararg="true"
+                  name="models"
+                  type="MODEL"
+                  modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
+                  name="nameMatch"
+                  type="MODEL_REL"
+                  modelTypeUri="http:///edu/toronto/cs/se/mmtf/ModelRel">
+            </parameter>
+         </output>
+      </operator>
+   </extension>
+
 </plugin>

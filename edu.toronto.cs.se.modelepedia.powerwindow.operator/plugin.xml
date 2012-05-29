@@ -15,4 +15,29 @@
 
 <plugin>
 
+   <extension
+         name="PWControlRelToPetriNet"
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operator
+            class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PWControlRelToPetriNet"
+            isConversion="true">
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="controlRel"
+                  type="MODEL_REL"
+                  modelTypeUri="http:///edu/toronto/cs/se/modelepedia/powerwindow/PWControlRel">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
+                  name="petriNet"
+                  type="MODEL"
+                  modelTypeUri="http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore">
+            </parameter>
+         </output>
+      </operator>
+   </extension>
+
 </plugin>

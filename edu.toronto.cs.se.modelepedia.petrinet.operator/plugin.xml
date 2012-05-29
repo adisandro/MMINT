@@ -15,4 +15,28 @@
 
 <plugin>
 
+   <extension
+         name="PetriNetSimulate"
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operator
+            class="edu.toronto.cs.se.modelepedia.petrinet.operator.PetriNetSimulate"
+            isConversion="false">
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="petriNet"
+                  type="MODEL"
+                  modelTypeUri="http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
+                  name="result"
+                  type="BOOL">
+            </parameter>
+         </output>
+      </operator>
+   </extension>
+
 </plugin>
