@@ -38,6 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MidOCLFactory;
+import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
@@ -275,11 +276,13 @@ public class MidVisualIDRegistry {
 			return BinaryModelRelEditPart.VISUAL_ID;
 		}
 		if (OperatorPackage.eINSTANCE.getModelParameter().isSuperTypeOf(
-				domainElement.eClass())) {
+				domainElement.eClass())
+				&& isModelParameter_4004((ModelParameter) domainElement)) {
 			return ModelParameterEditPart.VISUAL_ID;
 		}
 		if (OperatorPackage.eINSTANCE.getModelParameter().isSuperTypeOf(
-				domainElement.eClass())) {
+				domainElement.eClass())
+				&& isModelParameter_4005((ModelParameter) domainElement)) {
 			return ModelParameter2EditPart.VISUAL_ID;
 		}
 		return -1;
@@ -331,6 +334,20 @@ public class MidVisualIDRegistry {
 				RelationshipPackage.eINSTANCE.getModelRel(), null).evaluate(
 				domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isModelParameter_4004(ModelParameter domainElement) {
+		return domainElement.eContainmentFeature().getName().equals("inputs");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isModelParameter_4005(ModelParameter domainElement) {
+		return domainElement.eContainmentFeature().getName().equals("outputs");
 	}
 
 }

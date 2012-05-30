@@ -198,7 +198,13 @@ public class MidParserProvider extends AbstractProvider implements
 		if (modelParameterName_6002Parser == null) {
 			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
 					.getParameter_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
+			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
+					.getParameter_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features,
+					editableFeatures);
+			parser.setViewPattern("[in] {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			modelParameterName_6002Parser = parser;
 		}
 		return modelParameterName_6002Parser;
@@ -216,7 +222,13 @@ public class MidParserProvider extends AbstractProvider implements
 		if (modelParameterName_6003Parser == null) {
 			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
 					.getParameter_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
+			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
+					.getParameter_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features,
+					editableFeatures);
+			parser.setViewPattern("[out] {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			modelParameterName_6003Parser = parser;
 		}
 		return modelParameterName_6003Parser;

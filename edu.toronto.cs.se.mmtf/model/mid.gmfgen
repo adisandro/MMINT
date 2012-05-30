@@ -159,7 +159,7 @@
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ModelParameterEditHelper"/>
       <viewmap xsi:type="gmfgen:InnerClassViewmap" className="OperatorInputsFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OperatorInputsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOperatorInputsLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OperatorInputsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOperatorInputsLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureOperatorInputsLabelFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureOperatorInputsLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOperatorInputsLabelFigure() {&#xA;&#x9;&#x9;return fFigureOperatorInputsLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet xsi:type="gmfgen:TypeLinkModelFacet">
+      <modelFacet xsi:type="gmfgen:TypeLinkModelFacet" modelElementSelector="//@expressionProviders/@providers.1/@expressions.0">
         <metaClass href="mid.genmodel#//mid/operator/ModelParameter"/>
         <containmentMetaFeature href="mid.genmodel#//mid/operator/Operator/inputs"/>
         <childMetaFeature href="mid.genmodel#//mid/operator/Operator/inputs"/>
@@ -170,8 +170,9 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOperatorInputsLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
         </viewmap>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="[in] {0}" editorPattern="{0}" editPattern="{0}">
           <metaFeatures href="mid.genmodel#//mid/operator/Parameter/name"/>
+          <editableMetaFeatures href="mid.genmodel#//mid/operator/Parameter/name"/>
         </modelFacet>
       </labels>
     </links>
@@ -179,7 +180,7 @@
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@links.3/@elementType"/>
       <viewmap xsi:type="gmfgen:InnerClassViewmap" className="OperatorOutputsFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OperatorOutputsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOperatorOutputsLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OperatorOutputsFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOperatorOutputsLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureOperatorOutputsLabelFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureOperatorOutputsLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOperatorOutputsLabelFigure() {&#xA;&#x9;&#x9;return fFigureOperatorOutputsLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet xsi:type="gmfgen:TypeLinkModelFacet">
+      <modelFacet xsi:type="gmfgen:TypeLinkModelFacet" modelElementSelector="//@expressionProviders/@providers.1/@expressions.1">
         <metaClass href="mid.genmodel#//mid/operator/ModelParameter"/>
         <containmentMetaFeature href="mid.genmodel#//mid/operator/Operator/outputs"/>
         <childMetaFeature href="mid.genmodel#//mid/operator/Operator/outputs"/>
@@ -190,8 +191,9 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOperatorOutputsLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
         </viewmap>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="[out] {0}" editorPattern="{0}" editPattern="{0}">
           <metaFeatures href="mid.genmodel#//mid/operator/Parameter/name"/>
+          <editableMetaFeatures href="mid.genmodel#//mid/operator/Parameter/name"/>
         </modelFacet>
       </labels>
     </links>
@@ -324,6 +326,10 @@
       <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::CREATED"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::IMPORTED"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsKindOf(relationship::BinaryModelRel)"/>
+    </providers>
+    <providers xsi:type="gmfgen:GenJavaExpressionProvider" injectExpressionBody="true">
+      <expressions xsi:type="gmfgen:GenConstraint" body="return domainElement.eContainmentFeature().getName().equals(&quot;inputs&quot;);"/>
+      <expressions xsi:type="gmfgen:GenConstraint" body="return domainElement.eContainmentFeature().getName().equals(&quot;outputs&quot;);"/>
     </providers>
   </expressionProviders>
   <labelParsers extensibleViaService="true">

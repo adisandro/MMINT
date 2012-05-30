@@ -202,11 +202,19 @@
   <links>
     <domainMetaElement
         href="mid.ecore#//operator/ModelParameter"/>
+    <domainSpecialization
+        body="return domainElement.eContainmentFeature().getName().equals(&quot;inputs&quot;);"
+        language="java"/>
     <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="[in] {0}"
+        editorPattern="{0}"
+        editPattern="{0}">
       <diagramLabel
           href="mid.gmfgraph#OperatorInputsLabel"/>
       <features
+          href="mid.ecore#//operator/Parameter/name"/>
+      <editableFeatures
           href="mid.ecore#//operator/Parameter/name"/>
     </labelMappings>
     <containmentFeature
@@ -220,11 +228,19 @@
   <links>
     <domainMetaElement
         href="mid.ecore#//operator/ModelParameter"/>
+    <domainSpecialization
+        body="return domainElement.eContainmentFeature().getName().equals(&quot;outputs&quot;);"
+        language="java"/>
     <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="[out] {0}"
+        editorPattern="{0}"
+        editPattern="{0}">
       <diagramLabel
           href="mid.gmfgraph#OperatorOutputsLabel"/>
       <features
+          href="mid.ecore#//operator/Parameter/name"/>
+      <editableFeatures
           href="mid.ecore#//operator/Parameter/name"/>
     </labelMappings>
     <containmentFeature
