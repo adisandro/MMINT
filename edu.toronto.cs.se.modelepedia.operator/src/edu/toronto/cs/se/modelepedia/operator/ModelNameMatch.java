@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -24,18 +26,18 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
-import edu.toronto.cs.se.mmtf.repository.IOperator;
 
-public class ModelNameMatch implements IOperator {
+public class ModelNameMatch extends OperatorExecutableImpl {
 
 	private final static String NAME_FEATURE = "name";
 	private final static String MODEL_REL_NAME = "nameMatch";
 
 	@Override
-	public EObject[] invoke(EObject[] parameters) throws Exception {
+	public EList<EObject> execute(EList<EObject> parameters) throws Exception {
 
 		// look for identical names in the models
 		HashMap<String, ArrayList<EObject>> objectNames = new HashMap<String, ArrayList<EObject>>();
@@ -61,8 +63,8 @@ public class ModelNameMatch implements IOperator {
 		}
 
 		// create model relationship among models
-		MultiModel multiModel = (MultiModel) ((Model) parameters[0]).eContainer();
-		EClass modelRelClass = (parameters.length == 2) ?
+		MultiModel multiModel = (MultiModel) ((Model) parameters.get(0)).eContainer();
+		EClass modelRelClass = (parameters.size() == 2) ?
 			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
 			RelationshipPackage.eINSTANCE.getModelRel();
 		ModelRel modelRel = MultiModelFactoryUtils.createModelRel(ModelOrigin.CREATED, multiModel, null, modelRelClass);
@@ -81,7 +83,10 @@ public class ModelNameMatch implements IOperator {
 				//TODO MMTF: now create link, then create model element references and model elements
 			}
 		}
-		return new EObject[] {modelRel};
+
+		EList<EObject> result = new BasicEList<EObject>();
+		result.add(modelRel);
+		return result;
 	}
 
 }

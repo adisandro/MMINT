@@ -15,7 +15,9 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -189,13 +191,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__SIGNATURE_TABLE = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Executable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__EXECUTABLE = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int OPERATOR_FEATURE_COUNT = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -454,6 +465,15 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
 
 	/**
+	 * The feature id for the '<em><b>Executable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__EXECUTABLE = OPERATOR__EXECUTABLE;
+
+	/**
 	 * The number of structural features of the '<em>Conversion Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -472,6 +492,43 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl <em>Executable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getOperatorExecutable()
+	 * @generated
+	 */
+	int OPERATOR_EXECUTABLE = 6;
+
+	/**
+	 * The number of structural features of the '<em>Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXECUTABLE_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXECUTABLE___EXECUTE__ELIST = 0;
+
+	/**
+	 * The number of operations of the '<em>Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXECUTABLE_OPERATION_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -479,7 +536,18 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getParameterType()
 	 * @generated
 	 */
-	int PARAMETER_TYPE = 6;
+	int PARAMETER_TYPE = 7;
+
+
+	/**
+	 * The meta object id for the '<em>Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Exception
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
+	 * @generated
+	 */
+	int EXCEPTION = 8;
 
 
 	/**
@@ -558,6 +626,17 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperator_SignatureTable();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable <em>Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Executable</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EReference getOperator_Executable();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter <em>Parameter</em>}'.
@@ -679,6 +758,26 @@ public interface OperatorPackage extends EPackage {
 	EClass getConversionOperator();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable <em>Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Executable</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable
+	 * @generated
+	 */
+	EClass getOperatorExecutable();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Execute</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#execute(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getOperatorExecutable__Execute__EList();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -687,6 +786,17 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getParameterType();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Exception</em>'.
+	 * @see java.lang.Exception
+	 * @model instanceClass="java.lang.Exception"
+	 * @generated
+	 */
+	EDataType getException();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -770,6 +880,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR__SIGNATURE_TABLE = eINSTANCE.getOperator_SignatureTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Executable</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR__EXECUTABLE = eINSTANCE.getOperator_Executable();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -868,6 +986,24 @@ public interface OperatorPackage extends EPackage {
 		EClass CONVERSION_OPERATOR = eINSTANCE.getConversionOperator();
 
 		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl <em>Executable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getOperatorExecutable()
+		 * @generated
+		 */
+		EClass OPERATOR_EXECUTABLE = eINSTANCE.getOperatorExecutable();
+
+		/**
+		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR_EXECUTABLE___EXECUTE__ELIST = eINSTANCE.getOperatorExecutable__Execute__EList();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -876,6 +1012,16 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PARAMETER_TYPE = eINSTANCE.getParameterType();
+
+		/**
+		 * The meta object literal for the '<em>Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Exception
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
+		 * @generated
+		 */
+		EDataType EXCEPTION = eINSTANCE.getException();
 
 	}
 

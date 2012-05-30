@@ -105,6 +105,10 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createConversionOperatorAdapter();
 			}
 			@Override
+			public Adapter caseOperatorExecutable(OperatorExecutable object) {
+				return createOperatorExecutableAdapter();
+			}
+			@Override
 			public Adapter caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
 			}
@@ -209,6 +213,20 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConversionOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable <em>Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable
+	 * @generated
+	 */
+	public Adapter createOperatorExecutableAdapter() {
 		return null;
 	}
 

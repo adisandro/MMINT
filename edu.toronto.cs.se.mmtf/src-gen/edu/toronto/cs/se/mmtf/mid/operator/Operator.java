@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EMap;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getSignatureTable <em>Signature Table</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable <em>Executable</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,5 +84,31 @@ public interface Operator extends TypedElement {
 	 * @generated
 	 */
 	EMap<String, Parameter> getSignatureTable();
+
+	/**
+	 * Returns the value of the '<em><b>Executable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Executable</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Executable</em>' containment reference.
+	 * @see #setExecutable(OperatorExecutable)
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_Executable()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	OperatorExecutable getExecutable();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable <em>Executable</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Executable</em>' containment reference.
+	 * @see #getExecutable()
+	 * @generated
+	 */
+	void setExecutable(OperatorExecutable value);
 
 } // Operator

@@ -119,8 +119,12 @@ public class OperatorValidator extends EObjectValidator {
 				return validateEStringToOperatorMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case OperatorPackage.CONVERSION_OPERATOR:
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
+			case OperatorPackage.OPERATOR_EXECUTABLE:
+				return validateOperatorExecutable((OperatorExecutable)value, diagnostics, context);
 			case OperatorPackage.PARAMETER_TYPE:
 				return validateParameterType((ParameterType)value, diagnostics, context);
+			case OperatorPackage.EXCEPTION:
+				return validateException((Exception)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -284,7 +288,25 @@ public class OperatorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateOperatorExecutable(OperatorExecutable operatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(operatorExecutable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateParameterType(ParameterType parameterType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateException(Exception exception, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

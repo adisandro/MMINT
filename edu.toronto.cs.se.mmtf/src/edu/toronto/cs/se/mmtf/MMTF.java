@@ -50,6 +50,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.operator.ParameterType;
@@ -59,7 +60,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
-import edu.toronto.cs.se.mmtf.repository.IOperator;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.OperatorsExtensionListener;
@@ -451,19 +451,6 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 */
 	public Operator createOperator(IConfigurationElement extensionConfig) {
 
-		// java implementation
-		Object executable;
-		try {
-			executable = extensionConfig.createExecutableExtension(OPERATORS_ATTR_CLASS);
-			if (!(executable instanceof IOperator)) {
-				throw new MMTFException("Operator's executable doesn't extend IOperator interface");
-			}
-		}
-		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Operator can't be registered", e);
-			return null;
-		}
-
 		// create and set basic attributes
 		boolean conversion = Boolean.parseBoolean(extensionConfig.getAttribute(OPERATORS_ATTR_ISCONVERSION));
 		Operator operator = (conversion) ?
@@ -471,6 +458,20 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			OperatorFactory.eINSTANCE.createOperator();
 		operator.setName(extensionConfig.getDeclaringExtension().getLabel());
 		operator.setLevel(MidLevel.TYPES);
+
+		// java implementation
+		Object executable;
+		try {
+			executable = extensionConfig.createExecutableExtension(OPERATORS_ATTR_CLASS);
+			if (!(executable instanceof OperatorExecutable)) {
+				throw new MMTFException("Operator's executable doesn't extend OperatorExecutable interface");
+			}
+			operator.setExecutable((OperatorExecutable) executable);
+		}
+		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Operator can't be registered", e);
+			return null;
+		}
 
 		// handle operator structure
 		IConfigurationElement inputConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];

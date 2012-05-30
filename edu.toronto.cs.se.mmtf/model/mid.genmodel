@@ -112,6 +112,7 @@
         <genEnumLiterals ecoreEnumLiteral="mid.ecore#//operator/ParameterType/MODEL_REL"/>
         <genEnumLiterals ecoreEnumLiteral="mid.ecore#//operator/ParameterType/BOOL"/>
       </genEnums>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
       <genClasses ecoreClass="mid.ecore#//operator/EStringToParameterMap">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToParameterMap/key"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToParameterMap/value"/>
@@ -120,6 +121,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/inputs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/signatureTable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/executable"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/Parameter">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Parameter/name"/>
@@ -136,6 +138,11 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToOperatorMap/value"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator"/>
+      <genClasses image="false" ecoreClass="mid.ecore#//operator/OperatorExecutable">
+        <genOperations ecoreOperation="mid.ecore#//operator/OperatorExecutable/execute">
+          <genParameters ecoreParameter="mid.ecore#//operator/OperatorExecutable/execute/parameters"/>
+        </genOperations>
+      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

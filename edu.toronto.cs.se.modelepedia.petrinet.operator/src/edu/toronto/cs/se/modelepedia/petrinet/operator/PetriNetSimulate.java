@@ -11,14 +11,15 @@
  */
 package edu.toronto.cs.se.modelepedia.petrinet.operator;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmtf.repository.IOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 
-public class PetriNetSimulate implements IOperator {
+public class PetriNetSimulate extends OperatorExecutableImpl {
 
 	@Override
-	public EObject[] invoke(EObject[] parameters) throws Exception {
+	public EList<EObject> execute(EList<EObject> parameters) throws Exception {
 
 		return null;
 	}
