@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
@@ -892,6 +894,14 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			signature += ")";
 
 			return signature;
+		}
+
+		public static EList<Operator> getExecutableOperators(EList<Model> models) {
+
+			EList<Operator> operators = new BasicEList<Operator>();
+			//TODO MMTF: need to implement an evaluator
+
+			return operators;
 		}
 
 	}

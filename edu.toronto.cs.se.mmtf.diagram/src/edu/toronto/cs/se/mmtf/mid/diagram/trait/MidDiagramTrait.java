@@ -53,7 +53,7 @@ public class MidDiagramTrait {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		DiagramDocumentEditor editor = (DiagramDocumentEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		View view = editor.getDiagramEditPart().getNotationView();
+		View view = (View) editor.getDiagramEditPart().getModel();
 
 		MidElementChooserDialog dialog = new MidElementChooserDialog(shell, view, relOnly);
 		if (dialog.open() == Window.CANCEL) {
