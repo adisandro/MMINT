@@ -91,6 +91,7 @@ public class OperatorItemProvider
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__SIGNATURE_TABLE);
+			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__EXECUTABLE);
 		}
 		return childrenFeatures;
 	}
@@ -148,6 +149,7 @@ public class OperatorItemProvider
 			case OperatorPackage.OPERATOR__INPUTS:
 			case OperatorPackage.OPERATOR__OUTPUTS:
 			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
+			case OperatorPackage.OPERATOR__EXECUTABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

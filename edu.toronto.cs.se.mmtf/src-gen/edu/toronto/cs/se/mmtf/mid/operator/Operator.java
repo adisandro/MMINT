@@ -96,7 +96,7 @@ public interface Operator extends TypedElement {
 	 * @return the value of the '<em>Executable</em>' containment reference.
 	 * @see #setExecutable(OperatorExecutable)
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_Executable()
-	 * @model containment="true" required="true"
+	 * @model containment="true" required="true" transient="true"
 	 * @generated
 	 */
 	OperatorExecutable getExecutable();

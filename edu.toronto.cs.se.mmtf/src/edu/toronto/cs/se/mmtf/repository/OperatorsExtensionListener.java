@@ -63,7 +63,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				//TODO MMTF: get by class?
+				//TODO MMTF: get by what?
 			}
 		}
 	}

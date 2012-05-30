@@ -480,6 +480,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		addOperatorParameters(operator, operator.getOutputs(), outputConfig);
 
 		repository.getOperators().add(operator);
+		//TODO MMTF: maybe use another key?
 		repository.getOperatorTable().put(MMTFRegistry.getOperatorSignature(operator), operator);
 
 		return operator;

@@ -11,20 +11,22 @@
  */
 package edu.toronto.cs.se.modelepedia.powerwindow.operator;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.repository.IOperator;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetFactory;
 
-public class PWControlRelToPetriNet implements IOperator {
+public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 
 	@Override
-	public EObject[] invoke(EObject[] parameters) throws Exception {
+	public EList<EObject> execute(EList<EObject> parameters) throws Exception {
 
-		if (parameters.length != 1 || !(parameters[0] instanceof ModelRel)) {
+		if (parameters.size() != 1 || !(parameters.get(0) instanceof ModelRel)) {
 			throw new MMTFException("Bad operator parameters");
 		}
 
@@ -32,7 +34,9 @@ public class PWControlRelToPetriNet implements IOperator {
 		//TODO MMTF: serialize and use the uri like if we import such model
 		//Model petriNetModel = MultiModelFactoryUtils.createModel(origin, multiModel, modelUri);
 
-		return new EObject[] {petriNet};
+		EList<EObject> result = new BasicEList<EObject>();
+		result.add(petriNet);
+		return result;
 	}
 
 }
