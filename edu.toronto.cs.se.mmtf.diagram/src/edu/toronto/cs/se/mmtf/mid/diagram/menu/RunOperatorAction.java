@@ -54,6 +54,7 @@ public class RunOperatorAction extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
+		//TODO MMTF: rename to actualParameters
 		EList<Model> models = new BasicEList<Model>();
 		for (Object object : objects) {
 			if (object instanceof ModelEditPart) {
@@ -102,8 +103,10 @@ public class RunOperatorAction extends ContributionItem {
 		for (Operator operator : operators) {
 			MenuItem operatorItem = new MenuItem(operatorsMenu, SWT.NONE);
 			operatorItem.setText(operator.getName());
+			operatorItem.addSelectionListener(
+				new RunOperatorListener(operator, models)
+			);
 			//TODO MMTF: nice to show label of operator invocation with actual parameters
-			//TODO MMTF: add selection listener to actually run operator
 		}
 	}
 

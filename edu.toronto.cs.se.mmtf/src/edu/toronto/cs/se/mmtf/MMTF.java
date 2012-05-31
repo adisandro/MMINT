@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -32,7 +33,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
@@ -409,10 +409,14 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 * @return The created operator.
+	 * @throws MMTFException
+	 *             If there exists a vararg parameter which is not the last
+	 *             parameter.
 	 */
-	private void addOperatorParameters(Operator operator, EList<Parameter> parameterList, IConfigurationElement parameterConfig) {
+	private void addOperatorParameters(Operator operator, EList<Parameter> parameterList, IConfigurationElement parameterConfig) throws MMTFException {
 
 		IConfigurationElement[] parameterElems = parameterConfig.getChildren(OPERATORS_INPUTOUTPUT_CHILD_PARAMETER);
+		int i = 0;
 		for (IConfigurationElement parameterElem : parameterElems) {
 			// read configuration
 			String name = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME);
@@ -420,11 +424,15 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 				parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_TYPE)
 			);
 			boolean vararg = Boolean.parseBoolean(parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG));
+			if (vararg && i != (parameterElems.length-1)) { // only last parameter can be vararg
+				throw new MMTFException("Only last parameter can be a vararg parameter");
+			}
 			String modelTypeUri = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
 			// create parameter
 			Model model = null;
 			if ((type == ParameterType.MODEL || type == ParameterType.MODEL_REL) && modelTypeUri != null) {
 				model = MMTFRegistry.getModelType(modelTypeUri);
+				//TODO MMTF: if conversion operator add pointer from model
 			}
 			Parameter parameter;
 			if (model == null) {
@@ -441,6 +449,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			parameter.setVararg(vararg);
 			parameterList.add(parameter);
 			operator.getSignatureTable().put(name, parameter);
+			i++;
 		}
 	}
 
@@ -461,25 +470,25 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		operator.setName(extensionConfig.getDeclaringExtension().getLabel());
 		operator.setLevel(MidLevel.TYPES);
 
-		// java implementation
-		Object executable;
 		try {
+			// java implementation
+			Object executable;
 			executable = extensionConfig.createExecutableExtension(OPERATORS_ATTR_CLASS);
 			if (!(executable instanceof OperatorExecutable)) {
 				throw new MMTFException("Operator's executable doesn't extend OperatorExecutable interface");
 			}
 			operator.setExecutable((OperatorExecutable) executable);
+
+			// handle operator structure
+			IConfigurationElement inputConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
+			addOperatorParameters(operator, operator.getInputs(), inputConfig);
+			IConfigurationElement outputConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
+			addOperatorParameters(operator, operator.getOutputs(), outputConfig);
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Operator can't be registered", e);
 			return null;
 		}
-
-		// handle operator structure
-		IConfigurationElement inputConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
-		addOperatorParameters(operator, operator.getInputs(), inputConfig);
-		IConfigurationElement outputConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
-		addOperatorParameters(operator, operator.getOutputs(), outputConfig);
 
 		repository.getOperators().add(operator);
 		//TODO MMTF: maybe use another key?
@@ -896,10 +905,49 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			return signature;
 		}
 
+		private static void addSubstitutableTypes(HashSet<String> substitutableTypes, ExtendibleElement element) {
+
+			// base case
+			if (substitutableTypes.contains(element.getType())) {
+				return;
+			}
+
+			// add supertypes
+			if (element.getSupertype() != null) {
+				substitutableTypes.add(element.getSupertype().getType());
+				addSubstitutableTypes(substitutableTypes, element.getSupertype());
+			}
+
+			// add conversions
+			//TODO MMTF: i need also a list of conversion operators i go through, to apply them in the right order
+		}
+
 		public static EList<Operator> getExecutableOperators(EList<Model> models) {
 
+			// compute substitutable types
+			//TODO MMTF: what if I link this to model types creation/deletion?
+			//TODO MMTF: so that I have a global table instead of computing it at every operator invocation
+			HashMap<String, HashSet<String>> substitutabilityTable = new HashMap<String, HashSet<String>>();
+			for (Model model : models) {
+				HashSet<String> substitutableTypes = substitutabilityTable.get(model.getType());
+				if (substitutableTypes == null) {
+					substitutableTypes = new HashSet<String>();
+					addSubstitutableTypes(substitutableTypes, model);
+					substitutabilityTable.put(model.getType(), substitutableTypes);
+				}
+			}
+
 			EList<Operator> operators = new BasicEList<Operator>();
-			//TODO MMTF: need to implement an evaluator
+nextOperator:
+			for (Operator operator : repository.getOperators()) {
+				for (Parameter parameter : operator.getInputs()) {
+					if (!(parameter instanceof ModelParameter)) {
+						continue nextOperator;
+					}
+					//TODO MMTF: match actual parameters with formal parameters
+					//TODO MMTF: follow sequential order (need counter) or use names?
+				}
+			}
 
 			return operators;
 		}
