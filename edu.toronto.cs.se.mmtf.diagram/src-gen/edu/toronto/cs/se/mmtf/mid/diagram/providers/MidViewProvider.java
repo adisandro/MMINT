@@ -61,10 +61,6 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameType2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameTypeEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterName2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelModelsEditPart;
@@ -73,6 +69,10 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 
 /**
@@ -279,14 +279,12 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 			return createBinaryModelRel_4003(
 					getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
-		case ModelParameterEditPart.VISUAL_ID:
-			return createModelParameter_4004(
-					getSemanticElement(semanticAdapter), containerView, index,
-					persisted, preferencesHint);
-		case ModelParameter2EditPart.VISUAL_ID:
-			return createModelParameter_4005(
-					getSemanticElement(semanticAdapter), containerView, index,
-					persisted, preferencesHint);
+		case ParameterEditPart.VISUAL_ID:
+			return createParameter_4006(getSemanticElement(semanticAdapter),
+					containerView, index, persisted, preferencesHint);
+		case Parameter2EditPart.VISUAL_ID:
+			return createParameter_4007(getSemanticElement(semanticAdapter),
+					containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -724,9 +722,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createModelParameter_4004(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Edge createParameter_4006(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
@@ -738,8 +735,7 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MidVisualIDRegistry
-				.getType(ModelParameterEditPart.VISUAL_ID));
+		edge.setType(MidVisualIDRegistry.getType(ParameterEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -771,23 +767,21 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6002 = createLabel(edge,
-				MidVisualIDRegistry
-						.getType(ModelParameterNameEditPart.VISUAL_ID));
-		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6004 = createLabel(edge,
+				MidVisualIDRegistry.getType(ParameterNameEditPart.VISUAL_ID));
+		label6004.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6002 = (Location) label6002.getLayoutConstraint();
-		location6002.setX(0);
-		location6002.setY(40);
+		Location location6004 = (Location) label6004.getLayoutConstraint();
+		location6004.setX(0);
+		location6004.setY(40);
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createModelParameter_4005(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Edge createParameter_4007(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
@@ -799,8 +793,7 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MidVisualIDRegistry
-				.getType(ModelParameter2EditPart.VISUAL_ID));
+		edge.setType(MidVisualIDRegistry.getType(Parameter2EditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -832,14 +825,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6003 = createLabel(edge,
-				MidVisualIDRegistry
-						.getType(ModelParameterName2EditPart.VISUAL_ID));
-		label6003.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6005 = createLabel(edge,
+				MidVisualIDRegistry.getType(ParameterName2EditPart.VISUAL_ID));
+		label6005.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6003 = (Location) label6003.getLayoutConstraint();
-		location6003.setX(0);
-		location6003.setY(40);
+		Location location6005 = (Location) label6005.getLayoutConstraint();
+		location6005.setX(0);
+		location6005.setY(40);
 		return edge;
 	}
 

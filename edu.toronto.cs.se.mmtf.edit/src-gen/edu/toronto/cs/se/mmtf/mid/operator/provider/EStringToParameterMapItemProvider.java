@@ -191,11 +191,6 @@ public class EStringToParameterMapItemProvider
 			(createChildParameter
 				(OperatorPackage.Literals.ESTRING_TO_PARAMETER_MAP__VALUE,
 				 OperatorFactory.eINSTANCE.createParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OperatorPackage.Literals.ESTRING_TO_PARAMETER_MAP__VALUE,
-				 OperatorFactory.eINSTANCE.createModelParameter()));
 	}
 
 	/**

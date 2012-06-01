@@ -201,7 +201,7 @@
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//operator/ModelParameter"/>
+        href="mid.ecore#//operator/Parameter"/>
     <domainSpecialization
         body="return domainElement.eContainmentFeature().getName().equals(&quot;inputs&quot;);"
         language="java"/>
@@ -223,11 +223,11 @@
         href="mid.gmfgraph#OperatorInputs"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//operator/ModelParameter/model"/>
+        href="mid.ecore#//operator/Parameter/model"/>
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//operator/ModelParameter"/>
+        href="mid.ecore#//operator/Parameter"/>
     <domainSpecialization
         body="return domainElement.eContainmentFeature().getName().equals(&quot;outputs&quot;);"
         language="java"/>
@@ -249,7 +249,7 @@
         href="mid.gmfgraph#OperatorOutputs"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//operator/ModelParameter/model"/>
+        href="mid.ecore#//operator/Parameter/model"/>
   </links>
   <diagram>
     <diagramCanvas

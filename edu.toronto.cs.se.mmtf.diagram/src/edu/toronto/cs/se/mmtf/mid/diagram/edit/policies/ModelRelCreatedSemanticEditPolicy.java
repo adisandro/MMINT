@@ -34,9 +34,9 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelChangeModelComma
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelRemoveModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelModelsEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
 
@@ -87,14 +87,14 @@ public class ModelRelCreatedSemanticEditPolicy extends ModelRelItemSemanticEditP
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelParameterEditPart.VISUAL_ID) {
+			if (MidVisualIDRegistry.getVisualID(incomingLink) == ParameterEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelParameter2EditPart.VISUAL_ID) {
+			if (MidVisualIDRegistry.getVisualID(incomingLink) == Parameter2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));

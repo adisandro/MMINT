@@ -187,6 +187,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__CONSTRAINT = MidPackage.MODEL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__CONVERSION_OPERATORS = MidPackage.MODEL__CONVERSION_OPERATORS;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -359,6 +368,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__CONSTRAINT = MODEL_REL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__CONVERSION_OPERATORS = MODEL_REL__CONVERSION_OPERATORS;
+
+	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -529,6 +547,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__CONSTRAINT = BINARY_MODEL_REL__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__CONVERSION_OPERATORS = BINARY_MODEL_REL__CONVERSION_OPERATORS;
 
 	/**
 	 * The feature id for the '<em><b>Models</b></em>' reference list.

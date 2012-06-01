@@ -92,8 +92,6 @@ public interface MMTFExtensionPoints {
 	public final static String OPERATORS_INPUTOUTPUT_CHILD_PARAMETER = "parameter";
 	/** The Operators extension point's input/output's parameter child's name attribute. */
 	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME = "name";
-	/** The Operators extension point's input/output's parameter child's type attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_TYPE = "type";
 	/** The Operators extension point's input/output's parameter child's isVararg attribute. */
 	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG = "isVararg";
 	/** The Operators extension point's input/output's parameter child's modelTypeUri attribute. */

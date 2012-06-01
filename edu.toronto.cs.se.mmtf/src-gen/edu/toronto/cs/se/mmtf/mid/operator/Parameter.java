@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator;
 
+import edu.toronto.cs.se.mmtf.mid.Model;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,14 +23,13 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#isVararg <em>Vararg</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#getModel <em>Model</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getParameter()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isModelParameter'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isModelParameter='type = ParameterType::MODEL or type = ParameterType::MODEL_REL implies self.oclIsKindOf(ModelParameter)'"
+ * @model
  * @generated
  */
 public interface Parameter extends EObject {
@@ -60,35 +60,6 @@ public interface Parameter extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ParameterType
-	 * @see #setType(ParameterType)
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getParameter_Type()
-	 * @model required="true"
-	 * @generated
-	 */
-	ParameterType getType();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ParameterType
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(ParameterType value);
-
-	/**
 	 * Returns the value of the '<em><b>Vararg</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -113,5 +84,31 @@ public interface Parameter extends EObject {
 	 * @generated
 	 */
 	void setVararg(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model</em>' reference.
+	 * @see #setModel(Model)
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getParameter_Model()
+	 * @model required="true"
+	 * @generated
+	 */
+	Model getModel();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#getModel <em>Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model</em>' reference.
+	 * @see #getModel()
+	 * @generated
+	 */
+	void setModel(Model value);
 
 } // Parameter

@@ -52,17 +52,17 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4004"
-      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator' and _eClass_.name = 'ModelParameter')">
+      visualID="4006"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator' and _eClass_.name = 'Parameter')">
     <linkLabelTraces
-        visualID="6002"
+        visualID="6004"
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4005"
-      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator' and _eClass_.name = 'ModelParameter')">
+      visualID="4007"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator' and _eClass_.name = 'Parameter')">
     <linkLabelTraces
-        visualID="6003"
+        visualID="6005"
         queryText="true"/>
   </linkTraces>
 </trace:TraceModel>

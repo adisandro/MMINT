@@ -26,10 +26,6 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameType2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameTypeEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterName2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelNameType2EditPart;
@@ -37,9 +33,13 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MidOCLFactory;
-import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
@@ -250,13 +250,13 @@ public class MidVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ModelParameterEditPart.VISUAL_ID:
-			if (ModelParameterNameEditPart.VISUAL_ID == nodeVisualID) {
+		case ParameterEditPart.VISUAL_ID:
+			if (ParameterNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ModelParameter2EditPart.VISUAL_ID:
-			if (ModelParameterName2EditPart.VISUAL_ID == nodeVisualID) {
+		case Parameter2EditPart.VISUAL_ID:
+			if (ParameterName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -275,15 +275,15 @@ public class MidVisualIDRegistry {
 				domainElement.eClass())) {
 			return BinaryModelRelEditPart.VISUAL_ID;
 		}
-		if (OperatorPackage.eINSTANCE.getModelParameter().isSuperTypeOf(
+		if (OperatorPackage.eINSTANCE.getParameter().isSuperTypeOf(
 				domainElement.eClass())
-				&& isModelParameter_4004((ModelParameter) domainElement)) {
-			return ModelParameterEditPart.VISUAL_ID;
+				&& isParameter_4006((Parameter) domainElement)) {
+			return ParameterEditPart.VISUAL_ID;
 		}
-		if (OperatorPackage.eINSTANCE.getModelParameter().isSuperTypeOf(
+		if (OperatorPackage.eINSTANCE.getParameter().isSuperTypeOf(
 				domainElement.eClass())
-				&& isModelParameter_4005((ModelParameter) domainElement)) {
-			return ModelParameter2EditPart.VISUAL_ID;
+				&& isParameter_4007((Parameter) domainElement)) {
+			return Parameter2EditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -339,14 +339,14 @@ public class MidVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static boolean isModelParameter_4004(ModelParameter domainElement) {
+	private static boolean isParameter_4006(Parameter domainElement) {
 		return domainElement.eContainmentFeature().getName().equals("inputs");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isModelParameter_4005(ModelParameter domainElement) {
+	private static boolean isParameter_4007(Parameter domainElement) {
 		return domainElement.eContainmentFeature().getName().equals("outputs");
 	}
 

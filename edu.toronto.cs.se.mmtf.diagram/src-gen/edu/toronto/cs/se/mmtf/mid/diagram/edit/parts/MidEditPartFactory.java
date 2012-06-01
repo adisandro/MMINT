@@ -85,17 +85,17 @@ public class MidEditPartFactory implements EditPartFactory {
 			case BinaryModelRelNameTypeEditPart.VISUAL_ID:
 				return new BinaryModelRelNameTypeEditPart(view);
 
-			case ModelParameterEditPart.VISUAL_ID:
-				return new ModelParameterEditPart(view);
+			case ParameterEditPart.VISUAL_ID:
+				return new ParameterEditPart(view);
 
-			case ModelParameterNameEditPart.VISUAL_ID:
-				return new ModelParameterNameEditPart(view);
+			case ParameterNameEditPart.VISUAL_ID:
+				return new ParameterNameEditPart(view);
 
-			case ModelParameter2EditPart.VISUAL_ID:
-				return new ModelParameter2EditPart(view);
+			case Parameter2EditPart.VISUAL_ID:
+				return new Parameter2EditPart(view);
 
-			case ModelParameterName2EditPart.VISUAL_ID:
-				return new ModelParameterName2EditPart(view);
+			case ParameterName2EditPart.VISUAL_ID:
+				return new ParameterName2EditPart(view);
 
 			}
 		}

@@ -64,6 +64,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				//TODO MMTF: get by what?
+				//TODO MMTF: create and call removeOperator
 			}
 		}
 	}

@@ -25,7 +25,6 @@
             <parameter
                   isVararg="false"
                   name="controlRel"
-                  type="MODEL_REL"
                   modelTypeUri="http:///edu/toronto/cs/se/modelepedia/powerwindow/PWControlRel">
             </parameter>
          </input>
@@ -33,7 +32,6 @@
             <parameter
                   isVararg="false"
                   name="petriNet"
-                  type="MODEL"
                   modelTypeUri="http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore">
             </parameter>
          </output>

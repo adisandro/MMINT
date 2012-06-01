@@ -257,7 +257,7 @@ Contributors:
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Mid"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4006,4007"/>
       </viewProvider>
    </extension>
 
@@ -272,7 +272,7 @@ Contributors:
             <method name="getType()" value="2001,2002,2003,2004,2005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002,4003,4004,4005"/>
+            <method name="getType()" value="4001,4002,4003,4006,4007"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5001,5002,5003,5004,5005"/>
@@ -413,21 +413,21 @@ Contributors:
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator">
          <metamodelType
-               id="edu.toronto.cs.se.mmtf.diagram.ModelParameter_4004"
-               name="%metatype.name.ModelParameter_4004"
+               id="edu.toronto.cs.se.mmtf.diagram.Parameter_4006"
+               name="%metatype.name.Parameter_4006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ModelParameter"
-               edithelper="edu.toronto.cs.se.mmtf.mid.diagram.edit.helpers.ModelParameterEditHelper">
-            <param name="semanticHint" value="4004"/>
+               eclass="Parameter"
+               edithelper="edu.toronto.cs.se.mmtf.mid.diagram.edit.helpers.ParameterEditHelper">
+            <param name="semanticHint" value="4006"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator">
          <specializationType
-               id="edu.toronto.cs.se.mmtf.diagram.ModelParameter_4005"
-               name="%metatype.name.ModelParameter_4005"
+               id="edu.toronto.cs.se.mmtf.diagram.Parameter_4007"
+               name="%metatype.name.Parameter_4007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmtf.diagram.ModelParameter_4004"/>
-            <param name="semanticHint" value="4005"/>
+            <specializes id="edu.toronto.cs.se.mmtf.diagram.Parameter_4006"/>
+            <param name="semanticHint" value="4007"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -451,8 +451,8 @@ Contributors:
          <elementType ref="edu.toronto.cs.se.mmtf.diagram.ExtendibleElementSupertype_4001"/>
          <elementType ref="edu.toronto.cs.se.mmtf.diagram.ModelRelModels_4002"/>
          <elementType ref="edu.toronto.cs.se.mmtf.diagram.BinaryModelRel_4003"/>
-         <elementType ref="edu.toronto.cs.se.mmtf.diagram.ModelParameter_4004"/>
-         <elementType ref="edu.toronto.cs.se.mmtf.diagram.ModelParameter_4005"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.diagram.Parameter_4006"/>
+         <elementType ref="edu.toronto.cs.se.mmtf.diagram.Parameter_4007"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

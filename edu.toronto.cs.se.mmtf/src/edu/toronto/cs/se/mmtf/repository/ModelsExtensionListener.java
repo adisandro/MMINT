@@ -52,6 +52,7 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 				model = mmtf.createModelType(elem);
 				mmtf.setSupertypes();
 				mmtf.addModelTypeEditors(model);
+				//TODO MMTF: create and call addModelConversionOperator
 			}
 		}
 	}

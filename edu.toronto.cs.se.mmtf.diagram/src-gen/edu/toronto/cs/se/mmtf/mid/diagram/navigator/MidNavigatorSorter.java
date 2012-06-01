@@ -23,12 +23,12 @@ public class MidNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 4007;
+	private static final int GROUP_CATEGORY = 4009;
 
 	/**
 	 * @generated
 	 */
-	private static final int SHORTCUTS_CATEGORY = 4006;
+	private static final int SHORTCUTS_CATEGORY = 4008;
 
 	/**
 	 * @generated

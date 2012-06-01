@@ -54,8 +54,8 @@ import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MidOCLFactory;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
-import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
@@ -381,17 +381,15 @@ public class MidBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateModelParameter_4004(Operator source,
-				Model target) {
-			return canExistModelParameter_4004(null, source, target);
+		public boolean canCreateParameter_4006(Operator source, Model target) {
+			return canExistParameter_4006(null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateModelParameter_4005(Operator source,
-				Model target) {
-			return canExistModelParameter_4005(null, source, target);
+		public boolean canCreateParameter_4007(Operator source, Model target) {
+			return canExistParameter_4007(null, source, target);
 		}
 
 		/**
@@ -443,7 +441,7 @@ public class MidBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistModelParameter_4004(ModelParameter linkInstance,
+		public boolean canExistParameter_4006(Parameter linkInstance,
 				Operator source, Model target) {
 			return true;
 		}
@@ -451,7 +449,7 @@ public class MidBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistModelParameter_4005(ModelParameter linkInstance,
+		public boolean canExistParameter_4007(Parameter linkInstance,
 				Operator source, Model target) {
 			return true;
 		}

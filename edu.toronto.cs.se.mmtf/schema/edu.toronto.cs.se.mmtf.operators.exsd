@@ -99,7 +99,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="parameter" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
    </element>
@@ -118,23 +118,6 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="type" use="required">
-            <annotation>
-               <documentation>
-                  The parameter type.
-               </documentation>
-            </annotation>
-            <simpleType>
-               <restriction base="string">
-                  <enumeration value="MODEL">
-                  </enumeration>
-                  <enumeration value="MODEL_REL">
-                  </enumeration>
-                  <enumeration value="BOOL">
-                  </enumeration>
-               </restriction>
-            </simpleType>
-         </attribute>
          <attribute name="isVararg" type="boolean" use="required">
             <annotation>
                <documentation>
@@ -142,10 +125,10 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="modelTypeUri" type="string">
+         <attribute name="modelTypeUri" type="string" use="required">
             <annotation>
                <documentation>
-                  The parameter&apos;s model type URI (only if type is MODEL or MODEL_REL).
+                  The parameter&apos;s model type URI.
                </documentation>
             </annotation>
          </attribute>

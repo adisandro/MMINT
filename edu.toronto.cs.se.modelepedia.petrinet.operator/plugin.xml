@@ -25,16 +25,10 @@
             <parameter
                   isVararg="false"
                   name="petriNet"
-                  type="MODEL"
                   modelTypeUri="http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore">
             </parameter>
          </input>
          <output>
-            <parameter
-                  isVararg="false"
-                  name="result"
-                  type="BOOL">
-            </parameter>
          </output>
       </operator>
    </extension>

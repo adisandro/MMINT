@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,6 +135,16 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @ordered
 	 */
 	protected ModelConstraint constraint;
+
+	/**
+	 * The cached value of the '{@link #getConversionOperators() <em>Conversion Operators</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConversionOperators()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConversionOperator> conversionOperators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -305,6 +317,18 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ConversionOperator> getConversionOperators() {
+		if (conversionOperators == null) {
+			conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MidPackage.MODEL__CONVERSION_OPERATORS);
+		}
+		return conversionOperators;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -337,6 +361,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getElements();
 			case MidPackage.MODEL__CONSTRAINT:
 				return getConstraint();
+			case MidPackage.MODEL__CONVERSION_OPERATORS:
+				return getConversionOperators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -370,6 +396,10 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MidPackage.MODEL__CONSTRAINT:
 				setConstraint((ModelConstraint)newValue);
 				return;
+			case MidPackage.MODEL__CONVERSION_OPERATORS:
+				getConversionOperators().clear();
+				getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -400,6 +430,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MidPackage.MODEL__CONSTRAINT:
 				setConstraint((ModelConstraint)null);
 				return;
+			case MidPackage.MODEL__CONVERSION_OPERATORS:
+				getConversionOperators().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -424,6 +457,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return elements != null && !elements.isEmpty();
 			case MidPackage.MODEL__CONSTRAINT:
 				return constraint != null;
+			case MidPackage.MODEL__CONVERSION_OPERATORS:
+				return conversionOperators != null && !conversionOperators.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

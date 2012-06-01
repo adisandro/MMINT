@@ -9,19 +9,10 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.petrinet.operator;
+package edu.toronto.cs.se.mmtf.mid.diagram.edit.helpers;
 
-import org.eclipse.emf.common.util.EList;
-
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-
-public class PetriNetSimulate extends OperatorExecutableImpl {
-
-	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
-
-		return null;
-	}
-
+/**
+ * @generated
+ */
+public class ParameterEditHelper extends MidBaseEditHelper {
 }

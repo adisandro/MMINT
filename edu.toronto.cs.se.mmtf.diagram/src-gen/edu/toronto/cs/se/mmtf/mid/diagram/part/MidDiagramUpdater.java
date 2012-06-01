@@ -31,17 +31,17 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelModelsEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
-import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
@@ -133,10 +133,10 @@ public class MidDiagramUpdater {
 			return getOperator_2005ContainedLinks(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4003ContainedLinks(view);
-		case ModelParameterEditPart.VISUAL_ID:
-			return getModelParameter_4004ContainedLinks(view);
-		case ModelParameter2EditPart.VISUAL_ID:
-			return getModelParameter_4005ContainedLinks(view);
+		case ParameterEditPart.VISUAL_ID:
+			return getParameter_4006ContainedLinks(view);
+		case Parameter2EditPart.VISUAL_ID:
+			return getParameter_4007ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -158,10 +158,10 @@ public class MidDiagramUpdater {
 			return getOperator_2005IncomingLinks(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4003IncomingLinks(view);
-		case ModelParameterEditPart.VISUAL_ID:
-			return getModelParameter_4004IncomingLinks(view);
-		case ModelParameter2EditPart.VISUAL_ID:
-			return getModelParameter_4005IncomingLinks(view);
+		case ParameterEditPart.VISUAL_ID:
+			return getParameter_4006IncomingLinks(view);
+		case Parameter2EditPart.VISUAL_ID:
+			return getParameter_4007IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -183,10 +183,10 @@ public class MidDiagramUpdater {
 			return getOperator_2005OutgoingLinks(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4003OutgoingLinks(view);
-		case ModelParameterEditPart.VISUAL_ID:
-			return getModelParameter_4004OutgoingLinks(view);
-		case ModelParameter2EditPart.VISUAL_ID:
-			return getModelParameter_4005OutgoingLinks(view);
+		case ParameterEditPart.VISUAL_ID:
+			return getParameter_4006OutgoingLinks(view);
+		case Parameter2EditPart.VISUAL_ID:
+			return getParameter_4007OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -253,8 +253,8 @@ public class MidDiagramUpdater {
 			View view) {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_ModelParameter_4004(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelParameter_4005(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Parameter_4006(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Parameter_4007(modelElement));
 		return result;
 	}
 
@@ -273,7 +273,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MidLinkDescriptor> getModelParameter_4004ContainedLinks(
+	public static List<MidLinkDescriptor> getParameter_4006ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -281,7 +281,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MidLinkDescriptor> getModelParameter_4005ContainedLinks(
+	public static List<MidLinkDescriptor> getParameter_4007ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -300,9 +300,9 @@ public class MidDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4004(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4006(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4005(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4007(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -321,9 +321,9 @@ public class MidDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4004(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4006(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4005(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4007(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -343,9 +343,9 @@ public class MidDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4004(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4006(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4005(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4007(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -365,9 +365,9 @@ public class MidDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4004(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4006(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4005(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4007(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -395,9 +395,9 @@ public class MidDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4004(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4006(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelParameter_4005(
+		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4007(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -405,7 +405,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MidLinkDescriptor> getModelParameter_4004IncomingLinks(
+	public static List<MidLinkDescriptor> getParameter_4006IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -413,7 +413,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MidLinkDescriptor> getModelParameter_4005IncomingLinks(
+	public static List<MidLinkDescriptor> getParameter_4007IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -473,8 +473,8 @@ public class MidDiagramUpdater {
 			View view) {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_ModelParameter_4004(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelParameter_4005(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Parameter_4006(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Parameter_4007(modelElement));
 		return result;
 	}
 
@@ -494,7 +494,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MidLinkDescriptor> getModelParameter_4004OutgoingLinks(
+	public static List<MidLinkDescriptor> getParameter_4006OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -502,7 +502,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MidLinkDescriptor> getModelParameter_4005OutgoingLinks(
+	public static List<MidLinkDescriptor> getParameter_4007OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -584,24 +584,23 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getContainedTypeModelFacetLinks_ModelParameter_4004(
+	private static Collection<MidLinkDescriptor> getContainedTypeModelFacetLinks_Parameter_4006(
 			Operator container) {
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
 		for (Iterator<?> links = container.getInputs().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof ModelParameter) {
+			if (false == linkObject instanceof Parameter) {
 				continue;
 			}
-			ModelParameter link = (ModelParameter) linkObject;
-			if (ModelParameterEditPart.VISUAL_ID != MidVisualIDRegistry
+			Parameter link = (Parameter) linkObject;
+			if (ParameterEditPart.VISUAL_ID != MidVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Model dst = link.getModel();
 			result.add(new MidLinkDescriptor(container, dst, link,
-					MidElementTypes.ModelParameter_4004,
-					ModelParameterEditPart.VISUAL_ID));
+					MidElementTypes.Parameter_4006, ParameterEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -609,24 +608,24 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getContainedTypeModelFacetLinks_ModelParameter_4005(
+	private static Collection<MidLinkDescriptor> getContainedTypeModelFacetLinks_Parameter_4007(
 			Operator container) {
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
 		for (Iterator<?> links = container.getOutputs().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof ModelParameter) {
+			if (false == linkObject instanceof Parameter) {
 				continue;
 			}
-			ModelParameter link = (ModelParameter) linkObject;
-			if (ModelParameter2EditPart.VISUAL_ID != MidVisualIDRegistry
+			Parameter link = (Parameter) linkObject;
+			if (Parameter2EditPart.VISUAL_ID != MidVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Model dst = link.getModel();
 			result.add(new MidLinkDescriptor(container, dst, link,
-					MidElementTypes.ModelParameter_4005,
-					ModelParameter2EditPart.VISUAL_ID));
+					MidElementTypes.Parameter_4007,
+					Parameter2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -742,7 +741,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getIncomingTypeModelFacetLinks_ModelParameter_4004(
+	private static Collection<MidLinkDescriptor> getIncomingTypeModelFacetLinks_Parameter_4006(
 			Model target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
@@ -750,12 +749,12 @@ public class MidDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != OperatorPackage.eINSTANCE
-					.getModelParameter_Model()
-					|| false == setting.getEObject() instanceof ModelParameter) {
+					.getParameter_Model()
+					|| false == setting.getEObject() instanceof Parameter) {
 				continue;
 			}
-			ModelParameter link = (ModelParameter) setting.getEObject();
-			if (ModelParameterEditPart.VISUAL_ID != MidVisualIDRegistry
+			Parameter link = (Parameter) setting.getEObject();
+			if (ParameterEditPart.VISUAL_ID != MidVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -764,8 +763,7 @@ public class MidDiagramUpdater {
 			}
 			Operator container = (Operator) link.eContainer();
 			result.add(new MidLinkDescriptor(container, target, link,
-					MidElementTypes.ModelParameter_4004,
-					ModelParameterEditPart.VISUAL_ID));
+					MidElementTypes.Parameter_4006, ParameterEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -774,7 +772,7 @@ public class MidDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MidLinkDescriptor> getIncomingTypeModelFacetLinks_ModelParameter_4005(
+	private static Collection<MidLinkDescriptor> getIncomingTypeModelFacetLinks_Parameter_4007(
 			Model target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
@@ -782,12 +780,12 @@ public class MidDiagramUpdater {
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != OperatorPackage.eINSTANCE
-					.getModelParameter_Model()
-					|| false == setting.getEObject() instanceof ModelParameter) {
+					.getParameter_Model()
+					|| false == setting.getEObject() instanceof Parameter) {
 				continue;
 			}
-			ModelParameter link = (ModelParameter) setting.getEObject();
-			if (ModelParameter2EditPart.VISUAL_ID != MidVisualIDRegistry
+			Parameter link = (Parameter) setting.getEObject();
+			if (Parameter2EditPart.VISUAL_ID != MidVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -796,8 +794,8 @@ public class MidDiagramUpdater {
 			}
 			Operator container = (Operator) link.eContainer();
 			result.add(new MidLinkDescriptor(container, target, link,
-					MidElementTypes.ModelParameter_4005,
-					ModelParameter2EditPart.VISUAL_ID));
+					MidElementTypes.Parameter_4007,
+					Parameter2EditPart.VISUAL_ID));
 
 		}
 		return result;

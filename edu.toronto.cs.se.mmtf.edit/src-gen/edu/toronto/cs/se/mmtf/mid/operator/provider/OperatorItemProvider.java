@@ -174,18 +174,8 @@ public class OperatorItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR__INPUTS,
-				 OperatorFactory.eINSTANCE.createModelParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(OperatorPackage.Literals.OPERATOR__OUTPUTS,
 				 OperatorFactory.eINSTANCE.createParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR__OUTPUTS,
-				 OperatorFactory.eINSTANCE.createModelParameter()));
 
 		newChildDescriptors.add
 			(createChildParameter

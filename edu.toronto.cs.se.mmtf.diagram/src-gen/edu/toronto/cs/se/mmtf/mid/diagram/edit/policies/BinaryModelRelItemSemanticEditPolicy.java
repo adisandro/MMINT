@@ -22,17 +22,17 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelCreateComm
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ExtendibleElementSupertypeCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ExtendibleElementSupertypeReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameter2CreateCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameter2ReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameterCreateCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameterReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelModelsCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelModelsReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2CreateCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2ReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelModelsEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
 
 /**
@@ -83,10 +83,10 @@ public class BinaryModelRelItemSemanticEditPolicy extends
 			return getGEFWrapper(new BinaryModelRelCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelParameter_4004 == req.getElementType()) {
+		if (MidElementTypes.Parameter_4006 == req.getElementType()) {
 			return null;
 		}
-		if (MidElementTypes.ModelParameter_4005 == req.getElementType()) {
+		if (MidElementTypes.Parameter_4007 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -110,12 +110,12 @@ public class BinaryModelRelItemSemanticEditPolicy extends
 			return getGEFWrapper(new BinaryModelRelCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelParameter_4004 == req.getElementType()) {
-			return getGEFWrapper(new ModelParameterCreateCommand(req,
+		if (MidElementTypes.Parameter_4006 == req.getElementType()) {
+			return getGEFWrapper(new ParameterCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelParameter_4005 == req.getElementType()) {
-			return getGEFWrapper(new ModelParameter2CreateCommand(req,
+		if (MidElementTypes.Parameter_4007 == req.getElementType()) {
+			return getGEFWrapper(new Parameter2CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -132,10 +132,10 @@ public class BinaryModelRelItemSemanticEditPolicy extends
 		switch (getVisualID(req)) {
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getGEFWrapper(new BinaryModelRelReorientCommand(req));
-		case ModelParameterEditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelParameterReorientCommand(req));
-		case ModelParameter2EditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelParameter2ReorientCommand(req));
+		case ParameterEditPart.VISUAL_ID:
+			return getGEFWrapper(new ParameterReorientCommand(req));
+		case Parameter2EditPart.VISUAL_ID:
+			return getGEFWrapper(new Parameter2ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

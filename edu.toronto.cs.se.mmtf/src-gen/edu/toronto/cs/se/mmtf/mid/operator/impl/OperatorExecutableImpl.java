@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
@@ -19,7 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -57,7 +57,7 @@ public abstract class OperatorExecutableImpl extends EObjectImpl implements Oper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EObject> execute(EList<EObject> parameters) throws Exception {
+	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -74,7 +74,7 @@ public abstract class OperatorExecutableImpl extends EObjectImpl implements Oper
 		switch (operationID) {
 			case OperatorPackage.OPERATOR_EXECUTABLE___EXECUTE__ELIST:
 			try {
-				return execute((EList<EObject>)arguments.get(0));
+				return execute((EList<Model>)arguments.get(0));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

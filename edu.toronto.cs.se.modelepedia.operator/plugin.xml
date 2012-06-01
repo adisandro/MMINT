@@ -25,7 +25,6 @@
             <parameter
                   isVararg="true"
                   name="models"
-                  type="MODEL"
                   modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
             </parameter>
          </input>
@@ -33,7 +32,6 @@
             <parameter
                   isVararg="false"
                   name="nameMatch"
-                  type="MODEL_REL"
                   modelTypeUri="http:///edu/toronto/cs/se/mmtf/ModelRel">
             </parameter>
          </output>

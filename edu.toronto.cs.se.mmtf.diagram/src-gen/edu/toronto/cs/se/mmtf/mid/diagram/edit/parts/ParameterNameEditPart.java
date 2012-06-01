@@ -59,13 +59,13 @@ import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidParserProvider;
 /**
  * @generated
  */
-public class ModelParameterName2EditPart extends LabelEditPart implements
+public class ParameterNameEditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6003;
+	public static final int VISUAL_ID = 6004;
 
 	/**
 	 * @generated
@@ -93,14 +93,14 @@ public class ModelParameterName2EditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				MidVisualIDRegistry
-						.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterName2EditPart.VISUAL_ID),
+						.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart.VISUAL_ID),
 				new Point(0, 40));
 	}
 
 	/**
 	 * @generated
 	 */
-	public ModelParameterName2EditPart(View view) {
+	public ParameterNameEditPart(View view) {
 		super(view);
 	}
 
@@ -324,10 +324,10 @@ public class ModelParameterName2EditPart extends LabelEditPart implements
 		if (parser == null) {
 			parser = MidParserProvider
 					.getParser(
-							MidElementTypes.ModelParameter_4005,
+							MidElementTypes.Parameter_4006,
 							getParserElement(),
 							MidVisualIDRegistry
-									.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterName2EditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

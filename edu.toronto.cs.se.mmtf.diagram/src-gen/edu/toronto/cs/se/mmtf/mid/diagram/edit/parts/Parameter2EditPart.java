@@ -22,23 +22,23 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelParameter2ItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.Parameter2ItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ModelParameter2EditPart extends ConnectionNodeEditPart implements
+public class Parameter2EditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4005;
+	public static final int VISUAL_ID = 4007;
 
 	/**
 	 * @generated
 	 */
-	public ModelParameter2EditPart(View view) {
+	public Parameter2EditPart(View view) {
 		super(view);
 	}
 
@@ -48,17 +48,16 @@ public class ModelParameter2EditPart extends ConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelParameter2ItemSemanticEditPolicy());
+				new Parameter2ItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelParameterName2EditPart) {
-			((ModelParameterName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureOperatorOutputsLabelFigure());
+		if (childEditPart instanceof ParameterName2EditPart) {
+			((ParameterName2EditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureOperatorOutputsLabelFigure());
 			return true;
 		}
 		return false;
@@ -78,7 +77,7 @@ public class ModelParameter2EditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ModelParameterName2EditPart) {
+		if (childEditPart instanceof ParameterName2EditPart) {
 			return true;
 		}
 		return false;

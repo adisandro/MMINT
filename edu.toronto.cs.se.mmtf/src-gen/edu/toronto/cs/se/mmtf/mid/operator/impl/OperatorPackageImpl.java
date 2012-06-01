@@ -20,13 +20,11 @@ import edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl;
 import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
-import edu.toronto.cs.se.mmtf.mid.operator.ParameterType;
 
 import edu.toronto.cs.se.mmtf.mid.operator.util.OperatorValidator;
 
@@ -37,7 +35,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -78,13 +75,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelParameterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass eStringToOperatorMapEClass = null;
 
 	/**
@@ -100,13 +90,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EClass operatorExecutableEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum parameterTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -291,7 +274,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Type() {
+	public EAttribute getParameter_Vararg() {
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -300,35 +283,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Vararg() {
-		return (EAttribute)parameterEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getModelParameter() {
-		return modelParameterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getModelParameter_ModelUri() {
-		return (EAttribute)modelParameterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getModelParameter_Model() {
-		return (EReference)modelParameterEClass.getEStructuralFeatures().get(1);
+	public EReference getParameter_Model() {
+		return (EReference)parameterEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -390,15 +346,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getParameterType() {
-		return parameterTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EDataType getException() {
 		return exceptionEDataType;
 	}
@@ -443,12 +390,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__NAME);
-		createEAttribute(parameterEClass, PARAMETER__TYPE);
 		createEAttribute(parameterEClass, PARAMETER__VARARG);
-
-		modelParameterEClass = createEClass(MODEL_PARAMETER);
-		createEAttribute(modelParameterEClass, MODEL_PARAMETER__MODEL_URI);
-		createEReference(modelParameterEClass, MODEL_PARAMETER__MODEL);
+		createEReference(parameterEClass, PARAMETER__MODEL);
 
 		eStringToOperatorMapEClass = createEClass(ESTRING_TO_OPERATOR_MAP);
 		createEAttribute(eStringToOperatorMapEClass, ESTRING_TO_OPERATOR_MAP__KEY);
@@ -458,9 +401,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		operatorExecutableEClass = createEClass(OPERATOR_EXECUTABLE);
 		createEOperation(operatorExecutableEClass, OPERATOR_EXECUTABLE___EXECUTE__ELIST);
-
-		// Create enums
-		parameterTypeEEnum = createEEnum(PARAMETER_TYPE);
 
 		// Create data types
 		exceptionEDataType = createEDataType(EXCEPTION);
@@ -498,7 +438,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		// Add supertypes to classes
 		operatorEClass.getESuperTypes().add(theMidPackage.getTypedElement());
-		modelParameterEClass.getESuperTypes().add(this.getParameter());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
 
 		// Initialize classes, features, and operations; add parameters
@@ -514,12 +453,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getParameter_Type(), this.getParameterType(), "type", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_Vararg(), ecorePackage.getEBoolean(), "vararg", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(modelParameterEClass, ModelParameter.class, "ModelParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelParameter_ModelUri(), ecorePackage.getEString(), "modelUri", null, 1, 1, ModelParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelParameter_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, ModelParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eStringToOperatorMapEClass, Map.Entry.class, "EStringToOperatorMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToOperatorMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -529,15 +464,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEClass(operatorExecutableEClass, OperatorExecutable.class, "OperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getOperatorExecutable__Execute__EList(), ecorePackage.getEObject(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEObject(), "parameters", 1, -1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getOperatorExecutable__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
-
-		// Initialize enums and add enum literals
-		initEEnum(parameterTypeEEnum, ParameterType.class, "ParameterType");
-		addEEnumLiteral(parameterTypeEEnum, ParameterType.MODEL);
-		addEEnumLiteral(parameterTypeEEnum, ParameterType.MODEL_REL);
-		addEEnumLiteral(parameterTypeEEnum, ParameterType.BOOL);
 
 		// Initialize data types
 		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -566,16 +495,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
 		   });		
 		addAnnotation
-		  (parameterEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "isModelParameter"
-		   });			
-		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "coercion"
+			 "constraints", "conversion"
 		   });	
 	}
 
@@ -588,16 +511,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";				
 		addAnnotation
-		  (parameterEClass, 
-		   source, 
-		   new String[] {
-			 "isModelParameter", "type = ParameterType::MODEL or type = ParameterType::MODEL_REL implies self.oclIsKindOf(ModelParameter)"
-		   });			
-		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "coercion", "inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(oclIsKindOf(ModelParameter)) and outputs->forAll(oclIsKindOf(ModelParameter)) and inputs->at(1).oclAsType(ModelParameter).model.supertype = outputs->at(1).oclAsType(ModelParameter).model"
+			 "conversion", "inputs->size() = 1 and outputs->size() = 1"
 		   });
 	}
 

@@ -25,14 +25,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 
 /**
  * @generated
  */
-public class ModelParameterCreateCommand extends EditElementCommand {
+public class ParameterCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class ModelParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ModelParameterCreateCommand(CreateRelationshipRequest request,
+	public ParameterCreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -72,7 +72,7 @@ public class ModelParameterCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateModelParameter_4004(getSource(), getTarget());
+				.canCreateParameter_4006(getSource(), getTarget());
 	}
 
 	/**
@@ -85,8 +85,7 @@ public class ModelParameterCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		ModelParameter newElement = OperatorFactory.eINSTANCE
-				.createModelParameter();
+		Parameter newElement = OperatorFactory.eINSTANCE.createParameter();
 		getSource().getInputs().add(newElement);
 		newElement.setModel(getTarget());
 		doConfigure(newElement, monitor, info);
@@ -98,9 +97,8 @@ public class ModelParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(ModelParameter newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
+	protected void doConfigure(Parameter newElement, IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())
 				.getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(

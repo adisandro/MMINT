@@ -15,6 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
@@ -32,8 +34,14 @@ public class RunOperatorListener extends SelectionAdapter {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		//operator.getExecutable().execute(actualParameters);
-		//TODO MMTF: refresh diagram
+		try {
+			operator.getExecutable().execute(actualParameters);
+			//TODO MMTF: wrap in command
+			//TODO MMTF: refresh diagram
+		}
+		catch (Exception ex) {
+			MMTFException.print(Type.WARNING, "Operator " + operator.getName() + " error", ex);
+		}
 	}
 
 }

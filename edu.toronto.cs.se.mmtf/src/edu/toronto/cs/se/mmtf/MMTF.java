@@ -50,12 +50,11 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
-import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
-import edu.toronto.cs.se.mmtf.mid.operator.ParameterType;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -85,6 +84,12 @@ public class MMTF implements MMTFExtensionPoints {
 
 	/** The repository of registered extensions. */
 	private static MultiModel repository;
+
+	/**	The table for model types substitutability. */
+	private static HashMap<String, HashSet<String>> substitutabilityTable;
+
+	/**	The table for model types conversion. */
+	private static HashMap<String, HashMap<String, EList<ConversionOperator>>> conversionTable;
 
 	/** A temporary map for the subtypes to be assigned a supertype. */
 	private static HashMap<ExtendibleElement, String> tempSubtypes;
@@ -420,32 +425,20 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		for (IConfigurationElement parameterElem : parameterElems) {
 			// read configuration
 			String name = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME);
-			ParameterType type = ParameterType.get(
-				parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_TYPE)
-			);
 			boolean vararg = Boolean.parseBoolean(parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG));
 			if (vararg && i != (parameterElems.length-1)) { // only last parameter can be vararg
 				throw new MMTFException("Only last parameter can be a vararg parameter");
 			}
 			String modelTypeUri = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
 			// create parameter
-			Model model = null;
-			if ((type == ParameterType.MODEL || type == ParameterType.MODEL_REL) && modelTypeUri != null) {
-				model = MMTFRegistry.getModelType(modelTypeUri);
-				//TODO MMTF: if conversion operator add pointer from model
-			}
-			Parameter parameter;
+			Model model = MMTFRegistry.getModelType(modelTypeUri);
 			if (model == null) {
-				parameter = OperatorFactory.eINSTANCE.createParameter();
+				throw new MMTFException("Model type " + modelTypeUri + " is not registered");
 			}
-			else {
-				parameter = OperatorFactory.eINSTANCE.createModelParameter();
-				((ModelParameter) parameter).setModelUri(modelTypeUri);
-				((ModelParameter) parameter).setModel(model);
-			}
+			Parameter parameter = OperatorFactory.eINSTANCE.createParameter();
+			parameter.setModel(model);
 			// set attributes
 			parameter.setName(name);
-			parameter.setType(type);
 			parameter.setVararg(vararg);
 			parameterList.add(parameter);
 			operator.getSignatureTable().put(name, parameter);
@@ -488,6 +481,12 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Operator can't be registered", e);
 			return null;
+		}
+
+		// conversion operator
+		//TODO MMTF: create and call addModelConversionOperator
+		if (operator instanceof ConversionOperator) {
+			operator.getInputs().get(0).getModel().getConversionOperators().add((ConversionOperator) operator);
 		}
 
 		repository.getOperators().add(operator);
@@ -599,6 +598,12 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		ExtendibleElement model = repository.getExtendibleTable().removeKey(uri);
 		if (model != null && model instanceof Model) {
 			repository.getModels().remove(model);
+			// remove conversion operators, if any
+			//TODO MMTF: create and call removeOperator
+			for (ConversionOperator operator : ((Model) model).getConversionOperators()) {
+				repository.getOperators().remove(operator);
+				repository.getOperatorTable().removeKey(MMTFRegistry.getOperatorSignature(operator));
+			}
 			// remove model elements, if any
 			for (ModelElement element : ((Model) model).getElements()) {
 				repository.getExtendibleTable().removeKey(element.getUri());
@@ -658,6 +663,58 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		tempSubtypes.clear();
 	}
 
+	private void addSubstitutableTypes(ExtendibleElement element, HashSet<String> substitutableTypes, HashMap<String, EList<ConversionOperator>> conversionTypes) {
+
+		// previous conversions
+		EList<ConversionOperator> previousConversions = conversionTypes.get(element.getUri());
+
+		// add supertypes
+		if (element.getSupertype() != null) {
+			String supertypeUri = element.getSupertype().getUri();
+			if (!substitutableTypes.contains(supertypeUri)) {
+				substitutableTypes.add(supertypeUri);
+				// keep track of conversion operators used
+				EList<ConversionOperator> conversions = (previousConversions == null) ?
+					new BasicEList<ConversionOperator>() :
+					new BasicEList<ConversionOperator>(previousConversions);
+				conversionTypes.put(supertypeUri, conversions);
+				// recursion
+				addSubstitutableTypes(element.getSupertype(), substitutableTypes, conversionTypes);
+			}
+		}
+
+		// add conversions
+		if (element instanceof Model) {
+			for (ConversionOperator operator : ((Model) element).getConversionOperators()) {
+				Model conversionModel = operator.getOutputs().get(0).getModel();
+				String conversionUri = conversionModel.getUri();
+				if (!substitutableTypes.contains(conversionUri)) {
+					substitutableTypes.add(conversionUri);
+					// keep track of conversion operators used
+					EList<ConversionOperator> conversions = (previousConversions == null) ?
+						new BasicEList<ConversionOperator>() :
+						new BasicEList<ConversionOperator>(previousConversions);
+					conversions.add(operator); // add new operator to use
+					conversionTypes.put(conversionUri, conversions);
+					// recursion
+					addSubstitutableTypes(conversionModel, substitutableTypes, conversionTypes);
+				}
+			}
+		}
+	}
+
+	public void setSubstitutableTypes() {
+
+		substitutabilityTable.clear();
+		for (Model model : repository.getModels()) {
+			HashSet<String> substitutableTypes = new HashSet<String>();
+			HashMap<String, EList<ConversionOperator>> conversionTypes = new HashMap<String, EList<ConversionOperator>>();
+			addSubstitutableTypes(model, substitutableTypes, conversionTypes);
+			substitutabilityTable.put(model.getUri(), substitutableTypes);
+			conversionTable.put(model.getUri(), conversionTypes);
+		}
+	}
+
 	/**
 	 * Creates the repository from the registered extensions.
 	 * 
@@ -668,6 +725,8 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		repository = MidFactory.eINSTANCE.createMultiModel();
 		repository.setLevel(MidLevel.TYPES);
+		substitutabilityTable = new HashMap<String, HashSet<String>>();
+		conversionTable = new HashMap<String, HashMap<String, EList<ConversionOperator>>>();
 		tempSubtypes = new HashMap<ExtendibleElement, String>();
 		IConfigurationElement[] config;
 
@@ -699,6 +758,10 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		// extendible elements' supertypes
 		setSupertypes();
+
+		// substitutability
+		//TODO MMTF: rerun every time a model is added or removed
+		setSubstitutableTypes();
 
 		//TODO MMTF: do this on demand, with a button somewhere
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -860,13 +923,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		 */
 		private static String getParameterSignature(Parameter parameter) {
 
-			String signature = "";
-			if (parameter instanceof ModelParameter) {
-				signature += ((ModelParameter) parameter).getModel().getName();
-			}
-			else {
-				signature += parameter.getType();
-			}
+			String signature = parameter.getModel().getName();
 			if (parameter.isVararg()) {
 				signature += "...";
 			}
@@ -889,7 +946,9 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			for (Parameter parameter : operator.getOutputs()) {
 				signature += getParameterSignature(parameter) + ", ";
 			}
-			signature = signature.substring(0, signature.length() - 2);
+			if (operator.getOutputs().size() > 0) {
+				signature = signature.substring(0, signature.length() - 2);
+			}
 			signature += "] ";
 
 			// operator name
@@ -899,57 +958,79 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			for (Parameter parameter : operator.getInputs()) {
 				signature += getParameterSignature(parameter) + ", ";
 			}
-			signature = signature.substring(0, signature.length() - 2);
+			if (operator.getInputs().size() > 0) {
+				signature = signature.substring(0, signature.length() - 2);
+			}
 			signature += ")";
 
 			return signature;
 		}
 
-		private static void addSubstitutableTypes(HashSet<String> substitutableTypes, ExtendibleElement element) {
+		private static Model getEligibleParameter(Model actualParameter, Model formalParameter) {
 
-			// base case
-			if (substitutableTypes.contains(element.getType())) {
-				return;
+			String actualUri = ((Model) actualParameter.getMetatype()).getUri();
+			String formalUri = formalParameter.getUri();
+
+			// exact type
+			if (formalUri.equals(actualUri)) {
+				return actualParameter;
 			}
-
-			// add supertypes
-			if (element.getSupertype() != null) {
-				substitutableTypes.add(element.getSupertype().getType());
-				addSubstitutableTypes(substitutableTypes, element.getSupertype());
+			// substitutable type
+			if (substitutabilityTable.get(actualUri).contains(formalUri)) {
+				try {
+					Model newActualParameter = actualParameter;
+					// run all conversion operators
+					for (ConversionOperator operator : conversionTable.get(actualUri).get(formalUri)) {
+						EList<Model> actualParameters = new BasicEList<Model>();
+						actualParameters.add(newActualParameter);
+						newActualParameter = operator.getExecutable().execute(actualParameters).get(0);
+						//TODO MMTF: wrap in command?
+					}
+					return newActualParameter;
+				}
+				// abort conversion
+				catch (Exception e) {
+					MMTFException.print(Type.WARNING, "Conversion operator error", e);
+					return null;
+				}
 			}
-
-			// add conversions
-			//TODO MMTF: i need also a list of conversion operators i go through, to apply them in the right order
+			// no substitutable type
+			return null;
 		}
 
-		public static EList<Operator> getExecutableOperators(EList<Model> models) {
+		public static EList<Operator> getExecutableOperators(EList<Model> actualParameters) {
 
-			// compute substitutable types
-			//TODO MMTF: what if I link this to model types creation/deletion?
-			//TODO MMTF: so that I have a global table instead of computing it at every operator invocation
-			HashMap<String, HashSet<String>> substitutabilityTable = new HashMap<String, HashSet<String>>();
-			for (Model model : models) {
-				HashSet<String> substitutableTypes = substitutabilityTable.get(model.getType());
-				if (substitutableTypes == null) {
-					substitutableTypes = new HashSet<String>();
-					addSubstitutableTypes(substitutableTypes, model);
-					substitutabilityTable.put(model.getType(), substitutableTypes);
-				}
-			}
+			EList<Operator> executableOperators = new BasicEList<Operator>();
 
-			EList<Operator> operators = new BasicEList<Operator>();
 nextOperator:
 			for (Operator operator : repository.getOperators()) {
+				int i = 0;
 				for (Parameter parameter : operator.getInputs()) {
-					if (!(parameter instanceof ModelParameter)) {
+					// check 1: number of actual parameters
+					if (i >= actualParameters.size()) {
 						continue nextOperator;
 					}
-					//TODO MMTF: match actual parameters with formal parameters
-					//TODO MMTF: follow sequential order (need counter) or use names?
+					// check 2: type or substitutable types
+					while (i < actualParameters.size()) {
+						Model actualParameterBefore = actualParameters.get(i);
+						Model actualParameterAfter = getEligibleParameter(actualParameterBefore, parameter.getModel());
+						if (actualParameterAfter == null) {
+							continue nextOperator;
+						}
+						if (actualParameterBefore != actualParameterAfter) {
+							actualParameters.set(i, actualParameterAfter);
+						}
+						i++;
+						if (!parameter.isVararg()) {
+							break;
+						}
+					}
+					
 				}
+				executableOperators.add(operator);
 			}
 
-			return operators;
+			return executableOperators;
 		}
 
 	}

@@ -71,7 +71,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.ESTRING_TO_PARAMETER_MAP: return (EObject)createEStringToParameterMap();
 			case OperatorPackage.OPERATOR: return createOperator();
 			case OperatorPackage.PARAMETER: return createParameter();
-			case OperatorPackage.MODEL_PARAMETER: return createModelParameter();
 			case OperatorPackage.ESTRING_TO_OPERATOR_MAP: return (EObject)createEStringToOperatorMap();
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			default:
@@ -87,8 +86,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case OperatorPackage.PARAMETER_TYPE:
-				return createParameterTypeFromString(eDataType, initialValue);
 			case OperatorPackage.EXCEPTION:
 				return createExceptionFromString(eDataType, initialValue);
 			default:
@@ -104,8 +101,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case OperatorPackage.PARAMETER_TYPE:
-				return convertParameterTypeToString(eDataType, instanceValue);
 			case OperatorPackage.EXCEPTION:
 				return convertExceptionToString(eDataType, instanceValue);
 			default:
@@ -148,16 +143,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelParameter createModelParameter() {
-		ModelParameterImpl modelParameter = new ModelParameterImpl();
-		return modelParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Map.Entry<String, Operator> createEStringToOperatorMap() {
 		EStringToOperatorMapImpl eStringToOperatorMap = new EStringToOperatorMapImpl();
 		return eStringToOperatorMap;
@@ -171,26 +156,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public ConversionOperator createConversionOperator() {
 		ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
 		return conversionOperator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParameterType createParameterTypeFromString(EDataType eDataType, String initialValue) {
-		ParameterType result = ParameterType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertParameterTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

@@ -16,7 +16,6 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -237,22 +236,22 @@ public interface OperatorPackage extends EPackage {
 	int PARAMETER__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__TYPE = 1;
-
-	/**
 	 * The feature id for the '<em><b>Vararg</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__VARARG = 2;
+	int PARAMETER__VARARG = 1;
+
+	/**
+	 * The feature id for the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__MODEL = 2;
 
 	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
@@ -273,79 +272,6 @@ public interface OperatorPackage extends EPackage {
 	int PARAMETER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ModelParameterImpl <em>Model Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ModelParameterImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getModelParameter()
-	 * @generated
-	 */
-	int MODEL_PARAMETER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__NAME = PARAMETER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__TYPE = PARAMETER__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Vararg</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__VARARG = PARAMETER__VARARG;
-
-	/**
-	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__MODEL_URI = PARAMETER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER__MODEL = PARAMETER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Model Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER_FEATURE_COUNT = PARAMETER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Model Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_PARAMETER_OPERATION_COUNT = PARAMETER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -353,7 +279,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getEStringToOperatorMap()
 	 * @generated
 	 */
-	int ESTRING_TO_OPERATOR_MAP = 4;
+	int ESTRING_TO_OPERATOR_MAP = 3;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -399,7 +325,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperator()
 	 * @generated
 	 */
-	int CONVERSION_OPERATOR = 5;
+	int CONVERSION_OPERATOR = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -499,7 +425,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getOperatorExecutable()
 	 * @generated
 	 */
-	int OPERATOR_EXECUTABLE = 6;
+	int OPERATOR_EXECUTABLE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Executable</em>' class.
@@ -529,17 +455,6 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_EXECUTABLE_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ParameterType
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getParameterType()
-	 * @generated
-	 */
-	int PARAMETER_TYPE = 7;
-
-
-	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -547,7 +462,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 8;
+	int EXCEPTION = 6;
 
 
 	/**
@@ -660,17 +575,6 @@ public interface OperatorPackage extends EPackage {
 	EAttribute getParameter_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.Parameter#getType()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EAttribute getParameter_Type();
-
-	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#isVararg <em>Vararg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -682,36 +586,15 @@ public interface OperatorPackage extends EPackage {
 	EAttribute getParameter_Vararg();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.ModelParameter <em>Model Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Parameter</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ModelParameter
-	 * @generated
-	 */
-	EClass getModelParameter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.ModelParameter#getModelUri <em>Model Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Model Uri</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ModelParameter#getModelUri()
-	 * @see #getModelParameter()
-	 * @generated
-	 */
-	EAttribute getModelParameter_ModelUri();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.operator.ModelParameter#getModel <em>Model</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter#getModel <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ModelParameter#getModel()
-	 * @see #getModelParameter()
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Parameter#getModel()
+	 * @see #getParameter()
 	 * @generated
 	 */
-	EReference getModelParameter_Model();
+	EReference getParameter_Model();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Operator Map</em>}'.
@@ -776,16 +659,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperatorExecutable__Execute__EList();
-
-	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Parameter Type</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ParameterType
-	 * @generated
-	 */
-	EEnum getParameterType();
 
 	/**
 	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
@@ -908,14 +781,6 @@ public interface OperatorPackage extends EPackage {
 		EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER__TYPE = eINSTANCE.getParameter_Type();
-
-		/**
 		 * The meta object literal for the '<em><b>Vararg</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -924,30 +789,12 @@ public interface OperatorPackage extends EPackage {
 		EAttribute PARAMETER__VARARG = eINSTANCE.getParameter_Vararg();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ModelParameterImpl <em>Model Parameter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ModelParameterImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getModelParameter()
-		 * @generated
-		 */
-		EClass MODEL_PARAMETER = eINSTANCE.getModelParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_PARAMETER__MODEL_URI = eINSTANCE.getModelParameter_ModelUri();
-
-		/**
 		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_PARAMETER__MODEL = eINSTANCE.getModelParameter_Model();
+		EReference PARAMETER__MODEL = eINSTANCE.getParameter_Model();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
@@ -1002,16 +849,6 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR_EXECUTABLE___EXECUTE__ELIST = eINSTANCE.getOperatorExecutable__Execute__EList();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ParameterType <em>Parameter Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.ParameterType
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getParameterType()
-		 * @generated
-		 */
-		EEnum PARAMETER_TYPE = eINSTANCE.getParameterType();
 
 		/**
 		 * The meta object literal for the '<em>Exception</em>' data type.

@@ -21,13 +21,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.operator.ModelParameter;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 
 /**
  * @generated
  */
-public class ModelParameterReorientCommand extends EditElementCommand {
+public class Parameter2ReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class ModelParameterReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ModelParameterReorientCommand(ReorientRelationshipRequest request) {
+	public Parameter2ReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -58,7 +58,7 @@ public class ModelParameterReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof ModelParameter) {
+		if (false == getElementToEdit() instanceof Parameter) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -79,7 +79,7 @@ public class ModelParameterReorientCommand extends EditElementCommand {
 		}
 		Model target = getLink().getModel();
 		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistModelParameter_4004(getLink(), getNewSource(), target);
+				.canExistParameter_4007(getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ModelParameterReorientCommand extends EditElementCommand {
 		}
 		Operator source = (Operator) getLink().eContainer();
 		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistModelParameter_4004(getLink(), source, getNewTarget());
+				.canExistParameter_4007(getLink(), source, getNewTarget());
 	}
 
 	/**
@@ -119,8 +119,8 @@ public class ModelParameterReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getInputs().remove(getLink());
-		getNewSource().getInputs().add(getLink());
+		getOldSource().getOutputs().remove(getLink());
+		getNewSource().getOutputs().add(getLink());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -135,8 +135,8 @@ public class ModelParameterReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected ModelParameter getLink() {
-		return (ModelParameter) getElementToEdit();
+	protected Parameter getLink() {
+		return (Parameter) getElementToEdit();
 	}
 
 	/**

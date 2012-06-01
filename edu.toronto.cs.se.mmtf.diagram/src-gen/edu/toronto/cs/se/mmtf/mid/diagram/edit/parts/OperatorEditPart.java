@@ -270,8 +270,8 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(MidElementTypes.ModelParameter_4004);
-		types.add(MidElementTypes.ModelParameter_4005);
+		types.add(MidElementTypes.Parameter_4006);
+		types.add(MidElementTypes.Parameter_4007);
 		return types;
 	}
 
@@ -282,28 +282,28 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MidElementTypes.ModelParameter_4004);
+			types.add(MidElementTypes.Parameter_4006);
 		}
 		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MidElementTypes.ModelParameter_4004);
+			types.add(MidElementTypes.Parameter_4006);
 		}
 		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MidElementTypes.ModelParameter_4004);
+			types.add(MidElementTypes.Parameter_4006);
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MidElementTypes.ModelParameter_4004);
+			types.add(MidElementTypes.Parameter_4006);
 		}
 		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MidElementTypes.ModelParameter_4005);
+			types.add(MidElementTypes.Parameter_4007);
 		}
 		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MidElementTypes.ModelParameter_4005);
+			types.add(MidElementTypes.Parameter_4007);
 		}
 		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MidElementTypes.ModelParameter_4005);
+			types.add(MidElementTypes.Parameter_4007);
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MidElementTypes.ModelParameter_4005);
+			types.add(MidElementTypes.Parameter_4007);
 		}
 		return types;
 	}
@@ -313,12 +313,12 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MidElementTypes.ModelParameter_4004) {
+		if (relationshipType == MidElementTypes.Parameter_4006) {
 			types.add(MidElementTypes.Model_2001);
 			types.add(MidElementTypes.Model_2002);
 			types.add(MidElementTypes.ModelRel_2003);
 			types.add(MidElementTypes.ModelRel_2004);
-		} else if (relationshipType == MidElementTypes.ModelParameter_4005) {
+		} else if (relationshipType == MidElementTypes.Parameter_4007) {
 			types.add(MidElementTypes.Model_2001);
 			types.add(MidElementTypes.Model_2002);
 			types.add(MidElementTypes.ModelRel_2003);

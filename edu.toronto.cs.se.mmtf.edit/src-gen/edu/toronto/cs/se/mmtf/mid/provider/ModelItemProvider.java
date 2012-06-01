@@ -72,6 +72,7 @@ public class ModelItemProvider
 			addOriginPropertyDescriptor(object);
 			addFileExtensionPropertyDescriptor(object);
 			addEditorsPropertyDescriptor(object);
+			addConversionOperatorsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -156,6 +157,28 @@ public class ModelItemProvider
 				 getString("_UI_Model_editors_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Model_editors_feature", "_UI_Model_type"),
 				 MidPackage.Literals.MODEL__EDITORS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Conversion Operators feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConversionOperatorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Model_conversionOperators_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Model_conversionOperators_feature", "_UI_Model_type"),
+				 MidPackage.Literals.MODEL__CONVERSION_OPERATORS,
 				 true,
 				 false,
 				 true,

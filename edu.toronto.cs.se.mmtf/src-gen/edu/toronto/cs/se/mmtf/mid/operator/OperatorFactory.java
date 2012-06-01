@@ -49,15 +49,6 @@ public interface OperatorFactory extends EFactory {
 	Parameter createParameter();
 
 	/**
-	 * Returns a new object of class '<em>Model Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Parameter</em>'.
-	 * @generated
-	 */
-	ModelParameter createModelParameter();
-
-	/**
 	 * Returns a new object of class '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -32,13 +32,13 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelModelsEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
@@ -108,11 +108,12 @@ public class MidElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ModelParameter_4004 = getElementType("edu.toronto.cs.se.mmtf.diagram.ModelParameter_4004"); //$NON-NLS-1$
+	public static final IElementType Parameter_4006 = getElementType("edu.toronto.cs.se.mmtf.diagram.Parameter_4006"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ModelParameter_4005 = getElementType("edu.toronto.cs.se.mmtf.diagram.ModelParameter_4005"); //$NON-NLS-1$
+	public static final IElementType Parameter_4007 = getElementType("edu.toronto.cs.se.mmtf.diagram.Parameter_4007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -248,11 +249,11 @@ public class MidElementTypes {
 			elements.put(BinaryModelRel_4003,
 					RelationshipPackage.eINSTANCE.getBinaryModelRel());
 
-			elements.put(ModelParameter_4004,
-					OperatorPackage.eINSTANCE.getModelParameter());
+			elements.put(Parameter_4006,
+					OperatorPackage.eINSTANCE.getParameter());
 
-			elements.put(ModelParameter_4005,
-					OperatorPackage.eINSTANCE.getModelParameter());
+			elements.put(Parameter_4007,
+					OperatorPackage.eINSTANCE.getParameter());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -279,8 +280,8 @@ public class MidElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ExtendibleElementSupertype_4001);
 			KNOWN_ELEMENT_TYPES.add(ModelRelModels_4002);
 			KNOWN_ELEMENT_TYPES.add(BinaryModelRel_4003);
-			KNOWN_ELEMENT_TYPES.add(ModelParameter_4004);
-			KNOWN_ELEMENT_TYPES.add(ModelParameter_4005);
+			KNOWN_ELEMENT_TYPES.add(Parameter_4006);
+			KNOWN_ELEMENT_TYPES.add(Parameter_4007);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -308,10 +309,10 @@ public class MidElementTypes {
 			return ModelRelModels_4002;
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return BinaryModelRel_4003;
-		case ModelParameterEditPart.VISUAL_ID:
-			return ModelParameter_4004;
-		case ModelParameter2EditPart.VISUAL_ID:
-			return ModelParameter_4005;
+		case ParameterEditPart.VISUAL_ID:
+			return Parameter_4006;
+		case Parameter2EditPart.VISUAL_ID:
+			return Parameter_4007;
 		}
 		return null;
 	}

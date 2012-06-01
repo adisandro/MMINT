@@ -55,12 +55,12 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramUpdater;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidLinkDescriptor;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidNodeDescriptor;
@@ -416,10 +416,10 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ModelParameterEditPart.VISUAL_ID: {
+		case ParameterEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MidDiagramUpdater
-						.getModelParameter_4004ContainedLinks(view));
+						.getParameter_4006ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -427,10 +427,10 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ModelParameter2EditPart.VISUAL_ID: {
+		case Parameter2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(MidDiagramUpdater
-						.getModelParameter_4005ContainedLinks(view));
+						.getParameter_4007ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

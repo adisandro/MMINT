@@ -54,43 +54,42 @@ public class RunOperatorAction extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		//TODO MMTF: rename to actualParameters
-		EList<Model> models = new BasicEList<Model>();
+		EList<Model> actualParameters = new BasicEList<Model>();
 		for (Object object : objects) {
 			if (object instanceof ModelEditPart) {
 				Model model = (Model) ((View) ((ModelEditPart) object).getModel()).getElement();
-				models.add(model);
+				actualParameters.add(model);
 				continue;
 			}
 			if (object instanceof Model2EditPart) {
 				Model model = (Model) ((View) ((Model2EditPart) object).getModel()).getElement();
-				models.add(model);
+				actualParameters.add(model);
 				continue;
 			}
 			if (object instanceof ModelRelEditPart) {
 				Model model = (Model) ((View) ((ModelRelEditPart) object).getModel()).getElement();
-				models.add(model);
+				actualParameters.add(model);
 				continue;
 			}
 			if (object instanceof ModelRel2EditPart) {
 				Model model = (Model) ((View) ((ModelRel2EditPart) object).getModel()).getElement();
-				models.add(model);
+				actualParameters.add(model);
 				continue;
 			}
 			if (object instanceof BinaryModelRelEditPart) {
 				Model model = (Model) ((View) ((BinaryModelRelEditPart) object).getModel()).getElement();
-				models.add(model);
+				actualParameters.add(model);
 				continue;
 			}
 		}
 
 		// create basic menu and get operators
 		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
-		if (models.isEmpty()) {
+		if (actualParameters.isEmpty()) {
 			cascadeItem.setText("No Operator Available");
 			return;
 		}
-		EList<Operator> operators = MMTFRegistry.getExecutableOperators(models);
+		EList<Operator> operators = MMTFRegistry.getExecutableOperators(actualParameters);
 		if (operators.isEmpty()) {
 			cascadeItem.setText("No Operator Available");
 			return;
@@ -104,7 +103,7 @@ public class RunOperatorAction extends ContributionItem {
 			MenuItem operatorItem = new MenuItem(operatorsMenu, SWT.NONE);
 			operatorItem.setText(operator.getName());
 			operatorItem.addSelectionListener(
-				new RunOperatorListener(operator, models)
+				new RunOperatorListener(operator, actualParameters)
 			);
 			//TODO MMTF: nice to show label of operator invocation with actual parameters
 		}

@@ -19,8 +19,8 @@ package edu.toronto.cs.se.mmtf.mid.operator;
  *
  *
  * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getConversionOperator()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='coercion'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot coercion='inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(oclIsKindOf(ModelParameter)) and outputs->forAll(oclIsKindOf(ModelParameter)) and inputs->at(1).oclAsType(ModelParameter).model.supertype = outputs->at(1).oclAsType(ModelParameter).model'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='conversion'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot conversion='inputs->size() = 1 and outputs->size() = 1'"
  * @generated
  */
 public interface ConversionOperator extends Operator {

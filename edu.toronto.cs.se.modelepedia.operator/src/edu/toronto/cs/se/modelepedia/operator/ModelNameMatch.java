@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -37,16 +36,11 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 	private final static String MODEL_REL_NAME = "nameMatch";
 
 	@Override
-	public EList<EObject> execute(EList<EObject> parameters) throws Exception {
+	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// look for identical names in the models
 		HashMap<String, ArrayList<EObject>> objectNames = new HashMap<String, ArrayList<EObject>>();
-		for (EObject param : parameters) {
-
-			if (!(param instanceof Model)) {
-				throw new MMTFException("Bad operator parameters");
-			}
-			Model model = (Model) param;
+		for (Model model : actualParameters) {
 
 			for (EObject object : model.eContents()) {
 				EStructuralFeature feature = object.eClass().getEStructuralFeature(NAME_FEATURE);
@@ -63,15 +57,15 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		}
 
 		// create model relationship among models
-		MultiModel multiModel = (MultiModel) ((Model) parameters.get(0)).eContainer();
-		EClass modelRelClass = (parameters.size() == 2) ?
+		MultiModel multiModel = (MultiModel) actualParameters.get(0).eContainer();
+		EClass modelRelClass = (actualParameters.size() == 2) ?
 			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
 			RelationshipPackage.eINSTANCE.getModelRel();
 		ModelRel modelRel = MultiModelFactoryUtils.createModelRel(ModelOrigin.CREATED, multiModel, null, modelRelClass);
 		modelRel.setName(MODEL_REL_NAME);
-		for (EObject param : parameters) {
-			modelRel.getModels().add((Model) param);
-			MultiModelFactoryUtils.createModelReference(modelRel, (Model) param);
+		for (Model model : actualParameters) {
+			modelRel.getModels().add(model);
+			MultiModelFactoryUtils.createModelReference(modelRel, model);
 		}
 		for (Entry<String, ArrayList<EObject>> entry : objectNames.entrySet()) {
 			String name = entry.getKey();
@@ -84,7 +78,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			}
 		}
 
-		EList<EObject> result = new BasicEList<EObject>();
+		EList<Model> result = new BasicEList<Model>();
 		result.add(modelRel);
 		return result;
 	}

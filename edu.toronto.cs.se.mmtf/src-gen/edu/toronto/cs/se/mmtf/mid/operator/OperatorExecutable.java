@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator;
 
+import edu.toronto.cs.se.mmtf.mid.Model;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -29,9 +30,9 @@ public interface OperatorExecutable extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception" parametersRequired="true" parametersMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
 	 * @generated
 	 */
-	EList<EObject> execute(EList<EObject> parameters) throws Exception;
+	EList<Model> execute(EList<Model> actualParameters) throws Exception;
 
 } // OperatorExecutable

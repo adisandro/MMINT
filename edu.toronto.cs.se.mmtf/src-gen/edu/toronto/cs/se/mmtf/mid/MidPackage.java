@@ -414,13 +414,22 @@ public interface MidPackage extends EPackage {
 	int MODEL__CONSTRAINT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__CONVERSION_OPERATORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 6;
+	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -848,6 +857,17 @@ public interface MidPackage extends EPackage {
 	EReference getModel_Constraint();
 
 	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.Model#getConversionOperators <em>Conversion Operators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Conversion Operators</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getConversionOperators()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_ConversionOperators();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1203,6 +1223,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__CONSTRAINT = eINSTANCE.getModel_Constraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Conversion Operators</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl <em>Typed Element</em>}' class.

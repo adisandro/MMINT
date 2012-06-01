@@ -20,14 +20,14 @@ import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
 /**
  * @generated
  */
-public class ModelParameterItemSemanticEditPolicy extends
+public class ParameterItemSemanticEditPolicy extends
 		MidBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ModelParameterItemSemanticEditPolicy() {
-		super(MidElementTypes.ModelParameter_4004);
+	public ParameterItemSemanticEditPolicy() {
+		super(MidElementTypes.Parameter_4006);
 	}
 
 	/**

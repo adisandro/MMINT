@@ -150,29 +150,6 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.operator.ModelParameter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelParameterItemProvider modelParameterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.ModelParameter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelParameterAdapter() {
-		if (modelParameterItemProvider == null) {
-			modelParameterItemProvider = new ModelParameterItemProvider(this);
-		}
-
-		return modelParameterItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,7 +297,6 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (eStringToParameterMapItemProvider != null) eStringToParameterMapItemProvider.dispose();
 		if (operatorItemProvider != null) operatorItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
-		if (modelParameterItemProvider != null) modelParameterItemProvider.dispose();
 		if (eStringToOperatorMapItemProvider != null) eStringToOperatorMapItemProvider.dispose();
 		if (conversionOperatorItemProvider != null) conversionOperatorItemProvider.dispose();
 	}

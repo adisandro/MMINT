@@ -42,6 +42,8 @@
         eType="#//ModelElement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//ModelConstraint"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conversionOperators" upperBound="-1"
+        eType="#//operator/ConversionOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MidLevel">
     <eLiterals name="INSTANCES"/>
@@ -236,27 +238,10 @@
           eType="#//operator/OperatorExecutable" transient="true" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="isModelParameter"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="isModelParameter" value="type = ParameterType::MODEL or type = ParameterType::MODEL_REL implies self.oclIsKindOf(ModelParameter)"/>
-      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
-          eType="#//operator/ParameterType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="vararg" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="ParameterType">
-      <eLiterals name="MODEL"/>
-      <eLiterals name="MODEL_REL" value="1"/>
-      <eLiterals name="BOOL" value="2"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelParameter" eSuperTypes="#//operator/Parameter">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUri" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
           eType="#//Model"/>
     </eClassifiers>
@@ -267,16 +252,16 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConversionOperator" eSuperTypes="#//operator/Operator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="coercion"/>
+        <details key="constraints" value="conversion"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="coercion" value="inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(oclIsKindOf(ModelParameter)) and outputs->forAll(oclIsKindOf(ModelParameter)) and inputs->at(1).oclAsType(ModelParameter).model.supertype = outputs->at(1).oclAsType(ModelParameter).model"/>
+        <details key="conversion" value="inputs->size() = 1 and outputs->size() = 1"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OperatorExecutable" abstract="true">
-      <eOperations name="execute" lowerBound="1" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+      <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
           eExceptions="#//operator/Exception">
-        <eParameters name="parameters" lowerBound="1" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>

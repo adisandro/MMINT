@@ -28,11 +28,11 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameType2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameTypeEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterName2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelNameType2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.parsers.MessageFormatParser;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
@@ -189,13 +189,13 @@ public class MidParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser modelParameterName_6002Parser;
+	private IParser parameterName_6004Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getModelParameterName_6002Parser() {
-		if (modelParameterName_6002Parser == null) {
+	private IParser getParameterName_6004Parser() {
+		if (parameterName_6004Parser == null) {
 			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
 					.getParameter_Name() };
 			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
@@ -205,21 +205,21 @@ public class MidParserProvider extends AbstractProvider implements
 			parser.setViewPattern("[in] {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			modelParameterName_6002Parser = parser;
+			parameterName_6004Parser = parser;
 		}
-		return modelParameterName_6002Parser;
+		return parameterName_6004Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser modelParameterName_6003Parser;
+	private IParser parameterName_6005Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getModelParameterName_6003Parser() {
-		if (modelParameterName_6003Parser == null) {
+	private IParser getParameterName_6005Parser() {
+		if (parameterName_6005Parser == null) {
 			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
 					.getParameter_Name() };
 			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
@@ -229,9 +229,9 @@ public class MidParserProvider extends AbstractProvider implements
 			parser.setViewPattern("[out] {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			modelParameterName_6003Parser = parser;
+			parameterName_6005Parser = parser;
 		}
-		return modelParameterName_6003Parser;
+		return parameterName_6005Parser;
 	}
 
 	/**
@@ -251,10 +251,10 @@ public class MidParserProvider extends AbstractProvider implements
 			return getOperatorName_5005Parser();
 		case BinaryModelRelNameTypeEditPart.VISUAL_ID:
 			return getBinaryModelRelNameType_6001Parser();
-		case ModelParameterNameEditPart.VISUAL_ID:
-			return getModelParameterName_6002Parser();
-		case ModelParameterName2EditPart.VISUAL_ID:
-			return getModelParameterName_6003Parser();
+		case ParameterNameEditPart.VISUAL_ID:
+			return getParameterName_6004Parser();
+		case ParameterName2EditPart.VISUAL_ID:
+			return getParameterName_6005Parser();
 		}
 		return null;
 	}

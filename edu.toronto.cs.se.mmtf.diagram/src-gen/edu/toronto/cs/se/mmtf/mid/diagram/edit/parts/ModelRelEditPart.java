@@ -360,8 +360,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 		types.add(MidElementTypes.ExtendibleElementSupertype_4001);
 		types.add(MidElementTypes.ModelRelModels_4002);
 		types.add(MidElementTypes.BinaryModelRel_4003);
-		types.add(MidElementTypes.ModelParameter_4004);
-		types.add(MidElementTypes.ModelParameter_4005);
+		types.add(MidElementTypes.Parameter_4006);
+		types.add(MidElementTypes.Parameter_4007);
 		return types;
 	}
 
@@ -383,9 +383,9 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 			types.add(MidElementTypes.Model_2002);
 			types.add(MidElementTypes.ModelRel_2003);
 			types.add(MidElementTypes.ModelRel_2004);
-		} else if (relationshipType == MidElementTypes.ModelParameter_4004) {
+		} else if (relationshipType == MidElementTypes.Parameter_4006) {
 			types.add(MidElementTypes.Operator_2005);
-		} else if (relationshipType == MidElementTypes.ModelParameter_4005) {
+		} else if (relationshipType == MidElementTypes.Parameter_4007) {
 			types.add(MidElementTypes.Operator_2005);
 		}
 		return types;

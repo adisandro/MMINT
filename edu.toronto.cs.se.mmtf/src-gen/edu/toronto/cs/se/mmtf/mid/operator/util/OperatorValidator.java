@@ -113,16 +113,12 @@ public class OperatorValidator extends EObjectValidator {
 				return validateOperator((Operator)value, diagnostics, context);
 			case OperatorPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
-			case OperatorPackage.MODEL_PARAMETER:
-				return validateModelParameter((ModelParameter)value, diagnostics, context);
 			case OperatorPackage.ESTRING_TO_OPERATOR_MAP:
 				return validateEStringToOperatorMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case OperatorPackage.CONVERSION_OPERATOR:
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
 			case OperatorPackage.OPERATOR_EXECUTABLE:
 				return validateOperatorExecutable((OperatorExecutable)value, diagnostics, context);
-			case OperatorPackage.PARAMETER_TYPE:
-				return validateParameterType((ParameterType)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
 				return validateException((Exception)value, diagnostics, context);
 			default:
@@ -164,65 +160,7 @@ public class OperatorValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(parameter, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validateParameter_isModelParameter(parameter, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the isModelParameter constraint of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String PARAMETER__IS_MODEL_PARAMETER__EEXPRESSION = "type = ParameterType::MODEL or type = ParameterType::MODEL_REL implies self.oclIsKindOf(ModelParameter)";
-
-	/**
-	 * Validates the isModelParameter constraint of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParameter_isModelParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(OperatorPackage.Literals.PARAMETER,
-				 parameter,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "isModelParameter",
-				 PARAMETER__IS_MODEL_PARAMETER__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelParameter(ModelParameter modelParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(modelParameter, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelParameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validateParameter_isModelParameter(modelParameter, diagnostics, context);
-		return result;
+		return validate_EveryDefaultConstraint(parameter, diagnostics, context);
 	}
 
 	/**
@@ -250,25 +188,25 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(conversionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConversionOperator_coercion(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConversionOperator_conversion(conversionOperator, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the coercion constraint of '<em>Conversion Operator</em>'.
+	 * The cached validation expression for the conversion constraint of '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONVERSION_OPERATOR__COERCION__EEXPRESSION = "inputs->size() = 1 and outputs->size() = 2 and inputs->forAll(oclIsKindOf(ModelParameter)) and outputs->forAll(oclIsKindOf(ModelParameter)) and inputs->at(1).oclAsType(ModelParameter).model.supertype = outputs->at(1).oclAsType(ModelParameter).model";
+	protected static final String CONVERSION_OPERATOR__CONVERSION__EEXPRESSION = "inputs->size() = 1 and outputs->size() = 1";
 
 	/**
-	 * Validates the coercion constraint of '<em>Conversion Operator</em>'.
+	 * Validates the conversion constraint of '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConversionOperator_coercion(ConversionOperator conversionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateConversionOperator_conversion(ConversionOperator conversionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(OperatorPackage.Literals.CONVERSION_OPERATOR,
@@ -276,8 +214,8 @@ public class OperatorValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "coercion",
-				 CONVERSION_OPERATOR__COERCION__EEXPRESSION,
+				 "conversion",
+				 CONVERSION_OPERATOR__CONVERSION__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
@@ -290,15 +228,6 @@ public class OperatorValidator extends EObjectValidator {
 	 */
 	public boolean validateOperatorExecutable(OperatorExecutable operatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(operatorExecutable, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParameterType(ParameterType parameterType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
 	}
 
 	/**

@@ -24,12 +24,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameter2CreateCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameter2ReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameterCreateCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelParameterReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameter2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelParameterEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2CreateCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2ReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterReorientCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
 
@@ -56,14 +56,14 @@ public class OperatorItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ModelParameterEditPart.VISUAL_ID) {
+			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ParameterEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ModelParameter2EditPart.VISUAL_ID) {
+			if (MidVisualIDRegistry.getVisualID(outgoingLink) == Parameter2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -98,12 +98,12 @@ public class OperatorItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ModelParameter_4004 == req.getElementType()) {
-			return getGEFWrapper(new ModelParameterCreateCommand(req,
+		if (MidElementTypes.Parameter_4006 == req.getElementType()) {
+			return getGEFWrapper(new ParameterCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelParameter_4005 == req.getElementType()) {
-			return getGEFWrapper(new ModelParameter2CreateCommand(req,
+		if (MidElementTypes.Parameter_4007 == req.getElementType()) {
+			return getGEFWrapper(new Parameter2CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -114,10 +114,10 @@ public class OperatorItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ModelParameter_4004 == req.getElementType()) {
+		if (MidElementTypes.Parameter_4006 == req.getElementType()) {
 			return null;
 		}
-		if (MidElementTypes.ModelParameter_4005 == req.getElementType()) {
+		if (MidElementTypes.Parameter_4007 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -132,10 +132,10 @@ public class OperatorItemSemanticEditPolicy extends
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ModelParameterEditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelParameterReorientCommand(req));
-		case ModelParameter2EditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelParameter2ReorientCommand(req));
+		case ParameterEditPart.VISUAL_ID:
+			return getGEFWrapper(new ParameterReorientCommand(req));
+		case Parameter2EditPart.VISUAL_ID:
+			return getGEFWrapper(new Parameter2ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

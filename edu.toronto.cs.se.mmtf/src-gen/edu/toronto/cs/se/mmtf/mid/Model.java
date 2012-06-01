@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid;
 
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getElements <em>Elements</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -176,5 +178,21 @@ public interface Model extends ExtendibleElement {
 	 * @generated
 	 */
 	void setConstraint(ModelConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Conversion Operators</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Conversion Operators</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Conversion Operators</em>' reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_ConversionOperators()
+	 * @model
+	 * @generated
+	 */
+	EList<ConversionOperator> getConversionOperators();
 
 } // Model

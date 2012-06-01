@@ -93,10 +93,6 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createParameterAdapter();
 			}
 			@Override
-			public Adapter caseModelParameter(ModelParameter object) {
-				return createModelParameterAdapter();
-			}
-			@Override
 			public Adapter caseEStringToOperatorMap(Map.Entry<String, Operator> object) {
 				return createEStringToOperatorMapAdapter();
 			}
@@ -171,20 +167,6 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.ModelParameter <em>Model Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ModelParameter
-	 * @generated
-	 */
-	public Adapter createModelParameterAdapter() {
 		return null;
 	}
 
