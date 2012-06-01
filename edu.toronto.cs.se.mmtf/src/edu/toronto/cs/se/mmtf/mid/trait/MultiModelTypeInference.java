@@ -13,7 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 
 import java.util.HashSet;
 
-import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 
@@ -52,7 +52,7 @@ public class MultiModelTypeInference implements MMTFExtensionPoints {
 				OCLHelper helper = ocl.createOCLHelper();
 				helper.setInstanceContext(model.getRoot());
 				try {
-					ExpressionInOcl constraint = helper.createInvariant(lightModelSubtype.getConstraint().getBody());
+					ExpressionInOCL constraint = helper.createInvariant(lightModelSubtype.getConstraint().getBody());
 					if (ocl.check(model.getRoot(), constraint)) {
 						inferred = lightModelSubtype;
 						break;

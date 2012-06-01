@@ -966,45 +966,32 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			return signature;
 		}
 
-		private static Model getEligibleParameter(Model actualParameter, Model formalParameter) {
+		private static EList<ConversionOperator> isEligibleParameter(Model actualParameter, Model formalParameter) {
 
 			String actualUri = ((Model) actualParameter.getMetatype()).getUri();
 			String formalUri = formalParameter.getUri();
+			EList<ConversionOperator> result = null;
 
 			// exact type
 			if (formalUri.equals(actualUri)) {
-				return actualParameter;
+				result = new BasicEList<ConversionOperator>();
 			}
 			// substitutable type
-			if (substitutabilityTable.get(actualUri).contains(formalUri)) {
-				try {
-					Model newActualParameter = actualParameter;
-					// run all conversion operators
-					for (ConversionOperator operator : conversionTable.get(actualUri).get(formalUri)) {
-						EList<Model> actualParameters = new BasicEList<Model>();
-						actualParameters.add(newActualParameter);
-						newActualParameter = operator.getExecutable().execute(actualParameters).get(0);
-						//TODO MMTF: wrap in command?
-					}
-					return newActualParameter;
-				}
-				// abort conversion
-				catch (Exception e) {
-					MMTFException.print(Type.WARNING, "Conversion operator error", e);
-					return null;
-				}
+			else if (substitutabilityTable.get(actualUri).contains(formalUri)) {
+				result = conversionTable.get(actualUri).get(formalUri);
 			}
-			// no substitutable type
-			return null;
+
+			return result;
 		}
 
-		public static EList<Operator> getExecutableOperators(EList<Model> actualParameters) {
+		public static EList<Operator> getExecutableOperators(EList<Model> actualParameters, EList<HashMap<Integer, EList<ConversionOperator>>> conversions) {
 
 			EList<Operator> executableOperators = new BasicEList<Operator>();
 
 nextOperator:
 			for (Operator operator : repository.getOperators()) {
 				int i = 0;
+				HashMap<Integer, EList<ConversionOperator>> conversionMap = new HashMap<Integer, EList<ConversionOperator>>();
 				for (Parameter parameter : operator.getInputs()) {
 					// check 1: number of actual parameters
 					if (i >= actualParameters.size()) {
@@ -1012,22 +999,22 @@ nextOperator:
 					}
 					// check 2: type or substitutable types
 					while (i < actualParameters.size()) {
-						Model actualParameterBefore = actualParameters.get(i);
-						Model actualParameterAfter = getEligibleParameter(actualParameterBefore, parameter.getModel());
-						if (actualParameterAfter == null) {
+						EList<ConversionOperator> conversionList = isEligibleParameter(actualParameters.get(i), parameter.getModel());
+						if (conversionList == null) {
 							continue nextOperator;
 						}
-						if (actualParameterBefore != actualParameterAfter) {
-							actualParameters.set(i, actualParameterAfter);
+						if (!conversionList.isEmpty()) {
+							conversionMap.put(new Integer(i), conversionList);
 						}
 						i++;
 						if (!parameter.isVararg()) {
 							break;
 						}
 					}
-					
+
 				}
 				executableOperators.add(operator);
+				conversions.add(conversionMap);
 			}
 
 			return executableOperators;

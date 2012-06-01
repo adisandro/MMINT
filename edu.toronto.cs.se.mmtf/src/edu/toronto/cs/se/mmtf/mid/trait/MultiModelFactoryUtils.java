@@ -111,6 +111,7 @@ public class MultiModelFactoryUtils {
 			fileExtension = null;
 		}
 		else { // model or standalone model relationship
+			//TODO MMTF: getRoot() needs to become dynamic
 			ResourceSet set = new ResourceSetImpl();
 			Resource resource = set.getResource(modelUri, true);
 			root = resource.getContents().get(0);
@@ -276,12 +277,15 @@ public class MultiModelFactoryUtils {
 			((ExtendibleElement) model.getMetatype()).getUri()
 		);
 		if (editorTypes.size() != 0) {
-			//TODO MMTF: prioritize editors list
+			//TODO MMTF: prioritize editors list instead of running twice
+			//TODO MMTF: check if editor file really exists in model directory
 			for (Editor editorType : editorTypes) {
-				//TODO MMTF: check if editor file really exists in model directory
 				if (editorType instanceof Diagram) {
 					return createEditor(editorType, modelUri);
 				}
+			}
+			for (Editor editorType : editorTypes) {
+				return createEditor(editorType, modelUri);
 			}
 		}
 
@@ -369,7 +373,9 @@ public class MultiModelFactoryUtils {
 				model = createModel(ModelOrigin.IMPORTED, multiModel, modelUri);
 				model.setName(origModel.getName());
 				Editor editor = createEditor(model);
-				addModelEditor(editor, multiModel);
+				if (editor != null) {
+					addModelEditor(editor, multiModel);
+				}
 			}
 			modelRel.getModels().add(model);
 			ModelReference modelRef = createModelReference(modelRel, model);

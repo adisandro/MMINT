@@ -105,7 +105,9 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 				if (model == null) {
 					model = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
 					Editor editor = MultiModelFactoryUtils.createEditor(model);
-					MultiModelFactoryUtils.addModelEditor(editor, (MultiModel) owner.eContainer());
+					if (editor != null) {
+						MultiModelFactoryUtils.addModelEditor(editor, (MultiModel) owner.eContainer());
+					}
 				}
 			}
 			ModelReference newElement = MultiModelFactoryUtils.createModelReference(owner, model);

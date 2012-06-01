@@ -11,17 +11,32 @@
  */
 package edu.toronto.cs.se.modelepedia.powerwindow.operator;
 
+import java.util.Collections;
+import java.util.Date;
+
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetFactory;
+import edu.toronto.cs.se.modelepedia.petrinet.PetrinetPackage;
 
 public class PWControlRelToPetriNet extends OperatorExecutableImpl {
+
+	private static final String FILE_SUFFIX = "_pwcr2pn_";
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
@@ -30,13 +45,34 @@ public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 			throw new MMTFException("Bad operator parameters");
 		}
 
+		// convert
+		ModelRel pwControlRel = (ModelRel) actualParameters.get(0);
 		PetriNet petriNet = PetrinetFactory.eINSTANCE.createPetriNet();
-		Model petriNetModel = null;
-		//TODO MMTF: serialize and use the uri like if we import such model
-		//Model petriNetModel = MultiModelFactoryUtils.createModel(origin, multiModel, modelUri);
+
+		// serialize
+		String uri = pwControlRel.getUri();
+		uri = uri.substring(0, uri.lastIndexOf(IPath.SEPARATOR)+1) +
+			pwControlRel.getName() +
+			FILE_SUFFIX +
+			(new Date()).getTime() +
+			"." + PetrinetPackage.eNAME;
+		URI modelUri = URI.createPlatformResourceURI(uri, true);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(modelUri);
+		resource.getContents().add(petriNet);
+		resource.save(Collections.EMPTY_MAP);
+
+		// create model
+		MultiModel owner = (MultiModel) pwControlRel.eContainer();
+		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
+		Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);
+		Editor editor = MultiModelFactoryUtils.createEditor(newElement);
+		if (editor != null) {
+			MultiModelFactoryUtils.addModelEditor(editor, owner);
+		}
 
 		EList<Model> result = new BasicEList<Model>();
-		result.add(petriNetModel);
+		result.add(newElement);
 		return result;
 	}
 

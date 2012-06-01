@@ -5,6 +5,7 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.powerwindow.operator; singlet
 Bundle-Version: 0.9.0
 Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.modelepedia.petrinet
+ edu.toronto.cs.se.modelepedia.petrinet,
+ org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy

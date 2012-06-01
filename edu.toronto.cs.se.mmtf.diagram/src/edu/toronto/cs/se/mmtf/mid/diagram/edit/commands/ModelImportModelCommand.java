@@ -78,7 +78,9 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 			MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
 			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, owner, modelUri);
 			Editor editor = MultiModelFactoryUtils.createEditor(newElement);
-			MultiModelFactoryUtils.addModelEditor(editor, owner);
+			if (editor != null) {
+				MultiModelFactoryUtils.addModelEditor(editor, owner);
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

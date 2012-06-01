@@ -12,14 +12,42 @@
 package edu.toronto.cs.se.modelepedia.petrinet.operator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 
 public class PetriNetSimulate extends OperatorExecutableImpl {
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+
+		if (actualParameters.size() != 1) {
+			throw new MMTFException("Bad operator parameters");
+		}
+
+		// simulate
+		PetriNet petrinet = (PetriNet) actualParameters.get(0).getRoot();
+		boolean goodResult = petrinet.getNodes().isEmpty();
+
+		// show result
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		int dialogType = (goodResult) ? MessageDialog.INFORMATION : MessageDialog.ERROR;
+		String dialogMessage = (goodResult) ? "Good simulation result" : "Bad simulation result";
+		MessageDialog dialog = new MessageDialog(
+			shell,
+			"Simulation results",
+			null,
+			dialogMessage,
+			dialogType,
+			new String[] {"Ok"},
+			0
+		);
+		dialog.open();
 
 		return null;
 	}

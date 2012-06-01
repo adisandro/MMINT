@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.menu;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.View;
@@ -29,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
 /**
@@ -89,7 +92,8 @@ public class RunOperatorAction extends ContributionItem {
 			cascadeItem.setText("No Operator Available");
 			return;
 		}
-		EList<Operator> operators = MMTFRegistry.getExecutableOperators(actualParameters);
+		EList<HashMap<Integer, EList<ConversionOperator>>> conversions = new BasicEList<HashMap<Integer, EList<ConversionOperator>>>();
+		EList<Operator> operators = MMTFRegistry.getExecutableOperators(actualParameters, conversions);
 		if (operators.isEmpty()) {
 			cascadeItem.setText("No Operator Available");
 			return;
@@ -99,13 +103,16 @@ public class RunOperatorAction extends ContributionItem {
 		cascadeItem.setText("Run Operator");
 		Menu operatorsMenu = new Menu(menu);
 		cascadeItem.setMenu(operatorsMenu);
-		for (Operator operator : operators) {
+		for (int i = 0; i < operators.size(); i++) {
+			Operator operator = operators.get(i);
+			HashMap<Integer, EList<ConversionOperator>> conversionMap = conversions.get(i);
 			MenuItem operatorItem = new MenuItem(operatorsMenu, SWT.NONE);
 			operatorItem.setText(operator.getName());
 			operatorItem.addSelectionListener(
-				new RunOperatorListener(operator, actualParameters)
+				new RunOperatorListener(operator, actualParameters, conversionMap)
 			);
 			//TODO MMTF: nice to show label of operator invocation with actual parameters
+			//TODO MMTF: traceability, could be nice to create an instance of operator, with name = actual parameters
 		}
 	}
 
