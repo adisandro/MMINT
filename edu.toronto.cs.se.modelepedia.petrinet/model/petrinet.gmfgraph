@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="petrinet">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="ArcFigureTgtDecoration"/>
+    <descriptors name="PlaceFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="PlaceFigure">
+        <layout xsi:type="gmfgraph:FlowLayout"/>
+        <children xsi:type="gmfgraph:Label" name="PlaceNameFigure" text="&lt;...>"/>
+      </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="TransitionFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="TransitionFigure">
+        <layout xsi:type="gmfgraph:FlowLayout"/>
+        <children xsi:type="gmfgraph:Label" name="TransitionNameFigure" text="&lt;...>"/>
+      </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ArcFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ArcFigure" targetDecoration="//@figures.0/@figures.0">
+        <children xsi:type="gmfgraph:Label" name="ArcWeightFigure" text="&lt;...>"/>
+      </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+    </descriptors>
+  </figures>
+  <nodes name="Place" figure="PlaceFigure"/>
+  <nodes name="Transition" figure="TransitionFigure"/>
+  <connections name="Arc" figure="ArcFigure"/>
+  <labels name="PlaceName" figure="PlaceFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="TransitionName" figure="TransitionFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="ArcWeight" figure="ArcFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+</gmfgraph:Canvas>

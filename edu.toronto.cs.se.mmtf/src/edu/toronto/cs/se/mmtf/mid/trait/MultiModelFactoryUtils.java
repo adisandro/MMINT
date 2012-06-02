@@ -258,7 +258,7 @@ public class MultiModelFactoryUtils {
 		Link link = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
 		link.setUnbounded(false);
 		modelRel.getLinks().add(link);
-		addExtendibleElement(link, null, null, "");
+		addExtendibleElement(link, null, null, null);
 
 		return link;
 	}

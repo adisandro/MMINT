@@ -993,7 +993,7 @@ nextOperator:
 				int i = 0;
 				HashMap<Integer, EList<ConversionOperator>> conversionMap = new HashMap<Integer, EList<ConversionOperator>>();
 				for (Parameter parameter : operator.getInputs()) {
-					// check 1: number of actual parameters
+					// check 1: not enough actual parameters
 					if (i >= actualParameters.size()) {
 						continue nextOperator;
 					}
@@ -1008,11 +1008,16 @@ nextOperator:
 						}
 						i++;
 						if (!parameter.isVararg()) {
+							//TODO: MMTF introduce vararg with low multeplicity
 							break;
 						}
 					}
-
 				}
+				// check 3: too many actual parameters
+				if (i < actualParameters.size()) {
+					continue nextOperator;
+				}
+				// checks passed
 				executableOperators.add(operator);
 				conversions.add(conversionMap);
 			}

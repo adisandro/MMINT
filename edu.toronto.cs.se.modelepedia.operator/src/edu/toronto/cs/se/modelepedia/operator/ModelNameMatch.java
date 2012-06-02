@@ -26,6 +26,9 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
@@ -38,11 +41,25 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		// look for identical names in the models
+		// create model relationship among models
+		MultiModel multiModel = (MultiModel) actualParameters.get(0).eContainer();
+		EClass modelRelClass = (actualParameters.size() == 2) ?
+			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
+			RelationshipPackage.eINSTANCE.getModelRel();
+		ModelRel modelRel = MultiModelFactoryUtils.createModelRel(ModelOrigin.CREATED, multiModel, null, modelRelClass);
+		modelRel.setName(MODEL_REL_NAME);
+
+		// loop through selected models
 		HashMap<String, ArrayList<EObject>> objectNames = new HashMap<String, ArrayList<EObject>>();
+		HashMap<EObject, ModelReference> objectModels = new HashMap<EObject, ModelReference>();
 		for (Model model : actualParameters) {
 
-			for (EObject object : model.eContents()) {
+			// add models to relationship
+			modelRel.getModels().add(model);
+			ModelReference modelRef = MultiModelFactoryUtils.createModelReference(modelRel, model);
+
+			// look for identical names in the models
+			for (EObject object : model.getRoot().eContents()) {
 				EStructuralFeature feature = object.eClass().getEStructuralFeature(NAME_FEATURE);
 				if (feature != null && feature instanceof EAttribute && object.eGet(feature) instanceof String) {
 					String objectName = (String) object.eGet(feature);
@@ -52,21 +69,12 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 						objectNames.put(objectName, objects);
 					}
 					objects.add(object);
+					objectModels.put(object, modelRef);
 				}
 			}
 		}
 
-		// create model relationship among models
-		MultiModel multiModel = (MultiModel) actualParameters.get(0).eContainer();
-		EClass modelRelClass = (actualParameters.size() == 2) ?
-			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
-			RelationshipPackage.eINSTANCE.getModelRel();
-		ModelRel modelRel = MultiModelFactoryUtils.createModelRel(ModelOrigin.CREATED, multiModel, null, modelRelClass);
-		modelRel.setName(MODEL_REL_NAME);
-		for (Model model : actualParameters) {
-			modelRel.getModels().add(model);
-			MultiModelFactoryUtils.createModelReference(modelRel, model);
-		}
+		// create model relationship structure
 		for (Entry<String, ArrayList<EObject>> entry : objectNames.entrySet()) {
 			String name = entry.getKey();
 			ArrayList<EObject> objects = entry.getValue();
@@ -74,7 +82,14 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				EClass linkClass = (objects.size() == 2) ?
 					RelationshipPackage.eINSTANCE.getBinaryLink() :
 					RelationshipPackage.eINSTANCE.getLink();
-				//TODO MMTF: now create link, then create model element references and model elements
+				Link link = MultiModelFactoryUtils.createLink(modelRel, linkClass);
+				link.setName(name);
+				modelRel.getLinks().add(link);
+				for (EObject object : objects) {
+					ModelReference modelRef = objectModels.get(object);
+					ModelElementReference elementRef = MultiModelFactoryUtils.createModelElementReference(modelRef, object);
+					link.getElementRefs().add(elementRef);
+				}
 			}
 		}
 
