@@ -11,6 +11,17 @@
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -50,8 +61,29 @@ public class MultiModelConstraintChecker {
 	 */
 	public static boolean checkOCLConstraint(Model model, String oclConstraint) {
 
-		//TODO MMTF: get model root, run ocl engine, return result
-		return true;
+		EObject root = model.getRoot();
+		OCL ocl = OCL.newInstance();
+		OCLHelper helper = ocl.createOCLHelper();
+		//TODO MMTF: workaround for bug #375485
+		//helper.setInstanceContext(root);
+		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
+		EClass eClass = root.eClass();
+		Type pivotType = metaModelManager.getPivotType(eClass.getName());
+		if (pivotType == null) {
+			Resource resource = eClass.eResource();
+			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
+			pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+		}
+		helper.setContext(pivotType);
+
+		try {
+			ExpressionInOCL constraint = helper.createInvariant(oclConstraint);
+			return ocl.check(root, constraint);
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Constraint error: " + oclConstraint, e);
+			return false;
+		}
 	}
 
 }

@@ -49,6 +49,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 			for (IConfigurationElement elem : config) {
 				mmtf.createModelRelType(elem);
 				mmtf.setSupertypes();
+				MMTF.initTypeHierarchy();
 			}
 		}
 	}
@@ -66,6 +67,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
 				mmtf.removeModelType(uri);
+				MMTF.initTypeHierarchy();
 			}
 		}
 	}

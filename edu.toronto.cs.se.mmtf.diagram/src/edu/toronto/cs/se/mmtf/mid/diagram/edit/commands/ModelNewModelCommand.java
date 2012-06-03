@@ -15,10 +15,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -80,10 +81,10 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 				Model superModelType = MidDiagramTrait.selectModelToExtend();
 				String subModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new light model type name");
 				String constraint = MidDiagramTrait.getStringInput("Create new light model type", "Insert new light model type constraint");
-				newElement = MMTF.createLightModelType(superModelType, subModelTypeName, constraint);
+				newElement = MMTFRegistry.createLightModelType(superModelType, subModelTypeName, constraint);
+				Model newElementForMID = EcoreUtil.copy(newElement);
+				owner.getModels().add(newElementForMID);
 				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
-				//TODO MMTF: plus I can't add the same newElement to two lists, need to create a copy
-				//owner.getModels().add(newElement);
 			}
 			else {
 				//TODO MMTF: show light types or not? they should get inferred anyway, but maybe I need some indication

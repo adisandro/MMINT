@@ -50,8 +50,9 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				model = mmtf.createModelType(elem);
-				mmtf.setSupertypes();
 				mmtf.addModelTypeEditors(model);
+				mmtf.setSupertypes();
+				MMTF.initTypeHierarchy();
 				//TODO MMTF: create and call addModelConversionOperator
 			}
 		}
@@ -70,6 +71,7 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
 				mmtf.removeModelType(uri);
+				MMTF.initTypeHierarchy();
 			}
 		}
 	}

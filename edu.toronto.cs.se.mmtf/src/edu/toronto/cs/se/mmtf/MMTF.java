@@ -86,10 +86,10 @@ public class MMTF implements MMTFExtensionPoints {
 	private static MultiModel repository;
 
 	/**	The table for model types substitutability. */
-	private static HashMap<String, HashSet<String>> substitutabilityTable;
+	public static HashMap<String, HashSet<String>> substitutabilityTable;
 
 	/**	The table for model types conversion. */
-	private static HashMap<String, HashMap<String, EList<ConversionOperator>>> conversionTable;
+	public static HashMap<String, HashMap<String, EList<ConversionOperator>>> conversionTable;
 
 	/** A temporary map for the subtypes to be assigned a supertype. */
 	private static HashMap<ExtendibleElement, String> tempSubtypes;
@@ -210,41 +210,6 @@ public class MMTF implements MMTFExtensionPoints {
 			MMTFException.print(Type.WARNING, "Model type can't be registered", e);
 			model = null;
 		}
-
-		return model;
-	}
-
-	public static Model createLightModelType(Model superModel, String subModelName, String constraint) throws MMTFException {
-
-		// create and set uri
-		String uri = superModel.getUri();
-		uri += "/" + subModelName;
-		if (repository.getExtendibleTable().containsKey(uri)) {
-			throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
-		}
-		Model model = MidFactory.eINSTANCE.createModel();
-		model.setUri(uri);
-		repository.getExtendibleTable().put(uri, model);
-
-		// set specific attributes
-		model.setName(subModelName);
-		model.setSupertype(superModel);
-		model.setOrigin(ModelOrigin.CREATED);
-		ModelConstraint modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
-		modelConstraint.setBody(constraint);
-		modelConstraint.setEngine(ModelConstraintEngine.OCL);
-		model.setConstraint(modelConstraint);
-
-		// copy attributes from supertype
-		model.setLevel(superModel.getLevel());
-		model.setFileExtension(superModel.getFileExtension());
-		for (Editor editor : superModel.getEditors()) {
-			model.getEditors().add(editor);
-		}
-		//TODO MMTF: model elements?
-
-		// register light model type
-		repository.getModels().add(model);
 
 		return model;
 	}
@@ -661,7 +626,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		tempSubtypes.clear();
 	}
 
-	private void addSubstitutableTypes(ExtendibleElement element, HashSet<String> substitutableTypes, HashMap<String, EList<ConversionOperator>> conversionTypes) {
+	private static void addTypeHierarchy(ExtendibleElement element, HashSet<String> substitutableTypes, HashMap<String, EList<ConversionOperator>> conversionTypes) {
 
 		// previous conversions
 		EList<ConversionOperator> previousConversions = conversionTypes.get(element.getUri());
@@ -677,7 +642,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 					new BasicEList<ConversionOperator>(previousConversions);
 				conversionTypes.put(supertypeUri, conversions);
 				// recursion
-				addSubstitutableTypes(element.getSupertype(), substitutableTypes, conversionTypes);
+				addTypeHierarchy(element.getSupertype(), substitutableTypes, conversionTypes);
 			}
 		}
 
@@ -695,19 +660,19 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 					conversions.add(operator); // add new operator to use
 					conversionTypes.put(conversionUri, conversions);
 					// recursion
-					addSubstitutableTypes(conversionModel, substitutableTypes, conversionTypes);
+					addTypeHierarchy(conversionModel, substitutableTypes, conversionTypes);
 				}
 			}
 		}
 	}
 
-	public void setSubstitutableTypes() {
+	public static void initTypeHierarchy() {
 
 		substitutabilityTable.clear();
 		for (Model model : repository.getModels()) {
 			HashSet<String> substitutableTypes = new HashSet<String>();
 			HashMap<String, EList<ConversionOperator>> conversionTypes = new HashMap<String, EList<ConversionOperator>>();
-			addSubstitutableTypes(model, substitutableTypes, conversionTypes);
+			addTypeHierarchy(model, substitutableTypes, conversionTypes);
 			substitutabilityTable.put(model.getUri(), substitutableTypes);
 			conversionTable.put(model.getUri(), conversionTypes);
 		}
@@ -754,12 +719,10 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			createOperator(elem);
 		}
 
-		// extendible elements' supertypes
+		// type hierarchy
 		setSupertypes();
-
-		// substitutability
 		//TODO MMTF: rerun every time a model is added or removed
-		setSubstitutableTypes();
+		initTypeHierarchy();
 
 		//TODO MMTF: do this on demand, with a button somewhere
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -799,6 +762,49 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 * 
 	 */
 	public static class MMTFRegistry {
+
+		public static Model createLightModelType(Model superModel, String subModelName, String constraint) throws MMTFException {
+
+			// create and set uri
+			String uri = superModel.getUri();
+			uri += "/" + subModelName;
+			if (repository.getExtendibleTable().containsKey(uri)) {
+				throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
+			}
+			Model model = MidFactory.eINSTANCE.createModel();
+			model.setUri(uri);
+			repository.getExtendibleTable().put(uri, model);
+
+			// set specific attributes
+			model.setName(subModelName);
+			model.setSupertype(superModel);
+			model.setOrigin(ModelOrigin.CREATED);
+			ModelConstraint modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
+			modelConstraint.setBody(constraint);
+			modelConstraint.setEngine(ModelConstraintEngine.OCL);
+			model.setConstraint(modelConstraint);
+
+			// copy attributes from supertype
+			model.setLevel(superModel.getLevel());
+			model.setFileExtension(superModel.getFileExtension());
+			for (Editor editor : superModel.getEditors()) {
+				model.getEditors().add(editor);
+			}
+			//TODO MMTF: model elements?
+
+			// register light model type
+			repository.getModels().add(model);
+			initTypeHierarchy();
+
+			return model;
+		}
+
+		public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
+
+			return
+				substitutabilityTable.get(subtypeUri).contains(supertypeUri) &&
+				conversionTable.get(subtypeUri).get(supertypeUri).isEmpty();
+		}
 
 		/**
 		 * Gets an extendible type.

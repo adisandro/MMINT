@@ -19,13 +19,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -49,25 +45,30 @@ public class MultiModelTypeInference implements MMTFExtensionPoints {
 
 		String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
 		ExtendibleElement inferred = MMTFRegistry.getExtendibleType(modelTypeUri);
+		int inferredDepth = -1;
 
 		//TODO MMTF: polish, a lot
 		for (Model lightModelSubtype : MMTFRegistry.getModelTypes()) {
+
 			if (lightModelSubtype instanceof ModelRel) {
 				continue;
 			}
-			if (lightModelSubtype.getSupertype() == inferred && lightModelSubtype.getConstraint() != null) {
-				OCL ocl = OCL.newInstance();
-				OCLHelper helper = ocl.createOCLHelper();
-				helper.setInstanceContext(model.getRoot());
-				try {
-					ExpressionInOCL constraint = helper.createInvariant(lightModelSubtype.getConstraint().getBody());
-					if (ocl.check(model.getRoot(), constraint)) {
-						inferred = lightModelSubtype;
-						break;
+
+			// real light subtype
+			if (lightModelSubtype.getConstraint() != null && MMTFRegistry.isSubtypeOf(lightModelSubtype.getUri(), modelTypeUri)) {
+				if (MultiModelConstraintChecker.checkOCLConstraint(model, lightModelSubtype.getConstraint().getBody())) {
+					int depth = 0;
+					ExtendibleElement subtype = lightModelSubtype;
+					while (!subtype.getSupertype().getUri().equals(modelTypeUri)) {
+						subtype = subtype.getSupertype();
+						depth++;
 					}
-				}
-				catch (Exception e) {
-					e.printStackTrace();
+					// choose max inferred depth
+					//TODO MMTF: with different subtype trees a dialog should be presented to the user
+					if (depth > inferredDepth) {
+						inferred = lightModelSubtype;
+						inferredDepth = depth;
+					}
 				}
 			}
 		}
@@ -185,6 +186,11 @@ modelTypes:
 
 		try {
 			if (model.getLevel() == MidLevel.TYPES) {
+				// climb up light types
+				while (model.getConstraint() != null) {
+					model = (Model) model.getSupertype();
+					uri = model.getUri();
+				}
 				root = EPackage.Registry.INSTANCE.getEPackage(uri);
 				if (root == null) {
 					throw new MMTFException("EPackage for URI " + uri + " is not registered");
@@ -201,7 +207,7 @@ modelTypes:
 		}
 		catch (Exception e) {
 
-			MMTFException.print(Type.WARNING, "Error getting root for model " + uri, e);
+			MMTFException.print(MMTFException.Type.WARNING, "Error getting root for model " + uri, e);
 			return null;
 		}
 	}
