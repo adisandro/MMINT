@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
 
@@ -104,19 +105,10 @@ public class MidDiagramTrait {
 		return editor;
 	}
 
-	/**
-	 * Shows a tree dialog to select a model choosing from the registered model
-	 * types.
-	 * 
-	 * @return The choosen model.
-	 * @throws MMTFException
-	 *             If the model selection was not completed for any reason.
-	 */
-	public static Model selectModelToExtend() throws MMTFException {
+	private static Model selectTypeToExtend(ElementTreeSelectionDialog dialog, String title) throws MMTFException {
 
-		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelTypeCreationDialog();
-		dialog.setTitle("Create new light model type");
-		dialog.setMessage("Choose model supertype");
+		dialog.setTitle(title);
+		dialog.setMessage("Choose supertype");
 		dialog.setAllowMultiple(false);
 
 		if (dialog.open() == Window.CANCEL) {
@@ -129,6 +121,30 @@ public class MidDiagramTrait {
 		Model supertype = (Model) selection;
 
 		return supertype;
+	}
+
+	/**
+	 * Shows a tree dialog to select a model choosing from the registered model
+	 * types.
+	 * 
+	 * @return The choosen model.
+	 * @throws MMTFException
+	 *             If the model selection was not completed for any reason.
+	 */
+	public static Model selectModelToExtend() throws MMTFException {
+
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelTypeCreationDialog();
+		String title = "Create new light model type";
+
+		return selectTypeToExtend(dialog, title);
+	}
+
+	public static ModelRel selectModelRelToExtend() throws MMTFException {
+
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelTypeCreationDialog();
+		String title = "Create new light model relationship type";
+
+		return (ModelRel) selectTypeToExtend(dialog, title);
 	}
 
 	/**

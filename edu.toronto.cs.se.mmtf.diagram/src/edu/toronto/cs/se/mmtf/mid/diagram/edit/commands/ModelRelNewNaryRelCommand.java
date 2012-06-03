@@ -14,15 +14,18 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -52,8 +55,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		//TODO MMTF: allow TYPES level to run when light type creation is implemented
-		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit()) && super.canExecute();
+		return super.canExecute();
 	}
 
 	/**
@@ -70,15 +72,27 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		//TODO MMTF: implement light type creation -> select supertype + insert text constraint
 		try {
 			MultiModel owner = (MultiModel) getElementToEdit();
-			ModelRel newElement = MultiModelFactoryUtils.createModelRel(
-				ModelOrigin.CREATED,
-				owner,
-				null,
-				RelationshipPackage.eINSTANCE.getModelRel()
-			);
+			ModelRel newElement;
+			if (owner.getLevel() == MidLevel.TYPES) {
+				ModelRel superModelRelType = MidDiagramTrait.selectModelRelToExtend();
+				String subModelRelTypeName = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
+				String constraint = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
+				newElement = (ModelRel) MMTFRegistry.createLightModelRelType(superModelRelType, subModelRelTypeName, constraint);
+				ModelRel newElementForMID = EcoreUtil.copy(newElement);
+				owner.getModels().add(newElementForMID);
+				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
+			}
+			else {
+				//TODO MMTF: show light types or not? they should get inferred anyway, but maybe I need some indication
+				newElement = MultiModelFactoryUtils.createModelRel(
+					ModelOrigin.CREATED,
+					owner,
+					null,
+					RelationshipPackage.eINSTANCE.getModelRel()
+				);
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

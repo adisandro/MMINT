@@ -763,7 +763,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 */
 	public static class MMTFRegistry {
 
-		public static Model createLightModelType(Model superModel, String subModelName, String constraint) throws MMTFException {
+		private static void addLightModelType(Model model, Model superModel, String subModelName, String constraint) throws MMTFException {
 
 			// create and set uri
 			String uri = superModel.getUri();
@@ -771,7 +771,6 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			if (repository.getExtendibleTable().containsKey(uri)) {
 				throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
 			}
-			Model model = MidFactory.eINSTANCE.createModel();
 			model.setUri(uri);
 			repository.getExtendibleTable().put(uri, model);
 
@@ -795,8 +794,24 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			// register light model type
 			repository.getModels().add(model);
 			initTypeHierarchy();
+		}
+
+		public static Model createLightModelType(Model superModel, String subModelName, String constraint) throws MMTFException {
+
+			Model model = MidFactory.eINSTANCE.createModel();
+			addLightModelType(model, superModel, subModelName, constraint);
 
 			return model;
+		}
+
+		public static ModelRel createLightModelRelType(ModelRel superModelRel, String subModelRelName, String constraint) throws MMTFException {
+
+			ModelRel modelRel = RelationshipFactory.eINSTANCE.createModelRel();
+			addLightModelType(modelRel, superModelRel, subModelRelName, constraint);
+			modelRel.setUnbounded(superModelRel.isUnbounded());
+			//TODO MMTF: model rel structure->models,references,links
+
+			return modelRel;
 		}
 
 		public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
@@ -892,7 +907,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
 				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, false)
+				new RepositoryDialogContentProvider(repository, true, false, true)
 			);
 			dialog.setValidator(new RepositoryDialogSelectionValidator());
 			dialog.setInput(repository);
@@ -911,7 +926,26 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
 				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, true)
+				new RepositoryDialogContentProvider(repository, true, false, false)
+			);
+			dialog.setInput(repository);
+
+			return dialog;
+		}
+
+		/**
+		 * Gets a tree dialog to select among registered model relationship
+		 * types.
+		 * 
+		 * @return The tree dialog.
+		 */
+		public static ElementTreeSelectionDialog getModelRelTypeCreationDialog() {
+
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
+				shell,
+				new RepositoryDialogLabelProvider(),
+				new RepositoryDialogContentProvider(repository, false, true, false)
 			);
 			dialog.setInput(repository);
 

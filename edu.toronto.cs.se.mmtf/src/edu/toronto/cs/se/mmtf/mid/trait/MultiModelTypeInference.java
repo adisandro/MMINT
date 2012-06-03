@@ -123,6 +123,7 @@ modelTypes:
 
 			//TODO: MMTF continue with other cases
 		}
+		//TODO: MMTF now after models endpoints, run infer based on light types
 
 		// fallback to root type
 		if (inferred == null) {

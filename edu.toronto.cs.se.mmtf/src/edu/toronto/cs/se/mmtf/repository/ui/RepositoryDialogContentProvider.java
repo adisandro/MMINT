@@ -32,21 +32,25 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 
 	/** The repository. */
 	private MultiModel repository;
-	/** True if editors are not going to be shown. */
-	private boolean modelsOnly;
+	private boolean showModels;
+	private boolean showModelRels;
+	/** True if editors are going to be shown. */
+	private boolean showEditors;
 
 	/**
 	 * Constructor: initialises the repository.
 	 * 
 	 * @param repository
 	 *            The repository.
-	 * @param modelsOnly
-	 *            True if editors are not going to be shown.
+	 * @param showEditors
+	 *            True if editors are going to be shown.
 	 */
-	public RepositoryDialogContentProvider(MultiModel repository, boolean modelsOnly) {
+	public RepositoryDialogContentProvider(MultiModel repository, boolean showModels, boolean showModelRels, boolean showEditors) {
 
 		this.repository = repository;
-		this.modelsOnly = modelsOnly;
+		this.showModels = showModels;
+		this.showModelRels = showModelRels;
+		this.showEditors = showEditors;
 	}
 
 	/**
@@ -85,8 +89,12 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 		if (parentElement instanceof MultiModel) {
 			EList<Model> userModels = new BasicEList<Model>();
 			for (Model model : ((MultiModel) parentElement).getModels()) {
+				// remove models
+				if (!(model instanceof ModelRel) && !showModels) {
+					continue;
+				}
 				// remove model relationships
-				if (model instanceof ModelRel) {
+				if (model instanceof ModelRel && !showModelRels) {
 					continue;
 				}
 				// remove root models
@@ -96,7 +104,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 			}
 			return userModels.toArray();
 		}
-		if (parentElement instanceof Model && !modelsOnly) {
+		if (parentElement instanceof Model && showEditors) {
 			return ((Model) parentElement).getEditors().toArray();
 		}
 
@@ -128,7 +136,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 		if (element instanceof MultiModel  ) {
 			return !((MultiModel) element).getModels().isEmpty();
 		}
-		if (element instanceof Model && !modelsOnly) {
+		if (element instanceof Model && showEditors) {
 			return !((Model) element).getEditors().isEmpty();
 		}
 
