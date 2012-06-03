@@ -97,24 +97,17 @@ public class MultiModelFactoryUtils {
 	 *            The root multimodel (possibly null).
 	 * @param modelUri
 	 *            The uri of the model to add (possibly null).
-	 * @throws Exception
-	 *             If the resource pointed by the model uri could not be get.
 	 */
-	private static void addModel(Model model, ModelOrigin origin, MultiModel multiModel, URI modelUri) throws Exception {
+	private static void addModel(Model model, ModelOrigin origin, MultiModel multiModel, URI modelUri) {
 
-		// possibly raise exceptions as first thing
-		EObject root;
 		String fileName, fileExtension;
-		if (modelUri == null) { // model relationship
-			root = model;
+		// model relationship
+		if (modelUri == null) {
 			fileName = null;
 			fileExtension = null;
 		}
-		else { // model or standalone model relationship
-			//TODO MMTF: getRoot() needs to become dynamic
-			ResourceSet set = new ResourceSetImpl();
-			Resource resource = set.getResource(modelUri, true);
-			root = resource.getContents().get(0);
+		// model or standalone model relationship
+		else {
 			fileName = modelUri.lastSegment();
 			fileName = fileName.substring(0, fileName.lastIndexOf('.'));
 			fileExtension = modelUri.fileExtension();
@@ -128,7 +121,6 @@ public class MultiModelFactoryUtils {
 
 		// set attributes
 		model.setOrigin(origin);
-		model.setRoot(root);
 		model.setFileExtension(fileExtension);
 	}
 
@@ -142,10 +134,8 @@ public class MultiModelFactoryUtils {
 	 * @param modelUri
 	 *            The uri of the model to add.
 	 * @return The model just created.
-	 * @throws Exception
-	 *             If the resource pointed by the model uri could not be get.
 	 */
-	public static Model createModel(ModelOrigin origin, MultiModel multiModel, URI modelUri) throws Exception {
+	public static Model createModel(ModelOrigin origin, MultiModel multiModel, URI modelUri) {
 
 		Model model = MidFactory.eINSTANCE.createModel();
 		addModel(model, origin, multiModel, modelUri);
@@ -166,11 +156,8 @@ public class MultiModelFactoryUtils {
 	 * @param modelRelClass
 	 *            The specific model relationship class.
 	 * @return The model relationship just created.
-	 * @throws Exception
-	 *             If the resource pointed by the model relationship uri could
-	 *             not be get.
 	 */
-	public static ModelRel createModelRel(ModelOrigin origin, MultiModel multiModel, URI modelRelUri, EClass modelRelClass) throws Exception {
+	public static ModelRel createModelRel(ModelOrigin origin, MultiModel multiModel, URI modelRelUri, EClass modelRelClass) {
 
 		ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelClass);
 		addModel(modelRel, origin, multiModel, modelRelUri);
@@ -345,12 +332,11 @@ public class MultiModelFactoryUtils {
 	 *            The uri of the original model relationship.
 	 * @return The model relationship just created.
 	 * @throws Exception
-	 *             If the resources pointed by the various uris could not be
-	 *             get.
+	 *             If the resource pointed by the modelRelUri could not be get.
 	 */
 	public static ModelRel copyModelRel(MultiModel multiModel, URI modelRelUri) throws Exception {
 
-		// this duplicate code is needed to infer the model relationship class
+		// this is needed to infer the model relationship class
 		ResourceSet set = new ResourceSetImpl();
 		Resource resource = set.getResource(modelRelUri, true);
 		EObject root = resource.getContents().get(0);

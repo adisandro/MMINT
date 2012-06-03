@@ -13,11 +13,19 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 
 import java.util.HashSet;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -168,6 +176,34 @@ modelTypes:
 			return inferType((Editor) element);
 		}
 		return null;
+	}
+
+	public static EObject getRoot(Model model) {
+
+		String uri = model.getUri();
+		EObject root;
+
+		try {
+			if (model.getLevel() == MidLevel.TYPES) {
+				root = EPackage.Registry.INSTANCE.getEPackage(uri);
+				if (root == null) {
+					throw new MMTFException("EPackage for URI " + uri + " is not registered");
+				}
+			}
+			else {
+				URI modelUri = URI.createPlatformResourceURI(uri, true);
+				ResourceSet set = new ResourceSetImpl();
+				Resource resource = set.getResource(modelUri, true);
+				root = resource.getContents().get(0);
+			}
+
+			return root;
+		}
+		catch (Exception e) {
+
+			MMTFException.print(Type.WARNING, "Error getting root for model " + uri, e);
+			return null;
+		}
 	}
 
 }

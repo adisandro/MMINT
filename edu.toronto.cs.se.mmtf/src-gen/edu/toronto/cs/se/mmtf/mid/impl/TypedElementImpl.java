@@ -145,6 +145,18 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypedElement basicGetMetatypeGen() {
+		// TODO: implement this method to return the 'Metatype' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Uses type inference to get runtime metatype.
+	 * 
 	 * @generated NOT
 	 */
 	public TypedElement basicGetMetatype() {

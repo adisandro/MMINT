@@ -178,7 +178,6 @@ public class MMTF implements MMTFExtensionPoints {
 		// set attributes
 		addExtendibleType(model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
 		model.setOrigin(ModelOrigin.IMPORTED);
-		model.setRoot(modelPackage);
 		String modelPackageName = modelPackage.getName();
 		model.setFileExtension(modelPackageName);
 		// possibly register file extension to load resources
@@ -238,7 +237,6 @@ public class MMTF implements MMTFExtensionPoints {
 
 		// copy attributes from supertype
 		model.setLevel(superModel.getLevel());
-		model.setRoot(superModel.getRoot());
 		model.setFileExtension(superModel.getFileExtension());
 		for (Editor editor : superModel.getEditors()) {
 			model.getEditors().add(editor);

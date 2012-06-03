@@ -49,22 +49,11 @@ public interface Model extends ExtendibleElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Root</em>' reference.
-	 * @see #setRoot(EObject)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Root()
-	 * @model required="true"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	EObject getRoot();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.Model#getRoot <em>Root</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root</em>' reference.
-	 * @see #getRoot()
-	 * @generated
-	 */
-	void setRoot(EObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Origin</b></em>' attribute.

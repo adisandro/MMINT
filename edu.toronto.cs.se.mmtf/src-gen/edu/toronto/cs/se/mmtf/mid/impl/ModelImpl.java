@@ -19,6 +19,8 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeInference;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -56,16 +58,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ModelImpl extends ExtendibleElementImpl implements Model {
-	/**
-	 * The cached value of the '{@link #getRoot() <em>Root</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRoot()
-	 * @generated
-	 * @ordered
-	 */
-	protected EObject root;
-
 	/**
 	 * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -171,36 +163,32 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @generated
 	 */
 	public EObject getRoot() {
-		if (root != null && root.eIsProxy()) {
-			InternalEObject oldRoot = (InternalEObject)root;
-			root = eResolveProxy(oldRoot);
-			if (root != oldRoot) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.MODEL__ROOT, oldRoot, root));
-			}
-		}
-		return root;
+		EObject root = basicGetRoot();
+		return root != null && root.eIsProxy() ? eResolveProxy((InternalEObject)root) : root;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+	 */
+	public EObject basicGetRootGen() {
+		// TODO: implement this method to return the 'Root' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Gets the root element at runtime, storing it has no meaning (especially
+	 * when serializing/deserializing), thus preventing us from using it in a
+	 * proper way.
+	 * 
+	 * @generated NOT
 	 */
 	public EObject basicGetRoot() {
-		return root;
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRoot(EObject newRoot) {
-		EObject oldRoot = root;
-		root = newRoot;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__ROOT, oldRoot, root));
+		return MultiModelTypeInference.getRoot(this);
 	}
 
 	/**
@@ -376,9 +364,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL__ROOT:
-				setRoot((EObject)newValue);
-				return;
 			case MidPackage.MODEL__ORIGIN:
 				setOrigin((ModelOrigin)newValue);
 				return;
@@ -412,9 +397,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL__ROOT:
-				setRoot((EObject)null);
-				return;
 			case MidPackage.MODEL__ORIGIN:
 				setOrigin(ORIGIN_EDEFAULT);
 				return;
@@ -446,7 +428,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MidPackage.MODEL__ROOT:
-				return root != null;
+				return basicGetRoot() != null;
 			case MidPackage.MODEL__ORIGIN:
 				return origin != ORIGIN_EDEFAULT;
 			case MidPackage.MODEL__FILE_EXTENSION:

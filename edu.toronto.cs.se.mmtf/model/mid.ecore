@@ -31,7 +31,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileExtension" lowerBound="1"
