@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
@@ -88,6 +89,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				for (EObject object : objects) {
 					ModelReference modelRef = objectModels.get(object);
 					ModelElementReference elementRef = MultiModelFactoryUtils.createModelElementReference(modelRef, object);
+					((ModelElement) elementRef.getObject()).setName(object.getClass().getSimpleName() + " " + name);//TODO MMTF: remove and fix
 					link.getElementRefs().add(elementRef);
 				}
 			}

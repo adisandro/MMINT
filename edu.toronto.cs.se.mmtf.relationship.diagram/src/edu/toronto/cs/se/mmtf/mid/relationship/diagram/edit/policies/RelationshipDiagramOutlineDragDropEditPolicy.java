@@ -66,6 +66,7 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 			}
 			EObject droppedElement = (EObject) nextObject;
 			String modelUri = EcoreUtil.getURI(droppedElement).toPlatformString(true);
+			//TODO MMTF: investigate null pointer here with TYPES mid
 
 references:
 			for (ModelReference modelRef : root.getModelRefs()) {

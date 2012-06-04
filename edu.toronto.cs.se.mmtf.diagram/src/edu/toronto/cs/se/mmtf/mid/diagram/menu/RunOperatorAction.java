@@ -112,6 +112,7 @@ public class RunOperatorAction extends ContributionItem {
 				new RunOperatorListener(operator, actualParameters, conversionMap)
 			);
 			//TODO MMTF: nice to show label of operator invocation with actual parameters
+			//TODO MMTF: nice to identify conv operators and normal operators through conversions
 			//TODO MMTF: traceability, could be nice to create an instance of operator, with name = actual parameters
 		}
 	}

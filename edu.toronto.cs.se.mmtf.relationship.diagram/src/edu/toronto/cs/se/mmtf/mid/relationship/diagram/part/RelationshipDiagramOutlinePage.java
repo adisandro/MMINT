@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
@@ -99,7 +100,14 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		ModelRel root = (ModelRel) diagram.getElement();
 		for (Model model : root.getModels()) {
 			try {
-				resourceSet.getResource(URI.createPlatformResourceURI(model.getUri(), true), true);
+				if (root.getLevel() == MidLevel.TYPES) {
+					//TODO MMTF: null pointer on drop
+					resourceSet.getResources().add(root.getRoot().eResource());
+				}
+				else {
+					//TODO MMTF: easier by calling eResource on getRoot (but getRoot does exactly that)?
+					resourceSet.getResource(URI.createPlatformResourceURI(model.getUri(), true), true);
+				}
 			}
 			catch (Exception e) {
 				MMTFException.print(MMTFException.Type.WARNING, "Model " + model.getUri() + " unavailable", e);
