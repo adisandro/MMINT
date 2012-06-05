@@ -651,7 +651,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			for (ConversionOperator operator : ((Model) element).getConversionOperators()) {
 				Model conversionModel = operator.getOutputs().get(0).getModel();
 				String conversionUri = conversionModel.getUri();
-				if (!substitutableTypes.contains(conversionUri)) {
+				if (!substitutableTypes.contains(conversionUri)) { // coherence of multiple paths is assumed
 					substitutableTypes.add(conversionUri);
 					// keep track of conversion operators used
 					EList<ConversionOperator> conversions = (previousConversions == null) ?

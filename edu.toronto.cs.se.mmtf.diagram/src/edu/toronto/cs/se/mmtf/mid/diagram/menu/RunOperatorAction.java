@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
@@ -88,7 +89,7 @@ public class RunOperatorAction extends ContributionItem {
 
 		// create basic menu and get operators
 		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
-		if (actualParameters.isEmpty()) {
+		if (actualParameters.isEmpty() || actualParameters.get(0).getLevel() == MidLevel.TYPES) {
 			cascadeItem.setText("No Operator Available");
 			return;
 		}
