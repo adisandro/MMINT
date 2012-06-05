@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -25,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -65,8 +67,18 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 				continue;
 			}
 			EObject droppedElement = (EObject) nextObject;
-			String modelUri = EcoreUtil.getURI(droppedElement).toPlatformString(true);
-			//TODO MMTF: investigate null pointer here with TYPES mid
+			URI uri = EcoreUtil.getURI(droppedElement);
+			String modelUri = uri.toPlatformString(true);
+			if (modelUri == null) { // MidLevel.TYPES
+				String[] pieces = uri.toString().split("#//");
+				modelUri = pieces[0];
+				String metamodelFragment = pieces[1];
+				Model modelType = MMTFRegistry.getModelType(modelUri);
+				if (modelType == null) {
+					continue;
+				}
+				droppedElement = MMTFRegistry.getModelTypeMetamodelElement(modelType, metamodelFragment);
+			}
 
 references:
 			for (ModelReference modelRef : root.getModelRefs()) {

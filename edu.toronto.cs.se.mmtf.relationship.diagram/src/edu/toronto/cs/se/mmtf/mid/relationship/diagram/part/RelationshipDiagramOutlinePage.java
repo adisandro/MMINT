@@ -101,7 +101,6 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		for (Model model : root.getModels()) {
 			try {
 				if (root.getLevel() == MidLevel.TYPES) {
-					//TODO MMTF: null pointer on drop
 					resourceSet.getResources().add(root.getRoot().eResource());
 				}
 				else {

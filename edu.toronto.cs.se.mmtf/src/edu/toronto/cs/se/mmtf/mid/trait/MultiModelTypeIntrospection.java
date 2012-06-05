@@ -135,6 +135,8 @@ modelTypes:
 
 	private static TypedElement getType(ModelElement modelElem) {
 
+		//TODO MMTF: implementare
+
 		// fallback to root type
 		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
 			return MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_ENTITY_URI);
@@ -145,6 +147,8 @@ modelTypes:
 	}
 
 	private static TypedElement getType(Link link) {
+
+		//TODO MMTF: implementare
 
 		// fallback to root type
 		return MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI);

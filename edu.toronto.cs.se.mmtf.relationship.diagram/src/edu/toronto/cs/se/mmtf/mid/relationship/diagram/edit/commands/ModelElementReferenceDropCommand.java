@@ -61,6 +61,11 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+		//TODO MMTF: aggiungere canExecute per validare, aggiungerlo a tutti i comandi in realtà nel rel diagram
+		//TODO MMTF: nel mid diagram dovrei chiedere ogni volta che creo/modifico una rel di che tipo statico la voglio, scelta in base ai dinamici available
+		//TODO MMTF: in più nel mid diagram devo dare un hint quando è possibile una type conversion, con relativo action menu
+		//TODO MMTF: tale conversione è semplicemente un assegnamento allo static type, che quindi ora non è più dynamic transient volatile blabla
+		//TODO MMTF: distinguere TYPES e INSTANCES (per fare una copy in più direi, forse qualcos'altro?)
 		ModelReference owner = (ModelReference) getElementToEdit();
 		ModelElementReference newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
 		doConfigure(newElement, monitor, info);

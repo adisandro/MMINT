@@ -269,12 +269,10 @@ public class MMTF implements MMTFExtensionPoints {
 							)
 						);
 						// get feature from model
-						//TODO MMTF: useful? if yes, make it safe
-						String[] elemLiterals = modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL).split("\\.");
-						EObject elemPointer = ((EPackage) ((Model) model).getRoot()).getEClassifier(elemLiterals[0]);
-						if (elemLiterals.length > 1) {
-							elemPointer = ((EClass) elemPointer).getEStructuralFeature(elemLiterals[1]);
-						}
+						EObject elemPointer = MMTFRegistry.getModelTypeMetamodelElement(
+							(Model) model,
+							modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL)
+						);
 						((ModelElement) element).setPointer(elemPointer);
 						try {
 							addExtendibleType(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
@@ -1006,7 +1004,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		private static EList<ConversionOperator> isEligibleParameter(Model actualParameter, Model formalParameter) {
 
-			String actualUri = ((Model) actualParameter.getMetatype()).getUri();
+			String actualUri = ((Model) actualParameter.getRuntimeMetatype()).getUri();
 			String formalUri = formalParameter.getUri();
 			EList<ConversionOperator> result = null;
 
@@ -1061,6 +1059,17 @@ nextOperator:
 			}
 
 			return executableOperators;
+		}
+
+		public static EObject getModelTypeMetamodelElement(Model modelType, String metamodelFragment) {
+
+			String[] literals = metamodelFragment.split("/");
+			EObject elemPointer = ((EPackage) modelType.getRoot()).getEClassifier(literals[0]);
+			if (literals.length > 1) {
+				elemPointer = ((EClass) elemPointer).getEStructuralFeature(literals[1]);
+			}
+
+			return elemPointer;
 		}
 
 	}

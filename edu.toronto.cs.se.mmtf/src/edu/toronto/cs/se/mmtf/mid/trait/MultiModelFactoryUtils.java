@@ -214,6 +214,8 @@ public class MultiModelFactoryUtils {
 				break;
 			}
 		}
+		//TODO MMTF: trovare un modo di farlo funzionare sempre
+		//TODO MMTF: renderlo breve e leggibile in caso di TYPES (getName() e basta?)
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
 		((Model) modelRef.getObject()).getElements().add(modelElem);
 		addExtendibleElement(modelElem, null, null, name);
@@ -261,7 +263,7 @@ public class MultiModelFactoryUtils {
 
 		URI modelUri = URI.createPlatformResourceURI(model.getUri(), true);
 		EList<Editor> editorTypes = MMTFRegistry.getEditorsForModelType(
-			((ExtendibleElement) model.getMetatype()).getUri()
+			((ExtendibleElement) model.getRuntimeMetatype()).getUri()
 		);
 		if (editorTypes.size() != 0) {
 			//TODO MMTF: prioritize editors list instead of running twice
