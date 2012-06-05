@@ -114,13 +114,22 @@ public interface MidPackage extends EPackage {
 	int TYPED_ELEMENT__TYPE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__RUNTIME_METATYPE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Typed Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_FEATURE_COUNT = 4;
+	int TYPED_ELEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Typed Element</em>' class.
@@ -176,6 +185,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT__TYPE = TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__RUNTIME_METATYPE = TYPED_ELEMENT__RUNTIME_METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -340,6 +358,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__TYPE = EXTENDIBLE_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__RUNTIME_METATYPE = EXTENDIBLE_ELEMENT__RUNTIME_METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -531,6 +558,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT__TYPE = EXTENDIBLE_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__RUNTIME_METATYPE = EXTENDIBLE_ELEMENT__RUNTIME_METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -922,6 +958,17 @@ public interface MidPackage extends EPackage {
 	EAttribute getTypedElement_Type();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatype <em>Runtime Metatype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Runtime Metatype</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatype()
+	 * @see #getTypedElement()
+	 * @generated
+	 */
+	EReference getTypedElement_RuntimeMetatype();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1273,6 +1320,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Runtime Metatype</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_ELEMENT__RUNTIME_METATYPE = eINSTANCE.getTypedElement_RuntimeMetatype();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.

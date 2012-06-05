@@ -421,6 +421,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTypedElement_RuntimeMetatype() {
+		return (EReference)typedElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEStringToExtendibleElementMap() {
 		return eStringToExtendibleElementMapEClass;
 	}
@@ -587,6 +596,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(typedElementEClass, TYPED_ELEMENT__METATYPE);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__LEVEL);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__TYPE);
+		createEReference(typedElementEClass, TYPED_ELEMENT__RUNTIME_METATYPE);
 
 		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
 		createEAttribute(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY);
@@ -676,6 +686,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getTypedElement_Metatype(), this.getTypedElement(), null, "metatype", null, 0, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_Level(), this.getMidLevel(), "level", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_Type(), ecorePackage.getEString(), "type", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedElement_RuntimeMetatype(), this.getTypedElement(), null, "runtimeMetatype", null, 0, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToExtendibleElementMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

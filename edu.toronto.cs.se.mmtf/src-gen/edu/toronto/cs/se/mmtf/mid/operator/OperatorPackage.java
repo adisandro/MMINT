@@ -163,6 +163,15 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__TYPE = MidPackage.TYPED_ELEMENT__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__RUNTIME_METATYPE = MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -362,6 +371,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__TYPE = OPERATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__RUNTIME_METATYPE = OPERATOR__RUNTIME_METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.

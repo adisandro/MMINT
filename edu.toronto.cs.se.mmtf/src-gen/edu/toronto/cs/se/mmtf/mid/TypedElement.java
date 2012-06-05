@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatype <em>Metatype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatype <em>Runtime Metatype</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,5 +121,20 @@ public interface TypedElement extends EObject {
 	 * @generated
 	 */
 	String getType();
+
+	/**
+	 * Returns the value of the '<em><b>Runtime Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Runtime Metatype</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Runtime Metatype</em>' reference.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getTypedElement_RuntimeMetatype()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	TypedElement getRuntimeMetatype();
 
 } // TypedElement

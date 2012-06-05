@@ -73,6 +73,7 @@ public class TypedElementItemProvider
 			addMetatypePropertyDescriptor(object);
 			addLevelPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addRuntimeMetatypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -161,6 +162,28 @@ public class TypedElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Runtime Metatype feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRuntimeMetatypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TypedElement_runtimeMetatype_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_runtimeMetatype_feature", "_UI_TypedElement_type"),
+				 MidPackage.Literals.TYPED_ELEMENT__RUNTIME_METATYPE,
+				 false,
+				 false,
+				 false,
+				 null,
 				 null,
 				 null));
 	}

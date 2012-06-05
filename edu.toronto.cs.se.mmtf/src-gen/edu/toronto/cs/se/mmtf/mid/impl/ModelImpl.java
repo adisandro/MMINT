@@ -19,7 +19,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeInference;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 import java.util.Collection;
 
@@ -188,7 +188,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 */
 	public EObject basicGetRoot() {
 
-		return MultiModelTypeInference.getRoot(this);
+		return MultiModelTypeIntrospection.getRoot(this);
 	}
 
 	/**

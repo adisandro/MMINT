@@ -34,14 +34,14 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 
 /**
- * The type inference engine for multimodels.
+ * The type introspection engine for multimodels.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelTypeInference implements MMTFExtensionPoints {
+public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
-	private static TypedElement inferType(Model model) {
+	private static TypedElement getType(Model model) {
 
 		String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
 		ExtendibleElement inferred = MMTFRegistry.getExtendibleType(modelTypeUri);
@@ -81,7 +81,7 @@ public class MultiModelTypeInference implements MMTFExtensionPoints {
 		return inferred;
 	}
 
-	private static TypedElement inferType(ModelRel modelRel) {
+	private static TypedElement getType(ModelRel modelRel) {
 
 		// not specialized yet
 		if (modelRel.getModels().size() == 0) {
@@ -133,7 +133,7 @@ modelTypes:
 		return inferred;
 	}
 
-	private static TypedElement inferType(ModelElement modelElem) {
+	private static TypedElement getType(ModelElement modelElem) {
 
 		// fallback to root type
 		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
@@ -144,38 +144,38 @@ modelTypes:
 		}
 	}
 
-	private static TypedElement inferType(Link link) {
+	private static TypedElement getType(Link link) {
 
 		// fallback to root type
 		return MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI);
 	}
 
-	private static TypedElement inferType(Editor editor) {
+	private static TypedElement getType(Editor editor) {
 
 		return MMTFRegistry.getExtendibleType(editor.getUri());
 		//TODO MMTF: fallback to root text editor?
 	}
 
-	public static TypedElement inferType(TypedElement element) {
+	public static TypedElement getType(TypedElement element) {
 
 		if (element.getLevel() == MidLevel.TYPES) {
 			return null;
 		}
 
 		if (element instanceof Link) {
-			return inferType((Link) element);
+			return getType((Link) element);
 		}
 		if (element instanceof ModelElement) {
-			return inferType((ModelElement) element);
+			return getType((ModelElement) element);
 		}
 		if (element instanceof ModelRel) {
-			return inferType((ModelRel) element);
+			return getType((ModelRel) element);
 		}
 		if (element instanceof Model) {
-			return inferType((Model) element);
+			return getType((Model) element);
 		}
 		if (element instanceof Editor) {
-			return inferType((Editor) element);
+			return getType((Editor) element);
 		}
 		return null;
 	}

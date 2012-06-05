@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeInference;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getMetatype <em>Metatype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getRuntimeMetatype <em>Runtime Metatype</em>}</li>
  * </ul>
  * </p>
  *
@@ -161,7 +162,7 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 */
 	public TypedElement basicGetMetatype() {
 
-		return MultiModelTypeInference.inferType(this);
+		return MultiModelTypeIntrospection.getType(this);
 	}
 
 	/**
@@ -199,6 +200,38 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TypedElement getRuntimeMetatype() {
+		TypedElement runtimeMetatype = basicGetRuntimeMetatype();
+		return runtimeMetatype != null && runtimeMetatype.eIsProxy() ? (TypedElement)eResolveProxy((InternalEObject)runtimeMetatype) : runtimeMetatype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypedElement basicGetRuntimeMetatypeGen() {
+		// TODO: implement this method to return the 'Runtime Metatype' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Uses type introspection to get runtime metatype.
+	 * 
+	 * @generated NOT
+	 */
+	public TypedElement basicGetRuntimeMetatype() {
+
+		return MultiModelTypeIntrospection.getType(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -211,6 +244,9 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 				return getLevel();
 			case MidPackage.TYPED_ELEMENT__TYPE:
 				return getType();
+			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE:
+				if (resolve) return getRuntimeMetatype();
+				return basicGetRuntimeMetatype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -267,6 +303,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 				return level != LEVEL_EDEFAULT;
 			case MidPackage.TYPED_ELEMENT__TYPE:
 				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE:
+				return basicGetRuntimeMetatype() != null;
 		}
 		return super.eIsSet(featureID);
 	}
