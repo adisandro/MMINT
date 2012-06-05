@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameType2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelModelsEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelNameType2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
@@ -37,6 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.expressions.MidOCLFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
@@ -242,6 +244,11 @@ public class MidVisualIDRegistry {
 			break;
 		case OperatorEditPart.VISUAL_ID:
 			if (OperatorNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ModelRelModelsEditPart.VISUAL_ID:
+			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -79,6 +79,9 @@ public class MidEditPartFactory implements EditPartFactory {
 			case ModelRelModelsEditPart.VISUAL_ID:
 				return new ModelRelModelsEditPart(view);
 
+			case WrappingLabelEditPart.VISUAL_ID:
+				return new WrappingLabelEditPart(view);
+
 			case BinaryModelRelEditPart.VISUAL_ID:
 				return new BinaryModelRelEditPart(view);
 

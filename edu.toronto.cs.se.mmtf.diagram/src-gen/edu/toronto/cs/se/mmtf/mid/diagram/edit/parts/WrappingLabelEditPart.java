@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -29,9 +30,9 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
@@ -50,21 +51,23 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidTextSelectionEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
 import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidParserProvider;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
  * @generated
  */
-public class OperatorNameEditPart extends CompartmentEditPart implements
+public class WrappingLabelEditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5005;
+	public static final int VISUAL_ID = 6006;
 
 	/**
 	 * @generated
@@ -89,7 +92,17 @@ public class OperatorNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public OperatorNameEditPart(View view) {
+	static {
+		registerSnapBackPosition(
+				MidVisualIDRegistry
+						.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID),
+				new Point(0, 40));
+	}
+
+	/**
+	 * @generated
+	 */
+	public WrappingLabelEditPart(View view) {
 		super(view);
 	}
 
@@ -98,12 +111,19 @@ public class OperatorNameEditPart extends CompartmentEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
-				new MidTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
 				new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
+				new MidTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new MultiModelEditPart.NodeLabelDragPolicy());
+				new MultiModelEditPart.LinkLabelDragPolicy());
+	}
+
+	/**
+	 * @generated
+	 */
+	public int getKeyPoint() {
+		return ConnectionLocator.SOURCE;
 	}
 
 	/**
@@ -197,7 +217,7 @@ public class OperatorNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	protected String getLabelText() {
+	protected String getLabelTextGen() {
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
@@ -208,6 +228,24 @@ public class OperatorNameEditPart extends CompartmentEditPart implements
 		if (text == null || text.length() == 0) {
 			text = defaultText;
 		}
+		return text;
+	}
+
+	/**
+	 * Generates the label text based on relationship type cardinality.
+	 * 
+	 * @generated
+	 */
+	protected String getLabelText() {
+
+		ModelRelModelsEditPart x = (ModelRelModelsEditPart) this.getParent();
+		ModelRel modelRel = (ModelRel) ((View) x.getSource().getModel()).getElement();
+
+		String text = "";
+		if (modelRel.getLevel() == MidLevel.TYPES && modelRel.isUnbounded()) {
+			text = "1..*";
+		}
+
 		return text;
 	}
 
@@ -242,7 +280,7 @@ public class OperatorNameEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return false;
+		return getParser() != null;
 	}
 
 	/**
@@ -306,10 +344,10 @@ public class OperatorNameEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = MidParserProvider
 					.getParser(
-							MidElementTypes.Operator_2005,
+							MidElementTypes.ModelRelModels_4002,
 							getParserElement(),
 							MidVisualIDRegistry
-									.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorNameEditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -516,22 +554,6 @@ public class OperatorNameEditPart extends CompartmentEditPart implements
 	 */
 	private View getFontStyleOwnerView() {
 		return getPrimaryView();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
 	/**

@@ -135,11 +135,12 @@
       <domainMetaElement
           href="mid.ecore#//operator/Operator"/>
       <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
+          xsi:type="gmfmap:ExpressionLabelMapping"
+          readOnly="true">
         <diagramLabel
             href="mid.gmfgraph#OperatorLabel"/>
-        <features
-            href="mid.ecore#//TypedElement/name"/>
+        <viewExpression
+            body="if self.oclIsKindOf(operator::ConversionOperator) then '[conv] '.concat(self.name) else self.name endif"/>
       </labelMappings>
       <diagramNode
           href="mid.gmfgraph#Operator"/>
@@ -153,6 +154,10 @@
         href="mid.ecore#//ExtendibleElement/supertype"/>
   </links>
   <links>
+    <labelMappings>
+      <diagramLabel
+          href="mid.gmfgraph#ModelRelModelsLabel"/>
+    </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
         href="mid.gmftool#//@palette/@tools.0/@tools.3"/>

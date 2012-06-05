@@ -14,12 +14,15 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.parts;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.swt.graphics.Color;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelModelsItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ModelRelModelsSemanticEditPolicy;
 
@@ -53,6 +56,48 @@ public class ModelRelModelsEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof WrappingLabelEditPart) {
+			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureModelRelModelsLabelFigure());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, index);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof WrappingLabelEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
 	 * Creates figure for this edit part.
 	 * 
 	 * Body of this method does not depend on settings in generation model
@@ -80,10 +125,29 @@ public class ModelRelModelsEditPart extends ConnectionNodeEditPart implements
 		/**
 		 * @generated
 		 */
-		public ModelRelModelsFigure() {
-			this.setLineWidth(2);
+		private WrappingLabel fFigureModelRelModelsLabelFigure;
 
+		/**
+		 * @generated
+		 */
+		public ModelRelModelsFigure() {
+			this.setLineWidth(3);
+			this.setForegroundColor(THIS_FORE);
+
+			createContents();
 			setTargetDecoration(createTargetDecoration());
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			fFigureModelRelModelsLabelFigure = new WrappingLabel();
+			fFigureModelRelModelsLabelFigure.setText("");
+
+			this.add(fFigureModelRelModelsLabelFigure);
+
 		}
 
 		/**
@@ -91,10 +155,22 @@ public class ModelRelModelsEditPart extends ConnectionNodeEditPart implements
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(2);
+			df.setLineWidth(3);
 			return df;
 		}
 
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureModelRelModelsLabelFigure() {
+			return fFigureModelRelModelsLabelFigure;
+		}
+
 	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_FORE = new Color(null, 232, 157, 111);
 
 }

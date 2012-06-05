@@ -411,7 +411,7 @@ public class MidBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					Map<String, EClassifier> env = Collections
 							.<String, EClassifier> singletonMap(
 									"oppositeEnd", MidPackage.eINSTANCE.getModel()); //$NON-NLS-1$
-					Object sourceVal = MidOCLFactory.getExpression(4,
+					Object sourceVal = MidOCLFactory.getExpression(5,
 							RelationshipPackage.eINSTANCE.getModelRel(), env)
 							.evaluate(
 									source,

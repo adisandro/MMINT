@@ -43,7 +43,7 @@ public class MidOCLFactory {
 	 * @generated
 	 */
 	protected MidOCLFactory() {
-		this.expressions = new MidAbstractExpression[5];
+		this.expressions = new MidAbstractExpression[6];
 	}
 
 	/**
@@ -66,6 +66,7 @@ public class MidOCLFactory {
 					"not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::IMPORTED", //$NON-NLS-1$
 					"not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::CREATED", //$NON-NLS-1$
 					"not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::IMPORTED", //$NON-NLS-1$
+					"if self.oclIsKindOf(operator::ConversionOperator) then \'[conv] \'.concat(self.name) else self.name endif", //$NON-NLS-1$
 					"not self.oclIsKindOf(relationship::BinaryModelRel)", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(

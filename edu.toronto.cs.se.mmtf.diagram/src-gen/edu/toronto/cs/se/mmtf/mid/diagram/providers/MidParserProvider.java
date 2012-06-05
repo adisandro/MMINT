@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.parsers.MessageFormatParser;
+import edu.toronto.cs.se.mmtf.mid.diagram.parsers.OperatorLabelExpressionLabelParser;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
@@ -146,19 +147,16 @@ public class MidParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser operatorName_5005Parser;
+	private OperatorLabelExpressionLabelParser operatorLabel_5005Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getOperatorName_5005Parser() {
-		if (operatorName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			operatorName_5005Parser = parser;
+	private IParser getOperatorLabel_5005Parser() {
+		if (operatorLabel_5005Parser == null) {
+			operatorLabel_5005Parser = new OperatorLabelExpressionLabelParser();
 		}
-		return operatorName_5005Parser;
+		return operatorLabel_5005Parser;
 	}
 
 	/**
@@ -248,7 +246,7 @@ public class MidParserProvider extends AbstractProvider implements
 		case ModelRelNameType2EditPart.VISUAL_ID:
 			return getModelRelNameType_5004Parser();
 		case OperatorNameEditPart.VISUAL_ID:
-			return getOperatorName_5005Parser();
+			return getOperatorLabel_5005Parser();
 		case BinaryModelRelNameTypeEditPart.VISUAL_ID:
 			return getBinaryModelRelNameType_6001Parser();
 		case ParameterNameEditPart.VISUAL_ID:
