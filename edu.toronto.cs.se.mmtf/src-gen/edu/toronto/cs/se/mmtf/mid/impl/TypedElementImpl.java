@@ -183,7 +183,7 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 */
 	public TypedElement basicGetMetatype() {
 
-		return MultiModelTypeIntrospection.getStaticType(this);
+		return MultiModelTypeIntrospection.getType(this);
 	}
 
 	/**
@@ -245,7 +245,7 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 */
 	public TypedElement basicGetRuntimeMetatype() {
 
-		return MultiModelTypeIntrospection.getType(this);
+		return MultiModelTypeIntrospection.getRuntimeTypes(this);
 	}
 
 	/**

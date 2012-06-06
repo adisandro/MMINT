@@ -104,7 +104,7 @@ public class RunOperatorListener extends SelectionAdapter {
 				return CommandResult.newErrorCommandResult("Operator " + operator.getName() + " execution error");
 			}
 		}
-		
+
 	}
 
 }

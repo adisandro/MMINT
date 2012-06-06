@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 
 import java.util.HashSet;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -40,62 +42,53 @@ import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
  */
 public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
-	private static TypedElement getType(Model model) {
+	private static EList<TypedElement> getRuntimeTypes(Model model) {
 
-		Model inferred;
-		int inferredDepth = -1;
+		EList<TypedElement> types = new BasicEList<TypedElement>();
+
+		Model staticModelType;
 		String modelTypeUri = model.getMetatypeUri();
-		if (modelTypeUri == null) { // this means getType itself at runtime is used to set the initial static metatype
+		if (modelTypeUri == null) { // this means getRuntimeTypes itself is used to set the initial static metatype
 			modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
-			inferred = MMTFRegistry.getModelType(modelTypeUri);
+			staticModelType = MMTFRegistry.getModelType(modelTypeUri);
 		}
 		else {
-			inferred = (Model) model.getMetatype();
+			staticModelType = (Model) model.getMetatype();
 		}
 
-		//TODO MMTF: polish, a lot
+		// fallback to root type
+		if (staticModelType == null) {
+			staticModelType = MMTFRegistry.getModelType(ROOT_MODEL_URI);
+		}
+
+		// explore light model types
+		types.add(staticModelType);
 		for (Model lightModelSubtype : MMTFRegistry.getModelTypes()) {
 
 			if (lightModelSubtype instanceof ModelRel) {
 				continue;
 			}
 
-			// real light subtype
+			// light model subtype
 			if (lightModelSubtype.getConstraint() != null && MMTFRegistry.isSubtypeOf(lightModelSubtype.getUri(), modelTypeUri)) {
 				if (MultiModelConstraintChecker.checkOCLConstraint(model, lightModelSubtype.getConstraint().getBody())) {
-					int depth = 0;
-					Model subtype = lightModelSubtype;
-					while (!subtype.getSupertype().getUri().equals(modelTypeUri)) {
-						subtype = (Model) subtype.getSupertype();
-						depth++;
-					}
-					// choose max inferred depth
-					//TODO MMTF: with different subtype trees a dialog should be presented to the user
-					if (depth > inferredDepth) {
-						inferred = lightModelSubtype;
-						inferredDepth = depth;
-					}
+					types.add(lightModelSubtype);
 				}
 			}
 		}
 
-		// fallback to root type
-		if (inferred == null) {
-			inferred = MMTFRegistry.getModelType(ROOT_MODEL_URI);
-		}
-
-		return inferred;
+		return types;
 	}
 
-	private static TypedElement getType(ModelRel modelRel) {
+	private static EList<TypedElement> getRuntimeTypes(ModelRel modelRel) {
+
+		EList<TypedElement> types = new BasicEList<TypedElement>();
 
 		// not specialized yet
 		if (modelRel.getModels().size() == 0) {
-			return MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI);
+			types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI));
+			return types;
 		}
-
-		//TODO MMTF: look for light types and evaluate constraints
-		TypedElement inferred = null;
 
 modelTypes:
 		for (Model modelType : MMTFRegistry.getModelTypes()) {
@@ -118,79 +111,89 @@ modelTypes:
 					allowedModels.add(model.getUri());
 				}
 				for (Model model : modelRel.getModels()) {
-					String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
+					String modelTypeUri = model.getMetatypeUri();
 					if (!allowedModels.contains(modelTypeUri)) {
 						continue modelTypes;
 					}
 				}
-				inferred = modelRelType;
-				break;
+				types.add(modelRelType);
 			}
 
 			//TODO: MMTF continue with other cases
 		}
-		//TODO: MMTF now after models endpoints, run infer based on light types
 
 		// fallback to root type
-		if (inferred == null) {
-			inferred = MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI);
+		if (types.isEmpty()) {
+			types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI));
 		}
 
-		return inferred;
+		//TODO: MMTF now after models endpoints, run infer based on light types and ocl constraints
+
+		return types;
 	}
 
-	private static TypedElement getType(ModelElement modelElem) {
+	private static EList<TypedElement> getRuntimeTypes(ModelElement modelElem) {
 
 		//TODO MMTF: implementare
+		EList<TypedElement> types = new BasicEList<TypedElement>();
 
 		// fallback to root type
 		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
-			return MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_ENTITY_URI);
+			types.add(MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_ENTITY_URI));
 		}
 		else {
-			return MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_RELATIONSHIP_URI);
+			types.add(MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_RELATIONSHIP_URI));
 		}
+
+		return types;
 	}
 
-	private static TypedElement getType(Link link) {
+	private static EList<TypedElement> getRuntimeTypes(Link link) {
 
 		//TODO MMTF: implementare
+		EList<TypedElement> types = new BasicEList<TypedElement>();
 
 		// fallback to root type
-		return MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI);
+		types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI));
+
+		return types;
 	}
 
-	private static TypedElement getType(Editor editor) {
+	private static EList<TypedElement> getRuntimeTypes(Editor editor) {
 
-		return MMTFRegistry.getExtendibleType(editor.getUri());
+		EList<TypedElement> types = new BasicEList<TypedElement>();
+
 		//TODO MMTF: fallback to root text editor?
+		types.add(MMTFRegistry.getExtendibleType(editor.getUri()));
+
+		return types;
 	}
 
-	public static TypedElement getType(TypedElement element) {
+	public static EList<TypedElement> getRuntimeTypes(TypedElement element) {
 
 		if (element.getLevel() == MidLevel.TYPES) {
 			return null;
 		}
 
 		if (element instanceof Link) {
-			return getType((Link) element);
+			return getRuntimeTypes((Link) element);
 		}
 		if (element instanceof ModelElement) {
-			return getType((ModelElement) element);
+			return getRuntimeTypes((ModelElement) element);
 		}
 		if (element instanceof ModelRel) {
-			return getType((ModelRel) element);
+			return getRuntimeTypes((ModelRel) element);
 		}
 		if (element instanceof Model) {
-			return getType((Model) element);
+			return getRuntimeTypes((Model) element);
 		}
 		if (element instanceof Editor) {
-			return getType((Editor) element);
+			return getRuntimeTypes((Editor) element);
 		}
 		return null;
 	}
 
-	public static TypedElement getStaticType(TypedElement element) {
+	public static TypedElement getType(TypedElement element) {
 
 		if (element.getLevel() == MidLevel.TYPES) {
 			return null;
@@ -200,7 +203,7 @@ modelTypes:
 		if (type == null) { // this can happen when a type is uninstalled
 			//TODO MMTF: find a way to try with runtime type in this read transaction?
 			//element.setMetatypeUri(null);
-			//type = getType(element);
+			//type = getRuntimeTypes(element);
 		}
 
 		return type;

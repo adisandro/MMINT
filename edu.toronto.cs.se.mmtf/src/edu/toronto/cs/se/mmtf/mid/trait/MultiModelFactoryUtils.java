@@ -280,9 +280,7 @@ public class MultiModelFactoryUtils {
 	public static Editor createEditor(Model model) {
 
 		URI modelUri = URI.createPlatformResourceURI(model.getUri(), true);
-		EList<Editor> editorTypes = MMTFRegistry.getEditorsForModelType(
-			((ExtendibleElement) model.getRuntimeMetatype()).getUri()
-		);
+		EList<Editor> editorTypes = MMTFRegistry.getEditorsForModelType(model.getMetatypeUri());
 		if (editorTypes.size() != 0) {
 			//TODO MMTF: prioritize editors list instead of running twice
 			//TODO MMTF: check if editor file really exists in model directory
