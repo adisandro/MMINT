@@ -59,6 +59,8 @@ public class MultiModelFactoryUtils {
 	 * 
 	 * @param element
 	 *            The extendible element to add.
+	 * @param type
+	 *            The extendible element's type.
 	 * @param multiModel
 	 *            The root multimodel (possibly null).
 	 * @param elementUri
@@ -66,7 +68,7 @@ public class MultiModelFactoryUtils {
 	 * @param name
 	 *            The name of the extendible element.
 	 */
-	private static void addExtendibleElement(ExtendibleElement element, MultiModel multiModel, URI elementUri, String name) {
+	private static void addExtendibleElement(ExtendibleElement element, ExtendibleElement type, MultiModel multiModel, URI elementUri, String name) {
 
 		// uri
 		if (elementUri == null) {
@@ -81,6 +83,14 @@ public class MultiModelFactoryUtils {
 		// basic attributes
 		element.setName(name);
 		element.setLevel(MidLevel.INSTANCES);
+		if (type == null) { // get runtime metatype
+			//TODO MMTF: maybe sometimes could be better to use the most conservative type?
+			//TODO MMTF: I mean, this is perfect for result of operators, but maybe not for let's say import model
+			element.setMetatypeUri(((ExtendibleElement) element.getRuntimeMetatype()).getUri());
+		}
+		else { // use static metatype
+			element.setMetatypeUri(type.getUri());
+		}
 
 		// supertype
 		element.setSupertype(null);
@@ -91,6 +101,8 @@ public class MultiModelFactoryUtils {
 	 * 
 	 * @param model
 	 *            The model to add.
+	 * @param modelType
+	 *            The model type (null if type is decided at runtime).
 	 * @param origin
 	 *            The origin of the model.
 	 * @param multiModel
@@ -98,7 +110,7 @@ public class MultiModelFactoryUtils {
 	 * @param modelUri
 	 *            The uri of the model to add (possibly null).
 	 */
-	private static void addModel(Model model, ModelOrigin origin, MultiModel multiModel, URI modelUri) {
+	private static void addModel(Model model, Model modelType, ModelOrigin origin, MultiModel multiModel, URI modelUri) {
 
 		String fileName, fileExtension;
 		// model relationship
@@ -117,7 +129,7 @@ public class MultiModelFactoryUtils {
 		if (multiModel != null) {
 			multiModel.getModels().add(model);
 		}
-		addExtendibleElement(model, multiModel, modelUri, fileName);
+		addExtendibleElement(model, modelType, multiModel, modelUri, fileName);
 
 		// set attributes
 		model.setOrigin(origin);
@@ -127,6 +139,8 @@ public class MultiModelFactoryUtils {
 	/**
 	 * Creates and adds a model to a multimodel.
 	 * 
+	 * @param modelType
+	 *            The model type.
 	 * @param origin
 	 *            The origin of the model.
 	 * @param multiModel
@@ -135,10 +149,10 @@ public class MultiModelFactoryUtils {
 	 *            The uri of the model to add.
 	 * @return The model just created.
 	 */
-	public static Model createModel(ModelOrigin origin, MultiModel multiModel, URI modelUri) {
+	public static Model createModel(Model modelType, ModelOrigin origin, MultiModel multiModel, URI modelUri) {
 
 		Model model = MidFactory.eINSTANCE.createModel();
-		addModel(model, origin, multiModel, modelUri);
+		addModel(model, modelType, origin, multiModel, modelUri);
 
 		return model;
 	}
@@ -146,6 +160,8 @@ public class MultiModelFactoryUtils {
 	/**
 	 * Creates and adds a model relationship to a multimodel.
 	 * 
+	 * @param modelType
+	 *            The model relationship type.
 	 * @param origin
 	 *            The origin of the model relationships.
 	 * @param multiModel
@@ -157,10 +173,10 @@ public class MultiModelFactoryUtils {
 	 *            The specific model relationship class.
 	 * @return The model relationship just created.
 	 */
-	public static ModelRel createModelRel(ModelOrigin origin, MultiModel multiModel, URI modelRelUri, EClass modelRelClass) {
+	public static ModelRel createModelRel(ModelRel modelRelType, ModelOrigin origin, MultiModel multiModel, URI modelRelUri, EClass modelRelClass) {
 
 		ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelClass);
-		addModel(modelRel, origin, multiModel, modelRelUri);
+		addModel(modelRel, modelRelType, origin, multiModel, modelRelUri);
 		modelRel.setUnbounded(false);
 
 		return modelRel;
@@ -218,7 +234,8 @@ public class MultiModelFactoryUtils {
 		//TODO MMTF: renderlo breve e leggibile in caso di TYPES (getName() e basta?)
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
 		((Model) modelRef.getObject()).getElements().add(modelElem);
-		addExtendibleElement(modelElem, null, null, name);
+		//TODO MMTF: reactivate when fixed
+		//addExtendibleElement(modelElem, null, null, name);
 
 		// create model element reference
 		ModelElementReference modelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
@@ -247,7 +264,8 @@ public class MultiModelFactoryUtils {
 		Link link = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
 		link.setUnbounded(false);
 		modelRel.getLinks().add(link);
-		addExtendibleElement(link, null, null, null);
+		//TODO MMTF: reactivate when fixed
+		//addExtendibleElement(link, null, null, null);
 
 		return link;
 	}
@@ -298,8 +316,9 @@ public class MultiModelFactoryUtils {
 		URI editorUri = URI.createPlatformResourceURI(
 			stringModelUri.substring(0, stringModelUri.lastIndexOf('.')+1) + editorType.getFileExtensions().get(0),
 			true
+			//TODO metatypeuri here
 		);
-		addExtendibleElement(editor, null, editorUri, editorName);
+		addExtendibleElement(editor, editorType, null, editorUri, editorName);
 
 		editor.setModelUri(stringModelUri);
 		editor.setId(editorType.getId());
@@ -343,6 +362,7 @@ public class MultiModelFactoryUtils {
 		Resource resource = set.getResource(modelRelUri, true);
 		EObject root = resource.getContents().get(0);
 		ModelRel modelRel = createModelRel(
+			(ModelRel) ((ModelRel) root).getMetatype(),
 			ModelOrigin.IMPORTED,
 			multiModel,
 			modelRelUri,
@@ -358,7 +378,7 @@ public class MultiModelFactoryUtils {
 			URI modelUri = URI.createPlatformResourceURI(origModel.getUri(), true);
 			Model model = getModelUnique(multiModel, modelUri); // the model can already be in the MID
 			if (model == null) {
-				model = createModel(ModelOrigin.IMPORTED, multiModel, modelUri);
+				model = createModel((Model) origModel.getMetatype(), ModelOrigin.IMPORTED, multiModel, modelUri);
 				model.setName(origModel.getName());
 				Editor editor = createEditor(model);
 				if (editor != null) {

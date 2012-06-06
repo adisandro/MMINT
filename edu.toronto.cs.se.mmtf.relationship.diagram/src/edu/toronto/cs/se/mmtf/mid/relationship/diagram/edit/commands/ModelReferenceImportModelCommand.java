@@ -98,12 +98,12 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 
 			MultiModelFactoryUtils.assertModelUnique(owner, modelUri); // model must not be already in the mapping
 			if (owner.eContainer() == null) { // standalone mapping reference
-				model = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, null, modelUri);
+				model = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, null, modelUri);
 			}
 			else {
 				model = MultiModelFactoryUtils.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
 				if (model == null) {
-					model = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
+					model = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
 					Editor editor = MultiModelFactoryUtils.createEditor(model);
 					if (editor != null) {
 						MultiModelFactoryUtils.addModelEditor(editor, (MultiModel) owner.eContainer());

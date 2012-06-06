@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -43,9 +42,16 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 	private static TypedElement getType(Model model) {
 
-		String modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
-		ExtendibleElement inferred = MMTFRegistry.getExtendibleType(modelTypeUri);
+		Model inferred;
 		int inferredDepth = -1;
+		String modelTypeUri = model.getMetatypeUri();
+		if (modelTypeUri == null) { // this means getType itself at runtime is used to set the initial static metatype
+			modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
+			inferred = MMTFRegistry.getModelType(modelTypeUri);
+		}
+		else {
+			inferred = (Model) model.getMetatype();
+		}
 
 		//TODO MMTF: polish, a lot
 		for (Model lightModelSubtype : MMTFRegistry.getModelTypes()) {
@@ -58,9 +64,9 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 			if (lightModelSubtype.getConstraint() != null && MMTFRegistry.isSubtypeOf(lightModelSubtype.getUri(), modelTypeUri)) {
 				if (MultiModelConstraintChecker.checkOCLConstraint(model, lightModelSubtype.getConstraint().getBody())) {
 					int depth = 0;
-					ExtendibleElement subtype = lightModelSubtype;
+					Model subtype = lightModelSubtype;
 					while (!subtype.getSupertype().getUri().equals(modelTypeUri)) {
-						subtype = subtype.getSupertype();
+						subtype = (Model) subtype.getSupertype();
 						depth++;
 					}
 					// choose max inferred depth
@@ -75,7 +81,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// fallback to root type
 		if (inferred == null) {
-			inferred = MMTFRegistry.getExtendibleType(ROOT_MODEL_URI);
+			inferred = MMTFRegistry.getModelType(ROOT_MODEL_URI);
 		}
 
 		return inferred;
@@ -184,6 +190,38 @@ modelTypes:
 		return null;
 	}
 
+	public static TypedElement getStaticType(TypedElement element) {
+
+		if (element.getLevel() == MidLevel.TYPES) {
+			return null;
+		}
+
+		TypedElement type = MMTFRegistry.getExtendibleType(element.getMetatypeUri());
+		if (type == null) { // this can happen when a type is uninstalled
+			//TODO MMTF: find a way to try with runtime type in this read transaction?
+			//element.setMetatypeUri(null);
+			//type = getType(element);
+		}
+
+		return type;
+	}
+
+	private static EObject getRoot(URI uri) throws Exception {
+
+		ResourceSet set = new ResourceSetImpl();
+		Resource resource = set.getResource(uri, true);
+		EObject root = resource.getContents().get(0);
+
+		return root;
+	}
+
+	private static EObject getRoot(String uri) throws Exception {
+
+		URI emfUri = URI.createPlatformResourceURI(uri, true);
+
+		return getRoot(emfUri);
+	}
+
 	public static EObject getRoot(Model model) {
 
 		String uri = model.getUri();
@@ -202,10 +240,7 @@ modelTypes:
 				}
 			}
 			else {
-				URI modelUri = URI.createPlatformResourceURI(uri, true);
-				ResourceSet set = new ResourceSetImpl();
-				Resource resource = set.getResource(modelUri, true);
-				root = resource.getContents().get(0);
+				root = getRoot(uri);
 			}
 
 			return root;

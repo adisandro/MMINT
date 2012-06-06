@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
-import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
@@ -66,7 +66,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Model model = (Model) ((Shape) editorFacet.eContainer()).getElement();
+		Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
 		//TODO MMTF: needs to be fixed with multiple editor support
 		try {
 			Editor editor = model.getEditors().get(0);

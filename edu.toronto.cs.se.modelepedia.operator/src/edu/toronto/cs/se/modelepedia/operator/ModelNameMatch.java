@@ -47,7 +47,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		EClass modelRelClass = (actualParameters.size() == 2) ?
 			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
 			RelationshipPackage.eINSTANCE.getModelRel();
-		ModelRel modelRel = MultiModelFactoryUtils.createModelRel(ModelOrigin.CREATED, multiModel, null, modelRelClass);
+		ModelRel modelRel = MultiModelFactoryUtils.createModelRel(null, ModelOrigin.CREATED, multiModel, null, modelRelClass);
 		modelRel.setName(MODEL_REL_NAME);
 
 		// loop through selected models

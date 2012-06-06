@@ -76,7 +76,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 			URI modelUri = MidDiagramTrait.selectModelToImport(false);
 			MultiModel owner = (MultiModel) getElementToEdit();
 			MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-			Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.IMPORTED, owner, modelUri);
+			Model newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, owner, modelUri);
 			Editor editor = MultiModelFactoryUtils.createEditor(newElement);
 			if (editor != null) {
 				MultiModelFactoryUtils.addModelEditor(editor, owner);

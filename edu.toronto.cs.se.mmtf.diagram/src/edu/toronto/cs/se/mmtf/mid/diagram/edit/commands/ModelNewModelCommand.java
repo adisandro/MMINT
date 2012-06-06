@@ -87,11 +87,11 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
 			}
 			else {
-				//TODO MMTF: show light types or not? they should get inferred anyway, but maybe I need some indication
 				Editor editor = MidDiagramTrait.selectModelToCreate();
 				URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
 				MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-				newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);
+				Model modelType = MMTFRegistry.getModelType(((Editor) editor.getMetatype()).getModelUri());
+				newElement = MultiModelFactoryUtils.createModel(modelType, ModelOrigin.CREATED, owner, modelUri);
 				MultiModelFactoryUtils.addModelEditor(editor, owner);
 			}
 			doConfigure(newElement, monitor, info);

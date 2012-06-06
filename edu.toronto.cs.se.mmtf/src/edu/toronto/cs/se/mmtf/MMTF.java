@@ -761,20 +761,31 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 */
 	public static class MMTFRegistry {
 
-		private static void addLightModelType(Model model, Model superModel, String subModelName, String constraint) throws MMTFException {
+		private static void addLightExtendibleType(ExtendibleElement type, ExtendibleElement superType, String subTypeUriFragment, String subTypeName) throws MMTFException {
 
-			// create and set uri
-			String uri = superModel.getUri();
-			uri += "/" + subModelName;
+			// uri
+			String uri = superType.getUri() + "/" + subTypeUriFragment;
 			if (repository.getExtendibleTable().containsKey(uri)) {
 				throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
 			}
-			model.setUri(uri);
-			repository.getExtendibleTable().put(uri, model);
+			type.setUri(uri);
+
+			// basic attributes
+			type.setName(subTypeName);
+			type.setLevel(MidLevel.TYPES);
+
+			// supertype
+			type.setSupertype(superType);
+
+			repository.getExtendibleTable().put(uri, type);
+		}
+
+		private static void addLightModelType(Model model, Model superModel, String subModelName, String constraint) throws MMTFException {
+
+			// create
+			addLightExtendibleType(model, superModel, subModelName, subModelName);
 
 			// set specific attributes
-			model.setName(subModelName);
-			model.setSupertype(superModel);
 			model.setOrigin(ModelOrigin.CREATED);
 			ModelConstraint modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
 			modelConstraint.setBody(constraint);
@@ -782,10 +793,25 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			model.setConstraint(modelConstraint);
 
 			// copy attributes from supertype
-			model.setLevel(superModel.getLevel());
 			model.setFileExtension(superModel.getFileExtension());
-			for (Editor editor : superModel.getEditors()) {
+
+			// create new editors
+			for (Editor superEditor : superModel.getEditors()) {
+				Editor editor = (Editor) EditorFactory.eINSTANCE.create(superEditor.eClass());
+				try {
+					addLightExtendibleType(editor, superEditor, subModelName, superEditor.getName());
+				}
+				catch (MMTFException e) {
+					// unfortunately models created through this editor will have the supermodel as static type
+					model.getEditors().add(superEditor);
+					continue;
+				}
+				editor.setModelUri(model.getUri());
+				editor.setId(superEditor.getId());
+				editor.setWizardId(superEditor.getWizardId());
+				repository.getEditors().add(editor);
 				model.getEditors().add(editor);
+				editor.getFileExtensions().addAll(superEditor.getFileExtensions());
 			}
 			//TODO MMTF: model elements?
 

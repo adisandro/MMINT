@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatype <em>Runtime Metatype</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatypeUri <em>Metatype Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,5 +137,31 @@ public interface TypedElement extends EObject {
 	 * @generated
 	 */
 	TypedElement getRuntimeMetatype();
+
+	/**
+	 * Returns the value of the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Metatype Uri</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Metatype Uri</em>' attribute.
+	 * @see #setMetatypeUri(String)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getTypedElement_MetatypeUri()
+	 * @model
+	 * @generated
+	 */
+	String getMetatypeUri();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatypeUri <em>Metatype Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Metatype Uri</em>' attribute.
+	 * @see #getMetatypeUri()
+	 * @generated
+	 */
+	void setMetatypeUri(String value);
 
 } // TypedElement

@@ -85,14 +85,15 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
 			}
 			else {
-				//TODO MMTF: show light types or not? they should get inferred anyway, but maybe I need some indication
 				newElement = MultiModelFactoryUtils.createModelRel(
+					null,
 					ModelOrigin.CREATED,
 					owner,
 					null,
 					RelationshipPackage.eINSTANCE.getModelRel()
 				);
 			}
+			//TODO MMTF: add choice of static rel type without dynamic possibilities
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

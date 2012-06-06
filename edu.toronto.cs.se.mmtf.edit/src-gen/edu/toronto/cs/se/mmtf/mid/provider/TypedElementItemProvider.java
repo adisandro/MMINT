@@ -74,6 +74,7 @@ public class TypedElementItemProvider
 			addLevelPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addRuntimeMetatypePropertyDescriptor(object);
+			addMetatypeUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -189,6 +190,28 @@ public class TypedElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Metatype Uri feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMetatypeUriPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TypedElement_metatypeUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_metatypeUri_feature", "_UI_TypedElement_type"),
+				 MidPackage.Literals.TYPED_ELEMENT__METATYPE_URI,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -217,6 +240,7 @@ public class TypedElementItemProvider
 			case MidPackage.TYPED_ELEMENT__NAME:
 			case MidPackage.TYPED_ELEMENT__LEVEL:
 			case MidPackage.TYPED_ELEMENT__TYPE:
+			case MidPackage.TYPED_ELEMENT__METATYPE_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

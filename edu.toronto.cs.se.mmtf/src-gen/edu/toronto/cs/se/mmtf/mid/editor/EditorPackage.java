@@ -122,6 +122,15 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__RUNTIME_METATYPE = MidPackage.EXTENDIBLE_ELEMENT__RUNTIME_METATYPE;
 
 	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,6 +256,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM__RUNTIME_METATYPE = EDITOR__RUNTIME_METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__METATYPE_URI = EDITOR__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.

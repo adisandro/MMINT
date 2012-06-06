@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getRuntimeMetatype <em>Runtime Metatype</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getMetatypeUri <em>Metatype Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,6 +93,26 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MidPackage.Literals.TYPED_ELEMENT__TYPE).getSettingDelegate();
+
+	/**
+	 * The default value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMetatypeUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String METATYPE_URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMetatypeUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String metatypeUri = METATYPE_URI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,13 +177,13 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	}
 
 	/**
-	 * Uses type inference to get runtime metatype.
+	 * Uses metatype uri to get static metatype.
 	 * 
 	 * @generated NOT
 	 */
 	public TypedElement basicGetMetatype() {
 
-		return MultiModelTypeIntrospection.getType(this);
+		return MultiModelTypeIntrospection.getStaticType(this);
 	}
 
 	/**
@@ -232,6 +253,27 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMetatypeUri() {
+		return metatypeUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMetatypeUri(String newMetatypeUri) {
+		String oldMetatypeUri = metatypeUri;
+		metatypeUri = newMetatypeUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.TYPED_ELEMENT__METATYPE_URI, oldMetatypeUri, metatypeUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -247,6 +289,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE:
 				if (resolve) return getRuntimeMetatype();
 				return basicGetRuntimeMetatype();
+			case MidPackage.TYPED_ELEMENT__METATYPE_URI:
+				return getMetatypeUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -265,6 +309,9 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 			case MidPackage.TYPED_ELEMENT__LEVEL:
 				setLevel((MidLevel)newValue);
 				return;
+			case MidPackage.TYPED_ELEMENT__METATYPE_URI:
+				setMetatypeUri((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -282,6 +329,9 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 				return;
 			case MidPackage.TYPED_ELEMENT__LEVEL:
 				setLevel(LEVEL_EDEFAULT);
+				return;
+			case MidPackage.TYPED_ELEMENT__METATYPE_URI:
+				setMetatypeUri(METATYPE_URI_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -305,6 +355,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE:
 				return basicGetRuntimeMetatype() != null;
+			case MidPackage.TYPED_ELEMENT__METATYPE_URI:
+				return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -323,6 +375,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 		result.append(name);
 		result.append(", level: ");
 		result.append(level);
+		result.append(", metatypeUri: ");
+		result.append(metatypeUri);
 		result.append(')');
 		return result.toString();
 	}

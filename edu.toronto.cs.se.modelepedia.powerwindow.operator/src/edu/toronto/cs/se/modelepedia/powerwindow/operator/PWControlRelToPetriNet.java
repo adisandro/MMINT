@@ -65,7 +65,7 @@ public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 		// create model
 		MultiModel owner = (MultiModel) pwControlRel.eContainer();
 		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-		Model newElement = MultiModelFactoryUtils.createModel(ModelOrigin.CREATED, owner, modelUri);
+		Model newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
 		Editor editor = MultiModelFactoryUtils.createEditor(newElement);
 		if (editor != null) {
 			MultiModelFactoryUtils.addModelEditor(editor, owner);

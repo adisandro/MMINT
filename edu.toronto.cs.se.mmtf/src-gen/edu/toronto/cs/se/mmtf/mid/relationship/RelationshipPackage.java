@@ -124,6 +124,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__RUNTIME_METATYPE = MidPackage.MODEL__RUNTIME_METATYPE;
 
 	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__METATYPE_URI = MidPackage.MODEL__METATYPE_URI;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -314,6 +323,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__RUNTIME_METATYPE = MODEL_REL__RUNTIME_METATYPE;
 
 	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__METATYPE_URI = MODEL_REL__METATYPE_URI;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -502,6 +520,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__RUNTIME_METATYPE = BINARY_MODEL_REL__RUNTIME_METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__METATYPE_URI = BINARY_MODEL_REL__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -931,6 +958,15 @@ public interface RelationshipPackage extends EPackage {
 	int LINK__RUNTIME_METATYPE = MidPackage.EXTENDIBLE_ELEMENT__RUNTIME_METATYPE;
 
 	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1040,6 +1076,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK__RUNTIME_METATYPE = LINK__RUNTIME_METATYPE;
 
 	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__METATYPE_URI = LINK__METATYPE_URI;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1147,6 +1192,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_LINK__RUNTIME_METATYPE = BINARY_LINK__RUNTIME_METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__METATYPE_URI = BINARY_LINK__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
