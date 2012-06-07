@@ -84,7 +84,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" lowerBound="1"
         eType="#//ModelElementCategory"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pointer" lowerBound="1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" changeable="false"
+        volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classLiteral" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModelElementCategory">
     <eLiterals name="ENTITY"/>

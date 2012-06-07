@@ -641,13 +641,22 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT__POINTER = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Class Literal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__CLASS_LITERAL = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Model Element</em>' class.
@@ -1082,6 +1091,17 @@ public interface MidPackage extends EPackage {
 	EReference getModelElement_Pointer();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Literal</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EAttribute getModelElement_ClassLiteral();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint <em>Model Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1435,6 +1455,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT__POINTER = eINSTANCE.getModelElement_Pointer();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Literal</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_ELEMENT__CLASS_LITERAL = eINSTANCE.getModelElement_ClassLiteral();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl <em>Model Constraint</em>}' class.

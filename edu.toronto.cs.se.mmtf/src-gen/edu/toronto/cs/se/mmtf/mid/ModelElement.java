@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getCategory <em>Category</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer <em>Pointer</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,21 +70,36 @@ public interface ModelElement extends ExtendibleElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pointer</em>' reference.
-	 * @see #setPointer(EObject)
 	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement_Pointer()
-	 * @model required="true"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	EObject getPointer();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer <em>Pointer</em>}' reference.
+	 * Returns the value of the '<em><b>Class Literal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Class Literal</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pointer</em>' reference.
-	 * @see #getPointer()
+	 * @return the value of the '<em>Class Literal</em>' attribute.
+	 * @see #setClassLiteral(String)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement_ClassLiteral()
+	 * @model required="true"
 	 * @generated
 	 */
-	void setPointer(EObject value);
+	String getClassLiteral();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class Literal</em>' attribute.
+	 * @see #getClassLiteral()
+	 * @generated
+	 */
+	void setClassLiteral(String value);
 
 } // ModelElement

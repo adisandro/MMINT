@@ -14,10 +14,12 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkElementRefsItemSemanticEditPolicy;
@@ -50,6 +52,48 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof WrappingLabelEditPart) {
+			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureLinkElementRefsLabelFigure());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, index);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof WrappingLabelEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
 	 * Creates figure for this edit part.
 	 * 
 	 * Body of this method does not depend on settings in generation model
@@ -77,10 +121,28 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureLinkElementRefsLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public LinkElementRefsFigure() {
 			this.setLineWidth(2);
 
+			createContents();
 			setTargetDecoration(createTargetDecoration());
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			fFigureLinkElementRefsLabelFigure = new WrappingLabel();
+			fFigureLinkElementRefsLabelFigure.setText("");
+
+			this.add(fFigureLinkElementRefsLabelFigure);
+
 		}
 
 		/**
@@ -90,6 +152,13 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 			PolylineDecoration df = new PolylineDecoration();
 			df.setLineWidth(2);
 			return df;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureLinkElementRefsLabelFigure() {
+			return fFigureLinkElementRefsLabelFigure;
 		}
 
 	}

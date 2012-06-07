@@ -224,7 +224,6 @@ public class MultiModelFactoryUtils {
 			ModelElementCategory.RELATIONSHIP :
 			ModelElementCategory.ENTITY;
 		modelElem.setCategory(category);
-		modelElem.setPointer(elementPointer);
 		ItemProviderAdapter itemAdapter = null;
 		for (Adapter adapter : elementPointer.eAdapters()) {
 			if (adapter instanceof ItemProviderAdapter) {

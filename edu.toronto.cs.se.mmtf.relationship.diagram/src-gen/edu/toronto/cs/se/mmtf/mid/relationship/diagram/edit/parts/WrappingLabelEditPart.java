@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.diagram.edit.parts;
+package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts;
 
 import java.util.Collections;
 import java.util.List;
@@ -52,11 +52,11 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidTextSelectionEditPolicy;
-import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
-import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidParserProvider;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.MidTextSelectionEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidParserProvider;
 
 /**
  * @generated
@@ -67,7 +67,7 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6006;
+	public static final int VISUAL_ID = 6002;
 
 	/**
 	 * @generated
@@ -95,7 +95,7 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				MidVisualIDRegistry
-						.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID),
+						.getType(edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID),
 				new Point(0, 40));
 	}
 
@@ -116,7 +116,7 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
 				new MidTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new MultiModelEditPart.LinkLabelDragPolicy());
+				new ModelRelEditPart.LinkLabelDragPolicy());
 	}
 
 	/**
@@ -232,18 +232,18 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	}
 
 	/**
-	 * Generates the label text based on relationship type cardinality.
+	 * Generates the label text based on link type cardinality.
 	 * 
 	 * @generated NOT
 	 */
 	protected String getLabelText() {
 
-		ModelRelModelsEditPart models = (ModelRelModelsEditPart) this.getParent();
-		ModelRel modelRel = (ModelRel) ((View) models.getSource().getModel())
+		LinkElementRefsEditPart elementRefs = (LinkElementRefsEditPart) this.getParent();
+		Link link = (Link) ((View) elementRefs.getSource().getModel())
 				.getElement();
 
 		String text = "";
-		if (modelRel.getLevel() == MidLevel.TYPES && modelRel.isUnbounded()) {
+		if (link.getLevel() == MidLevel.TYPES && link.isUnbounded()) {
 			text = "1..*";
 		}
 
@@ -345,10 +345,10 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 		if (parser == null) {
 			parser = MidParserProvider
 					.getParser(
-							MidElementTypes.ModelRelModels_4002,
+							MidElementTypes.LinkElementRefs_4002,
 							getParserElement(),
 							MidVisualIDRegistry
-									.getType(edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

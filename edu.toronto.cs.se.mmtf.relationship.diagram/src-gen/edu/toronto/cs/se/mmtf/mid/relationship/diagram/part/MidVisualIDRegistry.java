@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.LinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.LinkElementRefsEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.LinkNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReferenceNameTypeEditPart;
@@ -30,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReference
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReferenceModelReferenceCompartmentEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReferenceNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabelEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.expressions.MidOCLFactory;
 
 /**
@@ -211,6 +213,11 @@ public class MidVisualIDRegistry {
 			break;
 		case ModelReferenceModelReferenceCompartmentEditPart.VISUAL_ID:
 			if (ModelElementReferenceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case LinkElementRefsEditPart.VISUAL_ID:
+			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

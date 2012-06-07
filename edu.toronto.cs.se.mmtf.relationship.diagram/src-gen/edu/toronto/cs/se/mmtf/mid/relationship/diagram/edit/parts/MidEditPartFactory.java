@@ -70,6 +70,9 @@ public class MidEditPartFactory implements EditPartFactory {
 			case LinkElementRefsEditPart.VISUAL_ID:
 				return new LinkElementRefsEditPart(view);
 
+			case WrappingLabelEditPart.VISUAL_ID:
+				return new WrappingLabelEditPart(view);
+
 			case BinaryLinkEditPart.VISUAL_ID:
 				return new BinaryLinkEditPart(view);
 

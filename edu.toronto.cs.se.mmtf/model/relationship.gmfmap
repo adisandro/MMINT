@@ -96,6 +96,11 @@
         href="mid.ecore#//ExtendibleElement/supertype"/>
   </links>
   <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="relationship.gmfgraph#LinkElementRefsLabel"/>
+    </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
         href="relationship.gmftool#//@palette/@tools.0/@tools.2"/>

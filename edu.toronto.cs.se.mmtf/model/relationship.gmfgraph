@@ -24,7 +24,10 @@
       <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="LinkElementRefsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="LinkElementRefsFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="LinkElementRefsFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0">
+        <children xsi:type="gmfgraph:Label" name="LinkElementRefsLabelFigure"/>
+      </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="BinaryLinkFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BinaryLinkFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.1">
@@ -47,4 +50,7 @@
   <labels name="ModelElementReferenceLabel" figure="ModelElementReferenceFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels name="LinkLabel" figure="LinkFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
   <labels name="BinaryLinkLabel" figure="BinaryLinkFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels name="LinkElementRefsLabel" figure="LinkElementRefsFigure" accessor="//@figures.0/@descriptors.3/@accessors.0">
+    <facets xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
 </gmfgraph:Canvas>

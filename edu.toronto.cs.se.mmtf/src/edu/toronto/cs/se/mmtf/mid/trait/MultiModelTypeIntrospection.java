@@ -142,7 +142,7 @@ modelTypes:
 		if (elementTypeUri == null) { // this means getRuntimeTypes itself is used to set the initial static metatype
 			//TODO passo il model che lo contiene, e in base al type del pointer capisco che oggetto è, non vedo altri modi
 			//TODO ma questo non deve essere limitato al tipo di model rel che lo contiene stracazzo? e lo stesso elemento può essere puntato da differenti modelrel, aiuto?
-			//TODO beh ne posso sempre aggiungere due al modello, puntano allo stesso oggetto ma hanno tipo diverso..sì e uri a livello INSTANCES? suffisso con /ElemTypeName
+			//TODO beh ne posso sempre aggiungere due al modello, puntano allo stesso oggetto ma hanno tipo diverso..sì e uri a livello INSTANCES? suffisso con /classLiteral
 			//staticElementType = 
 		}
 		else {
@@ -265,6 +265,25 @@ modelTypes:
 			MMTFException.print(MMTFException.Type.WARNING, "Error getting root for model " + uri, e);
 			return null;
 		}
+	}
+
+	public static EObject getPointer(ModelElement modelElem) {
+
+		Model model = (Model) modelElem.eContainer();
+		EObject pointer;
+
+		if (modelElem.getLevel() == MidLevel.TYPES) {
+			pointer = MMTFRegistry.getModelTypeMetamodelElement(
+				model,
+				modelElem.getClassLiteral()
+			);
+		}
+		else {
+			//TODO MMTF: do I need to get the model first, and then the fragment, or can I get it at once? need to try
+			pointer = null;
+		}
+
+		return pointer;
 	}
 
 }

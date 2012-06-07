@@ -68,6 +68,7 @@ public class ModelElementItemProvider
 
 			addCategoryPropertyDescriptor(object);
 			addPointerPropertyDescriptor(object);
+			addClassLiteralPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -117,6 +118,28 @@ public class ModelElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Class Literal feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addClassLiteralPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModelElement_classLiteral_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_classLiteral_feature", "_UI_ModelElement_type"),
+				 MidPackage.Literals.MODEL_ELEMENT__CLASS_LITERAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ModelElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,6 +177,7 @@ public class ModelElementItemProvider
 
 		switch (notification.getFeatureID(ModelElement.class)) {
 			case MidPackage.MODEL_ELEMENT__CATEGORY:
+			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

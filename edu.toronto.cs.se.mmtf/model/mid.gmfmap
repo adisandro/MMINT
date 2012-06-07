@@ -154,7 +154,8 @@
         href="mid.ecore#//ExtendibleElement/supertype"/>
   </links>
   <links>
-    <labelMappings>
+    <labelMappings
+        readOnly="true">
       <diagramLabel
           href="mid.gmfgraph#ModelRelModelsLabel"/>
     </labelMappings>

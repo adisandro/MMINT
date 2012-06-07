@@ -66,6 +66,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReference
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReferenceModelReferenceCompartmentEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReferenceNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabelEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
 
 /**
@@ -510,6 +511,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
+		Node label6002 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6002 = (Location) label6002.getLayoutConstraint();
+		location6002.setX(0);
+		location6002.setY(40);
 		return edge;
 	}
 

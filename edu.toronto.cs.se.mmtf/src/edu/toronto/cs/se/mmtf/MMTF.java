@@ -256,6 +256,7 @@ public class MMTF implements MMTFExtensionPoints {
 				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
 					String modelElementUri = modelElementConfigElem.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
+					//TODO MMTF: add getModelElementType
 					ExtendibleElement element = repository.getExtendibleTable().get(modelElementUri);
 					if (element == null) { // create new model element
 						element = MidFactory.eINSTANCE.createModelElement();
@@ -264,12 +265,7 @@ public class MMTF implements MMTFExtensionPoints {
 								modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY)
 							)
 						);
-						// get feature from model
-						EObject elemPointer = MMTFRegistry.getModelTypeMetamodelElement(
-							model,
-							modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL)
-						);
-						((ModelElement) element).setPointer(elemPointer);
+						((ModelElement) element).setClassLiteral(modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL));
 						try {
 							addExtendibleType(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
 						}

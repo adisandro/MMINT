@@ -40,6 +40,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementRe
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelReferenceNameTypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabelEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
@@ -112,27 +113,27 @@ public class MidNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (MidVisualIDRegistry.getVisualID(view)) {
-		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/model/mid.ecore?ExtendibleElement?supertype", MidElementTypes.ExtendibleElementSupertype_4001); //$NON-NLS-1$
-		case ModelReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?ModelReference", MidElementTypes.ModelReference_2001); //$NON-NLS-1$
-		case ModelRelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?ModelRel", MidElementTypes.ModelRel_1000); //$NON-NLS-1$
-		case ModelElementReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?ModelElementReference", MidElementTypes.ModelElementReference_3001); //$NON-NLS-1$
-		case LinkEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?Link", MidElementTypes.Link_2002); //$NON-NLS-1$
-		case LinkElementRefsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?Link?elementRefs", MidElementTypes.LinkElementRefs_4002); //$NON-NLS-1$
 		case BinaryLinkEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?BinaryLink", MidElementTypes.BinaryLink_4003); //$NON-NLS-1$
+		case LinkEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?Link", MidElementTypes.Link_2002); //$NON-NLS-1$
+		case ModelReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?ModelReference", MidElementTypes.ModelReference_2001); //$NON-NLS-1$
+		case LinkElementRefsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?Link?elementRefs", MidElementTypes.LinkElementRefs_4002); //$NON-NLS-1$
+		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http:///edu/toronto/cs/se/mmtf/model/mid.ecore?ExtendibleElement?supertype", MidElementTypes.ExtendibleElementSupertype_4001); //$NON-NLS-1$
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?ModelElementReference", MidElementTypes.ModelElementReference_3001); //$NON-NLS-1$
+		case ModelRelEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Diagram?http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship?ModelRel", MidElementTypes.ModelRel_1000); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -193,20 +194,20 @@ public class MidNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (MidVisualIDRegistry.getVisualID(view)) {
-		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return getExtendibleElementSupertype_4001Text(view);
-		case ModelReferenceEditPart.VISUAL_ID:
-			return getModelReference_2001Text(view);
-		case ModelRelEditPart.VISUAL_ID:
-			return getModelRel_1000Text(view);
-		case ModelElementReferenceEditPart.VISUAL_ID:
-			return getModelElementReference_3001Text(view);
-		case LinkEditPart.VISUAL_ID:
-			return getLink_2002Text(view);
-		case LinkElementRefsEditPart.VISUAL_ID:
-			return getLinkElementRefs_4002Text(view);
 		case BinaryLinkEditPart.VISUAL_ID:
 			return getBinaryLink_4003Text(view);
+		case LinkEditPart.VISUAL_ID:
+			return getLink_2002Text(view);
+		case ModelReferenceEditPart.VISUAL_ID:
+			return getModelReference_2001Text(view);
+		case LinkElementRefsEditPart.VISUAL_ID:
+			return getLinkElementRefs_4002Text(view);
+		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+			return getExtendibleElementSupertype_4001Text(view);
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getModelElementReference_3001Text(view);
+		case ModelRelEditPart.VISUAL_ID:
+			return getModelRel_1000Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -315,7 +316,19 @@ public class MidNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getLinkElementRefs_4002Text(View view) {
-		return ""; //$NON-NLS-1$
+		IParser parser = MidParserProvider.getParser(
+				MidElementTypes.LinkElementRefs_4002,
+				view.getElement() != null ? view.getElement() : view,
+				MidVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			MidDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 6002); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
 	}
 
 	/**
