@@ -115,13 +115,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__TYPE = MidPackage.MODEL__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__RUNTIME_METATYPE = MidPackage.MODEL__RUNTIME_METATYPE;
+	int MODEL_REL__RUNTIME_METATYPES = MidPackage.MODEL__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -314,13 +314,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__TYPE = MODEL_REL__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL__RUNTIME_METATYPE = MODEL_REL__RUNTIME_METATYPE;
+	int BINARY_MODEL_REL__RUNTIME_METATYPES = MODEL_REL__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -513,13 +513,13 @@ public interface RelationshipPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL__TYPE = BINARY_MODEL_REL__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHISM_MODEL_REL__RUNTIME_METATYPE = BINARY_MODEL_REL__RUNTIME_METATYPE;
+	int HOMOMORPHISM_MODEL_REL__RUNTIME_METATYPES = BINARY_MODEL_REL__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -949,13 +949,13 @@ public interface RelationshipPackage extends EPackage {
 	int LINK__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__RUNTIME_METATYPE = MidPackage.EXTENDIBLE_ELEMENT__RUNTIME_METATYPE;
+	int LINK__RUNTIME_METATYPES = MidPackage.EXTENDIBLE_ELEMENT__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1067,13 +1067,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK__TYPE = LINK__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_LINK__RUNTIME_METATYPE = LINK__RUNTIME_METATYPE;
+	int BINARY_LINK__RUNTIME_METATYPES = LINK__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1185,13 +1185,13 @@ public interface RelationshipPackage extends EPackage {
 	int HOMOMORPHISM_LINK__TYPE = BINARY_LINK__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOMOMORPHISM_LINK__RUNTIME_METATYPE = BINARY_LINK__RUNTIME_METATYPE;
+	int HOMOMORPHISM_LINK__RUNTIME_METATYPES = BINARY_LINK__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.

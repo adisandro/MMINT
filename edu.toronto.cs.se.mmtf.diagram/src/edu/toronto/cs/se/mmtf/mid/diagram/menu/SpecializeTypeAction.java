@@ -77,19 +77,27 @@ public class SpecializeTypeAction extends ContributionItem {
 			return;
 		}
 
-		// create basic menu and get subtypes
-		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
-		EList<TypedElement> subtypes = null;
-		//TODO intanto devo vedere se lo static metatype è diverso dal runtime metatype
-		//TODO se sì, devo recuperare tutti i possibili runtime metatypes, possibilmente durante la stessa chiamata
+		// get runtime types
+		EList<TypedElement> runtimeTypes = model.getRuntimeMetatypes();
+		if (runtimeTypes.size() == 1) {
+			return;
+		}
 
 		// create dynamic menu
+		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
 		cascadeItem.setText("Specialize Type");
 		Menu operatorsMenu = new Menu(menu);
 		cascadeItem.setMenu(operatorsMenu);
-		//TODO loop through subtypes
-
-		//TODO altrimenti mostra un elenco di tipi specializzabili, non solo uno cazzo
+		for (TypedElement runtimeType : runtimeTypes) {
+			if (((Model) runtimeType).getUri().equals(model.getMetatypeUri())) {
+				continue;
+			}
+			MenuItem typeItem = new MenuItem(operatorsMenu, SWT.NONE);
+			typeItem.setText(runtimeType.getName());
+			typeItem.addSelectionListener(
+				new SpecializeTypeListener(model, (Model) runtimeType)
+			);
+		}
 	}
 
 }

@@ -87,20 +87,18 @@ public class RunOperatorAction extends ContributionItem {
 			}
 		}
 
-		// create basic menu and get operators
-		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
+		// get operators
 		if (actualParameters.isEmpty() || actualParameters.get(0).getLevel() == MidLevel.TYPES) {
-			cascadeItem.setText("No Operator Available");
 			return;
 		}
 		EList<HashMap<Integer, EList<ConversionOperator>>> conversions = new BasicEList<HashMap<Integer, EList<ConversionOperator>>>();
 		EList<Operator> operators = MMTFRegistry.getExecutableOperators(actualParameters, conversions);
 		if (operators.isEmpty()) {
-			cascadeItem.setText("No Operator Available");
 			return;
 		}
 
 		// create dynamic menu
+		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
 		cascadeItem.setText("Run Operator");
 		Menu operatorsMenu = new Menu(menu);
 		cascadeItem.setMenu(operatorsMenu);

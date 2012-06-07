@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -36,7 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getMetatype <em>Metatype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getRuntimeMetatype <em>Runtime Metatype</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getRuntimeMetatypes <em>Runtime Metatypes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl#getMetatypeUri <em>Metatype Uri</em>}</li>
  * </ul>
  * </p>
@@ -221,29 +222,20 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElement getRuntimeMetatype() {
-		TypedElement runtimeMetatype = basicGetRuntimeMetatype();
-		return runtimeMetatype != null && runtimeMetatype.eIsProxy() ? (TypedElement)eResolveProxy((InternalEObject)runtimeMetatype) : runtimeMetatype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypedElement basicGetRuntimeMetatypeGen() {
-		// TODO: implement this method to return the 'Runtime Metatype' reference
-		// -> do not perform proxy resolution
+	public EList<TypedElement> getRuntimeMetatypesGen() {
+		// TODO: implement this method to return the 'Runtime Metatypes' reference list
 		// Ensure that you remove @generated or mark it @generated NOT
+		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * Uses type introspection to get runtime metatype.
+	 * Uses type introspection to get runtime metatypes.
 	 * 
 	 * @generated NOT
 	 */
-	public TypedElement basicGetRuntimeMetatype() {
+	public EList<TypedElement> getRuntimeMetatypes() {
 
 		return MultiModelTypeIntrospection.getRuntimeTypes(this);
 	}
@@ -286,9 +278,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 				return getLevel();
 			case MidPackage.TYPED_ELEMENT__TYPE:
 				return getType();
-			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE:
-				if (resolve) return getRuntimeMetatype();
-				return basicGetRuntimeMetatype();
+			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPES:
+				return getRuntimeMetatypes();
 			case MidPackage.TYPED_ELEMENT__METATYPE_URI:
 				return getMetatypeUri();
 		}
@@ -353,8 +344,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
 				return level != LEVEL_EDEFAULT;
 			case MidPackage.TYPED_ELEMENT__TYPE:
 				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE:
-				return basicGetRuntimeMetatype() != null;
+			case MidPackage.TYPED_ELEMENT__RUNTIME_METATYPES:
+				return !getRuntimeMetatypes().isEmpty();
 			case MidPackage.TYPED_ELEMENT__METATYPE_URI:
 				return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
 		}

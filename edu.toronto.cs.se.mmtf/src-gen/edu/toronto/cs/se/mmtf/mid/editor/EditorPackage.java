@@ -113,13 +113,13 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__RUNTIME_METATYPE = MidPackage.EXTENDIBLE_ELEMENT__RUNTIME_METATYPE;
+	int EDITOR__RUNTIME_METATYPES = MidPackage.EXTENDIBLE_ELEMENT__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -249,13 +249,13 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM__TYPE = EDITOR__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM__RUNTIME_METATYPE = EDITOR__RUNTIME_METATYPE;
+	int DIAGRAM__RUNTIME_METATYPES = EDITOR__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.

@@ -421,7 +421,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypedElement_RuntimeMetatype() {
+	public EReference getTypedElement_RuntimeMetatypes() {
 		return (EReference)typedElementEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -605,7 +605,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(typedElementEClass, TYPED_ELEMENT__METATYPE);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__LEVEL);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__TYPE);
-		createEReference(typedElementEClass, TYPED_ELEMENT__RUNTIME_METATYPE);
+		createEReference(typedElementEClass, TYPED_ELEMENT__RUNTIME_METATYPES);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__METATYPE_URI);
 
 		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
@@ -696,7 +696,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getTypedElement_Metatype(), this.getTypedElement(), null, "metatype", null, 0, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_Level(), this.getMidLevel(), "level", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_Type(), ecorePackage.getEString(), "type", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedElement_RuntimeMetatype(), this.getTypedElement(), null, "runtimeMetatype", null, 0, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedElement_RuntimeMetatypes(), this.getTypedElement(), null, "runtimeMetatypes", null, 0, -1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_MetatypeUri(), ecorePackage.getEString(), "metatypeUri", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);

@@ -84,9 +84,10 @@ public class MultiModelFactoryUtils {
 		element.setName(name);
 		element.setLevel(MidLevel.INSTANCES);
 		if (type == null) { // get runtime metatype
-			//TODO MMTF: maybe sometimes could be better to use the most conservative type?
-			//TODO MMTF: I mean, this is perfect for result of operators, but maybe not for let's say import model
-			element.setMetatypeUri(((ExtendibleElement) element.getRuntimeMetatype()).getUri());
+			//TODO MMTF: which entry to use, the most specific (operators) or the most conservative (import model)?
+			//TODO MMTF: now is the first == the most conservative
+			//TODO MMTF: do I fix everything by just letting the user choose with a dialog?
+			element.setMetatypeUri(((ExtendibleElement) element.getRuntimeMetatypes().get(0)).getUri());
 		}
 		else { // use static metatype
 			element.setMetatypeUri(type.getUri());

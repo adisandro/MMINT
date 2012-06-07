@@ -163,13 +163,13 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__TYPE = MidPackage.TYPED_ELEMENT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__RUNTIME_METATYPE = MidPackage.TYPED_ELEMENT__RUNTIME_METATYPE;
+	int OPERATOR__RUNTIME_METATYPES = MidPackage.TYPED_ELEMENT__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -382,13 +382,13 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR__TYPE = OPERATOR__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Runtime Metatype</b></em>' reference.
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR__RUNTIME_METATYPE = OPERATOR__RUNTIME_METATYPE;
+	int CONVERSION_OPERATOR__RUNTIME_METATYPES = OPERATOR__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.

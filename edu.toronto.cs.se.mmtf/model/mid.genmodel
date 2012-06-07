@@ -49,7 +49,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//TypedElement/metatype"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/level"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/type"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//TypedElement/runtimeMetatype"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//TypedElement/runtimeMetatypes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/metatypeUri"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">

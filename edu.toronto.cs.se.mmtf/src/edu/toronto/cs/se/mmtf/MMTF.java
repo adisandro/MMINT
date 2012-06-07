@@ -1030,17 +1030,28 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		private static EList<ConversionOperator> isEligibleParameter(Model actualParameter, Model formalParameter) {
 
-			String actualUri = ((Model) actualParameter.getRuntimeMetatype()).getUri();
+			EList<String> actualUris = new BasicEList<String>();
+			for (int i = 0; i < actualParameter.getRuntimeMetatypes().size(); i++) {
+				actualUris.add(
+					((Model) actualParameter.getRuntimeMetatypes().get(i)).getUri()
+				);
+			}
 			String formalUri = formalParameter.getUri();
 			EList<ConversionOperator> result = null;
 
 			// exact type
-			if (formalUri.equals(actualUri)) {
+			if (actualUris.contains(formalUri)) {
 				result = new BasicEList<ConversionOperator>();
 			}
 			// substitutable type
-			else if (substitutabilityTable.get(actualUri).contains(formalUri)) {
-				result = conversionTable.get(actualUri).get(formalUri);
+			else {
+				for (String actualUri : actualUris) {
+					if (substitutabilityTable.get(actualUri).contains(formalUri)) {
+						// use first substitution found
+						result = conversionTable.get(actualUri).get(formalUri);
+						break;
+					}
+				}
 			}
 
 			return result;

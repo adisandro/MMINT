@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -25,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatype <em>Metatype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatype <em>Runtime Metatype</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatypes <em>Runtime Metatypes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatypeUri <em>Metatype Uri</em>}</li>
  * </ul>
  * </p>
@@ -124,19 +125,20 @@ public interface TypedElement extends EObject {
 	String getType();
 
 	/**
-	 * Returns the value of the '<em><b>Runtime Metatype</b></em>' reference.
+	 * Returns the value of the '<em><b>Runtime Metatypes</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.TypedElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Runtime Metatype</em>' reference isn't clear,
+	 * If the meaning of the '<em>Runtime Metatypes</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Runtime Metatype</em>' reference.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getTypedElement_RuntimeMetatype()
+	 * @return the value of the '<em>Runtime Metatypes</em>' reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getTypedElement_RuntimeMetatypes()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	TypedElement getRuntimeMetatype();
+	EList<TypedElement> getRuntimeMetatypes();
 
 	/**
 	 * Returns the value of the '<em><b>Metatype Uri</b></em>' attribute.

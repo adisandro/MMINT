@@ -71,8 +71,9 @@
         <details key="derivation" value="if metatype.oclIsUndefined() then '' else metatype.name endif"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="runtimeMetatype" eType="#//TypedElement"
-        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runtimeMetatypes" upperBound="-1"
+        eType="#//TypedElement" changeable="false" volatile="true" transient="true"
+        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metatypeUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStringToExtendibleElementMap" instanceClassName="java.util.Map$Entry">
