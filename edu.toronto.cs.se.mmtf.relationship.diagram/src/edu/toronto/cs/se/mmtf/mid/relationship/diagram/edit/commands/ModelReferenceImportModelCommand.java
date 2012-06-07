@@ -52,16 +52,20 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 	}
 
 	/**
-	 * Disallows the command to be executed when the diagram root is a binary
+	 * Checks if a model reference can be imported. In the INSTANCES case,
+	 * disallows the command to be executed when the diagram root is a binary
 	 * model relationship and is either not standalone or has already two
 	 * models.
 	 * 
-	 * @return True if a model can be imported, false otherwise.
+	 * @return True if a model reference can be imported, false otherwise.
 	 */
 	@Override
 	public boolean canExecute() {
 
 		ModelRel owner = (ModelRel) getElementToEdit();
+		if (MultiModelConstraintChecker.isInstanceLevel(owner)) {
+			return false;
+		}
 		if (owner instanceof BinaryModelRel) {
 			// a binary relationship which is not standalone can be only modified through the mid diagram
 			// a binary relationship which is standalone must have at most 2 models
@@ -69,11 +73,8 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 				return false;
 			}
 		}
-		boolean constraints = (owner.eContainer() != null) ?
-			MultiModelConstraintChecker.isInstanceLevel((MultiModel) owner.eContainer()) :
-			true;
 
-		return constraints && super.canExecute();
+		return super.canExecute();
 	}
 
 	/**

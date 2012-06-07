@@ -19,7 +19,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditor;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
  * The command to delete a model reference.
@@ -38,6 +40,17 @@ public class ModelReferenceDelCommand extends DestroyElementCommand {
 	public ModelReferenceDelCommand(DestroyElementRequest request) {
 
 		super(request);
+	}
+
+	/**
+	 * Checks if a model reference can be deleted.
+	 * 
+	 * @return True if a model reference can be deleted, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToDestroy().eContainer()) && super.canExecute();
 	}
 
 	/**

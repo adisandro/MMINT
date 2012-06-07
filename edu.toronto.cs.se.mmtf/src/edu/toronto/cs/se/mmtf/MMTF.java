@@ -226,10 +226,6 @@ public class MMTF implements MMTFExtensionPoints {
 	 */
 	public ModelRel createModelRelType(IConfigurationElement extensionConfig) {
 
-		//TODO MMTF: simplify everything with subfunctions and make it safer
-		//TODO MMTF: review relationship semantics, I feel we need to change something in the extension schema
-		//TODO MMTF: then, we don't care about the meaning of inheritance here, we just trust it has been set up properly
-		//TODO MMTF: a pluggable checker, following some reasoning, should enforce that
 		// create and add
 		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_ATTR_ISNARY));
 		IConfigurationElement extendibleConfig = extensionConfig.getChildren(CHILD_EXTENDIBLEELEMENT)[0];
@@ -250,9 +246,9 @@ public class MMTF implements MMTFExtensionPoints {
 		// models and containers
 		for (IConfigurationElement modelConfigElem : modelConfig) {
 			String modelUri = modelConfigElem.getAttribute(RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI);
-			ExtendibleElement model = MMTFRegistry.getExtendibleType(modelUri);
-			if (model != null && model instanceof Model) {
-				modelRel.getModels().add((Model) model);
+			Model model = MMTFRegistry.getModelType(modelUri);
+			if (model != null) {
+				modelRel.getModels().add(model);
 				ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
 				modelRef.setReferencedObject(model);
 				modelRel.getModelRefs().add(modelRef);
@@ -270,7 +266,7 @@ public class MMTF implements MMTFExtensionPoints {
 						);
 						// get feature from model
 						EObject elemPointer = MMTFRegistry.getModelTypeMetamodelElement(
-							(Model) model,
+							model,
 							modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL)
 						);
 						((ModelElement) element).setPointer(elemPointer);
@@ -282,7 +278,7 @@ public class MMTF implements MMTFExtensionPoints {
 							removeModelType(modelRel.getUri());
 							return null;
 						}
-						((Model) model).getElements().add((ModelElement) element);
+						model.getElements().add((ModelElement) element);
 					}
 					if (element instanceof ModelElement) { // reference model element
 						ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();

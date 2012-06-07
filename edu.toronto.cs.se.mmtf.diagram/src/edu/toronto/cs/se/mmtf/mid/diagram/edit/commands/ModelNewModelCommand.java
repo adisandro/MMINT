@@ -82,9 +82,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 				String subModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type name");
 				String constraint = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type constraint");
 				newElement = MMTFRegistry.createLightModelType(superModelType, subModelTypeName, constraint);
-				Model newElementForMID = EcoreUtil.copy(newElement);
-				owner.getModels().add(newElementForMID);
-				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
+				Model newElementForDiagram = EcoreUtil.copy(newElement);
+				owner.getModels().add(newElementForDiagram);
 			}
 			else {
 				Editor editor = MidDiagramTrait.selectModelToCreate();

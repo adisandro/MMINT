@@ -137,6 +137,18 @@ modelTypes:
 		//TODO MMTF: implementare
 		EList<TypedElement> types = new BasicEList<TypedElement>();
 
+		ModelElement staticElementType;
+		String elementTypeUri = modelElem.getMetatypeUri();
+		if (elementTypeUri == null) { // this means getRuntimeTypes itself is used to set the initial static metatype
+			//TODO passo il model che lo contiene, e in base al type del pointer capisco che oggetto è, non vedo altri modi
+			//TODO ma questo non deve essere limitato al tipo di model rel che lo contiene stracazzo? e lo stesso elemento può essere puntato da differenti modelrel, aiuto?
+			//TODO beh ne posso sempre aggiungere due al modello, puntano allo stesso oggetto ma hanno tipo diverso..sì e uri a livello INSTANCES? suffisso con /ElemTypeName
+			//staticElementType = 
+		}
+		else {
+			staticElementType = (ModelElement) modelElem.getMetatype();
+		}
+
 		// fallback to root type
 		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
 			types.add(MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_ENTITY_URI));

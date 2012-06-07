@@ -42,6 +42,17 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 	}
 
 	/**
+	 * Checks if a link can be created.
+	 * 
+	 * @return True if a link can be created, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return super.canExecute();
+	}
+
+	/**
 	 * Creates a new link.
 	 * 
 	 * @param monitor

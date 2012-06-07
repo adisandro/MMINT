@@ -48,6 +48,17 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 	}
 
 	/**
+	 * Checks if a binary link can be created.
+	 * 
+	 * @return True if a binary link can be created, false otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return super.canExecute();
+	}
+
+	/**
 	 * Creates a new binary link.
 	 * 
 	 * @param monitor

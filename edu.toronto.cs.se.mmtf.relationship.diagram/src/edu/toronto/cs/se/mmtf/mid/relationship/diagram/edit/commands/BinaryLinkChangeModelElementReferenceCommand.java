@@ -39,6 +39,18 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	}
 
 	/**
+	 * Checks if a model element reference can be changed.
+	 * 
+	 * @return True if a model element reference can be changed, false
+	 *         otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return super.canExecute();
+	}
+
+	/**
 	 * Checks if the source can be reoriented.
 	 * 
 	 * @return True if the source can be reoriented, false otherwise.

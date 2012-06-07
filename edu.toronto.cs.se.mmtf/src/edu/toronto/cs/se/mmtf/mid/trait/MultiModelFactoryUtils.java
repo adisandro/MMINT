@@ -218,6 +218,7 @@ public class MultiModelFactoryUtils {
 	public static ModelElementReference createModelElementReference(ModelReference modelRef, EObject elementPointer) {
 
 		// create model element (duplicates are avoided by dnd policy)
+		//TODO MMTF: yeah but not if the model is involved in more than one relationship
 		ModelElement modelElem = MidFactory.eINSTANCE.createModelElement();
 		ModelElementCategory category = (elementPointer instanceof EReference) ?
 			ModelElementCategory.RELATIONSHIP :
@@ -235,8 +236,7 @@ public class MultiModelFactoryUtils {
 		//TODO MMTF: renderlo breve e leggibile in caso di TYPES (getName() e basta?)
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
 		((Model) modelRef.getObject()).getElements().add(modelElem);
-		//TODO MMTF: reactivate when fixed
-		//addExtendibleElement(modelElem, null, null, name);
+		addExtendibleElement(modelElem, null, null, null, name);
 
 		// create model element reference
 		ModelElementReference modelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();

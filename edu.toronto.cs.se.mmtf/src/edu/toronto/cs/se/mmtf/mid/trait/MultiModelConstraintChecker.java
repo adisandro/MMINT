@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
  * The constraint checker for multimodels.
@@ -35,8 +36,8 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 public class MultiModelConstraintChecker {
 
 	/**
-	 * Checks if the multimodel is a TYPES multimodel or an INSTANCES
-	 * multimodel.
+	 * Checks if a multimodel (the root of a MID diagram) is a TYPES multimodel
+	 * or an INSTANCES multimodel.
 	 * 
 	 * @param multiModel
 	 *            The multimodel to be checked.
@@ -45,6 +46,22 @@ public class MultiModelConstraintChecker {
 	public static boolean isInstanceLevel(MultiModel multiModel) {
 
 		if (multiModel.getLevel() == MidLevel.TYPES) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Checks if a model relationship (the root of a Relationship diagram) is a
+	 * TYPES model relationship or an INSTANCES model relationship.
+	 * 
+	 * @param modelRel
+	 *            The model relationship to be checked.
+	 * @return True for INSTANCES level, false for TYPES level.
+	 */
+	public static boolean isInstanceLevel(ModelRel modelRel) {
+
+		if (modelRel.getLevel() == MidLevel.TYPES) {
 			return false;
 		}
 		return true;

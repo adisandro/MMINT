@@ -15,9 +15,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
@@ -48,6 +50,18 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	}
 
 	/**
+	 * Checks if a model element reference can be created.
+	 * 
+	 * @return True if a model element reference can be created, false
+	 *         otherwise.
+	 */
+	@Override
+	public boolean canExecute() {
+
+		return super.canExecute();
+	}
+
+	/**
 	 * Creates a new model element reference from a dropped object.
 	 * 
 	 * @param monitor
@@ -61,12 +75,14 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		//TODO MMTF: aggiungere canExecute per validare, aggiungerlo a tutti i comandi in realtà nel rel diagram
-		//TODO MMTF: nel mid diagram dovrei chiedere ogni volta che creo/modifico una rel di che tipo statico la voglio, scelta in base ai dinamici available
-		//TODO MMTF: in più nel mid diagram devo dare un hint quando è possibile una type conversion (colore name)
 		//TODO MMTF: distinguere TYPES e INSTANCES qui e a tutti i comandi eseguibili nel rel diagram (per fare una copy in più direi, forse qualcos'altro?)
 		ModelReference owner = (ModelReference) getElementToEdit();
 		ModelElementReference newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
+		if (owner.getObject().getLevel() == MidLevel.TYPES) {
+			ModelElementReference newElementForDiagram = EcoreUtil.copy(newElement);
+			//TODO add this element to the owner
+			//TODO but createmodelelementreference should add it to the repository (do i need to create the alternative version in mmtfregistry?)
+		}
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 
