@@ -49,7 +49,7 @@ public class MidPaletteFactory {
 		paletteContainer.add(createNewModel1CreationTool());
 		paletteContainer.add(createNewBinaryRel2CreationTool());
 		paletteContainer.add(createNewNaryRel3CreationTool());
-		paletteContainer.add(createAddNaryRelModel4CreationTool());
+		paletteContainer.add(createConnectModel4CreationTool());
 		return paletteContainer;
 	}
 
@@ -114,12 +114,12 @@ public class MidPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createAddNaryRelModel4CreationTool() {
+	private ToolEntry createConnectModel4CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.AddNaryRelModel4CreationTool_title,
-				Messages.AddNaryRelModel4CreationTool_desc,
+				Messages.ConnectModel4CreationTool_title,
+				Messages.ConnectModel4CreationTool_desc,
 				Collections.singletonList(MidElementTypes.ModelRelModels_4002));
-		entry.setId("createAddNaryRelModel4CreationTool"); //$NON-NLS-1$
+		entry.setId("createConnectModel4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MidElementTypes
 				.getImageDescriptor(MidElementTypes.ModelRelModels_4002));
 		entry.setLargeIcon(entry.getSmallIcon());

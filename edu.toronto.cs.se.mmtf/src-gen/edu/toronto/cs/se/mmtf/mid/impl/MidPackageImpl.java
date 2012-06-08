@@ -774,7 +774,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (typedElementEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "typeLevel"
+			 "constraints", "typeLevel metatypeType"
 		   });		
 	}
 
@@ -796,7 +796,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (typedElementEClass, 
 		   source, 
 		   new String[] {
-			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"
+			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES",
+			 "metatypeType", "not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())"
 		   });		
 		addAnnotation
 		  (getTypedElement_Type(), 

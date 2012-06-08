@@ -85,15 +85,15 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
 			}
 			else {
+				ModelRel modelRelType = MidDiagramTrait.selectModelRelToCreate(null, null);
 				newElement = MultiModelFactoryUtils.createModelRel(
-					null,
+					modelRelType,
 					ModelOrigin.CREATED,
 					owner,
 					null,
 					RelationshipPackage.eINSTANCE.getModelRel()
 				);
 			}
-			//TODO MMTF: add choice of static rel type without dynamic possibilities
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

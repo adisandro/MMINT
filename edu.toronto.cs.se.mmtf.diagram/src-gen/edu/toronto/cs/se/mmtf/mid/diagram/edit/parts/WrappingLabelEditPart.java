@@ -238,7 +238,8 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	 */
 	protected String getLabelText() {
 
-		ModelRelModelsEditPart models = (ModelRelModelsEditPart) this.getParent();
+		ModelRelModelsEditPart models = (ModelRelModelsEditPart) this
+				.getParent();
 		ModelRel modelRel = (ModelRel) ((View) models.getSource().getModel())
 				.getElement();
 

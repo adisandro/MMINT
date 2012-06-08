@@ -32,6 +32,8 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 
 	/** The repository. */
 	private MultiModel repository;
+	private EList<String> allowedUris;
+	private boolean showRoots;
 	private boolean showModels;
 	private boolean showModelRels;
 	/** True if editors are going to be shown. */
@@ -45,9 +47,11 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 	 * @param showEditors
 	 *            True if editors are going to be shown.
 	 */
-	public RepositoryDialogContentProvider(MultiModel repository, boolean showModels, boolean showModelRels, boolean showEditors) {
+	public RepositoryDialogContentProvider(MultiModel repository, EList<String> allowedUris, boolean showRoots, boolean showModels, boolean showModelRels, boolean showEditors) {
 
 		this.repository = repository;
+		this.allowedUris = allowedUris;
+		this.showRoots = showRoots;
 		this.showModels = showModels;
 		this.showModelRels = showModelRels;
 		this.showEditors = showEditors;
@@ -98,7 +102,11 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 					continue;
 				}
 				// remove root models
-				if (!model.getUri().equals(ROOT_MODEL_URI) && !model.getUri().equals(ROOT_RELATIONSHIP_URI)) {
+				if (!showRoots && (model.getUri().equals(ROOT_MODEL_URI) || model.getUri().equals(ROOT_RELATIONSHIP_URI))) {
+					continue;
+				}
+				// remove models which are not allowed
+				if (allowedUris == null || allowedUris.contains(model.getUri())) {
 					userModels.add(model);
 				}
 			}

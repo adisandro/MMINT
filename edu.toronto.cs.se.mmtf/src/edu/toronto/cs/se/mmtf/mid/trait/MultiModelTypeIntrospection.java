@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 
@@ -86,18 +87,12 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// not specialized yet
 		if (modelRel.getModels().size() == 0) {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI));
+			types.addAll(MMTFRegistry.getModelRelTypes());
 			return types;
 		}
 
-modelTypes:
-		for (Model modelType : MMTFRegistry.getModelTypes()) {
-
-			// get only model relationship types
-			if (!(modelType instanceof ModelRel)) {
-				continue;
-			}
-			ModelRel modelRelType = (ModelRel) modelType;
+modelRelTypes:
+		for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
 
 			// check cardinality
 			if (!(modelRelType.isUnbounded() || modelRelType.getModels().size() == modelRel.getModels().size())) {
@@ -106,20 +101,20 @@ modelTypes:
 
 			// unbounded case
 			if (modelRelType.isUnbounded()) {
-				HashSet<String> allowedModels = new HashSet<String>();
-				for (Model model : modelRelType.getModels()) {
-					allowedModels.add(model.getUri());
+				HashSet<String> allowedModelTypes = new HashSet<String>();
+				for (Model modelType : modelRelType.getModels()) {
+					allowedModelTypes.add(modelType.getUri());
 				}
 				for (Model model : modelRel.getModels()) {
 					String modelTypeUri = model.getMetatypeUri();
-					if (!allowedModels.contains(modelTypeUri)) {
-						continue modelTypes;
+					if (!allowedModelTypes.contains(modelTypeUri)) {
+						continue modelRelTypes;
 					}
 				}
 				types.add(modelRelType);
 			}
 
-			//TODO: MMTF continue with other cases
+			//TODO: MMTF continue with other cases (maybe not necessary, look mmtfregistry modelrelcreationdialog)
 		}
 
 		// fallback to root type
@@ -143,6 +138,7 @@ modelTypes:
 			//TODO passo il model che lo contiene, e in base al type del pointer capisco che oggetto è, non vedo altri modi
 			//TODO ma questo non deve essere limitato al tipo di model rel che lo contiene stracazzo? e lo stesso elemento può essere puntato da differenti modelrel, aiuto?
 			//TODO beh ne posso sempre aggiungere due al modello, puntano allo stesso oggetto ma hanno tipo diverso..sì e uri a livello INSTANCES? suffisso con /classLiteral
+			//TODO tutto ok alla grande sto ragionamento, ma vuol semplicemente dire che qua elementTypeUri DEVE essere settato
 			//staticElementType = 
 		}
 		else {
@@ -162,11 +158,47 @@ modelTypes:
 
 	private static EList<TypedElement> getRuntimeTypes(Link link) {
 
-		//TODO MMTF: implementare
 		EList<TypedElement> types = new BasicEList<TypedElement>();
+		ModelRel modelRel = (ModelRel) link.eContainer();
+
+		// not specialized yet
+		if (link.getElementRefs().size() == 0) {
+			types.addAll(MMTFRegistry.getLinkTypes((ModelRel) modelRel.getMetatype()));
+			return types;
+		}
+
+linkTypes:
+		for (Link linkType : MMTFRegistry.getLinkTypes((ModelRel) modelRel.getMetatype())) {
+
+			// check cardinality
+			if (!(linkType.isUnbounded() || linkType.getElementRefs().size() == link.getElementRefs().size())) {
+				continue;
+			}
+
+			// unbounded case
+			if (linkType.isUnbounded()) {
+				HashSet<String> allowedElements = new HashSet<String>();
+				for (ModelElementReference elementRef : linkType.getElementRefs()) {
+					ModelElement element = (ModelElement) elementRef.getObject();
+					allowedElements.add(element.getUri());
+				}
+				for (ModelElementReference elementRef : link.getElementRefs()) {
+					ModelElement element = (ModelElement) elementRef.getObject();
+					String elementTypeUri = element.getMetatypeUri();
+					if (!allowedElements.contains(elementTypeUri)) {
+						continue linkTypes;
+					}
+				}
+				types.add(linkType);
+			}
+
+			//TODO: MMTF continue with other cases
+		}
 
 		// fallback to root type
-		types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI));
+		if (types.isEmpty()) {
+			types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI));
+		}
 
 		return types;
 	}

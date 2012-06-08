@@ -223,7 +223,7 @@
         <entries xsi:type="gmfgen:ToolEntry" title="New Model" description="Create new Model" genNodes="//@diagram/@topLevelNodes.0"/>
         <entries xsi:type="gmfgen:ToolEntry" title="New Binary Rel" description="Create new Binary Relationship" genLinks="//@diagram/@links.2"/>
         <entries xsi:type="gmfgen:ToolEntry" title="New Nary Rel" description="Create new Nary Relationship" genNodes="//@diagram/@topLevelNodes.2"/>
-        <entries xsi:type="gmfgen:ToolEntry" title="Add Nary Rel Model" description="Add model to Nary Relationship" genLinks="//@diagram/@links.1"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Connect Model" description="Connect model to Nary Relationship" genLinks="//@diagram/@links.1"/>
       </groups>
       <groups title="Import" collapse="true">
         <entries xsi:type="gmfgen:ToolEntry" title="Import Model" description="Import existing Model" genNodes="//@diagram/@topLevelNodes.1"/>

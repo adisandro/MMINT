@@ -33,8 +33,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getTypedElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel metatypeType'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES' metatypeType='not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())'"
  * @generated
  */
 public interface TypedElement extends EObject {

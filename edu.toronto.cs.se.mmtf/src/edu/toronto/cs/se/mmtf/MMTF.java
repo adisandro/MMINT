@@ -55,6 +55,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -852,19 +853,38 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		/**
 		 * Gets a model type.
 		 * 
-		 * @param uri
+		 * @param modelTypeUri
 		 *            The uri of the model type.
-		 * @return The model type, or null if uri is not found or found not to
-		 *         be a model.
+		 * @return The model type, or null if its uri is not found or found not
+		 *         to be a model.
 		 */
-		public static Model getModelType(String uri) {
+		public static Model getModelType(String modelTypeUri) {
 
-			ExtendibleElement model = getExtendibleType(uri);
+			ExtendibleElement model = getExtendibleType(modelTypeUri);
 			if (!(model instanceof Model)) {
 				return null;
 			}
 			else {
 				return (Model) model;
+			}
+		}
+
+		/**
+		 * Gets a model relationship type.
+		 * 
+		 * @param modelRelTypeUri
+		 *            The uri of the model relationship type.
+		 * @return The model relationship type, or null if its uri is not found
+		 *         or found not to be a model relationship.
+		 */
+		public static ModelRel getModelRelType(String modelRelTypeUri) {
+
+			ExtendibleElement modelRel = getExtendibleType(modelRelTypeUri);
+			if (!(modelRel instanceof ModelRel)) {
+				return null;
+			}
+			else {
+				return (ModelRel) modelRel;
 			}
 		}
 
@@ -876,6 +896,37 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		public static EList<Model> getModelTypes() {
 
 			return repository.getModels();
+		}
+
+		/**
+		 * Gets the list of registered model relationship types.
+		 * 
+		 * @return The list of registered model relationship types.
+		 */
+		public static EList<ModelRel> getModelRelTypes() {
+
+			EList<ModelRel> modelRels = new BasicEList<ModelRel>();
+			for (Model model : getModelTypes()) {
+				if (model instanceof ModelRel) {
+					modelRels.add((ModelRel) model);
+				}
+			}
+
+			return modelRels;
+		}
+
+		/**
+		 * Gets the list of registered link types for a model relationship type.
+		 * 
+		 * @param modelRelType
+		 *            The model relationship type.
+		 * 
+		 * @return The list of registered link types for a model relationship
+		 *         type.
+		 */
+		public static EList<Link> getLinkTypes(ModelRel modelRelType) {
+
+			return modelRelType.getLinks();
 		}
 
 		/**
@@ -923,9 +974,53 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
 				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, true, false, true)
+				new RepositoryDialogContentProvider(repository, null, false, true, false, true)
 			);
 			dialog.setValidator(new RepositoryDialogSelectionValidator());
+			dialog.setInput(repository);
+
+			return dialog;
+		}
+
+		/**
+		 * Gets a tree dialog to select among registered model relationship
+		 * types that can fit model source and target (are both null in case of
+		 * nary model relationship).
+		 * 
+		 * @return The tree dialog.
+		 */
+		public static ElementTreeSelectionDialog getModelRelCreationDialog(Model source, Model target) {
+
+			EList<String> modelRelTypeUris = null;
+
+			if (source != null && target != null) {
+
+				modelRelTypeUris = new BasicEList<String>();
+				for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
+
+					// check cardinality
+					if (!(modelRelType.isUnbounded() || modelRelType instanceof BinaryModelRel)) {
+						continue;
+					}
+
+					// check allowed model types
+					HashSet<String> allowedModelTypes = new HashSet<String>();
+					for (Model modelType : modelRelType.getModels()) {
+						allowedModelTypes.add(modelType.getUri());
+					}
+					if (!(allowedModelTypes.contains(source.getMetatypeUri()) && allowedModelTypes.contains(target.getMetatypeUri()))) {
+						continue;
+					}
+					modelRelTypeUris.add(modelRelType.getUri());
+				}
+			}
+
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
+				shell,
+				new RepositoryDialogLabelProvider(),
+				new RepositoryDialogContentProvider(repository, modelRelTypeUris, true, false, true, false)
+			);
 			dialog.setInput(repository);
 
 			return dialog;
@@ -942,7 +1037,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
 				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, true, false, false)
+				new RepositoryDialogContentProvider(repository, null, true, true, false, false)
 			);
 			dialog.setInput(repository);
 
@@ -961,7 +1056,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
 				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, false, true, false)
+				new RepositoryDialogContentProvider(repository, null, true, false, true, false)
 			);
 			dialog.setInput(repository);
 

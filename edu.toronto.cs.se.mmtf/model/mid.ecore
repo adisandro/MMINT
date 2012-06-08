@@ -56,10 +56,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="typeLevel"/>
+      <details key="constraints" value="typeLevel metatypeType"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="typeLevel" value="level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"/>
+      <details key="metatypeType" value="not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metatype" eType="#//TypedElement"

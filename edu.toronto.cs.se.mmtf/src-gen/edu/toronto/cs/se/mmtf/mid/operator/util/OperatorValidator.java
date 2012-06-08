@@ -151,6 +151,7 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(operator, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(operator, diagnostics, context);
 		return result;
 	}
 
@@ -188,6 +189,7 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConversionOperator_conversion(conversionOperator, diagnostics, context);
 		return result;
 	}

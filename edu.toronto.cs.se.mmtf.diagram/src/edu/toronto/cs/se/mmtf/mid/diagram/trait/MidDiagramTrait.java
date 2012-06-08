@@ -105,7 +105,16 @@ public class MidDiagramTrait {
 		return editor;
 	}
 
-	private static Model selectTypeToExtend(ElementTreeSelectionDialog dialog, String title) throws MMTFException {
+	public static ModelRel selectModelRelToCreate(Model source, Model target) throws Exception {
+
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelCreationDialog(source, target);
+		String title = "Create new model relationship";
+		String message = "Choose model relationship type";
+
+		return (ModelRel) selectModel(dialog, title, message);
+	}
+
+	private static Model selectModel(ElementTreeSelectionDialog dialog, String title, String message) throws MMTFException {
 
 		dialog.setTitle(title);
 		dialog.setMessage("Choose supertype");
@@ -124,27 +133,37 @@ public class MidDiagramTrait {
 	}
 
 	/**
-	 * Shows a tree dialog to select a model choosing from the registered model
-	 * types.
+	 * Shows a tree dialog to select a model type choosing from the registered
+	 * model types.
 	 * 
-	 * @return The choosen model.
+	 * @return The choosen model type.
 	 * @throws MMTFException
-	 *             If the model selection was not completed for any reason.
+	 *             If the selection was not completed for any reason.
 	 */
 	public static Model selectModelToExtend() throws MMTFException {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelTypeCreationDialog();
 		String title = "Create new light model type";
+		String message = "Choose model supertype";
 
-		return selectTypeToExtend(dialog, title);
+		return selectModel(dialog, title, message);
 	}
 
+	/**
+	 * Shows a tree dialog to select a model relationship type choosing from the
+	 * registered model relationship types.
+	 * 
+	 * @return The choosen model relationship type.
+	 * @throws MMTFException
+	 *             If the selection was not completed for any reason.
+	 */
 	public static ModelRel selectModelRelToExtend() throws MMTFException {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelTypeCreationDialog();
 		String title = "Create new light model relationship type";
+		String message = "Choose model relationship supertype";
 
-		return (ModelRel) selectTypeToExtend(dialog, title);
+		return (ModelRel) selectModel(dialog, title, message);
 	}
 
 	/**

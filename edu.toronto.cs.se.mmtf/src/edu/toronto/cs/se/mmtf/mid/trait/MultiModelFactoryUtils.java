@@ -219,11 +219,11 @@ public class MultiModelFactoryUtils {
 
 		// create model element (duplicates are avoided by dnd policy)
 		//TODO MMTF: yeah but not if the model is involved in more than one relationship
-		ModelElement modelElem = MidFactory.eINSTANCE.createModelElement();
+		ModelElement element = MidFactory.eINSTANCE.createModelElement();
 		ModelElementCategory category = (elementPointer instanceof EReference) ?
 			ModelElementCategory.RELATIONSHIP :
 			ModelElementCategory.ENTITY;
-		modelElem.setCategory(category);
+		element.setCategory(category);
 		ItemProviderAdapter itemAdapter = null;
 		for (Adapter adapter : elementPointer.eAdapters()) {
 			if (adapter instanceof ItemProviderAdapter) {
@@ -234,16 +234,17 @@ public class MultiModelFactoryUtils {
 		//TODO MMTF: trovare un modo di farlo funzionare sempre
 		//TODO MMTF: renderlo breve e leggibile in caso di TYPES (getName() e basta?)
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
-		((Model) modelRef.getObject()).getElements().add(modelElem);
-		addExtendibleElement(modelElem, null, null, null, name);
+		((Model) modelRef.getObject()).getElements().add(element);
+		//TODO MMTF: ricavare elementType obbligatoriamente, dato la model rel e la sua classe è facile
+		addExtendibleElement(element, null, null, null, name);
 
 		// create model element reference
 		ModelElementReference modelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 		if (modelRef.eContainer().eContainer() == null) { // standalone model relationship
-			modelElemRef.setContainedObject(modelElem);
+			modelElemRef.setContainedObject(element);
 		}
 		else {
-			modelElemRef.setReferencedObject(modelElem);
+			modelElemRef.setReferencedObject(element);
 		}
 		modelRef.getElementRefs().add(modelElemRef);
 

@@ -294,12 +294,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String AddNaryRelModel4CreationTool_title;
+	public static String ConnectModel4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String AddNaryRelModel4CreationTool_desc;
+	public static String ConnectModel4CreationTool_desc;
 
 	/**
 	 * @generated
