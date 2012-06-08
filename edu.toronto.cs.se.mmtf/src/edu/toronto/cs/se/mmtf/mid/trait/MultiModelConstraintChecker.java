@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -65,6 +66,24 @@ public class MultiModelConstraintChecker {
 			return false;
 		}
 		return true;
+	}
+
+	public static boolean canConnect(ModelRel modelRel, Model model) {
+
+		if (model == null) { // target not added yet
+			return true;
+		}
+
+		String modelTypeUri = model.getMetatypeUri();
+		boolean okConnect = false;
+		for (Model modelType : ((ModelRel) modelRel.getMetatype()).getModels()) {
+			if (modelType.getUri().equals(modelTypeUri) || MMTFRegistry.isSubtypeOf(modelTypeUri, modelType.getUri())) {
+				okConnect = true;
+				break;
+			}
+		}
+
+		return okConnect;
 	}
 
 	/**

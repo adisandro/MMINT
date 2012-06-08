@@ -46,7 +46,36 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getOldSource().eContainer()) && super.canExecute();
+		return
+			super.canExecute() &&
+			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getOldSource().eContainer());
+	}
+
+	/**
+	 * Checks if the source model relationship can be changed.
+	 * 
+	 * @return True if the source model relationship can be changed, false
+	 *         otherwise.
+	 */
+	@Override
+	protected boolean canReorientSource() {
+
+		return
+			super.canReorientSource() &&
+			MultiModelConstraintChecker.canConnect(getNewSource(), getOldTarget());
+	}
+
+	/**
+	 * Checks if the target model can be changed.
+	 * 
+	 * @return True if the target model can be changed, false otherwise.
+	 */
+	@Override
+	protected boolean canReorientTarget() {
+
+		return
+			super.canReorientTarget() &&
+			MultiModelConstraintChecker.canConnect(getOldSource(), getNewTarget());
 	}
 
 	/**

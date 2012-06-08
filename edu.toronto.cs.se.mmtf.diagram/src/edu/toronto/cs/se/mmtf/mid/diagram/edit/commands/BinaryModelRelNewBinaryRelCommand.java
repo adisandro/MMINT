@@ -21,7 +21,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
@@ -79,8 +81,9 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 
 		try {
+			ModelRel modelRelType = MidDiagramTrait.selectModelRelToCreate(getSource(), getTarget());
 			BinaryModelRel newElement = (BinaryModelRel) MultiModelFactoryUtils.createModelRel(
-				null,
+				modelRelType,
 				ModelOrigin.CREATED,
 				getContainer(),
 				null,

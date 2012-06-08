@@ -831,6 +831,18 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			return modelRel;
 		}
 
+		public static EList<String> getSupertypeUris(String subtypeUri) {
+
+			EList<String> supertypeUris = new BasicEList<String>();
+			for (String supertypeUri : substitutabilityTable.get(subtypeUri)) {
+				if (conversionTable.get(subtypeUri).get(supertypeUri).isEmpty()) {
+					supertypeUris.add(supertypeUri);
+				}
+			}
+
+			return supertypeUris;
+		}
+
 		public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
 
 			return
@@ -995,23 +1007,34 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 			if (source != null && target != null) {
 
+				String sourceTypeUri = source.getMetatypeUri();
+				EList<String> sourceSupertypeUris = getSupertypeUris(sourceTypeUri);
+				String targetTypeUri = target.getMetatypeUri();
+				EList<String> targetSupertypeUris = getSupertypeUris(targetTypeUri);
 				modelRelTypeUris = new BasicEList<String>();
+
 				for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
 
 					// check cardinality
 					if (!(modelRelType.isUnbounded() || modelRelType instanceof BinaryModelRel)) {
 						continue;
 					}
-
 					// check allowed model types
-					HashSet<String> allowedModelTypes = new HashSet<String>();
+					boolean okSource = false;
+					boolean okTarget = false;
 					for (Model modelType : modelRelType.getModels()) {
-						allowedModelTypes.add(modelType.getUri());
+						String modelTypeUri = modelType.getUri();
+						if (!okSource && (modelTypeUri.equals(sourceTypeUri) || sourceSupertypeUris.contains(modelTypeUri))) {
+							okSource = true;
+						}
+						if (!okTarget && (modelTypeUri.equals(targetTypeUri) || targetSupertypeUris.contains(modelTypeUri))) {
+							okTarget = true;
+						}
+						if (okSource && okTarget) {
+							modelRelTypeUris.add(modelRelType.getUri());
+							break;
+						}
 					}
-					if (!(allowedModelTypes.contains(source.getMetatypeUri()) && allowedModelTypes.contains(target.getMetatypeUri()))) {
-						continue;
-					}
-					modelRelTypeUris.add(modelRelType.getUri());
 				}
 			}
 

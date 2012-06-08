@@ -48,7 +48,9 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getLink().eContainer()) && super.canExecute();
+		return
+			super.canExecute() &&
+			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getLink().eContainer());
 	}
 
 	/**
@@ -56,6 +58,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	 * 
 	 * @return True if the source model can be changed, false otherwise.
 	 */
+	@Override
 	protected boolean canReorientSource() {
 
 		if (!(getOldSource() instanceof Model && getNewSource() instanceof Model)) {
@@ -70,9 +73,9 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
 
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryModelRel_4003(container, getLink(),
-						getNewSource(), target);
+		return
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), getNewSource(), target) &&
+			MultiModelConstraintChecker.canConnect(getLink(), getNewSource());
 	}
 
 	/**
@@ -80,6 +83,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	 * 
 	 * @return True if the target model can be changed, false otherwise.
 	 */
+	@Override
 	protected boolean canReorientTarget() {
 
 		if (!(getOldSource() instanceof Model && getNewSource() instanceof Model)) {
@@ -94,9 +98,9 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
 
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryModelRel_4003(container, getLink(),
-						source, getNewTarget());
+		return
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), source, getNewTarget()) &&
+			MultiModelConstraintChecker.canConnect(getLink(), getNewTarget());
 	}
 
 	/**

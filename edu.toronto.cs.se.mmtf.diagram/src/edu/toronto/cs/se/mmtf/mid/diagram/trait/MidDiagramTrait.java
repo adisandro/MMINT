@@ -117,7 +117,7 @@ public class MidDiagramTrait {
 	private static Model selectModel(ElementTreeSelectionDialog dialog, String title, String message) throws MMTFException {
 
 		dialog.setTitle(title);
-		dialog.setMessage("Choose supertype");
+		dialog.setMessage(message);
 		dialog.setAllowMultiple(false);
 
 		if (dialog.open() == Window.CANCEL) {
