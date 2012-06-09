@@ -19,8 +19,13 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -76,13 +81,30 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 
-		BinaryLink newElement = (BinaryLink) MultiModelFactoryUtils.createLink(getContainer(), RelationshipPackage.eINSTANCE.getBinaryLink());
-		newElement.getElementRefs().add(getSource());
-		newElement.getElementRefs().add(getTarget());
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-
-		return CommandResult.newOKCommandResult(newElement);
+		ModelRel owner = getContainer();
+		BinaryLink newElement;
+		try {
+			if (owner.getLevel() == MidLevel.TYPES) {
+				newElement = null;
+			}
+			else {
+				Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(owner, getSource(), getTarget());
+				newElement = (BinaryLink) MultiModelFactoryUtils.createLink(linkType, owner, RelationshipPackage.eINSTANCE.getBinaryLink());
+				newElement.getElementRefs().add(getSource());
+				newElement.getElementRefs().add(getTarget());
+			}
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+	
+			return CommandResult.newOKCommandResult(newElement);
+		}
+		catch (ExecutionException ee) {
+			throw ee;
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No binary link created", e);
+			return CommandResult.newErrorCommandResult("No binary link created");
+		}
 	}
 
 }

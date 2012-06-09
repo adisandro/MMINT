@@ -31,6 +31,8 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
@@ -92,6 +94,25 @@ public class MultiModelConstraintChecker {
 		}
 
 		return okModel;
+	}
+
+	public static boolean isAllowedModelElementReference(Link link, ModelElementReference elementRef) {
+
+		if (elementRef == null) { // model element reference not added yet
+			return true;
+		}
+
+		String elementTypeUri = elementRef.getObject().getMetatypeUri();
+		boolean okElement = false;
+		for (ModelElementReference elementTypeRef : ((Link) link.getMetatype()).getElementRefs()) {
+			ModelElement elementType = (ModelElement) elementTypeRef.getObject();
+			if (elementType.getUri().equals(elementTypeUri) || MMTFRegistry.isSubtypeOf(elementTypeUri, elementType.getUri())) {
+				okElement = true;
+				break;
+			}
+		}
+
+		return okElement;
 	}
 
 	public static boolean isAllowedModelElement(ModelRel modelRel, EObject droppedElement) {

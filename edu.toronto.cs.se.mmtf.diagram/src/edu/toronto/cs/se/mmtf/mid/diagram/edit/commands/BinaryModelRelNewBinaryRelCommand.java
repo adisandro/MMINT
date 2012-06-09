@@ -81,7 +81,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 
 		try {
-			ModelRel modelRelType = MidDiagramTrait.selectModelRelToCreate(getSource(), getTarget());
+			ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(getSource(), getTarget());
 			BinaryModelRel newElement = (BinaryModelRel) MultiModelFactoryUtils.createModelRel(
 				modelRelType,
 				ModelOrigin.CREATED,

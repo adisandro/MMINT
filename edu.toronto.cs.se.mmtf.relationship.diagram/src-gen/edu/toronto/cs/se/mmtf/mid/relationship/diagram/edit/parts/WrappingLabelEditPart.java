@@ -238,7 +238,8 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	 */
 	protected String getLabelText() {
 
-		LinkElementRefsEditPart elementRefs = (LinkElementRefsEditPart) this.getParent();
+		LinkElementRefsEditPart elementRefs = (LinkElementRefsEditPart) this
+				.getParent();
 		Link link = (Link) ((View) elementRefs.getSource().getModel())
 				.getElement();
 

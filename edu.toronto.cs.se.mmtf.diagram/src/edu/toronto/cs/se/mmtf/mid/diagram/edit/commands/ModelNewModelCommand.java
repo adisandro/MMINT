@@ -78,7 +78,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 			MultiModel owner = (MultiModel) getElementToEdit();
 			Model newElement;
 			if (owner.getLevel() == MidLevel.TYPES) {
-				Model superModelType = MidDiagramTrait.selectModelToExtend();
+				Model superModelType = MidDiagramTrait.selectModelTypeToExtend();
 				String subModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type name");
 				String constraint = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type constraint");
 				newElement = MMTFRegistry.createLightModelType(superModelType, subModelTypeName, constraint);
@@ -86,7 +86,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 				owner.getModels().add(newElementForDiagram);
 			}
 			else {
-				Editor editor = MidDiagramTrait.selectModelToCreate();
+				Editor editor = MidDiagramTrait.selectModelTypeToCreate();
 				URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
 				MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
 				Model modelType = MMTFRegistry.getModelType(((Editor) editor.getMetatype()).getModelUri());

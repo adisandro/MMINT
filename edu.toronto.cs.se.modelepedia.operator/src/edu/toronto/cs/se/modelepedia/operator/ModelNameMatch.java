@@ -83,7 +83,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				EClass linkClass = (objects.size() == 2) ?
 					RelationshipPackage.eINSTANCE.getBinaryLink() :
 					RelationshipPackage.eINSTANCE.getLink();
-				Link link = MultiModelFactoryUtils.createLink(modelRel, linkClass);
+				Link link = MultiModelFactoryUtils.createLink(null, modelRel, linkClass);
 				link.setName(name);
 				modelRel.getLinks().add(link);
 				for (EObject object : objects) {

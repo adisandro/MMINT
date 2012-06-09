@@ -55,6 +55,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
@@ -66,9 +67,10 @@ import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.OperatorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
-import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
+import edu.toronto.cs.se.mmtf.repository.ui.RelationshipTypesDialogContentProvider;
+import edu.toronto.cs.se.mmtf.repository.ui.RepositoryTypesDialogLabelProvider;
 import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogSelectionValidator;
-import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogContentProvider;
+import edu.toronto.cs.se.mmtf.repository.ui.MidTypesDialogContentProvider;
 
 /**
  * The Model Management Tool Framework adds the ability to create and manage
@@ -985,8 +987,8 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
-				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, null, false, true, false, true)
+				new RepositoryTypesDialogLabelProvider(),
+				new MidTypesDialogContentProvider(repository, null, false, true, false, true)
 			);
 			dialog.setValidator(new RepositoryDialogSelectionValidator());
 			dialog.setInput(repository);
@@ -1041,10 +1043,67 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
-				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, modelRelTypeUris, true, false, true, false)
+				new RepositoryTypesDialogLabelProvider(),
+				new MidTypesDialogContentProvider(repository, modelRelTypeUris, true, false, true, false)
 			);
 			dialog.setInput(repository);
+
+			return dialog;
+		}
+
+		/**
+		 * Gets a tree dialog to select among registered link types that can fit
+		 * model element reference source and target (are both null in case of
+		 * nary link).
+		 * 
+		 * @return The tree dialog.
+		 */
+		public static ElementTreeSelectionDialog getLinkCreationDialog(ModelRel modelRel, ModelElementReference source, ModelElementReference target) {
+
+			EList<String> linkTypeUris = null;
+			ModelRel modelRelType = (ModelRel) modelRel.getMetatype();
+
+			if (source != null && target != null) {
+
+				//TODO MMTF: supertypes are not computed yet for model elements and links, do I really need them?
+				String sourceTypeUri = source.getObject().getMetatypeUri();
+				EList<String> sourceSupertypeUris = getSupertypeUris(sourceTypeUri);
+				String targetTypeUri = target.getObject().getMetatypeUri();
+				EList<String> targetSupertypeUris = getSupertypeUris(targetTypeUri);
+				linkTypeUris = new BasicEList<String>();
+
+				for (Link linkType : MMTFRegistry.getLinkTypes(modelRelType)) {
+
+					// check cardinality
+					if (!(linkType.isUnbounded() || linkType instanceof BinaryLink)) {
+						continue;
+					}
+					// check allowed model element types
+					boolean okSource = false;
+					boolean okTarget = false;
+					for (ModelElementReference elementTypeRef : linkType.getElementRefs()) {
+						String elementTypeUri = ((ModelElement) elementTypeRef.getObject()).getUri();
+						if (!okSource && (elementTypeUri.equals(sourceTypeUri) || sourceSupertypeUris.contains(elementTypeUri))) {
+							okSource = true;
+						}
+						if (!okTarget && (elementTypeUri.equals(targetTypeUri) || targetSupertypeUris.contains(elementTypeUri))) {
+							okTarget = true;
+						}
+						if (okSource && okTarget) {
+							linkTypeUris.add(linkType.getUri());
+							break;
+						}
+					}
+				}
+			}
+
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
+				shell,
+				new RepositoryTypesDialogLabelProvider(),
+				new RelationshipTypesDialogContentProvider(modelRelType, linkTypeUris, true)
+			);
+			dialog.setInput(modelRelType);
 
 			return dialog;
 		}
@@ -1059,8 +1118,8 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
-				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, null, true, true, false, false)
+				new RepositoryTypesDialogLabelProvider(),
+				new MidTypesDialogContentProvider(repository, null, true, true, false, false)
 			);
 			dialog.setInput(repository);
 
@@ -1078,8 +1137,8 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
-				new RepositoryDialogLabelProvider(),
-				new RepositoryDialogContentProvider(repository, null, true, false, true, false)
+				new RepositoryTypesDialogLabelProvider(),
+				new MidTypesDialogContentProvider(repository, null, true, false, true, false)
 			);
 			dialog.setInput(repository);
 

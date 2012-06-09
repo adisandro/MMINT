@@ -76,7 +76,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 			MultiModel owner = (MultiModel) getElementToEdit();
 			ModelRel newElement;
 			if (owner.getLevel() == MidLevel.TYPES) {
-				ModelRel superModelRelType = MidDiagramTrait.selectModelRelToExtend();
+				ModelRel superModelRelType = MidDiagramTrait.selectModelRelTypeToExtend();
 				String subModelRelTypeName = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
 				String constraint = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
 				newElement = (ModelRel) MMTFRegistry.createLightModelRelType(superModelRelType, subModelRelTypeName, constraint);
@@ -85,7 +85,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 				//TODO MMTF: repository and owner are now different entities, how can I save things back for next startup?
 			}
 			else {
-				ModelRel modelRelType = MidDiagramTrait.selectModelRelToCreate(null, null);
+				ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(null, null);
 				newElement = MultiModelFactoryUtils.createModelRel(
 					modelRelType,
 					ModelOrigin.CREATED,

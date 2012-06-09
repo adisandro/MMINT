@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
  * The command to change a model element reference of a binary mapping link.
@@ -51,9 +52,10 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	}
 
 	/**
-	 * Checks if the source can be reoriented.
+	 * Checks if the source model element reference can be reoriented.
 	 * 
-	 * @return True if the source can be reoriented, false otherwise.
+	 * @return True if the source model element reference can be reoriented,
+	 *         false otherwise.
 	 */
 	protected boolean canReorientSource() {
 
@@ -70,15 +72,16 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 		}
 		ModelRel container = (ModelRel) getLink().eContainer();
 
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryLink_4003(container, getLink(), getNewSource(),
-						target);
+		return
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), getNewSource(), target) &&
+			MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewSource());
 	}
 
 	/**
-	 * Checks if the target can be reoriented.
+	 * Checks if the target model element reference can be reoriented.
 	 * 
-	 * @return True if the target can be reoriented, false otherwise.
+	 * @return True if the target model element reference can be reoriented,
+	 *         false otherwise.
 	 */
 	protected boolean canReorientTarget() {
 
@@ -95,9 +98,9 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 		}
 		ModelRel container = (ModelRel) getLink().eContainer();
 
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistBinaryLink_4003(container, getLink(), source,
-						getNewTarget());
+		return
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), source, getNewTarget()) &&
+			MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewTarget());
 	}
 
 	/**

@@ -23,12 +23,12 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 
 /**
- * The content provider for the repository tree dialog.
+ * The content provider for the Mid types tree dialog.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class RepositoryDialogContentProvider implements ITreeContentProvider, MMTFExtensionPoints {
+public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTFExtensionPoints {
 
 	/** The repository. */
 	private MultiModel repository;
@@ -47,7 +47,7 @@ public class RepositoryDialogContentProvider implements ITreeContentProvider, MM
 	 * @param showEditors
 	 *            True if editors are going to be shown.
 	 */
-	public RepositoryDialogContentProvider(MultiModel repository, EList<String> allowedUris, boolean showRoots, boolean showModels, boolean showModelRels, boolean showEditors) {
+	public MidTypesDialogContentProvider(MultiModel repository, EList<String> allowedUris, boolean showRoots, boolean showModels, boolean showModelRels, boolean showEditors) {
 
 		this.repository = repository;
 		this.allowedUris = allowedUris;

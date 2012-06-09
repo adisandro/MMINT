@@ -33,7 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
 
 /**
- * A container for common functions of a mid diagram.
+ * A container for common functions of a Mid diagram.
  * 
  * @author Alessio Di Sandro
  * 
@@ -72,7 +72,7 @@ public class MidDiagramTrait {
 	 * @throws Exception
 	 *             If the model creation was not completed for any reason.
 	 */
-	public static Editor selectModelToCreate() throws Exception {
+	public static Editor selectModelTypeToCreate() throws Exception {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelCreationDialog();
 		dialog.setTitle("Create new model");
@@ -105,16 +105,16 @@ public class MidDiagramTrait {
 		return editor;
 	}
 
-	public static ModelRel selectModelRelToCreate(Model source, Model target) throws Exception {
+	public static ModelRel selectModelRelTypeToCreate(Model source, Model target) throws Exception {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelCreationDialog(source, target);
 		String title = "Create new model relationship";
 		String message = "Choose model relationship type";
 
-		return (ModelRel) selectModel(dialog, title, message);
+		return (ModelRel) selectModelType(dialog, title, message);
 	}
 
-	private static Model selectModel(ElementTreeSelectionDialog dialog, String title, String message) throws MMTFException {
+	private static Model selectModelType(ElementTreeSelectionDialog dialog, String title, String message) throws MMTFException {
 
 		dialog.setTitle(title);
 		dialog.setMessage(message);
@@ -127,9 +127,9 @@ public class MidDiagramTrait {
 		if (selection == null) {
 			throw new MMTFException("Dialog ok button pressed with no selection");
 		}
-		Model supertype = (Model) selection;
+		Model modelType = (Model) selection;
 
-		return supertype;
+		return modelType;
 	}
 
 	/**
@@ -140,13 +140,13 @@ public class MidDiagramTrait {
 	 * @throws MMTFException
 	 *             If the selection was not completed for any reason.
 	 */
-	public static Model selectModelToExtend() throws MMTFException {
+	public static Model selectModelTypeToExtend() throws MMTFException {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelTypeCreationDialog();
 		String title = "Create new light model type";
 		String message = "Choose model supertype";
 
-		return selectModel(dialog, title, message);
+		return selectModelType(dialog, title, message);
 	}
 
 	/**
@@ -157,13 +157,13 @@ public class MidDiagramTrait {
 	 * @throws MMTFException
 	 *             If the selection was not completed for any reason.
 	 */
-	public static ModelRel selectModelRelToExtend() throws MMTFException {
+	public static ModelRel selectModelRelTypeToExtend() throws MMTFException {
 
 		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelTypeCreationDialog();
 		String title = "Create new light model relationship type";
 		String message = "Choose model relationship supertype";
 
-		return (ModelRel) selectModel(dialog, title, message);
+		return (ModelRel) selectModelType(dialog, title, message);
 	}
 
 	/**

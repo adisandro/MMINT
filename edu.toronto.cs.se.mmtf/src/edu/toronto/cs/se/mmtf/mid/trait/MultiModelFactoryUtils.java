@@ -260,13 +260,12 @@ public class MultiModelFactoryUtils {
 	 *            The specific link class.
 	 * @return The link just created.
 	 */
-	public static Link createLink(ModelRel modelRel, EClass linkClass) {
+	public static Link createLink(Link linkType, ModelRel modelRel, EClass linkClass) {
 
 		Link link = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
 		link.setUnbounded(false);
 		modelRel.getLinks().add(link);
-		//TODO MMTF: reactivate when fixed
-		//addExtendibleElement(link, null, null, null);
+		addExtendibleElement(link, linkType, null, null, null);
 
 		return link;
 	}
@@ -393,7 +392,7 @@ public class MultiModelFactoryUtils {
 			}
 		}
 		for (Link origLink : origModelRel.getLinks()) {
-			Link link = createLink(modelRel, origLink.eClass());
+			Link link = createLink((Link) origLink.getMetatype(), modelRel, origLink.eClass());
 			link.setName(origLink.getName());
 			for (ModelElementReference origElementRef : origLink.getElementRefs()) {
 				link.getElementRefs().add(elementRefs.get(((ModelElement) origElementRef.getObject()).getPointer()));

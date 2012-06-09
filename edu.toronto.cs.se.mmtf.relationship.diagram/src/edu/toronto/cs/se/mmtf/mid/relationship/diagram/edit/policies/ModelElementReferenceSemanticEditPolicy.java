@@ -13,12 +13,15 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkChangeModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkNewBinaryLinkCommand;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkElementRefsCreateCommand;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkAddModelElementReferenceCommand;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkChangeModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.LinkElementRefsEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
 
 /**
@@ -62,7 +65,7 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		if (MidElementTypes.LinkElementRefs_4002 == req.getElementType()) {
-			return getGEFWrapper(new LinkElementRefsCreateCommand(req,
+			return getGEFWrapper(new LinkAddModelElementReferenceCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (MidElementTypes.BinaryLink_4003 == req.getElementType()) {
@@ -88,6 +91,16 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 				return getGEFWrapper(new BinaryLinkChangeModelElementReferenceCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
+	}
+
+	@Override
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+
+		switch (getVisualID(req)) {
+			case LinkElementRefsEditPart.VISUAL_ID:
+				return getGEFWrapper(new LinkChangeModelElementReferenceCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
 	}
 
 }

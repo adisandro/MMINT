@@ -17,9 +17,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -66,12 +69,28 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelRel owner = (ModelRel) getElementToEdit();
-		Link newElement = MultiModelFactoryUtils.createLink(owner, RelationshipPackage.eINSTANCE.getLink());
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-
-		return CommandResult.newOKCommandResult(newElement);
+		try {
+			ModelRel owner = (ModelRel) getElementToEdit();
+			Link newElement;
+			if (owner.getLevel() == MidLevel.TYPES) {
+				newElement = null;
+			}
+			else {
+				Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(owner, null, null);
+				newElement = MultiModelFactoryUtils.createLink(linkType, owner, RelationshipPackage.eINSTANCE.getLink());
+			}
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+	
+			return CommandResult.newOKCommandResult(newElement);
+		}
+		catch (ExecutionException ee) {
+			throw ee;
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No link created", e);
+			return CommandResult.newErrorCommandResult("No link created");
+		}
 	}
 
 }

@@ -19,12 +19,12 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
 /**
- * The label provider for the repository tree dialog.
+ * The label provider for the repository types tree dialog.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class RepositoryDialogLabelProvider implements ILabelProvider {
+public class RepositoryTypesDialogLabelProvider implements ILabelProvider {
 
 	/**
 	 * {@inheritDoc}
