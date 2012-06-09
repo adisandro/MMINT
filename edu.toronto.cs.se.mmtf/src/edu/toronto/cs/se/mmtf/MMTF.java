@@ -964,11 +964,11 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 		 *            The model type uri.
 		 * @return The list of registered editors.
 		 */
-		public static EList<Editor> getEditorsForModelType(String modelTypeUri) {
+		public static EList<Editor> getModelTypeEditors(String modelTypeUri) {
 
-			ExtendibleElement model = getExtendibleType(modelTypeUri);
-			if (model != null && model instanceof Model) {
-				return ((Model) model).getEditors();
+			Model model = getModelType(modelTypeUri);
+			if (model != null) {
+				return model.getEditors();
 			}
 			else {
 				return ECollections.emptyEList();

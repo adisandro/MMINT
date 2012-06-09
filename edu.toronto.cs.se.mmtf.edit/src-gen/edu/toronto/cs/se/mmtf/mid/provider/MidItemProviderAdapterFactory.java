@@ -196,6 +196,29 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelElementEntityWildcardItemProvider modelElementEntityWildcardItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementEntityWildcardAdapter() {
+		if (modelElementEntityWildcardItemProvider == null) {
+			modelElementEntityWildcardItemProvider = new ModelElementEntityWildcardItemProvider(this);
+		}
+
+		return modelElementEntityWildcardItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,6 +322,7 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
 		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
 		if (modelConstraintItemProvider != null) modelConstraintItemProvider.dispose();
+		if (modelElementEntityWildcardItemProvider != null) modelElementEntityWildcardItemProvider.dispose();
 	}
 
 }

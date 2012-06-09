@@ -110,6 +110,8 @@ public class MidValidator extends EObjectValidator {
 				return validateModelElement((ModelElement)value, diagnostics, context);
 			case MidPackage.MODEL_CONSTRAINT:
 				return validateModelConstraint((ModelConstraint)value, diagnostics, context);
+			case MidPackage.MODEL_ELEMENT_ENTITY_WILDCARD:
+				return validateModelElementEntityWildcard((ModelElementEntityWildcard)value, diagnostics, context);
 			case MidPackage.MID_LEVEL:
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
@@ -318,6 +320,15 @@ public class MidValidator extends EObjectValidator {
 	 */
 	public boolean validateModelConstraint(ModelConstraint modelConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modelConstraint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelElementEntityWildcard(ModelElementEntityWildcard modelElementEntityWildcard, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelElementEntityWildcard, diagnostics, context);
 	}
 
 	/**

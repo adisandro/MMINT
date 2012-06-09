@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
+import edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
@@ -99,6 +100,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EClass modelConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelElementEntityWildcardEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -529,6 +537,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getModelElementEntityWildcard() {
+		return modelElementEntityWildcardEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelElementEntityWildcard_ModelElementRelationshipWildcard() {
+		return (EReference)modelElementEntityWildcardEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMidLevel() {
 		return midLevelEEnum;
 	}
@@ -630,6 +656,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__BODY);
 		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__ENGINE);
 
+		modelElementEntityWildcardEClass = createEClass(MODEL_ELEMENT_ENTITY_WILDCARD);
+		createEReference(modelElementEntityWildcardEClass, MODEL_ELEMENT_ENTITY_WILDCARD__MODEL_ELEMENT_RELATIONSHIP_WILDCARD);
+
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
 		modelOriginEEnum = createEEnum(MODEL_ORIGIN);
@@ -721,6 +750,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEClass(modelConstraintEClass, ModelConstraint.class, "ModelConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelConstraint_Body(), ecorePackage.getEString(), "body", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelConstraint_Engine(), this.getModelConstraintEngine(), "engine", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelElementEntityWildcardEClass, ModelElementEntityWildcard.class, "ModelElementEntityWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelElementEntityWildcard_ModelElementRelationshipWildcard(), this.getModelElementEntityWildcard(), null, "modelElementRelationshipWildcard", null, 0, 1, ModelElementEntityWildcard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MidLevel.class, "MidLevel");

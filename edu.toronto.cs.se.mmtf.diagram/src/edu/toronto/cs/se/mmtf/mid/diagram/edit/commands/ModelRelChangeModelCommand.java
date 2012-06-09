@@ -62,7 +62,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 
 		return
 			super.canReorientSource() &&
-			MultiModelConstraintChecker.canConnect(getNewSource(), getOldTarget());
+			MultiModelConstraintChecker.isAllowedModel(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 
 		return
 			super.canReorientTarget() &&
-			MultiModelConstraintChecker.canConnect(getOldSource(), getNewTarget());
+			MultiModelConstraintChecker.isAllowedModel(getOldSource(), getNewTarget());
 	}
 
 	/**

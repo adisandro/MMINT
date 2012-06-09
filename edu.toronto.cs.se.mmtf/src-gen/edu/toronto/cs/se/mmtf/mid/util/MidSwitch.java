@@ -124,6 +124,12 @@ public class MidSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MidPackage.MODEL_ELEMENT_ENTITY_WILDCARD: {
+				ModelElementEntityWildcard modelElementEntityWildcard = (ModelElementEntityWildcard)theEObject;
+				T result = caseModelElementEntityWildcard(modelElementEntityWildcard);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -230,6 +236,21 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelConstraint(ModelConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Entity Wildcard</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Entity Wildcard</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementEntityWildcard(ModelElementEntityWildcard object) {
 		return null;
 	}
 

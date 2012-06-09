@@ -73,6 +73,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
 			case MidPackage.MODEL_ELEMENT: return createModelElement();
 			case MidPackage.MODEL_CONSTRAINT: return createModelConstraint();
+			case MidPackage.MODEL_ELEMENT_ENTITY_WILDCARD: return createModelElementEntityWildcard();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -168,6 +169,16 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public ModelConstraint createModelConstraint() {
 		ModelConstraintImpl modelConstraint = new ModelConstraintImpl();
 		return modelConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementEntityWildcard createModelElementEntityWildcard() {
+		ModelElementEntityWildcardImpl modelElementEntityWildcard = new ModelElementEntityWildcardImpl();
+		return modelElementEntityWildcard;
 	}
 
 	/**

@@ -56,7 +56,7 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 		return
 			super.canExecute() &&
 			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getSource().eContainer()) &&
-			MultiModelConstraintChecker.canConnect(getSource(), getTarget());
+			MultiModelConstraintChecker.isAllowedModel(getSource(), getTarget());
 	}
 
 	/**

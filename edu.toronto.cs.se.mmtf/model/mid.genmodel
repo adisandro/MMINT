@@ -65,6 +65,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/body"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/engine"/>
     </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ModelElementEntityWildcard">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElementEntityWildcard/modelElementRelationshipWildcard"/>
+    </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">
       <genClasses ecoreClass="mid.ecore#//relationship/ModelRel">

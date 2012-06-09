@@ -22,6 +22,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -58,7 +60,11 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	public boolean canExecute() {
 
-		return super.canExecute();
+		return
+			super.canExecute() && (
+				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelElement((ModelRel) getElementToEdit().eContainer(), droppedObject)
+			);
 	}
 
 	/**
@@ -77,11 +83,15 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		//TODO MMTF: distinguere TYPES e INSTANCES qui e a tutti i comandi eseguibili nel rel diagram (per fare una copy in più direi, forse qualcos'altro?)
 		ModelReference owner = (ModelReference) getElementToEdit();
-		ModelElementReference newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
+		ModelElementReference newElement;
 		if (owner.getObject().getLevel() == MidLevel.TYPES) {
+			//TODO but createmodelelementreference should add it to the repository (do i need to create the alternative version in mmtfregistry?)
+			newElement = null;
 			ModelElementReference newElementForDiagram = EcoreUtil.copy(newElement);
 			//TODO add this element to the owner
-			//TODO but createmodelelementreference should add it to the repository (do i need to create the alternative version in mmtfregistry?)
+		}
+		else {
+			newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
 		}
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);

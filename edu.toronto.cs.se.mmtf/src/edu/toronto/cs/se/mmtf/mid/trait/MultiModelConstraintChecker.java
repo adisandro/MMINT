@@ -12,7 +12,10 @@
 package edu.toronto.cs.se.mmtf.mid.trait;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -25,6 +28,8 @@ import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
@@ -35,6 +40,9 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  *
  */
 public class MultiModelConstraintChecker {
+
+	private final static String ENTITY_WILDCARD_CLASSIFIER_NAME = "ModelElementEntityWildcard";
+	private final static String RELATIONSHIP_WILDCARD_FEATURE_NAME = "modelElementRelationshipWildcard";
 
 	/**
 	 * Checks if a multimodel (the root of a MID diagram) is a TYPES multimodel
@@ -68,22 +76,66 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
-	public static boolean canConnect(ModelRel modelRel, Model model) {
+	public static boolean isAllowedModel(ModelRel modelRel, Model model) {
 
-		if (model == null) { // target not added yet
+		if (model == null) { // model not added yet
 			return true;
 		}
 
 		String modelTypeUri = model.getMetatypeUri();
-		boolean okConnect = false;
+		boolean okModel = false;
 		for (Model modelType : ((ModelRel) modelRel.getMetatype()).getModels()) {
 			if (modelType.getUri().equals(modelTypeUri) || MMTFRegistry.isSubtypeOf(modelTypeUri, modelType.getUri())) {
-				okConnect = true;
+				okModel = true;
 				break;
 			}
 		}
 
-		return okConnect;
+		return okModel;
+	}
+
+	public static boolean isAllowedModelElement(ModelRel modelRel, EObject droppedElement) {
+
+		boolean okElement = false;
+modelTypes:
+		for (Model modelType : ((ModelRel) modelRel.getMetatype()).getModels()) {
+			for (ModelElement elementType : modelType.getElements()) {
+				// entity-relationship differences
+				String metaName;
+				String metaPackage;
+				if (droppedElement instanceof EReference) {
+					if (elementType.getCategory() != ModelElementCategory.RELATIONSHIP) {
+						continue;
+					}
+					EStructuralFeature feature = (EStructuralFeature) elementType.getPointer();
+					metaName = feature.getName();
+					if (metaName == RELATIONSHIP_WILDCARD_FEATURE_NAME) {
+						okElement = true;
+						break modelTypes;
+					}
+					metaPackage = feature.getEContainingClass().getEPackage().getNsURI();
+				}
+				else {
+					if (elementType.getCategory() != ModelElementCategory.ENTITY) {
+						continue;
+					}
+					EClassifier classifier = (EClassifier) elementType.getPointer();
+					metaName = classifier.getName();
+					if (metaName == ENTITY_WILDCARD_CLASSIFIER_NAME) {
+						okElement = true;
+						break modelTypes;
+					}
+					metaPackage = classifier.getEPackage().getNsURI();
+				}
+				// check dropped element compliance
+				if (metaName == droppedElement.eClass().getName() && metaPackage == droppedElement.eClass().getEPackage().getName()) {
+					okElement = true;
+					break modelTypes;
+				}
+			}
+		}
+
+		return okElement;
 	}
 
 	/**

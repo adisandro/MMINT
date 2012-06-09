@@ -75,7 +75,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 
 		return
 			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), getNewSource(), target) &&
-			MultiModelConstraintChecker.canConnect(getLink(), getNewSource());
+			MultiModelConstraintChecker.isAllowedModel(getLink(), getNewSource());
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 
 		return
 			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), source, getNewTarget()) &&
-			MultiModelConstraintChecker.canConnect(getLink(), getNewTarget());
+			MultiModelConstraintChecker.isAllowedModel(getLink(), getNewTarget());
 	}
 
 	/**

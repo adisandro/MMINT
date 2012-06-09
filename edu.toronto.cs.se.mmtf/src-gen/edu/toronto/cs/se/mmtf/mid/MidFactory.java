@@ -67,6 +67,15 @@ public interface MidFactory extends EFactory {
 	ModelConstraint createModelConstraint();
 
 	/**
+	 * Returns a new object of class '<em>Model Element Entity Wildcard</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Element Entity Wildcard</em>'.
+	 * @generated
+	 */
+	ModelElementEntityWildcard createModelElementEntityWildcard();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
