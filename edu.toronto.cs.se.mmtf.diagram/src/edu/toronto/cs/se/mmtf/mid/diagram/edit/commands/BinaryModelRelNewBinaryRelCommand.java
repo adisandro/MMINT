@@ -93,7 +93,6 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			newElement.getModels().add(getTarget());
 			MultiModelFactoryUtils.createModelReference(newElement, getSource());
 			MultiModelFactoryUtils.createModelReference(newElement, getTarget());
-			//TODO MMTF: add choice of static rel type from dynamic possibilities
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

@@ -81,9 +81,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 				Model superModelType = MidDiagramTrait.selectModelTypeToExtend();
 				String subModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type name");
 				String constraint = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type constraint");
-				newElement = MMTFRegistry.createLightModelType(superModelType, subModelTypeName, constraint);
-				Model newElementForDiagram = EcoreUtil.copy(newElement);
-				owner.getModels().add(newElementForDiagram);
+				Model newElementType = MMTFRegistry.createLightModelType(superModelType, subModelTypeName, constraint);
+				newElement = EcoreUtil.copy(newElementType);
+				owner.getModels().add(newElement);
 			}
 			else {
 				Editor editor = MidDiagramTrait.selectModelTypeToCreate();

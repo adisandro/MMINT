@@ -124,25 +124,7 @@ public class MMTF implements MMTFExtensionPoints {
 
 		// supertype
 		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);
-		String rootUri = "";
-		if (type instanceof ModelRel) {
-			rootUri = ROOT_RELATIONSHIP_URI;
-		}
-		else if (type instanceof Model) {
-			rootUri = ROOT_MODEL_URI;
-		}
-		else if (type instanceof ModelElement) {
-			if (((ModelElement) type).getCategory() == ModelElementCategory.ENTITY) {
-				rootUri = ROOT_MODEL_ELEMENT_ENTITY_URI;
-			}
-			else if (((ModelElement) type).getCategory() == ModelElementCategory.RELATIONSHIP) {
-				rootUri = ROOT_MODEL_ELEMENT_RELATIONSHIP_URI;
-			}
-		}
-		else if (type instanceof Link) {
-			rootUri = ROOT_RELATIONSHIP_LINK_URI;
-		}
-		//TODO MMTF: root text editor?
+		String rootUri = MMTFRegistry.getRootTypeUri(type);
 		if (supertypeUri == null) {
 			if (!uri.equals(rootUri)) {
 				tempSubtypes.put(type, rootUri);
@@ -756,21 +738,49 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 */
 	public static class MMTFRegistry {
 
-		private static void addLightExtendibleType(ExtendibleElement type, ExtendibleElement superType, String subTypeUriFragment, String subTypeName) throws MMTFException {
+		private static String getRootTypeUri(ExtendibleElement type) {
+
+			String rootUri = "";
+			if (type instanceof ModelRel) {
+				rootUri = ROOT_RELATIONSHIP_URI;
+			}
+			else if (type instanceof Model) {
+				rootUri = ROOT_MODEL_URI;
+			}
+			else if (type instanceof ModelElement) {
+				if (((ModelElement) type).getCategory() == ModelElementCategory.ENTITY) {
+					rootUri = ROOT_MODEL_ELEMENT_ENTITY_URI;
+				}
+				else if (((ModelElement) type).getCategory() == ModelElementCategory.RELATIONSHIP) {
+					rootUri = ROOT_MODEL_ELEMENT_RELATIONSHIP_URI;
+				}
+			}
+			else if (type instanceof Link) {
+				rootUri = ROOT_RELATIONSHIP_LINK_URI;
+			}
+			//TODO MMTF: root text editor?
+
+			return rootUri;
+		}
+
+		private static void addLightExtendibleType(ExtendibleElement type, ExtendibleElement supertype, String subtypeUriFragment, String subtypeName) throws MMTFException {
 
 			// uri
-			String uri = superType.getUri() + "/" + subTypeUriFragment;
+			String supertypeUri = (supertype == null) ?
+				getRootTypeUri(type) :
+				supertype.getUri();
+			String uri = supertypeUri + "/" + subtypeUriFragment;
 			if (repository.getExtendibleTable().containsKey(uri)) {
-				throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
+				throw new MMTFException("Extendible type's URI " + uri + " is already registered");
 			}
 			type.setUri(uri);
 
 			// basic attributes
-			type.setName(subTypeName);
+			type.setName(subtypeName);
 			type.setLevel(MidLevel.TYPES);
 
 			// supertype
-			type.setSupertype(superType);
+			type.setSupertype(supertype);
 
 			repository.getExtendibleTable().put(uri, type);
 		}
@@ -827,10 +837,63 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 			ModelRel modelRel = RelationshipFactory.eINSTANCE.createModelRel();
 			addLightModelType(modelRel, superModelRel, subModelRelName, constraint);
+			//TODO MMTF: how to make the user choose unbounded?
 			modelRel.setUnbounded(superModelRel.isUnbounded());
 			//TODO MMTF: model rel structure->models,references,links
 
 			return modelRel;
+		}
+
+		public static Link createLightLinkType(String modelRelTypeUri, String srcElementTypeUri, String tgtElementTypeUri, String subLinkTypeName, EClass linkClass) throws MMTFException {
+
+			ModelRel modelRelType = getModelRelType(modelRelTypeUri);
+			if (modelRelType == null) {
+				throw new MMTFException("Model relationship type " + modelRelTypeUri + " is not registered");
+			}
+
+			Link link = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
+			addLightExtendibleType(link, null, subLinkTypeName, subLinkTypeName);
+			//TODO MMTF: how to make the user choose unbounded?
+			link.setUnbounded(true);
+			modelRelType.getLinks().add(link);
+			if (srcElementTypeUri != null && tgtElementTypeUri != null) {
+				// search source
+				ModelElement srcElementType = getModelElementType(srcElementTypeUri);
+				if (srcElementType == null) {
+					throw new MMTFException("Model element type " + srcElementTypeUri + " is not registered");
+				}
+				Model srcModelType = (Model) srcElementType.eContainer();
+srcModelRefs:
+				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+					if (((Model) modelTypeRef.getObject()).getUri().equals(srcModelType.getUri())) {
+						for (ModelElementReference elementTypeRef : modelTypeRef.getElementRefs()) {
+							if (((ModelElement) elementTypeRef.getObject()).getUri().equals(srcElementTypeUri)) {
+								link.getElementRefs().add(elementTypeRef);
+								break srcModelRefs;
+							}
+						}
+					}
+				}
+				// search target
+				ModelElement tgtElementType = getModelElementType(tgtElementTypeUri);
+				if (tgtElementType == null) {
+					throw new MMTFException("Model element type " + tgtElementTypeUri + " is not registered");
+				}
+				Model tgtModelType = (Model) tgtElementType.eContainer();
+tgtModelRefs:
+				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+					if (((Model) modelTypeRef.getObject()).getUri().equals(tgtModelType.getUri())) {
+						for (ModelElementReference elementTypeRef : modelTypeRef.getElementRefs()) {
+							if (((ModelElement) elementTypeRef.getObject()).getUri().equals(tgtElementTypeUri)) {
+								link.getElementRefs().add(elementTypeRef);
+								break tgtModelRefs;
+							}
+						}
+					}
+				}
+			}
+
+			return link;
 		}
 
 		public static EList<String> getSupertypeUris(String subtypeUri) {
@@ -899,6 +962,25 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			}
 			else {
 				return (ModelRel) modelRel;
+			}
+		}
+
+		/**
+		 * Gets a model element type.
+		 * 
+		 * @param elementTypeUri
+		 *            The uri of the model element type.
+		 * @return The model element type, or null if its uri is not found or
+		 *         found not to be a model element.
+		 */
+		public static ModelElement getModelElementType(String elementTypeUri) {
+
+			ExtendibleElement element = getExtendibleType(elementTypeUri);
+			if (!(element instanceof ModelElement)) {
+				return null;
+			}
+			else {
+				return (ModelElement) element;
 			}
 		}
 

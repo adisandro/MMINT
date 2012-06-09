@@ -14,11 +14,14 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
@@ -73,7 +76,16 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 			ModelRel owner = (ModelRel) getElementToEdit();
 			Link newElement;
 			if (owner.getLevel() == MidLevel.TYPES) {
-				newElement = null;
+				String subLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
+				Link newElementType = MMTFRegistry.createLightLinkType(
+					owner.getUri(),
+					null,
+					null,
+					subLinkTypeName,
+					RelationshipPackage.eINSTANCE.getLink()
+				);
+				newElement = EcoreUtil.copy(newElementType);
+				owner.getLinks().add(newElement);
 			}
 			else {
 				Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(owner, null, null);

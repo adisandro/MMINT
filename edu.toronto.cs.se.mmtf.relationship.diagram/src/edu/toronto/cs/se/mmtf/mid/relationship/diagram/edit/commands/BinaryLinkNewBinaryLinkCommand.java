@@ -15,12 +15,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -85,7 +88,18 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 		BinaryLink newElement;
 		try {
 			if (owner.getLevel() == MidLevel.TYPES) {
-				newElement = null;
+				String subLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
+				BinaryLink newElementType = (BinaryLink) MMTFRegistry.createLightLinkType(
+					owner.getUri(),
+					getSource().getObject().getMetatypeUri(),
+					getTarget().getObject().getMetatypeUri(),
+					subLinkTypeName,
+					RelationshipPackage.eINSTANCE.getBinaryLink()
+				);
+				newElement = EcoreUtil.copy(newElementType);
+				owner.getLinks().add(newElement);
+				newElement.getElementRefs().add(getSource());
+				newElement.getElementRefs().add(getTarget());
 			}
 			else {
 				Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(owner, getSource(), getTarget());
