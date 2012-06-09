@@ -72,9 +72,9 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+		ModelRel owner = (ModelRel) getElementToEdit();
+		Link newElement;
 		try {
-			ModelRel owner = (ModelRel) getElementToEdit();
-			Link newElement;
 			if (owner.getLevel() == MidLevel.TYPES) {
 				String subLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
 				Link newElementType = MMTFRegistry.createLightLinkType(

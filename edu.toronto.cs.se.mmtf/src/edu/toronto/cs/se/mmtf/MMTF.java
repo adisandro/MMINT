@@ -844,6 +844,11 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			return modelRel;
 		}
 
+		public static ModelElementReference createLightModelElementType(String subElementTypeName) {
+
+			return null;
+		}
+
 		public static Link createLightLinkType(String modelRelTypeUri, String srcElementTypeUri, String tgtElementTypeUri, String subLinkTypeName, EClass linkClass) throws MMTFException {
 
 			ModelRel modelRelType = getModelRelType(modelRelTypeUri);

@@ -19,7 +19,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -81,22 +84,34 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		//TODO MMTF: distinguere TYPES e INSTANCES qui e a tutti i comandi eseguibili nel rel diagram (per fare una copy in più direi, forse qualcos'altro?)
 		ModelReference owner = (ModelReference) getElementToEdit();
 		ModelElementReference newElement;
-		if (owner.getObject().getLevel() == MidLevel.TYPES) {
-			//TODO but createmodelelementreference should add it to the repository (do i need to create the alternative version in mmtfregistry?)
-			newElement = null;
-			ModelElementReference newElementForDiagram = EcoreUtil.copy(newElement);
-			//TODO add this element to the owner
+		try {
+			if (owner.getObject().getLevel() == MidLevel.TYPES) {
+				String subElementTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
+				//TODO implement
+				ModelElementReference newElementType = MMTFRegistry.createLightModelElementType(subElementTypeName);
+				newElement = EcoreUtil.copy(newElementType);
+				//TODO come gestisco la copia e add di due oggetti, element e elementref?
+				owner.getElementRefs().add(newElement);
+			}
+			else {
+				//TODO ecco domandona, ma qui ci vuole un select model element type to create? a regola no, è implicito dal tipo di oggetto droppato
+				//TODO fix then
+				newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
+			}
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
+	
+			return CommandResult.newOKCommandResult(newElement);
 		}
-		else {
-			newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
+		catch (ExecutionException ee) {
+			throw ee;
 		}
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-
-		return CommandResult.newOKCommandResult(newElement);
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No model element created", e);
+			return CommandResult.newErrorCommandResult("No model element created");
+		}
 	}
 
 }
