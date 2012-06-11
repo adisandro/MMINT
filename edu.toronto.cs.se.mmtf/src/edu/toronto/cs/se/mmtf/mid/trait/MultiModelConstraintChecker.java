@@ -106,7 +106,8 @@ public class MultiModelConstraintChecker {
 		boolean okElement = false;
 		for (ModelElementReference elementTypeRef : ((Link) link.getMetatype()).getElementRefs()) {
 			ModelElement elementType = (ModelElement) elementTypeRef.getObject();
-			if (elementType.getUri().equals(elementTypeUri) || MMTFRegistry.isSubtypeOf(elementTypeUri, elementType.getUri())) {
+			// MMTFRegistry.isSubtypeOf(elementTypeUri, elementType.getUri()) check is not needed here
+			if (elementType.getUri().equals(elementTypeUri)) {
 				okElement = true;
 				break;
 			}

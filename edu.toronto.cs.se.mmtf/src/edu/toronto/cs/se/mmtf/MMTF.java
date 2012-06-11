@@ -818,7 +818,6 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 				model.getEditors().add(editor);
 				editor.getFileExtensions().addAll(superEditor.getFileExtensions());
 			}
-			//TODO MMTF: model elements?
 
 			// register light model type
 			repository.getModels().add(model);
