@@ -9,8 +9,8 @@
   <genPackages prefix="Powerwindow" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       ecorePackage="powerwindow.ecore#/">
     <genClasses ecoreClass="powerwindow.ecore#//Window">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference powerwindow.ecore#//Window/sensor"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference powerwindow.ecore#//Window/switches"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference powerwindow.ecore#//Window/sensor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference powerwindow.ecore#//Window/switches"/>
     </genClasses>
     <genClasses image="false" ecoreClass="powerwindow.ecore#//Sensor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute powerwindow.ecore#//Sensor/delay"/>
