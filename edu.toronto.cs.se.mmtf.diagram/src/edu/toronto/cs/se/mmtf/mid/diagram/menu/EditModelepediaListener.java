@@ -22,12 +22,12 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
-public class OpenModelepediaListener extends SelectionAdapter {
+public class EditModelepediaListener extends SelectionAdapter {
 
 	private final static String MODELEPEDIA_WWW = "http://192.168.72.19:4139/modelepedia/index.php/MMTF:";
 	private Model modelType;
 
-	public OpenModelepediaListener(Model modelType) {
+	public EditModelepediaListener(Model modelType) {
 
 		this.modelType = modelType;
 	}

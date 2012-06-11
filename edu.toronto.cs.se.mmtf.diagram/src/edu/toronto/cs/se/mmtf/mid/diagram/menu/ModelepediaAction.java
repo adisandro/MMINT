@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 
-public class OpenModelepediaAction extends ContributionItem {
+public class ModelepediaAction extends ContributionItem {
 
 	@Override
 	public boolean isDynamic() {
@@ -48,37 +48,32 @@ public class OpenModelepediaAction extends ContributionItem {
 		if (objects.length > 1) {
 			return;
 		}
-		Model model = null;
+		Model modelType = null;
 		if (objects[0] instanceof ModelEditPart) {
-			model = (Model) ((View) ((ModelEditPart) objects[0]).getModel()).getElement();
+			modelType = (Model) ((View) ((ModelEditPart) objects[0]).getModel()).getElement();
 		}
 		else if (objects[0] instanceof Model2EditPart) {
-			model = (Model) ((View) ((Model2EditPart) objects[0]).getModel()).getElement();
+			modelType = (Model) ((View) ((Model2EditPart) objects[0]).getModel()).getElement();
 		}
 		else if (objects[0] instanceof ModelRelEditPart) {
-			model = (Model) ((View) ((ModelRelEditPart) objects[0]).getModel()).getElement();
+			modelType = (Model) ((View) ((ModelRelEditPart) objects[0]).getModel()).getElement();
 		}
 		else if (objects[0] instanceof ModelRel2EditPart) {
-			model = (Model) ((View) ((ModelRel2EditPart) objects[0]).getModel()).getElement();
+			modelType = (Model) ((View) ((ModelRel2EditPart) objects[0]).getModel()).getElement();
 		}
 		else if (objects[0] instanceof BinaryModelRelEditPart) {
-			model = (Model) ((View) ((BinaryModelRelEditPart) objects[0]).getModel()).getElement();
+			modelType = (Model) ((View) ((BinaryModelRelEditPart) objects[0]).getModel()).getElement();
 		}
-		if (model == null) {
+		if (modelType == null) {
 			return;
 		}
 
 		// get model type
-		String modelTypeName;
-		if (model.getLevel() == MidLevel.TYPES) {
-			modelTypeName = model.getName();
-		}
-		else {
-			Model modelType = (Model) model.getMetatype();
+		if (modelType.getLevel() == MidLevel.INSTANCES) {
+			modelType = (Model) modelType.getMetatype();
 			if (modelType == null) {
 				return;
 			}
-			modelTypeName = model.getMetatype().getName();
 		}
 
 		// create dynamic menu
@@ -87,10 +82,15 @@ public class OpenModelepediaAction extends ContributionItem {
 		// just one sub item for now
 		Menu modelepediaMenu = new Menu(menu);
 		cascadeItem.setMenu(modelepediaMenu);
-		MenuItem modelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
-		modelepediaItem.setText("Open Modelepedia page");
-		modelepediaItem.addSelectionListener(
-			new OpenModelepediaListener(modelTypeName)
+		MenuItem openModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
+		openModelepediaItem.setText("Open Modelepedia page");
+		openModelepediaItem.addSelectionListener(
+			new OpenModelepediaListener(modelType)
+		);
+		MenuItem editModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
+		editModelepediaItem.setText("Edit Modelepedia page");
+		editModelepediaItem.addSelectionListener(
+			new EditModelepediaListener(modelType)
 		);
 	}
 
