@@ -78,7 +78,7 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 			if (owner.getLevel() == MidLevel.TYPES) {
 				String subLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
 				Link newElementType = MMTFRegistry.createLightLinkType(
-					owner.getUri(),
+					owner,
 					null,
 					null,
 					subLinkTypeName,

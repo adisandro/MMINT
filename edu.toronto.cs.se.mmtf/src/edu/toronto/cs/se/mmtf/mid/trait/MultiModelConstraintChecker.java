@@ -171,6 +171,10 @@ modelTypes:
 	 */
 	public static boolean checkOCLConstraint(Model model, String oclConstraint) {
 
+		if (oclConstraint == "") { // empty constraint
+			return true;
+		}
+
 		EObject root = model.getRoot();
 		OCL ocl = OCL.newInstance();
 		OCLHelper helper = ocl.createOCLHelper();

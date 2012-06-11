@@ -241,16 +241,15 @@ public class MMTF implements MMTFExtensionPoints {
 				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
 					String modelElementUri = modelElementConfigElem.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
-					//TODO MMTF: add getModelElementType
-					ExtendibleElement element = repository.getExtendibleTable().get(modelElementUri);
+					ModelElement element = MMTFRegistry.getModelElementType(modelElementUri);
 					if (element == null) { // create new model element
 						element = MidFactory.eINSTANCE.createModelElement();
-						((ModelElement) element).setCategory(
+						element.setCategory(
 							ModelElementCategory.get(
 								modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY)
 							)
 						);
-						((ModelElement) element).setClassLiteral(modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL));
+						element.setClassLiteral(modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL));
 						try {
 							addExtendibleType(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
 						}
@@ -259,13 +258,12 @@ public class MMTF implements MMTFExtensionPoints {
 							removeModelType(modelRel.getUri());
 							return null;
 						}
-						model.getElements().add((ModelElement) element);
+						model.getElements().add(element);
 					}
-					if (element instanceof ModelElement) { // reference model element
-						ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-						elementRef.setReferencedObject(element);
-						modelRef.getElementRefs().add(elementRef);
-					}
+					// reference model element
+					ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+					elementRef.setReferencedObject(element);
+					modelRef.getElementRefs().add(elementRef);
 				}
 			}
 		}
@@ -290,7 +288,8 @@ public class MMTF implements MMTFExtensionPoints {
 			// link elements
 			for (IConfigurationElement linkElementConfigElem : linkElementConfig) {
 				String linkElementName = linkElementConfigElem.getAttribute(RELATIONSHIPS_LINK_LINKELEMENT_ATTR_ELEMENTNAME);
-modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
+modelRef:
+				for (ModelReference modelRef : modelRel.getModelRefs()) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) {
 						if (elementRef.getName().equals(linkElementName)) {
 							link.getElementRefs().add(elementRef);
@@ -531,7 +530,7 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 	 * @param uri
 	 *            The model type uri.
 	 */
-	public void removeModelType(String uri) {
+	public static void removeModelType(String uri) {
 
 		ExtendibleElement model = repository.getExtendibleTable().removeKey(uri);
 		if (model != null && model instanceof Model) {
@@ -834,11 +833,58 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 
 		public static ModelRel createLightModelRelType(ModelRel superModelRel, String subModelRelName, String constraint) throws MMTFException {
 
-			ModelRel modelRel = RelationshipFactory.eINSTANCE.createModelRel();
+			ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(superModelRel.eClass());
 			addLightModelType(modelRel, superModelRel, subModelRelName, constraint);
 			//TODO MMTF: how to make the user choose unbounded?
 			modelRel.setUnbounded(superModelRel.isUnbounded());
-			//TODO MMTF: model rel structure->models,references,links
+
+			// handle relationship structure:
+			// models and containers
+			for (Model superModelRelModel : superModelRel.getModels()) {
+				Model model = MMTFRegistry.getModelType(superModelRelModel.getUri());
+				if (model != null) {
+					modelRel.getModels().add(model);
+					ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
+					modelRef.setReferencedObject(model);
+					modelRel.getModelRefs().add(modelRef);
+					// model elements
+					for (ModelElement superModelRelModelElement : superModelRelModel.getElements()) {
+						ModelElement element = MMTFRegistry.getModelElementType(superModelRelModelElement.getUri());
+						if (element == null) { // all model elements must exist
+							MMTF.removeModelType(modelRel.getUri());
+							throw new MMTFException("Model element type's URI " + superModelRelModelElement.getUri() + " is not registered");
+						}
+						// reference model element
+						ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+						elementRef.setReferencedObject(element);
+						modelRef.getElementRefs().add(elementRef);
+					}
+				}
+			}
+			// links
+			for (Link superModelRelLink : superModelRel.getLinks()) {
+				Link link;
+				try {
+					link = createLightLinkType(modelRel, null, null, superModelRelLink.getName(), superModelRelLink.eClass());
+				}
+				catch (MMTFException e) {
+					MMTF.removeModelType(modelRel.getUri());
+					throw e;
+				}
+				link.setUnbounded(superModelRelLink.isUnbounded());
+				// link elements
+				for (ModelElementReference superModelRelElementRef : superModelRelLink.getElementRefs()) {
+modelRef:
+					for (ModelReference modelRef : modelRel.getModelRefs()) {
+						for (ModelElementReference elementRef : modelRef.getElementRefs()) {
+							if (elementRef.getName().equals(superModelRelElementRef.getName())) {
+								link.getElementRefs().add(elementRef);
+								break modelRef;
+							}
+						}
+					}
+				}
+			}
 
 			return modelRel;
 		}
@@ -848,30 +894,30 @@ modelRef:		for (ModelReference modelRef : modelRel.getModelRefs()) {
 			return null;
 		}
 
-		public static Link createLightLinkType(String modelRelTypeUri, String srcElementTypeUri, String tgtElementTypeUri, String subLinkTypeName, EClass linkClass) throws MMTFException {
+		public static Link createLightLinkType(ModelRel modelRel, ModelElement srcElement, ModelElement tgtElement, String subLinkName, EClass linkClass) throws MMTFException {
 
-			ModelRel modelRelType = getModelRelType(modelRelTypeUri);
+			ModelRel modelRelType = getModelRelType(modelRel.getUri());
 			if (modelRelType == null) {
-				throw new MMTFException("Model relationship type " + modelRelTypeUri + " is not registered");
+				throw new MMTFException("Model relationship type " + modelRel.getUri() + " is not registered");
 			}
 
 			Link link = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
-			addLightExtendibleType(link, null, subLinkTypeName, subLinkTypeName);
+			addLightExtendibleType(link, null, modelRelType.getName() + "/" + subLinkName, subLinkName);
 			//TODO MMTF: how to make the user choose unbounded?
 			link.setUnbounded(true);
 			modelRelType.getLinks().add(link);
-			if (srcElementTypeUri != null && tgtElementTypeUri != null) {
+			if (srcElement != null && tgtElement != null) {
 				// search source
-				ModelElement srcElementType = getModelElementType(srcElementTypeUri);
+				ModelElement srcElementType = getModelElementType(srcElement.getUri());
 				if (srcElementType == null) {
-					throw new MMTFException("Model element type " + srcElementTypeUri + " is not registered");
+					throw new MMTFException("Model element type " + srcElement.getUri() + " is not registered");
 				}
 				Model srcModelType = (Model) srcElementType.eContainer();
 srcModelRefs:
 				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
 					if (((Model) modelTypeRef.getObject()).getUri().equals(srcModelType.getUri())) {
 						for (ModelElementReference elementTypeRef : modelTypeRef.getElementRefs()) {
-							if (((ModelElement) elementTypeRef.getObject()).getUri().equals(srcElementTypeUri)) {
+							if (((ModelElement) elementTypeRef.getObject()).getUri().equals(srcElement.getUri())) {
 								link.getElementRefs().add(elementTypeRef);
 								break srcModelRefs;
 							}
@@ -879,16 +925,16 @@ srcModelRefs:
 					}
 				}
 				// search target
-				ModelElement tgtElementType = getModelElementType(tgtElementTypeUri);
+				ModelElement tgtElementType = getModelElementType(tgtElement.getUri());
 				if (tgtElementType == null) {
-					throw new MMTFException("Model element type " + tgtElementTypeUri + " is not registered");
+					throw new MMTFException("Model element type " + tgtElement.getUri() + " is not registered");
 				}
 				Model tgtModelType = (Model) tgtElementType.eContainer();
 tgtModelRefs:
 				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
 					if (((Model) modelTypeRef.getObject()).getUri().equals(tgtModelType.getUri())) {
 						for (ModelElementReference elementTypeRef : modelTypeRef.getElementRefs()) {
-							if (((ModelElement) elementTypeRef.getObject()).getUri().equals(tgtElementTypeUri)) {
+							if (((ModelElement) elementTypeRef.getObject()).getUri().equals(tgtElement.getUri())) {
 								link.getElementRefs().add(elementTypeRef);
 								break tgtModelRefs;
 							}

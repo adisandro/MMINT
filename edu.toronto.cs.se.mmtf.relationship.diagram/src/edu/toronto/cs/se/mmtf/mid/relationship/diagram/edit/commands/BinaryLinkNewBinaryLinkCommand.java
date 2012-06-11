@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -90,9 +91,9 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 			if (owner.getLevel() == MidLevel.TYPES) {
 				String subLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
 				BinaryLink newElementType = (BinaryLink) MMTFRegistry.createLightLinkType(
-					owner.getUri(),
-					getSource().getObject().getMetatypeUri(),
-					getTarget().getObject().getMetatypeUri(),
+					owner,
+					(ModelElement) getSource().getObject(),
+					(ModelElement) getTarget().getObject(),
 					subLinkTypeName,
 					RelationshipPackage.eINSTANCE.getBinaryLink()
 				);

@@ -81,6 +81,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 
 		try {
+			//TODO MMTF: do like in nary, the only thing is that choice of source and target limit the available supertypes
 			ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(getSource(), getTarget());
 			BinaryModelRel newElement = (BinaryModelRel) MultiModelFactoryUtils.createModelRel(
 				modelRelType,

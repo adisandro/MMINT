@@ -47,11 +47,13 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		EList<TypedElement> types = new BasicEList<TypedElement>();
 
+		// static type
 		Model staticModelType;
-		String modelTypeUri = model.getMetatypeUri();
-		if (modelTypeUri == null) { // this means getRuntimeTypes itself is used to set the initial static metatype
-			modelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
-			staticModelType = MMTFRegistry.getModelType(modelTypeUri);
+		String staticModelTypeUri = model.getMetatypeUri();
+		if (staticModelTypeUri == null) {
+			// this means getRuntimeTypes itself is used to set the initial static metatype
+			staticModelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
+			staticModelType = MMTFRegistry.getModelType(staticModelTypeUri);
 		}
 		else {
 			staticModelType = (Model) model.getMetatype();
@@ -59,11 +61,14 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// fallback to root type
 		if (staticModelType == null) {
+			staticModelTypeUri = ROOT_MODEL_URI;
 			staticModelType = MMTFRegistry.getModelType(ROOT_MODEL_URI);
 		}
 
-		// explore light model types
+		// init
 		types.add(staticModelType);
+
+		// explore light model types
 		for (Model lightModelSubtype : MMTFRegistry.getModelTypes()) {
 
 			if (lightModelSubtype instanceof ModelRel) {
@@ -71,7 +76,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 			}
 
 			// light model subtype
-			if (lightModelSubtype.getConstraint() != null && MMTFRegistry.isSubtypeOf(lightModelSubtype.getUri(), modelTypeUri)) {
+			if (lightModelSubtype.getConstraint() != null && MMTFRegistry.isSubtypeOf(lightModelSubtype.getUri(), staticModelTypeUri)) {
 				if (MultiModelConstraintChecker.checkOCLConstraint(model, lightModelSubtype.getConstraint().getBody())) {
 					types.add(lightModelSubtype);
 				}
@@ -85,44 +90,84 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		EList<TypedElement> types = new BasicEList<TypedElement>();
 
+		// static type
+		ModelRel staticModelRelType;
+		String staticModelRelTypeUri = modelRel.getMetatypeUri();
+		if (staticModelRelTypeUri == null) {
+			// this means getRuntimeTypes itself is used to set the initial static metatype
+			staticModelRelType = null;
+		}
+		else {
+			staticModelRelType = (ModelRel) modelRel.getMetatype();
+		}
+
+		// fallback to root type
+		if (staticModelRelType == null) {
+			staticModelRelTypeUri = ROOT_RELATIONSHIP_URI;
+			staticModelRelType = MMTFRegistry.getModelRelType(ROOT_RELATIONSHIP_URI);
+		}
+
+		// init
+		types.add(staticModelRelType);
+
 		// not specialized yet
 		if (modelRel.getModels().size() == 0) {
-			types.addAll(MMTFRegistry.getModelRelTypes());
+			for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
+				if (MMTFRegistry.isSubtypeOf(modelRelType.getUri(), staticModelRelTypeUri)) {
+					types.add(modelRelType);
+				}
+			}
 			return types;
 		}
 
+		// explore model endpoints
 modelRelTypes:
-		for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
+		for (ModelRel modelRelSubtype : MMTFRegistry.getModelRelTypes()) {
+
+			// only subtypes
+			if (!MMTFRegistry.isSubtypeOf(modelRelSubtype.getUri(), staticModelRelTypeUri)) {
+				continue;
+			}
 
 			// check cardinality
-			if (!(modelRelType.isUnbounded() || modelRelType.getModels().size() == modelRel.getModels().size())) {
+			if (!(modelRelSubtype.isUnbounded() || modelRelSubtype.getModels().size() == modelRel.getModels().size())) {
 				continue;
 			}
 
 			// unbounded case
-			if (modelRelType.isUnbounded()) {
+			if (modelRelSubtype.isUnbounded()) {
 				HashSet<String> allowedModelTypes = new HashSet<String>();
-				for (Model modelType : modelRelType.getModels()) {
+				for (Model modelType : modelRelSubtype.getModels()) {
 					allowedModelTypes.add(modelType.getUri());
 				}
 				for (Model model : modelRel.getModels()) {
-					String modelTypeUri = model.getMetatypeUri();
-					if (!allowedModelTypes.contains(modelTypeUri)) {
+					if (allowedModelTypes.contains(model.getMetatypeUri())) {
+						continue;
+					}
+					boolean okModel = false;
+					for (String modelSupertypeUri : MMTFRegistry.getSupertypeUris(model.getUri())) {
+						if (allowedModelTypes.contains(modelSupertypeUri)) {
+							okModel = true;
+							break;
+						}
+					}
+					if (!okModel) {
 						continue modelRelTypes;
 					}
 				}
-				types.add(modelRelType);
+
+				// light model relationship subtype
+				if (modelRelSubtype.getConstraint() != null) {
+					if (!MultiModelConstraintChecker.checkOCLConstraint(modelRel, modelRelSubtype.getConstraint().getBody())) {
+						continue modelRelTypes;
+					}
+				}
+
+				types.add(modelRelSubtype);
 			}
 
-			//TODO: MMTF continue with other cases (maybe not necessary, look mmtfregistry modelrelcreationdialog)
+			//TODO: MMTF continue with other cases (not easy matching models when the number of endpoints is fixed)
 		}
-
-		// fallback to root type
-		if (types.isEmpty()) {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_URI));
-		}
-
-		//TODO: MMTF now after models endpoints, run infer based on light types and ocl constraints
 
 		return types;
 	}
@@ -156,6 +201,7 @@ modelRelTypes:
 		return types;
 	}
 
+	//TODO MMTF: not needed if specialization is not allowed
 	private static EList<TypedElement> getRuntimeTypes(Link link) {
 
 		EList<TypedElement> types = new BasicEList<TypedElement>();
@@ -287,6 +333,9 @@ linkTypes:
 				}
 			}
 			else {
+				if (model instanceof ModelRel) {
+					return model;
+				}
 				root = getRoot(uri);
 			}
 
