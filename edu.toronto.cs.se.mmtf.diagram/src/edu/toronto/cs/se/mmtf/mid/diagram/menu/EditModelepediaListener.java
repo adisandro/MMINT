@@ -21,10 +21,11 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 public class EditModelepediaListener extends SelectionAdapter {
 
-	private final static String MODELEPEDIA_WWW = "http://192.168.72.19:4139/modelepedia/index.php/MMTF:";
+	private final static String MODELEPEDIA_WWW = "http://192.168.72.19:4139/modelepedia/index.php/Special:FormStart?page_name=MMTF:";
 	private Model modelType;
 
 	public EditModelepediaListener(Model modelType) {
@@ -35,8 +36,15 @@ public class EditModelepediaListener extends SelectionAdapter {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
+		if (modelType instanceof ModelRel) {
+			ModelRel modelRelType = (ModelRel) modelType;
+			for (Model model : modelRelType.getModels()) {
+				
+			}
+		}
+
 		IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
-		String url = MODELEPEDIA_WWW + modelType.getName();
+		String url = MODELEPEDIA_WWW + modelType.getName() + "&form=Model+Type";
 		try {
 			IWebBrowser browser = support.createBrowser("Modelepedia");
 			browser.openURL(new URL(url));
