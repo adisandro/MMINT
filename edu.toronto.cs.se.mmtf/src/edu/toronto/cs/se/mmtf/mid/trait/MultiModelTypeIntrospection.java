@@ -145,7 +145,7 @@ modelRelTypes:
 						continue;
 					}
 					boolean okModel = false;
-					for (String modelSupertypeUri : MMTFRegistry.getSupertypeUris(model.getUri())) {
+					for (String modelSupertypeUri : MMTFRegistry.getSupertypeUris(model.getMetatypeUri())) {
 						if (allowedModelTypes.contains(modelSupertypeUri)) {
 							okModel = true;
 							break;

@@ -96,6 +96,8 @@ public class RunOperatorListener extends SelectionAdapter {
 				}
 				// run operator
 				operator.getExecutable().execute(actualParameters);
+				// cleanup all conversion operators
+				//TODO MMTF: do it with interface
 
 				return CommandResult.newOKCommandResult();
 			}

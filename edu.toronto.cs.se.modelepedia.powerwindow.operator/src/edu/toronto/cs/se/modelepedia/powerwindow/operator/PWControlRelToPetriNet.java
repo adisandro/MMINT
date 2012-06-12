@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.powerwindow.operator;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.Date;
 
@@ -33,10 +34,12 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetPackage;
+import edu.toronto.cs.se.modelepedia.petrinet.Place;
 
 public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 
 	private static final String FILE_SUFFIX = "_pwcr2pn_";
+	private Model newElement;
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
@@ -48,6 +51,10 @@ public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 		// convert
 		ModelRel pwControlRel = (ModelRel) actualParameters.get(0);
 		PetriNet petriNet = PetrinetFactory.eINSTANCE.createPetriNet();
+		if (pwControlRel.getMetatype().getName().equals("SafePWControlRel")) {
+			Place place = PetrinetFactory.eINSTANCE.createPlace();
+			petriNet.getNodes().add(place);
+		}
 
 		// serialize
 		String uri = pwControlRel.getUri();
@@ -65,7 +72,7 @@ public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 		// create model
 		MultiModel owner = (MultiModel) pwControlRel.eContainer();
 		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-		Model newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
+		newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
 		Editor editor = MultiModelFactoryUtils.createEditor(newElement);
 		if (editor != null) {
 			MultiModelFactoryUtils.addModelEditor(editor, owner);
@@ -73,7 +80,20 @@ public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newElement);
+
 		return result;
+	}
+
+	//@Override
+	public void cleanup() throws Exception {
+
+		if (newElement != null) {
+			MultiModelFactoryUtils.removeModel(newElement);
+			URI modelUri = URI.createPlatformResourceURI(newElement.getUri(), true);
+			File file = new File(modelUri.toFileString());
+			file.delete();
+			newElement = null;
+		}
 	}
 
 }
