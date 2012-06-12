@@ -35,16 +35,19 @@ public class EditModelepediaListener extends SelectionAdapter {
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
-
+		String formType = "&form=Model+Type";
+		
 		if (modelType instanceof ModelRel) {
 			ModelRel modelRelType = (ModelRel) modelType;
 			for (Model model : modelRelType.getModels()) {
 				
 			}
+			
+			formType = "&form=Relationship+Type";
 		}
-
+		
 		IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
-		String url = MODELEPEDIA_WWW + modelType.getName() + "&form=Model+Type";
+		String url = MODELEPEDIA_WWW + modelType.getName() + formType;
 		try {
 			IWebBrowser browser = support.createBrowser("Modelepedia");
 			browser.openURL(new URL(url));
