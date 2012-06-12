@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.swt.graphics.Color;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkElementRefsItemSemanticEditPolicy;
 
 /**
@@ -127,7 +128,8 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public LinkElementRefsFigure() {
-			this.setLineWidth(2);
+			this.setLineWidth(3);
+			this.setForegroundColor(THIS_FORE);
 
 			createContents();
 			setTargetDecoration(createTargetDecoration());
@@ -150,7 +152,7 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(2);
+			df.setLineWidth(3);
 			return df;
 		}
 
@@ -162,5 +164,10 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 		}
 
 	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_FORE = new Color(null, 232, 157, 111);
 
 }

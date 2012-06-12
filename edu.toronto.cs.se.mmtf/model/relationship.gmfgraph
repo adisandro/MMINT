@@ -1,56 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="relationship">
-  <figures name="Default">
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="LinkElementRefsTgtDecoration" lineWidth="2"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="BinaryLinkTgtDecoration" lineWidth="2"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="ExtendibleSupertypeTgtDecoration" lineKind="LINE_DASH"/>
-    <descriptors name="ModelReferenceFigure">
-      <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelReferenceFigure">
-        <minimumSize dx="200" dy="200"/>
-        <children xsi:type="gmfgraph:Label" name="ModelReferenceLabelFigure" text="&lt;...>"/>
+<gmfgraph:Canvas
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition"
+    name="relationship">
+  <figures
+      name="Default">
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="LinkElementRefsTgtDecoration"
+        lineWidth="3"/>
+    <figures
+        xsi:type="gmfgraph:PolylineDecoration"
+        name="BinaryLinkTgtDecoration"
+        lineWidth="3"/>
+    <figures
+        xsi:type="gmfgraph:PolygonDecoration"
+        name="ExtendibleSupertypeTgtDecoration">
+      <backgroundColor
+          xsi:type="gmfgraph:ConstantColor"/>
+      <template/>
+      <template
+          x="-2"
+          y="2"/>
+      <template
+          x="-2"
+          y="-2"/>
+    </figures>
+    <descriptors
+        name="ModelReferenceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ModelReferenceFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <backgroundColor
+            xsi:type="gmfgraph:RGBColor"
+            red="124"
+            green="180"
+            blue="168"/>
+        <minimumSize
+            dx="200"
+            dy="200"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ModelReferenceLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="ModelElementReferenceFigure">
-      <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelElementReferenceFigure">
-        <children xsi:type="gmfgraph:Label" name="ModelElementReferenceLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="ModelElementReferenceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ModelElementReferenceFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ModelElementReferenceLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="LinkFigure">
-      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="LinkFigure">
-        <children xsi:type="gmfgraph:Label" name="LinkLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="LinkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="LinkFigure"
+          cornerWidth="12"
+          cornerHeight="12">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <backgroundColor
+            xsi:type="gmfgraph:RGBColor"
+            red="232"
+            green="157"
+            blue="111"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="LinkLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="LinkElementRefsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="LinkElementRefsFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0">
-        <children xsi:type="gmfgraph:Label" name="LinkElementRefsLabelFigure"/>
+    <descriptors
+        name="LinkElementRefsFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="LinkElementRefsFigure"
+          lineWidth="3"
+          targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor
+            xsi:type="gmfgraph:RGBColor"
+            red="232"
+            green="157"
+            blue="111"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="LinkElementRefsLabelFigure"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="BinaryLinkFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BinaryLinkFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.1">
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkLabelFigure" text="&lt;...>"/>
+    <descriptors
+        name="BinaryLinkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="BinaryLinkFigure"
+          lineWidth="3"
+          targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor
+            xsi:type="gmfgraph:RGBColor"
+            red="232"
+            green="157"
+            blue="111"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="BinaryLinkLabelFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="ExtendibleSupertypeFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ExtendibleSupertypeFigure" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.2"/>
+    <descriptors
+        name="ExtendibleSupertypeFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ExtendibleSupertypeFigure"
+          targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+      </actualFigure>
     </descriptors>
   </figures>
-  <nodes name="ModelReference" figure="ModelReferenceFigure"/>
-  <nodes name="ModelElementReference" figure="ModelElementReferenceFigure"/>
-  <nodes name="Link" figure="LinkFigure"/>
-  <connections name="LinkElementRefs" figure="LinkElementRefsFigure"/>
-  <connections name="BinaryLink" figure="BinaryLinkFigure"/>
-  <connections name="ExtendibleSupertype" figure="ExtendibleSupertypeFigure"/>
-  <compartments name="ModelReferenceCompartment" figure="ModelReferenceFigure"/>
-  <labels name="ModelReferenceLabel" figure="ModelReferenceFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels name="ModelElementReferenceLabel" figure="ModelElementReferenceFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels name="LinkLabel" figure="LinkFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels name="BinaryLinkLabel" figure="BinaryLinkFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
-  <labels name="LinkElementRefsLabel" figure="LinkElementRefsFigure" accessor="//@figures.0/@descriptors.3/@accessors.0">
-    <facets xsi:type="gmfgraph:AlignmentFacet"/>
+  <nodes
+      name="ModelReference"
+      figure="ModelReferenceFigure"/>
+  <nodes
+      name="ModelElementReference"
+      figure="ModelElementReferenceFigure"/>
+  <nodes
+      name="Link"
+      figure="LinkFigure"/>
+  <connections
+      name="LinkElementRefs"
+      figure="LinkElementRefsFigure"/>
+  <connections
+      name="BinaryLink"
+      figure="BinaryLinkFigure"/>
+  <connections
+      name="ExtendibleSupertype"
+      figure="ExtendibleSupertypeFigure"/>
+  <compartments
+      name="ModelReferenceCompartment"
+      figure="ModelReferenceFigure"/>
+  <labels
+      name="ModelReferenceLabel"
+      figure="ModelReferenceFigure"
+      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels
+      name="ModelElementReferenceLabel"
+      figure="ModelElementReferenceFigure"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels
+      name="LinkLabel"
+      figure="LinkFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels
+      name="BinaryLinkLabel"
+      figure="BinaryLinkFigure"
+      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels
+      name="LinkElementRefsLabel"
+      figure="LinkElementRefsFigure"
+      accessor="//@figures.0/@descriptors.3/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
 </gmfgraph:Canvas>

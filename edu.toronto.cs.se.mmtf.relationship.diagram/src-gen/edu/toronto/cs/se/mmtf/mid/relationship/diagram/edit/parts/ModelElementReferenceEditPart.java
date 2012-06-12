@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -339,6 +340,7 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ModelElementReferenceFigure() {
+			this.setForegroundColor(ColorConstants.black);
 			createContents();
 		}
 

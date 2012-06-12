@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -320,6 +321,8 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ModelReferenceFigure() {
+			this.setForegroundColor(ColorConstants.black);
+			this.setBackgroundColor(THIS_BACK);
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(200),
 					getMapMode().DPtoLP(200)));
 			createContents();
@@ -345,5 +348,10 @@ public class ModelReferenceEditPart extends ShapeNodeEditPart {
 		}
 
 	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 124, 180, 168);
 
 }

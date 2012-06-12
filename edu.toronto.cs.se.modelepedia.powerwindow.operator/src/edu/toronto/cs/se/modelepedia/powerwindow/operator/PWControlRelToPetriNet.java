@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -53,9 +54,12 @@ public class PWControlRelToPetriNet extends ConversionOperatorExecutableImpl {
 		// convert
 		ModelRel pwControlRel = (ModelRel) actualParameters.get(0);
 		PetriNet petriNet = PetrinetFactory.eINSTANCE.createPetriNet();
-		if (pwControlRel.getMetatype().getName().equals("SafePWControlRel")) {
-			Place place = PetrinetFactory.eINSTANCE.createPlace();
-			petriNet.getNodes().add(place);
+		for (TypedElement runtimeType : pwControlRel.getRuntimeMetatypes()) {
+			if (runtimeType.getName().equals("SafePWControlRel")) {
+				Place place = PetrinetFactory.eINSTANCE.createPlace();
+				petriNet.getNodes().add(place);
+				break;
+			}
 		}
 
 		// serialize
