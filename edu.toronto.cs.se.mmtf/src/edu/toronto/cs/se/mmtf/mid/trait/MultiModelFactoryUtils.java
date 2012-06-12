@@ -215,7 +215,7 @@ public class MultiModelFactoryUtils {
 	 *            The pointer to the real model element.
 	 * @return The model element reference just created.
 	 */
-	public static ModelElementReference createModelElementReference(ModelReference modelRef, EObject elementPointer) {
+	public static ModelElementReference createModelElementReference(ModelElement elementType, ModelReference modelRef, EObject elementPointer) {
 
 		// create model element (duplicates are avoided by dnd policy)
 		//TODO MMTF: yeah but not if the model is involved in more than one relationship
@@ -236,7 +236,8 @@ public class MultiModelFactoryUtils {
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
 		((Model) modelRef.getObject()).getElements().add(element);
 		//TODO MMTF: ricavare elementType obbligatoriamente, dato la model rel e la sua classe è facile
-		addExtendibleElement(element, null, null, null, name);
+		//TODO MMTF: disquisire su che cavolo di uri va a finire qua dentro e come usare classLiteral
+		addExtendibleElement(element, elementType, null, null, name);
 
 		// create model element reference
 		ModelElementReference modelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
@@ -386,9 +387,9 @@ public class MultiModelFactoryUtils {
 			modelRel.getModels().add(model);
 			ModelReference modelRef = createModelReference(modelRel, model);
 			for (ModelElementReference origElementRef : origModelRef.getElementRefs()) {
-				//TODO MMTF: duplicates not filtered by dnd?
-				ModelElementReference elementRef = createModelElementReference(modelRef, ((ModelElement) origElementRef.getObject()).getPointer());
-				elementRefs.put(((ModelElement) elementRef.getObject()).getPointer(), elementRef);
+				//TODO MMTF: fix and use something different than pointer as index
+				//ModelElementReference elementRef = createModelElementReference(modelRef, ((ModelElement) origElementRef.getObject()).getPointer());
+				//elementRefs.put(((ModelElement) elementRef.getObject()).getPointer(), elementRef);
 			}
 		}
 		for (Link origLink : origModelRel.getLinks()) {

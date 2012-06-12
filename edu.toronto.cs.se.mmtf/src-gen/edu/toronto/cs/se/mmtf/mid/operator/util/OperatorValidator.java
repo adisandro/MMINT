@@ -119,6 +119,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
 			case OperatorPackage.OPERATOR_EXECUTABLE:
 				return validateOperatorExecutable((OperatorExecutable)value, diagnostics, context);
+			case OperatorPackage.CONVERSION_OPERATOR_EXECUTABLE:
+				return validateConversionOperatorExecutable((ConversionOperatorExecutable)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
 				return validateException((Exception)value, diagnostics, context);
 			default:
@@ -191,6 +193,7 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConversionOperator_conversion(conversionOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConversionOperator_executable(conversionOperator, diagnostics, context);
 		return result;
 	}
 
@@ -224,12 +227,50 @@ public class OperatorValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the executable constraint of '<em>Conversion Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CONVERSION_OPERATOR__EXECUTABLE__EEXPRESSION = "executable.oclIsKindOf(ConversionOperatorExecutable)";
+
+	/**
+	 * Validates the executable constraint of '<em>Conversion Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConversionOperator_executable(ConversionOperator conversionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(OperatorPackage.Literals.CONVERSION_OPERATOR,
+				 conversionOperator,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "executable",
+				 CONVERSION_OPERATOR__EXECUTABLE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateOperatorExecutable(OperatorExecutable operatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(operatorExecutable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConversionOperatorExecutable(ConversionOperatorExecutable conversionOperatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(conversionOperatorExecutable, diagnostics, context);
 	}
 
 	/**

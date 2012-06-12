@@ -88,8 +88,9 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				modelRel.getLinks().add(link);
 				for (EObject object : objects) {
 					ModelReference modelRef = objectModels.get(object);
-					ModelElementReference elementRef = MultiModelFactoryUtils.createModelElementReference(modelRef, object);
-					((ModelElement) elementRef.getObject()).setName(object.getClass().getSimpleName() + " " + name);//TODO MMTF: remove and fix
+					//TODO MMTF: fix with function that I need to create
+					ModelElementReference elementRef = MultiModelFactoryUtils.createModelElementReference(null, modelRef, object);
+					((ModelElement) elementRef.getObject()).setName(object.eClass().getName() + " " + name);//TODO MMTF: remove and fix
 					link.getElementRefs().add(elementRef);
 				}
 			}

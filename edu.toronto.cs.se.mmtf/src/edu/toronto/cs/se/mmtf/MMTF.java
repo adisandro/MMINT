@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -889,9 +890,41 @@ modelRef:
 			return modelRel;
 		}
 
-		public static ModelElementReference createLightModelElementType(String subElementTypeName) {
+		public static ModelElementReference createLightModelElementType(ModelReference modelRef, String subElementTypeName, EObject elementPointer) throws MMTFException {
 
-			return null;
+			String modelTypeUri = ((Model) modelRef.getObject()).getUri();
+			String modelRelTypeUri = ((ModelRel) modelRef.eContainer()).getUri();
+			ModelRel modelRelType = MMTFRegistry.getModelRelType(modelRelTypeUri);
+			if (modelRelType == null) {
+				throw new MMTFException("Model relationship type's URI " + modelRelTypeUri + " is not registered");
+			}
+
+			ModelElementReference elementTypeRef = null;
+			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+				Model modelType = (Model) modelTypeRef.getObject();
+				if (modelType.getUri().equals(modelTypeUri)) {
+
+					// create model element (duplicates are avoided by dnd policy)
+					//TODO MMTF: yeah but not if the model is involved in more than one relationship
+					ModelElement elementType = MidFactory.eINSTANCE.createModelElement();
+					//TODO MMTF: EReference o l'equivalente nel metamodel ecore?
+					ModelElementCategory category = (elementPointer instanceof EReference) ?
+						ModelElementCategory.RELATIONSHIP :
+						ModelElementCategory.ENTITY;
+					elementType.setCategory(category);
+					//TODO MMTF: come sopra, se di un altro tipo non è di certo EClass
+					elementType.setClassLiteral(((EClass) elementPointer).getName());
+					modelType.getElements().add(elementType);
+					addLightExtendibleType(elementType, null, modelRelType.getName() + "/" + subElementTypeName, subElementTypeName);
+
+					// create model element reference
+					elementTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+					elementTypeRef.setReferencedObject(elementType); // standalone model relationship here don't exist
+					modelTypeRef.getElementRefs().add(elementTypeRef);
+				}
+			}
+
+			return elementTypeRef;
 		}
 
 		public static Link createLightLinkType(ModelRel modelRel, ModelElement srcElement, ModelElement tgtElement, String subLinkName, EClass linkClass) throws MMTFException {
@@ -1076,6 +1109,19 @@ tgtModelRefs:
 		}
 
 		/**
+		 * Gets the list of registered model element types for a model type.
+		 * 
+		 * @param modelType
+		 *            The model type.
+		 * 
+		 * @return The list of registered model element types for a model type.
+		 */
+		public static EList<ModelElement> getModelElementTypes(Model modelType) {
+
+			return modelType.getElements();
+		}
+
+		/**
 		 * Gets the list of registered file extensions for all model types.
 		 * 
 		 * @return The list of registered file extensions.
@@ -1199,9 +1245,11 @@ tgtModelRefs:
 
 				//TODO MMTF: supertypes are not computed yet for model elements and links, do I really need them?
 				String sourceTypeUri = source.getObject().getMetatypeUri();
-				EList<String> sourceSupertypeUris = getSupertypeUris(sourceTypeUri);
+				EList<String> sourceSupertypeUris = new BasicEList<String>();
+				//EList<String> sourceSupertypeUris = getSupertypeUris(sourceTypeUri);
 				String targetTypeUri = target.getObject().getMetatypeUri();
-				EList<String> targetSupertypeUris = getSupertypeUris(targetTypeUri);
+				EList<String> targetSupertypeUris = new BasicEList<String>();
+				//EList<String> targetSupertypeUris = getSupertypeUris(targetTypeUri);
 				linkTypeUris = new BasicEList<String>();
 
 				for (Link linkType : MMTFRegistry.getLinkTypes(modelRelType)) {

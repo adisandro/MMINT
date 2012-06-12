@@ -491,6 +491,52 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_EXECUTABLE_OPERATION_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl <em>Conversion Operator Executable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperatorExecutable()
+	 * @generated
+	 */
+	int CONVERSION_OPERATOR_EXECUTABLE = 6;
+
+	/**
+	 * The number of structural features of the '<em>Conversion Operator Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR_EXECUTABLE_FEATURE_COUNT = OPERATOR_EXECUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR_EXECUTABLE___EXECUTE__ELIST = OPERATOR_EXECUTABLE___EXECUTE__ELIST;
+
+	/**
+	 * The operation id for the '<em>Cleanup</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR_EXECUTABLE___CLEANUP = OPERATOR_EXECUTABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Conversion Operator Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR_EXECUTABLE_OPERATION_COUNT = OPERATOR_EXECUTABLE_OPERATION_COUNT + 1;
+
+	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -498,7 +544,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 6;
+	int EXCEPTION = 7;
 
 
 	/**
@@ -697,6 +743,26 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperatorExecutable__Execute__EList();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable <em>Conversion Operator Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Conversion Operator Executable</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable
+	 * @generated
+	 */
+	EClass getConversionOperatorExecutable();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable#cleanup() <em>Cleanup</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Cleanup</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable#cleanup()
+	 * @generated
+	 */
+	EOperation getConversionOperatorExecutable__Cleanup();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -885,6 +951,24 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR_EXECUTABLE___EXECUTE__ELIST = eINSTANCE.getOperatorExecutable__Execute__EList();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl <em>Conversion Operator Executable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperatorExecutable()
+		 * @generated
+		 */
+		EClass CONVERSION_OPERATOR_EXECUTABLE = eINSTANCE.getConversionOperatorExecutable();
+
+		/**
+		 * The meta object literal for the '<em><b>Cleanup</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONVERSION_OPERATOR_EXECUTABLE___CLEANUP = eINSTANCE.getConversionOperatorExecutable__Cleanup();
 
 		/**
 		 * The meta object literal for the '<em>Exception</em>' data type.

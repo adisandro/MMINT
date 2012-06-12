@@ -22,6 +22,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
@@ -85,20 +87,26 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		ModelReference owner = (ModelReference) getElementToEdit();
-		ModelElementReference newElement;
+		ModelElementReference newElement = null;
 		try {
 			if (owner.getObject().getLevel() == MidLevel.TYPES) {
 				String subElementTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
-				//TODO implement
-				ModelElementReference newElementType = MMTFRegistry.createLightModelElementType(subElementTypeName);
+				ModelElementReference newElementType = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedObject);
 				newElement = EcoreUtil.copy(newElementType);
-				//TODO come gestisco la copia e add di due oggetti, element e elementref?
 				owner.getElementRefs().add(newElement);
 			}
 			else {
-				//TODO ecco domandona, ma qui ci vuole un select model element type to create? a regola no, è implicito dal tipo di oggetto droppato
-				//TODO fix then
-				newElement = MultiModelFactoryUtils.createModelElementReference(owner, droppedObject);
+				Model model = (Model) owner.getObject();
+				for (ModelElement elementType : MMTFRegistry.getModelElementTypes((Model) model.getMetatype())) {
+					//TODO: MMTF distinguere caso EReference + usare EPackage (prob devo fare funzione)
+					if (elementType.getClassLiteral().equals(droppedObject.eClass().getName())) {
+						newElement = MultiModelFactoryUtils.createModelElementReference(elementType, owner, droppedObject);
+						break;
+					}
+				}
+				if (newElement == null) {
+					throw new MMTFException("Dropped element type not found");
+				}
 			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);

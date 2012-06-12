@@ -141,6 +141,9 @@
           <genParameters ecoreParameter="mid.ecore#//operator/OperatorExecutable/execute/actualParameters"/>
         </genOperations>
       </genClasses>
+      <genClasses image="false" ecoreClass="mid.ecore#//operator/ConversionOperatorExecutable">
+        <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperatorExecutable/cleanup"/>
+      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

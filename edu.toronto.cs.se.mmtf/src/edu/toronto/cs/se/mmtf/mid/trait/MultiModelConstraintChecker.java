@@ -150,7 +150,8 @@ modelTypes:
 					metaPackage = classifier.getEPackage().getNsURI();
 				}
 				// check dropped element compliance
-				if (metaName == droppedElement.eClass().getName() && metaPackage == droppedElement.eClass().getEPackage().getName()) {
+				//TODO MMTF: bisogna controllare anche il tipo del droppedElement se è EReference
+				if (metaName == droppedElement.eClass().getName() && metaPackage == droppedElement.eClass().getEPackage().getNsURI()) {
 					okElement = true;
 					break modelTypes;
 				}

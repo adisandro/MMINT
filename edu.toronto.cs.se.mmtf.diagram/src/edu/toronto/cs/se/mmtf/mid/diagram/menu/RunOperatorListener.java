@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
 public class RunOperatorListener extends SelectionAdapter {
@@ -80,6 +81,7 @@ public class RunOperatorListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
+				//TODO MMTF: is conversionMap ordered?? I don't think so
 				// run all conversion operators
 				if (!conversionMap.isEmpty()) {
 					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
@@ -97,7 +99,13 @@ public class RunOperatorListener extends SelectionAdapter {
 				// run operator
 				operator.getExecutable().execute(actualParameters);
 				// cleanup all conversion operators
-				//TODO MMTF: do it with interface
+				if (!conversionMap.isEmpty()) {
+					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
+						for (ConversionOperator operator : entry.getValue()) {
+							((ConversionOperatorExecutable) operator.getExecutable()).cleanup();
+						}
+					}
+				}
 
 				return CommandResult.newOKCommandResult();
 			}

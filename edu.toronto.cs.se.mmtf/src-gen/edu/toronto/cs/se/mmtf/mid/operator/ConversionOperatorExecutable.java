@@ -14,14 +14,21 @@ package edu.toronto.cs.se.mmtf.mid.operator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Conversion Operator</b></em>'.
+ * A representation of the model object '<em><b>Conversion Operator Executable</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getConversionOperator()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='conversion executable'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot conversion='inputs->size() = 1 and outputs->size() = 1' executable='executable.oclIsKindOf(ConversionOperatorExecutable)'"
+ * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getConversionOperatorExecutable()
+ * @model abstract="true"
  * @generated
  */
-public interface ConversionOperator extends Operator {
-} // ConversionOperator
+public interface ConversionOperatorExecutable extends OperatorExecutable {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception"
+	 * @generated
+	 */
+	void cleanup() throws Exception;
+
+} // ConversionOperatorExecutable

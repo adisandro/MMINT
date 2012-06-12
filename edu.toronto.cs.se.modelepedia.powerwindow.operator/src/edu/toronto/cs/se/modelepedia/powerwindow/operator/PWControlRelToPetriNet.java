@@ -11,11 +11,13 @@
  */
 package edu.toronto.cs.se.modelepedia.powerwindow.operator;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.Date;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -28,7 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
@@ -36,7 +38,7 @@ import edu.toronto.cs.se.modelepedia.petrinet.PetrinetFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetPackage;
 import edu.toronto.cs.se.modelepedia.petrinet.Place;
 
-public class PWControlRelToPetriNet extends OperatorExecutableImpl {
+public class PWControlRelToPetriNet extends ConversionOperatorExecutableImpl {
 
 	private static final String FILE_SUFFIX = "_pwcr2pn_";
 	private Model newElement;
@@ -84,14 +86,15 @@ public class PWControlRelToPetriNet extends OperatorExecutableImpl {
 		return result;
 	}
 
-	//@Override
+	@Override
 	public void cleanup() throws Exception {
 
 		if (newElement != null) {
 			MultiModelFactoryUtils.removeModel(newElement);
-			URI modelUri = URI.createPlatformResourceURI(newElement.getUri(), true);
-			File file = new File(modelUri.toFileString());
-			file.delete();
+			((MultiModel) newElement.eContainer()).getModels().remove(newElement);
+			IPath path = new Path(newElement.getUri());
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+			file.delete(true, null);
 			newElement = null;
 		}
 	}

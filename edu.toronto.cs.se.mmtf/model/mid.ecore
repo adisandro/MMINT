@@ -265,10 +265,11 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConversionOperator" eSuperTypes="#//operator/Operator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="conversion"/>
+        <details key="constraints" value="conversion executable"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="conversion" value="inputs->size() = 1 and outputs->size() = 1"/>
+        <details key="executable" value="executable.oclIsKindOf(ConversionOperatorExecutable)"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OperatorExecutable" abstract="true">
@@ -278,5 +279,9 @@
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConversionOperatorExecutable" abstract="true"
+        eSuperTypes="#//operator/OperatorExecutable">
+      <eOperations name="cleanup" eExceptions="#//operator/Exception"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

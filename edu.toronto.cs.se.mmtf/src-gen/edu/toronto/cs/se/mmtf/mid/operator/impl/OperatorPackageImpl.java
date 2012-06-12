@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl;
 import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
@@ -90,6 +91,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EClass operatorExecutableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conversionOperatorExecutableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -346,6 +354,24 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConversionOperatorExecutable() {
+		return conversionOperatorExecutableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getConversionOperatorExecutable__Cleanup() {
+		return conversionOperatorExecutableEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getException() {
 		return exceptionEDataType;
 	}
@@ -402,6 +428,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		operatorExecutableEClass = createEClass(OPERATOR_EXECUTABLE);
 		createEOperation(operatorExecutableEClass, OPERATOR_EXECUTABLE___EXECUTE__ELIST);
 
+		conversionOperatorExecutableEClass = createEClass(CONVERSION_OPERATOR_EXECUTABLE);
+		createEOperation(conversionOperatorExecutableEClass, CONVERSION_OPERATOR_EXECUTABLE___CLEANUP);
+
 		// Create data types
 		exceptionEDataType = createEDataType(EXCEPTION);
 	}
@@ -439,6 +468,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		// Add supertypes to classes
 		operatorEClass.getESuperTypes().add(theMidPackage.getTypedElement());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
+		conversionOperatorExecutableEClass.getESuperTypes().add(this.getOperatorExecutable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(eStringToParameterMapEClass, Map.Entry.class, "EStringToParameterMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -466,6 +496,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		EOperation op = initEOperation(getOperatorExecutable__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
+		initEClass(conversionOperatorExecutableEClass, ConversionOperatorExecutable.class, "ConversionOperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getConversionOperatorExecutable__Cleanup(), null, "cleanup", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
 		// Initialize data types
@@ -498,7 +533,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "conversion"
+			 "constraints", "conversion executable"
 		   });	
 	}
 
@@ -514,7 +549,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "conversion", "inputs->size() = 1 and outputs->size() = 1"
+			 "conversion", "inputs->size() = 1 and outputs->size() = 1",
+			 "executable", "executable.oclIsKindOf(ConversionOperatorExecutable)"
 		   });
 	}
 
