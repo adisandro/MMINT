@@ -907,13 +907,18 @@ modelRef:
 					// create model element (duplicates are avoided by dnd policy)
 					//TODO MMTF: yeah but not if the model is involved in more than one relationship
 					ModelElement elementType = MidFactory.eINSTANCE.createModelElement();
-					//TODO MMTF: EReference o l'equivalente nel metamodel ecore?
-					ModelElementCategory category = (elementPointer instanceof EReference) ?
-						ModelElementCategory.RELATIONSHIP :
-						ModelElementCategory.ENTITY;
+					ModelElementCategory category;
+					String classLiteral;
+					if (elementPointer instanceof EReference) {
+						category = ModelElementCategory.RELATIONSHIP;
+						classLiteral = ((EReference) elementPointer).getEContainingClass().getName() + "/" + ((EReference) elementPointer).getName();
+					}
+					else {
+						category = ModelElementCategory.ENTITY;
+						classLiteral = ((EClass) elementPointer).getName();
+					}
 					elementType.setCategory(category);
-					//TODO MMTF: come sopra, se di un altro tipo non è di certo EClass
-					elementType.setClassLiteral(((EClass) elementPointer).getName());
+					elementType.setClassLiteral(classLiteral);
 					modelType.getElements().add(elementType);
 					addLightExtendibleType(elementType, null, modelRelType.getName() + "/" + subElementTypeName, subElementTypeName);
 
@@ -1430,7 +1435,7 @@ nextOperator:
 						}
 						i++;
 						if (!parameter.isVararg()) {
-							//TODO: MMTF introduce vararg with low multeplicity
+							//TODO MMTF: introduce vararg with low multeplicity
 							break;
 						}
 					}

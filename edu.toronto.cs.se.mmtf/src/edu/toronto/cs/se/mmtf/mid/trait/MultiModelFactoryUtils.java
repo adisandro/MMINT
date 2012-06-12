@@ -235,7 +235,6 @@ public class MultiModelFactoryUtils {
 		//TODO MMTF: renderlo breve e leggibile in caso di TYPES (getName() e basta?)
 		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
 		((Model) modelRef.getObject()).getElements().add(element);
-		//TODO MMTF: ricavare elementType obbligatoriamente, dato la model rel e la sua classe è facile
 		//TODO MMTF: disquisire su che cavolo di uri va a finire qua dentro e come usare classLiteral
 		addExtendibleElement(element, elementType, null, null, name);
 
@@ -315,7 +314,7 @@ public class MultiModelFactoryUtils {
 		URI editorUri = URI.createPlatformResourceURI(
 			stringModelUri.substring(0, stringModelUri.lastIndexOf('.')+1) + editorType.getFileExtensions().get(0),
 			true
-			//TODO metatypeuri here
+			//TODO MMTF: metatypeuri here
 		);
 		addExtendibleElement(editor, editorType, null, editorUri, editorName);
 

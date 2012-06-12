@@ -166,7 +166,7 @@ modelRelTypes:
 				types.add(modelRelSubtype);
 			}
 
-			//TODO: MMTF continue with other cases (not easy matching models when the number of endpoints is fixed)
+			//TODO MMTF: continue with other cases (not easy matching models when the number of endpoints is fixed)
 		}
 
 		return types;
@@ -238,7 +238,7 @@ linkTypes:
 				types.add(linkType);
 			}
 
-			//TODO: MMTF continue with other cases
+			//TODO MMTF: continue with other cases
 		}
 
 		// fallback to root type

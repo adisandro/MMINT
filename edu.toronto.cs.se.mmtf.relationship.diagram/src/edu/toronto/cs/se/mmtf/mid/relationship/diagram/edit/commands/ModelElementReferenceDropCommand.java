@@ -39,21 +39,21 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
  */
 public class ModelElementReferenceDropCommand extends ModelElementReferenceCreateCommand {
 
-	/** The dropped object. */
-	EObject droppedObject;
+	/** The dropped element. */
+	EObject droppedElement;
 
 	/**
-	 * Constructor: initialises the superclass and the dropped object.
+	 * Constructor: initialises the superclass and the dropped element.
 	 * 
 	 * @param req
 	 *            The request.
-	 * @param droppedObject
-	 *            The dropped object.
+	 * @param droppedElement
+	 *            The dropped element.
 	 */
-	public ModelElementReferenceDropCommand(CreateElementRequest req, EObject droppedObject) {
+	public ModelElementReferenceDropCommand(CreateElementRequest req, EObject droppedElement) {
 
 		super(req);
-		this.droppedObject = droppedObject;
+		this.droppedElement = droppedElement;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		return
 			super.canExecute() && (
 				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit().eContainer()) ||
-				MultiModelConstraintChecker.isAllowedModelElement((ModelRel) getElementToEdit().eContainer(), droppedObject)
+				MultiModelConstraintChecker.isAllowedModelElement((ModelRel) getElementToEdit().eContainer(), droppedElement)
 			);
 	}
 
@@ -91,16 +91,16 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		try {
 			if (owner.getObject().getLevel() == MidLevel.TYPES) {
 				String subElementTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
-				ModelElementReference newElementType = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedObject);
+				ModelElementReference newElementType = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedElement);
 				newElement = EcoreUtil.copy(newElementType);
 				owner.getElementRefs().add(newElement);
 			}
 			else {
 				Model model = (Model) owner.getObject();
+				//TODO MMTF: go through supertypes?
 				for (ModelElement elementType : MMTFRegistry.getModelElementTypes((Model) model.getMetatype())) {
-					//TODO: MMTF distinguere caso EReference + usare EPackage (prob devo fare funzione)
-					if (elementType.getClassLiteral().equals(droppedObject.eClass().getName())) {
-						newElement = MultiModelFactoryUtils.createModelElementReference(elementType, owner, droppedObject);
+					if (MultiModelConstraintChecker.isAllowedModelElementType(elementType, droppedElement)) {
+						newElement = MultiModelFactoryUtils.createModelElementReference(elementType, owner, droppedElement);
 						break;
 					}
 				}

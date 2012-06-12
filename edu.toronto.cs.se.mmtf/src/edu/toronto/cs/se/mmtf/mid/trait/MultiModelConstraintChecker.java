@@ -116,42 +116,50 @@ public class MultiModelConstraintChecker {
 		return okElement;
 	}
 
+	public static boolean isAllowedModelElementType(ModelElement elementType, EObject droppedElement) {
+
+		String metaName;
+		String droppedClassLiteral;
+
+		// entity-relationship differences
+		if (droppedElement instanceof EReference) {
+			if (elementType.getCategory() != ModelElementCategory.RELATIONSHIP) {
+				return false;
+			}
+			EStructuralFeature feature = (EStructuralFeature) elementType.getPointer();
+			metaName = feature.getName();
+			if (metaName == RELATIONSHIP_WILDCARD_FEATURE_NAME) {
+				return true;
+			}
+			droppedClassLiteral = ((EReference) droppedElement).getEContainingClass().getName() + "/" + ((EReference) droppedElement).getName();
+		}
+		else {
+			if (elementType.getCategory() != ModelElementCategory.ENTITY) {
+				return false;
+			}
+			EClassifier classifier = (EClassifier) elementType.getPointer();
+			metaName = classifier.getName();
+			if (metaName == ENTITY_WILDCARD_CLASSIFIER_NAME) {
+				return true;
+			}
+			droppedClassLiteral = droppedElement.eClass().getName();
+		}
+
+		// check dropped element compliance
+		if (elementType.getClassLiteral().equals(droppedClassLiteral)) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public static boolean isAllowedModelElement(ModelRel modelRel, EObject droppedElement) {
 
 		boolean okElement = false;
 modelTypes:
 		for (Model modelType : ((ModelRel) modelRel.getMetatype()).getModels()) {
 			for (ModelElement elementType : modelType.getElements()) {
-				// entity-relationship differences
-				String metaName;
-				String metaPackage;
-				if (droppedElement instanceof EReference) {
-					if (elementType.getCategory() != ModelElementCategory.RELATIONSHIP) {
-						continue;
-					}
-					EStructuralFeature feature = (EStructuralFeature) elementType.getPointer();
-					metaName = feature.getName();
-					if (metaName == RELATIONSHIP_WILDCARD_FEATURE_NAME) {
-						okElement = true;
-						break modelTypes;
-					}
-					metaPackage = feature.getEContainingClass().getEPackage().getNsURI();
-				}
-				else {
-					if (elementType.getCategory() != ModelElementCategory.ENTITY) {
-						continue;
-					}
-					EClassifier classifier = (EClassifier) elementType.getPointer();
-					metaName = classifier.getName();
-					if (metaName == ENTITY_WILDCARD_CLASSIFIER_NAME) {
-						okElement = true;
-						break modelTypes;
-					}
-					metaPackage = classifier.getEPackage().getNsURI();
-				}
-				// check dropped element compliance
-				//TODO MMTF: bisogna controllare anche il tipo del droppedElement se è EReference
-				if (metaName == droppedElement.eClass().getName() && metaPackage == droppedElement.eClass().getEPackage().getNsURI()) {
+				if (isAllowedModelElementType(elementType, droppedElement)) {
 					okElement = true;
 					break modelTypes;
 				}
