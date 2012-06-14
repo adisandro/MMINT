@@ -57,7 +57,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected ModelRel doExecuteInstanceLevel() throws Exception {
+	protected ModelRel doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(null, null);
@@ -106,7 +106,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		try {
 			ModelRel newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit())) ?
-				doExecuteInstanceLevel() :
+				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);

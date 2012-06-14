@@ -59,7 +59,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit());
 	}
 
-	protected Model doExecuteInstanceLevel() throws Exception {
+	protected Model doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		URI newModelUri = MidDiagramTrait.selectModelToImport(false);
@@ -89,7 +89,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Model newElement = doExecuteInstanceLevel();
+			Model newElement = doExecuteInstancesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

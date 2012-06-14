@@ -840,6 +840,15 @@ modelRef:
 			return newModelType;
 		}
 
+		public static ModelReference createLightModelTypeRef(ModelRel modelRelType, Model modelType) {
+
+			ModelReference newModelTypeRef = RelationshipFactory.eINSTANCE.createModelReference();
+			newModelTypeRef.setReferencedObject(modelType);
+			modelRelType.getModelRefs().add(newModelTypeRef);
+
+			return newModelTypeRef;
+		}
+
 		public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String constraint, EClass modelRelTypeClass) throws MMTFException {
 
 			ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
@@ -851,9 +860,7 @@ modelRef:
 			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
 				Model modelType = (Model) modelTypeRef.getObject();
 				newModelRelType.getModels().add(modelType);
-				ModelReference newModelTypeRef = RelationshipFactory.eINSTANCE.createModelReference();
-				newModelTypeRef.setReferencedObject(modelType);
-				newModelRelType.getModelRefs().add(newModelTypeRef);
+				ModelReference newModelTypeRef = createLightModelTypeRef(newModelRelType, modelType);
 				// model elements
 				for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
 					ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
@@ -946,6 +953,31 @@ tgtModelTypeRefs:
 			}
 
 			return newLinkType;
+		}
+
+		public static void removeLightModelTypeRef(ModelRel modelRelType, Model modelType) {
+
+			//TODO MMTF: ricordarsi qua che gli elementi sono specifici della model rel, ergo vanno purgati dal model e dalla extendible table
+			for (ModelReference modelRef : modelRelType.getModelRefs()) {
+				if (modelRef.getObject() == modelType) {
+					modelRelType.getModelRefs().remove(modelRef);
+					ArrayList<Link> delLinks = new ArrayList<Link>();
+					for (ModelElementReference elementRef : modelRef.getElementRefs()) {
+						for (Link link : elementRef.getLinks()) {
+							// binary links have no longer sense, delete them later to avoid concurrent modification problems
+							if (link instanceof BinaryLink) {
+								delLinks.add(link);
+							}
+						}
+						elementRef.getLinks().clear();
+					}
+					for (Link delLink : delLinks) {
+						delLink.getElementRefs().clear();
+						modelRelType.getLinks().remove(delLink);
+					}
+					break;
+				}
+			}
 		}
 
 		public static EList<String> getSupertypeUris(String subtypeUri) {

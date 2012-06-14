@@ -79,6 +79,21 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
+	public static boolean isAllowedModelType(ModelRel modelRelType, Model modelType) {
+
+		if (modelType == null) { // model type not added yet
+			return true;
+		}
+
+		for (ModelRel subModelRelType : MMTFRegistry.getModelRelTypes()) {
+			if (MMTFRegistry.isSubtypeOf(subModelRelType.getUri(), modelRelType.getUri())) {
+				return false;
+			}
+		}
+
+		return true;
+	}	
+
 	public static boolean isAllowedModel(ModelRel modelRel, Model model) {
 
 		if (model == null) { // model not added yet

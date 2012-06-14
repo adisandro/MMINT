@@ -64,7 +64,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		return super.canExecute();
 	}
 
-	protected BinaryModelRel doExecuteInstanceLevel() throws Exception {
+	protected BinaryModelRel doExecuteInstancesLevel() throws Exception {
 
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(getSource(), getTarget());
 		BinaryModelRel newModelRel = (BinaryModelRel) MultiModelFactoryUtils.createModelRel(
@@ -141,7 +141,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		try {
 			BinaryModelRel newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getContainer())) ?
-				doExecuteInstanceLevel() :
+				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
@@ -53,10 +54,25 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 	@Override
 	public boolean canExecute() {
 
+		boolean instance = MultiModelConstraintChecker.isInstanceLevel((MultiModel) getSource().eContainer());
+
 		return
-			super.canExecute() &&
-			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getSource().eContainer()) &&
-			MultiModelConstraintChecker.isAllowedModel(getSource(), getTarget());
+			super.canExecute() && (
+				(instance && MultiModelConstraintChecker.isAllowedModel(getSource(), getTarget())) ||
+				(!instance && MultiModelConstraintChecker.isAllowedModelType(getSource(), getTarget()))
+			);
+	}
+
+	protected void doExecuteInstancesLevel() {
+
+		MultiModelFactoryUtils.createModelReference(getSource(), getTarget());
+	}
+
+	protected void doExecuteTypesLevel() {
+
+		MultiModel multiModel = (MultiModel) getSource().eContainer();
+		MMTFRegistry.createLightModelTypeRef(getSource(), getTarget());
+		MMTFRegistry.updateRepository(multiModel);
 	}
 
 	/**
@@ -79,7 +95,12 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getModels().add(getTarget());
-			MultiModelFactoryUtils.createModelReference(getSource(), getTarget());
+			if (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getSource().eContainer())) {
+				doExecuteInstancesLevel();
+			}
+			else {
+				doExecuteTypesLevel();
+			}
 		}
 
 		return CommandResult.newOKCommandResult();

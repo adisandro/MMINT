@@ -101,7 +101,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		for (Model model : root.getModels()) {
 			try {
 				if (root.getLevel() == MidLevel.TYPES) {
-					resourceSet.getResources().add(root.getRoot().eResource());
+					resourceSet.getResources().add(model.getRoot().eResource());
 				}
 				else {
 					//TODO MMTF: easier by calling eResource on getRoot (but getRoot does exactly that)?

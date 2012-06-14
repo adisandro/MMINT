@@ -58,7 +58,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected Model doExecuteInstanceLevel() throws Exception {
+	protected Model doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		Editor newEditor = MidDiagramTrait.selectModelTypeToCreate();
@@ -100,7 +100,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		try {
 			Model newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit())) ?
-				doExecuteInstanceLevel() :
+				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);

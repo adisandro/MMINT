@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -51,7 +52,26 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getContainer().eContainer()) && super.canExecute();
+		return
+			super.canExecute() && (
+				MultiModelConstraintChecker.isInstanceLevel((MultiModel) getContainer().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelType((ModelRel) getContainer(), (Model) getReferencedObject())
+			);
+	}
+
+	protected void doExecuteInstancesLevel() {
+
+		ModelRel modelRel = (ModelRel) getContainer();
+		Model model = (Model) getReferencedObject();
+		MultiModelFactoryUtils.removeModelReference(modelRel, model);
+	}
+
+	protected void doExecuteTypesLevel() {
+
+		ModelRel modelRelType = (ModelRel) getContainer();
+		Model modelType = (Model) getReferencedObject();
+		MMTFRegistry.removeLightModelTypeRef(modelRelType, modelType);
+		MMTFRegistry.updateRepository((MultiModel) modelRelType.eContainer());
 	}
 
 	/**
@@ -68,9 +88,12 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelRel container = (ModelRel) getContainer();
-		Model reference = (Model) getReferencedObject();
-		MultiModelFactoryUtils.removeModelReference(container, reference);
+		if (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getContainer().eContainer())) {
+			doExecuteInstancesLevel();
+		}
+		else {
+			doExecuteTypesLevel();
+		}
 
 		return super.doExecuteWithResult(monitor, info);
 	}

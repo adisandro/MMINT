@@ -57,7 +57,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit());
 	}
 
-	protected ModelRel doExecuteInstanceLevel() throws Exception {
+	protected ModelRel doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		URI newModelRelUri = MidDiagramTrait.selectModelToImport(true);
@@ -81,7 +81,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelRel newElement = doExecuteInstanceLevel();
+			ModelRel newElement = doExecuteInstancesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
