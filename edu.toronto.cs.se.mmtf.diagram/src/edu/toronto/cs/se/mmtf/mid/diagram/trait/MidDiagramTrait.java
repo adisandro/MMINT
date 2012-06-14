@@ -26,6 +26,7 @@ import org.eclipse.ui.wizards.IWizardDescriptor;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -140,9 +141,9 @@ public class MidDiagramTrait {
 	 * @throws MMTFException
 	 *             If the selection was not completed for any reason.
 	 */
-	public static Model selectModelTypeToExtend() throws MMTFException {
+	public static Model selectModelTypeToExtend(MultiModel multiModel) throws MMTFException {
 
-		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelTypeCreationDialog();
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelTypeCreationDialog(multiModel);
 		String title = "Create new light model type";
 		String message = "Choose model supertype";
 
@@ -157,9 +158,9 @@ public class MidDiagramTrait {
 	 * @throws MMTFException
 	 *             If the selection was not completed for any reason.
 	 */
-	public static ModelRel selectModelRelTypeToExtend(String srcModelTypeUri, String tgtModelTypeUri) throws MMTFException {
+	public static ModelRel selectModelRelTypeToExtend(MultiModel multiModel, String srcModelTypeUri, String tgtModelTypeUri) throws MMTFException {
 
-		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelTypeCreationDialog(srcModelTypeUri, tgtModelTypeUri);
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelTypeCreationDialog(multiModel, srcModelTypeUri, tgtModelTypeUri);
 		String title = "Create new light model relationship type";
 		String message = "Choose model relationship supertype";
 

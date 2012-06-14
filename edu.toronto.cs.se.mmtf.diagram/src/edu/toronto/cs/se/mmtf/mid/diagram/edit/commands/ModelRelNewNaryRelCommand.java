@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
@@ -76,25 +75,19 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected ModelRel doExecuteTypesLevel() throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(null, null);
+		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(multiModel, null, null);
 		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
 		String constraint = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
+
 		ModelRel newModelRelType = MMTFRegistry.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,
 			constraint,
 			RelationshipPackage.eINSTANCE.getModelRel()
 		);
-		// diagram copy
-		ModelRel newModelRelType2 = EcoreUtil.copy(newModelRelType);
-		multiModel.getModels().add(newModelRelType2);
-		//TODO MMTF: how to automate this? little extendible table as return from createlighttype (for cycle->setsupertype,add2table)?
-		newModelRelType2.setSupertype(
-			multiModel.getExtendibleTable().get(newModelRelType.getSupertype().getUri())
-		);
-		multiModel.getExtendibleTable().put(newModelRelType2.getUri(), newModelRelType2);
+		MMTFRegistry.updateRepository(multiModel);
 
-		return newModelRelType2;
+		return newModelRelType;
 	}
 
 	/**
@@ -111,10 +104,8 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModel owner = (MultiModel) getElementToEdit();
-		ModelRel newElement;
 		try {
-			newElement = (MultiModelConstraintChecker.isInstanceLevel(owner)) ?
+			ModelRel newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit())) ?
 				doExecuteInstanceLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

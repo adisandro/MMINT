@@ -176,7 +176,7 @@ public class MultiModelConstraintChecker {
 	 */
 	public static boolean checkOCLConstraint(Model model, String oclConstraint) {
 
-		if (oclConstraint == "") { // empty constraint
+		if (oclConstraint.equals("")) { // empty constraint
 			return true;
 		}
 

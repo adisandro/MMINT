@@ -86,12 +86,12 @@ references:
 				if (modelUri.equals(((Model) modelRef.getObject()).getUri())) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) { // avoid duplicates
 						if (MultiModelConstraintChecker.isInstanceLevel(root)) {
-							if (EcoreUtil.equals(((ModelElement) elementRef.getObject()).getPointer(), droppedElement)) {
+							if (((ModelElement) elementRef.getObject()).getUri().equals(modelElemUri)) {
 								continue references;
 							}
 						}
 						else {
-							if (((ModelElement) elementRef.getObject()).getUri().equals(modelElemUri)) {
+							if (EcoreUtil.equals(((ModelElement) elementRef.getObject()).getPointer(), droppedElement)) {
 								continue references;
 							}
 						}

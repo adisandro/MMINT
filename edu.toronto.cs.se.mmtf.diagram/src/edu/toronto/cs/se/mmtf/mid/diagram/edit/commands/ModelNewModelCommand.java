@@ -15,18 +15,17 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -59,6 +58,31 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return super.canExecute();
 	}
 
+	protected Model doExecuteInstanceLevel() throws Exception {
+
+		MultiModel multiModel = (MultiModel) getElementToEdit();
+		Editor newEditor = MidDiagramTrait.selectModelTypeToCreate();
+		URI newModelUri = URI.createPlatformResourceURI(newEditor.getModelUri(), true);
+		MultiModelFactoryUtils.assertModelUnique(multiModel, newModelUri);
+		Model modelType = MMTFRegistry.getModelType(((Editor) newEditor.getMetatype()).getModelUri());
+		Model newModel = MultiModelFactoryUtils.createModel(modelType, ModelOrigin.CREATED, multiModel, newModelUri);
+		MultiModelFactoryUtils.addModelEditor(newEditor, multiModel);
+
+		return newModel;
+	}
+
+	protected Model doExecuteTypesLevel() throws MMTFException {
+
+		MultiModel multiModel = (MultiModel) getElementToEdit();
+		Model modelType = MidDiagramTrait.selectModelTypeToExtend(multiModel);
+		String newModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type name");
+		String constraint = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type constraint");
+		Model newModelType = MMTFRegistry.createLightModelType(modelType, newModelTypeName, constraint);
+		MMTFRegistry.updateRepository(multiModel);
+
+		return newModelType;
+	}
+
 	/**
 	 * Creates a new model.
 	 * 
@@ -75,24 +99,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			MultiModel owner = (MultiModel) getElementToEdit();
-			Model newElement;
-			if (owner.getLevel() == MidLevel.TYPES) {
-				Model superModelType = MidDiagramTrait.selectModelTypeToExtend();
-				String subModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type name");
-				String constraint = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type constraint");
-				Model newElementType = MMTFRegistry.createLightModelType(superModelType, subModelTypeName, constraint);
-				newElement = EcoreUtil.copy(newElementType);
-				owner.getModels().add(newElement);
-			}
-			else {
-				Editor editor = MidDiagramTrait.selectModelTypeToCreate();
-				URI modelUri = URI.createPlatformResourceURI(editor.getModelUri(), true);
-				MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-				Model modelType = MMTFRegistry.getModelType(((Editor) editor.getMetatype()).getModelUri());
-				newElement = MultiModelFactoryUtils.createModel(modelType, ModelOrigin.CREATED, owner, modelUri);
-				MultiModelFactoryUtils.addModelEditor(editor, owner);
-			}
+			Model newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit())) ?
+				doExecuteInstanceLevel() :
+				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

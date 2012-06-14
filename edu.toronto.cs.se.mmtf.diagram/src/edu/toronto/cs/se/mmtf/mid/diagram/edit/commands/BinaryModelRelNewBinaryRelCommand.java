@@ -15,19 +15,16 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
@@ -88,7 +85,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteTypesLevel() throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) getContainer();
-		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(getSource().getUri(), getTarget().getUri());
+		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(multiModel, getSource().getUri(), getTarget().getUri());
 		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name");
 		String constraint = MidDiagramTrait.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint");
 		//TODO MMTF: much more complicated actually, supertype is fine but actual model endpoints are src and tgt
@@ -98,32 +95,30 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			constraint,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel()
 		);
-		// diagram copy
-		BinaryModelRel newModelRelType2 = EcoreUtil.copy(newModelRelType);
-		multiModel.getModels().add(newModelRelType2);
+		MMTFRegistry.updateRepository(multiModel);
 		//TODO MMTF: everything should go into createlightmodelreltype
-		newModelRelType2.getModels().add(getSource());
-		newModelRelType2.getModels().add(getTarget());
-		newModelRelType2.getModelRefs().get(0).setReferencedObject(getSource());
-		newModelRelType2.getModelRefs().get(1).setReferencedObject(getTarget());
-		for (ModelElementReference newModelElemTypeRef2 : newModelRelType2.getModelRefs().get(0).getElementRefs()) {
-			for (ModelElement modelElemType2 : getSource().getElements()) {
-				if (modelElemType2.getUri().equals(((ModelElement) newModelElemTypeRef2.getObject()).getUri())) {
-					newModelElemTypeRef2.setReferencedObject(modelElemType2);
-					break;
-				}
-			}
-		}
-		for (ModelElementReference newModelElemTypeRef2 : newModelRelType2.getModelRefs().get(1).getElementRefs()) {
-			for (ModelElement modelElemType2 : getTarget().getElements()) {
-				if (modelElemType2.getUri().equals(((ModelElement) newModelElemTypeRef2.getObject()).getUri())) {
-					newModelElemTypeRef2.setReferencedObject(modelElemType2);
-					break;
-				}
-			}
-		}
+//		newModelRelType2.getModels().add(getSource());
+//		newModelRelType2.getModels().add(getTarget());
+//		newModelRelType2.getModelRefs().get(0).setReferencedObject(getSource());
+//		newModelRelType2.getModelRefs().get(1).setReferencedObject(getTarget());
+//		for (ModelElementReference newModelElemTypeRef2 : newModelRelType2.getModelRefs().get(0).getElementRefs()) {
+//			for (ModelElement modelElemType2 : getSource().getElements()) {
+//				if (modelElemType2.getUri().equals(((ModelElement) newModelElemTypeRef2.getObject()).getUri())) {
+//					newModelElemTypeRef2.setReferencedObject(modelElemType2);
+//					break;
+//				}
+//			}
+//		}
+//		for (ModelElementReference newModelElemTypeRef2 : newModelRelType2.getModelRefs().get(1).getElementRefs()) {
+//			for (ModelElement modelElemType2 : getTarget().getElements()) {
+//				if (modelElemType2.getUri().equals(((ModelElement) newModelElemTypeRef2.getObject()).getUri())) {
+//					newModelElemTypeRef2.setReferencedObject(modelElemType2);
+//					break;
+//				}
+//			}
+//		}
 
-		return newModelRelType2;
+		return newModelRelType;
 	}
 
 	/**
@@ -144,10 +139,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 
-		MultiModel owner = (MultiModel) getContainer();
-		BinaryModelRel newElement;
 		try {
-			newElement = (MultiModelConstraintChecker.isInstanceLevel(owner)) ?
+			BinaryModelRel newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getContainer())) ?
 				doExecuteInstanceLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

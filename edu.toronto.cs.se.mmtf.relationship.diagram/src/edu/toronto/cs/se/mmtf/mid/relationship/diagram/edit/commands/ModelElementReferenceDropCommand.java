@@ -15,14 +15,13 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
@@ -101,12 +100,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 			}
 			else {
 				String subElementTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
-				ModelElementReference newElementRefType = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedElement);
-				newElementRef = EcoreUtil.copy(newElementRefType);
-				ModelElement newElement = EcoreUtil.copy((ModelElement) newElementRefType.getObject());
-				newElementRef.setReferencedObject(newElement);
-				((Model) owner.getObject()).getElements().add(newElement);
-				owner.getElementRefs().add(newElementRef);
+				newElementRef = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedElement);
+				MMTFRegistry.updateRepository((MultiModel) owner.eContainer().eContainer());
 			}
 			doConfigure(newElementRef, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElementRef);

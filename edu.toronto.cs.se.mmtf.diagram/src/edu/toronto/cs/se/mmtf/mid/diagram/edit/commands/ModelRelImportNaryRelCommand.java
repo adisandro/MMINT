@@ -52,7 +52,18 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit()) && super.canExecute();
+		return
+			super.canExecute() &&
+			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit());
+	}
+
+	protected ModelRel doExecuteInstanceLevel() throws Exception {
+
+		MultiModel multiModel = (MultiModel) getElementToEdit();
+		URI newModelRelUri = MidDiagramTrait.selectModelToImport(true);
+		ModelRel newModelRel = MultiModelFactoryUtils.copyModelRel(multiModel, newModelRelUri);
+
+		return newModelRel;
 	}
 
 	/**
@@ -70,9 +81,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			MultiModel owner = (MultiModel) getElementToEdit();
-			URI modelRelUri = MidDiagramTrait.selectModelToImport(true);
-			ModelRel newElement = MultiModelFactoryUtils.copyModelRel(owner, modelRelUri);
+			ModelRel newElement = doExecuteInstanceLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

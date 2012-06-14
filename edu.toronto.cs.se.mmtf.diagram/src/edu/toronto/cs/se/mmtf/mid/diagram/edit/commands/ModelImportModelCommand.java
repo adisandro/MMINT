@@ -54,7 +54,23 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit()) && super.canExecute();
+		return
+			super.canExecute() &&
+			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit());
+	}
+
+	protected Model doExecuteInstanceLevel() throws Exception {
+
+		MultiModel multiModel = (MultiModel) getElementToEdit();
+		URI newModelUri = MidDiagramTrait.selectModelToImport(false);
+		MultiModelFactoryUtils.assertModelUnique(multiModel, newModelUri);
+		Model newModel = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, multiModel, newModelUri);
+		Editor newEditor = MultiModelFactoryUtils.createEditor(newModel);
+		if (newEditor != null) {
+			MultiModelFactoryUtils.addModelEditor(newEditor, multiModel);
+		}
+
+		return newModel;
 	}
 
 	/**
@@ -73,14 +89,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			URI modelUri = MidDiagramTrait.selectModelToImport(false);
-			MultiModel owner = (MultiModel) getElementToEdit();
-			MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-			Model newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, owner, modelUri);
-			Editor editor = MultiModelFactoryUtils.createEditor(newElement);
-			if (editor != null) {
-				MultiModelFactoryUtils.addModelEditor(editor, owner);
-			}
+			Model newElement = doExecuteInstanceLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
