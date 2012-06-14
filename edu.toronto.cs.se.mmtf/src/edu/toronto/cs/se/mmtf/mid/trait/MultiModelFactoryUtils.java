@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -71,14 +72,21 @@ public class MultiModelFactoryUtils {
 	private static void addExtendibleElement(ExtendibleElement element, ExtendibleElement type, MultiModel multiModel, URI elementUri, String name) {
 
 		// uri
+		String uri;
 		if (elementUri == null) {
 			elementUri = EcoreUtil.getURI(element);
+			uri = elementUri.toPlatformString(true);
 		}
-		else if (multiModel != null) {
-			// only models get added to the table, excluding the ones in a standalone model relationship
-			multiModel.getExtendibleTable().put(elementUri.toPlatformString(true), element);
+		else {
+			uri = (element instanceof ModelElement) ?
+				elementUri.toString().substring(18) : // strip "platform:/resource"
+				elementUri.toPlatformString(true);
+			if (multiModel != null) {
+				// excludes the extendible elements in a standalone model relationship
+				multiModel.getExtendibleTable().put(uri, element);
+			}
 		}
-		element.setUri(elementUri.toPlatformString(true));
+		element.setUri(uri);
 
 		// basic attributes
 		element.setName(name);
@@ -215,36 +223,53 @@ public class MultiModelFactoryUtils {
 	 *            The pointer to the real model element.
 	 * @return The model element reference just created.
 	 */
-	public static ModelElementReference createModelElementReference(ModelElement elementType, ModelReference modelRef, EObject elementPointer) {
+	public static ModelElementReference createModelElementReference(ModelElement elementType, ModelReference modelRef, EObject droppedElement) {
 
-		// create model element (duplicates are avoided by dnd policy)
-		//TODO MMTF: yeah but not if the model is involved in more than one relationship
-		ModelElement element = MidFactory.eINSTANCE.createModelElement();
-		ModelElementCategory category = (elementPointer instanceof EReference) ?
-			ModelElementCategory.RELATIONSHIP :
-			ModelElementCategory.ENTITY;
-		element.setCategory(category);
-		ItemProviderAdapter itemAdapter = null;
-		for (Adapter adapter : elementPointer.eAdapters()) {
-			if (adapter instanceof ItemProviderAdapter) {
-				itemAdapter = (ItemProviderAdapter) adapter;
-				break;
-			}
+		// check if model element is already used
+		URI emfUri = EcoreUtil.getURI(droppedElement);
+		Model model = (Model) modelRef.getObject();
+		ModelElement modelElem = null;
+		MultiModel multiModel = null;
+		if (modelRef.eContainer().eContainer() == null) { // standalone model relationship
+			modelElem = getModelElementUnique(model, emfUri);
 		}
-		//TODO MMTF: trovare un modo di farlo funzionare sempre
-		//TODO MMTF: renderlo breve e leggibile in caso di TYPES (getName() e basta?)
-		String name = (itemAdapter == null) ? "" : itemAdapter.getText(elementPointer);
-		((Model) modelRef.getObject()).getElements().add(element);
-		//TODO MMTF: disquisire su che cavolo di uri va a finire qua dentro e come usare classLiteral
-		addExtendibleElement(element, elementType, null, null, name);
+		else {
+			multiModel = (MultiModel) model.eContainer();
+			modelElem = getModelElementUnique(multiModel, emfUri);
+		}
+
+		// create model element
+		if (modelElem == null) {
+
+			modelElem = MidFactory.eINSTANCE.createModelElement();
+			ModelElementCategory category = (droppedElement instanceof EReference) ?
+				ModelElementCategory.RELATIONSHIP :
+				ModelElementCategory.ENTITY;
+			modelElem.setCategory(category);
+
+			ItemProviderAdapter itemAdapter = null;
+			for (Adapter adapter : droppedElement.eAdapters()) {
+				if (adapter instanceof ItemProviderAdapter) {
+					itemAdapter = (ItemProviderAdapter) adapter;
+					break;
+				}
+			}
+			String name = (itemAdapter == null) ?
+				MMTFRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement) :
+				itemAdapter.getText(droppedElement);
+
+			//TODO MMTF: disquisire su che cavolo di uri va a finire qua dentro e come usare classLiteral
+			addExtendibleElement(modelElem, elementType, multiModel, emfUri, name);
+			model.getElements().add(modelElem);
+		}
 
 		// create model element reference
 		ModelElementReference modelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 		if (modelRef.eContainer().eContainer() == null) { // standalone model relationship
-			modelElemRef.setContainedObject(element);
+			modelElemRef.setContainedObject(modelElem);
 		}
 		else {
-			modelElemRef.setReferencedObject(element);
+			modelElemRef.setReferencedObject(modelElem);
 		}
 		modelRef.getElementRefs().add(modelElemRef);
 
@@ -411,9 +436,13 @@ public class MultiModelFactoryUtils {
 	public static void removeModel(Model model) {
 
 		MultiModel multiModel = (MultiModel) model.eContainer();
-		multiModel.getExtendibleTable().removeKey(model.getUri());
+		EMap<String, ExtendibleElement> extendibleTable = multiModel.getExtendibleTable();
+		extendibleTable.removeKey(model.getUri());
 		for (Editor editor : model.getEditors()) {
 			removeEditor(editor);
+		}
+		for (ModelElement modelElem : model.getElements()) {
+			extendibleTable.removeKey(modelElem.getUri());
 		}
 	}
 
@@ -477,9 +506,18 @@ public class MultiModelFactoryUtils {
 		if (model != null && model instanceof Model) {
 			return (Model) model;
 		}
-		else {
-			return null;
+
+		return null;
+	}
+
+	public static ModelElement getModelElementUnique(MultiModel multiModel, URI modelElemUri) {
+
+		ExtendibleElement modelElem = multiModel.getExtendibleTable().get(modelElemUri.toString().substring(18)); // strip "platform:/resource"
+		if (modelElem != null && modelElem instanceof ModelElement) {
+			return (ModelElement) modelElem;
 		}
+
+		return null;
 	}
 
 	/**
@@ -494,9 +532,22 @@ public class MultiModelFactoryUtils {
 	 */
 	public static Model getModelUnique(ModelRel modelRel, URI modelUri) {
 
+		String uri = modelUri.toPlatformString(true);
 		for (Model model : modelRel.getModels()) {
-			if (modelUri.equals(model.getUri())) {
+			if (uri.equals(model.getUri())) {
 				return model;
+			}
+		}
+
+		return null;
+	}
+
+	public static ModelElement getModelElementUnique(Model model, URI modelElemUri) {
+
+		String uri = modelElemUri.toString().substring(18); // strip "platform:/resource"
+		for (ModelElement modelElem : model.getElements()) {
+			if (uri.equals(modelElem.getUri())) {
+				return modelElem;
 			}
 		}
 

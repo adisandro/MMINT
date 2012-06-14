@@ -763,26 +763,26 @@ modelRef:
 			return rootUri;
 		}
 
-		private static void addLightExtendibleType(ExtendibleElement type, ExtendibleElement supertype, String subtypeUriFragment, String subtypeName) throws MMTFException {
+		private static void addLightExtendibleType(ExtendibleElement newType, ExtendibleElement type, String newTypeUriFragment, String newTypeName) throws MMTFException {
 
 			// uri
-			String supertypeUri = (supertype == null) ?
-				getRootTypeUri(type) :
-				supertype.getUri();
-			String uri = supertypeUri + "/" + subtypeUriFragment;
+			String supertypeUri = (type == null) ?
+				getRootTypeUri(newType) :
+				type.getUri();
+			String uri = supertypeUri + "/" + newTypeUriFragment;
 			if (repository.getExtendibleTable().containsKey(uri)) {
 				throw new MMTFException("Extendible type's URI " + uri + " is already registered");
 			}
-			type.setUri(uri);
+			newType.setUri(uri);
 
 			// basic attributes
-			type.setName(subtypeName);
-			type.setLevel(MidLevel.TYPES);
+			newType.setName(newTypeName);
+			newType.setLevel(MidLevel.TYPES);
 
 			// supertype
-			type.setSupertype(supertype);
+			newType.setSupertype(type);
 
-			repository.getExtendibleTable().put(uri, type);
+			repository.getExtendibleTable().put(uri, newType);
 		}
 
 		private static void addLightModelType(Model model, Model superModel, String subModelName, String constraint) throws MMTFException {
@@ -832,65 +832,57 @@ modelRef:
 			return model;
 		}
 
-		public static ModelRel createLightModelRelType(ModelRel superModelRel, String subModelRelName, String constraint) throws MMTFException {
+		public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String constraint, EClass modelRelTypeClass) throws MMTFException {
 
-			ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(superModelRel.eClass());
-			addLightModelType(modelRel, superModelRel, subModelRelName, constraint);
+			ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
+			addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraint);
 			//TODO MMTF: how to make the user choose unbounded?
-			modelRel.setUnbounded(superModelRel.isUnbounded());
+			newModelRelType.setUnbounded(modelRelType.isUnbounded());
 
-			// handle relationship structure:
 			// models and containers
-			for (Model superModelRelModel : superModelRel.getModels()) {
-				Model model = MMTFRegistry.getModelType(superModelRelModel.getUri());
-				if (model != null) {
-					modelRel.getModels().add(model);
-					ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
-					modelRef.setReferencedObject(model);
-					modelRel.getModelRefs().add(modelRef);
-					// model elements
-					for (ModelElement superModelRelModelElement : superModelRelModel.getElements()) {
-						ModelElement element = MMTFRegistry.getModelElementType(superModelRelModelElement.getUri());
-						if (element == null) { // all model elements must exist
-							MMTF.removeModelType(modelRel.getUri());
-							throw new MMTFException("Model element type's URI " + superModelRelModelElement.getUri() + " is not registered");
-						}
-						// reference model element
-						ModelElementReference elementRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-						elementRef.setReferencedObject(element);
-						modelRef.getElementRefs().add(elementRef);
-					}
+			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+				Model modelType = (Model) modelTypeRef.getObject();
+				newModelRelType.getModels().add(modelType);
+				ModelReference newModelTypeRef = RelationshipFactory.eINSTANCE.createModelReference();
+				newModelTypeRef.setReferencedObject(modelType);
+				newModelRelType.getModelRefs().add(newModelTypeRef);
+				// reference model elements
+				for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+					ModelElementReference newModelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+					newModelElemTypeRef.setReferencedObject(modelElemTypeRef.getObject());
+					newModelTypeRef.getElementRefs().add(newModelElemTypeRef);
 				}
 			}
+
 			// links
-			for (Link superModelRelLink : superModelRel.getLinks()) {
-				Link link;
+			for (Link linkType : modelRelType.getLinks()) {
+				Link newLinkType;
 				try {
-					link = createLightLinkType(modelRel, null, null, superModelRelLink.getName(), superModelRelLink.eClass());
+					newLinkType = createLightLinkType(newModelRelType, null, null, linkType.getName(), linkType.eClass());
 				}
 				catch (MMTFException e) {
-					MMTF.removeModelType(modelRel.getUri());
+					MMTF.removeModelType(newModelRelType.getUri());
 					throw e;
 				}
-				link.setUnbounded(superModelRelLink.isUnbounded());
+				newLinkType.setUnbounded(linkType.isUnbounded());
 				// link elements
-				for (ModelElementReference superModelRelElementRef : superModelRelLink.getElementRefs()) {
-modelRef:
-					for (ModelReference modelRef : modelRel.getModelRefs()) {
-						for (ModelElementReference elementRef : modelRef.getElementRefs()) {
-							if (elementRef.getName().equals(superModelRelElementRef.getName())) {
-								link.getElementRefs().add(elementRef);
-								break modelRef;
+				for (ModelElementReference modelElemTypeRef : linkType.getElementRefs()) {
+newModelTypeRef:
+					for (ModelReference newModelTypeRef : newModelRelType.getModelRefs()) {
+						for (ModelElementReference newModelElemTypeRef : newModelTypeRef.getElementRefs()) {
+							if (newModelElemTypeRef.getName().equals(modelElemTypeRef.getName())) {
+								newLinkType.getElementRefs().add(newModelElemTypeRef);
+								break newModelTypeRef;
 							}
 						}
 					}
 				}
 			}
 
-			return modelRel;
+			return newModelRelType;
 		}
 
-		public static ModelElementReference createLightModelElementType(ModelReference modelRef, String subElementTypeName, EObject elementPointer) throws MMTFException {
+		public static ModelElementReference createLightModelElementType(ModelReference modelRef, String subModelElemTypeName, EObject droppedElement) throws MMTFException {
 
 			String modelTypeUri = ((Model) modelRef.getObject()).getUri();
 			String modelRelTypeUri = ((ModelRel) modelRef.eContainer()).getUri();
@@ -899,37 +891,30 @@ modelRef:
 				throw new MMTFException("Model relationship type's URI " + modelRelTypeUri + " is not registered");
 			}
 
-			ModelElementReference elementTypeRef = null;
+			ModelElementReference modelElemTypeRef = null;
 			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
 				Model modelType = (Model) modelTypeRef.getObject();
 				if (modelType.getUri().equals(modelTypeUri)) {
 
-					// create model element (duplicates are avoided by dnd policy)
-					//TODO MMTF: yeah but not if the model is involved in more than one relationship
-					ModelElement elementType = MidFactory.eINSTANCE.createModelElement();
-					ModelElementCategory category;
-					String classLiteral;
-					if (elementPointer instanceof EReference) {
-						category = ModelElementCategory.RELATIONSHIP;
-						classLiteral = ((EReference) elementPointer).getEContainingClass().getName() + "/" + ((EReference) elementPointer).getName();
-					}
-					else {
-						category = ModelElementCategory.ENTITY;
-						classLiteral = ((EClass) elementPointer).getName();
-					}
-					elementType.setCategory(category);
-					elementType.setClassLiteral(classLiteral);
-					modelType.getElements().add(elementType);
-					addLightExtendibleType(elementType, null, modelRelType.getName() + "/" + subElementTypeName, subElementTypeName);
+					// always create model element, it is specific of the model relationship type even if another one uses the same dropped element
+					ModelElement modelElemType = MidFactory.eINSTANCE.createModelElement();
+					ModelElementCategory category = (droppedElement instanceof EReference) ?
+						ModelElementCategory.RELATIONSHIP :
+						ModelElementCategory.ENTITY;
+					String classLiteral = getDroppedElementClassLiteral(MidLevel.TYPES, droppedElement);
+					modelElemType.setCategory(category);
+					modelElemType.setClassLiteral(classLiteral);
+					addLightExtendibleType(modelElemType, null, modelRelType.getName() + "/" + subModelElemTypeName, subModelElemTypeName);
+					modelType.getElements().add(modelElemType);
 
 					// create model element reference
-					elementTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-					elementTypeRef.setReferencedObject(elementType); // standalone model relationship here don't exist
-					modelTypeRef.getElementRefs().add(elementTypeRef);
+					modelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+					modelElemTypeRef.setReferencedObject(modelElemType); // standalone model relationship here don't exist
+					modelTypeRef.getElementRefs().add(modelElemTypeRef);
 				}
 			}
 
-			return elementTypeRef;
+			return modelElemTypeRef;
 		}
 
 		public static Link createLightLinkType(ModelRel modelRel, ModelElement srcElement, ModelElement tgtElement, String subLinkName, EClass linkClass) throws MMTFException {
@@ -1026,12 +1011,10 @@ tgtModelRefs:
 		public static Model getModelType(String modelTypeUri) {
 
 			ExtendibleElement model = getExtendibleType(modelTypeUri);
-			if (!(model instanceof Model)) {
-				return null;
-			}
-			else {
+			if (model instanceof Model) {
 				return (Model) model;
 			}
+			return null;
 		}
 
 		/**
@@ -1045,31 +1028,27 @@ tgtModelRefs:
 		public static ModelRel getModelRelType(String modelRelTypeUri) {
 
 			ExtendibleElement modelRel = getExtendibleType(modelRelTypeUri);
-			if (!(modelRel instanceof ModelRel)) {
-				return null;
-			}
-			else {
+			if (modelRel instanceof ModelRel) {
 				return (ModelRel) modelRel;
 			}
+			return null;
 		}
 
 		/**
 		 * Gets a model element type.
 		 * 
-		 * @param elementTypeUri
+		 * @param modelElemTypeUri
 		 *            The uri of the model element type.
 		 * @return The model element type, or null if its uri is not found or
 		 *         found not to be a model element.
 		 */
-		public static ModelElement getModelElementType(String elementTypeUri) {
+		public static ModelElement getModelElementType(String modelElemTypeUri) {
 
-			ExtendibleElement element = getExtendibleType(elementTypeUri);
-			if (!(element instanceof ModelElement)) {
-				return null;
-			}
-			else {
+			ExtendibleElement element = getExtendibleType(modelElemTypeUri);
+			if (element instanceof ModelElement) {
 				return (ModelElement) element;
 			}
+			return null;
 		}
 
 		/**
@@ -1317,13 +1296,46 @@ tgtModelRefs:
 		 * 
 		 * @return The tree dialog.
 		 */
-		public static ElementTreeSelectionDialog getModelRelTypeCreationDialog() {
+		public static ElementTreeSelectionDialog getModelRelTypeCreationDialog(String srcModelTypeUri, String tgtModelTypeUri) {
+
+			EList<String> modelRelTypeUris = null;
+
+			if (srcModelTypeUri != null && tgtModelTypeUri != null) {
+
+				EList<String> srcSupertypeUris = getSupertypeUris(srcModelTypeUri);
+				EList<String> tgtSupertypeUris = getSupertypeUris(tgtModelTypeUri);
+				modelRelTypeUris = new BasicEList<String>();
+
+				for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
+
+					// check cardinality
+					if (!(modelRelType.isUnbounded() || modelRelType instanceof BinaryModelRel)) {
+						continue;
+					}
+					// check allowed model types
+					boolean okSrc = false;
+					boolean okTgt = false;
+					for (Model modelType : modelRelType.getModels()) {
+						String modelTypeUri = modelType.getUri();
+						if (!okSrc && (modelTypeUri.equals(srcModelTypeUri) || srcSupertypeUris.contains(modelTypeUri))) {
+							okSrc = true;
+						}
+						if (!okTgt && (modelTypeUri.equals(tgtModelTypeUri) || tgtSupertypeUris.contains(modelTypeUri))) {
+							okTgt = true;
+						}
+						if (okSrc && okTgt) {
+							modelRelTypeUris.add(modelRelType.getUri());
+							break;
+						}
+					}
+				}
+			}
 
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 				shell,
 				new RepositoryTypesDialogLabelProvider(),
-				new MidTypesDialogContentProvider(repository, null, true, false, true, false)
+				new MidTypesDialogContentProvider(repository, modelRelTypeUris, true, false, true, false)
 			);
 			dialog.setInput(repository);
 
@@ -1461,6 +1473,24 @@ nextOperator:
 			}
 
 			return elemPointer;
+		}
+
+		public static String getDroppedElementClassLiteral(MidLevel level, EObject droppedElement) {
+
+			String classLiteral;
+			if (level == MidLevel.TYPES) {
+				classLiteral = (droppedElement instanceof EReference) ?
+					((EReference) droppedElement).getEContainingClass().getName() + "/" + ((EReference) droppedElement).getName() :
+					((EClass) droppedElement).getName();
+			}
+			else {
+				//TODO MMTF: EReference is probably wrong here, we should try
+				classLiteral = (droppedElement instanceof EReference) ?
+					((EReference) droppedElement).getEContainingClass().getName() + "/" + ((EReference) droppedElement).getName() :
+					droppedElement.eClass().getName();
+			}
+
+			return classLiteral;
 		}
 
 	}

@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
@@ -41,6 +40,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 	/** The dropped element. */
 	EObject droppedElement;
+	ModelElement modelElemType;
 
 	/**
 	 * Constructor: initialises the superclass and the dropped element.
@@ -54,6 +54,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		super(req);
 		this.droppedElement = droppedElement;
+		this.modelElemType = null;
 	}
 
 	/**
@@ -65,11 +66,17 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit().eContainer()) ||
-				MultiModelConstraintChecker.isAllowedModelElement((ModelRel) getElementToEdit().eContainer(), droppedElement)
-			);
+		if (!super.canExecute()) {
+			return false;
+		}
+		if (MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit().eContainer())) {
+			modelElemType = MultiModelConstraintChecker.getAllowedModelElementType((ModelReference) getElementToEdit(), droppedElement);
+			if (modelElemType == null) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -87,38 +94,31 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		ModelReference owner = (ModelReference) getElementToEdit();
-		ModelElementReference newElement = null;
+		ModelElementReference newElementRef = null;
 		try {
-			if (owner.getObject().getLevel() == MidLevel.TYPES) {
-				String subElementTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
-				ModelElementReference newElementType = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedElement);
-				newElement = EcoreUtil.copy(newElementType);
-				owner.getElementRefs().add(newElement);
+			if (MultiModelConstraintChecker.isInstanceLevel((ModelRel) owner.eContainer())) {
+				newElementRef = MultiModelFactoryUtils.createModelElementReference(modelElemType, owner, droppedElement);
 			}
 			else {
-				Model model = (Model) owner.getObject();
-				//TODO MMTF: go through supertypes?
-				for (ModelElement elementType : MMTFRegistry.getModelElementTypes((Model) model.getMetatype())) {
-					if (MultiModelConstraintChecker.isAllowedModelElementType(elementType, droppedElement)) {
-						newElement = MultiModelFactoryUtils.createModelElementReference(elementType, owner, droppedElement);
-						break;
-					}
-				}
-				if (newElement == null) {
-					throw new MMTFException("Dropped element type not found");
-				}
+				String subElementTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
+				ModelElementReference newElementRefType = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedElement);
+				newElementRef = EcoreUtil.copy(newElementRefType);
+				ModelElement newElement = EcoreUtil.copy((ModelElement) newElementRefType.getObject());
+				newElementRef.setReferencedObject(newElement);
+				((Model) owner.getObject()).getElements().add(newElement);
+				owner.getElementRefs().add(newElementRef);
 			}
-			doConfigure(newElement, monitor, info);
-			((CreateElementRequest) getRequest()).setNewElement(newElement);
-	
-			return CommandResult.newOKCommandResult(newElement);
+			doConfigure(newElementRef, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElementRef);
+
+			return CommandResult.newOKCommandResult(newElementRef);
 		}
 		catch (ExecutionException ee) {
 			throw ee;
 		}
 		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "No model element created", e);
-			return CommandResult.newErrorCommandResult("No model element created");
+			MMTFException.print(MMTFException.Type.WARNING, "No model element reference created", e);
+			return CommandResult.newErrorCommandResult("No model element reference created");
 		}
 	}
 

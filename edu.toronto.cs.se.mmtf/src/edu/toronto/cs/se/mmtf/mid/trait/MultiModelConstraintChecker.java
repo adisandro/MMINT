@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
@@ -116,12 +117,10 @@ public class MultiModelConstraintChecker {
 		return okElement;
 	}
 
-	public static boolean isAllowedModelElementType(ModelElement elementType, EObject droppedElement) {
-
-		String metaName;
-		String droppedClassLiteral;
+	private static boolean isAllowedModelElement(ModelElement elementType, EObject droppedElement) {
 
 		// entity-relationship differences
+		String metaName;
 		if (droppedElement instanceof EReference) {
 			if (elementType.getCategory() != ModelElementCategory.RELATIONSHIP) {
 				return false;
@@ -131,7 +130,6 @@ public class MultiModelConstraintChecker {
 			if (metaName == RELATIONSHIP_WILDCARD_FEATURE_NAME) {
 				return true;
 			}
-			droppedClassLiteral = ((EReference) droppedElement).getEContainingClass().getName() + "/" + ((EReference) droppedElement).getName();
 		}
 		else {
 			if (elementType.getCategory() != ModelElementCategory.ENTITY) {
@@ -142,10 +140,10 @@ public class MultiModelConstraintChecker {
 			if (metaName == ENTITY_WILDCARD_CLASSIFIER_NAME) {
 				return true;
 			}
-			droppedClassLiteral = droppedElement.eClass().getName();
 		}
 
 		// check dropped element compliance
+		String droppedClassLiteral = MMTFRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement);
 		if (elementType.getClassLiteral().equals(droppedClassLiteral)) {
 			return true;
 		}
@@ -153,20 +151,18 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static boolean isAllowedModelElement(ModelRel modelRel, EObject droppedElement) {
+	public static ModelElement getAllowedModelElementType(ModelReference modelRef, EObject droppedElement) {
 
-		boolean okElement = false;
-modelTypes:
-		for (Model modelType : ((ModelRel) modelRel.getMetatype()).getModels()) {
-			for (ModelElement elementType : modelType.getElements()) {
-				if (isAllowedModelElementType(elementType, droppedElement)) {
-					okElement = true;
-					break modelTypes;
+		ModelRel modelRelType = (ModelRel) ((ModelRel) modelRef.eContainer()).getMetatype();
+		for (Model modelType : modelRelType.getModels()) {
+			for (ModelElement modelElemType : modelType.getElements()) {
+				if (isAllowedModelElement(modelElemType, droppedElement)) {
+					return modelElemType;
 				}
 			}
 		}
 
-		return okElement;
+		return null;
 	}
 
 	/**

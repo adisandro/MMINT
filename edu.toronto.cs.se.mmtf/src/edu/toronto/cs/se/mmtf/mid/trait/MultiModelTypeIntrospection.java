@@ -348,23 +348,37 @@ linkTypes:
 		}
 	}
 
+	private static EObject getPointer(String uri) throws Exception {
+
+		URI emfUri = URI.createURI(uri, false, URI.FRAGMENT_LAST_SEPARATOR);
+
+		return getRoot(emfUri);
+	}
+
 	public static EObject getPointer(ModelElement modelElem) {
 
 		Model model = (Model) modelElem.eContainer();
 		EObject pointer;
 
-		if (modelElem.getLevel() == MidLevel.TYPES) {
-			pointer = MMTFRegistry.getModelTypeMetamodelElement(
-				model,
-				modelElem.getClassLiteral()
-			);
-		}
-		else {
-			//TODO MMTF: do I need to get the model first, and then the fragment, or can I get it at once? need to try
-			pointer = null;
-		}
+		try {
+			if (modelElem.getLevel() == MidLevel.TYPES) {
+				pointer = MMTFRegistry.getModelTypeMetamodelElement(
+					model,
+					modelElem.getClassLiteral()
+				);
+			}
+			else {
+				//TODO MMTF: do I need to get the model first, and then the fragment, or can I get it at once? need to try
+				pointer = getPointer(modelElem.getUri());
+			}
 
-		return pointer;
+			return pointer;
+		}
+		catch (Exception e) {
+
+			MMTFException.print(MMTFException.Type.WARNING, "Error getting pointer for model element " + modelElem.getUri(), e);
+			return null;
+		}
 	}
 
 }

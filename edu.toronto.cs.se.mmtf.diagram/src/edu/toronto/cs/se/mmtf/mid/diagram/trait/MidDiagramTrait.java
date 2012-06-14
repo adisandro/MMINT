@@ -157,9 +157,9 @@ public class MidDiagramTrait {
 	 * @throws MMTFException
 	 *             If the selection was not completed for any reason.
 	 */
-	public static ModelRel selectModelRelTypeToExtend() throws MMTFException {
+	public static ModelRel selectModelRelTypeToExtend(String srcModelTypeUri, String tgtModelTypeUri) throws MMTFException {
 
-		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelTypeCreationDialog();
+		ElementTreeSelectionDialog dialog = MMTFRegistry.getModelRelTypeCreationDialog(srcModelTypeUri, tgtModelTypeUri);
 		String title = "Create new light model relationship type";
 		String message = "Choose model relationship supertype";
 
@@ -186,8 +186,8 @@ public class MidDiagramTrait {
 			throw new MMTFException("Dialog cancel button pressed");
 		}
 		String text = dialog.getValue();
-		if (text == null || text.equals("")) {
-			throw new MMTFException("Dialog ok button pressed with no text");
+		if (text == null) {
+			text = "";
 		}
 
 		return text;

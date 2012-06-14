@@ -54,13 +54,13 @@
                   category="ENTITY"
                   classLiteral="ModelElementEntityWildcard"
                   name="EntityElem"
-                  uri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/ENTITY">
+                  uri="http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard">
             </modelElement>
             <modelElement
                   category="RELATIONSHIP"
                   classLiteral="ModelElementEntityWildcard/modelElementRelationshipWildcard"
                   name="RelElem"
-                  uri="http:///edu/toronto/cs/se/mmtf/Model/ModelElement/RELATIONSHIP">
+                  uri="http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard/modelElementRelationshipWildcard">
             </modelElement>
          </model>
          <link

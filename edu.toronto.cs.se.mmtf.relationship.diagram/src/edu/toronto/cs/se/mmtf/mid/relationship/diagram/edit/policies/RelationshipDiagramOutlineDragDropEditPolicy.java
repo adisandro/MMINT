@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -37,6 +36,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ModelElemen
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
  * The drag and drop edit policy for the Mapping diagram (i.e. a mapping
@@ -46,6 +46,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes
  * 
  */
 public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDropEditPolicy {
+
+	private final static String METAMODEL_FRAGMENT_SEPARATOR = "#//";
 
 	/**
 	 * Gets the command to handle objects dropped into the Mapping diagram.
@@ -68,25 +70,30 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 			}
 			EObject droppedElement = (EObject) nextObject;
 			URI uri = EcoreUtil.getURI(droppedElement);
-			String modelUri = uri.toPlatformString(true);
-			if (modelUri == null) { // MidLevel.TYPES
-				String[] pieces = uri.toString().split("#//");
+			String modelUri, modelElemUri;
+			if (MultiModelConstraintChecker.isInstanceLevel(root)) {
+				modelUri = uri.toPlatformString(true);
+				modelElemUri = uri.toString().substring(18); // strip "platform:/resource"
+			}
+			else {
+				String[] pieces = uri.toString().split(METAMODEL_FRAGMENT_SEPARATOR);
 				modelUri = pieces[0];
-				String metamodelFragment = pieces[1];
-				Model modelType = MMTFRegistry.getModelType(modelUri);
-				if (modelType == null) {
-					continue;
-				}
-				droppedElement = MMTFRegistry.getModelTypeMetamodelElement(modelType, metamodelFragment);
+				modelElemUri = pieces[1];
 			}
 
 references:
 			for (ModelReference modelRef : root.getModelRefs()) {
 				if (modelUri.equals(((Model) modelRef.getObject()).getUri())) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) { // avoid duplicates
-						//TODO MMTF: is this a proper check? two different pointer refs with same structures and values can exist
-						if (EcoreUtil.equals(((ModelElement) elementRef.getObject()).getPointer(), droppedElement)) {
-							continue references;
+						if (MultiModelConstraintChecker.isInstanceLevel(root)) {
+							if (EcoreUtil.equals(((ModelElement) elementRef.getObject()).getPointer(), droppedElement)) {
+								continue references;
+							}
+						}
+						else {
+							if (((ModelElement) elementRef.getObject()).getUri().equals(modelElemUri)) {
+								continue references;
+							}
 						}
 					}
 					EReference containment = (EReference) modelRef.eClass().getEStructuralFeature(RelationshipPackage.MODEL_REFERENCE__ELEMENT_REFS);
