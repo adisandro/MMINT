@@ -47,6 +47,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorUtil;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
  * @generated
@@ -98,7 +99,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated
 		 */
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+		protected CommandResult doExecuteWithResultGen(IProgressMonitor monitor,
 				IAdaptable info) throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
@@ -108,6 +109,30 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				URI uri = EcoreUtil.getURI(diagram);
 				String editorName = uri.lastSegment() + '#'
 						+ diagram.eResource().getContents().indexOf(diagram);
+				IEditorInput editorInput = new URIEditorInput(uri, editorName);
+				IWorkbenchPage page = PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getActivePage();
+				page.openEditor(editorInput, getEditorID());
+				return CommandResult.newOKCommandResult();
+			} catch (Exception ex) {
+				throw new ExecutionException("Can't open diagram", ex);
+			}
+		}
+
+		/**
+		 * Sets the title of the diagram using the model relationship name.
+		 * 
+		 * @generated NOT
+		 */
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+				IAdaptable info) throws ExecutionException {
+			try {
+				Diagram diagram = getDiagramToOpen();
+				if (diagram == null) {
+					diagram = intializeNewDiagram();
+				}
+				URI uri = EcoreUtil.getURI(diagram);
+				String editorName = ((ModelRel) diagram.getElement()).getName() + ".relationshipdiag";
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);
 				IWorkbenchPage page = PlatformUI.getWorkbench()
 						.getActiveWorkbenchWindow().getActivePage();

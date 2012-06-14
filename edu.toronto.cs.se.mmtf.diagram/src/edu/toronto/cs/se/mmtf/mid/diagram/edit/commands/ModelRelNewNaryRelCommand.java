@@ -58,6 +58,45 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return super.canExecute();
 	}
 
+	protected ModelRel doExecuteInstanceLevel() throws Exception {
+
+		MultiModel multiModel = (MultiModel) getElementToEdit();
+		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(null, null);
+		ModelRel newModelRel = MultiModelFactoryUtils.createModelRel(
+			modelRelType,
+			ModelOrigin.CREATED,
+			multiModel,
+			null,
+			RelationshipPackage.eINSTANCE.getModelRel()
+		);
+
+		return newModelRel;
+	}
+
+	protected ModelRel doExecuteTypesLevel() throws MMTFException {
+
+		MultiModel multiModel = (MultiModel) getElementToEdit();
+		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(null, null);
+		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
+		String constraint = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
+		ModelRel newModelRelType = MMTFRegistry.createLightModelRelType(
+			modelRelType,
+			newModelRelTypeName,
+			constraint,
+			RelationshipPackage.eINSTANCE.getModelRel()
+		);
+		// diagram copy
+		ModelRel newModelRelType2 = EcoreUtil.copy(newModelRelType);
+		multiModel.getModels().add(newModelRelType2);
+		//TODO MMTF: how to automate this? little extendible table as return from createlighttype (for cycle->setsupertype,add2table)?
+		newModelRelType2.setSupertype(
+			multiModel.getExtendibleTable().get(newModelRelType.getSupertype().getUri())
+		);
+		multiModel.getExtendibleTable().put(newModelRelType2.getUri(), newModelRelType2);
+
+		return newModelRelType2;
+	}
+
 	/**
 	 * Creates a new model relationship.
 	 * 
@@ -75,35 +114,9 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		MultiModel owner = (MultiModel) getElementToEdit();
 		ModelRel newElement;
 		try {
-			if (MultiModelConstraintChecker.isInstanceLevel(owner)) {
-				ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(null, null);
-				newElement = MultiModelFactoryUtils.createModelRel(
-					modelRelType,
-					ModelOrigin.CREATED,
-					owner,
-					null,
-					RelationshipPackage.eINSTANCE.getModelRel()
-				);
-			}
-			else {
-				ModelRel superModelRelType = MidDiagramTrait.selectModelRelTypeToExtend(null, null);
-				String subModelRelTypeName = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
-				String constraint = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
-				ModelRel newElementType = MMTFRegistry.createLightModelRelType(
-					superModelRelType,
-					subModelRelTypeName,
-					constraint,
-					RelationshipPackage.eINSTANCE.getModelRel()
-				);
-				// diagram copy
-				newElement = EcoreUtil.copy(newElementType);
-				owner.getModels().add(newElement);
-				//TODO MMTF: how to automate this? little extendible table as return from createlighttype (for cycle->setsupertype,add2table)?
-				newElement.setSupertype(
-						owner.getExtendibleTable().get(newElementType.getSupertype().getUri())
-					);
-				owner.getExtendibleTable().put(newElement.getUri(), newElement);
-			}
+			newElement = (MultiModelConstraintChecker.isInstanceLevel(owner)) ?
+				doExecuteInstanceLevel() :
+				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	
