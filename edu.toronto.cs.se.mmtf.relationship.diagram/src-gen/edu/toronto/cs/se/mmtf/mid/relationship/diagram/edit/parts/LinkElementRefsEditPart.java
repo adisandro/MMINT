@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import org.eclipse.swt.graphics.Color;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkElementRefsItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkElementRefsSemanticEditPolicy;
 
 /**
  * @generated
@@ -50,6 +51,8 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new LinkElementRefsItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new LinkElementRefsSemanticEditPolicy());
 	}
 
 	/**
