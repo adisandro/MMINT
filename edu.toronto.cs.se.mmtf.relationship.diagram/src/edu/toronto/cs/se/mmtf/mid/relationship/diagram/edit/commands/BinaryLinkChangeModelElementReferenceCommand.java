@@ -15,6 +15,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
@@ -48,7 +50,11 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	@Override
 	public boolean canExecute() {
 
-		return super.canExecute();
+		return
+			super.canExecute() && (
+				MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelElementTypeReference(getLink())
+			);
 	}
 
 	/**
@@ -73,8 +79,10 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 		ModelRel container = (ModelRel) getLink().eContainer();
 
 		return
-			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), getNewSource(), target) &&
-			MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewSource());
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), getNewSource(), target) && (
+				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewSource())
+			);
 	}
 
 	/**
@@ -99,8 +107,10 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 		ModelRel container = (ModelRel) getLink().eContainer();
 
 		return
-			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), source, getNewTarget()) &&
-			MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewTarget());
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), source, getNewTarget()) && (
+				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewTarget())
+			);
 	}
 
 	/**
@@ -114,6 +124,9 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		getLink().getElementRefs().set(0, getNewSource());
+		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer())) {
+			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer().eContainer());
+		}
 
 		return CommandResult.newOKCommandResult(getLink());
 	}
@@ -129,6 +142,9 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		getLink().getElementRefs().set(1, getNewTarget());
+		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer())) {
+			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer().eContainer());
+		}
 
 		return CommandResult.newOKCommandResult(getLink());
 	}

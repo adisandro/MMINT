@@ -11,17 +11,29 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 
+import java.util.Iterator;
+
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkChangeModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkNewBinaryLinkCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkAddModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkChangeModelElementReferenceCommand;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkRemoveModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.LinkElementRefsEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
 
 /**
@@ -31,6 +43,53 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes
  * 
  */
 public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferenceItemSemanticEditPolicy {
+
+	@Override
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+
+		View view = (View) getHost().getModel();
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
+				getEditingDomain(), null);
+		cmd.setTransactionNestingEnabled(false);
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (MidVisualIDRegistry.getVisualID(incomingLink) == LinkElementRefsEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new LinkRemoveModelElementReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+		}
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge) it.next();
+			if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+		}
+		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
+		if (annotation == null) {
+			// there are indirectly referenced children, need extra commands: false
+			addDestroyShortcutsCommand(cmd, view);
+			// delete host element
+			cmd.add(new DestroyElementCommand(req));
+		} else {
+			cmd.add(new DeleteCommand(getEditingDomain(), view));
+		}
+		return getGEFWrapper(cmd.reduce());
+	}
 
 	/**
 	 * Gets the command to start creating a new link originating from a model

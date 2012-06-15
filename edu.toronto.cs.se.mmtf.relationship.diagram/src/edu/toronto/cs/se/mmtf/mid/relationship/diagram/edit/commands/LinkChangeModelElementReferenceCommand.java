@@ -11,8 +11,13 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
@@ -43,7 +48,11 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 	@Override
 	public boolean canExecute() {
 
-		return super.canExecute();
+		return
+			super.canExecute() && (
+				MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelElementTypeReference(getOldSource())
+			);
 	}
 
 	/**
@@ -55,8 +64,10 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 	protected boolean canReorientSource() {
 
 		return
-			super.canReorientSource() &&
-			MultiModelConstraintChecker.isAllowedModelElementReference(getNewSource(), getOldTarget());
+			super.canReorientSource() && (
+				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelElementReference(getNewSource(), getOldTarget())
+			);
 	}
 
 	/**
@@ -69,8 +80,32 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 	protected boolean canReorientTarget() {
 
 		return
-			super.canReorientTarget() &&
-			MultiModelConstraintChecker.isAllowedModelElementReference(getOldSource(), getNewTarget());
+			super.canReorientTarget() && (
+				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelElementReference(getOldSource(), getNewTarget())
+			);
+	}
+
+	@Override
+	protected CommandResult reorientSource() throws ExecutionException {
+
+		CommandResult result = super.reorientSource();
+		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer())) {
+			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer().eContainer());
+		}
+
+		return result;
+	}
+
+	@Override
+	protected CommandResult reorientTarget() throws ExecutionException {
+
+		CommandResult result = super.reorientTarget();
+		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer())) {
+			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer().eContainer());
+		}
+
+		return result;
 	}
 
 }

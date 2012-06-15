@@ -54,7 +54,7 @@ public class ModelReferenceSemanticEditPolicy extends ModelReferenceItemSemantic
 			return UnexecutableCommand.INSTANCE;
 		}
 		else {
-			// this is equivalent to delete a model of a model relationship in the Mid diagram
+			// this is equivalent to deleting a model of a model relationship in the Mid diagram
 			// plus refreshing the outline
 			CompoundCommand ccommand = new CompoundCommand("Delete model");
 			EReference containing = (EReference) modelRel.eClass().getEStructuralFeature(RelationshipPackage.MODEL_REL__MODELS);

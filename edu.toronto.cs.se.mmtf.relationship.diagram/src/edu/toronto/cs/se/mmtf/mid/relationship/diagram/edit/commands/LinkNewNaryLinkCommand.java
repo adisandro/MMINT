@@ -14,18 +14,18 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -58,6 +58,31 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 		return super.canExecute();
 	}
 
+	protected Link doExecuteInstancesLevel() throws Exception {
+
+		ModelRel modelRel = (ModelRel) getElementToEdit();
+		Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(modelRel, null, null);
+		Link newLink = MultiModelFactoryUtils.createLink(linkType, modelRel, RelationshipPackage.eINSTANCE.getLink());
+
+		return newLink;
+	}
+
+	protected Link doExecuteTypesLevel() throws MMTFException {
+
+		ModelRel modelRelType = (ModelRel) getElementToEdit();
+		String newLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
+		Link newLinkType = MMTFRegistry.createLightLinkType(
+			modelRelType,
+			null,
+			null,
+			newLinkTypeName,
+			RelationshipPackage.eINSTANCE.getLink()
+		);
+		MMTFRegistry.updateRepository((MultiModel) modelRelType.eContainer());
+
+		return newLinkType;
+	}
+
 	/**
 	 * Creates a new link.
 	 * 
@@ -72,25 +97,10 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelRel owner = (ModelRel) getElementToEdit();
-		Link newElement;
 		try {
-			if (owner.getLevel() == MidLevel.TYPES) {
-				String subLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
-				Link newElementType = MMTFRegistry.createLightLinkType(
-					owner,
-					null,
-					null,
-					subLinkTypeName,
-					RelationshipPackage.eINSTANCE.getLink()
-				);
-				newElement = EcoreUtil.copy(newElementType);
-				owner.getLinks().add(newElement);
-			}
-			else {
-				Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(owner, null, null);
-				newElement = MultiModelFactoryUtils.createLink(linkType, owner, RelationshipPackage.eINSTANCE.getLink());
-			}
+			Link newElement = (MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit())) ?
+				doExecuteInstancesLevel() :
+				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

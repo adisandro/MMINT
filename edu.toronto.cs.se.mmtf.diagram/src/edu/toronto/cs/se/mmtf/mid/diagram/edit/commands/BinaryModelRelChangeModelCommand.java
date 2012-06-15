@@ -120,6 +120,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
+		getLink().getModels().set(0, getNewSource());
 		if (MultiModelConstraintChecker.isInstanceLevel(getLink())) {
 			MultiModelFactoryUtils.removeModelReference(getLink(), getOldSource());
 			MultiModelFactoryUtils.createModelReference(getLink(), getNewSource());
@@ -129,7 +130,6 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 			MMTFRegistry.createLightModelTypeRef(getLink(), getNewSource());
 			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer());
 		}
-		getLink().getModels().set(0, getNewSource());
 
 		return CommandResult.newOKCommandResult(getLink());
 	}
@@ -144,6 +144,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
+		getLink().getModels().set(1, getNewTarget());
 		if (MultiModelConstraintChecker.isInstanceLevel(getLink())) {
 			MultiModelFactoryUtils.removeModelReference(getLink(), getOldTarget());
 			MultiModelFactoryUtils.createModelReference(getLink(), getNewTarget());
@@ -153,7 +154,6 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 			MMTFRegistry.createLightModelTypeRef(getLink(), getNewTarget());
 			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer());
 		}
-		getLink().getModels().set(1, getNewTarget());
 
 		return CommandResult.newOKCommandResult(getLink());
 	}

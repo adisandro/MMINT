@@ -285,6 +285,10 @@
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="EditPolicyRoles.SEMANTIC_ROLE"
+          editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkElementRefsSemanticEditPolicy"/>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature

@@ -78,6 +78,24 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		return true;
 	}
 
+	protected ModelElementReference doExecuteInstancesLevel() {
+
+		ModelReference modelTypeRef = (ModelReference) getElementToEdit();
+		ModelElementReference newModelElemTypeRef = MultiModelFactoryUtils.createModelElementReference(modelElemType, modelTypeRef, droppedElement);
+
+		return newModelElemTypeRef;
+	}
+
+	protected ModelElementReference doExecuteTypesLevel() throws MMTFException {
+
+		ModelReference modelTypeRef = (ModelReference) getElementToEdit();
+		String newModelElemTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
+		ModelElementReference newModelElemTypeRef = MMTFRegistry.createLightModelElementType(modelTypeRef, newModelElemTypeName, droppedElement);
+		MMTFRegistry.updateRepository((MultiModel) modelTypeRef.eContainer().eContainer());
+
+		return newModelElemTypeRef;
+	}
+
 	/**
 	 * Creates a new model element reference from a dropped object.
 	 * 
@@ -92,21 +110,14 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelReference owner = (ModelReference) getElementToEdit();
-		ModelElementReference newElementRef = null;
 		try {
-			if (MultiModelConstraintChecker.isInstanceLevel((ModelRel) owner.eContainer())) {
-				newElementRef = MultiModelFactoryUtils.createModelElementReference(modelElemType, owner, droppedElement);
-			}
-			else {
-				String subElementTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
-				newElementRef = MMTFRegistry.createLightModelElementType(owner, subElementTypeName, droppedElement);
-				MMTFRegistry.updateRepository((MultiModel) owner.eContainer().eContainer());
-			}
-			doConfigure(newElementRef, monitor, info);
-			((CreateElementRequest) getRequest()).setNewElement(newElementRef);
+			ModelElementReference newElement = (MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit().eContainer())) ?
+				doExecuteInstancesLevel() :
+				doExecuteTypesLevel();
+			doConfigure(newElement, monitor, info);
+			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
-			return CommandResult.newOKCommandResult(newElementRef);
+			return CommandResult.newOKCommandResult(newElement);
 		}
 		catch (ExecutionException ee) {
 			throw ee;

@@ -11,9 +11,16 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
@@ -47,9 +54,30 @@ public class LinkAddModelElementReferenceCommand extends LinkElementRefsCreateCo
 	@Override
 	public boolean canExecute() {
 
+		boolean instance = MultiModelConstraintChecker.isInstanceLevel((ModelRel) getSource().eContainer());
+
 		return
-			super.canExecute() &&
-			MultiModelConstraintChecker.isAllowedModelElementReference(getSource(), getTarget());
+			super.canExecute() && (
+				(instance && MultiModelConstraintChecker.isAllowedModelElementReference(getSource(), getTarget())) ||
+				(!instance && MultiModelConstraintChecker.isAllowedModelElementTypeReference(getSource()))
+			);
+	}
+
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+		if (!canExecute()) {
+			throw new ExecutionException("Invalid arguments in create link command");
+		}
+
+		if (getSource() != null && getTarget() != null) {
+			getSource().getElementRefs().add(getTarget());
+			if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getSource().eContainer())) {
+				MMTFRegistry.updateRepository((MultiModel) getSource().eContainer().eContainer());
+			}
+		}
+
+		return CommandResult.newOKCommandResult();
 	}
 
 }

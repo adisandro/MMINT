@@ -108,18 +108,23 @@ public class MultiModelConstraintChecker {
 		return okModel;
 	}
 
-	public static boolean isAllowedModelElementReference(Link link, ModelElementReference elementRef) {
+	public static boolean isAllowedModelElementTypeReference(Link linkType) {
 
-		if (elementRef == null) { // model element reference not added yet
+		return true;
+	}
+
+	public static boolean isAllowedModelElementReference(Link link, ModelElementReference modelElemRef) {
+
+		if (modelElemRef == null) { // model element reference not added yet
 			return true;
 		}
 
-		String elementTypeUri = elementRef.getObject().getMetatypeUri();
+		String modelElemTypeUri = modelElemRef.getObject().getMetatypeUri();
 		boolean okElement = false;
-		for (ModelElementReference elementTypeRef : ((Link) link.getMetatype()).getElementRefs()) {
-			ModelElement elementType = (ModelElement) elementTypeRef.getObject();
-			// MMTFRegistry.isSubtypeOf(elementTypeUri, elementType.getUri()) check is not needed here
-			if (elementType.getUri().equals(elementTypeUri)) {
+		for (ModelElementReference modelElemTypeRef : ((Link) link.getMetatype()).getElementRefs()) {
+			ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+			// MMTFRegistry.isSubtypeOf(modelElemTypeUri, modelElemType.getUri()) check is not needed here
+			if (modelElemType.getUri().equals(modelElemTypeUri)) {
 				okElement = true;
 				break;
 			}

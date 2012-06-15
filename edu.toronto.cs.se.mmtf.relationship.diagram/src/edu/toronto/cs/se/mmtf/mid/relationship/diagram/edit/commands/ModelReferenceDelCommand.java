@@ -50,7 +50,11 @@ public class ModelReferenceDelCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 
-		return MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToDestroy().eContainer()) && super.canExecute();
+		return
+			super.canExecute() && (
+				MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToDestroy().eContainer()) ||
+				MultiModelConstraintChecker.isAllowedModelType((ModelRel) getElementToDestroy().eContainer())
+			);
 	}
 
 	/**

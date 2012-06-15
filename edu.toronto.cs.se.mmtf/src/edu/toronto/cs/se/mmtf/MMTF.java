@@ -914,7 +914,7 @@ newModelTypeRef:
 			return newModelElemTypeRef;
 		}
 
-		public static Link createLightLinkType(ModelRel modelRelType, ModelElement srcModelElemType, ModelElement tgtModelElemType, String newLinkTypeName, EClass newLinkTypeClass) throws MMTFException {
+		public static Link createLightLinkType(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef, String newLinkTypeName, EClass newLinkTypeClass) throws MMTFException {
 
 			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 			Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
@@ -923,33 +923,9 @@ newModelTypeRef:
 			newLinkType.setUnbounded(true);
 			modelRelType.getLinks().add(newLinkType);
 
-			if (srcModelElemType != null && tgtModelElemType != null) {
-				// search source
-				Model srcModelType = (Model) srcModelElemType.eContainer();
-srcModelTypeRefs:
-				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-					if (((Model) modelTypeRef.getObject()).getUri().equals(srcModelType.getUri())) {
-						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-							if (((ModelElement) modelElemTypeRef.getObject()).getUri().equals(srcModelElemType.getUri())) {
-								newLinkType.getElementRefs().add(modelElemTypeRef);
-								break srcModelTypeRefs;
-							}
-						}
-					}
-				}
-				// search target
-				Model tgtModelType = (Model) tgtModelElemType.eContainer();
-tgtModelTypeRefs:
-				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-					if (((Model) modelTypeRef.getObject()).getUri().equals(tgtModelType.getUri())) {
-						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-							if (((ModelElement) modelElemTypeRef.getObject()).getUri().equals(tgtModelElemType.getUri())) {
-								newLinkType.getElementRefs().add(modelElemTypeRef);
-								break tgtModelTypeRefs;
-							}
-						}
-					}
-				}
+			if (srcModelElemTypeRef != null && tgtModelElemTypeRef != null) {
+				newLinkType.getElementRefs().add(srcModelElemTypeRef);
+				newLinkType.getElementRefs().add(tgtModelElemTypeRef);
 			}
 
 			return newLinkType;

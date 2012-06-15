@@ -15,21 +15,20 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
@@ -67,6 +66,33 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 		return super.canExecute();
 	}
 
+	protected BinaryLink doExecuteInstancesLevel() throws Exception {
+
+		ModelRel modelRel = getContainer();
+		Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(modelRel, getSource(), getTarget());
+		BinaryLink newLink = (BinaryLink) MultiModelFactoryUtils.createLink(linkType, modelRel, RelationshipPackage.eINSTANCE.getBinaryLink());
+		newLink.getElementRefs().add(getSource());
+		newLink.getElementRefs().add(getTarget());
+
+		return newLink;
+	}
+
+	protected BinaryLink doExecuteTypesLevel() throws MMTFException {
+
+		ModelRel modelRelType = getContainer();
+		String newLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
+		BinaryLink newLinkType = (BinaryLink) MMTFRegistry.createLightLinkType(
+			modelRelType,
+			getSource(),
+			getTarget(),
+			newLinkTypeName,
+			RelationshipPackage.eINSTANCE.getBinaryLink()
+		);
+		MMTFRegistry.updateRepository((MultiModel) getContainer().eContainer());
+
+		return newLinkType;
+	}
+
 	/**
 	 * Creates a new binary link.
 	 * 
@@ -85,29 +111,10 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 
-		ModelRel owner = getContainer();
-		BinaryLink newElement;
 		try {
-			if (owner.getLevel() == MidLevel.TYPES) {
-				String subLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
-				BinaryLink newElementType = (BinaryLink) MMTFRegistry.createLightLinkType(
-					owner,
-					(ModelElement) getSource().getObject(),
-					(ModelElement) getTarget().getObject(),
-					subLinkTypeName,
-					RelationshipPackage.eINSTANCE.getBinaryLink()
-				);
-				newElement = EcoreUtil.copy(newElementType);
-				owner.getLinks().add(newElement);
-				newElement.getElementRefs().add(getSource());
-				newElement.getElementRefs().add(getTarget());
-			}
-			else {
-				Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(owner, getSource(), getTarget());
-				newElement = (BinaryLink) MultiModelFactoryUtils.createLink(linkType, owner, RelationshipPackage.eINSTANCE.getBinaryLink());
-				newElement.getElementRefs().add(getSource());
-				newElement.getElementRefs().add(getTarget());
-			}
+			BinaryLink newElement = MultiModelConstraintChecker.isInstanceLevel(getContainer()) ?
+				doExecuteInstancesLevel() :
+				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	
