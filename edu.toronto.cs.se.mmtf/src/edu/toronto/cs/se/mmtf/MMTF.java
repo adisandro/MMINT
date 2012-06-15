@@ -849,7 +849,7 @@ modelRef:
 			return newModelTypeRef;
 		}
 
-		public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String constraint, EClass modelRelTypeClass) throws MMTFException {
+		public static ModelRel createLightModelRelType(ModelRel modelRelType, Model srcModelType, Model tgtModelType, String newModelRelTypeName, String constraint, EClass modelRelTypeClass) throws MMTFException {
 
 			ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
 			addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraint);
@@ -857,14 +857,40 @@ modelRef:
 			newModelRelType.setUnbounded(modelRelType.isUnbounded());
 
 			// models and containers
-			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-				Model modelType = (Model) modelTypeRef.getObject();
-				newModelRelType.getModels().add(modelType);
-				ModelReference newModelTypeRef = createLightModelTypeRef(newModelRelType, modelType);
-				// model elements
-				for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-					ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-					createLightModelElementType(newModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
+			if (srcModelType != null && tgtModelType != null) { // binary model relationship type
+				newModelRelType.getModels().add(srcModelType);
+				ModelReference newSrcModelTypeRef = createLightModelTypeRef(newModelRelType, srcModelType);
+				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+					if (isSubtypeOf(srcModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
+						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+							createLightModelElementType(newSrcModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
+						}
+						break;
+					}
+				}
+				newModelRelType.getModels().add(tgtModelType);
+				ModelReference newTgtModelTypeRef = createLightModelTypeRef(newModelRelType, tgtModelType);
+				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+					if (isSubtypeOf(tgtModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
+						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+							createLightModelElementType(newTgtModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
+						}
+						break;
+					}
+				}
+			}
+			else {
+				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+					Model modelType = (Model) modelTypeRef.getObject();
+					newModelRelType.getModels().add(modelType);
+					ModelReference newModelTypeRef = createLightModelTypeRef(newModelRelType, modelType);
+					// model elements
+					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+						ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+						createLightModelElementType(newModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
+					}
 				}
 			}
 
@@ -923,6 +949,7 @@ newModelTypeRef:
 			newLinkType.setUnbounded(true);
 			modelRelType.getLinks().add(newLinkType);
 
+			// binary link type
 			if (srcModelElemTypeRef != null && tgtModelElemTypeRef != null) {
 				newLinkType.getElementRefs().add(srcModelElemTypeRef);
 				newLinkType.getElementRefs().add(tgtModelElemTypeRef);
@@ -970,8 +997,16 @@ newModelTypeRef:
 
 			MultiModel multiModel = (MultiModel) modelElemTypeRef.eContainer().eContainer().eContainer();
 			ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+			((Model) modelElemType.eContainer()).getElements().remove(modelElemType);
 			multiModel.getExtendibleTable().removeKey(modelElemType.getUri());
-			//TODO MMTF: remove also binary link types that are connected
+			for (Link linkType : modelElemTypeRef.getLinks()) {
+				// binary link types have no longer sense, delete them
+				if (linkType instanceof BinaryLink) {
+					linkType.getElementRefs().clear();
+					((ModelRel) linkType.eContainer()).getLinks().remove(linkType);
+					multiModel.getExtendibleTable().removeKey(linkType.getUri());
+				}
+			}
 		}
 
 		public static EList<String> getSupertypeUris(String subtypeUri) {

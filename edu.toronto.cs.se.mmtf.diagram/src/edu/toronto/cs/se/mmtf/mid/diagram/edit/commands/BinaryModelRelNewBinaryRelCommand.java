@@ -88,35 +88,15 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(multiModel, getSource().getUri(), getTarget().getUri());
 		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name");
 		String constraint = MidDiagramTrait.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint");
-		//TODO MMTF: much more complicated actually, supertype is fine but actual model endpoints are src and tgt
 		BinaryModelRel newModelRelType = (BinaryModelRel) MMTFRegistry.createLightModelRelType(
 			modelRelType,
+			getSource(),
+			getTarget(),
 			newModelRelTypeName,
 			constraint,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel()
 		);
 		MMTFRegistry.updateRepository(multiModel);
-		//TODO MMTF: everything should go into createlightmodelreltype
-//		newModelRelType2.getModels().add(getSource());
-//		newModelRelType2.getModels().add(getTarget());
-//		newModelRelType2.getModelRefs().get(0).setReferencedObject(getSource());
-//		newModelRelType2.getModelRefs().get(1).setReferencedObject(getTarget());
-//		for (ModelElementReference newModelElemTypeRef2 : newModelRelType2.getModelRefs().get(0).getElementRefs()) {
-//			for (ModelElement modelElemType2 : getSource().getElements()) {
-//				if (modelElemType2.getUri().equals(((ModelElement) newModelElemTypeRef2.getObject()).getUri())) {
-//					newModelElemTypeRef2.setReferencedObject(modelElemType2);
-//					break;
-//				}
-//			}
-//		}
-//		for (ModelElementReference newModelElemTypeRef2 : newModelRelType2.getModelRefs().get(1).getElementRefs()) {
-//			for (ModelElement modelElemType2 : getTarget().getElements()) {
-//				if (modelElemType2.getUri().equals(((ModelElement) newModelElemTypeRef2.getObject()).getUri())) {
-//					newModelElemTypeRef2.setReferencedObject(modelElemType2);
-//					break;
-//				}
-//			}
-//		}
 
 		return newModelRelType;
 	}

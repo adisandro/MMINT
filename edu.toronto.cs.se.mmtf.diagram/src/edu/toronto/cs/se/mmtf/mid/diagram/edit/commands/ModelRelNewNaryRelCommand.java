@@ -81,6 +81,8 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		ModelRel newModelRelType = MMTFRegistry.createLightModelRelType(
 			modelRelType,
+			null,
+			null,
 			newModelRelTypeName,
 			constraint,
 			RelationshipPackage.eINSTANCE.getModelRel()
