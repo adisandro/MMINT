@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
@@ -47,8 +48,10 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	public boolean canExecute() {
 
 		return
-			super.canExecute() &&
-			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getOldSource().eContainer());
+			super.canExecute() && (
+				MultiModelConstraintChecker.isInstanceLevel(getOldSource()) ||
+				MultiModelConstraintChecker.isAllowedModelType(getOldSource())
+			);
 	}
 
 	/**
@@ -61,8 +64,10 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	protected boolean canReorientSource() {
 
 		return
-			super.canReorientSource() &&
-			MultiModelConstraintChecker.isAllowedModel(getNewSource(), getOldTarget());
+			super.canReorientSource() && (
+				!MultiModelConstraintChecker.isInstanceLevel(getOldSource()) ||
+				MultiModelConstraintChecker.isAllowedModel(getNewSource(), getOldTarget())
+			);
 	}
 
 	/**
@@ -74,8 +79,10 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	protected boolean canReorientTarget() {
 
 		return
-			super.canReorientTarget() &&
-			MultiModelConstraintChecker.isAllowedModel(getOldSource(), getNewTarget());
+			super.canReorientTarget() && (
+				!MultiModelConstraintChecker.isInstanceLevel(getOldSource()) ||
+				MultiModelConstraintChecker.isAllowedModel(getOldSource(), getNewTarget())
+			);
 	}
 
 	/**
@@ -88,8 +95,15 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
-		MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
-		MultiModelFactoryUtils.createModelReference(getNewSource(), getOldTarget());
+		if (MultiModelConstraintChecker.isInstanceLevel(getOldSource())) {
+			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
+			MultiModelFactoryUtils.createModelReference(getNewSource(), getOldTarget());
+		}
+		else {
+			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
+			MMTFRegistry.createLightModelTypeRef(getNewSource(), getOldTarget());
+			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer());
+		}
 
 		return super.reorientSource();
 	}
@@ -104,8 +118,15 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
-		MultiModelFactoryUtils.createModelReference(getOldSource(), getNewTarget());
+		if (MultiModelConstraintChecker.isInstanceLevel(getOldSource())) {
+			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
+			MultiModelFactoryUtils.createModelReference(getOldSource(), getNewTarget());
+		}
+		else {
+			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
+			MMTFRegistry.createLightModelTypeRef(getOldSource(), getNewTarget());
+			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer());
+		}
 
 		return super.reorientTarget();
 	}

@@ -54,12 +54,12 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = MultiModelConstraintChecker.isInstanceLevel((MultiModel) getSource().eContainer());
+		boolean instance = MultiModelConstraintChecker.isInstanceLevel(getSource());
 
 		return
 			super.canExecute() && (
 				(instance && MultiModelConstraintChecker.isAllowedModel(getSource(), getTarget())) ||
-				(!instance && MultiModelConstraintChecker.isAllowedModelType(getSource(), getTarget()))
+				(!instance && MultiModelConstraintChecker.isAllowedModelType(getSource()))
 			);
 	}
 
@@ -95,7 +95,7 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getModels().add(getTarget());
-			if (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getSource().eContainer())) {
+			if (MultiModelConstraintChecker.isInstanceLevel(getSource())) {
 				doExecuteInstancesLevel();
 			}
 			else {

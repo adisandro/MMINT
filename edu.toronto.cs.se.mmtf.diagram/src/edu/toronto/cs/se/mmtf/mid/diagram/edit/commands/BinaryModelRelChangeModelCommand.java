@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
@@ -49,8 +50,10 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	public boolean canExecute() {
 
 		return
-			super.canExecute() &&
-			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getLink().eContainer());
+			super.canExecute() && (
+				MultiModelConstraintChecker.isInstanceLevel(getLink()) ||
+				MultiModelConstraintChecker.isAllowedModelType(getLink())
+			);
 	}
 
 	/**
@@ -74,8 +77,10 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		MultiModel container = (MultiModel) getLink().eContainer();
 
 		return
-			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), getNewSource(), target) &&
-			MultiModelConstraintChecker.isAllowedModel(getLink(), getNewSource());
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), getNewSource(), target) && (
+				!MultiModelConstraintChecker.isInstanceLevel(getLink()) ||
+				MultiModelConstraintChecker.isAllowedModel(getLink(), getNewSource())
+			);
 	}
 
 	/**
@@ -99,8 +104,10 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		MultiModel container = (MultiModel) getLink().eContainer();
 
 		return
-			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), source, getNewTarget()) &&
-			MultiModelConstraintChecker.isAllowedModel(getLink(), getNewTarget());
+			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), source, getNewTarget()) && (
+				!MultiModelConstraintChecker.isInstanceLevel(getLink()) ||
+				MultiModelConstraintChecker.isAllowedModel(getLink(), getNewTarget())
+			);
 	}
 
 	/**
@@ -113,8 +120,15 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
-		MultiModelFactoryUtils.removeModelReference(getLink(), getOldSource());
-		MultiModelFactoryUtils.createModelReference(getLink(), getNewSource());
+		if (MultiModelConstraintChecker.isInstanceLevel(getLink())) {
+			MultiModelFactoryUtils.removeModelReference(getLink(), getOldSource());
+			MultiModelFactoryUtils.createModelReference(getLink(), getNewSource());
+		}
+		else {
+			MMTFRegistry.removeLightModelTypeRef(getLink(), getOldSource());
+			MMTFRegistry.createLightModelTypeRef(getLink(), getNewSource());
+			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer());
+		}
 		getLink().getModels().set(0, getNewSource());
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -130,8 +144,15 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		MultiModelFactoryUtils.removeModelReference(getLink(), getOldTarget());
-		MultiModelFactoryUtils.createModelReference(getLink(), getNewTarget());
+		if (MultiModelConstraintChecker.isInstanceLevel(getLink())) {
+			MultiModelFactoryUtils.removeModelReference(getLink(), getOldTarget());
+			MultiModelFactoryUtils.createModelReference(getLink(), getNewTarget());
+		}
+		else {
+			MMTFRegistry.removeLightModelTypeRef(getLink(), getOldTarget());
+			MMTFRegistry.createLightModelTypeRef(getLink(), getNewTarget());
+			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer());
+		}
 		getLink().getModels().set(1, getNewTarget());
 
 		return CommandResult.newOKCommandResult(getLink());

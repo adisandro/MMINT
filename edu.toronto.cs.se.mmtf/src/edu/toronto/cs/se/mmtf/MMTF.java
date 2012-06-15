@@ -957,23 +957,27 @@ tgtModelTypeRefs:
 
 		public static void removeLightModelTypeRef(ModelRel modelRelType, Model modelType) {
 
-			//TODO MMTF: ricordarsi qua che gli elementi sono specifici della model rel, ergo vanno purgati dal model e dalla extendible table
-			for (ModelReference modelRef : modelRelType.getModelRefs()) {
-				if (modelRef.getObject() == modelType) {
-					modelRelType.getModelRefs().remove(modelRef);
-					ArrayList<Link> delLinks = new ArrayList<Link>();
-					for (ModelElementReference elementRef : modelRef.getElementRefs()) {
-						for (Link link : elementRef.getLinks()) {
-							// binary links have no longer sense, delete them later to avoid concurrent modification problems
-							if (link instanceof BinaryLink) {
-								delLinks.add(link);
+			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+			//TODO MMTF: if I enable binary rels to self how can I distinguish the right model ref to delete (every ref must be bidirectional)
+			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+				if (modelTypeRef.getObject() == modelType) {
+					modelRelType.getModelRefs().remove(modelTypeRef);
+					ArrayList<Link> delLinkTypes = new ArrayList<Link>();
+					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+						modelType.getElements().remove(modelElemTypeRef.getObject());
+						multiModel.getExtendibleTable().removeKey(((ModelElement) modelElemTypeRef.getObject()).getUri());
+						for (Link linkType : modelElemTypeRef.getLinks()) {
+							// binary link types have no longer sense, delete them later to avoid concurrent modification problems
+							if (linkType instanceof BinaryLink) {
+								delLinkTypes.add(linkType);
 							}
 						}
-						elementRef.getLinks().clear();
+						modelElemTypeRef.getLinks().clear();
 					}
-					for (Link delLink : delLinks) {
-						delLink.getElementRefs().clear();
-						modelRelType.getLinks().remove(delLink);
+					for (Link delLinkType : delLinkTypes) {
+						delLinkType.getElementRefs().clear();
+						modelRelType.getLinks().remove(delLinkType);
+						multiModel.getExtendibleTable().removeKey(delLinkType.getUri());
 					}
 					break;
 				}
