@@ -358,14 +358,17 @@ linkTypes:
 	public static EObject getPointer(ModelElement modelElem) {
 
 		Model model = (Model) modelElem.eContainer();
-		EObject pointer;
+		EObject pointer = null;
 
 		try {
 			if (modelElem.getLevel() == MidLevel.TYPES) {
-				pointer = MMTFRegistry.getModelTypeMetamodelElement(
-					model,
-					modelElem.getClassLiteral()
-				);
+				while (pointer == null && model != null) {
+					pointer = MMTFRegistry.getModelTypeMetamodelElement(
+						model,
+						modelElem.getClassLiteral()
+					);
+					model = (Model) model.getSupertype();
+				}
 			}
 			else {
 				//TODO MMTF: do I need to get the model first, and then the fragment, or can I get it at once? need to try

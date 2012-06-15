@@ -864,7 +864,7 @@ modelRef:
 					if (isSubtypeOf(srcModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
 						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
 							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-							createLightModelElementType(newSrcModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
+							createLightModelElementType(newSrcModelTypeRef, "Src" + modelElemType.getName(), modelElemType.getPointer());
 						}
 						break;
 					}
@@ -875,7 +875,7 @@ modelRef:
 					if (isSubtypeOf(tgtModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
 						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
 							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-							createLightModelElementType(newTgtModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
+							createLightModelElementType(newTgtModelTypeRef, "Tgt" + modelElemType.getName(), modelElemType.getPointer());
 						}
 						break;
 					}
@@ -903,9 +903,15 @@ modelRef:
 newModelTypeRef:
 					for (ModelReference newModelTypeRef : newModelRelType.getModelRefs()) {
 						for (ModelElementReference newModelElemTypeRef : newModelTypeRef.getElementRefs()) {
-							if (newModelElemTypeRef.getName().equals(modelElemTypeRef.getName())) {
+							if (
+								newModelElemTypeRef.getName().equals(modelElemTypeRef.getName()) || (
+									(srcModelType != null && tgtModelType != null) && (
+										newModelElemTypeRef.getName().equals("Src" + modelElemTypeRef.getName()) ||
+										newModelElemTypeRef.getName().equals("Tgt" + modelElemTypeRef.getName())
+									)
+								)
+							) {
 								newLinkType.getElementRefs().add(newModelElemTypeRef);
-								break newModelTypeRef;
 							}
 						}
 					}

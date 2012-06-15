@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -83,7 +84,12 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 
 references:
 			for (ModelReference modelRef : root.getModelRefs()) {
-				if (modelUri.equals(((Model) modelRef.getObject()).getUri())) {
+				if (
+					modelUri.equals(((Model) modelRef.getObject()).getUri()) || (
+						!MultiModelConstraintChecker.isInstancesLevel(root) &&
+						MMTFRegistry.isSubtypeOf(((Model) modelRef.getObject()).getUri(), modelUri) // light types
+					)
+				) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) { // avoid duplicates
 						if (MultiModelConstraintChecker.isInstancesLevel(root)) {
 							if (((ModelElement) elementRef.getObject()).getUri().equals(modelElemUri)) {

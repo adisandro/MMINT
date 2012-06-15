@@ -133,25 +133,40 @@ public class MultiModelConstraintChecker {
 		return okElement;
 	}
 
-	private static boolean isAllowedModelElement(ModelElement elementType, EObject droppedElement) {
+	private static boolean isAllowedModelElement(ModelRel modelRelType, ModelElement modelElemType, EObject droppedElement) {
+
+		// check only model element types of the current model relationship type
+		boolean okRel = false;
+rel:
+		for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+			for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+				if (((ModelElement) modelElemTypeRef.getObject()).getUri().equals(modelElemType.getUri())) {
+					okRel = true;
+					break rel;
+				}
+			}
+		}
+		if (!okRel) {
+			return false;
+		}
 
 		// entity-relationship differences
 		String metaName;
 		if (droppedElement instanceof EReference) {
-			if (elementType.getCategory() != ModelElementCategory.RELATIONSHIP) {
+			if (modelElemType.getCategory() != ModelElementCategory.RELATIONSHIP) {
 				return false;
 			}
-			EStructuralFeature feature = (EStructuralFeature) elementType.getPointer();
+			EStructuralFeature feature = (EStructuralFeature) modelElemType.getPointer();
 			metaName = feature.getName();
 			if (metaName == RELATIONSHIP_WILDCARD_FEATURE_NAME) {
 				return true;
 			}
 		}
 		else {
-			if (elementType.getCategory() != ModelElementCategory.ENTITY) {
+			if (modelElemType.getCategory() != ModelElementCategory.ENTITY) {
 				return false;
 			}
-			EClassifier classifier = (EClassifier) elementType.getPointer();
+			EClassifier classifier = (EClassifier) modelElemType.getPointer();
 			metaName = classifier.getName();
 			if (metaName == ENTITY_WILDCARD_CLASSIFIER_NAME) {
 				return true;
@@ -160,7 +175,7 @@ public class MultiModelConstraintChecker {
 
 		// check dropped element compliance
 		String droppedClassLiteral = MMTFRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement);
-		if (elementType.getClassLiteral().equals(droppedClassLiteral)) {
+		if (modelElemType.getClassLiteral().equals(droppedClassLiteral)) {
 			return true;
 		}
 
@@ -169,10 +184,13 @@ public class MultiModelConstraintChecker {
 
 	public static ModelElement getAllowedModelElementType(ModelReference modelRef, EObject droppedElement) {
 
+		// we need to look into the model relationship type instead of the referenced model type because
+		// that is the one who decides the types of the endpoint model types and their elements
+		// (e.g. ModelRel works on all Models, so I should look into ModelRel's ModelElements contained by Model)
 		ModelRel modelRelType = (ModelRel) ((ModelRel) modelRef.eContainer()).getMetatype();
 		for (Model modelType : modelRelType.getModels()) {
 			for (ModelElement modelElemType : modelType.getElements()) {
-				if (isAllowedModelElement(modelElemType, droppedElement)) {
+				if (isAllowedModelElement(modelRelType, modelElemType, droppedElement)) {
 					return modelElemType;
 				}
 			}
