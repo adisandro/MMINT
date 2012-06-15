@@ -59,19 +59,21 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 			);
 	}
 
-	protected void doExecuteInstancesLevel() {
+	protected CommandResult doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelRel modelRel = (ModelRel) getContainer();
-		Model model = (Model) getReferencedObject();
-		MultiModelFactoryUtils.removeModelReference(modelRel, model);
+		MultiModelFactoryUtils.removeModelReference((ModelRel) getContainer(), (Model) getReferencedObject());
+
+		return super.doExecuteWithResult(monitor, info);
 	}
 
-	protected void doExecuteTypesLevel() {
+	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ModelRel modelRelType = (ModelRel) getContainer();
-		Model modelType = (Model) getReferencedObject();
-		MMTFRegistry.removeLightModelTypeRef(modelRelType, modelType);
-		MMTFRegistry.updateRepository((MultiModel) modelRelType.eContainer());
+		MultiModel multiModel = (MultiModel) getContainer().eContainer();
+		MMTFRegistry.removeLightModelTypeRef((ModelRel) getContainer(), (Model) getReferencedObject());
+		CommandResult result = super.doExecuteWithResult(monitor, info);
+		MMTFRegistry.updateRepository(multiModel);
+
+		return result;
 	}
 
 	/**
@@ -88,15 +90,9 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		CommandResult result = super.doExecuteWithResult(monitor, info);
-		if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getContainer())) {
-			doExecuteInstancesLevel();
-		}
-		else {
-			doExecuteTypesLevel();
-		}
-
-		return result;
+		return (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getContainer())) ?
+			doExecuteInstancesLevel(monitor, info) :
+			doExecuteTypesLevel(monitor, info);
 	}
 
 }

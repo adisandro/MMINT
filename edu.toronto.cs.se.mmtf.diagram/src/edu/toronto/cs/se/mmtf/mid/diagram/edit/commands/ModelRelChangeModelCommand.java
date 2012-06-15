@@ -95,15 +95,18 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
-		CommandResult result = super.reorientSource();
+		CommandResult result;
 		if (MultiModelConstraintChecker.isInstancesLevel(getOldSource())) {
 			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
 			MultiModelFactoryUtils.createModelReference(getNewSource(), getOldTarget());
+			result = super.reorientSource();
 		}
 		else {
+			MultiModel multiModel = (MultiModel) getOldSource().eContainer();
 			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
 			MMTFRegistry.createLightModelTypeRef(getNewSource(), getOldTarget());
-			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer());
+			result = super.reorientSource();
+			MMTFRegistry.updateRepository(multiModel);
 		}
 
 		return result;
@@ -119,15 +122,18 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		CommandResult result = super.reorientTarget();
+		CommandResult result;
 		if (MultiModelConstraintChecker.isInstancesLevel(getOldSource())) {
 			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
 			MultiModelFactoryUtils.createModelReference(getOldSource(), getNewTarget());
+			result = super.reorientTarget();
 		}
 		else {
+			MultiModel multiModel = (MultiModel) getOldSource().eContainer();
 			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
 			MMTFRegistry.createLightModelTypeRef(getOldSource(), getNewTarget());
-			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer());
+			result = super.reorientTarget();
+			MMTFRegistry.updateRepository(multiModel);
 		}
 
 		return result;
