@@ -25,9 +25,10 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 public class EditModelepediaListener extends SelectionAdapter {
 
-	private final static String MODELEPEDIA_WWW = "http://192.168.72.19:4139/modelepedia/index.php/Special:FormStart?page_name=MMTF:";
+	private final static String MODELEPEDIA_WWW = "http://192.168.72.19:4139/modelepedia/index.php/Special:FormEdit";
 	private Model modelType;
-
+	private final static String prefix = "MMTF:";
+	
 	public EditModelepediaListener(Model modelType) {
 
 		this.modelType = modelType;
@@ -35,19 +36,40 @@ public class EditModelepediaListener extends SelectionAdapter {
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
-		String formType = "&form=Model+Type";
-		
-		if (modelType instanceof ModelRel) {
-			ModelRel modelRelType = (ModelRel) modelType;
-			for (Model model : modelRelType.getModels()) {
+		String formType = "/Model_Type/";
+		String args = "?";
+		String cardinality = "";
+		int i = 1;
 				
+		if (modelType.getName() != null)
+			args = args + "name=" + modelType.getName();
+		if (modelType.getSupertype() != null)
+			args = args + "&supertype=" + prefix + modelType.getSupertype().getName();
+			
+		if (modelType instanceof ModelRel) {
+			formType = "/Relationship_Type/";
+			
+			ModelRel modelRelType = (ModelRel) modelType;
+			
+			if (! modelRelType.getModels().isEmpty())
+				args = args + "&arguments=";
+			if (modelRelType.isUnbounded()) {
+				cardinality = "*";
+			} else {
+				cardinality = Integer.toString(modelRelType.getModels().size());
 			}
 			
-			formType = "&form=Relationship+Type";
+			for (Model model : modelRelType.getModels()) {
+				if (i != 1)
+					args = args + ", ";
+				args = args + prefix + model.getName() + ";" + cardinality;
+				i++;
+			}
 		}
 		
+		
 		IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
-		String url = MODELEPEDIA_WWW + modelType.getName() + formType;
+		String url = MODELEPEDIA_WWW + formType + prefix + modelType.getName() + args;
 		try {
 			IWebBrowser browser = support.createBrowser("Modelepedia");
 			browser.openURL(new URL(url));
