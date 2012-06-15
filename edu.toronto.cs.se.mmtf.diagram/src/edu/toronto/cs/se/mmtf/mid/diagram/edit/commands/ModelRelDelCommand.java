@@ -46,7 +46,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() &&
-			MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToDestroy());
+			MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy());
 	}
 
 }

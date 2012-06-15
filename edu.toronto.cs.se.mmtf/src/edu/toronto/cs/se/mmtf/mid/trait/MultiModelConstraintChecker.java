@@ -55,7 +55,7 @@ public class MultiModelConstraintChecker {
 	 *            The multimodel to be checked.
 	 * @return True for INSTANCES level, false for TYPES level.
 	 */
-	public static boolean isInstanceLevel(MultiModel multiModel) {
+	public static boolean isInstancesLevel(MultiModel multiModel) {
 
 		if (multiModel.getLevel() == MidLevel.TYPES) {
 			return false;
@@ -71,7 +71,7 @@ public class MultiModelConstraintChecker {
 	 *            The model relationship to be checked.
 	 * @return True for INSTANCES level, false for TYPES level.
 	 */
-	public static boolean isInstanceLevel(ModelRel modelRel) {
+	public static boolean isInstancesLevel(ModelRel modelRel) {
 
 		if (modelRel.getLevel() == MidLevel.TYPES) {
 			return false;

@@ -960,6 +960,20 @@ newModelTypeRef:
 			}
 		}
 
+		public static void removeLightLinkType(Link linkType) {
+
+			MultiModel multiModel = (MultiModel) linkType.eContainer().eContainer();
+			multiModel.getExtendibleTable().removeKey(linkType.getUri());
+		}
+
+		public static void removeLightModelElementTypeRef(ModelElementReference modelElemTypeRef) {
+
+			MultiModel multiModel = (MultiModel) modelElemTypeRef.eContainer().eContainer().eContainer();
+			ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+			multiModel.getExtendibleTable().removeKey(modelElemType.getUri());
+			//TODO MMTF: remove also binary link types that are connected
+		}
+
 		public static EList<String> getSupertypeUris(String subtypeUri) {
 
 			EList<String> supertypeUris = new BasicEList<String>();

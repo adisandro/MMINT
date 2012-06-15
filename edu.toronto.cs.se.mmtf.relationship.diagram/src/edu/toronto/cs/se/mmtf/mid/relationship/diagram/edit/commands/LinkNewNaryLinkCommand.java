@@ -98,7 +98,7 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Link newElement = (MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit())) ?
+			Link newElement = (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

@@ -54,7 +54,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 
 		return
 			super.canExecute() &&
-			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit());
+			MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit());
 	}
 
 	protected ModelRel doExecuteInstancesLevel() throws Exception {

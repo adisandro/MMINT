@@ -71,7 +71,7 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 			EObject droppedElement = (EObject) nextObject;
 			URI uri = EcoreUtil.getURI(droppedElement);
 			String modelUri, modelElemUri;
-			if (MultiModelConstraintChecker.isInstanceLevel(root)) {
+			if (MultiModelConstraintChecker.isInstancesLevel(root)) {
 				modelUri = uri.toPlatformString(true);
 				modelElemUri = uri.toString().substring(18); // strip "platform:/resource"
 			}
@@ -85,7 +85,7 @@ references:
 			for (ModelReference modelRef : root.getModelRefs()) {
 				if (modelUri.equals(((Model) modelRef.getObject()).getUri())) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) { // avoid duplicates
-						if (MultiModelConstraintChecker.isInstanceLevel(root)) {
+						if (MultiModelConstraintChecker.isInstancesLevel(root)) {
 							if (((ModelElement) elementRef.getObject()).getUri().equals(modelElemUri)) {
 								continue references;
 							}

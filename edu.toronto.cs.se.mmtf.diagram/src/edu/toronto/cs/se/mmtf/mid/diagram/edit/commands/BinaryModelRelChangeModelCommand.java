@@ -51,7 +51,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstanceLevel(getLink()) ||
+				MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
 				MultiModelConstraintChecker.isAllowedModelType(getLink())
 			);
 	}
@@ -78,7 +78,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 
 		return
 			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), getNewSource(), target) && (
-				!MultiModelConstraintChecker.isInstanceLevel(getLink()) ||
+				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
 				MultiModelConstraintChecker.isAllowedModel(getLink(), getNewSource())
 			);
 	}
@@ -105,7 +105,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 
 		return
 			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4003(container, getLink(), source, getNewTarget()) && (
-				!MultiModelConstraintChecker.isInstanceLevel(getLink()) ||
+				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
 				MultiModelConstraintChecker.isAllowedModel(getLink(), getNewTarget())
 			);
 	}
@@ -121,7 +121,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		getLink().getModels().set(0, getNewSource());
-		if (MultiModelConstraintChecker.isInstanceLevel(getLink())) {
+		if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
 			MultiModelFactoryUtils.removeModelReference(getLink(), getOldSource());
 			MultiModelFactoryUtils.createModelReference(getLink(), getNewSource());
 		}
@@ -145,7 +145,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		getLink().getModels().set(1, getNewTarget());
-		if (MultiModelConstraintChecker.isInstanceLevel(getLink())) {
+		if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
 			MultiModelFactoryUtils.removeModelReference(getLink(), getOldTarget());
 			MultiModelFactoryUtils.createModelReference(getLink(), getNewTarget());
 		}

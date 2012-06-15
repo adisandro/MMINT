@@ -68,7 +68,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		if (!super.canExecute()) {
 			return false;
 		}
-		if (MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit().eContainer())) {
+		if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer())) {
 			modelElemType = MultiModelConstraintChecker.getAllowedModelElementType((ModelReference) getElementToEdit(), droppedElement);
 			if (modelElemType == null) {
 				return false;
@@ -111,7 +111,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelElementReference newElement = (MultiModelConstraintChecker.isInstanceLevel((ModelRel) getElementToEdit().eContainer())) ?
+			ModelElementReference newElement = (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

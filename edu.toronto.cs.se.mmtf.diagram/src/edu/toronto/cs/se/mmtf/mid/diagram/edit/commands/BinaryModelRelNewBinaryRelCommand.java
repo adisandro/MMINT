@@ -140,7 +140,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 
 		try {
-			BinaryModelRel newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getContainer())) ?
+			BinaryModelRel newElement = (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getContainer())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

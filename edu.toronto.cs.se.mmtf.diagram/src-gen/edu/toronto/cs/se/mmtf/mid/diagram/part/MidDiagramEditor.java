@@ -123,7 +123,7 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 
 		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
 		MultiModel multiModel = (MultiModel) this.getDiagram().getElement();
-		if (!MultiModelConstraintChecker.isInstanceLevel(multiModel)) {
+		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
 			for (Object paletteContainer : root.getChildren()) {
 				for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
 					if (paletteEntry instanceof ToolEntry && !(paletteEntry instanceof PanningSelectionToolEntry || paletteEntry instanceof PaletteToolEntry)) {

@@ -54,7 +54,7 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstanceLevel((ModelRel) getContainer()) ||
+				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getContainer()) ||
 				MultiModelConstraintChecker.isAllowedModelType((ModelRel) getContainer())
 			);
 	}
@@ -89,7 +89,7 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		if (MultiModelConstraintChecker.isInstanceLevel((ModelRel) getContainer())) {
+		if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getContainer())) {
 			doExecuteInstancesLevel();
 		}
 		else {

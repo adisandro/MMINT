@@ -105,7 +105,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelRel newElement = (MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit())) ?
+			ModelRel newElement = (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

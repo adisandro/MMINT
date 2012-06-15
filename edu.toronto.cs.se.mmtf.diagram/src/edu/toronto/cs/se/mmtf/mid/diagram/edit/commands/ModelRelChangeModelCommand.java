@@ -49,7 +49,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstanceLevel(getOldSource()) ||
+				MultiModelConstraintChecker.isInstancesLevel(getOldSource()) ||
 				MultiModelConstraintChecker.isAllowedModelType(getOldSource())
 			);
 	}
@@ -65,7 +65,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 
 		return
 			super.canReorientSource() && (
-				!MultiModelConstraintChecker.isInstanceLevel(getOldSource()) ||
+				!MultiModelConstraintChecker.isInstancesLevel(getOldSource()) ||
 				MultiModelConstraintChecker.isAllowedModel(getNewSource(), getOldTarget())
 			);
 	}
@@ -80,7 +80,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 
 		return
 			super.canReorientTarget() && (
-				!MultiModelConstraintChecker.isInstanceLevel(getOldSource()) ||
+				!MultiModelConstraintChecker.isInstancesLevel(getOldSource()) ||
 				MultiModelConstraintChecker.isAllowedModel(getOldSource(), getNewTarget())
 			);
 	}
@@ -96,7 +96,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		CommandResult result = super.reorientSource();
-		if (MultiModelConstraintChecker.isInstanceLevel(getOldSource())) {
+		if (MultiModelConstraintChecker.isInstancesLevel(getOldSource())) {
 			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
 			MultiModelFactoryUtils.createModelReference(getNewSource(), getOldTarget());
 		}
@@ -120,7 +120,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		CommandResult result = super.reorientTarget();
-		if (MultiModelConstraintChecker.isInstanceLevel(getOldSource())) {
+		if (MultiModelConstraintChecker.isInstancesLevel(getOldSource())) {
 			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
 			MultiModelFactoryUtils.createModelReference(getOldSource(), getNewTarget());
 		}

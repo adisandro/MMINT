@@ -50,7 +50,7 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer()) ||
+				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer()) ||
 				MultiModelConstraintChecker.isAllowedModelElementTypeReference(getOldSource())
 			);
 	}
@@ -65,7 +65,7 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 
 		return
 			super.canReorientSource() && (
-				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer()) ||
+				!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer()) ||
 				MultiModelConstraintChecker.isAllowedModelElementReference(getNewSource(), getOldTarget())
 			);
 	}
@@ -81,7 +81,7 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 
 		return
 			super.canReorientTarget() && (
-				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer()) ||
+				!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer()) ||
 				MultiModelConstraintChecker.isAllowedModelElementReference(getOldSource(), getNewTarget())
 			);
 	}
@@ -89,9 +89,10 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
+		MultiModel multiModel = (MultiModel) getOldSource().eContainer().eContainer();
 		CommandResult result = super.reorientSource();
-		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer())) {
-			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer().eContainer());
+		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer())) {
+			MMTFRegistry.updateRepository(multiModel);
 		}
 
 		return result;
@@ -100,9 +101,10 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
+		MultiModel multiModel = (MultiModel) getOldSource().eContainer().eContainer();
 		CommandResult result = super.reorientTarget();
-		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getOldSource().eContainer())) {
-			MMTFRegistry.updateRepository((MultiModel) getOldSource().eContainer().eContainer());
+		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer())) {
+			MMTFRegistry.updateRepository(multiModel);
 		}
 
 		return result;

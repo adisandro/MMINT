@@ -54,13 +54,18 @@ public class LinkAddModelElementReferenceCommand extends LinkElementRefsCreateCo
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = MultiModelConstraintChecker.isInstanceLevel((ModelRel) getSource().eContainer());
+		boolean instance = MultiModelConstraintChecker.isInstancesLevel((ModelRel) getSource().eContainer());
 
 		return
 			super.canExecute() && (
 				(instance && MultiModelConstraintChecker.isAllowedModelElementReference(getSource(), getTarget())) ||
 				(!instance && MultiModelConstraintChecker.isAllowedModelElementTypeReference(getSource()))
 			);
+	}
+
+	protected void doExecuteTypesLevel() {
+
+		MMTFRegistry.updateRepository((MultiModel) getSource().eContainer().eContainer());
 	}
 
 	@Override
@@ -72,8 +77,8 @@ public class LinkAddModelElementReferenceCommand extends LinkElementRefsCreateCo
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getElementRefs().add(getTarget());
-			if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getSource().eContainer())) {
-				MMTFRegistry.updateRepository((MultiModel) getSource().eContainer().eContainer());
+			if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getSource().eContainer())) {
+				doExecuteTypesLevel();
 			}
 		}
 

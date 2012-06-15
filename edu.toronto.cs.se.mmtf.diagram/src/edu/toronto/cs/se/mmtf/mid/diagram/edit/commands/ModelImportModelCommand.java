@@ -56,7 +56,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		return
 			super.canExecute() &&
-			MultiModelConstraintChecker.isInstanceLevel((MultiModel) getElementToEdit());
+			MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit());
 	}
 
 	protected Model doExecuteInstancesLevel() throws Exception {

@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkN
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkAddModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkChangeModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkRemoveModelElementReferenceCommand;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ModelElementReferenceDelCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.LinkElementRefsEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
@@ -84,7 +85,7 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			cmd.add(new DestroyElementCommand(req));
+			cmd.add(new ModelElementReferenceDelCommand(req));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}

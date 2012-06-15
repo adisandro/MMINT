@@ -52,7 +52,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer()) ||
+				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer()) ||
 				MultiModelConstraintChecker.isAllowedModelElementTypeReference(getLink())
 			);
 	}
@@ -80,7 +80,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 
 		return
 			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), getNewSource(), target) && (
-				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer()) ||
+				!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer()) ||
 				MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewSource())
 			);
 	}
@@ -108,7 +108,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 
 		return
 			MidBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryLink_4003(container, getLink(), source, getNewTarget()) && (
-				!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer()) ||
+				!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer()) ||
 				MultiModelConstraintChecker.isAllowedModelElementReference(getLink(), getNewTarget())
 			);
 	}
@@ -124,7 +124,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		getLink().getElementRefs().set(0, getNewSource());
-		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer())) {
+		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
 			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer().eContainer());
 		}
 
@@ -142,7 +142,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		getLink().getElementRefs().set(1, getNewTarget());
-		if (!MultiModelConstraintChecker.isInstanceLevel((ModelRel) getLink().eContainer())) {
+		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
 			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer().eContainer());
 		}
 

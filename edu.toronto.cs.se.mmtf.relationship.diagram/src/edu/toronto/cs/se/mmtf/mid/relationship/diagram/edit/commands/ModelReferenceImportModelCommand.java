@@ -63,7 +63,7 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 	public boolean canExecute() {
 
 		ModelRel owner = (ModelRel) getElementToEdit();
-		if (MultiModelConstraintChecker.isInstanceLevel(owner)) {
+		if (MultiModelConstraintChecker.isInstancesLevel(owner)) {
 			return false;
 		}
 		if (owner instanceof BinaryModelRel) {

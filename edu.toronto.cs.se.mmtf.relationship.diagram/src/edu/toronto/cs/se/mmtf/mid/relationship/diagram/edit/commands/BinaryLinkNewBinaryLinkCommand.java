@@ -112,7 +112,7 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 		}
 
 		try {
-			BinaryLink newElement = MultiModelConstraintChecker.isInstanceLevel(getContainer()) ?
+			BinaryLink newElement = MultiModelConstraintChecker.isInstancesLevel(getContainer()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
+package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -18,18 +18,19 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 /**
- * The command to delete a model.
+ * The command to delete a link.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class ModelDelCommand extends DestroyElementCommand {
+public class LinkDelCommand extends DestroyElementCommand {
 
 	/**
 	 * Constructor: initialises the superclass.
@@ -37,41 +38,38 @@ public class ModelDelCommand extends DestroyElementCommand {
 	 * @param request
 	 *            The request.
 	 */
-	public ModelDelCommand(DestroyElementRequest request) {
+	public LinkDelCommand(DestroyElementRequest request) {
 
 		super(request);
 	}
 
-	/**
-	 * Checks if a model can be deleted.
-	 * 
-	 * @return True if a model can be deleted, false otherwise.
-	 */
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() &&
-			MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToDestroy().eContainer());
+		return super.canExecute();
 	}
 
-	/**
-	 * Deletes a model.
-	 * 
-	 * @param monitor
-	 *            The progress monitor.
-	 * @param info
-	 *            Additional parameter, not used.
-	 * @return The ok result.
-	 * @throws ExecutionException
-	 *             If the super implementation throws it.
-	 */
+	protected CommandResult doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+		return super.doExecuteWithResult(monitor, info);
+	}
+
+	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+		MultiModel multiModel = (MultiModel) getElementToDestroy().eContainer().eContainer();
+		MMTFRegistry.removeLightLinkType((Link) getElementToDestroy());
+		CommandResult result = super.doExecuteWithResult(monitor, info);
+		MMTFRegistry.updateRepository(multiModel);
+
+		return result;
+	}
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModelFactoryUtils.removeModel((Model) getElementToDestroy());
-
-		return super.doExecuteWithResult(monitor, info);
+		return (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy().eContainer())) ?
+			doExecuteInstancesLevel(monitor, info) :
+			doExecuteTypesLevel(monitor, info);
 	}
 
 }

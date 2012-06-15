@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -30,6 +29,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ExtendibleE
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ExtendibleElementSupertypeReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkAddModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkChangeModelElementReferenceCommand;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkDelCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkRemoveModelElementReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.LinkElementRefsEditPart;
@@ -80,7 +80,7 @@ public class LinkSemanticEditPolicy extends LinkItemSemanticEditPolicy {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			cmd.add(new DestroyElementCommand(req));
+			cmd.add(new LinkDelCommand(req));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}

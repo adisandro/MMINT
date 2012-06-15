@@ -15,24 +15,30 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
- * The command to remove a model element reference from a link.
+ * The command to delete a model element reference.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class LinkRemoveModelElementReferenceCommand extends DestroyReferenceCommand {
+public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 
-	public LinkRemoveModelElementReferenceCommand(DestroyReferenceRequest request) {
+	/**
+	 * Constructor: initialises the superclass.
+	 * 
+	 * @param request
+	 *            The request.
+	 */
+	public ModelElementReferenceDelCommand(DestroyElementRequest request) {
 
 		super(request);
 	}
@@ -40,11 +46,7 @@ public class LinkRemoveModelElementReferenceCommand extends DestroyReferenceComm
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getContainer().eContainer()) ||
-				MultiModelConstraintChecker.isAllowedModelElementTypeReference((Link) getContainer())
-			);
+		return super.canExecute();
 	}
 
 	protected CommandResult doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -54,7 +56,8 @@ public class LinkRemoveModelElementReferenceCommand extends DestroyReferenceComm
 
 	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModel multiModel = (MultiModel) getContainer().eContainer().eContainer();
+		MultiModel multiModel = (MultiModel) getElementToDestroy().eContainer().eContainer().eContainer();
+		MMTFRegistry.removeLightModelElementTypeRef((ModelElementReference) getElementToDestroy());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
 		MMTFRegistry.updateRepository(multiModel);
 
@@ -64,7 +67,7 @@ public class LinkRemoveModelElementReferenceCommand extends DestroyReferenceComm
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		return (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getContainer().eContainer())) ?
+		return (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy().eContainer().eContainer())) ?
 			doExecuteInstancesLevel(monitor, info) :
 			doExecuteTypesLevel(monitor, info);
 	}
