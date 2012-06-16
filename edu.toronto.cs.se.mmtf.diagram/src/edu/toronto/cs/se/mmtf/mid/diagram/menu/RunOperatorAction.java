@@ -106,7 +106,14 @@ public class RunOperatorAction extends ContributionItem {
 			Operator operator = operators.get(i);
 			HashMap<Integer, EList<ConversionOperator>> conversionMap = conversions.get(i);
 			MenuItem operatorItem = new MenuItem(operatorsMenu, SWT.NONE);
-			operatorItem.setText(operator.getName());
+			String itemText = operator.getName();
+			if (operator instanceof ConversionOperator) {
+				itemText += " [direct conv]";
+			}
+			if (!conversionMap.isEmpty()) {
+				itemText += " [intermediate conv]";
+			}
+			operatorItem.setText(itemText);
 			operatorItem.addSelectionListener(
 				new RunOperatorListener(operator, actualParameters, conversionMap)
 			);

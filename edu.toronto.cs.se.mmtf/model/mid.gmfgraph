@@ -13,6 +13,7 @@
     </figures>
     <descriptors name="ModelFigure">
       <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelFigure">
+        <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="124" green="180" blue="168"/>
         <children xsi:type="gmfgraph:Label" name="ModelLabelFigure" text="&lt;...>"/>
@@ -21,6 +22,7 @@
     </descriptors>
     <descriptors name="ModelRelFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ModelRelFigure" cornerWidth="12" cornerHeight="12">
+        <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="232" green="157" blue="111"/>
         <children xsi:type="gmfgraph:Label" name="ModelRelLabelFigure" text="&lt;...>"/>
@@ -29,6 +31,7 @@
     </descriptors>
     <descriptors name="OperatorFigure">
       <actualFigure xsi:type="gmfgraph:Ellipse" name="OperatorFigure">
+        <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="246" green="236" blue="85"/>
         <children xsi:type="gmfgraph:Label" name="OperatorLabelFigure" text="&lt;...>"/>

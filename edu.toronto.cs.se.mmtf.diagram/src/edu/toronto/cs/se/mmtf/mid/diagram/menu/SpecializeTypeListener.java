@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -35,11 +36,13 @@ public class SpecializeTypeListener extends SelectionAdapter {
 
 	Model model;
 	Model newMetatype;
+	ITextAwareEditPart label;
 
-	public SpecializeTypeListener(Model model, Model newMetatype) {
+	public SpecializeTypeListener(Model model, Model newMetatype, ITextAwareEditPart label) {
 
 		this.model = model;
 		this.newMetatype = newMetatype;
+		this.label = label;
 	}
 
 	@Override
@@ -72,7 +75,7 @@ public class SpecializeTypeListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			model.setMetatypeUri(newMetatype.getUri());
-			//TODO MMTF: trigger notification of type change
+			label.refresh();
 
 			return CommandResult.newOKCommandResult();
 		}

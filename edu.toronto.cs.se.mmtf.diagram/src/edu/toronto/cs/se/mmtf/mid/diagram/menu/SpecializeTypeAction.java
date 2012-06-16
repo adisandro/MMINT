@@ -12,6 +12,9 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.menu;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
@@ -21,14 +24,15 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
  * The handler for the dynamic construction of a context menu to cast to a
@@ -58,22 +62,31 @@ public class SpecializeTypeAction extends ContributionItem {
 			return;
 		}
 		Model model = null;
-		if (objects[0] instanceof ModelEditPart) {
-			model = (Model) ((View) ((ModelEditPart) objects[0]).getModel()).getElement();
-		}
-		else if (objects[0] instanceof Model2EditPart) {
-			model = (Model) ((View) ((Model2EditPart) objects[0]).getModel()).getElement();
-		}
-		else if (objects[0] instanceof ModelRelEditPart) {
-			model = (Model) ((View) ((ModelRelEditPart) objects[0]).getModel()).getElement();
-		}
-		else if (objects[0] instanceof ModelRel2EditPart) {
-			model = (Model) ((View) ((ModelRel2EditPart) objects[0]).getModel()).getElement();
+		ITextAwareEditPart label = null;
+		if (
+			objects[0] instanceof ModelEditPart ||
+			objects[0] instanceof Model2EditPart ||
+			objects[0] instanceof ModelRelEditPart ||
+			objects[0] instanceof ModelRel2EditPart
+		) {
+			model = (Model) ((View) ((ShapeNodeEditPart) objects[0]).getModel()).getElement();
+			for (Object child : ((ShapeNodeEditPart) objects[0]).getChildren()) {
+				if (child instanceof ITextAwareEditPart) {
+					label = (ITextAwareEditPart) child;
+					break;
+				}
+			}
 		}
 		else if (objects[0] instanceof BinaryModelRelEditPart) {
-			model = (Model) ((View) ((BinaryModelRelEditPart) objects[0]).getModel()).getElement();
+			model = (Model) ((View) ((ConnectionNodeEditPart) objects[0]).getModel()).getElement();
+			for (Object child : ((ConnectionNodeEditPart) objects[0]).getChildren()) {
+				if (child instanceof ITextAwareEditPart) {
+					label = (ITextAwareEditPart) child;
+					break;
+				}
+			}
 		}
-		if (model == null || model.getLevel() == MidLevel.TYPES) {
+		if (model == null || !MultiModelConstraintChecker.isInstancesLevel((MultiModel) model.eContainer())) {
 			return;
 		}
 
@@ -95,7 +108,7 @@ public class SpecializeTypeAction extends ContributionItem {
 			MenuItem typeItem = new MenuItem(operatorsMenu, SWT.NONE);
 			typeItem.setText(runtimeType.getName());
 			typeItem.addSelectionListener(
-				new SpecializeTypeListener(model, (Model) runtimeType)
+				new SpecializeTypeListener(model, (Model) runtimeType, label)
 			);
 		}
 	}

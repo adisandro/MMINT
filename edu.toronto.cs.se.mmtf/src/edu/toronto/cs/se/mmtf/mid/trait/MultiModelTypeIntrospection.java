@@ -172,6 +172,7 @@ modelRelTypes:
 		return types;
 	}
 
+	//TODO MMTF: not needed if specialization is not allowed
 	private static EList<TypedElement> getRuntimeTypes(ModelElement modelElem) {
 
 		//TODO MMTF: implementare

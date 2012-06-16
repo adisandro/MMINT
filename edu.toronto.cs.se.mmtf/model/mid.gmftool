@@ -40,7 +40,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Connect Model"
-          description="Connect model to Nary Relationship">
+          description="Connect Model to Nary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

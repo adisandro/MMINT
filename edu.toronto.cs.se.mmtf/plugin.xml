@@ -46,7 +46,8 @@
       <relationship
             isNary="true">
          <extendibleElement
-               uri="http:///edu/toronto/cs/se/mmtf/ModelRel">
+               uri="http:///edu/toronto/cs/se/mmtf/ModelRel"
+               supertypeUri="http:///edu/toronto/cs/se/mmtf/Model">
          </extendibleElement>
          <model
                modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">

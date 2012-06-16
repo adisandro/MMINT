@@ -30,8 +30,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New Nary Link Elem"
-          description="Create new Nary Link Element">
+          title="Connect Model Element"
+          description="Connect Model Element to Nary Link">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
