@@ -95,6 +95,7 @@ public class MultiModelFactoryUtils {
 			//TODO MMTF: which entry to use, the most specific (operators) or the most conservative (import model)?
 			//TODO MMTF: now is the first == the most conservative
 			//TODO MMTF: do I fix everything by just letting the user choose with a dialog?
+			//TODO MMTF: actually it's kind of useless for rels/links, i should just set the root type, because at creation time it's hard for the ee to already have all connections
 			element.setMetatypeUri(((ExtendibleElement) element.getRuntimeMetatypes().get(0)).getUri());
 		}
 		else { // use static metatype

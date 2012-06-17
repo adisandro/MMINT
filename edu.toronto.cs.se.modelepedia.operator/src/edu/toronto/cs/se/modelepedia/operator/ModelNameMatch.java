@@ -26,12 +26,14 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 
 public class ModelNameMatch extends OperatorExecutableImpl {
@@ -41,6 +43,8 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+
+		//TODO MMTF: how do I make an operator create specific types without explicitly calling the right functions? should just be automatic
 
 		// create model relationship among models
 		MultiModel multiModel = (MultiModel) actualParameters.get(0).eContainer();
@@ -75,6 +79,10 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			}
 		}
 
+		//TODO MMTF: too rough
+		EList<TypedElement> runtimeMetatypes = modelRel.getRuntimeMetatypes();
+		modelRel.setMetatypeUri(((ModelRel) runtimeMetatypes.get(runtimeMetatypes.size()-1)).getUri());
+
 		// create model relationship structure
 		for (Entry<String, ArrayList<EObject>> entry : objectNames.entrySet()) {
 			String name = entry.getKey();
@@ -88,10 +96,14 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				modelRel.getLinks().add(link);
 				for (EObject object : objects) {
 					ModelReference modelRef = objectModels.get(object);
-					//TODO MMTF: fix with function that I need to create
-					ModelElementReference elementRef = MultiModelFactoryUtils.createModelElementReference(null, modelRef, object);
+					ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelRef, object);
+					ModelElementReference elementRef = MultiModelFactoryUtils.createModelElementReference(modelElemType, modelRef, object);
 					((ModelElement) elementRef.getObject()).setName(object.eClass().getName() + " " + name);//TODO MMTF: remove and fix
 					link.getElementRefs().add(elementRef);
+				}
+				Link linkType = MultiModelConstraintChecker.getAllowedLinkType(link);
+				if (linkType != null) {
+					link.setMetatypeUri(linkType.getUri());
 				}
 			}
 		}

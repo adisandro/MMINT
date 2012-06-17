@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
+import java.util.HashSet;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -182,6 +184,7 @@ rel:
 		return false;
 	}
 
+	//TODO MMTF: this should be moved, is type introspection for model elements
 	public static ModelElement getAllowedModelElementType(ModelReference modelRef, EObject droppedElement) {
 
 		// we need to look into the model relationship type instead of the referenced model type because
@@ -194,6 +197,29 @@ rel:
 					return modelElemType;
 				}
 			}
+		}
+
+		return null;
+	}
+
+	//TODO MMTF: this should be moved, is type introspection for links
+	public static Link getAllowedLinkType(Link link) {
+
+		ModelRel modelRelType = (ModelRel) ((ModelRel) link.eContainer()).getMetatype();
+linkTypes:
+		for (Link linkType : modelRelType.getLinks()) {
+			HashSet<String> allowedModelElemTypes = new HashSet<String>();
+			for (ModelElementReference modelElemTypeRef : linkType.getElementRefs()) {
+				ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+				allowedModelElemTypes.add(modelElemType.getUri());
+			}
+			for (ModelElementReference modelElemRef : link.getElementRefs()) {
+				ModelElement modelElem = (ModelElement) modelElemRef.getObject();
+				if (!allowedModelElemTypes.contains(modelElem.getMetatypeUri())) {
+					continue linkTypes;
+				}
+			}
+			return linkType;
 		}
 
 		return null;
