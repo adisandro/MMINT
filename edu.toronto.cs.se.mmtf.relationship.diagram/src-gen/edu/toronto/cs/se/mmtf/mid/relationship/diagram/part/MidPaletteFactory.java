@@ -48,7 +48,7 @@ public class MidPaletteFactory {
 		paletteContainer.setId("createNew1Group"); //$NON-NLS-1$
 		paletteContainer.add(createNewBinaryLink1CreationTool());
 		paletteContainer.add(createNewNaryLink2CreationTool());
-		paletteContainer.add(createNewNaryLinkElem3CreationTool());
+		paletteContainer.add(createConnectModelElement3CreationTool());
 		return paletteContainer;
 	}
 
@@ -97,12 +97,12 @@ public class MidPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createNewNaryLinkElem3CreationTool() {
+	private ToolEntry createConnectModelElement3CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.NewNaryLinkElem3CreationTool_title,
-				Messages.NewNaryLinkElem3CreationTool_desc,
+				Messages.ConnectModelElement3CreationTool_title,
+				Messages.ConnectModelElement3CreationTool_desc,
 				Collections.singletonList(MidElementTypes.LinkElementRefs_4002));
-		entry.setId("createNewNaryLinkElem3CreationTool"); //$NON-NLS-1$
+		entry.setId("createConnectModelElement3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MidElementTypes
 				.getImageDescriptor(MidElementTypes.LinkElementRefs_4002));
 		entry.setLargeIcon(entry.getSmallIcon());

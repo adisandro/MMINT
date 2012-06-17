@@ -284,12 +284,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NewNaryLinkElem3CreationTool_title;
+	public static String ConnectModelElement3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NewNaryLinkElem3CreationTool_desc;
+	public static String ConnectModelElement3CreationTool_desc;
 
 	/**
 	 * @generated

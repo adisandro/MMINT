@@ -99,8 +99,9 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated
 		 */
-		protected CommandResult doExecuteWithResultGen(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResultGen(
+				IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
 				if (diagram == null) {
@@ -132,7 +133,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 					diagram = intializeNewDiagram();
 				}
 				URI uri = EcoreUtil.getURI(diagram);
-				String editorName = ((ModelRel) diagram.getElement()).getName() + ".relationshipdiag";
+				String editorName = ((ModelRel) diagram.getElement()).getName()
+						+ ".relationshipdiag";
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);
 				IWorkbenchPage page = PlatformUI.getWorkbench()
 						.getActiveWorkbenchWindow().getActivePage();

@@ -742,7 +742,15 @@ modelRef:
 
 		public static void updateRepository(MultiModel multiModel) {
 
+			EList<OperatorExecutable> executables = new BasicEList<OperatorExecutable>();
+			for (Operator operator : repository.getOperators()) {
+				executables.add(operator.getExecutable());
+			}
 			repository = EcoreUtil.copy(multiModel);
+			for (int i = 0; i < repository.getOperators().size(); i++) {
+				Operator operator = repository.getOperators().get(i);
+				operator.setExecutable(executables.get(i));
+			}
 			MMTF.initTypeHierarchy();
 		}
 

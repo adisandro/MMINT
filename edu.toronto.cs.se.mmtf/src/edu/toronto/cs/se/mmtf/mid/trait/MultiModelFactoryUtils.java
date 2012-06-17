@@ -258,7 +258,7 @@ public class MultiModelFactoryUtils {
 				MMTFRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement) :
 				itemAdapter.getText(droppedElement);
 
-			//TODO MMTF: disquisire su che cavolo di uri va a finire qua dentro e come usare classLiteral
+			//TODO MMTF: use classLiteral to differentiate same element used as different type in different model relationship types
 			addExtendibleElement(modelElem, elementType, multiModel, emfUri, name);
 			model.getElements().add(modelElem);
 		}

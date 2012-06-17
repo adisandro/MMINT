@@ -125,10 +125,16 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 		MultiModel multiModel = (MultiModel) this.getDiagram().getElement();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
 			for (Object paletteContainer : root.getChildren()) {
-				for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
-					if (paletteEntry instanceof ToolEntry && !(paletteEntry instanceof PanningSelectionToolEntry || paletteEntry instanceof PaletteToolEntry)) {
-						((ToolEntry) paletteEntry).setLabel(((ToolEntry) paletteEntry).getLabel() + " Type");
-						((ToolEntry) paletteEntry).setDescription(((ToolEntry) paletteEntry).getDescription() + " Type");
+				for (Object paletteEntry : ((PaletteContainer) paletteContainer)
+						.getChildren()) {
+					if (paletteEntry instanceof ToolEntry
+							&& !(paletteEntry instanceof PanningSelectionToolEntry || paletteEntry instanceof PaletteToolEntry)) {
+						((ToolEntry) paletteEntry)
+								.setLabel(((ToolEntry) paletteEntry).getLabel()
+										+ " Type");
+						((ToolEntry) paletteEntry)
+								.setDescription(((ToolEntry) paletteEntry)
+										.getDescription() + " Type");
 					}
 				}
 			}
