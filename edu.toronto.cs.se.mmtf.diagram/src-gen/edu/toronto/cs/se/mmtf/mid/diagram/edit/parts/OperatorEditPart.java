@@ -19,6 +19,7 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
@@ -366,8 +367,12 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setForegroundColor(ColorConstants.black);
+			this.setLineWidth(3);
+			this.setForegroundColor(ColorConstants.darkGray);
 			this.setBackgroundColor(THIS_BACK);
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(10),
+					getMapMode().DPtoLP(10), getMapMode().DPtoLP(10),
+					getMapMode().DPtoLP(10)));
 			createContents();
 		}
 
@@ -378,6 +383,8 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 
 			fFigureOperatorLabelFigure = new WrappingLabel();
 			fFigureOperatorLabelFigure.setText("<...>");
+			fFigureOperatorLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureOperatorLabelFigure);
 
@@ -395,6 +402,6 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 246, 236, 85);
+	static final Color THIS_BACK = new Color(null, 67, 179, 154);
 
 }

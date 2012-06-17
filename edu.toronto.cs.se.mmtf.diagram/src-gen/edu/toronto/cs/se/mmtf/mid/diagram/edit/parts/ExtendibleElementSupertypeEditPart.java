@@ -80,7 +80,8 @@ public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public ModelSupertypeFigure() {
-			this.setForegroundColor(ColorConstants.black);
+			this.setLineWidth(2);
+			this.setForegroundColor(ColorConstants.gray);
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -91,6 +92,7 @@ public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart
 		private RotatableDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
 			df.setFill(true);
+			df.setLineWidth(2);
 			df.setBackgroundColor(ColorConstants.white);
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));

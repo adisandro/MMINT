@@ -171,6 +171,6 @@ public class LinkElementRefsEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	static final Color THIS_FORE = new Color(null, 232, 157, 111);
+	static final Color THIS_FORE = new Color(null, 44, 109, 163);
 
 }

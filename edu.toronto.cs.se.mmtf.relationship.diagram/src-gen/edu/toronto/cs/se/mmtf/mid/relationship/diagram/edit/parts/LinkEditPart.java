@@ -18,6 +18,7 @@ import java.util.List;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -368,8 +369,12 @@ public class LinkEditPart extends ShapeNodeEditPart {
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(12),
 					getMapMode().DPtoLP(12)));
-			this.setForegroundColor(ColorConstants.black);
+			this.setLineWidth(3);
+			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7)));
 			createContents();
 		}
 
@@ -380,6 +385,7 @@ public class LinkEditPart extends ShapeNodeEditPart {
 
 			fFigureLinkLabelFigure = new WrappingLabel();
 			fFigureLinkLabelFigure.setText("<...>");
+			fFigureLinkLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureLinkLabelFigure);
 
@@ -397,6 +403,11 @@ public class LinkEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 232, 157, 111);
+	static final Color THIS_FORE = new Color(null, 44, 109, 163);
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 226, 226, 231);
 
 }

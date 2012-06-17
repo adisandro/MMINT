@@ -18,6 +18,7 @@ import java.util.List;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -351,7 +352,11 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setForegroundColor(ColorConstants.black);
+			this.setForegroundColor(THIS_FORE);
+			this.setBackgroundColor(THIS_BACK);
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7)));
 			createContents();
 		}
 
@@ -362,6 +367,8 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 
 			fFigureModelElementReferenceLabelFigure = new WrappingLabel();
 			fFigureModelElementReferenceLabelFigure.setText("<...>");
+			fFigureModelElementReferenceLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureModelElementReferenceLabelFigure);
 
@@ -375,5 +382,15 @@ public class ModelElementReferenceEditPart extends ShapeNodeEditPart {
 		}
 
 	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_FORE = new Color(null, 248, 249, 212);
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 243, 169, 25);
 
 }

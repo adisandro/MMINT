@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.parts;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
@@ -127,6 +128,7 @@ public class ParameterEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public OperatorInputsFigure() {
+			this.setForegroundColor(ColorConstants.black);
 
 			createContents();
 			setTargetDecoration(createTargetDecoration());
