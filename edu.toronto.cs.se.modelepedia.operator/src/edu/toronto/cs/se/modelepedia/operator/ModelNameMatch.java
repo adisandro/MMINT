@@ -41,6 +41,21 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 	private final static String NAME_FEATURE = "name";
 	private final static String MODEL_REL_NAME = "nameMatch";
 
+	private void checkObjectName(EObject object, ModelReference modelRef, HashMap<String, ArrayList<EObject>> objectNames, HashMap<EObject, ModelReference> objectModels) {
+
+		EStructuralFeature feature = object.eClass().getEStructuralFeature(NAME_FEATURE);
+		if (feature != null && feature instanceof EAttribute && object.eGet(feature) instanceof String) {
+			String objectName = (String) object.eGet(feature);
+			ArrayList<EObject> objects = objectNames.get(objectName);
+			if (objects == null) {
+				objects = new ArrayList<EObject>();
+				objectNames.put(objectName, objects);
+			}
+			objects.add(object);
+			objectModels.put(object, modelRef);
+		}
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -64,18 +79,9 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			ModelReference modelRef = MultiModelFactoryUtils.createModelReference(modelRel, model);
 
 			// look for identical names in the models
+			checkObjectName(model.getRoot(), modelRef, objectNames, objectModels);
 			for (EObject object : model.getRoot().eContents()) {
-				EStructuralFeature feature = object.eClass().getEStructuralFeature(NAME_FEATURE);
-				if (feature != null && feature instanceof EAttribute && object.eGet(feature) instanceof String) {
-					String objectName = (String) object.eGet(feature);
-					ArrayList<EObject> objects = objectNames.get(objectName);
-					if (objects == null) {
-						objects = new ArrayList<EObject>();
-						objectNames.put(objectName, objects);
-					}
-					objects.add(object);
-					objectModels.put(object, modelRef);
-				}
+				checkObjectName(object, modelRef, objectNames, objectModels);
 			}
 		}
 
