@@ -108,17 +108,16 @@ public class RunOperatorAction extends ContributionItem {
 			MenuItem operatorItem = new MenuItem(operatorsMenu, SWT.NONE);
 			String itemText = operator.getName();
 			if (operator instanceof ConversionOperator) {
-				itemText += " [direct conv]";
+				itemText += " [converter]";
 			}
 			if (!conversionMap.isEmpty()) {
-				itemText += " [intermediate conv]";
+				itemText += " [inferred]";
 			}
 			operatorItem.setText(itemText);
 			operatorItem.addSelectionListener(
 				new RunOperatorListener(operator, actualParameters, conversionMap)
 			);
 			//TODO MMTF: nice to show label of operator invocation with actual parameters
-			//TODO MMTF: nice to identify conv operators and normal operators through conversions
 			//TODO MMTF: traceability, could be nice to create an instance of operator, with name = actual parameters
 		}
 	}
