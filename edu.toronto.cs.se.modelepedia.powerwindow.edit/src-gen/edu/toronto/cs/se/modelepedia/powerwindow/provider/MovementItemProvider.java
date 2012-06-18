@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.powerwindow.provider;
 
 
+import edu.toronto.cs.se.modelepedia.powerwindow.Movement;
 import java.util.Collection;
 import java.util.List;
 
@@ -72,7 +73,10 @@ public class MovementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Movement_type");
+		String label = ((Movement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Movement_type") :
+			getString("_UI_Movement_type") + " " + label;
 	}
 
 	/**

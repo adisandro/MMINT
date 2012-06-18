@@ -22,5 +22,8 @@
     <genClasses image="false" ecoreClass="powerwindow.ecore#//Movement"/>
     <genClasses ecoreClass="powerwindow.ecore#//Rocker"/>
     <genClasses ecoreClass="powerwindow.ecore#//PushPull"/>
+    <genClasses image="false" ecoreClass="powerwindow.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute powerwindow.ecore#//NamedElement/name"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -13,8 +13,6 @@ package edu.toronto.cs.se.modelepedia.powerwindow;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Window</b></em>'.
@@ -32,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Window extends EObject {
+public interface Window extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Sensor</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -46,7 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class WindowImpl extends EObjectImpl implements Window {
+public class WindowImpl extends NamedElementImpl implements Window {
 	/**
 	 * The cached value of the '{@link #getSensor() <em>Sensor</em>}' containment reference.
 	 * <!-- begin-user-doc -->

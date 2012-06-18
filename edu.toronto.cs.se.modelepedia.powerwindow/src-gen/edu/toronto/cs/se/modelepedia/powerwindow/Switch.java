@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.powerwindow;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Switch</b></em>'.
@@ -23,5 +21,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Switch extends EObject {
+public interface Switch extends NamedElement {
 } // Switch

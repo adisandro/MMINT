@@ -66,6 +66,43 @@ public interface PowerwindowPackage extends EPackage {
 	PowerwindowPackage eINSTANCE = edu.toronto.cs.se.modelepedia.powerwindow.impl.PowerwindowPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.powerwindow.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.powerwindow.impl.NamedElementImpl
+	 * @see edu.toronto.cs.se.modelepedia.powerwindow.impl.PowerwindowPackageImpl#getNamedElement()
+	 * @generated
+	 */
+	int NAMED_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.powerwindow.impl.WindowImpl <em>Window</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,13 +113,22 @@ public interface PowerwindowPackage extends EPackage {
 	int WINDOW = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WINDOW__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Sensor</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW__SENSOR = 0;
+	int WINDOW__SENSOR = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Switches</b></em>' containment reference list.
@@ -91,7 +137,7 @@ public interface PowerwindowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW__SWITCHES = 1;
+	int WINDOW__SWITCHES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Window</em>' class.
@@ -100,7 +146,7 @@ public interface PowerwindowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW_FEATURE_COUNT = 2;
+	int WINDOW_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Window</em>' class.
@@ -109,7 +155,7 @@ public interface PowerwindowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW_OPERATION_COUNT = 0;
+	int WINDOW_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.powerwindow.impl.SensorImpl <em>Sensor</em>}' class.
@@ -233,13 +279,22 @@ public interface PowerwindowPackage extends EPackage {
 	int SWITCH = 4;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWITCH__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The number of structural features of the '<em>Switch</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_FEATURE_COUNT = 0;
+	int SWITCH_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Switch</em>' class.
@@ -248,7 +303,7 @@ public interface PowerwindowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_OPERATION_COUNT = 0;
+	int SWITCH_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.powerwindow.impl.LockOutImpl <em>Lock Out</em>}' class.
@@ -259,6 +314,15 @@ public interface PowerwindowPackage extends EPackage {
 	 * @generated
 	 */
 	int LOCK_OUT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCK_OUT__NAME = SWITCH__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Lock Out</em>' class.
@@ -289,6 +353,15 @@ public interface PowerwindowPackage extends EPackage {
 	int MOVEMENT = 6;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOVEMENT__NAME = SWITCH__NAME;
+
+	/**
 	 * The number of structural features of the '<em>Movement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -317,6 +390,15 @@ public interface PowerwindowPackage extends EPackage {
 	int ROCKER = 7;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROCKER__NAME = MOVEMENT__NAME;
+
+	/**
 	 * The number of structural features of the '<em>Rocker</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -343,6 +425,15 @@ public interface PowerwindowPackage extends EPackage {
 	 * @generated
 	 */
 	int PUSH_PULL = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_PULL__NAME = MOVEMENT__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Push Pull</em>' class.
@@ -487,6 +578,27 @@ public interface PowerwindowPackage extends EPackage {
 	EClass getPushPull();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.powerwindow.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Element</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.powerwindow.NamedElement
+	 * @generated
+	 */
+	EClass getNamedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.powerwindow.NamedElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.powerwindow.NamedElement#getName()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Name();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,6 +734,24 @@ public interface PowerwindowPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PUSH_PULL = eINSTANCE.getPushPull();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.powerwindow.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.powerwindow.impl.NamedElementImpl
+		 * @see edu.toronto.cs.se.modelepedia.powerwindow.impl.PowerwindowPackageImpl#getNamedElement()
+		 * @generated
+		 */
+		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 	}
 

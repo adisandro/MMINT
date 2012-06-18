@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.powerwindow.provider;
 
 
+import edu.toronto.cs.se.modelepedia.powerwindow.Rocker;
 import java.util.Collection;
 import java.util.List;
 
@@ -83,7 +84,10 @@ public class RockerItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Rocker_type");
+		String label = ((Rocker)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Rocker_type") :
+			getString("_UI_Rocker_type") + " " + label;
 	}
 
 	/**

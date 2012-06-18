@@ -12,13 +12,12 @@
 package edu.toronto.cs.se.modelepedia.powerwindow.provider;
 
 
+import edu.toronto.cs.se.modelepedia.powerwindow.Switch;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,7 +25,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.powerwindow.Switch} object.
@@ -35,7 +33,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * @generated
  */
 public class SwitchItemProvider
-	extends ItemProviderAdapter
+	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -75,7 +73,10 @@ public class SwitchItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Switch_type");
+		String label = ((Switch)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Switch_type") :
+			getString("_UI_Switch_type") + " " + label;
 	}
 
 	/**
@@ -101,17 +102,6 @@ public class SwitchItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PowerwindowEditPlugin.INSTANCE;
 	}
 
 }

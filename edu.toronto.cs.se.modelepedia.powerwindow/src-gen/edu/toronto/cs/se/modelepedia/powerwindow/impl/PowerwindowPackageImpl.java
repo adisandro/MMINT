@@ -15,6 +15,7 @@ import edu.toronto.cs.se.modelepedia.powerwindow.ForceDetecting;
 import edu.toronto.cs.se.modelepedia.powerwindow.Infrared;
 import edu.toronto.cs.se.modelepedia.powerwindow.LockOut;
 import edu.toronto.cs.se.modelepedia.powerwindow.Movement;
+import edu.toronto.cs.se.modelepedia.powerwindow.NamedElement;
 import edu.toronto.cs.se.modelepedia.powerwindow.PowerwindowFactory;
 import edu.toronto.cs.se.modelepedia.powerwindow.PowerwindowPackage;
 import edu.toronto.cs.se.modelepedia.powerwindow.PushPull;
@@ -99,6 +100,13 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 	 * @generated
 	 */
 	private EClass pushPullEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -274,6 +282,24 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNamedElement() {
+		return namedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedElement_Name() {
+		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PowerwindowFactory getPowerwindowFactory() {
 		return (PowerwindowFactory)getEFactoryInstance();
 	}
@@ -317,6 +343,9 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 		rockerEClass = createEClass(ROCKER);
 
 		pushPullEClass = createEClass(PUSH_PULL);
+
+		namedElementEClass = createEClass(NAMED_ELEMENT);
+		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 	}
 
 	/**
@@ -347,8 +376,10 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		windowEClass.getESuperTypes().add(this.getNamedElement());
 		infraredEClass.getESuperTypes().add(this.getSensor());
 		forceDetectingEClass.getESuperTypes().add(this.getSensor());
+		switchEClass.getESuperTypes().add(this.getNamedElement());
 		lockOutEClass.getESuperTypes().add(this.getSwitch());
 		movementEClass.getESuperTypes().add(this.getSwitch());
 		rockerEClass.getESuperTypes().add(this.getMovement());
@@ -375,6 +406,9 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 		initEClass(rockerEClass, Rocker.class, "Rocker", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pushPullEClass, PushPull.class, "PushPull", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

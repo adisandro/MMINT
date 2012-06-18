@@ -78,6 +78,7 @@ public class PowerwindowSwitch<T> extends Switch<T> {
 			case PowerwindowPackage.WINDOW: {
 				Window window = (Window)theEObject;
 				T result = caseWindow(window);
+				if (result == null) result = caseNamedElement(window);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,6 +105,7 @@ public class PowerwindowSwitch<T> extends Switch<T> {
 			case PowerwindowPackage.SWITCH: {
 				edu.toronto.cs.se.modelepedia.powerwindow.Switch switch_ = (edu.toronto.cs.se.modelepedia.powerwindow.Switch)theEObject;
 				T result = caseSwitch(switch_);
+				if (result == null) result = caseNamedElement(switch_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,6 +113,7 @@ public class PowerwindowSwitch<T> extends Switch<T> {
 				LockOut lockOut = (LockOut)theEObject;
 				T result = caseLockOut(lockOut);
 				if (result == null) result = caseSwitch(lockOut);
+				if (result == null) result = caseNamedElement(lockOut);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -118,6 +121,7 @@ public class PowerwindowSwitch<T> extends Switch<T> {
 				Movement movement = (Movement)theEObject;
 				T result = caseMovement(movement);
 				if (result == null) result = caseSwitch(movement);
+				if (result == null) result = caseNamedElement(movement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -126,6 +130,7 @@ public class PowerwindowSwitch<T> extends Switch<T> {
 				T result = caseRocker(rocker);
 				if (result == null) result = caseMovement(rocker);
 				if (result == null) result = caseSwitch(rocker);
+				if (result == null) result = caseNamedElement(rocker);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -134,6 +139,13 @@ public class PowerwindowSwitch<T> extends Switch<T> {
 				T result = casePushPull(pushPull);
 				if (result == null) result = caseMovement(pushPull);
 				if (result == null) result = caseSwitch(pushPull);
+				if (result == null) result = caseNamedElement(pushPull);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PowerwindowPackage.NAMED_ELEMENT: {
+				NamedElement namedElement = (NamedElement)theEObject;
+				T result = caseNamedElement(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -273,6 +285,21 @@ public class PowerwindowSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePushPull(PushPull object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 

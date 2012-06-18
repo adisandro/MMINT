@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmfgraph:Canvas
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition"
+    name="powerwindow">
+  <figures name="Default">
+    <descriptors
+        name="InfraredFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="InfraredFigure"
+          outline="false">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="InfraredDelayFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="ForceDetectingFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ForceDetectingFigure"
+          outline="false">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ForceDetectingDelayFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="LockOutFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="LockOutFigure"
+          outline="false">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="LockOutNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="RockerFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="RockerFigure"
+          outline="false">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="RockerNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="PushPullFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="PushPullFigure"
+          outline="false">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="PushPullNameFigure"
+            text="&lt;...>"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+    </descriptors>
+  </figures>
+  <nodes name="Infrared"
+      figure="InfraredFigure"/>
+  <nodes name="ForceDetecting"
+      figure="ForceDetectingFigure"/>
+  <nodes name="LockOut"
+      figure="LockOutFigure"/>
+  <nodes name="Rocker"
+      figure="RockerFigure"/>
+  <nodes name="PushPull"
+      figure="PushPullFigure"/>
+  <labels name="InfraredDelay"
+      figure="InfraredFigure"
+      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="ForceDetectingDelay"
+      figure="ForceDetectingFigure"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="LockOutName"
+      figure="LockOutFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="RockerName"
+      figure="RockerFigure"
+      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="PushPullName"
+      figure="PushPullFigure"
+      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+</gmfgraph:Canvas>
