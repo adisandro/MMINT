@@ -288,13 +288,22 @@ public interface PowerwindowPackage extends EPackage {
 	int SWITCH__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Overridable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWITCH__OVERRIDABLE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Switch</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int SWITCH_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Switch</em>' class.
@@ -323,6 +332,15 @@ public interface PowerwindowPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCK_OUT__NAME = SWITCH__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Overridable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCK_OUT__OVERRIDABLE = SWITCH__OVERRIDABLE;
 
 	/**
 	 * The number of structural features of the '<em>Lock Out</em>' class.
@@ -362,6 +380,15 @@ public interface PowerwindowPackage extends EPackage {
 	int MOVEMENT__NAME = SWITCH__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Overridable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOVEMENT__OVERRIDABLE = SWITCH__OVERRIDABLE;
+
+	/**
 	 * The number of structural features of the '<em>Movement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -399,6 +426,15 @@ public interface PowerwindowPackage extends EPackage {
 	int ROCKER__NAME = MOVEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Overridable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROCKER__OVERRIDABLE = MOVEMENT__OVERRIDABLE;
+
+	/**
 	 * The number of structural features of the '<em>Rocker</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,6 +470,15 @@ public interface PowerwindowPackage extends EPackage {
 	 * @ordered
 	 */
 	int PUSH_PULL__NAME = MOVEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Overridable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_PULL__OVERRIDABLE = MOVEMENT__OVERRIDABLE;
 
 	/**
 	 * The number of structural features of the '<em>Push Pull</em>' class.
@@ -536,6 +581,17 @@ public interface PowerwindowPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSwitch();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.powerwindow.Switch#isOverridable <em>Overridable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Overridable</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.powerwindow.Switch#isOverridable()
+	 * @see #getSwitch()
+	 * @generated
+	 */
+	EAttribute getSwitch_Overridable();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.powerwindow.LockOut <em>Lock Out</em>}'.
@@ -694,6 +750,14 @@ public interface PowerwindowPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SWITCH = eINSTANCE.getSwitch();
+
+		/**
+		 * The meta object literal for the '<em><b>Overridable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWITCH__OVERRIDABLE = eINSTANCE.getSwitch_Overridable();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.powerwindow.impl.LockOutImpl <em>Lock Out</em>}' class.

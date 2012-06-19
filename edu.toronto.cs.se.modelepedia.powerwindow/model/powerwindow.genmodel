@@ -17,7 +17,9 @@
     </genClasses>
     <genClasses ecoreClass="powerwindow.ecore#//Infrared"/>
     <genClasses ecoreClass="powerwindow.ecore#//ForceDetecting"/>
-    <genClasses image="false" ecoreClass="powerwindow.ecore#//Switch"/>
+    <genClasses image="false" ecoreClass="powerwindow.ecore#//Switch">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute powerwindow.ecore#//Switch/overridable"/>
+    </genClasses>
     <genClasses ecoreClass="powerwindow.ecore#//LockOut"/>
     <genClasses image="false" ecoreClass="powerwindow.ecore#//Movement"/>
     <genClasses ecoreClass="powerwindow.ecore#//Rocker"/>

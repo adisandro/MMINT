@@ -13,7 +13,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Infrared" eSuperTypes="#//Sensor"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForceDetecting" eSuperTypes="#//Sensor"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Switch" abstract="true" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Switch" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="overridable" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LockOut" eSuperTypes="#//Switch"/>
   <eClassifiers xsi:type="ecore:EClass" name="Movement" abstract="true" eSuperTypes="#//Switch"/>
   <eClassifiers xsi:type="ecore:EClass" name="Rocker" eSuperTypes="#//Movement"/>

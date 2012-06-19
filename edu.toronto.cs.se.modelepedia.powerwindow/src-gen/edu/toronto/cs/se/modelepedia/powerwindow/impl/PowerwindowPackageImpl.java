@@ -246,6 +246,15 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSwitch_Overridable() {
+		return (EAttribute)switchEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLockOut() {
 		return lockOutEClass;
 	}
@@ -335,6 +344,7 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 		forceDetectingEClass = createEClass(FORCE_DETECTING);
 
 		switchEClass = createEClass(SWITCH);
+		createEAttribute(switchEClass, SWITCH__OVERRIDABLE);
 
 		lockOutEClass = createEClass(LOCK_OUT);
 
@@ -398,6 +408,7 @@ public class PowerwindowPackageImpl extends EPackageImpl implements PowerwindowP
 		initEClass(forceDetectingEClass, ForceDetecting.class, "ForceDetecting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(switchEClass, Switch.class, "Switch", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSwitch_Overridable(), ecorePackage.getEBoolean(), "overridable", null, 1, 1, Switch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(lockOutEClass, LockOut.class, "LockOut", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
