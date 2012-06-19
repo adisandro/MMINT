@@ -943,6 +943,8 @@ newModelTypeRef:
 			String classLiteral = getDroppedElementClassLiteral(MidLevel.TYPES, droppedElement);
 			newModelElemType.setCategory(category);
 			newModelElemType.setClassLiteral(classLiteral);
+			//TODO MMTF: think about next assignment
+			newModelElemTypeName = classLiteral;
 			addLightExtendibleType(newModelElemType, null, modelRelType.getName() + "/" + newModelElemTypeName, newModelElemTypeName, multiModel);
 			modelType.getElements().add(newModelElemType);
 

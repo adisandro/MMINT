@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -89,8 +88,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected ModelElementReference doExecuteTypesLevel() throws MMTFException {
 
 		ModelReference modelTypeRef = (ModelReference) getElementToEdit();
-		String newModelElemTypeName = MidDiagramTrait.getStringInput("Create new light model element type", "Insert new model element type name");
-		ModelElementReference newModelElemTypeRef = MMTFRegistry.createLightModelElementType(modelTypeRef, newModelElemTypeName, droppedElement);
+		ModelElementReference newModelElemTypeRef = MMTFRegistry.createLightModelElementType(modelTypeRef, "", droppedElement);
 		MMTFRegistry.updateRepository((MultiModel) modelTypeRef.eContainer().eContainer());
 
 		return newModelElemTypeRef;
