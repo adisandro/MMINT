@@ -864,30 +864,31 @@ modelRef:
 			//TODO MMTF: how to make the user choose unbounded?
 			newModelRelType.setUnbounded(modelRelType.isUnbounded());
 
+			//TODO MMTF: decide what to do when inheriting here
 			// models and containers
 			if (srcModelType != null && tgtModelType != null) { // binary model relationship type
 				newModelRelType.getModels().add(srcModelType);
 				ModelReference newSrcModelTypeRef = createLightModelTypeRef(newModelRelType, srcModelType);
-				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-					if (isSubtypeOf(srcModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
-						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-							createLightModelElementType(newSrcModelTypeRef, "Src" + modelElemType.getName(), modelElemType.getPointer());
-						}
-						break;
-					}
-				}
+//				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+//					if (isSubtypeOf(srcModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
+//						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+//							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+//							createLightModelElementType(newSrcModelTypeRef, "Src" + modelElemType.getName(), modelElemType.getPointer());
+//						}
+//						break;
+//					}
+//				}
 				newModelRelType.getModels().add(tgtModelType);
 				ModelReference newTgtModelTypeRef = createLightModelTypeRef(newModelRelType, tgtModelType);
-				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-					if (isSubtypeOf(tgtModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
-						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-							createLightModelElementType(newTgtModelTypeRef, "Tgt" + modelElemType.getName(), modelElemType.getPointer());
-						}
-						break;
-					}
-				}
+//				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
+//					if (isSubtypeOf(tgtModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
+//						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+//							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+//							createLightModelElementType(newTgtModelTypeRef, "Tgt" + modelElemType.getName(), modelElemType.getPointer());
+//						}
+//						break;
+//					}
+//				}
 			}
 			else {
 				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
@@ -895,36 +896,35 @@ modelRef:
 					newModelRelType.getModels().add(modelType);
 					ModelReference newModelTypeRef = createLightModelTypeRef(newModelRelType, modelType);
 					// model elements
-					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-						ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-						createLightModelElementType(newModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
-					}
+//					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
+//						ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+//						createLightModelElementType(newModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
+//					}
 				}
 			}
 
 			// links
-			for (Link linkType : modelRelType.getLinks()) {
-				Link newLinkType = createLightLinkType(newModelRelType, null, null, linkType.getName(), linkType.eClass());
-				newLinkType.setUnbounded(linkType.isUnbounded());
-				// link elements
-				for (ModelElementReference modelElemTypeRef : linkType.getElementRefs()) {
-newModelTypeRef:
-					for (ModelReference newModelTypeRef : newModelRelType.getModelRefs()) {
-						for (ModelElementReference newModelElemTypeRef : newModelTypeRef.getElementRefs()) {
-							if (
-								newModelElemTypeRef.getName().equals(modelElemTypeRef.getName()) || (
-									(srcModelType != null && tgtModelType != null) && (
-										newModelElemTypeRef.getName().equals("Src" + modelElemTypeRef.getName()) ||
-										newModelElemTypeRef.getName().equals("Tgt" + modelElemTypeRef.getName())
-									)
-								)
-							) {
-								newLinkType.getElementRefs().add(newModelElemTypeRef);
-							}
-						}
-					}
-				}
-			}
+//			for (Link linkType : modelRelType.getLinks()) {
+//				Link newLinkType = createLightLinkType(newModelRelType, null, null, linkType.getName(), linkType.eClass());
+//				newLinkType.setUnbounded(linkType.isUnbounded());
+//				// link elements
+//				for (ModelElementReference modelElemTypeRef : linkType.getElementRefs()) {
+//					for (ModelReference newModelTypeRef : newModelRelType.getModelRefs()) {
+//						for (ModelElementReference newModelElemTypeRef : newModelTypeRef.getElementRefs()) {
+//							if (
+//								newModelElemTypeRef.getName().equals(modelElemTypeRef.getName()) || (
+//									(srcModelType != null && tgtModelType != null) && (
+//										newModelElemTypeRef.getName().equals("Src" + modelElemTypeRef.getName()) ||
+//										newModelElemTypeRef.getName().equals("Tgt" + modelElemTypeRef.getName())
+//									)
+//								)
+//							) {
+//								newLinkType.getElementRefs().add(newModelElemTypeRef);
+//							}
+//						}
+//					}
+//				}
+//			}
 
 			return newModelRelType;
 		}
