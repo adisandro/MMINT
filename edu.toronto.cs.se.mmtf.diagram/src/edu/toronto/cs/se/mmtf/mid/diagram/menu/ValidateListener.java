@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -37,6 +38,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.OnConnectionLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.gef.ui.internal.figures.RelativeToBorderLocator;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -109,6 +111,18 @@ public class ValidateListener extends SelectionAdapter {
 			if (result == false) {
 				Image image = MidDiagramEditorPlugin.getInstance().getBundledImage("icons/failedValidation.gif");
 				if (editPart instanceof ShapeEditPart) {
+					IMapMode mm = MapModeUtil.getMapMode(editPart.getFigure());
+					ImageFigureEx figure = new ImageFigureEx();
+					figure.setImage(image);
+					figure.setSize(mm.DPtoLP(image.getBounds().width), mm.DPtoLP(image.getBounds().height));
+					Decoration decoration = new Decoration();
+					decoration.add(figure);
+					decoration.setSize(figure.getSize());
+		            decoration.setOwnerFigure(editPart.getFigure());
+					decoration.setLocator(new RelativeToBorderLocator(editPart.getFigure(), PositionConstants.NORTH_EAST, 0));
+		            editPart.getViewer().getVisualPartMap().put(decoration, editPart);
+					IFigure pane = LayerManager.Helper.find(editPart).getLayer(DiagramRootEditPart.DECORATION_UNPRINTABLE_LAYER);
+					pane.add(decoration);
 				}
 				else if (editPart instanceof ConnectionEditPart) {
 					IMapMode mm = MapModeUtil.getMapMode(editPart.getFigure());
