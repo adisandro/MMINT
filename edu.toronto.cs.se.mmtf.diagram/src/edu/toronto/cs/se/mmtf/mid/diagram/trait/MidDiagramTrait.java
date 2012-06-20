@@ -17,6 +17,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
@@ -182,6 +186,33 @@ public class MidDiagramTrait {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, null, null);
+
+		if (dialog.open() == Window.CANCEL) {
+			throw new MMTFException("Dialog cancel button pressed");
+		}
+		String text = dialog.getValue();
+		if (text == null) {
+			text = "";
+		}
+
+		return text;
+	}
+
+	public static String getBigStringInput(String dialogTitle, String dialogMessage) throws MMTFException {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, null, null) {
+			@Override
+			protected int getInputTextStyle() {
+				return SWT.MULTI | SWT.BORDER;
+			}
+			@Override
+			protected Control createDialogArea(Composite parent) {
+				Control res = super.createDialogArea(parent);
+				((GridData) this.getText().getLayoutData()).heightHint = 100;
+				return res;
+			}
+		};
 
 		if (dialog.open() == Window.CANCEL) {
 			throw new MMTFException("Dialog cancel button pressed");
