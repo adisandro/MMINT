@@ -32,30 +32,29 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetPackage;
 import edu.toronto.cs.se.modelepedia.petrinet.Place;
 
-public class PWControlRelToPetriNet extends ConversionOperatorExecutableImpl {
+public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
-	private static final String FILE_SUFFIX = "_pwcr2pn_";
+	private static final String FILE_SUFFIX = "_pw2pn_";
 	private Model newElement;
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		if (actualParameters.size() != 1 || !(actualParameters.get(0) instanceof ModelRel)) {
+		if (actualParameters.size() != 1 || !(actualParameters.get(0) instanceof Model)) {
 			throw new MMTFException("Bad operator parameters");
 		}
 
 		// convert
-		ModelRel pwControlRel = (ModelRel) actualParameters.get(0);
+		Model powerWindow = (Model) actualParameters.get(0);
 		PetriNet petriNet = PetrinetFactory.eINSTANCE.createPetriNet();
-		for (TypedElement runtimeType : pwControlRel.getRuntimeMetatypes()) {
-			if (runtimeType.getName().equals("SafePWControlRel")) {
+		for (TypedElement runtimeType : powerWindow.getRuntimeMetatypes()) {
+			if (runtimeType.getName().equals("SafePowerWindow")) {
 				Place place = PetrinetFactory.eINSTANCE.createPlace();
 				petriNet.getNodes().add(place);
 				break;
@@ -63,9 +62,9 @@ public class PWControlRelToPetriNet extends ConversionOperatorExecutableImpl {
 		}
 
 		// serialize
-		String uri = pwControlRel.getUri();
+		String uri = powerWindow.getUri();
 		uri = uri.substring(0, uri.lastIndexOf(IPath.SEPARATOR)+1) +
-			pwControlRel.getName() +
+			powerWindow.getName() +
 			FILE_SUFFIX +
 			(new Date()).getTime() +
 			"." + PetrinetPackage.eNAME;
@@ -76,7 +75,7 @@ public class PWControlRelToPetriNet extends ConversionOperatorExecutableImpl {
 		resource.save(Collections.EMPTY_MAP);
 
 		// create model
-		MultiModel owner = (MultiModel) pwControlRel.eContainer();
+		MultiModel owner = (MultiModel) powerWindow.eContainer();
 		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
 		newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
 		Editor editor = MultiModelFactoryUtils.createEditor(newElement);

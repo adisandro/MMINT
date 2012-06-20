@@ -16,16 +16,16 @@
 <plugin>
 
    <extension
-         name="PWControlRelToPetriNet"
+         name="PowerWindowToPetriNet"
          point="edu.toronto.cs.se.mmtf.operators">
       <operator
-            class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PWControlRelToPetriNet"
+            class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PowerWindowToPetriNet"
             isConversion="true">
          <input>
             <parameter
                   isVararg="false"
-                  name="controlRel"
-                  modelTypeUri="http:///edu/toronto/cs/se/modelepedia/powerwindow/PWControlRel">
+                  name="powerWindow"
+                  modelTypeUri="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
             </parameter>
          </input>
          <output>
