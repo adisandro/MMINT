@@ -335,7 +335,14 @@ linkTypes:
 			}
 			else {
 				if (model instanceof ModelRel) {
-					return model;
+					//TODO MMTF: fix this ugly hack
+					ModelRel modelRel = (ModelRel) model;
+					if (modelRel.getModels().size() > 0) {
+						return modelRel.getModels().get(modelRel.getModels().size()-1).getRoot();
+					}
+					else {
+						return model;
+					}
 				}
 				root = getRoot(uri);
 			}
