@@ -686,6 +686,20 @@ Contributors:
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
+               class="edu.toronto.cs.se.mmtf.mid.diagram.menu.ValidateAction"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.menu.ValidateAction">
+            <visibleWhen>
+               <with variable="activePartId">
+                  <equals value="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
+               </with>
+            </visibleWhen>
+         </dynamic>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <dynamic
                class="edu.toronto.cs.se.mmtf.mid.diagram.menu.ModelepediaAction"
                id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenModelepediaAction">
             <visibleWhen>
