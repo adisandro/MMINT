@@ -25,9 +25,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 public class EditModelepediaListener extends SelectionAdapter {
 
-	private final static String MODELEPEDIA_WWW = "http://192.168.72.19:4139/modelepedia/index.php/Special:FormEdit";
+	private final static String WIKI_WWW = "http://mango.cs.toronto.edu:4139/w/index.php/Special:FormEdit";
 	private Model modelType;
-	private final static String prefix = "MMTF:";
 	
 	public EditModelepediaListener(Model modelType) {
 
@@ -44,7 +43,7 @@ public class EditModelepediaListener extends SelectionAdapter {
 		if (modelType.getName() != null)
 			args = args + "name=" + modelType.getName();
 		if (modelType.getSupertype() != null)
-			args = args + "&supertype=" + prefix + modelType.getSupertype().getName();
+			args = args + "&supertype=" + modelType.getSupertype().getName();
 			
 		if (modelType instanceof ModelRel) {
 			formType = "/Relationship_Type/";
@@ -62,20 +61,20 @@ public class EditModelepediaListener extends SelectionAdapter {
 			for (Model model : modelRelType.getModels()) {
 				if (i != 1)
 					args = args + ", ";
-				args = args + prefix + model.getName() + ";" + cardinality;
+				args = args + model.getName() + ";" + cardinality;
 				i++;
 			}
 		}
 		
 		
 		IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
-		String url = MODELEPEDIA_WWW + formType + prefix + modelType.getName() + args;
+		String url = WIKI_WWW + formType + modelType.getName() + args;
 		try {
-			IWebBrowser browser = support.createBrowser("Modelepedia");
+			IWebBrowser browser = support.createBrowser("MMTF Wiki");
 			browser.openURL(new URL(url));
 		}
 		catch (Exception ex) {
-			MMTFException.print(MMTFException.Type.WARNING, "Error opening Modelepedia page " + url, ex);
+			MMTFException.print(MMTFException.Type.WARNING, "Error opening wiki page " + url, ex);
 		}
 	}
 
