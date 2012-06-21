@@ -76,8 +76,8 @@ public class ValidateAction extends ContributionItem {
 		}
 		if (
 			model == null ||
-			((Model) model.getMetatype()).getConstraint() == null ||
-			!MultiModelConstraintChecker.isInstancesLevel((MultiModel) model.eContainer())
+			!MultiModelConstraintChecker.isInstancesLevel((MultiModel) model.eContainer()) ||
+			((Model) model.getMetatype()).getConstraint() == null
 		) {
 			return;
 		}
