@@ -640,7 +640,7 @@ Contributors:
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-
+<!--
    <extension
          name="Mid diagram"
          point="edu.toronto.cs.se.mmtf.editors">
@@ -654,7 +654,7 @@ Contributors:
          </extendibleElement>
       </editor>
    </extension>
-
+-->
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
