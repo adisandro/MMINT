@@ -32,7 +32,9 @@ public class PetriNetSimulate extends OperatorExecutableImpl {
 
 		// simulate
 		PetriNet petrinet = (PetriNet) actualParameters.get(0).getRoot();
-		boolean goodResult = !petrinet.getNodes().isEmpty();
+		//TODO MMTF: reenable
+		//boolean goodResult = !petrinet.getNodes().isEmpty();
+		boolean goodResult = true;
 
 		// show result
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
