@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 
 public class OpenModelepediaListener extends SelectionAdapter {
 
-	private final static String MODELEPEDIA_WWW = "http://192.168.72.19:4139/modelepedia/index.php/MMTF:";
+	private final static String WIKI_WWW = "http://mango.cs.toronto.edu:4139/w/index.php/Special:FormEdit";
 	private Model modelType;
 
 	public OpenModelepediaListener(Model modelType) {
@@ -36,13 +36,13 @@ public class OpenModelepediaListener extends SelectionAdapter {
 	public void widgetSelected(SelectionEvent e) {
 
 		IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
-		String url = MODELEPEDIA_WWW + modelType.getName();
+		String url = WIKI_WWW + modelType.getName();
 		try {
-			IWebBrowser browser = support.createBrowser("Modelepedia");
+			IWebBrowser browser = support.createBrowser("MMTF Wiki");
 			browser.openURL(new URL(url));
 		}
 		catch (Exception ex) {
-			MMTFException.print(MMTFException.Type.WARNING, "Error opening Modelepedia page " + url, ex);
+			MMTFException.print(MMTFException.Type.WARNING, "Error opening wiki page " + url, ex);
 		}
 	}
 

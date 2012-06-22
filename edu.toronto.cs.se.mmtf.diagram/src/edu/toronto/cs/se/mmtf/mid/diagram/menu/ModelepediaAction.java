@@ -78,17 +78,17 @@ public class ModelepediaAction extends ContributionItem {
 
 		// create dynamic menu
 		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
-		cascadeItem.setText("Modelepedia");
+		cascadeItem.setText("MMTF Wiki");
 		// just one sub item for now
 		Menu modelepediaMenu = new Menu(menu);
 		cascadeItem.setMenu(modelepediaMenu);
 		MenuItem openModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
-		openModelepediaItem.setText("Open Modelepedia page");
+		openModelepediaItem.setText("Open wiki page");
 		openModelepediaItem.addSelectionListener(
 			new OpenModelepediaListener(modelType)
 		);
 		MenuItem editModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
-		editModelepediaItem.setText("Edit Modelepedia page");
+		editModelepediaItem.setText("Edit wiki page");
 		editModelepediaItem.addSelectionListener(
 			new EditModelepediaListener(modelType)
 		);
