@@ -34,10 +34,14 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PanningSelectionToolEntry;
+import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
@@ -70,7 +74,9 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.navigator.MidNavigatorItem;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
  * @generated
@@ -112,9 +118,36 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
-	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
+	protected PaletteRoot createPaletteRootGen(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
 		new MidPaletteFactory().fillPalette(root);
+		return root;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
+
+		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
+		ModelRel modelRel = (ModelRel) this.getDiagram().getElement();
+		if (!MultiModelConstraintChecker.isInstancesLevel(modelRel)) {
+			for (Object paletteContainer : root.getChildren()) {
+				for (Object paletteEntry : ((PaletteContainer) paletteContainer)
+						.getChildren()) {
+					if (paletteEntry instanceof ToolEntry
+							&& !(paletteEntry instanceof PanningSelectionToolEntry || paletteEntry instanceof PaletteToolEntry)) {
+						((ToolEntry) paletteEntry)
+								.setLabel(((ToolEntry) paletteEntry).getLabel()
+										+ " Type");
+						((ToolEntry) paletteEntry)
+								.setDescription(((ToolEntry) paletteEntry)
+										.getDescription() + " Type");
+					}
+				}
+			}
+		}
+
 		return root;
 	}
 
