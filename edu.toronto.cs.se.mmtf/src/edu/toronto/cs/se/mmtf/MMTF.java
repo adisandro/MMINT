@@ -821,7 +821,7 @@ modelRef:
 			for (Editor editorType : modelType.getEditors()) {
 				Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
 				try {
-					addLightExtendibleType(newEditorType, editorType, newModelTypeName, editorType.getName(), repository);
+					addLightExtendibleType(newEditorType, editorType, newModelTypeName, editorType.getName(), multiModel);
 				}
 				catch (MMTFException e) {
 					// unfortunately models created through this editor will have the supermodel as static type

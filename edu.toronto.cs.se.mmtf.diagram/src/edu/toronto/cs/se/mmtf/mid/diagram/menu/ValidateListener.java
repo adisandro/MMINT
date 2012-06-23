@@ -119,7 +119,7 @@ public class ValidateListener extends SelectionAdapter {
 					decoration.add(figure);
 					decoration.setSize(figure.getSize());
 		            decoration.setOwnerFigure(editPart.getFigure());
-					decoration.setLocator(new RelativeToBorderLocator(editPart.getFigure(), PositionConstants.NORTH_EAST, 0));
+					decoration.setLocator(new RelativeToBorderLocator(editPart.getFigure(), PositionConstants.CENTER, 0));
 		            editPart.getViewer().getVisualPartMap().put(decoration, editPart);
 					IFigure pane = LayerManager.Helper.find(editPart).getLayer(DiagramRootEditPart.DECORATION_UNPRINTABLE_LAYER);
 					pane.add(decoration);
