@@ -1299,6 +1299,7 @@ modelRef:
 						continue;
 					}
 					// check allowed model element types
+					//TODO MMTF: here I shoud check direction and actual endpoint for binary differently than nary
 					boolean okSource = false;
 					boolean okTarget = false;
 					for (ModelElementReference elementTypeRef : linkType.getElementRefs()) {
