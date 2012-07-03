@@ -596,7 +596,7 @@ Contributors:
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-<!--
+
    <extension
          name="Relationship diagram"
          point="edu.toronto.cs.se.mmtf.editors">
@@ -610,6 +610,6 @@ Contributors:
          </extendibleElement>
       </editor>
    </extension>
--->
+
    <!-- optionally, specify keybindings -->
 </plugin>

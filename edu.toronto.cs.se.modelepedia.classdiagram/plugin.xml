@@ -36,18 +36,4 @@
             class="edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage"/>
    </extension>
 
-   <extension
-         name="ClassDiagramRel"
-         point="edu.toronto.cs.se.mmtf.relationships">
-      <relationship
-            isNary="true">
-         <extendibleElement
-               uri="http:///edu/toronto/cs/se/modelepedia/classdiagram/ClassDiagramRel">
-         </extendibleElement>
-         <model
-               modelTypeUri="http:///edu/toronto/cs/se/modelepedia/classdiagram/model/classdiagram.ecore">
-         </model>
-      </relationship>
-   </extension>
-
 </plugin>

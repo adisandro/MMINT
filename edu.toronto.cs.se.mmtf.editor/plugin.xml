@@ -40,7 +40,7 @@
             contributorClass="edu.toronto.cs.se.mmtf.mid.presentation.MidActionBarContributor">
       </editor>
    </extension>
-<!--
+
    <extension
          name="MID editor"
          point="edu.toronto.cs.se.mmtf.editors">
@@ -54,7 +54,7 @@
          </extendibleElement>
       </editor>
    </extension>
--->
+
    <extension point="org.eclipse.ui.newWizards">
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
@@ -80,7 +80,7 @@
             contributorClass="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipActionBarContributor">
       </editor>
    </extension>
-<!--
+
    <extension
          name="Relationship editor"
          point="edu.toronto.cs.se.mmtf.editors">
@@ -94,7 +94,7 @@
          </extendibleElement>
       </editor>
    </extension>
--->
+
    <extension point="org.eclipse.ui.newWizards">
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"

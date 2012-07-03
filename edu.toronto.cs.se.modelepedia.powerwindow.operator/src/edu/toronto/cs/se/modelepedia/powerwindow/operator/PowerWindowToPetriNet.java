@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
@@ -37,9 +36,11 @@ import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetPackage;
 import edu.toronto.cs.se.modelepedia.petrinet.Place;
+import edu.toronto.cs.se.modelepedia.powerwindow.Window;
 
 public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
+	private static final int DELAY_BOUND = 50;
 	private static final String FILE_SUFFIX = "_pw2pn_";
 	private Model newElement;
 
@@ -51,20 +52,18 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 		}
 
 		// convert
-		Model powerWindow = (Model) actualParameters.get(0);
+		Model windowModel = (Model) actualParameters.get(0);
+		Window window = (Window) windowModel.getRoot();
 		PetriNet petriNet = PetrinetFactory.eINSTANCE.createPetriNet();
-		for (TypedElement runtimeType : powerWindow.getRuntimeMetatypes()) {
-			if (runtimeType.getName().equals("SafePowerWindow")) {
-				Place place = PetrinetFactory.eINSTANCE.createPlace();
-				petriNet.getNodes().add(place);
-				break;
-			}
+		if (window.getSensor() != null && window.getSensor().getDelay() < DELAY_BOUND) {
+			Place place = PetrinetFactory.eINSTANCE.createPlace();
+			petriNet.getNodes().add(place);
 		}
 
 		// serialize
-		String uri = powerWindow.getUri();
+		String uri = windowModel.getUri();
 		uri = uri.substring(0, uri.lastIndexOf(IPath.SEPARATOR)+1) +
-			powerWindow.getName() +
+			windowModel.getName() +
 			FILE_SUFFIX +
 			(new Date()).getTime() +
 			"." + PetrinetPackage.eNAME;
@@ -75,7 +74,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 		resource.save(Collections.EMPTY_MAP);
 
 		// create model
-		MultiModel owner = (MultiModel) powerWindow.eContainer();
+		MultiModel owner = (MultiModel) windowModel.eContainer();
 		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
 		newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
 		Editor editor = MultiModelFactoryUtils.createEditor(newElement);
