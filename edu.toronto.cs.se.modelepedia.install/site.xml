@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/edu.toronto.cs.se.modelepedia_0.9.0.jar" id="edu.toronto.cs.se.modelepedia" version="0.9.0">
+      <category name="Modeling"/>
+   </feature>
+   <category-def name="Modeling" label="Modeling"/>
+</site>
