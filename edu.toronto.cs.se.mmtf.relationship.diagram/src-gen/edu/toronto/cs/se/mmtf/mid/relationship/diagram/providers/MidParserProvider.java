@@ -51,9 +51,9 @@ public class MidParserProvider extends AbstractProvider implements
 		if (modelReferenceNameType_5002Parser == null) {
 			EAttribute[] features = new EAttribute[] {
 					RelationshipPackage.eINSTANCE
-							.getTypedElementReference_Name(),
+							.getExtendibleElementReference_Name(),
 					RelationshipPackage.eINSTANCE
-							.getTypedElementReference_Type() };
+							.getExtendibleElementReference_Type() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
@@ -74,10 +74,10 @@ public class MidParserProvider extends AbstractProvider implements
 	private IParser getLinkNameType_5003Parser() {
 		if (linkNameType_5003Parser == null) {
 			EAttribute[] features = new EAttribute[] {
-					MidPackage.eINSTANCE.getTypedElement_Name(),
-					MidPackage.eINSTANCE.getTypedElement_Type() };
+					MidPackage.eINSTANCE.getExtendibleElement_Name(),
+					MidPackage.eINSTANCE.getExtendibleElement_Type() };
 			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
@@ -100,9 +100,9 @@ public class MidParserProvider extends AbstractProvider implements
 		if (modelElementReferenceNameType_5001Parser == null) {
 			EAttribute[] features = new EAttribute[] {
 					RelationshipPackage.eINSTANCE
-							.getTypedElementReference_Name(),
+							.getExtendibleElementReference_Name(),
 					RelationshipPackage.eINSTANCE
-							.getTypedElementReference_Type() };
+							.getExtendibleElementReference_Type() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0} : {1}"); //$NON-NLS-1$
@@ -123,10 +123,10 @@ public class MidParserProvider extends AbstractProvider implements
 	private IParser getBinaryLinkNameType_6001Parser() {
 		if (binaryLinkNameType_6001Parser == null) {
 			EAttribute[] features = new EAttribute[] {
-					MidPackage.eINSTANCE.getTypedElement_Name(),
-					MidPackage.eINSTANCE.getTypedElement_Type() };
+					MidPackage.eINSTANCE.getExtendibleElement_Name(),
+					MidPackage.eINSTANCE.getExtendibleElement_Type() };
 			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$

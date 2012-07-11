@@ -111,9 +111,9 @@
             viewPattern="{0} : {1}"
             editPattern="{0}">
           <metaFeatures
-              href="mid.genmodel#//mid/relationship/TypedElementReference/name"/>
+              href="mid.genmodel#//mid/relationship/ExtendibleElementReference/name"/>
           <metaFeatures
-              href="mid.genmodel#//mid/relationship/TypedElementReference/type"/>
+              href="mid.genmodel#//mid/relationship/ExtendibleElementReference/type"/>
         </modelFacet>
       </labels>
     </childNodes>
@@ -183,9 +183,9 @@
             viewPattern="{0} : {1}"
             editPattern="{0}">
           <metaFeatures
-              href="mid.genmodel#//mid/relationship/TypedElementReference/name"/>
+              href="mid.genmodel#//mid/relationship/ExtendibleElementReference/name"/>
           <metaFeatures
-              href="mid.genmodel#//mid/relationship/TypedElementReference/type"/>
+              href="mid.genmodel#//mid/relationship/ExtendibleElementReference/type"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -248,11 +248,11 @@
             editorPattern="{0}"
             editPattern="{0}">
           <metaFeatures
-              href="mid.genmodel#//mid/TypedElement/name"/>
+              href="mid.genmodel#//mid/ExtendibleElement/name"/>
           <metaFeatures
-              href="mid.genmodel#//mid/TypedElement/type"/>
+              href="mid.genmodel#//mid/ExtendibleElement/type"/>
           <editableMetaFeatures
-              href="mid.genmodel#//mid/TypedElement/name"/>
+              href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -393,11 +393,11 @@
             editorPattern="{0}"
             editPattern="{0}">
           <metaFeatures
-              href="mid.genmodel#//mid/TypedElement/name"/>
+              href="mid.genmodel#//mid/ExtendibleElement/name"/>
           <metaFeatures
-              href="mid.genmodel#//mid/TypedElement/type"/>
+              href="mid.genmodel#//mid/ExtendibleElement/type"/>
           <editableMetaFeatures
-              href="mid.genmodel#//mid/TypedElement/name"/>
+              href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </links>

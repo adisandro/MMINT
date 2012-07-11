@@ -55,10 +55,10 @@ public class MidParserProvider extends AbstractProvider implements
 	private IParser getModelNameType_5001Parser() {
 		if (modelNameType_5001Parser == null) {
 			EAttribute[] features = new EAttribute[] {
-					MidPackage.eINSTANCE.getTypedElement_Name(),
-					MidPackage.eINSTANCE.getTypedElement_Type() };
+					MidPackage.eINSTANCE.getExtendibleElement_Name(),
+					MidPackage.eINSTANCE.getExtendibleElement_Type() };
 			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
@@ -80,10 +80,10 @@ public class MidParserProvider extends AbstractProvider implements
 	private IParser getModelNameType_5002Parser() {
 		if (modelNameType_5002Parser == null) {
 			EAttribute[] features = new EAttribute[] {
-					MidPackage.eINSTANCE.getTypedElement_Name(),
-					MidPackage.eINSTANCE.getTypedElement_Type() };
+					MidPackage.eINSTANCE.getExtendibleElement_Name(),
+					MidPackage.eINSTANCE.getExtendibleElement_Type() };
 			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
@@ -105,10 +105,10 @@ public class MidParserProvider extends AbstractProvider implements
 	private IParser getModelRelNameType_5003Parser() {
 		if (modelRelNameType_5003Parser == null) {
 			EAttribute[] features = new EAttribute[] {
-					MidPackage.eINSTANCE.getTypedElement_Name(),
-					MidPackage.eINSTANCE.getTypedElement_Type() };
+					MidPackage.eINSTANCE.getExtendibleElement_Name(),
+					MidPackage.eINSTANCE.getExtendibleElement_Type() };
 			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
@@ -130,10 +130,10 @@ public class MidParserProvider extends AbstractProvider implements
 	private IParser getModelRelNameType_5004Parser() {
 		if (modelRelNameType_5004Parser == null) {
 			EAttribute[] features = new EAttribute[] {
-					MidPackage.eINSTANCE.getTypedElement_Name(),
-					MidPackage.eINSTANCE.getTypedElement_Type() };
+					MidPackage.eINSTANCE.getExtendibleElement_Name(),
+					MidPackage.eINSTANCE.getExtendibleElement_Type() };
 			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$
@@ -170,10 +170,10 @@ public class MidParserProvider extends AbstractProvider implements
 	private IParser getBinaryModelRelNameType_6001Parser() {
 		if (binaryModelRelNameType_6001Parser == null) {
 			EAttribute[] features = new EAttribute[] {
-					MidPackage.eINSTANCE.getTypedElement_Name(),
-					MidPackage.eINSTANCE.getTypedElement_Type() };
+					MidPackage.eINSTANCE.getExtendibleElement_Name(),
+					MidPackage.eINSTANCE.getExtendibleElement_Type() };
 			EAttribute[] editableFeatures = new EAttribute[] { MidPackage.eINSTANCE
-					.getTypedElement_Name() };
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("{0} : {1}"); //$NON-NLS-1$

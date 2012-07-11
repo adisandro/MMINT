@@ -106,6 +106,9 @@ public class MidModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof ModelRel2EditPart) {
 			return ((ModelRel2EditPart) targetEditPart).getMARelTypesOnTarget();
 		}
+		if (targetEditPart instanceof OperatorEditPart) {
+			return ((OperatorEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -162,6 +165,10 @@ public class MidModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
 			return ((ModelRel2EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof OperatorEditPart) {
+			return ((OperatorEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;

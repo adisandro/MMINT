@@ -26,10 +26,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -270,7 +268,8 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		types.add(MidElementTypes.ExtendibleElementSupertype_4001);
 		types.add(MidElementTypes.Parameter_4006);
 		types.add(MidElementTypes.Parameter_4007);
 		return types;
@@ -282,6 +281,21 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (targetEditPart instanceof ModelEditPart) {
+			types.add(MidElementTypes.ExtendibleElementSupertype_4001);
+		}
+		if (targetEditPart instanceof Model2EditPart) {
+			types.add(MidElementTypes.ExtendibleElementSupertype_4001);
+		}
+		if (targetEditPart instanceof ModelRelEditPart) {
+			types.add(MidElementTypes.ExtendibleElementSupertype_4001);
+		}
+		if (targetEditPart instanceof ModelRel2EditPart) {
+			types.add(MidElementTypes.ExtendibleElementSupertype_4001);
+		}
+		if (targetEditPart instanceof edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.OperatorEditPart) {
+			types.add(MidElementTypes.ExtendibleElementSupertype_4001);
+		}
 		if (targetEditPart instanceof ModelEditPart) {
 			types.add(MidElementTypes.Parameter_4006);
 		}
@@ -314,7 +328,13 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MidElementTypes.Parameter_4006) {
+		if (relationshipType == MidElementTypes.ExtendibleElementSupertype_4001) {
+			types.add(MidElementTypes.Model_2001);
+			types.add(MidElementTypes.Model_2002);
+			types.add(MidElementTypes.ModelRel_2003);
+			types.add(MidElementTypes.ModelRel_2004);
+			types.add(MidElementTypes.Operator_2005);
+		} else if (relationshipType == MidElementTypes.Parameter_4006) {
 			types.add(MidElementTypes.Model_2001);
 			types.add(MidElementTypes.Model_2002);
 			types.add(MidElementTypes.ModelRel_2003);
@@ -324,6 +344,30 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 			types.add(MidElementTypes.Model_2002);
 			types.add(MidElementTypes.ModelRel_2003);
 			types.add(MidElementTypes.ModelRel_2004);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(MidElementTypes.ExtendibleElementSupertype_4001);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (relationshipType == MidElementTypes.ExtendibleElementSupertype_4001) {
+			types.add(MidElementTypes.Model_2001);
+			types.add(MidElementTypes.Model_2002);
+			types.add(MidElementTypes.ModelRel_2003);
+			types.add(MidElementTypes.ModelRel_2004);
+			types.add(MidElementTypes.Operator_2005);
 		}
 		return types;
 	}

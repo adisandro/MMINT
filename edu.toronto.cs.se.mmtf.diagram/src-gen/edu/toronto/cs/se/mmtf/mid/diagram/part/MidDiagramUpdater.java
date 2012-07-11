@@ -253,6 +253,7 @@ public class MidDiagramUpdater {
 			View view) {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Parameter_4006(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Parameter_4007(modelElement));
 		return result;
@@ -377,7 +378,13 @@ public class MidDiagramUpdater {
 	 */
 	public static List<MidLinkDescriptor> getOperator_2005IncomingLinks(
 			View view) {
-		return Collections.emptyList();
+		Operator modelElement = (Operator) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(
+				modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -473,6 +480,7 @@ public class MidDiagramUpdater {
 			View view) {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Parameter_4006(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Parameter_4007(modelElement));
 		return result;

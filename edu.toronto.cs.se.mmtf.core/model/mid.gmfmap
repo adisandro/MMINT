@@ -23,11 +23,11 @@
         <diagramLabel
             href="mid.gmfgraph#ModelLabel"/>
         <features
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
         <features
-            href="mid.ecore#//TypedElement/type"/>
+            href="mid.ecore#//ExtendibleElement/type"/>
         <editableFeatures
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -53,11 +53,11 @@
         <diagramLabel
             href="mid.gmfgraph#ModelLabel"/>
         <features
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
         <features
-            href="mid.ecore#//TypedElement/type"/>
+            href="mid.ecore#//ExtendibleElement/type"/>
         <editableFeatures
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -82,11 +82,11 @@
         <diagramLabel
             href="mid.gmfgraph#ModelRelLabel"/>
         <features
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
         <features
-            href="mid.ecore#//TypedElement/type"/>
+            href="mid.ecore#//ExtendibleElement/type"/>
         <editableFeatures
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -113,11 +113,11 @@
         <diagramLabel
             href="mid.gmfgraph#ModelRelLabel"/>
         <features
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
         <features
-            href="mid.ecore#//TypedElement/type"/>
+            href="mid.ecore#//ExtendibleElement/type"/>
         <editableFeatures
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -183,11 +183,11 @@
       <diagramLabel
           href="mid.gmfgraph#BinaryModelRelLabel"/>
       <features
-          href="mid.ecore#//TypedElement/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
       <features
-          href="mid.ecore#//TypedElement/type"/>
+          href="mid.ecore#//ExtendibleElement/type"/>
       <editableFeatures
-          href="mid.ecore#//TypedElement/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
     </labelMappings>
     <relatedDiagrams
         href="relationship.gmfmap#//@diagram"/>

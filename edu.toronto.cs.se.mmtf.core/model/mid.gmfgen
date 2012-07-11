@@ -29,9 +29,9 @@
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
         <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="{0} : {1}" editorPattern="{0}" editPattern="{0}">
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/type"/>
-          <editableMetaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/type"/>
+          <editableMetaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -55,9 +55,9 @@
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
         <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="{0} : {1}" editorPattern="{0}" editPattern="{0}">
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/type"/>
-          <editableMetaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/type"/>
+          <editableMetaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -80,9 +80,9 @@
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
         <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="{0} : {1}" editorPattern="{0}" editPattern="{0}">
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/type"/>
-          <editableMetaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/type"/>
+          <editableMetaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -105,9 +105,9 @@
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
         <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="{0} : {1}" editorPattern="{0}" editPattern="{0}">
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/type"/>
-          <editableMetaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/type"/>
+          <editableMetaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -180,9 +180,9 @@
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
         </viewmap>
         <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="{0} : {1}" editorPattern="{0}" editPattern="{0}">
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
-          <metaFeatures href="mid.genmodel#//mid/TypedElement/type"/>
-          <editableMetaFeatures href="mid.genmodel#//mid/TypedElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
+          <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/type"/>
+          <editableMetaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </links>
@@ -272,6 +272,8 @@
     <childReferences parent="//@diagram/@topLevelNodes.2" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.3" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@topLevelNodes.3" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.4" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@topLevelNodes.4" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.0" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.1" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
@@ -280,6 +282,8 @@
     <childReferences parent="//@diagram/@topLevelNodes.2" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.3" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@topLevelNodes.3" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.4" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@topLevelNodes.4" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
     <childReferences parent="//@diagram" child="//@diagram/@links.1" groupName="links" groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@links.1" child="//@diagram/@topLevelNodes.0" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@links.1" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>

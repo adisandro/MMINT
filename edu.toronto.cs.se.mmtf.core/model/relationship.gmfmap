@@ -20,9 +20,9 @@
         <diagramLabel
             href="relationship.gmfgraph#ModelReferenceLabel"/>
         <features
-            href="mid.ecore#//relationship/TypedElementReference/name"/>
+            href="mid.ecore#//relationship/ExtendibleElementReference/name"/>
         <features
-            href="mid.ecore#//relationship/TypedElementReference/type"/>
+            href="mid.ecore#//relationship/ExtendibleElementReference/type"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -44,9 +44,9 @@
             <diagramLabel
                 href="relationship.gmfgraph#ModelElementReferenceLabel"/>
             <features
-                href="mid.ecore#//relationship/TypedElementReference/name"/>
+                href="mid.ecore#//relationship/ExtendibleElementReference/name"/>
             <features
-                href="mid.ecore#//relationship/TypedElementReference/type"/>
+                href="mid.ecore#//relationship/ExtendibleElementReference/type"/>
           </labelMappings>
           <diagramNode
               href="relationship.gmfgraph#ModelElementReference"/>
@@ -75,11 +75,11 @@
         <diagramLabel
             href="relationship.gmfgraph#LinkLabel"/>
         <features
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
         <features
-            href="mid.ecore#//TypedElement/type"/>
+            href="mid.ecore#//ExtendibleElement/type"/>
         <editableFeatures
-            href="mid.ecore#//TypedElement/name"/>
+            href="mid.ecore#//ExtendibleElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -125,11 +125,11 @@
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkLabel"/>
       <features
-          href="mid.ecore#//TypedElement/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
       <features
-          href="mid.ecore#//TypedElement/type"/>
+          href="mid.ecore#//ExtendibleElement/type"/>
       <editableFeatures
-          href="mid.ecore#//TypedElement/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/ModelRel/links"/>
