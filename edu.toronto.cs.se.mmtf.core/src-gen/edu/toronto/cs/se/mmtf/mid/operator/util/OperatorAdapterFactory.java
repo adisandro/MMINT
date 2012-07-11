@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.util;
 
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
 import edu.toronto.cs.se.mmtf.mid.operator.*;
 
@@ -109,8 +109,8 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createConversionOperatorExecutableAdapter();
 			}
 			@Override
-			public Adapter caseTypedElement(TypedElement object) {
-				return createTypedElementAdapter();
+			public Adapter caseExtendibleElement(ExtendibleElement object) {
+				return createExtendibleElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -231,16 +231,16 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.TypedElement <em>Typed Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement
 	 * @generated
 	 */
-	public Adapter createTypedElementAdapter() {
+	public Adapter createExtendibleElementAdapter() {
 		return null;
 	}
 

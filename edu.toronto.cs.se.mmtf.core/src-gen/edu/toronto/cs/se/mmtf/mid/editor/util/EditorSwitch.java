@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.editor.util;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import edu.toronto.cs.se.mmtf.mid.editor.*;
 
@@ -82,7 +81,6 @@ public class EditorSwitch<T> extends Switch<T> {
 				Editor editor = (Editor)theEObject;
 				T result = caseEditor(editor);
 				if (result == null) result = caseExtendibleElement(editor);
-				if (result == null) result = caseTypedElement(editor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -91,7 +89,6 @@ public class EditorSwitch<T> extends Switch<T> {
 				T result = caseDiagram(diagram);
 				if (result == null) result = caseEditor(diagram);
 				if (result == null) result = caseExtendibleElement(diagram);
-				if (result == null) result = caseTypedElement(diagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -126,21 +123,6 @@ public class EditorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDiagram(Diagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypedElement(TypedElement object) {
 		return null;
 	}
 

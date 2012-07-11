@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmtf.mid.relationship.util;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.*;
 
@@ -113,12 +112,8 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 				return createHomomorphismLinkAdapter();
 			}
 			@Override
-			public Adapter caseTypedElementReference(TypedElementReference object) {
-				return createTypedElementReferenceAdapter();
-			}
-			@Override
-			public Adapter caseTypedElement(TypedElement object) {
-				return createTypedElementAdapter();
+			public Adapter caseExtendibleElementReference(ExtendibleElementReference object) {
+				return createExtendibleElementReferenceAdapter();
 			}
 			@Override
 			public Adapter caseExtendibleElement(ExtendibleElement object) {
@@ -261,30 +256,16 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference <em>Typed Element Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference <em>Extendible Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference
 	 * @generated
 	 */
-	public Adapter createTypedElementReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.TypedElement <em>Typed Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement
-	 * @generated
-	 */
-	public Adapter createTypedElementAdapter() {
+	public Adapter createExtendibleElementReferenceAdapter() {
 		return null;
 	}
 

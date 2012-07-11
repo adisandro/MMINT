@@ -20,9 +20,9 @@ import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 
 import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference;
 
 import java.util.Collection;
 import java.util.List;
@@ -46,12 +46,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypedElementReferenceItemProvider
+public class ExtendibleElementReferenceItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -65,7 +65,7 @@ public class TypedElementReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElementReferenceItemProvider(AdapterFactory adapterFactory) {
+	public ExtendibleElementReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -99,9 +99,9 @@ public class TypedElementReferenceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TypedElementReference_referencedObject_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElementReference_referencedObject_feature", "_UI_TypedElementReference_type"),
-				 RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT,
+				 getString("_UI_ExtendibleElementReference_referencedObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementReference_referencedObject_feature", "_UI_ExtendibleElementReference_type"),
+				 RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT,
 				 true,
 				 false,
 				 true,
@@ -121,9 +121,9 @@ public class TypedElementReferenceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TypedElementReference_object_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElementReference_object_feature", "_UI_TypedElementReference_type"),
-				 RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__OBJECT,
+				 getString("_UI_ExtendibleElementReference_object_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementReference_object_feature", "_UI_ExtendibleElementReference_type"),
+				 RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT,
 				 false,
 				 false,
 				 false,
@@ -143,9 +143,9 @@ public class TypedElementReferenceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TypedElementReference_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElementReference_name_feature", "_UI_TypedElementReference_type"),
-				 RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__NAME,
+				 getString("_UI_ExtendibleElementReference_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementReference_name_feature", "_UI_ExtendibleElementReference_type"),
+				 RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__NAME,
 				 false,
 				 false,
 				 false,
@@ -165,9 +165,9 @@ public class TypedElementReferenceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TypedElementReference_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElementReference_type_feature", "_UI_TypedElementReference_type"),
-				 RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__TYPE,
+				 getString("_UI_ExtendibleElementReference_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementReference_type_feature", "_UI_ExtendibleElementReference_type"),
+				 RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__TYPE,
 				 false,
 				 false,
 				 false,
@@ -188,7 +188,7 @@ public class TypedElementReferenceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT);
+			childrenFeatures.add(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -214,10 +214,10 @@ public class TypedElementReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TypedElementReference)object).getName();
+		String label = ((ExtendibleElementReference)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_TypedElementReference_type") :
-			getString("_UI_TypedElementReference_type") + " " + label;
+			getString("_UI_ExtendibleElementReference_type") :
+			getString("_UI_ExtendibleElementReference_type") + " " + label;
 	}
 
 	/**
@@ -231,12 +231,12 @@ public class TypedElementReferenceItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TypedElementReference.class)) {
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__NAME:
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__TYPE:
+		switch (notification.getFeatureID(ExtendibleElementReference.class)) {
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__NAME:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -256,62 +256,62 @@ public class TypedElementReferenceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 RelationshipFactory.eINSTANCE.createModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 RelationshipFactory.eINSTANCE.createBinaryModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 RelationshipFactory.eINSTANCE.createHomomorphismModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 RelationshipFactory.eINSTANCE.createLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 RelationshipFactory.eINSTANCE.createBinaryLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 RelationshipFactory.eINSTANCE.createHomomorphismLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 MidFactory.eINSTANCE.createModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 MidFactory.eINSTANCE.createModelElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 EditorFactory.eINSTANCE.createEditor()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 EditorFactory.eINSTANCE.createDiagram()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 OperatorFactory.eINSTANCE.createOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 OperatorFactory.eINSTANCE.createConversionOperator()));
 	}
 

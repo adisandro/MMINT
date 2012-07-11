@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
@@ -20,6 +21,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -184,6 +186,24 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ModelRel getMetatype() {
+		return (ModelRel) super.getMetatype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelRel getSupertype() {
+		return (ModelRel) super.getSupertype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -285,6 +305,39 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return unbounded != UNBOUNDED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Model.class) {
+			switch (baseOperationID) {
+				case MidPackage.MODEL___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
+				case MidPackage.MODEL___GET_SUPERTYPE: return RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case RelationshipPackage.MODEL_REL___GET_METATYPE:
+				return getMetatype();
+			case RelationshipPackage.MODEL_REL___GET_SUPERTYPE:
+				return getSupertype();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

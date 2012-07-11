@@ -11,13 +11,14 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
-import edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl;
+import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -50,7 +51,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class OperatorImpl extends TypedElementImpl implements Operator {
+public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	/**
 	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -194,6 +195,24 @@ public class OperatorImpl extends TypedElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Operator getMetatype() {
+		return (Operator) super.getMetatype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operator getSupertype() {
+		return (Operator) super.getSupertype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -299,6 +318,22 @@ public class OperatorImpl extends TypedElementImpl implements Operator {
 				return executable != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case OperatorPackage.OPERATOR___GET_METATYPE:
+				return getMetatype();
+			case OperatorPackage.OPERATOR___GET_SUPERTYPE:
+				return getSupertype();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //OperatorImpl

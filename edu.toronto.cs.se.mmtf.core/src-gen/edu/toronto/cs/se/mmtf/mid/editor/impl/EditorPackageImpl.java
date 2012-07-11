@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -176,6 +177,24 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getEditor__GetMetatype() {
+		return editorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEditor__GetSupertype() {
+		return editorEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDiagram() {
 		return diagramEClass;
 	}
@@ -213,6 +232,8 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		createEAttribute(editorEClass, EDITOR__ID);
 		createEAttribute(editorEClass, EDITOR__WIZARD_ID);
 		createEAttribute(editorEClass, EDITOR__FILE_EXTENSIONS);
+		createEOperation(editorEClass, EDITOR___GET_METATYPE);
+		createEOperation(editorEClass, EDITOR___GET_SUPERTYPE);
 
 		diagramEClass = createEClass(DIAGRAM);
 	}
@@ -257,6 +278,10 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		initEAttribute(getEditor_Id(), ecorePackage.getEString(), "id", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEditor_WizardId(), ecorePackage.getEString(), "wizardId", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEditor_FileExtensions(), ecorePackage.getEString(), "fileExtensions", null, 1, -1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getEditor__GetMetatype(), this.getEditor(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getEditor__GetSupertype(), this.getEditor(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}

@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -28,22 +28,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Typed Element Reference</b></em>'.
+ * An implementation of the model object '<em><b>Extendible Element Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl#getReferencedObject <em>Referenced Object</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl#getContainedObject <em>Contained Object</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl#getObject <em>Object</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl#getReferencedObject <em>Referenced Object</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl#getContainedObject <em>Contained Object</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl#getObject <em>Object</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class TypedElementReferenceImpl extends EObjectImpl implements TypedElementReference {
+public abstract class ExtendibleElementReferenceImpl extends EObjectImpl implements ExtendibleElementReference {
 	/**
 	 * The cached value of the '{@link #getReferencedObject() <em>Referenced Object</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedElement referencedObject;
+	protected ExtendibleElement referencedObject;
 
 	/**
 	 * The cached value of the '{@link #getContainedObject() <em>Contained Object</em>}' containment reference.
@@ -62,7 +62,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedElement containedObject;
+	protected ExtendibleElement containedObject;
 
 	/**
 	 * The cached setting delegate for the '{@link #getObject() <em>Object</em>}' reference.
@@ -72,7 +72,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate OBJECT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__OBJECT).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate OBJECT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
@@ -82,7 +82,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__NAME).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__NAME).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getType() <em>Type</em>}' attribute.
@@ -92,14 +92,14 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE__TYPE).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__TYPE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypedElementReferenceImpl() {
+	protected ExtendibleElementReferenceImpl() {
 		super();
 	}
 
@@ -110,7 +110,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE;
+		return RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE;
 	}
 
 	/**
@@ -118,13 +118,13 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElement getReferencedObject() {
+	public ExtendibleElement getReferencedObject() {
 		if (referencedObject != null && referencedObject.eIsProxy()) {
 			InternalEObject oldReferencedObject = (InternalEObject)referencedObject;
-			referencedObject = (TypedElement)eResolveProxy(oldReferencedObject);
+			referencedObject = (ExtendibleElement)eResolveProxy(oldReferencedObject);
 			if (referencedObject != oldReferencedObject) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, referencedObject));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, referencedObject));
 			}
 		}
 		return referencedObject;
@@ -135,7 +135,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElement basicGetReferencedObject() {
+	public ExtendibleElement basicGetReferencedObject() {
 		return referencedObject;
 	}
 
@@ -144,11 +144,11 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferencedObject(TypedElement newReferencedObject) {
-		TypedElement oldReferencedObject = referencedObject;
+	public void setReferencedObject(ExtendibleElement newReferencedObject) {
+		ExtendibleElement oldReferencedObject = referencedObject;
 		referencedObject = newReferencedObject;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, referencedObject));
+			eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, referencedObject));
 	}
 
 	/**
@@ -156,7 +156,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElement getContainedObject() {
+	public ExtendibleElement getContainedObject() {
 		return containedObject;
 	}
 
@@ -165,11 +165,11 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainedObject(TypedElement newContainedObject, NotificationChain msgs) {
-		TypedElement oldContainedObject = containedObject;
+	public NotificationChain basicSetContainedObject(ExtendibleElement newContainedObject, NotificationChain msgs) {
+		ExtendibleElement oldContainedObject = containedObject;
 		containedObject = newContainedObject;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT, oldContainedObject, newContainedObject);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, oldContainedObject, newContainedObject);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -180,18 +180,18 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainedObject(TypedElement newContainedObject) {
+	public void setContainedObject(ExtendibleElement newContainedObject) {
 		if (newContainedObject != containedObject) {
 			NotificationChain msgs = null;
 			if (containedObject != null)
-				msgs = ((InternalEObject)containedObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
+				msgs = ((InternalEObject)containedObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
 			if (newContainedObject != null)
-				msgs = ((InternalEObject)newContainedObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
+				msgs = ((InternalEObject)newContainedObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
 			msgs = basicSetContainedObject(newContainedObject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT, newContainedObject, newContainedObject));
+			eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, newContainedObject, newContainedObject));
 	}
 
 	/**
@@ -199,8 +199,8 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElement getObject() {
-		return (TypedElement)OBJECT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public ExtendibleElement getObject() {
+		return (ExtendibleElement)OBJECT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -208,8 +208,8 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElement basicGetObject() {
-		return (TypedElement)OBJECT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	public ExtendibleElement basicGetObject() {
+		return (ExtendibleElement)OBJECT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -238,7 +238,7 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
 				return basicSetContainedObject(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -252,17 +252,17 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT:
 				if (resolve) return getReferencedObject();
 				return basicGetReferencedObject();
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
 				return getContainedObject();
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT:
 				if (resolve) return getObject();
 				return basicGetObject();
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__NAME:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__NAME:
 				return getName();
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__TYPE:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__TYPE:
 				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -276,11 +276,11 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT:
-				setReferencedObject((TypedElement)newValue);
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT:
+				setReferencedObject((ExtendibleElement)newValue);
 				return;
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT:
-				setContainedObject((TypedElement)newValue);
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
+				setContainedObject((ExtendibleElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -294,11 +294,11 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT:
-				setReferencedObject((TypedElement)null);
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT:
+				setReferencedObject((ExtendibleElement)null);
 				return;
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT:
-				setContainedObject((TypedElement)null);
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
+				setContainedObject((ExtendibleElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -312,18 +312,18 @@ public abstract class TypedElementReferenceImpl extends EObjectImpl implements T
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT:
 				return referencedObject != null;
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
 				return containedObject != null;
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__OBJECT:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT:
 				return OBJECT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__NAME:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__NAME:
 				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE__TYPE:
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__TYPE:
 				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //TypedElementReferenceImpl
+} //ExtendibleElementReferenceImpl

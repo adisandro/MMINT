@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -43,9 +43,9 @@ import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
  */
 public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
-	private static EList<TypedElement> getRuntimeTypes(Model model) {
+	private static EList<ExtendibleElement> getRuntimeTypes(Model model) {
 
-		EList<TypedElement> types = new BasicEList<TypedElement>();
+		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
 		// static type
 		Model staticModelType;
@@ -86,9 +86,9 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		return types;
 	}
 
-	private static EList<TypedElement> getRuntimeTypes(ModelRel modelRel) {
+	private static EList<ExtendibleElement> getRuntimeTypes(ModelRel modelRel) {
 
-		EList<TypedElement> types = new BasicEList<TypedElement>();
+		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
 		// static type
 		ModelRel staticModelRelType;
@@ -173,10 +173,10 @@ modelRelTypes:
 	}
 
 	//TODO MMTF: not needed if specialization is not allowed
-	private static EList<TypedElement> getRuntimeTypes(ModelElement modelElem) {
+	private static EList<ExtendibleElement> getRuntimeTypes(ModelElement modelElem) {
 
 		//TODO MMTF: implementare
-		EList<TypedElement> types = new BasicEList<TypedElement>();
+		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
 		ModelElement staticElementType;
 		String elementTypeUri = modelElem.getMetatypeUri();
@@ -203,9 +203,9 @@ modelRelTypes:
 	}
 
 	//TODO MMTF: not needed if specialization is not allowed
-	private static EList<TypedElement> getRuntimeTypes(Link link) {
+	private static EList<ExtendibleElement> getRuntimeTypes(Link link) {
 
-		EList<TypedElement> types = new BasicEList<TypedElement>();
+		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 		ModelRel modelRel = (ModelRel) link.eContainer();
 
 		// not specialized yet
@@ -250,9 +250,9 @@ linkTypes:
 		return types;
 	}
 
-	private static EList<TypedElement> getRuntimeTypes(Editor editor) {
+	private static EList<ExtendibleElement> getRuntimeTypes(Editor editor) {
 
-		EList<TypedElement> types = new BasicEList<TypedElement>();
+		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
 		//TODO MMTF: fallback to root text editor?
 		types.add(MMTFRegistry.getExtendibleType(editor.getUri()));
@@ -260,7 +260,7 @@ linkTypes:
 		return types;
 	}
 
-	public static EList<TypedElement> getRuntimeTypes(TypedElement element) {
+	public static EList<ExtendibleElement> getRuntimeTypes(ExtendibleElement element) {
 
 		if (element.getLevel() == MidLevel.TYPES) {
 			return null;
@@ -284,13 +284,13 @@ linkTypes:
 		return null;
 	}
 
-	public static TypedElement getType(TypedElement element) {
+	public static ExtendibleElement getType(ExtendibleElement element) {
 
 		if (element.getLevel() == MidLevel.TYPES) {
 			return null;
 		}
 
-		TypedElement type = MMTFRegistry.getExtendibleType(element.getMetatypeUri());
+		ExtendibleElement type = MMTFRegistry.getExtendibleType(element.getMetatypeUri());
 		if (type == null) { // this can happen when a type is uninstalled
 			//TODO MMTF: find a way to try with runtime type in this read transaction?
 			//element.setMetatypeUri(null);

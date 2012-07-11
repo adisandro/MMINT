@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
@@ -77,6 +78,24 @@ public interface EditorPackage extends EPackage {
 	int EDITOR = 0;
 
 	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -131,24 +150,6 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
-
-	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,13 +195,31 @@ public interface EditorPackage extends EPackage {
 	int EDITOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___GET_METATYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Editor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -211,6 +230,24 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	int DIAGRAM = 1;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__URI = EDITOR__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__SUPERTYPE = EDITOR__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -267,24 +304,6 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM__METATYPE_URI = EDITOR__METATYPE_URI;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__URI = EDITOR__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__SUPERTYPE = EDITOR__SUPERTYPE;
-
-	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,6 +347,24 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM_FEATURE_COUNT = EDITOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___GET_METATYPE = EDITOR___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___GET_SUPERTYPE = EDITOR___GET_SUPERTYPE;
 
 	/**
 	 * The number of operations of the '<em>Diagram</em>' class.
@@ -392,6 +429,26 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEditor_FileExtensions();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getMetatype() <em>Get Metatype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Metatype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Editor#getMetatype()
+	 * @generated
+	 */
+	EOperation getEditor__GetMetatype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getSupertype() <em>Get Supertype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Supertype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Editor#getSupertype()
+	 * @generated
+	 */
+	EOperation getEditor__GetSupertype();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.editor.Diagram <em>Diagram</em>}'.
@@ -467,6 +524,22 @@ public interface EditorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EDITOR__FILE_EXTENSIONS = eINSTANCE.getEditor_FileExtensions();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EDITOR___GET_METATYPE = eINSTANCE.getEditor__GetMetatype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EDITOR___GET_SUPERTYPE = eINSTANCE.getEditor__GetSupertype();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.

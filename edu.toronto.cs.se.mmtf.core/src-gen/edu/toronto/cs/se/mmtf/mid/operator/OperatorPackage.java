@@ -127,13 +127,31 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR = 1;
 
 	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__NAME = MidPackage.TYPED_ELEMENT__NAME;
+	int OPERATOR__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -142,7 +160,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE = MidPackage.TYPED_ELEMENT__METATYPE;
+	int OPERATOR__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -151,7 +169,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__LEVEL = MidPackage.TYPED_ELEMENT__LEVEL;
+	int OPERATOR__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -160,7 +178,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__TYPE = MidPackage.TYPED_ELEMENT__TYPE;
+	int OPERATOR__TYPE = MidPackage.EXTENDIBLE_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
@@ -169,7 +187,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__RUNTIME_METATYPES = MidPackage.TYPED_ELEMENT__RUNTIME_METATYPES;
+	int OPERATOR__RUNTIME_METATYPES = MidPackage.EXTENDIBLE_ELEMENT__RUNTIME_METATYPES;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -178,7 +196,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE_URI = MidPackage.TYPED_ELEMENT__METATYPE_URI;
+	int OPERATOR__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -187,7 +205,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUTS = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATOR__INPUTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -196,7 +214,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__OUTPUTS = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATOR__OUTPUTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Signature Table</b></em>' map.
@@ -205,7 +223,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__SIGNATURE_TABLE = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATOR__SIGNATURE_TABLE = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Executable</b></em>' containment reference.
@@ -214,7 +232,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__EXECUTABLE = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int OPERATOR__EXECUTABLE = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
@@ -223,7 +241,25 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MidPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_METATYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -232,7 +268,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MidPackage.TYPED_ELEMENT_OPERATION_COUNT + 0;
+	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -346,6 +382,24 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR = 4;
 
 	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__URI = OPERATOR__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -443,6 +497,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
 	 * The number of operations of the '<em>Conversion Operator</em>' class.
@@ -634,6 +706,26 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperator_Executable();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getMetatype() <em>Get Metatype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Metatype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getMetatype()
+	 * @generated
+	 */
+	EOperation getOperator__GetMetatype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getSupertype() <em>Get Supertype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Supertype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getSupertype()
+	 * @generated
+	 */
+	EOperation getOperator__GetSupertype();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter <em>Parameter</em>}'.
@@ -863,6 +955,22 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR__EXECUTABLE = eINSTANCE.getOperator_Executable();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___GET_METATYPE = eINSTANCE.getOperator__GetMetatype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___GET_SUPERTYPE = eINSTANCE.getOperator__GetSupertype();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.

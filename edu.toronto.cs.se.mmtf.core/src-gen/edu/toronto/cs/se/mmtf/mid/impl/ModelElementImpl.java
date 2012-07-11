@@ -14,10 +14,12 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
+import java.lang.reflect.InvocationTargetException;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -180,6 +182,24 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ModelElement getMetatype() {
+		return (ModelElement) super.getMetatype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElement getSupertype() {
+		return (ModelElement) super.getSupertype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -246,6 +266,22 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				return CLASS_LITERAL_EDEFAULT == null ? classLiteral != null : !CLASS_LITERAL_EDEFAULT.equals(classLiteral);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MidPackage.MODEL_ELEMENT___GET_METATYPE:
+				return getMetatype();
+			case MidPackage.MODEL_ELEMENT___GET_SUPERTYPE:
+				return getSupertype();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

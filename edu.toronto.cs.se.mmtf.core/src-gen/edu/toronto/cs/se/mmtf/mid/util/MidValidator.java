@@ -102,8 +102,6 @@ public class MidValidator extends EObjectValidator {
 				return validateMultiModel((MultiModel)value, diagnostics, context);
 			case MidPackage.MODEL:
 				return validateModel((Model)value, diagnostics, context);
-			case MidPackage.TYPED_ELEMENT:
-				return validateTypedElement((TypedElement)value, diagnostics, context);
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP:
 				return validateEStringToExtendibleElementMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.MODEL_ELEMENT:
@@ -140,9 +138,9 @@ public class MidValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(extendibleElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(extendibleElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(extendibleElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(extendibleElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_metatypeType(extendibleElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExtendibleElement_supertypeType(extendibleElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_typeLevel(extendibleElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_metatypeType(extendibleElement, diagnostics, context);
 		return result;
 	}
 
@@ -176,6 +174,64 @@ public class MidValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the typeLevel constraint of '<em>Extendible Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String EXTENDIBLE_ELEMENT__TYPE_LEVEL__EEXPRESSION = "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES";
+
+	/**
+	 * Validates the typeLevel constraint of '<em>Extendible Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExtendibleElement_typeLevel(ExtendibleElement extendibleElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MidPackage.Literals.EXTENDIBLE_ELEMENT,
+				 extendibleElement,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "typeLevel",
+				 EXTENDIBLE_ELEMENT__TYPE_LEVEL__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the metatypeType constraint of '<em>Extendible Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String EXTENDIBLE_ELEMENT__METATYPE_TYPE__EEXPRESSION = "not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())";
+
+	/**
+	 * Validates the metatypeType constraint of '<em>Extendible Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExtendibleElement_metatypeType(ExtendibleElement extendibleElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MidPackage.Literals.EXTENDIBLE_ELEMENT,
+				 extendibleElement,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "metatypeType",
+				 EXTENDIBLE_ELEMENT__METATYPE_TYPE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -199,88 +255,10 @@ public class MidValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(model, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(model, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(model, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(model, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_metatypeType(model, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExtendibleElement_supertypeType(model, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_typeLevel(model, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_metatypeType(model, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypedElement(TypedElement typedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(typedElement, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(typedElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_metatypeType(typedElement, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the typeLevel constraint of '<em>Typed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String TYPED_ELEMENT__TYPE_LEVEL__EEXPRESSION = "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES";
-
-	/**
-	 * Validates the typeLevel constraint of '<em>Typed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypedElement_typeLevel(TypedElement typedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(MidPackage.Literals.TYPED_ELEMENT,
-				 typedElement,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "typeLevel",
-				 TYPED_ELEMENT__TYPE_LEVEL__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * The cached validation expression for the metatypeType constraint of '<em>Typed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String TYPED_ELEMENT__METATYPE_TYPE__EEXPRESSION = "not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())";
-
-	/**
-	 * Validates the metatypeType constraint of '<em>Typed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypedElement_metatypeType(TypedElement typedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(MidPackage.Literals.TYPED_ELEMENT,
-				 typedElement,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "metatypeType",
-				 TYPED_ELEMENT__METATYPE_TYPE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**
@@ -307,9 +285,9 @@ public class MidValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_typeLevel(modelElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElement_metatypeType(modelElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExtendibleElement_supertypeType(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_typeLevel(modelElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_metatypeType(modelElement, diagnostics, context);
 		return result;
 	}
 

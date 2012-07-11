@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Vivien Suen.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
-    modelDirectory="/edu.toronto.cs.se.mmtf/src-gen" editDirectory="/edu.toronto.cs.se.mmtf.edit/src-gen"
+    modelDirectory="/edu.toronto.cs.se.mmtf.core/src-gen" editDirectory="/edu.toronto.cs.se.mmtf.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmtf.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmtf"
     modelName="Mid" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
     copyrightFields="false" operationReflection="true">
@@ -26,6 +26,12 @@
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/uri"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/supertype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/name"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/metatype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/level"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/type"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/runtimeMetatypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
@@ -43,14 +49,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/elements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/constraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="mid.ecore#//TypedElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//TypedElement/metatype"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/level"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/type"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//TypedElement/runtimeMetatypes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//TypedElement/metatypeUri"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getMetatype"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getSupertype"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToExtendibleElementMap/key"/>
@@ -60,6 +60,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/category"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/pointer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/classLiteral"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/body"/>
@@ -76,6 +78,8 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/links"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/modelRefs"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ModelRel/unbounded"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMetatype"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getSupertype"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel"/>
       <genClasses ecoreClass="mid.ecore#//relationship/HomomorphismModelRel"/>
@@ -93,13 +97,13 @@
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryLink"/>
       <genClasses ecoreClass="mid.ecore#//relationship/HomomorphismLink"/>
-      <genClasses image="false" ecoreClass="mid.ecore#//relationship/TypedElementReference">
+      <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//relationship/TypedElementReference/referencedObject"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/TypedElementReference/containedObject"/>
-        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//relationship/TypedElementReference/object"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/TypedElementReference/name"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/TypedElementReference/type"/>
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/referencedObject"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/containedObject"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/object"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/name"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/type"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Editor" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
@@ -109,6 +113,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/id"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/wizardId"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/fileExtensions"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMetatype"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getSupertype"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//editor/Diagram"/>
     </nestedGenPackages>
@@ -124,6 +130,8 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/signatureTable"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/executable"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/Parameter">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Parameter/name"/>

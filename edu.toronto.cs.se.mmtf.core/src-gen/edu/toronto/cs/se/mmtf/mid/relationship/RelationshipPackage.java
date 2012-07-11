@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -79,6 +80,24 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__URI = MidPackage.MODEL__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__SUPERTYPE = MidPackage.MODEL__SUPERTYPE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -131,24 +150,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL__METATYPE_URI = MidPackage.MODEL__METATYPE_URI;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__URI = MidPackage.MODEL__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__SUPERTYPE = MidPackage.MODEL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -259,13 +260,31 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL_FEATURE_COUNT = MidPackage.MODEL_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_METATYPE = MidPackage.MODEL_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_SUPERTYPE = MidPackage.MODEL_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 0;
+	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.
@@ -276,6 +295,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	int BINARY_MODEL_REL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__URI = MODEL_REL__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__SUPERTYPE = MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -330,24 +367,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__METATYPE_URI = MODEL_REL__METATYPE_URI;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__URI = MODEL_REL__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__SUPERTYPE = MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -458,6 +477,24 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL_FEATURE_COUNT = MODEL_REL_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_METATYPE = MODEL_REL___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_SUPERTYPE = MODEL_REL___GET_SUPERTYPE;
+
+	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -475,6 +512,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	int HOMOMORPHISM_MODEL_REL = 2;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__URI = BINARY_MODEL_REL__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__SUPERTYPE = BINARY_MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -529,24 +584,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__METATYPE_URI = BINARY_MODEL_REL__METATYPE_URI;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HOMOMORPHISM_MODEL_REL__URI = BINARY_MODEL_REL__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HOMOMORPHISM_MODEL_REL__SUPERTYPE = BINARY_MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -657,6 +694,24 @@ public interface RelationshipPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL_FEATURE_COUNT = BINARY_MODEL_REL_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL___GET_METATYPE = BINARY_MODEL_REL___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL___GET_SUPERTYPE = BINARY_MODEL_REL___GET_SUPERTYPE;
+
+	/**
 	 * The number of operations of the '<em>Homomorphism Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -666,14 +721,14 @@ public interface RelationshipPackage extends EPackage {
 	int HOMOMORPHISM_MODEL_REL_OPERATION_COUNT = BINARY_MODEL_REL_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl <em>Typed Element Reference</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl <em>Extendible Element Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl#getTypedElementReference()
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl#getExtendibleElementReference()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_REFERENCE = 8;
+	int EXTENDIBLE_ELEMENT_REFERENCE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -682,7 +737,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT = 0;
+	int EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -691,7 +746,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT = 1;
+	int EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Object</b></em>' reference.
@@ -700,7 +755,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_REFERENCE__OBJECT = 2;
+	int EXTENDIBLE_ELEMENT_REFERENCE__OBJECT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -709,7 +764,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_REFERENCE__NAME = 3;
+	int EXTENDIBLE_ELEMENT_REFERENCE__NAME = 3;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -718,25 +773,25 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_REFERENCE__TYPE = 4;
+	int EXTENDIBLE_ELEMENT_REFERENCE__TYPE = 4;
 
 	/**
-	 * The number of structural features of the '<em>Typed Element Reference</em>' class.
+	 * The number of structural features of the '<em>Extendible Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_REFERENCE_FEATURE_COUNT = 5;
+	int EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT = 5;
 
 	/**
-	 * The number of operations of the '<em>Typed Element Reference</em>' class.
+	 * The number of operations of the '<em>Extendible Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_REFERENCE_OPERATION_COUNT = 0;
+	int EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelReferenceImpl <em>Model Reference</em>}' class.
@@ -755,7 +810,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE__REFERENCED_OBJECT = TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT;
+	int MODEL_REFERENCE__REFERENCED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -764,7 +819,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE__CONTAINED_OBJECT = TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT;
+	int MODEL_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Object</b></em>' reference.
@@ -773,7 +828,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE__OBJECT = TYPED_ELEMENT_REFERENCE__OBJECT;
+	int MODEL_REFERENCE__OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -782,7 +837,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE__NAME = TYPED_ELEMENT_REFERENCE__NAME;
+	int MODEL_REFERENCE__NAME = EXTENDIBLE_ELEMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -791,7 +846,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE__TYPE = TYPED_ELEMENT_REFERENCE__TYPE;
+	int MODEL_REFERENCE__TYPE = EXTENDIBLE_ELEMENT_REFERENCE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Element Refs</b></em>' containment reference list.
@@ -800,7 +855,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE__ELEMENT_REFS = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+	int MODEL_REFERENCE__ELEMENT_REFS = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Model Reference</em>' class.
@@ -809,7 +864,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE_FEATURE_COUNT = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+	int MODEL_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Model Reference</em>' class.
@@ -818,7 +873,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE_OPERATION_COUNT = TYPED_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+	int MODEL_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
@@ -837,7 +892,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__REFERENCED_OBJECT = TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT;
+	int MODEL_ELEMENT_REFERENCE__REFERENCED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -846,7 +901,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT = TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT;
+	int MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Object</b></em>' reference.
@@ -855,7 +910,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__OBJECT = TYPED_ELEMENT_REFERENCE__OBJECT;
+	int MODEL_ELEMENT_REFERENCE__OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -864,7 +919,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__NAME = TYPED_ELEMENT_REFERENCE__NAME;
+	int MODEL_ELEMENT_REFERENCE__NAME = EXTENDIBLE_ELEMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -873,7 +928,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__TYPE = TYPED_ELEMENT_REFERENCE__TYPE;
+	int MODEL_ELEMENT_REFERENCE__TYPE = EXTENDIBLE_ELEMENT_REFERENCE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Links</b></em>' reference list.
@@ -882,7 +937,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE__LINKS = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT_REFERENCE__LINKS = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Model Element Reference</em>' class.
@@ -891,7 +946,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = TYPED_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Model Element Reference</em>' class.
@@ -900,7 +955,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = TYPED_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.LinkImpl <em>Link</em>}' class.
@@ -911,6 +966,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	int LINK = 5;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -967,24 +1040,6 @@ public interface RelationshipPackage extends EPackage {
 	int LINK__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
-
-	/**
 	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1029,6 +1084,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	int BINARY_LINK = 6;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__URI = LINK__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__SUPERTYPE = LINK__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1085,24 +1158,6 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK__METATYPE_URI = LINK__METATYPE_URI;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK__URI = LINK__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK__SUPERTYPE = LINK__SUPERTYPE;
-
-	/**
 	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1147,6 +1202,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	int HOMOMORPHISM_LINK = 7;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__URI = BINARY_LINK__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__SUPERTYPE = BINARY_LINK__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1201,24 +1274,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_LINK__METATYPE_URI = BINARY_LINK__METATYPE_URI;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HOMOMORPHISM_LINK__URI = BINARY_LINK__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HOMOMORPHISM_LINK__SUPERTYPE = BINARY_LINK__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
@@ -1310,6 +1365,26 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelRel_Unbounded();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getMetatype() <em>Get Metatype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Metatype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getMetatype()
+	 * @generated
+	 */
+	EOperation getModelRel__GetMetatype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getSupertype() <em>Get Supertype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Supertype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getSupertype()
+	 * @generated
+	 */
+	EOperation getModelRel__GetSupertype();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel <em>Binary Model Rel</em>}'.
@@ -1426,69 +1501,69 @@ public interface RelationshipPackage extends EPackage {
 	EClass getHomomorphismLink();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference <em>Typed Element Reference</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference <em>Extendible Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Typed Element Reference</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference
+	 * @return the meta object for class '<em>Extendible Element Reference</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference
 	 * @generated
 	 */
-	EClass getTypedElementReference();
+	EClass getExtendibleElementReference();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getReferencedObject <em>Referenced Object</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getReferencedObject <em>Referenced Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Referenced Object</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getReferencedObject()
-	 * @see #getTypedElementReference()
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getReferencedObject()
+	 * @see #getExtendibleElementReference()
 	 * @generated
 	 */
-	EReference getTypedElementReference_ReferencedObject();
+	EReference getExtendibleElementReference_ReferencedObject();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getContainedObject <em>Contained Object</em>}'.
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getContainedObject <em>Contained Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Contained Object</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getContainedObject()
-	 * @see #getTypedElementReference()
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getContainedObject()
+	 * @see #getExtendibleElementReference()
 	 * @generated
 	 */
-	EReference getTypedElementReference_ContainedObject();
+	EReference getExtendibleElementReference_ContainedObject();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getObject <em>Object</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getObject <em>Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Object</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getObject()
-	 * @see #getTypedElementReference()
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getObject()
+	 * @see #getExtendibleElementReference()
 	 * @generated
 	 */
-	EReference getTypedElementReference_Object();
+	EReference getExtendibleElementReference_Object();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getName()
-	 * @see #getTypedElementReference()
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getName()
+	 * @see #getExtendibleElementReference()
 	 * @generated
 	 */
-	EAttribute getTypedElementReference_Name();
+	EAttribute getExtendibleElementReference_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference#getType()
-	 * @see #getTypedElementReference()
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference#getType()
+	 * @see #getExtendibleElementReference()
 	 * @generated
 	 */
-	EAttribute getTypedElementReference_Type();
+	EAttribute getExtendibleElementReference_Type();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1554,6 +1629,22 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_REL__UNBOUNDED = eINSTANCE.getModelRel_Unbounded();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___GET_METATYPE = eINSTANCE.getModelRel__GetMetatype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___GET_SUPERTYPE = eINSTANCE.getModelRel__GetSupertype();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.
@@ -1658,14 +1749,14 @@ public interface RelationshipPackage extends EPackage {
 		EClass HOMOMORPHISM_LINK = eINSTANCE.getHomomorphismLink();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl <em>Typed Element Reference</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl <em>Extendible Element Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.TypedElementReferenceImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl#getTypedElementReference()
+		 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.ExtendibleElementReferenceImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl#getExtendibleElementReference()
 		 * @generated
 		 */
-		EClass TYPED_ELEMENT_REFERENCE = eINSTANCE.getTypedElementReference();
+		EClass EXTENDIBLE_ELEMENT_REFERENCE = eINSTANCE.getExtendibleElementReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Referenced Object</b></em>' reference feature.
@@ -1673,7 +1764,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT = eINSTANCE.getTypedElementReference_ReferencedObject();
+		EReference EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT = eINSTANCE.getExtendibleElementReference_ReferencedObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Contained Object</b></em>' containment reference feature.
@@ -1681,7 +1772,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT = eINSTANCE.getTypedElementReference_ContainedObject();
+		EReference EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT = eINSTANCE.getExtendibleElementReference_ContainedObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Object</b></em>' reference feature.
@@ -1689,7 +1780,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPED_ELEMENT_REFERENCE__OBJECT = eINSTANCE.getTypedElementReference_Object();
+		EReference EXTENDIBLE_ELEMENT_REFERENCE__OBJECT = eINSTANCE.getExtendibleElementReference_Object();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1697,7 +1788,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_ELEMENT_REFERENCE__NAME = eINSTANCE.getTypedElementReference_Name();
+		EAttribute EXTENDIBLE_ELEMENT_REFERENCE__NAME = eINSTANCE.getExtendibleElementReference_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1705,7 +1796,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_ELEMENT_REFERENCE__TYPE = eINSTANCE.getTypedElementReference_Type();
+		EAttribute EXTENDIBLE_ELEMENT_REFERENCE__TYPE = eINSTANCE.getExtendibleElementReference_Type();
 
 	}
 

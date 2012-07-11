@@ -129,4 +129,22 @@ public interface Editor extends ExtendibleElement {
 	 */
 	EList<String> getFileExtensions();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Editor) super.getMetatype();'"
+	 * @generated
+	 */
+	Editor getMetatype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Editor) super.getSupertype();'"
+	 * @generated
+	 */
+	Editor getSupertype();
+
 } // Editor

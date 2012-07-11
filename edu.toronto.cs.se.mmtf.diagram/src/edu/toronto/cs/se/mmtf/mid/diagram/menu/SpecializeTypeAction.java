@@ -24,9 +24,9 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
@@ -91,7 +91,7 @@ public class SpecializeTypeAction extends ContributionItem {
 		}
 
 		// get runtime types
-		EList<TypedElement> runtimeTypes = model.getRuntimeMetatypes();
+		EList<ExtendibleElement> runtimeTypes = model.getRuntimeMetatypes();
 		if (runtimeTypes.size() == 1) {
 			return;
 		}
@@ -101,7 +101,7 @@ public class SpecializeTypeAction extends ContributionItem {
 		cascadeItem.setText("Specialize Type");
 		Menu operatorsMenu = new Menu(menu);
 		cascadeItem.setMenu(operatorsMenu);
-		for (TypedElement runtimeType : runtimeTypes) {
+		for (ExtendibleElement runtimeType : runtimeTypes) {
 			if (((Model) runtimeType).getUri().equals(model.getMetatypeUri())) {
 				continue;
 			}

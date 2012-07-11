@@ -16,6 +16,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 
 import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -214,6 +215,24 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Editor getMetatype() {
+		return (Editor) super.getMetatype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Editor getSupertype() {
+		return (Editor) super.getSupertype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -297,6 +316,22 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				return fileExtensions != null && !fileExtensions.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case EditorPackage.EDITOR___GET_METATYPE:
+				return getMetatype();
+			case EditorPackage.EDITOR___GET_SUPERTYPE:
+				return getSupertype();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

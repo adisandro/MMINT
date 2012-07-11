@@ -184,4 +184,22 @@ public interface Model extends ExtendibleElement {
 	 */
 	EList<ConversionOperator> getConversionOperators();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Model) super.getMetatype();'"
+	 * @generated
+	 */
+	Model getMetatype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Model) super.getSupertype();'"
+	 * @generated
+	 */
+	Model getSupertype();
+
 } // Model

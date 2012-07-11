@@ -40,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ModelReferenceImpl extends TypedElementReferenceImpl implements ModelReference {
+public class ModelReferenceImpl extends ExtendibleElementReferenceImpl implements ModelReference {
 	/**
 	 * The cached value of the '{@link #getElementRefs() <em>Element Refs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

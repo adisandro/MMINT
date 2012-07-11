@@ -122,8 +122,8 @@ public class RelationshipValidator extends EObjectValidator {
 				return validateBinaryLink((BinaryLink)value, diagnostics, context);
 			case RelationshipPackage.HOMOMORPHISM_LINK:
 				return validateHomomorphismLink((HomomorphismLink)value, diagnostics, context);
-			case RelationshipPackage.TYPED_ELEMENT_REFERENCE:
-				return validateTypedElementReference((TypedElementReference)value, diagnostics, context);
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE:
+				return validateExtendibleElementReference((ExtendibleElementReference)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -144,9 +144,9 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(modelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_modelRefs(modelRel, diagnostics, context);
 		return result;
@@ -225,9 +225,9 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_modelRefs(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(binaryModelRel, diagnostics, context);
@@ -278,9 +278,9 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphismModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(homomorphismModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(homomorphismModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(homomorphismModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_unboundedLevel(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateModelRel_modelRefs(homomorphismModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryRel(homomorphismModelRel, diagnostics, context);
@@ -332,7 +332,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElementReference_oneObject(modelReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(modelReference, diagnostics, context);
 		return result;
 	}
 
@@ -351,7 +351,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelElementReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElementReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElementReference_oneObject(modelElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(modelElementReference, diagnostics, context);
 		return result;
 	}
 
@@ -370,9 +370,9 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(link, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(link, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(link, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(link, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(link, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(link, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(link, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(link, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLink_unboundedLevel(link, diagnostics, context);
 		return result;
 	}
@@ -421,9 +421,9 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLink_unboundedLevel(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(binaryLink, diagnostics, context);
 		return result;
@@ -473,9 +473,9 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(homomorphismLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_typeLevel(homomorphismLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateTypedElement_metatypeType(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(homomorphismLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(homomorphismLink, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLink_unboundedLevel(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(homomorphismLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateHomomorphismLink_sameElementTypes(homomorphismLink, diagnostics, context);
@@ -516,44 +516,44 @@ public class RelationshipValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTypedElementReference(TypedElementReference typedElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(typedElementReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(typedElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTypedElementReference_oneObject(typedElementReference, diagnostics, context);
+	public boolean validateExtendibleElementReference(ExtendibleElementReference extendibleElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(extendibleElementReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(extendibleElementReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(extendibleElementReference, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the oneObject constraint of '<em>Typed Element Reference</em>'.
+	 * The cached validation expression for the oneObject constraint of '<em>Extendible Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String TYPED_ELEMENT_REFERENCE__ONE_OBJECT__EEXPRESSION = "referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()";
+	protected static final String EXTENDIBLE_ELEMENT_REFERENCE__ONE_OBJECT__EEXPRESSION = "referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()";
 
 	/**
-	 * Validates the oneObject constraint of '<em>Typed Element Reference</em>'.
+	 * Validates the oneObject constraint of '<em>Extendible Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTypedElementReference_oneObject(TypedElementReference typedElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExtendibleElementReference_oneObject(ExtendibleElementReference extendibleElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(RelationshipPackage.Literals.TYPED_ELEMENT_REFERENCE,
-				 typedElementReference,
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE,
+				 extendibleElementReference,
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "oneObject",
-				 TYPED_ELEMENT_REFERENCE__ONE_OBJECT__EEXPRESSION,
+				 EXTENDIBLE_ELEMENT_REFERENCE__ONE_OBJECT__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

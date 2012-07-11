@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator;
 
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface Operator extends TypedElement {
+public interface Operator extends ExtendibleElement {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.operator.Parameter}.
@@ -110,5 +110,23 @@ public interface Operator extends TypedElement {
 	 * @generated
 	 */
 	void setExecutable(OperatorExecutable value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Operator) super.getMetatype();'"
+	 * @generated
+	 */
+	Operator getMetatype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Operator) super.getSupertype();'"
+	 * @generated
+	 */
+	Operator getSupertype();
 
 } // Operator

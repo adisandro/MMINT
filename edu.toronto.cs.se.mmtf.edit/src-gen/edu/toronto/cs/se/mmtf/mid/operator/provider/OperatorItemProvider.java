@@ -16,9 +16,9 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
+import edu.toronto.cs.se.mmtf.mid.provider.ExtendibleElementItemProvider;
 import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
 
-import edu.toronto.cs.se.mmtf.mid.provider.TypedElementItemProvider;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,7 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class OperatorItemProvider
-	extends TypedElementItemProvider
+	extends ExtendibleElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

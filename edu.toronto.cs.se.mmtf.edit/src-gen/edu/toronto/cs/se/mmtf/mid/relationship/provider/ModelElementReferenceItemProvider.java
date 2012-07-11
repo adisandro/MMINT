@@ -36,7 +36,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ModelElementReferenceItemProvider
-	extends TypedElementReferenceItemProvider
+	extends ExtendibleElementReferenceItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl;
 
@@ -39,6 +38,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
@@ -72,13 +72,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EClass modelEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typedElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -249,6 +242,60 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExtendibleElement_Name() {
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtendibleElement_Metatype() {
+		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtendibleElement_Level() {
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtendibleElement_Type() {
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtendibleElement_RuntimeMetatypes() {
+		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtendibleElement_MetatypeUri() {
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMultiModel() {
 		return multiModelEClass;
 	}
@@ -384,8 +431,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTypedElement() {
-		return typedElementEClass;
+	public EOperation getModel__GetMetatype() {
+		return modelEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -393,53 +440,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedElement_Name() {
-		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypedElement_Metatype() {
-		return (EReference)typedElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElement_Level() {
-		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElement_Type() {
-		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypedElement_RuntimeMetatypes() {
-		return (EReference)typedElementEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElement_MetatypeUri() {
-		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(5);
+	public EOperation getModel__GetSupertype() {
+		return modelEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -503,6 +505,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EAttribute getModelElement_ClassLiteral() {
 		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__GetMetatype() {
+		return modelElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__GetSupertype() {
+		return modelElementEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -617,6 +637,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		extendibleElementEClass = createEClass(EXTENDIBLE_ELEMENT);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__URI);
 		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__SUPERTYPE);
+		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__NAME);
+		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__METATYPE);
+		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__LEVEL);
+		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__TYPE);
+		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__RUNTIME_METATYPES);
+		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__METATYPE_URI);
 
 		multiModelEClass = createEClass(MULTI_MODEL);
 		createEReference(multiModelEClass, MULTI_MODEL__MODELS);
@@ -634,14 +660,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(modelEClass, MODEL__ELEMENTS);
 		createEReference(modelEClass, MODEL__CONSTRAINT);
 		createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
-
-		typedElementEClass = createEClass(TYPED_ELEMENT);
-		createEAttribute(typedElementEClass, TYPED_ELEMENT__NAME);
-		createEReference(typedElementEClass, TYPED_ELEMENT__METATYPE);
-		createEAttribute(typedElementEClass, TYPED_ELEMENT__LEVEL);
-		createEAttribute(typedElementEClass, TYPED_ELEMENT__TYPE);
-		createEReference(typedElementEClass, TYPED_ELEMENT__RUNTIME_METATYPES);
-		createEAttribute(typedElementEClass, TYPED_ELEMENT__METATYPE_URI);
+		createEOperation(modelEClass, MODEL___GET_METATYPE);
+		createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
 
 		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
 		createEAttribute(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY);
@@ -651,6 +671,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CATEGORY);
 		createEReference(modelElementEClass, MODEL_ELEMENT__POINTER);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CLASS_LITERAL);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
 
 		modelConstraintEClass = createEClass(MODEL_CONSTRAINT);
 		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__BODY);
@@ -704,7 +726,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		extendibleElementEClass.getESuperTypes().add(this.getTypedElement());
 		modelEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelElementEClass.getESuperTypes().add(this.getExtendibleElement());
 
@@ -712,6 +733,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEClass(extendibleElementEClass, ExtendibleElement.class, "ExtendibleElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElement_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElement_Supertype(), this.getExtendibleElement(), null, "supertype", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendibleElement_Metatype(), this.getExtendibleElement(), null, "metatype", null, 0, 1, ExtendibleElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElement_Level(), this.getMidLevel(), "level", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElement_Type(), ecorePackage.getEString(), "type", null, 1, 1, ExtendibleElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendibleElement_RuntimeMetatypes(), this.getExtendibleElement(), null, "runtimeMetatypes", null, 0, -1, ExtendibleElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElement_MetatypeUri(), ecorePackage.getEString(), "metatypeUri", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMultiModel_Models(), this.getModel(), null, "models", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -730,13 +757,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getModel_Constraint(), this.getModelConstraint(), null, "constraint", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_ConversionOperators(), theOperatorPackage.getConversionOperator(), null, "conversionOperators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTypedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedElement_Metatype(), this.getTypedElement(), null, "metatype", null, 0, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElement_Level(), this.getMidLevel(), "level", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElement_Type(), ecorePackage.getEString(), "type", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedElement_RuntimeMetatypes(), this.getTypedElement(), null, "runtimeMetatypes", null, 0, -1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElement_MetatypeUri(), ecorePackage.getEString(), "metatypeUri", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEOperation(getModel__GetMetatype(), this.getModel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getModel__GetSupertype(), this.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToExtendibleElementMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -746,6 +769,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getModelElement_Category(), this.getModelElementCategory(), "category", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelElement_Pointer(), ecorePackage.getEObject(), null, "pointer", null, 1, 1, ModelElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelElement_ClassLiteral(), ecorePackage.getEString(), "classLiteral", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getModelElement__GetMetatype(), this.getModelElement(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getModelElement__GetSupertype(), this.getModelElement(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelConstraintEClass, ModelConstraint.class, "ModelConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelConstraint_Body(), ecorePackage.getEString(), "body", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -800,14 +827,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (extendibleElementEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "supertypeType"
-		   });			
-		addAnnotation
-		  (typedElementEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "typeLevel metatypeType"
-		   });		
+			 "constraints", "supertypeType typeLevel metatypeType"
+		   });						
 	}
 
 	/**
@@ -822,21 +843,16 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (extendibleElementEClass, 
 		   source, 
 		   new String[] {
-			 "supertypeType", "not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())"
-		   });			
-		addAnnotation
-		  (typedElementEClass, 
-		   source, 
-		   new String[] {
+			 "supertypeType", "not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())",
 			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES",
 			 "metatypeType", "not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())"
 		   });		
 		addAnnotation
-		  (getTypedElement_Type(), 
+		  (getExtendibleElement_Type(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if metatype.oclIsUndefined() then \'\' else metatype.name endif"
-		   });
+		   });				
 	}
 
 } //MidPackageImpl

@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.TypedElement;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -86,7 +86,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		}
 
 		//TODO MMTF: too rough
-		EList<TypedElement> runtimeMetatypes = modelRel.getRuntimeMetatypes();
+		EList<ExtendibleElement> runtimeMetatypes = modelRel.getRuntimeMetatypes();
 		modelRel.setMetatypeUri(((ModelRel) runtimeMetatypes.get(runtimeMetatypes.size()-1)).getUri());
 
 		// create model relationship structure

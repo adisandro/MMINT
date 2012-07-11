@@ -39,7 +39,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ModelReferenceItemProvider
-	extends TypedElementReferenceItemProvider
+	extends ExtendibleElementReferenceItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

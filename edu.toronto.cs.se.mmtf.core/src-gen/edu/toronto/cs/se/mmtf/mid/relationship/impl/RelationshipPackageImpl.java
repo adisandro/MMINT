@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.HomomorphismLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.HomomorphismModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -33,12 +34,12 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.relationship.TypedElementReference;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.util.RelationshipValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
@@ -113,7 +114,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass typedElementReferenceEClass = null;
+	private EClass extendibleElementReferenceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -246,6 +247,24 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelRel__GetMetatype() {
+		return modelRelEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__GetSupertype() {
+		return modelRelEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryModelRel() {
 		return binaryModelRelEClass;
 	}
@@ -345,8 +364,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTypedElementReference() {
-		return typedElementReferenceEClass;
+	public EClass getExtendibleElementReference() {
+		return extendibleElementReferenceEClass;
 	}
 
 	/**
@@ -354,8 +373,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypedElementReference_ReferencedObject() {
-		return (EReference)typedElementReferenceEClass.getEStructuralFeatures().get(0);
+	public EReference getExtendibleElementReference_ReferencedObject() {
+		return (EReference)extendibleElementReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -363,8 +382,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypedElementReference_ContainedObject() {
-		return (EReference)typedElementReferenceEClass.getEStructuralFeatures().get(1);
+	public EReference getExtendibleElementReference_ContainedObject() {
+		return (EReference)extendibleElementReferenceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -372,8 +391,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypedElementReference_Object() {
-		return (EReference)typedElementReferenceEClass.getEStructuralFeatures().get(2);
+	public EReference getExtendibleElementReference_Object() {
+		return (EReference)extendibleElementReferenceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -381,8 +400,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedElementReference_Name() {
-		return (EAttribute)typedElementReferenceEClass.getEStructuralFeatures().get(3);
+	public EAttribute getExtendibleElementReference_Name() {
+		return (EAttribute)extendibleElementReferenceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -390,8 +409,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedElementReference_Type() {
-		return (EAttribute)typedElementReferenceEClass.getEStructuralFeatures().get(4);
+	public EAttribute getExtendibleElementReference_Type() {
+		return (EAttribute)extendibleElementReferenceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -427,6 +446,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(modelRelEClass, MODEL_REL__LINKS);
 		createEReference(modelRelEClass, MODEL_REL__MODEL_REFS);
 		createEAttribute(modelRelEClass, MODEL_REL__UNBOUNDED);
+		createEOperation(modelRelEClass, MODEL_REL___GET_METATYPE);
+		createEOperation(modelRelEClass, MODEL_REL___GET_SUPERTYPE);
 
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 
@@ -446,12 +467,12 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		homomorphismLinkEClass = createEClass(HOMOMORPHISM_LINK);
 
-		typedElementReferenceEClass = createEClass(TYPED_ELEMENT_REFERENCE);
-		createEReference(typedElementReferenceEClass, TYPED_ELEMENT_REFERENCE__REFERENCED_OBJECT);
-		createEReference(typedElementReferenceEClass, TYPED_ELEMENT_REFERENCE__CONTAINED_OBJECT);
-		createEReference(typedElementReferenceEClass, TYPED_ELEMENT_REFERENCE__OBJECT);
-		createEAttribute(typedElementReferenceEClass, TYPED_ELEMENT_REFERENCE__NAME);
-		createEAttribute(typedElementReferenceEClass, TYPED_ELEMENT_REFERENCE__TYPE);
+		extendibleElementReferenceEClass = createEClass(EXTENDIBLE_ELEMENT_REFERENCE);
+		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT);
+		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT);
+		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__OBJECT);
+		createEAttribute(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__NAME);
+		createEAttribute(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__TYPE);
 	}
 
 	/**
@@ -488,8 +509,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		modelRelEClass.getESuperTypes().add(theMidPackage.getModel());
 		binaryModelRelEClass.getESuperTypes().add(this.getModelRel());
 		homomorphismModelRelEClass.getESuperTypes().add(this.getBinaryModelRel());
-		modelReferenceEClass.getESuperTypes().add(this.getTypedElementReference());
-		modelElementReferenceEClass.getESuperTypes().add(this.getTypedElementReference());
+		modelReferenceEClass.getESuperTypes().add(this.getExtendibleElementReference());
+		modelElementReferenceEClass.getESuperTypes().add(this.getExtendibleElementReference());
 		linkEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
 		binaryLinkEClass.getESuperTypes().add(this.getLink());
 		homomorphismLinkEClass.getESuperTypes().add(this.getBinaryLink());
@@ -500,6 +521,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEReference(getModelRel_Links(), this.getLink(), null, "links", null, 0, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRel_ModelRefs(), this.getModelReference(), null, "modelRefs", null, 1, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelRel_Unbounded(), ecorePackage.getEBoolean(), "unbounded", null, 1, 1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getModelRel__GetMetatype(), this.getModelRel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getModelRel__GetSupertype(), this.getModelRel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -519,12 +544,12 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		initEClass(homomorphismLinkEClass, HomomorphismLink.class, "HomomorphismLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(typedElementReferenceEClass, TypedElementReference.class, "TypedElementReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedElementReference_ReferencedObject(), theMidPackage.getTypedElement(), null, "referencedObject", null, 0, 1, TypedElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedElementReference_ContainedObject(), theMidPackage.getTypedElement(), null, "containedObject", null, 0, 1, TypedElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedElementReference_Object(), theMidPackage.getTypedElement(), null, "object", null, 1, 1, TypedElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElementReference_Name(), ecorePackage.getEString(), "name", null, 1, 1, TypedElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElementReference_Type(), ecorePackage.getEString(), "type", null, 1, 1, TypedElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEClass(extendibleElementReferenceEClass, ExtendibleElementReference.class, "ExtendibleElementReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExtendibleElementReference_ReferencedObject(), theMidPackage.getExtendibleElement(), null, "referencedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendibleElementReference_ContainedObject(), theMidPackage.getExtendibleElement(), null, "containedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendibleElementReference_Object(), theMidPackage.getExtendibleElement(), null, "object", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElementReference_Name(), ecorePackage.getEString(), "name", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElementReference_Type(), ecorePackage.getEString(), "type", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -554,7 +579,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel modelRefs"
-		   });			
+		   });					
 		addAnnotation
 		  (binaryModelRelEClass, 
 		   source, 
@@ -586,7 +611,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 			 "constraints", "sameElementTypes"
 		   });			
 		addAnnotation
-		  (typedElementReferenceEClass, 
+		  (extendibleElementReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "oneObject"
@@ -607,7 +632,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   new String[] {
 			 "unboundedLevel", "unbounded = true implies level = MidLevel::TYPES",
 			 "modelRefs", "models->size() = modelRefs->size()"
-		   });			
+		   });					
 		addAnnotation
 		  (binaryModelRelEClass, 
 		   source, 
@@ -639,25 +664,25 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 			 "sameElementTypes", "elementRefs->forAll(e1 : ModelElementReference, e2 : ModelElementReference | e1.object.oclAsType(ModelElement).pointer.oclType() = e2.object.oclAsType(ModelElement).pointer.oclType())"
 		   });			
 		addAnnotation
-		  (typedElementReferenceEClass, 
+		  (extendibleElementReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "oneObject", "referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"
 		   });		
 		addAnnotation
-		  (getTypedElementReference_Object(), 
+		  (getExtendibleElementReference_Object(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if containedObject.oclIsUndefined() then referencedObject else containedObject endif"
 		   });		
 		addAnnotation
-		  (getTypedElementReference_Name(), 
+		  (getExtendibleElementReference_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if object.oclIsUndefined() then \'\' else object.name endif"
 		   });		
 		addAnnotation
-		  (getTypedElementReference_Type(), 
+		  (getExtendibleElementReference_Type(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if object.oclIsUndefined() then \'\' else object.type endif"

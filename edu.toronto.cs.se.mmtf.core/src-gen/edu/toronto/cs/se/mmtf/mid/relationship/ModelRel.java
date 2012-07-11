@@ -110,4 +110,22 @@ public interface ModelRel extends Model {
 	 */
 	void setUnbounded(boolean value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (ModelRel) super.getMetatype();'"
+	 * @generated
+	 */
+	ModelRel getMetatype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (ModelRel) super.getSupertype();'"
+	 * @generated
+	 */
+	ModelRel getSupertype();
+
 } // ModelRel

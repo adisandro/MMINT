@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ModelElementReference extends TypedElementReference {
+public interface ModelElementReference extends ExtendibleElementReference {
 	/**
 	 * Returns the value of the '<em><b>Links</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.relationship.Link}.

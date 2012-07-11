@@ -80,7 +80,6 @@ public class MidSwitch<T> extends Switch<T> {
 			case MidPackage.EXTENDIBLE_ELEMENT: {
 				ExtendibleElement extendibleElement = (ExtendibleElement)theEObject;
 				T result = caseExtendibleElement(extendibleElement);
-				if (result == null) result = caseTypedElement(extendibleElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -94,13 +93,6 @@ public class MidSwitch<T> extends Switch<T> {
 				Model model = (Model)theEObject;
 				T result = caseModel(model);
 				if (result == null) result = caseExtendibleElement(model);
-				if (result == null) result = caseTypedElement(model);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.TYPED_ELEMENT: {
-				TypedElement typedElement = (TypedElement)theEObject;
-				T result = caseTypedElement(typedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,7 +106,6 @@ public class MidSwitch<T> extends Switch<T> {
 				ModelElement modelElement = (ModelElement)theEObject;
 				T result = caseModelElement(modelElement);
 				if (result == null) result = caseExtendibleElement(modelElement);
-				if (result == null) result = caseTypedElement(modelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -176,21 +167,6 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModel(Model object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypedElement(TypedElement object) {
 		return null;
 	}
 

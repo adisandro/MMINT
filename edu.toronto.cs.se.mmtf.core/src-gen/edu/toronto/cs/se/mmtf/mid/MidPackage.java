@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -68,88 +69,6 @@ public interface MidPackage extends EPackage {
 	MidPackage eINSTANCE = edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl <em>Typed Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getTypedElement()
-	 * @generated
-	 */
-	int TYPED_ELEMENT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__METATYPE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__LEVEL = 2;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__TYPE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__RUNTIME_METATYPES = 4;
-
-	/**
-	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__METATYPE_URI = 5;
-
-	/**
-	 * The number of structural features of the '<em>Typed Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_FEATURE_COUNT = 6;
-
-	/**
-	 * The number of operations of the '<em>Typed Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl <em>Extendible Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,67 +79,13 @@ public interface MidPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__NAME = TYPED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__METATYPE = TYPED_ELEMENT__METATYPE;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__LEVEL = TYPED_ELEMENT__LEVEL;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__TYPE = TYPED_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__RUNTIME_METATYPES = TYPED_ELEMENT__RUNTIME_METATYPES;
-
-	/**
-	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__METATYPE_URI = TYPED_ELEMENT__METATYPE_URI;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__URI = TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int EXTENDIBLE_ELEMENT__URI = 0;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -229,7 +94,61 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__SUPERTYPE = TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int EXTENDIBLE_ELEMENT__SUPERTYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__METATYPE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__LEVEL = 4;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__TYPE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Runtime Metatypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__RUNTIME_METATYPES = 6;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__METATYPE_URI = 7;
 
 	/**
 	 * The number of structural features of the '<em>Extendible Element</em>' class.
@@ -238,7 +157,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -247,7 +166,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl <em>Multi Model</em>}' class.
@@ -342,6 +261,24 @@ public interface MidPackage extends EPackage {
 	int MODEL = 2;
 
 	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__URI = EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -394,24 +331,6 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__URI = EXTENDIBLE_ELEMENT__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -486,13 +405,31 @@ public interface MidPackage extends EPackage {
 	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___GET_METATYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -502,7 +439,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToExtendibleElementMap()
 	 * @generated
 	 */
-	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = 4;
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = 3;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -548,7 +485,25 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElement()
 	 * @generated
 	 */
-	int MODEL_ELEMENT = 5;
+	int MODEL_ELEMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__URI = EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -605,24 +560,6 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__URI = EXTENDIBLE_ELEMENT__URI;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
-
-	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -659,13 +596,31 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___GET_METATYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl <em>Model Constraint</em>}' class.
@@ -675,7 +630,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraint()
 	 * @generated
 	 */
-	int MODEL_CONSTRAINT = 6;
+	int MODEL_CONSTRAINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' attribute.
@@ -721,7 +676,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementEntityWildcard()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_ENTITY_WILDCARD = 7;
+	int MODEL_ELEMENT_ENTITY_WILDCARD = 6;
 
 	/**
 	 * The feature id for the '<em><b>Model Element Relationship Wildcard</b></em>' reference.
@@ -758,7 +713,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMidLevel()
 	 * @generated
 	 */
-	int MID_LEVEL = 8;
+	int MID_LEVEL = 7;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelOrigin <em>Model Origin</em>}' enum.
@@ -768,7 +723,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelOrigin()
 	 * @generated
 	 */
-	int MODEL_ORIGIN = 9;
+	int MODEL_ORIGIN = 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}' enum.
@@ -778,7 +733,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementCategory()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CATEGORY = 10;
+	int MODEL_ELEMENT_CATEGORY = 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine <em>Model Constraint Engine</em>}' enum.
@@ -788,7 +743,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraintEngine()
 	 * @generated
 	 */
-	int MODEL_CONSTRAINT_ENGINE = 11;
+	int MODEL_CONSTRAINT_ENGINE = 10;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -821,6 +776,72 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExtendibleElement_Supertype();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getName()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EAttribute getExtendibleElement_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getMetatype <em>Metatype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Metatype</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getMetatype()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EReference getExtendibleElement_Metatype();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getLevel <em>Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Level</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getLevel()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EAttribute getExtendibleElement_Level();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getType()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EAttribute getExtendibleElement_Type();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getRuntimeMetatypes <em>Runtime Metatypes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Runtime Metatypes</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getRuntimeMetatypes()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EReference getExtendibleElement_RuntimeMetatypes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getMetatypeUri <em>Metatype Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Metatype Uri</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getMetatypeUri()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EAttribute getExtendibleElement_MetatypeUri();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.MultiModel <em>Multi Model</em>}'.
@@ -986,80 +1007,24 @@ public interface MidPackage extends EPackage {
 	EReference getModel_ConversionOperators();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.TypedElement <em>Typed Element</em>}'.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#getMetatype() <em>Get Metatype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Typed Element</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement
+	 * @return the meta object for the '<em>Get Metatype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getMetatype()
 	 * @generated
 	 */
-	EClass getTypedElement();
+	EOperation getModel__GetMetatype();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getName <em>Name</em>}'.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#getSupertype() <em>Get Supertype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement#getName()
-	 * @see #getTypedElement()
+	 * @return the meta object for the '<em>Get Supertype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getSupertype()
 	 * @generated
 	 */
-	EAttribute getTypedElement_Name();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatype <em>Metatype</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Metatype</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatype()
-	 * @see #getTypedElement()
-	 * @generated
-	 */
-	EReference getTypedElement_Metatype();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getLevel <em>Level</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Level</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement#getLevel()
-	 * @see #getTypedElement()
-	 * @generated
-	 */
-	EAttribute getTypedElement_Level();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement#getType()
-	 * @see #getTypedElement()
-	 * @generated
-	 */
-	EAttribute getTypedElement_Type();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatypes <em>Runtime Metatypes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Runtime Metatypes</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement#getRuntimeMetatypes()
-	 * @see #getTypedElement()
-	 * @generated
-	 */
-	EReference getTypedElement_RuntimeMetatypes();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatypeUri <em>Metatype Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Metatype Uri</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.TypedElement#getMetatypeUri()
-	 * @see #getTypedElement()
-	 * @generated
-	 */
-	EAttribute getTypedElement_MetatypeUri();
+	EOperation getModel__GetSupertype();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
@@ -1137,6 +1102,26 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelElement_ClassLiteral();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getMetatype() <em>Get Metatype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Metatype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getMetatype()
+	 * @generated
+	 */
+	EOperation getModelElement__GetMetatype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getSupertype() <em>Get Supertype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Supertype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getSupertype()
+	 * @generated
+	 */
+	EOperation getModelElement__GetSupertype();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint <em>Model Constraint</em>}'.
@@ -1281,6 +1266,54 @@ public interface MidPackage extends EPackage {
 		EReference EXTENDIBLE_ELEMENT__SUPERTYPE = eINSTANCE.getExtendibleElement_Supertype();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDIBLE_ELEMENT__NAME = eINSTANCE.getExtendibleElement_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Metatype</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDIBLE_ELEMENT__METATYPE = eINSTANCE.getExtendibleElement_Metatype();
+
+		/**
+		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDIBLE_ELEMENT__LEVEL = eINSTANCE.getExtendibleElement_Level();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDIBLE_ELEMENT__TYPE = eINSTANCE.getExtendibleElement_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Runtime Metatypes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDIBLE_ELEMENT__RUNTIME_METATYPES = eINSTANCE.getExtendibleElement_RuntimeMetatypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Metatype Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDIBLE_ELEMENT__METATYPE_URI = eINSTANCE.getExtendibleElement_MetatypeUri();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl <em>Multi Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1405,62 +1438,20 @@ public interface MidPackage extends EPackage {
 		EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl <em>Typed Element</em>}' class.
+		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.TypedElementImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getTypedElement()
 		 * @generated
 		 */
-		EClass TYPED_ELEMENT = eINSTANCE.getTypedElement();
+		EOperation MODEL___GET_METATYPE = eINSTANCE.getModel__GetMetatype();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_ELEMENT__NAME = eINSTANCE.getTypedElement_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Metatype</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPED_ELEMENT__METATYPE = eINSTANCE.getTypedElement_Metatype();
-
-		/**
-		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT__LEVEL = eINSTANCE.getTypedElement_Level();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Runtime Metatypes</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPED_ELEMENT__RUNTIME_METATYPES = eINSTANCE.getTypedElement_RuntimeMetatypes();
-
-		/**
-		 * The meta object literal for the '<em><b>Metatype Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT__METATYPE_URI = eINSTANCE.getTypedElement_MetatypeUri();
+		EOperation MODEL___GET_SUPERTYPE = eINSTANCE.getModel__GetSupertype();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -1521,6 +1512,22 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_ELEMENT__CLASS_LITERAL = eINSTANCE.getModelElement_ClassLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___GET_METATYPE = eINSTANCE.getModelElement__GetMetatype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___GET_SUPERTYPE = eINSTANCE.getModelElement__GetSupertype();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl <em>Model Constraint</em>}' class.

@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import java.lang.reflect.InvocationTargetException;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 import java.util.Collection;
@@ -317,6 +318,24 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Model getMetatype() {
+		return (Model) super.getMetatype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model getSupertype() {
+		return (Model) super.getSupertype();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -443,6 +462,22 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return conversionOperators != null && !conversionOperators.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MidPackage.MODEL___GET_METATYPE:
+				return getMetatype();
+			case MidPackage.MODEL___GET_SUPERTYPE:
+				return getSupertype();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
