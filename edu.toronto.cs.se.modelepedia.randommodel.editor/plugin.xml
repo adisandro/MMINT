@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay, Vivien Suen.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelModelWizardID"
+            name="%_UI_RandommodelModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/RandommodelModelFile.gif">
+         <description>%_UI_RandommodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelEditorID"
+            name="%_UI_RandommodelEditor_label"
+            icon="icons/full/obj16/RandommodelModelFile.gif"
+            extensions="randommodel"
+            class="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         name="Random Model editor"
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editor
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/randommodel"
+            id="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelModelWizardID">
+         <extendibleElement
+               uri="http://se.cs.toronto.edu/modelepedia/randommodel/presentation">
+         </extendibleElement>
+      </editor>
+   </extension>
+
+</plugin>
