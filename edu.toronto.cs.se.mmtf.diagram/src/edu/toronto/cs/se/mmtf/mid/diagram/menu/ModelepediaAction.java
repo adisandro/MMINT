@@ -70,7 +70,7 @@ public class ModelepediaAction extends ContributionItem {
 
 		// get model type
 		if (modelType.getLevel() == MidLevel.INSTANCES) {
-			modelType = (Model) modelType.getMetatype();
+			modelType = modelType.getMetatype();
 			if (modelType == null) {
 				return;
 			}

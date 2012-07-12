@@ -386,7 +386,7 @@ public class MultiModelFactoryUtils {
 		Resource resource = set.getResource(modelRelUri, true);
 		EObject root = resource.getContents().get(0);
 		ModelRel modelRel = createModelRel(
-			(ModelRel) ((ModelRel) root).getMetatype(),
+			((ModelRel) root).getMetatype(),
 			ModelOrigin.IMPORTED,
 			multiModel,
 			modelRelUri,
@@ -402,7 +402,7 @@ public class MultiModelFactoryUtils {
 			URI modelUri = URI.createPlatformResourceURI(origModel.getUri(), true);
 			Model model = getModelUnique(multiModel, modelUri); // the model can already be in the MID
 			if (model == null) {
-				model = createModel((Model) origModel.getMetatype(), ModelOrigin.IMPORTED, multiModel, modelUri);
+				model = createModel(origModel.getMetatype(), ModelOrigin.IMPORTED, multiModel, modelUri);
 				model.setName(origModel.getName());
 				Editor editor = createEditor(model);
 				if (editor != null) {

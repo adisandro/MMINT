@@ -56,7 +56,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 			staticModelType = MMTFRegistry.getModelType(staticModelTypeUri);
 		}
 		else {
-			staticModelType = (Model) model.getMetatype();
+			staticModelType = model.getMetatype();
 		}
 
 		// fallback to root type
@@ -98,7 +98,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 			staticModelRelType = null;
 		}
 		else {
-			staticModelRelType = (ModelRel) modelRel.getMetatype();
+			staticModelRelType = modelRel.getMetatype();
 		}
 
 		// fallback to root type
@@ -188,7 +188,7 @@ modelRelTypes:
 			//staticElementType = 
 		}
 		else {
-			staticElementType = (ModelElement) modelElem.getMetatype();
+			staticElementType = modelElem.getMetatype();
 		}
 
 		// fallback to root type
@@ -210,12 +210,12 @@ modelRelTypes:
 
 		// not specialized yet
 		if (link.getElementRefs().size() == 0) {
-			types.addAll(MMTFRegistry.getLinkTypes((ModelRel) modelRel.getMetatype()));
+			types.addAll(MMTFRegistry.getLinkTypes(modelRel.getMetatype()));
 			return types;
 		}
 
 linkTypes:
-		for (Link linkType : MMTFRegistry.getLinkTypes((ModelRel) modelRel.getMetatype())) {
+		for (Link linkType : MMTFRegistry.getLinkTypes(modelRel.getMetatype())) {
 
 			// check cardinality
 			if (!(linkType.isUnbounded() || linkType.getElementRefs().size() == link.getElementRefs().size())) {
@@ -325,7 +325,7 @@ linkTypes:
 			if (model.getLevel() == MidLevel.TYPES) {
 				// climb up light types
 				while (model.getConstraint() != null) {
-					model = (Model) model.getSupertype();
+					model = model.getSupertype();
 					uri = model.getUri();
 				}
 				root = EPackage.Registry.INSTANCE.getEPackage(uri);
@@ -375,7 +375,7 @@ linkTypes:
 						model,
 						modelElem.getClassLiteral()
 					);
-					model = (Model) model.getSupertype();
+					model = model.getSupertype();
 				}
 			}
 			else {

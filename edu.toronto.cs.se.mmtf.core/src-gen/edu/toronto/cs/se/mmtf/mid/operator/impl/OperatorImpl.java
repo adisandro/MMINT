@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -196,7 +197,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @generated
 	 */
 	public Operator getMetatype() {
-		return (Operator) super.getMetatype();
+		ExtendibleElement metatype = super.getMetatype();
+		return (metatype == null) ? null : (Operator) metatype;
 	}
 
 	/**
@@ -205,7 +207,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @generated
 	 */
 	public Operator getSupertype() {
-		return (Operator) super.getSupertype();
+		ExtendibleElement supertype = super.getSupertype();
+		return (supertype == null) ? null : (Operator) supertype;
 	}
 
 	/**

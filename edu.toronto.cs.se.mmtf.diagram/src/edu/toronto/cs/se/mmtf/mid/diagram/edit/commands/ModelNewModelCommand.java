@@ -64,7 +64,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		Editor newEditor = MidDiagramTrait.selectModelTypeToCreate();
 		URI newModelUri = URI.createPlatformResourceURI(newEditor.getModelUri(), true);
 		MultiModelFactoryUtils.assertModelUnique(multiModel, newModelUri);
-		Model modelType = MMTFRegistry.getModelType(((Editor) newEditor.getMetatype()).getModelUri());
+		Model modelType = MMTFRegistry.getModelType(newEditor.getMetatype().getModelUri());
 		Model newModel = MultiModelFactoryUtils.createModel(modelType, ModelOrigin.CREATED, multiModel, newModelUri);
 		MultiModelFactoryUtils.addModelEditor(newEditor, multiModel);
 

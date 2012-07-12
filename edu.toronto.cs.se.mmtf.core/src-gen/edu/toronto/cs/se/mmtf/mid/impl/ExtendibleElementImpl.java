@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -260,11 +261,21 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendibleElement basicGetMetatype() {
+	public ExtendibleElement basicGetMetatypeGen() {
 		// TODO: implement this method to return the 'Metatype' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Uses metatype uri to get static metatype.
+	 * 
+	 * @generated NOT
+	 */
+	public ExtendibleElement basicGetMetatype() {
+
+		return MultiModelTypeIntrospection.getType(this);
 	}
 
 	/**
@@ -302,12 +313,22 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ExtendibleElement> getRuntimeMetatypes() {
+	public EList<ExtendibleElement> getRuntimeMetatypesGen() {
 		// TODO: implement this method to return the 'Runtime Metatypes' reference list
 		// Ensure that you remove @generated or mark it @generated NOT
 		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
 		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Uses type introspection to get runtime metatypes.
+	 * 
+	 * @generated NOT
+	 */
+	public EList<ExtendibleElement> getRuntimeMetatypes() {
+
+		return MultiModelTypeIntrospection.getRuntimeTypes(this);
 	}
 
 	/**

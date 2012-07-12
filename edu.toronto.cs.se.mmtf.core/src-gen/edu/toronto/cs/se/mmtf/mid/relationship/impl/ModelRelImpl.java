@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
@@ -187,7 +188,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated
 	 */
 	public ModelRel getMetatype() {
-		return (ModelRel) super.getMetatype();
+		ExtendibleElement metatype = super.getMetatype();
+		return (metatype == null) ? null : (ModelRel) metatype;
 	}
 
 	/**
@@ -196,7 +198,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated
 	 */
 	public ModelRel getSupertype() {
-		return (ModelRel) super.getSupertype();
+		ExtendibleElement supertype = super.getSupertype();
+		return (supertype == null) ? null : (ModelRel) supertype;
 	}
 
 	/**

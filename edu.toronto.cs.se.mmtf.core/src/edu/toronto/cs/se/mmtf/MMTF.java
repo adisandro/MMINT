@@ -1279,7 +1279,7 @@ modelRef:
 		public static ElementTreeSelectionDialog getLinkCreationDialog(ModelRel modelRel, ModelElementReference source, ModelElementReference target) {
 
 			EList<String> linkTypeUris = null;
-			ModelRel modelRelType = (ModelRel) modelRel.getMetatype();
+			ModelRel modelRelType = modelRel.getMetatype();
 
 			if (source != null && target != null) {
 

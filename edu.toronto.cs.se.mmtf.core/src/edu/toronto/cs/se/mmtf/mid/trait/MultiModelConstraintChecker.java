@@ -100,7 +100,7 @@ public class MultiModelConstraintChecker {
 
 		String modelTypeUri = model.getMetatypeUri();
 		boolean okModel = false;
-		for (Model modelType : ((ModelRel) modelRel.getMetatype()).getModels()) {
+		for (Model modelType : (modelRel.getMetatype()).getModels()) {
 			if (modelType.getUri().equals(modelTypeUri) || MMTFRegistry.isSubtypeOf(modelTypeUri, modelType.getUri())) {
 				okModel = true;
 				break;
@@ -190,7 +190,7 @@ rel:
 		// we need to look into the model relationship type instead of the referenced model type because
 		// that is the one who decides the types of the endpoint model types and their elements
 		// (e.g. ModelRel works on all Models, so I should look into ModelRel's ModelElements contained by Model)
-		ModelRel modelRelType = (ModelRel) ((ModelRel) modelRef.eContainer()).getMetatype();
+		ModelRel modelRelType = ((ModelRel) modelRef.eContainer()).getMetatype();
 		for (Model modelType : modelRelType.getModels()) {
 			for (ModelElement modelElemType : modelType.getElements()) {
 				if (isAllowedModelElement(modelRelType, modelElemType, droppedElement)) {
@@ -205,7 +205,7 @@ rel:
 	//TODO MMTF: this should be moved, is type introspection for links
 	public static Link getAllowedLinkType(Link link) {
 
-		ModelRel modelRelType = (ModelRel) ((ModelRel) link.eContainer()).getMetatype();
+		ModelRel modelRelType = ((ModelRel) link.eContainer()).getMetatype();
 linkTypes:
 		for (Link linkType : modelRelType.getLinks()) {
 			HashSet<String> allowedModelElemTypes = new HashSet<String>();

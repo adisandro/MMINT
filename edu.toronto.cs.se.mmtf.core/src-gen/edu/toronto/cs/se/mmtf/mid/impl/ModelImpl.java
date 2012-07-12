@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
@@ -319,7 +320,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @generated
 	 */
 	public Model getMetatype() {
-		return (Model) super.getMetatype();
+		ExtendibleElement metatype = super.getMetatype();
+		return (metatype == null) ? null : (Model) metatype;
 	}
 
 	/**
@@ -328,7 +330,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @generated
 	 */
 	public Model getSupertype() {
-		return (Model) super.getSupertype();
+		ExtendibleElement supertype = super.getSupertype();
+		return (supertype == null) ? null : (Model) supertype;
 	}
 
 	/**

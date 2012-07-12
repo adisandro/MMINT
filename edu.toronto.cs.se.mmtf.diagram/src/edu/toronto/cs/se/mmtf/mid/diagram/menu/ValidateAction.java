@@ -77,13 +77,13 @@ public class ValidateAction extends ContributionItem {
 		if (
 			model == null ||
 			!MultiModelConstraintChecker.isInstancesLevel((MultiModel) model.eContainer()) ||
-			((Model) model.getMetatype()).getConstraint() == null
+			model.getMetatype().getConstraint() == null
 		) {
 			return;
 		}
 
 		// get OCL constraint
-		String oclConstraint = ((Model) model.getMetatype()).getConstraint().getBody();
+		String oclConstraint = model.getMetatype().getConstraint().getBody();
 
 		// create dynamic menu
 		MenuItem validateItem = new MenuItem(menu, SWT.NONE, index);

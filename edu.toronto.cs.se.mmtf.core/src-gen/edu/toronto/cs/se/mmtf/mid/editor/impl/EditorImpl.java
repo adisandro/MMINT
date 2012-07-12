@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.editor.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 
@@ -216,7 +217,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 * @generated
 	 */
 	public Editor getMetatype() {
-		return (Editor) super.getMetatype();
+		ExtendibleElement metatype = super.getMetatype();
+		return (metatype == null) ? null : (Editor) metatype;
 	}
 
 	/**
@@ -225,7 +227,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 * @generated
 	 */
 	public Editor getSupertype() {
-		return (Editor) super.getSupertype();
+		ExtendibleElement supertype = super.getSupertype();
+		return (supertype == null) ? null : (Editor) supertype;
 	}
 
 	/**
