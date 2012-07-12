@@ -22,13 +22,13 @@ public interface MMTFExtensionPoints {
 	/** The uri of the root model type. */
 	public final static String ROOT_MODEL_URI = "http:///edu/toronto/cs/se/mmtf/Model";
 	/** The uri of the root model relationship. */
-	public final static String ROOT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel";
+	public final static String ROOT_MODELREL_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel";
 	/** The uri of the root model element of category entity. */
-	public final static String ROOT_MODEL_ELEMENT_ENTITY_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard";
+	public final static String ROOT_MODELELEMENT_ENTITY_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard";
 	/** The uri of the root model element of category relationship. */
-	public final static String ROOT_MODEL_ELEMENT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard/modelElementRelationshipWildcard";
+	public final static String ROOT_MODELELEMENT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard/modelElementRelationshipWildcard";
 	/** The uri of the root link among model elements. */
-	public final static String ROOT_RELATIONSHIP_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
+	public final static String ROOT_MODELREL_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
 
 	/** An extension point's extendibleElement child. */
 	public final static String CHILD_EXTENDIBLEELEMENT = "extendibleElement";
@@ -51,32 +51,32 @@ public interface MMTFExtensionPoints {
 	/** The Editors extension point's wizardId attribute. */
 	public final static String EDITORS_ATTR_WIZARDID = "wizardId";
 
-	/** The Relationships extension point's id. */
-	public final static String RELATIONSHIPS_EXT_POINT = "edu.toronto.cs.se.mmtf.relationships";
-	/** The Relationships extension point's isNary attribute. */
-	public final static String RELATIONSHIPS_ATTR_ISNARY = "isNary";
-	/** The Relationships extension point's model child. */
-	public final static String RELATIONSHIPS_CHILD_MODEL = "model";
-	/** The Relationships extension point's model child's modelTypeUri attribute. */
-	public final static String RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI = "modelTypeUri";
-	/** The Relationships extension point's model's modelElement child. */
-	public final static String RELATIONSHIPS_MODEL_CHILD_MODELELEMENT = "modelElement";
-	/** The Relationships extension point's model's modelElement child's name attribute. */
-	public final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME = "name";
-	/** The Relationships extension point's model's modelElement child's category attribute. */
-	public final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY = "category";
-	/** The Relationships extension point's model's modelElement child's classLiteral attribute. */
-	public final static String RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL = "classLiteral";
-	/** The Relationships extension point's link child. */
-	public final static String RELATIONSHIPS_CHILD_LINK = "link";
-	/** The Relationships extension point's link child's isNary attribute. */
-	public final static String RELATIONSHIPS_LINK_ATTR_ISNARY = "isNary";
-	/** The Relationships extension point's link child's name attribute. */
-	public final static String RELATIONSHIPS_LINK_ATTR_NAME = "name";
-	/** The Relationships extension point's link's linkElement child. */
-	public final static String RELATIONSHIPS_LINK_CHILD_LINKELEMENT = "linkElement";
-	/** The Relationships extension point's link's linkElement child's elementName attribute. */
-	public final static String RELATIONSHIPS_LINK_LINKELEMENT_ATTR_ELEMENTNAME = "elementName";
+	/** The ModelRels extension point's id. */
+	public final static String MODELRELS_EXT_POINT = "edu.toronto.cs.se.mmtf.relationships";
+	/** The ModelRels extension point's isNary attribute. */
+	public final static String MODELRELS_ATTR_ISNARY = "isNary";
+	/** The ModelRels extension point's model child. */
+	public final static String MODELRELS_CHILD_MODEL = "model";
+	/** The ModelRels extension point's model child's modelTypeUri attribute. */
+	public final static String MODELRELS_MODEL_ATTR_MODELTYPEURI = "modelTypeUri";
+	/** The ModelRels extension point's model's modelElement child. */
+	public final static String MODELRELS_MODEL_CHILD_MODELELEMENT = "modelElement";
+	/** The ModelRels extension point's model's modelElement child's name attribute. */
+	public final static String MODELRELS_MODEL_MODELELEMENT_ATTR_NAME = "name";
+	/** The ModelRels extension point's model's modelElement child's category attribute. */
+	public final static String MODELRELS_MODEL_MODELELEMENT_ATTR_CATEGORY = "category";
+	/** The ModelRels extension point's model's modelElement child's classLiteral attribute. */
+	public final static String MODELRELS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL = "classLiteral";
+	/** The ModelRels extension point's link child. */
+	public final static String MODELRELS_CHILD_LINK = "link";
+	/** The ModelRels extension point's link child's isNary attribute. */
+	public final static String MODELRELS_LINK_ATTR_ISNARY = "isNary";
+	/** The ModelRels extension point's link child's name attribute. */
+	public final static String MODELRELS_LINK_ATTR_NAME = "name";
+	/** The ModelRels extension point's link's linkElement child. */
+	public final static String MODELRELS_LINK_CHILD_LINKELEMENT = "linkElement";
+	/** The ModelRels extension point's link's linkElement child's elementName attribute. */
+	public final static String MODELRELS_LINK_LINKELEMENT_ATTR_ELEMENTNAME = "elementName";
 
 	/** The Operators extension point's id. */
 	public final static String OPERATORS_EXT_POINT = "edu.toronto.cs.se.mmtf.operators";

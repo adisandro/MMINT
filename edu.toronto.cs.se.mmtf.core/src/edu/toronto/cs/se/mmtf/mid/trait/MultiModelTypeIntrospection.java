@@ -103,8 +103,8 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// fallback to root type
 		if (staticModelRelType == null) {
-			staticModelRelTypeUri = ROOT_RELATIONSHIP_URI;
-			staticModelRelType = MMTFRegistry.getModelRelType(ROOT_RELATIONSHIP_URI);
+			staticModelRelTypeUri = ROOT_MODELREL_URI;
+			staticModelRelType = MMTFRegistry.getModelRelType(ROOT_MODELREL_URI);
 		}
 
 		// init
@@ -193,10 +193,10 @@ modelRelTypes:
 
 		// fallback to root type
 		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_ENTITY_URI));
+			types.add(MMTFRegistry.getExtendibleType(ROOT_MODELELEMENT_ENTITY_URI));
 		}
 		else {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_MODEL_ELEMENT_RELATIONSHIP_URI));
+			types.add(MMTFRegistry.getExtendibleType(ROOT_MODELELEMENT_RELATIONSHIP_URI));
 		}
 
 		return types;
@@ -244,7 +244,7 @@ linkTypes:
 
 		// fallback to root type
 		if (types.isEmpty()) {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_RELATIONSHIP_LINK_URI));
+			types.add(MMTFRegistry.getExtendibleType(ROOT_MODELREL_LINK_URI));
 		}
 
 		return types;

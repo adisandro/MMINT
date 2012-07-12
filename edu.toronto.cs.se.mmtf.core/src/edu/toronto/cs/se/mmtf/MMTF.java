@@ -214,9 +214,9 @@ public class MMTF implements MMTFExtensionPoints {
 	public ModelRel createModelRelType(IConfigurationElement extensionConfig) {
 
 		// create and add
-		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_ATTR_ISNARY));
+		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(MODELRELS_ATTR_ISNARY));
 		IConfigurationElement extendibleConfig = extensionConfig.getChildren(CHILD_EXTENDIBLEELEMENT)[0];
-		IConfigurationElement[] modelConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_MODEL);
+		IConfigurationElement[] modelConfig = extensionConfig.getChildren(MODELRELS_CHILD_MODEL);
 		ModelRel modelRel = (!unbounded && modelConfig.length == 2) ? // unbounded with any two model types is a ModelRel
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
 			RelationshipFactory.eINSTANCE.createModelRel();
@@ -232,7 +232,7 @@ public class MMTF implements MMTFExtensionPoints {
 		// handle relationship structure:
 		// models and containers
 		for (IConfigurationElement modelConfigElem : modelConfig) {
-			String modelUri = modelConfigElem.getAttribute(RELATIONSHIPS_MODEL_ATTR_MODELTYPEURI);
+			String modelUri = modelConfigElem.getAttribute(MODELRELS_MODEL_ATTR_MODELTYPEURI);
 			Model model = MMTFRegistry.getModelType(modelUri);
 			if (model != null) {
 				modelRel.getModels().add(model);
@@ -240,7 +240,7 @@ public class MMTF implements MMTFExtensionPoints {
 				modelRef.setReferencedObject(model);
 				modelRel.getModelRefs().add(modelRef);
 				// model elements
-				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(RELATIONSHIPS_MODEL_CHILD_MODELELEMENT);
+				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(MODELRELS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
 					String modelElementUri = modelElementConfigElem.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
 					ModelElement element = MMTFRegistry.getModelElementType(modelElementUri);
@@ -248,12 +248,12 @@ public class MMTF implements MMTFExtensionPoints {
 						element = MidFactory.eINSTANCE.createModelElement();
 						element.setCategory(
 							ModelElementCategory.get(
-								modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CATEGORY)
+								modelElementConfigElem.getAttribute(MODELRELS_MODEL_MODELELEMENT_ATTR_CATEGORY)
 							)
 						);
-						element.setClassLiteral(modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL));
+						element.setClassLiteral(modelElementConfigElem.getAttribute(MODELRELS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL));
 						try {
-							addExtendibleType(element, modelElementConfigElem.getAttribute(RELATIONSHIPS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
+							addExtendibleType(element, modelElementConfigElem.getAttribute(MODELRELS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
 						}
 						catch (MMTFException e) {
 							MMTFException.print(Type.WARNING, "Model element can't be registered", e);
@@ -270,15 +270,15 @@ public class MMTF implements MMTFExtensionPoints {
 			}
 		}
 		// links
-		IConfigurationElement[] linkConfig = extensionConfig.getChildren(RELATIONSHIPS_CHILD_LINK);
+		IConfigurationElement[] linkConfig = extensionConfig.getChildren(MODELRELS_CHILD_LINK);
 		for (IConfigurationElement linkConfigElem : linkConfig) {
-			boolean linkUnbounded = Boolean.parseBoolean(extensionConfig.getAttribute(RELATIONSHIPS_LINK_ATTR_ISNARY));
-			IConfigurationElement[] linkElementConfig = linkConfigElem.getChildren(RELATIONSHIPS_LINK_CHILD_LINKELEMENT);
+			boolean linkUnbounded = Boolean.parseBoolean(extensionConfig.getAttribute(MODELRELS_LINK_ATTR_ISNARY));
+			IConfigurationElement[] linkElementConfig = linkConfigElem.getChildren(MODELRELS_LINK_CHILD_LINKELEMENT);
 			Link link = (!linkUnbounded && linkElementConfig.length == 2) ? // unbounded with any two link elements is a Link
 				RelationshipFactory.eINSTANCE.createBinaryLink() :
 				RelationshipFactory.eINSTANCE.createLink();
 			try {
-				addExtendibleType(link, linkConfigElem.getAttribute(RELATIONSHIPS_LINK_ATTR_NAME), linkConfigElem);
+				addExtendibleType(link, linkConfigElem.getAttribute(MODELRELS_LINK_ATTR_NAME), linkConfigElem);
 			}
 			catch (MMTFException e) {
 				MMTFException.print(Type.WARNING, "Link can't be registered", e);
@@ -289,7 +289,7 @@ public class MMTF implements MMTFExtensionPoints {
 			modelRel.getLinks().add(link);
 			// link elements
 			for (IConfigurationElement linkElementConfigElem : linkElementConfig) {
-				String linkElementName = linkElementConfigElem.getAttribute(RELATIONSHIPS_LINK_LINKELEMENT_ATTR_ELEMENTNAME);
+				String linkElementName = linkElementConfigElem.getAttribute(MODELRELS_LINK_LINKELEMENT_ATTR_ELEMENTNAME);
 modelRef:
 				for (ModelReference modelRef : modelRel.getModelRefs()) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) {
@@ -534,17 +534,18 @@ modelRef:
 	 */
 	public static void removeModelType(String uri) {
 
-		ExtendibleElement model = repository.getExtendibleTable().removeKey(uri);
-		if (model != null && model instanceof Model) {
+		ExtendibleElement removedElement = repository.getExtendibleTable().removeKey(uri);
+		if (removedElement != null && removedElement instanceof Model) {
+			Model model = (Model) removedElement;
 			repository.getModels().remove(model);
 			// remove conversion operators, if any
 			//TODO MMTF: create and call removeOperator
-			for (ConversionOperator operator : ((Model) model).getConversionOperators()) {
+			for (ConversionOperator operator : model.getConversionOperators()) {
 				repository.getOperators().remove(operator);
 				repository.getOperatorTable().removeKey(MMTFRegistry.getOperatorSignature(operator));
 			}
 			// remove model elements, if any
-			for (ModelElement element : ((Model) model).getElements()) {
+			for (ModelElement element : model.getElements()) {
 				repository.getExtendibleTable().removeKey(element.getUri());
 			}
 			// remove model relationship specific structures
@@ -554,16 +555,16 @@ modelRef:
 				}
 			}
 			// remove model relationships that use this model, and subtypes
-			for (ExtendibleElement extendible : repository.getExtendibleTable().values()) {
+			for (Model relatedModel : MMTFRegistry.getModelTypes()) {
 				// model relationships
-				if (model instanceof Model && extendible instanceof ModelRel) {
-					if (((ModelRel) extendible).getModels().contains(model)) {
-						removeModelType(extendible.getUri());
+				if (relatedModel instanceof ModelRel) {
+					if (((ModelRel) relatedModel).getModels().contains(model)) {
+						removeModelType(relatedModel.getUri());
 					}
 				}
 				// subtypes
-				if (extendible instanceof Model && ((Model) model).getSupertype().getUri().equals(uri)) {
-					removeModelType(extendible.getUri());
+				if (MMTFRegistry.isSubtypeOf(relatedModel.getUri(), uri)) {
+					removeModelType(relatedModel.getUri());
 				}
 			}
 		}
@@ -608,8 +609,11 @@ modelRef:
 		EList<ConversionOperator> previousConversions = conversionTypes.get(element.getUri());
 
 		// add supertypes
-		if (element.getSupertype() != null) {
-			String supertypeUri = element.getSupertype().getUri();
+		ExtendibleElement supertype = (element instanceof ModelRel && ROOT_MODELREL_URI.equals(element.getUri())) ?
+			MMTFRegistry.getModelType(ROOT_MODEL_URI) :
+			element.getSupertype();
+		if (supertype != null) {
+			String supertypeUri = supertype.getUri();
 			if (!substitutableTypes.contains(supertypeUri)) {
 				substitutableTypes.add(supertypeUri);
 				// keep track of conversion operators used
@@ -618,7 +622,7 @@ modelRef:
 					new BasicEList<ConversionOperator>(previousConversions);
 				conversionTypes.put(supertypeUri, conversions);
 				// recursion
-				addTypeHierarchy(element.getSupertype(), substitutableTypes, conversionTypes);
+				addTypeHierarchy(supertype, substitutableTypes, conversionTypes);
 			}
 		}
 
@@ -677,7 +681,7 @@ modelRef:
 		}
 
 		// model type relationships
-		config = registry.getConfigurationElementsFor(RELATIONSHIPS_EXT_POINT);
+		config = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
 			createModelRelType(elem);
 		}
@@ -725,7 +729,7 @@ modelRef:
 		if (registry != null) {
 			initRepository(registry);
 			registry.addListener(new ModelsExtensionListener(this), MODELS_EXT_POINT);
-			registry.addListener(new RelationshipsExtensionListener(this), RELATIONSHIPS_EXT_POINT);
+			registry.addListener(new RelationshipsExtensionListener(this), MODELRELS_EXT_POINT);
 			registry.addListener(new EditorsExtensionListener(this), EDITORS_EXT_POINT);
 			registry.addListener(new OperatorsExtensionListener(this), OPERATORS_EXT_POINT);
 		}
@@ -758,21 +762,21 @@ modelRef:
 
 			String rootUri = "";
 			if (type instanceof ModelRel) {
-				rootUri = ROOT_RELATIONSHIP_URI;
+				rootUri = ROOT_MODELREL_URI;
 			}
 			else if (type instanceof Model) {
 				rootUri = ROOT_MODEL_URI;
 			}
 			else if (type instanceof ModelElement) {
 				if (((ModelElement) type).getCategory() == ModelElementCategory.ENTITY) {
-					rootUri = ROOT_MODEL_ELEMENT_ENTITY_URI;
+					rootUri = ROOT_MODELELEMENT_ENTITY_URI;
 				}
 				else if (((ModelElement) type).getCategory() == ModelElementCategory.RELATIONSHIP) {
-					rootUri = ROOT_MODEL_ELEMENT_RELATIONSHIP_URI;
+					rootUri = ROOT_MODELELEMENT_RELATIONSHIP_URI;
 				}
 			}
 			else if (type instanceof Link) {
-				rootUri = ROOT_RELATIONSHIP_LINK_URI;
+				rootUri = ROOT_MODELREL_LINK_URI;
 			}
 			//TODO MMTF: root text editor?
 

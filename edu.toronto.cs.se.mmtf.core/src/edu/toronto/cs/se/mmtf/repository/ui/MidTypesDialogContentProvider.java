@@ -102,7 +102,7 @@ public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTF
 					continue;
 				}
 				// remove root models
-				if (!showRoots && (model.getUri().equals(ROOT_MODEL_URI) || model.getUri().equals(ROOT_RELATIONSHIP_URI))) {
+				if (!showRoots && (model.getUri().equals(ROOT_MODEL_URI) || model.getUri().equals(ROOT_MODELREL_URI))) {
 					continue;
 				}
 				// remove models which are not allowed

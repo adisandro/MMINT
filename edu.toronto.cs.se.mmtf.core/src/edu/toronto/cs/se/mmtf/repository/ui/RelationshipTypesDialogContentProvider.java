@@ -81,7 +81,7 @@ public class RelationshipTypesDialogContentProvider implements ITreeContentProvi
 			EList<Link> userLinks = new BasicEList<Link>();
 			for (Link link : ((ModelRel) parentElement).getLinks()) {
 				// remove root links
-				if (!showRoots && link.getUri().equals(ROOT_RELATIONSHIP_LINK_URI)) {
+				if (!showRoots && link.getUri().equals(ROOT_MODELREL_LINK_URI)) {
 					continue;
 				}
 				// remove links which are not allowed
