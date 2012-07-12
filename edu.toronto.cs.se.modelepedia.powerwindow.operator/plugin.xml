@@ -21,6 +21,9 @@
       <operator
             class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PowerWindowToPetriNet"
             isConversion="true">
+         <extendibleElement
+               uri="http://edu.toronto.cs.se/modelepedia/operator/PowerWindowToPetriNet">
+         </extendibleElement>
          <input>
             <parameter
                   isVararg="false"

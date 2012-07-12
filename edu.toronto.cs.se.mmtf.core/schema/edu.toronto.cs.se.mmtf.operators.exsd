@@ -10,6 +10,8 @@
       </documentation>
    </annotation>
 
+   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
+
    <element name="extension">
       <annotation>
          <appinfo>
@@ -55,6 +57,7 @@
       </annotation>
       <complexType>
          <sequence>
+            <element ref="extendibleElement"/>
             <element ref="input"/>
             <element ref="output"/>
          </sequence>

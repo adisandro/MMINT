@@ -392,15 +392,20 @@ modelRef:
 	 *            The extension configuration.
 	 * @return The created operator.
 	 */
-	public Operator createOperator(IConfigurationElement extensionConfig) {
+	public Operator createOperatorType(IConfigurationElement extensionConfig) {
 
 		// create and set basic attributes
 		boolean conversion = Boolean.parseBoolean(extensionConfig.getAttribute(OPERATORS_ATTR_ISCONVERSION));
+		IConfigurationElement extendibleConfig = extensionConfig.getChildren(CHILD_EXTENDIBLEELEMENT)[0];
 		Operator operator = (conversion) ?
 			OperatorFactory.eINSTANCE.createConversionOperator() :
 			OperatorFactory.eINSTANCE.createOperator();
-		operator.setName(extensionConfig.getDeclaringExtension().getLabel());
-		operator.setLevel(MidLevel.TYPES);
+		try {
+			addExtendibleType(operator, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
+		} catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Operator type can't be registered", e);
+			return null;
+		}
 
 		try {
 			// java implementation
@@ -697,7 +702,7 @@ modelRef:
 		// operators
 		config = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			createOperator(elem);
+			createOperatorType(elem);
 		}
 
 		// type hierarchy

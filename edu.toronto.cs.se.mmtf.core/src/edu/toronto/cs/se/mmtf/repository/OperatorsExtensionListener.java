@@ -47,7 +47,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				mmtf.createOperator(elem);
+				mmtf.createOperatorType(elem);
 			}
 		}
 	}
