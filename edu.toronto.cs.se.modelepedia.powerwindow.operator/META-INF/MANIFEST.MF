@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: edu.toronto.cs.se.modelepedia.powerwindow.operator
+Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.powerwindow.operator; singleton:=true
 Bundle-Version: 0.9.0
 Require-Bundle: org.eclipse.emf.ecore,
@@ -11,3 +11,4 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.modelepedia.powerwindow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
