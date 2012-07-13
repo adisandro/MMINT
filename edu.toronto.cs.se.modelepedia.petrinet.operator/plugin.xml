@@ -22,7 +22,7 @@
             class="edu.toronto.cs.se.modelepedia.petrinet.operator.PetriNetSimulate"
             isConversion="false">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/operator/PetriNetSimulate">
+               uri="http://edu.toronto.cs.se/modelepedia/petrinet/operator/PetriNetSimulate">
          </extendibleElement>
          <input>
             <parameter

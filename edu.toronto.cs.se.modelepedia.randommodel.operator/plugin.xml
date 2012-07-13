@@ -21,6 +21,9 @@
       <operator
             class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelCreate"
             isConversion="false">
+         <extendibleElement
+               uri="http://edu.toronto.cs.se/modelepedia/randommodel/operator/RandomModelCreate">
+         </extendibleElement>
          <input>
             <parameter
                   isVararg="false"
