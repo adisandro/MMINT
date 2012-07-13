@@ -614,9 +614,7 @@ modelRef:
 		EList<ConversionOperator> previousConversions = conversionTypes.get(element.getUri());
 
 		// add supertypes
-		ExtendibleElement supertype = (element instanceof ModelRel && ROOT_MODELREL_URI.equals(element.getUri())) ?
-			MMTFRegistry.getModelType(ROOT_MODEL_URI) :
-			element.getSupertype();
+		ExtendibleElement supertype = element.getSupertype();
 		if (supertype != null) {
 			String supertypeUri = supertype.getUri();
 			if (!substitutableTypes.contains(supertypeUri)) {

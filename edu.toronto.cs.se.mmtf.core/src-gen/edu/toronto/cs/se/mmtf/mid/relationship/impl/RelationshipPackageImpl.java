@@ -524,7 +524,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		initEOperation(getModelRel__GetMetatype(), this.getModelRel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getModelRel__GetSupertype(), this.getModelRel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelRel__GetSupertype(), theMidPackage.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -123,9 +123,9 @@ public interface ModelRel extends Model {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (ModelRel) supertype;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Model) supertype;'"
 	 * @generated
 	 */
-	ModelRel getSupertype();
+	Model getSupertype();
 
 } // ModelRel

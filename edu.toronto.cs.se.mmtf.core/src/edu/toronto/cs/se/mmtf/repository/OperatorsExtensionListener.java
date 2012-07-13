@@ -63,8 +63,8 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				//TODO MMTF: get by what?
-				//TODO MMTF: create and call removeOperator
+				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
+				mmtf.removeModelType(uri);
 			}
 		}
 	}

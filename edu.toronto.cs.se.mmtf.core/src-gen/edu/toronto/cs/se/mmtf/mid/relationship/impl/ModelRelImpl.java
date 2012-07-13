@@ -197,9 +197,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelRel getSupertype() {
+	public Model getSupertype() {
 		ExtendibleElement supertype = super.getSupertype();
-		return (supertype == null) ? null : (ModelRel) supertype;
+		return (supertype == null) ? null : (Model) supertype;
 	}
 
 	/**
