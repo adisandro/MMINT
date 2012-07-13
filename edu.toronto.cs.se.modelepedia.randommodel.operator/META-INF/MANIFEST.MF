@@ -8,7 +8,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.m2m.atl.engine.emfvm,
  edu.toronto.cs.se.mmtf.core,
- edu.toronto.cs.se.modelepedia.randommodel
+ edu.toronto.cs.se.modelepedia.randommodel,
+ org.eclipse.core.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

@@ -16,13 +16,13 @@
 <plugin>
 
    <extension
-         name="RandomModelCreate"
+         name="ModelTypeToRandomModel"
          point="edu.toronto.cs.se.mmtf.operators">
       <operator
-            class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelCreate"
-            isConversion="false">
+            class="edu.toronto.cs.se.modelepedia.randommodel.operator.ModelTypeToRandomModel"
+            isConversion="true">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/randommodel/operator/RandomModelCreate">
+               uri="http://edu.toronto.cs.se/modelepedia/randommodel/operator/ModelTypeToRandomModel">
          </extendibleElement>
          <input>
             <parameter
