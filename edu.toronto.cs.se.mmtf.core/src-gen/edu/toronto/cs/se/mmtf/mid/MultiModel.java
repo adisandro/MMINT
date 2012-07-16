@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperators <em>Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getExtendibleTable <em>Extendible Table</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperatorTable <em>Operator Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getLevel <em>Level</em>}</li>
  * </ul>
  * </p>
@@ -104,23 +103,6 @@ public interface MultiModel extends EObject {
 	 * @generated
 	 */
 	EMap<String, ExtendibleElement> getExtendibleTable();
-
-	/**
-	 * Returns the value of the '<em><b>Operator Table</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link edu.toronto.cs.se.mmtf.mid.operator.Operator},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operator Table</em>' map isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operator Table</em>' map.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getMultiModel_OperatorTable()
-	 * @model mapType="edu.toronto.cs.se.mmtf.mid.operator.EStringToOperatorMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmtf.mid.operator.Operator>"
-	 * @generated
-	 */
-	EMap<String, Operator> getOperatorTable();
 
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.

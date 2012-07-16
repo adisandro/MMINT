@@ -64,7 +64,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				mmtf.removeModelType(uri);
+				mmtf.removeOperatorType(uri);
 			}
 		}
 	}

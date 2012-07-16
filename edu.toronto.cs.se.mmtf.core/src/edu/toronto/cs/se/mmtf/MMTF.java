@@ -434,8 +434,6 @@ modelRef:
 		}
 
 		repository.getOperators().add(operator);
-		//TODO MMTF: maybe use another key?
-		repository.getOperatorTable().put(MMTFRegistry.getOperatorSignature(operator), operator);
 
 		return operator;
 	}
@@ -544,10 +542,8 @@ modelRef:
 			Model model = (Model) removedElement;
 			repository.getModels().remove(model);
 			// remove conversion operators, if any
-			//TODO MMTF: create and call removeOperator
 			for (ConversionOperator operator : model.getConversionOperators()) {
-				repository.getOperators().remove(operator);
-				repository.getOperatorTable().removeKey(MMTFRegistry.getOperatorSignature(operator));
+				removeOperatorType(operator.getUri());
 			}
 			// remove model elements, if any
 			for (ModelElement element : model.getElements()) {
@@ -575,6 +571,22 @@ modelRef:
 		}
 	}
 
+	/**
+	 * Removes an operator from the repository.
+	 * 
+	 * @param uri
+	 *            The operator uri.
+	 */
+	public static void removeOperatorType(String uri) {
+
+		ExtendibleElement removedElement = repository.getExtendibleTable().removeKey(uri);
+		
+		if (removedElement != null && removedElement instanceof Operator) {
+			Operator model = (Operator) removedElement;
+			repository.getOperators().remove(model);
+		}
+	}
+	
 	/**
 	 * Removes an editor type from the repository.
 	 * 

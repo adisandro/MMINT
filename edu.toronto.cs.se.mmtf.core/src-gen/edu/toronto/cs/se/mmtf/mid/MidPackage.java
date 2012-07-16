@@ -215,22 +215,13 @@ public interface MidPackage extends EPackage {
 	int MULTI_MODEL__EXTENDIBLE_TABLE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Operator Table</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__OPERATOR_TABLE = 4;
-
-	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL__LEVEL = 5;
+	int MULTI_MODEL__LEVEL = 4;
 
 	/**
 	 * The number of structural features of the '<em>Multi Model</em>' class.
@@ -239,7 +230,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL_FEATURE_COUNT = 6;
+	int MULTI_MODEL_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Multi Model</em>' class.
@@ -898,17 +889,6 @@ public interface MidPackage extends EPackage {
 	EReference getMultiModel_ExtendibleTable();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getOperatorTable <em>Operator Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Operator Table</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.MultiModel#getOperatorTable()
-	 * @see #getMultiModel()
-	 * @generated
-	 */
-	EReference getMultiModel_OperatorTable();
-
-	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.MultiModel#getLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1354,14 +1334,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MULTI_MODEL__EXTENDIBLE_TABLE = eINSTANCE.getMultiModel_ExtendibleTable();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator Table</b></em>' map feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MULTI_MODEL__OPERATOR_TABLE = eINSTANCE.getMultiModel_OperatorTable();
 
 		/**
 		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.

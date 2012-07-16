@@ -19,7 +19,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import java.util.Collection;
 import java.util.List;
@@ -120,7 +119,6 @@ public class MultiModelItemProvider
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EDITORS);
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__OPERATORS);
 			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__OPERATOR_TABLE);
 		}
 		return childrenFeatures;
 	}
@@ -183,7 +181,6 @@ public class MultiModelItemProvider
 			case MidPackage.MULTI_MODEL__EDITORS:
 			case MidPackage.MULTI_MODEL__OPERATORS:
 			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
-			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -245,11 +242,6 @@ public class MultiModelItemProvider
 			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE,
 				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__OPERATOR_TABLE,
-				 OperatorFactory.eINSTANCE.create(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP)));
 	}
 
 	/**

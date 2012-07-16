@@ -19,8 +19,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -50,7 +48,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getOperators <em>Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getExtendibleTable <em>Extendible Table</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getOperatorTable <em>Operator Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl#getLevel <em>Level</em>}</li>
  * </ul>
  * </p>
@@ -97,16 +94,6 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * @ordered
 	 */
 	protected EMap<String, ExtendibleElement> extendibleTable;
-
-	/**
-	 * The cached value of the '{@link #getOperatorTable() <em>Operator Table</em>}' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperatorTable()
-	 * @generated
-	 * @ordered
-	 */
-	protected EMap<String, Operator> operatorTable;
 
 	/**
 	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
@@ -200,18 +187,6 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, Operator> getOperatorTable() {
-		if (operatorTable == null) {
-			operatorTable = new EcoreEMap<String,Operator>(OperatorPackage.Literals.ESTRING_TO_OPERATOR_MAP, EStringToOperatorMapImpl.class, this, MidPackage.MULTI_MODEL__OPERATOR_TABLE);
-		}
-		return operatorTable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MidLevel getLevel() {
 		return level;
 	}
@@ -244,8 +219,6 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
 			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
 				return ((InternalEList<?>)getExtendibleTable()).basicRemove(otherEnd, msgs);
-			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
-				return ((InternalEList<?>)getOperatorTable()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -267,9 +240,6 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
 				if (coreType) return getExtendibleTable();
 				else return getExtendibleTable().map();
-			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
-				if (coreType) return getOperatorTable();
-				else return getOperatorTable().map();
 			case MidPackage.MULTI_MODEL__LEVEL:
 				return getLevel();
 		}
@@ -300,9 +270,6 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
 				((EStructuralFeature.Setting)getExtendibleTable()).set(newValue);
 				return;
-			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
-				((EStructuralFeature.Setting)getOperatorTable()).set(newValue);
-				return;
 			case MidPackage.MULTI_MODEL__LEVEL:
 				setLevel((MidLevel)newValue);
 				return;
@@ -330,9 +297,6 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
 				getExtendibleTable().clear();
 				return;
-			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
-				getOperatorTable().clear();
-				return;
 			case MidPackage.MULTI_MODEL__LEVEL:
 				setLevel(LEVEL_EDEFAULT);
 				return;
@@ -356,8 +320,6 @@ public class MultiModelImpl extends EObjectImpl implements MultiModel {
 				return operators != null && !operators.isEmpty();
 			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
 				return extendibleTable != null && !extendibleTable.isEmpty();
-			case MidPackage.MULTI_MODEL__OPERATOR_TABLE:
-				return operatorTable != null && !operatorTable.isEmpty();
 			case MidPackage.MULTI_MODEL__LEVEL:
 				return level != LEVEL_EDEFAULT;
 		}
