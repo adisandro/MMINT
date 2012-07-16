@@ -11,10 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.operator;
 
+import java.net.URL;
 import java.util.Date;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -33,7 +35,9 @@ import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
 
 public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
-	private static final String FILE_SUFFIX = "_typegraph_";
+	private static final String TYPEGRAPH_SUFFIX = "_typegraph_";
+	private static final String RANDOM_SUFFIX = "_random_";
+	private static final String PYTHON_SCRIPT = "/python/graph_gen.py";
 	private Model newElement;
 
 	@Override
@@ -45,19 +49,20 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
 		// convert and serialize
 		Model model = actualParameters.get(0);
-		String uri = model.getUri();
-		uri = uri.substring(0, uri.lastIndexOf(IPath.SEPARATOR)+1) +
+		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
+		String typegraphUri =
+			baseUri +
 			model.getType() +
-			FILE_SUFFIX +
+			TYPEGRAPH_SUFFIX +
 			(new Date()).getTime() +
 			"." + RandommodelPackage.eNAME;
 		EcoreToRandomModel atl = new EcoreToRandomModel();
 		atl.loadModels(model.getMetatype().getUri());
 		atl.doEcoreToRandomModel(new NullProgressMonitor());
-		atl.saveModels(uri);
+		atl.saveModels(typegraphUri);
 
 		// create model
-		URI modelUri = URI.createPlatformResourceURI(uri, true);
+		URI modelUri = URI.createPlatformResourceURI(typegraphUri, true);
 		MultiModel owner = (MultiModel) model.eContainer();
 		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
 		newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
@@ -65,6 +70,30 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		if (editor != null) {
 			MultiModelFactoryUtils.addModelEditor(editor, owner);
 		}
+
+		// create random instance
+		String workspace = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+		String randomUri =
+			baseUri +
+			model.getType() +
+			RANDOM_SUFFIX +
+			(new Date()).getTime() +
+			"." + RandommodelPackage.eNAME;
+		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry(PYTHON_SCRIPT);
+		String pythonPath = FileLocator.toFileURL(url).toString().substring(5); // cuts "file:/"
+		String[] cmd = new String[] {
+			"python",
+			pythonPath,
+			"-input",
+			workspace + typegraphUri,
+			"-output",
+			workspace + randomUri,
+			"-instname",
+			randomUri
+		};
+		Runtime rt = Runtime.getRuntime();
+		rt.exec(cmd);
+		//TODO MMTF: get supported example metamodels, call refresh
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newElement);
