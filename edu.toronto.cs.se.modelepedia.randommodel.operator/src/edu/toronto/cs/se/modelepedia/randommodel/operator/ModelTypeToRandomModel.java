@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -42,10 +41,6 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
-
-		if (actualParameters.size() != 1 || !(actualParameters.get(0) instanceof Model)) {
-			throw new MMTFException("Bad operator parameters");
-		}
 
 		// convert and serialize
 		Model model = actualParameters.get(0);

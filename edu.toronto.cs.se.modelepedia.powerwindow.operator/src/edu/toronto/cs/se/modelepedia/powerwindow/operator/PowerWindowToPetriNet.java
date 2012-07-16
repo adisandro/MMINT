@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -46,10 +45,6 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
-
-		if (actualParameters.size() != 1 || !(actualParameters.get(0) instanceof Model)) {
-			throw new MMTFException("Bad operator parameters");
-		}
 
 		// convert
 		Model windowModel = actualParameters.get(0);
