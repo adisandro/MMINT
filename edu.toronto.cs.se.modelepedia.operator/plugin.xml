@@ -41,4 +41,25 @@
       </operator>
    </extension>
 
+   <extension
+         name="ExperimentDriver"
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operator
+            class="edu.toronto.cs.se.modelepedia.operator.ExperimentDriver"
+            isConversion="false">
+         <extendibleElement
+               uri="http://edu.toronto.cs.se/modelepedia/operator/ExperimentDriver">
+         </extendibleElement>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="modelType"
+                  modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
+            </parameter>
+         </input>
+         <output>
+         </output>
+      </operator>
+   </extension>
+
 </plugin>
