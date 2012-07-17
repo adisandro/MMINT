@@ -34,6 +34,32 @@
          <output>
             <parameter
                   isVararg="false"
+                  name="randomModelTypeGraph"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/randommodel">
+            </parameter>
+         </output>
+      </operator>
+   </extension>
+
+   <extension
+         name="RandomModelGenerate"
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operator
+            class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelGenerate"
+            isConversion="false">
+         <extendibleElement
+               uri="http://edu.toronto.cs.se/modelepedia/randommodel/operator/RandomModelGenerate">
+         </extendibleElement>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="randomModelTypeGraph"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/randommodel">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
                   name="randomModel"
                   modelTypeUri="http://se.cs.toronto.edu/modelepedia/randommodel">
             </parameter>
