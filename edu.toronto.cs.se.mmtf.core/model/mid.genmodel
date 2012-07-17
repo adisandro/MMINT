@@ -32,6 +32,7 @@
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/type"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/runtimeMetatypes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>

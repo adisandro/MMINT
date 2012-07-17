@@ -150,6 +150,15 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
+
+	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -302,6 +311,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM__METATYPE_URI = EDITOR__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__DYNAMIC = EDITOR__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.

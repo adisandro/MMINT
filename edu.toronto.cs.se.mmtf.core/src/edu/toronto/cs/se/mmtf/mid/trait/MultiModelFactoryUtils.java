@@ -91,6 +91,7 @@ public class MultiModelFactoryUtils {
 		// basic attributes
 		element.setName(name);
 		element.setLevel(MidLevel.INSTANCES);
+		element.setDynamic(true);
 		if (type == null) { // get runtime metatype
 			//TODO MMTF: which entry to use, the most specific (operators) or the most conservative (import model)?
 			//TODO MMTF: now is the first == the most conservative

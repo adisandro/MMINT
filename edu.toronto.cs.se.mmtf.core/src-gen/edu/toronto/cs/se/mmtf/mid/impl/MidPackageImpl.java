@@ -296,6 +296,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExtendibleElement_Dynamic() {
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMultiModel() {
 		return multiModelEClass;
 	}
@@ -634,6 +643,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__TYPE);
 		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__RUNTIME_METATYPES);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__METATYPE_URI);
+		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__DYNAMIC);
 
 		multiModelEClass = createEClass(MULTI_MODEL);
 		createEReference(multiModelEClass, MULTI_MODEL__MODELS);
@@ -729,6 +739,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getExtendibleElement_Type(), ecorePackage.getEString(), "type", null, 1, 1, ExtendibleElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElement_RuntimeMetatypes(), this.getExtendibleElement(), null, "runtimeMetatypes", null, 0, -1, ExtendibleElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_MetatypeUri(), ecorePackage.getEString(), "metatypeUri", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElement_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMultiModel_Models(), this.getModel(), null, "models", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -64,6 +64,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
@@ -123,6 +125,7 @@ public class MMTF implements MMTFExtensionPoints {
 		// basic attributes
 		type.setName(name);
 		type.setLevel(MidLevel.TYPES);
+		type.setDynamic(false);
 
 		// supertype
 		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);
@@ -536,6 +539,7 @@ modelRef:
 	 */
 	public static void removeModelType(String uri) {
 
+		//TODO MMTF: broken, can't delete element of a list while iterating it
 		ExtendibleElement removedElement = repository.getExtendibleTable().removeKey(uri);
 		if (removedElement != null && removedElement instanceof Model) {
 			Model model = (Model) removedElement;
@@ -688,6 +692,84 @@ modelRef:
 			conversionTable.put(model.getUri(), conversionTypes);
 		}
 	}
+	
+	private void addDynamicType(ExtendibleElement element) {
+		ExtendibleElement supertype;
+		supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
+		
+		if (supertype == null && element.getSupertype().isDynamic()) {
+			addDynamicType(element.getSupertype());
+		}
+		
+		supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
+		if (supertype == null) return;
+		
+		if (element instanceof Model) {				
+			try {
+				MMTFRegistry.createLightModelType(
+					(Model) supertype, 
+					element.getName(),
+					((Model) element).getConstraint().getBody()
+				);
+			} catch (MMTFException e) {
+				MMTFException.print(MMTFException.Type.WARNING, "No light model created", e);
+			}
+		}
+		else if (element instanceof BinaryModelRel) {
+			Model source = ((BinaryModelRel) element).getModels().get(0);
+			Model target = ((BinaryModelRel) element).getModels().get(1);
+			try {
+				MMTFRegistry.createLightModelRelType(
+					(ModelRel) supertype, 
+					source,
+					target,
+					element.getName(), 
+					((ModelRel) element).getConstraint().getBody(),
+					RelationshipPackage.eINSTANCE.getBinaryModelRel()
+				);
+			} catch (MMTFException e) {
+				MMTFException.print(MMTFException.Type.WARNING, "No light binary model relationship created", e);
+			}
+		}
+		else if (element instanceof ModelRel) {
+			try {
+				MMTFRegistry.createLightModelRelType(
+					(ModelRel) supertype, 
+					null, 
+					null,
+					element.getName(), 
+					((ModelRel) element).getConstraint().getBody(),
+					RelationshipPackage.eINSTANCE.getModelRel()
+				);
+			} catch (MMTFException e) {
+				MMTFException.print(MMTFException.Type.WARNING, "No light model relationship created created", e);
+			}
+		}
+	}
+	
+	/**
+	 * Initializes dynamic types
+	 * 
+	 */
+	private void initDynamicTypes() {
+		MultiModel root = null;
+		try {			
+			// TODO MMTF: store types.mid in a proper location
+			root = (MultiModel) MultiModelTypeIntrospection.getRoot("/try/demo/types.mid");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (root == null) {
+			return;
+		}
+		
+		for (ExtendibleElement entry : root.getExtendibleTable().values()) {
+			if (entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
+				addDynamicType(entry);
+			}
+		}
+	}
 
 	/**
 	 * Creates the repository from the registered extensions.
@@ -732,6 +814,10 @@ modelRef:
 
 		// type hierarchy
 		setSupertypes();
+		
+		// initialize dynamic types
+		initDynamicTypes();
+		
 		//TODO MMTF: rerun every time a model is added or removed
 		initTypeHierarchy();
 
@@ -828,6 +914,7 @@ modelRef:
 			// basic attributes
 			newType.setName(newTypeName);
 			newType.setLevel(MidLevel.TYPES);
+			newType.setDynamic(true);
 
 			// supertype
 			newType.setSupertype(type);

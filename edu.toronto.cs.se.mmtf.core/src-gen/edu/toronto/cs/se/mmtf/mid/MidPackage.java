@@ -151,13 +151,22 @@ public interface MidPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT__METATYPE_URI = 7;
 
 	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__DYNAMIC = 8;
+
+	/**
 	 * The number of structural features of the '<em>Extendible Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = 8;
+	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -322,6 +331,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -549,6 +567,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' attribute.
@@ -833,6 +860,17 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtendibleElement_MetatypeUri();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#isDynamic <em>Dynamic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dynamic</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#isDynamic()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EAttribute getExtendibleElement_Dynamic();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.MultiModel <em>Multi Model</em>}'.
@@ -1292,6 +1330,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDIBLE_ELEMENT__METATYPE_URI = eINSTANCE.getExtendibleElement_MetatypeUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Dynamic</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDIBLE_ELEMENT__DYNAMIC = eINSTANCE.getExtendibleElement_Dynamic();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl <em>Multi Model</em>}' class.

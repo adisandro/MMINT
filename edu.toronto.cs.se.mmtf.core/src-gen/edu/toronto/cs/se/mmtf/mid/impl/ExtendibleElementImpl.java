@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getRuntimeMetatypes <em>Runtime Metatypes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getMetatypeUri <em>Metatype Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#isDynamic <em>Dynamic</em>}</li>
  * </ul>
  * </p>
  *
@@ -146,6 +147,26 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * @ordered
 	 */
 	protected String metatypeUri = METATYPE_URI_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDynamic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DYNAMIC_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDynamic()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean dynamic = DYNAMIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -357,6 +378,27 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDynamic() {
+		return dynamic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDynamic(boolean newDynamic) {
+		boolean oldDynamic = dynamic;
+		dynamic = newDynamic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, dynamic));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -378,6 +420,8 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 				return getRuntimeMetatypes();
 			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				return getMetatypeUri();
+			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+				return isDynamic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -405,6 +449,9 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				setMetatypeUri((String)newValue);
 				return;
+			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+				setDynamic((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -431,6 +478,9 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 				return;
 			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				setMetatypeUri(METATYPE_URI_EDEFAULT);
+				return;
+			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+				setDynamic(DYNAMIC_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -460,6 +510,8 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 				return !getRuntimeMetatypes().isEmpty();
 			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
+			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+				return dynamic != DYNAMIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -482,6 +534,8 @@ public abstract class ExtendibleElementImpl extends EObjectImpl implements Exten
 		result.append(level);
 		result.append(", metatypeUri: ");
 		result.append(metatypeUri);
+		result.append(", dynamic: ");
+		result.append(dynamic);
 		result.append(')');
 		return result.toString();
 	}

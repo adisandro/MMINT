@@ -76,6 +76,7 @@ public class ExtendibleElementItemProvider
 			addTypePropertyDescriptor(object);
 			addRuntimeMetatypesPropertyDescriptor(object);
 			addMetatypeUriPropertyDescriptor(object);
+			addDynamicPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -257,6 +258,28 @@ public class ExtendibleElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Dynamic feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDynamicPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExtendibleElement_dynamic_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_dynamic_feature", "_UI_ExtendibleElement_type"),
+				 MidPackage.Literals.EXTENDIBLE_ELEMENT__DYNAMIC,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,6 +310,7 @@ public class ExtendibleElementItemProvider
 			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
 			case MidPackage.EXTENDIBLE_ELEMENT__TYPE:
 			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

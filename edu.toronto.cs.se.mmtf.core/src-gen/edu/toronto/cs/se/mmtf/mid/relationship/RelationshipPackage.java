@@ -152,6 +152,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__METATYPE_URI = MidPackage.MODEL__METATYPE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__DYNAMIC = MidPackage.MODEL__DYNAMIC;
+
+	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,6 +378,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__METATYPE_URI = MODEL_REL__METATYPE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__DYNAMIC = MODEL_REL__DYNAMIC;
+
+	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -584,6 +602,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_MODEL_REL__METATYPE_URI = BINARY_MODEL_REL__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_MODEL_REL__DYNAMIC = BINARY_MODEL_REL__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -1040,6 +1067,15 @@ public interface RelationshipPackage extends EPackage {
 	int LINK__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
+
+	/**
 	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1158,6 +1194,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK__METATYPE_URI = LINK__METATYPE_URI;
 
 	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__DYNAMIC = LINK__DYNAMIC;
+
+	/**
 	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1274,6 +1319,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int HOMOMORPHISM_LINK__METATYPE_URI = BINARY_LINK__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOMOMORPHISM_LINK__DYNAMIC = BINARY_LINK__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Element Refs</b></em>' reference list.

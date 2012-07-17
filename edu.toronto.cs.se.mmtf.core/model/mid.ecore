@@ -32,6 +32,8 @@
         eType="#//ExtendibleElement" changeable="false" volatile="true" transient="true"
         derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metatypeUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1"
@@ -298,11 +300,6 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
           eType="#//Model"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="EStringToOperatorMap" instanceClassName="java.util.Map$Entry">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="#//operator/Operator"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConversionOperator" eSuperTypes="#//operator/Operator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
