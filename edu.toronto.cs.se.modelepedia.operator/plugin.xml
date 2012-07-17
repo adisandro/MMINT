@@ -45,10 +45,10 @@
          name="ExperimentDriver"
          point="edu.toronto.cs.se.mmtf.operators">
       <operator
-            class="edu.toronto.cs.se.modelepedia.operator.ExperimentDriver"
+            class="edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentDriver"
             isConversion="false">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/operator/ExperimentDriver">
+               uri="http://edu.toronto.cs.se/modelepedia/operator/statistics/ExperimentDriver">
          </extendibleElement>
          <input>
             <parameter
