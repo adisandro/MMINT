@@ -397,11 +397,11 @@ modelRef:
 		// create and set basic attributes
 		boolean conversion = Boolean.parseBoolean(extensionConfig.getAttribute(OPERATORS_ATTR_ISCONVERSION));
 		IConfigurationElement extendibleConfig = extensionConfig.getChildren(CHILD_EXTENDIBLEELEMENT)[0];
-		Operator operator = (conversion) ?
+		Operator operatorType = (conversion) ?
 			OperatorFactory.eINSTANCE.createConversionOperator() :
 			OperatorFactory.eINSTANCE.createOperator();
 		try {
-			addExtendibleType(operator, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
+			addExtendibleType(operatorType, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
 		} catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Operator type can't be registered", e);
 			return null;
@@ -412,61 +412,60 @@ modelRef:
 			Object executable;
 			executable = extensionConfig.createExecutableExtension(OPERATORS_ATTR_CLASS);
 			if (!(executable instanceof OperatorExecutable)) {
-				throw new MMTFException("Operator's executable doesn't extend OperatorExecutable interface");
+				throw new MMTFException("Operator type's executable doesn't extend OperatorExecutable interface");
 			}
-			operator.setExecutable((OperatorExecutable) executable);
+			operatorType.setExecutable((OperatorExecutable) executable);
 
 			// handle operator structure
 			IConfigurationElement inputConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
-			addOperatorParameters(operator, operator.getInputs(), inputConfig);
+			addOperatorParameters(operatorType, operatorType.getInputs(), inputConfig);
 			IConfigurationElement outputConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
-			addOperatorParameters(operator, operator.getOutputs(), outputConfig);
+			addOperatorParameters(operatorType, operatorType.getOutputs(), outputConfig);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Operator can't be registered", e);
+			MMTFException.print(Type.WARNING, "Operator type can't be registered", e);
 			return null;
 		}
 
 		// conversion operator
-		//TODO MMTF: create and call addModelConversionOperator
-		if (operator instanceof ConversionOperator) {
-			operator.getInputs().get(0).getModel().getConversionOperators().add((ConversionOperator) operator);
+		if (operatorType instanceof ConversionOperator) {
+			operatorType.getInputs().get(0).getModel().getConversionOperators().add((ConversionOperator) operatorType);
 		}
 
-		repository.getOperators().add(operator);
+		repository.getOperators().add(operatorType);
 
-		return operator;
+		return operatorType;
 	}
 
 	/**
 	 * Adds a new editor type to an existing model type.
 	 * 
-	 * @param editor
+	 * @param editorType
 	 *            The new editor.
 	 */
-	public void addModelTypeEditor(Editor editor) {
+	public void addModelTypeEditor(Editor editorType) {
 
-		ExtendibleElement model = repository.getExtendibleTable().get(editor.getModelUri());
-		if (model != null && model instanceof Model) {
-			((Model) model).getEditors().add(editor);
+		Model modelType = MMTFRegistry.getModelType(editorType.getModelUri());
+		if (modelType != null) {
+			modelType.getEditors().add(editorType);
 		}
 	}
 
 	/**
 	 * Adds existing editor types to a new model type.
 	 * 
-	 * @param model
+	 * @param modelType
 	 *            The new model type.
 	 */
-	public void addModelTypeEditors(Model model) {
+	public void addModelTypeEditors(Model modelType) {
 
-		if (model == null) {
+		if (modelType == null) {
 			return;
 		}
 
-		for (Editor editor : repository.getEditors()) {
-			if (editor.getModelUri().equals(model.getUri())) {
-				model.getEditors().add(editor);
+		for (Editor editorType : repository.getEditors()) {
+			if (editorType.getModelUri().equals(modelType.getUri())) {
+				modelType.getEditors().add(editorType);
 			}
 		}
 	}
@@ -541,9 +540,18 @@ modelRef:
 		if (removedElement != null && removedElement instanceof Model) {
 			Model model = (Model) removedElement;
 			repository.getModels().remove(model);
-			// remove conversion operators, if any
-			for (ConversionOperator operator : model.getConversionOperators()) {
-				removeOperatorType(operator.getUri());
+			// remove operator types that use the model type
+			for (Operator operatorType : repository.getOperators()) {
+				for (Parameter par : operatorType.getInputs()) {
+					if (par.getModel().getUri().equals(uri)) {
+						removeOperatorType(operatorType.getUri());
+					}
+				}
+				for (Parameter par : operatorType.getOutputs()) {
+					if (par.getModel().getUri().equals(uri)) {
+						removeOperatorType(operatorType.getUri());
+					}
+				}
 			}
 			// remove model elements, if any
 			for (ModelElement element : model.getElements()) {
@@ -572,21 +580,28 @@ modelRef:
 	}
 
 	/**
-	 * Removes an operator from the repository.
+	 * Removes an operator type from the repository.
 	 * 
 	 * @param uri
-	 *            The operator uri.
+	 *            The operator type uri.
 	 */
-	public static void removeOperatorType(String uri) {
+	public static Operator removeOperatorType(String uri) {
 
-		ExtendibleElement removedElement = repository.getExtendibleTable().removeKey(uri);
-		
-		if (removedElement != null && removedElement instanceof Operator) {
-			Operator model = (Operator) removedElement;
-			repository.getOperators().remove(model);
+		ExtendibleElement elementType = repository.getExtendibleTable().removeKey(uri);
+		Operator operatorType = null;
+
+		if (elementType != null && elementType instanceof Operator) {
+			operatorType = (Operator) elementType;
+			repository.getOperators().remove(operatorType);
+			// conversion operator
+			if (operatorType instanceof ConversionOperator) {
+				operatorType.getInputs().get(0).getModel().getConversionOperators().remove(operatorType);
+			}
 		}
+
+		return operatorType;
 	}
-	
+
 	/**
 	 * Removes an editor type from the repository.
 	 * 
@@ -793,7 +808,7 @@ modelRef:
 			else if (type instanceof Link) {
 				rootUri = ROOT_MODELREL_LINK_URI;
 			}
-			//TODO MMTF: root text editor?
+			//TODO MMTF: root text editor and operator?
 
 			return rootUri;
 		}

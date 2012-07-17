@@ -15,6 +15,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -44,10 +46,14 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 	public void added(IExtension[] extensions) {
 
 		IConfigurationElement[] config;
+		Operator operator;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				mmtf.createOperatorType(elem);
+				operator = mmtf.createOperatorType(elem);
+				if (operator instanceof ConversionOperator) {
+					MMTF.initTypeHierarchy();
+				}
 			}
 		}
 	}
@@ -60,11 +66,15 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 	public void removed(IExtension[] extensions) {
 
 		IConfigurationElement[] config;
+		Operator operator;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				mmtf.removeOperatorType(uri);
+				operator = MMTF.removeOperatorType(uri);
+				if (operator instanceof ConversionOperator) {
+					MMTF.initTypeHierarchy();
+				}
 			}
 		}
 	}

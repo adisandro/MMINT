@@ -309,7 +309,7 @@ linkTypes:
 		return root;
 	}
 
-	private static EObject getRoot(String uri) throws Exception {
+	public static EObject getRoot(String uri) throws Exception {
 
 		URI emfUri = URI.createPlatformResourceURI(uri, true);
 
