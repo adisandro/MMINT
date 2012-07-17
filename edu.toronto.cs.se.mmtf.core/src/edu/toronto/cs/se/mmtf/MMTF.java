@@ -694,8 +694,7 @@ modelRef:
 	}
 	
 	private void addDynamicType(ExtendibleElement element) {
-		ExtendibleElement supertype;
-		supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
+		ExtendibleElement supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
 		
 		if (supertype == null && element.getSupertype().isDynamic()) {
 			addDynamicType(element.getSupertype());
@@ -704,7 +703,7 @@ modelRef:
 		supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
 		if (supertype == null) return;
 		
-		if (element instanceof Model) {				
+		if (element instanceof Model && supertype instanceof Model) {				
 			try {
 				MMTFRegistry.createLightModelType(
 					(Model) supertype, 
@@ -715,7 +714,7 @@ modelRef:
 				MMTFException.print(MMTFException.Type.WARNING, "No light model created", e);
 			}
 		}
-		else if (element instanceof BinaryModelRel) {
+		else if (element instanceof BinaryModelRel && supertype instanceof ModelRel) {
 			Model source = ((BinaryModelRel) element).getModels().get(0);
 			Model target = ((BinaryModelRel) element).getModels().get(1);
 			try {
@@ -731,7 +730,7 @@ modelRef:
 				MMTFException.print(MMTFException.Type.WARNING, "No light binary model relationship created", e);
 			}
 		}
-		else if (element instanceof ModelRel) {
+		else if (element instanceof ModelRel && supertype instanceof ModelRel) {
 			try {
 				MMTFRegistry.createLightModelRelType(
 					(ModelRel) supertype, 
