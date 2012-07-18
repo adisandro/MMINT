@@ -62,8 +62,8 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			randomUri
 		};
 		Runtime rt = Runtime.getRuntime();
-		rt.exec(cmd);
-		//TODO MMTF: get supported example metamodels, call refresh
+		Process p = rt.exec(cmd);
+		p.waitFor();
 
 		// create model
 		URI modelUri = URI.createPlatformResourceURI(randomUri, true);

@@ -42,14 +42,14 @@ def instantiate_graph(quiet, type_graph, name_str):
         #existsOne(y:Target).(y.src=a)
     for node in nodes_by_type['Transition']:
        random.choice(filter(lambda x: x.src==None,
-           edges_by_type['Source'])).src = node.name_str
+           edges_by_type['source'])).src = node.name_str
        random.choice(filter(lambda x: x.src==None,
-           edges_by_type['Target'])).src = node.name_str
+           edges_by_type['target'])).src = node.name_str
     #forall(x:Source).existsOne(t:Transition; s:State).(x.src=t and x.tgt=s)
-    for edge in edges_by_type['Source']:
+    for edge in edges_by_type['source']:
         edge.tgt = random.choice(nodes_by_type['State']).name_str
     #forall(x:Target).existsOne(t:Transition; s:State).(x.src=t and x.tgt=s)
-    for edge in edges_by_type['Target']:
+    for edge in edges_by_type['target']:
         edge.tgt = random.choice(nodes_by_type['State']).name_str
     return inst_graph
 

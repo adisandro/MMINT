@@ -118,7 +118,7 @@ def generate_graphs(quiet, input_file_name, output_file_name, instance_name,
     seed=None):
     random.seed(seed)
     type_graph = input_typegraph(quiet, input_file_name)
-    if type_graph.name_str == 'Statemachine':
+    if type_graph.name_str == 'statemachine':
         instance_graph = state_machine.instantiate_graph(quiet, type_graph, instance_name)
         state_machine.annotate_graph(quiet, instance_graph, annotated_fraction,
             may_fraction, var_fraction, set_fraction)
