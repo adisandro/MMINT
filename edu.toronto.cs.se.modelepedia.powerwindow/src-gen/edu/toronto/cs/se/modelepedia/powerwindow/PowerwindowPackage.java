@@ -47,7 +47,7 @@ public interface PowerwindowPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore";
+	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/powerwindow";
 
 	/**
 	 * The package namespace name.

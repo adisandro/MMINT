@@ -17,7 +17,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore"
+            uri="http://se.cs.toronto.edu/modelepedia/powerwindow"
             class="edu.toronto.cs.se.modelepedia.powerwindow.PowerwindowPackage"
             genModel="model/powerwindow.genmodel"/>
    </extension>
@@ -26,7 +26,7 @@
          name="PowerWindow"
          point="edu.toronto.cs.se.mmtf.models">
       <extendibleElement
-            uri="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+            uri="http://se.cs.toronto.edu/modelepedia/powerwindow">
       </extendibleElement>
    </extension>
 

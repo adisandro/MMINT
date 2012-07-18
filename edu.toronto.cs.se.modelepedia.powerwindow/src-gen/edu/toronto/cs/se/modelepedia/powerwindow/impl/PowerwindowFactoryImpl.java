@@ -36,7 +36,7 @@ public class PowerwindowFactoryImpl extends EFactoryImpl implements PowerwindowF
 	 */
 	public static PowerwindowFactory init() {
 		try {
-			PowerwindowFactory thePowerwindowFactory = (PowerwindowFactory)EPackage.Registry.INSTANCE.getEFactory("http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore"); 
+			PowerwindowFactory thePowerwindowFactory = (PowerwindowFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/powerwindow"); 
 			if (thePowerwindowFactory != null) {
 				return thePowerwindowFactory;
 			}

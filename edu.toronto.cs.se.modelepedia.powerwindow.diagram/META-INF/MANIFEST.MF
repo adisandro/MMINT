@@ -32,7 +32,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.draw2d;visibility:=reexport,
- edu.toronto.cs.se.modelepedia.powerwindow;visibility:=reexport,
+ edu.toronto.cs.se.modelepedia.powerwindow.model;visibility:=reexport,
  edu.toronto.cs.se.modelepedia.powerwindow.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport

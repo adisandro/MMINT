@@ -50,7 +50,7 @@
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandommodelModelWizardID">
          <extendibleElement
-               uri="http://se.cs.toronto.edu/modelepedia/randommodel/presentation">
+               uri="http://se.cs.toronto.edu/modelepedia/randommodel/editor">
          </extendibleElement>
       </editor>
    </extension>

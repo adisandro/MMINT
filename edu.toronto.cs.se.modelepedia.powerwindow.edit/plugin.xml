@@ -17,7 +17,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore"
+            uri="http://se.cs.toronto.edu/modelepedia/powerwindow"
             class="edu.toronto.cs.se.modelepedia.powerwindow.provider.PowerwindowItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

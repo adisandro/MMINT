@@ -10,6 +10,6 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.powerwindow.provider
 Require-Bundle: org.eclipse.core.runtime,
- edu.toronto.cs.se.modelepedia.powerwindow;visibility:=reexport,
+ edu.toronto.cs.se.modelepedia.powerwindow.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
