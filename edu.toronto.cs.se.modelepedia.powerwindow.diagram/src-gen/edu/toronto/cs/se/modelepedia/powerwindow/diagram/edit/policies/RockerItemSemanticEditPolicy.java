@@ -31,7 +31,7 @@ public class RockerItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public RockerItemSemanticEditPolicy() {
-		super(PowerwindowElementTypes.Rocker_2002);
+		super(PowerwindowElementTypes.Rocker_2007);
 	}
 
 	/**

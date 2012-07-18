@@ -42,19 +42,19 @@ public class WindowItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (PowerwindowElementTypes.PushPull_2001 == req.getElementType()) {
+		if (PowerwindowElementTypes.PushPull_2006 == req.getElementType()) {
 			return getGEFWrapper(new PushPullCreateCommand(req));
 		}
-		if (PowerwindowElementTypes.Rocker_2002 == req.getElementType()) {
+		if (PowerwindowElementTypes.Rocker_2007 == req.getElementType()) {
 			return getGEFWrapper(new RockerCreateCommand(req));
 		}
-		if (PowerwindowElementTypes.Infrared_2003 == req.getElementType()) {
+		if (PowerwindowElementTypes.Infrared_2008 == req.getElementType()) {
 			return getGEFWrapper(new InfraredCreateCommand(req));
 		}
-		if (PowerwindowElementTypes.LockOut_2004 == req.getElementType()) {
+		if (PowerwindowElementTypes.LockOut_2009 == req.getElementType()) {
 			return getGEFWrapper(new LockOutCreateCommand(req));
 		}
-		if (PowerwindowElementTypes.ForceDetecting_2005 == req.getElementType()) {
+		if (PowerwindowElementTypes.ForceDetecting_2010 == req.getElementType()) {
 			return getGEFWrapper(new ForceDetectingCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

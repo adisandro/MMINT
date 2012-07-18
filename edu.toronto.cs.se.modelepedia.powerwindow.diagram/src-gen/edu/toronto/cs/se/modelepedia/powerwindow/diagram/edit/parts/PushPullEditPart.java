@@ -43,7 +43,7 @@ public class PushPullEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2001;
+	public static final int VISUAL_ID = 2006;
 
 	/**
 	 * @generated
@@ -290,6 +290,7 @@ public class PushPullEditPart extends ShapeNodeEditPart {
 		private void createContents() {
 
 			fFigurePushPullNameFigure = new WrappingLabel();
+
 			fFigurePushPullNameFigure.setText("<...>");
 
 			this.add(fFigurePushPullNameFigure);

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import edu.toronto.cs.se.modelepedia.powerwindow.PowerwindowPackage;
 import edu.toronto.cs.se.modelepedia.powerwindow.Window;
 import edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.ForceDetectingDelayEditPart;
@@ -250,5 +251,104 @@ public class PowerwindowVisualIDRegistry {
 	private static boolean isDiagram(Window element) {
 		return true;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static boolean checkNodeVisualID(View containerView,
+			EObject domainElement, int candidate) {
+		if (candidate == -1) {
+			//unrecognized id is always bad
+			return false;
+		}
+		int basic = getNodeVisualID(containerView, domainElement);
+		return basic == candidate;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static boolean isCompartmentVisualID(int visualID) {
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static boolean isSemanticLeafVisualID(int visualID) {
+		switch (visualID) {
+		case WindowEditPart.VISUAL_ID:
+			return false;
+		case PushPullEditPart.VISUAL_ID:
+		case RockerEditPart.VISUAL_ID:
+		case InfraredEditPart.VISUAL_ID:
+		case LockOutEditPart.VISUAL_ID:
+		case ForceDetectingEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+		/**
+		 * @generated
+		 */
+		@Override
+		public int getVisualID(View view) {
+			return edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry
+					.getVisualID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public String getModelID(View view) {
+			return edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry
+					.getModelID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public int getNodeVisualID(View containerView, EObject domainElement) {
+			return edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry
+					.getNodeVisualID(containerView, domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public boolean checkNodeVisualID(View containerView,
+				EObject domainElement, int candidate) {
+			return edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry
+					.checkNodeVisualID(containerView, domainElement, candidate);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public boolean isCompartmentVisualID(int visualID) {
+			return edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry
+					.isCompartmentVisualID(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public boolean isSemanticLeafVisualID(int visualID) {
+			return edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry
+					.isSemanticLeafVisualID(visualID);
+		}
+	};
 
 }

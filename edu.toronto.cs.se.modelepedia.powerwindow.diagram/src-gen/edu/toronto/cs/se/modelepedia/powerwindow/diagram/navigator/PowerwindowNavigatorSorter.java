@@ -23,7 +23,7 @@ public class PowerwindowNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 2007;
+	private static final int GROUP_CATEGORY = 2012;
 
 	/**
 	 * @generated

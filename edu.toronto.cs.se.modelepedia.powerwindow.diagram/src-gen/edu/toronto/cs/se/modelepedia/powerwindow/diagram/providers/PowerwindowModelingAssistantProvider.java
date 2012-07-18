@@ -50,11 +50,11 @@ public class PowerwindowModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof WindowEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-			types.add(PowerwindowElementTypes.PushPull_2001);
-			types.add(PowerwindowElementTypes.Rocker_2002);
-			types.add(PowerwindowElementTypes.Infrared_2003);
-			types.add(PowerwindowElementTypes.LockOut_2004);
-			types.add(PowerwindowElementTypes.ForceDetecting_2005);
+			types.add(PowerwindowElementTypes.PushPull_2006);
+			types.add(PowerwindowElementTypes.Rocker_2007);
+			types.add(PowerwindowElementTypes.Infrared_2008);
+			types.add(PowerwindowElementTypes.LockOut_2009);
+			types.add(PowerwindowElementTypes.ForceDetecting_2010);
 			return types;
 		}
 		return Collections.EMPTY_LIST;

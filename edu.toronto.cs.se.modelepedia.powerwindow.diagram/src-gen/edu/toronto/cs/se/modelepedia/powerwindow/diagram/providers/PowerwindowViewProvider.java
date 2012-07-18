@@ -230,19 +230,19 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 		}
 		switch (visualID) {
 		case PushPullEditPart.VISUAL_ID:
-			return createPushPull_2001(domainElement, containerView, index,
+			return createPushPull_2006(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case RockerEditPart.VISUAL_ID:
-			return createRocker_2002(domainElement, containerView, index,
+			return createRocker_2007(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case InfraredEditPart.VISUAL_ID:
-			return createInfrared_2003(domainElement, containerView, index,
+			return createInfrared_2008(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case LockOutEditPart.VISUAL_ID:
-			return createLockOut_2004(domainElement, containerView, index,
+			return createLockOut_2009(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case ForceDetectingEditPart.VISUAL_ID:
-			return createForceDetecting_2005(domainElement, containerView,
+			return createForceDetecting_2010(domainElement, containerView,
 					index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -266,7 +266,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createPushPull_2001(EObject domainElement, View containerView,
+	public Node createPushPull_2006(EObject domainElement, View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -303,7 +303,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5001 = createLabel(node,
+		Node label5006 = createLabel(node,
 				PowerwindowVisualIDRegistry
 						.getType(PushPullNameEditPart.VISUAL_ID));
 		return node;
@@ -312,13 +312,9 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createRocker_2002(EObject domainElement, View containerView,
+	public Node createRocker_2007(EObject domainElement, View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(PowerwindowVisualIDRegistry
 				.getType(RockerEditPart.VISUAL_ID));
@@ -328,6 +324,12 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -347,7 +349,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5002 = createLabel(node,
+		Node label5007 = createLabel(node,
 				PowerwindowVisualIDRegistry
 						.getType(RockerNameEditPart.VISUAL_ID));
 		return node;
@@ -356,7 +358,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createInfrared_2003(EObject domainElement, View containerView,
+	public Node createInfrared_2008(EObject domainElement, View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -393,7 +395,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5003 = createLabel(node,
+		Node label5008 = createLabel(node,
 				PowerwindowVisualIDRegistry
 						.getType(InfraredDelayEditPart.VISUAL_ID));
 		return node;
@@ -402,7 +404,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createLockOut_2004(EObject domainElement, View containerView,
+	public Node createLockOut_2009(EObject domainElement, View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -439,7 +441,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5004 = createLabel(node,
+		Node label5009 = createLabel(node,
 				PowerwindowVisualIDRegistry
 						.getType(LockOutNameEditPart.VISUAL_ID));
 		return node;
@@ -448,7 +450,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createForceDetecting_2005(EObject domainElement,
+	public Node createForceDetecting_2010(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -486,7 +488,7 @@ public class PowerwindowViewProvider extends AbstractProvider implements
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5005 = createLabel(node,
+		Node label5010 = createLabel(node,
 				PowerwindowVisualIDRegistry
 						.getType(ForceDetectingDelayEditPart.VISUAL_ID));
 		return node;

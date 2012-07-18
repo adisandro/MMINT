@@ -31,7 +31,7 @@ public class LockOutItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public LockOutItemSemanticEditPolicy() {
-		super(PowerwindowElementTypes.LockOut_2004);
+		super(PowerwindowElementTypes.LockOut_2009);
 	}
 
 	/**

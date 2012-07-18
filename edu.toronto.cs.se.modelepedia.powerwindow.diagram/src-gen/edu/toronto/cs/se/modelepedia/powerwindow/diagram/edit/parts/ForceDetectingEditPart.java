@@ -43,7 +43,7 @@ public class ForceDetectingEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2005;
+	public static final int VISUAL_ID = 2010;
 
 	/**
 	 * @generated
@@ -291,6 +291,7 @@ public class ForceDetectingEditPart extends ShapeNodeEditPart {
 		private void createContents() {
 
 			fFigureForceDetectingDelayFigure = new WrappingLabel();
+
 			fFigureForceDetectingDelayFigure.setText("<...>");
 
 			this.add(fFigureForceDetectingDelayFigure);

@@ -694,6 +694,7 @@ modelRef:
 	}
 	
 	private void addDynamicType(ExtendibleElement element) {
+
 		ExtendibleElement supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
 		
 		if (supertype == null && element.getSupertype().isDynamic()) {
@@ -751,20 +752,18 @@ modelRef:
 	 * 
 	 */
 	private void initDynamicTypes() {
+
 		MultiModel root = null;
 		try {			
 			// TODO MMTF: store types.mid in a proper location
 			root = (MultiModel) MultiModelTypeIntrospection.getRoot("/try/demo/types.mid");
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-		
-		if (root == null) {
+		catch (Exception e) {
 			return;
 		}
 		
 		for (ExtendibleElement entry : root.getExtendibleTable().values()) {
-			if (entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
+			if (entry instanceof Model && entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
 				addDynamicType(entry);
 			}
 		}

@@ -35,6 +35,8 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.powerwindow.model;visibility:=reexport,
  edu.toronto.cs.se.modelepedia.powerwindow.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.gef;visibility:=reexport
+ org.eclipse.gef;visibility:=reexport,
+ org.eclipse.gmf.tooling.runtime;visibility:=reexport,
+ edu.toronto.cs.se.modelepedia.powerwindow.model;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

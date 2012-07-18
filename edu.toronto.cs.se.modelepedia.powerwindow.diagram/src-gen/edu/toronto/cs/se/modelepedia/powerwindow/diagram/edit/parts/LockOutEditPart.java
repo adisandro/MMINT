@@ -43,7 +43,7 @@ public class LockOutEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2004;
+	public static final int VISUAL_ID = 2009;
 
 	/**
 	 * @generated
@@ -290,6 +290,7 @@ public class LockOutEditPart extends ShapeNodeEditPart {
 		private void createContents() {
 
 			fFigureLockOutNameFigure = new WrappingLabel();
+
 			fFigureLockOutNameFigure.setText("<...>");
 
 			this.add(fFigureLockOutNameFigure);

@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.helpers.PowerwindowBaseEditHelper;
 import edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry;
 import edu.toronto.cs.se.modelepedia.powerwindow.diagram.providers.PowerwindowElementTypes;
@@ -135,17 +136,15 @@ public class PowerwindowBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		if (editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
 					.getICommand() : new CommandProxy(editPolicyCommand);
-			request.setParameter(PowerwindowBaseEditHelper.EDIT_POLICY_COMMAND,
+			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND,
 					command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		request.setParameter(PowerwindowBaseEditHelper.CONTEXT_ELEMENT_TYPE,
+		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE,
 				requestContextElementType);
 		ICommand command = requestContextElementType.getEditCommand(request);
-		request.setParameter(PowerwindowBaseEditHelper.EDIT_POLICY_COMMAND,
-				null);
-		request.setParameter(PowerwindowBaseEditHelper.CONTEXT_ELEMENT_TYPE,
-				null);
+		request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, null);
+		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, null);
 		if (command != null) {
 			if (!(command instanceof CompositeTransactionalCommand)) {
 				command = new CompositeTransactionalCommand(getEditingDomain(),

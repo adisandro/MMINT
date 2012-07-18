@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import edu.toronto.cs.se.modelepedia.powerwindow.Sensor;
 import edu.toronto.cs.se.modelepedia.powerwindow.Switch;
 import edu.toronto.cs.se.modelepedia.powerwindow.Window;
@@ -94,15 +95,15 @@ public class PowerwindowDiagramUpdater {
 		case WindowEditPart.VISUAL_ID:
 			return getWindow_1000ContainedLinks(view);
 		case PushPullEditPart.VISUAL_ID:
-			return getPushPull_2001ContainedLinks(view);
+			return getPushPull_2006ContainedLinks(view);
 		case RockerEditPart.VISUAL_ID:
-			return getRocker_2002ContainedLinks(view);
+			return getRocker_2007ContainedLinks(view);
 		case InfraredEditPart.VISUAL_ID:
-			return getInfrared_2003ContainedLinks(view);
+			return getInfrared_2008ContainedLinks(view);
 		case LockOutEditPart.VISUAL_ID:
-			return getLockOut_2004ContainedLinks(view);
+			return getLockOut_2009ContainedLinks(view);
 		case ForceDetectingEditPart.VISUAL_ID:
-			return getForceDetecting_2005ContainedLinks(view);
+			return getForceDetecting_2010ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -113,15 +114,15 @@ public class PowerwindowDiagramUpdater {
 	public static List<PowerwindowLinkDescriptor> getIncomingLinks(View view) {
 		switch (PowerwindowVisualIDRegistry.getVisualID(view)) {
 		case PushPullEditPart.VISUAL_ID:
-			return getPushPull_2001IncomingLinks(view);
+			return getPushPull_2006IncomingLinks(view);
 		case RockerEditPart.VISUAL_ID:
-			return getRocker_2002IncomingLinks(view);
+			return getRocker_2007IncomingLinks(view);
 		case InfraredEditPart.VISUAL_ID:
-			return getInfrared_2003IncomingLinks(view);
+			return getInfrared_2008IncomingLinks(view);
 		case LockOutEditPart.VISUAL_ID:
-			return getLockOut_2004IncomingLinks(view);
+			return getLockOut_2009IncomingLinks(view);
 		case ForceDetectingEditPart.VISUAL_ID:
-			return getForceDetecting_2005IncomingLinks(view);
+			return getForceDetecting_2010IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -132,15 +133,15 @@ public class PowerwindowDiagramUpdater {
 	public static List<PowerwindowLinkDescriptor> getOutgoingLinks(View view) {
 		switch (PowerwindowVisualIDRegistry.getVisualID(view)) {
 		case PushPullEditPart.VISUAL_ID:
-			return getPushPull_2001OutgoingLinks(view);
+			return getPushPull_2006OutgoingLinks(view);
 		case RockerEditPart.VISUAL_ID:
-			return getRocker_2002OutgoingLinks(view);
+			return getRocker_2007OutgoingLinks(view);
 		case InfraredEditPart.VISUAL_ID:
-			return getInfrared_2003OutgoingLinks(view);
+			return getInfrared_2008OutgoingLinks(view);
 		case LockOutEditPart.VISUAL_ID:
-			return getLockOut_2004OutgoingLinks(view);
+			return getLockOut_2009OutgoingLinks(view);
 		case ForceDetectingEditPart.VISUAL_ID:
-			return getForceDetecting_2005OutgoingLinks(view);
+			return getForceDetecting_2010OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -156,7 +157,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getPushPull_2001ContainedLinks(
+	public static List<PowerwindowLinkDescriptor> getPushPull_2006ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -164,7 +165,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getRocker_2002ContainedLinks(
+	public static List<PowerwindowLinkDescriptor> getRocker_2007ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -172,7 +173,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getInfrared_2003ContainedLinks(
+	public static List<PowerwindowLinkDescriptor> getInfrared_2008ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -180,7 +181,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getLockOut_2004ContainedLinks(
+	public static List<PowerwindowLinkDescriptor> getLockOut_2009ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -188,7 +189,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getForceDetecting_2005ContainedLinks(
+	public static List<PowerwindowLinkDescriptor> getForceDetecting_2010ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -196,7 +197,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getPushPull_2001IncomingLinks(
+	public static List<PowerwindowLinkDescriptor> getPushPull_2006IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -204,7 +205,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getRocker_2002IncomingLinks(
+	public static List<PowerwindowLinkDescriptor> getRocker_2007IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -212,7 +213,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getInfrared_2003IncomingLinks(
+	public static List<PowerwindowLinkDescriptor> getInfrared_2008IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -220,7 +221,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getLockOut_2004IncomingLinks(
+	public static List<PowerwindowLinkDescriptor> getLockOut_2009IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -228,7 +229,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getForceDetecting_2005IncomingLinks(
+	public static List<PowerwindowLinkDescriptor> getForceDetecting_2010IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -236,7 +237,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getPushPull_2001OutgoingLinks(
+	public static List<PowerwindowLinkDescriptor> getPushPull_2006OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -244,7 +245,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getRocker_2002OutgoingLinks(
+	public static List<PowerwindowLinkDescriptor> getRocker_2007OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -252,7 +253,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getInfrared_2003OutgoingLinks(
+	public static List<PowerwindowLinkDescriptor> getInfrared_2008OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -260,7 +261,7 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getLockOut_2004OutgoingLinks(
+	public static List<PowerwindowLinkDescriptor> getLockOut_2009OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -268,9 +269,46 @@ public class PowerwindowDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<PowerwindowLinkDescriptor> getForceDetecting_2005OutgoingLinks(
+	public static List<PowerwindowLinkDescriptor> getForceDetecting_2010OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
+		/**
+		 * @generated
+		 */
+		@Override
+		public List<PowerwindowNodeDescriptor> getSemanticChildren(View view) {
+			return PowerwindowDiagramUpdater.getSemanticChildren(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public List<PowerwindowLinkDescriptor> getContainedLinks(View view) {
+			return PowerwindowDiagramUpdater.getContainedLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public List<PowerwindowLinkDescriptor> getIncomingLinks(View view) {
+			return PowerwindowDiagramUpdater.getIncomingLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		@Override
+		public List<PowerwindowLinkDescriptor> getOutgoingLinks(View view) {
+			return PowerwindowDiagramUpdater.getOutgoingLinks(view);
+		}
+	};
 
 }

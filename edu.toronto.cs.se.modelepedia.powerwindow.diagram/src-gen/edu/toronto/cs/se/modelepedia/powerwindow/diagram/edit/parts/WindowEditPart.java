@@ -23,8 +23,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 import edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.policies.WindowCanonicalEditPolicy;
 import edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.policies.WindowItemSemanticEditPolicy;
+import edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerwindowVisualIDRegistry;
 
 /**
  * @generated
@@ -57,6 +59,9 @@ public class WindowEditPart extends DiagramEditPart {
 				new WindowItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new WindowCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicyWithCustomReparent(
+						PowerwindowVisualIDRegistry.TYPED_INSTANCE));
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

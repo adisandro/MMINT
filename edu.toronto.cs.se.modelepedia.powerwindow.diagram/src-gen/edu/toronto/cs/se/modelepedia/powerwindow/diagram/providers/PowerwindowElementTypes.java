@@ -69,23 +69,27 @@ public class PowerwindowElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType PushPull_2001 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.PushPull_2001"); //$NON-NLS-1$
+	public static final IElementType PushPull_2006 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.PushPull_2006"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType Rocker_2002 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.Rocker_2002"); //$NON-NLS-1$
+	public static final IElementType Rocker_2007 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.Rocker_2007"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType Infrared_2003 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.Infrared_2003"); //$NON-NLS-1$
+	public static final IElementType Infrared_2008 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.Infrared_2008"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType LockOut_2004 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.LockOut_2004"); //$NON-NLS-1$
+	public static final IElementType LockOut_2009 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.LockOut_2009"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ForceDetecting_2005 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.ForceDetecting_2005"); //$NON-NLS-1$
+	public static final IElementType ForceDetecting_2010 = getElementType("edu.toronto.cs.se.modelepedia.powerwindow.diagram.ForceDetecting_2010"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -200,18 +204,18 @@ public class PowerwindowElementTypes {
 
 			elements.put(Window_1000, PowerwindowPackage.eINSTANCE.getWindow());
 
-			elements.put(PushPull_2001,
+			elements.put(PushPull_2006,
 					PowerwindowPackage.eINSTANCE.getPushPull());
 
-			elements.put(Rocker_2002, PowerwindowPackage.eINSTANCE.getRocker());
+			elements.put(Rocker_2007, PowerwindowPackage.eINSTANCE.getRocker());
 
-			elements.put(Infrared_2003,
+			elements.put(Infrared_2008,
 					PowerwindowPackage.eINSTANCE.getInfrared());
 
-			elements.put(LockOut_2004,
+			elements.put(LockOut_2009,
 					PowerwindowPackage.eINSTANCE.getLockOut());
 
-			elements.put(ForceDetecting_2005,
+			elements.put(ForceDetecting_2010,
 					PowerwindowPackage.eINSTANCE.getForceDetecting());
 		}
 		return (ENamedElement) elements.get(type);
@@ -231,11 +235,11 @@ public class PowerwindowElementTypes {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Window_1000);
-			KNOWN_ELEMENT_TYPES.add(PushPull_2001);
-			KNOWN_ELEMENT_TYPES.add(Rocker_2002);
-			KNOWN_ELEMENT_TYPES.add(Infrared_2003);
-			KNOWN_ELEMENT_TYPES.add(LockOut_2004);
-			KNOWN_ELEMENT_TYPES.add(ForceDetecting_2005);
+			KNOWN_ELEMENT_TYPES.add(PushPull_2006);
+			KNOWN_ELEMENT_TYPES.add(Rocker_2007);
+			KNOWN_ELEMENT_TYPES.add(Infrared_2008);
+			KNOWN_ELEMENT_TYPES.add(LockOut_2009);
+			KNOWN_ELEMENT_TYPES.add(ForceDetecting_2010);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -248,15 +252,15 @@ public class PowerwindowElementTypes {
 		case WindowEditPart.VISUAL_ID:
 			return Window_1000;
 		case PushPullEditPart.VISUAL_ID:
-			return PushPull_2001;
+			return PushPull_2006;
 		case RockerEditPart.VISUAL_ID:
-			return Rocker_2002;
+			return Rocker_2007;
 		case InfraredEditPart.VISUAL_ID:
-			return Infrared_2003;
+			return Infrared_2008;
 		case LockOutEditPart.VISUAL_ID:
-			return LockOut_2004;
+			return LockOut_2009;
 		case ForceDetectingEditPart.VISUAL_ID:
-			return ForceDetecting_2005;
+			return ForceDetecting_2010;
 		}
 		return null;
 	}

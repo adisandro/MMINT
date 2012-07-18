@@ -34,6 +34,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
+import org.eclipse.gmf.runtime.diagram.ui.label.ILabelDelegate;
+import org.eclipse.gmf.runtime.diagram.ui.label.WrappingLabelDelegate;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -42,6 +44,9 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.directedit.TextDirectEditManager2;
+import org.eclipse.gmf.tooling.runtime.draw2d.labels.SimpleLabelDelegate;
+import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.swt.SWT;
@@ -64,7 +69,7 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5005;
+	public static final int VISUAL_ID = 5010;
 
 	/**
 	 * @generated
@@ -85,6 +90,11 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	private String defaultText;
+
+	/**
+	 * @generated
+	 */
+	private ILabelDelegate labelDelegate;
 
 	/**
 	 * @generated
@@ -112,8 +122,10 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	protected String getLabelTextHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getText();
-		} else {
+		} else if (figure instanceof Label) {
 			return ((Label) figure).getText();
+		} else {
+			return getLabelDelegate().getText();
 		}
 	}
 
@@ -123,8 +135,10 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setText(text);
-		} else {
+		} else if (figure instanceof Label) {
 			((Label) figure).setText(text);
+		} else {
+			getLabelDelegate().setText(text);
 		}
 	}
 
@@ -134,8 +148,10 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	protected Image getLabelIconHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getIcon();
-		} else {
+		} else if (figure instanceof Label) {
 			return ((Label) figure).getIcon();
+		} else {
+			return getLabelDelegate().getIcon(0);
 		}
 	}
 
@@ -145,8 +161,12 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setIcon(icon);
-		} else {
+			return;
+		} else if (figure instanceof Label) {
 			((Label) figure).setIcon(icon);
+			return;
+		} else {
+			getLabelDelegate().setIcon(icon, 0);
 		}
 	}
 
@@ -216,16 +236,7 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	 */
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof PowerwindowTextSelectionEditPolicy) {
-			((PowerwindowTextSelectionEditPolicy) pdEditPolicy)
-					.refreshFeedback();
-		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof PowerwindowTextSelectionEditPolicy) {
-			((PowerwindowTextSelectionEditPolicy) sfEditPolicy)
-					.refreshFeedback();
-		}
+		refreshSelectionFeedback();
 	}
 
 	/**
@@ -308,7 +319,7 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = PowerwindowParserProvider
 					.getParser(
-							PowerwindowElementTypes.ForceDetecting_2005,
+							PowerwindowElementTypes.ForceDetecting_2010,
 							getParserElement(),
 							PowerwindowVisualIDRegistry
 									.getType(edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.ForceDetectingDelayEditPart.VISUAL_ID));
@@ -321,8 +332,7 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager(this,
-					TextDirectEditManager.getTextCellEditorClass(this),
+			setManager(new TextDirectEditManager2(this, null,
 					PowerwindowEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
@@ -346,8 +356,8 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if (getManager().getClass() == TextDirectEditManager.class) {
-			((TextDirectEditManager) getManager()).show(eventLocation
+		if (getManager().getClass() == TextDirectEditManager2.class) {
+			((TextDirectEditManager2) getManager()).show(eventLocation
 					.getSWTPoint());
 		}
 	}
@@ -358,7 +368,11 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	private void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else {
+		} else // 
+		if (getManager() instanceof TextDirectEditManager2) {
+			((TextDirectEditManager2) getManager()).show(initialCharacter);
+		} else //
+		{
 			performDirectEdit();
 		}
 	}
@@ -413,16 +427,7 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	protected void refreshLabel() {
 		setLabelTextHelper(getFigure(), getLabelText());
 		setLabelIconHelper(getFigure(), getLabelIcon());
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof PowerwindowTextSelectionEditPolicy) {
-			((PowerwindowTextSelectionEditPolicy) pdEditPolicy)
-					.refreshFeedback();
-		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof PowerwindowTextSelectionEditPolicy) {
-			((PowerwindowTextSelectionEditPolicy) sfEditPolicy)
-					.refreshFeedback();
-		}
+		refreshSelectionFeedback();
 	}
 
 	/**
@@ -460,6 +465,24 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 							: SWT.NORMAL)
 							| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private void refreshSelectionFeedback() {
+		requestEditPolicyFeedbackRefresh(EditPolicy.PRIMARY_DRAG_ROLE);
+		requestEditPolicyFeedbackRefresh(EditPolicy.SELECTION_FEEDBACK_ROLE);
+	}
+
+	/**
+	 * @generated
+	 */
+	private void requestEditPolicyFeedbackRefresh(String editPolicyKey) {
+		Object editPolicy = getEditPolicy(editPolicyKey);
+		if (editPolicy instanceof IRefreshableFeedbackEditPolicy) {
+			((IRefreshableFeedbackEditPolicy) editPolicy).refreshFeedback();
 		}
 	}
 
@@ -520,6 +543,32 @@ public class ForceDetectingDelayEditPart extends CompartmentEditPart implements
 	 */
 	private View getFontStyleOwnerView() {
 		return getPrimaryView();
+	}
+
+	/**
+	 * @generated
+	 */
+	private ILabelDelegate getLabelDelegate() {
+		if (labelDelegate == null) {
+			IFigure label = getFigure();
+			if (label instanceof WrappingLabel) {
+				labelDelegate = new WrappingLabelDelegate((WrappingLabel) label);
+			} else {
+				labelDelegate = new SimpleLabelDelegate((Label) label);
+			}
+		}
+		return labelDelegate;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public Object getAdapter(Class key) {
+		if (ILabelDelegate.class.equals(key)) {
+			return getLabelDelegate();
+		}
+		return super.getAdapter(key);
 	}
 
 	/**

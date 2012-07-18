@@ -44,7 +44,7 @@ public class RockerEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2002;
+	public static final int VISUAL_ID = 2007;
 
 	/**
 	 * @generated
@@ -291,6 +291,7 @@ public class RockerEditPart extends ShapeNodeEditPart {
 		private void createContents() {
 
 			fFigureRockerNameFigure = new WrappingLabel();
+
 			fFigureRockerNameFigure.setText("<...>");
 
 			this.add(fFigureRockerNameFigure);

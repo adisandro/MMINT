@@ -28,7 +28,7 @@
             <parameter
                   isVararg="false"
                   name="powerWindow"
-                  modelTypeUri="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/powerwindow">
             </parameter>
          </input>
          <output>

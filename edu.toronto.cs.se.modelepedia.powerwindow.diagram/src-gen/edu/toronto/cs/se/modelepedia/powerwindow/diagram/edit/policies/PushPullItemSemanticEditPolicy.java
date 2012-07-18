@@ -31,7 +31,7 @@ public class PushPullItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public PushPullItemSemanticEditPolicy() {
-		super(PowerwindowElementTypes.PushPull_2001);
+		super(PowerwindowElementTypes.PushPull_2006);
 	}
 
 	/**

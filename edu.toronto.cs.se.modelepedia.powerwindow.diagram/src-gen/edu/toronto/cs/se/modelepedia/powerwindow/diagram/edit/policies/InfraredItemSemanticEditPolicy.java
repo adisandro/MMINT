@@ -31,7 +31,7 @@ public class InfraredItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public InfraredItemSemanticEditPolicy() {
-		super(PowerwindowElementTypes.Infrared_2003);
+		super(PowerwindowElementTypes.Infrared_2008);
 	}
 
 	/**

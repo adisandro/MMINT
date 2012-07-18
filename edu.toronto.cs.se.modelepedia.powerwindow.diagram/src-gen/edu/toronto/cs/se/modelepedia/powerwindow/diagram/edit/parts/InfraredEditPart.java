@@ -43,7 +43,7 @@ public class InfraredEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2003;
+	public static final int VISUAL_ID = 2008;
 
 	/**
 	 * @generated
@@ -290,6 +290,7 @@ public class InfraredEditPart extends ShapeNodeEditPart {
 		private void createContents() {
 
 			fFigureInfraredDelayFigure = new WrappingLabel();
+
 			fFigureInfraredDelayFigure.setText("<...>");
 
 			this.add(fFigureInfraredDelayFigure);

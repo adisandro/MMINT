@@ -105,22 +105,22 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 		switch (PowerwindowVisualIDRegistry.getVisualID(view)) {
 		case WindowEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore?Window", PowerwindowElementTypes.Window_1000); //$NON-NLS-1$
+					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/powerwindow?Window", PowerwindowElementTypes.Window_1000); //$NON-NLS-1$
 		case PushPullEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore?PushPull", PowerwindowElementTypes.PushPull_2001); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/powerwindow?PushPull", PowerwindowElementTypes.PushPull_2006); //$NON-NLS-1$
 		case RockerEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore?Rocker", PowerwindowElementTypes.Rocker_2002); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/powerwindow?Rocker", PowerwindowElementTypes.Rocker_2007); //$NON-NLS-1$
 		case InfraredEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore?Infrared", PowerwindowElementTypes.Infrared_2003); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/powerwindow?Infrared", PowerwindowElementTypes.Infrared_2008); //$NON-NLS-1$
 		case LockOutEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore?LockOut", PowerwindowElementTypes.LockOut_2004); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/powerwindow?LockOut", PowerwindowElementTypes.LockOut_2009); //$NON-NLS-1$
 		case ForceDetectingEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore?ForceDetecting", PowerwindowElementTypes.ForceDetecting_2005); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/powerwindow?ForceDetecting", PowerwindowElementTypes.ForceDetecting_2010); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -176,15 +176,15 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 		case WindowEditPart.VISUAL_ID:
 			return getWindow_1000Text(view);
 		case PushPullEditPart.VISUAL_ID:
-			return getPushPull_2001Text(view);
+			return getPushPull_2006Text(view);
 		case RockerEditPart.VISUAL_ID:
-			return getRocker_2002Text(view);
+			return getRocker_2007Text(view);
 		case InfraredEditPart.VISUAL_ID:
-			return getInfrared_2003Text(view);
+			return getInfrared_2008Text(view);
 		case LockOutEditPart.VISUAL_ID:
-			return getLockOut_2004Text(view);
+			return getLockOut_2009Text(view);
 		case ForceDetectingEditPart.VISUAL_ID:
-			return getForceDetecting_2005Text(view);
+			return getForceDetecting_2010Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -206,9 +206,9 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getPushPull_2001Text(View view) {
+	private String getPushPull_2006Text(View view) {
 		IParser parser = PowerwindowParserProvider.getParser(
-				PowerwindowElementTypes.PushPull_2001,
+				PowerwindowElementTypes.PushPull_2006,
 				view.getElement() != null ? view.getElement() : view,
 				PowerwindowVisualIDRegistry
 						.getType(PushPullNameEditPart.VISUAL_ID));
@@ -218,7 +218,7 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 					ParserOptions.NONE.intValue());
 		} else {
 			PowerwindowDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5001); //$NON-NLS-1$
+					"Parser was not found for label " + 5006); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -226,9 +226,9 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getRocker_2002Text(View view) {
+	private String getRocker_2007Text(View view) {
 		IParser parser = PowerwindowParserProvider.getParser(
-				PowerwindowElementTypes.Rocker_2002,
+				PowerwindowElementTypes.Rocker_2007,
 				view.getElement() != null ? view.getElement() : view,
 				PowerwindowVisualIDRegistry
 						.getType(RockerNameEditPart.VISUAL_ID));
@@ -238,7 +238,7 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 					ParserOptions.NONE.intValue());
 		} else {
 			PowerwindowDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5002); //$NON-NLS-1$
+					"Parser was not found for label " + 5007); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -246,9 +246,9 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getInfrared_2003Text(View view) {
+	private String getInfrared_2008Text(View view) {
 		IParser parser = PowerwindowParserProvider.getParser(
-				PowerwindowElementTypes.Infrared_2003,
+				PowerwindowElementTypes.Infrared_2008,
 				view.getElement() != null ? view.getElement() : view,
 				PowerwindowVisualIDRegistry
 						.getType(InfraredDelayEditPart.VISUAL_ID));
@@ -258,7 +258,7 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 					ParserOptions.NONE.intValue());
 		} else {
 			PowerwindowDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5003); //$NON-NLS-1$
+					"Parser was not found for label " + 5008); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -266,9 +266,9 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getLockOut_2004Text(View view) {
+	private String getLockOut_2009Text(View view) {
 		IParser parser = PowerwindowParserProvider.getParser(
-				PowerwindowElementTypes.LockOut_2004,
+				PowerwindowElementTypes.LockOut_2009,
 				view.getElement() != null ? view.getElement() : view,
 				PowerwindowVisualIDRegistry
 						.getType(LockOutNameEditPart.VISUAL_ID));
@@ -278,7 +278,7 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 					ParserOptions.NONE.intValue());
 		} else {
 			PowerwindowDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5004); //$NON-NLS-1$
+					"Parser was not found for label " + 5009); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -286,9 +286,9 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getForceDetecting_2005Text(View view) {
+	private String getForceDetecting_2010Text(View view) {
 		IParser parser = PowerwindowParserProvider.getParser(
-				PowerwindowElementTypes.ForceDetecting_2005,
+				PowerwindowElementTypes.ForceDetecting_2010,
 				view.getElement() != null ? view.getElement() : view,
 				PowerwindowVisualIDRegistry
 						.getType(ForceDetectingDelayEditPart.VISUAL_ID));
@@ -298,7 +298,7 @@ public class PowerwindowNavigatorLabelProvider extends LabelProvider implements
 					ParserOptions.NONE.intValue());
 		} else {
 			PowerwindowDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5005); //$NON-NLS-1$
+					"Parser was not found for label " + 5010); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

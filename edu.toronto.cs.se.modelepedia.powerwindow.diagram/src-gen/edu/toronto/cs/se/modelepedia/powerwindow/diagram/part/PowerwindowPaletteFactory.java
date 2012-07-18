@@ -60,10 +60,10 @@ public class PowerwindowPaletteFactory {
 				Messages.Infraredsensor1CreationTool_title,
 				Messages.Infraredsensor1CreationTool_desc,
 				Collections
-						.singletonList(PowerwindowElementTypes.Infrared_2003));
+						.singletonList(PowerwindowElementTypes.Infrared_2008));
 		entry.setId("createInfraredsensor1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(PowerwindowElementTypes
-				.getImageDescriptor(PowerwindowElementTypes.Infrared_2003));
+				.getImageDescriptor(PowerwindowElementTypes.Infrared_2008));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -76,10 +76,10 @@ public class PowerwindowPaletteFactory {
 				Messages.ForceDetectingsensor2CreationTool_title,
 				Messages.ForceDetectingsensor2CreationTool_desc,
 				Collections
-						.singletonList(PowerwindowElementTypes.ForceDetecting_2005));
+						.singletonList(PowerwindowElementTypes.ForceDetecting_2010));
 		entry.setId("createForceDetectingsensor2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(PowerwindowElementTypes
-				.getImageDescriptor(PowerwindowElementTypes.ForceDetecting_2005));
+				.getImageDescriptor(PowerwindowElementTypes.ForceDetecting_2010));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -91,10 +91,10 @@ public class PowerwindowPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.LockOutswitch3CreationTool_title,
 				Messages.LockOutswitch3CreationTool_desc,
-				Collections.singletonList(PowerwindowElementTypes.LockOut_2004));
+				Collections.singletonList(PowerwindowElementTypes.LockOut_2009));
 		entry.setId("createLockOutswitch3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(PowerwindowElementTypes
-				.getImageDescriptor(PowerwindowElementTypes.LockOut_2004));
+				.getImageDescriptor(PowerwindowElementTypes.LockOut_2009));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -106,10 +106,10 @@ public class PowerwindowPaletteFactory {
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Rockerswitch4CreationTool_title,
 				Messages.Rockerswitch4CreationTool_desc,
-				Collections.singletonList(PowerwindowElementTypes.Rocker_2002));
+				Collections.singletonList(PowerwindowElementTypes.Rocker_2007));
 		entry.setId("createRockerswitch4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(PowerwindowElementTypes
-				.getImageDescriptor(PowerwindowElementTypes.Rocker_2002));
+				.getImageDescriptor(PowerwindowElementTypes.Rocker_2007));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -122,10 +122,10 @@ public class PowerwindowPaletteFactory {
 				Messages.PushPullswitch5CreationTool_title,
 				Messages.PushPullswitch5CreationTool_desc,
 				Collections
-						.singletonList(PowerwindowElementTypes.PushPull_2001));
+						.singletonList(PowerwindowElementTypes.PushPull_2006));
 		entry.setId("createPushPullswitch5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(PowerwindowElementTypes
-				.getImageDescriptor(PowerwindowElementTypes.PushPull_2001));
+				.getImageDescriptor(PowerwindowElementTypes.PushPull_2006));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

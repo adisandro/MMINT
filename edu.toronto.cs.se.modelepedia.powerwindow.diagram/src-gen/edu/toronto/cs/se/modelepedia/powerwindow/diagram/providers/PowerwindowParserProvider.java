@@ -42,91 +42,91 @@ public class PowerwindowParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser pushPullName_5001Parser;
+	private IParser pushPullName_5006Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPushPullName_5001Parser() {
-		if (pushPullName_5001Parser == null) {
+	private IParser getPushPullName_5006Parser() {
+		if (pushPullName_5006Parser == null) {
 			EAttribute[] features = new EAttribute[] { PowerwindowPackage.eINSTANCE
 					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pushPullName_5001Parser = parser;
+			pushPullName_5006Parser = parser;
 		}
-		return pushPullName_5001Parser;
+		return pushPullName_5006Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser rockerName_5002Parser;
+	private IParser rockerName_5007Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getRockerName_5002Parser() {
-		if (rockerName_5002Parser == null) {
+	private IParser getRockerName_5007Parser() {
+		if (rockerName_5007Parser == null) {
 			EAttribute[] features = new EAttribute[] { PowerwindowPackage.eINSTANCE
 					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			rockerName_5002Parser = parser;
+			rockerName_5007Parser = parser;
 		}
-		return rockerName_5002Parser;
+		return rockerName_5007Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser infraredDelay_5003Parser;
+	private IParser infraredDelay_5008Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getInfraredDelay_5003Parser() {
-		if (infraredDelay_5003Parser == null) {
+	private IParser getInfraredDelay_5008Parser() {
+		if (infraredDelay_5008Parser == null) {
 			EAttribute[] features = new EAttribute[] { PowerwindowPackage.eINSTANCE
 					.getSensor_Delay() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			infraredDelay_5003Parser = parser;
+			infraredDelay_5008Parser = parser;
 		}
-		return infraredDelay_5003Parser;
+		return infraredDelay_5008Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser lockOutName_5004Parser;
+	private IParser lockOutName_5009Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getLockOutName_5004Parser() {
-		if (lockOutName_5004Parser == null) {
+	private IParser getLockOutName_5009Parser() {
+		if (lockOutName_5009Parser == null) {
 			EAttribute[] features = new EAttribute[] { PowerwindowPackage.eINSTANCE
 					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			lockOutName_5004Parser = parser;
+			lockOutName_5009Parser = parser;
 		}
-		return lockOutName_5004Parser;
+		return lockOutName_5009Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser forceDetectingDelay_5005Parser;
+	private IParser forceDetectingDelay_5010Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getForceDetectingDelay_5005Parser() {
-		if (forceDetectingDelay_5005Parser == null) {
+	private IParser getForceDetectingDelay_5010Parser() {
+		if (forceDetectingDelay_5010Parser == null) {
 			EAttribute[] features = new EAttribute[] { PowerwindowPackage.eINSTANCE
 					.getSensor_Delay() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			forceDetectingDelay_5005Parser = parser;
+			forceDetectingDelay_5010Parser = parser;
 		}
-		return forceDetectingDelay_5005Parser;
+		return forceDetectingDelay_5010Parser;
 	}
 
 	/**
@@ -135,15 +135,15 @@ public class PowerwindowParserProvider extends AbstractProvider implements
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case PushPullNameEditPart.VISUAL_ID:
-			return getPushPullName_5001Parser();
+			return getPushPullName_5006Parser();
 		case RockerNameEditPart.VISUAL_ID:
-			return getRockerName_5002Parser();
+			return getRockerName_5007Parser();
 		case InfraredDelayEditPart.VISUAL_ID:
-			return getInfraredDelay_5003Parser();
+			return getInfraredDelay_5008Parser();
 		case LockOutNameEditPart.VISUAL_ID:
-			return getLockOutName_5004Parser();
+			return getLockOutName_5009Parser();
 		case ForceDetectingDelayEditPart.VISUAL_ID:
-			return getForceDetectingDelay_5005Parser();
+			return getForceDetectingDelay_5010Parser();
 		}
 		return null;
 	}

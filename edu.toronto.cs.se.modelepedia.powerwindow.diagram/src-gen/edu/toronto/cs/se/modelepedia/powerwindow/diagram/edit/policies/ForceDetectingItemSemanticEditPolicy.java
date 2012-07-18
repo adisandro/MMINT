@@ -31,7 +31,7 @@ public class ForceDetectingItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ForceDetectingItemSemanticEditPolicy() {
-		super(PowerwindowElementTypes.ForceDetecting_2005);
+		super(PowerwindowElementTypes.ForceDetecting_2010);
 	}
 
 	/**

@@ -130,7 +130,7 @@ Contributors:
       </MarkerNavigationProvider>
    </extension>
 
-   <extension id="diagnostic" name="Powerwindow Plugin problems" point="org.eclipse.core.resources.markers">
+   <extension id="diagnostic" name="Powerwindow Diagram Type problems" point="org.eclipse.core.resources.markers">
       <?gmfgen generated="true"?>
       <super type="org.eclipse.core.resources.problemmarker"/>
       <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
@@ -252,7 +252,7 @@ Contributors:
       <viewProvider class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.providers.PowerwindowViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Powerwindow"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2006,2007,2008,2009,2010"/>
       </viewProvider>
    </extension>
 
@@ -264,13 +264,13 @@ Contributors:
             <method name="getType()" value="Powerwindow"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,2002,2003,2004,2005"/>
+            <method name="getType()" value="2006,2007,2008,2009,2010"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value=""/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5003,5004,5005"/>
+            <method name="getType()" value="5006,5007,5008,5009,5010"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -284,12 +284,12 @@ Contributors:
       <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.providers.PowerwindowModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.WindowEditPart" id="Window_1000"/>
-         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.PushPullEditPart" id="PushPull_2001"/>
-         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.RockerEditPart" id="Rocker_2002"/>
-         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.InfraredEditPart" id="Infrared_2003"/>
-         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.LockOutEditPart" id="LockOut_2004"/>
-         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.ForceDetectingEditPart" id="ForceDetecting_2005"/>
-         <context elements="Window_1000,PushPull_2001,Rocker_2002,Infrared_2003,LockOut_2004,ForceDetecting_2005"/>
+         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.PushPullEditPart" id="PushPull_2006"/>
+         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.RockerEditPart" id="Rocker_2007"/>
+         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.InfraredEditPart" id="Infrared_2008"/>
+         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.LockOutEditPart" id="LockOut_2009"/>
+         <object class="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.parts.ForceDetectingEditPart" id="ForceDetecting_2010"/>
+         <context elements="Window_1000,PushPull_2006,Rocker_2007,Infrared_2008,LockOut_2009,ForceDetecting_2010,"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -309,7 +309,7 @@ Contributors:
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="true"?>
-      <metamodel nsURI="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/powerwindow">
          <metamodelType
                id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Window_1000"
                name="%metatype.name.Window_1000"
@@ -319,54 +319,54 @@ Contributors:
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/powerwindow">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.PushPull_2001"
-               name="%metatype.name.PushPull_2001"
+               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.PushPull_2006"
+               name="%metatype.name.PushPull_2006"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="PushPull"
                edithelper="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.helpers.PushPullEditHelper">
-            <param name="semanticHint" value="2001"/>
+            <param name="semanticHint" value="2006"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/powerwindow">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Rocker_2002"
-               name="%metatype.name.Rocker_2002"
+               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Rocker_2007"
+               name="%metatype.name.Rocker_2007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Rocker"
                edithelper="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.helpers.RockerEditHelper">
-            <param name="semanticHint" value="2002"/>
+            <param name="semanticHint" value="2007"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/powerwindow">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Infrared_2003"
-               name="%metatype.name.Infrared_2003"
+               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Infrared_2008"
+               name="%metatype.name.Infrared_2008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Infrared"
                edithelper="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.helpers.InfraredEditHelper">
-            <param name="semanticHint" value="2003"/>
+            <param name="semanticHint" value="2008"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/powerwindow">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.LockOut_2004"
-               name="%metatype.name.LockOut_2004"
+               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.LockOut_2009"
+               name="%metatype.name.LockOut_2009"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="LockOut"
                edithelper="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.helpers.LockOutEditHelper">
-            <param name="semanticHint" value="2004"/>
+            <param name="semanticHint" value="2009"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http:///edu/toronto/cs/se/modelepedia/powerwindow/model/powerwindow.ecore">
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/powerwindow">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.ForceDetecting_2005"
-               name="%metatype.name.ForceDetecting_2005"
+               id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.ForceDetecting_2010"
+               name="%metatype.name.ForceDetecting_2010"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ForceDetecting"
                edithelper="edu.toronto.cs.se.modelepedia.powerwindow.diagram.edit.helpers.ForceDetectingEditHelper">
-            <param name="semanticHint" value="2005"/>
+            <param name="semanticHint" value="2010"/>
          </metamodelType>
       </metamodel>
    </extension>
@@ -382,11 +382,11 @@ Contributors:
       </clientContext> 
       <binding context="edu.toronto.cs.se.modelepedia.powerwindow.diagram.TypeContext">
          <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Window_1000"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.PushPull_2001"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Rocker_2002"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Infrared_2003"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.LockOut_2004"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.ForceDetecting_2005"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.PushPull_2006"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Rocker_2007"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.Infrared_2008"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.LockOut_2009"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.powerwindow.diagram.ForceDetecting_2010"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
