@@ -25,7 +25,16 @@ import edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentSamples.Distr
 
 public class ExperimentDriver extends OperatorExecutableImpl {
 
+	/** The property file name. */
 	public static final String PROPERTIES_FILE = "experiment.properties";
+	/** The separator for multiple properties with the same key. */
+	public static final String PROPERTY_SEPARATOR = ",";
+	/** The variables to variate the experiment setup. */
+	public static final String PROPERTY_VARIABLES = "variables";
+	/** The variable type property suffix. */
+	public static final String PROPERTY_VARIABLE_TYPE_SUFFIX = "Type";
+	/** The variable values property suffix. */
+	public static final String PROPERTY_VARIABLE_VALUES_SUFFIX = "Values";
 	/** Min number of iterations (i.e. samples to generate). */
 	public static final String PROPERTY_MINSAMPLES = "minSamples";
 	/** Max number of iterations (i.e. samples to generate). */
@@ -38,6 +47,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	public static final String PROPERTY_DISTRIBUTIONTYPE = "distributionType";
 	/** The requested range of confidence interval (% with respect to average value), after which the experiment can be stopped. */
 	public static final String PROPERTY_REQUESTEDCONFIDENCE = "requestedConfidence";
+
+	public enum VariableType {INT, DOUBLE};
 
 	private String getProperty(Properties properties, String propertyName) throws MMTFException {
 
@@ -63,15 +74,30 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		Properties properties = new Properties();
 		properties.load(new FileInputStream(propertiesFile));
 
-		//TODO MMTF: properties ->
-		//OUTER
-		// -annotated, -may, -var, -set
-		// min instances in model
-		// max instances in model
-		// maybe min e max instances in model element
-		// initial seed
-		// output file/format
-		//INNER
+		// initial seed?
+		// output file/format?
+		//TODO MMTF: prepare three functions: 1 read properties, 2 outer cycle, 3 inner cycle
+		String[] vars = getProperty(properties, PROPERTY_VARIABLES).split(PROPERTY_SEPARATOR);
+		VariableType[] types = new VariableType[vars.length];
+		String[][] values = new String[vars.length][];
+		for (int i = 0; i < vars.length; i++) {
+			types[i] = VariableType.valueOf(getProperty(properties, vars[i]+PROPERTY_VARIABLE_TYPE_SUFFIX));
+			values[i] = getProperty(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX).split(PROPERTY_SEPARATOR);
+		}
+
+		// outer cycle: variate experiment setup
+		for (int i = 0; i < vars.length; i++) {
+			for (int j = 0; j < values[i].length; j++) {
+				for (int i2 = 0; i2 < vars.length; i2++) {
+					for (int j2 = 0; j2 < values[i2].length; j2++) {
+						String[] experimentSetup = new String[vars.length];
+						//TODO MMTF: first tentative, to be continued..
+					}
+				}
+			}
+		}
+
+		// inner cycle: experiment setup is fixed, only randomness counts
 		int minSamples = Integer.parseInt(getProperty(properties, PROPERTY_MINSAMPLES));
 		int maxSamples = Integer.parseInt(getProperty(properties, PROPERTY_MAXSAMPLES));
 		double min = Double.parseDouble(getProperty(properties, PROPERTY_MINSAMPLEVALUE));
