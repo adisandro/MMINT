@@ -42,15 +42,15 @@
    </extension>
 
    <extension
-         name="Class Diagram editor"
+         name="ClassDiagram editor"
          point="edu.toronto.cs.se.mmtf.editors">
       <editor
-            modelTypeUri="http:///edu/toronto/cs/se/modelepedia/classdiagram/model/classdiagram.ecore"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/classdiagram"
             id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassdiagramEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassdiagramModelWizardID">
          <extendibleElement
-               uri="http:///edu/toronto/cs/se/modelepedia/classdiagram/presentation">
+               uri="http://se.cs.toronto.edu/modelepedia/classdiagram/editor">
          </extendibleElement>
       </editor>
    </extension>

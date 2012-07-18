@@ -39,7 +39,7 @@ public class ClassdiagramFactoryImpl extends EFactoryImpl implements Classdiagra
 	 */
 	public static ClassdiagramFactory init() {
 		try {
-			ClassdiagramFactory theClassdiagramFactory = (ClassdiagramFactory)EPackage.Registry.INSTANCE.getEFactory("http:///edu/toronto/cs/se/modelepedia/classdiagram/model/classdiagram.ecore"); 
+			ClassdiagramFactory theClassdiagramFactory = (ClassdiagramFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/classdiagram"); 
 			if (theClassdiagramFactory != null) {
 				return theClassdiagramFactory;
 			}

@@ -47,7 +47,7 @@ public interface ClassdiagramPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///edu/toronto/cs/se/modelepedia/classdiagram/model/classdiagram.ecore";
+	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/classdiagram";
 
 	/**
 	 * The package namespace name.
