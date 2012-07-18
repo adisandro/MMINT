@@ -36,7 +36,7 @@ public class PetrinetFactoryImpl extends EFactoryImpl implements PetrinetFactory
 	 */
 	public static PetrinetFactory init() {
 		try {
-			PetrinetFactory thePetrinetFactory = (PetrinetFactory)EPackage.Registry.INSTANCE.getEFactory("http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore"); 
+			PetrinetFactory thePetrinetFactory = (PetrinetFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/petrinet"); 
 			if (thePetrinetFactory != null) {
 				return thePetrinetFactory;
 			}

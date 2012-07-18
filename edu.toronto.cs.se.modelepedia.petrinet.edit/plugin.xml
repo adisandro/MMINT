@@ -17,7 +17,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore"
+            uri="http://se.cs.toronto.edu/modelepedia/petrinet"
             class="edu.toronto.cs.se.modelepedia.petrinet.provider.PetrinetItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

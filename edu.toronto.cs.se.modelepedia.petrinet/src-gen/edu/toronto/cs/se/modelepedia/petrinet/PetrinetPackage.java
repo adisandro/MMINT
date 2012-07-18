@@ -48,7 +48,7 @@ public interface PetrinetPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore";
+	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/petrinet";
 
 	/**
 	 * The package namespace name.

@@ -42,15 +42,15 @@
    </extension>
 
    <extension
-         name="Petri Net editor"
+         name="PetriNet editor"
          point="edu.toronto.cs.se.mmtf.editors">
       <editor
-            modelTypeUri="http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/petrinet"
             id="edu.toronto.cs.se.modelepedia.petrinet.presentation.PetrinetEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.petrinet.presentation.PetrinetModelWizardID">
          <extendibleElement
-               uri="http:///edu/toronto/cs/se/modelepedia/petrinet/presentation">
+               uri="http:///edu/toronto/cs/se/modelepedia/petrinet/editor">
          </extendibleElement>
       </editor>
    </extension>

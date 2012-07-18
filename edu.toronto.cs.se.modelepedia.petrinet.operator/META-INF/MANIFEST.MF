@@ -8,4 +8,4 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: edu.toronto.cs.se.mmtf.core,
  org.eclipse.emf.ecore,
  org.eclipse.ui,
- edu.toronto.cs.se.modelepedia.petrinet
+ edu.toronto.cs.se.modelepedia.petrinet.model

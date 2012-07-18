@@ -35,7 +35,7 @@
             <parameter
                   isVararg="false"
                   name="petriNet"
-                  modelTypeUri="http:///edu/toronto/cs/se/modelepedia/petrinet/model/petrinet.ecore">
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/petrinet">
             </parameter>
          </output>
       </operator>
