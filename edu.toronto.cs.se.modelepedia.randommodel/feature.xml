@@ -29,7 +29,7 @@ Famelis, Rick Salay, Vivien Suen. All rights reserved.
       <import plugin="org.eclipse.m2m.atl.engine.emfvm"/>
       <import plugin="edu.toronto.cs.se.mmtf.core"/>
       <import plugin="org.eclipse.ui"/>
-      <import feature="edu.toronto.cs.se.mmtf" version="0.9.1"/>
+      <import feature="edu.toronto.cs.se.mmtf"/>
    </requires>
 
    <plugin
