@@ -22,7 +22,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///edu/toronto/cs/se/mmtf/Model"
+            uri="http://se.cs.toronto.edu/mmtf/Model"
             class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
    </extension>
 
@@ -30,13 +30,13 @@
          name="Model"
          point="edu.toronto.cs.se.mmtf.models">
       <extendibleElement
-            uri="http:///edu/toronto/cs/se/mmtf/Model">
+            uri="http://se.cs.toronto.edu/mmtf/Model">
       </extendibleElement>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///edu/toronto/cs/se/mmtf/ModelRel"
+            uri="http://se.cs.toronto.edu/mmtf/ModelRel"
             class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
    </extension>
 
@@ -46,28 +46,28 @@
       <relationship
             isNary="true">
          <extendibleElement
-               uri="http:///edu/toronto/cs/se/mmtf/ModelRel"
-               supertypeUri="http:///edu/toronto/cs/se/mmtf/Model">
+               uri="http://se.cs.toronto.edu/mmtf/ModelRel"
+               supertypeUri="http://se.cs.toronto.edu/mmtf/Model">
          </extendibleElement>
          <model
-               modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
+               modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
             <modelElement
                   category="ENTITY"
                   classLiteral="ModelElementEntityWildcard"
                   name="EntityElem"
-                  uri="http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard">
+                  uri="http://se.cs.toronto.edu/mmtf/ModelRel/ModelElementEntityWildcard">
             </modelElement>
             <modelElement
                   category="RELATIONSHIP"
                   classLiteral="ModelElementEntityWildcard/modelElementRelationshipWildcard"
                   name="RelElem"
-                  uri="http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard/modelElementRelationshipWildcard">
+                  uri="http://se.cs.toronto.edu/mmtf/ModelRel/ModelElementEntityWildcard/modelElementRelationshipWildcard">
             </modelElement>
          </model>
          <link
                isNary="true"
                name="Link"
-               uri="http:///edu/toronto/cs/se/mmtf/ModelRel/Link">
+               uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link">
             <linkElement
                   elementName="EntityElem">
             </linkElement>
@@ -131,7 +131,7 @@
    </extension>
 
    <extension
-         name="Sample Ecore Editor"
+         name="Ecore editor"
          point="edu.toronto.cs.se.mmtf.editors">
       <editor
             modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
@@ -139,13 +139,13 @@
             isDiagram="false"
             wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
          <extendibleElement
-               uri="http:///org/eclipse/emf/ecore/presentation">
+               uri="http://www.eclipse.org/emf/2002/Ecore/editor">
          </extendibleElement>
       </editor>
    </extension>
 
    <extension
-         name="Ecore Diagram Editing"
+         name="Ecore diagram"
          point="edu.toronto.cs.se.mmtf.editors">
       <editor
             modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
@@ -153,7 +153,7 @@
             isDiagram="true"
             wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
          <extendibleElement
-               uri="http:///org/eclipse/emf/ecoretools/diagram">
+               uri="http://www.eclipse.org/emf/2002/Ecore/diagram">
          </extendibleElement>
       </editor>
    </extension>

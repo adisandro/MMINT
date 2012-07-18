@@ -50,7 +50,7 @@
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmtf.mid.presentation.MidModelWizardID">
          <extendibleElement
-               uri="http:///edu/toronto/cs/se/mmtf/mid/presentation">
+               uri="http://se.cs.toronto.edu/mmtf/mid/edito">
          </extendibleElement>
       </editor>
    </extension>
@@ -90,7 +90,7 @@
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipModelWizardID">
          <extendibleElement
-               uri="http:///edu/toronto/cs/se/mmtf/mid/relationship/presentation">
+               uri="http://se.cs.toronto.edu/mmtf/mid/relationship/editor">
          </extendibleElement>
       </editor>
    </extension>

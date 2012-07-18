@@ -606,7 +606,7 @@ Contributors:
             isDiagram="true"
             wizardId="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidCreationWizardID">
          <extendibleElement
-               uri="http:///edu/toronto/cs/se/mmtf/mid/relationship/diagram">
+               uri="http://se.cs.toronto.edu/mmtf/mid/relationship/diagram">
          </extendibleElement>
       </editor>
    </extension>

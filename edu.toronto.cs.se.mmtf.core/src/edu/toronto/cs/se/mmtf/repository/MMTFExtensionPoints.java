@@ -20,15 +20,15 @@ package edu.toronto.cs.se.mmtf.repository;
 public interface MMTFExtensionPoints {
 
 	/** The uri of the root model type. */
-	public final static String ROOT_MODEL_URI = "http:///edu/toronto/cs/se/mmtf/Model";
+	public final static String ROOT_MODEL_URI = "http://se.cs.toronto.edu/mmtf/Model";
 	/** The uri of the root model relationship. */
-	public final static String ROOT_MODELREL_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel";
+	public final static String ROOT_MODELREL_URI = "http://se.cs.toronto.edu/mmtf/ModelRel";
 	/** The uri of the root model element of category entity. */
-	public final static String ROOT_MODELELEMENT_ENTITY_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard";
+	public final static String ROOT_MODELELEMENT_ENTITY_URI = "http://se.cs.toronto.edu/mmtf/ModelRel/ModelElementEntityWildcard";
 	/** The uri of the root model element of category relationship. */
-	public final static String ROOT_MODELELEMENT_RELATIONSHIP_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/ModelElementEntityWildcard/modelElementRelationshipWildcard";
+	public final static String ROOT_MODELELEMENT_RELATIONSHIP_URI = "http://se.cs.toronto.edu/mmtf/ModelRel/ModelElementEntityWildcard/modelElementRelationshipWildcard";
 	/** The uri of the root link among model elements. */
-	public final static String ROOT_MODELREL_LINK_URI = "http:///edu/toronto/cs/se/mmtf/ModelRel/Link";
+	public final static String ROOT_MODELREL_LINK_URI = "http://se.cs.toronto.edu/mmtf/ModelRel/Link";
 
 	/** An extension point's extendibleElement child. */
 	public final static String CHILD_EXTENDIBLEELEMENT = "extendibleElement";

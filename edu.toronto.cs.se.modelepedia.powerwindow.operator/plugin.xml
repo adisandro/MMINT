@@ -22,7 +22,7 @@
             class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PowerWindowToPetriNet"
             isConversion="true">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/powerwindow/operator/PowerWindowToPetriNet">
+               uri="http://se.cs.toronto.edu/modelepedia/powerwindow/operator/PowerWindowToPetriNet">
          </extendibleElement>
          <input>
             <parameter

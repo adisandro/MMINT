@@ -22,13 +22,13 @@
             class="edu.toronto.cs.se.modelepedia.randommodel.operator.ModelTypeToRandomModel"
             isConversion="true">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/randommodel/operator/ModelTypeToRandomModel">
+               uri="http://se.cs.toronto.edu/modelepedia/randommodel/operator/ModelTypeToRandomModel">
          </extendibleElement>
          <input>
             <parameter
                   isVararg="false"
                   name="modelType"
-                  modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
             </parameter>
          </input>
          <output>
@@ -48,7 +48,7 @@
             class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelGenerate"
             isConversion="false">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/randommodel/operator/RandomModelGenerate">
+               uri="http://se.cs.toronto.edu/modelepedia/randommodel/operator/RandomModelGenerate">
          </extendibleElement>
          <input>
             <parameter

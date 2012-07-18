@@ -22,20 +22,20 @@
             class="edu.toronto.cs.se.modelepedia.operator.ModelNameMatch"
             isConversion="false">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/operator/ModelNameMatch">
+               uri="http://se.cs.toronto.edu/modelepedia/operator/ModelNameMatch">
          </extendibleElement>
          <input>
             <parameter
                   isVararg="true"
                   name="models"
-                  modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="nameMatch"
-                  modelTypeUri="http:///edu/toronto/cs/se/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </parameter>
          </output>
       </operator>
@@ -48,13 +48,13 @@
             class="edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentDriver"
             isConversion="false">
          <extendibleElement
-               uri="http://edu.toronto.cs.se/modelepedia/operator/statistics/ExperimentDriver">
+               uri="http://se.cs.toronto.edu/modelepedia/operator/statistics/ExperimentDriver">
          </extendibleElement>
          <input>
             <parameter
                   isVararg="false"
                   name="modelType"
-                  modelTypeUri="http:///edu/toronto/cs/se/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
             </parameter>
          </input>
          <output>
