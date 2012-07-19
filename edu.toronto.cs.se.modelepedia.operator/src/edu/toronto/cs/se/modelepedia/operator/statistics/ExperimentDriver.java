@@ -11,8 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.statistics;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
+import java.util.Random;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -26,38 +29,104 @@ import edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentSamples.Distr
 public class ExperimentDriver extends OperatorExecutableImpl {
 
 	/** The property file name. */
-	public static final String PROPERTIES_FILE = "experiment.properties";
+	private static final String INPUT_PROPERTIES_FILE = "experiment.properties";
 	/** The separator for multiple properties with the same key. */
-	public static final String PROPERTY_SEPARATOR = ",";
+	private static final String PROPERTY_SEPARATOR = ",";
 	/** The variables to variate the experiment setup. */
-	public static final String PROPERTY_VARIABLES = "variables";
+	private static final String PROPERTY_VARIABLES = "variables";
 	/** The variable type property suffix. */
-	public static final String PROPERTY_VARIABLE_TYPE_SUFFIX = "Type";
+	private static final String PROPERTY_VARIABLE_TYPE_SUFFIX = "Type";
 	/** The variable values property suffix. */
-	public static final String PROPERTY_VARIABLE_VALUES_SUFFIX = "Values";
+	private static final String PROPERTY_VARIABLE_VALUES_SUFFIX = "Values";
+	/** The initial seed. */
+	private static final String PROPERTY_SEED = "seed";
 	/** Min number of iterations (i.e. samples to generate). */
-	public static final String PROPERTY_MINSAMPLES = "minSamples";
+	private static final String PROPERTY_MINSAMPLES = "minSamples";
 	/** Max number of iterations (i.e. samples to generate). */
-	public static final String PROPERTY_MAXSAMPLES = "maxSamples";
+	private static final String PROPERTY_MAXSAMPLES = "maxSamples";
 	/** Min value a sample can take. */
-	public static final String PROPERTY_MINSAMPLEVALUE = "minSampleValue";
+	private static final String PROPERTY_MINSAMPLEVALUE = "minSampleValue";
 	/** Max value a sample can take, -1 for unlimited. */
-	public static final String PROPERTY_MAXSAMPLEVALUE = "maxSampleValue";
+	private static final String PROPERTY_MAXSAMPLEVALUE = "maxSampleValue";
 	/** The distribution type to be used when evaluating the confidence. */
-	public static final String PROPERTY_DISTRIBUTIONTYPE = "distributionType";
+	private static final String PROPERTY_DISTRIBUTIONTYPE = "distributionType";
 	/** The requested range of confidence interval (% with respect to average value), after which the experiment can be stopped. */
-	public static final String PROPERTY_REQUESTEDCONFIDENCE = "requestedConfidence";
+	private static final String PROPERTY_REQUESTEDCONFIDENCE = "requestedConfidence";
 
 	public enum VariableType {INT, DOUBLE};
 
+	// experiment setup parameters
+	private String[] vars;
+	private VariableType[] types;
+	private String[][] values;
+	private int cardinality;
+	private String[][] experimentSetups;
+	// experiment randomness parameters
+	int seed;
+	int minSamples;
+	int maxSamples;
+	double min;
+	double max;
+	DistributionType distribution;
+	double requestedConfidence;
+
 	private String getProperty(Properties properties, String propertyName) throws MMTFException {
 
-		String property = properties.getProperty(PROPERTY_MINSAMPLES);
+		String property = properties.getProperty(propertyName);
 		if (property == null) {
 			throw new MMTFException("Missing property " + propertyName);
 		}
 
 		return property;
+	}
+
+	private void readProperties(Properties properties) throws Exception {
+
+		// outer cycle parameters: vary experiment setup
+		vars = getProperty(properties, PROPERTY_VARIABLES).split(PROPERTY_SEPARATOR);
+		types = new VariableType[vars.length];
+		values = new String[vars.length][];
+		cardinality = 1;
+		for (int i = 0; i < vars.length; i++) {
+			types[i] = VariableType.valueOf(getProperty(properties, vars[i]+PROPERTY_VARIABLE_TYPE_SUFFIX));
+			values[i] = getProperty(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX).split(PROPERTY_SEPARATOR);
+			cardinality *= values[i].length;
+		}
+
+		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
+		seed = Integer.parseInt(getProperty(properties, PROPERTY_SEED));
+		minSamples = Integer.parseInt(getProperty(properties, PROPERTY_MINSAMPLES));
+		maxSamples = Integer.parseInt(getProperty(properties, PROPERTY_MAXSAMPLES));
+		min = Double.parseDouble(getProperty(properties, PROPERTY_MINSAMPLEVALUE));
+		max = Double.parseDouble(getProperty(properties, PROPERTY_MAXSAMPLEVALUE));
+		if (max == -1) {
+			max = Double.MAX_VALUE;
+		}
+		distribution = DistributionType.valueOf(getProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
+		requestedConfidence = Double.parseDouble(getProperty(properties, PROPERTY_REQUESTEDCONFIDENCE));
+	}
+
+	private void writeProperties(Properties properties, ExperimentSamples experiment, int experimentIndex) {
+
+		properties.setProperty("resultLow", String.valueOf(experiment.getLowerConfidence()));
+		properties.setProperty("resultAvg", String.valueOf(experiment.getAverage()));
+		properties.setProperty("resultUp", String.valueOf(experiment.getUpperConfidence()));
+		for (int i = 0; i < vars.length; i++) {
+			properties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
+		}
+	}
+
+	private void cartesianProduct(String[][] experimentSetups) {
+
+		for (int i = 0; i < cardinality; i++) {
+			int k = 1;
+			for (int j = 0; j < values.length; j++) {
+				String[] value = values[j];
+				String choice = value[(i/k) % value.length];
+				experimentSetups[i][j] = choice;
+				k *= value.length;
+			}
+		}
 	}
 
 	@Override
@@ -67,62 +136,40 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		Model model = actualParameters.get(0);
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String propertiesFile =
+		String inputPropertiesFile =
 			workspaceUri +
 			baseUri +
-			PROPERTIES_FILE;
-		Properties properties = new Properties();
-		properties.load(new FileInputStream(propertiesFile));
+			INPUT_PROPERTIES_FILE;
+		Properties inputProperties = new Properties();
+		inputProperties.load(new FileInputStream(inputPropertiesFile));
+		readProperties(inputProperties);
 
-		// initial seed?
-		// output file/format?
-		//TODO MMTF: prepare three functions: 1 read properties, 2 outer cycle, 3 inner cycle
-		String[] vars = getProperty(properties, PROPERTY_VARIABLES).split(PROPERTY_SEPARATOR);
-		VariableType[] types = new VariableType[vars.length];
-		String[][] values = new String[vars.length][];
-		for (int i = 0; i < vars.length; i++) {
-			types[i] = VariableType.valueOf(getProperty(properties, vars[i]+PROPERTY_VARIABLE_TYPE_SUFFIX));
-			values[i] = getProperty(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX).split(PROPERTY_SEPARATOR);
-		}
-
-		// outer cycle: variate experiment setup
-		for (int i = 0; i < vars.length; i++) {
-			for (int j = 0; j < values[i].length; j++) {
-				for (int i2 = 0; i2 < vars.length; i2++) {
-					for (int j2 = 0; j2 < values[i2].length; j2++) {
-						String[] experimentSetup = new String[vars.length];
-						//TODO MMTF: first tentative, to be continued..
-					}
+		// prepare experiment setup
+		experimentSetups = new String[cardinality][vars.length];
+		cartesianProduct(experimentSetups);
+		for (int i = 0; i < cardinality; i++) { // outer cycle: vary experiment setup
+			ExperimentSamples experiment = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
+			for (int j = 0; j < maxSamples; j++) { // inner cycle: experiment setup is fixed, vary randomness and statistics
+				//TODO MMTF: runOperator(experimentSetups[i], types, seed);
+				//TODO MMTF: chain operators
+				double sample = new Random().nextDouble();
+				boolean confidenceOk = experiment.addSample(sample);
+				if (confidenceOk && j >= minSamples) {
+					break;
 				}
 			}
+			// save output
+			// TODO MMTF: output file/format?
+			File dir = new File(workspaceUri + baseUri + "experiment" + i);
+			dir.mkdir();
+			String outputPropertiesFile =
+				dir.getAbsolutePath() +
+				IPath.SEPARATOR +
+				"result.properties";
+			Properties outputProperties = new Properties();
+			writeProperties(outputProperties, experiment, i);
+			outputProperties.store(new FileOutputStream(outputPropertiesFile), "");
 		}
-
-		// inner cycle: experiment setup is fixed, only randomness counts
-		int minSamples = Integer.parseInt(getProperty(properties, PROPERTY_MINSAMPLES));
-		int maxSamples = Integer.parseInt(getProperty(properties, PROPERTY_MAXSAMPLES));
-		double min = Double.parseDouble(getProperty(properties, PROPERTY_MINSAMPLEVALUE));
-		double max = Double.parseDouble(getProperty(properties, PROPERTY_MAXSAMPLEVALUE));
-		if (max == -1) {
-			max = Double.MAX_VALUE;
-		}
-		DistributionType distribution = DistributionType.valueOf(getProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
-		double requestedConfidence = Double.parseDouble(getProperty(properties, PROPERTY_REQUESTEDCONFIDENCE));
-
-		//TODO MMTF: outer cycle -> variate experiment setup
-		//TODO MMTF: inner cycle-> setup is constant, create sample by running X, evaluate confidence interval
-		ExperimentSamples experiment = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
-		for (int i = 0; i < maxSamples; i++) {
-			double sample = 0;//TODO MMTF: run right operator
-			boolean confidenceOk = experiment.addSample(sample);
-			if (confidenceOk && i >= minSamples) {
-				break;
-			}
-		}
-
-		//TODO MMTF: save results somewhere
-		experiment.getLowerConfidence();
-		experiment.getAverage();
-		experiment.getUpperConfidence();
 
 		return null;
 	}
