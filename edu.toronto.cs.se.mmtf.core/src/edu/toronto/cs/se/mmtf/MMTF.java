@@ -756,7 +756,8 @@ modelRef:
 		MultiModel root = null;
 		try {			
 			// TODO MMTF: store types.mid in a proper location
-			root = (MultiModel) MultiModelTypeIntrospection.getRoot("/try/demo/types.mid");
+			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
+			root = (MultiModel) MultiModelTypeIntrospection.getRoot(path+"/types.mid");
 		}
 		catch (Exception e) {
 			return;
@@ -820,10 +821,10 @@ modelRef:
 		initTypeHierarchy();
 
 		//TODO MMTF: do this on demand, with a button somewhere
+		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(
-			URI.createPlatformResourceURI("/try/demo/types.mid", true)
-		);
+			URI.createFileURI(path+"/types.mid"));
 		resource.getContents().add(repository);
 		try {
 			resource.save(Collections.EMPTY_MAP);

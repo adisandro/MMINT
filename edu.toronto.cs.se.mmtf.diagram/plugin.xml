@@ -710,6 +710,31 @@ Contributors:
          </dynamic>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="MMTFMenu"
+               label="MMTF">
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.diagram.openTypesMID"
+                  label="Open Types MID"
+                  style="push"
+                  tooltip="Open the model interconnection diagram for all types defined in MMTF">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.OpenTypesMIDHandler"
+            id="edu.toronto.cs.se.mmtf.diagram.openTypesMID"
+            name="Open Types MID">
+      </command>
+   </extension>
 
    <!-- optionally, specify keybindings -->
 </plugin>
