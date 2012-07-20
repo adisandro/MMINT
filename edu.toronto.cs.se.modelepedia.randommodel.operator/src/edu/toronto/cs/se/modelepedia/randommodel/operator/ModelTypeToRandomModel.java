@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.randommodel.operator;
 
 import java.util.Date;
+import java.util.Properties;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -28,18 +29,34 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
 
 public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
 	private static final String TYPEGRAPH_SUFFIX = "_typegraph_";
 	private Model newElement;
+	/** Min number of instances in the random model. */
+	private static final String PROPERTY_MININSTANCES = "minInstances";
+	/** Max number of instances in the random model. */
+	private static final String PROPERTY_MAXINSTANCES = "maxInstances";
+
+	private int minInstances;
+	private int maxInstances;
+
+	private void readProperties(Properties properties) throws Exception {
+
+		minInstances = OperatorUtils.getIntProperty(properties, PROPERTY_MININSTANCES);
+		maxInstances = OperatorUtils.getIntProperty(properties, PROPERTY_MAXINSTANCES);
+	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// convert and serialize
 		Model model = actualParameters.get(0);
+		Properties inputProperties = OperatorUtils.getInputPropertiesFile(this, model, null, false);
+		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String typegraphUri =
 			baseUri +
@@ -52,6 +69,11 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		atl.doEcoreToRandomModel(new NullProgressMonitor());
 		atl.saveModels(typegraphUri);
 
+		EList<Model> result = new BasicEList<Model>();
+		if (!OperatorUtils.isUpdatingMid(inputProperties)) {
+			return result;
+		}
+
 		// create model
 		URI modelUri = URI.createPlatformResourceURI(typegraphUri, true);
 		MultiModel owner = (MultiModel) model.eContainer();
@@ -61,10 +83,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		if (editor != null) {
 			MultiModelFactoryUtils.addModelEditor(editor, owner);
 		}
-
-		EList<Model> result = new BasicEList<Model>();
 		result.add(newElement);
-
 		return result;
 	}
 
