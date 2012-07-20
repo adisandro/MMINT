@@ -16,7 +16,7 @@ public class ExperimentSamples {
 	/** Distribution types. */
 	public enum DistributionType {T_STUDENT_95, T_STUDENT_99};
 
-	// index = degrees of freedom -1, 95% confidence
+	// index = degrees of freedom -1 (remember that array index starts from 0 though), 95% confidence
 	private static final double[] T_STUDENT_95 = {
 		12.71,
 		4.303,
@@ -40,7 +40,7 @@ public class ExperimentSamples {
 		2.086
 	};
 
-	// index = degrees of freedom -1, 99% confidence
+	// index = degrees of freedom -1 (remember that array index starts from 0 though), 99% confidence
 	private static final double[] T_STUDENT_99 = {
 		63.66,
 		9.925,

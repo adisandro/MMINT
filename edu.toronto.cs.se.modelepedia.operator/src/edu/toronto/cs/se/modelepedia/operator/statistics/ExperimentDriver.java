@@ -11,25 +11,18 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.statistics;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.Properties;
 import java.util.Random;
 
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
 import edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentSamples.DistributionType;
 
 public class ExperimentDriver extends OperatorExecutableImpl {
 
-	/** The property file name. */
-	private static final String INPUT_PROPERTIES_FILE = "experiment.properties";
 	/** The separator for multiple properties with the same key. */
 	private static final String PROPERTY_SEPARATOR = ",";
 	/** The variables to variate the experiment setup. */
@@ -70,40 +63,27 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	DistributionType distribution;
 	double requestedConfidence;
 
-	private String getProperty(Properties properties, String propertyName) throws MMTFException {
-
-		String property = properties.getProperty(propertyName);
-		if (property == null) {
-			throw new MMTFException("Missing property " + propertyName);
-		}
-
-		return property;
-	}
-
 	private void readProperties(Properties properties) throws Exception {
 
 		// outer cycle parameters: vary experiment setup
-		vars = getProperty(properties, PROPERTY_VARIABLES).split(PROPERTY_SEPARATOR);
+		vars = OperatorUtils.getStringProperty(properties, PROPERTY_VARIABLES).split(PROPERTY_SEPARATOR);
 		types = new VariableType[vars.length];
 		values = new String[vars.length][];
 		cardinality = 1;
 		for (int i = 0; i < vars.length; i++) {
-			types[i] = VariableType.valueOf(getProperty(properties, vars[i]+PROPERTY_VARIABLE_TYPE_SUFFIX));
-			values[i] = getProperty(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX).split(PROPERTY_SEPARATOR);
+			types[i] = VariableType.valueOf(OperatorUtils.getStringProperty(properties, vars[i]+PROPERTY_VARIABLE_TYPE_SUFFIX));
+			values[i] = OperatorUtils.getStringProperty(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX).split(PROPERTY_SEPARATOR);
 			cardinality *= values[i].length;
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = Integer.parseInt(getProperty(properties, PROPERTY_SEED));
-		minSamples = Integer.parseInt(getProperty(properties, PROPERTY_MINSAMPLES));
-		maxSamples = Integer.parseInt(getProperty(properties, PROPERTY_MAXSAMPLES));
-		min = Double.parseDouble(getProperty(properties, PROPERTY_MINSAMPLEVALUE));
-		max = Double.parseDouble(getProperty(properties, PROPERTY_MAXSAMPLEVALUE));
-		if (max == -1) {
-			max = Double.MAX_VALUE;
-		}
-		distribution = DistributionType.valueOf(getProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
-		requestedConfidence = Double.parseDouble(getProperty(properties, PROPERTY_REQUESTEDCONFIDENCE));
+		seed = OperatorUtils.getIntProperty(properties, PROPERTY_SEED);
+		minSamples = OperatorUtils.getIntProperty(properties, PROPERTY_MINSAMPLES);
+		maxSamples = OperatorUtils.getIntProperty(properties, PROPERTY_MAXSAMPLES);
+		min = OperatorUtils.getDoubleProperty(properties, PROPERTY_MINSAMPLEVALUE);
+		max = OperatorUtils.getDoubleProperty(properties, PROPERTY_MAXSAMPLEVALUE);
+		distribution = DistributionType.valueOf(OperatorUtils.getStringProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
+		requestedConfidence = OperatorUtils.getDoubleProperty(properties, PROPERTY_REQUESTEDCONFIDENCE);
 	}
 
 	private void writeProperties(Properties properties, ExperimentSamples experiment, int experimentIndex) {
@@ -134,15 +114,14 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		// get experiment properties
 		Model model = actualParameters.get(0);
-		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String inputPropertiesFile =
-			workspaceUri +
-			baseUri +
-			INPUT_PROPERTIES_FILE;
-		Properties inputProperties = new Properties();
-		inputProperties.load(new FileInputStream(inputPropertiesFile));
+		Properties inputProperties = OperatorUtils.getInputPropertiesFile(this, model, null, false);
 		readProperties(inputProperties);
+
+		//TODO MMTF: concatenare properties per ogni operatore
+		//TODO MMTF: prevedere properties per operatore ModelTypeToRandomModel(updateMid,minInstances,maxInstances)
+		//TODO MMTF: leggerle e usarle
+		//TODO MMTF: prevedere properties per operatore RandomModelGenerate(updateMid,annotated,set,may,var)
+		//TODO MMTF: leggerle e usarle
 
 		// prepare experiment setup
 		experimentSetups = new String[cardinality][vars.length];
@@ -160,15 +139,9 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			}
 			// save output
 			// TODO MMTF: output file/format?
-			File dir = new File(workspaceUri + baseUri + "experiment" + i);
-			dir.mkdir();
-			String outputPropertiesFile =
-				dir.getAbsolutePath() +
-				IPath.SEPARATOR +
-				"result.properties";
 			Properties outputProperties = new Properties();
 			writeProperties(outputProperties, experiment, i);
-			outputProperties.store(new FileOutputStream(outputPropertiesFile), "");
+			OperatorUtils.writeOutputPropertiesFile(outputProperties, this, model, "experiment" + i, true);
 		}
 
 		return null;
