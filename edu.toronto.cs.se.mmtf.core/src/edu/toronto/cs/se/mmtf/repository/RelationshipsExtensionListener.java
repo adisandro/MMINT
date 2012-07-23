@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -66,7 +67,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				MMTF.removeModelType(uri);
+				MMTFRegistry.removeModelType(uri);
 				MMTF.initTypeHierarchy();
 			}
 		}

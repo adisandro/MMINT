@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
@@ -58,7 +59,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 	protected void doExecuteTypesLevel() {
 
-		MMTF.removeModelType(((ModelRel) getElementToDestroy()).getUri());
+		MMTFRegistry.removeModelType(((ModelRel) getElementToDestroy()).getUri());
 	}
 
 	/**

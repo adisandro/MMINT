@@ -260,7 +260,7 @@ public class MMTF implements MMTFExtensionPoints {
 						}
 						catch (MMTFException e) {
 							MMTFException.print(Type.WARNING, "Model element can't be registered", e);
-							removeModelType(modelRel.getUri());
+							MMTFRegistry.removeModelType(modelRel.getUri());
 							return null;
 						}
 						model.getElements().add(element);
@@ -285,7 +285,7 @@ public class MMTF implements MMTFExtensionPoints {
 			}
 			catch (MMTFException e) {
 				MMTFException.print(Type.WARNING, "Link can't be registered", e);
-				removeModelType(modelRel.getUri());
+				MMTFRegistry.removeModelType(modelRel.getUri());
 				return null;
 			}
 			link.setUnbounded(linkUnbounded);
@@ -526,58 +526,6 @@ modelRef:
 				}
 				for (String fileExtension : extensions.split(",")) {
 					editor.getFileExtensions().add(fileExtension);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Removes a model type from the repository.
-	 * 
-	 * @param uri
-	 *            The model type uri.
-	 */
-	public static void removeModelType(String uri) {
-
-		//TODO MMTF: broken, can't delete element of a list while iterating it
-		ExtendibleElement removedElement = repository.getExtendibleTable().removeKey(uri);
-		if (removedElement != null && removedElement instanceof Model) {
-			Model model = (Model) removedElement;
-			repository.getModels().remove(model);
-			// remove operator types that use the model type
-			for (Operator operatorType : repository.getOperators()) {
-				for (Parameter par : operatorType.getInputs()) {
-					if (par.getModel().getUri().equals(uri)) {
-						removeOperatorType(operatorType.getUri());
-					}
-				}
-				for (Parameter par : operatorType.getOutputs()) {
-					if (par.getModel().getUri().equals(uri)) {
-						removeOperatorType(operatorType.getUri());
-					}
-				}
-			}
-			// remove model elements, if any
-			for (ModelElement element : model.getElements()) {
-				repository.getExtendibleTable().removeKey(element.getUri());
-			}
-			// remove model relationship specific structures
-			if (model instanceof ModelRel) {
-				for (Link link : ((ModelRel) model).getLinks()) {
-					repository.getExtendibleTable().removeKey(link.getUri());
-				}
-			}
-			// remove model relationships that use this model, and subtypes
-			for (Model relatedModel : MMTFRegistry.getModelTypes()) {
-				// model relationships
-				if (relatedModel instanceof ModelRel) {
-					if (((ModelRel) relatedModel).getModels().contains(model)) {
-						removeModelType(relatedModel.getUri());
-					}
-				}
-				// subtypes
-				if (MMTFRegistry.isSubtypeOf(relatedModel.getUri(), uri)) {
-					removeModelType(relatedModel.getUri());
 				}
 			}
 		}
@@ -1094,13 +1042,72 @@ modelRef:
 			return newLinkType;
 		}
 
+		/**
+		 * Removes a model type from the repository.
+		 * 
+		 * @param uri
+		 *            The model type uri.
+		 */
+		public static void removeModelType(String uri) {
+			ArrayList<Operator> delOperatorTypes = new ArrayList<Operator>();
+			ArrayList<Model> delModelTypes = new ArrayList<Model>();
+			
+			ExtendibleElement removedElement = repository.getExtendibleTable().removeKey(uri);
+			if (removedElement != null && removedElement instanceof Model) {
+				Model model = (Model) removedElement;
+				repository.getModels().remove(model);
+				// remove operator types that use the model type
+				for (Operator operatorType : repository.getOperators()) {
+					for (Parameter par : operatorType.getInputs()) {
+						if (par.getModel().getUri().equals(uri)) {
+							delOperatorTypes.add(operatorType);
+						}
+					}
+					for (Parameter par : operatorType.getOutputs()) {
+						if (par.getModel().getUri().equals(uri)) {
+							delOperatorTypes.add(operatorType);
+						}
+					}
+				}
+				for (Operator operatorType : delOperatorTypes) {
+					removeOperatorType(operatorType.getUri());
+				}
+				// remove model elements, if any
+				for (ModelElement element : model.getElements()) {
+					repository.getExtendibleTable().removeKey(element.getUri());
+				}
+				// remove model relationship specific structures
+				if (model instanceof ModelRel) {
+					for (Link link : ((ModelRel) model).getLinks()) {
+						repository.getExtendibleTable().removeKey(link.getUri());
+					}
+				}
+				// remove model relationships that use this model, and subtypes
+				for (Model relatedModel : MMTFRegistry.getModelTypes()) {
+					// model relationships
+					if (relatedModel instanceof ModelRel) {
+						if (((ModelRel) relatedModel).getModels().contains(model)) {
+							delModelTypes.add(relatedModel);
+						}
+					}
+					// subtypes
+					if (MMTFRegistry.isSubtypeOf(relatedModel.getUri(), uri)) {
+						delModelTypes.add(relatedModel);
+					}
+				}
+				for (Model modelType : delModelTypes) {
+					removeModelType(modelType.getUri());
+				}
+			}
+		}
+		
 		public static void removeLightModelTypeRef(ModelRel modelRelType, Model modelType) {
-
+			ArrayList<ModelReference> delModelRefs = new ArrayList<ModelReference>();
 			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 			//TODO MMTF: if I enable binary rels to self how can I distinguish the right model ref to delete (every ref must be bidirectional)
 			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
 				if (modelTypeRef.getObject() == modelType) {
-					modelRelType.getModelRefs().remove(modelTypeRef);
+					delModelRefs.add(modelTypeRef);
 					ArrayList<Link> delLinkTypes = new ArrayList<Link>();
 					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
 						modelType.getElements().remove(modelElemTypeRef.getObject());
@@ -1120,6 +1127,9 @@ modelRef:
 					}
 					break;
 				}
+			}
+			for (ModelReference modelTypeRef : delModelRefs) {
+				modelRelType.getModelRefs().remove(modelTypeRef);
 			}
 		}
 
