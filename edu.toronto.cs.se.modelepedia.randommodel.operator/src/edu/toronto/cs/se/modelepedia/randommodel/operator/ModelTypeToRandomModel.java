@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.operator;
 
+import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.Properties;
 
@@ -22,6 +23,9 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -30,6 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
+import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
 
 public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
@@ -84,6 +89,17 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 			MultiModelFactoryUtils.addModelEditor(editor, owner);
 		}
 		result.add(newElement);
+
+		// set min and max number of instances
+		RandomModel root = (RandomModel) newElement.getRoot();
+		root.setDefaultMinimumNumberOfInstances(minInstances);
+		root.setDefaultMaximumNumberOfInstances(maxInstances);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI.createPlatformResourceURI(newElement.getUri(), true));
+		resource.getContents().add(root);
+		FileOutputStream out = new FileOutputStream(ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + newElement.getUri());
+		resource.save(out, null);
+
 		return result;
 	}
 

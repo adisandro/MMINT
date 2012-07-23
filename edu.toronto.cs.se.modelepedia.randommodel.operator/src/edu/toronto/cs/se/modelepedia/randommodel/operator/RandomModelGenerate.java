@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.randommodel.operator;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
@@ -27,6 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
 
@@ -34,12 +36,35 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 
 	private static final String RANDOM_SUFFIX = "_random_";
 	private static final String PYTHON_SCRIPT = "/python/graph_gen.py";
+	/** % of annotated elements in the random model. */
+	private static final String PROPERTY_ANNOTATIONS = "annotations";
+	/** % of may elements among the annotated elements. */
+	private static final String PROPERTY_MAY = "may";
+	/** % of set elements among the annotated elements. */
+	private static final String PROPERTY_SET = "set";
+	/** % of var elements among the annotated elements. */
+	private static final String PROPERTY_VAR = "var";
+
+	private double annotations;
+	private double may;
+	private double set;
+	private double var;
+
+	private void readProperties(Properties properties) throws Exception {
+
+		annotations = OperatorUtils.getDoubleProperty(properties, PROPERTY_ANNOTATIONS);
+		may = OperatorUtils.getDoubleProperty(properties, PROPERTY_MAY);
+		set = OperatorUtils.getDoubleProperty(properties, PROPERTY_SET);
+		var = OperatorUtils.getDoubleProperty(properties, PROPERTY_VAR);
+	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// create random instance
 		Model model = actualParameters.get(0);
+		Properties inputProperties = OperatorUtils.getInputPropertiesFile(this, model, null, false);
+		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String modelType = ((RandomModel) model.getRoot()).getName();
 		String randomUri =
@@ -59,11 +84,24 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			"-output",
 			workspaceUri + randomUri,
 			"-instname",
-			randomUri
+			randomUri,
+			"-annotated",
+			String.valueOf(annotations),
+			"-may",
+			String.valueOf(may),
+			"-set",
+			String.valueOf(set),
+			"-var",
+			String.valueOf(var)
 		};
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec(cmd);
 		p.waitFor();
+
+		EList<Model> result = new BasicEList<Model>();
+		if (!OperatorUtils.isUpdatingMid(inputProperties)) {
+			return result;
+		}
 
 		// create model
 		URI modelUri = URI.createPlatformResourceURI(randomUri, true);
@@ -74,8 +112,6 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		if (editor != null) {
 			MultiModelFactoryUtils.addModelEditor(editor, owner);
 		}
-
-		EList<Model> result = new BasicEList<Model>();
 		result.add(newElement);
 
 		return result;

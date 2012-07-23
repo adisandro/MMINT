@@ -118,10 +118,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		readProperties(inputProperties);
 
 		//TODO MMTF: concatenare properties per ogni operatore
-		//TODO MMTF: prevedere properties per operatore ModelTypeToRandomModel(updateMid,minInstances,maxInstances)
-		//TODO MMTF: leggerle e usarle
-		//TODO MMTF: prevedere properties per operatore RandomModelGenerate(updateMid,annotated,set,may,var)
-		//TODO MMTF: leggerle e usarle
 
 		// prepare experiment setup
 		experimentSetups = new String[cardinality][vars.length];
