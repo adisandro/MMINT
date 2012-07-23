@@ -300,7 +300,7 @@ linkTypes:
 		return type;
 	}
 
-	private static EObject getRoot(URI uri) throws Exception {
+	public static EObject getRoot(URI uri) throws Exception {
 
 		ResourceSet set = new ResourceSetImpl();
 		Resource resource = set.getResource(uri, true);

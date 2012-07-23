@@ -724,6 +724,12 @@ Contributors:
                   style="push"
                   tooltip="Open the model interconnection diagram for all types defined in MMTF">
             </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.diagram.syncRepository"
+                  label="Sync Repository"
+                  style="push"
+                  tooltip="Syncs the MMTF repository">
+            </command>
          </menu>
       </menuContribution>
    </extension>
@@ -733,6 +739,11 @@ Contributors:
             defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.OpenTypesMIDHandler"
             id="edu.toronto.cs.se.mmtf.diagram.openTypesMID"
             name="Open Types MID">
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.SyncRepositoryHandler"
+            id="edu.toronto.cs.se.mmtf.diagram.syncRepository"
+            name="Sync Repository">
       </command>
    </extension>
 

@@ -18,8 +18,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
@@ -59,8 +60,11 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 	}
 
 	protected void doExecuteTypesLevel() {
-
-		MMTFRegistry.removeModelType(((BinaryModelRel) getElementToDestroy()).getUri());
+		
+		Model modelType = (BinaryModelRel) getElementToDestroy();
+		MultiModel multiModel = (MultiModel) modelType.eContainer();
+		MMTFRegistry.removeModelType(modelType);
+		MMTFRegistry.updateRepository(multiModel);
 	}
 
 	/**

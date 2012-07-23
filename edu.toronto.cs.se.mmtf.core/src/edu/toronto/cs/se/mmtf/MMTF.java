@@ -260,7 +260,7 @@ public class MMTF implements MMTFExtensionPoints {
 						}
 						catch (MMTFException e) {
 							MMTFException.print(Type.WARNING, "Model element can't be registered", e);
-							MMTFRegistry.removeModelType(modelRel.getUri());
+							MMTFRegistry.removeModelType(modelRel);
 							return null;
 						}
 						model.getElements().add(element);
@@ -285,7 +285,7 @@ public class MMTF implements MMTFExtensionPoints {
 			}
 			catch (MMTFException e) {
 				MMTFException.print(Type.WARNING, "Link can't be registered", e);
-				MMTFRegistry.removeModelType(modelRel.getUri());
+				MMTFRegistry.removeModelType(modelRel);
 				return null;
 			}
 			link.setUnbounded(linkUnbounded);
@@ -703,11 +703,12 @@ modelRef:
 
 		MultiModel root = null;
 		try {			
-			// TODO MMTF: store types.mid in a proper location
 			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-			root = (MultiModel) MultiModelTypeIntrospection.getRoot(path+"/types.mid");
+			URI uri = URI.createFileURI(path+"/types.mid");
+			root = (MultiModel) MultiModelTypeIntrospection.getRoot(uri);
 		}
 		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Could not locate types.mid", e);
 			return;
 		}
 		
@@ -808,7 +809,11 @@ modelRef:
 	public static class MMTFRegistry {
 
 		public static void updateRepository(MultiModel multiModel) {
-
+			
+			//TODO MMTF: Encapsulate updateRepository in a command and chain
+			//TODO MMTF: with other commands that modify the repository
+			//TODO MMTF: so that undos are also reflected in the repository as
+			//TODO MMTF: well as the diagram
 			EList<OperatorExecutable> executables = new BasicEList<OperatorExecutable>();
 			for (Operator operator : repository.getOperators()) {
 				executables.add(operator.getExecutable());
@@ -1045,41 +1050,44 @@ modelRef:
 		/**
 		 * Removes a model type from the repository.
 		 * 
-		 * @param uri
-		 *            The model type uri.
+		 * @param modelType
+		 *            The model type to be removed.
 		 */
-		public static void removeModelType(String uri) {
-			ArrayList<Operator> delOperatorTypes = new ArrayList<Operator>();
-			ArrayList<Model> delModelTypes = new ArrayList<Model>();
+		public static void removeModelType(Model modelType) {
+			String uri = modelType.getUri();
+			MultiModel multiModel = (MultiModel) modelType.eContainer();
 			
-			ExtendibleElement removedElement = repository.getExtendibleTable().removeKey(uri);
+			ArrayList<String> delOperatorTypes = new ArrayList<String>();
+			ArrayList<String> delModelTypes = new ArrayList<String>();
+			
+			ExtendibleElement removedElement = multiModel.getExtendibleTable().removeKey(uri);
 			if (removedElement != null && removedElement instanceof Model) {
 				Model model = (Model) removedElement;
-				repository.getModels().remove(model);
+				multiModel.getModels().remove(model);
 				// remove operator types that use the model type
-				for (Operator operatorType : repository.getOperators()) {
+				for (Operator operatorType : multiModel.getOperators()) {
 					for (Parameter par : operatorType.getInputs()) {
 						if (par.getModel().getUri().equals(uri)) {
-							delOperatorTypes.add(operatorType);
+							delOperatorTypes.add(operatorType.getUri());
 						}
 					}
 					for (Parameter par : operatorType.getOutputs()) {
 						if (par.getModel().getUri().equals(uri)) {
-							delOperatorTypes.add(operatorType);
+							delOperatorTypes.add(operatorType.getUri());
 						}
 					}
 				}
-				for (Operator operatorType : delOperatorTypes) {
-					removeOperatorType(operatorType.getUri());
+				for (String operatorType : delOperatorTypes) {
+					removeOperatorType(operatorType);
 				}
 				// remove model elements, if any
 				for (ModelElement element : model.getElements()) {
-					repository.getExtendibleTable().removeKey(element.getUri());
+					multiModel.getExtendibleTable().removeKey(element.getUri());
 				}
 				// remove model relationship specific structures
 				if (model instanceof ModelRel) {
 					for (Link link : ((ModelRel) model).getLinks()) {
-						repository.getExtendibleTable().removeKey(link.getUri());
+						multiModel.getExtendibleTable().removeKey(link.getUri());
 					}
 				}
 				// remove model relationships that use this model, and subtypes
@@ -1087,16 +1095,17 @@ modelRef:
 					// model relationships
 					if (relatedModel instanceof ModelRel) {
 						if (((ModelRel) relatedModel).getModels().contains(model)) {
-							delModelTypes.add(relatedModel);
+							delModelTypes.add(relatedModel.getUri());
 						}
 					}
 					// subtypes
 					if (MMTFRegistry.isSubtypeOf(relatedModel.getUri(), uri)) {
-						delModelTypes.add(relatedModel);
+						delModelTypes.add(relatedModel.getUri());
 					}
 				}
-				for (Model modelType : delModelTypes) {
-					removeModelType(modelType.getUri());
+				for (String relatedModelType : delModelTypes) {
+					Model relatedModel = (Model)multiModel.getExtendibleTable().get(relatedModelType);
+					if (relatedModel != null) removeModelType(relatedModel);
 				}
 			}
 		}

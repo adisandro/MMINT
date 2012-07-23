@@ -13,10 +13,14 @@ package edu.toronto.cs.se.mmtf.repository;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.emf.common.util.URI;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -64,14 +68,23 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 	 */
 	@Override
 	public void removed(IExtension[] extensions) {
-
+		MultiModel root = null;
+		try {			
+			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
+			URI uri = URI.createFileURI(path+"/types.mid");
+			root = (MultiModel) MultiModelTypeIntrospection.getRoot(uri);
+		}
+		catch (Exception e) {
+			return;
+		}
+		
 		IConfigurationElement[] config;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				MMTFRegistry.removeModelType(uri);
-				MMTF.initTypeHierarchy();
+				MMTFRegistry.removeModelType((Model)root.getExtendibleTable().get(uri));
+				MMTFRegistry.updateRepository(root);
 			}
 		}
 	}
