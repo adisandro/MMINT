@@ -81,6 +81,7 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 
 import edu.toronto.cs.se.mmtf.MMTFActivator;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.navigator.MidNavigatorItem;
@@ -245,7 +246,7 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 		// Fix for saving types.middiag outside of workspace
 		MultiModel multiModel = (MultiModel) this.getDiagram().getElement();
 		
-		if (multiModel.getLevel().getValue() == 1) {
+		if (multiModel.getLevel() == MidLevel.TYPES) {
 			updateState(getEditorInput());
 			validateState(getEditorInput());
 			performSave(false, progressMonitor);
