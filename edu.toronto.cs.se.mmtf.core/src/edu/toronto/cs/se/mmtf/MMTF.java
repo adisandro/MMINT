@@ -1247,6 +1247,23 @@ modelRef:
 		}
 
 		/**
+		 * Gets an operator type.
+		 * 
+		 * @param operatorTypeUri
+		 *            The uri of the operator type.
+		 * @return The operator type, or null if its uri is not found or found
+		 *         not to be an operator.
+		 */
+		public static Operator getOperatorType(String operatorTypeUri) {
+
+			ExtendibleElement operator = getExtendibleType(operatorTypeUri);
+			if (operator instanceof Operator) {
+				return (Operator) operator;
+			}
+			return null;
+		}
+
+		/**
 		 * Gets the list of registered model types.
 		 * 
 		 * @return The list of registered model types.

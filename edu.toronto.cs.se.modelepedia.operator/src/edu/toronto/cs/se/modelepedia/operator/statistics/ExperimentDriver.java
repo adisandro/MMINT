@@ -16,21 +16,20 @@ import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
 import edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentSamples.DistributionType;
 
 public class ExperimentDriver extends OperatorExecutableImpl {
 
-	/** The separator for multiple properties with the same key. */
-	private static final String PROPERTY_SEPARATOR = ",";
 	/** The variables to variate the experiment setup. */
 	private static final String PROPERTY_VARIABLES = "variables";
-	/** The variable type property suffix. */
-	private static final String PROPERTY_VARIABLE_TYPE_SUFFIX = "Type";
 	/** The variable values property suffix. */
-	private static final String PROPERTY_VARIABLE_VALUES_SUFFIX = "Values";
+	private static final String PROPERTY_VARIABLE_VALUES_SUFFIX = ".values";
 	/** The initial seed. */
 	private static final String PROPERTY_SEED = "seed";
 	/** Min number of iterations (i.e. samples to generate). */
@@ -45,12 +44,15 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_DISTRIBUTIONTYPE = "distributionType";
 	/** The requested range of confidence interval (% with respect to average value), after which the experiment can be stopped. */
 	private static final String PROPERTY_REQUESTEDCONFIDENCE = "requestedConfidence";
-
-	public enum VariableType {INT, DOUBLE};
+	/** The operators to be launched in the outer experiment setup cycle. */
+	private static final String PROPERTY_EXPERIMENTOPERATORS = "experimentOperators";
+	/** The operators to be launched in the inner statistics cycle. */
+	private static final String PROPERTY_STATISTICSOPERATORS = "statisticsOperators";
+	/** The variable operators property suffix. */
+	private static final String PROPERTY_VARIABLE_OPERATORS_SUFFIX = ".operator";
 
 	// experiment setup parameters
 	private String[] vars;
-	private VariableType[] types;
 	private String[][] values;
 	private int cardinality;
 	private String[][] experimentSetups;
@@ -62,17 +64,19 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	double max;
 	DistributionType distribution;
 	double requestedConfidence;
+	// experiment operators
+	private String[] experimentOperators;
+	private String[] statisticsOperators;
+	private String[][] varsOperators;
 
 	private void readProperties(Properties properties) throws Exception {
 
 		// outer cycle parameters: vary experiment setup
-		vars = OperatorUtils.getStringProperty(properties, PROPERTY_VARIABLES).split(PROPERTY_SEPARATOR);
-		types = new VariableType[vars.length];
+		vars = OperatorUtils.getStringProperties(properties, PROPERTY_VARIABLES);
 		values = new String[vars.length][];
 		cardinality = 1;
 		for (int i = 0; i < vars.length; i++) {
-			types[i] = VariableType.valueOf(OperatorUtils.getStringProperty(properties, vars[i]+PROPERTY_VARIABLE_TYPE_SUFFIX));
-			values[i] = OperatorUtils.getStringProperty(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX).split(PROPERTY_SEPARATOR);
+			values[i] = OperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX);
 			cardinality *= values[i].length;
 		}
 
@@ -84,6 +88,14 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		max = OperatorUtils.getDoubleProperty(properties, PROPERTY_MAXSAMPLEVALUE);
 		distribution = DistributionType.valueOf(OperatorUtils.getStringProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
 		requestedConfidence = OperatorUtils.getDoubleProperty(properties, PROPERTY_REQUESTEDCONFIDENCE);
+
+		// operators
+		experimentOperators = OperatorUtils.getStringProperties(properties, PROPERTY_EXPERIMENTOPERATORS);
+		statisticsOperators = OperatorUtils.getStringProperties(properties, PROPERTY_STATISTICSOPERATORS);
+		varsOperators = new String[vars.length][];
+		for (int i = 0; i < vars.length; i++) {
+			varsOperators[i] = OperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_OPERATORS_SUFFIX);
+		}
 	}
 
 	private void writeProperties(Properties properties, ExperimentSamples experiment, int experimentIndex) {
@@ -109,6 +121,45 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 	}
 
+	private EList<Model> executeOperator(int experimentIndex, String operatorUri, EList<Model> actualParameters) throws Exception {
+
+		// get operator
+		Operator operator = MMTFRegistry.getOperatorType(operatorUri);
+		if (operator == null) {
+			throw new MMTFException("Operator uri " + operatorUri + " is not registered");
+		}
+
+		// write operator input properties
+		Properties operatorProperties = new Properties();
+		for (int i = 0; i < varsOperators.length; i++) {
+			for (int j = 0; j < varsOperators[i].length; j++) {
+				if (varsOperators[i][j].equals(operatorUri)) {
+					operatorProperties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
+					break;
+				}
+			}
+		}
+//		OperatorUtils.writePropertiesFile(
+//			operatorProperties,
+//			operator.getExecutable(),
+//			actualParameters.get(0),
+//			"experiment" + experimentIndex,
+//			true,
+//			OperatorUtils.INPUT_PROPERTIES_SUFFIX
+//		);
+		//TODO MMTF: should I care about doing this in the subdir?
+		OperatorUtils.writePropertiesFile(
+			operatorProperties,
+			operator.getExecutable(),
+			actualParameters.get(0),
+			null,
+			false,
+			OperatorUtils.INPUT_PROPERTIES_SUFFIX
+		);
+
+		return operator.getExecutable().execute(actualParameters);
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -117,27 +168,44 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		Properties inputProperties = OperatorUtils.getInputPropertiesFile(this, model, null, false);
 		readProperties(inputProperties);
 
-		//TODO MMTF: concatenare properties per ogni operatore
-
 		// prepare experiment setup
 		experimentSetups = new String[cardinality][vars.length];
 		cartesianProduct(experimentSetups);
-		for (int i = 0; i < cardinality; i++) { // outer cycle: vary experiment setup
+
+		// outer cycle: vary experiment setup
+		for (int i = 0; i < cardinality; i++) {
+			EList<Model> outerParameters = actualParameters;
+			for (String operatorUri : experimentOperators) {
+				outerParameters = executeOperator(i, operatorUri, outerParameters);
+			}
 			ExperimentSamples experiment = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
-			for (int j = 0; j < maxSamples; j++) { // inner cycle: experiment setup is fixed, vary randomness and statistics
-				//TODO MMTF: runOperator(experimentSetups[i], types, seed);
-				//TODO MMTF: chain operators
+
+			// inner cycle: experiment setup is fixed, vary randomness and statistics
+			EList<Model> innerParameters = outerParameters;
+			for (int j = 0; j < maxSamples; j++) {
+				for (String operatorUri : statisticsOperators) {
+					innerParameters = executeOperator(i, operatorUri, innerParameters);
+				}
+				//TODO MMTF: read output from?
 				double sample = new Random().nextDouble();
 				boolean confidenceOk = experiment.addSample(sample);
 				if (confidenceOk && j >= minSamples) {
 					break;
 				}
 			}
+
 			// save output
 			// TODO MMTF: output file/format?
 			Properties outputProperties = new Properties();
 			writeProperties(outputProperties, experiment, i);
-			OperatorUtils.writeOutputPropertiesFile(outputProperties, this, model, "experiment" + i, true);
+			OperatorUtils.writePropertiesFile(
+				outputProperties,
+				this,
+				model,
+				"experiment" + i,
+				true,
+				OperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			);
 		}
 
 		return null;

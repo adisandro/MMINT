@@ -26,9 +26,11 @@ import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 
 public class OperatorUtils {
 
-	private static final String INPUT_PROPERTIES_SUFFIX = "In";
-	private static final String OUTPUT_PROPERTIES_SUFFIX = "Out";
+	public static final String INPUT_PROPERTIES_SUFFIX = "In";
+	public static final String OUTPUT_PROPERTIES_SUFFIX = "Out";
 	private static final String PROPERTIES_SUFFIX = ".properties";
+	/** The separator for multiple properties with the same key. */
+	private static final String PROPERTY_SEPARATOR = ",";
 	private static final String PROPERTY_UPDATEMID = "updateMid";
 
 	private static String getBaseUri(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir) {
@@ -64,11 +66,11 @@ public class OperatorUtils {
 		return inputProperties;
 	}
 
-	public static void writeOutputPropertiesFile(Properties outputProperties, OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir) throws Exception {
+	public static void writePropertiesFile(Properties outputProperties, OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir, String suffix) throws Exception {
 
 		String outputPropertiesFile =
 			getBaseUri(operator, anyOperatorParameter, subdirName, createSubdir) +
-			OUTPUT_PROPERTIES_SUFFIX +
+			suffix +
 			PROPERTIES_SUFFIX;
 		outputProperties.store(new FileOutputStream(outputPropertiesFile), "");
 	}
@@ -101,6 +103,11 @@ public class OperatorUtils {
 		}
 
 		return property;
+	}
+
+	public static String[] getStringProperties(Properties properties, String propertyName) throws MMTFException {
+
+		return getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR);
 	}
 
 	public static boolean isUpdatingMid(Properties properties) {

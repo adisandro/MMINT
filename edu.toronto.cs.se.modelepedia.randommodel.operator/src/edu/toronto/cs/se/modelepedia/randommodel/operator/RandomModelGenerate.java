@@ -76,6 +76,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry(PYTHON_SCRIPT);
 		String pythonPath = FileLocator.toFileURL(url).toString().substring(5); // cuts "file:/"
+		//TODO MMTF: consider seed and fix python script problems once and for all
 		String[] cmd = new String[] {
 			"python",
 			pythonPath,
