@@ -13,10 +13,12 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelChangeModelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelDelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelNewBinaryRelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelAddModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelChangeModelCommand;
@@ -31,6 +33,12 @@ import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
  * 
  */
 public class BinaryModelRelSemanticEditPolicy extends BinaryModelRelItemSemanticEditPolicy {
+
+	@Override
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+
+		return getGEFWrapper(new BinaryModelRelDelCommand(req));
+	}
 
 	/**
 	 * Gets the command to start creating a new link originating from a binary

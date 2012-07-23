@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
@@ -51,8 +52,20 @@ public class ModelDelCommand extends DestroyElementCommand {
 	public boolean canExecute() {
 
 		return
-			super.canExecute() &&
-			MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToDestroy().eContainer());
+			super.canExecute() && (
+				MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToDestroy().eContainer()) ||
+				((Model) getElementToDestroy()).isDynamic()
+			);
+	}
+
+	protected void doExecuteTypesLevel() {
+
+		MMTF.removeModelType(((Model) getElementToDestroy()).getUri());
+	}
+
+	protected void doExecuteInstancesLevel() {
+
+		MultiModelFactoryUtils.removeModel((Model) getElementToDestroy());
 	}
 
 	/**
@@ -69,7 +82,12 @@ public class ModelDelCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModelFactoryUtils.removeModel((Model) getElementToDestroy());
+		if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToDestroy().eContainer())) {
+			doExecuteInstancesLevel();
+		}
+		else {
+			doExecuteTypesLevel();
+		}
 
 		return super.doExecuteWithResult(monitor, info);
 	}

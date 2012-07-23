@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
  * @author Alessio Di Sandro
  * 
  */
-public class ModelRelDelCommand extends DestroyElementCommand {
+public class BinaryModelRelDelCommand extends DestroyElementCommand {
 
 	/**
 	 * Constructor: initialises the superclass.
@@ -36,29 +36,30 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 	 * @param request
 	 *            The request.
 	 */
-	public ModelRelDelCommand(DestroyElementRequest request) {
+	public BinaryModelRelDelCommand(DestroyElementRequest request) {
 
 		super(request);
 	}
 
 	/**
-	 * Checks if a model relationship can be deleted.
+	 * Checks if a binary model relationship can be deleted.
 	 * 
-	 * @return True if a model relationship can be deleted, false otherwise.
+	 * @return True if a binary model relationship can be deleted, false
+	 *         otherwise.
 	 */
 	@Override
 	public boolean canExecute() {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy()) ||
-				((ModelRel) getElementToDestroy()).isDynamic()
+				MultiModelConstraintChecker.isInstancesLevel((BinaryModelRel) getElementToDestroy()) ||
+				((BinaryModelRel) getElementToDestroy()).isDynamic()
 			);
 	}
 
 	protected void doExecuteTypesLevel() {
 
-		MMTF.removeModelType(((ModelRel) getElementToDestroy()).getUri());
+		MMTF.removeModelType(((BinaryModelRel) getElementToDestroy()).getUri());
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy())) {
+		if (!MultiModelConstraintChecker.isInstancesLevel((BinaryModelRel) getElementToDestroy())) {
 			doExecuteTypesLevel();
 		}
 

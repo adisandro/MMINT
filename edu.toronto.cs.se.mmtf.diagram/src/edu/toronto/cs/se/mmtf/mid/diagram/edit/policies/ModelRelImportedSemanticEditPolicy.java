@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelChangeModelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelDelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelNewBinaryRelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelAddModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelChangeModelCommand;
@@ -84,7 +85,7 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 			if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryModelRelEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new BinaryModelRelDelCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -124,7 +125,7 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 			if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryModelRelEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new BinaryModelRelDelCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
