@@ -85,6 +85,16 @@ public class OperatorUtils {
 		return property;
 	}
 
+	public static String getOptionalStringProperty(Properties properties, String propertyName, String defaultValue) {
+
+		try {
+			return getStringProperty(properties, propertyName);
+		}
+		catch (MMTFException e) {
+			return defaultValue;
+		}
+	}
+
 	public static int getIntProperty(Properties properties, String propertyName) throws MMTFException {
 
 		int property = Integer.parseInt(getStringProperty(properties, propertyName));
@@ -95,6 +105,16 @@ public class OperatorUtils {
 		return property;
 	}
 
+	public static int getOptionalIntProperty(Properties properties, String propertyName, int defaultValue) {
+
+		try {
+			return getIntProperty(properties, propertyName);
+		}
+		catch (MMTFException e) {
+			return defaultValue;
+		}
+	}
+
 	public static double getDoubleProperty(Properties properties, String propertyName) throws MMTFException {
 
 		double property = Double.parseDouble(getStringProperty(properties, propertyName));
@@ -103,6 +123,16 @@ public class OperatorUtils {
 		}
 
 		return property;
+	}
+
+	public static double getOptionalDoubleProperty(Properties properties, String propertyName, double defaultValue) {
+
+		try {
+			return getDoubleProperty(properties, propertyName);
+		}
+		catch (MMTFException e) {
+			return defaultValue;
+		}
 	}
 
 	public static String[] getStringProperties(Properties properties, String propertyName) throws MMTFException {

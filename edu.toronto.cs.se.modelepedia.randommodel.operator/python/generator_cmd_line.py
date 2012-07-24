@@ -116,6 +116,13 @@ def process_args():
             [float, 0, 1, False, "Error - invalid fraction of annotated notes with (s):"],
             0,
             "Fraction of annotated nodes with (s)"))
+    arg_processor.add_program_arg('-seed',
+        ArgDefinition('initial_seed',
+            False,
+            None,
+            None,
+            None,
+            "Initial seed for pseudorandom generator"))
 
     arg_processor.add_program_flag('--help',
         FlagDefinition('help',

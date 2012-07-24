@@ -29,7 +29,7 @@ def instantiate_graph(quiet, type_graph, name_str):
             inst_graph.nodes[name_str] = i_node
     edges_by_type = {}
     for edge in type_graph.edges.itervalues():
-        #In this model there is excatly one Source and one Target for every
+        #In this model there is excatly one source and one target for every
         #Transition, so we ignore edge.min_inst and edge.max_inst
         no_insts = len(nodes_by_type['Transition'])
         edges_by_type[edge.name_str] = []
@@ -38,17 +38,17 @@ def instantiate_graph(quiet, type_graph, name_str):
             i_edge = Edge(name_str, edge.name_str, None, None)
             edges_by_type[edge.name_str].append(i_edge)
             inst_graph.edges[name_str] = i_edge
-    #forall(a:Transition).(existsOne(x:Source).(x.src=a) and
-        #existsOne(y:Target).(y.src=a)
+    #forall(a:Transition).(existsOne(x:source).(x.src=a) and
+        #existsOne(y:target).(y.src=a)
     for node in nodes_by_type['Transition']:
        random.choice(filter(lambda x: x.src==None,
            edges_by_type['source'])).src = node.name_str
        random.choice(filter(lambda x: x.src==None,
            edges_by_type['target'])).src = node.name_str
-    #forall(x:Source).existsOne(t:Transition; s:State).(x.src=t and x.tgt=s)
+    #forall(x:source).existsOne(t:Transition; s:State).(x.src=t and x.tgt=s)
     for edge in edges_by_type['source']:
         edge.tgt = random.choice(nodes_by_type['State']).name_str
-    #forall(x:Target).existsOne(t:Transition; s:State).(x.src=t and x.tgt=s)
+    #forall(x:target).existsOne(t:Transition; s:State).(x.src=t and x.tgt=s)
     for edge in edges_by_type['target']:
         edge.tgt = random.choice(nodes_by_type['State']).name_str
     return inst_graph

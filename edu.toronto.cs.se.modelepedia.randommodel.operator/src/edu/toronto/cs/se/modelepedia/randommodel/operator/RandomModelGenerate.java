@@ -44,11 +44,16 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 	private static final String PROPERTY_SET = "set";
 	/** % of var elements among the annotated elements. */
 	private static final String PROPERTY_VAR = "var";
+	/** The initial seed for the pseudorandom generator. */
+	private static final String PROPERTY_SEED = "seed";
+	/** The default initial seed for the pseudorandom generator. */
+	private static final String PROPERTY_SEED_DEFAULT = null;
 
 	private double annotations;
 	private double may;
 	private double set;
 	private double var;
+	private String seed;
 
 	private void readProperties(Properties properties) throws Exception {
 
@@ -56,6 +61,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		may = OperatorUtils.getDoubleProperty(properties, PROPERTY_MAY);
 		set = OperatorUtils.getDoubleProperty(properties, PROPERTY_SET);
 		var = OperatorUtils.getDoubleProperty(properties, PROPERTY_VAR);
+		seed = OperatorUtils.getOptionalStringProperty(properties, PROPERTY_SEED, PROPERTY_SEED_DEFAULT);
 	}
 
 	@Override
@@ -76,7 +82,6 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry(PYTHON_SCRIPT);
 		String pythonPath = FileLocator.toFileURL(url).toString().substring(5); // cuts "file:/"
-		//TODO MMTF: consider seed and fix python script problems once and for all
 		String[] cmd = new String[] {
 			"python",
 			pythonPath,
@@ -95,6 +100,12 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			"-var",
 			String.valueOf(var)
 		};
+		if (seed != null) {
+			String[] cmd2 = new String[cmd.length+2];
+			System.arraycopy(cmd, 0, cmd2, 0, cmd.length);
+			System.arraycopy(new String[] {"-seed", seed}, 0, cmd2, cmd.length, 2);
+			cmd = cmd2;
+		}
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec(cmd);
 		p.waitFor();

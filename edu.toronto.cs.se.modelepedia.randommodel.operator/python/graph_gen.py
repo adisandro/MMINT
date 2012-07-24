@@ -42,10 +42,10 @@ def input_typegraph(quiet, input_file_name):
             min_inst, max_inst)
     edges = input_xml.getElementsByTagName('edges')
     for edge in edges:
-        min_inst = node.getAttribute('minimumNumberOfInstances')
+        min_inst = edge.getAttribute('minimumNumberOfInstances')
         if min_inst: min_inst = int(min_inst)
         else:        min_inst = graph.default_min_inst
-        max_inst = node.getAttribute('maximumNumberOfInstances')
+        max_inst = edge.getAttribute('maximumNumberOfInstances')
         if max_inst: max_inst = int(max_inst)
         else:        max_inst = graph.default_max_inst
         name_str = edge.getAttribute('name')
@@ -141,7 +141,7 @@ if __name__ == '__main__':
             arg_processor.output_file_name, arg_processor.instance_name,
             arg_processor.output_type, arg_processor.annotated_fraction,
             arg_processor.may_fraction, arg_processor.var_fraction,
-            arg_processor.set_fraction)
+            arg_processor.set_fraction, arg_processor.initial_seed)
     except GeneratorException as e:
         print e.message
         sys.exit(1)
