@@ -648,22 +648,11 @@ modelRef:
 		if (supertype == null && element.getSupertype().isDynamic()) {
 			addDynamicType(element.getSupertype());
 		}
-		
+
 		supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
 		if (supertype == null) return;
 		
-		if (element instanceof Model && supertype instanceof Model) {				
-			try {
-				MMTFRegistry.createLightModelType(
-					(Model) supertype, 
-					element.getName(),
-					((Model) element).getConstraint().getBody()
-				);
-			} catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "No light model created", e);
-			}
-		}
-		else if (element instanceof BinaryModelRel && supertype instanceof ModelRel) {
+		if (element instanceof BinaryModelRel && supertype instanceof ModelRel) {
 			Model source = ((BinaryModelRel) element).getModels().get(0);
 			Model target = ((BinaryModelRel) element).getModels().get(1);
 			try {
@@ -693,6 +682,17 @@ modelRef:
 				MMTFException.print(MMTFException.Type.WARNING, "No light model relationship created created", e);
 			}
 		}
+		else if (element instanceof Model && supertype instanceof Model) {				
+			try {
+				MMTFRegistry.createLightModelType(
+					(Model) supertype, 
+					element.getName(),
+					((Model) element).getConstraint().getBody()
+				);
+			} catch (MMTFException e) {
+				MMTFException.print(MMTFException.Type.WARNING, "No light model created", e);
+			}
+		}
 	}
 	
 	/**
@@ -713,7 +713,12 @@ modelRef:
 		}
 		
 		for (ExtendibleElement entry : root.getExtendibleTable().values()) {
-			if (entry instanceof Model && entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
+			if (entry instanceof Model && !(entry instanceof ModelRel) && entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
+				addDynamicType(entry);
+			}
+		}
+		for (ExtendibleElement entry : root.getExtendibleTable().values()) {
+			if (entry instanceof ModelRel && entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
 				addDynamicType(entry);
 			}
 		}
@@ -759,12 +764,12 @@ modelRef:
 		for (IConfigurationElement elem : config) {
 			createOperatorType(elem);
 		}
-
-		// type hierarchy
-		setSupertypes();
 		
 		// initialize dynamic types
 		initDynamicTypes();
+		
+		// type hierarchy
+		setSupertypes();
 		
 		//TODO MMTF: rerun every time a model is added or removed
 		initTypeHierarchy();
@@ -1059,6 +1064,7 @@ modelRef:
 			
 			ArrayList<String> delOperatorTypes = new ArrayList<String>();
 			ArrayList<String> delModelTypes = new ArrayList<String>();
+			ArrayList<String> delModelRelTypes = new ArrayList<String>();
 			
 			ExtendibleElement removedElement = multiModel.getExtendibleTable().removeKey(uri);
 			if (removedElement != null && removedElement instanceof Model) {
@@ -1091,17 +1097,21 @@ modelRef:
 					}
 				}
 				// remove model relationships that use this model, and subtypes
-				for (Model relatedModel : MMTFRegistry.getModelTypes()) {
+				for (Model relatedModel : multiModel.getModels()) {
 					// model relationships
 					if (relatedModel instanceof ModelRel) {
 						if (((ModelRel) relatedModel).getModels().contains(model)) {
-							delModelTypes.add(relatedModel.getUri());
+							delModelRelTypes.add(relatedModel.getUri());
 						}
 					}
 					// subtypes
 					if (MMTFRegistry.isSubtypeOf(relatedModel.getUri(), uri)) {
 						delModelTypes.add(relatedModel.getUri());
 					}
+				}
+				for (String relatedModelRelType : delModelRelTypes) {
+					Model relatedModelRel = (Model)multiModel.getExtendibleTable().get(relatedModelRelType);
+					if (relatedModelRel != null) removeModelType(relatedModelRel);
 				}
 				for (String relatedModelType : delModelTypes) {
 					Model relatedModel = (Model)multiModel.getExtendibleTable().get(relatedModelType);
