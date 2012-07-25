@@ -644,51 +644,58 @@ modelRef:
 		}
 	}
 
-	private void addDynamicType(Model modelType) {
+	private Model addDynamicType(Model dynamicModelType) {
 
-		Model modelSupertype = MMTFRegistry.getModelType(modelType.getSupertype().getUri());
+		Model modelSupertype = MMTFRegistry.getModelType(dynamicModelType.getSupertype().getUri());
+		if (modelSupertype == null && dynamicModelType.getSupertype().isDynamic()) {
+			modelSupertype = addDynamicType(dynamicModelType.getSupertype());
+		}
 		if (modelSupertype == null) {
-			return;
+			return null;
 		}
 
-		if (modelType instanceof ModelRel) {
+		Model modelType = null;
+		//TODO MMTF: Copy the contents of relationships as well
+		if (dynamicModelType instanceof ModelRel) {
 			Model srcModelType = null;
 			Model tgtModelType = null;
 			EClass modelRelTypeClass;
-			if (modelType instanceof BinaryModelRel) {
-				srcModelType = ((BinaryModelRel) modelType).getModels().get(0);
-				tgtModelType = ((BinaryModelRel) modelType).getModels().get(1);
+			if (dynamicModelType instanceof BinaryModelRel) {
+				srcModelType = ((BinaryModelRel) dynamicModelType).getModels().get(0);
+				tgtModelType = ((BinaryModelRel) dynamicModelType).getModels().get(1);
 				modelRelTypeClass = RelationshipPackage.eINSTANCE.getBinaryModelRel();
 			}
 			else {
 				modelRelTypeClass = RelationshipPackage.eINSTANCE.getModelRel();
 			}
 			try {
-				MMTFRegistry.createLightModelRelType(
+				modelType = MMTFRegistry.createLightModelRelType(
 					(ModelRel) modelSupertype,
 					srcModelType,
 					tgtModelType,
-					modelType.getName(),
-					modelType.getConstraint().getBody(),
+					dynamicModelType.getName(),
+					dynamicModelType.getConstraint().getBody(),
 					modelRelTypeClass
 				);
 			}
 			catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model relationship type " + modelType.getName() + " could not be recreated", e);
+				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model relationship type " + dynamicModelType.getName() + " could not be recreated", e);
 			}
 		}
 		else {
 			try {
-				MMTFRegistry.createLightModelType(
+				modelType = MMTFRegistry.createLightModelType(
 					modelSupertype, 
-					modelType.getName(),
-					modelType.getConstraint().getBody()
+					dynamicModelType.getName(),
+					dynamicModelType.getConstraint().getBody()
 				);
 			}
 			catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model type " + modelType.getName() + " could not be recreated", e);
+				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model type " + dynamicModelType.getName() + " could not be recreated", e);
 			}
 		}
+
+		return modelType;
 	}
 
 	/**
@@ -704,13 +711,24 @@ modelRef:
 			);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate types mid", e);
+			MMTFException.print(Type.WARNING, "Could not locate " + TYPES_MID_FILENAME , e);
 			return;
 		}
 
-		//TODO MMTF: this works only for one level of inheritance for dynamic types
+		// do model types first
 		for (Model modelType : multiModel.getModels()) {
-			if (modelType.isDynamic() && MMTFRegistry.getExtendibleType(modelType.getUri()) == null) {
+			if (!(modelType instanceof ModelRel) &&
+				modelType.isDynamic() &&
+				MMTFRegistry.getExtendibleType(modelType.getUri()) == null
+			) {
+				addDynamicType(modelType);
+			}
+		}
+		for (Model modelType : multiModel.getModels()) {
+			if (modelType instanceof ModelRel
+				&& modelType.isDynamic() &&
+				MMTFRegistry.getExtendibleType(modelType.getUri()) == null
+			) {
 				addDynamicType(modelType);
 			}
 		}
@@ -1097,6 +1115,7 @@ modelRef:
 						delModelTypes.add(relatedModel.getUri());
 					}
 				}
+				//TODO MMTF: unify
 				for (String relatedModelRelType : delModelRelTypes) {
 					Model relatedModelRel = (Model)multiModel.getExtendibleTable().get(relatedModelRelType);
 					if (relatedModelRel != null) removeModelType(relatedModelRel);

@@ -63,25 +63,8 @@ public class ModelDelCommand extends DestroyElementCommand {
 
 	protected void doExecuteTypesLevel() {
 		
-		//TODO MMTF: multiModel and root are two different instances
-		//TODO MMTF: multiModel models have supertypes set to null
-		//TODO MMTF: whereas root has the proper supertypes
-		//TODO MMTF: Need to solve the discrepancy between these two
-		
 		Model modelType = (Model) getElementToDestroy();
-		MultiModel multiModel = (MultiModel) modelType.eContainer();
-//		MultiModel root = null;
-//		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-//		URI uri = URI.createFileURI(path+"/types.mid");
-//		try {
-//			root = (MultiModel) MultiModelTypeIntrospection.getRoot(uri);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		Model modelType2 = (Model) root.getExtendibleTable().get(modelType.getUri());
-		
+		MultiModel multiModel = (MultiModel) modelType.eContainer();		
 		MMTFRegistry.removeModelType(modelType);
 		MMTFRegistry.updateRepository(multiModel);
 	}

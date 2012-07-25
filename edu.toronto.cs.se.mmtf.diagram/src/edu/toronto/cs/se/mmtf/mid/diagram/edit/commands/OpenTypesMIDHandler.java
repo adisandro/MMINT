@@ -5,6 +5,7 @@ import java.io.File;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -24,15 +25,18 @@ import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorUtil;
 
 public class OpenTypesMIDHandler extends AbstractHandler {
 
+	private static final String TYPES_MID_FILENAME = "types.mid";
+	private static final String TYPES_MIDDIAG_FILENAME = "types.middiag";
+	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-		String middiagFile = path + "/types.middiag";
+		String middiagFile = path + IPath.SEPARATOR + TYPES_MIDDIAG_FILENAME;
 		
 		File middiag = new File(middiagFile);
 		
 		if (!middiag.exists()) {
-			generateDiagram(path+"/types.mid");
+			generateDiagram(path + IPath.SEPARATOR + TYPES_MID_FILENAME);
 		}
 		
 		try {
