@@ -757,11 +757,9 @@ modelRef:
 			createOperatorType(elem);
 		}
 		
-		// initialize dynamic types
-		initDynamicTypes();
-		
 		// type hierarchy
 		setSupertypes();
+		initDynamicTypes();
 		initTypeHierarchy();
 
 		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
