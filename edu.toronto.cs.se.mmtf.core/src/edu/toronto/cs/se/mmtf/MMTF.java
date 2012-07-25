@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
@@ -100,6 +101,8 @@ public class MMTF implements MMTFExtensionPoints {
 
 	/** A temporary map for the subtypes to be assigned a supertype. */
 	private static HashMap<ExtendibleElement, String> tempSubtypes;
+
+	private static final String TYPES_MID_FILENAME = "types.mid";
 
 	/**
 	 * Adds an extendible type to the repository.
@@ -640,86 +643,75 @@ modelRef:
 			conversionTable.put(model.getUri(), conversionTypes);
 		}
 	}
-	
-	private void addDynamicType(ExtendibleElement element) {
 
-		ExtendibleElement supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
-		
-		if (supertype == null && element.getSupertype().isDynamic()) {
-			addDynamicType(element.getSupertype());
+	private void addDynamicType(Model modelType) {
+
+		Model modelSupertype = MMTFRegistry.getModelType(modelType.getSupertype().getUri());
+		if (modelSupertype == null) {
+			return;
 		}
 
-		supertype = MMTFRegistry.getExtendibleType(element.getSupertype().getUri());
-		if (supertype == null) return;
-		
-		if (element instanceof BinaryModelRel && supertype instanceof ModelRel) {
-			Model source = ((BinaryModelRel) element).getModels().get(0);
-			Model target = ((BinaryModelRel) element).getModels().get(1);
+		if (modelType instanceof ModelRel) {
+			Model srcModelType = null;
+			Model tgtModelType = null;
+			EClass modelRelTypeClass;
+			if (modelType instanceof BinaryModelRel) {
+				srcModelType = ((BinaryModelRel) modelType).getModels().get(0);
+				tgtModelType = ((BinaryModelRel) modelType).getModels().get(1);
+				modelRelTypeClass = RelationshipPackage.eINSTANCE.getBinaryModelRel();
+			}
+			else {
+				modelRelTypeClass = RelationshipPackage.eINSTANCE.getModelRel();
+			}
 			try {
 				MMTFRegistry.createLightModelRelType(
-					(ModelRel) supertype, 
-					source,
-					target,
-					element.getName(), 
-					((ModelRel) element).getConstraint().getBody(),
-					RelationshipPackage.eINSTANCE.getBinaryModelRel()
+					(ModelRel) modelSupertype,
+					srcModelType,
+					tgtModelType,
+					modelType.getName(),
+					modelType.getConstraint().getBody(),
+					modelRelTypeClass
 				);
-			} catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "No light binary model relationship created", e);
+			}
+			catch (MMTFException e) {
+				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model relationship type " + modelType.getName() + " could not be recreated", e);
 			}
 		}
-		else if (element instanceof ModelRel && supertype instanceof ModelRel) {
-			try {
-				MMTFRegistry.createLightModelRelType(
-					(ModelRel) supertype, 
-					null, 
-					null,
-					element.getName(), 
-					((ModelRel) element).getConstraint().getBody(),
-					RelationshipPackage.eINSTANCE.getModelRel()
-				);
-			} catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "No light model relationship created created", e);
-			}
-		}
-		else if (element instanceof Model && supertype instanceof Model) {				
+		else {
 			try {
 				MMTFRegistry.createLightModelType(
-					(Model) supertype, 
-					element.getName(),
-					((Model) element).getConstraint().getBody()
+					modelSupertype, 
+					modelType.getName(),
+					modelType.getConstraint().getBody()
 				);
-			} catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "No light model created", e);
+			}
+			catch (MMTFException e) {
+				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model type " + modelType.getName() + " could not be recreated", e);
 			}
 		}
 	}
-	
+
 	/**
-	 * Initializes dynamic types
-	 * 
+	 * Initializes dynamic types.
 	 */
 	private void initDynamicTypes() {
 
-		MultiModel root = null;
+		MultiModel multiModel;
 		try {			
 			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-			URI uri = URI.createFileURI(path+"/types.mid");
-			root = (MultiModel) MultiModelTypeIntrospection.getRoot(uri);
+			multiModel = (MultiModel) MultiModelTypeIntrospection.getRoot(
+				URI.createFileURI(path + IPath.SEPARATOR + TYPES_MID_FILENAME)
+			);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate types.mid", e);
+			MMTFException.print(Type.WARNING, "Could not locate types mid", e);
 			return;
 		}
-		
-		for (ExtendibleElement entry : root.getExtendibleTable().values()) {
-			if (entry instanceof Model && !(entry instanceof ModelRel) && entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
-				addDynamicType(entry);
-			}
-		}
-		for (ExtendibleElement entry : root.getExtendibleTable().values()) {
-			if (entry instanceof ModelRel && entry.isDynamic() && MMTFRegistry.getExtendibleType(entry.getUri()) == null) {
-				addDynamicType(entry);
+
+		//TODO MMTF: this works only for one level of inheritance for dynamic types
+		for (Model modelType : multiModel.getModels()) {
+			if (modelType.isDynamic() && MMTFRegistry.getExtendibleType(modelType.getUri()) == null) {
+				addDynamicType(modelType);
 			}
 		}
 	}
@@ -745,13 +737,13 @@ modelRef:
 			createModelType(elem);
 		}
 
-		// model type relationships
+		// model relationship types
 		config = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
 			createModelRelType(elem);
 		}
 
-		// editors
+		// editor types
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
 			Editor editor = createEditorType(elem);
@@ -759,7 +751,7 @@ modelRef:
 		}		
 		addEditorTypesFileExtensions(registry);
 
-		// operators
+		// operator types
 		config = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
 			createOperatorType(elem);
@@ -770,21 +762,19 @@ modelRef:
 		
 		// type hierarchy
 		setSupertypes();
-		
-		//TODO MMTF: rerun every time a model is added or removed
 		initTypeHierarchy();
 
-		//TODO MMTF: do this on demand, with a button somewhere
 		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(
-			URI.createFileURI(path+"/types.mid"));
+			URI.createFileURI(path + IPath.SEPARATOR + TYPES_MID_FILENAME)
+		);
 		resource.getContents().add(repository);
 		try {
 			resource.save(Collections.EMPTY_MAP);
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			MMTFException.print(Type.ERROR, "Error creating types mid", e);
 		}
 	}
 
