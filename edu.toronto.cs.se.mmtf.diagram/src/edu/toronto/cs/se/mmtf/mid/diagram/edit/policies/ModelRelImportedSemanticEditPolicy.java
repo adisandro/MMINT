@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
@@ -34,6 +33,8 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelAddModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelChangeModelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelDelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelRemoveModelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2DelCommand;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterDelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelModelsEditPart;
@@ -92,14 +93,14 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 			if (MidVisualIDRegistry.getVisualID(incomingLink) == ParameterEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new ParameterDelCommand(r, true));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(incomingLink) == Parameter2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new Parameter2DelCommand(r, true));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}

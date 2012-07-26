@@ -12,20 +12,27 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ExtendibleElementSupertypeDelCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2DelCommand;
 
 /**
- * The semantic edit policy for supertypes.
+ * The semantic edit policy for output parameters.
  * 
  * @author Vivien Suen
  * 
  */
-public class ExtendibleElementSupertypeSemanticEditPolicy extends ExtendibleElementSupertypeItemSemanticEditPolicy {
+public class Parameter2SemanticEditPolicy extends Parameter2ItemSemanticEditPolicy {
 
+	/** Gets the command to destroy an output parameter.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @return The executable command.
+	 */
 	@Override
-	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-
-		return getGEFWrapper(new ExtendibleElementSupertypeDelCommand(req, false));
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		return getGEFWrapper(new Parameter2DelCommand(req, false));
 	}
+
 }

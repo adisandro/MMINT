@@ -68,11 +68,11 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 	 */
 	@Override
 	public void removed(IExtension[] extensions) {
-		MultiModel root = null;
+		MultiModel multiModel;
 		try {			
 			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
 			URI uri = URI.createFileURI(path+"/types.mid");
-			root = (MultiModel) MultiModelTypeIntrospection.getRoot(uri);
+			multiModel = (MultiModel) MultiModelTypeIntrospection.getRoot(uri);
 		}
 		catch (Exception e) {
 			return;
@@ -83,8 +83,8 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				MMTFRegistry.removeModelType((Model)root.getExtendibleTable().get(uri));
-				MMTFRegistry.updateRepository(root);
+				MMTFRegistry.removeModelType((Model)multiModel.getExtendibleTable().get(uri));
+				MMTFRegistry.updateRepository(multiModel);
 			}
 		}
 	}

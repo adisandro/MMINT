@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.Parameter2ItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.Parameter2SemanticEditPolicy;
 
 /**
  * @generated
@@ -50,6 +51,8 @@ public class Parameter2EditPart extends ConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new Parameter2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new Parameter2SemanticEditPolicy());
 	}
 
 	/**

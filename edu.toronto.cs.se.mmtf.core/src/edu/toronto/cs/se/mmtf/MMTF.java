@@ -540,29 +540,6 @@ modelRef:
 	}
 
 	/**
-	 * Removes an operator type from the repository.
-	 * 
-	 * @param uri
-	 *            The operator type uri.
-	 */
-	public static Operator removeOperatorType(String uri) {
-
-		ExtendibleElement elementType = repository.getExtendibleTable().removeKey(uri);
-		Operator operatorType = null;
-
-		if (elementType != null && elementType instanceof Operator) {
-			operatorType = (Operator) elementType;
-			repository.getOperators().remove(operatorType);
-			// conversion operator
-			if (operatorType instanceof ConversionOperator) {
-				operatorType.getInputs().get(0).getModel().getConversionOperators().remove(operatorType);
-			}
-		}
-
-		return operatorType;
-	}
-
-	/**
 	 * Removes an editor type from the repository.
 	 * 
 	 * @param uri
@@ -1064,7 +1041,7 @@ modelRef:
 		}
 
 		/**
-		 * Removes a model type from the repository.
+		 * Removes a model type from the multimodel.
 		 * 
 		 * @param modelType
 		 *            The model type to be removed.
@@ -1084,18 +1061,19 @@ modelRef:
 				// remove operator types that use the model type
 				for (Operator operatorType : multiModel.getOperators()) {
 					for (Parameter par : operatorType.getInputs()) {
-						if (par.getModel().getUri().equals(uri)) {
+						if (par.getModel().getUri().equals(uri) && !delOperatorTypes.contains(operatorType.getUri())) {
 							delOperatorTypes.add(operatorType.getUri());
 						}
 					}
 					for (Parameter par : operatorType.getOutputs()) {
-						if (par.getModel().getUri().equals(uri)) {
+						if (par.getModel().getUri().equals(uri) && !delOperatorTypes.contains(operatorType.getUri())) {
 							delOperatorTypes.add(operatorType.getUri());
 						}
 					}
 				}
 				for (String operatorType : delOperatorTypes) {
-					removeOperatorType(operatorType);
+					Operator operator = (Operator)multiModel.getExtendibleTable().get(operatorType);
+					removeOperatorType(operator);
 				}
 				// remove model elements, if any
 				for (ModelElement element : model.getElements()) {
@@ -1142,6 +1120,31 @@ modelRef:
 			}
 		}
 		
+		/**
+		 * Removes an operator type from the multimodel.
+		 * 
+		 * @param uri
+		 *            The operator type to be removed.
+		 */
+		public static Operator removeOperatorType(Operator operator) {
+			String uri = operator.getUri();
+			MultiModel multiModel = (MultiModel) operator.eContainer();
+			
+			ExtendibleElement elementType = multiModel.getExtendibleTable().removeKey(uri);
+			Operator operatorType = null;
+		
+			if (elementType != null && elementType instanceof Operator) {
+				operatorType = (Operator) elementType;
+				multiModel.getOperators().remove(operatorType);
+				// conversion operator
+				if (operatorType instanceof ConversionOperator) {
+					operatorType.getInputs().get(0).getModel().getConversionOperators().remove(operatorType);
+				}
+			}
+		
+			return operatorType;
+		}
+
 		public static void removeLightModelTypeRef(ModelRel modelRelType, Model modelType) {
 			ArrayList<ModelReference> delModelRefs = new ArrayList<ModelReference>();
 			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
