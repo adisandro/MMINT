@@ -55,6 +55,8 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getContainer()) ||
+				//TODO MMTF: What are the semantics of subtypes here?
+				//TODO MMTF: This is causing n-ary modelrels with subtypes to not delete properly
 				MultiModelConstraintChecker.isAllowedModelType((ModelRel) getContainer())
 			);
 	}
