@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
@@ -55,7 +54,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy()) ||
-				((ModelRel) getElementToDestroy()).isDynamic()
+				!MultiModelConstraintChecker.isRootType((ModelRel) getElementToDestroy())
 			);
 	}
 

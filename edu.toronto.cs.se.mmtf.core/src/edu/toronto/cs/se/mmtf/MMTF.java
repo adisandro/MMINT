@@ -842,7 +842,7 @@ modelRef:
 			MMTF.initTypeHierarchy();
 		}
 
-		private static String getRootTypeUri(ExtendibleElement type) {
+		public static String getRootTypeUri(ExtendibleElement type) {
 
 			String rootUri = "";
 			if (type instanceof ModelRel) {

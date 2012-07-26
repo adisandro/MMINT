@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -79,6 +80,14 @@ public class MultiModelConstraintChecker {
 			return false;
 		}
 		return true;
+	}
+
+	public static boolean isRootType(ExtendibleElement type) {
+
+		if (type.getUri().equals(MMTFRegistry.getRootTypeUri(type))) {
+			return true;
+		}
+		return false;
 	}
 
 	public static boolean isAllowedModelType(ModelRel modelRelType) {

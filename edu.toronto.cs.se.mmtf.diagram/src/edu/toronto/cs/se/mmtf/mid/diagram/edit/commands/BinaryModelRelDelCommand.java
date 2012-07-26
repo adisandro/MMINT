@@ -55,7 +55,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((BinaryModelRel) getElementToDestroy()) ||
-				((BinaryModelRel) getElementToDestroy()).isDynamic()
+				!MultiModelConstraintChecker.isRootType((BinaryModelRel) getElementToDestroy())
 			);
 	}
 

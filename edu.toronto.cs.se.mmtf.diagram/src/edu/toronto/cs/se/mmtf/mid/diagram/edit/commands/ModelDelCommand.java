@@ -14,18 +14,15 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * The command to delete a model.
@@ -57,7 +54,7 @@ public class ModelDelCommand extends DestroyElementCommand {
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToDestroy().eContainer()) ||
-				((Model) getElementToDestroy()).isDynamic()
+				!MultiModelConstraintChecker.isRootType((Model) getElementToDestroy())
 			);
 	}
 
