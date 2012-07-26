@@ -70,7 +70,7 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
-				cmd.add(new ExtendibleElementSupertypeDelCommand(r));
+				cmd.add(new ExtendibleElementSupertypeDelCommand(r, true));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -110,7 +110,7 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new ExtendibleElementSupertypeDelCommand(r));
+				cmd.add(new ExtendibleElementSupertypeDelCommand(r, true));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}

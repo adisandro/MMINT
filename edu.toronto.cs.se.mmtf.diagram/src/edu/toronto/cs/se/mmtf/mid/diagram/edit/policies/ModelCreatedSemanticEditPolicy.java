@@ -18,6 +18,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
@@ -70,7 +71,7 @@ public class ModelCreatedSemanticEditPolicy extends ModelItemSemanticEditPolicy 
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
-				cmd.add(new ExtendibleElementSupertypeDelCommand(r));
+				cmd.add(new ExtendibleElementSupertypeDelCommand(r, true));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -110,7 +111,7 @@ public class ModelCreatedSemanticEditPolicy extends ModelItemSemanticEditPolicy 
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new ExtendibleElementSupertypeDelCommand(r));
+				cmd.add(new ExtendibleElementSupertypeDelCommand(r, true));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}

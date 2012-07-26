@@ -26,15 +26,17 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
  */
 public class ExtendibleElementSupertypeDelCommand extends DestroyReferenceCommand {
 
+	private boolean canExecute;
+	
 	/**
 	 * Constructor: initialises the superclass.
 	 * 
 	 * @param request
 	 *            The request.
 	 */
-	public ExtendibleElementSupertypeDelCommand(DestroyReferenceRequest request) {
-
+	public ExtendibleElementSupertypeDelCommand(DestroyReferenceRequest request, boolean canExec) {
 		super(request);
+		this.canExecute = canExec;
 	}
 
 	/**
@@ -46,7 +48,7 @@ public class ExtendibleElementSupertypeDelCommand extends DestroyReferenceComman
 	public boolean canExecute() {
 
 		return
-			super.canExecute() && false;
+			super.canExecute() && this.canExecute;
 	}
 
 	/**
@@ -62,7 +64,7 @@ public class ExtendibleElementSupertypeDelCommand extends DestroyReferenceComman
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		return super.doExecuteWithResult(monitor, info);
+		return CommandResult.newOKCommandResult();
 	}
 
 }

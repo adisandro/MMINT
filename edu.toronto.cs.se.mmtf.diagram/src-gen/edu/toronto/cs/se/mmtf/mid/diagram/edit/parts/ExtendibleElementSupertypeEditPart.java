@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ExtendibleElementSupertypeItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.ExtendibleElementSupertypeSemanticEditPolicy;
 
 /**
  * @generated
@@ -49,6 +50,8 @@ public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ExtendibleElementSupertypeItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new ExtendibleElementSupertypeSemanticEditPolicy());
 	}
 
 	/**

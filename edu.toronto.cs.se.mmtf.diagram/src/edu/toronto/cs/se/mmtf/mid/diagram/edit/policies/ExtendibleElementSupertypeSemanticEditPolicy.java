@@ -26,6 +26,6 @@ public class ExtendibleElementSupertypeSemanticEditPolicy extends ExtendibleElem
 	@Override
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 
-		return getGEFWrapper(new ExtendibleElementSupertypeDelCommand(req));
+		return getGEFWrapper(new ExtendibleElementSupertypeDelCommand(req, false));
 	}
 }

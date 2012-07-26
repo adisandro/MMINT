@@ -13,12 +13,16 @@ package edu.toronto.cs.se.mmtf;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IPath;
@@ -35,6 +39,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -1070,7 +1075,7 @@ modelRef:
 			
 			ArrayList<String> delOperatorTypes = new ArrayList<String>();
 			ArrayList<String> delModelTypes = new ArrayList<String>();
-			ArrayList<String> delModelRelTypes = new ArrayList<String>();
+			ArrayList<String> delModelRefs = new ArrayList<String>();
 			
 			ExtendibleElement removedElement = multiModel.getExtendibleTable().removeKey(uri);
 			if (removedElement != null && removedElement instanceof Model) {
@@ -1107,22 +1112,32 @@ modelRef:
 					// model relationships
 					if (relatedModel instanceof ModelRel) {
 						if (((ModelRel) relatedModel).getModels().contains(model)) {
-							delModelRelTypes.add(relatedModel.getUri());
+							if (relatedModel instanceof BinaryModelRel) {
+								delModelTypes.add(relatedModel.getUri());
+							} else {
+								delModelRefs.add(relatedModel.getUri());
+							}
 						}
 					}
+
 					// subtypes
 					if (MMTFRegistry.isSubtypeOf(relatedModel.getUri(), uri)) {
 						delModelTypes.add(relatedModel.getUri());
 					}
 				}
-				//TODO MMTF: unify
-				for (String relatedModelRelType : delModelRelTypes) {
-					Model relatedModelRel = (Model)multiModel.getExtendibleTable().get(relatedModelRelType);
-					if (relatedModelRel != null) removeModelType(relatedModelRel);
+				
+				for (String relatedModelRel : delModelRefs) {
+					ModelRel modelRel = (ModelRel)multiModel.getExtendibleTable().get(relatedModelRel);
+					if (modelRel != null) {
+						removeLightModelTypeRef(modelRel, model);
+						modelRel.getModels().remove(model);
+					}
 				}
 				for (String relatedModelType : delModelTypes) {
 					Model relatedModel = (Model)multiModel.getExtendibleTable().get(relatedModelType);
-					if (relatedModel != null) removeModelType(relatedModel);
+					if (relatedModel != null) {
+						removeModelType(relatedModel);
+					}
 				}
 			}
 		}
