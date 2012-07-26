@@ -75,7 +75,6 @@ import org.eclipse.ui.part.ShowInContext;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.navigator.MidNavigatorItem;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
@@ -265,19 +264,20 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
+	 * Saves Relationship Diagram outside of workspace.
+	 * 
 	 * @generated NOT
 	 */
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
-		// Fix for saving diagram outside of workspace
+
 		ModelRel modelRel = (ModelRel) this.getDiagram().getElement();
-		
 		if (modelRel.getLevel() == MidLevel.TYPES) {
 			updateState(getEditorInput());
 			validateState(getEditorInput());
 			performSave(false, progressMonitor);
 			return;
 		}
-		
+
 		performSaveAsGen(progressMonitor);
 	}
 	

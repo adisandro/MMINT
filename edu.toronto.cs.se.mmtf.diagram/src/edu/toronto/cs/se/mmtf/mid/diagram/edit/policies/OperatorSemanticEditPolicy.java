@@ -17,31 +17,19 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ExtendibleElementSupertypeCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ExtendibleElementSupertypeDelCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ExtendibleElementSupertypeReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.OperatorDelCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2CreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2DelCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.Parameter2ReorientCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterCreateCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterDelCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ParameterReorientCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmtf.mid.diagram.providers.MidElementTypes;
 
 /**
  * @generated

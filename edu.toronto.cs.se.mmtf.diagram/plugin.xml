@@ -658,8 +658,8 @@ Contributors:
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmtf.mid.diagram.menu.RunOperatorAction"
-               id="edu.toronto.cs.se.mmtf.mid.diagram.menu.RunOperatorAction">
+               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.RunOperatorAction"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.RunOperatorAction">
             <visibleWhen>
                <with variable="activePartId">
                   <equals value="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
@@ -667,13 +667,10 @@ Contributors:
             </visibleWhen>
          </dynamic>
       </menuContribution>
-   </extension>
-
-   <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmtf.mid.diagram.menu.SpecializeTypeAction"
-               id="edu.toronto.cs.se.mmtf.mid.diagram.menu.SpecializeTypeAction">
+               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.SpecializeTypeAction"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.SpecializeTypeAction">
             <visibleWhen>
                <with variable="activePartId">
                   <equals value="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
@@ -681,13 +678,10 @@ Contributors:
             </visibleWhen>
          </dynamic>
       </menuContribution>
-   </extension>
-
-   <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmtf.mid.diagram.menu.ValidateAction"
-               id="edu.toronto.cs.se.mmtf.mid.diagram.menu.ValidateAction">
+               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.ValidateAction"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.ValidateAction">
             <visibleWhen>
                <with variable="activePartId">
                   <equals value="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
@@ -695,13 +689,10 @@ Contributors:
             </visibleWhen>
          </dynamic>
       </menuContribution>
-   </extension>
-
-   <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmtf.mid.diagram.menu.ModelepediaAction"
-               id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenModelepediaAction">
+               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.ModelepediaAction"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.ModelepediaAction">
             <visibleWhen>
                <with variable="activePartId">
                   <equals value="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
@@ -709,23 +700,20 @@ Contributors:
             </visibleWhen>
          </dynamic>
       </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
             locationURI="menu:org.eclipse.ui.main.menu">
          <menu
-               id="MMTFMenu"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.menu.MMTF"
                label="MMTF">
             <command
-                  commandId="edu.toronto.cs.se.mmtf.diagram.openTypesMID"
-                  label="Open Types MID"
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
+                  label="Open Type MID"
                   style="push"
-                  tooltip="Open the model interconnection diagram for all types defined in MMTF">
+                  tooltip="Opens the Type MID showing all MMTF registered types">
             </command>
             <command
-                  commandId="edu.toronto.cs.se.mmtf.diagram.syncRepository"
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.SyncRepositoryHandler"
                   label="Sync Repository"
                   style="push"
                   tooltip="Syncs the MMTF repository">
@@ -733,16 +721,17 @@ Contributors:
          </menu>
       </menuContribution>
    </extension>
+
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.OpenTypesMIDHandler"
-            id="edu.toronto.cs.se.mmtf.diagram.openTypesMID"
-            name="Open Types MID">
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
+            name="Open Type MID">
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.SyncRepositoryHandler"
-            id="edu.toronto.cs.se.mmtf.diagram.syncRepository"
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.SyncRepositoryHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.SyncRepositoryHandler"
             name="Sync Repository">
       </command>
    </extension>

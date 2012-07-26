@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.diagram.menu;
+package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.ContributionItem;

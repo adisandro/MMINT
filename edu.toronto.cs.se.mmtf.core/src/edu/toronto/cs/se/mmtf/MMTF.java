@@ -13,16 +13,12 @@ package edu.toronto.cs.se.mmtf;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IPath;
@@ -39,7 +35,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -107,7 +102,7 @@ public class MMTF implements MMTFExtensionPoints {
 	/** A temporary map for the subtypes to be assigned a supertype. */
 	private static HashMap<ExtendibleElement, String> tempSubtypes;
 
-	private static final String TYPES_MID_FILENAME = "types.mid";
+	public static final String TYPE_MID_FILENAME = "types.mid";
 
 	/**
 	 * Adds an extendible type to the repository.
@@ -689,11 +684,11 @@ modelRef:
 		try {			
 			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
 			multiModel = (MultiModel) MultiModelTypeIntrospection.getRoot(
-				URI.createFileURI(path + IPath.SEPARATOR + TYPES_MID_FILENAME)
+				URI.createFileURI(path + IPath.SEPARATOR + TYPE_MID_FILENAME)
 			);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate " + TYPES_MID_FILENAME , e);
+			MMTFException.print(Type.WARNING, "Skipping dynamic types, no previous Type MID found", e);
 			return;
 		}
 
@@ -765,7 +760,7 @@ modelRef:
 		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(
-			URI.createFileURI(path + IPath.SEPARATOR + TYPES_MID_FILENAME)
+			URI.createFileURI(path + IPath.SEPARATOR + TYPE_MID_FILENAME)
 		);
 		resource.getContents().add(repository);
 		try {

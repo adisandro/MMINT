@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.part;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,11 +29,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -46,7 +40,6 @@ import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
@@ -80,10 +73,8 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 
-import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.navigator.MidNavigatorItem;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
@@ -240,19 +231,20 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
+	 * Saves Type MID outside of workspace.
+	 * 
 	 * @generated NOT
 	 */
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
-		// Fix for saving types.middiag outside of workspace
+
 		MultiModel multiModel = (MultiModel) this.getDiagram().getElement();
-		
 		if (multiModel.getLevel() == MidLevel.TYPES) {
 			updateState(getEditorInput());
 			validateState(getEditorInput());
 			performSave(false, progressMonitor);
 			return;
 		}
-		
+
 		performSaveAsGen(progressMonitor);
 	}
 	
