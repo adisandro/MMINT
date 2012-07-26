@@ -30,8 +30,10 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_VARIABLES = "variables";
 	/** The variable values property suffix. */
 	private static final String PROPERTY_VARIABLE_VALUES_SUFFIX = ".values";
-	/** The initial seed. */
+	/** The initial seed for the pseudorandom generator. */
 	private static final String PROPERTY_SEED = "seed";
+	/** The file name for loading/saving the random generator internal state. */
+	private static final String PROPERTY_STATE = "state";
 	/** Min number of iterations (i.e. samples to generate). */
 	private static final String PROPERTY_MINSAMPLES = "minSamples";
 	/** Max number of iterations (i.e. samples to generate). */
@@ -57,13 +59,14 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private int cardinality;
 	private String[][] experimentSetups;
 	// experiment randomness parameters
-	int seed;
-	int minSamples;
-	int maxSamples;
-	double min;
-	double max;
-	DistributionType distribution;
-	double requestedConfidence;
+	private String seed;
+	private String state;
+	private int minSamples;
+	private int maxSamples;
+	private double min;
+	private double max;
+	private DistributionType distribution;
+	private double requestedConfidence;
 	// experiment operators
 	private String[] experimentOperators;
 	private String[] statisticsOperators;
@@ -81,7 +84,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = OperatorUtils.getIntProperty(properties, PROPERTY_SEED);
+		seed = OperatorUtils.getStringProperty(properties, PROPERTY_SEED);
+		state = OperatorUtils.getStringProperty(properties, PROPERTY_STATE);
 		minSamples = OperatorUtils.getIntProperty(properties, PROPERTY_MINSAMPLES);
 		maxSamples = OperatorUtils.getIntProperty(properties, PROPERTY_MAXSAMPLES);
 		min = OperatorUtils.getDoubleProperty(properties, PROPERTY_MINSAMPLEVALUE);
@@ -123,6 +127,11 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 	private EList<Model> executeOperator(int experimentIndex, String operatorUri, EList<Model> actualParameters) throws Exception {
 
+		// empty operator list
+		if (operatorUri.equals("")) {
+			return actualParameters;
+		}
+
 		// get operator
 		Operator operator = MMTFRegistry.getOperatorType(operatorUri);
 		if (operator == null) {
@@ -139,15 +148,11 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				}
 			}
 		}
-//		OperatorUtils.writePropertiesFile(
-//			operatorProperties,
-//			operator.getExecutable(),
-//			actualParameters.get(0),
-//			"experiment" + experimentIndex,
-//			true,
-//			OperatorUtils.INPUT_PROPERTIES_SUFFIX
-//		);
-		//TODO MMTF: should I care about doing this in the subdir?
+		// write seed and state everywhere, the operator who needs it will use it
+		operatorProperties.setProperty(PROPERTY_SEED, seed);
+		operatorProperties.setProperty(PROPERTY_STATE, state);
+		//TODO MMTF: write properties in the subdir, as well as redirecting there results of each operator! Yes how?
+		//TODO MMTF: use the updateMid=false property to avoid creation of models in the mid, i.e. allow creation of hanging models
 		OperatorUtils.writePropertiesFile(
 			operatorProperties,
 			operator.getExecutable(),
@@ -181,12 +186,12 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			ExperimentSamples experiment = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
 
 			// inner cycle: experiment setup is fixed, vary randomness and statistics
-			EList<Model> innerParameters = outerParameters;
 			for (int j = 0; j < maxSamples; j++) {
+				EList<Model> innerParameters = outerParameters;
 				for (String operatorUri : statisticsOperators) {
 					innerParameters = executeOperator(i, operatorUri, innerParameters);
 				}
-				//TODO MMTF: read output from?
+				//TODO MMTF: read output from some property file written by the last operator?
 				double sample = new Random().nextDouble();
 				boolean confidenceOk = experiment.addSample(sample);
 				if (confidenceOk && j >= minSamples) {

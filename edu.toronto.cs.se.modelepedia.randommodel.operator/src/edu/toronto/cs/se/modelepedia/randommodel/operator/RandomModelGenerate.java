@@ -48,12 +48,17 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 	private static final String PROPERTY_SEED = "seed";
 	/** The default initial seed for the pseudorandom generator. */
 	private static final String PROPERTY_SEED_DEFAULT = null;
+	/** The file name for loading/saving the random generator internal state. */
+	private static final String PROPERTY_STATE = "state";
+	/** The default file name for loading/saving the random generator internal state. */
+	private static final String PROPERTY_STATE_DEFAULT = null;
 
 	private double annotations;
 	private double may;
 	private double set;
 	private double var;
 	private String seed;
+	private String state;
 
 	private void readProperties(Properties properties) throws Exception {
 
@@ -62,6 +67,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		set = OperatorUtils.getDoubleProperty(properties, PROPERTY_SET);
 		var = OperatorUtils.getDoubleProperty(properties, PROPERTY_VAR);
 		seed = OperatorUtils.getOptionalStringProperty(properties, PROPERTY_SEED, PROPERTY_SEED_DEFAULT);
+		state = OperatorUtils.getOptionalStringProperty(properties, PROPERTY_STATE, PROPERTY_STATE_DEFAULT);
 	}
 
 	@Override
@@ -104,6 +110,12 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			String[] cmd2 = new String[cmd.length+2];
 			System.arraycopy(cmd, 0, cmd2, 0, cmd.length);
 			System.arraycopy(new String[] {"-seed", seed}, 0, cmd2, cmd.length, 2);
+			cmd = cmd2;
+		}
+		if (state != null) {
+			String[] cmd2 = new String[cmd.length+2];
+			System.arraycopy(cmd, 0, cmd2, 0, cmd.length);
+			System.arraycopy(new String[] {"-state", state}, 0, cmd2, cmd.length, 2);
 			cmd = cmd2;
 		}
 		Runtime rt = Runtime.getRuntime();

@@ -123,6 +123,13 @@ def process_args():
             None,
             None,
             "Initial seed for pseudorandom generator"))
+    arg_processor.add_program_arg('-state',
+        ArgDefinition('state_file',
+            False,
+            None,
+            None,
+            None,
+            "File name for loading/saving the random generator internal state"))
 
     arg_processor.add_program_flag('--help',
         FlagDefinition('help',

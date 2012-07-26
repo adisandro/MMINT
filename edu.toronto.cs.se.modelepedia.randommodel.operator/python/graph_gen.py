@@ -4,7 +4,7 @@
 #Date:        2012-07-10
 #Desctiption: This program...
 
-import sys, random
+import sys, random, os, cPickle as pickle
 
 from generator_cmd_line import process_args
 from xml.dom.minidom import parse
@@ -113,10 +113,25 @@ def output_graphviz(quiet, graph, output_file_name):
     print >> out_file, '}'
     out_file.close()
 
+def importRandom(seed, stateFile):
+    if stateFile is None:
+        random.seed(seed)
+    elif os.path.exists(stateFile):
+        with open(stateFile, 'rb') as file:
+            state = pickle.load(file)
+        random.setstate(state)
+    else:
+        random.seed(seed)
+
+def saveRandom(stateFile):
+    if stateFile is not None:
+        with open(stateFile, 'wb') as file:
+            pickle.dump(random.getstate(), file, pickle.HIGHEST_PROTOCOL)
+
 def generate_graphs(quiet, input_file_name, output_file_name, instance_name,
     output_type, annotated_fraction, may_fraction, var_fraction, set_fraction,
-    seed=None):
-    random.seed(seed)
+    seed=None, state_file=None):
+    importRandom(seed, state_file)
     type_graph = input_typegraph(quiet, input_file_name)
     if type_graph.name_str == 'statemachine':
         instance_graph = state_machine.instantiate_graph(quiet, type_graph, instance_name)
@@ -133,6 +148,7 @@ def generate_graphs(quiet, input_file_name, output_file_name, instance_name,
     elif output_type == 'graphviz':
         output_graphviz(quiet, instance_graph, output_file_name)
     else: assert False
+    saveRandom(state_file)
 
 if __name__ == '__main__':
     arg_processor = process_args()
@@ -141,7 +157,8 @@ if __name__ == '__main__':
             arg_processor.output_file_name, arg_processor.instance_name,
             arg_processor.output_type, arg_processor.annotated_fraction,
             arg_processor.may_fraction, arg_processor.var_fraction,
-            arg_processor.set_fraction, arg_processor.initial_seed)
+            arg_processor.set_fraction, arg_processor.initial_seed,
+            arg_processor.state_file)
     except GeneratorException as e:
         print e.message
         sys.exit(1)
