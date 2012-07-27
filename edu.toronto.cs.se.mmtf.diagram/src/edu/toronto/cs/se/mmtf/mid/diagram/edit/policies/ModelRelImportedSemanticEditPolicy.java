@@ -15,6 +15,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -202,7 +203,7 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 			case BinaryModelRelEditPart.VISUAL_ID:
 				return getGEFWrapper(new BinaryModelRelChangeModelCommand(req));
 		}
-		return super.getReorientRelationshipCommand(req);
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -220,7 +221,7 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 			case ModelRelModelsEditPart.VISUAL_ID:
 				return getGEFWrapper(new ModelRelChangeModelCommand(req));
 		}
-		return super.getReorientReferenceRelationshipCommand(req);
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

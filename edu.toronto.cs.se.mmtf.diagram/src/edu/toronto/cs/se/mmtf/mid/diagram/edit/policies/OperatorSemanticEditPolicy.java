@@ -15,10 +15,14 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -31,14 +35,8 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 
-/**
- * @generated
- */
 public class OperatorSemanticEditPolicy extends OperatorItemSemanticEditPolicy {
 
-	/**
-	 * @generated
-	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
@@ -91,5 +89,25 @@ public class OperatorSemanticEditPolicy extends OperatorItemSemanticEditPolicy {
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-	
+
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+
+		return null;
+	}
+
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+
+		return null;
+	}
+
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+
+		return UnexecutableCommand.INSTANCE;
+	}
+
 }

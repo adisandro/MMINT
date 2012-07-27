@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -99,7 +100,7 @@ public class BinaryModelRelSemanticEditPolicy extends BinaryModelRelItemSemantic
 			case BinaryModelRelEditPart.VISUAL_ID:
 				return getGEFWrapper(new BinaryModelRelChangeModelCommand(req));
 		}
-		return super.getReorientRelationshipCommand(req);
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -117,7 +118,7 @@ public class BinaryModelRelSemanticEditPolicy extends BinaryModelRelItemSemantic
 			case ModelRelModelsEditPart.VISUAL_ID:
 				return getGEFWrapper(new ModelRelChangeModelCommand(req));
 		}
-		return super.getReorientReferenceRelationshipCommand(req);
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }
