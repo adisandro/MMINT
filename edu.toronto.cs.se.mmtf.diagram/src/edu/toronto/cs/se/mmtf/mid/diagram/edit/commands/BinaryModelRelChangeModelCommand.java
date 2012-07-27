@@ -128,7 +128,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		else {
 			MMTFRegistry.removeLightModelTypeRef(getLink(), getOldSource());
 			MMTFRegistry.createLightModelTypeRef(getLink(), getNewSource());
-			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer());
+			MMTFRegistry.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -152,7 +152,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		else {
 			MMTFRegistry.removeLightModelTypeRef(getLink(), getOldTarget());
 			MMTFRegistry.createLightModelTypeRef(getLink(), getNewTarget());
-			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer());
+			MMTFRegistry.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());

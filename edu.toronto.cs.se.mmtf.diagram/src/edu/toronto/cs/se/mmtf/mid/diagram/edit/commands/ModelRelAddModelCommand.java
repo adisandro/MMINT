@@ -72,7 +72,7 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 
 		MultiModel multiModel = (MultiModel) getSource().eContainer();
 		MMTFRegistry.createLightModelTypeRef(getSource(), getTarget());
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 	}
 
 	/**

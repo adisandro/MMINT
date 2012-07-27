@@ -85,7 +85,7 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 				Model modelType = MMTFRegistry.getModelType(multiModel, uri);
 				if (modelType != null) {
 					MMTFRegistry.removeModelType(modelType);
-					MMTFRegistry.updateRepository(multiModel);
+					MMTFRegistry.syncRepository(multiModel);
 				}
 			}
 		}

@@ -96,7 +96,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			constraint,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel()
 		);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 
 		return newModelRelType;
 	}

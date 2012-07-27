@@ -93,7 +93,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 				Editor editorType = MMTFRegistry.getEditorType(uri);
 				if (editorType != null) {
 					MMTFRegistry.removeEditorType(editorType);
-					MMTFRegistry.updateRepository(multiModel);
+					MMTFRegistry.syncRepository(multiModel);
 				}
 			}
 		}

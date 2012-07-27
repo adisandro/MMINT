@@ -73,7 +73,7 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 		MultiModel multiModel = (MultiModel) getContainer().eContainer();
 		MMTFRegistry.removeLightModelTypeRef((ModelRel) getContainer(), (Model) getReferencedObject());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 
 		return result;
 	}

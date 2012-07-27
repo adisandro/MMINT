@@ -58,7 +58,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		Operator operatorType = (Operator) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) operatorType.eContainer();		
 		MMTFRegistry.removeOperatorType(operatorType);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 	}
 
 	/**

@@ -87,7 +87,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 			constraint,
 			RelationshipPackage.eINSTANCE.getModelRel()
 		);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 
 		return newModelRelType;
 	}

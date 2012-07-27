@@ -83,7 +83,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 				ModelRel modelRelType = MMTFRegistry.getModelRelType(multiModel, uri);
 				if (modelRelType != null) {
 					MMTFRegistry.removeModelType(modelRelType);
-					MMTFRegistry.updateRepository(multiModel);
+					MMTFRegistry.syncRepository(multiModel);
 				}
 			}
 		}

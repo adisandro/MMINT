@@ -106,7 +106,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
 			MMTFRegistry.createLightModelTypeRef(getNewSource(), getOldTarget());
 			result = super.reorientSource();
-			MMTFRegistry.updateRepository(multiModel);
+			MMTFRegistry.syncRepository(multiModel);
 		}
 
 		return result;
@@ -133,7 +133,7 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
 			MMTFRegistry.createLightModelTypeRef(getOldSource(), getNewTarget());
 			result = super.reorientTarget();
-			MMTFRegistry.updateRepository(multiModel);
+			MMTFRegistry.syncRepository(multiModel);
 		}
 
 		return result;

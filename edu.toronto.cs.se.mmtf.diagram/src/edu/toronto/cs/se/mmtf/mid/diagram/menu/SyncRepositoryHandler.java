@@ -27,7 +27,7 @@ public class SyncRepositoryHandler extends AbstractHandler {
 
 		try {
 			MultiModel multiModel = MMTFRegistry.getTypeMidRepository();
-			MMTFRegistry.updateRepository(multiModel);
+			MMTFRegistry.syncRepository(multiModel);
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);

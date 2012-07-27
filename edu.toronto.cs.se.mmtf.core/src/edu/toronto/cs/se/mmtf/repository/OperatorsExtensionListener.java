@@ -86,7 +86,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 				Operator operatorType = MMTFRegistry.getOperatorType(multiModel, uri);
 				if (operatorType != null) {
 					operatorType = MMTFRegistry.removeOperatorType(operatorType);
-					MMTFRegistry.updateRepository(multiModel);
+					MMTFRegistry.syncRepository(multiModel);
 				}
 			}
 		}

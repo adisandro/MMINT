@@ -63,7 +63,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 		Model modelType = (ModelRel) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) modelType.eContainer();
 		MMTFRegistry.removeModelType(modelType);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 	}
 
 	/**

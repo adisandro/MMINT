@@ -785,7 +785,7 @@ modelRef:
 			return root;
 		}
 
-		public static void updateRepository(MultiModel multiModel) {
+		public static void syncRepository(MultiModel multiModel) {
 			
 			//TODO MMTF: Encapsulate updateRepository in a command and chain
 			//TODO MMTF: with other commands that modify the repository
