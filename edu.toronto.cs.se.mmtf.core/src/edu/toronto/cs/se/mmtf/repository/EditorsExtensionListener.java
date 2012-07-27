@@ -17,6 +17,10 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 
 /**
@@ -60,6 +64,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 				mmtf.setSupertypes();
 				mmtf.addModelTypeEditor(editor);
 				mmtf.addEditorTypeFileExtensions(registry, editor);
+				MMTF.initTypeHierarchy();
 			}
 		}
 	}
@@ -71,12 +76,25 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 	@Override
 	public void removed(IExtension[] extensions) {
 
+		MultiModel multiModel;
+		try {
+			multiModel = MMTFRegistry.getTypeMidRepository();
+		}
+		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
+			return;
+		}
+
 		IConfigurationElement[] config;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				mmtf.removeEditorType(uri);
+				Editor editorType = MMTFRegistry.getEditorType(uri);
+				if (editorType != null) {
+					MMTFRegistry.removeEditorType(editorType);
+					MMTFRegistry.updateRepository(multiModel);
+				}
 			}
 		}
 	}

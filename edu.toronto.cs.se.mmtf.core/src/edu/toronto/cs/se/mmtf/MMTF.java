@@ -535,24 +535,6 @@ modelRef:
 	}
 
 	/**
-	 * Removes an editor type from the repository.
-	 * 
-	 * @param uri
-	 *            The editor type uri.
-	 */
-	public void removeEditorType(String uri) {
-
-		ExtendibleElement editor = repository.getExtendibleTable().removeKey(uri);
-		if (editor != null && editor instanceof Editor) {
-			repository.getEditors().remove(editor);
-			ExtendibleElement model = repository.getExtendibleTable().get(((Editor) editor).getModelUri());
-			if (model != null && model instanceof Model) {
-				((Model) model).getEditors().remove(editor);
-			}
-		}
-	}
-
-	/**
 	 * Set all the supertypes at once, to decouple from the order in which
 	 * extensions are read.
 	 */
@@ -567,13 +549,13 @@ modelRef:
 		tempSubtypes.clear();
 	}
 
-	private static void addTypeHierarchy(ExtendibleElement element, HashSet<String> substitutableTypes, HashMap<String, EList<ConversionOperator>> conversionTypes) {
+	private static void addTypeHierarchy(ExtendibleElement type, HashSet<String> substitutableTypes, HashMap<String, EList<ConversionOperator>> conversionTypes) {
 
 		// previous conversions
-		EList<ConversionOperator> previousConversions = conversionTypes.get(element.getUri());
+		EList<ConversionOperator> previousConversions = conversionTypes.get(type.getUri());
 
 		// add supertypes
-		ExtendibleElement supertype = element.getSupertype();
+		ExtendibleElement supertype = type.getSupertype();
 		if (supertype != null) {
 			String supertypeUri = supertype.getUri();
 			if (!substitutableTypes.contains(supertypeUri)) {
@@ -589,8 +571,8 @@ modelRef:
 		}
 
 		// add conversions
-		if (element instanceof Model) {
-			for (ConversionOperator operator : ((Model) element).getConversionOperators()) {
+		if (type instanceof Model) {
+			for (ConversionOperator operator : ((Model) type).getConversionOperators()) {
 				Model conversionModel = operator.getOutputs().get(0).getModel();
 				String conversionUri = conversionModel.getUri();
 				if (!substitutableTypes.contains(conversionUri)) { // coherence of multiple paths is assumed
@@ -612,12 +594,12 @@ modelRef:
 
 		substitutabilityTable.clear();
 		conversionTable.clear();
-		for (Model model : repository.getModels()) {
+		for (ExtendibleElement type : repository.getExtendibleTable().values()) {
 			HashSet<String> substitutableTypes = new HashSet<String>();
 			HashMap<String, EList<ConversionOperator>> conversionTypes = new HashMap<String, EList<ConversionOperator>>();
-			addTypeHierarchy(model, substitutableTypes, conversionTypes);
-			substitutabilityTable.put(model.getUri(), substitutableTypes);
-			conversionTable.put(model.getUri(), conversionTypes);
+			addTypeHierarchy(type, substitutableTypes, conversionTypes);
+			substitutabilityTable.put(type.getUri(), substitutableTypes);
+			conversionTable.put(type.getUri(), conversionTypes);
 		}
 	}
 
@@ -681,11 +663,8 @@ modelRef:
 	private void initDynamicTypes() {
 
 		MultiModel multiModel;
-		try {			
-			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-			multiModel = (MultiModel) MultiModelTypeIntrospection.getRoot(
-				URI.createFileURI(path + IPath.SEPARATOR + TYPE_MID_FILENAME)
-			);
+		try {
+			multiModel = MMTFRegistry.getTypeMidRepository();
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Skipping dynamic types, no previous Type MID found", e);
@@ -795,6 +774,16 @@ modelRef:
 	 * 
 	 */
 	public static class MMTFRegistry {
+
+		public static MultiModel getTypeMidRepository() throws Exception {
+
+			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
+			MultiModel root = (MultiModel) MultiModelTypeIntrospection.getRoot(
+				URI.createFileURI(path + IPath.SEPARATOR + MMTF.TYPE_MID_FILENAME)
+			);
+
+			return root;
+		}
 
 		public static void updateRepository(MultiModel multiModel) {
 			
@@ -1036,85 +1025,142 @@ modelRef:
 		}
 
 		/**
-		 * Removes a model type from the multimodel.
+		 * Removes a model type from a multimodel.
 		 * 
-		 * @param modelType
-		 *            The model type to be removed.
+		 * @param multiModel
+		 *            The multimodel.
+		 * @param uri
+		 *            The model type's uri.
 		 */
-		public static void removeModelType(Model modelType) {
-			String uri = modelType.getUri();
-			MultiModel multiModel = (MultiModel) modelType.eContainer();
-			
-			ArrayList<String> delOperatorTypes = new ArrayList<String>();
-			ArrayList<String> delModelTypes = new ArrayList<String>();
-			ArrayList<String> delModelRefs = new ArrayList<String>();
-			
-			ExtendibleElement removedElement = multiModel.getExtendibleTable().removeKey(uri);
-			if (removedElement != null && removedElement instanceof Model) {
-				Model model = (Model) removedElement;
-				multiModel.getModels().remove(model);
+		private static ExtendibleElement removeModelType(MultiModel multiModel, String uri) {
+
+			ExtendibleElement removedType = multiModel.getExtendibleTable().removeKey(uri);
+			if (removedType != null && removedType instanceof Model) {
+
+				ArrayList<String> delOperatorTypeUris = new ArrayList<String>();
+				ArrayList<String> delModelRelTypeUris = new ArrayList<String>();
+				ArrayList<String> delModelRelTypeModelUris = new ArrayList<String>();
+				Model modelType = (Model) removedType;
+				multiModel.getModels().remove(modelType);
+
+				// remove model element types
+				for (ModelElement modelElementType : modelType.getElements()) {
+					multiModel.getExtendibleTable().removeKey(modelElementType.getUri());
+				}
+
+				// remove model relationship type specific structures
+				if (modelType instanceof ModelRel) {
+					for (Link linkType : ((ModelRel) modelType).getLinks()) {
+						multiModel.getExtendibleTable().removeKey(linkType.getUri());
+					}
+				}
+
 				// remove operator types that use the model type
 				for (Operator operatorType : multiModel.getOperators()) {
 					for (Parameter par : operatorType.getInputs()) {
-						if (par.getModel().getUri().equals(uri) && !delOperatorTypes.contains(operatorType.getUri())) {
-							delOperatorTypes.add(operatorType.getUri());
+						if (par.getModel().getUri().equals(uri) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+							delOperatorTypeUris.add(operatorType.getUri());
 						}
 					}
 					for (Parameter par : operatorType.getOutputs()) {
-						if (par.getModel().getUri().equals(uri) && !delOperatorTypes.contains(operatorType.getUri())) {
-							delOperatorTypes.add(operatorType.getUri());
+						if (par.getModel().getUri().equals(uri) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+							delOperatorTypeUris.add(operatorType.getUri());
 						}
 					}
 				}
-				for (String operatorType : delOperatorTypes) {
-					Operator operator = (Operator)multiModel.getExtendibleTable().get(operatorType);
-					removeOperatorType(operator);
+				for (String operatorTypeUri : delOperatorTypeUris) {
+					Operator operatorType = MMTFRegistry.getOperatorType(multiModel, operatorTypeUri);
+					removeOperatorType(operatorType);
 				}
-				// remove model elements, if any
-				for (ModelElement element : model.getElements()) {
-					multiModel.getExtendibleTable().removeKey(element.getUri());
-				}
-				// remove model relationship specific structures
-				if (model instanceof ModelRel) {
-					for (Link link : ((ModelRel) model).getLinks()) {
-						multiModel.getExtendibleTable().removeKey(link.getUri());
-					}
-				}
-				// remove model relationships that use this model, and subtypes
-				for (Model relatedModel : multiModel.getModels()) {
-					// model relationships
-					if (relatedModel instanceof ModelRel) {
-						if (((ModelRel) relatedModel).getModels().contains(model)) {
-							if (relatedModel instanceof BinaryModelRel) {
-								delModelTypes.add(relatedModel.getUri());
-							} else {
-								delModelRefs.add(relatedModel.getUri());
+
+				// remove model relationship types that use this model type
+				for (Model modelRelType : multiModel.getModels()) {
+					if (modelRelType instanceof ModelRel) {
+						if (((ModelRel) modelRelType).getModels().contains(modelType)) {
+							if (modelRelType instanceof BinaryModelRel) {
+								delModelRelTypeUris.add(modelRelType.getUri());
+							}
+							else {
+								delModelRelTypeModelUris.add(modelRelType.getUri());
 							}
 						}
 					}
-
-					// subtypes
-					if (MMTFRegistry.isSubtypeOf(relatedModel.getUri(), uri)) {
-						delModelTypes.add(relatedModel.getUri());
+				}
+				for (String modelRelTypeUri : delModelRelTypeModelUris) {
+					ModelRel modelRelType = MMTFRegistry.getModelRelType(multiModel, modelRelTypeUri);
+					if (modelRelType != null) {
+						removeLightModelTypeRef(modelRelType, modelType);
+						modelRelType.getModels().remove(modelType);
 					}
 				}
-				
-				for (String relatedModelRel : delModelRefs) {
-					ModelRel modelRel = (ModelRel)multiModel.getExtendibleTable().get(relatedModelRel);
-					if (modelRel != null) {
-						removeLightModelTypeRef(modelRel, model);
-						modelRel.getModels().remove(model);
-					}
-				}
-				for (String relatedModelType : delModelTypes) {
-					Model relatedModel = (Model)multiModel.getExtendibleTable().get(relatedModelType);
-					if (relatedModel != null) {
-						removeModelType(relatedModel);
+				for (String modelRelTypeUri : delModelRelTypeUris) {
+					ModelRel modelRelType = MMTFRegistry.getModelRelType(multiModel, modelRelTypeUri);
+					if (modelRelType != null) {
+						removeModelType(modelRelType);
 					}
 				}
 			}
+
+			return removedType;
 		}
-		
+
+		/**
+		 * Removes a model type and its subtypes from its multimodel.
+		 * 
+		 * @param modelType
+		 *            The model type.
+		 */
+		public static void removeModelType(Model modelType) {
+
+			MultiModel multiModel = (MultiModel) modelType.eContainer();
+			ExtendibleElement removedModelType = removeModelType(multiModel, modelType.getUri());
+			if (removedModelType != null) {
+				for (String modelSubtypeUri : MMTFRegistry.getSubtypeUris(removedModelType)) {
+					removeModelType(multiModel, modelSubtypeUri);
+				}
+			}
+		}
+
+		/**
+		 * Removes an editor type from a multimodel.
+		 * 
+		 * @param multiModel
+		 *            The multimodel.
+		 * @param uri
+		 *            The editor type's uri.
+		 */
+		private static ExtendibleElement removeEditorType(MultiModel multiModel, String uri) {
+
+			ExtendibleElement removedType = multiModel.getExtendibleTable().removeKey(uri);
+			if (removedType != null && removedType instanceof Editor) {
+				Editor editorType = (Editor) removedType;
+				multiModel.getEditors().remove(editorType);
+				Model modelType = MMTFRegistry.getModelType(multiModel, editorType.getModelUri());
+				if (modelType != null) {
+					modelType.getEditors().remove(editorType);
+				}
+			}
+
+			return removedType;
+		}
+
+		/**
+		 * Removes an editor type and its subtypes from its multimodel.
+		 * 
+		 * @param editorType
+		 *            The editor type.
+		 */
+		public static void removeEditorType(Editor editorType) {
+
+			MultiModel multiModel = (MultiModel) editorType.eContainer();
+			ExtendibleElement removedEditorType = removeEditorType(multiModel, editorType.getUri());
+			if (removedEditorType != null) {
+				for (String editorSubtypeUri : MMTFRegistry.getSubtypeUris(removedEditorType)) {
+					removeEditorType(multiModel, editorSubtypeUri);
+				}
+			}
+		}
+
 		/**
 		 * Removes an operator type from the multimodel.
 		 * 
@@ -1122,12 +1168,13 @@ modelRef:
 		 *            The operator type to be removed.
 		 */
 		public static Operator removeOperatorType(Operator operator) {
+
 			String uri = operator.getUri();
 			MultiModel multiModel = (MultiModel) operator.eContainer();
 			
 			ExtendibleElement elementType = multiModel.getExtendibleTable().removeKey(uri);
 			Operator operatorType = null;
-		
+
 			if (elementType != null && elementType instanceof Operator) {
 				operatorType = (Operator) elementType;
 				multiModel.getOperators().remove(operatorType);
@@ -1136,7 +1183,7 @@ modelRef:
 					operatorType.getInputs().get(0).getModel().getConversionOperators().remove(operatorType);
 				}
 			}
-		
+
 			return operatorType;
 		}
 
@@ -1213,8 +1260,37 @@ modelRef:
 				conversionTable.get(subtypeUri).get(supertypeUri).isEmpty();
 		}
 
+		public static EList<String> getSubtypeUris(ExtendibleElement type) {
+
+			EList<String> subtypeUris = new BasicEList<String>();
+			for (ExtendibleElement subtype : repository.getExtendibleTable().values()) {
+				if (subtype.getClass() != type.getClass()) {
+					continue;
+				}
+				if (MMTFRegistry.isSubtypeOf(subtype.getUri(), type.getUri())) {
+					subtypeUris.add(subtype.getUri());
+				}
+			}
+
+			return subtypeUris;
+		}
+
 		/**
-		 * Gets an extendible type.
+		 * Gets an extendible type from a multimodel.
+		 * 
+		 * @param multiModel
+		 *            The multimodel.
+		 * @param uri
+		 *            The uri of the extendible type.
+		 * @return The extendible type, or null if uri is not found.
+		 */
+		public static ExtendibleElement getExtendibleType(MultiModel multiModel, String uri) {
+
+			return multiModel.getExtendibleTable().get(uri);
+		}
+
+		/**
+		 * Gets an extendible type from the repository.
 		 * 
 		 * @param uri
 		 *            The uri of the extendible type.
@@ -1222,41 +1298,71 @@ modelRef:
 		 */
 		public static ExtendibleElement getExtendibleType(String uri) {
 
-			return repository.getExtendibleTable().get(uri);
+			return getExtendibleType(repository, uri);
 		}
 
 		/**
-		 * Gets a model type.
+		 * Gets a model type from a multimodel.
+		 * 
+		 * @param multiModel
+		 *            The multimodel.
+		 * @param modelTypeUri
+		 *            The uri of the model type.
+		 * @return The model type, or null if its uri is not found or found not
+		 *         to be a model type.
+		 */
+		public static Model getModelType(MultiModel multiModel, String modelTypeUri) {
+
+			ExtendibleElement modelType = getExtendibleType(multiModel, modelTypeUri);
+			if (modelType instanceof Model) {
+				return (Model) modelType;
+			}
+			return null;
+		}
+
+		/**
+		 * Gets a model type from the repository.
 		 * 
 		 * @param modelTypeUri
 		 *            The uri of the model type.
 		 * @return The model type, or null if its uri is not found or found not
-		 *         to be a model.
+		 *         to be a model type.
 		 */
 		public static Model getModelType(String modelTypeUri) {
 
-			ExtendibleElement model = getExtendibleType(modelTypeUri);
-			if (model instanceof Model) {
-				return (Model) model;
+			return getModelType(repository, modelTypeUri);
+		}
+
+		/**
+		 * Gets a model relationship type from a multimodel.
+		 * 
+		 * @param multiModel
+		 *            The multimodel.
+		 * @param modelRelTypeUri
+		 *            The uri of the model relationship type.
+		 * @return The model relationship type, or null if its uri is not found
+		 *         or found not to be a model relationship type.
+		 */
+		public static ModelRel getModelRelType(MultiModel multiModel, String modelRelTypeUri) {
+
+			ExtendibleElement modelRelType = getExtendibleType(multiModel, modelRelTypeUri);
+			if (modelRelType instanceof ModelRel) {
+				return (ModelRel) modelRelType;
 			}
 			return null;
 		}
 
 		/**
-		 * Gets a model relationship type.
+		 * Gets a model relationship type from the repository.
 		 * 
 		 * @param modelRelTypeUri
 		 *            The uri of the model relationship type.
 		 * @return The model relationship type, or null if its uri is not found
-		 *         or found not to be a model relationship.
+		 *         or found not to be a model relationship type.
 		 */
 		public static ModelRel getModelRelType(String modelRelTypeUri) {
 
-			ExtendibleElement modelRel = getExtendibleType(modelRelTypeUri);
-			if (modelRel instanceof ModelRel) {
-				return (ModelRel) modelRel;
-			}
-			return null;
+			return getModelRelType(repository, modelRelTypeUri);
 		}
 
 		/**
@@ -1277,20 +1383,50 @@ modelRef:
 		}
 
 		/**
-		 * Gets an operator type.
+		 * Gets an editor type.
+		 * 
+		 * @param editorTypeUri
+		 *            The uri of the editor type.
+		 * @return The editor type, or null if its uri is not found or found
+		 *         not to be an editor.
+		 */
+		public static Editor getEditorType(String editorTypeUri) {
+
+			ExtendibleElement editorType = getExtendibleType(editorTypeUri);
+			if (editorType instanceof Editor) {
+				return (Editor) editorType;
+			}
+			return null;
+		}
+
+		/**
+		 * Gets an operator type from a multimodel.
 		 * 
 		 * @param operatorTypeUri
 		 *            The uri of the operator type.
 		 * @return The operator type, or null if its uri is not found or found
-		 *         not to be an operator.
+		 *         not to be an operator type.
+		 */
+		public static Operator getOperatorType(MultiModel multiModel, String operatorTypeUri) {
+
+			ExtendibleElement operatorType = getExtendibleType(multiModel, operatorTypeUri);
+			if (operatorType instanceof Operator) {
+				return (Operator) operatorType;
+			}
+			return null;
+		}
+
+		/**
+		 * Gets an operator type from the repository.
+		 * 
+		 * @param operatorTypeUri
+		 *            The uri of the operator type.
+		 * @return The operator type, or null if its uri is not found or found
+		 *         not to be an operator type.
 		 */
 		public static Operator getOperatorType(String operatorTypeUri) {
 
-			ExtendibleElement operator = getExtendibleType(operatorTypeUri);
-			if (operator instanceof Operator) {
-				return (Operator) operator;
-			}
-			return null;
+			return getOperatorType(repository, operatorTypeUri);
 		}
 
 		/**
@@ -1318,6 +1454,16 @@ modelRef:
 			}
 
 			return modelRels;
+		}
+
+		/**
+		 * Gets the list of registered editor types.
+		 * 
+		 * @return The list of registered editor types.
+		 */
+		public static EList<Editor> getEditorTypes() {
+
+			return repository.getEditors();
 		}
 
 		/**

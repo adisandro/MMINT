@@ -13,16 +13,14 @@ package edu.toronto.cs.se.mmtf.repository;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
-import org.eclipse.emf.common.util.URI;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFActivator;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
-import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -70,25 +68,25 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 	 */
 	@Override
 	public void removed(IExtension[] extensions) {
+
 		MultiModel multiModel;
-		try {			
-			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-			URI uri = URI.createFileURI(path+"/types.mid");
-			multiModel = (MultiModel) MultiModelTypeIntrospection.getRoot(uri);
+		try {
+			multiModel = MMTFRegistry.getTypeMidRepository();
 		}
 		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
 			return;
 		}
-		
+
 		IConfigurationElement[] config;
-		Operator operator;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				operator = MMTFRegistry.removeOperatorType((Operator)multiModel.getExtendibleTable().get(uri));
-				if (operator instanceof ConversionOperator) {
-					MMTF.initTypeHierarchy();
+				Operator operatorType = MMTFRegistry.getOperatorType(multiModel, uri);
+				if (operatorType != null) {
+					operatorType = MMTFRegistry.removeOperatorType(operatorType);
+					MMTFRegistry.updateRepository(multiModel);
 				}
 			}
 		}

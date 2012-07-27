@@ -14,16 +14,11 @@ package edu.toronto.cs.se.mmtf.mid.diagram.menu;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.URI;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class SyncRepositoryHandler extends AbstractHandler {
 
@@ -31,14 +26,11 @@ public class SyncRepositoryHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		try {
-			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-			MultiModel root = (MultiModel) MultiModelTypeIntrospection.getRoot(
-				URI.createFileURI(path + IPath.SEPARATOR + MMTF.TYPE_MID_FILENAME)
-			);
-			MMTFRegistry.updateRepository(root);
+			MultiModel multiModel = MMTFRegistry.getTypeMidRepository();
+			MMTFRegistry.updateRepository(multiModel);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate " + MMTF.TYPE_MID_FILENAME, e);
+			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
 			return null;
 		}
 
