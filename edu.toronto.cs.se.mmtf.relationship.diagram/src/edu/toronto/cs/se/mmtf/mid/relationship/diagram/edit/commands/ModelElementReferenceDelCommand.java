@@ -59,7 +59,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 		MultiModel multiModel = (MultiModel) getElementToDestroy().eContainer().eContainer().eContainer();
 		MMTFRegistry.removeLightModelElementTypeRef((ModelElementReference) getElementToDestroy());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 
 		return result;
 	}

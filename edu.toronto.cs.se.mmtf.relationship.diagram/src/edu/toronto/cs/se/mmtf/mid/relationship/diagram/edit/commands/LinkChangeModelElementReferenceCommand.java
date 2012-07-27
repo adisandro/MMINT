@@ -92,7 +92,7 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 		MultiModel multiModel = (MultiModel) getOldSource().eContainer().eContainer();
 		CommandResult result = super.reorientSource();
 		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer())) {
-			MMTFRegistry.updateRepository(multiModel);
+			MMTFRegistry.syncRepository(multiModel);
 		}
 
 		return result;
@@ -104,7 +104,7 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 		MultiModel multiModel = (MultiModel) getOldSource().eContainer().eContainer();
 		CommandResult result = super.reorientTarget();
 		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer())) {
-			MMTFRegistry.updateRepository(multiModel);
+			MMTFRegistry.syncRepository(multiModel);
 		}
 
 		return result;

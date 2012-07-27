@@ -78,7 +78,7 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getLink()
 		);
-		MMTFRegistry.updateRepository((MultiModel) modelRelType.eContainer());
+		MMTFRegistry.syncRepository((MultiModel) modelRelType.eContainer());
 
 		return newLinkType;
 	}

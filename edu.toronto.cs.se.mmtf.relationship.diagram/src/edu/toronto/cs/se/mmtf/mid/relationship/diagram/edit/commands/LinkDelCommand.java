@@ -59,7 +59,7 @@ public class LinkDelCommand extends DestroyElementCommand {
 		MultiModel multiModel = (MultiModel) getElementToDestroy().eContainer().eContainer();
 		MMTFRegistry.removeLightLinkType((Link) getElementToDestroy());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 
 		return result;
 	}

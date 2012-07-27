@@ -65,7 +65,7 @@ public class LinkAddModelElementReferenceCommand extends LinkElementRefsCreateCo
 
 	protected void doExecuteTypesLevel() {
 
-		MMTFRegistry.updateRepository((MultiModel) getSource().eContainer().eContainer());
+		MMTFRegistry.syncRepository((MultiModel) getSource().eContainer().eContainer());
 	}
 
 	@Override

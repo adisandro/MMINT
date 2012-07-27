@@ -89,7 +89,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		ModelReference modelTypeRef = (ModelReference) getElementToEdit();
 		ModelElementReference newModelElemTypeRef = MMTFRegistry.createLightModelElementType(modelTypeRef, "", droppedElement);
-		MMTFRegistry.updateRepository((MultiModel) modelTypeRef.eContainer().eContainer());
+		MMTFRegistry.syncRepository((MultiModel) modelTypeRef.eContainer().eContainer());
 
 		return newModelElemTypeRef;
 	}

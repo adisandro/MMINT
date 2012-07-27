@@ -88,7 +88,7 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getBinaryLink()
 		);
-		MMTFRegistry.updateRepository((MultiModel) getContainer().eContainer());
+		MMTFRegistry.syncRepository((MultiModel) getContainer().eContainer());
 
 		return newLinkType;
 	}

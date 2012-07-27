@@ -56,7 +56,7 @@ public class LinkRemoveModelElementReferenceCommand extends DestroyReferenceComm
 
 		MultiModel multiModel = (MultiModel) getContainer().eContainer().eContainer();
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTFRegistry.updateRepository(multiModel);
+		MMTFRegistry.syncRepository(multiModel);
 
 		return result;
 	}

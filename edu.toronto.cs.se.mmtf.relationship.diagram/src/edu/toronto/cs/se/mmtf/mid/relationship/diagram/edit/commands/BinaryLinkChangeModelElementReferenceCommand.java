@@ -125,7 +125,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 
 		getLink().getElementRefs().set(0, getNewSource());
 		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
-			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer().eContainer());
+			MMTFRegistry.syncRepository((MultiModel) getLink().eContainer().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -143,7 +143,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 
 		getLink().getElementRefs().set(1, getNewTarget());
 		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
-			MMTFRegistry.updateRepository((MultiModel) getLink().eContainer().eContainer());
+			MMTFRegistry.syncRepository((MultiModel) getLink().eContainer().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());
