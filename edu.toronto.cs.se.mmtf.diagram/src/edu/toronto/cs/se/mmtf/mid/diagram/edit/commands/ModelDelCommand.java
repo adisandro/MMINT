@@ -18,11 +18,11 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to delete a model.
@@ -62,13 +62,13 @@ public class ModelDelCommand extends DestroyElementCommand {
 		
 		Model modelType = (Model) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) modelType.eContainer();		
-		MMTFRegistry.removeModelType(modelType);
-		MMTFRegistry.syncRepository(multiModel);
+		MultiModelTypeFactory.removeModelType(modelType);
+		MultiModelTypeFactory.syncRepository(multiModel);
 	}
 
 	protected void doExecuteInstancesLevel() {
 
-		MultiModelFactoryUtils.removeModel((Model) getElementToDestroy());
+		MultiModelInstanceFactory.removeModel((Model) getElementToDestroy());
 	}
 
 	/**

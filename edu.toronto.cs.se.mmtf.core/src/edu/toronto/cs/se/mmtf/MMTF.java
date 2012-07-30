@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,29 +23,20 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -58,7 +48,6 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
@@ -66,16 +55,13 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.OperatorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
-import edu.toronto.cs.se.mmtf.repository.ui.RelationshipTypesDialogContentProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.RepositoryTypesDialogLabelProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogSelectionValidator;
-import edu.toronto.cs.se.mmtf.repository.ui.MidTypesDialogContentProvider;
 
 /**
  * The Model Management Tool Framework adds the ability to create and manage
@@ -91,7 +77,7 @@ import edu.toronto.cs.se.mmtf.repository.ui.MidTypesDialogContentProvider;
 public class MMTF implements MMTFExtensionPoints {
 
 	/** The repository of registered extensions. */
-	private static MultiModel repository;
+	public static MultiModel repository;
 
 	/**	The table for model types substitutability. */
 	public static HashMap<String, HashSet<String>> substitutabilityTable;
@@ -132,7 +118,7 @@ public class MMTF implements MMTFExtensionPoints {
 
 		// supertype
 		String supertypeUri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_SUPERTYPEURI);
-		String rootUri = MMTFRegistry.getRootTypeUri(type);
+		String rootUri = MultiModelTypeRegistry.getRootTypeUri(type);
 		if (supertypeUri == null) {
 			if (!uri.equals(rootUri)) {
 				tempSubtypes.put(type, rootUri);
@@ -239,7 +225,7 @@ public class MMTF implements MMTFExtensionPoints {
 		// models and containers
 		for (IConfigurationElement modelConfigElem : modelConfig) {
 			String modelUri = modelConfigElem.getAttribute(MODELRELS_MODEL_ATTR_MODELTYPEURI);
-			Model model = MMTFRegistry.getModelType(modelUri);
+			Model model = MultiModelTypeRegistry.getModelType(modelUri);
 			if (model != null) {
 				modelRel.getModels().add(model);
 				ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
@@ -249,7 +235,7 @@ public class MMTF implements MMTFExtensionPoints {
 				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(MODELRELS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
 					String modelElementUri = modelElementConfigElem.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
-					ModelElement element = MMTFRegistry.getModelElementType(modelElementUri);
+					ModelElement element = MultiModelTypeRegistry.getModelElementType(modelElementUri);
 					if (element == null) { // create new model element
 						element = MidFactory.eINSTANCE.createModelElement();
 						element.setCategory(
@@ -263,7 +249,7 @@ public class MMTF implements MMTFExtensionPoints {
 						}
 						catch (MMTFException e) {
 							MMTFException.print(Type.WARNING, "Model element can't be registered", e);
-							MMTFRegistry.removeModelType(modelRel);
+							MultiModelTypeFactory.removeModelType(modelRel);
 							return null;
 						}
 						model.getElements().add(element);
@@ -288,7 +274,7 @@ public class MMTF implements MMTFExtensionPoints {
 			}
 			catch (MMTFException e) {
 				MMTFException.print(Type.WARNING, "Link can't be registered", e);
-				MMTFRegistry.removeModelType(modelRel);
+				MultiModelTypeFactory.removeModelType(modelRel);
 				return null;
 			}
 			link.setUnbounded(linkUnbounded);
@@ -376,7 +362,7 @@ modelRef:
 			}
 			String modelTypeUri = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
 			// create parameter
-			Model model = MMTFRegistry.getModelType(modelTypeUri);
+			Model model = MultiModelTypeRegistry.getModelType(modelTypeUri);
 			if (model == null) {
 				throw new MMTFException("Model type " + modelTypeUri + " is not registered");
 			}
@@ -451,7 +437,7 @@ modelRef:
 	 */
 	public void addModelTypeEditor(Editor editorType) {
 
-		Model modelType = MMTFRegistry.getModelType(editorType.getModelUri());
+		Model modelType = MultiModelTypeRegistry.getModelType(editorType.getModelUri());
 		if (modelType != null) {
 			modelType.getEditors().add(editorType);
 		}
@@ -543,7 +529,7 @@ modelRef:
 		for (Entry<ExtendibleElement, String> entry : tempSubtypes.entrySet()) {
 			ExtendibleElement subtype = entry.getKey();
 			String supertypeUri = entry.getValue();
-			ExtendibleElement supertype = MMTFRegistry.getExtendibleType(supertypeUri);
+			ExtendibleElement supertype = MultiModelTypeRegistry.getExtendibleType(supertypeUri);
 			subtype.setSupertype(supertype);
 		}
 		tempSubtypes.clear();
@@ -605,7 +591,7 @@ modelRef:
 
 	private Model addDynamicType(Model dynamicModelType) {
 
-		Model modelSupertype = MMTFRegistry.getModelType(dynamicModelType.getSupertype().getUri());
+		Model modelSupertype = MultiModelTypeRegistry.getModelType(dynamicModelType.getSupertype().getUri());
 		if (modelSupertype == null && dynamicModelType.getSupertype().isDynamic()) {
 			modelSupertype = addDynamicType(dynamicModelType.getSupertype());
 		}
@@ -628,7 +614,7 @@ modelRef:
 				modelRelTypeClass = RelationshipPackage.eINSTANCE.getModelRel();
 			}
 			try {
-				modelType = MMTFRegistry.createLightModelRelType(
+				modelType = MultiModelTypeFactory.createLightModelRelType(
 					(ModelRel) modelSupertype,
 					srcModelType,
 					tgtModelType,
@@ -643,7 +629,7 @@ modelRef:
 		}
 		else {
 			try {
-				modelType = MMTFRegistry.createLightModelType(
+				modelType = MultiModelTypeFactory.createLightModelType(
 					modelSupertype, 
 					dynamicModelType.getName(),
 					dynamicModelType.getConstraint().getBody()
@@ -664,7 +650,7 @@ modelRef:
 
 		MultiModel multiModel;
 		try {
-			multiModel = MMTFRegistry.getTypeMidRepository();
+			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Skipping dynamic types, no previous Type MID found", e);
@@ -675,7 +661,7 @@ modelRef:
 		for (Model modelType : multiModel.getModels()) {
 			if (!(modelType instanceof ModelRel) &&
 				modelType.isDynamic() &&
-				MMTFRegistry.getExtendibleType(modelType.getUri()) == null
+				MultiModelTypeRegistry.getExtendibleType(modelType.getUri()) == null
 			) {
 				addDynamicType(modelType);
 			}
@@ -683,7 +669,7 @@ modelRef:
 		for (Model modelType : multiModel.getModels()) {
 			if (modelType instanceof ModelRel
 				&& modelType.isDynamic() &&
-				MMTFRegistry.getExtendibleType(modelType.getUri()) == null
+				MultiModelTypeRegistry.getExtendibleType(modelType.getUri()) == null
 			) {
 				addDynamicType(modelType);
 			}
@@ -764,1124 +750,6 @@ modelRef:
 			registry.addListener(new EditorsExtensionListener(this), EDITORS_EXT_POINT);
 			registry.addListener(new OperatorsExtensionListener(this), OPERATORS_EXT_POINT);
 		}
-	}
-
-	/**
-	 * The MMTF registry, to be queried by extensions to get info about the
-	 * repository.
-	 * 
-	 * @author Alessio Di Sandro
-	 * 
-	 */
-	public static class MMTFRegistry {
-
-		public static MultiModel getTypeMidRepository() throws Exception {
-
-			String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-			MultiModel root = (MultiModel) MultiModelTypeIntrospection.getRoot(
-				URI.createFileURI(path + IPath.SEPARATOR + MMTF.TYPE_MID_FILENAME)
-			);
-
-			return root;
-		}
-
-		public static void syncRepository(MultiModel multiModel) {
-			
-			//TODO MMTF: Encapsulate updateRepository in a command and chain
-			//TODO MMTF: with other commands that modify the repository
-			//TODO MMTF: so that undos are also reflected in the repository as
-			//TODO MMTF: well as the diagram
-			EList<OperatorExecutable> executables = new BasicEList<OperatorExecutable>();
-			for (Operator operator : repository.getOperators()) {
-				executables.add(operator.getExecutable());
-			}
-			repository = EcoreUtil.copy(multiModel);
-			for (int i = 0; i < repository.getOperators().size(); i++) {
-				Operator operator = repository.getOperators().get(i);
-				operator.setExecutable(executables.get(i));
-			}
-			MMTF.initTypeHierarchy();
-		}
-
-		public static String getRootTypeUri(ExtendibleElement type) {
-
-			String rootUri = "";
-			if (type instanceof ModelRel) {
-				rootUri = ROOT_MODELREL_URI;
-			}
-			else if (type instanceof Model) {
-				rootUri = ROOT_MODEL_URI;
-			}
-			else if (type instanceof ModelElement) {
-				if (((ModelElement) type).getCategory() == ModelElementCategory.ENTITY) {
-					rootUri = ROOT_MODELELEMENT_ENTITY_URI;
-				}
-				else if (((ModelElement) type).getCategory() == ModelElementCategory.RELATIONSHIP) {
-					rootUri = ROOT_MODELELEMENT_RELATIONSHIP_URI;
-				}
-			}
-			else if (type instanceof Link) {
-				rootUri = ROOT_MODELREL_LINK_URI;
-			}
-			//TODO MMTF: root text editor and operator?
-
-			return rootUri;
-		}
-
-		private static void addLightExtendibleType(ExtendibleElement newType, ExtendibleElement type, String newTypeUriFragment, String newTypeName, MultiModel multiModel) throws MMTFException {
-
-			// uri
-			String uri = (type == null) ?
-				getRootTypeUri(newType) :
-				type.getUri();
-			String newUri = uri + "/" + newTypeUriFragment;
-			if (multiModel.getExtendibleTable().containsKey(newUri)) {
-				throw new MMTFException("Extendible type's URI " + newUri + " is already registered");
-			}
-			newType.setUri(newUri);
-
-			// basic attributes
-			newType.setName(newTypeName);
-			newType.setLevel(MidLevel.TYPES);
-			newType.setDynamic(true);
-
-			// supertype
-			newType.setSupertype(type);
-
-			multiModel.getExtendibleTable().put(newUri, newType);
-		}
-
-		private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraint) throws MMTFException {
-
-			// create
-			MultiModel multiModel = (MultiModel) modelType.eContainer();
-			addLightExtendibleType(newModelType, modelType, newModelTypeName, newModelTypeName, multiModel);
-
-			// set specific attributes
-			newModelType.setOrigin(ModelOrigin.CREATED);
-			ModelConstraint modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
-			modelConstraint.setBody(constraint);
-			modelConstraint.setEngine(ModelConstraintEngine.OCL);
-			newModelType.setConstraint(modelConstraint);
-
-			// copy attributes from supertype
-			newModelType.setFileExtension(modelType.getFileExtension());
-
-			// create new editors
-			for (Editor editorType : modelType.getEditors()) {
-				Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
-				try {
-					addLightExtendibleType(newEditorType, editorType, newModelTypeName, editorType.getName(), multiModel);
-				}
-				catch (MMTFException e) {
-					// unfortunately models created through this editor will have the supermodel as static type
-					newModelType.getEditors().add(editorType);
-					continue;
-				}
-				newEditorType.setModelUri(newModelType.getUri());
-				newEditorType.setId(editorType.getId());
-				newEditorType.setWizardId(editorType.getWizardId());
-				multiModel.getEditors().add(newEditorType);
-				newModelType.getEditors().add(newEditorType);
-				newEditorType.getFileExtensions().addAll(editorType.getFileExtensions());
-			}
-
-			// register light model type
-			multiModel.getModels().add(newModelType);
-		}
-
-		public static Model createLightModelType(Model modelType, String newModelTypeName, String constraint) throws MMTFException {
-
-			Model newModelType = MidFactory.eINSTANCE.createModel();
-			addLightModelType(newModelType, modelType, newModelTypeName, constraint);
-
-			return newModelType;
-		}
-
-		public static ModelReference createLightModelTypeRef(ModelRel modelRelType, Model modelType) {
-
-			ModelReference newModelTypeRef = RelationshipFactory.eINSTANCE.createModelReference();
-			newModelTypeRef.setReferencedObject(modelType);
-			modelRelType.getModelRefs().add(newModelTypeRef);
-
-			return newModelTypeRef;
-		}
-
-		public static ModelRel createLightModelRelType(ModelRel modelRelType, Model srcModelType, Model tgtModelType, String newModelRelTypeName, String constraint, EClass modelRelTypeClass) throws MMTFException {
-
-			ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
-			addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraint);
-			//TODO MMTF: how to make the user choose unbounded?
-			newModelRelType.setUnbounded(modelRelType.isUnbounded());
-
-			//TODO MMTF: decide what to do when inheriting here
-			// models and containers
-			if (srcModelType != null && tgtModelType != null) { // binary model relationship type
-				newModelRelType.getModels().add(srcModelType);
-				ModelReference newSrcModelTypeRef = createLightModelTypeRef(newModelRelType, srcModelType);
-//				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-//					if (isSubtypeOf(srcModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
-//						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-//							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-//							createLightModelElementType(newSrcModelTypeRef, "Src" + modelElemType.getName(), modelElemType.getPointer());
-//						}
-//						break;
-//					}
-//				}
-				newModelRelType.getModels().add(tgtModelType);
-				ModelReference newTgtModelTypeRef = createLightModelTypeRef(newModelRelType, tgtModelType);
-//				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-//					if (isSubtypeOf(tgtModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
-//						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-//							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-//							createLightModelElementType(newTgtModelTypeRef, "Tgt" + modelElemType.getName(), modelElemType.getPointer());
-//						}
-//						break;
-//					}
-//				}
-			}
-			else {
-				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-					Model modelType = (Model) modelTypeRef.getObject();
-					newModelRelType.getModels().add(modelType);
-					ModelReference newModelTypeRef = createLightModelTypeRef(newModelRelType, modelType);
-					// model elements
-//					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-//						ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-//						createLightModelElementType(newModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
-//					}
-				}
-			}
-
-			// links
-//			for (Link linkType : modelRelType.getLinks()) {
-//				Link newLinkType = createLightLinkType(newModelRelType, null, null, linkType.getName(), linkType.eClass());
-//				newLinkType.setUnbounded(linkType.isUnbounded());
-//				// link elements
-//				for (ModelElementReference modelElemTypeRef : linkType.getElementRefs()) {
-//					for (ModelReference newModelTypeRef : newModelRelType.getModelRefs()) {
-//						for (ModelElementReference newModelElemTypeRef : newModelTypeRef.getElementRefs()) {
-//							if (
-//								newModelElemTypeRef.getName().equals(modelElemTypeRef.getName()) || (
-//									(srcModelType != null && tgtModelType != null) && (
-//										newModelElemTypeRef.getName().equals("Src" + modelElemTypeRef.getName()) ||
-//										newModelElemTypeRef.getName().equals("Tgt" + modelElemTypeRef.getName())
-//									)
-//								)
-//							) {
-//								newLinkType.getElementRefs().add(newModelElemTypeRef);
-//							}
-//						}
-//					}
-//				}
-//			}
-
-			return newModelRelType;
-		}
-
-		public static ModelElementReference createLightModelElementType(ModelReference modelTypeRef, String newModelElemTypeName, EObject droppedElement) throws MMTFException {
-
-			ModelRel modelRelType = (ModelRel) modelTypeRef.eContainer();
-			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-			Model modelType = (Model) modelTypeRef.getObject();
-
-			// always create model element, it is specific of the model relationship type even if another one uses the same dropped element
-			ModelElement newModelElemType = MidFactory.eINSTANCE.createModelElement();
-			ModelElementCategory category = (droppedElement instanceof EReference) ?
-				ModelElementCategory.RELATIONSHIP :
-				ModelElementCategory.ENTITY;
-			String classLiteral = getDroppedElementClassLiteral(MidLevel.TYPES, droppedElement);
-			newModelElemType.setCategory(category);
-			newModelElemType.setClassLiteral(classLiteral);
-			//TODO MMTF: think about next assignment
-			newModelElemTypeName = classLiteral;
-			addLightExtendibleType(newModelElemType, null, modelRelType.getName() + "/" + newModelElemTypeName, newModelElemTypeName, multiModel);
-			modelType.getElements().add(newModelElemType);
-
-			// create model element reference
-			ModelElementReference newModelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-			newModelElemTypeRef.setReferencedObject(newModelElemType); // standalone model relationship here don't exist
-			modelTypeRef.getElementRefs().add(newModelElemTypeRef);
-
-			return newModelElemTypeRef;
-		}
-
-		public static Link createLightLinkType(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef, String newLinkTypeName, EClass newLinkTypeClass) throws MMTFException {
-
-			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-			Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
-			addLightExtendibleType(newLinkType, null, modelRelType.getName() + "/" + newLinkTypeName, newLinkTypeName, multiModel);
-			//TODO MMTF: how to make the user choose unbounded?
-			newLinkType.setUnbounded(true);
-			modelRelType.getLinks().add(newLinkType);
-
-			// binary link type
-			if (srcModelElemTypeRef != null && tgtModelElemTypeRef != null) {
-				newLinkType.getElementRefs().add(srcModelElemTypeRef);
-				newLinkType.getElementRefs().add(tgtModelElemTypeRef);
-			}
-
-			return newLinkType;
-		}
-
-		/**
-		 * Removes a model type from a multimodel.
-		 * 
-		 * @param multiModel
-		 *            The multimodel.
-		 * @param uri
-		 *            The model type's uri.
-		 */
-		private static ExtendibleElement removeModelType(MultiModel multiModel, String uri) {
-
-			ExtendibleElement removedType = multiModel.getExtendibleTable().removeKey(uri);
-			if (removedType != null && removedType instanceof Model) {
-
-				ArrayList<String> delOperatorTypeUris = new ArrayList<String>();
-				ArrayList<String> delModelRelTypeUris = new ArrayList<String>();
-				ArrayList<String> delModelRelTypeModelUris = new ArrayList<String>();
-				Model modelType = (Model) removedType;
-				multiModel.getModels().remove(modelType);
-
-				// remove model element types
-				for (ModelElement modelElementType : modelType.getElements()) {
-					multiModel.getExtendibleTable().removeKey(modelElementType.getUri());
-				}
-
-				// remove model relationship type specific structures
-				if (modelType instanceof ModelRel) {
-					for (Link linkType : ((ModelRel) modelType).getLinks()) {
-						multiModel.getExtendibleTable().removeKey(linkType.getUri());
-					}
-				}
-
-				// remove operator types that use the model type
-				for (Operator operatorType : multiModel.getOperators()) {
-					for (Parameter par : operatorType.getInputs()) {
-						if (par.getModel().getUri().equals(uri) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-							delOperatorTypeUris.add(operatorType.getUri());
-						}
-					}
-					for (Parameter par : operatorType.getOutputs()) {
-						if (par.getModel().getUri().equals(uri) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-							delOperatorTypeUris.add(operatorType.getUri());
-						}
-					}
-				}
-				for (String operatorTypeUri : delOperatorTypeUris) {
-					Operator operatorType = MMTFRegistry.getOperatorType(multiModel, operatorTypeUri);
-					removeOperatorType(operatorType);
-				}
-
-				// remove model relationship types that use this model type
-				for (Model modelRelType : multiModel.getModels()) {
-					if (modelRelType instanceof ModelRel) {
-						if (((ModelRel) modelRelType).getModels().contains(modelType)) {
-							if (modelRelType instanceof BinaryModelRel) {
-								delModelRelTypeUris.add(modelRelType.getUri());
-							}
-							else {
-								delModelRelTypeModelUris.add(modelRelType.getUri());
-							}
-						}
-					}
-				}
-				for (String modelRelTypeUri : delModelRelTypeModelUris) {
-					ModelRel modelRelType = MMTFRegistry.getModelRelType(multiModel, modelRelTypeUri);
-					if (modelRelType != null) {
-						removeLightModelTypeRef(modelRelType, modelType);
-						modelRelType.getModels().remove(modelType);
-					}
-				}
-				for (String modelRelTypeUri : delModelRelTypeUris) {
-					ModelRel modelRelType = MMTFRegistry.getModelRelType(multiModel, modelRelTypeUri);
-					if (modelRelType != null) {
-						removeModelType(modelRelType);
-					}
-				}
-			}
-
-			return removedType;
-		}
-
-		/**
-		 * Removes a model type and its subtypes from its multimodel.
-		 * 
-		 * @param modelType
-		 *            The model type.
-		 */
-		public static void removeModelType(Model modelType) {
-
-			MultiModel multiModel = (MultiModel) modelType.eContainer();
-			ExtendibleElement removedModelType = removeModelType(multiModel, modelType.getUri());
-			if (removedModelType != null) {
-				for (String modelSubtypeUri : MMTFRegistry.getSubtypeUris(removedModelType)) {
-					removeModelType(multiModel, modelSubtypeUri);
-				}
-			}
-		}
-
-		/**
-		 * Removes an editor type from a multimodel.
-		 * 
-		 * @param multiModel
-		 *            The multimodel.
-		 * @param uri
-		 *            The editor type's uri.
-		 */
-		private static ExtendibleElement removeEditorType(MultiModel multiModel, String uri) {
-
-			ExtendibleElement removedType = multiModel.getExtendibleTable().removeKey(uri);
-			if (removedType != null && removedType instanceof Editor) {
-				Editor editorType = (Editor) removedType;
-				multiModel.getEditors().remove(editorType);
-				Model modelType = MMTFRegistry.getModelType(multiModel, editorType.getModelUri());
-				if (modelType != null) {
-					modelType.getEditors().remove(editorType);
-				}
-			}
-
-			return removedType;
-		}
-
-		/**
-		 * Removes an editor type and its subtypes from its multimodel.
-		 * 
-		 * @param editorType
-		 *            The editor type.
-		 */
-		public static void removeEditorType(Editor editorType) {
-
-			MultiModel multiModel = (MultiModel) editorType.eContainer();
-			ExtendibleElement removedEditorType = removeEditorType(multiModel, editorType.getUri());
-			if (removedEditorType != null) {
-				for (String editorSubtypeUri : MMTFRegistry.getSubtypeUris(removedEditorType)) {
-					removeEditorType(multiModel, editorSubtypeUri);
-				}
-			}
-		}
-
-		/**
-		 * Removes an operator type from the multimodel.
-		 * 
-		 * @param uri
-		 *            The operator type to be removed.
-		 */
-		public static Operator removeOperatorType(Operator operator) {
-
-			String uri = operator.getUri();
-			MultiModel multiModel = (MultiModel) operator.eContainer();
-			
-			ExtendibleElement elementType = multiModel.getExtendibleTable().removeKey(uri);
-			Operator operatorType = null;
-
-			if (elementType != null && elementType instanceof Operator) {
-				operatorType = (Operator) elementType;
-				multiModel.getOperators().remove(operatorType);
-				// conversion operator
-				if (operatorType instanceof ConversionOperator) {
-					operatorType.getInputs().get(0).getModel().getConversionOperators().remove(operatorType);
-				}
-			}
-
-			return operatorType;
-		}
-
-		public static void removeLightModelTypeRef(ModelRel modelRelType, Model modelType) {
-			ArrayList<ModelReference> delModelRefs = new ArrayList<ModelReference>();
-			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-			//TODO MMTF: if I enable binary rels to self how can I distinguish the right model ref to delete (every ref must be bidirectional)
-			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-				if (modelTypeRef.getObject() == modelType) {
-					delModelRefs.add(modelTypeRef);
-					ArrayList<Link> delLinkTypes = new ArrayList<Link>();
-					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-						modelType.getElements().remove(modelElemTypeRef.getObject());
-						multiModel.getExtendibleTable().removeKey(((ModelElement) modelElemTypeRef.getObject()).getUri());
-						for (Link linkType : modelElemTypeRef.getLinks()) {
-							// binary link types have no longer sense, delete them later to avoid concurrent modification problems
-							if (linkType instanceof BinaryLink) {
-								delLinkTypes.add(linkType);
-							}
-						}
-						modelElemTypeRef.getLinks().clear();
-					}
-					for (Link delLinkType : delLinkTypes) {
-						delLinkType.getElementRefs().clear();
-						modelRelType.getLinks().remove(delLinkType);
-						multiModel.getExtendibleTable().removeKey(delLinkType.getUri());
-					}
-					break;
-				}
-			}
-			for (ModelReference modelTypeRef : delModelRefs) {
-				modelRelType.getModelRefs().remove(modelTypeRef);
-			}
-		}
-
-		public static void removeLightLinkType(Link linkType) {
-
-			MultiModel multiModel = (MultiModel) linkType.eContainer().eContainer();
-			multiModel.getExtendibleTable().removeKey(linkType.getUri());
-		}
-
-		public static void removeLightModelElementTypeRef(ModelElementReference modelElemTypeRef) {
-
-			MultiModel multiModel = (MultiModel) modelElemTypeRef.eContainer().eContainer().eContainer();
-			ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
-			((Model) modelElemType.eContainer()).getElements().remove(modelElemType);
-			multiModel.getExtendibleTable().removeKey(modelElemType.getUri());
-			for (Link linkType : modelElemTypeRef.getLinks()) {
-				// binary link types have no longer sense, delete them
-				if (linkType instanceof BinaryLink) {
-					linkType.getElementRefs().clear();
-					((ModelRel) linkType.eContainer()).getLinks().remove(linkType);
-					multiModel.getExtendibleTable().removeKey(linkType.getUri());
-				}
-			}
-		}
-
-		public static EList<String> getSupertypeUris(String subtypeUri) {
-
-			EList<String> supertypeUris = new BasicEList<String>();
-			for (String supertypeUri : substitutabilityTable.get(subtypeUri)) {
-				if (conversionTable.get(subtypeUri).get(supertypeUri).isEmpty()) {
-					supertypeUris.add(supertypeUri);
-				}
-			}
-
-			return supertypeUris;
-		}
-
-		public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
-
-			return
-				substitutabilityTable.get(subtypeUri).contains(supertypeUri) &&
-				conversionTable.get(subtypeUri).get(supertypeUri).isEmpty();
-		}
-
-		public static EList<String> getSubtypeUris(ExtendibleElement type) {
-
-			EList<String> subtypeUris = new BasicEList<String>();
-			for (ExtendibleElement subtype : repository.getExtendibleTable().values()) {
-				if (subtype.getClass() != type.getClass()) {
-					continue;
-				}
-				if (MMTFRegistry.isSubtypeOf(subtype.getUri(), type.getUri())) {
-					subtypeUris.add(subtype.getUri());
-				}
-			}
-
-			return subtypeUris;
-		}
-
-		/**
-		 * Gets an extendible type from a multimodel.
-		 * 
-		 * @param multiModel
-		 *            The multimodel.
-		 * @param uri
-		 *            The uri of the extendible type.
-		 * @return The extendible type, or null if uri is not found.
-		 */
-		public static ExtendibleElement getExtendibleType(MultiModel multiModel, String uri) {
-
-			return multiModel.getExtendibleTable().get(uri);
-		}
-
-		/**
-		 * Gets an extendible type from the repository.
-		 * 
-		 * @param uri
-		 *            The uri of the extendible type.
-		 * @return The extendible type, or null if uri is not found.
-		 */
-		public static ExtendibleElement getExtendibleType(String uri) {
-
-			return getExtendibleType(repository, uri);
-		}
-
-		/**
-		 * Gets a model type from a multimodel.
-		 * 
-		 * @param multiModel
-		 *            The multimodel.
-		 * @param modelTypeUri
-		 *            The uri of the model type.
-		 * @return The model type, or null if its uri is not found or found not
-		 *         to be a model type.
-		 */
-		public static Model getModelType(MultiModel multiModel, String modelTypeUri) {
-
-			ExtendibleElement modelType = getExtendibleType(multiModel, modelTypeUri);
-			if (modelType instanceof Model) {
-				return (Model) modelType;
-			}
-			return null;
-		}
-
-		/**
-		 * Gets a model type from the repository.
-		 * 
-		 * @param modelTypeUri
-		 *            The uri of the model type.
-		 * @return The model type, or null if its uri is not found or found not
-		 *         to be a model type.
-		 */
-		public static Model getModelType(String modelTypeUri) {
-
-			return getModelType(repository, modelTypeUri);
-		}
-
-		/**
-		 * Gets a model relationship type from a multimodel.
-		 * 
-		 * @param multiModel
-		 *            The multimodel.
-		 * @param modelRelTypeUri
-		 *            The uri of the model relationship type.
-		 * @return The model relationship type, or null if its uri is not found
-		 *         or found not to be a model relationship type.
-		 */
-		public static ModelRel getModelRelType(MultiModel multiModel, String modelRelTypeUri) {
-
-			ExtendibleElement modelRelType = getExtendibleType(multiModel, modelRelTypeUri);
-			if (modelRelType instanceof ModelRel) {
-				return (ModelRel) modelRelType;
-			}
-			return null;
-		}
-
-		/**
-		 * Gets a model relationship type from the repository.
-		 * 
-		 * @param modelRelTypeUri
-		 *            The uri of the model relationship type.
-		 * @return The model relationship type, or null if its uri is not found
-		 *         or found not to be a model relationship type.
-		 */
-		public static ModelRel getModelRelType(String modelRelTypeUri) {
-
-			return getModelRelType(repository, modelRelTypeUri);
-		}
-
-		/**
-		 * Gets a model element type.
-		 * 
-		 * @param modelElemTypeUri
-		 *            The uri of the model element type.
-		 * @return The model element type, or null if its uri is not found or
-		 *         found not to be a model element.
-		 */
-		public static ModelElement getModelElementType(String modelElemTypeUri) {
-
-			ExtendibleElement element = getExtendibleType(modelElemTypeUri);
-			if (element instanceof ModelElement) {
-				return (ModelElement) element;
-			}
-			return null;
-		}
-
-		/**
-		 * Gets an editor type.
-		 * 
-		 * @param editorTypeUri
-		 *            The uri of the editor type.
-		 * @return The editor type, or null if its uri is not found or found
-		 *         not to be an editor.
-		 */
-		public static Editor getEditorType(String editorTypeUri) {
-
-			ExtendibleElement editorType = getExtendibleType(editorTypeUri);
-			if (editorType instanceof Editor) {
-				return (Editor) editorType;
-			}
-			return null;
-		}
-
-		/**
-		 * Gets an operator type from a multimodel.
-		 * 
-		 * @param operatorTypeUri
-		 *            The uri of the operator type.
-		 * @return The operator type, or null if its uri is not found or found
-		 *         not to be an operator type.
-		 */
-		public static Operator getOperatorType(MultiModel multiModel, String operatorTypeUri) {
-
-			ExtendibleElement operatorType = getExtendibleType(multiModel, operatorTypeUri);
-			if (operatorType instanceof Operator) {
-				return (Operator) operatorType;
-			}
-			return null;
-		}
-
-		/**
-		 * Gets an operator type from the repository.
-		 * 
-		 * @param operatorTypeUri
-		 *            The uri of the operator type.
-		 * @return The operator type, or null if its uri is not found or found
-		 *         not to be an operator type.
-		 */
-		public static Operator getOperatorType(String operatorTypeUri) {
-
-			return getOperatorType(repository, operatorTypeUri);
-		}
-
-		/**
-		 * Gets the list of registered model types.
-		 * 
-		 * @return The list of registered model types.
-		 */
-		public static EList<Model> getModelTypes() {
-
-			return repository.getModels();
-		}
-
-		/**
-		 * Gets the list of registered model relationship types.
-		 * 
-		 * @return The list of registered model relationship types.
-		 */
-		public static EList<ModelRel> getModelRelTypes() {
-
-			EList<ModelRel> modelRels = new BasicEList<ModelRel>();
-			for (Model model : getModelTypes()) {
-				if (model instanceof ModelRel) {
-					modelRels.add((ModelRel) model);
-				}
-			}
-
-			return modelRels;
-		}
-
-		/**
-		 * Gets the list of registered editor types.
-		 * 
-		 * @return The list of registered editor types.
-		 */
-		public static EList<Editor> getEditorTypes() {
-
-			return repository.getEditors();
-		}
-
-		/**
-		 * Gets the list of registered link types for a model relationship type.
-		 * 
-		 * @param modelRelType
-		 *            The model relationship type.
-		 * 
-		 * @return The list of registered link types for a model relationship
-		 *         type.
-		 */
-		public static EList<Link> getLinkTypes(ModelRel modelRelType) {
-
-			return modelRelType.getLinks();
-		}
-
-		/**
-		 * Gets the list of registered model element types for a model type.
-		 * 
-		 * @param modelType
-		 *            The model type.
-		 * 
-		 * @return The list of registered model element types for a model type.
-		 */
-		public static EList<ModelElement> getModelElementTypes(Model modelType) {
-
-			return modelType.getElements();
-		}
-
-		/**
-		 * Gets the list of registered file extensions for all model types.
-		 * 
-		 * @return The list of registered file extensions.
-		 */
-		public static ArrayList<String> getModelTypeFileExtensions() {
-
-			ArrayList<String> filenames = new ArrayList<String>();
-			for (Model model : repository.getModels()) {
-				filenames.add(model.getFileExtension());
-			}
-
-			return filenames;
-		}
-
-		/**
-		 * Gets the list of registered editors for a model type (identified by
-		 * its uri).
-		 * 
-		 * @param modelTypeUri
-		 *            The model type uri.
-		 * @return The list of registered editors.
-		 */
-		public static EList<Editor> getModelTypeEditors(String modelTypeUri) {
-
-			Model model = getModelType(modelTypeUri);
-			if (model != null) {
-				return model.getEditors();
-			}
-			else {
-				return ECollections.emptyEList();
-			}
-		}
-
-		/**
-		 * Gets a tree dialog to select among registered model types' editors.
-		 * 
-		 * @return The tree dialog.
-		 */
-		public static ElementTreeSelectionDialog getModelCreationDialog() {
-
-			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
-				shell,
-				new RepositoryTypesDialogLabelProvider(),
-				new MidTypesDialogContentProvider(repository, null, false, true, false, true)
-			);
-			dialog.setValidator(new RepositoryDialogSelectionValidator());
-			dialog.setInput(repository);
-
-			return dialog;
-		}
-
-		/**
-		 * Gets a tree dialog to select among registered model relationship
-		 * types that can fit model source and target (are both null in case of
-		 * nary model relationship).
-		 * 
-		 * @return The tree dialog.
-		 */
-		public static ElementTreeSelectionDialog getModelRelCreationDialog(Model source, Model target) {
-
-			EList<String> modelRelTypeUris = null;
-
-			if (source != null && target != null) {
-
-				String sourceTypeUri = source.getMetatypeUri();
-				EList<String> sourceSupertypeUris = getSupertypeUris(sourceTypeUri);
-				String targetTypeUri = target.getMetatypeUri();
-				EList<String> targetSupertypeUris = getSupertypeUris(targetTypeUri);
-				modelRelTypeUris = new BasicEList<String>();
-
-				for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
-
-					// check cardinality
-					if (!(modelRelType.isUnbounded() || modelRelType instanceof BinaryModelRel)) {
-						continue;
-					}
-					// check allowed model types
-					boolean okSource = false;
-					boolean okTarget = false;
-					for (Model modelType : modelRelType.getModels()) {
-						String modelTypeUri = modelType.getUri();
-						if (!okSource && (modelTypeUri.equals(sourceTypeUri) || sourceSupertypeUris.contains(modelTypeUri))) {
-							okSource = true;
-						}
-						if (!okTarget && (modelTypeUri.equals(targetTypeUri) || targetSupertypeUris.contains(modelTypeUri))) {
-							okTarget = true;
-						}
-						if (okSource && okTarget) {
-							modelRelTypeUris.add(modelRelType.getUri());
-							break;
-						}
-					}
-				}
-			}
-
-			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
-				shell,
-				new RepositoryTypesDialogLabelProvider(),
-				new MidTypesDialogContentProvider(repository, modelRelTypeUris, true, false, true, false)
-			);
-			dialog.setInput(repository);
-
-			return dialog;
-		}
-
-		/**
-		 * Gets a tree dialog to select among registered link types that can fit
-		 * model element reference source and target (are both null in case of
-		 * nary link).
-		 * 
-		 * @return The tree dialog.
-		 */
-		public static ElementTreeSelectionDialog getLinkCreationDialog(ModelRel modelRel, ModelElementReference source, ModelElementReference target) {
-
-			EList<String> linkTypeUris = null;
-			ModelRel modelRelType = modelRel.getMetatype();
-
-			if (source != null && target != null) {
-
-				//TODO MMTF: supertypes are not computed yet for model elements and links, do I really need them?
-				String sourceTypeUri = source.getObject().getMetatypeUri();
-				EList<String> sourceSupertypeUris = new BasicEList<String>();
-				//EList<String> sourceSupertypeUris = getSupertypeUris(sourceTypeUri);
-				String targetTypeUri = target.getObject().getMetatypeUri();
-				EList<String> targetSupertypeUris = new BasicEList<String>();
-				//EList<String> targetSupertypeUris = getSupertypeUris(targetTypeUri);
-				linkTypeUris = new BasicEList<String>();
-
-				for (Link linkType : MMTFRegistry.getLinkTypes(modelRelType)) {
-
-					// check cardinality
-					if (!(linkType.isUnbounded() || linkType instanceof BinaryLink)) {
-						continue;
-					}
-					// check allowed model element types
-					//TODO MMTF: here I shoud check direction and actual endpoint for binary differently than nary
-					boolean okSource = false;
-					boolean okTarget = false;
-					for (ModelElementReference elementTypeRef : linkType.getElementRefs()) {
-						String elementTypeUri = ((ModelElement) elementTypeRef.getObject()).getUri();
-						if (!okSource && (elementTypeUri.equals(sourceTypeUri) || sourceSupertypeUris.contains(elementTypeUri))) {
-							okSource = true;
-						}
-						if (!okTarget && (elementTypeUri.equals(targetTypeUri) || targetSupertypeUris.contains(elementTypeUri))) {
-							okTarget = true;
-						}
-						if (okSource && okTarget) {
-							linkTypeUris.add(linkType.getUri());
-							break;
-						}
-					}
-				}
-			}
-
-			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
-				shell,
-				new RepositoryTypesDialogLabelProvider(),
-				new RelationshipTypesDialogContentProvider(modelRelType, linkTypeUris, true)
-			);
-			dialog.setInput(modelRelType);
-
-			return dialog;
-		}
-
-		/**
-		 * Gets a tree dialog to select among registered model types.
-		 * 
-		 * @return The tree dialog.
-		 */
-		public static ElementTreeSelectionDialog getModelTypeCreationDialog(MultiModel multiModel) {
-
-			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
-				shell,
-				new RepositoryTypesDialogLabelProvider(),
-				new MidTypesDialogContentProvider(multiModel, null, true, true, false, false)
-			);
-			dialog.setInput(multiModel);
-
-			return dialog;
-		}
-
-		/**
-		 * Gets a tree dialog to select among registered model relationship
-		 * types.
-		 * 
-		 * @return The tree dialog.
-		 */
-		public static ElementTreeSelectionDialog getModelRelTypeCreationDialog(MultiModel multiModel, String srcModelTypeUri, String tgtModelTypeUri) {
-
-			EList<String> modelRelTypeUris = null;
-
-			if (srcModelTypeUri != null && tgtModelTypeUri != null) {
-
-				EList<String> srcSupertypeUris = getSupertypeUris(srcModelTypeUri);
-				EList<String> tgtSupertypeUris = getSupertypeUris(tgtModelTypeUri);
-				modelRelTypeUris = new BasicEList<String>();
-
-				for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
-
-					// check cardinality
-					if (!(modelRelType.isUnbounded() || modelRelType instanceof BinaryModelRel)) {
-						continue;
-					}
-					// check allowed model types
-					boolean okSrc = false;
-					boolean okTgt = false;
-					for (Model modelType : modelRelType.getModels()) {
-						String modelTypeUri = modelType.getUri();
-						if (!okSrc && (modelTypeUri.equals(srcModelTypeUri) || srcSupertypeUris.contains(modelTypeUri))) {
-							okSrc = true;
-						}
-						if (!okTgt && (modelTypeUri.equals(tgtModelTypeUri) || tgtSupertypeUris.contains(modelTypeUri))) {
-							okTgt = true;
-						}
-						if (okSrc && okTgt) {
-							modelRelTypeUris.add(modelRelType.getUri());
-							break;
-						}
-					}
-				}
-			}
-
-			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
-				shell,
-				new RepositoryTypesDialogLabelProvider(),
-				new MidTypesDialogContentProvider(multiModel, modelRelTypeUris, true, false, true, false)
-			);
-			dialog.setInput(multiModel);
-
-			return dialog;
-		}
-
-		/**
-		 * Gets a parameter's signature.
-		 * 
-		 * @param parameter
-		 *            The parameter.
-		 * @return The parameter's signature.
-		 */
-		private static String getParameterSignature(Parameter parameter) {
-
-			String signature = parameter.getModel().getName();
-			if (parameter.isVararg()) {
-				signature += "...";
-			}
-			signature += " " + parameter.getName();
-
-			return signature;
-		}
-
-		/**
-		 * Gets an operator's signature.
-		 * 
-		 * @param operator
-		 *            The operator.
-		 * @return The operator's signature.
-		 */
-		public static String getOperatorSignature(Operator operator) {
-
-			// output parameters
-			String signature = "[";
-			for (Parameter parameter : operator.getOutputs()) {
-				signature += getParameterSignature(parameter) + ", ";
-			}
-			if (operator.getOutputs().size() > 0) {
-				signature = signature.substring(0, signature.length() - 2);
-			}
-			signature += "] ";
-
-			// operator name
-			signature += operator.getName() + "(";
-
-			// input parameters
-			for (Parameter parameter : operator.getInputs()) {
-				signature += getParameterSignature(parameter) + ", ";
-			}
-			if (operator.getInputs().size() > 0) {
-				signature = signature.substring(0, signature.length() - 2);
-			}
-			signature += ")";
-
-			return signature;
-		}
-
-		private static EList<ConversionOperator> isEligibleParameter(Model actualParameter, Model formalParameter) {
-
-			EList<String> actualUris = new BasicEList<String>();
-			for (int i = 0; i < actualParameter.getRuntimeMetatypes().size(); i++) {
-				actualUris.add(
-					((Model) actualParameter.getRuntimeMetatypes().get(i)).getUri()
-				);
-			}
-			String formalUri = formalParameter.getUri();
-			EList<ConversionOperator> result = null;
-
-			// exact type
-			if (actualUris.contains(formalUri)) {
-				result = new BasicEList<ConversionOperator>();
-			}
-			// substitutable type
-			else {
-				for (String actualUri : actualUris) {
-					if (substitutabilityTable.get(actualUri).contains(formalUri)) {
-						// use first substitution found
-						result = conversionTable.get(actualUri).get(formalUri);
-						break;
-					}
-				}
-			}
-
-			return result;
-		}
-
-		public static EList<Operator> getExecutableOperators(EList<Model> actualParameters, EList<HashMap<Integer, EList<ConversionOperator>>> conversions) {
-
-			EList<Operator> executableOperators = new BasicEList<Operator>();
-
-nextOperator:
-			for (Operator operator : repository.getOperators()) {
-				int i = 0;
-				HashMap<Integer, EList<ConversionOperator>> conversionMap = new HashMap<Integer, EList<ConversionOperator>>();
-				for (Parameter parameter : operator.getInputs()) {
-					// check 1: not enough actual parameters
-					if (i >= actualParameters.size()) {
-						continue nextOperator;
-					}
-					// check 2: type or substitutable types
-					while (i < actualParameters.size()) {
-						EList<ConversionOperator> conversionList = isEligibleParameter(actualParameters.get(i), parameter.getModel());
-						if (conversionList == null) {
-							continue nextOperator;
-						}
-						if (!conversionList.isEmpty()) {
-							conversionMap.put(new Integer(i), conversionList);
-						}
-						i++;
-						if (!parameter.isVararg()) {
-							//TODO MMTF: introduce vararg with low multeplicity
-							break;
-						}
-					}
-				}
-				// check 3: too many actual parameters
-				if (i < actualParameters.size()) {
-					continue nextOperator;
-				}
-				// checks passed
-				executableOperators.add(operator);
-				conversions.add(conversionMap);
-			}
-
-			return executableOperators;
-		}
-
-		public static EObject getModelTypeMetamodelElement(Model modelType, String metamodelFragment) {
-
-			String[] literals = metamodelFragment.split("/");
-			EObject elemPointer = ((EPackage) modelType.getRoot()).getEClassifier(literals[0]);
-			if (literals.length > 1) {
-				elemPointer = ((EClass) elemPointer).getEStructuralFeature(literals[1]);
-			}
-
-			return elemPointer;
-		}
-
-		public static String getDroppedElementClassLiteral(MidLevel level, EObject droppedElement) {
-
-			String classLiteral;
-			if (level == MidLevel.TYPES) {
-				classLiteral = (droppedElement instanceof EReference) ?
-					((EReference) droppedElement).getEContainingClass().getName() + "/" + ((EReference) droppedElement).getName() :
-					((EClass) droppedElement).getName();
-			}
-			else {
-				//TODO MMTF: EReference is probably wrong here, we should try
-				classLiteral = (droppedElement instanceof EReference) ?
-					((EReference) droppedElement).getEContainingClass().getName() + "/" + ((EReference) droppedElement).getName() :
-					droppedElement.eClass().getName();
-			}
-
-			return classLiteral;
-		}
-
 	}
 
 }

@@ -18,14 +18,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to create a model relationship.
@@ -61,7 +61,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(null, null);
-		ModelRel newModelRel = MultiModelFactoryUtils.createModelRel(
+		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
 			modelRelType,
 			ModelOrigin.CREATED,
 			multiModel,
@@ -79,7 +79,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
 		String constraint = MidDiagramTrait.getBigStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
 
-		ModelRel newModelRelType = MMTFRegistry.createLightModelRelType(
+		ModelRel newModelRelType = MultiModelTypeFactory.createLightModelRelType(
 			modelRelType,
 			null,
 			null,
@@ -87,7 +87,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 			constraint,
 			RelationshipPackage.eINSTANCE.getModelRel()
 		);
-		MMTFRegistry.syncRepository(multiModel);
+		MultiModelTypeFactory.syncRepository(multiModel);
 
 		return newModelRelType;
 	}

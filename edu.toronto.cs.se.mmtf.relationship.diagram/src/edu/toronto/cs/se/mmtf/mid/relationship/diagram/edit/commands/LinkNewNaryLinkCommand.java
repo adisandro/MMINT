@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -26,7 +25,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to create a link.
@@ -62,7 +62,7 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
 		Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(modelRel, null, null);
-		Link newLink = MultiModelFactoryUtils.createLink(linkType, modelRel, RelationshipPackage.eINSTANCE.getLink());
+		Link newLink = MultiModelInstanceFactory.createLink(linkType, modelRel, RelationshipPackage.eINSTANCE.getLink());
 
 		return newLink;
 	}
@@ -71,14 +71,14 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
 		String newLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
-		Link newLinkType = MMTFRegistry.createLightLinkType(
+		Link newLinkType = MultiModelTypeFactory.createLightLinkType(
 			modelRelType,
 			null,
 			null,
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getLink()
 		);
-		MMTFRegistry.syncRepository((MultiModel) modelRelType.eContainer());
+		MultiModelTypeFactory.syncRepository((MultiModel) modelRelType.eContainer());
 
 		return newLinkType;
 	}

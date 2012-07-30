@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
@@ -48,12 +47,12 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
- * A container for common functions of a mid/mapping model.
+ * The factory for modifications to an instance multimodel.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelFactoryUtils {
+public class MultiModelInstanceFactory {
 
 	/**
 	 * Adds an extendible element to a multimodel.
@@ -257,7 +256,7 @@ public class MultiModelFactoryUtils {
 				}
 			}
 			String name = (itemAdapter == null) ?
-				MMTFRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement) :
+				MultiModelTypeRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement) :
 				itemAdapter.getText(droppedElement);
 
 			//TODO MMTF: use classLiteral to differentiate same element used as different type in different model relationship types
@@ -307,7 +306,7 @@ public class MultiModelFactoryUtils {
 	public static Editor createEditor(Model model) {
 
 		URI modelUri = URI.createPlatformResourceURI(model.getUri(), true);
-		EList<Editor> editorTypes = MMTFRegistry.getModelTypeEditors(model.getMetatypeUri());
+		EList<Editor> editorTypes = MultiModelTypeRegistry.getModelTypeEditors(model.getMetatypeUri());
 		if (editorTypes.size() != 0) {
 			//TODO MMTF: prioritize editors list instead of running twice
 			//TODO MMTF: check if editor file really exists in model directory

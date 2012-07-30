@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to create a model reference by importing an existing model.
@@ -97,21 +97,21 @@ public class ModelReferenceImportModelCommand extends ModelReferenceCreateComman
 			ModelRel owner = (ModelRel) getElementToEdit();
 			Model model;
 
-			MultiModelFactoryUtils.assertModelUnique(owner, modelUri); // model must not be already in the mapping
+			MultiModelInstanceFactory.assertModelUnique(owner, modelUri); // model must not be already in the mapping
 			if (owner.eContainer() == null) { // standalone mapping reference
-				model = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, null, modelUri);
+				model = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, null, modelUri);
 			}
 			else {
-				model = MultiModelFactoryUtils.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
+				model = MultiModelInstanceFactory.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
 				if (model == null) {
-					model = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
-					Editor editor = MultiModelFactoryUtils.createEditor(model);
+					model = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
+					Editor editor = MultiModelInstanceFactory.createEditor(model);
 					if (editor != null) {
-						MultiModelFactoryUtils.addModelEditor(editor, (MultiModel) owner.eContainer());
+						MultiModelInstanceFactory.addModelEditor(editor, (MultiModel) owner.eContainer());
 					}
 				}
 			}
-			ModelReference newElement = MultiModelFactoryUtils.createModelReference(owner, model);
+			ModelReference newElement = MultiModelInstanceFactory.createModelReference(owner, model);
 			owner.getModels().add(model);
 
 			// update outline

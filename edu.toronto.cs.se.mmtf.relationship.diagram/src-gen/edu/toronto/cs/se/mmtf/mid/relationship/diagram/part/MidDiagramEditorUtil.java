@@ -65,7 +65,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * @generated
@@ -244,7 +244,7 @@ public class MidDiagramEditorUtil {
 	private static ModelRel createInitialModel() {
 
 		try {
-			return MultiModelFactoryUtils.createModelRel(null,
+			return MultiModelInstanceFactory.createModelRel(null,
 					ModelOrigin.CREATED, null, null,
 					RelationshipPackage.eINSTANCE.getModelRel());
 			//TODO MMTF: let the user choose the root type

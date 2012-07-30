@@ -18,11 +18,11 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to delete a link.
@@ -57,9 +57,9 @@ public class LinkDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		MultiModel multiModel = (MultiModel) getElementToDestroy().eContainer().eContainer();
-		MMTFRegistry.removeLightLinkType((Link) getElementToDestroy());
+		MultiModelTypeFactory.removeLightLinkType((Link) getElementToDestroy());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTFRegistry.syncRepository(multiModel);
+		MultiModelTypeFactory.syncRepository(multiModel);
 
 		return result;
 	}

@@ -15,10 +15,10 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * A container for common functions of a Relationship diagram.
@@ -30,7 +30,7 @@ public class RelationshipDiagramTrait {
 
 	public static Link selectLinkTypeToCreate(ModelRel modelRel, ModelElementReference source, ModelElementReference target) throws Exception {
 
-		ElementTreeSelectionDialog dialog = MMTFRegistry.getLinkCreationDialog(modelRel, source, target);
+		ElementTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkCreationDialog(modelRel, source, target);
 		dialog.setTitle("Create new link");
 		dialog.setMessage("Choose link type");
 		dialog.setAllowMultiple(false);

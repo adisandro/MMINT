@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -53,7 +52,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		if (staticModelTypeUri == null) {
 			// this means getRuntimeTypes itself is used to set the initial static metatype
 			staticModelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
-			staticModelType = MMTFRegistry.getModelType(staticModelTypeUri);
+			staticModelType = MultiModelTypeRegistry.getModelType(staticModelTypeUri);
 		}
 		else {
 			staticModelType = model.getMetatype();
@@ -62,21 +61,21 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		// fallback to root type
 		if (staticModelType == null) {
 			staticModelTypeUri = ROOT_MODEL_URI;
-			staticModelType = MMTFRegistry.getModelType(ROOT_MODEL_URI);
+			staticModelType = MultiModelTypeRegistry.getModelType(ROOT_MODEL_URI);
 		}
 
 		// init
 		types.add(staticModelType);
 
 		// explore light model types
-		for (Model lightModelSubtype : MMTFRegistry.getModelTypes()) {
+		for (Model lightModelSubtype : MultiModelTypeRegistry.getModelTypes()) {
 
 			if (lightModelSubtype instanceof ModelRel) {
 				continue;
 			}
 
 			// light model subtype
-			if (lightModelSubtype.getConstraint() != null && MMTFRegistry.isSubtypeOf(lightModelSubtype.getUri(), staticModelTypeUri)) {
+			if (lightModelSubtype.getConstraint() != null && MultiModelTypeRegistry.isSubtypeOf(lightModelSubtype.getUri(), staticModelTypeUri)) {
 				if (MultiModelConstraintChecker.checkOCLConstraint(model, lightModelSubtype.getConstraint().getBody())) {
 					types.add(lightModelSubtype);
 				}
@@ -104,7 +103,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		// fallback to root type
 		if (staticModelRelType == null) {
 			staticModelRelTypeUri = ROOT_MODELREL_URI;
-			staticModelRelType = MMTFRegistry.getModelRelType(ROOT_MODELREL_URI);
+			staticModelRelType = MultiModelTypeRegistry.getModelRelType(ROOT_MODELREL_URI);
 		}
 
 		// init
@@ -112,8 +111,8 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// not specialized yet
 		if (modelRel.getModels().size() == 0) {
-			for (ModelRel modelRelType : MMTFRegistry.getModelRelTypes()) {
-				if (MMTFRegistry.isSubtypeOf(modelRelType.getUri(), staticModelRelTypeUri)) {
+			for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
+				if (MultiModelTypeRegistry.isSubtypeOf(modelRelType.getUri(), staticModelRelTypeUri)) {
 					types.add(modelRelType);
 				}
 			}
@@ -122,10 +121,10 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// explore model endpoints
 modelRelTypes:
-		for (ModelRel modelRelSubtype : MMTFRegistry.getModelRelTypes()) {
+		for (ModelRel modelRelSubtype : MultiModelTypeRegistry.getModelRelTypes()) {
 
 			// only subtypes
-			if (!MMTFRegistry.isSubtypeOf(modelRelSubtype.getUri(), staticModelRelTypeUri)) {
+			if (!MultiModelTypeRegistry.isSubtypeOf(modelRelSubtype.getUri(), staticModelRelTypeUri)) {
 				continue;
 			}
 
@@ -145,7 +144,7 @@ modelRelTypes:
 						continue;
 					}
 					boolean okModel = false;
-					for (String modelSupertypeUri : MMTFRegistry.getSupertypeUris(model.getMetatypeUri())) {
+					for (String modelSupertypeUri : MultiModelTypeRegistry.getSupertypeUris(model.getMetatypeUri())) {
 						if (allowedModelTypes.contains(modelSupertypeUri)) {
 							okModel = true;
 							break;
@@ -193,10 +192,10 @@ modelRelTypes:
 
 		// fallback to root type
 		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_MODELELEMENT_ENTITY_URI));
+			types.add(MultiModelTypeRegistry.getExtendibleType(ROOT_MODELELEMENT_ENTITY_URI));
 		}
 		else {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_MODELELEMENT_RELATIONSHIP_URI));
+			types.add(MultiModelTypeRegistry.getExtendibleType(ROOT_MODELELEMENT_RELATIONSHIP_URI));
 		}
 
 		return types;
@@ -210,12 +209,12 @@ modelRelTypes:
 
 		// not specialized yet
 		if (link.getElementRefs().size() == 0) {
-			types.addAll(MMTFRegistry.getLinkTypes(modelRel.getMetatype()));
+			types.addAll(MultiModelTypeRegistry.getLinkTypes(modelRel.getMetatype()));
 			return types;
 		}
 
 linkTypes:
-		for (Link linkType : MMTFRegistry.getLinkTypes(modelRel.getMetatype())) {
+		for (Link linkType : MultiModelTypeRegistry.getLinkTypes(modelRel.getMetatype())) {
 
 			// check cardinality
 			if (!(linkType.isUnbounded() || linkType.getElementRefs().size() == link.getElementRefs().size())) {
@@ -244,7 +243,7 @@ linkTypes:
 
 		// fallback to root type
 		if (types.isEmpty()) {
-			types.add(MMTFRegistry.getExtendibleType(ROOT_MODELREL_LINK_URI));
+			types.add(MultiModelTypeRegistry.getExtendibleType(ROOT_MODELREL_LINK_URI));
 		}
 
 		return types;
@@ -255,7 +254,7 @@ linkTypes:
 		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
 		//TODO MMTF: fallback to root text editor?
-		types.add(MMTFRegistry.getExtendibleType(editor.getUri()));
+		types.add(MultiModelTypeRegistry.getExtendibleType(editor.getUri()));
 
 		return types;
 	}
@@ -290,7 +289,7 @@ linkTypes:
 			return null;
 		}
 
-		ExtendibleElement type = MMTFRegistry.getExtendibleType(element.getMetatypeUri());
+		ExtendibleElement type = MultiModelTypeRegistry.getExtendibleType(element.getMetatypeUri());
 		if (type == null) { // this can happen when a type is uninstalled
 			//TODO MMTF: find a way to try with runtime type in this read transaction?
 			//element.setMetatypeUri(null);
@@ -371,7 +370,7 @@ linkTypes:
 		try {
 			if (modelElem.getLevel() == MidLevel.TYPES) {
 				while (pointer == null && model != null) {
-					pointer = MMTFRegistry.getModelTypeMetamodelElement(
+					pointer = MultiModelTypeRegistry.getModelTypeMetamodelElement(
 						model,
 						modelElem.getClassLiteral()
 					);

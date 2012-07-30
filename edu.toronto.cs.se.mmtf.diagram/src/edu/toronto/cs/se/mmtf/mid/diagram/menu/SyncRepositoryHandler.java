@@ -16,9 +16,10 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 public class SyncRepositoryHandler extends AbstractHandler {
 
@@ -26,8 +27,8 @@ public class SyncRepositoryHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		try {
-			MultiModel multiModel = MMTFRegistry.getTypeMidRepository();
-			MMTFRegistry.syncRepository(multiModel);
+			MultiModel multiModel = MultiModelTypeRegistry.getTypeMidRepository();
+			MultiModelTypeFactory.syncRepository(multiModel);
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);

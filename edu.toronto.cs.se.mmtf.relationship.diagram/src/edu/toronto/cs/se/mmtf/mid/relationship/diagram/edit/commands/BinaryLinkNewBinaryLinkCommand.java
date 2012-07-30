@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
@@ -29,7 +28,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to create a binary link.
@@ -70,7 +70,7 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 
 		ModelRel modelRel = getContainer();
 		Link linkType = RelationshipDiagramTrait.selectLinkTypeToCreate(modelRel, getSource(), getTarget());
-		BinaryLink newLink = (BinaryLink) MultiModelFactoryUtils.createLink(linkType, modelRel, RelationshipPackage.eINSTANCE.getBinaryLink());
+		BinaryLink newLink = (BinaryLink) MultiModelInstanceFactory.createLink(linkType, modelRel, RelationshipPackage.eINSTANCE.getBinaryLink());
 		newLink.getElementRefs().add(getSource());
 		newLink.getElementRefs().add(getTarget());
 
@@ -81,14 +81,14 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 
 		ModelRel modelRelType = getContainer();
 		String newLinkTypeName = MidDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
-		BinaryLink newLinkType = (BinaryLink) MMTFRegistry.createLightLinkType(
+		BinaryLink newLinkType = (BinaryLink) MultiModelTypeFactory.createLightLinkType(
 			modelRelType,
 			getSource(),
 			getTarget(),
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getBinaryLink()
 		);
-		MMTFRegistry.syncRepository((MultiModel) getContainer().eContainer());
+		MultiModelTypeFactory.syncRepository((MultiModel) getContainer().eContainer());
 
 		return newLinkType;
 	}

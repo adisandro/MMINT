@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetrinetPackage;
@@ -70,11 +70,11 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 		// create model
 		MultiModel owner = (MultiModel) windowModel.eContainer();
-		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-		newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
-		Editor editor = MultiModelFactoryUtils.createEditor(newElement);
+		MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
+		newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
+		Editor editor = MultiModelInstanceFactory.createEditor(newElement);
 		if (editor != null) {
-			MultiModelFactoryUtils.addModelEditor(editor, owner);
+			MultiModelInstanceFactory.addModelEditor(editor, owner);
 		}
 
 		EList<Model> result = new BasicEList<Model>();
@@ -87,7 +87,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 	public void cleanup() throws Exception {
 
 		if (newElement != null) {
-			MultiModelFactoryUtils.removeModel(newElement);
+			MultiModelInstanceFactory.removeModel(newElement);
 			((MultiModel) newElement.eContainer()).getModels().remove(newElement);
 			IPath path = new Path(newElement.getUri());
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);

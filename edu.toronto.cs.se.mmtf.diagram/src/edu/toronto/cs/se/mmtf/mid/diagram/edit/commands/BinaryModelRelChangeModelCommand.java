@@ -15,12 +15,12 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to change a model of a binary model relationship.
@@ -122,13 +122,13 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 
 		getLink().getModels().set(0, getNewSource());
 		if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
-			MultiModelFactoryUtils.removeModelReference(getLink(), getOldSource());
-			MultiModelFactoryUtils.createModelReference(getLink(), getNewSource());
+			MultiModelInstanceFactory.removeModelReference(getLink(), getOldSource());
+			MultiModelInstanceFactory.createModelReference(getLink(), getNewSource());
 		}
 		else {
-			MMTFRegistry.removeLightModelTypeRef(getLink(), getOldSource());
-			MMTFRegistry.createLightModelTypeRef(getLink(), getNewSource());
-			MMTFRegistry.syncRepository((MultiModel) getLink().eContainer());
+			MultiModelTypeFactory.removeLightModelTypeRef(getLink(), getOldSource());
+			MultiModelTypeFactory.createLightModelTypeRef(getLink(), getNewSource());
+			MultiModelTypeFactory.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -146,13 +146,13 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 
 		getLink().getModels().set(1, getNewTarget());
 		if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
-			MultiModelFactoryUtils.removeModelReference(getLink(), getOldTarget());
-			MultiModelFactoryUtils.createModelReference(getLink(), getNewTarget());
+			MultiModelInstanceFactory.removeModelReference(getLink(), getOldTarget());
+			MultiModelInstanceFactory.createModelReference(getLink(), getNewTarget());
 		}
 		else {
-			MMTFRegistry.removeLightModelTypeRef(getLink(), getOldTarget());
-			MMTFRegistry.createLightModelTypeRef(getLink(), getNewTarget());
-			MMTFRegistry.syncRepository((MultiModel) getLink().eContainer());
+			MultiModelTypeFactory.removeLightModelTypeRef(getLink(), getOldTarget());
+			MultiModelTypeFactory.createLightModelTypeRef(getLink(), getNewTarget());
+			MultiModelTypeFactory.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());

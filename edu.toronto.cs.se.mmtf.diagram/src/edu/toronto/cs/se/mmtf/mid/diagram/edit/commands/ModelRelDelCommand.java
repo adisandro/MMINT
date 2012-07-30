@@ -18,11 +18,11 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to delete a model relationship.
@@ -62,8 +62,8 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		Model modelType = (ModelRel) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) modelType.eContainer();
-		MMTFRegistry.removeModelType(modelType);
-		MMTFRegistry.syncRepository(multiModel);
+		MultiModelTypeFactory.removeModelType(modelType);
+		MultiModelTypeFactory.syncRepository(multiModel);
 	}
 
 	/**

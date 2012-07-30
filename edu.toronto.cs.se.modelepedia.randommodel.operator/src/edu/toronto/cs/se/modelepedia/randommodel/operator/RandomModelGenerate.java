@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
@@ -130,11 +130,11 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		// create model
 		URI modelUri = URI.createPlatformResourceURI(randomUri, true);
 		MultiModel owner = (MultiModel) model.eContainer();
-		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-		Model newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
-		Editor editor = MultiModelFactoryUtils.createEditor(newElement);
+		MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
+		Model newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
+		Editor editor = MultiModelInstanceFactory.createEditor(newElement);
 		if (editor != null) {
-			MultiModelFactoryUtils.addModelEditor(editor, owner);
+			MultiModelInstanceFactory.addModelEditor(editor, owner);
 		}
 		result.add(newElement);
 

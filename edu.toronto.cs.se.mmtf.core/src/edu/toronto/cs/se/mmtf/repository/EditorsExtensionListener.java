@@ -18,10 +18,11 @@ import org.eclipse.core.runtime.RegistryFactory;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -78,7 +79,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 
 		MultiModel multiModel;
 		try {
-			multiModel = MMTFRegistry.getTypeMidRepository();
+			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
@@ -90,10 +91,10 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				Editor editorType = MMTFRegistry.getEditorType(uri);
+				Editor editorType = MultiModelTypeRegistry.getEditorType(uri);
 				if (editorType != null) {
-					MMTFRegistry.removeEditorType(editorType);
-					MMTFRegistry.syncRepository(multiModel);
+					MultiModelTypeFactory.removeEditorType(editorType);
+					MultiModelTypeFactory.syncRepository(multiModel);
 				}
 			}
 		}

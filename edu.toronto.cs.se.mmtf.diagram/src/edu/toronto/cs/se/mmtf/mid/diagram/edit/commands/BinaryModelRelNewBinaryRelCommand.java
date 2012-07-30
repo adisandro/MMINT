@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
@@ -28,7 +27,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to create a binary model relationship.
@@ -67,7 +67,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteInstancesLevel() throws Exception {
 
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(getSource(), getTarget());
-		BinaryModelRel newModelRel = (BinaryModelRel) MultiModelFactoryUtils.createModelRel(
+		BinaryModelRel newModelRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			modelRelType,
 			ModelOrigin.CREATED,
 			getContainer(),
@@ -76,8 +76,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		);
 		newModelRel.getModels().add(getSource());
 		newModelRel.getModels().add(getTarget());
-		MultiModelFactoryUtils.createModelReference(newModelRel, getSource());
-		MultiModelFactoryUtils.createModelReference(newModelRel, getTarget());
+		MultiModelInstanceFactory.createModelReference(newModelRel, getSource());
+		MultiModelInstanceFactory.createModelReference(newModelRel, getTarget());
 
 		return newModelRel;
 	}
@@ -88,7 +88,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(multiModel, getSource().getUri(), getTarget().getUri());
 		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name");
 		String constraint = MidDiagramTrait.getBigStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint");
-		BinaryModelRel newModelRelType = (BinaryModelRel) MMTFRegistry.createLightModelRelType(
+		BinaryModelRel newModelRelType = (BinaryModelRel) MultiModelTypeFactory.createLightModelRelType(
 			modelRelType,
 			getSource(),
 			getTarget(),
@@ -96,7 +96,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			constraint,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel()
 		);
-		MMTFRegistry.syncRepository(multiModel);
+		MultiModelTypeFactory.syncRepository(multiModel);
 
 		return newModelRelType;
 	}

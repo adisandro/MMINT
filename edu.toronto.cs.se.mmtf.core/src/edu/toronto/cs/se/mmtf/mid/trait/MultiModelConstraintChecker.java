@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
@@ -84,7 +83,7 @@ public class MultiModelConstraintChecker {
 
 	public static boolean isRootType(ExtendibleElement type) {
 
-		if (type.getUri().equals(MMTFRegistry.getRootTypeUri(type))) {
+		if (type.getUri().equals(MultiModelTypeRegistry.getRootTypeUri(type))) {
 			return true;
 		}
 		return false;
@@ -92,8 +91,8 @@ public class MultiModelConstraintChecker {
 
 	public static boolean isAllowedModelType(ModelRel modelRelType) {
 
-		for (ModelRel subModelRelType : MMTFRegistry.getModelRelTypes()) {
-			if (MMTFRegistry.isSubtypeOf(subModelRelType.getUri(), modelRelType.getUri())) {
+		for (ModelRel subModelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
+			if (MultiModelTypeRegistry.isSubtypeOf(subModelRelType.getUri(), modelRelType.getUri())) {
 				return false;
 			}
 		}
@@ -110,7 +109,7 @@ public class MultiModelConstraintChecker {
 		String modelTypeUri = model.getMetatypeUri();
 		boolean okModel = false;
 		for (Model modelType : (modelRel.getMetatype()).getModels()) {
-			if (modelType.getUri().equals(modelTypeUri) || MMTFRegistry.isSubtypeOf(modelTypeUri, modelType.getUri())) {
+			if (modelType.getUri().equals(modelTypeUri) || MultiModelTypeRegistry.isSubtypeOf(modelTypeUri, modelType.getUri())) {
 				okModel = true;
 				break;
 			}
@@ -185,7 +184,7 @@ rel:
 		}
 
 		// check dropped element compliance
-		String droppedClassLiteral = MMTFRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement);
+		String droppedClassLiteral = MultiModelTypeRegistry.getDroppedElementClassLiteral(MidLevel.INSTANCES, droppedElement);
 		if (modelElemType.getClassLiteral().equals(droppedClassLiteral)) {
 			return true;
 		}

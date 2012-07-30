@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
@@ -82,11 +82,11 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		// create model
 		URI modelUri = URI.createPlatformResourceURI(typegraphUri, true);
 		MultiModel owner = (MultiModel) model.eContainer();
-		MultiModelFactoryUtils.assertModelUnique(owner, modelUri);
-		newElement = MultiModelFactoryUtils.createModel(null, ModelOrigin.CREATED, owner, modelUri);
-		Editor editor = MultiModelFactoryUtils.createEditor(newElement);
+		MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
+		newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
+		Editor editor = MultiModelInstanceFactory.createEditor(newElement);
 		if (editor != null) {
-			MultiModelFactoryUtils.addModelEditor(editor, owner);
+			MultiModelInstanceFactory.addModelEditor(editor, owner);
 		}
 		result.add(newElement);
 
@@ -107,7 +107,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 	public void cleanup() throws Exception {
 
 		if (newElement != null) {
-			MultiModelFactoryUtils.removeModel(newElement);
+			MultiModelInstanceFactory.removeModel(newElement);
 			((MultiModel) newElement.eContainer()).getModels().remove(newElement);
 			IPath path = new Path(newElement.getUri());
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);

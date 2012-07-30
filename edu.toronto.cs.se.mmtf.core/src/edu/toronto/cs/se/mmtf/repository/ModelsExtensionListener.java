@@ -16,10 +16,11 @@ import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -70,7 +71,7 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 
 		MultiModel multiModel;
 		try {
-			multiModel = MMTFRegistry.getTypeMidRepository();
+			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
@@ -82,10 +83,10 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				Model modelType = MMTFRegistry.getModelType(multiModel, uri);
+				Model modelType = MultiModelTypeRegistry.getModelType(multiModel, uri);
 				if (modelType != null) {
-					MMTFRegistry.removeModelType(modelType);
-					MMTFRegistry.syncRepository(multiModel);
+					MultiModelTypeFactory.removeModelType(modelType);
+					MultiModelTypeFactory.syncRepository(multiModel);
 				}
 			}
 		}

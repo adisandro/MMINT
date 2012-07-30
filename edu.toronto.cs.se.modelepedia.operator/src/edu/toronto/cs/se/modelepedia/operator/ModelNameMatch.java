@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 public class ModelNameMatch extends OperatorExecutableImpl {
 
@@ -66,7 +66,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		EClass modelRelClass = (actualParameters.size() == 2) ?
 			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
 			RelationshipPackage.eINSTANCE.getModelRel();
-		ModelRel modelRel = MultiModelFactoryUtils.createModelRel(null, ModelOrigin.CREATED, multiModel, null, modelRelClass);
+		ModelRel modelRel = MultiModelInstanceFactory.createModelRel(null, ModelOrigin.CREATED, multiModel, null, modelRelClass);
 		modelRel.setName(MODEL_REL_NAME);
 
 		// loop through selected models
@@ -76,7 +76,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 
 			// add models to relationship
 			modelRel.getModels().add(model);
-			ModelReference modelRef = MultiModelFactoryUtils.createModelReference(modelRel, model);
+			ModelReference modelRef = MultiModelInstanceFactory.createModelReference(modelRel, model);
 
 			// look for identical names in the models
 			checkObjectName(model.getRoot(), modelRef, objectNames, objectModels);
@@ -97,13 +97,13 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				EClass linkClass = (objects.size() == 2) ?
 					RelationshipPackage.eINSTANCE.getBinaryLink() :
 					RelationshipPackage.eINSTANCE.getLink();
-				Link link = MultiModelFactoryUtils.createLink(null, modelRel, linkClass);
+				Link link = MultiModelInstanceFactory.createLink(null, modelRel, linkClass);
 				link.setName(name);
 				modelRel.getLinks().add(link);
 				for (EObject object : objects) {
 					ModelReference modelRef = objectModels.get(object);
 					ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelRef, object);
-					ModelElementReference elementRef = MultiModelFactoryUtils.createModelElementReference(modelElemType, modelRef, object);
+					ModelElementReference elementRef = MultiModelInstanceFactory.createModelElementReference(modelElemType, modelRef, object);
 					((ModelElement) elementRef.getObject()).setName(object.eClass().getName() + " " + name);//TODO MMTF: remove and fix
 					link.getElementRefs().add(elementRef);
 				}

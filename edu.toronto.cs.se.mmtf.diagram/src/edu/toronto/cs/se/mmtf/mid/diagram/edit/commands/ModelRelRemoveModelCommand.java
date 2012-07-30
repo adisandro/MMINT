@@ -18,12 +18,12 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to remove a model from a model relationship.
@@ -63,7 +63,7 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 
 	protected CommandResult doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModelFactoryUtils.removeModelReference((ModelRel) getContainer(), (Model) getReferencedObject());
+		MultiModelInstanceFactory.removeModelReference((ModelRel) getContainer(), (Model) getReferencedObject());
 
 		return super.doExecuteWithResult(monitor, info);
 	}
@@ -71,9 +71,9 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		MultiModel multiModel = (MultiModel) getContainer().eContainer();
-		MMTFRegistry.removeLightModelTypeRef((ModelRel) getContainer(), (Model) getReferencedObject());
+		MultiModelTypeFactory.removeLightModelTypeRef((ModelRel) getContainer(), (Model) getReferencedObject());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTFRegistry.syncRepository(multiModel);
+		MultiModelTypeFactory.syncRepository(multiModel);
 
 		return result;
 	}

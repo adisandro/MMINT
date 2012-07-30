@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to import an existing model.
@@ -63,11 +63,11 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		URI newModelUri = MidDiagramTrait.selectModelToImport(false);
-		MultiModelFactoryUtils.assertModelUnique(multiModel, newModelUri);
-		Model newModel = MultiModelFactoryUtils.createModel(null, ModelOrigin.IMPORTED, multiModel, newModelUri);
-		Editor newEditor = MultiModelFactoryUtils.createEditor(newModel);
+		MultiModelInstanceFactory.assertModelUnique(multiModel, newModelUri);
+		Model newModel = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, multiModel, newModelUri);
+		Editor newEditor = MultiModelInstanceFactory.createEditor(newModel);
 		if (newEditor != null) {
-			MultiModelFactoryUtils.addModelEditor(newEditor, multiModel);
+			MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
 		}
 
 		return newModel;

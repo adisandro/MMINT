@@ -16,11 +16,11 @@ import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
 import edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentSamples.DistributionType;
 
@@ -133,7 +133,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 
 		// get operator
-		Operator operator = MMTFRegistry.getOperatorType(operatorUri);
+		Operator operator = MultiModelTypeRegistry.getOperatorType(operatorUri);
 		if (operator == null) {
 			throw new MMTFException("Operator uri " + operatorUri + " is not registered");
 		}

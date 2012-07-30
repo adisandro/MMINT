@@ -56,7 +56,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * @generated
@@ -177,7 +177,7 @@ public class MidElementChooserDialog extends Dialog {
 		if (relOnly) {
 			return "relationship".equals(fileExtension);
 		} else {
-			ArrayList<String> registeredExtensions = MMTFRegistry
+			ArrayList<String> registeredExtensions = MultiModelTypeRegistry
 					.getModelTypeFileExtensions();
 			return registeredExtensions.contains(fileExtension);
 		}

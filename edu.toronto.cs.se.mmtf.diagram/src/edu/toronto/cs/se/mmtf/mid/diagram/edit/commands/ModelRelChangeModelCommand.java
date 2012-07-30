@@ -15,10 +15,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to change a model of a mapping reference.
@@ -97,16 +97,16 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 
 		CommandResult result;
 		if (MultiModelConstraintChecker.isInstancesLevel(getOldSource())) {
-			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
-			MultiModelFactoryUtils.createModelReference(getNewSource(), getOldTarget());
+			MultiModelInstanceFactory.removeModelReference(getOldSource(), getOldTarget());
+			MultiModelInstanceFactory.createModelReference(getNewSource(), getOldTarget());
 			result = super.reorientSource();
 		}
 		else {
 			MultiModel multiModel = (MultiModel) getOldSource().eContainer();
-			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
-			MMTFRegistry.createLightModelTypeRef(getNewSource(), getOldTarget());
+			MultiModelTypeFactory.removeLightModelTypeRef(getOldSource(), getOldTarget());
+			MultiModelTypeFactory.createLightModelTypeRef(getNewSource(), getOldTarget());
 			result = super.reorientSource();
-			MMTFRegistry.syncRepository(multiModel);
+			MultiModelTypeFactory.syncRepository(multiModel);
 		}
 
 		return result;
@@ -124,16 +124,16 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 
 		CommandResult result;
 		if (MultiModelConstraintChecker.isInstancesLevel(getOldSource())) {
-			MultiModelFactoryUtils.removeModelReference(getOldSource(), getOldTarget());
-			MultiModelFactoryUtils.createModelReference(getOldSource(), getNewTarget());
+			MultiModelInstanceFactory.removeModelReference(getOldSource(), getOldTarget());
+			MultiModelInstanceFactory.createModelReference(getOldSource(), getNewTarget());
 			result = super.reorientTarget();
 		}
 		else {
 			MultiModel multiModel = (MultiModel) getOldSource().eContainer();
-			MMTFRegistry.removeLightModelTypeRef(getOldSource(), getOldTarget());
-			MMTFRegistry.createLightModelTypeRef(getOldSource(), getNewTarget());
+			MultiModelTypeFactory.removeLightModelTypeRef(getOldSource(), getOldTarget());
+			MultiModelTypeFactory.createLightModelTypeRef(getOldSource(), getNewTarget());
 			result = super.reorientTarget();
-			MMTFRegistry.syncRepository(multiModel);
+			MultiModelTypeFactory.syncRepository(multiModel);
 		}
 
 		return result;

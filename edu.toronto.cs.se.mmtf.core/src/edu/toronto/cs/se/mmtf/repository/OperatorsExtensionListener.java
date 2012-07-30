@@ -16,11 +16,12 @@ import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -71,7 +72,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 
 		MultiModel multiModel;
 		try {
-			multiModel = MMTFRegistry.getTypeMidRepository();
+			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
@@ -83,10 +84,10 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				Operator operatorType = MMTFRegistry.getOperatorType(multiModel, uri);
+				Operator operatorType = MultiModelTypeRegistry.getOperatorType(multiModel, uri);
 				if (operatorType != null) {
-					operatorType = MMTFRegistry.removeOperatorType(operatorType);
-					MMTFRegistry.syncRepository(multiModel);
+					operatorType = MultiModelTypeFactory.removeOperatorType(operatorType);
+					MultiModelTypeFactory.syncRepository(multiModel);
 				}
 			}
 		}

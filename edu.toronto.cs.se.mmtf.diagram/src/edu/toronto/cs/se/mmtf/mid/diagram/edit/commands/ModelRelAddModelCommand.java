@@ -18,10 +18,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to add a model to a model relationship.
@@ -65,14 +65,14 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 
 	protected void doExecuteInstancesLevel() {
 
-		MultiModelFactoryUtils.createModelReference(getSource(), getTarget());
+		MultiModelInstanceFactory.createModelReference(getSource(), getTarget());
 	}
 
 	protected void doExecuteTypesLevel() {
 
 		MultiModel multiModel = (MultiModel) getSource().eContainer();
-		MMTFRegistry.createLightModelTypeRef(getSource(), getTarget());
-		MMTFRegistry.syncRepository(multiModel);
+		MultiModelTypeFactory.createLightModelTypeRef(getSource(), getTarget());
+		MultiModelTypeFactory.syncRepository(multiModel);
 	}
 
 	/**

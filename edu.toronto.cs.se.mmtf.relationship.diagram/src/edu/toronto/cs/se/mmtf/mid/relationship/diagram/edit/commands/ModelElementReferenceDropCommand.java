@@ -19,14 +19,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTF.MMTFRegistry;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelFactoryUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to create a model element reference from a dropped object.
@@ -80,7 +80,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected ModelElementReference doExecuteInstancesLevel() {
 
 		ModelReference modelTypeRef = (ModelReference) getElementToEdit();
-		ModelElementReference newModelElemTypeRef = MultiModelFactoryUtils.createModelElementReference(modelElemType, modelTypeRef, droppedElement);
+		ModelElementReference newModelElemTypeRef = MultiModelInstanceFactory.createModelElementReference(modelElemType, modelTypeRef, droppedElement);
 
 		return newModelElemTypeRef;
 	}
@@ -88,8 +88,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected ModelElementReference doExecuteTypesLevel() throws MMTFException {
 
 		ModelReference modelTypeRef = (ModelReference) getElementToEdit();
-		ModelElementReference newModelElemTypeRef = MMTFRegistry.createLightModelElementType(modelTypeRef, "", droppedElement);
-		MMTFRegistry.syncRepository((MultiModel) modelTypeRef.eContainer().eContainer());
+		ModelElementReference newModelElemTypeRef = MultiModelTypeFactory.createLightModelElementType(modelTypeRef, "", droppedElement);
+		MultiModelTypeFactory.syncRepository((MultiModel) modelTypeRef.eContainer().eContainer());
 
 		return newModelElemTypeRef;
 	}
