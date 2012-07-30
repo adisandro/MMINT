@@ -223,20 +223,35 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a model element type.
+	 * Gets a model element type from a multimodel.
 	 * 
+	 * @param multiModel
+	 *            The multimodel.
 	 * @param modelElemTypeUri
 	 *            The uri of the model element type.
-	 * @return The model element type, or null if its uri is not found or
-	 *         found not to be a model element.
+	 * @return The model element type, or null if its uri is not found or found
+	 *         not to be a model element type.
 	 */
-	public static ModelElement getModelElementType(String modelElemTypeUri) {
+	public static ModelElement getModelElementType(MultiModel multiModel, String modelElemTypeUri) {
 
 		ExtendibleElement element = getExtendibleType(modelElemTypeUri);
 		if (element instanceof ModelElement) {
 			return (ModelElement) element;
 		}
 		return null;
+	}
+
+	/**
+	 * Gets a model element type from the repository.
+	 * 
+	 * @param modelElemTypeUri
+	 *            The uri of the model element type.
+	 * @return The model element type, or null if its uri is not found or
+	 *         found not to be a model element type.
+	 */
+	public static ModelElement getModelElementType(String modelElemTypeUri) {
+
+		return getModelElementType(MMTF.repository, modelElemTypeUri);
 	}
 
 	/**

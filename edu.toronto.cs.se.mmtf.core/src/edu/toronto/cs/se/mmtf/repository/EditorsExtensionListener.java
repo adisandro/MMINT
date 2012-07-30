@@ -34,22 +34,20 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 public class EditorsExtensionListener extends MMTFExtensionListener {
 
 	/**
-	 * Constructor: initializes the MMTF instance.
-	 * 
-	 * @param mmtf
-	 *            The MMTF instance.
-	 */
-	public EditorsExtensionListener(MMTF mmtf) {
-
-		super(mmtf);
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * Installs a new Editors extension.
 	 */
 	@Override
 	public void added(IExtension[] extensions) {
+
+		MultiModel multiModel;
+		try {
+			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
+		}
+		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
+			return;
+		}
 
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry == null) {
@@ -57,15 +55,14 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 		}
 
 		IConfigurationElement[] config;
-		Editor editor;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				editor = mmtf.createEditorType(elem);
-				mmtf.setSupertypes();
-				mmtf.addModelTypeEditor(editor);
-				mmtf.addEditorTypeFileExtensions(registry, editor);
-				MMTF.initTypeHierarchy();
+				Editor editorType = MMTF.createEditorType(multiModel, elem);
+				MMTF.setSupertypes();
+				MMTF.addModelTypeEditor(editorType);
+				MMTF.addEditorTypeFileExtensions(registry, editorType);
+				MMTF.syncRepository(multiModel);
 			}
 		}
 	}

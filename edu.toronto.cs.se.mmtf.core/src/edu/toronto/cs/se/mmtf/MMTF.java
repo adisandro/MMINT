@@ -77,7 +77,7 @@ import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
 public class MMTF implements MMTFExtensionPoints {
 
 	/** The singleton instance. */
-	public static final MMTF INSTANCE = new MMTF();
+	static final MMTF INSTANCE = new MMTF();
 
 	/** The repository of registered extensions. */
 	static MultiModel repository;
@@ -105,11 +105,11 @@ public class MMTF implements MMTFExtensionPoints {
 	 * @throws MMTFException
 	 *             If the extendible type's uri is already registered.
 	 */
-	private void addExtendibleType(ExtendibleElement type, String name, IConfigurationElement extensionConfig) throws MMTFException {
+	private static void addExtendibleType(MultiModel multiModel, ExtendibleElement type, String name, IConfigurationElement extensionConfig) throws MMTFException {
 
 		// uri
 		String uri = extensionConfig.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
-		if (repository.getExtendibleTable().containsKey(uri)) {
+		if (multiModel.getExtendibleTable().containsKey(uri)) {
 			throw new MMTFException("Extendible type's URI " + uri + " is  already registered");
 		}
 		type.setUri(uri);
@@ -131,7 +131,7 @@ public class MMTF implements MMTFExtensionPoints {
 			tempSubtypes.put(type, supertypeUri);
 		}
 
-		repository.getExtendibleTable().put(uri, type);
+		multiModel.getExtendibleTable().put(uri, type);
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class MMTF implements MMTFExtensionPoints {
 	 *             If the model type's package is not registered, or if the
 	 *             model type's uri is already registered.
 	 */
-	private void addModelType(Model model, IConfigurationElement extensionConfig) throws MMTFException {
+	private static void addModelType(MultiModel multiModel, Model model, IConfigurationElement extensionConfig) throws MMTFException {
 
 		// look for model package
 		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
@@ -158,7 +158,7 @@ public class MMTF implements MMTFExtensionPoints {
 		}
 
 		// set attributes
-		addExtendibleType(model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
+		addExtendibleType(multiModel, model, extensionConfig.getDeclaringExtension().getLabel(), extensionConfig);
 		model.setOrigin(ModelOrigin.IMPORTED);
 		String modelPackageName = modelPackage.getName();
 		model.setFileExtension(modelPackageName);
@@ -168,7 +168,7 @@ public class MMTF implements MMTFExtensionPoints {
 		}
 
 		// register model type
-		repository.getModels().add(model);
+		multiModel.getModels().add(model);
 	}
 
 	/**
@@ -181,12 +181,12 @@ public class MMTF implements MMTFExtensionPoints {
 	 * @return The created model type, null if the model type can't be
 	 *         registered.
 	 */
-	public Model createModelType(IConfigurationElement extensionConfig) {
+	public static Model createModelType(MultiModel multiModel, IConfigurationElement extensionConfig) {
 
 		// create and add
 		Model model = MidFactory.eINSTANCE.createModel();
 		try {
-			addModelType(model, extensionConfig);
+			addModelType(multiModel, model, extensionConfig);
 		}
 		catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Model type can't be registered", e);
@@ -206,7 +206,7 @@ public class MMTF implements MMTFExtensionPoints {
 	 * @return The created model type relationship, null if the relationship
 	 *         can't be registered.
 	 */
-	public ModelRel createModelRelType(IConfigurationElement extensionConfig) {
+	public static ModelRel createModelRelType(MultiModel multiModel, IConfigurationElement extensionConfig) {
 
 		// create and add
 		boolean unbounded = Boolean.parseBoolean(extensionConfig.getAttribute(MODELRELS_ATTR_ISNARY));
@@ -216,7 +216,7 @@ public class MMTF implements MMTFExtensionPoints {
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
 			RelationshipFactory.eINSTANCE.createModelRel();
 		try {
-			addModelType(modelRel, extendibleConfig);
+			addModelType(multiModel, modelRel, extendibleConfig);
 		}
 		catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Model relationship type can't be registered", e);
@@ -228,7 +228,7 @@ public class MMTF implements MMTFExtensionPoints {
 		// models and containers
 		for (IConfigurationElement modelConfigElem : modelConfig) {
 			String modelUri = modelConfigElem.getAttribute(MODELRELS_MODEL_ATTR_MODELTYPEURI);
-			Model model = MultiModelTypeRegistry.getModelType(modelUri);
+			Model model = MultiModelTypeRegistry.getModelType(multiModel, modelUri);
 			if (model != null) {
 				modelRel.getModels().add(model);
 				ModelReference modelRef = RelationshipFactory.eINSTANCE.createModelReference();
@@ -238,7 +238,7 @@ public class MMTF implements MMTFExtensionPoints {
 				IConfigurationElement[] modelElementConfig = modelConfigElem.getChildren(MODELRELS_MODEL_CHILD_MODELELEMENT);
 				for (IConfigurationElement modelElementConfigElem : modelElementConfig) {
 					String modelElementUri = modelElementConfigElem.getAttribute(EXTENDIBLEELEMENT_ATTR_URI);
-					ModelElement element = MultiModelTypeRegistry.getModelElementType(modelElementUri);
+					ModelElement element = MultiModelTypeRegistry.getModelElementType(multiModel, modelElementUri);
 					if (element == null) { // create new model element
 						element = MidFactory.eINSTANCE.createModelElement();
 						element.setCategory(
@@ -248,7 +248,7 @@ public class MMTF implements MMTFExtensionPoints {
 						);
 						element.setClassLiteral(modelElementConfigElem.getAttribute(MODELRELS_MODEL_MODELELEMENT_ATTR_CLASSLITERAL));
 						try {
-							addExtendibleType(element, modelElementConfigElem.getAttribute(MODELRELS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
+							addExtendibleType(multiModel, element, modelElementConfigElem.getAttribute(MODELRELS_MODEL_MODELELEMENT_ATTR_NAME), modelElementConfigElem);
 						}
 						catch (MMTFException e) {
 							MMTFException.print(Type.WARNING, "Model element can't be registered", e);
@@ -273,7 +273,7 @@ public class MMTF implements MMTFExtensionPoints {
 				RelationshipFactory.eINSTANCE.createBinaryLink() :
 				RelationshipFactory.eINSTANCE.createLink();
 			try {
-				addExtendibleType(link, linkConfigElem.getAttribute(MODELRELS_LINK_ATTR_NAME), linkConfigElem);
+				addExtendibleType(multiModel, link, linkConfigElem.getAttribute(MODELRELS_LINK_ATTR_NAME), linkConfigElem);
 			}
 			catch (MMTFException e) {
 				MMTFException.print(Type.WARNING, "Link can't be registered", e);
@@ -307,7 +307,7 @@ modelRef:
 	 *            The extension configuration.
 	 * @return The created editor type.
 	 */
-	public Editor createEditorType(IConfigurationElement extensionConfig) {
+	public static Editor createEditorType(MultiModel multiModel, IConfigurationElement extensionConfig) {
 
 		// create
 		String isDiagram = extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM);
@@ -321,7 +321,7 @@ modelRef:
 		}
 
 		try {
-			addExtendibleType(editor, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
+			addExtendibleType(multiModel, editor, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
 		}
 		catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Editor type can't be registered", e);
@@ -337,7 +337,7 @@ modelRef:
 		editor.setWizardId(wizardId);
 
 		// register editor
-		repository.getEditors().add(editor);
+		multiModel.getEditors().add(editor);
 
 		return editor;
 	}
@@ -352,7 +352,7 @@ modelRef:
 	 *             If there exists a vararg parameter which is not the last
 	 *             parameter.
 	 */
-	private void addOperatorParameters(Operator operator, EList<Parameter> parameterList, IConfigurationElement parameterConfig) throws MMTFException {
+	private static void addOperatorParameters(MultiModel multiModel, Operator operator, EList<Parameter> parameterList, IConfigurationElement parameterConfig) throws MMTFException {
 
 		IConfigurationElement[] parameterElems = parameterConfig.getChildren(OPERATORS_INPUTOUTPUT_CHILD_PARAMETER);
 		int i = 0;
@@ -365,7 +365,7 @@ modelRef:
 			}
 			String modelTypeUri = parameterElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
 			// create parameter
-			Model model = MultiModelTypeRegistry.getModelType(modelTypeUri);
+			Model model = MultiModelTypeRegistry.getModelType(multiModel, modelTypeUri);
 			if (model == null) {
 				throw new MMTFException("Model type " + modelTypeUri + " is not registered");
 			}
@@ -387,7 +387,7 @@ modelRef:
 	 *            The extension configuration.
 	 * @return The created operator.
 	 */
-	public Operator createOperatorType(IConfigurationElement extensionConfig) {
+	public static Operator createOperatorType(MultiModel multiModel, IConfigurationElement extensionConfig) {
 
 		// create and set basic attributes
 		boolean conversion = Boolean.parseBoolean(extensionConfig.getAttribute(OPERATORS_ATTR_ISCONVERSION));
@@ -396,7 +396,7 @@ modelRef:
 			OperatorFactory.eINSTANCE.createConversionOperator() :
 			OperatorFactory.eINSTANCE.createOperator();
 		try {
-			addExtendibleType(operatorType, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
+			addExtendibleType(multiModel, operatorType, extensionConfig.getDeclaringExtension().getLabel(), extendibleConfig);
 		} catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Operator type can't be registered", e);
 			return null;
@@ -413,9 +413,9 @@ modelRef:
 
 			// handle operator structure
 			IConfigurationElement inputConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
-			addOperatorParameters(operatorType, operatorType.getInputs(), inputConfig);
+			addOperatorParameters(multiModel, operatorType, operatorType.getInputs(), inputConfig);
 			IConfigurationElement outputConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
-			addOperatorParameters(operatorType, operatorType.getOutputs(), outputConfig);
+			addOperatorParameters(multiModel, operatorType, operatorType.getOutputs(), outputConfig);
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Operator type can't be registered", e);
@@ -427,7 +427,7 @@ modelRef:
 			operatorType.getInputs().get(0).getModel().getConversionOperators().add((ConversionOperator) operatorType);
 		}
 
-		repository.getOperators().add(operatorType);
+		multiModel.getOperators().add(operatorType);
 
 		return operatorType;
 	}
@@ -438,9 +438,10 @@ modelRef:
 	 * @param editorType
 	 *            The new editor.
 	 */
-	public void addModelTypeEditor(Editor editorType) {
+	public static void addModelTypeEditor(Editor editorType) {
 
-		Model modelType = MultiModelTypeRegistry.getModelType(editorType.getModelUri());
+		MultiModel multiModel = (MultiModel) editorType.eContainer();
+		Model modelType = MultiModelTypeRegistry.getModelType(multiModel, editorType.getModelUri());
 		if (modelType != null) {
 			modelType.getEditors().add(editorType);
 		}
@@ -452,13 +453,14 @@ modelRef:
 	 * @param modelType
 	 *            The new model type.
 	 */
-	public void addModelTypeEditors(Model modelType) {
+	public static void addModelTypeEditors(Model modelType) {
 
 		if (modelType == null) {
 			return;
 		}
 
-		for (Editor editorType : repository.getEditors()) {
+		MultiModel multiModel = (MultiModel) modelType.eContainer();
+		for (Editor editorType : multiModel.getEditors()) {
 			if (editorType.getModelUri().equals(modelType.getUri())) {
 				modelType.getEditors().add(editorType);
 			}
@@ -474,7 +476,7 @@ modelRef:
 	 * @param editor
 	 *            The new editor type.
 	 */
-	public void addEditorTypeFileExtensions(IExtensionRegistry registry, Editor editor) {
+	public static void addEditorTypeFileExtensions(IExtensionRegistry registry, Editor editor) {
 
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
@@ -527,8 +529,9 @@ modelRef:
 	 * Set all the supertypes at once, to decouple from the order in which
 	 * extensions are read.
 	 */
-	public void setSupertypes() {
+	public static void setSupertypes() {
 
+		//TODO MMTF: verify if this works when you write on diagram first
 		for (Entry<ExtendibleElement, String> entry : tempSubtypes.entrySet()) {
 			ExtendibleElement subtype = entry.getKey();
 			String supertypeUri = entry.getValue();
@@ -697,19 +700,19 @@ modelRef:
 		// model types
 		config = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			createModelType(elem);
+			createModelType(repository, elem);
 		}
 
 		// model relationship types
 		config = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			createModelRelType(elem);
+			createModelRelType(repository, elem);
 		}
 
 		// editor types
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			Editor editor = createEditorType(elem);
+			Editor editor = createEditorType(repository, elem);
 			addModelTypeEditor(editor);
 		}		
 		addEditorTypesFileExtensions(registry);
@@ -717,7 +720,7 @@ modelRef:
 		// operator types
 		config = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
 		for (IConfigurationElement elem : config) {
-			createOperatorType(elem);
+			createOperatorType(repository, elem);
 		}
 		
 		// type hierarchy
@@ -740,7 +743,7 @@ modelRef:
 	}
 
 	public static void syncRepository(MultiModel multiModel) {
-		
+
 		//TODO MMTF: Encapsulate updateRepository in a command and chain
 		//TODO MMTF: with other commands that modify the repository
 		//TODO MMTF: so that undos are also reflected in the repository as
@@ -766,10 +769,10 @@ modelRef:
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
 			initRepository(registry);
-			registry.addListener(new ModelsExtensionListener(this), MODELS_EXT_POINT);
-			registry.addListener(new RelationshipsExtensionListener(this), MODELRELS_EXT_POINT);
-			registry.addListener(new EditorsExtensionListener(this), EDITORS_EXT_POINT);
-			registry.addListener(new OperatorsExtensionListener(this), OPERATORS_EXT_POINT);
+			registry.addListener(new ModelsExtensionListener(), MODELS_EXT_POINT);
+			registry.addListener(new RelationshipsExtensionListener(), MODELRELS_EXT_POINT);
+			registry.addListener(new EditorsExtensionListener(), EDITORS_EXT_POINT);
+			registry.addListener(new OperatorsExtensionListener(), OPERATORS_EXT_POINT);
 		}
 	}
 

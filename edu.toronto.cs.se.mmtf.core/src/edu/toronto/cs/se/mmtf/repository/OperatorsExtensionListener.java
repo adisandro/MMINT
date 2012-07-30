@@ -19,7 +19,6 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
@@ -33,32 +32,27 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 public class OperatorsExtensionListener extends MMTFExtensionListener {
 
 	/**
-	 * Constructor: initializes the MMTF instance.
-	 * 
-	 * @param mmtf
-	 *            The MMTF instance.
-	 */
-	public OperatorsExtensionListener(MMTF mmtf) {
-
-		super(mmtf);
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * Installs a new Operators extension.
 	 */
 	@Override
 	public void added(IExtension[] extensions) {
 
+		MultiModel multiModel;
+		try {
+			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
+		}
+		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
+			return;
+		}
+
 		IConfigurationElement[] config;
-		Operator operator;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				operator = mmtf.createOperatorType(elem);
-				if (operator instanceof ConversionOperator) {
-					MMTF.initTypeHierarchy();
-				}
+				MMTF.createOperatorType(multiModel, elem);
+				MMTF.syncRepository(multiModel);
 			}
 		}
 	}

@@ -15,8 +15,6 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IRegistryEventListener;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-
 /**
  * A generic listener for dynamic installation/unistallation of MMTF extensions.
  * 
@@ -24,20 +22,6 @@ import edu.toronto.cs.se.mmtf.MMTF;
  * 
  */
 public abstract class MMTFExtensionListener implements IRegistryEventListener {
-
-	/** The MMTF instance. */
-	protected MMTF mmtf;
-
-	/**
-	 * Constructor: initializes the MMTF instance.
-	 * 
-	 * @param mmtf
-	 *            The MMTF instance.
-	 */
-	public MMTFExtensionListener(MMTF mmtf) {
-
-		this.mmtf = mmtf;
-	}
 
 	@Override
 	public abstract void added(IExtension[] extensions);

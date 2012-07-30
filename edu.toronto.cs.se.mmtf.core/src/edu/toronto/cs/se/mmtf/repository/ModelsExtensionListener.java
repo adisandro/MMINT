@@ -32,32 +32,29 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 public class ModelsExtensionListener extends MMTFExtensionListener {
 
 	/**
-	 * Constructor: initializes the MMTF instance.
-	 * 
-	 * @param mmtf
-	 *            The MMTF instance.
-	 */
-	public ModelsExtensionListener(MMTF mmtf) {
-
-		super(mmtf);
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * Installs a new Models extension.
 	 */
 	@Override
 	public void added(IExtension[] extensions) {
 
+		MultiModel multiModel;
+		try {
+			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
+		}
+		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
+			return;
+		}
+
 		IConfigurationElement[] config;
-		Model model;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				model = mmtf.createModelType(elem);
-				mmtf.addModelTypeEditors(model);
-				mmtf.setSupertypes();
-				MMTF.initTypeHierarchy();
+				Model modelType = MMTF.createModelType(multiModel, elem);
+				MMTF.addModelTypeEditors(modelType);
+				MMTF.setSupertypes();
+				MMTF.syncRepository(multiModel);
 			}
 		}
 	}
