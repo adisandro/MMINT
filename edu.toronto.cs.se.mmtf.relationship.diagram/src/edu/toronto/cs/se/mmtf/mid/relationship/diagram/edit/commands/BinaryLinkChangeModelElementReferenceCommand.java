@@ -15,12 +15,12 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to change a model element reference of a binary mapping link.
@@ -125,7 +125,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 
 		getLink().getElementRefs().set(0, getNewSource());
 		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
-			MultiModelTypeFactory.syncRepository((MultiModel) getLink().eContainer().eContainer());
+			MMTF.syncRepository((MultiModel) getLink().eContainer().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -143,7 +143,7 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 
 		getLink().getElementRefs().set(1, getNewTarget());
 		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
-			MultiModelTypeFactory.syncRepository((MultiModel) getLink().eContainer().eContainer());
+			MMTF.syncRepository((MultiModel) getLink().eContainer().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());

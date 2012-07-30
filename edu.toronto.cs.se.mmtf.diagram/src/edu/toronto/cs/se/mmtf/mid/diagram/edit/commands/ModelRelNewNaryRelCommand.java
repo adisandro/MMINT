@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -87,7 +88,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 			constraint,
 			RelationshipPackage.eINSTANCE.getModelRel()
 		);
-		MultiModelTypeFactory.syncRepository(multiModel);
+		MMTF.syncRepository(multiModel);
 
 		return newModelRelType;
 	}

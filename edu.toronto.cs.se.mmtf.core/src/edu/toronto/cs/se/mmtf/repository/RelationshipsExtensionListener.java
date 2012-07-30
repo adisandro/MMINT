@@ -16,11 +16,11 @@ import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -84,7 +84,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 				ModelRel modelRelType = MultiModelTypeRegistry.getModelRelType(multiModel, uri);
 				if (modelRelType != null) {
 					MultiModelTypeFactory.removeModelType(modelRelType);
-					MultiModelTypeFactory.syncRepository(multiModel);
+					MMTF.syncRepository(multiModel);
 				}
 			}
 		}

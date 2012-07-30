@@ -18,10 +18,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
 /**
  * The command to add a model element reference to a link.
@@ -65,7 +65,7 @@ public class LinkAddModelElementReferenceCommand extends LinkElementRefsCreateCo
 
 	protected void doExecuteTypesLevel() {
 
-		MultiModelTypeFactory.syncRepository((MultiModel) getSource().eContainer().eContainer());
+		MMTF.syncRepository((MultiModel) getSource().eContainer().eContainer());
 	}
 
 	@Override

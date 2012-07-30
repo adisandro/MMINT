@@ -25,9 +25,6 @@ public class MMTFActivator extends AbstractUIPlugin {
 	// The shared instance
 	private static MMTFActivator plugin;
 
-	@SuppressWarnings("unused")
-	private MMTF mmtf;
-
 	/**
 	 * The constructor
 	 */
@@ -41,7 +38,6 @@ public class MMTFActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		mmtf = new MMTF();
 	}
 
 	/*

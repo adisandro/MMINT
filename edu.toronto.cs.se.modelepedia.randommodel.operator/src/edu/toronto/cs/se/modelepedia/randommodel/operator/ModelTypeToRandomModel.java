@@ -33,7 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
 
@@ -51,8 +51,8 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
 	private void readProperties(Properties properties) throws Exception {
 
-		minInstances = OperatorUtils.getIntProperty(properties, PROPERTY_MININSTANCES);
-		maxInstances = OperatorUtils.getIntProperty(properties, PROPERTY_MAXINSTANCES);
+		minInstances = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MININSTANCES);
+		maxInstances = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MAXINSTANCES);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
 		// convert and serialize
 		Model model = actualParameters.get(0);
-		Properties inputProperties = OperatorUtils.getInputPropertiesFile(this, model, null, false);
+		Properties inputProperties = MultiModelOperatorUtils.getInputPropertiesFile(this, model, null, false);
 		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String typegraphUri =
@@ -75,7 +75,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		atl.saveModels(typegraphUri);
 
 		EList<Model> result = new BasicEList<Model>();
-		if (!OperatorUtils.isUpdatingMid(inputProperties)) {
+		if (!MultiModelOperatorUtils.isUpdatingMid(inputProperties)) {
 			return result;
 		}
 

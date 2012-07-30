@@ -15,11 +15,11 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 public class SyncRepositoryHandler extends AbstractHandler {
 
@@ -28,7 +28,7 @@ public class SyncRepositoryHandler extends AbstractHandler {
 
 		try {
 			MultiModel multiModel = MultiModelTypeRegistry.getTypeMidRepository();
-			MultiModelTypeFactory.syncRepository(multiModel);
+			MMTF.syncRepository(multiModel);
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);

@@ -17,11 +17,11 @@ import java.util.Random;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentSamples.DistributionType;
 
 public class ExperimentDriver extends OperatorExecutableImpl {
@@ -75,30 +75,30 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private void readProperties(Properties properties) throws Exception {
 
 		// outer cycle parameters: vary experiment setup
-		vars = OperatorUtils.getStringProperties(properties, PROPERTY_VARIABLES);
+		vars = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_VARIABLES);
 		values = new String[vars.length][];
 		cardinality = 1;
 		for (int i = 0; i < vars.length; i++) {
-			values[i] = OperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX);
+			values[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX);
 			cardinality *= values[i].length;
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = OperatorUtils.getStringProperty(properties, PROPERTY_SEED);
-		state = OperatorUtils.getStringProperty(properties, PROPERTY_STATE);
-		minSamples = OperatorUtils.getIntProperty(properties, PROPERTY_MINSAMPLES);
-		maxSamples = OperatorUtils.getIntProperty(properties, PROPERTY_MAXSAMPLES);
-		min = OperatorUtils.getDoubleProperty(properties, PROPERTY_MINSAMPLEVALUE);
-		max = OperatorUtils.getDoubleProperty(properties, PROPERTY_MAXSAMPLEVALUE);
-		distribution = DistributionType.valueOf(OperatorUtils.getStringProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
-		requestedConfidence = OperatorUtils.getDoubleProperty(properties, PROPERTY_REQUESTEDCONFIDENCE);
+		seed = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_SEED);
+		state = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_STATE);
+		minSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MINSAMPLES);
+		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MAXSAMPLES);
+		min = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MINSAMPLEVALUE);
+		max = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MAXSAMPLEVALUE);
+		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
+		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_REQUESTEDCONFIDENCE);
 
 		// operators
-		experimentOperators = OperatorUtils.getStringProperties(properties, PROPERTY_EXPERIMENTOPERATORS);
-		statisticsOperators = OperatorUtils.getStringProperties(properties, PROPERTY_STATISTICSOPERATORS);
+		experimentOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_EXPERIMENTOPERATORS);
+		statisticsOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_STATISTICSOPERATORS);
 		varsOperators = new String[vars.length][];
 		for (int i = 0; i < vars.length; i++) {
-			varsOperators[i] = OperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_OPERATORS_SUFFIX);
+			varsOperators[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_OPERATORS_SUFFIX);
 		}
 	}
 
@@ -153,13 +153,13 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		operatorProperties.setProperty(PROPERTY_STATE, state);
 		//TODO MMTF: write properties in the subdir, as well as redirecting there results of each operator! Yes how?
 		//TODO MMTF: use the updateMid=false property to avoid creation of models in the mid, i.e. allow creation of hanging models
-		OperatorUtils.writePropertiesFile(
+		MultiModelOperatorUtils.writePropertiesFile(
 			operatorProperties,
 			operator.getExecutable(),
 			actualParameters.get(0),
 			null,
 			false,
-			OperatorUtils.INPUT_PROPERTIES_SUFFIX
+			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 
 		return operator.getExecutable().execute(actualParameters);
@@ -170,7 +170,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		// get experiment properties
 		Model model = actualParameters.get(0);
-		Properties inputProperties = OperatorUtils.getInputPropertiesFile(this, model, null, false);
+		Properties inputProperties = MultiModelOperatorUtils.getInputPropertiesFile(this, model, null, false);
 		readProperties(inputProperties);
 
 		// prepare experiment setup
@@ -203,13 +203,13 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			// TODO MMTF: output file/format?
 			Properties outputProperties = new Properties();
 			writeProperties(outputProperties, experiment, i);
-			OperatorUtils.writePropertiesFile(
+			MultiModelOperatorUtils.writePropertiesFile(
 				outputProperties,
 				this,
 				model,
 				"experiment" + i,
 				true,
-				OperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+				MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 			);
 		}
 

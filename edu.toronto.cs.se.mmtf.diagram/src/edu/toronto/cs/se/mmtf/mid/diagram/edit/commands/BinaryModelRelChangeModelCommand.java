@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
@@ -128,7 +129,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		else {
 			MultiModelTypeFactory.removeLightModelTypeRef(getLink(), getOldSource());
 			MultiModelTypeFactory.createLightModelTypeRef(getLink(), getNewSource());
-			MultiModelTypeFactory.syncRepository((MultiModel) getLink().eContainer());
+			MMTF.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -152,7 +153,7 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		else {
 			MultiModelTypeFactory.removeLightModelTypeRef(getLink(), getOldTarget());
 			MultiModelTypeFactory.createLightModelTypeRef(getLink(), getNewTarget());
-			MultiModelTypeFactory.syncRepository((MultiModel) getLink().eContainer());
+			MMTF.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());

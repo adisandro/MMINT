@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
@@ -72,7 +73,7 @@ public class ModelRelAddModelCommand extends ModelRelModelsCreateCommand {
 
 		MultiModel multiModel = (MultiModel) getSource().eContainer();
 		MultiModelTypeFactory.createLightModelTypeRef(getSource(), getTarget());
-		MultiModelTypeFactory.syncRepository(multiModel);
+		MMTF.syncRepository(multiModel);
 	}
 
 	/**

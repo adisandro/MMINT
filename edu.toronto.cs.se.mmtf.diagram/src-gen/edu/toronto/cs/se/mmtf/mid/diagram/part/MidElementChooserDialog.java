@@ -56,7 +56,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 
 /**
  * @generated

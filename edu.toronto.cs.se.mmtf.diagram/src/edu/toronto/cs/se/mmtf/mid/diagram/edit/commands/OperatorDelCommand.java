@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
@@ -58,7 +59,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		Operator operatorType = (Operator) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) operatorType.eContainer();		
 		MultiModelTypeFactory.removeOperatorType(operatorType);
-		MultiModelTypeFactory.syncRepository(multiModel);
+		MMTF.syncRepository(multiModel);
 	}
 
 	/**

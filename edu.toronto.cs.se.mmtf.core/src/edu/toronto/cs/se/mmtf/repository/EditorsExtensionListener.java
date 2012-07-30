@@ -18,11 +18,11 @@ import org.eclipse.core.runtime.RegistryFactory;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -94,7 +94,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 				Editor editorType = MultiModelTypeRegistry.getEditorType(uri);
 				if (editorType != null) {
 					MultiModelTypeFactory.removeEditorType(editorType);
-					MultiModelTypeFactory.syncRepository(multiModel);
+					MMTF.syncRepository(multiModel);
 				}
 			}
 		}

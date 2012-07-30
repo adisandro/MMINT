@@ -16,12 +16,12 @@ import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -87,7 +87,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 				Operator operatorType = MultiModelTypeRegistry.getOperatorType(multiModel, uri);
 				if (operatorType != null) {
 					operatorType = MultiModelTypeFactory.removeOperatorType(operatorType);
-					MultiModelTypeFactory.syncRepository(multiModel);
+					MMTF.syncRepository(multiModel);
 				}
 			}
 		}

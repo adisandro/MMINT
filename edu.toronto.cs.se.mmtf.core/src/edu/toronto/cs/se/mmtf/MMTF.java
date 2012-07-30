@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
@@ -56,7 +57,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
@@ -76,14 +76,17 @@ import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
  */
 public class MMTF implements MMTFExtensionPoints {
 
+	/** The singleton instance. */
+	public static final MMTF INSTANCE = new MMTF();
+
 	/** The repository of registered extensions. */
-	public static MultiModel repository;
+	static MultiModel repository;
 
 	/**	The table for model types substitutability. */
-	public static HashMap<String, HashSet<String>> substitutabilityTable;
+	static HashMap<String, HashSet<String>> substitutabilityTable;
 
 	/**	The table for model types conversion. */
-	public static HashMap<String, HashMap<String, EList<ConversionOperator>>> conversionTable;
+	static HashMap<String, HashMap<String, EList<ConversionOperator>>> conversionTable;
 
 	/** A temporary map for the subtypes to be assigned a supertype. */
 	private static HashMap<ExtendibleElement, String> tempSubtypes;
@@ -736,11 +739,29 @@ modelRef:
 		}
 	}
 
+	public static void syncRepository(MultiModel multiModel) {
+		
+		//TODO MMTF: Encapsulate updateRepository in a command and chain
+		//TODO MMTF: with other commands that modify the repository
+		//TODO MMTF: so that undos are also reflected in the repository as
+		//TODO MMTF: well as the diagram
+		EList<OperatorExecutable> executables = new BasicEList<OperatorExecutable>();
+		for (Operator operator : repository.getOperators()) {
+			executables.add(operator.getExecutable());
+		}
+		repository = EcoreUtil.copy(multiModel);
+		for (int i = 0; i < repository.getOperators().size(); i++) {
+			Operator operator = repository.getOperators().get(i);
+			operator.setExecutable(executables.get(i));
+		}
+		initTypeHierarchy();
+	}
+
 	/**
 	 * Constructor: initialises the repository and registers listeners for
 	 * dynamic installation/unistallation of extensions.
 	 */
-	public MMTF() {
+	private MMTF() {
 
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {

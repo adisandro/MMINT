@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -59,7 +60,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 		MultiModel multiModel = (MultiModel) getElementToDestroy().eContainer().eContainer().eContainer();
 		MultiModelTypeFactory.removeLightModelElementTypeRef((ModelElementReference) getElementToDestroy());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MultiModelTypeFactory.syncRepository(multiModel);
+		MMTF.syncRepository(multiModel);
 
 		return result;
 	}

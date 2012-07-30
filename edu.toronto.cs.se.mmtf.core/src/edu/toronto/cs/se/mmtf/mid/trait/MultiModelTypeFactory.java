@@ -13,15 +13,12 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 
 import java.util.ArrayList;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
@@ -36,7 +33,6 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
@@ -53,24 +49,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
  * 
  */
 public class MultiModelTypeFactory {
-
-	public static void syncRepository(MultiModel multiModel) {
-		
-		//TODO MMTF: Encapsulate updateRepository in a command and chain
-		//TODO MMTF: with other commands that modify the repository
-		//TODO MMTF: so that undos are also reflected in the repository as
-		//TODO MMTF: well as the diagram
-		EList<OperatorExecutable> executables = new BasicEList<OperatorExecutable>();
-		for (Operator operator : MMTF.repository.getOperators()) {
-			executables.add(operator.getExecutable());
-		}
-		MMTF.repository = EcoreUtil.copy(multiModel);
-		for (int i = 0; i < MMTF.repository.getOperators().size(); i++) {
-			Operator operator = MMTF.repository.getOperators().get(i);
-			operator.setExecutable(executables.get(i));
-		}
-		MMTF.initTypeHierarchy();
-	}
 
 	private static void addLightExtendibleType(ExtendibleElement newType, ExtendibleElement type, String newTypeUriFragment, String newTypeName, MultiModel multiModel) throws MMTFException {
 

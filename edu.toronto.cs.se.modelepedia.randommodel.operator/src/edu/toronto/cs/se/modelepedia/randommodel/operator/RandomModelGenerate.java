@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.OperatorUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
 
@@ -62,12 +62,12 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 
 	private void readProperties(Properties properties) throws Exception {
 
-		annotations = OperatorUtils.getDoubleProperty(properties, PROPERTY_ANNOTATIONS);
-		may = OperatorUtils.getDoubleProperty(properties, PROPERTY_MAY);
-		set = OperatorUtils.getDoubleProperty(properties, PROPERTY_SET);
-		var = OperatorUtils.getDoubleProperty(properties, PROPERTY_VAR);
-		seed = OperatorUtils.getOptionalStringProperty(properties, PROPERTY_SEED, PROPERTY_SEED_DEFAULT);
-		state = OperatorUtils.getOptionalStringProperty(properties, PROPERTY_STATE, PROPERTY_STATE_DEFAULT);
+		annotations = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_ANNOTATIONS);
+		may = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MAY);
+		set = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_SET);
+		var = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_VAR);
+		seed = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_SEED, PROPERTY_SEED_DEFAULT);
+		state = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_STATE, PROPERTY_STATE_DEFAULT);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 
 		// create random instance
 		Model model = actualParameters.get(0);
-		Properties inputProperties = OperatorUtils.getInputPropertiesFile(this, model, null, false);
+		Properties inputProperties = MultiModelOperatorUtils.getInputPropertiesFile(this, model, null, false);
 		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String modelType = ((RandomModel) model.getRoot()).getName();
@@ -123,7 +123,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		p.waitFor();
 
 		EList<Model> result = new BasicEList<Model>();
-		if (!OperatorUtils.isUpdatingMid(inputProperties)) {
+		if (!MultiModelOperatorUtils.isUpdatingMid(inputProperties)) {
 			return result;
 		}
 

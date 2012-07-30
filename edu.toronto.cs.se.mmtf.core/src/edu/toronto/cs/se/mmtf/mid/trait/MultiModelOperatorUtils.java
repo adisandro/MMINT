@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 
-public class OperatorUtils {
+public class MultiModelOperatorUtils {
 
 	public static final String INPUT_PROPERTIES_SUFFIX = "In";
 	public static final String OUTPUT_PROPERTIES_SUFFIX = "Out";
