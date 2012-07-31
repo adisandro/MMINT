@@ -15,10 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
@@ -38,23 +35,14 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 	@Override
 	public void added(IExtension[] extensions) {
 
-		MultiModel multiModel;
-		try {
-			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
-		}
-		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
-			return;
-		}
-
 		IConfigurationElement[] config;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				MMTF.createOperatorType(multiModel, elem);
-				MMTF.syncRepository(multiModel);
+				MMTF.createOperatorType(elem);
 			}
 		}
+		MMTF.storeRepository();
 	}
 
 	/**
@@ -64,27 +52,18 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 	@Override
 	public void removed(IExtension[] extensions) {
 
-		MultiModel multiModel;
-		try {
-			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
-		}
-		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
-			return;
-		}
-
 		IConfigurationElement[] config;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
-				Operator operatorType = MultiModelTypeRegistry.getOperatorType(multiModel, uri);
+				Operator operatorType = MultiModelTypeRegistry.getOperatorType(uri);
 				if (operatorType != null) {
 					operatorType = MultiModelTypeFactory.removeOperatorType(operatorType);
-					MMTF.syncRepository(multiModel);
 				}
 			}
 		}
+		MMTF.storeRepository();
 	}
 
 }

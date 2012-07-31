@@ -17,10 +17,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
 
@@ -40,15 +37,6 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 	@Override
 	public void added(IExtension[] extensions) {
 
-		MultiModel multiModel;
-		try {
-			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
-		}
-		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
-			return;
-		}
-
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry == null) {
 			return;
@@ -58,13 +46,13 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
-				Editor editorType = MMTF.createEditorType(multiModel, elem);
+				Editor editorType = MMTF.createEditorType(elem);
 				MMTF.setSupertypes();
 				MMTF.addModelTypeEditor(editorType);
 				MMTF.addEditorTypeFileExtensions(registry, editorType);
-				MMTF.syncRepository(multiModel);
 			}
 		}
+		MMTF.storeRepository();
 	}
 
 	/**
@@ -74,15 +62,6 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 	@Override
 	public void removed(IExtension[] extensions) {
 
-		MultiModel multiModel;
-		try {
-			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
-		}
-		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
-			return;
-		}
-
 		IConfigurationElement[] config;
 		for (IExtension extension : extensions) {
 			config = extension.getConfigurationElements();
@@ -91,10 +70,10 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 				Editor editorType = MultiModelTypeRegistry.getEditorType(uri);
 				if (editorType != null) {
 					MultiModelTypeFactory.removeEditorType(editorType);
-					MMTF.syncRepository(multiModel);
 				}
 			}
 		}
+		MMTF.storeRepository();
 	}
 
 }
