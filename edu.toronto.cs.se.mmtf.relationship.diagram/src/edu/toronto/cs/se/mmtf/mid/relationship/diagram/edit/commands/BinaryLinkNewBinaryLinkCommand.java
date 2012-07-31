@@ -19,9 +19,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -89,7 +87,6 @@ public class BinaryLinkNewBinaryLinkCommand extends BinaryLinkCreateCommand {
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getBinaryLink()
 		);
-		MMTF.syncRepository((MultiModel) getContainer().eContainer());
 
 		return newLinkType;
 	}

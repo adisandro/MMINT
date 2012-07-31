@@ -18,8 +18,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
@@ -54,9 +52,7 @@ public class LinkRemoveModelElementReferenceCommand extends DestroyReferenceComm
 
 	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModel multiModel = (MultiModel) getContainer().eContainer().eContainer();
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTF.syncRepository(multiModel);
 
 		return result;
 	}

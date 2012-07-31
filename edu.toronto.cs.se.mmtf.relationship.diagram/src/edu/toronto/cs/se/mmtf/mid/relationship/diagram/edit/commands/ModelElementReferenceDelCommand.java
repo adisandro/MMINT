@@ -18,8 +18,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
@@ -57,10 +55,8 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 
 	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModel multiModel = (MultiModel) getElementToDestroy().eContainer().eContainer().eContainer();
 		MultiModelTypeFactory.removeLightModelElementTypeRef((ModelElementReference) getElementToDestroy());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTF.syncRepository(multiModel);
 
 		return result;
 	}

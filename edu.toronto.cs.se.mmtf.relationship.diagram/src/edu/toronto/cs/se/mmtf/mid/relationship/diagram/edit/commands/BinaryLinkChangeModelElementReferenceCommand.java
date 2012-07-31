@@ -15,8 +15,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
@@ -124,9 +122,6 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		getLink().getElementRefs().set(0, getNewSource());
-		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
-			MMTF.syncRepository((MultiModel) getLink().eContainer().eContainer());
-		}
 
 		return CommandResult.newOKCommandResult(getLink());
 	}
@@ -142,9 +137,6 @@ public class BinaryLinkChangeModelElementReferenceCommand extends BinaryLinkReor
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		getLink().getElementRefs().set(1, getNewTarget());
-		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getLink().eContainer())) {
-			MMTF.syncRepository((MultiModel) getLink().eContainer().eContainer());
-		}
 
 		return CommandResult.newOKCommandResult(getLink());
 	}

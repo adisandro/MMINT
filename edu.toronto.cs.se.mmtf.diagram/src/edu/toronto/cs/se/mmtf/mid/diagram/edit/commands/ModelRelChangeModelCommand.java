@@ -15,8 +15,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeFactory;
@@ -103,11 +101,9 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 			result = super.reorientSource();
 		}
 		else {
-			MultiModel multiModel = (MultiModel) getOldSource().eContainer();
 			MultiModelTypeFactory.removeLightModelTypeRef(getOldSource(), getOldTarget());
 			MultiModelTypeFactory.createLightModelTypeRef(getNewSource(), getOldTarget());
 			result = super.reorientSource();
-			MMTF.syncRepository(multiModel);
 		}
 
 		return result;
@@ -130,11 +126,9 @@ public class ModelRelChangeModelCommand extends ModelRelModelsReorientCommand {
 			result = super.reorientTarget();
 		}
 		else {
-			MultiModel multiModel = (MultiModel) getOldSource().eContainer();
 			MultiModelTypeFactory.removeLightModelTypeRef(getOldSource(), getOldTarget());
 			MultiModelTypeFactory.createLightModelTypeRef(getOldSource(), getNewTarget());
 			result = super.reorientTarget();
-			MMTF.syncRepository(multiModel);
 		}
 
 		return result;

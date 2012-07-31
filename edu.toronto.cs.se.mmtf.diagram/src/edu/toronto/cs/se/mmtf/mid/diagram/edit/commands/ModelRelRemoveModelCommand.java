@@ -18,9 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
@@ -71,10 +69,8 @@ public class ModelRelRemoveModelCommand extends DestroyReferenceCommand {
 
 	protected CommandResult doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		MultiModel multiModel = (MultiModel) getContainer().eContainer();
 		MultiModelTypeFactory.removeLightModelTypeRef((ModelRel) getContainer(), (Model) getReferencedObject());
 		CommandResult result = super.doExecuteWithResult(monitor, info);
-		MMTF.syncRepository(multiModel);
 
 		return result;
 	}

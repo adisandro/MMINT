@@ -18,10 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -90,7 +88,6 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		ModelReference modelTypeRef = (ModelReference) getElementToEdit();
 		ModelElementReference newModelElemTypeRef = MultiModelTypeFactory.createLightModelElementType(modelTypeRef, "", droppedElement);
-		MMTF.syncRepository((MultiModel) modelTypeRef.eContainer().eContainer());
 
 		return newModelElemTypeRef;
 	}

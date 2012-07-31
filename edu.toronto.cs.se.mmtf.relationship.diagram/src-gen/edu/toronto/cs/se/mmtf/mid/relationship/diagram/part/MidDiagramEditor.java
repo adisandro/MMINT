@@ -74,6 +74,10 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.navigator.MidNavigatorItem;
@@ -275,6 +279,11 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 			updateState(getEditorInput());
 			validateState(getEditorInput());
 			performSave(false, progressMonitor);
+			try {
+				MMTF.syncRepository(MultiModelTypeRegistry.getTypeMidRepository());
+			} catch (Exception e) {
+				MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
+			}
 			return;
 		}
 

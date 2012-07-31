@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -80,7 +79,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		String newModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type name");
 		String constraint = MidDiagramTrait.getBigStringInput("Create new light model type", "Insert new model type constraint");
 		Model newModelType = MultiModelTypeFactory.createLightModelType(modelType, newModelTypeName, constraint);
-		MMTF.syncRepository(multiModel);
 
 		return newModelType;
 	}

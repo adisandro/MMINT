@@ -17,9 +17,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -79,7 +77,6 @@ public class LinkNewNaryLinkCommand extends LinkCreateCommand {
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getLink()
 		);
-		MMTF.syncRepository((MultiModel) modelRelType.eContainer());
 
 		return newLinkType;
 	}

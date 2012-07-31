@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
@@ -63,11 +61,6 @@ public class LinkAddModelElementReferenceCommand extends LinkElementRefsCreateCo
 			);
 	}
 
-	protected void doExecuteTypesLevel() {
-
-		MMTF.syncRepository((MultiModel) getSource().eContainer().eContainer());
-	}
-
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -77,9 +70,6 @@ public class LinkAddModelElementReferenceCommand extends LinkElementRefsCreateCo
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().getElementRefs().add(getTarget());
-			if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getSource().eContainer())) {
-				doExecuteTypesLevel();
-			}
 		}
 
 		return CommandResult.newOKCommandResult();

@@ -129,7 +129,6 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		else {
 			MultiModelTypeFactory.removeLightModelTypeRef(getLink(), getOldSource());
 			MultiModelTypeFactory.createLightModelTypeRef(getLink(), getNewSource());
-			MMTF.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());
@@ -153,7 +152,6 @@ public class BinaryModelRelChangeModelCommand extends BinaryModelRelReorientComm
 		else {
 			MultiModelTypeFactory.removeLightModelTypeRef(getLink(), getOldTarget());
 			MultiModelTypeFactory.createLightModelTypeRef(getLink(), getNewTarget());
-			MMTF.syncRepository((MultiModel) getLink().eContainer());
 		}
 
 		return CommandResult.newOKCommandResult(getLink());

@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
@@ -61,10 +60,8 @@ public class ModelDelCommand extends DestroyElementCommand {
 
 	protected void doExecuteTypesLevel() {
 		
-		Model modelType = (Model) getElementToDestroy();
-		MultiModel multiModel = (MultiModel) modelType.eContainer();		
+		Model modelType = (Model) getElementToDestroy();	
 		MultiModelTypeFactory.removeModelType(modelType);
-		MMTF.syncRepository(multiModel);
 	}
 
 	protected void doExecuteInstancesLevel() {

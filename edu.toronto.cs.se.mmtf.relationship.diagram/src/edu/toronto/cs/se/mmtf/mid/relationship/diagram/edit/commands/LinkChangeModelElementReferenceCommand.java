@@ -15,8 +15,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
@@ -89,23 +87,15 @@ public class LinkChangeModelElementReferenceCommand extends LinkElementRefsReori
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
-		MultiModel multiModel = (MultiModel) getOldSource().eContainer().eContainer();
 		CommandResult result = super.reorientSource();
-		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer())) {
-			MMTF.syncRepository(multiModel);
-		}
-
+		
 		return result;
 	}
 
 	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		MultiModel multiModel = (MultiModel) getOldSource().eContainer().eContainer();
 		CommandResult result = super.reorientTarget();
-		if (!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getOldSource().eContainer())) {
-			MMTF.syncRepository(multiModel);
-		}
 
 		return result;
 	}
