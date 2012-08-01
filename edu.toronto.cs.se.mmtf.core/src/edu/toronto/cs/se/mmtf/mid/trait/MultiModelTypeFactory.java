@@ -424,6 +424,7 @@ public class MultiModelTypeFactory {
 	}
 
 	public static void removeLightModelTypeRef(ModelRel modelRelType, Model modelType) {
+
 		ArrayList<ModelReference> delModelRefs = new ArrayList<ModelReference>();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		//TODO MMTF: if I enable binary rels to self how can I distinguish the right model ref to delete (every ref must be bidirectional)
