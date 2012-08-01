@@ -93,10 +93,6 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createParameterAdapter();
 			}
 			@Override
-			public Adapter caseEStringToOperatorMap(Map.Entry<String, Operator> object) {
-				return createEStringToOperatorMapAdapter();
-			}
-			@Override
 			public Adapter caseConversionOperator(ConversionOperator object) {
 				return createConversionOperatorAdapter();
 			}
@@ -171,20 +167,6 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Operator Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createEStringToOperatorMapAdapter() {
 		return null;
 	}
 

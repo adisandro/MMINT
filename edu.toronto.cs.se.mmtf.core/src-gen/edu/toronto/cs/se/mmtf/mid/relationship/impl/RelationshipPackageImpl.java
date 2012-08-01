@@ -301,6 +301,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelReference__GetObject() {
+		return modelReferenceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelElementReference() {
 		return modelElementReferenceEClass;
 	}
@@ -312,6 +321,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 */
 	public EReference getModelElementReference_Links() {
 		return (EReference)modelElementReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElementReference__GetObject() {
+		return modelElementReferenceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -455,9 +473,11 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		modelReferenceEClass = createEClass(MODEL_REFERENCE);
 		createEReference(modelReferenceEClass, MODEL_REFERENCE__ELEMENT_REFS);
+		createEOperation(modelReferenceEClass, MODEL_REFERENCE___GET_OBJECT);
 
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__LINKS);
+		createEOperation(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE___GET_OBJECT);
 
 		linkEClass = createEClass(LINK);
 		createEReference(linkEClass, LINK__ELEMENT_REFS);
@@ -533,8 +553,12 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEClass(modelReferenceEClass, ModelReference.class, "ModelReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelReference_ElementRefs(), this.getModelElementReference(), null, "elementRefs", null, 0, -1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getModelReference__GetObject(), theMidPackage.getModel(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementReference_Links(), this.getLink(), this.getLink_ElementRefs(), "links", null, 0, -1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getModelElementReference__GetObject(), theMidPackage.getModelElement(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(linkEClass, Link.class, "Link", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLink_ElementRefs(), this.getModelElementReference(), this.getModelElementReference_Links(), "elementRefs", null, 0, -1, Link.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -591,7 +615,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "constraints", "sameModelTypes"
-		   });			
+		   });					
 		addAnnotation
 		  (linkEClass, 
 		   source, 
@@ -644,7 +668,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "sameModelTypes", "models->forAll(m1 : Model, m2 : Model | m1.type = m2.type)"
-		   });			
+		   });					
 		addAnnotation
 		  (linkEClass, 
 		   source, 

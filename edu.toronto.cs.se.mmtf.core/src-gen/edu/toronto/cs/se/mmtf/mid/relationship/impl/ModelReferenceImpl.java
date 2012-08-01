@@ -11,10 +11,13 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -80,6 +83,16 @@ public class ModelReferenceImpl extends ExtendibleElementReferenceImpl implement
 			elementRefs = new EObjectContainmentEList<ModelElementReference>(ModelElementReference.class, this, RelationshipPackage.MODEL_REFERENCE__ELEMENT_REFS);
 		}
 		return elementRefs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model getObject() {
+		ExtendibleElement object = super.getObject();
+		return (object == null) ? null : (Model) object;
 	}
 
 	/**
@@ -154,6 +167,20 @@ public class ModelReferenceImpl extends ExtendibleElementReferenceImpl implement
 				return elementRefs != null && !elementRefs.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case RelationshipPackage.MODEL_REFERENCE___GET_OBJECT:
+				return getObject();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ModelReferenceImpl

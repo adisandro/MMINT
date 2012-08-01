@@ -150,29 +150,6 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStringToOperatorMapItemProvider eStringToOperatorMapItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEStringToOperatorMapAdapter() {
-		if (eStringToOperatorMapItemProvider == null) {
-			eStringToOperatorMapItemProvider = new EStringToOperatorMapItemProvider(this);
-		}
-
-		return eStringToOperatorMapItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,7 +274,6 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (eStringToParameterMapItemProvider != null) eStringToParameterMapItemProvider.dispose();
 		if (operatorItemProvider != null) operatorItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
-		if (eStringToOperatorMapItemProvider != null) eStringToOperatorMapItemProvider.dispose();
 		if (conversionOperatorItemProvider != null) conversionOperatorItemProvider.dispose();
 	}
 

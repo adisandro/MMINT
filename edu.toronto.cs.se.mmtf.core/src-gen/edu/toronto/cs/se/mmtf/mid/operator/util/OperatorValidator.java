@@ -113,8 +113,6 @@ public class OperatorValidator extends EObjectValidator {
 				return validateOperator((Operator)value, diagnostics, context);
 			case OperatorPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
-			case OperatorPackage.ESTRING_TO_OPERATOR_MAP:
-				return validateEStringToOperatorMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case OperatorPackage.CONVERSION_OPERATOR:
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
 			case OperatorPackage.OPERATOR_EXECUTABLE:
@@ -165,15 +163,6 @@ public class OperatorValidator extends EObjectValidator {
 	 */
 	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(parameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEStringToOperatorMap(Map.Entry<?, ?> eStringToOperatorMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)eStringToOperatorMap, diagnostics, context);
 	}
 
 	/**

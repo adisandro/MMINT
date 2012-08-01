@@ -76,13 +76,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eStringToOperatorMapEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass conversionOperatorEClass = null;
 
 	/**
@@ -318,33 +311,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEStringToOperatorMap() {
-		return eStringToOperatorMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToOperatorMap_Key() {
-		return (EAttribute)eStringToOperatorMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEStringToOperatorMap_Value() {
-		return (EReference)eStringToOperatorMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getConversionOperator() {
 		return conversionOperatorEClass;
 	}
@@ -439,10 +405,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEAttribute(parameterEClass, PARAMETER__VARARG);
 		createEReference(parameterEClass, PARAMETER__MODEL);
 
-		eStringToOperatorMapEClass = createEClass(ESTRING_TO_OPERATOR_MAP);
-		createEAttribute(eStringToOperatorMapEClass, ESTRING_TO_OPERATOR_MAP__KEY);
-		createEReference(eStringToOperatorMapEClass, ESTRING_TO_OPERATOR_MAP__VALUE);
-
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 
 		operatorExecutableEClass = createEClass(OPERATOR_EXECUTABLE);
@@ -509,10 +471,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_Vararg(), ecorePackage.getEBoolean(), "vararg", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParameter_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eStringToOperatorMapEClass, Map.Entry.class, "EStringToOperatorMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEStringToOperatorMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEStringToOperatorMap_Value(), this.getOperator(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

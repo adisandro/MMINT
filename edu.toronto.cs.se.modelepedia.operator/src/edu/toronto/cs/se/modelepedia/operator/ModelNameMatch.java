@@ -104,7 +104,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 					ModelReference modelRef = objectModels.get(object);
 					ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelRef, object);
 					ModelElementReference elementRef = MultiModelInstanceFactory.createModelElementReference(modelElemType, modelRef, object);
-					((ModelElement) elementRef.getObject()).setName(object.eClass().getName() + " " + name);//TODO MMTF: remove and fix
+					elementRef.getObject().setName(object.eClass().getName() + " " + name);//TODO MMTF: remove and fix
 					link.getElementRefs().add(elementRef);
 				}
 				Link linkType = MultiModelConstraintChecker.getAllowedLinkType(link);

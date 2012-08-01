@@ -86,7 +86,7 @@ public class SpecializeTypeListener extends SelectionAdapter {
 			if (model instanceof ModelRel) {
 				for (ModelReference modelRef : ((ModelRel) model).getModelRefs()) {
 					for (ModelElementReference modelElemRef : modelRef.getElementRefs()) {
-						ModelElement modelElem = (ModelElement) modelElemRef.getObject();
+						ModelElement modelElem = modelElemRef.getObject();
 						ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelRef, modelElem.getPointer());
 						if (modelElemType != null) {
 							modelElem.setMetatypeUri(modelElemType.getUri());

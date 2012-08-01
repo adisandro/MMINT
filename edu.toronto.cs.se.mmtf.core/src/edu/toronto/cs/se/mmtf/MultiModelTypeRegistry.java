@@ -507,7 +507,7 @@ public class MultiModelTypeRegistry {
 				boolean okSource = false;
 				boolean okTarget = false;
 				for (ModelElementReference elementTypeRef : linkType.getElementRefs()) {
-					String elementTypeUri = ((ModelElement) elementTypeRef.getObject()).getUri();
+					String elementTypeUri = elementTypeRef.getObject().getUri();
 					if (!okSource && (elementTypeUri.equals(sourceTypeUri) || sourceSupertypeUris.contains(elementTypeUri))) {
 						okSource = true;
 					}

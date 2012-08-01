@@ -98,12 +98,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OperatorPackage.ESTRING_TO_OPERATOR_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Operator> eStringToOperatorMap = (Map.Entry<String, Operator>)theEObject;
-				T result = caseEStringToOperatorMap(eStringToOperatorMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case OperatorPackage.CONVERSION_OPERATOR: {
 				ConversionOperator conversionOperator = (ConversionOperator)theEObject;
 				T result = caseConversionOperator(conversionOperator);
@@ -171,21 +165,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameter(Parameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EString To Operator Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EString To Operator Map</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEStringToOperatorMap(Map.Entry<String, Operator> object) {
 		return null;
 	}
 

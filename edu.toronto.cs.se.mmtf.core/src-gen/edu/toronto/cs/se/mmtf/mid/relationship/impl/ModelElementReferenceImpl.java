@@ -11,10 +11,13 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -80,6 +83,16 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 			links = new EObjectWithInverseResolvingEList.ManyInverse<Link>(Link.class, this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__LINKS, RelationshipPackage.LINK__ELEMENT_REFS);
 		}
 		return links;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElement getObject() {
+		ExtendibleElement object = super.getObject();
+		return (object == null) ? null : (ModelElement) object;
 	}
 
 	/**
@@ -169,6 +182,20 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 				return links != null && !links.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT:
+				return getObject();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ModelElementReferenceImpl

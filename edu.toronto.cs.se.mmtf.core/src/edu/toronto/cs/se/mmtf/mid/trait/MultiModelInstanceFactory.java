@@ -229,7 +229,7 @@ public class MultiModelInstanceFactory {
 
 		// check if model element is already used
 		URI emfUri = EcoreUtil.getURI(droppedElement);
-		Model model = (Model) modelRef.getObject();
+		Model model = modelRef.getObject();
 		ModelElement modelElem = null;
 		MultiModel multiModel = null;
 		if (modelRef.eContainer().eContainer() == null) { // standalone model relationship
@@ -414,15 +414,15 @@ public class MultiModelInstanceFactory {
 			ModelReference modelRef = createModelReference(modelRel, model);
 			for (ModelElementReference origElementRef : origModelRef.getElementRefs()) {
 				//TODO MMTF: fix and use something different than pointer as index
-				//ModelElementReference elementRef = createModelElementReference(modelRef, ((ModelElement) origElementRef.getObject()).getPointer());
-				//elementRefs.put(((ModelElement) elementRef.getObject()).getPointer(), elementRef);
+				//ModelElementReference elementRef = createModelElementReference(modelRef, (origElementRef.getObject().getPointer());
+				//elementRefs.put(elementRef.getObject().getPointer(), elementRef);
 			}
 		}
 		for (Link origLink : origModelRel.getLinks()) {
 			Link link = createLink((Link) origLink.getMetatype(), modelRel, origLink.eClass());
 			link.setName(origLink.getName());
 			for (ModelElementReference origElementRef : origLink.getElementRefs()) {
-				link.getElementRefs().add(elementRefs.get(((ModelElement) origElementRef.getObject()).getPointer()));
+				link.getElementRefs().add(elementRefs.get(origElementRef.getObject().getPointer()));
 			}
 		}
 

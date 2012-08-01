@@ -85,19 +85,19 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 references:
 			for (ModelReference modelRef : root.getModelRefs()) {
 				if (
-					modelUri.equals(((Model) modelRef.getObject()).getUri()) || (
+					modelUri.equals(modelRef.getObject().getUri()) || (
 						!MultiModelConstraintChecker.isInstancesLevel(root) &&
-						MultiModelTypeRegistry.isSubtypeOf(((Model) modelRef.getObject()).getUri(), modelUri) // light types
+						MultiModelTypeRegistry.isSubtypeOf(modelRef.getObject().getUri(), modelUri) // light types
 					)
 				) {
 					for (ModelElementReference elementRef : modelRef.getElementRefs()) { // avoid duplicates
 						if (MultiModelConstraintChecker.isInstancesLevel(root)) {
-							if (((ModelElement) elementRef.getObject()).getUri().equals(modelElemUri)) {
+							if (elementRef.getObject().getUri().equals(modelElemUri)) {
 								continue references;
 							}
 						}
 						else {
-							if (EcoreUtil.equals(((ModelElement) elementRef.getObject()).getPointer(), droppedElement)) {
+							if (EcoreUtil.equals(elementRef.getObject().getPointer(), droppedElement)) {
 								continue references;
 							}
 						}

@@ -226,11 +226,11 @@ linkTypes:
 			if (linkType.isUnbounded()) {
 				HashSet<String> allowedElements = new HashSet<String>();
 				for (ModelElementReference elementRef : linkType.getElementRefs()) {
-					ModelElement element = (ModelElement) elementRef.getObject();
+					ModelElement element = elementRef.getObject();
 					allowedElements.add(element.getUri());
 				}
 				for (ModelElementReference elementRef : link.getElementRefs()) {
-					ModelElement element = (ModelElement) elementRef.getObject();
+					ModelElement element = elementRef.getObject();
 					String elementTypeUri = element.getMetatypeUri();
 					if (!allowedElements.contains(elementTypeUri)) {
 						continue linkTypes;

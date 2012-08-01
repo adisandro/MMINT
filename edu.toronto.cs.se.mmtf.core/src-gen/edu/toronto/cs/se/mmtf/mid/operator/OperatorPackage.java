@@ -335,52 +335,6 @@ public interface OperatorPackage extends EPackage {
 	int PARAMETER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getEStringToOperatorMap()
-	 * @generated
-	 */
-	int ESTRING_TO_OPERATOR_MAP = 3;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To Operator Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>EString To Operator Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_OPERATOR_MAP_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -388,7 +342,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperator()
 	 * @generated
 	 */
-	int CONVERSION_OPERATOR = 4;
+	int CONVERSION_OPERATOR = 3;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -551,7 +505,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getOperatorExecutable()
 	 * @generated
 	 */
-	int OPERATOR_EXECUTABLE = 5;
+	int OPERATOR_EXECUTABLE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Executable</em>' class.
@@ -588,7 +542,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperatorExecutable()
 	 * @generated
 	 */
-	int CONVERSION_OPERATOR_EXECUTABLE = 6;
+	int CONVERSION_OPERATOR_EXECUTABLE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Conversion Operator Executable</em>' class.
@@ -634,7 +588,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 7;
+	int EXCEPTION = 6;
 
 
 	/**
@@ -787,40 +741,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getParameter_Model();
-
-	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Operator Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To Operator Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmtf.mid.operator.Operator" valueRequired="true"
-	 * @generated
-	 */
-	EClass getEStringToOperatorMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToOperatorMap()
-	 * @generated
-	 */
-	EAttribute getEStringToOperatorMap_Key();
-
-	/**
-	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToOperatorMap()
-	 * @generated
-	 */
-	EReference getEStringToOperatorMap_Value();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
@@ -1023,32 +943,6 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PARAMETER__MODEL = eINSTANCE.getParameter_Model();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl <em>EString To Operator Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.EStringToOperatorMapImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getEStringToOperatorMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_OPERATOR_MAP = eINSTANCE.getEStringToOperatorMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_OPERATOR_MAP__KEY = eINSTANCE.getEStringToOperatorMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ESTRING_TO_OPERATOR_MAP__VALUE = eINSTANCE.getEStringToOperatorMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.

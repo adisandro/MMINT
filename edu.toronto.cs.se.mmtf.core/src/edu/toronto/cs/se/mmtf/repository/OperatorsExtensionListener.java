@@ -59,7 +59,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLEELEMENT_ATTR_URI);
 				Operator operatorType = MultiModelTypeRegistry.getOperatorType(uri);
 				if (operatorType != null) {
-					operatorType = MultiModelTypeFactory.removeOperatorType(operatorType);
+					MultiModelTypeFactory.removeOperatorType(operatorType);
 				}
 			}
 		}

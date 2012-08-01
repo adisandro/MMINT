@@ -85,10 +85,12 @@
       <genClasses ecoreClass="mid.ecore#//relationship/HomomorphismModelRel"/>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelReference">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelReference/elementRefs"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelReference/getObject"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelElementReference/links"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/getObject"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/Link">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

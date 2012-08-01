@@ -71,7 +71,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.ESTRING_TO_PARAMETER_MAP: return (EObject)createEStringToParameterMap();
 			case OperatorPackage.OPERATOR: return createOperator();
 			case OperatorPackage.PARAMETER: return createParameter();
-			case OperatorPackage.ESTRING_TO_OPERATOR_MAP: return (EObject)createEStringToOperatorMap();
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -136,16 +135,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<String, Operator> createEStringToOperatorMap() {
-		EStringToOperatorMapImpl eStringToOperatorMap = new EStringToOperatorMapImpl();
-		return eStringToOperatorMap;
 	}
 
 	/**

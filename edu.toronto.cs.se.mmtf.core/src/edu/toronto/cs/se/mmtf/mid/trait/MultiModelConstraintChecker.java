@@ -133,7 +133,7 @@ public class MultiModelConstraintChecker {
 		String modelElemTypeUri = modelElemRef.getObject().getMetatypeUri();
 		boolean okElement = false;
 		for (ModelElementReference modelElemTypeRef : ((Link) link.getMetatype()).getElementRefs()) {
-			ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+			ModelElement modelElemType = modelElemTypeRef.getObject();
 			// MMTFRegistry.isSubtypeOf(modelElemTypeUri, modelElemType.getUri()) check is not needed here
 			if (modelElemType.getUri().equals(modelElemTypeUri)) {
 				okElement = true;
@@ -151,7 +151,7 @@ public class MultiModelConstraintChecker {
 rel:
 		for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
 			for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-				if (((ModelElement) modelElemTypeRef.getObject()).getUri().equals(modelElemType.getUri())) {
+				if (modelElemTypeRef.getObject().getUri().equals(modelElemType.getUri())) {
 					okRel = true;
 					break rel;
 				}
@@ -219,11 +219,11 @@ linkTypes:
 		for (Link linkType : modelRelType.getLinks()) {
 			HashSet<String> allowedModelElemTypes = new HashSet<String>();
 			for (ModelElementReference modelElemTypeRef : linkType.getElementRefs()) {
-				ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+				ModelElement modelElemType = modelElemTypeRef.getObject();
 				allowedModelElemTypes.add(modelElemType.getUri());
 			}
 			for (ModelElementReference modelElemRef : link.getElementRefs()) {
-				ModelElement modelElem = (ModelElement) modelElemRef.getObject();
+				ModelElement modelElem = modelElemRef.getObject();
 				if (!allowedModelElemTypes.contains(modelElem.getMetatypeUri())) {
 					continue linkTypes;
 				}

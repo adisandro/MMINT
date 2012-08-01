@@ -894,13 +894,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REFERENCE___GET_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Model Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+	int MODEL_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
@@ -976,13 +985,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___GET_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Model Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.LinkImpl <em>Link</em>}' class.
@@ -1482,6 +1500,16 @@ public interface RelationshipPackage extends EPackage {
 	EReference getModelReference_ElementRefs();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelReference#getObject() <em>Get Object</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Object</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelReference#getObject()
+	 * @generated
+	 */
+	EOperation getModelReference__GetObject();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1501,6 +1529,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElementReference_Links();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference#getObject() <em>Get Object</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Object</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference#getObject()
+	 * @generated
+	 */
+	EOperation getModelElementReference__GetObject();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link <em>Link</em>}'.
@@ -1739,6 +1777,14 @@ public interface RelationshipPackage extends EPackage {
 		EReference MODEL_REFERENCE__ELEMENT_REFS = eINSTANCE.getModelReference_ElementRefs();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Object</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REFERENCE___GET_OBJECT = eINSTANCE.getModelReference__GetObject();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1755,6 +1801,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT_REFERENCE__LINKS = eINSTANCE.getModelElementReference_Links();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Object</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT_REFERENCE___GET_OBJECT = eINSTANCE.getModelElementReference__GetObject();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.LinkImpl <em>Link</em>}' class.

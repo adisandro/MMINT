@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship;
 
+import edu.toronto.cs.se.mmtf.mid.Model;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -45,5 +46,14 @@ public interface ModelReference extends ExtendibleElementReference {
 	 * @generated
 	 */
 	EList<ModelElementReference> getElementRefs();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (Model) object;'"
+	 * @generated
+	 */
+	Model getObject();
 
 } // ModelReference

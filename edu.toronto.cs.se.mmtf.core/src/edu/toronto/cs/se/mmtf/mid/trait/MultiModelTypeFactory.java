@@ -142,9 +142,9 @@ public class MultiModelTypeFactory {
 			newModelRelType.getModels().add(srcModelType);
 			ModelReference newSrcModelTypeRef = createLightModelTypeRef(newModelRelType, srcModelType);
 //				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-//					if (isSubtypeOf(srcModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
+//					if (isSubtypeOf(srcModelType.getUri(), modelTypeRef.getObject().getUri())) {
 //						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-//							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+//							ModelElement modelElemType = modelElemTypeRef.getObject();
 //							createLightModelElementType(newSrcModelTypeRef, "Src" + modelElemType.getName(), modelElemType.getPointer());
 //						}
 //						break;
@@ -153,9 +153,9 @@ public class MultiModelTypeFactory {
 			newModelRelType.getModels().add(tgtModelType);
 			ModelReference newTgtModelTypeRef = createLightModelTypeRef(newModelRelType, tgtModelType);
 //				for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-//					if (isSubtypeOf(tgtModelType.getUri(), ((Model) modelTypeRef.getObject()).getUri())) {
+//					if (isSubtypeOf(tgtModelType.getUri(), modelTypeRef.getObject().getUri())) {
 //						for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-//							ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+//							ModelElement modelElemType = modelElemTypeRef.getObject();
 //							createLightModelElementType(newTgtModelTypeRef, "Tgt" + modelElemType.getName(), modelElemType.getPointer());
 //						}
 //						break;
@@ -164,12 +164,12 @@ public class MultiModelTypeFactory {
 		}
 		else {
 			for (ModelReference modelTypeRef : modelRelType.getModelRefs()) {
-				Model modelType = (Model) modelTypeRef.getObject();
+				Model modelType = modelTypeRef.getObject();
 				newModelRelType.getModels().add(modelType);
 				ModelReference newModelTypeRef = createLightModelTypeRef(newModelRelType, modelType);
 				// model elements
 //					for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
-//						ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+//						ModelElement modelElemType = modelElemTypeRef.getObject();
 //						createLightModelElementType(newModelTypeRef, modelElemType.getName(), modelElemType.getPointer());
 //					}
 			}
@@ -205,7 +205,7 @@ public class MultiModelTypeFactory {
 
 		ModelRel modelRelType = (ModelRel) modelTypeRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-		Model modelType = (Model) modelTypeRef.getObject();
+		Model modelType = modelTypeRef.getObject();
 
 		// always create model element, it is specific of the model relationship type even if another one uses the same dropped element
 		ModelElement newModelElemType = MidFactory.eINSTANCE.createModelElement();
@@ -384,21 +384,18 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Removes an operator type from the multimodel.
+	 * Removes an operator type from a multimodel.
 	 * 
+	 * @param multiModel
+	 *            The multimodel.
 	 * @param uri
-	 *            The operator type to be removed.
+	 *            The operator type's uri.
 	 */
-	public static Operator removeOperatorType(Operator operator) {
+	private static ExtendibleElement removeOperatorType(MultiModel multiModel, String uri) {
 
-		String uri = operator.getUri();
-		MultiModel multiModel = (MultiModel) operator.eContainer();
-		
-		ExtendibleElement elementType = multiModel.getExtendibleTable().removeKey(uri);
-		Operator operatorType = null;
-
-		if (elementType != null && elementType instanceof Operator) {
-			operatorType = (Operator) elementType;
+		ExtendibleElement removedType = multiModel.getExtendibleTable().removeKey(uri);
+		if (removedType != null && removedType instanceof Operator) {
+			Operator operatorType = (Operator) removedType;
 			multiModel.getOperators().remove(operatorType);
 			// conversion operator
 			if (operatorType instanceof ConversionOperator) {
@@ -406,7 +403,24 @@ public class MultiModelTypeFactory {
 			}
 		}
 
-		return operatorType;
+		return removedType;
+	}
+
+	/**
+	 * Removes an operator type and its subtypes from its multimodel.
+	 * 
+	 * @param operatorType
+	 *            The operator type.
+	 */
+	public static void removeOperatorType(Operator operatorType) {
+
+		MultiModel multiModel = (MultiModel) operatorType.eContainer();
+		ExtendibleElement removedOperatorType = removeOperatorType(multiModel, operatorType.getUri());
+		if (removedOperatorType != null) {
+			for (String operatorSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(removedOperatorType)) {
+				removeOperatorType(multiModel, operatorSubtypeUri);
+			}
+		}
 	}
 
 	public static void removeLightModelTypeRef(ModelRel modelRelType, Model modelType) {
@@ -419,7 +433,7 @@ public class MultiModelTypeFactory {
 				ArrayList<Link> delLinkTypes = new ArrayList<Link>();
 				for (ModelElementReference modelElemTypeRef : modelTypeRef.getElementRefs()) {
 					modelType.getElements().remove(modelElemTypeRef.getObject());
-					multiModel.getExtendibleTable().removeKey(((ModelElement) modelElemTypeRef.getObject()).getUri());
+					multiModel.getExtendibleTable().removeKey(modelElemTypeRef.getObject().getUri());
 					for (Link linkType : modelElemTypeRef.getLinks()) {
 						// binary link types have no longer sense, delete them later to avoid concurrent modification problems
 						if (linkType instanceof BinaryLink) {
@@ -450,7 +464,7 @@ public class MultiModelTypeFactory {
 	public static void removeLightModelElementTypeRef(ModelElementReference modelElemTypeRef) {
 
 		MultiModel multiModel = (MultiModel) modelElemTypeRef.eContainer().eContainer().eContainer();
-		ModelElement modelElemType = (ModelElement) modelElemTypeRef.getObject();
+		ModelElement modelElemType = modelElemTypeRef.getObject();
 		((Model) modelElemType.eContainer()).getElements().remove(modelElemType);
 		multiModel.getExtendibleTable().removeKey(modelElemType.getUri());
 		for (Link linkType : modelElemTypeRef.getLinks()) {
