@@ -52,10 +52,16 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_STATISTICSOPERATORS = "statisticsOperators";
 	/** The variable operators property suffix. */
 	private static final String PROPERTY_VARIABLE_OPERATORS_SUFFIX = ".operator";
+	/** The outputs of the experiment. */
+	private static final String PROPERTY_OUTPUTS = "outputs";
+	/** The output default result property suffix. */
+	private static final String PROPERTY_OUTPUT_DEFAULT_SUFFIX = ".defaultResult";
+	/** Max processing time to generate the outputs. */
+	private static final String PROPERTY_MAXPROCESSINGTIME = "maxProcessingTime";
 
 	// experiment setup parameters
 	private String[] vars;
-	private String[][] values;
+	private String[][] varValues;
 	private int cardinality;
 	private String[][] experimentSetups;
 	// experiment randomness parameters
@@ -70,17 +76,21 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	// experiment operators
 	private String[] experimentOperators;
 	private String[] statisticsOperators;
-	private String[][] varsOperators;
+	private String[][] varOperators;
+	// experiment outputs
+	private String[] outputs;
+	private String[] outputDefaults;
+	private double maxProcessingTime;
 
 	private void readProperties(Properties properties) throws Exception {
 
 		// outer cycle parameters: vary experiment setup
 		vars = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_VARIABLES);
-		values = new String[vars.length][];
+		varValues = new String[vars.length][];
 		cardinality = 1;
 		for (int i = 0; i < vars.length; i++) {
-			values[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX);
-			cardinality *= values[i].length;
+			varValues[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX);
+			cardinality *= varValues[i].length;
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
@@ -96,17 +106,28 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		// operators
 		experimentOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_EXPERIMENTOPERATORS);
 		statisticsOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_STATISTICSOPERATORS);
-		varsOperators = new String[vars.length][];
+		varOperators = new String[vars.length][];
 		for (int i = 0; i < vars.length; i++) {
-			varsOperators[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_OPERATORS_SUFFIX);
+			varOperators[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_OPERATORS_SUFFIX);
 		}
+
+		// outputs
+		outputs = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_OUTPUTS);
+		outputDefaults = new String[outputs.length];
+		for (int i = 0; i < outputs.length; i++) {
+			outputDefaults[i] = MultiModelOperatorUtils.getStringProperty(properties, outputs[i]+PROPERTY_OUTPUT_DEFAULT_SUFFIX);
+		}
+		maxProcessingTime = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MAXPROCESSINGTIME);
 	}
 
-	private void writeProperties(Properties properties, ExperimentSamples experiment, int experimentIndex) {
+	private void writeProperties(Properties properties, ExperimentSamples[] experiment, int experimentIndex, int statisticsIndex) {
 
-		properties.setProperty("resultLow", String.valueOf(experiment.getLowerConfidence()));
-		properties.setProperty("resultAvg", String.valueOf(experiment.getAverage()));
-		properties.setProperty("resultUp", String.valueOf(experiment.getUpperConfidence()));
+		for (int out = 0; out < outputs.length; out++) {
+			properties.setProperty(outputs[out]+"ResultLow", String.valueOf(experiment[out].getLowerConfidence()));
+			properties.setProperty(outputs[out]+"ResultAvg", String.valueOf(experiment[out].getAverage()));
+			properties.setProperty(outputs[out]+"ResultUp", String.valueOf(experiment[out].getUpperConfidence()));
+		}
+		properties.setProperty("numSamples", String.valueOf(statisticsIndex+1));
 		for (int i = 0; i < vars.length; i++) {
 			properties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
 		}
@@ -116,8 +137,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		for (int i = 0; i < cardinality; i++) {
 			int k = 1;
-			for (int j = 0; j < values.length; j++) {
-				String[] value = values[j];
+			for (int j = 0; j < varValues.length; j++) {
+				String[] value = varValues[j];
 				String choice = value[(i/k) % value.length];
 				experimentSetups[i][j] = choice;
 				k *= value.length;
@@ -140,9 +161,9 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		// write operator input properties
 		Properties operatorProperties = new Properties();
-		for (int i = 0; i < varsOperators.length; i++) {
-			for (int j = 0; j < varsOperators[i].length; j++) {
-				if (varsOperators[i][j].equals(operatorUri)) {
+		for (int i = 0; i < varOperators.length; i++) {
+			for (int j = 0; j < varOperators[i].length; j++) {
+				if (varOperators[i][j].equals(operatorUri)) {
 					operatorProperties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
 					break;
 				}
@@ -152,7 +173,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		operatorProperties.setProperty(PROPERTY_SEED, seed);
 		operatorProperties.setProperty(PROPERTY_STATE, state);
 		//TODO MMTF: write properties in the subdir, as well as redirecting there results of each operator! Yes how?
-		//TODO MMTF: use the updateMid=false property to avoid creation of models in the mid, i.e. allow creation of hanging models
+		//TODO MMTF: use the updateMid=false property to avoid creation of models in the mid, i.e. allow creation of dangling models
 		MultiModelOperatorUtils.writePropertiesFile(
 			operatorProperties,
 			operator.getExecutable(),
@@ -183,26 +204,38 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			for (String operatorUri : experimentOperators) {
 				outerParameters = executeOperator(i, operatorUri, outerParameters);
 			}
-			ExperimentSamples experiment = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
+			ExperimentSamples[] experiment = new ExperimentSamples[outputs.length];
+			for (int out = 0; out < outputs.length; out++) {
+				experiment[out] = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
+			}
 
 			// inner cycle: experiment setup is fixed, vary randomness and statistics
-			for (int j = 0; j < maxSamples; j++) {
+			int j;
+			for (j = 0; j < maxSamples; j++) {
 				EList<Model> innerParameters = outerParameters;
+				//Thread watchdog = new ExperimentWatchdog(this, maxProcessingTime);
+				//watchdog.start();
 				for (String operatorUri : statisticsOperators) {
+					//TODO launch thread encapsulating the operator
+					//TODO watchdog will stop the operator if time is above limit, and set default results
 					innerParameters = executeOperator(i, operatorUri, innerParameters);
 				}
+				//watchdog.interrupt();
+				//TODO don't add sample or add default to the experiment
 				//TODO MMTF: read output from some property file written by the last operator?
-				double sample = new Random().nextDouble();
-				boolean confidenceOk = experiment.addSample(sample);
+				boolean confidenceOk = true;
+				for (int out = 0; out < outputs.length; out++) {
+					double sample = new Random().nextDouble();
+					confidenceOk = confidenceOk && experiment[out].addSample(sample);
+				}
 				if (confidenceOk && j >= minSamples) {
 					break;
 				}
 			}
 
 			// save output
-			// TODO MMTF: output file/format?
 			Properties outputProperties = new Properties();
-			writeProperties(outputProperties, experiment, i);
+			writeProperties(outputProperties, experiment, i, j);
 			MultiModelOperatorUtils.writePropertiesFile(
 				outputProperties,
 				this,
