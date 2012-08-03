@@ -13,11 +13,15 @@ package edu.toronto.cs.se.modelepedia.operator.statistics;
 
 import java.util.Properties;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
@@ -25,6 +29,33 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.operator.statistics.ExperimentSamples.DistributionType;
 
 public class ExperimentDriver extends OperatorExecutableImpl {
+
+	//TODO MMTF: must be a callable with exception and output as return
+	//TODO MMTF: (reading from properties from the last operator maybe)
+	protected class ExperimentWatchdog implements Runnable {
+
+		private int experimentIndex;
+		private EList<Model> parameters;
+
+		public ExperimentWatchdog(int i, EList<Model> parameters) {
+
+			experimentIndex = i;
+			this.parameters = parameters;
+		}
+
+		@Override
+		public void run() {
+			for (String operatorUri : statisticsOperators) {
+				try {
+					parameters = executeOperator(experimentIndex, operatorUri, parameters);
+				}
+				catch (Exception e) {
+					return;
+				}
+			}
+		}
+		
+	}
 
 	/** The variables to variate the experiment setup. */
 	private static final String PROPERTY_VARIABLES = "variables";
@@ -79,8 +110,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private String[][] varOperators;
 	// experiment outputs
 	private String[] outputs;
-	private String[] outputDefaults;
-	private double maxProcessingTime;
+	private double[] outputDefaults;
+	private int maxProcessingTime;
 
 	private void readProperties(Properties properties) throws Exception {
 
@@ -113,11 +144,11 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		// outputs
 		outputs = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_OUTPUTS);
-		outputDefaults = new String[outputs.length];
+		outputDefaults = new double[outputs.length];
 		for (int i = 0; i < outputs.length; i++) {
-			outputDefaults[i] = MultiModelOperatorUtils.getStringProperty(properties, outputs[i]+PROPERTY_OUTPUT_DEFAULT_SUFFIX);
+			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_OUTPUT_DEFAULT_SUFFIX);
 		}
-		maxProcessingTime = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MAXPROCESSINGTIME);
+		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MAXPROCESSINGTIME);
 	}
 
 	private void writeProperties(Properties properties, ExperimentSamples[] experiment, int experimentIndex, int statisticsIndex) {
@@ -127,7 +158,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			properties.setProperty(outputs[out]+"ResultAvg", String.valueOf(experiment[out].getAverage()));
 			properties.setProperty(outputs[out]+"ResultUp", String.valueOf(experiment[out].getUpperConfidence()));
 		}
-		properties.setProperty("numSamples", String.valueOf(statisticsIndex+1));
+		properties.setProperty("numSamples", String.valueOf(statisticsIndex));
 		for (int i = 0; i < vars.length; i++) {
 			properties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
 		}
@@ -172,6 +203,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		// write seed and state everywhere, the operator who needs it will use it
 		operatorProperties.setProperty(PROPERTY_SEED, seed);
 		operatorProperties.setProperty(PROPERTY_STATE, state);
+		// never update the mid, it will explode
+		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_UPDATEMID, "false");
 		//TODO MMTF: write properties in the subdir, as well as redirecting there results of each operator! Yes how?
 		//TODO MMTF: use the updateMid=false property to avoid creation of models in the mid, i.e. allow creation of dangling models
 		MultiModelOperatorUtils.writePropertiesFile(
@@ -213,21 +246,33 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			int j;
 			for (j = 0; j < maxSamples; j++) {
 				EList<Model> innerParameters = outerParameters;
-				//Thread watchdog = new ExperimentWatchdog(this, maxProcessingTime);
-				//watchdog.start();
-				for (String operatorUri : statisticsOperators) {
-					//TODO launch thread encapsulating the operator
-					//TODO watchdog will stop the operator if time is above limit, and set default results
-					innerParameters = executeOperator(i, operatorUri, innerParameters);
-				}
-				//watchdog.interrupt();
-				//TODO don't add sample or add default to the experiment
-				//TODO MMTF: read output from some property file written by the last operator?
+				boolean timedOut = false;
 				boolean confidenceOk = true;
-				for (int out = 0; out < outputs.length; out++) {
-					double sample = new Random().nextDouble();
-					confidenceOk = confidenceOk && experiment[out].addSample(sample);
+				// launch time-bounded chain of operators
+				ExecutorService executor = Executors.newSingleThreadExecutor();
+				try {
+					executor.submit(
+						new ExperimentWatchdog(i, innerParameters)
+					).get(maxProcessingTime, TimeUnit.SECONDS);
+					executor.shutdown();
 				}
+				catch (Exception e) {
+					executor.shutdownNow();
+					timedOut = true;
+					MMTFException.print(Type.WARNING, "Experiment " + i + " out of " + (cardinality-1) + " , sample " + j + " ran over time limit", e);
+				}
+				// get results
+				for (int out = 0; out < outputs.length; out++) {
+					double sample = (timedOut) ?
+						outputDefaults[out] :
+						new Random().nextDouble();
+					if (sample == Double.MAX_VALUE) {
+						confidenceOk = false;
+						continue;
+					}
+					confidenceOk = experiment[out].addSample(sample) && confidenceOk;
+				}
+				// evaluate confidence interval
 				if (confidenceOk && j >= minSamples) {
 					break;
 				}
