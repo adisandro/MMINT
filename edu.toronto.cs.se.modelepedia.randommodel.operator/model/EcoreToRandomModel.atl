@@ -13,8 +13,8 @@ rule EPackageRoot2RandomModel {
 		random: RandomModel!RandomModel (
 			name <- package.name,
 			type <- 'TypeGraph',
-			nodes <- Ecore!EClass.allInstancesFrom('IN')->collect(class | thisModule.EClass2Node(class)),
-			edges <- Ecore!EReference.allInstancesFrom('IN')->collect(ref | thisModule.EReference2Edge(ref))
+			nodes <- Ecore!EClass.allInstancesFrom('IN')->reject(class | class.name.toLower() = package.name)->collect(class | thisModule.EClass2Node(class)),
+			edges <- Ecore!EReference.allInstancesFrom('IN')->reject(ref | ref.eContainingClass.name.toLower() = package.name)->collect(ref | thisModule.EReference2Edge(ref))
 		)
 }
 

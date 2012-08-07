@@ -62,4 +62,25 @@
       </operator>
    </extension>
 
+   <extension
+         name="AlloyRNF"
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operator
+            class="edu.toronto.cs.se.modelepedia.operator.alloy.AlloyRNF"
+            isConversion="false">
+         <extendibleElement
+               uri="http://se.cs.toronto.edu/modelepedia/operator/alloy/AlloyRNF">
+         </extendibleElement>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="anything"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+         </input>
+         <output>
+         </output>
+      </operator>
+   </extension>
+
 </plugin>
