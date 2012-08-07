@@ -45,6 +45,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		@Override
 		public void run() {
+
 			for (String operatorUri : statisticsOperators) {
 				try {
 					parameters = executeOperator(experimentIndex, operatorUri, parameters);

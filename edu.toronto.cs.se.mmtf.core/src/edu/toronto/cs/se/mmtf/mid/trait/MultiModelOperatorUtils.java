@@ -31,7 +31,7 @@ public class MultiModelOperatorUtils {
 	private static final String PROPERTIES_SUFFIX = ".properties";
 	/** The separator for multiple properties with the same key. */
 	private static final String PROPERTY_SEPARATOR = ",";
-	private static final String PROPERTY_UPDATEMID = "updateMid";
+	public static final String PROPERTY_UPDATEMID = "updateMid";
 
 	private static String getBaseUri(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir) {
 

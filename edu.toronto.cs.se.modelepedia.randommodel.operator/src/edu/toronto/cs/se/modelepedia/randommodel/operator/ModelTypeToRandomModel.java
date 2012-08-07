@@ -41,6 +41,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
 	private static final String TYPEGRAPH_SUFFIX = "_typegraph_";
 	private Model newElement;
+	private boolean updateMid;
 	/** Min number of instances in the random model. */
 	private static final String PROPERTY_MININSTANCES = "minInstances";
 	/** Max number of instances in the random model. */
@@ -74,19 +75,24 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		atl.doEcoreToRandomModel(new NullProgressMonitor());
 		atl.saveModels(typegraphUri);
 
-		EList<Model> result = new BasicEList<Model>();
-		if (!MultiModelOperatorUtils.isUpdatingMid(inputProperties)) {
-			return result;
-		}
-
 		// create model
+		EList<Model> result = new BasicEList<Model>();
+		updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
 		URI modelUri = URI.createPlatformResourceURI(typegraphUri, true);
-		MultiModel owner = (MultiModel) model.eContainer();
-		MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
+		MultiModel owner;
+		if (updateMid) {
+			owner = (MultiModel) model.eContainer();
+			MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
+		}
+		else {
+			owner = null;
+		}
 		newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
-		Editor editor = MultiModelInstanceFactory.createEditor(newElement);
-		if (editor != null) {
-			MultiModelInstanceFactory.addModelEditor(editor, owner);
+		if (updateMid) {
+			Editor editor = MultiModelInstanceFactory.createEditor(newElement);
+			if (editor != null) {
+				MultiModelInstanceFactory.addModelEditor(editor, owner);
+			}
 		}
 		result.add(newElement);
 
@@ -107,8 +113,10 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 	public void cleanup() throws Exception {
 
 		if (newElement != null) {
-			MultiModelInstanceFactory.removeModel(newElement);
-			((MultiModel) newElement.eContainer()).getModels().remove(newElement);
+			if (updateMid) {
+				MultiModelInstanceFactory.removeModel(newElement);
+				((MultiModel) newElement.eContainer()).getModels().remove(newElement);
+			}
 			IPath path = new Path(newElement.getUri());
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 			file.delete(true, null);

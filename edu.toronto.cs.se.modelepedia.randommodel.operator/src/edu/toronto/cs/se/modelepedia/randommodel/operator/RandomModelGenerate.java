@@ -122,19 +122,25 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		Process p = rt.exec(cmd);
 		p.waitFor();
 
-		EList<Model> result = new BasicEList<Model>();
-		if (!MultiModelOperatorUtils.isUpdatingMid(inputProperties)) {
-			return result;
-		}
-
 		// create model
+		EList<Model> result = new BasicEList<Model>();
+		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
 		URI modelUri = URI.createPlatformResourceURI(randomUri, true);
-		MultiModel owner = (MultiModel) model.eContainer();
-		MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
-		Model newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
-		Editor editor = MultiModelInstanceFactory.createEditor(newElement);
-		if (editor != null) {
-			MultiModelInstanceFactory.addModelEditor(editor, owner);
+		MultiModel owner;
+		Model newElement;
+		if (updateMid) {
+			owner = (MultiModel) model.eContainer();
+			MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
+		}
+		else {
+			owner = null;
+		}
+		newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
+		if (updateMid) {
+			Editor editor = MultiModelInstanceFactory.createEditor(newElement);
+			if (editor != null) {
+				MultiModelInstanceFactory.addModelEditor(editor, owner);
+			}
 		}
 		result.add(newElement);
 
