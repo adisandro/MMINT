@@ -61,7 +61,7 @@ def output_instgraph(quiet, graph, output_file_name):
         sys.exit(1)
     if not quiet: print "Writing output graph:", output_file_name
 
-    print >> out_file, '<?xml version="1.0" encoding="ASCII"?>'
+    print >> out_file, '<?xml version="1.0" encoding="UTF-8"?>'
     print >> out_file, '<randommodel:RandomModel'
     print >> out_file, '    xmi:version="2.0"'
     print >> out_file, '    xmlns:xmi="http://www.omg.org/XMI"'
@@ -137,7 +137,7 @@ def generate_graphs(quiet, input_file_name, output_file_name, instance_name,
         instance_graph = state_machine.instantiate_graph(quiet, type_graph, instance_name)
         state_machine.annotate_graph(quiet, instance_graph, annotated_fraction,
             may_fraction, var_fraction, set_fraction)
-    elif type_graph.name_str == 'LabeledGraph':
+    elif type_graph.name_str == 'labeledgraph':
         instance_graph = labeled_graph.instantiate_graph(quiet, type_graph, instance_name)
         labeled_graph.annotate_graph(quiet, instance_graph, annotated_fraction,
             may_fraction, var_fraction, set_fraction)

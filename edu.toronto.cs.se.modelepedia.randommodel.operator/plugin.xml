@@ -67,4 +67,25 @@
       </operator>
    </extension>
 
+   <extension
+         name="RandomModelToAlloy"
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operator
+            class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelToAlloy"
+            isConversion="false">
+         <extendibleElement
+               uri="http://se.cs.toronto.edu/modelepedia/randommodel/operator/RandomModelToAlloy">
+         </extendibleElement>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="randomModel"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/randommodel">
+            </parameter>
+         </input>
+         <output>
+         </output>
+      </operator>
+   </extension>
+
 </plugin>

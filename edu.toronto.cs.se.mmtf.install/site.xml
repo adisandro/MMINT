@@ -18,6 +18,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_0.9.2.jar" id="edu.toronto.cs.se.modelepedia.classdiagram" version="0.9.2">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.labeledgraph_0.9.2.jar" id="edu.toronto.cs.se.modelepedia.labeledgraph" version="0.9.2">
+      <category name="Modelepedia"/>
+   </feature>
    <category-def name="Modeling" label="Modeling"/>
    <category-def name="Modelepedia" label="Modelepedia"/>
 </site>

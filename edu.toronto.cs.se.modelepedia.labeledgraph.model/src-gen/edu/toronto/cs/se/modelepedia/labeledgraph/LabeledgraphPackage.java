@@ -122,13 +122,13 @@ public interface LabeledgraphPackage extends EPackage {
 	int NODE__LABEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Edge</b></em>' reference.
+	 * The feature id for the '<em><b>Edges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__EDGE = 1;
+	int NODE__EDGES = 1;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -192,15 +192,15 @@ public interface LabeledgraphPackage extends EPackage {
 	EAttribute getNode_Label();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.labeledgraph.Node#getEdge <em>Edge</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.labeledgraph.Node#getEdges <em>Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Edge</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.labeledgraph.Node#getEdge()
+	 * @return the meta object for the reference list '<em>Edges</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.labeledgraph.Node#getEdges()
 	 * @see #getNode()
 	 * @generated
 	 */
-	EReference getNode_Edge();
+	EReference getNode_Edges();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -262,12 +262,12 @@ public interface LabeledgraphPackage extends EPackage {
 		EAttribute NODE__LABEL = eINSTANCE.getNode_Label();
 
 		/**
-		 * The meta object literal for the '<em><b>Edge</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Edges</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NODE__EDGE = eINSTANCE.getNode_Edge();
+		EReference NODE__EDGES = eINSTANCE.getNode_Edges();
 
 	}
 

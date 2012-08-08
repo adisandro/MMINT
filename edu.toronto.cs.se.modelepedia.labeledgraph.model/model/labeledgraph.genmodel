@@ -14,7 +14,7 @@
     </genClasses>
     <genClasses ecoreClass="labeledgraph.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute labeledgraph.ecore#//Node/label"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference labeledgraph.ecore#//Node/edge"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference labeledgraph.ecore#//Node/edges"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

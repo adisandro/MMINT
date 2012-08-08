@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.labeledgraph;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.labeledgraph.Node#getLabel <em>Label</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.labeledgraph.Node#getEdge <em>Edge</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.labeledgraph.Node#getEdges <em>Edges</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,29 +59,19 @@ public interface Node extends EObject {
 	void setLabel(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Edge</b></em>' reference.
+	 * Returns the value of the '<em><b>Edges</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.labeledgraph.Node}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Edge</em>' reference isn't clear,
+	 * If the meaning of the '<em>Edges</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Edge</em>' reference.
-	 * @see #setEdge(Node)
-	 * @see edu.toronto.cs.se.modelepedia.labeledgraph.LabeledgraphPackage#getNode_Edge()
+	 * @return the value of the '<em>Edges</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.labeledgraph.LabeledgraphPackage#getNode_Edges()
 	 * @model
 	 * @generated
 	 */
-	Node getEdge();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.labeledgraph.Node#getEdge <em>Edge</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Edge</em>' reference.
-	 * @see #getEdge()
-	 * @generated
-	 */
-	void setEdge(Node value);
+	EList<Node> getEdges();
 
 } // Node

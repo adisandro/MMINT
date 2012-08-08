@@ -35,11 +35,13 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	protected class ExperimentWatchdog implements Runnable {
 
 		private int experimentIndex;
+		private int statisticsIndex;
 		private EList<Model> parameters;
 
-		public ExperimentWatchdog(int i, EList<Model> parameters) {
+		public ExperimentWatchdog(int i, int j, EList<Model> parameters) {
 
 			experimentIndex = i;
+			statisticsIndex = j;
 			this.parameters = parameters;
 		}
 
@@ -51,11 +53,12 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 					parameters = executeOperator(experimentIndex, operatorUri, parameters);
 				}
 				catch (Exception e) {
+					MMTFException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (cardinality-1) + ", sample " + statisticsIndex + " failed", e);
 					return;
 				}
 			}
 		}
-		
+
 	}
 
 	/** The variables to variate the experiment setup. */
@@ -207,7 +210,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		// never update the mid, it will explode
 		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_UPDATEMID, "false");
 		//TODO MMTF: write properties in the subdir, as well as redirecting there results of each operator! Yes how?
-		//TODO MMTF: use the updateMid=false property to avoid creation of models in the mid, i.e. allow creation of dangling models
 		MultiModelOperatorUtils.writePropertiesFile(
 			operatorProperties,
 			operator.getExecutable(),
@@ -253,14 +255,14 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				ExecutorService executor = Executors.newSingleThreadExecutor();
 				try {
 					executor.submit(
-						new ExperimentWatchdog(i, innerParameters)
+						new ExperimentWatchdog(i, j, innerParameters)
 					).get(maxProcessingTime, TimeUnit.SECONDS);
 					executor.shutdown();
 				}
 				catch (Exception e) {
 					executor.shutdownNow();
 					timedOut = true;
-					MMTFException.print(Type.WARNING, "Experiment " + i + " out of " + (cardinality-1) + " , sample " + j + " ran over time limit", e);
+					MMTFException.print(Type.WARNING, "Experiment " + i + " out of " + (cardinality-1) + ", sample " + j + " ran over time limit", e);
 				}
 				// get results
 				for (int out = 0; out < outputs.length; out++) {

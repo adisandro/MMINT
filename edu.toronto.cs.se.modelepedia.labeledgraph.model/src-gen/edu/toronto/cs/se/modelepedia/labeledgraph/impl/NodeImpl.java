@@ -14,13 +14,15 @@ package edu.toronto.cs.se.modelepedia.labeledgraph.impl;
 import edu.toronto.cs.se.modelepedia.labeledgraph.LabeledgraphPackage;
 import edu.toronto.cs.se.modelepedia.labeledgraph.Node;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.labeledgraph.impl.NodeImpl#getLabel <em>Label</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.labeledgraph.impl.NodeImpl#getEdge <em>Edge</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.labeledgraph.impl.NodeImpl#getEdges <em>Edges</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,14 +60,14 @@ public class NodeImpl extends EObjectImpl implements Node {
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEdge() <em>Edge</em>}' reference.
+	 * The cached value of the '{@link #getEdges() <em>Edges</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEdge()
+	 * @see #getEdges()
 	 * @generated
 	 * @ordered
 	 */
-	protected Node edge;
+	protected EList<Node> edges;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,37 +114,11 @@ public class NodeImpl extends EObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node getEdge() {
-		if (edge != null && edge.eIsProxy()) {
-			InternalEObject oldEdge = (InternalEObject)edge;
-			edge = (Node)eResolveProxy(oldEdge);
-			if (edge != oldEdge) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LabeledgraphPackage.NODE__EDGE, oldEdge, edge));
-			}
+	public EList<Node> getEdges() {
+		if (edges == null) {
+			edges = new EObjectResolvingEList<Node>(Node.class, this, LabeledgraphPackage.NODE__EDGES);
 		}
-		return edge;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Node basicGetEdge() {
-		return edge;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEdge(Node newEdge) {
-		Node oldEdge = edge;
-		edge = newEdge;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LabeledgraphPackage.NODE__EDGE, oldEdge, edge));
+		return edges;
 	}
 
 	/**
@@ -155,9 +131,8 @@ public class NodeImpl extends EObjectImpl implements Node {
 		switch (featureID) {
 			case LabeledgraphPackage.NODE__LABEL:
 				return getLabel();
-			case LabeledgraphPackage.NODE__EDGE:
-				if (resolve) return getEdge();
-				return basicGetEdge();
+			case LabeledgraphPackage.NODE__EDGES:
+				return getEdges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,14 +142,16 @@ public class NodeImpl extends EObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case LabeledgraphPackage.NODE__LABEL:
 				setLabel((String)newValue);
 				return;
-			case LabeledgraphPackage.NODE__EDGE:
-				setEdge((Node)newValue);
+			case LabeledgraphPackage.NODE__EDGES:
+				getEdges().clear();
+				getEdges().addAll((Collection<? extends Node>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,8 +168,8 @@ public class NodeImpl extends EObjectImpl implements Node {
 			case LabeledgraphPackage.NODE__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case LabeledgraphPackage.NODE__EDGE:
-				setEdge((Node)null);
+			case LabeledgraphPackage.NODE__EDGES:
+				getEdges().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -208,8 +185,8 @@ public class NodeImpl extends EObjectImpl implements Node {
 		switch (featureID) {
 			case LabeledgraphPackage.NODE__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case LabeledgraphPackage.NODE__EDGE:
-				return edge != null;
+			case LabeledgraphPackage.NODE__EDGES:
+				return edges != null && !edges.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

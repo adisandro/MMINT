@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -64,9 +65,10 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		Properties inputProperties = MultiModelOperatorUtils.getInputPropertiesFile(this, model, null, false);
 		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
+		String modelType = ((EPackage) model.getMetatype().getRoot()).getName();
 		String typegraphUri =
 			baseUri +
-			model.getType() +
+			modelType +
 			TYPEGRAPH_SUFFIX +
 			(new Date()).getTime() +
 			"." + RandommodelPackage.eNAME;

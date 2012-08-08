@@ -146,7 +146,7 @@ public class LabeledgraphPackageImpl extends EPackageImpl implements Labeledgrap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_Edge() {
+	public EReference getNode_Edges() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -183,7 +183,7 @@ public class LabeledgraphPackageImpl extends EPackageImpl implements Labeledgrap
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__LABEL);
-		createEReference(nodeEClass, NODE__EDGE);
+		createEReference(nodeEClass, NODE__EDGES);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class LabeledgraphPackageImpl extends EPackageImpl implements Labeledgrap
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Label(), ecorePackage.getEString(), "label", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_Edge(), this.getNode(), null, "edge", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_Edges(), this.getNode(), null, "edges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
