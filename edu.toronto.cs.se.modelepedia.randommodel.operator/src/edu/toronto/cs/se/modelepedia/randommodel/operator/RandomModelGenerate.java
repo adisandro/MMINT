@@ -37,21 +37,21 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 	private static final String RANDOM_SUFFIX = "_random_";
 	private static final String PYTHON_SCRIPT = "script/graph_gen.py";
 	/** % of annotated elements in the random model. */
-	private static final String PROPERTY_ANNOTATIONS = "annotations";
+	private static final String PROPERTY_IN_ANNOTATIONS = "annotations";
 	/** % of may elements among the annotated elements. */
-	private static final String PROPERTY_MAY = "may";
+	private static final String PROPERTY_IN_MAY = "may";
 	/** % of set elements among the annotated elements. */
-	private static final String PROPERTY_SET = "set";
+	private static final String PROPERTY_IN_SET = "set";
 	/** % of var elements among the annotated elements. */
-	private static final String PROPERTY_VAR = "var";
+	private static final String PROPERTY_IN_VAR = "var";
 	/** The initial seed for the pseudorandom generator. */
-	private static final String PROPERTY_SEED = "seed";
+	private static final String PROPERTY_IN_SEED = "seed";
 	/** The default initial seed for the pseudorandom generator. */
-	private static final String PROPERTY_SEED_DEFAULT = null;
+	private static final String PROPERTY_IN_SEED_DEFAULT = null;
 	/** The file name for loading/saving the random generator internal state. */
-	private static final String PROPERTY_STATE = "state";
+	private static final String PROPERTY_IN_STATE = "state";
 	/** The default file name for loading/saving the random generator internal state. */
-	private static final String PROPERTY_STATE_DEFAULT = null;
+	private static final String PROPERTY_IN_STATE_DEFAULT = null;
 
 	private double annotations;
 	private double may;
@@ -62,12 +62,12 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 
 	private void readProperties(Properties properties) throws Exception {
 
-		annotations = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_ANNOTATIONS);
-		may = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MAY);
-		set = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_SET);
-		var = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_VAR);
-		seed = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_SEED, PROPERTY_SEED_DEFAULT);
-		state = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_STATE, PROPERTY_STATE_DEFAULT);
+		annotations = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_ANNOTATIONS);
+		may = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_MAY);
+		set = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_SET);
+		var = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_VAR);
+		seed = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_SEED, PROPERTY_IN_SEED_DEFAULT);
+		state = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_STATE, PROPERTY_IN_STATE_DEFAULT);
 	}
 
 	@Override
@@ -75,7 +75,13 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 
 		// create random instance
 		Model model = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getInputPropertiesFile(this, model, null, false);
+		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
+			this,
+			model,
+			null,
+			false,
+			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
+		);
 		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String modelType = ((RandomModel) model.getRoot()).getName();

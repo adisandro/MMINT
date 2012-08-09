@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.modelepedia.operator.statistics;
 
 import java.util.Properties;
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -62,37 +61,42 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	}
 
 	/** The variables to variate the experiment setup. */
-	private static final String PROPERTY_VARIABLES = "variables";
+	private static final String PROPERTY_IN_VARIABLES = "variables";
 	/** The variable values property suffix. */
-	private static final String PROPERTY_VARIABLE_VALUES_SUFFIX = ".values";
+	private static final String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
 	/** The initial seed for the pseudorandom generator. */
-	private static final String PROPERTY_SEED = "seed";
+	private static final String PROPERTY_IN_SEED = "seed";
 	/** The file name for loading/saving the random generator internal state. */
-	private static final String PROPERTY_STATE = "state";
+	private static final String PROPERTY_IN_STATE = "state";
 	/** Min number of iterations (i.e. samples to generate). */
-	private static final String PROPERTY_MINSAMPLES = "minSamples";
+	private static final String PROPERTY_IN_MINSAMPLES = "minSamples";
 	/** Max number of iterations (i.e. samples to generate). */
-	private static final String PROPERTY_MAXSAMPLES = "maxSamples";
+	private static final String PROPERTY_IN_MAXSAMPLES = "maxSamples";
 	/** Min value a sample can take. */
-	private static final String PROPERTY_MINSAMPLEVALUE = "minSampleValue";
+	private static final String PROPERTY_IN_MINSAMPLEVALUE = "minSampleValue";
 	/** Max value a sample can take, -1 for unlimited. */
-	private static final String PROPERTY_MAXSAMPLEVALUE = "maxSampleValue";
+	private static final String PROPERTY_IN_MAXSAMPLEVALUE = "maxSampleValue";
 	/** The distribution type to be used when evaluating the confidence. */
-	private static final String PROPERTY_DISTRIBUTIONTYPE = "distributionType";
+	private static final String PROPERTY_IN_DISTRIBUTIONTYPE = "distributionType";
 	/** The requested range of confidence interval (% with respect to average value), after which the experiment can be stopped. */
-	private static final String PROPERTY_REQUESTEDCONFIDENCE = "requestedConfidence";
+	private static final String PROPERTY_IN_REQUESTEDCONFIDENCE = "requestedConfidence";
 	/** The operators to be launched in the outer experiment setup cycle. */
-	private static final String PROPERTY_EXPERIMENTOPERATORS = "experimentOperators";
+	private static final String PROPERTY_IN_EXPERIMENTOPERATORS = "experimentOperators";
 	/** The operators to be launched in the inner statistics cycle. */
-	private static final String PROPERTY_STATISTICSOPERATORS = "statisticsOperators";
+	private static final String PROPERTY_IN_STATISTICSOPERATORS = "statisticsOperators";
 	/** The variable operators property suffix. */
-	private static final String PROPERTY_VARIABLE_OPERATORS_SUFFIX = ".operator";
+	private static final String PROPERTY_IN_ALLOPERATORS_SUFFIX = ".operator";
 	/** The outputs of the experiment. */
-	private static final String PROPERTY_OUTPUTS = "outputs";
+	private static final String PROPERTY_IN_OUTPUTS = "outputs";
 	/** The output default result property suffix. */
-	private static final String PROPERTY_OUTPUT_DEFAULT_SUFFIX = ".defaultResult";
+	private static final String PROPERTY_IN_OUTPUTDEFAULT_SUFFIX = ".defaultResult";
 	/** Max processing time to generate the outputs. */
-	private static final String PROPERTY_MAXPROCESSINGTIME = "maxProcessingTime";
+	private static final String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
+	private static final String PROPERTY_OUT_RESULTLOW_SUFFIX = ".resultLow";
+	private static final String PROPERTY_OUT_RESULTAVG_SUFFIX = ".resultAvg";
+	private static final String PROPERTY_OUT_RESULTUP_SUFFIX = ".resultUp";
+	private static final String PROPERTY_OUT_NUMSAMPLES = "numSamples";
+	private static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
 
 	// experiment setup parameters
 	private String[] vars;
@@ -114,57 +118,60 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private String[][] varOperators;
 	// experiment outputs
 	private String[] outputs;
+	private String[] outputOperators;
 	private double[] outputDefaults;
 	private int maxProcessingTime;
 
 	private void readProperties(Properties properties) throws Exception {
 
 		// outer cycle parameters: vary experiment setup
-		vars = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_VARIABLES);
+		vars = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_VARIABLES);
 		varValues = new String[vars.length][];
 		cardinality = 1;
 		for (int i = 0; i < vars.length; i++) {
-			varValues[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_VALUES_SUFFIX);
+			varValues[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
 			cardinality *= varValues[i].length;
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_SEED);
-		state = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_STATE);
-		minSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MINSAMPLES);
-		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MAXSAMPLES);
-		min = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MINSAMPLEVALUE);
-		max = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_MAXSAMPLEVALUE);
-		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_DISTRIBUTIONTYPE));
-		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_REQUESTEDCONFIDENCE);
+		seed = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_SEED);
+		state = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_STATE);
+		minSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINSAMPLES);
+		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXSAMPLES);
+		min = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_MINSAMPLEVALUE);
+		max = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_MAXSAMPLEVALUE);
+		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_DISTRIBUTIONTYPE));
+		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_REQUESTEDCONFIDENCE);
 
 		// operators
-		experimentOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_EXPERIMENTOPERATORS);
-		statisticsOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_STATISTICSOPERATORS);
+		experimentOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_EXPERIMENTOPERATORS);
+		statisticsOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_STATISTICSOPERATORS);
 		varOperators = new String[vars.length][];
 		for (int i = 0; i < vars.length; i++) {
-			varOperators[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_VARIABLE_OPERATORS_SUFFIX);
+			varOperators[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
 		}
 
 		// outputs
-		outputs = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_OUTPUTS);
+		outputs = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_OUTPUTS);
+		outputOperators = new String[outputs.length];
 		outputDefaults = new double[outputs.length];
 		for (int i = 0; i < outputs.length; i++) {
-			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_OUTPUT_DEFAULT_SUFFIX);
+			outputOperators[i] = MultiModelOperatorUtils.getStringProperty(properties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
 		}
-		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MAXPROCESSINGTIME);
+		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXPROCESSINGTIME);
 	}
 
 	private void writeProperties(Properties properties, ExperimentSamples[] experiment, int experimentIndex, int statisticsIndex) {
 
 		for (int out = 0; out < outputs.length; out++) {
-			properties.setProperty(outputs[out]+"ResultLow", String.valueOf(experiment[out].getLowerConfidence()));
-			properties.setProperty(outputs[out]+"ResultAvg", String.valueOf(experiment[out].getAverage()));
-			properties.setProperty(outputs[out]+"ResultUp", String.valueOf(experiment[out].getUpperConfidence()));
+			properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
+			properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTAVG_SUFFIX, String.valueOf(experiment[out].getAverage()));
+			properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTUP_SUFFIX, String.valueOf(experiment[out].getUpperConfidence()));
 		}
-		properties.setProperty("numSamples", String.valueOf(statisticsIndex));
+		properties.setProperty(PROPERTY_OUT_NUMSAMPLES, String.valueOf(statisticsIndex));
 		for (int i = 0; i < vars.length; i++) {
-			properties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
+			properties.setProperty(vars[i]+PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX, experimentSetups[experimentIndex][i]);
 		}
 	}
 
@@ -205,8 +212,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			}
 		}
 		// write seed and state everywhere, the operator who needs it will use it
-		operatorProperties.setProperty(PROPERTY_SEED, seed);
-		operatorProperties.setProperty(PROPERTY_STATE, state);
+		operatorProperties.setProperty(PROPERTY_IN_SEED, seed);
+		operatorProperties.setProperty(PROPERTY_IN_STATE, state);
 		// never update the mid, it will explode
 		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_UPDATEMID, "false");
 		//TODO MMTF: write properties in the subdir, as well as redirecting there results of each operator! Yes how?
@@ -222,12 +229,37 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		return operator.getExecutable().execute(actualParameters);
 	}
 
+	private double getOutput(EList<Model> parameters, int outputIndex) throws Exception {
+
+		// get output operator
+		Operator operator = MultiModelTypeRegistry.getOperatorType(outputOperators[outputIndex]);
+		if (operator == null) {
+			throw new MMTFException("Operator uri " + outputOperators[outputIndex] + " is not registered");
+		}
+		Properties resultProperties = MultiModelOperatorUtils.getPropertiesFile(
+			operator.getExecutable(),
+			parameters.get(0),
+			null,
+			false,
+			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+		);
+		String result = resultProperties.getProperty(outputs[outputIndex]);
+
+		return Double.parseDouble(result);
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// get experiment properties
 		Model model = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getInputPropertiesFile(this, model, null, false);
+		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
+			this,
+			model,
+			null,
+			false,
+			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
+		);
 		readProperties(inputProperties);
 
 		// prepare experiment setup
@@ -268,7 +300,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				for (int out = 0; out < outputs.length; out++) {
 					double sample = (timedOut) ?
 						outputDefaults[out] :
-						new Random().nextDouble();
+						getOutput(innerParameters, out);
 					if (sample == Double.MAX_VALUE) {
 						confidenceOk = false;
 						continue;

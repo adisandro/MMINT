@@ -44,17 +44,17 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 	private Model newElement;
 	private boolean updateMid;
 	/** Min number of instances in the random model. */
-	private static final String PROPERTY_MININSTANCES = "minInstances";
+	private static final String PROPERTY_IN_MININSTANCES = "minInstances";
 	/** Max number of instances in the random model. */
-	private static final String PROPERTY_MAXINSTANCES = "maxInstances";
+	private static final String PROPERTY_IN_MAXINSTANCES = "maxInstances";
 
 	private int minInstances;
 	private int maxInstances;
 
 	private void readProperties(Properties properties) throws Exception {
 
-		minInstances = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MININSTANCES);
-		maxInstances = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_MAXINSTANCES);
+		minInstances = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MININSTANCES);
+		maxInstances = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXINSTANCES);
 	}
 
 	@Override
@@ -62,7 +62,13 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 
 		// convert and serialize
 		Model model = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getInputPropertiesFile(this, model, null, false);
+		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
+			this,
+			model,
+			null,
+			false,
+			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
+		);
 		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String modelType = ((EPackage) model.getMetatype().getRoot()).getName();

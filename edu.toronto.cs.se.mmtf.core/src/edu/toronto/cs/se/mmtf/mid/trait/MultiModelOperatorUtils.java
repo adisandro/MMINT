@@ -54,11 +54,11 @@ public class MultiModelOperatorUtils {
 		return baseUri;
 	}
 
-	public static Properties getInputPropertiesFile(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir) throws Exception {
+	public static Properties getPropertiesFile(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir, String suffix) throws Exception {
 
 		String inputPropertiesFile =
 			getBaseUri(operator, anyOperatorParameter, subdirName, createSubdir) +
-			INPUT_PROPERTIES_SUFFIX +
+			suffix +
 			PROPERTIES_SUFFIX;
 		Properties inputProperties = new Properties();
 		inputProperties.load(new FileInputStream(inputPropertiesFile));

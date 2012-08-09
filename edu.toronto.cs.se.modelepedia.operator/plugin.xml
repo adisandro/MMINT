@@ -63,13 +63,13 @@
    </extension>
 
    <extension
-         name="AlloyRNF"
+         name="AlloyChecker"
          point="edu.toronto.cs.se.mmtf.operators">
       <operator
-            class="edu.toronto.cs.se.modelepedia.operator.alloy.AlloyRNF"
+            class="edu.toronto.cs.se.modelepedia.operator.alloy.AlloyChecker"
             isConversion="false">
          <extendibleElement
-               uri="http://se.cs.toronto.edu/modelepedia/operator/alloy/AlloyRNF">
+               uri="http://se.cs.toronto.edu/modelepedia/operator/alloy/AlloyChecker">
          </extendibleElement>
          <input>
             <parameter
