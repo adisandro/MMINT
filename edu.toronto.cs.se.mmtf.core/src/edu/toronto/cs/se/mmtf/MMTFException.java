@@ -11,6 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+
 /**
  * Custom exception for MMTF.
  *
@@ -33,21 +36,23 @@ public class MMTFException extends Exception {
 	 */
 	public static void print(Type type, String message, Throwable e) {
 
+		//TODO MMTF: remove type and use int as first argument == IStatus.SOMETHING
+		int status;
 		switch (type) {
 			case WARNING:
-				message = "WARNING: " + message;
+				status = IStatus.WARNING;
 				break;
 			case ERROR:
-				message = "ERROR: " + message;
+				status = IStatus.ERROR;
 				break;
 			default:
-				message = "UNKNOWN PROBLEM: " + message;
+				status = IStatus.ERROR;
 		}
-		System.err.println(message);
-		System.err.println(" -> " + e.getMessage());
+		MMTFActivator.getDefault().getLog().log(
+			new Status(status, MMTFActivator.PLUGIN_ID, message, e)
+		);
 
-		if (type == Type.ERROR) {
-			e.printStackTrace();
+		if (status == IStatus.ERROR) {
 			System.exit(-1);
 		}
 	}
