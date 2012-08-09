@@ -3346,7 +3346,7 @@ function processNodes
 	deconstruct in
 		first[node] rest[repeat node]
 	construct processedNode [node]
-		first[processNode]
+		first[processNode0][processNode1][processNode2][processNode3][processNode4][processNode5][processNode6][processNode7]
 	construct recursiveCall [repeat node]
 		rest[processNodes]
 	by
@@ -3359,7 +3359,7 @@ function processEdges
 	deconstruct in
 		first[edge] rest[repeat edge]
 	construct processedEdge[edge]
-		first[processEdge]
+		first[processEdge0][processEdge1][processEdge2][processEdge3][processEdge4][processEdge5][processEdge6][processEdge7]
 	construct recursiveCall[repeat edge]
 		rest[processEdges]
 	by
@@ -3416,11 +3416,845 @@ function replaceIfZero nTwo [number]
 		nTwo
 end function
 
-function processNode
+function processNode0
 	replace[node]
 		inn[node]
 	deconstruct inn
-		<nodes name=nam[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct not * [isMay] m
+		may="true"
+	deconstruct not * [isMay] m
+		set="true"
+	deconstruct not * [isMay] m
+		var="true"
+	construct nam [stringlit]
+		nm  
+	construct addToNodeIndex [stringlit]
+		nam[addNodeNameToIndex]
+	construct no[id]
+		Nodes
+	construct temp [id]
+		ERROR
+	construct nameid [id]
+		temp[unquote nam]
+	import nodelist [repeat id]
+	export nodelist
+	       nodelist[. nameid]
+	construct sigout[sigdef]
+		sig nameid in no {} n
+	construct exists [id]
+		exists
+	construct uniq [id]
+		unique
+	construct var [id]
+		x
+	construct varTwo [id]
+		y
+	construct sigPredOutE [sigPred]
+		pred exists[_ nameid] { some var : no '| var in nameid } n
+	construct predOutE [predicate]
+		sigPredOutE
+	construct sigPredOutU [sigPred]
+		pred uniq[_ nameid] { 'all var, varTwo : no '| (var in nameid and varTwo in nameid) implies var=varTwo} n
+	construct predOutU[predicate]
+		sigPredOutU
+
+	construct nPredName [nid]
+		exists[_ nameid] n
+	construct nPredNameU [nid]
+		uniq[_ nameid] n
+
+	construct MAVOFilteredU [nid]
+		nPredNameU[mavoFilterS]
+	construct MAVOFilteredE [nid]
+		nPredName[mavoFilterM]
+
+	import finalcalls [repeat nid]
+	export finalcalls
+	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+	import predicates[repeat predicate]
+	export predicates
+	       predicates[. predOutU][. predOutE]
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[.sigout]
+
+
+	construct fundecout [fundec]
+	       (declare-fun nameid () no) n
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs [. fundecout]
+
+	construct adeco [assertdec]
+%	      ('assert ('exists ((var nameid)(varTwo no))(= (nameid[_ no] var)(varTwo)))) n
+	      ('assert ('exists ((var no))(= var nameid))) n
+
+	construct bdeco [assertdec]
+%	      ('assert (forall ((var nameid)(varTwo nameid)) (=> ('not (= var varTwo))('not(= (nameid[_ no] var)(nameid[_ no] varTwo)))))) n
+	      ('assert (forall ((var no)(varTwo no))(=> (and(= var nameid)(= varTwo nameid))(= var varTwo)))) n
+	construct fadeco [assertdec]
+	      adeco[MAVOFilterAssertMay]
+	construct fbdeco [assertdec]
+	      bdeco[MAVOFilterAssertSet]
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. fadeco][. fbdeco]
+
+
+	construct sss [id]
+		s
+	construct ttt [id]
+		t
+	construct dom [id]
+		domain
+
+	construct firstsetint [setint]
+		set of int: nameid[+ sss][_ dom] = {0} union nameid[_ dom]; n
+	construct secondsetint [setint]
+		set of int: nameid[+ ttt][_ dom] = {0} union nameid[_ dom]; n	
+
+	
+	import setints [repeat setint]
+	export setints 
+	       setints[. firstsetint][. secondsetint]
+%	construct firstvardom [vardom]
+%		'var nameid[+ sss][_ dom]: nameid[+ tgt][+ sss]; n
+%	construct secondvardom [vardom]
+%		'var nameid[+ ttt][_ dom]: nameid[+ tgt][+ ttt]; n
+	import vardoms [repeat vardom]
+	export vardoms
+	       vardoms%[. firstvardom][. secondvardom]
+	construct CSPprocessedNode [node]
+	       inn[processNodeForCSP]
+
+	by
+		inn
+end function
+function processNode1
+	replace[node]
+		inn[node]
+	deconstruct inn
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct  * [isMay] m
+		may="true"
+	deconstruct not * [isMay] m
+		set="true"
+	deconstruct not * [isMay] m
+		var="true"
+	construct additional [stringlit]
+		"__M"
+	construct nam [stringlit]
+		nm[+ additional]
+	construct addToNodeIndex [stringlit]
+		nam[addNodeNameToIndex]
+	construct no[id]
+		Nodes
+	construct temp [id]
+		ERROR
+	construct nameid [id]
+		temp[unquote nam]
+	import nodelist [repeat id]
+	export nodelist
+	       nodelist[. nameid]
+	construct sigout[sigdef]
+		sig nameid in no {} n
+	construct exists [id]
+		exists
+	construct uniq [id]
+		unique
+	construct var [id]
+		x
+	construct varTwo [id]
+		y
+	construct sigPredOutE [sigPred]
+		pred exists[_ nameid] { some var : no '| var in nameid } n
+	construct predOutE [predicate]
+		sigPredOutE
+	construct sigPredOutU [sigPred]
+		pred uniq[_ nameid] { 'all var, varTwo : no '| (var in nameid and varTwo in nameid) implies var=varTwo} n
+	construct predOutU[predicate]
+		sigPredOutU
+
+	construct nPredName [nid]
+		exists[_ nameid] n
+	construct nPredNameU [nid]
+		uniq[_ nameid] n
+
+	construct MAVOFilteredU [nid]
+		nPredNameU[mavoFilterS]
+	construct MAVOFilteredE [nid]
+		nPredName[mavoFilterM]
+
+	import finalcalls [repeat nid]
+	export finalcalls
+	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+	import predicates[repeat predicate]
+	export predicates
+	       predicates[. predOutU][. predOutE]
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[.sigout]
+
+
+	construct fundecout [fundec]
+	       (declare-fun nameid () no) n
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs [. fundecout]
+
+	construct adeco [assertdec]
+%	      ('assert ('exists ((var nameid)(varTwo no))(= (nameid[_ no] var)(varTwo)))) n
+	      ('assert ('exists ((var no))(= var nameid))) n
+
+	construct bdeco [assertdec]
+%	      ('assert (forall ((var nameid)(varTwo nameid)) (=> ('not (= var varTwo))('not(= (nameid[_ no] var)(nameid[_ no] varTwo)))))) n
+	      ('assert (forall ((var no)(varTwo no))(=> (and(= var nameid)(= varTwo nameid))(= var varTwo)))) n
+	construct fadeco [assertdec]
+	      adeco[MAVOFilterAssertMay]
+	construct fbdeco [assertdec]
+	      bdeco[MAVOFilterAssertSet]
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. fadeco][. fbdeco]
+
+
+	construct sss [id]
+		s
+	construct ttt [id]
+		t
+	construct dom [id]
+		domain
+
+	construct firstsetint [setint]
+		set of int: nameid[+ sss][_ dom] = {0} union nameid[_ dom]; n
+	construct secondsetint [setint]
+		set of int: nameid[+ ttt][_ dom] = {0} union nameid[_ dom]; n	
+
+	
+	import setints [repeat setint]
+	export setints 
+	       setints[. firstsetint][. secondsetint]
+%	construct firstvardom [vardom]
+%		'var nameid[+ sss][_ dom]: nameid[+ tgt][+ sss]; n
+%	construct secondvardom [vardom]
+%		'var nameid[+ ttt][_ dom]: nameid[+ tgt][+ ttt]; n
+	import vardoms [repeat vardom]
+	export vardoms
+	       vardoms%[. firstvardom][. secondvardom]
+	construct CSPprocessedNode [node]
+	       inn[processNodeForCSP]
+
+	by
+		inn
+end function
+function processNode2
+	replace[node]
+		inn[node]
+	deconstruct inn
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct not * [isMay] m
+		may="true"
+	deconstruct  * [isMay] m
+		set="true"
+	deconstruct not * [isMay] m
+		var="true"
+	construct additional [stringlit]
+		"__S"
+	construct nam [stringlit]
+		nm[+ additional]
+	construct addToNodeIndex [stringlit]
+		nam[addNodeNameToIndex]
+	construct no[id]
+		Nodes
+	construct temp [id]
+		ERROR
+	construct nameid [id]
+		temp[unquote nam]
+	import nodelist [repeat id]
+	export nodelist
+	       nodelist[. nameid]
+	construct sigout[sigdef]
+		sig nameid in no {} n
+	construct exists [id]
+		exists
+	construct uniq [id]
+		unique
+	construct var [id]
+		x
+	construct varTwo [id]
+		y
+	construct sigPredOutE [sigPred]
+		pred exists[_ nameid] { some var : no '| var in nameid } n
+	construct predOutE [predicate]
+		sigPredOutE
+	construct sigPredOutU [sigPred]
+		pred uniq[_ nameid] { 'all var, varTwo : no '| (var in nameid and varTwo in nameid) implies var=varTwo} n
+	construct predOutU[predicate]
+		sigPredOutU
+
+	construct nPredName [nid]
+		exists[_ nameid] n
+	construct nPredNameU [nid]
+		uniq[_ nameid] n
+
+	construct MAVOFilteredU [nid]
+		nPredNameU[mavoFilterS]
+	construct MAVOFilteredE [nid]
+		nPredName[mavoFilterM]
+
+	import finalcalls [repeat nid]
+	export finalcalls
+	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+	import predicates[repeat predicate]
+	export predicates
+	       predicates[. predOutU][. predOutE]
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[.sigout]
+
+
+	construct fundecout [fundec]
+	       (declare-fun nameid () no) n
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs [. fundecout]
+
+	construct adeco [assertdec]
+%	      ('assert ('exists ((var nameid)(varTwo no))(= (nameid[_ no] var)(varTwo)))) n
+	      ('assert ('exists ((var no))(= var nameid))) n
+
+	construct bdeco [assertdec]
+%	      ('assert (forall ((var nameid)(varTwo nameid)) (=> ('not (= var varTwo))('not(= (nameid[_ no] var)(nameid[_ no] varTwo)))))) n
+	      ('assert (forall ((var no)(varTwo no))(=> (and(= var nameid)(= varTwo nameid))(= var varTwo)))) n
+	construct fadeco [assertdec]
+	      adeco[MAVOFilterAssertMay]
+	construct fbdeco [assertdec]
+	      bdeco[MAVOFilterAssertSet]
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. fadeco][. fbdeco]
+
+
+	construct sss [id]
+		s
+	construct ttt [id]
+		t
+	construct dom [id]
+		domain
+
+	construct firstsetint [setint]
+		set of int: nameid[+ sss][_ dom] = {0} union nameid[_ dom]; n
+	construct secondsetint [setint]
+		set of int: nameid[+ ttt][_ dom] = {0} union nameid[_ dom]; n	
+
+	
+	import setints [repeat setint]
+	export setints 
+	       setints[. firstsetint][. secondsetint]
+%	construct firstvardom [vardom]
+%		'var nameid[+ sss][_ dom]: nameid[+ tgt][+ sss]; n
+%	construct secondvardom [vardom]
+%		'var nameid[+ ttt][_ dom]: nameid[+ tgt][+ ttt]; n
+	import vardoms [repeat vardom]
+	export vardoms
+	       vardoms%[. firstvardom][. secondvardom]
+	construct CSPprocessedNode [node]
+	       inn[processNodeForCSP]
+
+	by
+		inn
+end function
+function processNode3
+	replace[node]
+		inn[node]
+	deconstruct inn
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct  * [isMay] m
+		may="true"
+	deconstruct  * [isMay] m
+		set="true"
+	deconstruct not * [isMay] m
+		var="true"
+	construct additional [stringlit]
+		"__S__M"
+	construct nam [stringlit]
+		nm[+ additional]
+	construct addToNodeIndex [stringlit]
+		nam[addNodeNameToIndex]
+	construct no[id]
+		Nodes
+	construct temp [id]
+		ERROR
+	construct nameid [id]
+		temp[unquote nam]
+	import nodelist [repeat id]
+	export nodelist
+	       nodelist[. nameid]
+	construct sigout[sigdef]
+		sig nameid in no {} n
+	construct exists [id]
+		exists
+	construct uniq [id]
+		unique
+	construct var [id]
+		x
+	construct varTwo [id]
+		y
+	construct sigPredOutE [sigPred]
+		pred exists[_ nameid] { some var : no '| var in nameid } n
+	construct predOutE [predicate]
+		sigPredOutE
+	construct sigPredOutU [sigPred]
+		pred uniq[_ nameid] { 'all var, varTwo : no '| (var in nameid and varTwo in nameid) implies var=varTwo} n
+	construct predOutU[predicate]
+		sigPredOutU
+
+	construct nPredName [nid]
+		exists[_ nameid] n
+	construct nPredNameU [nid]
+		uniq[_ nameid] n
+
+	construct MAVOFilteredU [nid]
+		nPredNameU[mavoFilterS]
+	construct MAVOFilteredE [nid]
+		nPredName[mavoFilterM]
+
+	import finalcalls [repeat nid]
+	export finalcalls
+	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+	import predicates[repeat predicate]
+	export predicates
+	       predicates[. predOutU][. predOutE]
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[.sigout]
+
+
+	construct fundecout [fundec]
+	       (declare-fun nameid () no) n
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs [. fundecout]
+
+	construct adeco [assertdec]
+%	      ('assert ('exists ((var nameid)(varTwo no))(= (nameid[_ no] var)(varTwo)))) n
+	      ('assert ('exists ((var no))(= var nameid))) n
+
+	construct bdeco [assertdec]
+%	      ('assert (forall ((var nameid)(varTwo nameid)) (=> ('not (= var varTwo))('not(= (nameid[_ no] var)(nameid[_ no] varTwo)))))) n
+	      ('assert (forall ((var no)(varTwo no))(=> (and(= var nameid)(= varTwo nameid))(= var varTwo)))) n
+	construct fadeco [assertdec]
+	      adeco[MAVOFilterAssertMay]
+	construct fbdeco [assertdec]
+	      bdeco[MAVOFilterAssertSet]
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. fadeco][. fbdeco]
+
+
+	construct sss [id]
+		s
+	construct ttt [id]
+		t
+	construct dom [id]
+		domain
+
+	construct firstsetint [setint]
+		set of int: nameid[+ sss][_ dom] = {0} union nameid[_ dom]; n
+	construct secondsetint [setint]
+		set of int: nameid[+ ttt][_ dom] = {0} union nameid[_ dom]; n	
+
+	
+	import setints [repeat setint]
+	export setints 
+	       setints[. firstsetint][. secondsetint]
+%	construct firstvardom [vardom]
+%		'var nameid[+ sss][_ dom]: nameid[+ tgt][+ sss]; n
+%	construct secondvardom [vardom]
+%		'var nameid[+ ttt][_ dom]: nameid[+ tgt][+ ttt]; n
+	import vardoms [repeat vardom]
+	export vardoms
+	       vardoms%[. firstvardom][. secondvardom]
+	construct CSPprocessedNode [node]
+	       inn[processNodeForCSP]
+
+	by
+		inn
+end function
+function processNode4
+	replace[node]
+		inn[node]
+	deconstruct inn
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct not * [isMay] m
+		may="true"
+	deconstruct not * [isMay] m
+		set="true"
+	deconstruct  * [isMay] m
+		var="true"
+	construct additional [stringlit]
+		"__V"
+	construct nam [stringlit]
+		nm[+ additional]
+	construct addToNodeIndex [stringlit]
+		nam[addNodeNameToIndex]
+	construct no[id]
+		Nodes
+	construct temp [id]
+		ERROR
+	construct nameid [id]
+		temp[unquote nam]
+	import nodelist [repeat id]
+	export nodelist
+	       nodelist[. nameid]
+	construct sigout[sigdef]
+		sig nameid in no {} n
+	construct exists [id]
+		exists
+	construct uniq [id]
+		unique
+	construct var [id]
+		x
+	construct varTwo [id]
+		y
+	construct sigPredOutE [sigPred]
+		pred exists[_ nameid] { some var : no '| var in nameid } n
+	construct predOutE [predicate]
+		sigPredOutE
+	construct sigPredOutU [sigPred]
+		pred uniq[_ nameid] { 'all var, varTwo : no '| (var in nameid and varTwo in nameid) implies var=varTwo} n
+	construct predOutU[predicate]
+		sigPredOutU
+
+	construct nPredName [nid]
+		exists[_ nameid] n
+	construct nPredNameU [nid]
+		uniq[_ nameid] n
+
+	construct MAVOFilteredU [nid]
+		nPredNameU[mavoFilterS]
+	construct MAVOFilteredE [nid]
+		nPredName[mavoFilterM]
+
+	import finalcalls [repeat nid]
+	export finalcalls
+	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+	import predicates[repeat predicate]
+	export predicates
+	       predicates[. predOutU][. predOutE]
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[.sigout]
+
+
+	construct fundecout [fundec]
+	       (declare-fun nameid () no) n
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs [. fundecout]
+
+	construct adeco [assertdec]
+%	      ('assert ('exists ((var nameid)(varTwo no))(= (nameid[_ no] var)(varTwo)))) n
+	      ('assert ('exists ((var no))(= var nameid))) n
+
+	construct bdeco [assertdec]
+%	      ('assert (forall ((var nameid)(varTwo nameid)) (=> ('not (= var varTwo))('not(= (nameid[_ no] var)(nameid[_ no] varTwo)))))) n
+	      ('assert (forall ((var no)(varTwo no))(=> (and(= var nameid)(= varTwo nameid))(= var varTwo)))) n
+	construct fadeco [assertdec]
+	      adeco[MAVOFilterAssertMay]
+	construct fbdeco [assertdec]
+	      bdeco[MAVOFilterAssertSet]
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. fadeco][. fbdeco]
+
+
+	construct sss [id]
+		s
+	construct ttt [id]
+		t
+	construct dom [id]
+		domain
+
+	construct firstsetint [setint]
+		set of int: nameid[+ sss][_ dom] = {0} union nameid[_ dom]; n
+	construct secondsetint [setint]
+		set of int: nameid[+ ttt][_ dom] = {0} union nameid[_ dom]; n	
+
+	
+	import setints [repeat setint]
+	export setints 
+	       setints[. firstsetint][. secondsetint]
+%	construct firstvardom [vardom]
+%		'var nameid[+ sss][_ dom]: nameid[+ tgt][+ sss]; n
+%	construct secondvardom [vardom]
+%		'var nameid[+ ttt][_ dom]: nameid[+ tgt][+ ttt]; n
+	import vardoms [repeat vardom]
+	export vardoms
+	       vardoms%[. firstvardom][. secondvardom]
+	construct CSPprocessedNode [node]
+	       inn[processNodeForCSP]
+
+	by
+		inn
+end function
+function processNode5
+	replace[node]
+		inn[node]
+	deconstruct inn
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct  * [isMay] m
+		may="true"
+	deconstruct not * [isMay] m
+		set="true"
+	deconstruct  * [isMay] m
+		var="true"
+	construct additional [stringlit]
+		"__M__V"
+	construct nam [stringlit]
+		nm[+ additional]
+	construct addToNodeIndex [stringlit]
+		nam[addNodeNameToIndex]
+	construct no[id]
+		Nodes
+	construct temp [id]
+		ERROR
+	construct nameid [id]
+		temp[unquote nam]
+	import nodelist [repeat id]
+	export nodelist
+	       nodelist[. nameid]
+	construct sigout[sigdef]
+		sig nameid in no {} n
+	construct exists [id]
+		exists
+	construct uniq [id]
+		unique
+	construct var [id]
+		x
+	construct varTwo [id]
+		y
+	construct sigPredOutE [sigPred]
+		pred exists[_ nameid] { some var : no '| var in nameid } n
+	construct predOutE [predicate]
+		sigPredOutE
+	construct sigPredOutU [sigPred]
+		pred uniq[_ nameid] { 'all var, varTwo : no '| (var in nameid and varTwo in nameid) implies var=varTwo} n
+	construct predOutU[predicate]
+		sigPredOutU
+
+	construct nPredName [nid]
+		exists[_ nameid] n
+	construct nPredNameU [nid]
+		uniq[_ nameid] n
+
+	construct MAVOFilteredU [nid]
+		nPredNameU[mavoFilterS]
+	construct MAVOFilteredE [nid]
+		nPredName[mavoFilterM]
+
+	import finalcalls [repeat nid]
+	export finalcalls
+	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+	import predicates[repeat predicate]
+	export predicates
+	       predicates[. predOutU][. predOutE]
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[.sigout]
+
+
+	construct fundecout [fundec]
+	       (declare-fun nameid () no) n
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs [. fundecout]
+
+	construct adeco [assertdec]
+%	      ('assert ('exists ((var nameid)(varTwo no))(= (nameid[_ no] var)(varTwo)))) n
+	      ('assert ('exists ((var no))(= var nameid))) n
+
+	construct bdeco [assertdec]
+%	      ('assert (forall ((var nameid)(varTwo nameid)) (=> ('not (= var varTwo))('not(= (nameid[_ no] var)(nameid[_ no] varTwo)))))) n
+	      ('assert (forall ((var no)(varTwo no))(=> (and(= var nameid)(= varTwo nameid))(= var varTwo)))) n
+	construct fadeco [assertdec]
+	      adeco[MAVOFilterAssertMay]
+	construct fbdeco [assertdec]
+	      bdeco[MAVOFilterAssertSet]
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. fadeco][. fbdeco]
+
+
+	construct sss [id]
+		s
+	construct ttt [id]
+		t
+	construct dom [id]
+		domain
+
+	construct firstsetint [setint]
+		set of int: nameid[+ sss][_ dom] = {0} union nameid[_ dom]; n
+	construct secondsetint [setint]
+		set of int: nameid[+ ttt][_ dom] = {0} union nameid[_ dom]; n	
+
+	
+	import setints [repeat setint]
+	export setints 
+	       setints[. firstsetint][. secondsetint]
+%	construct firstvardom [vardom]
+%		'var nameid[+ sss][_ dom]: nameid[+ tgt][+ sss]; n
+%	construct secondvardom [vardom]
+%		'var nameid[+ ttt][_ dom]: nameid[+ tgt][+ ttt]; n
+	import vardoms [repeat vardom]
+	export vardoms
+	       vardoms%[. firstvardom][. secondvardom]
+	construct CSPprocessedNode [node]
+	       inn[processNodeForCSP]
+
+	by
+		inn
+end function
+function processNode6
+	replace[node]
+		inn[node]
+	deconstruct inn
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct not * [isMay] m
+		may="true"
+	deconstruct  * [isMay] m
+		set="true"
+	deconstruct  * [isMay] m
+		var="true"
+	construct additional [stringlit]
+		"__V__S"
+	construct nam [stringlit]
+		nm[+ additional]
+	construct addToNodeIndex [stringlit]
+		nam[addNodeNameToIndex]
+	construct no[id]
+		Nodes
+	construct temp [id]
+		ERROR
+	construct nameid [id]
+		temp[unquote nam]
+	import nodelist [repeat id]
+	export nodelist
+	       nodelist[. nameid]
+	construct sigout[sigdef]
+		sig nameid in no {} n
+	construct exists [id]
+		exists
+	construct uniq [id]
+		unique
+	construct var [id]
+		x
+	construct varTwo [id]
+		y
+	construct sigPredOutE [sigPred]
+		pred exists[_ nameid] { some var : no '| var in nameid } n
+	construct predOutE [predicate]
+		sigPredOutE
+	construct sigPredOutU [sigPred]
+		pred uniq[_ nameid] { 'all var, varTwo : no '| (var in nameid and varTwo in nameid) implies var=varTwo} n
+	construct predOutU[predicate]
+		sigPredOutU
+
+	construct nPredName [nid]
+		exists[_ nameid] n
+	construct nPredNameU [nid]
+		uniq[_ nameid] n
+
+	construct MAVOFilteredU [nid]
+		nPredNameU[mavoFilterS]
+	construct MAVOFilteredE [nid]
+		nPredName[mavoFilterM]
+
+	import finalcalls [repeat nid]
+	export finalcalls
+	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+	import predicates[repeat predicate]
+	export predicates
+	       predicates[. predOutU][. predOutE]
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[.sigout]
+
+
+	construct fundecout [fundec]
+	       (declare-fun nameid () no) n
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs [. fundecout]
+
+	construct adeco [assertdec]
+%	      ('assert ('exists ((var nameid)(varTwo no))(= (nameid[_ no] var)(varTwo)))) n
+	      ('assert ('exists ((var no))(= var nameid))) n
+
+	construct bdeco [assertdec]
+%	      ('assert (forall ((var nameid)(varTwo nameid)) (=> ('not (= var varTwo))('not(= (nameid[_ no] var)(nameid[_ no] varTwo)))))) n
+	      ('assert (forall ((var no)(varTwo no))(=> (and(= var nameid)(= varTwo nameid))(= var varTwo)))) n
+	construct fadeco [assertdec]
+	      adeco[MAVOFilterAssertMay]
+	construct fbdeco [assertdec]
+	      bdeco[MAVOFilterAssertSet]
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. fadeco][. fbdeco]
+
+
+	construct sss [id]
+		s
+	construct ttt [id]
+		t
+	construct dom [id]
+		domain
+
+	construct firstsetint [setint]
+		set of int: nameid[+ sss][_ dom] = {0} union nameid[_ dom]; n
+	construct secondsetint [setint]
+		set of int: nameid[+ ttt][_ dom] = {0} union nameid[_ dom]; n	
+
+	
+	import setints [repeat setint]
+	export setints 
+	       setints[. firstsetint][. secondsetint]
+%	construct firstvardom [vardom]
+%		'var nameid[+ sss][_ dom]: nameid[+ tgt][+ sss]; n
+%	construct secondvardom [vardom]
+%		'var nameid[+ ttt][_ dom]: nameid[+ tgt][+ ttt]; n
+	import vardoms [repeat vardom]
+	export vardoms
+	       vardoms%[. firstvardom][. secondvardom]
+	construct CSPprocessedNode [node]
+	       inn[processNodeForCSP]
+
+	by
+		inn
+end function
+function processNode7
+	replace[node]
+		inn[node]
+	deconstruct inn
+		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
+	deconstruct  * [isMay] m
+		may="true"
+	deconstruct  * [isMay] m
+		set="true"
+	deconstruct  * [isMay] m
+		var="true"
+	construct additional [stringlit]
+		"__M__S__V"
+	construct nam [stringlit]
+		nm[+ additional]
 	construct addToNodeIndex [stringlit]
 		nam[addNodeNameToIndex]
 	construct no[id]
@@ -3621,11 +4455,830 @@ function MAVOFilterAssertSet
 end function
 
 
-function processEdge
+function processEdge0
 	replace[edge]
 		input[edge]
 	deconstruct input
 	        <edges name=nam[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct not  * [isMay] im
+		may="true"
+	deconstruct not * [isMay] im
+		set="true"
+	deconstruct not  * [isMay] im
+		var="true"
+
+	import zero [number]
+	construct lenSrc [number]
+		zero[# s] 
+	construct lenTgt [number]
+		zero[# t]
+	import one [number]
+	construct ten [number]
+		one[+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one]
+	construct frontTrimmedSrc [stringlit]
+		s[: ten lenSrc]
+	construct frontTrimmedTgt [stringlit]
+		t[: ten lenTgt]
+	construct temp [id]
+		ERROR
+	construct tlenm [number]
+		zero[# frontTrimmedTgt]
+	construct trimTgt [stringlit]
+	  	frontTrimmedTgt[: one tlenm]
+	construct tgtTemp [id]
+	  	temp[unparse trimTgt]
+	construct seven [number]
+	  	ten[- one][- one][- one]
+	construct sevenPlusTLenM [number]
+	  	seven[+ tlenm][- one]
+	construct tgtNumber[id]
+	 	tgtTemp[: seven sevenPlusTLenM]
+
+	construct slenm [number]
+		zero[# frontTrimmedSrc]
+	construct trimSrc [stringlit]
+	  	frontTrimmedSrc[: one slenm]
+	construct srcTemp [id]
+	  	temp[unparse trimSrc]
+
+	construct sevenPlusSLenM [number]
+	  	seven[+ slenm][- one]
+	construct srcNumber[id]
+	 	srcTemp[: seven sevenPlusSLenM]
+	import nodeIndex [repeat numnode]
+%	deconstruct * [numnode] nodeIndex
+%		tgtNumber tgtname[id]
+%	deconstruct * [numnode] nodeIndex
+%		srcNumber srcname[id]
+%TODO: fix this for ICSE	
+
+	construct nameid [id]
+		temp[unquote nam] 
+	import edgelist [repeat id]
+	export edgelist
+	       edgelist[. nameid]
+%DEBUGGING
+construct numbahb [number]
+	  zero[+ one]%[print]
+
+	construct makePredicates [id]
+	       nameid[makeEdgePredicates]	
+%	construct cspEdgeProcessed [edge]
+%	       input[processEdgeForCSP nameid srcname tgtname]
+
+	construct edges [id]
+		Edges
+	construct sigout[sigdef]
+		sig nameid in edges {} n
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[. sigout]
+
+	construct funcout [fundec]
+	       (declare-fun nameid () edges) n
+	construct sr [id]
+		  'src
+	construct tg [id]
+		  'tgt
+%DEBUGGING		
+construct numbah [number]
+	  zero[+ one]%[print]
+
+	construct assertOutSrc [assertdec]
+	       ('assert (= (sr nameid) srcname)) n
+	construct assertOutTgt [assertdec]
+	       ('assert (= (tg nameid) tgtname)) n
+
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. assertOutSrc][. assertOutTgt]
+
+	construct newentry [edgemapping]
+	       nameid srcname tgtname
+	import edgetable [repeat edgemapping]
+	export edgetable
+	       edgetable[. newentry]
+
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs[. funcout]
+	construct mayAssert [id]
+	       nameid[makeMayEdgeAssert srcname tgtname][makeSetEdgeAssert srcname tgtname]
+	by
+	       input
+end function
+function processEdge1
+	replace[edge]
+		input[edge]
+	deconstruct input
+	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct  * [isMay] im
+		may="true"
+	deconstruct  not * [isMay] im
+		set="true"
+	deconstruct not * [isMay] im
+		var="true"
+	construct additional [stringlit]
+		"__M"
+	construct nam [stringlit]
+		nm[+ additional]
+
+	import zero [number]
+	construct lenSrc [number]
+		zero[# s] 
+	construct lenTgt [number]
+		zero[# t]
+	import one [number]
+	construct ten [number]
+		one[+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one]
+	construct frontTrimmedSrc [stringlit]
+		s[: ten lenSrc]
+	construct frontTrimmedTgt [stringlit]
+		t[: ten lenTgt]
+	construct temp [id]
+		ERROR
+	construct tlenm [number]
+		zero[# frontTrimmedTgt]
+	construct trimTgt [stringlit]
+	  	frontTrimmedTgt[: one tlenm]
+	construct tgtTemp [id]
+	  	temp[unparse trimTgt]
+	construct seven [number]
+	  	ten[- one][- one][- one]
+	construct sevenPlusTLenM [number]
+	  	seven[+ tlenm][- one]
+	construct tgtNumber[id]
+	 	tgtTemp[: seven sevenPlusTLenM]
+
+	construct slenm [number]
+		zero[# frontTrimmedSrc]
+	construct trimSrc [stringlit]
+	  	frontTrimmedSrc[: one slenm]
+	construct srcTemp [id]
+	  	temp[unparse trimSrc]
+
+	construct sevenPlusSLenM [number]
+	  	seven[+ slenm][- one]
+	construct srcNumber[id]
+	 	srcTemp[: seven sevenPlusSLenM]
+	import nodeIndex [repeat numnode]
+%	deconstruct * [numnode] nodeIndex
+%		tgtNumber tgtname[id]
+%	deconstruct * [numnode] nodeIndex
+%		srcNumber srcname[id]
+%TODO: fix this for ICSE	
+
+	construct nameid [id]
+		temp[unquote nam] 
+	import edgelist [repeat id]
+	export edgelist
+	       edgelist[. nameid]
+%DEBUGGING
+construct numbahb [number]
+	  zero[+ one]%[print]
+
+	construct makePredicates [id]
+	       nameid[makeEdgePredicates]	
+%	construct cspEdgeProcessed [edge]
+%	       input[processEdgeForCSP nameid srcname tgtname]
+
+	construct edges [id]
+		Edges
+	construct sigout[sigdef]
+		sig nameid in edges {} n
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[. sigout]
+
+	construct funcout [fundec]
+	       (declare-fun nameid () edges) n
+	construct sr [id]
+		  'src
+	construct tg [id]
+		  'tgt
+%DEBUGGING		
+construct numbah [number]
+	  zero[+ one]%[print]
+
+	construct assertOutSrc [assertdec]
+	       ('assert (= (sr nameid) srcname)) n
+	construct assertOutTgt [assertdec]
+	       ('assert (= (tg nameid) tgtname)) n
+
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. assertOutSrc][. assertOutTgt]
+
+	construct newentry [edgemapping]
+	       nameid srcname tgtname
+	import edgetable [repeat edgemapping]
+	export edgetable
+	       edgetable[. newentry]
+
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs[. funcout]
+	construct mayAssert [id]
+	       nameid[makeMayEdgeAssert srcname tgtname][makeSetEdgeAssert srcname tgtname]
+	by
+	       input
+end function
+function processEdge2
+	replace[edge]
+		input[edge]
+	deconstruct input
+	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct not * [isMay] im
+		may="true"
+	deconstruct  * [isMay] im
+		set="true"
+	deconstruct not * [isMay] im
+		var="true"
+	construct additional [stringlit]
+		"__S"
+	construct nam [stringlit]
+		nm[+ additional]
+
+	import zero [number]
+	construct lenSrc [number]
+		zero[# s] 
+	construct lenTgt [number]
+		zero[# t]
+	import one [number]
+	construct ten [number]
+		one[+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one]
+	construct frontTrimmedSrc [stringlit]
+		s[: ten lenSrc]
+	construct frontTrimmedTgt [stringlit]
+		t[: ten lenTgt]
+	construct temp [id]
+		ERROR
+	construct tlenm [number]
+		zero[# frontTrimmedTgt]
+	construct trimTgt [stringlit]
+	  	frontTrimmedTgt[: one tlenm]
+	construct tgtTemp [id]
+	  	temp[unparse trimTgt]
+	construct seven [number]
+	  	ten[- one][- one][- one]
+	construct sevenPlusTLenM [number]
+	  	seven[+ tlenm][- one]
+	construct tgtNumber[id]
+	 	tgtTemp[: seven sevenPlusTLenM]
+
+	construct slenm [number]
+		zero[# frontTrimmedSrc]
+	construct trimSrc [stringlit]
+	  	frontTrimmedSrc[: one slenm]
+	construct srcTemp [id]
+	  	temp[unparse trimSrc]
+
+	construct sevenPlusSLenM [number]
+	  	seven[+ slenm][- one]
+	construct srcNumber[id]
+	 	srcTemp[: seven sevenPlusSLenM]
+	import nodeIndex [repeat numnode]
+%	deconstruct * [numnode] nodeIndex
+%		tgtNumber tgtname[id]
+%	deconstruct * [numnode] nodeIndex
+%		srcNumber srcname[id]
+%TODO: fix this for ICSE	
+
+	construct nameid [id]
+		temp[unquote nam] 
+	import edgelist [repeat id]
+	export edgelist
+	       edgelist[. nameid]
+%DEBUGGING
+construct numbahb [number]
+	  zero[+ one]%[print]
+
+	construct makePredicates [id]
+	       nameid[makeEdgePredicates]	
+%	construct cspEdgeProcessed [edge]
+%	       input[processEdgeForCSP nameid srcname tgtname]
+
+	construct edges [id]
+		Edges
+	construct sigout[sigdef]
+		sig nameid in edges {} n
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[. sigout]
+
+	construct funcout [fundec]
+	       (declare-fun nameid () edges) n
+	construct sr [id]
+		  'src
+	construct tg [id]
+		  'tgt
+%DEBUGGING		
+construct numbah [number]
+	  zero[+ one]%[print]
+
+	construct assertOutSrc [assertdec]
+	       ('assert (= (sr nameid) srcname)) n
+	construct assertOutTgt [assertdec]
+	       ('assert (= (tg nameid) tgtname)) n
+
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. assertOutSrc][. assertOutTgt]
+
+	construct newentry [edgemapping]
+	       nameid srcname tgtname
+	import edgetable [repeat edgemapping]
+	export edgetable
+	       edgetable[. newentry]
+
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs[. funcout]
+	construct mayAssert [id]
+	       nameid[makeMayEdgeAssert srcname tgtname][makeSetEdgeAssert srcname tgtname]
+	by
+	       input
+end function
+function processEdge3
+	replace[edge]
+		input[edge]
+	deconstruct input
+	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct  * [isMay] im
+		may="true"
+	deconstruct  * [isMay] im
+		set="true"
+	deconstruct not * [isMay] im
+		var="true"
+	construct additional [stringlit]
+		"__M__S"
+	construct nam [stringlit]
+		nm[+ additional]
+
+	import zero [number]
+	construct lenSrc [number]
+		zero[# s] 
+	construct lenTgt [number]
+		zero[# t]
+	import one [number]
+	construct ten [number]
+		one[+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one]
+	construct frontTrimmedSrc [stringlit]
+		s[: ten lenSrc]
+	construct frontTrimmedTgt [stringlit]
+		t[: ten lenTgt]
+	construct temp [id]
+		ERROR
+	construct tlenm [number]
+		zero[# frontTrimmedTgt]
+	construct trimTgt [stringlit]
+	  	frontTrimmedTgt[: one tlenm]
+	construct tgtTemp [id]
+	  	temp[unparse trimTgt]
+	construct seven [number]
+	  	ten[- one][- one][- one]
+	construct sevenPlusTLenM [number]
+	  	seven[+ tlenm][- one]
+	construct tgtNumber[id]
+	 	tgtTemp[: seven sevenPlusTLenM]
+
+	construct slenm [number]
+		zero[# frontTrimmedSrc]
+	construct trimSrc [stringlit]
+	  	frontTrimmedSrc[: one slenm]
+	construct srcTemp [id]
+	  	temp[unparse trimSrc]
+
+	construct sevenPlusSLenM [number]
+	  	seven[+ slenm][- one]
+	construct srcNumber[id]
+	 	srcTemp[: seven sevenPlusSLenM]
+	import nodeIndex [repeat numnode]
+%	deconstruct * [numnode] nodeIndex
+%		tgtNumber tgtname[id]
+%	deconstruct * [numnode] nodeIndex
+%		srcNumber srcname[id]
+%TODO: fix this for ICSE	
+
+	construct nameid [id]
+		temp[unquote nam] 
+	import edgelist [repeat id]
+	export edgelist
+	       edgelist[. nameid]
+%DEBUGGING
+construct numbahb [number]
+	  zero[+ one]%[print]
+
+	construct makePredicates [id]
+	       nameid[makeEdgePredicates]	
+%	construct cspEdgeProcessed [edge]
+%	       input[processEdgeForCSP nameid srcname tgtname]
+
+	construct edges [id]
+		Edges
+	construct sigout[sigdef]
+		sig nameid in edges {} n
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[. sigout]
+
+	construct funcout [fundec]
+	       (declare-fun nameid () edges) n
+	construct sr [id]
+		  'src
+	construct tg [id]
+		  'tgt
+%DEBUGGING		
+construct numbah [number]
+	  zero[+ one]%[print]
+
+	construct assertOutSrc [assertdec]
+	       ('assert (= (sr nameid) srcname)) n
+	construct assertOutTgt [assertdec]
+	       ('assert (= (tg nameid) tgtname)) n
+
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. assertOutSrc][. assertOutTgt]
+
+	construct newentry [edgemapping]
+	       nameid srcname tgtname
+	import edgetable [repeat edgemapping]
+	export edgetable
+	       edgetable[. newentry]
+
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs[. funcout]
+	construct mayAssert [id]
+	       nameid[makeMayEdgeAssert srcname tgtname][makeSetEdgeAssert srcname tgtname]
+	by
+	       input
+end function
+function processEdge4
+	replace[edge]
+		input[edge]
+	deconstruct input
+	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct  not * [isMay] im
+		may="true"
+	deconstruct  not * [isMay] im
+		set="true"
+	deconstruct  * [isMay] im
+		var="true"
+	construct additional [stringlit]
+		"__V"
+	construct nam [stringlit]
+		nm[+ additional]
+
+	import zero [number]
+	construct lenSrc [number]
+		zero[# s] 
+	construct lenTgt [number]
+		zero[# t]
+	import one [number]
+	construct ten [number]
+		one[+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one]
+	construct frontTrimmedSrc [stringlit]
+		s[: ten lenSrc]
+	construct frontTrimmedTgt [stringlit]
+		t[: ten lenTgt]
+	construct temp [id]
+		ERROR
+	construct tlenm [number]
+		zero[# frontTrimmedTgt]
+	construct trimTgt [stringlit]
+	  	frontTrimmedTgt[: one tlenm]
+	construct tgtTemp [id]
+	  	temp[unparse trimTgt]
+	construct seven [number]
+	  	ten[- one][- one][- one]
+	construct sevenPlusTLenM [number]
+	  	seven[+ tlenm][- one]
+	construct tgtNumber[id]
+	 	tgtTemp[: seven sevenPlusTLenM]
+
+	construct slenm [number]
+		zero[# frontTrimmedSrc]
+	construct trimSrc [stringlit]
+	  	frontTrimmedSrc[: one slenm]
+	construct srcTemp [id]
+	  	temp[unparse trimSrc]
+
+	construct sevenPlusSLenM [number]
+	  	seven[+ slenm][- one]
+	construct srcNumber[id]
+	 	srcTemp[: seven sevenPlusSLenM]
+	import nodeIndex [repeat numnode]
+%	deconstruct * [numnode] nodeIndex
+%		tgtNumber tgtname[id]
+%	deconstruct * [numnode] nodeIndex
+%		srcNumber srcname[id]
+%TODO: fix this for ICSE	
+
+	construct nameid [id]
+		temp[unquote nam] 
+	import edgelist [repeat id]
+	export edgelist
+	       edgelist[. nameid]
+%DEBUGGING
+construct numbahb [number]
+	  zero[+ one]%[print]
+
+	construct makePredicates [id]
+	       nameid[makeEdgePredicates]	
+%	construct cspEdgeProcessed [edge]
+%	       input[processEdgeForCSP nameid srcname tgtname]
+
+	construct edges [id]
+		Edges
+	construct sigout[sigdef]
+		sig nameid in edges {} n
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[. sigout]
+
+	construct funcout [fundec]
+	       (declare-fun nameid () edges) n
+	construct sr [id]
+		  'src
+	construct tg [id]
+		  'tgt
+%DEBUGGING		
+construct numbah [number]
+	  zero[+ one]%[print]
+
+	construct assertOutSrc [assertdec]
+	       ('assert (= (sr nameid) srcname)) n
+	construct assertOutTgt [assertdec]
+	       ('assert (= (tg nameid) tgtname)) n
+
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. assertOutSrc][. assertOutTgt]
+
+	construct newentry [edgemapping]
+	       nameid srcname tgtname
+	import edgetable [repeat edgemapping]
+	export edgetable
+	       edgetable[. newentry]
+
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs[. funcout]
+	construct mayAssert [id]
+	       nameid[makeMayEdgeAssert srcname tgtname][makeSetEdgeAssert srcname tgtname]
+	by
+	       input
+end function
+function processEdge5
+	replace[edge]
+		input[edge]
+	deconstruct input
+	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct  * [isMay] im
+		may="true"
+	deconstruct not * [isMay] im
+		set="true"
+	deconstruct  * [isMay] im
+		var="true"
+	construct additional [stringlit]
+		"__M__V"
+	construct nam [stringlit]
+		nm[+ additional]
+
+	import zero [number]
+	construct lenSrc [number]
+		zero[# s] 
+	construct lenTgt [number]
+		zero[# t]
+	import one [number]
+	construct ten [number]
+		one[+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one]
+	construct frontTrimmedSrc [stringlit]
+		s[: ten lenSrc]
+	construct frontTrimmedTgt [stringlit]
+		t[: ten lenTgt]
+	construct temp [id]
+		ERROR
+	construct tlenm [number]
+		zero[# frontTrimmedTgt]
+	construct trimTgt [stringlit]
+	  	frontTrimmedTgt[: one tlenm]
+	construct tgtTemp [id]
+	  	temp[unparse trimTgt]
+	construct seven [number]
+	  	ten[- one][- one][- one]
+	construct sevenPlusTLenM [number]
+	  	seven[+ tlenm][- one]
+	construct tgtNumber[id]
+	 	tgtTemp[: seven sevenPlusTLenM]
+
+	construct slenm [number]
+		zero[# frontTrimmedSrc]
+	construct trimSrc [stringlit]
+	  	frontTrimmedSrc[: one slenm]
+	construct srcTemp [id]
+	  	temp[unparse trimSrc]
+
+	construct sevenPlusSLenM [number]
+	  	seven[+ slenm][- one]
+	construct srcNumber[id]
+	 	srcTemp[: seven sevenPlusSLenM]
+	import nodeIndex [repeat numnode]
+%	deconstruct * [numnode] nodeIndex
+%		tgtNumber tgtname[id]
+%	deconstruct * [numnode] nodeIndex
+%		srcNumber srcname[id]
+%TODO: fix this for ICSE	
+
+	construct nameid [id]
+		temp[unquote nam] 
+	import edgelist [repeat id]
+	export edgelist
+	       edgelist[. nameid]
+%DEBUGGING
+construct numbahb [number]
+	  zero[+ one]%[print]
+
+	construct makePredicates [id]
+	       nameid[makeEdgePredicates]	
+%	construct cspEdgeProcessed [edge]
+%	       input[processEdgeForCSP nameid srcname tgtname]
+
+	construct edges [id]
+		Edges
+	construct sigout[sigdef]
+		sig nameid in edges {} n
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[. sigout]
+
+	construct funcout [fundec]
+	       (declare-fun nameid () edges) n
+	construct sr [id]
+		  'src
+	construct tg [id]
+		  'tgt
+%DEBUGGING		
+construct numbah [number]
+	  zero[+ one]%[print]
+
+	construct assertOutSrc [assertdec]
+	       ('assert (= (sr nameid) srcname)) n
+	construct assertOutTgt [assertdec]
+	       ('assert (= (tg nameid) tgtname)) n
+
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. assertOutSrc][. assertOutTgt]
+
+	construct newentry [edgemapping]
+	       nameid srcname tgtname
+	import edgetable [repeat edgemapping]
+	export edgetable
+	       edgetable[. newentry]
+
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs[. funcout]
+	construct mayAssert [id]
+	       nameid[makeMayEdgeAssert srcname tgtname][makeSetEdgeAssert srcname tgtname]
+	by
+	       input
+end function
+function processEdge6
+	replace[edge]
+		input[edge]
+	deconstruct input
+	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct not * [isMay] im
+		may="true"
+	deconstruct  * [isMay] im
+		set="true"
+	deconstruct  * [isMay] im
+		var="true"
+	construct additional [stringlit]
+		"__S__V"
+	construct nam [stringlit]
+		nm[+ additional]
+
+	import zero [number]
+	construct lenSrc [number]
+		zero[# s] 
+	construct lenTgt [number]
+		zero[# t]
+	import one [number]
+	construct ten [number]
+		one[+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one][+ one]
+	construct frontTrimmedSrc [stringlit]
+		s[: ten lenSrc]
+	construct frontTrimmedTgt [stringlit]
+		t[: ten lenTgt]
+	construct temp [id]
+		ERROR
+	construct tlenm [number]
+		zero[# frontTrimmedTgt]
+	construct trimTgt [stringlit]
+	  	frontTrimmedTgt[: one tlenm]
+	construct tgtTemp [id]
+	  	temp[unparse trimTgt]
+	construct seven [number]
+	  	ten[- one][- one][- one]
+	construct sevenPlusTLenM [number]
+	  	seven[+ tlenm][- one]
+	construct tgtNumber[id]
+	 	tgtTemp[: seven sevenPlusTLenM]
+
+	construct slenm [number]
+		zero[# frontTrimmedSrc]
+	construct trimSrc [stringlit]
+	  	frontTrimmedSrc[: one slenm]
+	construct srcTemp [id]
+	  	temp[unparse trimSrc]
+
+	construct sevenPlusSLenM [number]
+	  	seven[+ slenm][- one]
+	construct srcNumber[id]
+	 	srcTemp[: seven sevenPlusSLenM]
+	import nodeIndex [repeat numnode]
+%	deconstruct * [numnode] nodeIndex
+%		tgtNumber tgtname[id]
+%	deconstruct * [numnode] nodeIndex
+%		srcNumber srcname[id]
+%TODO: fix this for ICSE	
+
+	construct nameid [id]
+		temp[unquote nam] 
+	import edgelist [repeat id]
+	export edgelist
+	       edgelist[. nameid]
+%DEBUGGING
+construct numbahb [number]
+	  zero[+ one]%[print]
+
+	construct makePredicates [id]
+	       nameid[makeEdgePredicates]	
+%	construct cspEdgeProcessed [edge]
+%	       input[processEdgeForCSP nameid srcname tgtname]
+
+	construct edges [id]
+		Edges
+	construct sigout[sigdef]
+		sig nameid in edges {} n
+	import signatures [repeat sigdef]
+	export signatures
+	       signatures[. sigout]
+
+	construct funcout [fundec]
+	       (declare-fun nameid () edges) n
+	construct sr [id]
+		  'src
+	construct tg [id]
+		  'tgt
+%DEBUGGING		
+construct numbah [number]
+	  zero[+ one]%[print]
+
+	construct assertOutSrc [assertdec]
+	       ('assert (= (sr nameid) srcname)) n
+	construct assertOutTgt [assertdec]
+	       ('assert (= (tg nameid) tgtname)) n
+
+	import assertdecs [repeat assertdec]
+	export assertdecs
+	       assertdecs[. assertOutSrc][. assertOutTgt]
+
+	construct newentry [edgemapping]
+	       nameid srcname tgtname
+	import edgetable [repeat edgemapping]
+	export edgetable
+	       edgetable[. newentry]
+
+	import fundecs [repeat fundec]
+	export fundecs
+	       fundecs[. funcout]
+	construct mayAssert [id]
+	       nameid[makeMayEdgeAssert srcname tgtname][makeSetEdgeAssert srcname tgtname]
+	by
+	       input
+end function
+function processEdge7
+	replace[edge]
+		input[edge]
+	deconstruct input
+	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+	deconstruct  * [isMay] im
+		may="true"
+	deconstruct  * [isMay] im
+		set="true"
+	deconstruct  * [isMay] im
+		var="true"
+	construct additional [stringlit]
+		"__M__S__V"
+	construct nam [stringlit]
+		nm[+ additional]
+
 	import zero [number]
 	construct lenSrc [number]
 		zero[# s] 
