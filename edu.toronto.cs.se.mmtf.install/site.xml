@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/edu.toronto.cs.se.mmtf_0.9.6.jar" id="edu.toronto.cs.se.mmtf" version="0.9.6">
+   <feature url="features/edu.toronto.cs.se.mmtf_0.9.9.jar" id="edu.toronto.cs.se.mmtf" version="0.9.9">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.petrinet_0.9.6.jar" id="edu.toronto.cs.se.modelepedia.petrinet" version="0.9.6">
+   <feature url="features/edu.toronto.cs.se.modelepedia.petrinet_0.9.9.jar" id="edu.toronto.cs.se.modelepedia.petrinet" version="0.9.9">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.powerwindow_0.9.6.jar" id="edu.toronto.cs.se.modelepedia.powerwindow" version="0.9.6">
+   <feature url="features/edu.toronto.cs.se.modelepedia.powerwindow_0.9.9.jar" id="edu.toronto.cs.se.modelepedia.powerwindow" version="0.9.9">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.randommodel_0.9.6.jar" id="edu.toronto.cs.se.modelepedia.randommodel" version="0.9.6">
+   <feature url="features/edu.toronto.cs.se.modelepedia.randommodel_0.9.9.jar" id="edu.toronto.cs.se.modelepedia.randommodel" version="0.9.9">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine_0.9.6.jar" id="edu.toronto.cs.se.modelepedia.statemachine" version="0.9.6">
+   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine_0.9.9.jar" id="edu.toronto.cs.se.modelepedia.statemachine" version="0.9.9">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_0.9.6.jar" id="edu.toronto.cs.se.modelepedia.classdiagram" version="0.9.6">
+   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_0.9.9.jar" id="edu.toronto.cs.se.modelepedia.classdiagram" version="0.9.9">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.labeledgraph_0.9.6.jar" id="edu.toronto.cs.se.modelepedia.labeledgraph" version="0.9.6">
+   <feature url="features/edu.toronto.cs.se.modelepedia.labeledgraph_0.9.9.jar" id="edu.toronto.cs.se.modelepedia.labeledgraph" version="0.9.9">
       <category name="Modelepedia"/>
    </feature>
    <category-def name="Modeling" label="Modeling"/>

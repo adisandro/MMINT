@@ -35,7 +35,7 @@ import edu.toronto.cs.se.modelepedia.randommodel.RandommodelPackage;
 public class RandomModelGenerate extends OperatorExecutableImpl {
 
 	private static final String RANDOM_SUFFIX = "_random_";
-	private static final String PYTHON_SCRIPT = "/python/graph_gen.py";
+	private static final String PYTHON_SCRIPT = "script/graph_gen.py";
 	/** % of annotated elements in the random model. */
 	private static final String PROPERTY_ANNOTATIONS = "annotations";
 	/** % of may elements among the annotated elements. */
@@ -85,9 +85,9 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			RANDOM_SUFFIX +
 			(new Date()).getTime() +
 			"." + RandommodelPackage.eNAME;
+		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry("/");
+		String pythonPath = FileLocator.toFileURL(url).getPath() + PYTHON_SCRIPT;
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry(PYTHON_SCRIPT);
-		String pythonPath = FileLocator.toFileURL(url).toString().substring(5); // cuts "file:/"
 		String[] cmd = new String[] {
 			"python",
 			pythonPath,
@@ -120,6 +120,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		}
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec(cmd);
+		rt.exec(cmd);
 		p.waitFor();
 
 		// create model

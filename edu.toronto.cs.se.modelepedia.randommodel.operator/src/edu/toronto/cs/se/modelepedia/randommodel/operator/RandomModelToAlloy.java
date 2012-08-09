@@ -22,16 +22,15 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 
 public class RandomModelToAlloy extends OperatorExecutableImpl {
 
-	private static final String TXL_SCRIPT = "/txl/randommodel.txl";
+	private static final String TXL_SCRIPT = "script/randommodel.txl";
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model model = actualParameters.get(0);
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry(TXL_SCRIPT);
-		String txlPath = FileLocator.toFileURL(url).toString().substring(5); // cuts "file:/"
-
+		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry("/");
+		String txlPath = FileLocator.toFileURL(url).getPath() + TXL_SCRIPT;
 		String[] cmd = new String[] {
 			"txl",
 			"-l",
