@@ -244,6 +244,7 @@ define predicate
 	|	pred universal { [newline] 'all e: Edges '| [SPOFF]e.(Source.src) = e.(Target.tgt)[SPON] [newline] } [newline]
 	|	pred [id] { [newline] [repeat nid] } [newline]
 	|	fact [id] { [newline] [repeat nid] } [newline]
+	|	fact { [newline] 'all [id]:[id] '| [SPOFF][id].([id].[id])[SPON] in [id] } [newline]
 	|	pred [id] { 'all [id]:[id] '| 'all [id]:[id] '| ([id] in [id] and [id] in [id]) iff
 		 	(some [id]:[id] '| [id][SPOFF]->[id][SPON] in [id].[id])} [newline]
 	|	pred [id] { 'all [id],[id]:[id] '| 'all [id],[id]:[id] '| 
@@ -1511,7 +1512,7 @@ function makeDPLines compareWith[repeat id] type[id]
 		x
 	import n [newline]
 	construct predline [distinctPredLine]
-		('all xvar: type '| (xvar in name) implies ('not xvar in first)) and n
+		('all xvar: type '| (xvar in name) implies ('not xvar in first)) n %ADD AND HERE IF NECESSARY
         construct predlineFiltered[distinctPredLine]
                 predline[mavoFilterU2][mavoFilterU3]
 	export predLines
@@ -3358,6 +3359,8 @@ function processEdges
 	 	in[repeat edge]
 	deconstruct in
 		first[edge] rest[repeat edge]
+%construct eddebug [edge]
+%	  first[print	]
 	construct processedEdge[edge]
 		first[processEdge0][processEdge1][processEdge2][processEdge3][processEdge4][processEdge5][processEdge6][processEdge7]
 	construct recursiveCall[repeat edge]
@@ -3422,11 +3425,11 @@ function processNode0
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct not * [isMay] m
-		may="true"
+		may="true" nn[opt newline]
 	deconstruct not * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct not * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct nam [stringlit]
 		nm  
 	construct addToNodeIndex [stringlit]
@@ -3538,11 +3541,11 @@ function processNode1
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct  * [isMay] m
-		may="true"
+		may="true"  nn[opt newline]
 	deconstruct not * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct not * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct additional [stringlit]
 		"__M"
 	construct nam [stringlit]
@@ -3656,11 +3659,11 @@ function processNode2
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct not * [isMay] m
-		may="true"
+		may="true"  nn[opt newline]
 	deconstruct  * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct not * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct additional [stringlit]
 		"__S"
 	construct nam [stringlit]
@@ -3774,11 +3777,11 @@ function processNode3
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct  * [isMay] m
-		may="true"
+		may="true"  nn[opt newline]
 	deconstruct  * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct not * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct additional [stringlit]
 		"__S__M"
 	construct nam [stringlit]
@@ -3892,11 +3895,11 @@ function processNode4
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct not * [isMay] m
-		may="true"
+		may="true"  nn[opt newline]
 	deconstruct not * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct  * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct additional [stringlit]
 		"__V"
 	construct nam [stringlit]
@@ -4010,11 +4013,11 @@ function processNode5
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct  * [isMay] m
-		may="true"
+		may="true"  nn[opt newline]
 	deconstruct not * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct  * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct additional [stringlit]
 		"__M__V"
 	construct nam [stringlit]
@@ -4128,11 +4131,11 @@ function processNode6
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct not * [isMay] m
-		may="true"
+		may="true"  nn[opt newline]
 	deconstruct  * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct  * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct additional [stringlit]
 		"__V__S"
 	construct nam [stringlit]
@@ -4246,11 +4249,11 @@ function processNode7
 	deconstruct inn
 		<nodes name=nm[stringlit] on[newline] nt[ntype] m[repeat isMay]/> n[newline]
 	deconstruct  * [isMay] m
-		may="true"
+		may="true"  nn[opt newline]
 	deconstruct  * [isMay] m
-		set="true"
+		set="true"  nnn[opt newline]
 	deconstruct  * [isMay] m
-		var="true"
+		var="true"  nnnn[opt newline]
 	construct additional [stringlit]
 		"__M__S__V"
 	construct nam [stringlit]
@@ -4461,11 +4464,11 @@ function processEdge0
 	deconstruct input
 	        <edges name=nam[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
 	deconstruct not  * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct not * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct not  * [isMay] im
-		var="true"
+		var="true" n
 
 	import zero [number]
 	construct lenSrc [number]
@@ -4520,9 +4523,13 @@ function processEdge0
 %DEBUGGING
 construct numbahb [number]
 	  zero[+ one]%[print]
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
 
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -4573,11 +4580,11 @@ function processEdge1
 	deconstruct input
 	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
 	deconstruct  * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct  not * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct not * [isMay] im
-		var="true"
+		var="true" n
 	construct additional [stringlit]
 		"__M"
 	construct nam [stringlit]
@@ -4636,9 +4643,13 @@ function processEdge1
 %DEBUGGING
 construct numbahb [number]
 	  zero[+ one]%[print]
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
 
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -4689,11 +4700,11 @@ function processEdge2
 	deconstruct input
 	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
 	deconstruct not * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct  * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct not * [isMay] im
-		var="true"
+		var="true" n
 	construct additional [stringlit]
 		"__S"
 	construct nam [stringlit]
@@ -4752,9 +4763,13 @@ function processEdge2
 %DEBUGGING
 construct numbahb [number]
 	  zero[+ one]%[print]
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
 
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -4805,11 +4820,11 @@ function processEdge3
 	deconstruct input
 	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
 	deconstruct  * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct  * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct not * [isMay] im
-		var="true"
+		var="true" n
 	construct additional [stringlit]
 		"__M__S"
 	construct nam [stringlit]
@@ -4868,9 +4883,13 @@ function processEdge3
 %DEBUGGING
 construct numbahb [number]
 	  zero[+ one]%[print]
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
 
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -4921,11 +4940,11 @@ function processEdge4
 	deconstruct input
 	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
 	deconstruct  not * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct  not * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct  * [isMay] im
-		var="true"
+		var="true" n
 	construct additional [stringlit]
 		"__V"
 	construct nam [stringlit]
@@ -4984,9 +5003,13 @@ function processEdge4
 %DEBUGGING
 construct numbahb [number]
 	  zero[+ one]%[print]
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
 
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -5037,11 +5060,11 @@ function processEdge5
 	deconstruct input
 	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
 	deconstruct  * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct not * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct  * [isMay] im
-		var="true"
+		var="true" n
 	construct additional [stringlit]
 		"__M__V"
 	construct nam [stringlit]
@@ -5100,9 +5123,13 @@ function processEdge5
 %DEBUGGING
 construct numbahb [number]
 	  zero[+ one]%[print]
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
 
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -5153,11 +5180,11 @@ function processEdge6
 	deconstruct input
 	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
 	deconstruct not * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct  * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct  * [isMay] im
-		var="true"
+		var="true" n
 	construct additional [stringlit]
 		"__S__V"
 	construct nam [stringlit]
@@ -5216,9 +5243,13 @@ function processEdge6
 %DEBUGGING
 construct numbahb [number]
 	  zero[+ one]%[print]
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
 
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -5268,12 +5299,13 @@ function processEdge7
 		input[edge]
 	deconstruct input
 	        <edges name=nm[stringlit] onnn[newline] type=etype[stringlit] on[newline] im[repeat isMay]  src=s[stringlit] onn[newline] tgt=t[stringlit]  /> n[newline]
+
 	deconstruct  * [isMay] im
-		may="true"
+		may="true" n
 	deconstruct  * [isMay] im
-		set="true"
+		set="true" n
 	deconstruct  * [isMay] im
-		var="true"
+		var="true" n
 	construct additional [stringlit]
 		"__M__S__V"
 	construct nam [stringlit]
@@ -5333,8 +5365,13 @@ function processEdge7
 construct numbahb [number]
 	  zero[+ one]%[print]
 
+construct srcname [id]
+	temp[unquote s]
+construct tgtname [id]
+	temp[unquote t]
+
 	construct makePredicates [id]
-	       nameid[makeEdgePredicates]	
+	       nameid[makeEdgePredicates srcname tgtname]	
 %	construct cspEdgeProcessed [edge]
 %	       input[processEdgeForCSP nameid srcname tgtname]
 
@@ -5640,7 +5677,7 @@ function MAVOFilterAssertSet2 name[id]
 		n
 end function
 
-function makeEdgePredicates
+function makeEdgePredicates srcname[id] tgtname[id]
 	replace [id]
 		nameid[id]
 	import n [newline]
@@ -5676,6 +5713,27 @@ function makeEdgePredicates
 	import finalcalls [repeat nid]
 	export finalcalls
 	       finalcalls[. MAVOFilteredU][. MAVOFilteredE]
+
+%HERE_____
+construct enodes [id]
+	  es	    
+construct SRC [id]
+	  Source
+construct Src[id]
+	  src
+	construct factoutSrc [predicate]
+		fact { n 'all enodes : nameid '| enodes.(SRC.Src) in srcname } n
+construct TGT [id]
+	  Target
+construct Tgt[id]
+	  tgt
+	construct factoutTgt [predicate]
+		fact { n 'all enodes : nameid '| enodes.(TGT.Tgt) in tgtname } n
+import predicates [repeat predicate]
+
+export predicates
+       predicates[. factoutSrc][. factoutTgt]
+%TO HERE---------------
 
 	import predicates[repeat predicate]
 	export predicates

@@ -95,7 +95,7 @@ public class EcoreToRandomModel {
 	 */
 	public EcoreToRandomModel() throws IOException {
 		properties = new Properties();
-		properties.load(getFileURL("EcoreToRandomModel.properties").openStream());
+		properties.load(getFileURL("/model/EcoreToRandomModel.properties").openStream());
 		EPackage.Registry.INSTANCE.put(getMetamodelUri("Ecore"), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
@@ -239,10 +239,40 @@ public class EcoreToRandomModel {
 	 * 
 	 * @generated
 	 */
-	protected static URL getFileURL(String fileName) throws IOException {
+	protected static URL getFileURLGen(String fileName) throws IOException {
 		final URL fileURL;
 		if (isEclipseRunning()) {
 			URL resourceURL = EcoreToRandomModel.class.getResource(fileName);
+			if (resourceURL != null) {
+				fileURL = FileLocator.toFileURL(resourceURL);
+			} else {
+				fileURL = null;
+			}
+		} else {
+			fileURL = EcoreToRandomModel.class.getResource(fileName);
+		}
+		if (fileURL == null) {
+			throw new IOException("'" + fileName + "' not found");
+		} else {
+			return fileURL;
+		}
+	}
+	
+	/**
+	 * Finds the file in the plug-in. Returns the file URL.
+	 * 
+	 * @param fileName
+	 *            the file name
+	 * @return the file URL
+	 * @throws IOException
+	 *             if the file doesn't exist
+	 * 
+	 * @generated NOT
+	 */
+	protected static URL getFileURL(String fileName) throws IOException {
+		final URL fileURL;
+		if (isEclipseRunning()) {
+			URL resourceURL = RandomModelOperatorActivator.getDefault().getBundle().getEntry(fileName);
 			if (resourceURL != null) {
 				fileURL = FileLocator.toFileURL(resourceURL);
 			} else {

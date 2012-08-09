@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.randommodel"
       label="Modelepedia RandomModel"
-      version="0.9.3"
+      version="0.9.6"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>

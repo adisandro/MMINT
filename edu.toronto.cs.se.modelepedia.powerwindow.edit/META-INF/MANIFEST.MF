@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.powerwindow.edit;singleton:=true
-Bundle-Version: 0.9.3
+Bundle-Version: 0.9.6
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.powerwindow.provider.PowerwindowEditPlugin$Implementation
 Bundle-Vendor: %providerName
