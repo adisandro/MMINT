@@ -50,9 +50,11 @@ public class AlloyChecker extends OperatorExecutableImpl {
 
 	private static final String ALLOY_FILEEXTENSION = ".als";
 	private static final String PROPERTY_IN_ALGORITHM = "algorithm";
+	private static final String PROPERTY_IN_CONSTRAINEDNESS = "constrainedness";
 	private static final String PROPERTY_OUT_TIME = "time";
 
 	private String algorithm;
+	private double constrainedness;
 
 	private static void makeANF(String[] args) throws Err {
 
@@ -475,6 +477,7 @@ public class AlloyChecker extends OperatorExecutableImpl {
 	private void readProperties(Properties properties) throws Exception {
 
 		algorithm = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_ALGORITHM);
+		constrainedness = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_CONSTRAINEDNESS);
 	}
 
 	private void writeProperties(Properties properties, long time) {

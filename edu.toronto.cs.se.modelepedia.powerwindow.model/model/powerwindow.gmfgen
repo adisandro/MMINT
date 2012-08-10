@@ -316,7 +316,7 @@
   <plugin
       name="Powerwindow Diagram Type"
       provider="Software Engineering Group, University of Toronto"
-      version="0.9.11">
+      version="0.9.12">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
   </plugin>
