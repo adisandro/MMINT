@@ -490,7 +490,6 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			this,
 			model,
 			null,
-			false,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
@@ -518,8 +517,7 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			outputProperties,
 			this,
 			model,
-			null,
-			false,
+			MultiModelOperatorUtils.getSubdir(inputProperties),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

@@ -66,11 +66,15 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 			this,
 			model,
 			null,
-			false,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
+		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
+		if (subdir != null) {
+			// atl will take care of subdir creation
+			baseUri += subdir + IPath.SEPARATOR;
+		}
 		String modelType = ((EPackage) model.getMetatype().getRoot()).getName();
 		String typegraphUri =
 			baseUri +

@@ -31,33 +31,31 @@ public class MultiModelOperatorUtils {
 	private static final String PROPERTIES_SUFFIX = ".properties";
 	/** The separator for multiple properties with the same key. */
 	private static final String PROPERTY_SEPARATOR = ",";
-	public static final String PROPERTY_UPDATEMID = "updateMid";
+	public static final String PROPERTY_IN_UPDATEMID = "updateMid";
+	public static final String PROPERTY_IN_SUBDIR = "subdir";
 
-	private static String getBaseUri(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir) {
+	private static String getPropertiesUri(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String operatorName = ((Operator) operator.eContainer()).getName();
-		String baseUri = workspaceUri + projectUri;
+		String propertiesUri = workspaceUri + projectUri;
 		if (subdirName != null) {
-			if (createSubdir) {
-				File dir = new File(baseUri + subdirName);
+			File dir = new File(propertiesUri + subdirName);
+			if (!readonly && !dir.exists()) {
 				dir.mkdir();
-				baseUri += dir.getName() + IPath.SEPARATOR;
 			}
-			else {
-				baseUri += subdirName + IPath.SEPARATOR;
-			}
+			propertiesUri += subdirName + IPath.SEPARATOR;
 		}
-		baseUri += operatorName;
+		propertiesUri += operatorName;
 
-		return baseUri;
+		return propertiesUri;
 	}
 
-	public static Properties getPropertiesFile(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir, String suffix) throws Exception {
+	public static Properties getPropertiesFile(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
 
 		String inputPropertiesFile =
-			getBaseUri(operator, anyOperatorParameter, subdirName, createSubdir) +
+			getPropertiesUri(operator, anyOperatorParameter, subdirName, true) +
 			suffix +
 			PROPERTIES_SUFFIX;
 		Properties inputProperties = new Properties();
@@ -66,10 +64,10 @@ public class MultiModelOperatorUtils {
 		return inputProperties;
 	}
 
-	public static void writePropertiesFile(Properties outputProperties, OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean createSubdir, String suffix) throws Exception {
+	public static void writePropertiesFile(Properties outputProperties, OperatorExecutable operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
 
 		String outputPropertiesFile =
-			getBaseUri(operator, anyOperatorParameter, subdirName, createSubdir) +
+			getPropertiesUri(operator, anyOperatorParameter, subdirName, false) +
 			suffix +
 			PROPERTIES_SUFFIX;
 		outputProperties.store(new FileOutputStream(outputPropertiesFile), "");
@@ -143,11 +141,36 @@ public class MultiModelOperatorUtils {
 	public static boolean isUpdatingMid(Properties properties) {
 
 		try {
-			return Boolean.parseBoolean(getStringProperty(properties, PROPERTY_UPDATEMID));
+			return Boolean.parseBoolean(getStringProperty(properties, PROPERTY_IN_UPDATEMID));
 		}
 		catch (MMTFException e) {
 			return true;
 		}
+	}
+
+	public static String getSubdir(Properties properties) {
+
+		try {
+			return getStringProperty(properties, PROPERTY_IN_SUBDIR);
+		}
+		catch (MMTFException e) {
+			return null;
+		}
+	}
+
+	public static String getCreateSubdir(Model anyOperatorParameter, Properties properties) {
+
+		String subdirName = getSubdir(properties);
+		if (subdirName != null) {
+			String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+			String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
+			File dir = new File(workspaceUri + projectUri + subdirName);
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
+		}
+
+		return subdirName;
 	}
 
 }

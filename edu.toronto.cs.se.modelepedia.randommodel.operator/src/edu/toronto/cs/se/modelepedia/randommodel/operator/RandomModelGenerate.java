@@ -79,11 +79,14 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			this,
 			model,
 			null,
-			false,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
+		String subdir = MultiModelOperatorUtils.getCreateSubdir(model, inputProperties);
+		if (subdir != null) {
+			baseUri += subdir + IPath.SEPARATOR;
+		}
 		String modelType = ((RandomModel) model.getRoot()).getName();
 		String randomUri =
 			baseUri +

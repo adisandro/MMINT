@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.labeledgraph"
       label="Modelepedia LabeledGraph"
-      version="0.9.10"
+      version="0.9.11"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
