@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.powerwindow.operator; singleton:=true
-Bundle-Version: 0.9.13
+Bundle-Version: 0.9.14
 Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmtf.core,
  edu.toronto.cs.se.modelepedia.petrinet.model,
