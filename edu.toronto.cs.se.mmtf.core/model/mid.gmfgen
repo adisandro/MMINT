@@ -254,7 +254,7 @@
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="edu.toronto.cs.se.mmtf.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin name="Mid Diagram Type" provider="Software Engineering Group, University of Toronto" version="0.9.15">
+  <plugin name="Mid Diagram Type" provider="Software Engineering Group, University of Toronto" version="0.9.16">
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
   </plugin>
