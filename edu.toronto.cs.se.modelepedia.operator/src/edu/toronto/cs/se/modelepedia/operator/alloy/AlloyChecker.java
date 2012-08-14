@@ -660,580 +660,372 @@ public class AlloyChecker extends OperatorExecutableImpl {
 	}
 
 	private static void makeRNF(String[] args) throws Err {
-		  try {
-			    System.out.println("Constrainedness: " + constrainedness);
-				String csv = "START";
-			    int scope = 26;
-				  
-			    // The visualizer (We will initialize it to nonnull when we visualize an Alloy solution)
-			    VizGUI viz = null;
-			    
-			    // Alloy4 sends diagnostic messages and progress reports to the A4Reporter.
-			    // By default, the A4Reporter ignores all these events (but you can extend the A4Reporter to display the event for the user)
-			    A4Reporter rep = new A4Reporter() {
-			      // For example, here we choose to display each "warning" by printing it to System.out
-			      @Override public void warning(ErrorWarning msg) {
-			        System.out.print("Relevance Warning:\n"+(msg.toString().trim())+"\n\n");
-			        System.out.flush();
-			      }
-			    };
-			    
-			    for(String filename:args) {
-			      // Parse+typecheck the model
-			      System.out.println("=========== Parsing+Typechecking "+filename+" =============");
-			      Module world = CompUtil.parseEverything_fromFile(rep, null, filename);
-			      
-			      A4Options options = new A4Options();
-			      options.solver = A4Options.SatSolver.SAT4J; //Solver can be changed, e.g. for UNSAT core computation.
-			      
-			      SafeList<Sig> allSigsInitial = world.getAllSigs();
-			      ArrayList<Sig> allSigs = (ArrayList)(world.getAllSigs()).makeCopy(); //This is annotations(P) (and more, which will be skipped)
-			      boolean needHard = true;
-			      SafeList<Sig> userDefinedSigs = world.getAllSigs();
-			      Sig initialSig = userDefinedSigs.get(0);
-			      Sig hardSig = userDefinedSigs.get(0);
-
-			      for(Sig asi:userDefinedSigs){
-			    	  if((asi.label.indexOf("__M") == -1) && (asi.label.indexOf("__V") == -1) && (asi.label.indexOf("__S") == -1)  ){
-			    		  initialSig = asi;
-			    	  } if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
-			    		  if (needHard == true){
-			    			  needHard = false;
-			    			  hardSig = asi;
-			    		  }
-			    	  }
-			      }
-			      SafeList<Sig> impliedSigs = new SafeList();
-			      int numImplied = (int) Math.round(constrainedness*(userDefinedSigs.size()));
-			      int sigCounter = 0;
-			      for(Sig asi:userDefinedSigs){
-			    	  if(sigCounter == numImplied){
-			    		  break;
-			    	  }
-					  if(!asi.label.equals("this/Nodes") && !asi.label.equals("this/Edges") && !asi.label.equals("this/Source")  && !asi.label.equals("this/Target")){
-				    	  if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
-			    			  impliedSigs.add(asi);
-				    	  }
-					  }
-			    	  sigCounter++;
-			      }
-			      Expr toAdd = null;
-			      Expr nextExpr = null;
-			      if(impliedSigs.size() == 0){
-			    	  toAdd = ExprConstant.TRUE;
-			      } else {
-			    	  String firstLabel = impliedSigs.get(0).label;
-			    	  Sig firstSig = impliedSigs.get(0);
-			    	  toAdd = initialSig.some();
-			    	  nextExpr = toAdd;
-			    	  if(firstLabel.indexOf("__M") >= 0) {
-			    		  //May
-			    		  Expr nextAdd = firstSig.some();
-			    		  toAdd = toAdd.implies(nextAdd);
-			    		  nextExpr = nextAdd;
-			    		  if(firstLabel.indexOf("__V") >= 0){
-			    			  //MV
-			    	    	  String test = "(no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
-			    	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-			    	    	  
-			    			  Expr nextNextAdd = hardExprTest;// firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig)).not());
-			    			  toAdd = toAdd.and(nextAdd.implies(nextNextAdd));
-			    			  nextExpr = nextNextAdd;
-			    			  if(firstLabel.indexOf("__S") >= 0){
-			    				  //MSV
-			    				  Expr nextNextNextAdd = firstSig.cardinality().equal(ExprConstant.ONE);
-			    				  toAdd = toAdd.and(nextNextAdd.implies(nextNextNextAdd));
-			    	    		  nextExpr = nextNextNextAdd;
-
-			    			  }
-			    		  }
-			    	  } else if(firstLabel.indexOf("__S") >= 0){
-						  //S
-			    		  Expr nextAdd = firstSig.cardinality().equal(ExprConstant.ONE);
-			    		  toAdd = toAdd.implies(nextAdd);
-			    		  nextExpr = nextAdd;
-			    		  if(firstLabel.indexOf("__V") >= 0){
-							  //SV
-			    	    	  String test = "(no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
-			    	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-			    			  
-			    			  Expr nextNextAdd = hardExprTest; //firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig)).not());
-			    			  toAdd = toAdd.and(nextAdd.implies(nextNextAdd));
-			        		  nextExpr = nextNextAdd;
-			    		  
-			    		  }
-					  } else if(firstLabel.indexOf("__V") >= 0){
-						  //V
-				    	  String test = "(no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
-				    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-						  Expr nextAdd = hardExprTest; //firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig)).not());
-						  toAdd = toAdd.implies(nextAdd);
-						  nextExpr = nextAdd;
-					  }
-			    	  
-			    	  for(int i = 1; i < impliedSigs.size(); i++){
-			    		  Sig nextSig = impliedSigs.get(i);
-			    		  String nextLabel = nextSig.label;
-			    		  if(nextLabel.indexOf("__M") >= 0) {
-			        		  //May
-			        		  Expr toAddB = nextExpr.implies(impliedSigs.get(i).some());
-			    			  if(toAdd == null) {
-			    				  toAdd = toAddB;
-			    			  } else {
-			    				  toAdd = toAdd.and(toAddB);
-			    			  }
-			        		  if(nextLabel.indexOf("__V") >= 0){
-			        			  //MV
-			        	    	  String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
-			        	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-			        			  toAddB = impliedSigs.get(i).some().implies(hardExprTest);
-			        					  //impliedSigs.get(i).some().implies(nextSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig))).not());
-			        			  
-			        			  
-			        			  if(toAdd == null) {
-			        				  toAdd = toAddB;
-			        			  } else {
-			        				  toAdd = toAdd.and(toAddB);
-			        			  }
-			        			  if(nextLabel.indexOf("__S") >= 0){
-			        				  //MSV
-			        				  toAddB = nextSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig))).not().implies(nextSig.cardinality().equal(ExprConstant.ONE));
-			            			  if(toAdd == null) {
-			            				  toAdd = toAddB;
-			            			  } else {
-			            				  toAdd = toAdd.and(toAddB);
-			            			  }
-			        			  }
-			        		  }
-
-			        	  } else if(nextLabel.indexOf("__S") >= 0){
-			    			  //S
-			        		  Expr toAddB = nextExpr.implies(nextSig.cardinality().equal(ExprConstant.ONE));
-			    			  if(toAdd == null) {
-			    				  toAdd = toAddB;
-			    			  } else {
-			    				  toAdd = toAdd.and(toAddB);
-			    			  }
-			    			  if(nextLabel.indexOf("__V") >= 0){
-			    				  //SV
-			        	    	  String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
-			        	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-			    				  toAddB = nextSig.cardinality().equal(ExprConstant.ONE).implies(hardExprTest);
-			    						  //nextSig.cardinality().equal(ExprConstant.ONE).implies(nextSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig))));
-			        			  if(toAdd == null) {
-			        				  toAdd = toAddB;
-			        			  } else {
-			        				  toAdd = toAdd.and(toAddB);
-			        			  }
-			    			  }
-			    		  } else if(nextLabel.indexOf("__V") >= 0){
-			    			  //V
-			    			  String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
-			    	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-			    			  Expr toAddB = nextExpr.implies(hardExprTest);
-			    			  if(toAdd == null) {
-			    				  toAdd = toAddB;
-			    			  } else {
-			    				  toAdd = toAdd.and(toAddB);
-			    			  }
-			    		  }
-			    	  }
-			      }
-			      
-			      
-			      String hardSigName = hardSig.label.substring(5, hardSig.label.length()); 
-			      String hardSigAnnotation = "";
-			      Expr hardExpr = ExprConstant.TRUE;
-			      if (hardSigName.indexOf("__M") >= 0){
-			    	  hardSigAnnotation = "M";
-			    	  hardExpr = initialSig.some();
-			      } else if (hardSigName.indexOf("__S") >= 0){
-			    	  hardSigAnnotation = "S";
-			    	  hardExpr = initialSig.some();
-			    	  //hardExpr = hardSig.cardinality().equal(ExprConstant.ONE).not();
-			      } else if (hardSigName.indexOf("__V") >= 0){
-			    	  hardSigAnnotation = "V";
-			    	  hardExpr = initialSig.some();
-			    	  //hardExpr = hardSig.in(hardSig).and(hardSig.in((PrimSig.UNIV).minus(hardSig)).not());
-			      }
-
-			      if (toAdd == null) {
-			    	  System.err.println("Error generating WFF constraints...terminating,");
-			    	  return;
-			      } else {
-			    	  toAdd = toAdd; //.implies(hardExpr);
-			    	  //System.err.println("c: " + c + "  " + toAdd.toString());
-			      }
-			      
-			      while (allSigs.iterator().hasNext()) { //Main loop
-			        Sig s = allSigs.iterator().next();
-			        
-			        // Execute the command
-			        System.out.println("============ Testing base + " + s + ": ============");
-			        
-			        Pos insPos = new Pos(filename, 1,1); //Puts predicate in the beginning of the file; TODO: may need to change.
-			        
-			        Expr finalExpr = null;
-			        
-			        //Default variable assignments; the if statement will replace the value for "command" using these.
-			        Command command = new Command(false, scope, -1, -1, finalExpr); //this is the test command.
-			        //System.err.println("checkpoint0 " + s.label);
-			        if ((s.label).indexOf("__M") >= 0){ //May
-			          //Make the expression to check (note: does not require an actual predicate/function to be created)
-			          Expr expr1 = s.some().not();
-			          
-			          //System.err.println("" + world.getAllReachableFacts().toString());
-			          Expr expr1f = expr1.and(world.getAllReachableFacts()).and(toAdd);
-			          command = new Command(false, scope, -1, -1, expr1f); //this is the test command.
-			          //System.err.println("checkpoint0b " + expr1.toString() + " " + command.toString());
-			          //"false" because it's a run, not a check
-			          // -1, -1, -1 for default scope, bitwidth, and sequence length, respectively.
-			          //expr is the expr to check 
-			          
-			          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-			          //System.err.println("checkpoint2");
-			          // Print the outcome
-			          System.out.println(ans);
-			          
-			          if (!(ans.satisfiable())) {
-			            //Change the sig name
-			            System.out.println("Need to change " + s.label + "'s M");
-			            csv = csv + "," + s.label + "," + "M";
-			            //TODO: this currently only reports what should change, but it should actually change it
-			            //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
-			            //Can be done with a find/replace on the final model.
-			            
-			            //Change the set of planned tests
-			            //allSigs.remove(s);
-			            
-			            //Add the sentence
-			            //Need to locate the interesting (MAVO) predicate.
-			            SafeList<Func> allFuncsSafe = world.getAllFunc();
-			            for (Func f: allFuncsSafe) {
-			              if(f.label.equals("MAVO")){
-			                Expr body = f.getBody();
-			                body = body.and(finalExpr);
-			                f.setBody(body);
-			              }
-			            }
-			            //System.err.println("checkpoint3a");
-			            //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
-			          } else {
-			            //Go to next annotation after checking concretization
-			            Iterable<ExprVar> conc = ans.getAllAtoms();
-			            ArrayList<Sig> toRemove = (ArrayList) getAdditionalRemovedSigs(conc, allSigsInitial);
-			            for(Sig sigRemove: toRemove){
-			              allSigs.remove(sigRemove);
-			            }
-			            //allSigs.remove(s);
-			            //System.err.println("checkpoint3b " + s.label );
-			          }
-			          
-			          if ((s.label).indexOf("__S") >= 0) { //It is at least "MS"
-			            
-			            Expr expr1S = s.cardinality().equal(ExprConstant.ONE);// not in all the others
-			            Expr expr1Sf = expr1S.and(world.getAllReachableFacts()).and(toAdd);
-			            command = new Command(false, scope, -1, -1, expr1Sf); //this is the test command.
-			            
-			            A4Solution ansS = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-			            //System.err.println("checkpoint2");
-			            // Print the outcome
-			            System.out.println(ans);
-			            
-			            if (!(ansS.satisfiable())) {
-			              //Change the sig name
-			              System.out.println("Need to change " + s.label + "'s S");
-			              csv = csv + "," + s.label + "," + "S";
-
-			              
-			              
-			              
-			              //Add the sentence
-			              //Need to locate the interesting (MAVO) predicate.
-			              SafeList<Func> allFuncsSafeS = world.getAllFunc();
-			              for (Func f: allFuncsSafeS) {
-			                if(f.label.equals("MAVO")){
-			                  Expr body = f.getBody();
-			                  body = body.and(finalExpr);
-			                  f.setBody(body);
-			                }
-			              }
-			              //System.err.println("checkpoint3a");
-			              //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
-			            } else {
-			              //Go to next annotation after checking concretization
-			              Iterable<ExprVar> concS = ansS.getAllAtoms();
-			              ArrayList<Sig> toRemoveS = (ArrayList) getAdditionalRemovedSigs(concS, allSigsInitial);
-			              for(Sig sigRemove: toRemoveS){
-			                allSigs.remove(sigRemove);
-			              }
-			              //System.err.println("checkpoint3b " + s.label );
-			            }
-			            
-			            
-			            
-			            if ((s.label).indexOf("__V") >= 0) { //It is "MSV"
-			              
-			              String test = "(no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
-			  	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
-			              Expr expr1V = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
-			              Expr expr1Vf = expr1V.and(world.getAllReachableFacts()).and(toAdd);
-			              command = new Command(false, scope, -1, -1, expr1Vf); //this is the test command.
-			              
-			              A4Solution ansV = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-			              //System.err.println("checkpoint2");
-			              // Print the outcome
-			              System.out.println(ans);
-			              
-			              if (!(ansV.satisfiable())) {
-			                //Change the sig name
-			                System.out.println("Need to change " + s.label + "'s V");
-			                csv = csv + "," + s.label + "," + "V";
-			                //TODO: this currently only reports what should change, but it should actually change it
-			                //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
-			                //Can be done with a find/replace on the final model.
-			                
-			                
-			                //Add the sentence
-			                //Need to locate the interesting (MAVO) predicate.
-			                SafeList<Func> allFuncsSafeV = world.getAllFunc();
-			                for (Func f: allFuncsSafeV) {
-			                  if(f.label.equals("MAVO")){
-			                    Expr body = f.getBody();
-			                    body = body.and(finalExpr);
-			                    f.setBody(body);
-			                  }
-			                }
-			                //System.err.println("checkpoint3a");
-			                //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
-			              } else {
-			                //Go to next annotation after checking concretization
-			                Iterable<ExprVar> concV = ansV.getAllAtoms();
-			                ArrayList<Sig> toRemoveV = (ArrayList) getAdditionalRemovedSigs(concV, allSigsInitial);
-			                for(Sig sigRemove: toRemoveV){
-			                  allSigs.remove(sigRemove);
-			                }
-			                //System.err.println("checkpoint3b " + s.label );
-			              }
-			              
-			            }
-			          }
-			          
-			          if ((s.label).indexOf("__V") >= 0) { //It is least "MV"
-			            
-			        	  String test = "(no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
-			  	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
-			            Expr expr1Vb = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
-			            Expr expr1Vbf = expr1Vb.and(world.getAllReachableFacts()).and(toAdd);
-			            command = new Command(false, scope, -1, -1, expr1Vbf); //this is the test command.
-			            
-			            A4Solution ansVb = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-			            //System.err.println("checkpoint2");
-			            // Print the outcome
-			            System.out.println(ans);
-			            
-			            if (!(ans.satisfiable())) {
-			              //Change the sig name
-			              System.out.println("Need to change " + s.label + "'s V");
-			              csv = csv + "," + s.label + "," + "V";
-			              //TODO: this currently only reports what should change, but it should actually change it
-			              //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
-			              //Can be done with a find/replace on the final model.
-			              
-			              
-			              
-			              //Add the sentence
-			              //Need to locate the interesting (MAVO) predicate.
-			              SafeList<Func> allFuncsSafeVb = world.getAllFunc();
-			              for (Func f: allFuncsSafeVb) {
-			                if(f.label.equals("MAVO")){
-			                  Expr body = f.getBody();
-			                  body = body.and(finalExpr);
-			                  f.setBody(body);
-			                }
-			              }
-			              //System.err.println("checkpoint3a");
-			              //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
-			            } else {
-			              //Go to next annotation after checking concretization
-			              Iterable<ExprVar> concVb = ansVb.getAllAtoms();
-			              ArrayList<Sig> toRemoveVb = (ArrayList) getAdditionalRemovedSigs(concVb, allSigsInitial);
-			              for(Sig sigRemove: toRemoveVb){
-			                allSigs.remove(sigRemove);
-			              }
-			              
-			              //System.err.println("checkpoint3b " + s.label );
-			            }
-			            
-			          }
-			          allSigs.remove(s);
-			        } else if ((s.label).indexOf("__S") >= 0) { //Set
-			          Expr expr2 = s.cardinality().equal(ExprConstant.ONE);  //cardinality is one
-			          Expr expr2f = expr2.and(world.getAllReachableFacts()).and(toAdd);
-			          command = new Command(false, scope, -1, -1, expr2f); //this is the test command.
-			          
-			          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-			          //System.err.println("checkpoint2");
-			          // Print the outcome
-			          System.out.println(ans);
-			          
-			          if (!(ans.satisfiable())) {
-			            //Change the sig name
-			            System.out.println("Need to change " + s.label + "'s S");
-			            csv = csv + "," + s.label + "," + "S";
-			            //TODO: this currently only reports what should change, but it should actually change it
-			            //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
-			            //Can be done with a find/replace on the final model.
-			            
-			            
-			            //Add the sentence
-			            //Need to locate the interesting (MAVO) predicate.
-			            SafeList<Func> allFuncsSafe = world.getAllFunc();
-			            for (Func f: allFuncsSafe) {
-			              if(f.label.equals("MAVO")){
-			                Expr body = f.getBody();
-			                body = body.and(finalExpr);
-			                f.setBody(body);
-			              }
-			            }
-			            //System.err.println("checkpoint3a");
-			            //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
-			          } else {
-			            //Go to next annotation after checking concretization
-			            Iterable<ExprVar> conc = ans.getAllAtoms();
-			            ArrayList<Sig> toRemove = (ArrayList) getAdditionalRemovedSigs(conc, allSigsInitial);
-			            for(Sig sigRemove: toRemove){
-			              allSigs.remove(sigRemove);
-			            }
-			            
-			            //System.err.println("checkpoint3b " + s.label );
-			          }
-			          
-			          if ((s.label).indexOf("__V") >= 0) { //It is "VS"
-			        	  String test = "(no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
-			  	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
-			            Expr expr2V = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
-			            Expr expr2Vf = expr2V.and(world.getAllReachableFacts()).and(toAdd);
-			            command = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
-			            
-			            A4Solution ansV = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-			            //System.err.println("checkpoint2");
-			            // Print the outcome
-			            System.out.println(ans);
-			            
-			            if (!(ansV.satisfiable())) {
-			              //Change the sig name
-			              System.out.println("Need to change " + s.label + "'s V");
-			              csv = csv + "," + s.label + "," + "V";
-			              //TODO: this currently only reports what should change, but it should actually change it
-			              //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
-			              //Can be done with a find/replace on the final model.
-			              
-			              
-			              
-			              //Add the sentence
-			              //Need to locate the interesting (MAVO) predicate.
-			              SafeList<Func> allFuncsSafeV = world.getAllFunc();
-			              for (Func f: allFuncsSafeV) {
-			                if(f.label.equals("MAVO")){
-			                  Expr body = f.getBody();
-			                  body = body.and(finalExpr);
-			                  f.setBody(body);
-			                }
-			              }
-			              //System.err.println("checkpoint3a");
-			              //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
-			            } else {
-			              //Go to next annotation after checking concretization
-			              Iterable<ExprVar> concV = ansV.getAllAtoms();
-			              ArrayList<Sig> toRemoveV = (ArrayList) getAdditionalRemovedSigs(concV, allSigsInitial);
-			              for(Sig sigRemove: toRemoveV){
-			                allSigs.remove(sigRemove);
-			              }
-			              
-			              
-			            }
-			          }
-			          
-			          
-			          //Change the set of planned tests
-			          allSigs.remove(s);
-			          
-			        } else if ((s.label).indexOf("__V") >= 0) { //Var
-			        	String test = "(no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
-				    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
-			          Expr expr3 = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
-			          Expr expr3f = expr3.and(world.getAllReachableFacts()).and(toAdd);
-			          command = new Command(false, scope, -1, -1, expr3f); //this is the test command.
-			          
-			          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-			          //System.err.println("checkpoint2");
-			          // Print the outcome
-			          System.out.println(ans);
-			          
-			          if (!(ans.satisfiable())) {
-			            //Change the sig name
-			            System.out.println("Need to change " + s.label + "'s V");
-			            csv = csv + "," + s.label + "," + "V";
-			            //TODO: this currently only reports what should change, but it should actually change it
-			            //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
-			            //Can be done with a strfind/replace on the final model.
-			            
-			            
-			            
-			            //Add the sentence
-			            //Need to locate the interesting (MAVO) predicate.
-			            SafeList<Func> allFuncsSafe = world.getAllFunc();
-			            for (Func f: allFuncsSafe) {
-			              if(f.label.equals("MAVO")){
-			                Expr body = f.getBody();
-			                body = body.and(finalExpr);
-			                f.setBody(body);
-			              }
-			            }
-			            //System.err.println("checkpoint3a");
-			            //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
-			          } else {
-			            //Go to next annotation after checking concretization
-			            Iterable<ExprVar> conc = ans.getAllAtoms();
-			            ArrayList<Sig> toRemove = (ArrayList) getAdditionalRemovedSigs(conc, allSigsInitial);
-			            for(Sig sigRemove: toRemove){
-			              allSigs.remove(sigRemove);
-			            }
-			            
-			            
-			          }
-			          //Change the set of planned tests
-			          allSigs.remove(s);
-			        } else {          //TODO:these for all combinations (or a somewhat smarter method)
-			          allSigs.remove(s);
-			          continue; //Not annotated, not interesting.
-			        }
-			        //System.err.println("checkpoint1");
-			        //System.err.println(world.getAllReachableSigs().size() + "" );
-			        //System.err.println(command.toString() );
-			        /*for (Sig ss: world.getAllReachableSigs()){
-			         System.err.println("" + ss.label);
-			         }*/
-			        
-			      }
-			      try {
-			      FileWriter fstream = new FileWriter(filename+".ar");
-			      
-			      
-			      BufferedWriter outwriter = new BufferedWriter(fstream);
-			      outwriter.write(csv);
-			      outwriter.close();
-			      fstream.close();
-			      } catch (Exception e){
-			    	  System.err.println("Error writing annotation results file.");
-			      }
-			      
-			    }
-				  } catch (Exception e){
-				  
-				  }
-			    System.out.println("Done.");
+		   
+	    // The visualizer (We will initialize it to nonnull when we visualize an Alloy solution)
+	    VizGUI viz = null;
+	    
+	    // Alloy4 sends diagnostic messages and progress reports to the A4Reporter.
+	    // By default, the A4Reporter ignores all these events (but you can extend the A4Reporter to display the event for the user)
+	    A4Reporter rep = new A4Reporter() {
+	      // For example, here we choose to display each "warning" by printing it to System.out
+	      @Override public void warning(ErrorWarning msg) {
+	        System.out.print("Relevance Warning:\n"+(msg.toString().trim())+"\n\n");
+	        System.out.flush();
+	      }
+	    };
+	    
+	    for(String filename:args) {
+	      // Parse+typecheck the model
+	      System.out.println("=========== Parsing+Typechecking "+filename+" =============");
+	      Module world = CompUtil.parseEverything_fromFile(rep, null, filename);
+	      
+	      A4Options options = new A4Options();
+	      options.solver = A4Options.SatSolver.SAT4J; //Solver can be changed, e.g. for UNSAT core computation.
+	      
+	      SafeList<Sig> allSigsInitial = world.getAllSigs();
+	      ArrayList<Sig> allSigs = (ArrayList)(world.getAllSigs()).makeCopy(); //This is annotations(P) (and more, which will be skipped)
+	      
+	      while (allSigs.iterator().hasNext()) { //Main loop
+	        Sig s = allSigs.iterator().next();
+	        
+	        // Execute the command
+	        System.out.println("============ Testing base + " + s + ": ============");
+	        
+	        Pos insPos = new Pos(filename, 1,1); //Puts predicate in the beginning of the file; TODO: may need to change.
+	        
+	        Expr finalExpr = null;
+	        
+	        //Default variable assignments; the if statement will replace the value for "command" using these.
+	        Command command = new Command(false, -1, -1, -1, finalExpr); //this is the test command.
+	        //System.err.println("checkpoint0 " + s.label);
+	        if ((s.label).indexOf("__M") >= 0){ //May
+	          //Make the expression to check (note: does not require an actual predicate/function to be created)
+	          Expr expr1 = s.some().not();
+	          
+	          //System.err.println("" + world.getAllReachableFacts().toString());
+	          Expr expr1f = expr1.and(world.getAllReachableFacts());
+	          command = new Command(false, -1, -1, -1, expr1f); //this is the test command.
+	          //System.err.println("checkpoint0b " + expr1.toString() + " " + command.toString());
+	          //"false" because it's a run, not a check
+	          // -1, -1, -1 for default scope, bitwidth, and sequence length, respectively.
+	          //expr is the expr to check 
+	          
+	          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+	          //System.err.println("checkpoint2");
+	          // Print the outcome
+	          System.out.println(ans);
+	          
+	          if (!(ans.satisfiable())) {
+	            //Change the sig name
+	            System.out.println("Need to change " + s.label + "'s M");
+	            //TODO: this currently only reports what should change, but it should actually change it
+	            //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
+	            //Can be done with a find/replace on the final model.
+	            
+	            //Change the set of planned tests
+	            //allSigs.remove(s);
+	            
+	            //Add the sentence
+	            //Need to locate the interesting (MAVO) predicate.
+	            SafeList<Func> allFuncsSafe = world.getAllFunc();
+	            for (Func f: allFuncsSafe) {
+	              if(f.label.equals("MAVO")){
+	                Expr body = f.getBody();
+	                body = body.and(finalExpr);
+	                f.setBody(body);
+	              }
+	            }
+	            //System.err.println("checkpoint3a");
+	            //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
+	          } else {
+	            //Go to next annotation after checking concretization
+	            Iterable<ExprVar> conc = ans.getAllAtoms();
+	            ArrayList<Sig> toRemove = (ArrayList) getAdditionalRemovedSigs(conc, allSigsInitial);
+	            for(Sig sigRemove: toRemove){
+	              allSigs.remove(sigRemove);
+	            }
+	            //allSigs.remove(s);
+	            //System.err.println("checkpoint3b " + s.label );
+	          }
+	          
+	          if ((s.label).indexOf("__S") >= 0) { //It is at least "MS"
+	            
+	            Expr expr1S = s.cardinality().equal(ExprConstant.ONE);// not in all the others
+	            Expr expr1Sf = expr1S.and(world.getAllReachableFacts());
+	            command = new Command(false, -1, -1, -1, expr1Sf); //this is the test command.
+	            
+	            A4Solution ansS = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+	            //System.err.println("checkpoint2");
+	            // Print the outcome
+	            System.out.println(ans);
+	            
+	            if (!(ansS.satisfiable())) {
+	              //Change the sig name
+	              System.out.println("Need to change " + s.label + "'s S");
+	              //TODO: this currently only reports what should change, but it should actually change it
+	              //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
+	              //Can be done with a find/replace on the final model.
+	              
+	              
+	              
+	              //Add the sentence
+	              //Need to locate the interesting (MAVO) predicate.
+	              SafeList<Func> allFuncsSafeS = world.getAllFunc();
+	              for (Func f: allFuncsSafeS) {
+	                if(f.label.equals("MAVO")){
+	                  Expr body = f.getBody();
+	                  body = body.and(finalExpr);
+	                  f.setBody(body);
+	                }
+	              }
+	              //System.err.println("checkpoint3a");
+	              //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
+	            } else {
+	              //Go to next annotation after checking concretization
+	              Iterable<ExprVar> concS = ansS.getAllAtoms();
+	              ArrayList<Sig> toRemoveS = (ArrayList) getAdditionalRemovedSigs(concS, allSigsInitial);
+	              for(Sig sigRemove: toRemoveS){
+	                allSigs.remove(sigRemove);
+	              }
+	              //System.err.println("checkpoint3b " + s.label );
+	            }
+	            
+	            
+	            
+	            if ((s.label).indexOf("__V") >= 0) { //It is "MSV"
+	              
+	              Expr expr1V = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
+	              Expr expr1Vf = expr1V.and(world.getAllReachableFacts());
+	              command = new Command(false, -1, -1, -1, expr1Vf); //this is the test command.
+	              
+	              A4Solution ansV = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+	              //System.err.println("checkpoint2");
+	              // Print the outcome
+	              System.out.println(ans);
+	              
+	              if (!(ansV.satisfiable())) {
+	                //Change the sig name
+	                System.out.println("Need to change " + s.label + "'s V");
+	                //TODO: this currently only reports what should change, but it should actually change it
+	                //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
+	                //Can be done with a find/replace on the final model.
+	                
+	                
+	                //Add the sentence
+	                //Need to locate the interesting (MAVO) predicate.
+	                SafeList<Func> allFuncsSafeV = world.getAllFunc();
+	                for (Func f: allFuncsSafeV) {
+	                  if(f.label.equals("MAVO")){
+	                    Expr body = f.getBody();
+	                    body = body.and(finalExpr);
+	                    f.setBody(body);
+	                  }
+	                }
+	                //System.err.println("checkpoint3a");
+	                //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
+	              } else {
+	                //Go to next annotation after checking concretization
+	                Iterable<ExprVar> concV = ansV.getAllAtoms();
+	                ArrayList<Sig> toRemoveV = (ArrayList) getAdditionalRemovedSigs(concV, allSigsInitial);
+	                for(Sig sigRemove: toRemoveV){
+	                  allSigs.remove(sigRemove);
+	                }
+	                //System.err.println("checkpoint3b " + s.label );
+	              }
+	              
+	            }
+	          }
+	          
+	          if ((s.label).indexOf("__V") >= 0) { //It is least "MV"
+	            
+	            Expr expr1Vb = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
+	            Expr expr1Vbf = expr1Vb.and(world.getAllReachableFacts());
+	            command = new Command(false, -1, -1, -1, expr1Vbf); //this is the test command.
+	            
+	            A4Solution ansVb = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+	            //System.err.println("checkpoint2");
+	            // Print the outcome
+	            System.out.println(ans);
+	            
+	            if (!(ans.satisfiable())) {
+	              //Change the sig name
+	              System.out.println("Need to change " + s.label + "'s V");
+	              //TODO: this currently only reports what should change, but it should actually change it
+	              //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
+	              //Can be done with a find/replace on the final model.
+	              
+	              
+	              
+	              //Add the sentence
+	              //Need to locate the interesting (MAVO) predicate.
+	              SafeList<Func> allFuncsSafeVb = world.getAllFunc();
+	              for (Func f: allFuncsSafeVb) {
+	                if(f.label.equals("MAVO")){
+	                  Expr body = f.getBody();
+	                  body = body.and(finalExpr);
+	                  f.setBody(body);
+	                }
+	              }
+	              //System.err.println("checkpoint3a");
+	              //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
+	            } else {
+	              //Go to next annotation after checking concretization
+	              Iterable<ExprVar> concVb = ansVb.getAllAtoms();
+	              ArrayList<Sig> toRemoveVb = (ArrayList) getAdditionalRemovedSigs(concVb, allSigsInitial);
+	              for(Sig sigRemove: toRemoveVb){
+	                allSigs.remove(sigRemove);
+	              }
+	              
+	              //System.err.println("checkpoint3b " + s.label );
+	            }
+	            
+	          }
+	          allSigs.remove(s);
+	        } else if ((s.label).indexOf("__S") >= 0) { //Set
+	          Expr expr2 = s.cardinality().equal(ExprConstant.ONE);  //cardinality is one
+	          Expr expr2f = expr2.and(world.getAllReachableFacts());
+	          command = new Command(false, -1, -1, -1, expr2f); //this is the test command.
+	          
+	          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+	          //System.err.println("checkpoint2");
+	          // Print the outcome
+	          System.out.println(ans);
+	          
+	          if (!(ans.satisfiable())) {
+	            //Change the sig name
+	            System.out.println("Need to change " + s.label + "'s S");
+	            //TODO: this currently only reports what should change, but it should actually change it
+	            //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
+	            //Can be done with a find/replace on the final model.
+	            
+	            
+	            //Add the sentence
+	            //Need to locate the interesting (MAVO) predicate.
+	            SafeList<Func> allFuncsSafe = world.getAllFunc();
+	            for (Func f: allFuncsSafe) {
+	              if(f.label.equals("MAVO")){
+	                Expr body = f.getBody();
+	                body = body.and(finalExpr);
+	                f.setBody(body);
+	              }
+	            }
+	            //System.err.println("checkpoint3a");
+	            //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
+	          } else {
+	            //Go to next annotation after checking concretization
+	            Iterable<ExprVar> conc = ans.getAllAtoms();
+	            ArrayList<Sig> toRemove = (ArrayList) getAdditionalRemovedSigs(conc, allSigsInitial);
+	            for(Sig sigRemove: toRemove){
+	              allSigs.remove(sigRemove);
+	            }
+	            
+	            //System.err.println("checkpoint3b " + s.label );
+	          }
+	          
+	          if ((s.label).indexOf("__V") >= 0) { //It is "VS"
+	            Expr expr2V = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
+	            Expr expr2Vf = expr2V.and(world.getAllReachableFacts());
+	            command = new Command(false, -1, -1, -1, expr2Vf); //this is the test command.
+	            
+	            A4Solution ansV = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+	            //System.err.println("checkpoint2");
+	            // Print the outcome
+	            System.out.println(ans);
+	            
+	            if (!(ansV.satisfiable())) {
+	              //Change the sig name
+	              System.out.println("Need to change " + s.label + "'s V");
+	              //TODO: this currently only reports what should change, but it should actually change it
+	              //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
+	              //Can be done with a find/replace on the final model.
+	              
+	              
+	              
+	              //Add the sentence
+	              //Need to locate the interesting (MAVO) predicate.
+	              SafeList<Func> allFuncsSafeV = world.getAllFunc();
+	              for (Func f: allFuncsSafeV) {
+	                if(f.label.equals("MAVO")){
+	                  Expr body = f.getBody();
+	                  body = body.and(finalExpr);
+	                  f.setBody(body);
+	                }
+	              }
+	              //System.err.println("checkpoint3a");
+	              //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
+	            } else {
+	              //Go to next annotation after checking concretization
+	              Iterable<ExprVar> concV = ansV.getAllAtoms();
+	              ArrayList<Sig> toRemoveV = (ArrayList) getAdditionalRemovedSigs(concV, allSigsInitial);
+	              for(Sig sigRemove: toRemoveV){
+	                allSigs.remove(sigRemove);
+	              }
+	              
+	              
+	            }
+	          }
+	          
+	          
+	          //Change the set of planned tests
+	          allSigs.remove(s);
+	          
+	        } else if ((s.label).indexOf("__V") >= 0) { //Var
+	          
+	          Expr expr3 = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
+	          Expr expr3f = expr3.and(world.getAllReachableFacts());
+	          command = new Command(false, -1, -1, -1, expr3f); //this is the test command.
+	          
+	          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+	          //System.err.println("checkpoint2");
+	          // Print the outcome
+	          System.out.println(ans);
+	          
+	          if (!(ans.satisfiable())) {
+	            //Change the sig name
+	            System.out.println("Need to change " + s.label + "'s V");
+	            //TODO: this currently only reports what should change, but it should actually change it
+	            //It will add the constraint, effectively removing the annotation, but the name changing would be far more intuitive
+	            //Can be done with a find/replace on the final model.
+	            
+	            
+	            
+	            //Add the sentence
+	            //Need to locate the interesting (MAVO) predicate.
+	            SafeList<Func> allFuncsSafe = world.getAllFunc();
+	            for (Func f: allFuncsSafe) {
+	              if(f.label.equals("MAVO")){
+	                Expr body = f.getBody();
+	                body = body.and(finalExpr);
+	                f.setBody(body);
+	              }
+	            }
+	            //System.err.println("checkpoint3a");
+	            //world.addGlobal("MAVO", f); //TODO: f is not an EXPR, so this method fails. find better/correct way to do this.
+	          } else {
+	            //Go to next annotation after checking concretization
+	            Iterable<ExprVar> conc = ans.getAllAtoms();
+	            ArrayList<Sig> toRemove = (ArrayList) getAdditionalRemovedSigs(conc, allSigsInitial);
+	            for(Sig sigRemove: toRemove){
+	              allSigs.remove(sigRemove);
+	            }
+	            
+	            
+	          }
+	          //Change the set of planned tests
+	          allSigs.remove(s);
+	        } else {          //TODO:these for all combinations (or a somewhat smarter method)
+	          allSigs.remove(s);
+	          continue; //Not annotated, not interesting.
+	        }
+	        //System.err.println("checkpoint1");
+	        //System.err.println(world.getAllReachableSigs().size() + "" );
+	        //System.err.println(command.toString() );
+	        /*for (Sig ss: world.getAllReachableSigs()){
+	         System.err.println("" + ss.label);
+	         }*/
+	        
+	      }
+	    }
 	}
 
 	private static ArrayList<Sig> getAdditionalRemovedSigs(Iterable<ExprVar> in, SafeList<Sig> sigs){
