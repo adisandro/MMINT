@@ -1233,7 +1233,19 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			      
 			    }
 				  } catch (Exception e){
-				  
+					  System.err.println("Oh no: ");
+					  e.printStackTrace();
+					  try {
+					      FileWriter fstream = new FileWriter("error.log");
+					      
+					      
+					      BufferedWriter outwriter = new BufferedWriter(fstream);
+					      outwriter.write("Error! " + e.getMessage());
+					      outwriter.close();
+					      fstream.close();
+					  }catch (Exception eee) {
+						  System.err.println("Error writing error log...." + e.getMessage());
+					  }
 				  }
 			    System.out.println("Done.");
 	}
