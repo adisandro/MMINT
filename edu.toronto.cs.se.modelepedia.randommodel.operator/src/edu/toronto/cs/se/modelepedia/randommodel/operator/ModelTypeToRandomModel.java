@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -69,6 +70,11 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
+		
+		if (minInstances > maxInstances) {
+			throw new MMTFException("minInstances (" + minInstances + ") > maxInstances (" + maxInstances + ").");
+		}
+		
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
 		if (subdir != null) {
@@ -112,6 +118,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		RandomModel root = (RandomModel) newElement.getRoot();
 		root.setDefaultMinimumNumberOfInstances(minInstances);
 		root.setDefaultMaximumNumberOfInstances(maxInstances);
+		
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI.createPlatformResourceURI(newElement.getUri(), true));
 		resource.getContents().add(root);

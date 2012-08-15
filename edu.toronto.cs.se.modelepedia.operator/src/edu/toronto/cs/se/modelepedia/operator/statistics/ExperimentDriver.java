@@ -271,12 +271,35 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		// outer cycle: vary experiment setup
 		for (int i = 0; i < numExperiments; i++) {
 			EList<Model> outerParameters = actualParameters;
+			boolean minMax = false;
 			for (int op = 0; op < experimentOperators.length; op++) {
-				outerParameters = executeOperator(i, -1, op, experimentOperators[op], outerParameters);
+				try {
+					outerParameters = executeOperator(i, -1, op, experimentOperators[op], outerParameters);
+				} catch (MMTFException e) {
+					minMax = true;
+					MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + 
+										" failed: minInstances > maxInstances", e);
+					break;
+				}
 			}
+			
 			ExperimentSamples[] experiment = new ExperimentSamples[outputs.length];
 			for (int out = 0; out < outputs.length; out++) {
 				experiment[out] = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
+			}
+			
+			if (minMax) {
+				// save output
+				Properties outputProperties = new Properties();
+				writeProperties(outputProperties, experiment, i, maxSamples);
+				MultiModelOperatorUtils.writePropertiesFile(
+					outputProperties,
+					this,
+					model,
+					"experiment" + i,
+					MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+				);
+				continue;
 			}
 
 			// inner cycle: experiment setup is fixed, vary randomness and statistics

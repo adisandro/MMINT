@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.mmtf"
       label="MMTF"
-      version="0.9.18"
+      version="0.9.19"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
