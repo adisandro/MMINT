@@ -67,598 +67,804 @@ public class AlloyChecker extends OperatorExecutableImpl {
 	private static int scope;
 
 	private static void makeANF(String[] args) throws Err {
-		  try {
-	    int loopCounter = 0;
-	    System.out.println("Constrainedness: " + constrainedness);
-	    System.out.println("Scope: " + scope);
+		try {
+			int scope = 10;
+			int loopCounter = 0;
+			System.out.println("Constrainedness: " + constrainedness);
 
-	    // The visualizer (We will initialize it to nonnull when we visualize an Alloy solution)
-	    VizGUI viz = null;
-	    
-	    // Alloy4 sends diagnostic messages and progress reports to the A4Reporter.
-	    // By default, the A4Reporter ignores all these events (but you can extend the A4Reporter to display the event for the user)
-	    A4Reporter rep = new A4Reporter() {
-	      // For example, here we choose to display each "warning" by printing it to System.out
-	      @Override public void warning(ErrorWarning msg) {
-	        System.out.print("Relevance Warning:\n"+(msg.toString().trim())+"\n\n");
-	        System.out.flush();
-	      }
-	    };
-	    
-	    int numFiles = args.length;
-	    /*
-	    if (numFiles % 2 == 1){
-	      return; //ERROR
-	    }
-	    */
-	    for(int i = 0; i < numFiles; i++) {
-	      String filename = args[i];
-	      String csv = "START";
-	      
+			// The visualizer (We will initialize it to nonnull when we visualize an Alloy solution)
+			VizGUI viz = null;
 
-	      // Parse+typecheck the model
-	      System.out.println("=========== Parsing+Typechecking "+filename+" =============");
-	      Module world = CompUtil.parseEverything_fromFile(rep, null, filename); //originally filname.
-	      
-	      SafeList<Sig> userDefinedSigs = world.getAllSigs();
-	      Sig initialSig = userDefinedSigs.get(0);
-	      Sig hardSig = userDefinedSigs.get(0);
+			// Alloy4 sends diagnostic messages and progress reports to the A4Reporter.
+			// By default, the A4Reporter ignores all these events (but you can extend the A4Reporter to display the event for the user)
+			A4Reporter rep = new A4Reporter() {
+				// For example, here we choose to display each "warning" by printing it to System.out
+				@Override public void warning(ErrorWarning msg) {
+					System.out.print("Relevance Warning:\n"+(msg.toString().trim())+"\n\n");
+					System.out.flush();
+				}
+			};
 
-	      boolean needHard = true;
-	      for(Sig asi:userDefinedSigs){
-	    	  if((asi.label.indexOf("__M") == -1) && (asi.label.indexOf("__V") == -1) && (asi.label.indexOf("__S") == -1)  ){
-	    		  initialSig = asi;
-	    	  }
-	    	  if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
-	    		  if (needHard == true){
-	    			  needHard = false;
-	    			  hardSig = asi;
-	    		  }
-	    	  }
-	      }
-	      SafeList<Sig> impliedSigs = new SafeList();
-	      int numImplied = (int) Math.round(constrainedness*(userDefinedSigs.size()));
-	      int sigCounterLoop = 0;
-	      for(Sig asi:userDefinedSigs){
-	    	  if(sigCounterLoop == numImplied){
-	    		  break;
-	    	  }
-	    	  if(!asi.equals(initialSig)){
-	    		  if(!asi.label.equals("this/Nodes") && !asi.label.equals("this/Edges") && !asi.label.equals("this/Source")  && !asi.label.equals("this/Target")){
-	    	    	  if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
-	        			  impliedSigs.add(asi);
-	    	    	  }
-	    		  }
-	    	  }
-	    	  sigCounterLoop++;
-	      }
-	      Expr toAdd = null;
-	      String toAddStr = "";
-	      if(impliedSigs.size() == 0){
-	    	  toAdd = ExprConstant.TRUE;
-	    	  toAddStr = "false";//never actually gets "False", is overriden later
-	      } else if(impliedSigs.size() == 1){
-	    	//In this case; only the hard sig can be determined.
-	    	  toAdd = ExprConstant.TRUE;
-	    	  toAddStr = "false"; //never actually gets "False", is overriden later
-	      } else {
-	    	  String firstLabel = impliedSigs.get(1).label;
-	    	  //System.err.println("firstLabel: " + firstLabel);
-	    	  Sig firstSig = impliedSigs.get(0);
-	    	  if(firstLabel.indexOf("__M") >= 0) {
-	    		  //May
-	    		  toAdd = impliedSigs.get(1).some();
-	    		  toAddStr = toAddStr + "(some " + firstLabel + ")"; 
-	    		  if(firstLabel.indexOf("__V") >= 0){
-	    			  //MV
-	    	    	  String test = "(no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
-	    	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-	    			  toAdd = toAdd.or(hardExprTest);//toAdd.or(firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig))).not());
-	    			  toAddStr = toAddStr + " or " + test; //"or (" + firstLabel + " in " + firstLabel + " and (! " + firstLabel + " in univ - " + firstLabel +"))";
-	    			  if(firstLabel.indexOf("__S") >= 0){
-	    				  //MSV
-	    				  toAdd.or(firstSig.cardinality().equal(ExprConstant.ONE).not());
-	    				  toAddStr = toAddStr + "or (#" + firstLabel + " = 1)";
-	    			  }
-	    		  }
-	    	  } else if(firstLabel.indexOf("__S") >= 0){
-				  //S
-	    		  toAdd = firstSig.cardinality().equal(ExprConstant.ONE).not();
-	    		  toAddStr = toAddStr + "(#" + firstLabel + " = 1)";
-				  if(firstLabel.indexOf("__V") >= 0){
-					  //SV
-			    	  String test = "(no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
-			    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-					  toAdd = toAdd.or(hardExprTest);//toAdd.or(firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig))).not());
-	    			  toAddStr = toAddStr + " or " + test;//"or (" + firstLabel + " in " + firstLabel + " and (! " + firstLabel + " in univ - " + firstLabel +"))";
-				  }
-			  } else if(firstLabel.indexOf("__V") >= 0){
-				  //V
-		    	  String test = "(no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
-		    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-				  toAdd = hardExprTest;//firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig)).not());
-				  toAddStr = toAddStr + test; //"(" + firstLabel + " in " + firstLabel + " and (! " + firstLabel + " in univ - " + firstLabel +"))";
-			  }
-	    	  
-	    	  for(int q = 2; q < impliedSigs.size(); q++){
-	    		  Sig nextSig = impliedSigs.get(q);
-	    		  String nextLabel = nextSig.label;
-	    		  //System.err.println("nextLabel: " + nextLabel);
-	    		  if(nextLabel.indexOf("__M") >= 0) {
-	        		  //May
-	        		  Expr toAddB = impliedSigs.get(q).some().not();
-	        		  toAddStr = toAddStr + "or (some " + nextLabel + ")"; 
-	        		  if(nextLabel.indexOf("__V") >= 0){
-	        			  //MV
-	        	    	  String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
-	        	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-	        	    	  
-	        			  toAddB = toAdd.or(hardExprTest); //toAddB.or(nextSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig))).not());
-	        			  toAddStr = toAddStr + " or " + test; //"or (" + nextLabel + " in " + nextLabel + " and (! " + nextLabel + " in univ - " + nextLabel +"))";
-	        			  if(nextLabel.indexOf("__S") >= 0){
-	        				  //MSV
-	        				  toAddB = toAddB.or(nextSig.cardinality().equal(ExprConstant.ONE).not());
-	        	    		  toAddStr = toAddStr + "or (#" + nextLabel + " = 1)";
-
-	        			  }
-	        		  }
-	    			  if(toAdd == null) {
-	    				  toAdd = toAddB;
-	    			  } else {
-	    				  toAdd = toAdd.or(toAddB);
-	    			  }
-	        	  } else if(nextLabel.indexOf("__S") >= 0){
-	    			  //S
-	        		  Expr toAddB = nextSig.cardinality().equal(ExprConstant.ONE);
-		    		  toAddStr = toAddStr + "or (#" + nextLabel + " = 1)";
-
-	    			  if(nextLabel.indexOf("__V") >= 0){
-	    				  //SV
-	        	    	  String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
-	        	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-	    				  toAddB = hardExprTest; //toAddB.or(nextSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig))));
-	    				  toAddStr = toAddStr + " or " + test;//+ "or (" + nextLabel + " in " + nextLabel + " and (! " + nextLabel + " in univ - " + nextLabel +"))";
-	    			  }
-	    			  if(toAdd == null) {
-	    				  toAdd = toAddB;
-	    			  } else {
-	    				  toAdd = toAdd.or(toAddB);
-	    			  }
-	    		  } else if(nextLabel.indexOf("__V") >= 0){
-	    			  //V
-	    	    	  String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
-	    	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-	    	    	 
-	    			  Expr toAddB = hardExprTest; //firstSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig)));
-	    			  toAddStr = toAddStr + " or " + test; //toAddStr + "or (" + nextLabel + " in " + nextLabel + " and (! " + nextLabel + " in univ - " + nextLabel +"))";
-	    			  if(toAdd == null) {
-	    				  toAdd = toAddB;
-	    			  } else {
-	    				  toAdd = toAdd.or(toAddB);
-	    			  }
-	    		  }
-	    	  }
-	      }
-	      
-	      String hardSigName = hardSig.label.substring(5, hardSig.label.length()); 
-	      String hardSigAnnotation = "";
-	      Expr hardExpr = ExprConstant.TRUE;
-	      String hardStrToAdd = "";
-	      if (hardSigName.indexOf("__M") >= 0){
-	    	  hardSigAnnotation = "M";
-	    	  hardExpr = hardSig.some().not();
-			  hardStrToAdd = "(some " + hardSig.label + ")";
-	      } else if (hardSigName.indexOf("__S") >= 0){
-	    	  hardSigAnnotation = "S";
-			  hardStrToAdd = "(#" + hardSig.label + " = 1)";
-	    	  hardExpr = hardSig.cardinality().equal(ExprConstant.ONE).not();
-	      } else if (hardSigName.indexOf("__V") >= 0){
-	    	  hardSigAnnotation = "V";
-	    	  String test = "(no x: Nodes | x in " + hardSig.label + " and x not in (univ-" + hardSig.label + "))";
-	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);
-			  hardStrToAdd = test; //"(" +  hardSig.label+ " in " +  hardSig.label+ " and (! " +  hardSig.label+ " in univ - " +  hardSig.label +"))";
-	    	  //hardExpr = hardSig.in(hardSig).and(hardSig.in((PrimSig.UNIV).minus(hardSig)).not());
-			  hardExpr = hardExprTest;
-	      }
-	      
-	      if (toAdd == null) {
-	    	  System.err.println("Error generating WFF constraints...terminating,");
-	    	  return;
-	      } else {
-	    	  toAddStr = "(" + toAddStr + ") implies (not " + hardStrToAdd + ")";
-	    	  //System.err.println(toAddStr);
-	    	  //System.err.println("a. Hardsig is: " + hardSig.label + " WFF is: " + toAdd.toString());
-	    	  toAdd = toAdd.implies(hardExpr.not());
-	          if(impliedSigs.size() == 0){
-	        	  toAddStr = hardStrToAdd + " implies ( " + hardStrToAdd + ")";
-	          } else if(impliedSigs.size() == 1){
-	        	  toAddStr = hardStrToAdd + " implies ( " + hardStrToAdd + ")";
-	          } 
-	          System.err.println(toAddStr);
-	    	  //System.err.println("b. Hardsig is: " + hardSig.label + " WFF is: " + toAdd.toString());
-
-	      }
-	      
-	      //get list of other annotations
-	      int maxNumAnnotations = 1; //3 * world.getAllSigs().size();
-	      String[] elements = new String[maxNumAnnotations];
-	      String[] annotations = new String[maxNumAnnotations];
-	      
-	      
-	      elements[0] = hardSigName;
-	      annotations[0] = hardSigAnnotation;
-	      
-	      //Scanner sc = new Scanner(new File(args[i+1]));
-	      int scanCounter = 1;
-	      int arrayPosCounter = 1;
-	      
-	      /*
-	      while (sc.hasNext()) {
-	        if (scanCounter % 2 == 0){
-	          String element = sc.next();
-	          elements[arrayPosCounter] = element;
-	        } else {
-	          String annotation = sc.next();
-	          annotations[arrayPosCounter] = annotation;
-	          arrayPosCounter++;
-	        }
-	        scanCounter++;
-	      }
-	      sc.close();
-	      */
-	      //System.err.println("Checkpoint: scanned");
-	      
-	      A4Options options = new A4Options();
-	      options.solver = A4Options.SatSolver.MiniSatProverJNI; //Solver can be changed, e.g. for UNSAT core computation.
-	      
-	      SafeList<Sig> allSigsInitial = world.getAllSigs();
-	      ArrayList<Sig> allSigs = (ArrayList)(world.getAllSigs()).makeCopy(); //This is annotations(P) (and more, which will be skipped)
-	      
-	      for(int j = 0; j < arrayPosCounter; j++){
-	        //main loop
-	        System.out.println("============ Testing base + " + elements[j] + "'s \"" + annotations[j] + "\": ============");
-	        //main if statement:
-	        Expr finalExpr = null;
-	        Command command = new Command(false, scope, -1, -1, finalExpr); //this is the test command.
-	        //System.out.println("First command built.");
-	        //  Sig.PrimSig s = new Sig.PrimSig(elements[j]);
-	        Sig s = null;
-	        for (Sig sigs: world.getAllReachableSigs()){
-	          //System.err.println(sigs.label);
-	          if(sigs.label.equals("this/"+elements[j])){
-	            s = sigs;
-	          }
-	        }
-	        
-	        if (s == null){
-	          System.out.println("element in list was not found in model...terminating -- rebuild list and try again");
-	          return;
-	          //This should never happen.
-	        }
-	        //System.err.println(elements[j] + " --> " + annotations[j]);
-	        if (annotations[j].equals("M")){
-	          Expr expr1 = s.some().not();
-	          Expr expr1f = expr1.and(world.getAllReachableFacts()).and(toAdd);
-	          command = new Command(false, scope, -1, -1, expr1f);
-	        } else if (annotations[j].equals("S")){
-	          Expr expr2 = s.cardinality().equal(ExprConstant.ONE);  //cardinality is one
-	          Expr expr2f = expr2.and(world.getAllReachableFacts()).and(toAdd);
-	          command = new Command(false, scope, -1, -1, expr2f); //this is the test command.
-	        } else { //"V"
-	          Expr expr2V = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
-	          Expr expr2Vf = expr2V.and(world.getAllReachableFacts()).and(toAdd);
-	          command = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
-	        }
-	        
-	        SafeList<CommandScope> scopes = new SafeList();
-	        SafeList<Sig> scopeSigs = world.getAllSigs();
-	        for(Sig scopeSig: scopeSigs){
-	  		  if(!scopeSig.label.equals("this/Nodes") && !scopeSig.label.equals("this/Edges") && 
-	  				  !scopeSig.label.equals("this/Source")  && !scopeSig.label.equals("this/Target")){
-	  			  CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSig, false, 0, 5, 1);
-	  			  scopes.add(ts);
-	  		  } else if (scopeSig.label.equals("this/Nodes") || scopeSig.label.equals("this/Edges")){
-	  			  CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSig, false, 25, 30, 1);
-	  			  scopes.add(ts);
-	  		  }
-	        }
-	        //System.out.println(command.bitwidth + "");
-	        command.change(scopes.makeConstList());
-	        //System.err.println("Checkpoint: before first solve; " + command.toString() + "; " + command.formula.toString());
-	        A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-	        
-	        //System.err.println("Checkpoint: after first solve");
-	        if(ans.satisfiable()){
-	          System.out.println("No propogation for this annotation.");
-	        } else {
-	          //Main else
-	          
-	          HashSet<String> S = new HashSet();
-	          int globalSigCounter = 0;
-	          while(!(ans.satisfiable())){
-	            
-	            //Main while
-	            
-	            //Pair<Set<Pos>,Set<Pos>> uc = ans.highLevelCore();
-	            //System.err.println(uc.toString());
-	            //System.err.println("Main loop---");
-	            Set<Pos> uc = ans.lowLevelCore();
-	            //System.out.println("UNSAT Core: " + uc.toString());
-	            
-//	               * New plan: rewrite the file with appropriate slack, causing reparsing, and then check again.
-//	               * So:
-//	               * 1. a. Check original. Get UNSAT core.
-//	               *    b. Get list of functions (in reality, predicates).
-//	               *    c. See if the UNSAT core lines are within a predicate.
-//	               *    d. Record any such predicate.
-//	               * 2. Weaken calls to UNSAT core predicates.
-//	               * 3. Rewrite file with weakened calls.
-//	               * 4. Use that file to check again.
-//	               */
-	            int testCounter = 0;
-	            HashSet<String> relaxable = new HashSet(); //This is effectively "c" in the pseudo-code.
-	            for(Pos p: uc){
-	              
-	              //UNSAT core = uc
-	              //System.out.println("New pos in uc " + uc.size() + " actual: " + (testCounter++));
-	              
-	              SafeList<Func> preds = world.getAllFunc();
-	              for(Func f: preds){
-	                Pos fSpan = f.span();
-	                //System.err.println(fSpan.y + " " + fSpan.y2 + "<-- function spans.  positions in unsat core -->" + p.y + " " + p.y2);
-	                if (fSpan.y <= p.y && p.y2 <= fSpan.y2){
-	                  //The uc sentence is in this predicate.
-	                  String formatted = f.label.substring(5, f.label.length());// + "[]";
-	                  //System.out.println(formatted);
-	                  if(formatted.startsWith("exists_") || formatted.startsWith("unique_") || formatted.startsWith("distinct_")){
-	                    //Now we check to see if it must be hard.
-//	                    for(int q = 0; q < arrayPosCounter; q++){
-//	                      if(formatted.startsWith("distinct_")){
-//	                        String elementName = formatted.substring(0,9);
-//	                        if(elements[q].equals(elementName)){
-//	                          if(annotations[q].equals("V")){
-//	                          } else {
-//	                            relaxable.add(formatted);
-//	                          }
-//	                        }
-//	                      } else if (formatted.startsWith("unique_")){
-//	                        String elementName = formatted.substring(0,7);
-//	                        if(elements[q].equals(elementName)){
-//	                          if(annotations[q].equals("S")){
-//	                          } else {
-//	                            relaxable.add(formatted);
-//	                          }
-//	                        }                        
-//	                      } else if (formatted.startsWith("exists_")){
-//	                        String elementName = formatted.substring(0,7);
-//	                        if(elements[q].equals(elementName)){
-//	                          if(annotations[q].equals("M")){
-//	                          } else {
-//	                            relaxable.add(formatted);
-//	                          }
-//	                        }
-//	                      }
-//	                         }
-	                	  relaxable.add(formatted);
-	                	  //System.out.println("added: " + formatted);
-	                  }
-	                  //System.out.println(f.toString() + "        " + f.label + "        " + formatted);
-	                }
-	              }
-	            }                  
-	            
-	            if (relaxable.size() == 0){ //"if S' = \emptyset then return error
-	              System.out.println("UNSOLVABLE --- Cannot propagate using solely additional annotations");
-	              return;
-	            }
-	            
-	            for(String stri: relaxable){
-	              S.add(stri);
-	            }
-	            
-	            
-	            // Scanner modelReader = new Scanner(new File(filename));
-	            
-	            Scanner modelReader = null;
-	            if(loopCounter == 0){
-	            	modelReader = new Scanner(new File(filename));
-	            	//System.out.println("Here and " + filename);
-	            	//loopCounter = 1;
-	            } else {
-	            	//String tempFileName = filename+(loopCounter-1);
-	            	String tempFileName = filename.substring(0, filename.indexOf(".")) + "/" + (loopCounter-1) + filename.substring(filename.indexOf("."), filename.length());
-	            	modelReader = new Scanner(new File(tempFileName));
-	            	//System.out.println("Here and " + tempFileName);
-	            	//loopCounter = 0;
-	            }
-	            
-	            
-	            
-	            int lineCounter = 0;
-	            int sigCounter = 0;
-	            String filenameB = filename+loopCounter; 
-	            //System.err.println(" here   " + filenameB);
-	            String filenameC = filename.substring(0, filename.indexOf(".")) + "/" + loopCounter + filename.substring(filename.indexOf("."), filename.length());
-	            //System.out.println(filenameC);
-	            /*
-	            if(loopCounter == 1) {
-	            	filenameB = filename+loopCounter;
-	            } else {
-	            	
-	            	filenameB = filename;
-	            }*/
-	            filenameB = filenameC;
-	            boolean success = (new File(filename.substring(0, filename.indexOf(".")))).mkdirs();
-	            //if (!success) {
-	            //	System.err.println("Directory creation failed");
-	            //}
-	            //System.err.println("here!"); 
-	            
-	            // we get here.
-	            
-	            
-	            FileWriter fstream = new FileWriter(filenameB);
-	            loopCounter++;
-	            //rofl();
-	            int lineSafetyCounter = 0;
-	            BufferedWriter out = new BufferedWriter(fstream);
-	            try {
-	              while (modelReader.hasNextLine()) {
-	              	//System.out.println(filename + "here");
-	            	  lineSafetyCounter++;
-	            	  //System.out.println("omfg...............................");
-	                // if (lineCounter == p.y) {
-	                String line = modelReader.nextLine();
-	                //System.err.println(line);
-	                boolean weaken = false;
-	                for(String str: relaxable){
-	                	//System.out.println(filename + "here");
-	                	//System.out.println(relaxable.size() + "");
-	                  //System.out.println(str);
-	                  if(str.equals(line.trim())){
-	                    //System.out.println(line);
-	                    
-
-	                    //System.out.println("here!--------------------------------------");
-	                    //Need to weaken this call.
-	                    weaken = true;
-	                    break;
-	                  }
-	                }
-	                
-	                if (weaken) {
-	                  //String toWrite = "(" + line + " and #temp" +(sigCounter) + "= 1 ) or (not " + line + " and #temp" +(sigCounter) + " not = 1) \n";
-	                  String toWrite = "(" + line + " ) or (not " + line  + ") \n";
-	                  out.write(toWrite);
-	                  sigCounter++;
-	                } else {
-	                  out.write(line + "\n"); 
-	                }
-	              }
-	              if (lineSafetyCounter  <= loopCounter){
-	            	  System.out.println("(Likely) Scope Error - infinite loop achieved (worse, every line in the model has been weakened by now. \n Terminating.");
-	            	  return;
-	              }
-	              for (int l = globalSigCounter; l < sigCounter; l++){
-	                //out.write("sig temp" + l + " {} \n");
-	                globalSigCounter++;
-	              }
-	              
-	              
-	              modelReader.close();
-	              out.close();
-	              fstream.close();
-	              
-	            } catch (Exception e) {
-	              System.err.println("Error writing temp file: " + e.getMessage());
-	            }
-	            
-	            Sig sB = null;
-
-	            //System.err.println(filename);
-	            Module worldB = CompUtil.parseEverything_fromFile(rep, null, filenameB); //should be filenameB
-	            for (Sig sigsB: worldB.getAllSigs()){
-	              //System.err.println(sigsB.label + "-->" + sigsB.toString() ); // +"-->" + sigsB.getDescription()
-	              if(sigsB.label.equals("this/"+elements[j])){
-	                //System.err.println(sigsB.label );
-	                sB = sigsB;
-	              }
-	            }
-	            
-	            Sig temp = sB;
-	            //System.err.println(sB.label + "<-- final label");
-	            Command commandB = null;
-	            Expr eQ = null;
-
-	            Expr toAddP = worldB.parseOneExpressionFromString(toAddStr);  
-	            
-	            //A4Solution ansi = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-	            if (annotations[j].equals("M")){
-	              //System.err.println("M...");
-
-	              eQ =  worldB.getAllReachableFacts().and(sB.some().not()).and(toAddP);
-
-	              commandB = new Command(false, scope, -1, -1, eQ);
-	              //System.out.println(commandB.toString() + "   " + commandB.formula.toString());
-	            } else if (annotations[j].equals("S")){
-	              //System.err.println("S...");
-	              Expr expr2 = s.cardinality().equal(ExprConstant.ONE);  //cardinality is one
-	              Expr expr2f = expr2.and(worldB.getAllReachableFacts().and(toAddP));
-	              command = new Command(false, scope, -1, -1, expr2f); //this is the test command.
-	            } else { //"V"
-	              //System.err.println("V...");
-	  	    	  String test = "(no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
-	  	    	  Expr hardExprTest = worldB.parseOneExpressionFromString(test);
-	  	    	  
-	              Expr expr2V = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
-	              Expr expr2Vf = hardExprTest.and(worldB.getAllReachableFacts()).and(toAddP); //expr2V.and(worldB.getAllReachableFacts().and(toAddP));
-	              command = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
-	            }
-	            
+			int numFiles = args.length;
+			/*
+    if (numFiles % 2 == 1){
+      return; //ERROR
+    }
+			 */
+			for(int i = 0; i < numFiles; i++) {
+				String filename = args[i];
+				String csv = "START";
 
 
-	            //System.err.println("Checkingpointing...A; " + commandB.toString() +" " + commandB.formula.toString());
-	            //A4Options optionsB = new A4Options();
-	            //optionsB.solver = A4Options.SatSolver.MiniSatProverJNI;
+				// Parse+typecheck the model
+				System.out.println("=========== Parsing+Typechecking "+filename+" =============");
+				Module world = CompUtil.parseEverything_fromFile(rep, null, filename); //originally filname.
+
+				SafeList<Sig> userDefinedSigs = world.getAllSigs();
+				Sig initialSig = userDefinedSigs.get(0);
+				Sig hardSig = userDefinedSigs.get(0);
+
+				boolean needHard = true;
+				for(Sig asi:userDefinedSigs){
+					if((asi.label.indexOf("__M") == -1) && (asi.label.indexOf("__V") == -1) && (asi.label.indexOf("__S") == -1)  ){
+						initialSig = asi;
+					}
+					if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
+						if (needHard == true){
+							needHard = false;
+							hardSig = asi;
+						}
+					}
+				}
+				SafeList<Sig> impliedSigs = new SafeList();
+				int numImplied = (int) Math.round(constrainedness*(userDefinedSigs.size()));
+				System.out.println("Expected number of annotations to add is approximately: " + numImplied);
+				int sigCounterLoop = 0;
+				for(Sig asi:userDefinedSigs){
+					if(sigCounterLoop == numImplied){
+						break;
+					}
+					if(!asi.equals(initialSig)){
+						if(!asi.label.equals("this/Nodes") && !asi.label.startsWith("this/end") &&  !asi.label.startsWith("this/AEn")  &&  !asi.label.startsWith("this/BEn")  &&  !asi.label.startsWith("this/End")   && !asi.label.equals("this/Edges") && !asi.label.equals("this/Source")  && !asi.label.equals("this/Target")){
+							if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
+								impliedSigs.add(asi);
+								sigCounterLoop++;
+							}
+						}
+					}
+
+				}
+				//System.err.println("Implied size: " + impliedSigs.size() + " ..but numImplied == " + numImplied);
+				Expr toAdd = null;
+				String toAddStr = "";
+				if(impliedSigs.size() == 0){
+					toAdd = ExprConstant.TRUE;
+					toAddStr = "false";//never actually gets "False", is overriden later
+				} else if(impliedSigs.size() == 1){
+					//In this case; only the hard sig can be determined.
+					toAdd = ExprConstant.TRUE;
+					toAddStr = "false"; //never actually gets "False", is overriden later
+				} else {
+					String firstLabel = impliedSigs.get(1).label;
+					//System.err.println("firstLabel: " + firstLabel);
+					Sig firstSig = impliedSigs.get(1);
+					if(firstLabel.indexOf("__M") >= 0) {
+						//May
+						toAdd = impliedSigs.get(1).some().not();
+						toAddStr = toAddStr + "(some " + firstLabel + ")"; 
+						if(firstLabel.indexOf("__V") >= 0){
+							//MV
+							String test = "not (no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
+							Expr hardExprTest = world.parseOneExpressionFromString(test);
+							toAdd = toAdd.or(hardExprTest);//toAdd.or(firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig))).not());
+							toAddStr = toAddStr + " or " + test; //"or (" + firstLabel + " in " + firstLabel + " and (! " + firstLabel + " in univ - " + firstLabel +"))";
+							if(firstLabel.indexOf("__S") >= 0){
+								//MSV
+								toAdd.or(firstSig.cardinality().equal(ExprConstant.ONE).not());
+								toAddStr = toAddStr + "or (#" + firstLabel + " = 1)";
+							}
+						}
+					} else if(firstLabel.indexOf("__S") >= 0){
+						//S
+						toAdd = firstSig.cardinality().equal(ExprConstant.ONE).not();
+						toAddStr = toAddStr + "(#" + firstLabel + " = 1)";
+						if(firstLabel.indexOf("__V") >= 0){
+							//SV
+							String test = "not (no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
+							Expr hardExprTest = world.parseOneExpressionFromString(test);
+							toAdd = toAdd.or(hardExprTest);//toAdd.or(firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig))).not());
+							toAddStr = toAddStr + " or " + test;//"or (" + firstLabel + " in " + firstLabel + " and (! " + firstLabel + " in univ - " + firstLabel +"))";
+						}
+					} else if(firstLabel.indexOf("__V") >= 0){
+						//V
+						String test = "not (no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
+						Expr hardExprTest = world.parseOneExpressionFromString(test);
+						toAdd = hardExprTest;//firstSig.in(firstSig).and(firstSig.in((PrimSig.UNIV).minus(firstSig)).not());
+						toAddStr = toAddStr + test; //"(" + firstLabel + " in " + firstLabel + " and (! " + firstLabel + " in univ - " + firstLabel +"))";
+					}
+
+					for(int q = 2; q < impliedSigs.size(); q++){
+						Sig nextSig = impliedSigs.get(q);
+						String nextLabel = nextSig.label;
+						//System.err.println("nextLabel: " + nextLabel);
+						if(nextLabel.indexOf("__M") >= 0) {
+							//May
+							Expr toAddB = impliedSigs.get(q).some().not();
+							toAddStr = toAddStr + "or (some " + nextLabel + ")"; 
+							if(nextLabel.indexOf("__V") >= 0){
+								//MV
+								String test = "not (no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
+								Expr hardExprTest = world.parseOneExpressionFromString(test);
+
+								toAddB = toAdd.or(hardExprTest); //toAddB.or(nextSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig))).not());
+								toAddStr = toAddStr + " or " + test; //"or (" + nextLabel + " in " + nextLabel + " and (! " + nextLabel + " in univ - " + nextLabel +"))";
+								if(nextLabel.indexOf("__S") >= 0){
+									//MSV
+									toAddB = toAddB.or(nextSig.cardinality().equal(ExprConstant.ONE).not());
+									toAddStr = toAddStr + " or (#" + nextLabel + " = 1)";
+
+								}
+							}
+							if(toAdd == null) {
+								toAdd = toAddB;
+							} else {
+								toAdd = toAdd.or(toAddB);
+							}
+						} else if(nextLabel.indexOf("__S") >= 0){
+							//S
+							Expr toAddB = nextSig.cardinality().equal(ExprConstant.ONE);
+							toAddStr = toAddStr + "or (#" + nextLabel + " = 1)";
+
+							if(nextLabel.indexOf("__V") >= 0){
+								//SV
+								String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
+								Expr hardExprTest = world.parseOneExpressionFromString(test);
+								toAddB = hardExprTest; //toAddB.or(nextSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig))));
+								toAddStr = toAddStr + " or " + test;//+ "or (" + nextLabel + " in " + nextLabel + " and (! " + nextLabel + " in univ - " + nextLabel +"))";
+							}
+							if(toAdd == null) {
+								toAdd = toAddB;
+							} else {
+								toAdd = toAdd.or(toAddB);
+							}
+						} else if(nextLabel.indexOf("__V") >= 0){
+							//V
+							String test = "(no x: Nodes | x in " + nextSig.label + " and x not in (univ-" + nextSig.label + "))";
+							Expr hardExprTest = world.parseOneExpressionFromString(test);
+
+							Expr toAddB = hardExprTest; //firstSig.in(nextSig).and(nextSig.in((PrimSig.UNIV).minus(nextSig)));
+							toAddStr = toAddStr + " or " + test; //toAddStr + "or (" + nextLabel + " in " + nextLabel + " and (! " + nextLabel + " in univ - " + nextLabel +"))";
+							if(toAdd == null) {
+								toAdd = toAddB;
+							} else {
+								toAdd = toAdd.or(toAddB);
+							}
+						}
+					}
+				}
 
 
-	            //System.err.println("Checkingpointing...B");
-	            ConstList<Sig> worldBSigs = worldB.getAllReachableSigs();
-	            //System.err.println("Checkingpointing...B2");
-	            //System.out.println(worldBSigs.toString());
-	            
-	            SafeList<CommandScope> scopesB = new SafeList();
-	            SafeList<Sig> scopeSigsB = worldB.getAllSigs();
-	            for(Sig scopeSigB: scopeSigsB){
-	      		  if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
-	      				  !scopeSigB.label.equals("this/Source")  && !scopeSigB.label.equals("this/Target")){
-	      			  CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
-	      			  scopes.add(ts);
-	      		  } else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges")){
-	      			  CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 25, 30, 1);
-	      			  scopes.add(ts);
-	      		  } else if (scopeSigB.label.startsWith("temp")){
-	      			  CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
-	      			  scopes.add(ts);
-	      		  }
-	            }
-	            //System.out.println(scopesB.toString());
-	            commandB.change(scopesB.makeConstList());
-	            ans = TranslateAlloyToKodkod.execute_command(rep, worldBSigs, commandB, options);
-	            //System.err.println("Checkingpointing...C");
-	          }
-	          for(String stuff: S){
-	          	 System.out.println("Remove constraint \"" + stuff + "\" and add the appropriate annotation.");
-	          	 if (stuff.indexOf("exists_") >= 0){
-	          		csv = csv + ",M";
-	          	 } else if (stuff.indexOf("unique_") >= 0) {
-	          		csv = csv + ",S";
-	          	 } else if (stuff.indexOf("distinct_") >=0) {
-	          		 csv = csv + ",V"; 
-	          	 }
-	          	  
-	          }
-	        }
+				SafeList<Sig> iffs = new SafeList();
+				int sigCounterLoopB = 0;
+				for(Sig asi:userDefinedSigs){
+					if(sigCounterLoopB == numImplied){
+						break;
+					}
+					if(!asi.equals(initialSig)){
+						if(!asi.label.equals("this/Nodes") && !asi.label.equals("this/Edges") && !asi.label.equals("this/Source")  && !asi.label.equals("this/Target") && !asi.label.startsWith("this/end") &&  !asi.label.startsWith("this/AEn")  &&  !asi.label.startsWith("this/BEn")  &&  !asi.label.startsWith("this/End") ) {
+							if((asi.label.indexOf("__M") < 0) || (asi.label.indexOf("__V") < 0) || (asi.label.indexOf("__S") < 0)  ){
+								if(!asi.label.equals(hardSig.label)){
+									iffs.add(asi);
+									sigCounterLoopB++;
+								}
+							}
+						}
+					}
 
-	      }
-	      try {
-	    	    FileWriter fstreamB = new FileWriter(filename+".ar");
-	    	    
-	    	    
-	    	    BufferedWriter outwriter = new BufferedWriter(fstreamB);
-	    	    outwriter.write(csv);
-	    	    outwriter.close();
-	    	    fstreamB.close();
-	    	    } catch (Exception e){
-	    	  	  System.err.println("Error writing annotation results file.");
-	    	    }
-	    }
+				}
+				int impliedAddCounter = 0;
+				//System.err.println(numImplied);
+				HashSet<String> iffStatementCalls = new HashSet();
+				for(Sig iffSig: iffs){
 
-	    System.out.println("Done.");
-	  } catch (Exception e){
-		  System.err.println("Something went very wrong: ");
-		  e.printStackTrace();
-	  }
+					String ids = iffSig.label.substring(5,iffSig.label.length()) + "[]";
+					//System.err.println("in iff sig processing " + ids);
+					//System.out.println(ids);
+					String calls = "";
+					if((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") < 0)  ){
+						//None
+						if(impliedAddCounter + 3 <= numImplied){
+							calls = "!exists_" + ids + " or !unique_" + ids + " or !distinct_" + ids;
+							impliedAddCounter = impliedAddCounter + 3;
+						} else if (impliedAddCounter + 2 <= numImplied){
+							calls = "!exists_" + ids + " or !unique_" + ids;
+							impliedAddCounter = impliedAddCounter + 2;
+						} else if (impliedAddCounter + 1 <= numImplied){
+							calls = "!exists_" + ids;
+							impliedAddCounter = impliedAddCounter + 1;
+						} else {
+							calls = calls;
+						}
+					}else if ((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") >= 0)  ){
+						//Set only
+						if(impliedAddCounter + 2 <= numImplied){
+							calls = "!exists_" + ids + " or !distinct_" + ids;
+							impliedAddCounter = impliedAddCounter + 2;
+						} else if (impliedAddCounter + 1 <= numImplied){
+							calls = "!exists_" + ids;
+							impliedAddCounter = impliedAddCounter + 1;
+						} else { 
+							calls = calls;
+						}
+					}else if ((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") >= 0) && (iffSig.label.indexOf("__S") < 0)  ){
+						//Var only
+						if(impliedAddCounter + 2 <= numImplied){
+							calls = "!exists_" + ids + " or !unique_" + ids;
+							impliedAddCounter = impliedAddCounter + 2;
+						} else if (impliedAddCounter + 1 <= numImplied){
+							calls = "!exists_" + ids;
+							impliedAddCounter = impliedAddCounter + 1;
+						} else {
+							calls = calls;
+						}
+					}else if ((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") >= 0) && (iffSig.label.indexOf("__S") >= 0)  ){
+						//Set and Var
+						if (impliedAddCounter + 1 <= numImplied){
+							calls = "!exists_" + ids;
+							impliedAddCounter = impliedAddCounter + 1;
+						} else {
+							calls = calls;
+						}
+					}else if ((iffSig.label.indexOf("__M") >=  0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") < 0)  ){
+						//May Only
+						if(impliedAddCounter + 2 <= numImplied){
+							calls = "!unique_" + ids + " or !distinct_" + ids;
+							impliedAddCounter = impliedAddCounter + 2;
+						} else if (impliedAddCounter + 1 <= numImplied){
+							calls = "!unique_" + ids;
+							impliedAddCounter = impliedAddCounter + 1;
+						} else {
+							calls = calls;
+						}
+					}else if ((iffSig.label.indexOf("__M") >=  0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") >=  0)  ){
+						//May and Set
+						if (impliedAddCounter + 1 <= numImplied){
+							calls = "!distinct_" + ids; 
+							impliedAddCounter = impliedAddCounter + 1;
+						} else {
+							calls = calls;
+						}
+					}else if ((iffSig.label.indexOf("__M") >=  0) && (iffSig.label.indexOf("__V") >=  0) && (iffSig.label.indexOf("__S") < 0)  ){
+						//May and Var
+						if (impliedAddCounter + 1 <= numImplied){
+							calls = "!unique_" + ids;
+							impliedAddCounter = impliedAddCounter + 1;
+						} else {
+							calls = calls;
+						}
+					}else if ((iffSig.label.indexOf("__M") >=  0) && (iffSig.label.indexOf("__V") >=  0) && (iffSig.label.indexOf("__S") >=  0)  ){
+						//May, Set, and Var
+						//Should never happen.
+						calls = calls;
+						System.err.println("Error - bad code executed in generating WFF");
+					}
+					//System.err.println("in iff sig processing " + calls);
+					iffStatementCalls.add(calls);
+				}
+				String FinalIFFList = "";
+				boolean firstInList = true;
+				for(String iffCall: iffStatementCalls){
+					if(firstInList){
+						if (!iffCall.equals("")){
+							FinalIFFList = iffCall;
+							firstInList = false;
+						}
+					} else {
+						if (!iffCall.equals("")){
+							FinalIFFList = FinalIFFList + " or " + iffCall;
+						}
+					}
+				}
+
+				//System.err.println(FinalIFFList);
+
+
+
+				String hardSigName = hardSig.label.substring(5, hardSig.label.length()); 
+				String hardSigAnnotation = "";
+				Expr hardExpr = ExprConstant.TRUE;
+				String hardStrToAdd = "";
+				if (hardSigName.indexOf("__M") >= 0){
+					hardSigAnnotation = "M";
+					hardExpr = hardSig.some().not();
+					hardStrToAdd = "not (some " + hardSig.label + ")";
+				} else if (hardSigName.indexOf("__S") >= 0){
+					hardSigAnnotation = "S";
+					hardStrToAdd = "not (#" + hardSig.label + " = 1)";
+					hardExpr = hardSig.cardinality().equal(ExprConstant.ONE).not();
+				} else if (hardSigName.indexOf("__V") >= 0){
+					hardSigAnnotation = "V";
+					String test = "not (no x: Nodes | x in " + hardSig.label + " and x not in (univ-" + hardSig.label + "))";
+					Expr hardExprTest = world.parseOneExpressionFromString(test);
+					hardStrToAdd = test; //"(" +  hardSig.label+ " in " +  hardSig.label+ " and (! " +  hardSig.label+ " in univ - " +  hardSig.label +"))";
+					//hardExpr = hardSig.in(hardSig).and(hardSig.in((PrimSig.UNIV).minus(hardSig)).not());
+					hardExpr = hardExprTest;
+				}
+				String finalIFF = "((" + FinalIFFList + ") iff " + hardStrToAdd + ") and " + hardStrToAdd;
+
+				//System.err.println(finalIFF);
+
+				if (toAdd == null) {
+					System.err.println("Error generating WFF constraints...terminating,");
+					return;
+				} else {
+					toAddStr = finalIFF; //"(" + toAddStr + ") implies (not " + hardStrToAdd + ")";
+					//System.err.println(toAddStr);
+					//System.err.println("a. Hardsig is: " + hardSig.label + " WFF is: " + toAdd.toString());
+					//Expr specCaseToAdd = toAdd;
+
+					if(impliedSigs.size() == 0){
+						//System.err.println("0");
+						toAdd =  (hardExpr).implies(hardExpr);
+						toAddStr = hardStrToAdd + " implies ( " + hardStrToAdd + ")";
+						//System.err.println(toAddStr);
+					} else if(impliedSigs.size() == 1){
+						//System.err.println("1");
+						toAdd =  (hardExpr).implies(hardExpr);
+						toAddStr = hardStrToAdd + " implies ( " + hardStrToAdd + ")";
+					} else {
+						toAdd =  world.parseOneExpressionFromString(finalIFF); //toAdd.implies(hardExpr);
+					}
+					//System.err.println(toAdd.toString());
+					//System.err.println(toAddStr);
+					//System.err.println("b. Hardsig is: " + hardSig.label + " WFF is: " + toAdd.toString());
+
+				}
+
+				//get list of other annotations
+				int maxNumAnnotations = 1; //3 * world.getAllSigs().size();
+				String[] elements = new String[maxNumAnnotations];
+				String[] annotations = new String[maxNumAnnotations];
+
+
+				elements[0] = hardSigName;
+				annotations[0] = hardSigAnnotation;
+
+				//Scanner sc = new Scanner(new File(args[i+1]));
+				int scanCounter = 1;
+				int arrayPosCounter = 1;
+
+				/*
+      while (sc.hasNext()) {
+        if (scanCounter % 2 == 0){
+          String element = sc.next();
+          elements[arrayPosCounter] = element;
+        } else {
+          String annotation = sc.next();
+          annotations[arrayPosCounter] = annotation;
+          arrayPosCounter++;
+        }
+        scanCounter++;
+      }
+      sc.close();
+				 */
+				//System.err.println("Checkpoint: scanned");
+
+				A4Options options = new A4Options();
+				options.solver = A4Options.SatSolver.MiniSatProverJNI; //Solver can be changed, e.g. for UNSAT core computation.
+
+				SafeList<Sig> allSigsInitial = world.getAllSigs();
+				ArrayList<Sig> allSigs = (ArrayList)(world.getAllSigs()).makeCopy(); //This is annotations(P) (and more, which will be skipped)
+
+				for(int j = 0; j < arrayPosCounter; j++){
+					//main loop
+					System.out.println("============ Testing base + " + elements[j] + "'s \"" + annotations[j] + "\": ============");
+					//main if statement:
+					Expr finalExpr = null;
+					Command command = new Command(false, scope, -1, -1, finalExpr); //this is the test command.
+					//System.out.println("First command built.");
+					//  Sig.PrimSig s = new Sig.PrimSig(elements[j]);
+					Sig s = null;
+					for (Sig sigs: world.getAllReachableSigs()){
+						//System.err.println(sigs.label);
+						if(sigs.label.equals("this/"+elements[j])){
+							s = sigs;
+						}
+					}
+
+					if (s == null){
+						System.out.println("element in list was not found in model...terminating -- rebuild list and try again");
+						return;
+						//This should never happen.
+					}
+					//System.err.println(elements[j] + " --> " + annotations[j]);
+					if (annotations[j].equals("M")){
+						Expr expr1 = s.some().not();
+						Expr expr1f = expr1.and(world.getAllReachableFacts()).and(toAdd);
+						command = new Command(false, scope, -1, -1, expr1f);
+					} else if (annotations[j].equals("S")){
+						Expr expr2 = s.cardinality().equal(ExprConstant.ONE).not();  //cardinality is one
+						Expr expr2f = expr2.and(world.getAllReachableFacts()).and(toAdd);
+						command = new Command(false, scope, -1, -1, expr2f); //this is the test command.
+					} else if (annotations[j].equals("V")){ //"V"
+						String test = "not (no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
+						Expr hardExprTest = world.parseOneExpressionFromString(test);
+						Expr expr2V = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
+						Expr expr2Vf = expr2V.and(world.getAllReachableFacts()).and(toAdd);
+						command = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
+					}
+
+					SafeList<CommandScope> scopes = new SafeList();
+					SafeList<Sig> scopeSigs = world.getAllSigs();
+					for(Sig scopeSig: scopeSigs){
+						if(!scopeSig.label.equals("this/Nodes") &&  !scopeSig.label.startsWith("this/AEn")  &&  !scopeSig.label.startsWith("this/BEn")  &&  !scopeSig.label.startsWith("this/End") && !scopeSig.label.equals("this/Edges") && !scopeSig.label.startsWith("this/end") && 
+								!scopeSig.label.equals("this/Source")  && !scopeSig.label.equals("this/Target")){
+							CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSig, false, 0, 5, 1);
+							scopes.add(ts);
+						} else if (scopeSig.label.equals("this/Nodes") || scopeSig.label.equals("this/Edges")){
+							CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSig, false, 25, 30, 1);
+							scopes.add(ts);
+						}
+					}
+					//System.out.println(command.bitwidth + "");
+					command.change(scopes.makeConstList());
+					
+					//System.err.println("Checkpoint: before first solve; " + command.toString() + "; " + command.formula.toString());
+					A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+					//System.err.println(ans.getBitwidth() + "");
+					
+					//System.err.println("Checkpoint: after first solve");
+					if(ans.satisfiable()){
+						System.out.println("No propogation for this annotation.");
+					} else {
+						//Main else
+
+						HashSet<String> S = new HashSet();
+						int globalSigCounter = 0;
+						while(!(ans.satisfiable())){
+
+							//Main while
+
+							//Pair<Set<Pos>,Set<Pos>> uc = ans.highLevelCore();
+
+							Set<Pos> uc = ans.lowLevelCore();
+							//System.err.println("Main loop---");
+							//System.err.println(uc.toString());
+							//System.out.println("UNSAT Core: " + uc.toString());
+
+							//               * New plan: rewrite the file with appropriate slack, causing reparsing, and then check again.
+							//               * So:
+							//               * 1. a. Check original. Get UNSAT core.
+							//               *    b. Get list of functions (in reality, predicates).
+							//               *    c. See if the UNSAT core lines are within a predicate.
+							//               *    d. Record any such predicate.
+							//               * 2. Weaken calls to UNSAT core predicates.
+							//               * 3. Rewrite file with weakened calls.
+							//               * 4. Use that file to check again.
+							//               */
+							int testCounter = 0;
+							HashSet<String> relaxable = new HashSet(); //This is effectively "c" in the pseudo-code.
+							for(Pos p: uc){
+
+								//UNSAT core = uc
+								//System.out.println("New pos in uc " + uc.size() + " actual: " + (testCounter++));
+
+								SafeList<Func> preds = world.getAllFunc();
+								for(Func f: preds){
+									Pos fSpan = f.span();
+									//System.err.println(fSpan.y + " " + fSpan.y2 + "<-- function spans.  positions in unsat core -->" + p.y + " " + p.y2);
+									if (fSpan.y <= p.y && p.y2 <= fSpan.y2){
+										//The uc sentence is in this predicate.
+										String formatted = f.label.substring(5, f.label.length());// + "[]";
+										//System.out.println(formatted);
+										if(formatted.startsWith("exists_") || formatted.startsWith("unique_") || formatted.startsWith("distinct_") ){
+											//|| (formatted.startsWith("((") && formatted.indexOf("temp") >= 0)
+											//Now we check to see if it must be hard.
+											//                    for(int q = 0; q < arrayPosCounter; q++){
+											//                      if(formatted.startsWith("distinct_")){
+											//                        String elementName = formatted.substring(0,9);
+											//                        if(elements[q].equals(elementName)){
+											//                          if(annotations[q].equals("V")){
+											//                          } else {
+											//                            relaxable.add(formatted);
+											//                          }
+											//                        }
+											//                      } else if (formatted.startsWith("unique_")){
+											//                        String elementName = formatted.substring(0,7);
+											//                        if(elements[q].equals(elementName)){
+											//                          if(annotations[q].equals("S")){
+											//                          } else {
+											//                            relaxable.add(formatted);
+											//                          }
+											//                        }                        
+											//                      } else if (formatted.startsWith("exists_")){
+											//                        String elementName = formatted.substring(0,7);
+											//                        if(elements[q].equals(elementName)){
+											//                          if(annotations[q].equals("M")){
+											//                          } else {
+											//                            relaxable.add(formatted);
+											//                          }
+											//                        }
+											//                      }
+											//                         }
+											relaxable.add(formatted);
+											//System.out.println("added: " + formatted);
+										}
+										//System.out.println(f.toString() + "        " + f.label + "        " + formatted);
+									}
+								}
+							}                  
+
+							if (relaxable.size() == 0){ //"if S' = \emptyset then return error
+								System.out.println("UNSOLVABLE --- Cannot propagate using solely additional annotations");
+								return;
+							}
+
+							for(String stri: relaxable){
+								//if(stri.startsWith("exists_") || stri.startsWith("unique_") || stri.startsWith("distinct_")){
+									S.add(stri);
+								//}
+							}
+
+
+							// Scanner modelReader = new Scanner(new File(filename));
+
+							Scanner modelReader = null;
+							if(loopCounter == 0){
+								modelReader = new Scanner(new File(filename));
+								//System.out.println("Here and " + filename);
+								//loopCounter = 1;
+							} else {
+								//String tempFileName = filename+(loopCounter-1);
+								String tempFileName = filename.substring(0, filename.indexOf(".")) + "/temp" + (loopCounter-1) + filename.substring(filename.indexOf("."), filename.length());
+								modelReader = new Scanner(new File(tempFileName));
+								//System.out.println("Here and " + tempFileName);
+								//loopCounter = 0;
+							}
+
+
+
+							int lineCounter = 0;
+							int sigCounter = 0;
+							String filenameB = filename+loopCounter; 
+							//System.err.println(" here   " + filenameB);
+							String filenameC = filename.substring(0, filename.indexOf(".")) + "/temp" + loopCounter + filename.substring(filename.indexOf("."), filename.length());
+							//System.out.println(filenameC);
+							/*
+            if(loopCounter == 1) {
+            	filenameB = filename+loopCounter;
+            } else {
+
+            	filenameB = filename;
+            }*/
+							filenameB = filenameC;
+							boolean success = (new File(filename.substring(0, filename.indexOf(".")))).mkdirs();
+							//if (!success) {
+							//	System.err.println("Directory creation failed");
+							//}
+							//System.err.println("here!"); 
+
+							// we get here.
+
+
+							FileWriter fstream = new FileWriter(filenameB);
+							loopCounter++;
+							//rofl();
+							int lineSafetyCounter = 0;
+							BufferedWriter out = new BufferedWriter(fstream);
+							try {
+								int oldGlobalSigCounter = globalSigCounter;
+
+								while (modelReader.hasNextLine()) {
+									//System.out.println(filename + "here");
+									lineSafetyCounter++;
+									//System.out.println("omfg...............................");
+									// if (lineCounter == p.y) {
+									String line = modelReader.nextLine();
+									//System.err.println(line);
+									boolean weaken = false;
+									for(String str: relaxable){
+										//System.out.println(filename + "here");
+										//System.out.println(relaxable.size() + "");
+										//System.out.println(line.trim());
+										//if(str.equals(line.trim())){
+										
+										//System.err.println(str.substring(0, 4));
+										//if(line.trim().startsWith(str) || (line.trim().startsWith("((" + str) && line.trim().indexOf(str.substring(0, 4))>= 1)){
+										if(line.trim().startsWith(str) || (line.trim().startsWith("((") && line.trim().indexOf(str.substring(0, 4))>= 1)){
+											//System.out.println(line);
+
+											//System.out.println("here!--------------------------------------");
+											//Need to weaken this call.
+											weaken = true;
+											break;
+										}
+									}
+									if (weaken) {
+										String toWrite = "((" + line + ") and #temp" +(globalSigCounter) + "= 1 ) or (not (" + line + ") and #temp" +(globalSigCounter) + " not = 1) \n";
+										// String toWrite = "(" + line + " ) or (not " + line  + ") \n";
+										//	String toWrite = "(" + line + " and #temp" +(loopCounter) + "= 1 ) or (not " + line + " and #temp" +(loopCounter) + " not = 1) \n";
+//										String toWrite = "";
+//										boolean firstHotLine = true;
+//										for(String rel: relaxable){
+//											//System.err.println("rel: " + rel + "    line: " + line.trim());
+//											String oneHotLine = rel;
+//											for(String other: relaxable){
+//												if(!line.trim().equals(rel)){
+//													oneHotLine = oneHotLine + " and not " + other;
+//												}
+//											}
+//											if(firstHotLine){
+//												//System.err.println("first : " + oneHotLine);
+//												toWrite = "(" +  oneHotLine + ") ";
+//												firstHotLine = false;
+//											} else {
+//												toWrite = toWrite + "or (" +  oneHotLine + ")  ";
+//											}
+//											//toWrite = oneHotLine;
+//										}
+//										out.write(toWrite);
+//										out.write("\n");
+										globalSigCounter++;
+										sigCounter++;
+										out.write(toWrite);
+									} else {
+										out.write(line + "\n"); 
+									}
+								}
+								if (lineSafetyCounter  <= loopCounter){
+									System.out.println("(Likely) Scope Error - infinite loop achieved (worse, every line in the model has been weakened by now. \n Terminating.");
+									return;
+								}
+								//out.write("sig temp" + loopCounter + " {} \n");
+								for (int l = oldGlobalSigCounter; l < globalSigCounter; l++){
+									out.write("sig temp" + l + " {} \n");
+								}
+								globalSigCounter = oldGlobalSigCounter + sigCounter;
+//HERE
+					              //System.err.println("sc=" + sigCounter + "  gsc=" + globalSigCounter + "  old=" + oldGlobalSigCounter + "  loop=" + loopCounter);
+
+									if(!(oldGlobalSigCounter == globalSigCounter) && sigCounter > 1){
+								              boolean firstHotLine = true;
+								              String oneHot = "";
+								              for(int r =oldGlobalSigCounter; r < globalSigCounter; r++){
+								            	  String oneHotLine = "#temp" + r + " = 1";
+								            	  for(int t = oldGlobalSigCounter; t < globalSigCounter; t++){
+								            		  if(t != r){
+								            			  oneHotLine = oneHotLine + " and #temp"  + t + " not= 1 ";
+								            		  }
+								            	  }
+								            	  //System.err.println(oneHot);
+								            	  if(firstHotLine){
+								            		  //System.err.println("first : " + oneHotLine);
+								            		  oneHot = "(" +  oneHotLine + ") \n";
+								            		  firstHotLine = false;
+								            	  } else {
+								            		  oneHot = oneHot + "or (" +  oneHotLine + ")  \n";
+								            	  }
+								             }
+								        	  oneHot = "fact { \n (" + oneHot + ") \n } \n";
+								        	  out.write(oneHot);
+									}
+//HERE
+								modelReader.close();
+								out.close();
+								fstream.close();
+
+							} catch (Exception e) {
+								System.err.println("Error writing temp file: " + e.getMessage());
+							}
+
+							Sig sB = null;
+
+							//System.err.println(filenameB);
+							Module worldB = CompUtil.parseEverything_fromFile(rep, null, filenameB); //should be filenameB
+							for (Sig sigsB: worldB.getAllSigs()){
+								//System.err.println(sigsB.label + "-->" + sigsB.toString() ); // +"-->" + sigsB.getDescription()
+								if(sigsB.label.equals("this/"+elements[j])){
+									//System.err.println(sigsB.label );
+									sB = sigsB;
+								}
+							}
+
+							Sig temp = sB;
+							//System.err.println(sB.label + "<-- final label");
+							Command commandB = null;
+							Expr eQ = null;
+
+							Expr toAddP = worldB.parseOneExpressionFromString(toAddStr);  
+							//A4Solution ansi = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+							if (annotations[j].equals("M")){
+								//System.err.println("M...");
+
+								eQ =  worldB.getAllReachableFacts().and(sB.some().not()).and(toAddP);
+
+								commandB = new Command(false, scope, -1, -1, eQ);
+								//System.out.println(commandB.toString() + "   " + commandB.formula.toString());
+							} else if (annotations[j].equals("S")){
+								//System.err.println("S...");
+								String check = "not (some " + s.label + ")";
+								Expr expr2 = worldB.parseOneExpressionFromString(check);// s.cardinality().equal(ExprConstant.ONE).not();  //cardinality is one
+								Expr expr2f = expr2.and(worldB.getAllReachableFacts().and(toAddP));
+								//System.err.println(annotations[j]);
+								commandB = new Command(false, scope, -1, -1, expr2f); //this is the test command.
+							} else if (annotations[j].equals("V")){ //"V"
+								//System.err.println("V...");
+								String test = "not (no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
+								Expr hardExprTest = worldB.parseOneExpressionFromString(test);
+
+								Expr expr2V = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
+								Expr expr2Vf = hardExprTest.and(worldB.getAllReachableFacts()).and(toAddP); //expr2V.and(worldB.getAllReachableFacts().and(toAddP));
+								commandB = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
+							}
+
+
+
+							//System.err.println("Checkingpointing...A; " + commandB.toString() +" " + commandB.formula.toString());
+							//A4Options optionsB = new A4Options();
+							//optionsB.solver = A4Options.SatSolver.MiniSatProverJNI;
+
+
+							//System.err.println("Checkingpointing...B");
+							ConstList<Sig> worldBSigs = worldB.getAllReachableSigs();
+							//System.err.println("Checkingpointing...B2");
+							//System.out.println(worldBSigs.toString());
+
+							SafeList<CommandScope> scopesB = new SafeList();
+							SafeList<Sig> scopeSigsB = worldB.getAllSigs();
+							for(Sig scopeSigB: scopeSigsB){
+								if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+										!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+									CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+									scopes.add(ts);
+								} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges")){
+									CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, scope, scope+5, 1);
+									scopes.add(ts);
+								} else if (scopeSigB.label.startsWith("temp")){
+									CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+									scopes.add(ts);
+								}
+							}
+							if(commandB == null) { System.err.println("NULL COMMAND - ERROR"); }
+							//System.out.println(scopesB.toString());
+							commandB.change(scopesB.makeConstList());
+							//System.err.println(filenameB);
+							ans = TranslateAlloyToKodkod.execute_command(rep, worldBSigs, commandB, options);
+							//System.err.println("Checkingpointing...C");
+						}
+						System.out.println(S.size() + " annotations to add:");
+						for(String stuff: S){
+							System.out.println("Remove constraint \"" + stuff + "\" and add the appropriate annotation.");
+							if (stuff.indexOf("exists_") >= 0){
+								csv = csv + ",M";
+							} else if (stuff.indexOf("unique_") >= 0) {
+								csv = csv + ",S";
+							} else if (stuff.indexOf("distinct_") >=0) {
+								csv = csv + ",V"; 
+							}
+
+						}
+					}
+
+				}
+				try {
+					FileWriter fstreamB = new FileWriter(filename+".ar");
+
+
+					BufferedWriter outwriter = new BufferedWriter(fstreamB);
+					outwriter.write(csv);
+					outwriter.close();
+					fstreamB.close();
+				} catch (Exception e){
+					System.err.println("Error writing annotation results file.");
+				}
+			}
+
+			System.out.println("Done.");
+		} catch (Exception e){
+			System.err.println("Something went very wrong: ");
+			e.printStackTrace();
+		}
 	}
 
 	private static void makeRNF(String[] args) throws Err {
