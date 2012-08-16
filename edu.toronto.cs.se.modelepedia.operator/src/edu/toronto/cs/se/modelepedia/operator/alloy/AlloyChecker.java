@@ -870,8 +870,8 @@ public class AlloyChecker extends OperatorExecutableImpl {
 	private static void makeRNF(String[] args) throws Err {
 		  try {
 			    System.out.println("Constrainedness: " + constrainedness);
-			    System.out.println("Scope: " + scope);
 				String csv = "START";
+			    int scope = 26;
 				  
 			    // The visualizer (We will initialize it to nonnull when we visualize an Alloy solution)
 			    VizGUI viz = null;
@@ -1084,7 +1084,7 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			        Expr finalExpr = null;
 			        
 			        //Default variable assignments; the if statement will replace the value for "command" using these.
-			        Command command = new Command(false, scope, -1, -1, finalExpr); //this is the test command.
+			        Command command = new Command(false, -1, -1, -1, finalExpr); //this is the test command.
 			        //System.err.println("checkpoint0 " + s.label);
 			        if ((s.label).indexOf("__M") >= 0){ //May
 			          //Make the expression to check (note: does not require an actual predicate/function to be created)
@@ -1092,12 +1092,31 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			          
 			          //System.err.println("" + world.getAllReachableFacts().toString());
 			          Expr expr1f = expr1.and(world.getAllReachableFacts()).and(toAdd);
-			          command = new Command(false, scope, -1, -1, expr1f); //this is the test command.
+			          command = new Command(false, -1, -1, -1, expr1f); //this is the test command.
 			          //System.err.println("checkpoint0b " + expr1.toString() + " " + command.toString());
 			          //"false" because it's a run, not a check
 			          // -1, -1, -1 for default scope, bitwidth, and sequence length, respectively.
 			          //expr is the expr to check 
 			          
+			          
+			          
+						SafeList<CommandScope> scopes = new SafeList();
+						SafeList<Sig> scopeSigsB = world.getAllSigs();
+						for(Sig scopeSigB: scopeSigsB){
+							if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+									!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+								///scopes.add(ts);
+							} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+								scopes.add(ts);
+							} else if (scopeSigB.label.startsWith("temp")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+								//scopes.add(ts);
+							}
+						}
+						command.change(scopes.makeConstList());
+
 			          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 			          //System.err.println("checkpoint2");
 			          // Print the outcome
@@ -1141,8 +1160,23 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			            
 			            Expr expr1S = s.cardinality().equal(ExprConstant.ONE).not();// not in all the others
 			            Expr expr1Sf = expr1S.and(world.getAllReachableFacts()).and(toAdd);
-			            command = new Command(false, scope, -1, -1, expr1Sf); //this is the test command.
-			            
+			            command = new Command(false, -1, -1, -1, expr1Sf); //this is the test command.
+						SafeList<CommandScope> scopes1 = new SafeList();
+						SafeList<Sig> scopeSigsB1 = world.getAllSigs();
+						for(Sig scopeSigB: scopeSigsB1){
+							if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+									!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+								///scopes.add(ts);
+							} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+								scopes1.add(ts);
+							} else if (scopeSigB.label.startsWith("temp")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+								//scopes.add(ts);
+							}
+						}
+						command.change(scopes1.makeConstList());
 			            A4Solution ansS = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 			            //System.err.println("checkpoint2");
 			            // Print the outcome
@@ -1186,8 +1220,23 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			  	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
 			              Expr expr1V = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
 			              Expr expr1Vf = expr1V.and(world.getAllReachableFacts()).and(toAdd);
-			              command = new Command(false, scope, -1, -1, expr1Vf); //this is the test command.
-			              
+			              command = new Command(false, -1, -1, -1, expr1Vf); //this is the test command.
+			  			SafeList<CommandScope> scopes11 = new SafeList();
+			  			SafeList<Sig> scopeSigsB11 = world.getAllSigs();
+			  			for(Sig scopeSigB: scopeSigsB11){
+			  				if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+			  						!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+			  					CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+			  					///scopes.add(ts);
+			  				} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+			  					CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+			  					scopes11.add(ts);
+			  				} else if (scopeSigB.label.startsWith("temp")){
+			  					CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+			  					//scopes.add(ts);
+			  				}
+			  			}
+			  			command.change(scopes11.makeConstList());
 			              A4Solution ansV = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 			              //System.err.println("checkpoint2");
 			              // Print the outcome
@@ -1233,8 +1282,23 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			  	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
 			            Expr expr1Vb = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
 			            Expr expr1Vbf = expr1Vb.and(world.getAllReachableFacts()).and(toAdd);
-			            command = new Command(false, scope, -1, -1, expr1Vbf); //this is the test command.
-			            
+			            command = new Command(false, -1, -1, -1, expr1Vbf); //this is the test command.
+						SafeList<CommandScope> scopes1 = new SafeList();
+						SafeList<Sig> scopeSigsB1 = world.getAllSigs();
+						for(Sig scopeSigB: scopeSigsB1){
+							if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+									!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+								///scopes.add(ts);
+							} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+								scopes1.add(ts);
+							} else if (scopeSigB.label.startsWith("temp")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+								//scopes.add(ts);
+							}
+						}
+						command.change(scopes1.makeConstList());
 			            A4Solution ansVb = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 			            //System.err.println("checkpoint2");
 			            // Print the outcome
@@ -1278,7 +1342,24 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			        } else if ((s.label).indexOf("__S") >= 0) { //Set
 			          Expr expr2 = s.cardinality().equal(ExprConstant.ONE).not();  //cardinality is one
 			          Expr expr2f = expr2.and(world.getAllReachableFacts()).and(toAdd);
-			          command = new Command(false, scope, -1, -1, expr2f); //this is the test command.
+			          command = new Command(false, -1, -1, -1, expr2f); //this is the test command.
+			          
+						SafeList<CommandScope> scopes = new SafeList();
+						SafeList<Sig> scopeSigsB = world.getAllSigs();
+						for(Sig scopeSigB: scopeSigsB){
+							if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+									!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+								///scopes.add(ts);
+							} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+								scopes.add(ts);
+							} else if (scopeSigB.label.startsWith("temp")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+								//scopes.add(ts);
+							}
+						}
+						command.change(scopes.makeConstList());
 			          
 			          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 			          //System.err.println("checkpoint2");
@@ -1322,7 +1403,24 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			  	    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
 			            Expr expr2V = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
 			            Expr expr2Vf = expr2V.and(world.getAllReachableFacts()).and(toAdd);
-			            command = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
+			            command = new Command(false, -1, -1, -1, expr2Vf); //this is the test command.
+			            
+						SafeList<CommandScope> scopes1 = new SafeList();
+						SafeList<Sig> scopeSigsB1 = world.getAllSigs();
+						for(Sig scopeSigB: scopeSigsB1){
+							if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+									!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+								///scopes.add(ts);
+							} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+								scopes1.add(ts);
+							} else if (scopeSigB.label.startsWith("temp")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+								//scopes.add(ts);
+							}
+						}
+						command.change(scopes1.makeConstList());
 			            
 			            A4Solution ansV = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 			            //System.err.println("checkpoint2");
@@ -1372,7 +1470,24 @@ public class AlloyChecker extends OperatorExecutableImpl {
 				    	  Expr hardExprTest = world.parseOneExpressionFromString(test);	
 			          Expr expr3 = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
 			          Expr expr3f = expr3.and(world.getAllReachableFacts()).and(toAdd);
-			          command = new Command(false, scope, -1, -1, expr3f); //this is the test command.
+			          command = new Command(false, -1, -1, -1, expr3f); //this is the test command.
+			          
+						SafeList<CommandScope> scopes = new SafeList();
+						SafeList<Sig> scopeSigsB = world.getAllSigs();
+						for(Sig scopeSigB: scopeSigsB){
+							if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
+									!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
+								///scopes.add(ts);
+							} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+								scopes.add(ts);
+							} else if (scopeSigB.label.startsWith("temp")){
+								CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
+								//scopes.add(ts);
+							}
+						}
+						command.change(scopes.makeConstList());
 			          
 			          A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 			          //System.err.println("checkpoint2");
@@ -1439,19 +1554,19 @@ public class AlloyChecker extends OperatorExecutableImpl {
 			      
 			    }
 				  } catch (Exception e){
-					  System.err.println("Oh no: ");
-					  e.printStackTrace();
-					  try {
-					      FileWriter fstream = new FileWriter("error.log");
-					      
-					      
-					      BufferedWriter outwriter = new BufferedWriter(fstream);
-					      outwriter.write("Error! " + e.getMessage());
-					      outwriter.close();
-					      fstream.close();
-					  }catch (Exception eee) {
-						  System.err.println("Error writing error log...." + e.getMessage());
-					  }
+				  System.err.println(" Oh no: ");
+				  e.printStackTrace();
+				  try {
+			      FileWriter fstream = new FileWriter("error.log");
+			      
+			      
+			      BufferedWriter outwriter = new BufferedWriter(fstream);
+			      outwriter.write("Error! " + e.getMessage());
+			      outwriter.close();
+			      fstream.close();
+				  }catch (Exception eee) {
+					  System.err.println("Error writing error log...." + e.getMessage());
+				  }
 				  }
 			    System.out.println("Done.");
 	}
