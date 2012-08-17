@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.operator.alloy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Scanner;
@@ -68,7 +69,7 @@ public class AlloyChecker extends OperatorExecutableImpl {
 
 	private static void makeANF(String[] args) throws Err {
 		try {
-			int scope = 10;
+			int scope = 26;
 			int loopCounter = 0;
 			System.out.println("Constrainedness: " + constrainedness);
 
@@ -109,16 +110,19 @@ public class AlloyChecker extends OperatorExecutableImpl {
 					if((asi.label.indexOf("__M") == -1) && (asi.label.indexOf("__V") == -1) && (asi.label.indexOf("__S") == -1)  ){
 						initialSig = asi;
 					}
-					if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
+					//if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
+					if((asi.label.indexOf("__M") < 0) || (asi.label.indexOf("__V") < 0) || (asi.label.indexOf("__S") < 0)  ){
 						if (needHard == true){
-							needHard = false;
-							hardSig = asi;
+							if((asi.label.indexOf("__M") >= 0) || (asi.label.indexOf("__V") >= 0) || (asi.label.indexOf("__S") >= 0)  ){
+								needHard = false;
+								hardSig = asi;
+							}
 						}
 					}
 				}
 				SafeList<Sig> impliedSigs = new SafeList();
 				int numImplied = (int) Math.round(constrainedness*(userDefinedSigs.size()));
-				System.out.println("Expected number of annotations to add is approximately: " + numImplied);
+				System.out.println("Expected number of annotations to add is at least: " + numImplied);
 				int sigCounterLoop = 0;
 				for(Sig asi:userDefinedSigs){
 					if(sigCounterLoop == numImplied){
@@ -160,14 +164,14 @@ public class AlloyChecker extends OperatorExecutableImpl {
 							toAddStr = toAddStr + " or " + test; //"or (" + firstLabel + " in " + firstLabel + " and (! " + firstLabel + " in univ - " + firstLabel +"))";
 							if(firstLabel.indexOf("__S") >= 0){
 								//MSV
-								toAdd.or(firstSig.cardinality().equal(ExprConstant.ONE).not());
-								toAddStr = toAddStr + "or (#" + firstLabel + " = 1)";
+								toAdd.or(firstSig.cardinality().lte(ExprConstant.ONE).not());
+								toAddStr = toAddStr + "or (#" + firstLabel + " <= 1)";
 							}
 						}
 					} else if(firstLabel.indexOf("__S") >= 0){
 						//S
-						toAdd = firstSig.cardinality().equal(ExprConstant.ONE).not();
-						toAddStr = toAddStr + "(#" + firstLabel + " = 1)";
+						toAdd = firstSig.cardinality().lte(ExprConstant.ONE).not();
+						toAddStr = toAddStr + "(#" + firstLabel + " <= 1)";
 						if(firstLabel.indexOf("__V") >= 0){
 							//SV
 							String test = "not (no x: Nodes | x in " + firstSig.label + " and x not in (univ-" + firstSig.label + "))";
@@ -201,7 +205,7 @@ public class AlloyChecker extends OperatorExecutableImpl {
 								if(nextLabel.indexOf("__S") >= 0){
 									//MSV
 									toAddB = toAddB.or(nextSig.cardinality().equal(ExprConstant.ONE).not());
-									toAddStr = toAddStr + " or (#" + nextLabel + " = 1)";
+									toAddStr = toAddStr + " or (#" + nextLabel + " <= 1)";
 
 								}
 							}
@@ -212,8 +216,8 @@ public class AlloyChecker extends OperatorExecutableImpl {
 							}
 						} else if(nextLabel.indexOf("__S") >= 0){
 							//S
-							Expr toAddB = nextSig.cardinality().equal(ExprConstant.ONE);
-							toAddStr = toAddStr + "or (#" + nextLabel + " = 1)";
+							Expr toAddB = nextSig.cardinality().lte(ExprConstant.ONE);
+							toAddStr = toAddStr + "or (#" + nextLabel + " <= 1)";
 
 							if(nextLabel.indexOf("__V") >= 0){
 								//SV
@@ -264,81 +268,269 @@ public class AlloyChecker extends OperatorExecutableImpl {
 				}
 				int impliedAddCounter = 0;
 				//System.err.println(numImplied);
+				HashSet<String> callsForB  = new HashSet();
+				SafeList<Func> worldFunctions = world.getAllFunc();
+				HashSet<Expr> iffStatementBodies = new HashSet();
 				HashSet<String> iffStatementCalls = new HashSet();
 				for(Sig iffSig: iffs){
 
 					String ids = iffSig.label.substring(5,iffSig.label.length()) + "[]";
 					//System.err.println("in iff sig processing " + ids);
+					String id = iffSig.label.substring(5,iffSig.label.length());
 					//System.out.println(ids);
 					String calls = "";
+					Expr exprCall = null;
 					if((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") < 0)  ){
 						//None
 						if(impliedAddCounter + 3 <= numImplied){
-							calls = "!exists_" + ids + " or !unique_" + ids + " or !distinct_" + ids;
+							String call1 = "this/exists_" + id;
+							String call2 = "this/unique_" + id;
+							String call3 = "this/distinct_" + id;
+							callsForB.add(call1);
+							callsForB.add(call2);
+							callsForB.add(call3);
+							Expr body1 = null;
+							Expr body2 = null;
+							Expr body3 = null;
+							for(Func fu: worldFunctions){
+								//								//System.out.println(fu.label + " " + call1 + " " + call2 + "  " + call3);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} else if(fu.label.equals(call2)){
+									body2 = fu.getBody();
+								} else if(fu.label.equals(call3)){
+									body3 = fu.getBody();
+								}
+							}
+							//if(body1 == null || body2 == null || body3 == null){
+							if(body2 == null || body3 == null){
+								System.err.println("uh oh");
+							}
+							exprCall = body1.or(body2).or(body3);
+							//exprCall = body2.or(body3);
+
+							calls = "exists_" + id + " or unique_" + id + " or distinct_" + id;
+							//calls = "unique_" + id + " or distinct_" + id;
+
 							impliedAddCounter = impliedAddCounter + 3;
 						} else if (impliedAddCounter + 2 <= numImplied){
-							calls = "!exists_" + ids + " or !unique_" + ids;
+							calls = "exists_" + id + " or unique_" + id;
+
+							String call1 = "this/exists_" + id;
+							String call2 = "this/unique_" + id;
+							callsForB.add(call1);
+							callsForB.add(call2);
+							Expr body1 = null;
+							Expr body2 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} else if(fu.label.equals(call2)){
+								body2 = fu.getBody();
+								}
+							}
+							exprCall = body1.or(body2);
+
 							impliedAddCounter = impliedAddCounter + 2;
 						} else if (impliedAddCounter + 1 <= numImplied){
-							calls = "!exists_" + ids;
+							calls = "exists_" + id;
 							impliedAddCounter = impliedAddCounter + 1;
+
+							String call1 = "this/exists_" + id;
+							callsForB.add(call1);
+
+							Expr body1 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} 
+							}
+							exprCall = body1;
+
+
 						} else {
 							calls = calls;
 						}
 					}else if ((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") >= 0)  ){
 						//Set only
 						if(impliedAddCounter + 2 <= numImplied){
-							calls = "!exists_" + ids + " or !distinct_" + ids;
+							calls = "exists_" + id + " or distinct_" + id;
+
+							String call1 = "this/exists_" + id;
+							String call2 = "this/distinct_" + id;
+							callsForB.add(call1);
+							callsForB.add(call2);
+							Expr body1 = null;
+							Expr body2 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} else if(fu.label.equals(call2)){
+									body2 = fu.getBody();
+								}
+							}
+							exprCall = body1.or(body2);
+
 							impliedAddCounter = impliedAddCounter + 2;
 						} else if (impliedAddCounter + 1 <= numImplied){
-							calls = "!exists_" + ids;
+							calls = "exists_" + id;
 							impliedAddCounter = impliedAddCounter + 1;
+
+							String call1 = "this/exists_" + id;
+							callsForB.add(call1);
+
+							Expr body1 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} 
+							}
+							exprCall = body1;
 						} else { 
 							calls = calls;
 						}
 					}else if ((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") >= 0) && (iffSig.label.indexOf("__S") < 0)  ){
 						//Var only
 						if(impliedAddCounter + 2 <= numImplied){
-							calls = "!exists_" + ids + " or !unique_" + ids;
+							calls = "exists_" + id + " or unique_" + id;
 							impliedAddCounter = impliedAddCounter + 2;
+
+							String call1 = "this/exists_" + id;
+							String call2 = "this/unique_" + id;
+							callsForB.add(call1);
+							callsForB.add(call2);
+							Expr body1 = null;
+							Expr body2 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} else if(fu.label.equals(call2)){
+									body2 = fu.getBody();
+								}
+							}
+							exprCall = body1;//.or(body2);
+
 						} else if (impliedAddCounter + 1 <= numImplied){
-							calls = "!exists_" + ids;
+							calls = "exists_" + id;
 							impliedAddCounter = impliedAddCounter + 1;
+
+							String call1 = "this/exists_" + id;
+							callsForB.add(call1);
+
+							Expr body1 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} 
+							}
+							exprCall = body1;
 						} else {
 							calls = calls;
 						}
 					}else if ((iffSig.label.indexOf("__M") < 0) && (iffSig.label.indexOf("__V") >= 0) && (iffSig.label.indexOf("__S") >= 0)  ){
 						//Set and Var
 						if (impliedAddCounter + 1 <= numImplied){
-							calls = "!exists_" + ids;
+							calls = "exists_" + id;
 							impliedAddCounter = impliedAddCounter + 1;
+
+							String call1 = "this/exists_" + id;
+							callsForB.add(call1);
+
+							Expr body1 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} 
+							}
+							exprCall = body1;
 						} else {
 							calls = calls;
 						}
 					}else if ((iffSig.label.indexOf("__M") >=  0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") < 0)  ){
 						//May Only
 						if(impliedAddCounter + 2 <= numImplied){
-							calls = "!unique_" + ids + " or !distinct_" + ids;
+							calls = "unique_" + id + " or distinct_" + id;
 							impliedAddCounter = impliedAddCounter + 2;
+
+							String call1 = "this/unique_" + id;
+							String call2 = "this/distinct_" + id;
+							callsForB.add(call1);
+							callsForB.add(call2);
+							Expr body1 = null;
+							Expr body2 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} else if(fu.label.equals(call2)){
+									body2 = fu.getBody();
+								}
+							}
+							exprCall = body1.or(body2);
+
 						} else if (impliedAddCounter + 1 <= numImplied){
-							calls = "!unique_" + ids;
+							calls = "unique_" + id;
 							impliedAddCounter = impliedAddCounter + 1;
+
+
+							String call1 = "this/unique_" + id;
+							callsForB.add(call1);
+
+							Expr body1 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} 
+							}
+							exprCall = body1;
 						} else {
 							calls = calls;
 						}
 					}else if ((iffSig.label.indexOf("__M") >=  0) && (iffSig.label.indexOf("__V") < 0) && (iffSig.label.indexOf("__S") >=  0)  ){
 						//May and Set
 						if (impliedAddCounter + 1 <= numImplied){
-							calls = "!distinct_" + ids; 
+							calls = "distinct_" + id; 
 							impliedAddCounter = impliedAddCounter + 1;
+
+							String call1 = "this/distinct_" + id;
+							callsForB.add(call1);
+
+							Expr body1 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} 
+							}
+							exprCall = body1;
 						} else {
 							calls = calls;
 						}
 					}else if ((iffSig.label.indexOf("__M") >=  0) && (iffSig.label.indexOf("__V") >=  0) && (iffSig.label.indexOf("__S") < 0)  ){
 						//May and Var
 						if (impliedAddCounter + 1 <= numImplied){
-							calls = "!unique_" + ids;
+							calls = "unique_" + id;
 							impliedAddCounter = impliedAddCounter + 1;
+
+							String call1 = "this/unique_" + id;
+							callsForB.add(call1);
+
+							Expr body1 = null;
+							for(Func fu: worldFunctions){
+								//System.out.println(fu.label + call1);
+								if(fu.label.equals(call1)){
+									body1 = fu.getBody();
+								} 
+							}
+							exprCall = body1;
 						} else {
 							calls = calls;
 						}
@@ -350,7 +542,10 @@ public class AlloyChecker extends OperatorExecutableImpl {
 					}
 					//System.err.println("in iff sig processing " + calls);
 					iffStatementCalls.add(calls);
+					iffStatementBodies.add(exprCall);
+
 				}
+
 				String FinalIFFList = "";
 				boolean firstInList = true;
 				for(String iffCall: iffStatementCalls){
@@ -366,6 +561,23 @@ public class AlloyChecker extends OperatorExecutableImpl {
 					}
 				}
 
+				Expr finalIFFExpr = null;
+				boolean firstInListE = true;
+				for(Expr iffCallE: iffStatementBodies){
+					if(firstInListE){
+						if (iffCallE != null){
+							finalIFFExpr = iffCallE;
+							firstInListE = false;
+						}
+					} else {
+						if (iffCallE != null){
+							finalIFFExpr = finalIFFExpr.or(iffCallE);
+						}
+					}
+				}
+				if (finalIFFExpr != null){
+					//System.err.println("here--------------" + finalIFFExpr.toString());
+				}
 				//System.err.println(FinalIFFList);
 
 
@@ -374,24 +586,27 @@ public class AlloyChecker extends OperatorExecutableImpl {
 				String hardSigAnnotation = "";
 				Expr hardExpr = ExprConstant.TRUE;
 				String hardStrToAdd = "";
+				//System.err.println(hardSigName);
+				// reverted to: //In the following, the conditions were ">="
 				if (hardSigName.indexOf("__M") >= 0){
 					hardSigAnnotation = "M";
-					hardExpr = hardSig.some().not();
-					hardStrToAdd = "not (some " + hardSig.label + ")";
+					hardExpr = hardSig.some();
+					hardStrToAdd = " (some " + hardSig.label + ")";
 				} else if (hardSigName.indexOf("__S") >= 0){
 					hardSigAnnotation = "S";
-					hardStrToAdd = "not (#" + hardSig.label + " = 1)";
-					hardExpr = hardSig.cardinality().equal(ExprConstant.ONE).not();
+					hardStrToAdd = " (#" + hardSig.label + " <= 1)";
+					hardExpr = hardSig.cardinality().lte(ExprConstant.ONE);
 				} else if (hardSigName.indexOf("__V") >= 0){
 					hardSigAnnotation = "V";
-					String test = "not (no x: Nodes | x in " + hardSig.label + " and x not in (univ-" + hardSig.label + "))";
+					String test = " (no x: Nodes | x in " + hardSig.label + " and x not in (univ-" + hardSig.label + "))";
 					Expr hardExprTest = world.parseOneExpressionFromString(test);
 					hardStrToAdd = test; //"(" +  hardSig.label+ " in " +  hardSig.label+ " and (! " +  hardSig.label+ " in univ - " +  hardSig.label +"))";
 					//hardExpr = hardSig.in(hardSig).and(hardSig.in((PrimSig.UNIV).minus(hardSig)).not());
 					hardExpr = hardExprTest;
 				}
-				String finalIFF = "((" + FinalIFFList + ") iff " + hardStrToAdd + ") and " + hardStrToAdd;
-
+				//String finalIFF = "((" + FinalIFFList + ") iff " + hardStrToAdd + ") and " + hardStrToAdd;
+				String finalIFF = "((" + FinalIFFList + ") implies " + hardStrToAdd + ")"; // and " + hardStrToAdd;
+				//System.err.println(hardStrToAdd + "<--- hard expr!");
 				//System.err.println(finalIFF);
 
 				if (toAdd == null) {
@@ -413,7 +628,8 @@ public class AlloyChecker extends OperatorExecutableImpl {
 						toAdd =  (hardExpr).implies(hardExpr);
 						toAddStr = hardStrToAdd + " implies ( " + hardStrToAdd + ")";
 					} else {
-						toAdd =  world.parseOneExpressionFromString(finalIFF); //toAdd.implies(hardExpr);
+						toAdd = finalIFFExpr.implies(hardExpr);
+						//toAdd =  world.parseOneExpressionFromString(finalIFF); //toAdd.implies(hardExpr);
 					}
 					//System.err.println(toAdd.toString());
 					//System.err.println(toAddStr);
@@ -430,24 +646,50 @@ public class AlloyChecker extends OperatorExecutableImpl {
 				elements[0] = hardSigName;
 				annotations[0] = hardSigAnnotation;
 
-				//Scanner sc = new Scanner(new File(args[i+1]));
+				Scanner sc = new Scanner(new File(filename));
 				int scanCounter = 1;
 				int arrayPosCounter = 1;
 
-				/*
-      while (sc.hasNext()) {
-        if (scanCounter % 2 == 0){
-          String element = sc.next();
-          elements[arrayPosCounter] = element;
-        } else {
-          String annotation = sc.next();
-          annotations[arrayPosCounter] = annotation;
-          arrayPosCounter++;
-        }
-        scanCounter++;
-      }
-      sc.close();
-				 */
+				HashMap<Integer,String> positionsInFile = new HashMap();
+				HashMap<Integer,String> originalPositionsInFile = new HashMap();
+				HashMap<String,Integer> inverseOriginalMap = new HashMap();
+				//int arrayPos = 0;
+				int lineNumber = 0;
+				//String[] finalFactLines = new String[100];
+				boolean inFinal = false;
+				while (sc.hasNextLine()) {
+					String line = sc.nextLine();
+					if (line.equals ("fact final {")){
+						inFinal = true;
+					}
+					if (inFinal && line.equals("}")){
+						inFinal = false;
+					}
+					if (inFinal){
+						//finalFactLines[arrayPos] = line;
+						positionsInFile.put(new Integer(lineNumber), line);
+						originalPositionsInFile.put(new Integer(lineNumber), line);
+						inverseOriginalMap.put(line, new Integer(lineNumber));
+
+						//arrayPos++;
+						/*
+			    		if (arrayPos > finalFactLines.length){
+			    			String[] newArray = new String[arrayPos + 50];
+			    			for(int h = 0; h <finalFactLines.length; h++ ){
+			    				newArray[h] = finalFactLines[h];
+			    			}
+			    			finalFactLines = newArray;
+			    		}
+						 */
+					}
+					lineNumber++;
+				}
+				sc.close();
+
+				//			   for(Pair pr: positionsInFile){
+				//				   System.out.println(pr.b);
+				//			   }
+
 				//System.err.println("Checkpoint: scanned");
 
 				A4Options options = new A4Options();
@@ -478,41 +720,58 @@ public class AlloyChecker extends OperatorExecutableImpl {
 						//This should never happen.
 					}
 					//System.err.println(elements[j] + " --> " + annotations[j]);
+					//System.out.println(toAdd.toString());
 					if (annotations[j].equals("M")){
 						Expr expr1 = s.some().not();
 						Expr expr1f = expr1.and(world.getAllReachableFacts()).and(toAdd);
-						command = new Command(false, scope, -1, -1, expr1f);
+						//System.out.println("First check: " + expr1.toString() + " and " + toAdd.toString());
+						//System.out.println(expr1.toString());
+						command = new Command(false, -1, -1, -1, expr1f);
 					} else if (annotations[j].equals("S")){
-						Expr expr2 = s.cardinality().equal(ExprConstant.ONE).not();  //cardinality is one
+						Expr expr2 = s.cardinality().lte(ExprConstant.ONE).not();  //cardinality is one
 						Expr expr2f = expr2.and(world.getAllReachableFacts()).and(toAdd);
-						command = new Command(false, scope, -1, -1, expr2f); //this is the test command.
+						//System.out.println("First check: " + expr2.toString() + " and " + toAdd.toString());
+						//System.out.println(expr2.toString());
+						command = new Command(false, -1, -1, -1, expr2f); //this is the test command.
 					} else if (annotations[j].equals("V")){ //"V"
 						String test = "not (no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
 						Expr hardExprTest = world.parseOneExpressionFromString(test);
 						Expr expr2V = hardExprTest; //s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
+						//System.out.println("First check: " + expr2V.toString() + " and " + toAdd.toString());
 						Expr expr2Vf = expr2V.and(world.getAllReachableFacts()).and(toAdd);
-						command = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
+						command = new Command(false, -1, -1, -1, expr2Vf); //this is the test command.
 					}
+					//System.out.println("First check: " + command.formula.toString());
 
+
+					/*
+					System.err.println("world facts are...");
+					SafeList<Pair<String, Expr>> worldFacts = world.getAllFacts();
+					for(Pair factPair: worldFacts){
+						System.out.println(factPair.a);
+
+					}
+					System.err.println("no more facts");	
+					 */
 					SafeList<CommandScope> scopes = new SafeList();
 					SafeList<Sig> scopeSigs = world.getAllSigs();
 					for(Sig scopeSig: scopeSigs){
 						if(!scopeSig.label.equals("this/Nodes") &&  !scopeSig.label.startsWith("this/AEn")  &&  !scopeSig.label.startsWith("this/BEn")  &&  !scopeSig.label.startsWith("this/End") && !scopeSig.label.equals("this/Edges") && !scopeSig.label.startsWith("this/end") && 
 								!scopeSig.label.equals("this/Source")  && !scopeSig.label.equals("this/Target")){
 							CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSig, false, 0, 5, 1);
-							scopes.add(ts);
-						} else if (scopeSig.label.equals("this/Nodes") || scopeSig.label.equals("this/Edges")){
-							CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSig, false, 25, 30, 1);
+							//scopes.add(ts);
+						} else if (scopeSig.label.equals("this/Nodes") ){ //|| scopeSig.label.equals("this/Edges")
+							CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSig, true, 26, 26, 1);
 							scopes.add(ts);
 						}
 					}
 					//System.out.println(command.bitwidth + "");
 					command.change(scopes.makeConstList());
-					
+
 					//System.err.println("Checkpoint: before first solve; " + command.toString() + "; " + command.formula.toString());
 					A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 					//System.err.println(ans.getBitwidth() + "");
-					
+
 					//System.err.println("Checkpoint: after first solve");
 					if(ans.satisfiable()){
 						System.out.println("No propogation for this annotation.");
@@ -521,12 +780,15 @@ public class AlloyChecker extends OperatorExecutableImpl {
 
 						HashSet<String> S = new HashSet();
 						int globalSigCounter = 0;
+						int bigLoopCounter = 0;
+						Module oldWorld = world;
 						while(!(ans.satisfiable())){
 
 							//Main while
-
-							//Pair<Set<Pos>,Set<Pos>> uc = ans.highLevelCore();
-
+							//Pair<Set<Pos>, Set<Pos>> highLevelCore = ans.highLevelCore();
+							//System.out.println(highLevelCore.a.toString());
+							//System.out.println("-----");
+							//System.out.println(highLevelCore.b.toString());
 							Set<Pos> uc = ans.lowLevelCore();
 							//System.err.println("Main loop---");
 							//System.err.println(uc.toString());
@@ -543,17 +805,29 @@ public class AlloyChecker extends OperatorExecutableImpl {
 							//               * 4. Use that file to check again.
 							//               */
 							int testCounter = 0;
+							System.out.print("Analysing positions in new core... ");
 							HashSet<String> relaxable = new HashSet(); //This is effectively "c" in the pseudo-code.
 							for(Pos p: uc){
 
 								//UNSAT core = uc
 								//System.out.println("New pos in uc " + uc.size() + " actual: " + (testCounter++));
-
-								SafeList<Func> preds = world.getAllFunc();
+								//System.out.println("positions in unsat core -->" + p.y + " " + p.y2 + "  " + p.x + "    " + p.x2 + "   " + p.toShortString() + "  >>>>>>  " + p.toString());
+								SafeList<Func> preds = oldWorld.getAllFunc();
+								//System.out.println("Core issue at " + p.toString());
 								for(Func f: preds){
 									Pos fSpan = f.span();
+									Pos fPos = f.pos();
+									//if(p.y == 130){
+									//System.out.println("fSpan: " + fSpan.toString() + " x=" + fSpan.x + " x2=" + fSpan.x2 + " y=" + fSpan.y + " y2=" + fSpan.y2) ;
+									//System.out.println("fPos: " + fPos.toString() + " x=" + fPos.x + " x2=" + fPos.x2 + " y=" + fPos.y + " y2=" + fPos.y2);
+									//}
 									//System.err.println(fSpan.y + " " + fSpan.y2 + "<-- function spans.  positions in unsat core -->" + p.y + " " + p.y2);
-									if (fSpan.y <= p.y && p.y2 <= fSpan.y2){
+									//									if (fSpan.y <= p.y && p.y2 <= fSpan.y2){ //OLD<<----
+									//									if (fSpan.y2 <= p.y && p.y <= fSpan.y){ //OLD<<----
+
+									if (fSpan.y2 >= p.y && p.y >= fSpan.y){ //OLD<<----
+
+										//if (fSpan.y <= p.y && fSpan.y2 <= p.y2){
 										//The uc sentence is in this predicate.
 										String formatted = f.label.substring(5, f.label.length());// + "[]";
 										//System.out.println(formatted);
@@ -588,13 +862,13 @@ public class AlloyChecker extends OperatorExecutableImpl {
 											//                      }
 											//                         }
 											relaxable.add(formatted);
-											//System.out.println("added: " + formatted);
+											//System.out.println(formatted + "  <-- added  ");
 										}
 										//System.out.println(f.toString() + "        " + f.label + "        " + formatted);
 									}
 								}
 							}                  
-
+							System.out.println("Done analysing core...");
 							if (relaxable.size() == 0){ //"if S' = \emptyset then return error
 								System.out.println("UNSOLVABLE --- Cannot propagate using solely additional annotations");
 								return;
@@ -602,7 +876,8 @@ public class AlloyChecker extends OperatorExecutableImpl {
 
 							for(String stri: relaxable){
 								//if(stri.startsWith("exists_") || stri.startsWith("unique_") || stri.startsWith("distinct_")){
-									S.add(stri);
+								//System.out.println(stri);	
+								S.add(stri);
 								//}
 							}
 
@@ -649,12 +924,12 @@ public class AlloyChecker extends OperatorExecutableImpl {
 
 							FileWriter fstream = new FileWriter(filenameB);
 							loopCounter++;
-							//rofl();
+
 							int lineSafetyCounter = 0;
 							BufferedWriter out = new BufferedWriter(fstream);
 							try {
 								int oldGlobalSigCounter = globalSigCounter;
-
+								int newLineCounter = 0;
 								while (modelReader.hasNextLine()) {
 									//System.out.println(filename + "here");
 									lineSafetyCounter++;
@@ -663,15 +938,19 @@ public class AlloyChecker extends OperatorExecutableImpl {
 									String line = modelReader.nextLine();
 									//System.err.println(line);
 									boolean weaken = false;
+									//System.out.println("should I weaken this? " + line);
 									for(String str: relaxable){
 										//System.out.println(filename + "here");
 										//System.out.println(relaxable.size() + "");
 										//System.out.println(line.trim());
 										//if(str.equals(line.trim())){
-										
+										//System.out.println(str);
 										//System.err.println(str.substring(0, 4));
-										//if(line.trim().startsWith(str) || (line.trim().startsWith("((" + str) && line.trim().indexOf(str.substring(0, 4))>= 1)){
-										if(line.trim().startsWith(str) || (line.trim().startsWith("((") && line.trim().indexOf(str.substring(0, 4))>= 1)){
+										
+										//&& line.trim().indexOf(str.substring(0, 4))>= 0
+										
+										if(line.trim().startsWith(str) || (line.trim().startsWith("((") )){
+											//if(line.trim().startsWith(str) || (line.trim().startsWith("((") && line.trim().indexOf(str)>= 1)){
 											//System.out.println(line);
 
 											//System.out.println("here!--------------------------------------");
@@ -681,36 +960,44 @@ public class AlloyChecker extends OperatorExecutableImpl {
 										}
 									}
 									if (weaken) {
-										String toWrite = "((" + line + ") and #temp" +(globalSigCounter) + "= 1 ) or (not (" + line + ") and #temp" +(globalSigCounter) + " not = 1) \n";
+										//String toWrite = "((" + line + ") and #temp" +(globalSigCounter) + "= 1 ) or (not (" + line + ") and #temp" +(globalSigCounter) + " not = 1) \n";
+										
+										//Using strictly "or"
+										String toWrite = "((" + line + ") or #temp" +(globalSigCounter) + "= 1 ) \n"; //or (not (" + line + ") and #temp" +(globalSigCounter) + " not = 1) \n";
+										if(positionsInFile.containsKey(new Integer(newLineCounter))){
+											positionsInFile.put(new Integer(newLineCounter), toWrite);
+										}
+
 										// String toWrite = "(" + line + " ) or (not " + line  + ") \n";
 										//	String toWrite = "(" + line + " and #temp" +(loopCounter) + "= 1 ) or (not " + line + " and #temp" +(loopCounter) + " not = 1) \n";
-//										String toWrite = "";
-//										boolean firstHotLine = true;
-//										for(String rel: relaxable){
-//											//System.err.println("rel: " + rel + "    line: " + line.trim());
-//											String oneHotLine = rel;
-//											for(String other: relaxable){
-//												if(!line.trim().equals(rel)){
-//													oneHotLine = oneHotLine + " and not " + other;
-//												}
-//											}
-//											if(firstHotLine){
-//												//System.err.println("first : " + oneHotLine);
-//												toWrite = "(" +  oneHotLine + ") ";
-//												firstHotLine = false;
-//											} else {
-//												toWrite = toWrite + "or (" +  oneHotLine + ")  ";
-//											}
-//											//toWrite = oneHotLine;
-//										}
-//										out.write(toWrite);
-//										out.write("\n");
+										//										String toWrite = "";
+										//										boolean firstHotLine = true;
+										//										for(String rel: relaxable){
+										//											//System.err.println("rel: " + rel + "    line: " + line.trim());
+										//											String oneHotLine = rel;
+										//											for(String other: relaxable){
+										//												if(!line.trim().equals(rel)){
+										//													oneHotLine = oneHotLine + " and not " + other;
+										//												}
+										//											}
+										//											if(firstHotLine){
+										//												//System.err.println("first : " + oneHotLine);
+										//												toWrite = "(" +  oneHotLine + ") ";
+										//												firstHotLine = false;
+										//											} else {
+										//												toWrite = toWrite + "or (" +  oneHotLine + ")  ";
+										//											}
+										//											//toWrite = oneHotLine;
+										//										}
+										//										out.write(toWrite);
+										//										out.write("\n");
 										globalSigCounter++;
 										sigCounter++;
 										out.write(toWrite);
 									} else {
 										out.write(line + "\n"); 
 									}
+									newLineCounter++;
 								}
 								if (lineSafetyCounter  <= loopCounter){
 									System.out.println("(Likely) Scope Error - infinite loop achieved (worse, every line in the model has been weakened by now. \n Terminating.");
@@ -721,32 +1008,32 @@ public class AlloyChecker extends OperatorExecutableImpl {
 									out.write("sig temp" + l + " {} \n");
 								}
 								globalSigCounter = oldGlobalSigCounter + sigCounter;
-//HERE
-					              //System.err.println("sc=" + sigCounter + "  gsc=" + globalSigCounter + "  old=" + oldGlobalSigCounter + "  loop=" + loopCounter);
+								//HERE
+								//System.err.println("sc=" + sigCounter + "  gsc=" + globalSigCounter + "  old=" + oldGlobalSigCounter + "  loop=" + loopCounter);
 
-									if(!(oldGlobalSigCounter == globalSigCounter) && sigCounter > 1){
-								              boolean firstHotLine = true;
-								              String oneHot = "";
-								              for(int r =oldGlobalSigCounter; r < globalSigCounter; r++){
-								            	  String oneHotLine = "#temp" + r + " = 1";
-								            	  for(int t = oldGlobalSigCounter; t < globalSigCounter; t++){
-								            		  if(t != r){
-								            			  oneHotLine = oneHotLine + " and #temp"  + t + " not= 1 ";
-								            		  }
-								            	  }
-								            	  //System.err.println(oneHot);
-								            	  if(firstHotLine){
-								            		  //System.err.println("first : " + oneHotLine);
-								            		  oneHot = "(" +  oneHotLine + ") \n";
-								            		  firstHotLine = false;
-								            	  } else {
-								            		  oneHot = oneHot + "or (" +  oneHotLine + ")  \n";
-								            	  }
-								             }
-								        	  oneHot = "fact { \n (" + oneHot + ") \n } \n";
-								        	  out.write(oneHot);
+								if(!(oldGlobalSigCounter == globalSigCounter) && sigCounter > 1){
+									boolean firstHotLine = true;
+									String oneHot = "";
+									for(int r =oldGlobalSigCounter; r < globalSigCounter; r++){
+										String oneHotLine = "#temp" + r + " = 1";
+										for(int t = oldGlobalSigCounter; t < globalSigCounter; t++){
+											if(t != r){
+												oneHotLine = oneHotLine + " and #temp"  + t + " not= 1 ";
+											}
+										}
+										//System.err.println(oneHot);
+										if(firstHotLine){
+											//System.err.println("first : " + oneHotLine);
+											oneHot = "(" +  oneHotLine + ") \n";
+											firstHotLine = false;
+										} else {
+											oneHot = oneHot + "or (" +  oneHotLine + ")  \n";
+										}
 									}
-//HERE
+									oneHot = "fact { \n (" + oneHot + ") \n } \n";
+									out.write(oneHot);
+								}
+								//HERE
 								modelReader.close();
 								out.close();
 								fstream.close();
@@ -771,23 +1058,95 @@ public class AlloyChecker extends OperatorExecutableImpl {
 							//System.err.println(sB.label + "<-- final label");
 							Command commandB = null;
 							Expr eQ = null;
+							//System.out.println("toAddStr (should match finalIFFthing = " + toAddStr);
 
-							Expr toAddP = worldB.parseOneExpressionFromString(toAddStr);  
+							//Old:
+							//Expr toAddP = worldB.parseOneExpressionFromString(toAddStr);
+							Expr toAddP = null;
+							SafeList<Func> worldFunctionsB = worldB.getAllFunc();
+							for(String ca: callsForB){
+								for(Func fu: worldFunctionsB){
+									//System.out.println(fu.label + call1);
+									Expr body = null;
+									if(fu.label.equals(ca)){
+										body = fu.getBody();
+										if(toAddP == null){
+											toAddP = body;
+										} else {
+											toAddP = toAddP.or(body);
+										}
+									} 
+								}
+							}
+
+							String checkCommand = "";
+							//FIXHERE
+							if (toAddP == null) {
+								System.err.println("toAddP failed; constrainedness: " + constrainedness);
+							} else {
+								Expr hard =  worldB.parseOneExpressionFromString(hardStrToAdd);
+								//System.err.println(FinalIFFList);
+								//System.err.println(hardStrToAdd);
+								String newHard = "";
+								Scanner iffSC = new Scanner(FinalIFFList);
+								while(iffSC.hasNext()){
+									String next= iffSC.next(); //This will also serve as the name of pred being called.
+									if(next.equals("or")){
+										newHard = newHard + " " + next + " ";
+									} else {
+										Integer location  = inverseOriginalMap.get(next);
+										String newLine = positionsInFile.get(location);
+										//System.out.println(newLine + "<---the line being scanned.");
+										Scanner newLineScanner = new Scanner(newLine);
+										String notsToAdd = "";
+										while(newLineScanner.hasNext()){
+											String nextInLine = newLineScanner.next();
+											if(nextInLine.startsWith("#temp")){
+												String tempid = nextInLine.substring(1,nextInLine.length() - 1);
+												//System.out.println(tempid);
+												notsToAdd = notsToAdd + " and #" + tempid + " not= 1 ";
+											}
+										}
+										newLineScanner.close();
+										//System.out.println(notsToAdd);
+										newLine = "(" + next + notsToAdd + ")";
+										//System.out.println(newLine);
+										newHard = newHard + newLine;
+									}
+								}
+								//System.out.println(newHard);
+								iffSC.close();
+
+
+
+								//toAddP = toAddP.implies(hard);
+								checkCommand = "((" + newHard + ") implies " + hardStrToAdd + ")";
+
+								toAddP = worldB.parseOneExpressionFromString(checkCommand); 
+							}
+							//System.out.println(checkCommand);
+
+							//System.err.println("In loop, toAdd is: " + toAddP.toString());
+
 							//A4Solution ansi = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
 							if (annotations[j].equals("M")){
 								//System.err.println("M...");
 
-								eQ =  worldB.getAllReachableFacts().and(sB.some().not()).and(toAddP);
-
-								commandB = new Command(false, scope, -1, -1, eQ);
+								eQ =  (sB.some().not()).and(toAddP).and(worldB.getAllReachableFacts());
+								//System.err.println("in main while loop, checking: " + eQ.toString());
+								commandB = new Command(false, -1, -1, -1, eQ);
 								//System.out.println(commandB.toString() + "   " + commandB.formula.toString());
 							} else if (annotations[j].equals("S")){
 								//System.err.println("S...");
+
+
 								String check = "not (some " + s.label + ")";
 								Expr expr2 = worldB.parseOneExpressionFromString(check);// s.cardinality().equal(ExprConstant.ONE).not();  //cardinality is one
+								expr2 =  sB.cardinality().lte(ExprConstant.ONE).not();
 								Expr expr2f = expr2.and(worldB.getAllReachableFacts().and(toAddP));
 								//System.err.println(annotations[j]);
-								commandB = new Command(false, scope, -1, -1, expr2f); //this is the test command.
+								//System.err.println("in main while loop, checking: " + expr2.toString());
+								commandB = new Command(false, -1, -1, -1, expr2f); //this is the test command.
 							} else if (annotations[j].equals("V")){ //"V"
 								//System.err.println("V...");
 								String test = "not (no x: Nodes | x in " + s.label + " and x not in (univ-" + s.label + "))";
@@ -795,14 +1154,15 @@ public class AlloyChecker extends OperatorExecutableImpl {
 
 								Expr expr2V = s.in(s).and(s.in((PrimSig.UNIV).minus(s)).not());// not in all the others
 								Expr expr2Vf = hardExprTest.and(worldB.getAllReachableFacts()).and(toAddP); //expr2V.and(worldB.getAllReachableFacts().and(toAddP));
-								commandB = new Command(false, scope, -1, -1, expr2Vf); //this is the test command.
+								//System.err.println("in main while loop, checking: " + expr2V.toString());
+								commandB = new Command(false, -1, -1, -1, expr2Vf); //this is the test command.
 							}
 
 
 
-							//System.err.println("Checkingpointing...A; " + commandB.toString() +" " + commandB.formula.toString());
-							//A4Options optionsB = new A4Options();
-							//optionsB.solver = A4Options.SatSolver.MiniSatProverJNI;
+							//System.err.println("In main loop checking: "  + commandB.toString());
+							A4Options optionsB = new A4Options();
+							optionsB.solver = A4Options.SatSolver.MiniSatProverJNI;
 
 
 							//System.err.println("Checkingpointing...B");
@@ -816,21 +1176,25 @@ public class AlloyChecker extends OperatorExecutableImpl {
 								if(!scopeSigB.label.equals("this/Nodes") && !scopeSigB.label.equals("this/Edges") && 
 										!scopeSigB.label.equals("this/Source")  &&  !scopeSigB.label.startsWith("this/AEn")  &&  !scopeSigB.label.startsWith("this/BEn")  &&  !scopeSigB.label.startsWith("this/End") && !scopeSigB.label.equals("this/Target") && !scopeSigB.label.startsWith("this/end")){
 									CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 5, 1);
-									scopes.add(ts);
-								} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges")){
-									CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, scope, scope+5, 1);
+									///scopes.add(ts);
+								} else if (scopeSigB.label.equals("this/Nodes") || scopeSigB.label.equals("this/Edges") ){ //
+									CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, true, scope, scope, 1);
+									//System.err.println("here-------------------");
 									scopes.add(ts);
 								} else if (scopeSigB.label.startsWith("temp")){
 									CommandScope ts = new CommandScope(Pos.UNKNOWN, scopeSigB, false, 0, 1, 1);
-									scopes.add(ts);
+									//scopes.add(ts);
 								}
 							}
+							oldWorld = worldB;
 							if(commandB == null) { System.err.println("NULL COMMAND - ERROR"); }
 							//System.out.println(scopesB.toString());
 							commandB.change(scopesB.makeConstList());
 							//System.err.println(filenameB);
-							ans = TranslateAlloyToKodkod.execute_command(rep, worldBSigs, commandB, options);
+							ans = TranslateAlloyToKodkod.execute_command(rep, worldBSigs, commandB, optionsB);
+							//A4Solution ansB = TranslateAlloyToKodkod.execute_command(rep, worldBSigs, commandB, options);
 							//System.err.println("Checkingpointing...C");
+							//System.err.println(ans.satisfiable() + " " );
 						}
 						System.out.println(S.size() + " annotations to add:");
 						for(String stuff: S){
