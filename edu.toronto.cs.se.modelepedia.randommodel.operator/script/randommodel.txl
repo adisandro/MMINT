@@ -16,6 +16,10 @@ define ownEntry
 	[id] [id] [id] %x:a y:b -> x_o_y a b
 end define
 
+define endline
+       [opt +] [id]
+end define
+
 define run
 	'run [id] for [number] [newline]
 |	'run [id] for [id] [newline]
@@ -231,6 +235,7 @@ end define
 
 define sigdef
 		sig [id] {} [newline]
+	|    	sig [id] in [id] {[id]: [id]} [newline]
 	|	sig [id] in [id] {} [newline]
 	|	one sig [id] {[id]: [id][SPOFF]->[id][SPON]}{[id] in [id].[id]} [newline]
 	|       one sig [id] {[id]: [id][SPOFF]->[id][SPON]}[SPOFF]//[SPON]{[id] in [id].[id]} [newline]
@@ -248,6 +253,9 @@ define predicate
 	|	pred universal { [newline] 'all e: Edges '| [SPOFF]e.(Source.src) = e.(Target.tgt)[SPON] [newline] } [newline]
 	|	pred [id] { [newline] [repeat nid] } [newline]
 	|	fact [id] { [newline] [repeat nid] } [newline]
+	|	fact { [newline] 'all [id]: [id] '| some [id] : [id] '| some [id] : [id] '| ([repeat endlineOr]) and ([repeat endlineOr])  [newline] }[newline]
+	|	fact { [newline] [id] = [repeat endline] [newline] } [newline]
+	|	fact { [newline] [id] in [id] [newline] [id][SPOFF].[id][SPON] = [id] [newline] } [newline]
 	|	fact { [newline] 'all [id]:[id] '| [SPOFF][id].([id].[id])[SPON] in [id] } [newline]
 	|	pred [id] { 'all [id]:[id] '| 'all [id]:[id] '| ([id] in [id] and [id] in [id]) iff
 		 	(some [id]:[id] '| [id][SPOFF]->[id][SPON] in [id].[id])} [newline]
@@ -268,6 +276,10 @@ define cline
 	|	[id].[id] in [repeat idp] [newline]
 	|	[SPOFF]//[SPON] [id] in [SPOFF]//Nothing[SPON] of this type was defined [newline]
 	|	[SPOFF]//[SPON] [id].[id] in [SPOFF]//Nothing[SPON] of this type was defined [newline]
+end define
+
+define endlineOr
+        [opt 'or] ([SPOFF][id].[id][SPON] = [id])
 end define
 
 define transline
@@ -314,20 +326,38 @@ end define
 
 
 %2512 HERE
+%define metamodel
+%abstract sig Nodes {} [newline]
+%abstract sig Edges {}[newline]
+%[newline]
+%one sig Source {src:[SPOFF]Edges->one[SPON] Nodes}[newline]
+%one sig Target {tgt:[SPOFF]Edges->one[SPON] Nodes}[newline]
+%[newline]
+%pred existential {[newline]
+%some e:Edges '| [SPOFF]e.(Source.src) = e.(Target.tgt)[SPON][newline]
+%}[newline]
+%[newline]
+%pred universal {[newline]
+%'all e:Edges '| 'not e[SPOFF].(Source.src) = e.(Target.tgt)[SPON][newline]
+%}[newline]
+%end define
+
+
 define metamodel
 abstract sig Nodes {} [newline]
-abstract sig Edges {}[newline]
+abstract sig Edges {} [newline]
+sig Ends in Nodes {} [newline]
+sig AEnds in Ends {} [newline]
+sig BEnds in Ends {} [newline]
 [newline]
-one sig Source {src:[SPOFF]Edges->one[SPON] Nodes}[newline]
-one sig Target {tgt:[SPOFF]Edges->one[SPON] Nodes}[newline]
+fact{[newline]
+Ends = AEnds + BEnds [newline]
+} [newline]
 [newline]
-pred existential {[newline]
-some e:Edges '| [SPOFF]e.(Source.src) = e.(Target.tgt)[SPON][newline]
-}[newline]
+%fact { [newline]
+%'all e:Edges '| some a: AEnds '| some b: BEnds '| [SPOFF]a.endAowner[SPON] = e and b[SPOFF].endBowner[SPON] = e [newline]
+%} [newline]
 [newline]
-pred universal {[newline]
-'all e:Edges '| 'not e[SPOFF].(Source.src) = e.(Target.tgt)[SPON][newline]
-}[newline]
 end define
 
 rule init2
@@ -445,6 +475,18 @@ rule init3
 	     em
 	construct vardoms [repeat vardom]
 	     em
+	construct aends [repeat id]
+	     em
+	construct bends [repeat id]
+	     em
+	construct aowners [repeat id]
+	     em
+	construct bowners [repeat id]
+	     em
+	export bowners
+	export aowners
+	export aends
+	export bends
 	construct edgeconstraints [repeat edgeconstraint]
 	export vardoms
 	export edgeconstraints
@@ -487,7 +529,8 @@ rule main
 
 	construct processProjPredsP [program]
 		p[processFinalPreds][addProjectionChecks][addTranslationPreds][makeLastPred]
-
+	construct processEndFacts [program]
+		p[makeAEnds][makeBEnds][noDangling]
 	import classes [repeat id]
 	import signatures [repeat sigdef]
 	import predicates [repeat predicate]
@@ -562,20 +605,35 @@ function init
 	deconstruct prog
 		ins[repeat input]outs[repeat output]n[newline]
 	construct meta [metamodel]
-abstract sig Nodes {}n
-abstract sig Edges {}n
-n
-one sig Source {src:Edges->one Nodes}n
-one sig Target {tgt:Edges->one Nodes}n
-n
-pred existential {n
-some e:Edges '| e.(Source.src) = e.(Target.tgt)n
-}n
-n
-pred universal {n
-'all e:Edges '| 'not e.(Source.src) = e.(Target.tgt)n
-}n
+%abstract sig Nodes {}n
+%abstract sig Edges {}n
+%n
+%one sig Source {src:Edges->one Nodes}n
+%one sig Target {tgt:Edges->one Nodes}n
+%n
+%pred existential {n
+%some e:Edges '| e.(Source.src) = e.(Target.tgt)n
+%}n
+%n
+%pred universal {n
+%'all e:Edges '| 'not e.(Source.src) = e.(Target.tgt)n
+%}n
 
+
+abstract sig Nodes {} n
+abstract sig Edges {} n
+sig Ends in Nodes {} n
+sig AEnds in Ends {} n
+sig BEnds in Ends {} n
+n
+fact{n
+Ends = AEnds + BEnds n
+} n
+n
+%fact { n
+%'all e:Edges '| some a: AEnds '| some b: BEnds '| a.endAowner = e and b.endBowner = e n
+%} n
+n
 
 	construct em [empty]
 	construct projections [repeat id]
@@ -4593,9 +4651,36 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
+	
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
+
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -4630,6 +4715,11 @@ construct numbah [number]
 	by
 	       input
 end function
+
+
+
+
+
 function processEdge1
 	replace[edge]
 		input[edge]
@@ -4723,9 +4813,36 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
+	
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
+
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -4760,6 +4877,11 @@ construct numbah [number]
 	by
 	       input
 end function
+
+
+
+
+
 function processEdge2
 	replace[edge]
 		input[edge]
@@ -4851,9 +4973,35 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
+
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -4888,6 +5036,13 @@ construct numbah [number]
 	by
 	       input
 end function
+
+
+
+
+
+
+
 function processEdge3
 	replace[edge]
 		input[edge]
@@ -4980,9 +5135,35 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
+	
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -5017,6 +5198,12 @@ construct numbah [number]
 	by
 	       input
 end function
+
+
+
+
+
+
 function processEdge4
 	replace[edge]
 		input[edge]
@@ -5109,9 +5296,34 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -5146,6 +5358,12 @@ construct numbah [number]
 	by
 	       input
 end function
+
+
+
+
+
+
 function processEdge5
 	replace[edge]
 		input[edge]
@@ -5238,9 +5456,36 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
+	
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -5275,6 +5520,9 @@ construct numbah [number]
 	by
 	       input
 end function
+
+
+
 function processEdge6
 	replace[edge]
 		input[edge]
@@ -5367,9 +5615,36 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
+	
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -5404,6 +5679,9 @@ construct numbah [number]
 	by
 	       input
 end function
+
+
+
 function processEdge7
 	replace[edge]
 		input[edge]
@@ -5497,9 +5775,37 @@ construct tgtname [id]
 		Edges
 	construct sigout[sigdef]
 		sig nameid in edges {} n
+construct eA [id]
+	  endA
+construct eB[id]
+	  endB
+construct nos [id]
+	  Nodes
+construct eAo [id]
+	  endAowner
+construct eBo [id]
+	  endBowner
+construct endasig [sigdef]
+	  sig eA[_ nameid] in nos {eAo[_ nameid]: edges} n
+construct endbsig [sigdef]
+	  sig eB[_ nameid] in nos {eBo[_ nameid]: edges} n
+	
+
 	import signatures [repeat sigdef]
 	export signatures
-	       signatures[. sigout]
+	       signatures[. sigout][. endasig][. endbsig]
+
+
+construct ao [id]
+	  eAo[_ nameid]
+construct bo [id]
+	  eBo[_ nameid]
+import aowners [repeat id]
+import bowners [repeat id]
+export aowners
+       aowners[. ao]
+export bowners
+       bowners[. bo]
 
 	construct funcout [fundec]
 	       (declare-fun nameid () edges) n
@@ -5841,14 +6147,36 @@ construct SRC [id]
 	  Source
 construct Src[id]
 	  src
+construct ea[id]
+	  endA
+construct eao[id]
+	  endAowner
 	construct factoutSrc [predicate]
-		fact { n 'all enodes : nameid '| enodes.(SRC.Src) in srcname } n
+%		fact { n 'all enodes : nameid '| enodes.(SRC.Src) in srcname } n
+		fact { n ea[_ nameid] in srcname n  ea[_ nameid].eao[_ nameid] = nameid n } n
 construct TGT [id]
 	  Target
 construct Tgt[id]
 	  tgt
+construct eb[id]
+	  endB
+construct ebo[id]
+	  endBowner
 	construct factoutTgt [predicate]
-		fact { n 'all enodes : nameid '| enodes.(TGT.Tgt) in tgtname } n
+%		fact { n 'all enodes : nameid '| enodes.(TGT.Tgt) in tgtname } n
+		fact { n eb[_ nameid] in tgtname n  eb[_ nameid].ebo[_ nameid] = nameid n } n
+construct ean [id]
+	  ea[_ nameid]
+construct ebn [id]
+	  eb[_ nameid]
+
+import aends [repeat id]
+export aends
+       aends[. ean]
+import bends [repeat id]
+export bends 
+       bends[. ebn]
+
 import predicates [repeat predicate]
 
 export predicates
@@ -5946,3 +6274,165 @@ function makeNumList
 	by
 		in
 end function 	 
+
+
+function makeBEnds
+	replace [program]
+		p[program]
+	import bends [repeat id]
+	import em[empty]
+	construct out [repeat endline]
+		  em
+	import one [number]
+	import n [newline]
+	construct outProcessed [repeat endline]
+		  out[makeEndLines bends one]
+	construct be [id]
+		  BEnds
+	construct predOut [predicate]
+	fact { n be  = outProcessed n } n
+	import predicates [repeat predicate]
+	export predicates
+	       predicates[. predOut]
+	by
+		p
+end function	
+	
+function makeAEnds 
+	replace [program]
+		p[program]
+	import aends [repeat id]
+	import em[empty]
+	construct out [repeat endline]
+		  em
+	import one [number]
+	import n [newline]
+	construct outProcessed [repeat endline]
+		  out[makeEndLines aends one]
+	construct ae [id]
+		  AEnds
+	construct predOut [predicate]
+	fact { n ae  = outProcessed n } n
+	import predicates [repeat predicate]
+	export predicates
+	       predicates[. predOut]
+	by
+		p
+end function
+	
+function makeEndLines ends[repeat id] flag[number]
+	 replace [repeat endline]
+	 	 in[repeat endline]
+	 import one [number]
+	 where
+		flag[= one]
+	 deconstruct ends
+	 	first[id] rest[repeat id]
+	 import zero [number]
+	 construct firstEL [endline]
+	        first
+	 construct firstELrep [repeat endline]
+	        firstEL
+         construct recurse [repeat endline]
+	 	in[makeEndLines2 rest zero]
+	 by
+		firstELrep[. recurse]
+end function
+
+function makeEndLines2 ends[repeat id] flag[number]
+	 replace [repeat endline]
+	 	 in[repeat endline]
+	 import zero [number]
+	 where
+		flag[= zero]
+	 deconstruct ends
+	 	first[id] rest[repeat id]
+	 import zero [number]
+	 construct firstEL [endline]
+	        + first
+	 construct firstELrep [repeat endline]
+	         firstEL
+         construct recurse [repeat endline]
+	 	in[makeEndLines2 rest zero]
+	 by
+		firstELrep[. recurse]
+end function
+
+function noDangling
+	replace [program]
+		p[program]
+	import bowners [repeat id]
+	import aowners [repeat id]
+	import em[empty]
+	construct out [repeat endlineOr]
+		  em
+	import one [number]
+	import n [newline]
+	construct as [id]
+		  a
+	construct bs [id]
+		  b
+	construct outProcessedB [repeat endlineOr]
+		  out[makeEndOrLines bowners one bs]
+	construct outProcessedA [repeat endlineOr]
+		  out[makeEndOrLines aowners one as]
+	construct be [id]
+		  BEnds
+	construct ae [id]
+		  AEnds
+	construct es [id]
+		  e
+	construct ed [id]
+		  Edges
+	construct predOut [predicate]
+	fact { n 'all es: ed '| some as : ae '| some bs : be '| (outProcessedA) and (outProcessedB)  n } n
+	import predicates [repeat predicate]
+	export predicates
+	       predicates[. predOut]
+	by
+		p
+end function
+
+
+function makeEndOrLines ends[repeat id] flag[number] xs[id]
+	 replace [repeat endlineOr]
+	 	 in[repeat endlineOr]
+	 import one [number]
+	 where
+		flag[= one]
+	 deconstruct ends
+	 	first[id] rest[repeat id]
+	 import zero [number]
+	 construct es [id]
+                 e
+	 construct firstEL [endlineOr]
+	        (xs.first = es)
+	 construct firstELrep [repeat endlineOr]
+	        firstEL
+         construct recurse [repeat endlineOr]
+	 	in[makeEndOrLines2 rest zero xs]
+	 by
+		firstELrep[. recurse]
+end function
+
+function makeEndOrLines2 ends[repeat id] flag[number] xs[id]
+	 replace [repeat endlineOr]
+	 	 in[repeat endlineOr]
+	 import zero [number]
+	 where
+		flag[= zero]
+	 deconstruct ends
+	 	first[id] rest[repeat id]
+	 import zero [number]
+	 construct es [id]
+                 e
+	 construct firstEL [endlineOr]
+	         or (xs.first = es)
+	 construct firstELrep [repeat endlineOr]
+	         firstEL
+         construct recurse [repeat endlineOr]
+	 	in[makeEndOrLines2 rest zero xs]
+	 by
+		firstELrep[. recurse]
+end function
+
