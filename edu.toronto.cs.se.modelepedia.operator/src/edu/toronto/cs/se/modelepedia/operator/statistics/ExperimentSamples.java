@@ -78,6 +78,9 @@ public class ExperimentSamples {
 
 		samples = new double[maxSamples];
 		numSamples = 0;
+		sum = 0;
+		inf = 0;
+		sup = 0;
 		this.min = min;
 		this.max = max;
 		this.requestedConfidence = requestedConfidence;
@@ -115,7 +118,7 @@ public class ExperimentSamples {
 		}
 		else {
 			inf = min;
-			sup= max;
+			sup = max;
 		}
 
 		return false;

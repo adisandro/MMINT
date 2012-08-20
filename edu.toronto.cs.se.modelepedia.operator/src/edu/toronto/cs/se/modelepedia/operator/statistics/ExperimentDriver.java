@@ -160,17 +160,23 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXPROCESSINGTIME);
 	}
 
-	private void writeProperties(Properties properties, ExperimentSamples[] experiment, int experimentIndex, int statisticsIndex) {
+	private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex, int statisticsIndex) {
 
-		for (int out = 0; out < outputs.length; out++) {
-			properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
-			properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTAVG_SUFFIX, String.valueOf(experiment[out].getAverage()));
-			properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTUP_SUFFIX, String.valueOf(experiment[out].getUpperConfidence()));
+		Properties properties = new Properties();
+
+		if (experiment != null) {
+			for (int out = 0; out < outputs.length; out++) {
+				properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
+				properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTAVG_SUFFIX, String.valueOf(experiment[out].getAverage()));
+				properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTUP_SUFFIX, String.valueOf(experiment[out].getUpperConfidence()));
+			}
 		}
 		properties.setProperty(PROPERTY_OUT_NUMSAMPLES, String.valueOf(statisticsIndex));
 		for (int i = 0; i < vars.length; i++) {
 			properties.setProperty(vars[i]+PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX, experimentSetups[experimentIndex][i]);
 		}
+
+		return properties;
 	}
 
 	private void cartesianProduct(String[][] experimentSetups) {
@@ -269,37 +275,29 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		cartesianProduct(experimentSetups);
 
 		// outer cycle: vary experiment setup
+experimentCycle:
 		for (int i = 0; i < numExperiments; i++) {
 			EList<Model> outerParameters = actualParameters;
-			boolean minMax = false;
 			for (int op = 0; op < experimentOperators.length; op++) {
 				try {
 					outerParameters = executeOperator(i, -1, op, experimentOperators[op], outerParameters);
-				} catch (MMTFException e) {
-					minMax = true;
-					MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + 
-										" failed: minInstances > maxInstances", e);
-					break;
+				}
+				catch (Exception e) {
+					MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
+					MultiModelOperatorUtils.writePropertiesFile(
+						writeProperties(null, i, 0),
+						this,
+						model,
+						"experiment" + i,
+						MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+					);
+					continue experimentCycle;
 				}
 			}
-			
+
 			ExperimentSamples[] experiment = new ExperimentSamples[outputs.length];
 			for (int out = 0; out < outputs.length; out++) {
 				experiment[out] = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
-			}
-			
-			if (minMax) {
-				// save output
-				Properties outputProperties = new Properties();
-				writeProperties(outputProperties, experiment, i, maxSamples);
-				MultiModelOperatorUtils.writePropertiesFile(
-					outputProperties,
-					this,
-					model,
-					"experiment" + i,
-					MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
-				);
-				continue;
 			}
 
 			// inner cycle: experiment setup is fixed, vary randomness and statistics
@@ -323,14 +321,20 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				}
 				// get results
 				for (int out = 0; out < outputs.length; out++) {
-					double sample = (timedOut) ?
-						outputDefaults[out] :
-						getOutput(innerParameters, out, j);
-					if (sample == Double.MAX_VALUE) {
-						confidenceOk = false;
-						continue;
+					try {
+						double sample = (timedOut) ?
+							outputDefaults[out] :
+							getOutput(innerParameters, out, j);
+						if (sample == Double.MAX_VALUE) {
+							confidenceOk = false;
+							continue;
+						}
+						confidenceOk = experiment[out].addSample(sample) && confidenceOk;
 					}
-					confidenceOk = experiment[out].addSample(sample) && confidenceOk;
+					catch (Exception e) {
+						MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + ", sample " + j + ", output " + out + " unreadable", e);
+						confidenceOk = false;
+					}
 				}
 				// evaluate confidence interval
 				if (confidenceOk && j >= minSamples) {
@@ -339,10 +343,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			}
 
 			// save output
-			Properties outputProperties = new Properties();
-			writeProperties(outputProperties, experiment, i, j);
 			MultiModelOperatorUtils.writePropertiesFile(
-				outputProperties,
+				writeProperties(experiment, i, j),
 				this,
 				model,
 				"experiment" + i,

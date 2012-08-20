@@ -72,7 +72,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		readProperties(inputProperties);
 		
 		if (minInstances > maxInstances) {
-			throw new MMTFException("minInstances (" + minInstances + ") > maxInstances (" + maxInstances + ").");
+			throw new MMTFException("minInstances (" + minInstances + ") > maxInstances (" + maxInstances + ")");
 		}
 		
 		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);

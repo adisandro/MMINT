@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mid" nsURI="http://se.cs.toronto.edu/mmtf/model/mid.ecore" nsPrefix="mid">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mid" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore"
+    nsPrefix="mid">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
@@ -118,7 +119,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementRelationshipWildcard"
         eType="#//ModelElementEntityWildcard"/>
   </eClassifiers>
-  <eSubpackages name="relationship" nsURI="http://se.cs.toronto.edu/mmtf/model/mid.ecore/relationship"
+  <eSubpackages name="relationship" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/relationship"
       nsPrefix="relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
@@ -247,7 +248,7 @@
       </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="editor" nsURI="http://se.cs.toronto.edu/mmtf/model/mid.ecore/editor"
+  <eSubpackages name="editor" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/editor"
       nsPrefix="editor">
     <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//ExtendibleElement">
       <eOperations name="getMetatype" lowerBound="1" eType="#//editor/Editor">
@@ -270,7 +271,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Diagram" eSuperTypes="#//editor/Editor"/>
   </eSubpackages>
-  <eSubpackages name="operator" nsURI="http://se.cs.toronto.edu/mmtf/model/mid.ecore/operator"
+  <eSubpackages name="operator" nsURI="http:///edu/toronto/cs/se/mmtf/model/mid.ecore/operator"
       nsPrefix="operator">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
