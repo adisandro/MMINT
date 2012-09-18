@@ -16,6 +16,9 @@ public class ExperimentSamples {
 	/** Distribution types. */
 	public enum DistributionType {T_STUDENT_95, T_STUDENT_99};
 
+	private static final int CRITICAL_INDEX = 30;
+	private static final int CRITICAL_STEP = 10;
+	private static final int INFINITE_INDEX = 120;
 	// index = degrees of freedom -1 (remember that array index starts from 0 though), 95% confidence
 	private static final double[] T_STUDENT_95 = {
 		12.71,
@@ -37,8 +40,30 @@ public class ExperimentSamples {
 		2.110,
 		2.101,
 		2.093,
-		2.086
+		2.086,
+		2.080,
+		2.074,
+		2.069,
+		2.064,
+		2.060,
+		2.056,
+		2.052,
+		2.048,
+		2.045,
+		2.042
 	};
+	private static final double[] T_STUDENT_95_CRITICAL = {
+		2.021,
+		2.009,
+		2.000,
+		1.990,
+		1.990,
+		1.984,
+		1.984,
+		1.980,
+		1.980
+	};
+	private static final double T_STUDENT_95_INFINITE = 1.960;
 
 	// index = degrees of freedom -1 (remember that array index starts from 0 though), 99% confidence
 	private static final double[] T_STUDENT_99 = {
@@ -61,10 +86,32 @@ public class ExperimentSamples {
 		2.898,
 		2.878,
 		2.861,
-		2.845
+		2.845,
+		2.831,
+		2.819,
+		2.807,
+		2.797,
+		2.787,
+		2.779,
+		2.771,
+		2.763,
+		2.756,
+		2.750
 	};
+	private static final double[] T_STUDENT_99_CRITICAL = {
+		2.704,
+		2.678,
+		2.660,
+		2.639,
+		2.639,
+		2.626,
+		2.626,
+		2.617,
+		2.617
+	};
+	private static final double T_STUDENT_99_INFINITE = 2.576;
 
-	private final double[] DISTRIBUTION;
+	private DistributionType distribution;
 	private double[] samples;
 	private int numSamples;
 	private double sum;
@@ -73,6 +120,43 @@ public class ExperimentSamples {
 	private double sup;
 	private double max;
 	private double requestedConfidence;
+
+	private double getDistributionValue(int index) {
+
+		double value = Double.MAX_VALUE;
+		if (index < CRITICAL_INDEX) {
+			switch (distribution) {
+				case T_STUDENT_95:
+					value = T_STUDENT_95[index];
+					break;
+				case T_STUDENT_99:
+					value = T_STUDENT_99[index];
+					break;
+			}
+		}
+		else if (index < INFINITE_INDEX) {
+			switch (distribution) {
+				case T_STUDENT_95:
+					value = T_STUDENT_95_CRITICAL[(index-CRITICAL_INDEX) / CRITICAL_STEP];
+					break;
+				case T_STUDENT_99:
+					value = T_STUDENT_99_CRITICAL[(index-CRITICAL_INDEX) / CRITICAL_STEP];
+					break;
+			}
+		}
+		else {
+			switch (distribution) {
+				case T_STUDENT_95:
+					value = T_STUDENT_95_INFINITE;
+					break;
+				case T_STUDENT_99:
+					value = T_STUDENT_99_INFINITE;
+					break;
+			}
+		}
+
+		return value;
+	}
 
 	public ExperimentSamples(int maxSamples, DistributionType distribution, double min, double max, double requestedConfidence) {
 
@@ -84,15 +168,7 @@ public class ExperimentSamples {
 		this.min = min;
 		this.max = max;
 		this.requestedConfidence = requestedConfidence;
-		switch (distribution) {
-			case T_STUDENT_99:
-				DISTRIBUTION = T_STUDENT_99;
-				break;
-			case T_STUDENT_95:
-			default:
-				DISTRIBUTION = T_STUDENT_95;
-				break;
-		}
+		this.distribution = distribution;
 	}
 
 	public boolean addSample(double sample) {
@@ -108,8 +184,8 @@ public class ExperimentSamples {
 		}
 
 		if (numSamples > 1) {
-			inf = avg - DISTRIBUTION[numSamples-2] * Math.sqrt(diff / (numSamples*(numSamples-1)));
-			sup = avg + DISTRIBUTION[numSamples-2] * Math.sqrt(diff / (numSamples*(numSamples-1)));
+			inf = avg - getDistributionValue(numSamples-2) * Math.sqrt(diff / (numSamples*(numSamples-1)));
+			sup = avg + getDistributionValue(numSamples-2) * Math.sqrt(diff / (numSamples*(numSamples-1)));
 			inf = ((inf < min) ? min : ((inf > max) ? max : inf));
 			sup = ((sup < min) ? min : ((sup > max) ? max : sup));
 			if((sup - inf) <= (avg * requestedConfidence)) {
