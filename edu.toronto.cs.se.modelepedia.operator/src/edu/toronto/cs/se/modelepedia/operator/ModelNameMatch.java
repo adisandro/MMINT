@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -66,7 +66,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		EClass modelRelClass = (actualParameters.size() == 2) ?
 			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
 			RelationshipPackage.eINSTANCE.getModelRel();
-		ModelRel modelRel = MultiModelInstanceFactory.createModelRel(null, ModelOrigin.CREATED, multiModel, null, modelRelClass);
+		ModelRel modelRel = MultiModelInstanceFactory.createModelRel(null, multiModel, ModelOrigin.CREATED, null, modelRelClass);
 		modelRel.setName(MODEL_REL_NAME);
 
 		// loop through selected models
@@ -75,8 +75,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		for (Model model : actualParameters) {
 
 			// add models to relationship
-			modelRel.getModels().add(model);
-			ModelReference modelRef = MultiModelInstanceFactory.createModelReference(modelRel, model);
+			ModelReference modelRef = MultiModelInstanceFactory.createModelRelModelAndModelReference(modelRel, model, false);
 
 			// look for identical names in the models
 			checkObjectName(model.getRoot(), modelRef, objectNames, objectModels);
@@ -97,19 +96,17 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				EClass linkClass = (objects.size() == 2) ?
 					RelationshipPackage.eINSTANCE.getBinaryLink() :
 					RelationshipPackage.eINSTANCE.getLink();
-				Link link = MultiModelInstanceFactory.createLink(null, modelRel, linkClass);
-				link.setName(name);
-				modelRel.getLinks().add(link);
+				EClass linkRefClass = (objects.size() == 2) ?
+					RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
+					RelationshipPackage.eINSTANCE.getLinkReference();
+				LinkReference linkRef = MultiModelInstanceFactory.createLinkAndLinkReference(null, modelRel, linkClass, linkRefClass);
+				linkRef.getObject().setName(name);
 				for (EObject object : objects) {
 					ModelReference modelRef = objectModels.get(object);
 					ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelRef, object);
 					ModelElementReference elementRef = MultiModelInstanceFactory.createModelElementReference(modelElemType, modelRef, object);
 					elementRef.getObject().setName(object.eClass().getName() + " " + name);//TODO MMTF: remove and fix
-					link.getElementRefs().add(elementRef);
-				}
-				Link linkType = MultiModelConstraintChecker.getAllowedLinkType(link);
-				if (linkType != null) {
-					link.setMetatypeUri(linkType.getUri());
+					linkRef.getObject().getElements().add(elementRef.getObject());
 				}
 			}
 		}
