@@ -14,7 +14,7 @@
 -->
 
 <plugin>
-
+<!--
    <extension
          name="ModelNameMatch"
          point="edu.toronto.cs.se.mmtf.operators">
@@ -40,7 +40,7 @@
          </output>
       </operator>
    </extension>
-
+-->
    <extension
          name="ExperimentDriver"
          point="edu.toronto.cs.se.mmtf.operators">

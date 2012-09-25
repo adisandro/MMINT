@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
+//import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -62,58 +62,58 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		//TODO MMTF: how do I make an operator create specific types without explicitly calling the right functions? should just be automatic
 
 		// create model relationship among models
-		MultiModel multiModel = (MultiModel) actualParameters.get(0).eContainer();
-		EClass modelRelClass = (actualParameters.size() == 2) ?
-			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
-			RelationshipPackage.eINSTANCE.getModelRel();
-		ModelRel modelRel = MultiModelInstanceFactory.createModelRel(null, multiModel, ModelOrigin.CREATED, null, modelRelClass);
-		modelRel.setName(MODEL_REL_NAME);
-
-		// loop through selected models
-		HashMap<String, ArrayList<EObject>> objectNames = new HashMap<String, ArrayList<EObject>>();
-		HashMap<EObject, ModelReference> objectModels = new HashMap<EObject, ModelReference>();
-		for (Model model : actualParameters) {
-
-			// add models to relationship
-			ModelReference modelRef = MultiModelInstanceFactory.createModelRelModelAndModelReference(modelRel, model, false);
-
-			// look for identical names in the models
-			checkObjectName(model.getRoot(), modelRef, objectNames, objectModels);
-			for (EObject object : model.getRoot().eContents()) {
-				checkObjectName(object, modelRef, objectNames, objectModels);
-			}
-		}
-
-		//TODO MMTF: too rough
-		EList<ExtendibleElement> runtimeMetatypes = modelRel.getRuntimeMetatypes();
-		modelRel.setMetatypeUri(((ModelRel) runtimeMetatypes.get(runtimeMetatypes.size()-1)).getUri());
-
-		// create model relationship structure
-		for (Entry<String, ArrayList<EObject>> entry : objectNames.entrySet()) {
-			String name = entry.getKey();
-			ArrayList<EObject> objects = entry.getValue();
-			if (objects.size() > 1) {
-				EClass linkClass = (objects.size() == 2) ?
-					RelationshipPackage.eINSTANCE.getBinaryLink() :
-					RelationshipPackage.eINSTANCE.getLink();
-				EClass linkRefClass = (objects.size() == 2) ?
-					RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
-					RelationshipPackage.eINSTANCE.getLinkReference();
-				LinkReference linkRef = MultiModelInstanceFactory.createLinkAndLinkReference(null, modelRel, linkClass, linkRefClass);
-				linkRef.getObject().setName(name);
-				for (EObject object : objects) {
-					ModelReference modelRef = objectModels.get(object);
-					ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelRef, object);
-					//TODO MMTF: fix
-					//ModelElementReference elementRef = MultiModelInstanceFactory.createModelElementReference(modelElemType, modelRef, object);
-					//elementRef.getObject().setName(object.eClass().getName() + " " + name);
-					//linkRef.getObject().getElements().add(elementRef.getObject());
-				}
-			}
-		}
+//		MultiModel multiModel = (MultiModel) actualParameters.get(0).eContainer();
+//		EClass modelRelClass = (actualParameters.size() == 2) ?
+//			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
+//			RelationshipPackage.eINSTANCE.getModelRel();
+//		ModelRel modelRel = MultiModelInstanceFactory.createModelRel(null, multiModel, ModelOrigin.CREATED, null, modelRelClass);
+//		modelRel.setName(MODEL_REL_NAME);
+//
+//		// loop through selected models
+//		HashMap<String, ArrayList<EObject>> objectNames = new HashMap<String, ArrayList<EObject>>();
+//		HashMap<EObject, ModelReference> objectModels = new HashMap<EObject, ModelReference>();
+//		for (Model model : actualParameters) {
+//
+//			// add models to relationship
+//			ModelReference modelRef = MultiModelInstanceFactory.createModelRelModelAndModelReference(modelRel, model, false);
+//
+//			// look for identical names in the models
+//			checkObjectName(model.getRoot(), modelRef, objectNames, objectModels);
+//			for (EObject object : model.getRoot().eContents()) {
+//				checkObjectName(object, modelRef, objectNames, objectModels);
+//			}
+//		}
+//
+//		//TODO MMTF: too rough
+//		EList<ExtendibleElement> runtimeMetatypes = modelRel.getRuntimeMetatypes();
+//		modelRel.setMetatypeUri(((ModelRel) runtimeMetatypes.get(runtimeMetatypes.size()-1)).getUri());
+//
+//		// create model relationship structure
+//		for (Entry<String, ArrayList<EObject>> entry : objectNames.entrySet()) {
+//			String name = entry.getKey();
+//			ArrayList<EObject> objects = entry.getValue();
+//			if (objects.size() > 1) {
+//				EClass linkClass = (objects.size() == 2) ?
+//					RelationshipPackage.eINSTANCE.getBinaryLink() :
+//					RelationshipPackage.eINSTANCE.getLink();
+//				EClass linkRefClass = (objects.size() == 2) ?
+//					RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
+//					RelationshipPackage.eINSTANCE.getLinkReference();
+//				LinkReference linkRef = MultiModelInstanceFactory.createLinkAndLinkReference(null, modelRel, linkClass, linkRefClass);
+//				linkRef.getObject().setName(name);
+//				for (EObject object : objects) {
+//					ModelReference modelRef = objectModels.get(object);
+//					ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelRef, object);
+//					//TODO MMTF: fix
+//					//ModelElementReference elementRef = MultiModelInstanceFactory.createModelElementReference(modelElemType, modelRef, object);
+//					//elementRef.getObject().setName(object.eClass().getName() + " " + name);
+//					//linkRef.getObject().getElements().add(elementRef.getObject());
+//				}
+//			}
+//		}
 
 		EList<Model> result = new BasicEList<Model>();
-		result.add(modelRel);
+//		result.add(modelRel);
 		return result;
 	}
 

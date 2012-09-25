@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.part;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -303,9 +304,33 @@ public class MidDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isDeleted(Object element) {
+		IDiagramDocument document = getDiagramDocument(element);
+		if (document != null) {
+			Resource diagramResource = document.getDiagram().eResource();
+			if (diagramResource != null) {
+				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
+				// Check for files located outside workspace.
+				// getFile above returns null if it cannot be found inside the workspace.
+				if (file != null) {
+					return file.getLocation() == null || !file.getLocation().toFile().exists();
+				}
+				// check for files located outside workspace.
+				else {
+					// check if the file exists on disk
+					return !diagramResource.getURI().isFile() || !(new File(diagramResource.getURI().toFileString())).exists();
+				}
+			}
+		}
+		return super.isDeleted(element);
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean isDeletedGen(Object element) {
 		IDiagramDocument document = getDiagramDocument(element);
 		if (document != null) {
 			Resource diagramResource = document.getDiagram().eResource();

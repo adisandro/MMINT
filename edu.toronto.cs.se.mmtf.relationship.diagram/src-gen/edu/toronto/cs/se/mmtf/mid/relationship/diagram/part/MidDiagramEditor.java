@@ -63,6 +63,7 @@ import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PlatformUI;
@@ -76,9 +77,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.navigator.MidNavigatorItem;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
@@ -259,6 +258,58 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
+	
+	/**
+	 * @generated NOT
+	 */
+	protected void performSave(boolean overwrite, IProgressMonitor progressMonitor) {
+
+		IDocumentProvider provider= getDocumentProvider();
+		if (provider == null)
+			return;
+
+		try {
+			provider.aboutToChange(getEditorInput());
+			IEditorInput input= getEditorInput();
+			provider.saveDocument(progressMonitor, input, getDocumentProvider().getDocument(input), overwrite);
+			editorSaved();
+
+		} catch (CoreException x) {
+			IStatus status= x.getStatus();
+			if (status == null || status.getSeverity() != IStatus.CANCEL)
+				handleExceptionOnSave(x, progressMonitor);
+		} finally {
+			provider.changed(getEditorInput());
+		}
+
+		MultiModel multiModel = (MultiModel) this.getDiagram().getElement().eContainer();
+		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
+			MMTF.syncRepository(multiModel);
+			// diagram sync required
+			//TODO MMTF: what about other pages?
+			final String midDiagramId = "edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID";
+			for (IEditorReference editorRef : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences()) {
+				IEditorPart editorPart = editorRef.getEditor(false);
+				if (!(editorPart instanceof DiagramDocumentEditor)) {
+					continue;
+				}
+				DiagramDocumentEditor editor = (DiagramDocumentEditor) editorPart;
+				if (!editor.getSite().getId().equals(midDiagramId)) {
+					continue;
+				}
+				MultiModel multiModel2 = (MultiModel) editor.getDiagram().getElement();
+				if (!MultiModelConstraintChecker.isInstancesLevel(multiModel2)) {
+					IDocumentProvider provider2 = editor.getDocumentProvider();
+					try {
+						provider2.synchronize(editorRef.getEditorInput());
+					}
+					catch (Exception e) {
+						MMTFException.print(MMTFException.Type.WARNING, "Diagram synchronization failed", e);
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 * @generated
@@ -268,32 +319,9 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * Saves Relationship Diagram outside of workspace.
-	 * 
-	 * @generated NOT
-	 */
-	protected void performSaveAs(IProgressMonitor progressMonitor) {
-
-		ModelRel modelRel = (ModelRel) this.getDiagram().getElement();
-		if (modelRel.getLevel() == MidLevel.TYPES) {
-			updateState(getEditorInput());
-			validateState(getEditorInput());
-			performSave(false, progressMonitor);
-			try {
-				MMTF.syncRepository(MultiModelTypeRegistry.getTypeMidRepository());
-			} catch (Exception e) {
-				MMTFException.print(Type.WARNING, "Could not locate Type MID", e);
-			}
-			return;
-		}
-
-		performSaveAsGen(progressMonitor);
-	}
-	
-	/**
 	 * @generated
 	 */
-	protected void performSaveAsGen(IProgressMonitor progressMonitor) {
+	protected void performSaveAs(IProgressMonitor progressMonitor) {
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
 		SaveAsDialog dialog = new SaveAsDialog(shell);

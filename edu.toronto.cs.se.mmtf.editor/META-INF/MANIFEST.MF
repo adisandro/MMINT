@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmtf.editor;singleton:=true
-Bundle-Version: 0.9.25
+Bundle-Version: 0.9.26
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmtf.mid.presentation.MidEditorPlugin$Implementation
 Bundle-Vendor: %providerName
