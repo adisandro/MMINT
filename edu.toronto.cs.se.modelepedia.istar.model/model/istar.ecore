@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="istar" nsURI="http://se.cs.toronto.edu/modelepedia/IStar" nsPrefix="istar">
+  <eClassifiers xsi:type="ecore:EClass" name="IStar">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
+        eType="#//Actor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+        eType="#//Dependency" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Actor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intentionalElements" upperBound="-1"
+        eType="#//IntentionalElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
+        upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/depender"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
+        upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/dependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributions" upperBound="-1"
+        eType="#//Contribution" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="depender" lowerBound="1"
+        eType="#//Actor" eOpposite="#//Actor/dependenciesAsDepender"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" lowerBound="1"
+        eType="#//Actor" eOpposite="#//Actor/dependenciesAsDependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependum" lowerBound="1"
+        eType="#//IntentionalElement" containment="true" eOpposite="#//IntentionalElement/dependency"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentionalElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" eType="#//Dependency"
+        eOpposite="#//Dependency/dependum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="#//Task"
+        eOpposite="#//Task/components"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributionsAsContributor"
+        upperBound="-1" eType="#//Contribution" eOpposite="#//Contribution/contributor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//IntentionalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//Goal" eOpposite="#//Goal/means"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//IntentionalElement" eOpposite="#//IntentionalElement/composite"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Resource" eSuperTypes="#//IntentionalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//IntentionalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="means" upperBound="-1"
+        eType="#//Task" eOpposite="#//Task/end"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoftGoal" eSuperTypes="#//Goal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributionsAsContributee"
+        upperBound="-1" eType="#//Contribution" eOpposite="#//Contribution/contributee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contribution">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributor" lowerBound="1"
+        eType="#//IntentionalElement" eOpposite="#//IntentionalElement/contributionsAsContributor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributee" lowerBound="1"
+        eType="#//SoftGoal" eOpposite="#//SoftGoal/contributionsAsContributee"/>
+  </eClassifiers>
+</ecore:EPackage>
