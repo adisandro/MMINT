@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.istar"
       label="Modelepedia IStar"
-      version="0.9.26"
+      version="0.9.27"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
@@ -26,6 +26,7 @@ Famelis, Rick Salay, Vivien Suen. All rights reserved.
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.emf.ecore"/>
+      <import feature="edu.toronto.cs.se.mmtf"/>
    </requires>
 
    <plugin

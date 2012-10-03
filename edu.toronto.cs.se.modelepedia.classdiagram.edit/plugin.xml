@@ -17,7 +17,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://se.cs.toronto.edu/modelepedia/classdiagram"
+            uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram"
             class="edu.toronto.cs.se.modelepedia.classdiagram.provider.ClassdiagramItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
