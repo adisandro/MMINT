@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -47,7 +48,7 @@ public interface ClassdiagramPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/classdiagram";
+	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/ClassDiagram";
 
 	/**
 	 * The package namespace name.
@@ -85,13 +86,22 @@ public interface ClassdiagramPackage extends EPackage {
 	int CLASS_DIAGRAM__CLASSES = 0;
 
 	/**
+	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM__DEPENDENCIES = 1;
+
+	/**
 	 * The number of structural features of the '<em>Class Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_FEATURE_COUNT = 1;
+	int CLASS_DIAGRAM_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
@@ -168,13 +178,40 @@ public interface ClassdiagramPackage extends EPackage {
 	int CLASS__OWNED_ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_OPERATIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__DEPENDENCIES_AS_DEPENDEE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__DEPENDENCIES_AS_DEPENDER = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -205,22 +242,13 @@ public interface ClassdiagramPackage extends EPackage {
 	int ATTRIBUTE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ATTRIBUTE__VISIBILITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
@@ -229,7 +257,7 @@ public interface ClassdiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Attribute</em>' class.
@@ -239,6 +267,109 @@ public interface ClassdiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl <em>Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassdiagramPackageImpl#getOperation()
+	 * @generated
+	 */
+	int OPERATION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__VISIBILITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl <em>Dependency</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassdiagramPackageImpl#getDependency()
+	 * @generated
+	 */
+	int DEPENDENCY = 5;
+
+	/**
+	 * The feature id for the '<em><b>Dependee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__DEPENDEE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Depender</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__DEPENDER = 1;
+
+	/**
+	 * The number of structural features of the '<em>Dependency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Dependency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility <em>Visibility</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassdiagramPackageImpl#getVisibility()
+	 * @generated
+	 */
+	int VISIBILITY = 6;
 
 
 	/**
@@ -263,6 +394,17 @@ public interface ClassdiagramPackage extends EPackage {
 	EReference getClassDiagram_Classes();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDependencies <em>Dependencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dependencies</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDependencies()
+	 * @see #getClassDiagram()
+	 * @generated
+	 */
+	EReference getClassDiagram_Dependencies();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -284,6 +426,39 @@ public interface ClassdiagramPackage extends EPackage {
 	EReference getClass_OwnedAttributes();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getOwnedOperations <em>Owned Operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Operations</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getOwnedOperations()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_OwnedOperations();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDependee <em>Dependencies As Dependee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Dependencies As Dependee</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDependee()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_DependenciesAsDependee();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDepender <em>Dependencies As Depender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Dependencies As Depender</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDepender()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_DependenciesAsDepender();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,26 +469,15 @@ public interface ClassdiagramPackage extends EPackage {
 	EClass getAttribute();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getVisibility <em>Visibility</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getType()
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getVisibility()
 	 * @see #getAttribute()
 	 * @generated
 	 */
-	EAttribute getAttribute_Type();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getValue()
-	 * @see #getAttribute()
-	 * @generated
-	 */
-	EAttribute getAttribute_Value();
+	EAttribute getAttribute_Visibility();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.NamedElement <em>Named Element</em>}'.
@@ -335,6 +499,69 @@ public interface ClassdiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedElement_Name();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation <em>Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Operation</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Operation
+	 * @generated
+	 */
+	EClass getOperation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getVisibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Operation#getVisibility()
+	 * @see #getOperation()
+	 * @generated
+	 */
+	EAttribute getOperation_Visibility();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency <em>Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dependency</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Dependency
+	 * @generated
+	 */
+	EClass getDependency();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency#getDependee <em>Dependee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Dependee</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Dependency#getDependee()
+	 * @see #getDependency()
+	 * @generated
+	 */
+	EReference getDependency_Dependee();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency#getDepender <em>Depender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Depender</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Dependency#getDepender()
+	 * @see #getDependency()
+	 * @generated
+	 */
+	EReference getDependency_Depender();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Visibility</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
+	 * @generated
+	 */
+	EEnum getVisibility();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -378,6 +605,14 @@ public interface ClassdiagramPackage extends EPackage {
 		EReference CLASS_DIAGRAM__CLASSES = eINSTANCE.getClassDiagram_Classes();
 
 		/**
+		 * The meta object literal for the '<em><b>Dependencies</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_DIAGRAM__DEPENDENCIES = eINSTANCE.getClassDiagram_Dependencies();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl <em>Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -396,6 +631,30 @@ public interface ClassdiagramPackage extends EPackage {
 		EReference CLASS__OWNED_ATTRIBUTES = eINSTANCE.getClass_OwnedAttributes();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Operations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__OWNED_OPERATIONS = eINSTANCE.getClass_OwnedOperations();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependencies As Dependee</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__DEPENDENCIES_AS_DEPENDEE = eINSTANCE.getClass_DependenciesAsDependee();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependencies As Depender</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__DEPENDENCIES_AS_DEPENDER = eINSTANCE.getClass_DependenciesAsDepender();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -406,20 +665,12 @@ public interface ClassdiagramPackage extends EPackage {
 		EClass ATTRIBUTE = eINSTANCE.getAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ATTRIBUTE__VALUE = eINSTANCE.getAttribute_Value();
+		EAttribute ATTRIBUTE__VISIBILITY = eINSTANCE.getAttribute_Visibility();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -438,6 +689,60 @@ public interface ClassdiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl <em>Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassdiagramPackageImpl#getOperation()
+		 * @generated
+		 */
+		EClass OPERATION = eINSTANCE.getOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION__VISIBILITY = eINSTANCE.getOperation_Visibility();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl <em>Dependency</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassdiagramPackageImpl#getDependency()
+		 * @generated
+		 */
+		EClass DEPENDENCY = eINSTANCE.getDependency();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependee</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDENCY__DEPENDEE = eINSTANCE.getDependency_Dependee();
+
+		/**
+		 * The meta object literal for the '<em><b>Depender</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDENCY__DEPENDER = eINSTANCE.getDependency_Depender();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility <em>Visibility</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassdiagramPackageImpl#getVisibility()
+		 * @generated
+		 */
+		EEnum VISIBILITY = eINSTANCE.getVisibility();
 
 	}
 

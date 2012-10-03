@@ -14,21 +14,21 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Attribute</b></em>'.
+ * A representation of the model object '<em><b>Operation</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getVisibility <em>Visibility</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage#getAttribute()
+ * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage#getOperation()
  * @model
  * @generated
  */
-public interface Attribute extends NamedElement {
+public interface Operation extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility}.
@@ -41,14 +41,14 @@ public interface Attribute extends NamedElement {
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
 	 * @see #setVisibility(Visibility)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage#getAttribute_Visibility()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage#getOperation_Visibility()
 	 * @model required="true"
 	 * @generated
 	 */
 	Visibility getVisibility();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getVisibility <em>Visibility</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getVisibility <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Visibility</em>' attribute.
@@ -58,4 +58,4 @@ public interface Attribute extends NamedElement {
 	 */
 	void setVisibility(Visibility value);
 
-} // Attribute
+} // Operation

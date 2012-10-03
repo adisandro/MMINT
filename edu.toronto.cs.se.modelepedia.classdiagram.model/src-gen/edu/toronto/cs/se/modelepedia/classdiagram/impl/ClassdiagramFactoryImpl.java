@@ -16,7 +16,11 @@ import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramFactory;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
+import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
+import edu.toronto.cs.se.modelepedia.classdiagram.Visibility;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -39,7 +43,7 @@ public class ClassdiagramFactoryImpl extends EFactoryImpl implements Classdiagra
 	 */
 	public static ClassdiagramFactory init() {
 		try {
-			ClassdiagramFactory theClassdiagramFactory = (ClassdiagramFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/classdiagram"); 
+			ClassdiagramFactory theClassdiagramFactory = (ClassdiagramFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/ClassDiagram"); 
 			if (theClassdiagramFactory != null) {
 				return theClassdiagramFactory;
 			}
@@ -71,8 +75,40 @@ public class ClassdiagramFactoryImpl extends EFactoryImpl implements Classdiagra
 			case ClassdiagramPackage.CLASS_DIAGRAM: return createClassDiagram();
 			case ClassdiagramPackage.CLASS: return createClass();
 			case ClassdiagramPackage.ATTRIBUTE: return createAttribute();
+			case ClassdiagramPackage.OPERATION: return createOperation();
+			case ClassdiagramPackage.DEPENDENCY: return createDependency();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case ClassdiagramPackage.VISIBILITY:
+				return createVisibilityFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case ClassdiagramPackage.VISIBILITY:
+				return convertVisibilityToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -104,6 +140,46 @@ public class ClassdiagramFactoryImpl extends EFactoryImpl implements Classdiagra
 	public Attribute createAttribute() {
 		AttributeImpl attribute = new AttributeImpl();
 		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operation createOperation() {
+		OperationImpl operation = new OperationImpl();
+		return operation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Dependency createDependency() {
+		DependencyImpl dependency = new DependencyImpl();
+		return dependency;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Visibility createVisibilityFromString(EDataType eDataType, String initialValue) {
+		Visibility result = Visibility.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertVisibilityToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

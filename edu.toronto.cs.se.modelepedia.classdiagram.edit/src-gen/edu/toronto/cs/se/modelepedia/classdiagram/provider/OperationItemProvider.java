@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 
-import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 
 import java.util.Collection;
 import java.util.List;
@@ -32,12 +32,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Operation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeItemProvider
+public class OperationItemProvider
 	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +51,7 @@ public class AttributeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeItemProvider(AdapterFactory adapterFactory) {
+	public OperationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -82,9 +82,9 @@ public class AttributeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Attribute_visibility_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_visibility_feature", "_UI_Attribute_type"),
-				 ClassdiagramPackage.Literals.ATTRIBUTE__VISIBILITY,
+				 getString("_UI_Operation_visibility_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operation_visibility_feature", "_UI_Operation_type"),
+				 ClassdiagramPackage.Literals.OPERATION__VISIBILITY,
 				 true,
 				 false,
 				 false,
@@ -94,14 +94,14 @@ public class AttributeItemProvider
 	}
 
 	/**
-	 * This returns Attribute.gif.
+	 * This returns Operation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Attribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Operation"));
 	}
 
 	/**
@@ -112,10 +112,10 @@ public class AttributeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Attribute)object).getName();
+		String label = ((Operation)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Attribute_type") :
-			getString("_UI_Attribute_type") + " " + label;
+			getString("_UI_Operation_type") :
+			getString("_UI_Operation_type") + " " + label;
 	}
 
 	/**
@@ -129,8 +129,8 @@ public class AttributeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Attribute.class)) {
-			case ClassdiagramPackage.ATTRIBUTE__VISIBILITY:
+		switch (notification.getFeatureID(Operation.class)) {
+			case ClassdiagramPackage.OPERATION__VISIBILITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

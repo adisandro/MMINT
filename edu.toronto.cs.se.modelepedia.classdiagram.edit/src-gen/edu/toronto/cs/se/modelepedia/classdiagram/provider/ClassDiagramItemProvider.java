@@ -87,6 +87,7 @@ public class ClassDiagramItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ClassdiagramPackage.Literals.CLASS_DIAGRAM__CLASSES);
+			childrenFeatures.add(ClassdiagramPackage.Literals.CLASS_DIAGRAM__DEPENDENCIES);
 		}
 		return childrenFeatures;
 	}
@@ -139,6 +140,7 @@ public class ClassDiagramItemProvider
 
 		switch (notification.getFeatureID(ClassDiagram.class)) {
 			case ClassdiagramPackage.CLASS_DIAGRAM__CLASSES:
+			case ClassdiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -160,6 +162,11 @@ public class ClassDiagramItemProvider
 			(createChildParameter
 				(ClassdiagramPackage.Literals.CLASS_DIAGRAM__CLASSES,
 				 ClassdiagramFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ClassdiagramPackage.Literals.CLASS_DIAGRAM__DEPENDENCIES,
+				 ClassdiagramFactory.eINSTANCE.createDependency()));
 	}
 
 	/**

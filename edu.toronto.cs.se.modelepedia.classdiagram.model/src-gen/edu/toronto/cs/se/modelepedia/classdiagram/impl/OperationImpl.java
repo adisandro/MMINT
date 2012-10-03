@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 
-import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage;
-
+import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 import edu.toronto.cs.se.modelepedia.classdiagram.Visibility;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -23,18 +23,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attribute</b></em>'.
+ * An implementation of the model object '<em><b>Operation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AttributeImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl#getVisibility <em>Visibility</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AttributeImpl extends NamedElementImpl implements Attribute {
+public class OperationImpl extends NamedElementImpl implements Operation {
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeImpl() {
+	protected OperationImpl() {
 		super();
 	}
 
@@ -71,7 +71,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassdiagramPackage.Literals.ATTRIBUTE;
+		return ClassdiagramPackage.Literals.OPERATION;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 		Visibility oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassdiagramPackage.ATTRIBUTE__VISIBILITY, oldVisibility, visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassdiagramPackage.OPERATION__VISIBILITY, oldVisibility, visibility));
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassdiagramPackage.ATTRIBUTE__VISIBILITY:
+			case ClassdiagramPackage.OPERATION__VISIBILITY:
 				return getVisibility();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassdiagramPackage.ATTRIBUTE__VISIBILITY:
+			case ClassdiagramPackage.OPERATION__VISIBILITY:
 				setVisibility((Visibility)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassdiagramPackage.ATTRIBUTE__VISIBILITY:
+			case ClassdiagramPackage.OPERATION__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
 				return;
 		}
@@ -147,7 +147,7 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassdiagramPackage.ATTRIBUTE__VISIBILITY:
+			case ClassdiagramPackage.OPERATION__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -169,4 +169,4 @@ public class AttributeImpl extends NamedElementImpl implements Attribute {
 		return result.toString();
 	}
 
-} //AttributeImpl
+} //OperationImpl

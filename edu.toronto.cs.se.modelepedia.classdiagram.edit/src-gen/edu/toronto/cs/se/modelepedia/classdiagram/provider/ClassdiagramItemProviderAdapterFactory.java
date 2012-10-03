@@ -150,6 +150,52 @@ public class ClassdiagramItemProviderAdapterFactory extends ClassdiagramAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram.Operation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationItemProvider operationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Operation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperationAdapter() {
+		if (operationItemProvider == null) {
+			operationItemProvider = new OperationItemProvider(this);
+		}
+
+		return operationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DependencyItemProvider dependencyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDependencyAdapter() {
+		if (dependencyItemProvider == null) {
+			dependencyItemProvider = new DependencyItemProvider(this);
+		}
+
+		return dependencyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -251,6 +297,8 @@ public class ClassdiagramItemProviderAdapterFactory extends ClassdiagramAdapterF
 		if (classDiagramItemProvider != null) classDiagramItemProvider.dispose();
 		if (classItemProvider != null) classItemProvider.dispose();
 		if (attributeItemProvider != null) attributeItemProvider.dispose();
+		if (operationItemProvider != null) operationItemProvider.dispose();
+		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
 	}
 
 }

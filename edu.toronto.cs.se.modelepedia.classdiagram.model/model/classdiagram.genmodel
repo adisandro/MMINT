@@ -8,18 +8,32 @@
   <foreignModel>classdiagram.ecore</foreignModel>
   <genPackages prefix="Classdiagram" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       ecorePackage="classdiagram.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="classdiagram.ecore#//Visibility">
+      <genEnumLiterals ecoreEnumLiteral="classdiagram.ecore#//Visibility/PRIVATE"/>
+      <genEnumLiterals ecoreEnumLiteral="classdiagram.ecore#//Visibility/PUBLIC"/>
+    </genEnums>
     <genClasses ecoreClass="classdiagram.ecore#//ClassDiagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//ClassDiagram/classes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//ClassDiagram/dependencies"/>
     </genClasses>
     <genClasses ecoreClass="classdiagram.ecore#//Class">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/ownedAttributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/ownedOperations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/dependenciesAsDependee"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/dependenciesAsDepender"/>
     </genClasses>
     <genClasses ecoreClass="classdiagram.ecore#//Attribute">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//Attribute/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//Attribute/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//Attribute/visibility"/>
     </genClasses>
     <genClasses image="false" ecoreClass="classdiagram.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="classdiagram.ecore#//Operation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//Operation/visibility"/>
+    </genClasses>
+    <genClasses ecoreClass="classdiagram.ecore#//Dependency">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Dependency/dependee"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Dependency/depender"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

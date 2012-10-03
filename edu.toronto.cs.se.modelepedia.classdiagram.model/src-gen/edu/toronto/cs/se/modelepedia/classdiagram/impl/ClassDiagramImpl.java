@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassdiagramPackage;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getClasses <em>Classes</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getDependencies <em>Dependencies</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,6 +53,16 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * @ordered
 	 */
 	protected EList<edu.toronto.cs.se.modelepedia.classdiagram.Class> classes;
+
+	/**
+	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependencies()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Dependency> dependencies;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,11 +100,25 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Dependency> getDependencies() {
+		if (dependencies == null) {
+			dependencies = new EObjectContainmentEList<Dependency>(Dependency.class, this, ClassdiagramPackage.CLASS_DIAGRAM__DEPENDENCIES);
+		}
+		return dependencies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ClassdiagramPackage.CLASS_DIAGRAM__CLASSES:
 				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
+			case ClassdiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
+				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -107,6 +133,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 		switch (featureID) {
 			case ClassdiagramPackage.CLASS_DIAGRAM__CLASSES:
 				return getClasses();
+			case ClassdiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
+				return getDependencies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,6 +152,10 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				getClasses().clear();
 				getClasses().addAll((Collection<? extends edu.toronto.cs.se.modelepedia.classdiagram.Class>)newValue);
 				return;
+			case ClassdiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
+				getDependencies().clear();
+				getDependencies().addAll((Collection<? extends Dependency>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -139,6 +171,9 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 			case ClassdiagramPackage.CLASS_DIAGRAM__CLASSES:
 				getClasses().clear();
 				return;
+			case ClassdiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
+				getDependencies().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -153,6 +188,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 		switch (featureID) {
 			case ClassdiagramPackage.CLASS_DIAGRAM__CLASSES:
 				return classes != null && !classes.isEmpty();
+			case ClassdiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
+				return dependencies != null && !dependencies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
