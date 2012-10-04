@@ -30,4 +30,19 @@
       </extendibleElement>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/mavo/ClassDiagram"
+            class="edu.toronto.cs.se.modelepedia.mavo.classdiagram.ClassdiagramPackage"
+            genModel="model/mavo.classdiagram.genmodel"/>
+   </extension>
+
+   <extension
+         name="ClassDiagram+MAVO"
+         point="edu.toronto.cs.se.mmtf.models">
+      <extendibleElement
+            uri="http://se.cs.toronto.edu/modelepedia/mavo/ClassDiagram">
+      </extendibleElement>
+   </extension>
+
 </plugin>

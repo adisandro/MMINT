@@ -55,4 +55,44 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.mavo.classdiagram.presentation.ClassdiagramModelWizardID"
+            name="%_UI_ClassdiagramModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.mavo.classdiagram.presentation.ClassdiagramModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ClassdiagramModelFile.gif">
+         <description>%_UI_ClassdiagramModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="edu.toronto.cs.se.modelepedia.mavo.classdiagram.presentation.ClassdiagramEditorID"
+            name="%_UI_ClassdiagramEditor_label"
+            icon="icons/full/obj16/ClassdiagramModelFile.gif"
+            extensions="classdiagram"
+            class="edu.toronto.cs.se.modelepedia.mavo.classdiagram.presentation.ClassdiagramEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.mavo.classdiagram.presentation.ClassdiagramActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         name="ClassDiagram+MAVO tree"
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editor
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/mavo/ClassDiagram"
+            id="edu.toronto.cs.se.modelepedia.mavo.classdiagram.presentation.ClassdiagramEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.mavo.classdiagram.presentation.ClassdiagramModelWizardID">
+         <extendibleElement
+               uri="http://se.cs.toronto.edu/modelepedia/mavo/ClassDiagram_tree">
+         </extendibleElement>
+      </editor>
+   </extension>
+
 </plugin>

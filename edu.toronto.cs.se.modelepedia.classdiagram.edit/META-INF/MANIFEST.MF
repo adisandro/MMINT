@@ -8,8 +8,10 @@ Bundle-Activator: edu.toronto.cs.se.modelepedia.classdiagram.provider.Classdiagr
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.toronto.cs.se.modelepedia.classdiagram.provider
+Export-Package: edu.toronto.cs.se.modelepedia.classdiagram.provider,
+ edu.toronto.cs.se.modelepedia.mavo.classdiagram.provider
 Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.classdiagram.model;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+ org.eclipse.emf.edit;visibility:=reexport,
+ edu.toronto.cs.se.mmtf.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
