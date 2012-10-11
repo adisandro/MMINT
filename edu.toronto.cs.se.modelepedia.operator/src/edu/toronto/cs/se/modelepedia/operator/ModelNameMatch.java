@@ -80,7 +80,6 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			// look for identical names in the models
 			checkObjectNames(model.getRoot(), modelRef, objectNames, objectModels);
 		}
-
 		//TODO MMTF: too rough
 		EList<ExtendibleElement> runtimeMetatypes = modelRel.getRuntimeMetatypes();
 		modelRel.setMetatypeUri(((ModelRel) runtimeMetatypes.get(runtimeMetatypes.size()-1)).getUri());
