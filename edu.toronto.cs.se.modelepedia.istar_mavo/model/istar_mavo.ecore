@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="istar_mavo" nsURI="http://se.cs.toronto.edu/modelepedia/IStar_MAVO"
+    nsPrefix="istar_mavo">
+  <eClassifiers xsi:type="ecore:EClass" name="IStar" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
+        eType="#//Actor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+        eType="#//Dependency" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//DependencyEndpoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intentionalElements" upperBound="-1"
+        eType="#//IntentionalElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributions" upperBound="-1"
+        eType="#//Contribution" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="depender" lowerBound="1"
+        upperBound="-1" eType="#//DependerReference" containment="true" eOpposite="#//DependerReference/src"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" lowerBound="1"
+        upperBound="-1" eType="#//DependeeReference" containment="true" eOpposite="#//DependeeReference/src"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependum" lowerBound="1"
+        eType="#//IntentionalElement" containment="true" eOpposite="#//IntentionalElement/dependency"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentionalElement" eSuperTypes="#//DependencyEndpoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" eType="#//Dependency"
+        eOpposite="#//Dependency/dependum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" upperBound="-1"
+        eType="#//ComponentsReference" eOpposite="#//ComponentsReference/tgt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributionsAsContributor"
+        upperBound="-1" eType="#//Contribution" eOpposite="#//Contribution/contributor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//IntentionalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//ComponentsReference" containment="true" eOpposite="#//ComponentsReference/src"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" upperBound="-1" eType="#//EndReference"
+        containment="true" eOpposite="#//EndReference/src"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Resource" eSuperTypes="#//IntentionalElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//IntentionalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="means" upperBound="-1"
+        eType="#//EndReference" eOpposite="#//EndReference/tgt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoftGoal" eSuperTypes="#//Goal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributionsAsContributee"
+        upperBound="-1" eType="#//Contribution" eOpposite="#//Contribution/contributee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contribution" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributor" lowerBound="1"
+        eType="#//IntentionalElement" eOpposite="#//IntentionalElement/contributionsAsContributor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributee" lowerBound="1"
+        eType="#//SoftGoal" eOpposite="#//SoftGoal/contributionsAsContributee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EndReference" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Task"
+        eOpposite="#//Task/end"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tgt" lowerBound="1" eType="#//Goal"
+        eOpposite="#//Goal/means"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentsReference" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Task"
+        eOpposite="#//Task/components"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tgt" lowerBound="1" eType="#//IntentionalElement"
+        eOpposite="#//IntentionalElement/composite"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DependencyEndpoint" abstract="true"
+      eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
+        upperBound="-1" eType="#//DependerReference" eOpposite="#//DependerReference/tgt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
+        upperBound="-1" eType="#//DependeeReference" eOpposite="#//DependeeReference/tgt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DependerReference" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tgt" lowerBound="1" eType="#//DependencyEndpoint"
+        eOpposite="#//DependencyEndpoint/dependenciesAsDepender"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Dependency"
+        eOpposite="#//Dependency/depender"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DependeeReference" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tgt" lowerBound="1" eType="#//DependencyEndpoint"
+        eOpposite="#//DependencyEndpoint/dependenciesAsDependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Dependency"
+        eOpposite="#//Dependency/dependee"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.operators" name="MMTF operator types"/>
+      </appinfo>
+      <documentation>
+         Allows operator types to be registered with MMTF.
+      </documentation>
+   </annotation>
+
+   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="operatorType"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="operatorType">
+      <annotation>
+         <documentation>
+            An operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendibleType"/>
+            <element ref="input"/>
+            <element ref="output"/>
+         </sequence>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The operator type implementation.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":edu.toronto.cs.se.mmtf.repository.IOperator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="isConversion" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  Whether this is a conversion operator type.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="input">
+      <annotation>
+         <documentation>
+            The input of the operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="parameter" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="output">
+      <annotation>
+         <documentation>
+            The output of the operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="parameter">
+      <annotation>
+         <documentation>
+            An input or output parameter of the operator.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The parameter name (must be unique in this operator).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isVararg" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  Whether this parameter represents a variable number of actual parameters. Only last parameter can be a vararg.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="modelTypeUri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The parameter&apos;s model type URI.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

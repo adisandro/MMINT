@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mid" nsURI="http://se.cs.toronto.edu/mmtf/MID" nsPrefix="mid">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="EStringToExtendibleElementMap" instanceClassName="java.util.Map$Entry">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The hash map entry for an element type or element instance in a multimodel."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The uri of the extendible element."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The extendible element."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true" eSuperTypes="mavo.ecore#//MAVOElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="supertypeType typeLevel metatypeType"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The abstract basic element. It represents a unique typed element, able to extend or be extended by other elements."/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="supertypeType" value="not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())"/>
+      <details key="typeLevel" value="level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"/>
+      <details key="metatypeType" value="not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The supertype (types: can be null; instances: always null)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metatype" eType="#//ExtendibleElement"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The static metatype (types: always null; instances: an extendible element from the types)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The unique uri identifier (types: arbitrary string; instances: workspace uri)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The name."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The metalevel (types: TYPES; instances: INSTANCES)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metatypeUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The static metatype uri (types: empty; instances: the metatype uri)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="True if this element has been dinamically created through MMTF (types: true for light types, false for heavy types from extensions; instances: always true)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MidLevel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The metalevels for a MID element."/>
+    </eAnnotations>
+    <eLiterals name="INSTANCES">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The instances metalevel."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="TYPES" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The types metalevel."/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementEndpoint" abstract="true"
+      eSuperTypes="#//ExtendibleElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The abstract element endpoint. It represents a relationship between extendible elements."/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="unboundedLevel"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="unboundedLevel" value="target.level = MidLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"/>
+    </eAnnotations>
+    <eOperations name="getMetatype" lowerBound="1" eType="#//ExtendibleElementEndpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the element type endpoint of this element instance endpoint."/>
+        <details key="body" value="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ExtendibleElementEndpoint) metatype;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSupertype" eType="#//ExtendibleElementEndpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the element supertype endpoint of this element type endpoint."/>
+        <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ExtendibleElementEndpoint) supertype;"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The minimum number of target elements associated with the source (instances: always 1)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The maximum number of target elements associated with the source; -1 represents unbounded (instances: always 1)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The endpoint target element."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetUri" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The uri of the target element."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="target.uri"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiModel" eSuperTypes="mavo.ecore#//MAVOModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The model management root."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1"
+        eType="#//Model" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of managed model types or model instances."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
+        eType="#//editor/Editor" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of managed editor types or editor instances."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
+        eType="#//operator/Operator" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of managed operator types or operator instances."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendibleTable" upperBound="-1"
+        eType="#//EStringToExtendibleElementMap" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The hash map for all element types or element instances in the MID, using the uri as key."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The metalevel (types: TYPES; instances: INSTANCES)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement mavo.ecore#//MAVOModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A model type or a model instance."/>
+    </eAnnotations>
+    <eOperations name="getMetatype" lowerBound="1" eType="#//Model">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model type of this model instance."/>
+        <details key="body" value="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Model) metatype;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSupertype" eType="#//Model">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model supertype of this model type."/>
+        <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The root of the model (types: the metamodel package; instances: the model root object instance)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
+        eType="#//ModelOrigin">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The origin."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileExtension" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The file extension registered for the metamodel."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editors" upperBound="-1"
+        eType="#//editor/Editor">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of editors associated with this model (types: editor types; instances: editor instances)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ModelElement" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of model elements (types: model element types; instances: model element instances)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//ModelConstraint"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The constraint associated with this model type (instances: always null)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conversionOperators" upperBound="-1"
+        eType="#//operator/ConversionOperator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The conversion operator types that use this model type as input (instances: always null)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModelOrigin">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The origin for a model."/>
+    </eAnnotations>
+    <eLiterals name="IMPORTED">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="When a model exists outside of MMTF and gets imported."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="CREATED" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="When a model is created through MMTF."/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelConstraint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A constraint for a model type."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The constraint definition, using the engine language."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="engine" lowerBound="1"
+        eType="#//ModelConstraintEngine">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The engine used to evaluate the constraint."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModelConstraintEngine">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The engine used to evaluate a model type constraint."/>
+    </eAnnotations>
+    <eLiterals name="OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The OCL engine."/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" eSuperTypes="#//ExtendibleElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An element type of a model type or an element instance of a model instance."/>
+    </eAnnotations>
+    <eOperations name="getMetatype" lowerBound="1" eType="#//ModelElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element type of this model element instance."/>
+        <details key="body" value="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElement) metatype;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSupertype" eType="#//ModelElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element supertype of this model element type."/>
+        <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElement) supertype;"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" lowerBound="1"
+        eType="#//ModelElementCategory">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The category of the model element."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pointer" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The pointer to the model element object (types: the class or structural feature in the metamodel package; instances: the model element object instance)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classLiteral" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The class literal (types: the literal of the class or structural feature in the metamodel package; instances: currently unused TODO)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModelElementCategory">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The category for a model element."/>
+    </eAnnotations>
+    <eLiterals name="ENTITY">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="When a model element represents an entity in a model."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="RELATIONSHIP" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="When a model element represents a relationship between other model elements in a model."/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElementEntityWildcard">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The wildcard class for the most generic model element type of entity category."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementRelationshipWildcard"
+        eType="#//ModelElementEntityWildcard">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The wildcard reference for the most generic model element type of relationship category."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The model endpoint for a model relationship."/>
+    </eAnnotations>
+    <eOperations name="getSupertype" eType="#//ModelEndpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model supertype endpoint of this model type endpoint."/>
+        <details key="body" value="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelEndpoint) supertype;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getTarget" lowerBound="1" eType="#//Model">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model target of this model endpoint."/>
+        <details key="body" value="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (Model) target;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getMetatype" lowerBound="1" eType="#//ModelEndpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model type endpoint of this model instance endpoint."/>
+        <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eSubpackages name="relationship" nsURI="http://se.cs.toronto.edu/mmtf/MID/Relationship"
+      nsPrefix="relationship">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementReference" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="oneObject"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to an extendible element."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="oneObject" value="referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedObject" eType="#//ExtendibleElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The referenced element, when owned by some other entity."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedObject" eType="#//ExtendibleElement"
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The referenced element, when owned by this reference itself."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+          eType="#//ExtendibleElement" changeable="false" volatile="true" transient="true"
+          derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The referenced element. It can be owned by some other entity or by this reference itself, but not both."/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if containedObject.oclIsUndefined() then referencedObject else containedObject endif"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="supertypeRef" eType="#//relationship/ExtendibleElementReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The reference to the supertype of the referenced element."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiable" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="True if the referenced element can be modified through this reference."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The uri of the referenced element."/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if object.oclIsUndefined() then null else object.uri endif"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementEndpointReference"
+        abstract="true" eSuperTypes="#//relationship/ExtendibleElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to an extendible element endpoint."/>
+      </eAnnotations>
+      <eOperations name="getObject" lowerBound="1" eType="#//ExtendibleElementEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ExtendibleElementEndpoint) object;"/>
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced element endpoint."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertypeRef" eType="#//relationship/ExtendibleElementEndpointReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the element supertype endpoint reference of this element type endpoint reference."/>
+          <details key="body" value="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetUri" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The uri of the referenced endpoint's target."/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="object.oclAsType(ExtendibleElementEndpoint).targetUri"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelRel" eSuperTypes="#//Model">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="modelEndpointRefs"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A model relationship type among model types or a model relationship instance among model instances."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="modelEndpointRefs" value="modelEndpoints->size() = modelEndpointRefs->size()"/>
+      </eAnnotations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//relationship/ModelRel">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model relationship type of this model relationship instance."/>
+          <details key="body" value="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelRel) metatype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertype" eType="#//Model">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model relationship supertype of this model relationship type."/>
+          <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelEndpoints" upperBound="-1"
+          eType="#//ModelEndpoint" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of model endpoints."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+          eType="#//relationship/Link" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of links among model elements."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelEndpointRefs" upperBound="-1"
+          eType="#//relationship/ModelEndpointReference" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of references to model endpoints. This is different from the list of model endpoints because it includes inherited endpoints too."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="linkRefs" upperBound="-1"
+          eType="#//relationship/LinkReference" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of references to links. This is different from the list of links because it includes inherited links too."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryModelRel" eSuperTypes="#//relationship/ModelRel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="isBinaryModelRel"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A binary model relationship type or a binary model relationship instance."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="isBinaryModelRel" value="modelEndpoints->size() = 2"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModel" lowerBound="1"
+          eType="#//Model" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if modelEndpoints->size() &lt; 1 then null else modelEndpoints->at(1).target.oclAsType(Model) endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The source model endpoint."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetModel" lowerBound="1"
+          eType="#//Model" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if modelEndpoints->size() &lt; 2 then null else modelEndpoints->at(2).target.oclAsType(Model) endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The target model endpoint."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelEndpointReference" eSuperTypes="#//relationship/ExtendibleElementEndpointReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="modelEndpointType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to a model endpoint."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="modelEndpointType" value="object.oclIsKindOf(ModelEndpoint)"/>
+      </eAnnotations>
+      <eOperations name="getObject" lowerBound="1" eType="#//ModelEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="ExtendibleElementEndpoint object = super.getObject();&#xA;return (object == null) ? null : (ModelEndpoint) object;"/>
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced model endpoint."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertypeRef" eType="#//relationship/ModelEndpointReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model supertype endpoint reference of this model type endpoint reference."/>
+          <details key="body" value="ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelEndpointReference) supertypeRef;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemRefs" upperBound="-1"
+          eType="#//relationship/ModelElementReference" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of references to model elements. This is a subset of the list of model elements in the model."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference" eSuperTypes="#//relationship/ExtendibleElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="modelElementType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to a model element."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="modelElementType" value="object.oclIsKindOf(ModelElement)"/>
+      </eAnnotations>
+      <eOperations name="getObject" lowerBound="1" eType="#//ModelElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced model element."/>
+          <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ModelElement) object;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertypeRef" eType="#//relationship/ModelElementReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element supertype reference of this model element type reference."/>
+          <details key="body" value="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelElementReference) supertypeRef;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpointRefs"
+          upperBound="-1" eType="#//relationship/ModelElementEndpointReference" eOpposite="#//relationship/ModelElementEndpointReference/modelElemRef">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of references to links that use this as an endpoint."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A link type among model element types or a link instance among model element instances."/>
+      </eAnnotations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//relationship/Link">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the link type of this link instance."/>
+          <details key="body" value="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Link) metatype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertype" eType="#//relationship/Link">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the link supertype of this link type."/>
+          <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Link) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpoints" upperBound="-1"
+          eType="#//relationship/ModelElementEndpoint" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of model element endpoints."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpointRefs"
+          upperBound="-1" eType="#//relationship/ModelElementEndpointReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of references to model element endpoints. This is different from the list of model element endpoints because it includes inherited endpoints too."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryLink" eSuperTypes="#//relationship/Link">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A binary link type or a binary link instance."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="isBinaryLink"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="isBinaryLink" value="modelElemEndpoints->size() = 2"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The model element endpoint for a link."/>
+      </eAnnotations>
+      <eOperations name="getSupertype" eType="#//relationship/ModelElementEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element supertype endpoint of this model element type endpoint."/>
+          <details key="body" value="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElementEndpoint) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getTarget" lowerBound="1" eType="#//ModelElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element target of this model element endpoint."/>
+          <details key="body" value="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (ModelElement) target;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//relationship/ModelElementEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element type endpoint of this model element instance endpoint."/>
+          <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElementEndpoint) metatype;"/>
+        </eAnnotations>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LinkReference" eSuperTypes="#//relationship/ExtendibleElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="linkType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to a link."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="linkType" value="object.oclIsKindOf(Link)"/>
+      </eAnnotations>
+      <eOperations name="getObject" lowerBound="1" eType="#//relationship/Link">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced link."/>
+          <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (Link) object;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertypeRef" eType="#//relationship/LinkReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the link supertype reference of this link type reference."/>
+          <details key="body" value="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (LinkReference) supertypeRef;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpointRefs"
+          upperBound="-1" eType="#//relationship/ModelElementEndpointReference" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of references to model element endpoints."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryLinkReference" eSuperTypes="#//relationship/LinkReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="isBinaryLinkRef binaryLinkType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to a binary link."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="isBinaryLinkRef" value="modelElemEndpointRefs->size() = 2"/>
+        <details key="binaryLinkType" value="object.oclIsKindOf(BinaryLink)"/>
+      </eAnnotations>
+      <eOperations name="getObject" lowerBound="1" eType="#//relationship/BinaryLink">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced binary link."/>
+          <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (BinaryLink) object;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElemRef" lowerBound="1"
+          eType="#//relationship/ModelElementReference" volatile="true" transient="true"
+          derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if modelElemEndpointRefs->size() &lt; 1 then null else modelElemEndpointRefs->at(1).modelElemRef endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The source model element reference endpoint."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetModelElemRef" lowerBound="1"
+          eType="#//relationship/ModelElementReference" volatile="true" transient="true"
+          derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if modelElemEndpointRefs->size() &lt; 2 then null else modelElemEndpointRefs->at(2).modelElemRef endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The target model element reference endpoint."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementEndpointReference" eSuperTypes="#//relationship/ExtendibleElementEndpointReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to a model element endpoint."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="modelElemEndpointType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="modelElemEndpointType" value="object.oclIsKindOf(ModelElementEndpoint)"/>
+      </eAnnotations>
+      <eOperations name="getObject" lowerBound="1" eType="#//relationship/ModelElementEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="ExtendibleElementEndpoint object = super.getObject();&#xA;return (object == null) ? null : (ModelElementEndpoint) object;"/>
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced model element endpoint."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertypeRef" eType="#//relationship/ModelElementEndpointReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element supertype endpoint reference of this model element type endpoint reference."/>
+          <details key="body" value="ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelElementEndpointReference) supertypeRef;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemRef" lowerBound="1"
+          eType="#//relationship/ModelElementReference" eOpposite="#//relationship/ModelElementReference/modelElemEndpointRefs">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The model element reference endpoint reference."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="editor" nsURI="http://se.cs.toronto.edu/mmtf/MID/Editor" nsPrefix="editor">
+    <eClassifiers xsi:type="ecore:EClass" name="Editor" eSuperTypes="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An editor type or an editor instance."/>
+      </eAnnotations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//editor/Editor">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the editor type of this model instance."/>
+          <details key="body" value="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Editor) metatype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertype" eType="#//editor/Editor">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the editor supertype of this editor type."/>
+          <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Editor) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUri" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The uri of the model type or model instance to be edited by this editor type or editor instance."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The editor id used to register this editor in Eclipse."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardId" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The wizard id used to register this editor's wizard in Eclipse."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileExtensions" lowerBound="1"
+          upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of file extensions registered for this editor."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Diagram" eSuperTypes="#//editor/Editor">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A diagram type or a diagram instance."/>
+      </eAnnotations>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="operator" nsURI="http://se.cs.toronto.edu/mmtf/MID/Operator"
+      nsPrefix="operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="EStringToParameterMap" instanceClassName="java.util.Map$Entry">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The hash map entry for an input or output parameter of this operator."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The parameter name."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="#//operator/Parameter">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The parameter."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An operator type or an operator instance."/>
+      </eAnnotations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//operator/Operator">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the operator type of this operator instance."/>
+          <details key="body" value="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Operator) metatype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertype" eType="#//operator/Operator">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the operator supertype of this operator type."/>
+          <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Operator) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
+          eType="#//operator/Parameter" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of input parameters of this operator."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
+          eType="#//operator/Parameter" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of output parameters of this operator."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="signatureTable" upperBound="-1"
+          eType="#//operator/EStringToParameterMap" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The hash map for all input and output parameters of this operator, using their names as keys."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="executable" lowerBound="1"
+          eType="#//operator/OperatorExecutable" transient="true" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The executable implementation of the operator."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConversionOperator" eSuperTypes="#//operator/Operator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="conversion executable"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A conversion operator type or a conversion operator instance, enables substitution from the input parameter to the output parameter for other operators."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="conversion" value="inputs->size() = 1 and outputs->size() = 1"/>
+        <details key="executable" value="executable.oclIsKindOf(ConversionOperatorExecutable)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An operator's parameter."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The name."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="vararg" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="True if this parameter represents a variable argument, i.e. any number of actual arguments."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
+          eType="#//Model">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The model type or model instance identified by this parameter (types: formal argument; instances: actual argument)."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperatorExecutable" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The executable implementation interface of an operator."/>
+      </eAnnotations>
+      <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
+          eExceptions="#//operator/Exception">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Executes the operator."/>
+        </eAnnotations>
+        <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of model parameters."/>
+          </eAnnotations>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConversionOperatorExecutable" abstract="true"
+        eSuperTypes="#//operator/OperatorExecutable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The executable implementation interface of a conversion operator."/>
+      </eAnnotations>
+      <eOperations name="cleanup" eExceptions="#//operator/Exception">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Cleans up the output of the conversion operator, to allow for a transparent conversion."/>
+        </eAnnotations>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Any possible exception thrown during the execution of the operator."/>
+      </eAnnotations>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

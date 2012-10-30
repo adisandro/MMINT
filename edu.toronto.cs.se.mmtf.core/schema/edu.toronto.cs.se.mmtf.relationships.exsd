@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.relationships" name="MMTF model relationships"/>
+      </appinfo>
+      <documentation>
+         Allows model relationship types to be registered with MMTF.
+The relationship&apos;s enpoints model packages have to be registered too through the edu.toronto.cs.se.mmtf.models extension point.
+      </documentation>
+   </annotation>
+
+   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
+
+   <include schemaLocation="edu.toronto.cs.se.mmtf.endpoints.exsd"/>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="relationshipType"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="relationshipType">
+      <annotation>
+         <documentation>
+            A model relationship type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendibleType"/>
+            <element ref="modelTypeEndpoint" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="linkType" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="modelTypeEndpoint">
+      <annotation>
+         <documentation>
+            A relationship&apos;s model type endpoint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendibleType"/>
+            <element ref="typeEndpoint"/>
+            <element ref="modelElemType" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="modelElemType">
+      <annotation>
+         <documentation>
+            An endpoint&apos;s model element type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendibleType"/>
+         </sequence>
+         <attribute name="category" use="required">
+            <annotation>
+               <documentation>
+                  The model element type category.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="ENTITY">
+                  </enumeration>
+                  <enumeration value="RELATIONSHIP">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="classLiteral" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The model element typr meta object literal.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="linkType">
+      <annotation>
+         <documentation>
+            A link type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendibleType"/>
+            <element ref="modelElemTypeEndpoint" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="modelElemTypeEndpoint">
+      <annotation>
+         <documentation>
+            A model element type endpoint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendibleType"/>
+            <element ref="typeEndpoint"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

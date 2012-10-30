@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.randommodel.operator;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.m2m.atl.engine.emfvm,
+ edu.toronto.cs.se.mmtf.core,
+ edu.toronto.cs.se.modelepedia.randommodel,
+ org.eclipse.core.resources,
+ org.eclipse.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
+Bundle-Activator: edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelOperatorActivator

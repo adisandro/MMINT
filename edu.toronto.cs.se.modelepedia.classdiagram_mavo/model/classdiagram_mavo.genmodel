@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Vivien Suen.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro, Vivien Suen - Implementation."
+    modelDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo.editor/src-gen"
+    modelPluginID="edu.toronto.cs.se.modelepedia.classdiagram_mavo" modelName="ClassDiagram_MAVO"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="../../edu.toronto.cs.se.mmtf.core/model/mid.genmodel#//mavo"
+    operationReflection="true">
+  <foreignModel>classdiagram_mavo.ecore</foreignModel>
+  <genPackages prefix="ClassDiagram_MAVO" basePackage="edu.toronto.cs.se.modelepedia"
+      disposableProviderFactory="true" ecorePackage="classdiagram_mavo.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="classdiagram_mavo.ecore#//Visibility">
+      <genEnumLiterals ecoreEnumLiteral="classdiagram_mavo.ecore#//Visibility/PRIVATE"/>
+      <genEnumLiterals ecoreEnumLiteral="classdiagram_mavo.ecore#//Visibility/PUBLIC"/>
+    </genEnums>
+    <genClasses ecoreClass="classdiagram_mavo.ecore#//ClassDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//ClassDiagram/classes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//ClassDiagram/dependencies"/>
+    </genClasses>
+    <genClasses ecoreClass="classdiagram_mavo.ecore#//Class">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Class/ownedAttributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Class/ownedOperations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Class/dependenciesAsDependee"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Class/dependenciesAsDepender"/>
+    </genClasses>
+    <genClasses ecoreClass="classdiagram_mavo.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram_mavo.ecore#//Attribute/visibility"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="classdiagram_mavo.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram_mavo.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="classdiagram_mavo.ecore#//Operation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram_mavo.ecore#//Operation/visibility"/>
+    </genClasses>
+    <genClasses ecoreClass="classdiagram_mavo.ecore#//Dependency">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Dependency/dependee"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram_mavo.ecore#//Dependency/depender"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
