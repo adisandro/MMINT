@@ -1,7 +1,0 @@
-# Tracing options for the edu.toronto.cs.se.modelepedia.powerwindow.diagram plug-in
-
-# Common issues
-edu.toronto.cs.se.modelepedia.powerwindow.diagram/debug=false
-
-# Visual IDs
-edu.toronto.cs.se.modelepedia.powerwindow.diagram/debug/visualID=false

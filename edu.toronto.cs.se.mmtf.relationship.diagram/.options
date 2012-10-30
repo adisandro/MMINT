@@ -1,7 +1,0 @@
-# Tracing options for the edu.toronto.cs.se.mmtf.relationship.diagram plug-in
-
-# Common issues
-edu.toronto.cs.se.mmtf.relationship.diagram/debug=false
-
-# Visual IDs
-edu.toronto.cs.se.mmtf.relationship.diagram/debug/visualID=false
