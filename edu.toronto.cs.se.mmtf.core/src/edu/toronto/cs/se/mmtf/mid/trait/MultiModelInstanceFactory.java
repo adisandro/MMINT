@@ -308,13 +308,12 @@ public class MultiModelInstanceFactory {
 		);
 		// create model rel endpoints
 		for (Model model : models) {
-			ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
+			MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 				null,
 				newModelRel,
 				model,
 				false
 			);
-			newModelEndpointRef.getObject().setName(model.getName());
 		}
 
 		return newModelRel;
@@ -341,6 +340,7 @@ public class MultiModelInstanceFactory {
 		else {
 			modelRel.getModelEndpoints().add(newModelEndpoint);
 		}
+		newModelEndpoint.setName(newModel.getName());
 		ModelEndpointReference modelEndpointRef = createModelEndpointReference(modelRel, newModelEndpoint, isBinarySrc);
 
 		return modelEndpointRef;

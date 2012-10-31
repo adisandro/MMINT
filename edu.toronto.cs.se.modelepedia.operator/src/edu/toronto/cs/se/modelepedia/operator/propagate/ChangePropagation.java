@@ -47,9 +47,10 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class ChangePropagation extends OperatorExecutableImpl {
 
-	private final static String PROPAGATED_MODEL_SUFFIX = "_propagated";
+	private final static String PROP_MODEL_SUFFIX = "_propagated";
 	private final static String PROPREFINEMENT_MODELREL_NAME = "propRefinement";
 	private final static String PROPTRACE_MODELREL_NAME = "propTrace";
+	private final static String PROPTRACE_RULE4_LINK_NAME = "rule4Trace";
 	private final static String NAME_FEATURE = "name";
 
 	//TODO MMTF: make this a library function, accessible with ctrl+c/ctrl+v
@@ -62,7 +63,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			relatedModel.getUri().lastIndexOf('.'),
 			relatedModel.getUri().length()
 		);
-		String uri = relatedModel.getUri().replace(fileExtension, PROPAGATED_MODEL_SUFFIX + fileExtension);
+		String uri = relatedModel.getUri().replace(fileExtension, PROP_MODEL_SUFFIX + fileExtension);
 		URI newCopyUri = MultiModelTypeIntrospection.writeRoot(copyRoot, uri, true);
 
 		// create model in multimodel
@@ -204,6 +205,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				newModelElemRefA
 			);
 			newTraceLinkRef.getObject().setVar(true);
+			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
 			break;
 		}
 
@@ -235,24 +237,23 @@ traceLinks:
 			boolean Ma = traceModelElemA.isMay(), Sa = traceModelElemA.isSet(), Va = traceModelElemA.isVar();
 			boolean Mab = traceLink.isMay(), Sab = traceLink.isSet(), Vab = traceLink.isVar();
 			boolean Mb = traceModelElemB.isMay(), Sb = traceModelElemB.isSet(), Vb = traceModelElemB.isVar();
+			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
 
-			if (Ub != 0) {
-				// rule 1
-				if (Mb && !Mab) {
-					traceModelElemB.setMay(false);
-					again = true;
-				}
-				// rule 2
-				if (Sab && !Sa && !Sb) {
-					traceLink.setSet(false);
-					again = true;
-				}
-				// rule 3
-				if (Vab && !Va && !Vb) {
-					traceLink.setVar(false);
-					again = true;
-				}
+			// rule 1
+			if (Mb && !Mab) {
+				traceModelElemB.setMay(false);
+				again = true;
+			}
+			// rule 2
+			if (Sab && !Sa && !Sb) {
+				traceLink.setSet(false);
+				again = true;
+			}
+			// rule 3
+			if (Vab && !Va && !Vb) {
+				traceLink.setVar(false);
+				again = true;
 			}
 			if (Lb == 1 && traceLinkRefs.size() == 2) {
 				// rule 5
@@ -262,10 +263,12 @@ traceLinks:
 				}
 			}
 			if (Ub == 1) {
-				// rule 6
-				if (Sb && !Sa && !Mab) {
-					traceModelElemB.setSet(false);
-					again = true;
+				if (Ua == -1) {
+					// rule 6
+					if (Sb && !Sa && !Mab) {
+						traceModelElemB.setSet(false);
+						again = true;
+					}
 				}
 				// rule 7
 				if (Vab && Vb && !Mab) {
@@ -306,6 +309,7 @@ traceLinks:
 		String varModelElemRefUri = varModelElemRef.getUri();
 		String modelElemRefUri = modelElemRef.getUri();
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
+		//TODO MMTF: make function for it!!
 		String varModelEObjectUri =
 			modelEndpointRef.getTargetUri() +
 			varModelElemRefUri.substring(varModelElemRefUri.lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
@@ -521,6 +525,56 @@ traceLinks:
 		}
 	}
 
+	private void propagateTraceLinksWithoutRefinements(BinaryLinkReference traceLinkRef, BinaryModelRel newPropRefinementRel, BinaryModelRel newPropTraceRel) throws Exception {
+
+		ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
+		ModelEndpointReference relatedModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(0);
+		ModelElementReference relatedModelElemRef_propRefinementRel = MultiModelHierarchyUtils.getReference(relatedModelElemRef_traceRel, relatedModelEndpointRef_propRefinementRel.getModelElemRefs());
+		// already propagated through a refinement
+		if (relatedModelElemRef_propRefinementRel != null) {
+			return;
+		}
+
+		// propagate trace link
+		ModelElementReference origModelElemRef_traceRel = traceLinkRef.getSourceModelElemRef();
+		ModelEndpointReference refinedModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(0);
+		//TODO MMTF: figure out something here, indexes might be shifted
+//		String uri = origModelElemRef_traceRel.getUri();
+//		String refinedModelElemUri =
+//			refinedModelEndpointRef_propTraceRel.getTargetUri() +
+//			uri.substring(uri.lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
+//		EObject refinedModelEObject = MultiModelTypeIntrospection.getPointer(refinedModelElemUri);
+//		if (refinedModelEObject == null) {
+//			return;
+//		}
+		ModelElementReference newRefinedModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
+			refinedModelEndpointRef_propTraceRel,
+			origModelElemRef_traceRel.getObject().getName(),
+			origModelElemRef_traceRel.getObject().getPointer()
+		);
+
+		ModelEndpointReference propModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(1);
+		ModelElementReference newPropModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
+			propModelEndpointRef_propTraceRel,
+			relatedModelElemRef_traceRel.getObject().getName(),
+			relatedModelElemRef_traceRel.getObject().getPointer()
+		);
+
+		BinaryLink traceLink = traceLinkRef.getObject();
+		BinaryLinkReference newPropTraceLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(
+			traceLink.getMetatype(),
+			RelationshipPackage.eINSTANCE.getBinaryLink(),
+			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
+			newRefinedModelElemRef,
+			newPropModelElemRef
+		);
+		BinaryLink newPropTraceLink = newPropTraceLinkRef.getObject();
+		newPropTraceLink.setName(traceLink.getName());
+		newPropTraceLink.setMay(traceLink.isMay());
+		newPropTraceLink.setSet(traceLink.isSet());
+		newPropTraceLink.setVar(traceLink.isVar());
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -587,42 +641,6 @@ traceLinks:
 		result.add(newPropRefinementRel);
 		result.add(newPropTraceRel);
 		return result;
-	}
-
-	private void propagateTraceLinksWithoutRefinements(BinaryLinkReference traceLinkRef, BinaryModelRel newPropRefinementRel, BinaryModelRel newPropTraceRel) {
-
-		ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
-		ModelEndpointReference relatedModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(0);
-		ModelElementReference relatedModelElemRef_propRefinementRel = MultiModelHierarchyUtils.getReference(relatedModelElemRef_traceRel, relatedModelEndpointRef_propRefinementRel.getModelElemRefs());
-		// already propagated through a refinement
-		if (relatedModelElemRef_propRefinementRel != null) {
-			return;
-		}
-
-		ModelElementReference origModelElemRef_traceRel = traceLinkRef.getSourceModelElemRef();
-		BinaryLink traceLink = traceLinkRef.getObject();
-		ModelElementReference newRefinedModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
-			newPropTraceRel.getModelEndpointRefs().get(0),
-			origModelElemRef_traceRel.getObject().getName(),
-			origModelElemRef_traceRel.getObject().getPointer()
-		);
-		ModelElementReference newPropModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
-			newPropTraceRel.getModelEndpointRefs().get(1),
-			relatedModelElemRef_traceRel.getObject().getName(),
-			relatedModelElemRef_traceRel.getObject().getPointer()
-		);
-		BinaryLinkReference newPropTraceLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(
-			traceLink.getMetatype(),
-			RelationshipPackage.eINSTANCE.getBinaryLink(),
-			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
-			newRefinedModelElemRef,
-			newPropModelElemRef
-		);
-		BinaryLink newPropTraceLink = newPropTraceLinkRef.getObject();
-		newPropTraceLink.setName(traceLink.getName());
-		newPropTraceLink.setMay(traceLink.isMay());
-		newPropTraceLink.setSet(traceLink.isSet());
-		newPropTraceLink.setVar(traceLink.isVar());
 	}
 
 }
