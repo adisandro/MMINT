@@ -46,15 +46,14 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
- * The factory for modifications to an instance multimodel.
+ * The factory to create/modify/remove elements inside an instance multimodel.
  * 
  * @author Alessio Di Sandro
  * 
  */
 public class MultiModelInstanceFactory {
 
-	//TODO MMTF: use this to replace the other fuzzy one
-	private static void addExtendibleElementGood(ExtendibleElement newElement, ExtendibleElement elementType, MultiModel multiModel, String newElementUri, String newElementName) {
+	private static void addExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, MultiModel multiModel, String newElementUri, String newElementName) {
 
 		newElement.setUri(newElementUri);
 		newElement.setName(newElementName);
@@ -95,8 +94,9 @@ public class MultiModelInstanceFactory {
 	 * @param name
 	 *            The name of the extendible element.
 	 */
-	private static void addExtendibleElement(ExtendibleElement element, ExtendibleElement type, MultiModel multiModel, URI elementUri, String name) {
+	private static void addExtendibleElementOld(ExtendibleElement element, ExtendibleElement type, MultiModel multiModel, URI elementUri, String name) {
 
+		//TODO MMTF: migrate everything to use the new one
 		// uri
 		String uri;
 		if (elementUri == null) {
@@ -179,7 +179,7 @@ public class MultiModelInstanceFactory {
 		if (multiModel != null) {
 			multiModel.getModels().add(model);
 		}
-		addExtendibleElement(model, modelType, multiModel, modelUri, fileName);
+		addExtendibleElementOld(model, modelType, multiModel, modelUri, fileName);
 
 		// set attributes
 		model.setOrigin(origin);
@@ -209,7 +209,7 @@ public class MultiModelInstanceFactory {
 
 	public static Model createModel(Model modelType, ModelOrigin origin, MultiModel multiModel, URI modelUri, boolean uselessFIXME) throws MMTFException {
 
-		//TODO MMTF: rework
+		//TODO MMTF: rework a bit
 		MultiModelInstanceFactory.assertModelUnique(multiModel, modelUri);
 		Model newModel = createModel(modelType, origin, multiModel, modelUri);
 		EObject modelRoot = newModel.getRoot();
@@ -229,12 +229,11 @@ public class MultiModelInstanceFactory {
 		ModelRel modelRel = (ModelRel) modelEndpointRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
 
-		//TODO: MMTF why was it like this?
-		//String newModelElemUri = newModelElemUri + MMTF.URI_SEPARATOR + classLiteral;
+		//TODO MMTF: String newModelElemUri = newModelElemUri + MMTF.URI_SEPARATOR + classLiteral;
 		ModelElement newModelElem = MultiModelTypeRegistry.getModelElementType(multiModel, newModelElemUri);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
-			addExtendibleElementGood(newModelElem, modelElemType, multiModel, newModelElemUri, newModelElemName);
+			addExtendibleElement(newModelElem, modelElemType, multiModel, newModelElemUri, newModelElemName);
 			newModelElem.setCategory(category);
 			newModelElem.setClassLiteral(classLiteral);
 			modelEndpointRef.getObject().getTarget().getElements().add(newModelElem);
@@ -332,7 +331,7 @@ public class MultiModelInstanceFactory {
 
 		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
-		addExtendibleElementGood(newModelEndpoint, modelTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(newModelEndpoint, modelTypeEndpoint, multiModel, null, null);
 		addExtendibleElementEndpoint(newModelEndpoint, newModel);
 		if (isBinarySrc) {
 			modelRel.getModelEndpoints().add(0, newModelEndpoint);
@@ -349,7 +348,7 @@ public class MultiModelInstanceFactory {
 	public static void replaceModelEndpointAndModelEndpointReference(ModelEndpoint oldModelEndpoint, ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel) {
 
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
-		addExtendibleElementGood(oldModelEndpoint, modelTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(oldModelEndpoint, modelTypeEndpoint, multiModel, null, null);
 		oldModelEndpoint.setTarget(newModel);
 	}
 
@@ -400,7 +399,7 @@ public class MultiModelInstanceFactory {
 
 		Link link = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
 		modelRel.getLinks().add(link);
-		addExtendibleElement(link, linkType, null, null, null);
+		addExtendibleElementOld(link, linkType, null, null, null);
 		LinkReference newLinkRef = createLinkReference(modelRel, link, linkRefClass);
 
 		return newLinkRef;
@@ -447,7 +446,7 @@ public class MultiModelInstanceFactory {
 
 		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		MultiModel multiModel = (MultiModel) linkRef.eContainer().eContainer();
-		addExtendibleElementGood(newModelElemEndpoint, modelElemTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(newModelElemEndpoint, modelElemTypeEndpoint, multiModel, null, null);
 		addExtendibleElementEndpoint(newModelElemEndpoint, newModelElemRef.getObject());
 		if (isBinarySrc) {
 			linkRef.getObject().getModelElemEndpoints().add(0, newModelElemEndpoint);
@@ -482,7 +481,7 @@ public class MultiModelInstanceFactory {
 
 		MultiModel multiModel = (MultiModel) linkRef.eContainer().eContainer();
 		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
-		addExtendibleElementGood(oldModelElemEndpoint, modelElemTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(oldModelElemEndpoint, modelElemTypeEndpoint, multiModel, null, null);
 		oldModelElemEndpoint.setTarget(newModelElemRef.getObject());
 		oldModelElemEndpointRef.setModelElemRef(newModelElemRef);
 	}
@@ -533,7 +532,7 @@ public class MultiModelInstanceFactory {
 			true
 			//TODO MMTF: metatypeuri here
 		);
-		addExtendibleElement(editor, editorType, null, editorUri, editorName);
+		addExtendibleElementOld(editor, editorType, null, editorUri, editorName);
 
 		editor.setModelUri(stringModelUri);
 		editor.setId(editorType.getId());
@@ -660,7 +659,7 @@ public class MultiModelInstanceFactory {
 	public static void removeModelEndpointAndModelEndpointReference(ModelEndpoint modelEndpoint, boolean isFullRemove) {
 
 		ModelRel modelRel = (ModelRel) modelEndpoint.eContainer();
-		//TODO MMTF: this is broken cause there is no such thing as uri for them
+		//TODO MMTF: this is broken 'cause there is no such thing as uri for them
 		ModelEndpointReference modelEndpointRef = MultiModelHierarchyUtils.getReference(modelEndpoint.getUri(), modelRel.getModelEndpointRefs());
 		while (modelEndpointRef.getModelElemRefs().size() > 0) {
 			removeModelElementReference(modelEndpointRef.getModelElemRefs().get(0));

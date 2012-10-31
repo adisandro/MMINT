@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -333,11 +332,11 @@ public class MultiModelConstraintChecker {
 linkTypes:
 		for (Link linkType : modelRelType.getLinks()) {
 			HashSet<String> allowedModelElemTypes = new HashSet<String>();
-			for (ModelElement modelElemType : linkType.getElements()) {
-				allowedModelElemTypes.add(modelElemType.getUri());
+			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
+				allowedModelElemTypes.add(modelElemTypeEndpoint.getTargetUri());
 			}
-			for (ModelElement modelElem : link.getElements()) {
-				if (!allowedModelElemTypes.contains(modelElem.getMetatypeUri())) {
+			for (ModelElementEndpoint modelElemEndpoint : link.getModelElemEndpoints()) {				
+				if (!allowedModelElemTypes.contains(modelElemEndpoint.getTarget().getMetatypeUri())) {
 					continue linkTypes;
 				}
 			}
