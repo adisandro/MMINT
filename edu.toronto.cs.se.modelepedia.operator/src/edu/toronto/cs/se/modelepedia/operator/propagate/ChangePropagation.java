@@ -301,25 +301,43 @@ traceLinks:
 		return traceLinkRefs;
 	}
 
+	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
+
+		String unifiedModelElemUri = unifiedModelElemRef.getUri();
+		String modelElemUri = modelElemRef.getUri();
+		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
+		String unifiedModelElemUriBase = unifiedModelElemUri.substring(0, unifiedModelElemUri.lastIndexOf('.')+1);
+		int unifiedModelElemUriIndex = Integer.parseInt(unifiedModelElemUri.substring(unifiedModelElemUri.lastIndexOf('.')+1));
+
+		for (ModelElement modelElem : modelEndpointRef.getObject().getTarget().getElements()) {
+			String otherModelElemUri = modelElem.getUri();
+			// other model element to be affected by unification of model elements
+			if (otherModelElemUri.contains(unifiedModelElemUriBase)) {
+				String otherModelElemUriExtra = otherModelElemUri.substring(otherModelElemUri.lastIndexOf(unifiedModelElemUriBase) + unifiedModelElemUriBase.length());
+				int otherModelElemUriIndex = (otherModelElemUriExtra.indexOf('/') == -1) ?
+					Integer.parseInt(otherModelElemUriExtra) :
+					Integer.parseInt(otherModelElemUriExtra.substring(0, otherModelElemUriExtra.indexOf('/')));
+				// uri to be fully replaced
+				if (otherModelElemUriIndex == unifiedModelElemUriIndex) {
+					modelElem.setUri(otherModelElemUri.replace(unifiedModelElemUri, modelElemUri));
+				}
+				// uri to be shifted
+				else if (otherModelElemUriIndex > unifiedModelElemUriIndex) {
+					modelElem.setUri(otherModelElemUri.replace(unifiedModelElemUriBase + otherModelElemUriIndex, unifiedModelElemUriBase + --otherModelElemUriIndex));
+				}
+			}
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	private void unifyVarTraceLink(BinaryLinkReference varTraceLinkRef, BinaryLinkReference traceLinkRef, int indexA, int indexB) throws Exception {
 
 		ModelElementReference varModelElemRef = varTraceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
-		String varModelElemRefUri = varModelElemRef.getUri();
-		String modelElemRefUri = modelElemRef.getUri();
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
-		//TODO MMTF: make function for it!!
-		String varModelEObjectUri =
-			modelEndpointRef.getTargetUri() +
-			varModelElemRefUri.substring(varModelElemRefUri.lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
-		// get var object
-		EObject varModelEObject = MultiModelTypeIntrospection.getPointer(varModelEObjectUri);
-		// get other object from same resource
-		String modelEObjectUri =
-			modelEndpointRef.getTargetUri() +
-			modelElemRefUri.substring(modelElemRefUri.lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
-		EObject modelEObject = MultiModelTypeIntrospection.getPointer(varModelEObject.eResource(), modelEObjectUri);
+		// get var object and other object from same resource
+		EObject varModelEObject = MultiModelTypeIntrospection.getPointer(varModelElemRef.getUri());
+		EObject modelEObject = MultiModelTypeIntrospection.getPointer(varModelEObject.eResource(), modelElemRef.getUri());
 		// unify contents
 		for (EObject varModelEObjectContent : varModelEObject.eContents()) {
 			EStructuralFeature varModelEObjectContainingFeature = varModelEObjectContent.eContainingFeature();
@@ -328,7 +346,7 @@ traceLinks:
 				((EList<EObject>) value).add(varModelEObjectContent);
 			}
 		}
-		
+
 		// remove var object
 		 EcoreUtil.delete(varModelEObject);
 		//TODO MMTF: should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
@@ -336,29 +354,8 @@ traceLinks:
 		MultiModelTypeIntrospection.writeRoot(EcoreUtil.getRootContainer(modelEObject), modelEndpointRef.getTargetUri(), true);
 		// remove unified links and model elements
 		MultiModelInstanceFactory.removeModelElementAndModelElementReference(varModelElemRef);
-
-		// update uris due to model element deletion
-		String varModelElemRefUriBase = varModelElemRefUri.substring(0, varModelElemRefUri.lastIndexOf('.')+1);
-		int varModelElemRefUriIndex = Integer.parseInt(varModelElemRefUri.substring(varModelElemRefUri.lastIndexOf('.')+1));
-		for (ModelElement modelElem : modelEndpointRef.getObject().getTarget().getElements()) {
-			if (modelElem.getUri().contains(varModelElemRefUri)) {
-				modelElem.setUri(modelElem.getUri().replace(varModelElemRefUri, modelElemRefUri));
-			}
-			if (modelElem.getUri().contains(varModelElemRefUriBase)) {
-				String modelElemUriExtra = modelElem.getUri().substring(modelElem.getUri().lastIndexOf(varModelElemRefUriBase) + varModelElemRefUriBase.length());
-				int modelElemUriIndex = (modelElemUriExtra.indexOf('/') == -1) ?
-					Integer.parseInt(modelElemUriExtra) :
-					Integer.parseInt(modelElemUriExtra.substring(0, modelElemUriExtra.indexOf('/')));
-				// uri to be fully replaced
-				if (modelElemUriIndex == varModelElemRefUriIndex) {
-					modelElem.setUri(modelElem.getUri().replace(varModelElemRefUri, modelElemRefUri));
-				}
-				// uri to be shifted
-				else if (modelElemUriIndex > varModelElemRefUriIndex) {
-					modelElem.setUri(modelElem.getUri().replace(varModelElemRefUriBase + modelElemUriIndex, varModelElemRefUriBase + --modelElemUriIndex));
-				}
-			}
-		}
+		// update uris due to model element unification
+		unifyModelElementUris(varModelElemRef, modelElemRef);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -525,56 +522,6 @@ traceLinks:
 		}
 	}
 
-	private void propagateTraceLinksWithoutRefinements(BinaryLinkReference traceLinkRef, BinaryModelRel newPropRefinementRel, BinaryModelRel newPropTraceRel) throws Exception {
-
-		ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
-		ModelEndpointReference relatedModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(0);
-		ModelElementReference relatedModelElemRef_propRefinementRel = MultiModelHierarchyUtils.getReference(relatedModelElemRef_traceRel, relatedModelEndpointRef_propRefinementRel.getModelElemRefs());
-		// already propagated through a refinement
-		if (relatedModelElemRef_propRefinementRel != null) {
-			return;
-		}
-
-		// propagate trace link
-		ModelElementReference origModelElemRef_traceRel = traceLinkRef.getSourceModelElemRef();
-		ModelEndpointReference refinedModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(0);
-		//TODO MMTF: figure out something here, indexes might be shifted
-//		String uri = origModelElemRef_traceRel.getUri();
-//		String refinedModelElemUri =
-//			refinedModelEndpointRef_propTraceRel.getTargetUri() +
-//			uri.substring(uri.lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
-//		EObject refinedModelEObject = MultiModelTypeIntrospection.getPointer(refinedModelElemUri);
-//		if (refinedModelEObject == null) {
-//			return;
-//		}
-		ModelElementReference newRefinedModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
-			refinedModelEndpointRef_propTraceRel,
-			origModelElemRef_traceRel.getObject().getName(),
-			origModelElemRef_traceRel.getObject().getPointer()
-		);
-
-		ModelEndpointReference propModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(1);
-		ModelElementReference newPropModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
-			propModelEndpointRef_propTraceRel,
-			relatedModelElemRef_traceRel.getObject().getName(),
-			relatedModelElemRef_traceRel.getObject().getPointer()
-		);
-
-		BinaryLink traceLink = traceLinkRef.getObject();
-		BinaryLinkReference newPropTraceLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(
-			traceLink.getMetatype(),
-			RelationshipPackage.eINSTANCE.getBinaryLink(),
-			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
-			newRefinedModelElemRef,
-			newPropModelElemRef
-		);
-		BinaryLink newPropTraceLink = newPropTraceLinkRef.getObject();
-		newPropTraceLink.setName(traceLink.getName());
-		newPropTraceLink.setMay(traceLink.isMay());
-		newPropTraceLink.setSet(traceLink.isSet());
-		newPropTraceLink.setVar(traceLink.isVar());
-	}
-
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -630,9 +577,6 @@ traceLinks:
 			for (BinaryLinkReference propTraceLinkRef : propTraceLinkRefs) {
 				propagateRefinementLinks(propTraceLinkRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
 			}
-		}
-		for (LinkReference traceLinkRef : traceRel.getLinkRefs()) {
-			propagateTraceLinksWithoutRefinements((BinaryLinkReference) traceLinkRef, newPropRefinementRel, newPropTraceRel);
 		}
 		//TODO MMTF: reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
 
