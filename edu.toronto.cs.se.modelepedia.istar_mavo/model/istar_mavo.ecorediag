@@ -650,4 +650,17 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oGmnkBlrEeKoI48s0XwD4w" id="(0.5034965034965035,0.09523809523809523)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oGmnkRlrEeKoI48s0XwD4w" id="(0.049019607843137254,0.42857142857142855)"/>
   </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_YI3YUCMKEeKVVdFkRUZuJA" type="3002" source="_nxfTMBlrEeKoI48s0XwD4w" target="_nzNxgBlrEeKoI48s0XwD4w">
+    <children xmi:type="notation:Node" xmi:id="_YI4mcCMKEeKVVdFkRUZuJA" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_YI4mcSMKEeKVVdFkRUZuJA" x="-8" y="-9"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_YI4mciMKEeKVVdFkRUZuJA" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_YI4mcyMKEeKVVdFkRUZuJA" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_YI3YUSMKEeKVVdFkRUZuJA" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_YI3YUiMKEeKVVdFkRUZuJA" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="istar_mavo.ecore#//IStar/dependums"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YI3YUyMKEeKVVdFkRUZuJA" points="[-1, 8, 30, -232]$[-1, 220, 30, -20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_a70oICMKEeKVVdFkRUZuJA" id="(0.7549019607843137,0.8095238095238095)"/>
+  </edges>
 </notation:Diagram>

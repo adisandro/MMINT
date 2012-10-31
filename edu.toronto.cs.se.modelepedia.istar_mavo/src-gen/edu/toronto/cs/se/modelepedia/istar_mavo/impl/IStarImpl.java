@@ -17,6 +17,7 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.Dependency;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 
+import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStarImpl#getActors <em>Actors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStarImpl#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStarImpl#getDependums <em>Dependums</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +65,16 @@ public class IStarImpl extends MAVOModelImpl implements IStar {
 	 * @ordered
 	 */
 	protected EList<Dependency> dependencies;
+
+	/**
+	 * The cached value of the '{@link #getDependums() <em>Dependums</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependums()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IntentionalElement> dependums;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,6 +124,18 @@ public class IStarImpl extends MAVOModelImpl implements IStar {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<IntentionalElement> getDependums() {
+		if (dependums == null) {
+			dependums = new EObjectContainmentEList<IntentionalElement>(IntentionalElement.class, this, IStar_MAVOPackage.ISTAR__DEPENDUMS);
+		}
+		return dependums;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -119,6 +143,8 @@ public class IStarImpl extends MAVOModelImpl implements IStar {
 				return ((InternalEList<?>)getActors()).basicRemove(otherEnd, msgs);
 			case IStar_MAVOPackage.ISTAR__DEPENDENCIES:
 				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
+			case IStar_MAVOPackage.ISTAR__DEPENDUMS:
+				return ((InternalEList<?>)getDependums()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -135,6 +161,8 @@ public class IStarImpl extends MAVOModelImpl implements IStar {
 				return getActors();
 			case IStar_MAVOPackage.ISTAR__DEPENDENCIES:
 				return getDependencies();
+			case IStar_MAVOPackage.ISTAR__DEPENDUMS:
+				return getDependums();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,6 +184,10 @@ public class IStarImpl extends MAVOModelImpl implements IStar {
 				getDependencies().clear();
 				getDependencies().addAll((Collection<? extends Dependency>)newValue);
 				return;
+			case IStar_MAVOPackage.ISTAR__DEPENDUMS:
+				getDependums().clear();
+				getDependums().addAll((Collection<? extends IntentionalElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -174,6 +206,9 @@ public class IStarImpl extends MAVOModelImpl implements IStar {
 			case IStar_MAVOPackage.ISTAR__DEPENDENCIES:
 				getDependencies().clear();
 				return;
+			case IStar_MAVOPackage.ISTAR__DEPENDUMS:
+				getDependums().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,6 +225,8 @@ public class IStarImpl extends MAVOModelImpl implements IStar {
 				return actors != null && !actors.isEmpty();
 			case IStar_MAVOPackage.ISTAR__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
+			case IStar_MAVOPackage.ISTAR__DEPENDUMS:
+				return dependums != null && !dependums.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

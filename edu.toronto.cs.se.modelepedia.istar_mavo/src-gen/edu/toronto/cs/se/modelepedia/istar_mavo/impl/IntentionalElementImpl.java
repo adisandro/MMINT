@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -49,6 +48,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class IntentionalElementImpl extends DependencyEndpointImpl implements IntentionalElement {
+	/**
+	 * The cached value of the '{@link #getDependency() <em>Dependency</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependency()
+	 * @generated
+	 * @ordered
+	 */
+	protected Dependency dependency;
+
 	/**
 	 * The cached value of the '{@link #getComposite() <em>Composite</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -94,8 +103,24 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	 * @generated
 	 */
 	public Dependency getDependency() {
-		if (eContainerFeatureID() != IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY) return null;
-		return (Dependency)eContainer();
+		if (dependency != null && dependency.eIsProxy()) {
+			InternalEObject oldDependency = (InternalEObject)dependency;
+			dependency = (Dependency)eResolveProxy(oldDependency);
+			if (dependency != oldDependency) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, oldDependency, dependency));
+			}
+		}
+		return dependency;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Dependency basicGetDependency() {
+		return dependency;
 	}
 
 	/**
@@ -104,7 +129,12 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	 * @generated
 	 */
 	public NotificationChain basicSetDependency(Dependency newDependency, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDependency, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, msgs);
+		Dependency oldDependency = dependency;
+		dependency = newDependency;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, oldDependency, newDependency);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -114,12 +144,10 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	 * @generated
 	 */
 	public void setDependency(Dependency newDependency) {
-		if (newDependency != eInternalContainer() || (eContainerFeatureID() != IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY && newDependency != null)) {
-			if (EcoreUtil.isAncestor(this, newDependency))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newDependency != dependency) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (dependency != null)
+				msgs = ((InternalEObject)dependency).eInverseRemove(this, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
 			if (newDependency != null)
 				msgs = ((InternalEObject)newDependency).eInverseAdd(this, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
 			msgs = basicSetDependency(newDependency, msgs);
@@ -163,8 +191,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
+				if (dependency != null)
+					msgs = ((InternalEObject)dependency).eInverseRemove(this, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
 				return basicSetDependency((Dependency)otherEnd, msgs);
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComposite()).basicAdd(otherEnd, msgs);
@@ -198,24 +226,11 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return eInternalContainer().eInverseRemove(this, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return getDependency();
+				if (resolve) return getDependency();
+				return basicGetDependency();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return getComposite();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
@@ -278,7 +293,7 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return getDependency() != null;
+				return dependency != null;
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return composite != null && !composite.isEmpty();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:

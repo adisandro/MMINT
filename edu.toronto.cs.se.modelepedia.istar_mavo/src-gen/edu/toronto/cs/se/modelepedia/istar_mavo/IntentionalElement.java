@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface IntentionalElement extends DependencyEndpoint {
 	/**
-	 * Returns the value of the '<em><b>Dependency</b></em>' container reference.
+	 * Returns the value of the '<em><b>Dependency</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependum <em>Dependum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,20 +41,20 @@ public interface IntentionalElement extends DependencyEndpoint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependency</em>' container reference.
+	 * @return the value of the '<em>Dependency</em>' reference.
 	 * @see #setDependency(Dependency)
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntentionalElement_Dependency()
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependum
-	 * @model opposite="dependum" transient="false"
+	 * @model opposite="dependum"
 	 * @generated
 	 */
 	Dependency getDependency();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency <em>Dependency</em>}' container reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency <em>Dependency</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dependency</em>' container reference.
+	 * @param value the new value of the '<em>Dependency</em>' reference.
 	 * @see #getDependency()
 	 * @generated
 	 */

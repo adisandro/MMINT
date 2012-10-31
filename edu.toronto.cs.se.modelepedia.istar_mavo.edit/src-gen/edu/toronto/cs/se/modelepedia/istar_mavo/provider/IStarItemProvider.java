@@ -88,6 +88,7 @@ public class IStarItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(IStar_MAVOPackage.Literals.ISTAR__ACTORS);
 			childrenFeatures.add(IStar_MAVOPackage.Literals.ISTAR__DEPENDENCIES);
+			childrenFeatures.add(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS);
 		}
 		return childrenFeatures;
 	}
@@ -142,6 +143,7 @@ public class IStarItemProvider
 		switch (notification.getFeatureID(IStar.class)) {
 			case IStar_MAVOPackage.ISTAR__ACTORS:
 			case IStar_MAVOPackage.ISTAR__DEPENDENCIES:
+			case IStar_MAVOPackage.ISTAR__DEPENDUMS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -168,6 +170,31 @@ public class IStarItemProvider
 			(createChildParameter
 				(IStar_MAVOPackage.Literals.ISTAR__DEPENDENCIES,
 				 IStar_MAVOFactory.eINSTANCE.createDependency()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS,
+				 IStar_MAVOFactory.eINSTANCE.createIntentionalElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS,
+				 IStar_MAVOFactory.eINSTANCE.createTask()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS,
+				 IStar_MAVOFactory.eINSTANCE.createResource()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS,
+				 IStar_MAVOFactory.eINSTANCE.createGoal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS,
+				 IStar_MAVOFactory.eINSTANCE.createSoftGoal()));
 	}
 
 	/**

@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -71,8 +72,31 @@ public class DependencyItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDependumPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Dependum feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDependumPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Dependency_dependum_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Dependency_dependum_feature", "_UI_Dependency_type"),
+				 IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDUM,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,7 +113,6 @@ public class DependencyItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDER);
 			childrenFeatures.add(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDEE);
-			childrenFeatures.add(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDUM);
 		}
 		return childrenFeatures;
 	}
@@ -144,7 +167,6 @@ public class DependencyItemProvider
 		switch (notification.getFeatureID(Dependency.class)) {
 			case IStar_MAVOPackage.DEPENDENCY__DEPENDER:
 			case IStar_MAVOPackage.DEPENDENCY__DEPENDEE:
-			case IStar_MAVOPackage.DEPENDENCY__DEPENDUM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -171,31 +193,6 @@ public class DependencyItemProvider
 			(createChildParameter
 				(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDEE,
 				 IStar_MAVOFactory.eINSTANCE.createDependeeReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStar_MAVOFactory.eINSTANCE.createIntentionalElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStar_MAVOFactory.eINSTANCE.createTask()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStar_MAVOFactory.eINSTANCE.createResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStar_MAVOFactory.eINSTANCE.createGoal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStar_MAVOFactory.eINSTANCE.createSoftGoal()));
 	}
 
 	/**

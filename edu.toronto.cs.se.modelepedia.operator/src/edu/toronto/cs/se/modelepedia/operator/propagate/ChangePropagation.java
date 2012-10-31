@@ -242,23 +242,27 @@ traceLinks:
 
 			// rule 1
 			if (Mb && !Mab) {
-				traceModelElemB.setMay(false);
+				Mb = false;
+				traceModelElemB.setMay(Mb);
 				again = true;
 			}
 			// rule 2
 			if (Sab && !Sa && !Sb) {
-				traceLink.setSet(false);
+				Sab = false;
+				traceLink.setSet(Sab);
 				again = true;
 			}
 			// rule 3
 			if (Vab && !Va && !Vb) {
-				traceLink.setVar(false);
+				Vab = false;
+				traceLink.setVar(Vab);
 				again = true;
 			}
-			if (Lb == 1 && traceLinkRefs.size() == 2) {
+			if (Lb == 1 && traceLinkRefs.size() == 1) {
 				// rule 5
 				if (Mab && !Ma) {
-					traceLink.setMay(false);
+					Mab = false;
+					traceLink.setMay(Mab);
 					again = true;
 				}
 			}
@@ -266,7 +270,8 @@ traceLinks:
 				if (Ua == -1) {
 					// rule 6
 					if (Sb && !Sa && !Mab) {
-						traceModelElemB.setSet(false);
+						Sb = false;
+						traceModelElemB.setSet(Sb);
 						again = true;
 					}
 				}

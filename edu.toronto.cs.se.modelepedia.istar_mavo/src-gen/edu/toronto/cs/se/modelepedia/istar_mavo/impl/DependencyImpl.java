@@ -71,7 +71,7 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 	protected EList<DependeeReference> dependee;
 
 	/**
-	 * The cached value of the '{@link #getDependum() <em>Dependum</em>}' containment reference.
+	 * The cached value of the '{@link #getDependum() <em>Dependum</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDependum()
@@ -129,6 +129,23 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 	 * @generated
 	 */
 	public IntentionalElement getDependum() {
+		if (dependum != null && dependum.eIsProxy()) {
+			InternalEObject oldDependum = (InternalEObject)dependum;
+			dependum = (IntentionalElement)eResolveProxy(oldDependum);
+			if (dependum != oldDependum) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, oldDependum, dependum));
+			}
+		}
+		return dependum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntentionalElement basicGetDependum() {
 		return dependum;
 	}
 
@@ -181,7 +198,7 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependee()).basicAdd(otherEnd, msgs);
 			case IStar_MAVOPackage.DEPENDENCY__DEPENDUM:
 				if (dependum != null)
-					msgs = ((InternalEObject)dependum).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - IStar_MAVOPackage.DEPENDENCY__DEPENDUM, null, msgs);
+					msgs = ((InternalEObject)dependum).eInverseRemove(this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, IntentionalElement.class, msgs);
 				return basicSetDependum((IntentionalElement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -218,7 +235,8 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 			case IStar_MAVOPackage.DEPENDENCY__DEPENDEE:
 				return getDependee();
 			case IStar_MAVOPackage.DEPENDENCY__DEPENDUM:
-				return getDependum();
+				if (resolve) return getDependum();
+				return basicGetDependum();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
