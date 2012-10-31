@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
+import java.util.HashSet;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -214,9 +216,21 @@ public class ChangePropagation extends OperatorExecutableImpl {
 
 	private EList<BinaryLinkReference> reduceTraceLinkUncertainty(EList<BinaryLinkReference> traceLinkRefs, int indexA, int indexB) throws Exception {
 
+		int n = 0;
+		HashSet<String> uniqueModelElemUrisB = new HashSet<String>();
+		for (BinaryLinkReference traceLinkRef : traceLinkRefs) {
+			if (traceLinkRef.getModelElemEndpointRefs().size() == 1) { // dangling link
+				continue;
+			}
+			ModelElementReference traceModelElemRefB = traceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
+			if (!uniqueModelElemUrisB.contains(traceModelElemRefB.getUri())) {
+				n++;
+				uniqueModelElemUrisB.add(traceModelElemRefB.getUri());
+			}
+		}
+
 		boolean again = false;
 		LinkReference unifiedLinkRef = null;
-
 traceLinks:
 		for (BinaryLinkReference traceLinkRef : traceLinkRefs) {
 			ModelElementEndpointReference traceModelElemEndpointRefA = traceLinkRef.getModelElemEndpointRefs().get(indexA);
@@ -224,7 +238,7 @@ traceLinks:
 			ModelElement traceModelElemA = traceModelElemRefA.getObject();
 
 			// rule 4, 2nd half
-			if (traceLinkRef.getModelElemEndpointRefs().size() == 1) {
+			if (n == 0) {
 				completeDanglingTraceLink(traceLinkRef, traceModelElemA.getName(), indexB);
 				again = true;
 				continue;
@@ -258,7 +272,7 @@ traceLinks:
 				traceLink.setVar(Vab);
 				again = true;
 			}
-			if (Lb == 1 && traceLinkRefs.size() == 1) {
+			if (Lb == 1 && n == 1) {
 				// rule 5
 				if (Mab && !Ma) {
 					Mab = false;
