@@ -72,7 +72,7 @@ public interface Dependency extends MAVOElement {
 
 	/**
 	 * Returns the value of the '<em><b>Dependum</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency <em>Dependency</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependum</em>' containment reference isn't clear,
@@ -82,8 +82,8 @@ public interface Dependency extends MAVOElement {
 	 * @return the value of the '<em>Dependum</em>' reference.
 	 * @see #setDependum(IntentionalElement)
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDependency_Dependum()
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency
-	 * @model opposite="dependency" required="true"
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependencies
+	 * @model opposite="dependencies" required="true"
 	 * @generated
 	 */
 	IntentionalElement getDependum();

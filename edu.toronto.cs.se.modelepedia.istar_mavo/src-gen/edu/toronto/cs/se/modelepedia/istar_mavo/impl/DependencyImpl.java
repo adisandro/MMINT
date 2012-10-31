@@ -173,9 +173,9 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 		if (newDependum != dependum) {
 			NotificationChain msgs = null;
 			if (dependum != null)
-				msgs = ((InternalEObject)dependum).eInverseRemove(this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, IntentionalElement.class, msgs);
+				msgs = ((InternalEObject)dependum).eInverseRemove(this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IntentionalElement.class, msgs);
 			if (newDependum != null)
-				msgs = ((InternalEObject)newDependum).eInverseAdd(this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, IntentionalElement.class, msgs);
+				msgs = ((InternalEObject)newDependum).eInverseAdd(this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IntentionalElement.class, msgs);
 			msgs = basicSetDependum(newDependum, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -198,7 +198,7 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependee()).basicAdd(otherEnd, msgs);
 			case IStar_MAVOPackage.DEPENDENCY__DEPENDUM:
 				if (dependum != null)
-					msgs = ((InternalEObject)dependum).eInverseRemove(this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, IntentionalElement.class, msgs);
+					msgs = ((InternalEObject)dependum).eInverseRemove(this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IntentionalElement.class, msgs);
 				return basicSetDependum((IntentionalElement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);

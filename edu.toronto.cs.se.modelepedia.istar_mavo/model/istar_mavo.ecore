@@ -22,11 +22,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" lowerBound="1"
         upperBound="-1" eType="#//DependeeReference" containment="true" eOpposite="#//DependeeReference/src"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependum" lowerBound="1"
-        eType="#//IntentionalElement" eOpposite="#//IntentionalElement/dependency"/>
+        eType="#//IntentionalElement" eOpposite="#//IntentionalElement/dependencies"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntentionalElement" eSuperTypes="#//DependencyEndpoint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" eType="#//Dependency"
-        eOpposite="#//Dependency/dependum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+        eType="#//Dependency" eOpposite="#//Dependency/dependum"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="composite" upperBound="-1"
         eType="#//ComponentsReference" eOpposite="#//ComponentsReference/tgt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contributionsAsContributor"

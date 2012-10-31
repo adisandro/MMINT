@@ -24,7 +24,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Dependency/dependum"/>
     </genClasses>
     <genClasses ecoreClass="istar_mavo.ecore#//IntentionalElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/dependency"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/dependencies"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/composite"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/contributionsAsContributor"/>
     </genClasses>

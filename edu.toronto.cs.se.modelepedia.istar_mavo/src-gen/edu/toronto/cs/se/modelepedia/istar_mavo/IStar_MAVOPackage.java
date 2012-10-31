@@ -460,13 +460,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int INTENTIONAL_ELEMENT__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCY = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
+	int INTENTIONAL_ELEMENT__DEPENDENCIES = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference list.
@@ -569,13 +569,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int TASK__NAME = INTENTIONAL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__DEPENDENCY = INTENTIONAL_ELEMENT__DEPENDENCY;
+	int TASK__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference list.
@@ -696,13 +696,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int RESOURCE__NAME = INTENTIONAL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__DEPENDENCY = INTENTIONAL_ELEMENT__DEPENDENCY;
+	int RESOURCE__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference list.
@@ -805,13 +805,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int GOAL__NAME = INTENTIONAL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__DEPENDENCY = INTENTIONAL_ELEMENT__DEPENDENCY;
+	int GOAL__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference list.
@@ -923,13 +923,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int SOFT_GOAL__NAME = GOAL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__DEPENDENCY = GOAL__DEPENDENCY;
+	int SOFT_GOAL__DEPENDENCIES = GOAL__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference list.
@@ -1489,15 +1489,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	EClass getIntentionalElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency <em>Dependency</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dependency</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency()
+	 * @return the meta object for the reference list '<em>Dependencies</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependencies()
 	 * @see #getIntentionalElement()
 	 * @generated
 	 */
-	EReference getIntentionalElement_Dependency();
+	EReference getIntentionalElement_Dependencies();
 
 	/**
 	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getComposite <em>Composite</em>}'.
@@ -1947,12 +1947,12 @@ public interface IStar_MAVOPackage extends EPackage {
 		EClass INTENTIONAL_ELEMENT = eINSTANCE.getIntentionalElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Dependency</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTENTIONAL_ELEMENT__DEPENDENCY = eINSTANCE.getIntentionalElement_Dependency();
+		EReference INTENTIONAL_ELEMENT__DEPENDENCIES = eINSTANCE.getIntentionalElement_Dependencies();
 
 		/**
 		 * The meta object literal for the '<em><b>Composite</b></em>' reference list feature.

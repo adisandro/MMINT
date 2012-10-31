@@ -19,15 +19,12 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -39,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#getDependency <em>Dependency</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#getComposite <em>Composite</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#getContributionsAsContributor <em>Contributions As Contributor</em>}</li>
  * </ul>
@@ -49,14 +46,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class IntentionalElementImpl extends DependencyEndpointImpl implements IntentionalElement {
 	/**
-	 * The cached value of the '{@link #getDependency() <em>Dependency</em>}' reference.
+	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDependency()
+	 * @see #getDependencies()
 	 * @generated
 	 * @ordered
 	 */
-	protected Dependency dependency;
+	protected EList<Dependency> dependencies;
 
 	/**
 	 * The cached value of the '{@link #getComposite() <em>Composite</em>}' reference list.
@@ -102,59 +99,11 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Dependency getDependency() {
-		if (dependency != null && dependency.eIsProxy()) {
-			InternalEObject oldDependency = (InternalEObject)dependency;
-			dependency = (Dependency)eResolveProxy(oldDependency);
-			if (dependency != oldDependency) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, oldDependency, dependency));
-			}
+	public EList<Dependency> getDependencies() {
+		if (dependencies == null) {
+			dependencies = new EObjectWithInverseResolvingEList<Dependency>(Dependency.class, this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IStar_MAVOPackage.DEPENDENCY__DEPENDUM);
 		}
-		return dependency;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Dependency basicGetDependency() {
-		return dependency;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDependency(Dependency newDependency, NotificationChain msgs) {
-		Dependency oldDependency = dependency;
-		dependency = newDependency;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, oldDependency, newDependency);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDependency(Dependency newDependency) {
-		if (newDependency != dependency) {
-			NotificationChain msgs = null;
-			if (dependency != null)
-				msgs = ((InternalEObject)dependency).eInverseRemove(this, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
-			if (newDependency != null)
-				msgs = ((InternalEObject)newDependency).eInverseAdd(this, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
-			msgs = basicSetDependency(newDependency, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY, newDependency, newDependency));
+		return dependencies;
 	}
 
 	/**
@@ -190,10 +139,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				if (dependency != null)
-					msgs = ((InternalEObject)dependency).eInverseRemove(this, IStar_MAVOPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
-				return basicSetDependency((Dependency)otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependencies()).basicAdd(otherEnd, msgs);
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComposite()).basicAdd(otherEnd, msgs);
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
@@ -210,8 +157,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return basicSetDependency(null, msgs);
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return ((InternalEList<?>)getComposite()).basicRemove(otherEnd, msgs);
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
@@ -228,9 +175,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				if (resolve) return getDependency();
-				return basicGetDependency();
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return getDependencies();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return getComposite();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
@@ -248,8 +194,9 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				setDependency((Dependency)newValue);
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				getDependencies().clear();
+				getDependencies().addAll((Collection<? extends Dependency>)newValue);
 				return;
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				getComposite().clear();
@@ -271,8 +218,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				setDependency((Dependency)null);
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				getDependencies().clear();
 				return;
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				getComposite().clear();
@@ -292,8 +239,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return dependency != null;
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return dependencies != null && !dependencies.isEmpty();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return composite != null && !composite.isEmpty();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:

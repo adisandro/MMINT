@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency <em>Dependency</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getComposite <em>Composite</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getContributionsAsContributor <em>Contributions As Contributor</em>}</li>
  * </ul>
@@ -33,32 +33,22 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface IntentionalElement extends DependencyEndpoint {
 	/**
-	 * Returns the value of the '<em><b>Dependency</b></em>' reference.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency}.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependum <em>Dependum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dependency</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependency</em>' reference.
-	 * @see #setDependency(Dependency)
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntentionalElement_Dependency()
+	 * @return the value of the '<em>Dependencies</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntentionalElement_Dependencies()
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependum
 	 * @model opposite="dependum"
 	 * @generated
 	 */
-	Dependency getDependency();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependency <em>Dependency</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dependency</em>' reference.
-	 * @see #getDependency()
-	 * @generated
-	 */
-	void setDependency(Dependency value);
+	EList<Dependency> getDependencies();
 
 	/**
 	 * Returns the value of the '<em><b>Composite</b></em>' reference list.

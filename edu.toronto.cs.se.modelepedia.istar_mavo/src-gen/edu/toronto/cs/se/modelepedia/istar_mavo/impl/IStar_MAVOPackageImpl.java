@@ -319,7 +319,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIntentionalElement_Dependency() {
+	public EReference getIntentionalElement_Dependencies() {
 		return (EReference)intentionalElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -636,7 +636,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		createEReference(dependencyEClass, DEPENDENCY__DEPENDUM);
 
 		intentionalElementEClass = createEClass(INTENTIONAL_ELEMENT);
-		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__DEPENDENCY);
+		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__DEPENDENCIES);
 		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__COMPOSITE);
 		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR);
 
@@ -738,10 +738,10 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDependency_Depender(), this.getDependerReference(), this.getDependerReference_Src(), "depender", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDependency_Dependee(), this.getDependeeReference(), this.getDependeeReference_Src(), "dependee", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependency_Dependum(), this.getIntentionalElement(), this.getIntentionalElement_Dependency(), "dependum", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependency_Dependum(), this.getIntentionalElement(), this.getIntentionalElement_Dependencies(), "dependum", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(intentionalElementEClass, IntentionalElement.class, "IntentionalElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIntentionalElement_Dependency(), this.getDependency(), this.getDependency_Dependum(), "dependency", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntentionalElement_Dependencies(), this.getDependency(), this.getDependency_Dependum(), "dependencies", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntentionalElement_Composite(), this.getComponentsReference(), this.getComponentsReference_Tgt(), "composite", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntentionalElement_ContributionsAsContributor(), this.getContribution(), this.getContribution_Contributor(), "contributionsAsContributor", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

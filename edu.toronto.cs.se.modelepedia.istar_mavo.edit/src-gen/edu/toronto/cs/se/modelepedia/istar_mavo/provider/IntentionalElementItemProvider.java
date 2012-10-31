@@ -64,7 +64,7 @@ public class IntentionalElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDependencyPropertyDescriptor(object);
+			addDependenciesPropertyDescriptor(object);
 			addCompositePropertyDescriptor(object);
 			addContributionsAsContributorPropertyDescriptor(object);
 		}
@@ -72,19 +72,19 @@ public class IntentionalElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Dependency feature.
+	 * This adds a property descriptor for the Dependencies feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDependencyPropertyDescriptor(Object object) {
+	protected void addDependenciesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IntentionalElement_dependency_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IntentionalElement_dependency_feature", "_UI_IntentionalElement_type"),
-				 IStar_MAVOPackage.Literals.INTENTIONAL_ELEMENT__DEPENDENCY,
+				 getString("_UI_IntentionalElement_dependencies_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IntentionalElement_dependencies_feature", "_UI_IntentionalElement_type"),
+				 IStar_MAVOPackage.Literals.INTENTIONAL_ELEMENT__DEPENDENCIES,
 				 true,
 				 false,
 				 true,
