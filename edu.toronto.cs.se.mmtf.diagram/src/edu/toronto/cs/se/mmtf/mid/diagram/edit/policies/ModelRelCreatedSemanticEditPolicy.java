@@ -26,12 +26,10 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelChangeModelEndpointCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelDelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.BinaryModelRelNewBinaryRelCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelAddModelEndpointCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelChangeModelEndpointCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelDelCommand;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelRelRemoveModelEndpointCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEndpointEditPart;
@@ -69,16 +67,10 @@ public class ModelRelCreatedSemanticEditPolicy extends ModelRelItemSemanticEditP
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelEndpointEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
-				cmd.add(new ModelRelRemoveModelEndpointCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryModelRelEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
-				cmd.add(new BinaryModelRelDelCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -98,16 +90,10 @@ public class ModelRelCreatedSemanticEditPolicy extends ModelRelItemSemanticEditP
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ModelEndpointEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
-				cmd.add(new ModelRelRemoveModelEndpointCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryModelRelEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
-				cmd.add(new BinaryModelRelDelCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}

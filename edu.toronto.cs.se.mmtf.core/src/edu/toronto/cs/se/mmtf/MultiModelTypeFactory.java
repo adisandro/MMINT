@@ -313,8 +313,6 @@ public class MultiModelTypeFactory {
 		removeExtendibleElementType(multiModel, modelType.getUri());
 		multiModel.getModels().remove(modelType);
 		ArrayList<String> delOperatorTypeUris = new ArrayList<String>();
-		ArrayList<String> delModelRelTypeUris = new ArrayList<String>();
-		ArrayList<String> delModelTypeEndpointUris = new ArrayList<String>();
 
 		// remove model element types
 		for (ModelElement modelElementType : modelType.getElements()) {
@@ -337,25 +335,25 @@ public class MultiModelTypeFactory {
 			Operator operatorType = MultiModelTypeRegistry.getOperatorType(multiModel, operatorTypeUri);
 			removeOperatorType(operatorType);
 		}
-		// remove model relationship types that use this model type
+		// remove model relationship types and endpoints that use this model type
+		ArrayList<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
+		ArrayList<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
 		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(modelType.getUri())) {
 					if (modelRelType instanceof BinaryModelRel) {
-						delModelRelTypeUris.add(modelRelType.getUri());
+						delModelRelTypes.add(modelRelType);
 					}
 					else {
-						delModelTypeEndpointUris.add(modelTypeEndpoint.getUri());
+						delModelTypeEndpoints.add(modelTypeEndpoint);
 					}
 				}
 			}
 		}
-		for (String modelTypeEndpointUri : delModelTypeEndpointUris) {
-			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getModelTypeEndpoint(multiModel, modelTypeEndpointUri);
+		for (ModelEndpoint modelTypeEndpoint : delModelTypeEndpoints) {
 			removeModelTypeEndpointAndModelTypeEndpointReference(modelTypeEndpoint, true);
 		}
-		for (String modelRelTypeUri : delModelRelTypeUris) {
-			ModelRel modelRelType = MultiModelTypeRegistry.getModelRelType(multiModel, modelRelTypeUri);
+		for (ModelRel modelRelType : delModelRelTypes) {
 			removeModelRelType(modelRelType);
 		}
 	}

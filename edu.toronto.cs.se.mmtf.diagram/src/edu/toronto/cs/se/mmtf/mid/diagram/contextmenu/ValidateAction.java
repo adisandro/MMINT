@@ -24,7 +24,6 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
@@ -76,7 +75,7 @@ public class ValidateAction extends ContributionItem {
 		}
 		if (
 			model == null ||
-			!MultiModelConstraintChecker.isInstancesLevel((MultiModel) model.eContainer()) ||
+			!MultiModelConstraintChecker.isInstancesLevel(model) ||
 			model.getMetatype().getConstraint() == null
 		) {
 			return;

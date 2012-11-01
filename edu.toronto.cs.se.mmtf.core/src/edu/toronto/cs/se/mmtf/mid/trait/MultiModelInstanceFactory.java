@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -35,6 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -635,11 +638,34 @@ public class MultiModelInstanceFactory {
 		removeExtendibleElement(multiModel, model.getUri());
 		multiModel.getModels().remove(model);
 
+		//remove model elements
+		for (ModelElement modelElem : model.getElements()) {
+			removeExtendibleElement(multiModel, modelElem.getUri());
+		}
+		// remove editors
 		for (Editor editor : model.getEditors()) {
 			removeEditor(editor);
 		}
-		for (ModelElement modelElem : model.getElements()) {
-			removeExtendibleElement(multiModel, modelElem.getUri());
+		// remove model relationships and endpoints that use this model
+		ArrayList<ModelRel> delModelRels = new ArrayList<ModelRel>();
+		ArrayList<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
+		for (ModelRel modelRel : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {//TODO MMTF: put this function into the generic registry
+			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
+				if (modelEndpoint.getTargetUri().equals(model.getUri())) {
+					if (modelRel instanceof BinaryModelRel) {
+						delModelRels.add(modelRel);
+					}
+					else {
+						delModelEndpoints.add(modelEndpoint);
+					}
+				}
+			}
+		}
+		for (ModelEndpoint modelEndpoint : delModelEndpoints) {
+			removeModelEndpointAndModelEndpointReference(modelEndpoint, true);
+		}
+		for (ModelRel modelRel : delModelRels) {
+			removeModelRel(modelRel);
 		}
 	}
 
