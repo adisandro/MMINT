@@ -651,7 +651,7 @@ public class MultiModelInstanceFactory {
 		ArrayList<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
 		for (ModelRel modelRel : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {//TODO MMTF: put this function into the generic registry
 			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
-				if (modelEndpoint.getTargetUri().equals(model.getUri())) {
+				if (modelEndpoint.getTargetUri().equals(model.getUri()) && !delModelRels.contains(modelRel)) {
 					if (modelRel instanceof BinaryModelRel) {
 						delModelRels.add(modelRel);
 					}

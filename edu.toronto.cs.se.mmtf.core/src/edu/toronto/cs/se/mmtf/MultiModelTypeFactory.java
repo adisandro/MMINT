@@ -341,7 +341,7 @@ public class MultiModelTypeFactory {
 		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(modelType.getUri())) {
-					if (modelRelType instanceof BinaryModelRel) {
+					if (modelRelType instanceof BinaryModelRel && !delModelRelTypes.contains(modelRelType)) {
 						delModelRelTypes.add(modelRelType);
 					}
 					else {
