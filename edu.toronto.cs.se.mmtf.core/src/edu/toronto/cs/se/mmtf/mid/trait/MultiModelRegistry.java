@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 
 public class MultiModelRegistry {
 
+	public final static String EXTELEM_NULLTYPE = "NOTYPE";
 	public final static String ECORE_METAMODEL_URI_SEPARATOR = "#//";
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
 
@@ -37,7 +38,9 @@ public class MultiModelRegistry {
 
 		String label = MAVOUtils.getMAVOLabel(element, element.getName());
 		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
-			label += " : " + element.getMetatype().getName();
+			ExtendibleElement type = element.getMetatype();
+			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();
+			label += " : " + typeLabel;
 		}
 
 		return label;
