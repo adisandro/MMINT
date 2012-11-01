@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkReferenceAddModelElementEndpointReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkReferenceChangeModelElementEndpointReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkReferenceDelCommand;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkReferenceRemoveModelElementEndpointReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ExtendibleElementReferenceSupertypeRefEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementEndpointReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
@@ -57,16 +56,10 @@ public class LinkReferenceSemanticEditPolicy extends LinkReferenceItemSemanticEd
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ModelElementEndpointReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
-				cmd.add(new LinkReferenceRemoveModelElementEndpointReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ModelElementEndpointReference2EditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
-				cmd.add(new LinkReferenceRemoveModelElementEndpointReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}

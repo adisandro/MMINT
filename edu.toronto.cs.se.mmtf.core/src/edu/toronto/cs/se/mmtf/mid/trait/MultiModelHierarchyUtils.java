@@ -247,6 +247,7 @@ public class MultiModelHierarchyUtils implements MMTFExtensionPoints {
 
 	public static <T extends ExtendibleElementEndpointReference> T getEndpointReference(String targetTypeUri, EList<T> typeEndpointRefs) {
 
+		//TODO MMTF: should return a list
 		if (targetTypeUri == null) {
 			return null;
 		}

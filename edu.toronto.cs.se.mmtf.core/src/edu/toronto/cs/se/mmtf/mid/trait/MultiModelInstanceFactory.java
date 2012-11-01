@@ -685,8 +685,13 @@ public class MultiModelInstanceFactory {
 	public static void removeModelEndpointAndModelEndpointReference(ModelEndpoint modelEndpoint, boolean isFullRemove) {
 
 		ModelRel modelRel = (ModelRel) modelEndpoint.eContainer();
-		//TODO MMTF: this is broken 'cause there is no such thing as uri for them
-		ModelEndpointReference modelEndpointRef = MultiModelHierarchyUtils.getReference(modelEndpoint.getUri(), modelRel.getModelEndpointRefs());
+		ModelEndpointReference modelEndpointRef = null;
+		for (ModelEndpointReference modelEndpointRef2 : modelRel.getModelEndpointRefs()) {
+			if (modelEndpointRef2.getObject() == modelEndpoint) {
+				modelEndpointRef = modelEndpointRef2;
+				break;
+			}
+		}
 		while (modelEndpointRef.getModelElemRefs().size() > 0) {
 			removeModelElementReference(modelEndpointRef.getModelElemRefs().get(0));
 		}

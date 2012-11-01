@@ -184,6 +184,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 			classLiteral
 		);
 		MAVOUtils.annotateMAVODroppedEObject(newDroppedEObject, newModelElemTypeRef);
+		MMTF.initTypeHierarchy(multiModel);
 
 		return newModelElemTypeRef;
 	}
