@@ -11,6 +11,7 @@
     <genClasses ecoreClass="istar.ecore#//IStar">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//IStar/actors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//IStar/dependencies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//IStar/dependums"/>
     </genClasses>
     <genClasses ecoreClass="istar.ecore#//Actor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Actor/intentionalElements"/>
@@ -19,10 +20,10 @@
     <genClasses ecoreClass="istar.ecore#//Dependency">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Dependency/depender"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Dependency/dependee"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Dependency/dependum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Dependency/dependum"/>
     </genClasses>
     <genClasses image="false" ecoreClass="istar.ecore#//IntentionalElement">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/dependency"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/dependencies"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/composite"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/contributionsAsContributor"/>
     </genClasses>

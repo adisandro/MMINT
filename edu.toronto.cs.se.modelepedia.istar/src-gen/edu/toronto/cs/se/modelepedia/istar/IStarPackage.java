@@ -94,13 +94,22 @@ public interface IStarPackage extends EPackage {
 	int ISTAR__DEPENDENCIES = 1;
 
 	/**
+	 * The feature id for the '<em><b>Dependums</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTAR__DEPENDUMS = 2;
+
+	/**
 	 * The number of structural features of the '<em>IStar</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR_FEATURE_COUNT = 2;
+	int ISTAR_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>IStar</em>' class.
@@ -268,7 +277,7 @@ public interface IStarPackage extends EPackage {
 	int DEPENDENCY__DEPENDEE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Dependum</b></em>' containment reference.
+	 * The feature id for the '<em><b>Dependum</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -332,13 +341,13 @@ public interface IStarPackage extends EPackage {
 	int INTENTIONAL_ELEMENT__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' container reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCY = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
+	int INTENTIONAL_ELEMENT__DEPENDENCIES = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference.
@@ -414,13 +423,13 @@ public interface IStarPackage extends EPackage {
 	int TASK__NAME = INTENTIONAL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' container reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__DEPENDENCY = INTENTIONAL_ELEMENT__DEPENDENCY;
+	int TASK__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference.
@@ -514,13 +523,13 @@ public interface IStarPackage extends EPackage {
 	int RESOURCE__NAME = INTENTIONAL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' container reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__DEPENDENCY = INTENTIONAL_ELEMENT__DEPENDENCY;
+	int RESOURCE__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference.
@@ -596,13 +605,13 @@ public interface IStarPackage extends EPackage {
 	int GOAL__NAME = INTENTIONAL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' container reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__DEPENDENCY = INTENTIONAL_ELEMENT__DEPENDENCY;
+	int GOAL__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference.
@@ -687,13 +696,13 @@ public interface IStarPackage extends EPackage {
 	int SOFT_GOAL__NAME = GOAL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependency</b></em>' container reference.
+	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__DEPENDENCY = GOAL__DEPENDENCY;
+	int SOFT_GOAL__DEPENDENCIES = GOAL__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Composite</b></em>' reference.
@@ -838,6 +847,17 @@ public interface IStarPackage extends EPackage {
 	EReference getIStar_Dependencies();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.IStar#getDependums <em>Dependums</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dependums</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IStar#getDependums()
+	 * @see #getIStar()
+	 * @generated
+	 */
+	EReference getIStar_Dependums();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Actor <em>Actor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -902,10 +922,10 @@ public interface IStarPackage extends EPackage {
 	EReference getDependency_Dependee();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDependum <em>Dependum</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDependum <em>Dependum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Dependum</em>'.
+	 * @return the meta object for the reference '<em>Dependum</em>'.
 	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency#getDependum()
 	 * @see #getDependency()
 	 * @generated
@@ -923,15 +943,15 @@ public interface IStarPackage extends EPackage {
 	EClass getIntentionalElement();
 
 	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependency <em>Dependency</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Dependency</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependency()
+	 * @return the meta object for the reference list '<em>Dependencies</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependencies()
 	 * @see #getIntentionalElement()
 	 * @generated
 	 */
-	EReference getIntentionalElement_Dependency();
+	EReference getIntentionalElement_Dependencies();
 
 	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getComposite <em>Composite</em>}'.
@@ -1175,6 +1195,14 @@ public interface IStarPackage extends EPackage {
 		EReference ISTAR__DEPENDENCIES = eINSTANCE.getIStar_Dependencies();
 
 		/**
+		 * The meta object literal for the '<em><b>Dependums</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ISTAR__DEPENDUMS = eINSTANCE.getIStar_Dependums();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.ActorImpl <em>Actor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1227,7 +1255,7 @@ public interface IStarPackage extends EPackage {
 		EReference DEPENDENCY__DEPENDEE = eINSTANCE.getDependency_Dependee();
 
 		/**
-		 * The meta object literal for the '<em><b>Dependum</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Dependum</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1245,12 +1273,12 @@ public interface IStarPackage extends EPackage {
 		EClass INTENTIONAL_ELEMENT = eINSTANCE.getIntentionalElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Dependency</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTENTIONAL_ELEMENT__DEPENDENCY = eINSTANCE.getIntentionalElement_Dependency();
+		EReference INTENTIONAL_ELEMENT__DEPENDENCIES = eINSTANCE.getIntentionalElement_Dependencies();
 
 		/**
 		 * The meta object literal for the '<em><b>Composite</b></em>' reference feature.

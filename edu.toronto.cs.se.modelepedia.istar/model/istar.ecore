@@ -6,6 +6,8 @@
         eType="#//Actor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="#//Dependency" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependums" upperBound="-1"
+        eType="#//IntentionalElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//DependencyEndpoint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="intentionalElements" upperBound="-1"
@@ -19,12 +21,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" lowerBound="1"
         eType="#//DependencyEndpoint" eOpposite="#//DependencyEndpoint/dependenciesAsDependee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependum" lowerBound="1"
-        eType="#//IntentionalElement" containment="true" eOpposite="#//IntentionalElement/dependency"/>
+        eType="#//IntentionalElement" eOpposite="#//IntentionalElement/dependencies"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntentionalElement" abstract="true"
       eSuperTypes="#//DependencyEndpoint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" eType="#//Dependency"
-        eOpposite="#//Dependency/dependum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+        eType="#//Dependency" eOpposite="#//Dependency/dependum"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="#//Task"
         eOpposite="#//Task/components"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contributionsAsContributor"

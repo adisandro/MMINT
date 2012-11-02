@@ -12,8 +12,6 @@
 package edu.toronto.cs.se.modelepedia.istar.provider;
 
 
-import edu.toronto.cs.se.modelepedia.istar.Dependency;
-import edu.toronto.cs.se.modelepedia.istar.IStarFactory;
 import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
 
 import java.util.Collection;
@@ -24,8 +22,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -34,7 +30,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar.Dependency} object.
@@ -73,6 +68,7 @@ public class DependencyItemProvider
 
 			addDependerPropertyDescriptor(object);
 			addDependeePropertyDescriptor(object);
+			addDependumPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -122,33 +118,25 @@ public class DependencyItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Dependum feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(IStarPackage.Literals.DEPENDENCY__DEPENDUM);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addDependumPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Dependency_dependum_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Dependency_dependum_feature", "_UI_Dependency_type"),
+				 IStarPackage.Literals.DEPENDENCY__DEPENDUM,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -183,12 +171,6 @@ public class DependencyItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Dependency.class)) {
-			case IStarPackage.DEPENDENCY__DEPENDUM:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -202,26 +184,6 @@ public class DependencyItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStarPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStarFactory.eINSTANCE.createTask()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStarPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStarFactory.eINSTANCE.createResource()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStarPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStarFactory.eINSTANCE.createGoal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStarPackage.Literals.DEPENDENCY__DEPENDUM,
-				 IStarFactory.eINSTANCE.createSoftGoal()));
 	}
 
 	/**

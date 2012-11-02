@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IStar#getActors <em>Actors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IStar#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IStar#getDependums <em>Dependums</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,5 +65,21 @@ public interface IStar extends EObject {
 	 * @generated
 	 */
 	EList<Dependency> getDependencies();
+
+	/**
+	 * Returns the value of the '<em><b>Dependums</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dependums</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dependums</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getIStar_Dependums()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<IntentionalElement> getDependums();
 
 } // IStar

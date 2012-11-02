@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -39,7 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl#getDependency <em>Dependency</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl#getComposite <em>Composite</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl#getContributionsAsContributor <em>Contributions As Contributor</em>}</li>
  * </ul>
@@ -48,6 +47,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public abstract class IntentionalElementImpl extends DependencyEndpointImpl implements IntentionalElement {
+	/**
+	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependencies()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Dependency> dependencies;
+
 	/**
 	 * The cached value of the '{@link #getComposite() <em>Composite</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -92,40 +101,11 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Dependency getDependency() {
-		if (eContainerFeatureID() != IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY) return null;
-		return (Dependency)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDependency(Dependency newDependency, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDependency, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDependency(Dependency newDependency) {
-		if (newDependency != eInternalContainer() || (eContainerFeatureID() != IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY && newDependency != null)) {
-			if (EcoreUtil.isAncestor(this, newDependency))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newDependency != null)
-				msgs = ((InternalEObject)newDependency).eInverseAdd(this, IStarPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
-			msgs = basicSetDependency(newDependency, msgs);
-			if (msgs != null) msgs.dispatch();
+	public EList<Dependency> getDependencies() {
+		if (dependencies == null) {
+			dependencies = new EObjectWithInverseResolvingEList<Dependency>(Dependency.class, this, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IStarPackage.DEPENDENCY__DEPENDUM);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY, newDependency, newDependency));
+		return dependencies;
 	}
 
 	/**
@@ -209,10 +189,8 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetDependency((Dependency)otherEnd, msgs);
+			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependencies()).basicAdd(otherEnd, msgs);
 			case IStarPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				if (composite != null)
 					msgs = ((InternalEObject)composite).eInverseRemove(this, IStarPackage.TASK__COMPONENTS, Task.class, msgs);
@@ -231,8 +209,8 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return basicSetDependency(null, msgs);
+			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
 			case IStarPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return basicSetComposite(null, msgs);
 			case IStarPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
@@ -247,24 +225,10 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return eInternalContainer().eInverseRemove(this, IStarPackage.DEPENDENCY__DEPENDUM, Dependency.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return getDependency();
+			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return getDependencies();
 			case IStarPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				if (resolve) return getComposite();
 				return basicGetComposite();
@@ -283,8 +247,9 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				setDependency((Dependency)newValue);
+			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				getDependencies().clear();
+				getDependencies().addAll((Collection<? extends Dependency>)newValue);
 				return;
 			case IStarPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				setComposite((Task)newValue);
@@ -305,8 +270,8 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				setDependency((Dependency)null);
+			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				getDependencies().clear();
 				return;
 			case IStarPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				setComposite((Task)null);
@@ -326,8 +291,8 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY:
-				return getDependency() != null;
+			case IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
+				return dependencies != null && !dependencies.isEmpty();
 			case IStarPackage.INTENTIONAL_ELEMENT__COMPOSITE:
 				return composite != null;
 			case IStarPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:

@@ -62,7 +62,7 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 	protected DependencyEndpoint dependee;
 
 	/**
-	 * The cached value of the '{@link #getDependum() <em>Dependum</em>}' containment reference.
+	 * The cached value of the '{@link #getDependum() <em>Dependum</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDependum()
@@ -216,6 +216,23 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 	 * @generated
 	 */
 	public IntentionalElement getDependum() {
+		if (dependum != null && dependum.eIsProxy()) {
+			InternalEObject oldDependum = (InternalEObject)dependum;
+			dependum = (IntentionalElement)eResolveProxy(oldDependum);
+			if (dependum != oldDependum) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStarPackage.DEPENDENCY__DEPENDUM, oldDependum, dependum));
+			}
+		}
+		return dependum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntentionalElement basicGetDependum() {
 		return dependum;
 	}
 
@@ -243,9 +260,9 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 		if (newDependum != dependum) {
 			NotificationChain msgs = null;
 			if (dependum != null)
-				msgs = ((InternalEObject)dependum).eInverseRemove(this, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY, IntentionalElement.class, msgs);
+				msgs = ((InternalEObject)dependum).eInverseRemove(this, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IntentionalElement.class, msgs);
 			if (newDependum != null)
-				msgs = ((InternalEObject)newDependum).eInverseAdd(this, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCY, IntentionalElement.class, msgs);
+				msgs = ((InternalEObject)newDependum).eInverseAdd(this, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IntentionalElement.class, msgs);
 			msgs = basicSetDependum(newDependum, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -271,7 +288,7 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 				return basicSetDependee((DependencyEndpoint)otherEnd, msgs);
 			case IStarPackage.DEPENDENCY__DEPENDUM:
 				if (dependum != null)
-					msgs = ((InternalEObject)dependum).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - IStarPackage.DEPENDENCY__DEPENDUM, null, msgs);
+					msgs = ((InternalEObject)dependum).eInverseRemove(this, IStarPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IntentionalElement.class, msgs);
 				return basicSetDependum((IntentionalElement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -310,7 +327,8 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 				if (resolve) return getDependee();
 				return basicGetDependee();
 			case IStarPackage.DEPENDENCY__DEPENDUM:
-				return getDependum();
+				if (resolve) return getDependum();
+				return basicGetDependum();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

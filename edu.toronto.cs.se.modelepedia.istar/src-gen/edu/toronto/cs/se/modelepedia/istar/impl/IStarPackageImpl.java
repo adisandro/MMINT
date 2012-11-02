@@ -201,6 +201,15 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIStar_Dependums() {
+		return (EReference)iStarEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getActor() {
 		return actorEClass;
 	}
@@ -273,7 +282,7 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIntentionalElement_Dependency() {
+	public EReference getIntentionalElement_Dependencies() {
 		return (EReference)intentionalElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -470,6 +479,7 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		iStarEClass = createEClass(ISTAR);
 		createEReference(iStarEClass, ISTAR__ACTORS);
 		createEReference(iStarEClass, ISTAR__DEPENDENCIES);
+		createEReference(iStarEClass, ISTAR__DEPENDUMS);
 
 		actorEClass = createEClass(ACTOR);
 		createEReference(actorEClass, ACTOR__INTENTIONAL_ELEMENTS);
@@ -481,7 +491,7 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		createEReference(dependencyEClass, DEPENDENCY__DEPENDUM);
 
 		intentionalElementEClass = createEClass(INTENTIONAL_ELEMENT);
-		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__DEPENDENCY);
+		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__DEPENDENCIES);
 		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__COMPOSITE);
 		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR);
 
@@ -547,6 +557,7 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		initEClass(iStarEClass, IStar.class, "IStar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIStar_Actors(), this.getActor(), null, "actors", null, 0, -1, IStar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIStar_Dependencies(), this.getDependency(), null, "dependencies", null, 0, -1, IStar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIStar_Dependums(), this.getIntentionalElement(), null, "dependums", null, 0, -1, IStar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActor_IntentionalElements(), this.getIntentionalElement(), null, "intentionalElements", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -555,10 +566,10 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDependency_Depender(), this.getDependencyEndpoint(), this.getDependencyEndpoint_DependenciesAsDepender(), "depender", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDependency_Dependee(), this.getDependencyEndpoint(), this.getDependencyEndpoint_DependenciesAsDependee(), "dependee", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependency_Dependum(), this.getIntentionalElement(), this.getIntentionalElement_Dependency(), "dependum", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependency_Dependum(), this.getIntentionalElement(), this.getIntentionalElement_Dependencies(), "dependum", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(intentionalElementEClass, IntentionalElement.class, "IntentionalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIntentionalElement_Dependency(), this.getDependency(), this.getDependency_Dependum(), "dependency", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntentionalElement_Dependencies(), this.getDependency(), this.getDependency_Dependum(), "dependencies", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntentionalElement_Composite(), this.getTask(), this.getTask_Components(), "composite", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntentionalElement_ContributionsAsContributor(), this.getContribution(), this.getContribution_Contributor(), "contributionsAsContributor", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -89,28 +89,28 @@ public interface Dependency extends EObject {
 	void setDependee(DependencyEndpoint value);
 
 	/**
-	 * Returns the value of the '<em><b>Dependum</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependency <em>Dependency</em>}'.
+	 * Returns the value of the '<em><b>Dependum</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependum</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependum</em>' containment reference.
+	 * @return the value of the '<em>Dependum</em>' reference.
 	 * @see #setDependum(IntentionalElement)
 	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDependency_Dependum()
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependency
-	 * @model opposite="dependency" containment="true" required="true"
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependencies
+	 * @model opposite="dependencies" required="true"
 	 * @generated
 	 */
 	IntentionalElement getDependum();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDependum <em>Dependum</em>}' containment reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDependum <em>Dependum</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dependum</em>' containment reference.
+	 * @param value the new value of the '<em>Dependum</em>' reference.
 	 * @see #getDependum()
 	 * @generated
 	 */
