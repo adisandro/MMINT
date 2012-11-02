@@ -930,13 +930,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "constraints", "oneObject"
-		   });																	
-		addAnnotation
-		  (modelRelEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "modelEndpointRefs"
-		   });										
+		   });																								
 		addAnnotation
 		  (binaryModelRelEClass, 
 		   source, 
@@ -1012,13 +1006,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "derivation", "object.oclAsType(ExtendibleElementEndpoint).targetUri"
-		   });				
-		addAnnotation
-		  (modelRelEClass, 
-		   source, 
-		   new String[] {
-			 "modelEndpointRefs", "modelEndpoints->size() = modelEndpointRefs->size()"
-		   });										
+		   });											
 		addAnnotation
 		  (binaryModelRelEClass, 
 		   source, 

@@ -59,6 +59,10 @@ public interface MMTFExtensionPoints {
 
 	/** The Models extension point's id. */
 	public final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.models";
+	/** The Models extension point's modelType child. */
+	public final static String MODELS_CHILD_MODELTYPE = "modelType";
+	/** The Models extension point's modelType child's constraint attribute. */
+	public final static String MODELS_MODELTYPE_ATTR_CONSTRAINT = "constraint";
 
 	/** The Editors extension point's id. */
 	public final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";

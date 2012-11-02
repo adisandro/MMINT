@@ -15,6 +15,8 @@ The relationship&apos;s enpoints model packages have to be registered too throug
 
    <include schemaLocation="edu.toronto.cs.se.mmtf.endpoints.exsd"/>
 
+   <include schemaLocation="edu.toronto.cs.se.mmtf.models.exsd"/>
+
    <element name="extension">
       <annotation>
          <appinfo>
@@ -60,7 +62,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="modelType"/>
             <element ref="modelTypeEndpoint" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="linkType" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>

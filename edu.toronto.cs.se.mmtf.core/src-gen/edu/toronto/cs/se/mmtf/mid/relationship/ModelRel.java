@@ -36,8 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage#getModelRel()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelEndpointRefs'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelEndpointRefs='modelEndpoints->size() = modelEndpointRefs->size()'"
+ * @model
  * @generated
  */
 public interface ModelRel extends Model {

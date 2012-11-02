@@ -491,14 +491,21 @@ traceLinks:
 		ModelElementReference refinedModelElemRef_refinementRel = MultiModelHierarchyUtils.getReference(refinedModelElemRef_propTraceRel, refinedModelEndpointRef_refinementRel.getModelElemRefs());
 		ModelElementEndpointReference refinementModelElemEndpointRef = refinedModelElemRef_refinementRel.getModelElemEndpointRefs().get(0); // many to one here has to be mapped through an nary link
 		LinkReference refinementLinkRef = (LinkReference) refinementModelElemEndpointRef.eContainer();
+		Link refinementLinkType = refinementLinkRef.getObject().getMetatype();
 		// create new propagated refinement link
-		LinkReference newPropRefinementLinkRef = MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(
-			null,
+		LinkReference newPropRefinementLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
+			refinementLinkType,
+			newPropRefinementRel,
 			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference(),
-			newPropModelElemRef
+			RelationshipPackage.eINSTANCE.getLinkReference()
 		);
 		newPropRefinementLinkRef.getObject().setName(refinementLinkRef.getObject().getName());
+		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
+			refinementLinkType.getModelElemEndpoints().get(0),//TODO MMTF: use some sort of introspection here
+			newPropRefinementLinkRef,
+			newPropModelElemRef,
+			false
+		);
 
 		boolean duplicateProp = true;
 		for (ModelElementEndpointReference refinementModelElemEndpointRef2 : refinementLinkRef.getModelElemEndpointRefs()) {
@@ -525,7 +532,7 @@ traceLinks:
 					);
 				}
 				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-					null,
+					refinementLinkType.getModelElemEndpoints().get(0),//TODO MMTF: use some sort of introspection here
 					newPropRefinementLinkRef,
 					newRelatedModelElemRef,
 					false
@@ -551,15 +558,26 @@ traceLinks:
 
 		// create output model and model relationships
 		Model newPropModel = createRelatedModelCopy(relatedModel);
-		BinaryModelRel newPropRefinementRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRelAndModelEndpointsAndModelEndpointReferences(
-			null,
+		BinaryModelRel newPropRefinementRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
+			refinementRel.getMetatype(),
+			multiModel,
 			ModelOrigin.CREATED,
 			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
-			relatedModel,
-			newPropModel
+			RelationshipPackage.eINSTANCE.getBinaryModelRel()
 		);
 		newPropRefinementRel.setName(PROPREFINEMENT_MODELREL_NAME);
+		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
+			refinementRel.getModelEndpoints().get(0).getMetatype(),
+			newPropRefinementRel,
+			relatedModel,
+			false
+		);
+		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
+			refinementRel.getModelEndpoints().get(1).getMetatype(),
+			newPropRefinementRel,
+			newPropModel,
+			false
+		);
 		BinaryModelRel newPropTraceRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			traceRel.getMetatype(),
 			multiModel,

@@ -30,17 +30,23 @@ public class MultiModelHierarchyUtils implements MMTFExtensionPoints {
 	private static class ExtensionHierarchyComparator implements Comparator<IConfigurationElement> {
 
 		private HashMap<String, String> extensionUris;
+		private String childName;
 		private String rootUri;
 
-		public ExtensionHierarchyComparator(HashMap<String, String> extensionUris, String rootUri) {
+		public ExtensionHierarchyComparator(HashMap<String, String> extensionUris, String childName, String rootUri) {
 
 			this.extensionUris = extensionUris;
+			this.childName = childName;
 			this.rootUri = rootUri;
 		}
 
 		@Override
 		public int compare(IConfigurationElement extension1, IConfigurationElement extension2) {
 
+			if (childName != null) {
+				extension1 = extension1.getChildren(childName)[0];
+				extension2 = extension2.getChildren(childName)[0];
+			}
 			IConfigurationElement typeConfig1 = extension1.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String uri1 = typeConfig1.getAttribute(EXTENDIBLETYPE_ATTR_URI);
 			String supertypeUri1 = extensionUris.get(uri1);
@@ -125,17 +131,20 @@ public class MultiModelHierarchyUtils implements MMTFExtensionPoints {
 		}
 	}
 
-	public static Iterator<IConfigurationElement> getExtensionHierarchyIterator(IConfigurationElement[] extensions, String rootUri) {
+	public static Iterator<IConfigurationElement> getExtensionHierarchyIterator(IConfigurationElement[] extensions, String childName, String rootUri) {
 
 		HashMap<String, String> extensionUris = new HashMap<String, String>();
 		for (IConfigurationElement extension : extensions) {
+			if (childName != null) {
+				extension = extension.getChildren(childName)[0];
+			}
 			IConfigurationElement typeConfig = extension.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String uri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
 			String supertypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
 			extensionUris.put(uri, supertypeUri);
 		}
 		TreeSet<IConfigurationElement> hierarchy = new TreeSet<IConfigurationElement>(
-			new ExtensionHierarchyComparator(extensionUris, rootUri)
+			new ExtensionHierarchyComparator(extensionUris, childName, rootUri)
 		);
 		for (IConfigurationElement extension : extensions) {
 			hierarchy.add(extension);

@@ -60,6 +60,13 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
          <sequence>
             <element ref="extendibleType"/>
          </sequence>
+         <attribute name="constraint" type="string">
+            <annotation>
+               <documentation>
+                  The model type constraint.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

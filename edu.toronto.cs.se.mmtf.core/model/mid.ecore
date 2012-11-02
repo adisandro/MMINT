@@ -445,14 +445,8 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelRel" eSuperTypes="#//Model">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="modelEndpointRefs"/>
-      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A model relationship type among model types or a model relationship instance among model instances."/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="modelEndpointRefs" value="modelEndpoints->size() = modelEndpointRefs->size()"/>
       </eAnnotations>
       <eOperations name="getMetatype" lowerBound="1" eType="#//relationship/ModelRel">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

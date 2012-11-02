@@ -100,6 +100,10 @@ public class MMTF implements MMTFExtensionPoints {
 	public static Model createModelType(IConfigurationElement extensionConfig) {
 
 		try {
+			String constraint = extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_CONSTRAINT);
+			if (constraint == null) {
+				constraint = "";
+			}
 			IConfigurationElement typeConfig = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String newModelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
 			String modelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
@@ -108,7 +112,7 @@ public class MMTF implements MMTFExtensionPoints {
 				newModelTypeUri,
 				modelTypeUri,
 				newModelTypeName,
-				""
+				constraint
 			);
 
 			return newModelType;
@@ -132,7 +136,12 @@ public class MMTF implements MMTFExtensionPoints {
 	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) {
 
 		try {
-			IConfigurationElement typeConfig = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
+			IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
+			String constraint = modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_CONSTRAINT);
+			if (constraint == null) {
+				constraint = "";
+			}
+			IConfigurationElement typeConfig = modelTypeConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String newModelRelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
 			String modelRelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
 			String newModelRelTypeName = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
@@ -144,7 +153,7 @@ public class MMTF implements MMTFExtensionPoints {
 				newModelRelTypeUri,
 				modelRelTypeUri,
 				newModelRelTypeName,
-				"",
+				constraint,
 				newModelRelTypeClass
 			);
 			// model type endpoints
@@ -565,21 +574,21 @@ public class MMTF implements MMTFExtensionPoints {
 
 		// model types
 		config = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, ROOT_MODEL_URI);
+		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null, ROOT_MODEL_URI);
 		while (extensionsIter.hasNext()) {
 			createModelType(extensionsIter.next());
 		}
 
 		// model relationship types
 		config = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, ROOT_MODELREL_URI);
+		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
 		while (extensionsIter.hasNext()) {
 			createModelRelType(extensionsIter.next());
 		}
 
 		// editor types
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null);
+		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null, null);
 		while (extensionsIter.hasNext()) {
 			Editor editorType = createEditorType(extensionsIter.next());
 			MultiModelHeavyTypeFactory.createHeavyModelTypeEditor(editorType, editorType.getModelUri());
@@ -587,7 +596,7 @@ public class MMTF implements MMTFExtensionPoints {
 
 		// operator types
 		config = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null);
+		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null, null);
 		while (extensionsIter.hasNext()) {
 			IConfigurationElement extensionConfig = extensionsIter.next();
 			Operator newOperatorType = createOperatorType(extensionConfig);

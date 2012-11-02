@@ -153,37 +153,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelEndpointRefs(modelRel, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the modelEndpointRefs constraint of '<em>Model Rel</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String MODEL_REL__MODEL_ENDPOINT_REFS__EEXPRESSION = "modelEndpoints->size() = modelEndpointRefs->size()";
-
-	/**
-	 * Validates the modelEndpointRefs constraint of '<em>Model Rel</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelRel_modelEndpointRefs(ModelRel modelRel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(RelationshipPackage.Literals.MODEL_REL,
-				 modelRel,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "modelEndpointRefs",
-				 MODEL_REL__MODEL_ENDPOINT_REFS__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**
@@ -204,7 +174,6 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelRel_modelEndpointRefs(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryModelRel(binaryModelRel, diagnostics, context);
 		return result;
 	}
