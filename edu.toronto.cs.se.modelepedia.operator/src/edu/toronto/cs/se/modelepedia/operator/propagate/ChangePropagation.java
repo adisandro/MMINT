@@ -300,7 +300,7 @@ traceLinks:
 						}
 						boolean Mac = traceLinkRef2.getObject().isMay();
 						if (!Mac) {
-							unifyVarTraceLink(traceLinkRef, traceLinkRef2, indexA, indexB);
+							unifyVarTraceLink(modelRootB, traceLinkRef, traceLinkRef2, indexA, indexB);
 							unifiedLinkRef = traceLinkRef;
 							again = true;
 							break traceLinks;
@@ -352,14 +352,13 @@ traceLinks:
 	}
 
 	@SuppressWarnings("unchecked")
-	private void unifyVarTraceLink(BinaryLinkReference varTraceLinkRef, BinaryLinkReference traceLinkRef, int indexA, int indexB) throws Exception {
+	private void unifyVarTraceLink(EObject modelRootB, BinaryLinkReference varTraceLinkRef, BinaryLinkReference traceLinkRef, int indexA, int indexB) throws Exception {
 
 		ModelElementReference varModelElemRef = varTraceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
-		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
 		// get var object and other object from same resource
-		EObject varModelEObject = MultiModelTypeIntrospection.getPointer(varModelElemRef.getUri());
-		EObject modelEObject = MultiModelTypeIntrospection.getPointer(varModelEObject.eResource(), modelElemRef.getUri());
+		EObject varModelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), varModelElemRef.getUri());
+		EObject modelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), modelElemRef.getUri());
 		// unify contents
 		for (EObject varModelEObjectContent : varModelEObject.eContents()) {
 			EStructuralFeature varModelEObjectContainingFeature = varModelEObjectContent.eContainingFeature();
@@ -372,8 +371,6 @@ traceLinks:
 		// remove var object
 		 EcoreUtil.delete(varModelEObject);
 		//TODO MMTF: should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
-		// serialize modified model
-		MultiModelTypeIntrospection.writeRoot(EcoreUtil.getRootContainer(modelEObject), modelEndpointRef.getTargetUri(), true);
 		// remove unified links and model elements
 		MultiModelInstanceFactory.removeModelElementAndModelElementReference(varModelElemRef);
 		// update uris due to model element unification

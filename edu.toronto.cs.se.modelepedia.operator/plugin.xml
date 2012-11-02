@@ -15,6 +15,78 @@
 
 <plugin>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel"
+            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.relationships">
+      <relationshipType>
+         <extendibleType
+               name="MAVORefinementRel"
+               uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel"
+               supertypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+         </extendibleType>
+         <modelTypeEndpoint>
+            <extendibleType
+                  name="ModelEndpoint"
+                  uri="http://se.cs.toronto.edu/mmtf/ModelRel-Model/ModelEndpoint2">
+            </extendibleType>
+            <typeEndpoint
+                  lowerBound="2"
+                  upperBound="2"
+                  targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </typeEndpoint>
+            <modelElemType
+                  category="ENTITY"
+                  classLiteral="ModelElementEntityWildcard">
+                <extendibleType
+                     name="EntityElem"
+                     uri="http://se.cs.toronto.edu/mmtf/Model/EntityElem2">
+                </extendibleType>
+            </modelElemType>
+            <modelElemType
+                  category="RELATIONSHIP"
+                  classLiteral="ModelElementEntityWildcard/modelElementRelationshipWildcard">
+                <extendibleType
+                     name="RelElem"
+                     uri="http://se.cs.toronto.edu/mmtf/Model/RelElem2">
+                </extendibleType>
+            </modelElemType>
+         </modelTypeEndpoint>
+         <linkType>
+            <extendibleType
+                  name="Link"
+                  uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link2">
+            </extendibleType>
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="EntityElemEndpoint"
+                     uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link-EntityElem/EntityElemEndpoint2">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/EntityElem2">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="RelElemEndpoint"
+                     uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link-RelElem/RelElemEndpoint2">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/RelElem2">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+         </linkType>
+      </relationshipType>
+   </extension>
+
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
