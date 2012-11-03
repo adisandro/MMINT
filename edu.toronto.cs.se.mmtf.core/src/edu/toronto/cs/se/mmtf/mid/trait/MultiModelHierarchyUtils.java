@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -254,20 +255,20 @@ public class MultiModelHierarchyUtils implements MMTFExtensionPoints {
 		return getReference(correspondingElementTypeRef.getUri(), elementTypeRefs);
 	}
 
-	public static <T extends ExtendibleElementEndpointReference> T getEndpointReference(String targetTypeUri, EList<T> typeEndpointRefs) {
+	public static <T extends ExtendibleElementEndpointReference> EList<T> getEndpointReferences(String targetTypeUri, EList<T> typeEndpointRefs) {
 
-		//TODO MMTF: should return a list
 		if (targetTypeUri == null) {
 			return null;
 		}
 
+		EList<T> targetTypeEndpointRefs = new BasicEList<T>();
 		for (T typeEndpointRef : typeEndpointRefs) {
 			if (targetTypeUri.equals(typeEndpointRef.getTargetUri())) {
-				return typeEndpointRef;
+				targetTypeEndpointRefs.add(typeEndpointRef);
 			}
 		}
 
-		return null;
+		return targetTypeEndpointRefs;
 	}
 
 	public static <T extends ExtendibleElementEndpoint> T getEndpoint(String targetTypeUri, EList<T> typeEndpoints) {

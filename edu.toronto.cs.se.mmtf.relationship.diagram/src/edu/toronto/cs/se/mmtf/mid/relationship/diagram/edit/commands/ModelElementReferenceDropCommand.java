@@ -15,11 +15,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
@@ -144,22 +143,23 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		ModelElement modelElemType = null;
 		ModelElementReference modelElemTypeRef = null;
 		if (newDroppedEObject instanceof EClass) {
+supertypes:
 			for (EClass droppedEObject : ((EClass) newDroppedEObject).getEAllSuperTypes()) {
-				URI uri = EcoreUtil.getURI(droppedEObject);
-				String[] pieces = uri.toString().split(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR);
-				String modelTypeUri = pieces[0];
-				String modelElemTypeUri = pieces[1];
-				ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper = MultiModelHierarchyUtils.getEndpointReference(modelTypeUri, modelRelType.getModelEndpointRefs());
-				if (modelTypeEndpointRefOrModelTypeEndpointRefSuper == null) {
+				String[] uris = MultiModelRegistry.getModelAndModelElementUris(droppedEObject, false);
+				String modelTypeUri = uris[0];
+				String modelElemTypeUri = uris[1];
+				EList<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MultiModelHierarchyUtils.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
+				if (modelTypeEndpointRefsOrModelTypeEndpointRefsSuper == null) {
 					continue;
 				}
-				modelElemTypeUri = MultiModelLightTypeFactory.getNewExtendibleTypeUri(modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject(), null, modelElemTypeUri);
-				modelElemTypeRef = MultiModelHierarchyUtils.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
-				if (modelElemTypeRef == null) {
-					continue;
+				for (ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper : modelTypeEndpointRefsOrModelTypeEndpointRefsSuper) {
+					modelElemTypeUri = MultiModelLightTypeFactory.getNewExtendibleTypeUri(modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject(), null, modelElemTypeUri);
+					modelElemTypeRef = MultiModelHierarchyUtils.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
+					if (modelElemTypeRef != null) {
+						modelElemType = modelElemTypeRef.getObject();
+						break supertypes;
+					}
 				}
-				modelElemType = modelElemTypeRef.getObject();
-				break;
 				//TODO MMTF: store # supertype levels and trigger possible reorder of inheritance chain
 			}
 		}

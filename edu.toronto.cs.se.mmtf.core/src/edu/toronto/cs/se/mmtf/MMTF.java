@@ -259,7 +259,8 @@ public class MMTF implements MMTFExtensionPoints {
 					if (modelElemType == null) {
 						continue;
 					}
-					ModelEndpointReference modelTypeEndpointRef = MultiModelHierarchyUtils.getEndpointReference(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs());
+					//TODO MMTF: well model elements should *really* be contained in the model endpoint now that they exist
+					ModelEndpointReference modelTypeEndpointRef = MultiModelHierarchyUtils.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
 					ModelElementReference newModelElemTypeRef = MultiModelHierarchyUtils.getReference(newModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 					ModelElementEndpointReference newModelElemTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 						newLinkTypeRef,
