@@ -352,14 +352,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		try {
 			if (MultiModelConstraintChecker.isInstancesLevel(model)) {
 				if (model instanceof ModelRel) {
-					//TODO MMTF: this ugly hack was for the power window case study
-//					ModelRel modelRel = (ModelRel) model;
-//					if (modelRel.getModelEndpoints().size() > 0) {
-//						return modelRel.getModelEndpoints().get(modelRel.getModelEndpoints().size()-1).getTarget().getRoot();
-//					}
-//					else {
-						return model;
-//					}
+					return model;
 				}
 				root = getRoot(uri);
 			}

@@ -101,7 +101,7 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 			}
 		}
 		EList<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(owner, (Model) newModel);
-		ModelEndpointReference modelTypeEndpointRef = RelationshipDiagramTrait.selectModelTypeEndpointToCreate(owner, modelTypeEndpointUris);
+		ModelEndpointReference modelTypeEndpointRef = RelationshipDiagramTrait.selectModelTypeEndpointToCreate(owner, modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
 			owner,

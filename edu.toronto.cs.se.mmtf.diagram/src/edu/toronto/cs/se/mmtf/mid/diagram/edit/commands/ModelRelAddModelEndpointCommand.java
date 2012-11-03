@@ -78,7 +78,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 
 	protected ModelEndpoint doExecuteInstancesLevel() throws Exception {
 
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris);
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
 			getSource(),

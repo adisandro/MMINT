@@ -53,13 +53,15 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 /**
  * The constraint checker for multimodels.
  * 
- * @author alessio
+ * @author Alessio Di Sandro
  *
  */
 public class MultiModelConstraintChecker {
 
 	private final static String ENTITY_WILDCARD_CLASSIFIER_NAME = "ModelElementEntityWildcard";
 	private final static String RELATIONSHIP_WILDCARD_FEATURE_NAME = "modelElementRelationshipWildcard";
+	private final static String OCL_MODELENDPOINT_VAR = "$ENDPOINT_";
+	private final static char OCL_VAR_SEPARATOR = '.';
 
 	/**
 	 * Checks if an extendible element is a TYPES element or an INSTANCES
@@ -361,7 +363,21 @@ linkTypes:
 			return true;
 		}
 
-		EObject root = model.getRoot();
+		EObject root = null;
+		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VAR)) {
+			String modelTypeEndpointName = oclConstraint.substring(OCL_MODELENDPOINT_VAR.length(), oclConstraint.indexOf(OCL_VAR_SEPARATOR));
+			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
+				if (modelTypeEndpointName.equals(modelEndpointRef.getObject().getMetatype().getName())) {
+					root = modelEndpointRef.getObject().getTarget().getRoot();
+					break;
+				}
+			}
+			oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VAR_SEPARATOR) + 1, oclConstraint.length());
+		}
+		else {
+			root = model.getRoot();
+		}
+
 		OCL ocl = OCL.newInstance();
 		OCLHelper helper = ocl.createOCLHelper();
 		//TODO MMTF: workaround for bug #375485

@@ -110,7 +110,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			modelRel.getModelEndpoints().get(0) :
 			modelRel.getModelEndpoints().get(1);
 		MultiModelInstanceFactory.removeModelEndpointAndModelEndpointReference(oldModelEndpoint, false);
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris);
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
 		MultiModelInstanceFactory.replaceModelEndpointAndModelEndpointReference(
 			oldModelEndpoint,
 			modelTypeEndpointRef.getObject(),

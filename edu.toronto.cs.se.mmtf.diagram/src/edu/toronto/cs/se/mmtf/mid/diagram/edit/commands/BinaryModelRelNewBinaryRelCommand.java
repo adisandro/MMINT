@@ -116,7 +116,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		);
 
 		EList<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris);
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
 			newModelRel,
@@ -125,7 +125,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		);
 		newModelEndpointRef.getObject().setName(getSource().getName());
 		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getTarget());
-		modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris);
+		modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
 		newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
 			newModelRel,

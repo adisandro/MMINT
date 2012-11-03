@@ -133,11 +133,11 @@ public class MidDiagramTrait {
 		return editor;
 	}
 
-	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, EList<String> modelTypeEndpointUris) throws Exception {
+	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, EList<String> modelTypeEndpointUris, String modelEndpointId) throws Exception {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
 		String title = "Create new model endpoint";
-		String message = "Choose model type endpoint role";
+		String message = "Choose " + modelEndpointId + "model type endpoint role";
 
 		return (ModelEndpointReference) openSelectDialog(dialog, title, message);
 	}

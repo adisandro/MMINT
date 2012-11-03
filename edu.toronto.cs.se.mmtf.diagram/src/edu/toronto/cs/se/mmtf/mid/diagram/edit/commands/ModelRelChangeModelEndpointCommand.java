@@ -98,7 +98,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model) throws Exception {
 
 		MultiModelInstanceFactory.removeModelEndpointAndModelEndpointReference(getLink(), false);
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris);
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		MultiModelInstanceFactory.replaceModelEndpointAndModelEndpointReference(
 			getLink(),
 			modelTypeEndpointRef.getObject(),
