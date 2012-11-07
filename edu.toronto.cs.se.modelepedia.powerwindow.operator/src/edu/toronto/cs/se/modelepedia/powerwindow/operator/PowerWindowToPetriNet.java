@@ -88,7 +88,6 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 		if (newElement != null) {
 			MultiModelInstanceFactory.removeModel(newElement);
-			((MultiModel) newElement.eContainer()).getModels().remove(newElement);
 			IPath path = new Path(newElement.getUri());
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 			file.delete(true, null);
