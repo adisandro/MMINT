@@ -545,7 +545,7 @@ public class MMTF implements MMTFExtensionPoints {
 		for (Model modelType : multiModel.getModels()) {
 			if (!(modelType instanceof ModelRel) &&
 				modelType.isDynamic() &&
-				MultiModelTypeRegistry.getExtendibleType(modelType.getUri()) == null
+				MultiModelTypeRegistry.getExtendibleElementType(modelType.getUri()) == null
 			) {
 				addDynamicType(modelType);
 			}
@@ -553,7 +553,7 @@ public class MMTF implements MMTFExtensionPoints {
 		for (Model modelType : multiModel.getModels()) {
 			if (modelType instanceof ModelRel
 				&& modelType.isDynamic() &&
-				MultiModelTypeRegistry.getExtendibleType(modelType.getUri()) == null
+				MultiModelTypeRegistry.getExtendibleElementType(modelType.getUri()) == null
 			) {
 				addDynamicType(modelType);
 			}

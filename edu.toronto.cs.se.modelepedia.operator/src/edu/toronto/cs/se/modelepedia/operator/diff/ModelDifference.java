@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -63,7 +64,7 @@ public class ModelDifference extends OperatorExecutableImpl {
 		return diffModelEObjects;
 	}
 
-	private ModelEndpointReference createModelEndpointReference(ModelRel newModelRel, ModelEndpointReference modelEndpointReference, String linksName) {
+	private ModelEndpointReference createModelEndpointReference(ModelRel newModelRel, ModelEndpointReference modelEndpointReference, String linksName) throws MMTFException {
 
 		Model model = modelEndpointReference.getObject().getTarget();
 		HashMap<String, ModelElementReference> modelElemRefTable = createModelElementReferenceTable(modelEndpointReference);

@@ -57,7 +57,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 			elementTypeUri = rootUri;
 		}
 		if (elementTypeUri != null) {
-			elementType = (T) MultiModelTypeRegistry.getExtendibleType(elementTypeUri);
+			elementType = (T) MultiModelTypeRegistry.getExtendibleElementType(elementTypeUri);
 		}
 
 		return elementType;

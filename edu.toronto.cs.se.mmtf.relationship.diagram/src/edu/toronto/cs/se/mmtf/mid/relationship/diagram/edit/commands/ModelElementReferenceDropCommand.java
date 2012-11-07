@@ -114,7 +114,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 			);
 	}
 
-	protected ModelElementReference doExecuteInstancesLevel() {
+	protected ModelElementReference doExecuteInstancesLevel() throws MMTFException {
 
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
 		String classLiteral = MultiModelRegistry.getEObjectClassLiteral(newDroppedEObject, true); // class literal == type name

@@ -19,6 +19,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
@@ -56,7 +58,11 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  */
 public class MultiModelInstanceFactory {
 
-	private static void addExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, MultiModel multiModel, String newElementUri, String newElementName) {
+	private static void addExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, String newElementUri, String newElementName, MultiModel multiModel) throws MMTFException {
+
+		if (newElementUri != null && multiModel.getExtendibleTable().containsKey(newElementUri)) {
+			throw new MMTFException("Extendible element with uri " + newElementUri + " is already in this instance MID");
+		}
 
 		newElement.setUri(newElementUri);
 		newElement.setName(newElementName);
@@ -67,12 +73,15 @@ public class MultiModelInstanceFactory {
 			//TODO MMTF: which entry to use, the most specific (operators) or the most conservative (import model)?
 			//TODO MMTF: now is the first == the most conservative
 			//TODO MMTF: do I fix everything by just letting the user choose with a dialog?
-			//TODO MMTF: actually it's kind of useless for rels/links, i should just set the root type, because at creation time it's hard for the ee to already have all connections
+			//TODO MMTF: actually it's kind of useless for rels/links, i should just set the root type, because at creation time it's hard to already have all connections
 			EList<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(newElement);
 			newElement.setMetatypeUri(runtimeTypes.get(0).getUri());
 		}
 		else { // use static metatype
 			newElement.setMetatypeUri(elementType.getUri());
+		}
+		if (newElementUri != null) {
+			multiModel.getExtendibleTable().put(newElementUri, newElement);
 		}
 	}
 
@@ -210,11 +219,22 @@ public class MultiModelInstanceFactory {
 		return model;
 	}
 
-	public static Model createModel(Model modelType, ModelOrigin origin, MultiModel multiModel, URI modelUri, boolean uselessFIXME) throws MMTFException {
+	private static void addModel(Model newModel, Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
-		//TODO MMTF: rework a bit
-		MultiModelInstanceFactory.assertModelUnique(multiModel, modelUri);
-		Model newModel = createModel(modelType, origin, multiModel, modelUri);
+		String lastSegmentUri = newModelUri.substring(newModelUri.lastIndexOf(MMTF.URI_SEPARATOR) + 1, newModelUri.length());
+		String newModelName = lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR));
+		addExtendibleElement(newModel, modelType, newModelUri, newModelName, multiModel);
+		String fileExtension = lastSegmentUri.substring(lastSegmentUri.lastIndexOf(MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
+		newModel.setOrigin(origin);
+		newModel.setFileExtension(fileExtension);
+
+		multiModel.getModels().add(newModel);
+	}
+
+	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
+
+		Model newModel = MidFactory.eINSTANCE.createModel();
+		addModel(newModel, modelType, newModelUri, origin, multiModel);
 		EObject modelRoot = newModel.getRoot();
 		if (modelRoot instanceof MAVOModel) {
 			newModel.setInc(((MAVOModel) modelRoot).isInc());
@@ -227,7 +247,7 @@ public class MultiModelInstanceFactory {
 		return newModel;
 	}
 
-	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, String newModelElemUri, String newModelElemName, ModelElementCategory category, String classLiteral) {
+	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, String newModelElemUri, String newModelElemName, ModelElementCategory category, String classLiteral) throws MMTFException {
 
 		ModelRel modelRel = (ModelRel) modelEndpointRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
@@ -236,7 +256,7 @@ public class MultiModelInstanceFactory {
 		ModelElement newModelElem = MultiModelTypeRegistry.getModelElementType(multiModel, newModelElemUri);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
-			addExtendibleElement(newModelElem, modelElemType, multiModel, newModelElemUri, newModelElemName);
+			addExtendibleElement(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
 			newModelElem.setCategory(category);
 			newModelElem.setClassLiteral(classLiteral);
 			modelEndpointRef.getObject().getTarget().getElements().add(newModelElem);
@@ -246,7 +266,7 @@ public class MultiModelInstanceFactory {
 		return newModelElemRef;
 	}
 
-	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelEObject) {
+	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelEObject) throws MMTFException {
 
 		//TODO MMTF: this should check for an existing model element with same uri and return it instead of creating it (something like checkModelUnique)
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelEObject);
@@ -293,7 +313,7 @@ public class MultiModelInstanceFactory {
 		return modelRel;
 	}
 
-	public static ModelRel createModelRelAndModelEndpointsAndModelEndpointReferences(ModelRel modelRelType, ModelOrigin origin, URI modelRelUri, EClass modelRelClass, Model... models) {
+	public static ModelRel createModelRelAndModelEndpointsAndModelEndpointReferences(ModelRel modelRelType, ModelOrigin origin, URI modelRelUri, EClass modelRelClass, Model... models) throws MMTFException {
 
 		if (models.length == 0) {
 			return null;
@@ -329,12 +349,13 @@ public class MultiModelInstanceFactory {
 	 * @param newModel
 	 *            The model that corresponds to the model reference.
 	 * @return The model reference just created.
+	 * @throws MMTFException 
 	 */
-	public static ModelEndpointReference createModelEndpointAndModelEndpointReference(ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel, boolean isBinarySrc) {
+	public static ModelEndpointReference createModelEndpointAndModelEndpointReference(ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel, boolean isBinarySrc) throws MMTFException {
 
 		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
-		addExtendibleElement(newModelEndpoint, modelTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(newModelEndpoint, modelTypeEndpoint, null, null, multiModel);
 		addExtendibleElementEndpoint(newModelEndpoint, newModel);
 		if (isBinarySrc) {
 			modelRel.getModelEndpoints().add(0, newModelEndpoint);
@@ -348,10 +369,10 @@ public class MultiModelInstanceFactory {
 		return modelEndpointRef;
 	}
 
-	public static void replaceModelEndpointAndModelEndpointReference(ModelEndpoint oldModelEndpoint, ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel) {
+	public static void replaceModelEndpointAndModelEndpointReference(ModelEndpoint oldModelEndpoint, ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel) throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
-		addExtendibleElement(oldModelEndpoint, modelTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(oldModelEndpoint, modelTypeEndpoint, null, null, multiModel);
 		oldModelEndpoint.setTarget(newModel);
 	}
 
@@ -417,7 +438,7 @@ public class MultiModelInstanceFactory {
 		return linkRef;
 	}
 
-	public static LinkReference createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(Link linkType, EClass linkClass, EClass linkRefClass, ModelElementReference... modelElemRefs) {
+	public static LinkReference createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(Link linkType, EClass linkClass, EClass linkRefClass, ModelElementReference... modelElemRefs) throws MMTFException {
 
 		if (modelElemRefs.length == 0) {
 			return null;
@@ -445,11 +466,11 @@ public class MultiModelInstanceFactory {
 		return newLinkRef;
 	}
 
-	public static ModelElementEndpointReference createModelElementEndpointAndModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef, boolean isBinarySrc) {
+	public static ModelElementEndpointReference createModelElementEndpointAndModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef, boolean isBinarySrc) throws MMTFException {
 
 		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		MultiModel multiModel = (MultiModel) linkRef.eContainer().eContainer();
-		addExtendibleElement(newModelElemEndpoint, modelElemTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(newModelElemEndpoint, modelElemTypeEndpoint, null, null, multiModel);
 		addExtendibleElementEndpoint(newModelElemEndpoint, newModelElemRef.getObject());
 		if (isBinarySrc) {
 			linkRef.getObject().getModelElemEndpoints().add(0, newModelElemEndpoint);
@@ -480,11 +501,11 @@ public class MultiModelInstanceFactory {
 		return newModelElemEndpointRef;
 	}
 
-	public static void replaceModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef) {
+	public static void replaceModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef) throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) linkRef.eContainer().eContainer();
 		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
-		addExtendibleElement(oldModelElemEndpoint, modelElemTypeEndpoint, multiModel, null, null);
+		addExtendibleElement(oldModelElemEndpoint, modelElemTypeEndpoint, null, null, multiModel);
 		oldModelElemEndpoint.setTarget(newModelElemRef.getObject());
 		oldModelElemEndpointRef.setModelElemRef(newModelElemRef);
 	}
@@ -748,6 +769,8 @@ public class MultiModelInstanceFactory {
 
 	public static void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) {
 
+		MultiModel multiModel = (MultiModel) modelElemRef.eContainer().eContainer().eContainer();
+		removeExtendibleElement(multiModel, modelElemRef.getUri());
 		removeModelElementReference(modelElemRef);
 		ModelElement modelElem = modelElemRef.getObject();
 		((Model) modelElem.eContainer()).getElements().remove(modelElem);

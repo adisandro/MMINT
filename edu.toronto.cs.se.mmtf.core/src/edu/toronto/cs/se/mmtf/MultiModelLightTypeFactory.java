@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
 public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
@@ -286,7 +287,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		Iterator<ModelEndpoint> oldModelTypeEndpointIter = MultiModelHierarchyUtils.getTypeHierarchyIterator(oldModelRelType.getModelEndpoints());
 		while (oldModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint oldModelTypeEndpoint = oldModelTypeEndpointIter.next();
-			Model newModelType = MultiModelTypeRegistry.getModelType(multiModel, oldModelTypeEndpoint.getTargetUri());
+			Model newModelType = MultiModelRegistry.getModel(multiModel, oldModelTypeEndpoint.getTargetUri());
 			ModelEndpoint modelTypeEndpoint = null;
 			ModelEndpointReference modelTypeEndpointRef = null;
 			if (oldModelTypeEndpoint.getSupertype() != null) { //TODO MMTF: remove all such checks from endpoints when they have root supertype

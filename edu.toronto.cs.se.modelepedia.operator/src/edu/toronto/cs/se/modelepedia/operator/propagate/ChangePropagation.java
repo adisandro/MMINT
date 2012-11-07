@@ -15,7 +15,7 @@ import java.util.HashSet;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -25,8 +25,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -62,15 +65,15 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		EObject relatedRoot = relatedModel.getRoot();
 		EObject copyRoot = EcoreUtil.copy(relatedRoot);
 		String fileExtension = relatedModel.getUri().substring(
-			relatedModel.getUri().lastIndexOf('.'),
+			relatedModel.getUri().lastIndexOf(MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR),
 			relatedModel.getUri().length()
 		);
-		String uri = relatedModel.getUri().replace(fileExtension, PROP_MODEL_SUFFIX + fileExtension);
-		URI newCopyUri = MultiModelTypeIntrospection.writeRoot(copyRoot, uri, true);
+		String newCopyUri = relatedModel.getUri().replace(fileExtension, PROP_MODEL_SUFFIX + fileExtension);
+		MultiModelTypeIntrospection.writeRoot(copyRoot, newCopyUri, true);
 
 		// create model in multimodel
 		MultiModel multiModel = (MultiModel) relatedModel.eContainer();
-		Model newCopyModel = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, multiModel, newCopyUri, true);
+		Model newCopyModel = MultiModelInstanceFactory.createModel(relatedModel.getMetatype(), newCopyUri, ModelOrigin.IMPORTED, multiModel);
 
 		return newCopyModel;
 	}
@@ -170,7 +173,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		return newPropTraceLinkRefs;
 	}
 
-	private BinaryLinkReference createDanglingTraceLink(ModelElementReference modelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) {
+	private BinaryLinkReference createDanglingTraceLink(ModelElementReference modelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMTFException {
 
 		// rule 4, 1st half
 		if (!traceRel.getModelEndpoints().get(indexB).getTarget().isInc()) {
@@ -325,29 +328,40 @@ traceLinks:
 
 	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
 
+		EMap<String, ExtendibleElement> extendibleTable = MultiModelRegistry.getMultiModel(modelElemRef).getExtendibleTable();
 		String unifiedModelElemUri = unifiedModelElemRef.getUri();
 		String modelElemUri = modelElemRef.getUri();
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
 		String unifiedModelElemUriBase = unifiedModelElemUri.substring(0, unifiedModelElemUri.lastIndexOf('.')+1);
 		int unifiedModelElemUriIndex = Integer.parseInt(unifiedModelElemUri.substring(unifiedModelElemUri.lastIndexOf('.')+1));
 
-		for (ModelElement modelElem : modelEndpointRef.getObject().getTarget().getElements()) {
-			String otherModelElemUri = modelElem.getUri();
+		EList<ModelElement> otherModelElems = new BasicEList<ModelElement>();
+		// first pass, modify model element uris
+		for (ModelElement otherModelElem : modelEndpointRef.getObject().getTarget().getElements()) {
+			String otherModelElemUri = otherModelElem.getUri();
 			// other model element to be affected by unification of model elements
 			if (otherModelElemUri.contains(unifiedModelElemUriBase)) {
 				String otherModelElemUriExtra = otherModelElemUri.substring(otherModelElemUri.lastIndexOf(unifiedModelElemUriBase) + unifiedModelElemUriBase.length());
-				int otherModelElemUriIndex = (otherModelElemUriExtra.indexOf('/') == -1) ?
+				int otherModelElemUriIndex = (otherModelElemUriExtra.indexOf(MMTF.URI_SEPARATOR) == -1) ?
 					Integer.parseInt(otherModelElemUriExtra) :
-					Integer.parseInt(otherModelElemUriExtra.substring(0, otherModelElemUriExtra.indexOf('/')));
-				// uri to be fully replaced
-				if (otherModelElemUriIndex == unifiedModelElemUriIndex) {
-					modelElem.setUri(otherModelElemUri.replace(unifiedModelElemUri, modelElemUri));
+					Integer.parseInt(otherModelElemUriExtra.substring(0, otherModelElemUriExtra.indexOf(MMTF.URI_SEPARATOR)));
+				String newOtherModelElemUri = null;
+				if (otherModelElemUriIndex == unifiedModelElemUriIndex) { // uri to be fully replaced
+					newOtherModelElemUri = otherModelElemUri.replace(unifiedModelElemUri, modelElemUri);
 				}
-				// uri to be shifted
-				else if (otherModelElemUriIndex > unifiedModelElemUriIndex) {
-					modelElem.setUri(otherModelElemUri.replace(unifiedModelElemUriBase + otherModelElemUriIndex, unifiedModelElemUriBase + --otherModelElemUriIndex));
+				else if (otherModelElemUriIndex > unifiedModelElemUriIndex) { // uri to be shifted
+					newOtherModelElemUri = otherModelElemUri.replace(unifiedModelElemUriBase + otherModelElemUriIndex, unifiedModelElemUriBase + --otherModelElemUriIndex);
+				}
+				if (newOtherModelElemUri != null) {
+					extendibleTable.removeKey(otherModelElemUri);
+					otherModelElem.setUri(newOtherModelElemUri);
+					otherModelElems.add(otherModelElem);
 				}
 			}
+		}
+		// second pass, update extendible table
+		for (ModelElement otherModelElem : otherModelElems) {
+			extendibleTable.put(otherModelElem.getUri(), otherModelElem);
 		}
 	}
 
@@ -465,7 +479,7 @@ traceLinks:
 		);
 	}
 
-	private void propagateRefinementLinks(BinaryLinkReference propTraceLinkRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) {
+	private void propagateRefinementLinks(BinaryLinkReference propTraceLinkRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMTFException {
 
 		ModelElementReference propModelElemRef_propTraceRel = propTraceLinkRef.getTargetModelElemRef();
 		ModelEndpointReference propModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(1);

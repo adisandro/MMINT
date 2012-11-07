@@ -23,15 +23,20 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 
 public class MultiModelRegistry {
 
 	public final static String EXTELEM_NULLTYPE = "NOTYPE";
 	public final static String ECORE_METAMODEL_URI_SEPARATOR = "#//";
+	public final static String ECORE_MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
 
 	public static String getElementLabel(ExtendibleElement element) {
@@ -174,6 +179,61 @@ public class MultiModelRegistry {
 		return (labelProvider == null) ?
 			getEObjectClassLiteral(eObject, isInstancesLevel) :
 			labelProvider.getText(eObject);
+	}
+
+	public static MultiModel getMultiModel(ExtendibleElement element) {
+
+		MultiModel multiModel = null;
+		if (element instanceof ModelElement) {
+			multiModel = (MultiModel) element.eContainer().eContainer();
+		}
+		//TODO MMTF: to be continued..
+
+		return multiModel;
+	}
+
+	public static MultiModel getMultiModel(ExtendibleElementReference elementRef) {
+
+		MultiModel multiModel = null;
+		if (elementRef instanceof ModelElementReference) {
+			multiModel = (MultiModel) elementRef.eContainer().eContainer().eContainer();
+		}
+		//TODO MMTF: to be continued..
+
+		return multiModel;
+	}
+
+	/**
+	 * Gets an extendible element (type or instance) from a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * @param elementUri
+	 *            The uri of the extendible element.
+	 * @return The extendible element, or null if the uri is not found.
+	 */
+	public static ExtendibleElement getExtendibleElement(MultiModel multiModel, String elementUri) {
+
+		return multiModel.getExtendibleTable().get(elementUri);
+	}
+
+	/**
+	 * Gets a model (type or instance) from a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * @param modelUri
+	 *            The uri of the model.
+	 * @return The model, or null if its uri is not found or found not to be a
+	 *         model.
+	 */
+	public static Model getModel(MultiModel multiModel, String modelUri) {
+	
+		ExtendibleElement model = MultiModelRegistry.getExtendibleElement(multiModel, modelUri);
+		if (model instanceof Model) {
+			return (Model) model;
+		}
+		return null;
 	}
 
 }

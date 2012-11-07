@@ -195,10 +195,10 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// fallback to root type
 		if (modelElem.getCategory() == ModelElementCategory.ENTITY) {
-			types.add(MultiModelTypeRegistry.getExtendibleType(ROOT_MODELELEMENT_ENTITY_URI));
+			types.add(MultiModelTypeRegistry.getExtendibleElementType(ROOT_MODELELEMENT_ENTITY_URI));
 		}
 		else {
-			types.add(MultiModelTypeRegistry.getExtendibleType(ROOT_MODELELEMENT_RELATIONSHIP_URI));
+			types.add(MultiModelTypeRegistry.getExtendibleElementType(ROOT_MODELELEMENT_RELATIONSHIP_URI));
 		}
 
 		return types;
@@ -244,7 +244,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		// fallback to root type
 		if (types.isEmpty()) {
-			types.add(MultiModelTypeRegistry.getExtendibleType(ROOT_MODELREL_LINK_URI));
+			types.add(MultiModelTypeRegistry.getExtendibleElementType(ROOT_MODELREL_LINK_URI));
 		}
 
 		return types;
@@ -255,7 +255,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
 		//TODO MMTF: fallback to root text editor?
-		types.add(MultiModelTypeRegistry.getExtendibleType(editor.getUri()));
+		types.add(MultiModelTypeRegistry.getExtendibleElementType(editor.getUri()));
 
 		return types;
 	}
@@ -264,7 +264,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
-		types.add(MultiModelTypeRegistry.getExtendibleType(
+		types.add(MultiModelTypeRegistry.getExtendibleElementType(
 			MultiModelTypeRegistry.getRootTypeUri(modelEndpoint))
 		);
 
@@ -275,7 +275,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 
 		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
 
-		types.add(MultiModelTypeRegistry.getExtendibleType(
+		types.add(MultiModelTypeRegistry.getExtendibleElementType(
 			MultiModelTypeRegistry.getRootTypeUri(modelElemEndpoint))
 		);
 
@@ -318,7 +318,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 			return null;
 		}
 
-		ExtendibleElement type = MultiModelTypeRegistry.getExtendibleType(element.getMetatypeUri());
+		ExtendibleElement type = MultiModelTypeRegistry.getExtendibleElementType(element.getMetatypeUri());
 		if (type == null) { // this can happen when a type is uninstalled
 			//TODO MMTF: find a way to try with runtime type in this read transaction?
 			//element.setMetatypeUri(null);
@@ -385,14 +385,12 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		resource.save(Collections.EMPTY_MAP);
 	}
 
-	public static URI writeRoot(EObject root, String uri, boolean isWorkspace) throws Exception {
+	public static void writeRoot(EObject root, String uri, boolean isWorkspace) throws Exception {
 
 		URI emfUri = (isWorkspace) ?
 			URI.createPlatformResourceURI(uri, true) :
 			URI.createFileURI(uri);
 		writeRoot(root, emfUri);
-
-		return emfUri;
 	}
 
 	public static EObject getPointer(Resource resource, URI uri) throws Exception {

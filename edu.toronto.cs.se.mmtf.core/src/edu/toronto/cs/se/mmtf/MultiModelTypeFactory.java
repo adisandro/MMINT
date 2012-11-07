@@ -47,6 +47,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
 /**
  * The factory for modifications to the type multimodel.
@@ -59,13 +60,13 @@ public class MultiModelTypeFactory {
 	protected static void addExtendibileElementType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName, MultiModel multiModel) throws MMTFException {
 
 		if (multiModel.getExtendibleTable().containsKey(newTypeUri)) {
-			throw new MMTFException("Extendible type's URI " + newTypeUri + " is already registered");
+			throw new MMTFException("Extendible type with uri " + newTypeUri + " is already in the type MID");
 		}
+
 		newType.setUri(newTypeUri);
 		newType.setName(newTypeName);
 		newType.setLevel(MidLevel.TYPES);
 		newType.setSupertype(type);
-
 		multiModel.getExtendibleTable().put(newTypeUri, newType);
 	}
 
@@ -371,7 +372,7 @@ public class MultiModelTypeFactory {
 		removeModelType(multiModel, modelType);
 		// delete the subtypes of the "thing"
 		for (String modelSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, modelType)) {
-			Model modelSubtype = MultiModelTypeRegistry.getModelType(multiModel, modelSubtypeUri);
+			Model modelSubtype = MultiModelRegistry.getModel(multiModel, modelSubtypeUri);
 			removeModelType(multiModel, modelSubtype);
 		}
 	}
@@ -418,7 +419,7 @@ public class MultiModelTypeFactory {
 
 		Editor editorType = (Editor) multiModel.getExtendibleTable().removeKey(uri);
 		multiModel.getEditors().remove(editorType);
-		Model modelType = MultiModelTypeRegistry.getModelType(multiModel, editorType.getModelUri());
+		Model modelType = MultiModelRegistry.getModel(multiModel, editorType.getModelUri());
 		if (modelType != null) {
 			modelType.getEditors().remove(editorType);
 		}

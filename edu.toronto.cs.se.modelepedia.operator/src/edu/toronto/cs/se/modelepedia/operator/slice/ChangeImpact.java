@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -126,7 +127,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, LinkReference impactLinkRef, HashMap<String, EList<EObject>> impactedUnifyTable) {
+	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, LinkReference impactLinkRef, HashMap<String, EList<EObject>> impactedUnifyTable) throws MMTFException {
 
 		if (origModelElemRef.getModelElemEndpointRefs().isEmpty()) {
 			return;

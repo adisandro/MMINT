@@ -186,48 +186,17 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets an extendible type from a multimodel.
+	 * Gets an extendible element type from a multimodel.
 	 * 
 	 * @param multiModel
 	 *            The multimodel.
-	 * @param uri
-	 *            The uri of the extendible type.
-	 * @return The extendible type, or null if uri is not found.
+	 * @param elementTypeUri
+	 *            The uri of the extendible element type.
+	 * @return The extendible element type, or null if the uri is not found.
 	 */
-	public static ExtendibleElement getExtendibleType(MultiModel multiModel, String uri) {
+	public static ExtendibleElement getExtendibleElementType(String elementTypeUri) {
 
-		return multiModel.getExtendibleTable().get(uri);
-	}
-
-	/**
-	 * Gets an extendible type from the repository.
-	 * 
-	 * @param uri
-	 *            The uri of the extendible type.
-	 * @return The extendible type, or null if uri is not found.
-	 */
-	public static ExtendibleElement getExtendibleType(String uri) {
-
-		return getExtendibleType(MMTF.repository, uri);
-	}
-
-	/**
-	 * Gets a model type from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param modelTypeUri
-	 *            The uri of the model type.
-	 * @return The model type, or null if its uri is not found or found not
-	 *         to be a model type.
-	 */
-	public static Model getModelType(MultiModel multiModel, String modelTypeUri) {
-
-		ExtendibleElement modelType = getExtendibleType(multiModel, modelTypeUri);
-		if (modelType instanceof Model) {
-			return (Model) modelType;
-		}
-		return null;
+		return MultiModelRegistry.getExtendibleElement(MMTF.repository, elementTypeUri);
 	}
 
 	/**
@@ -240,7 +209,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static Model getModelType(String modelTypeUri) {
 
-		return getModelType(MMTF.repository, modelTypeUri);
+		return MultiModelRegistry.getModel(MMTF.repository, modelTypeUri);
 	}
 
 	/**
@@ -255,7 +224,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static ModelRel getModelRelType(MultiModel multiModel, String modelRelTypeUri) {
 
-		ExtendibleElement modelRelType = getExtendibleType(multiModel, modelRelTypeUri);
+		ExtendibleElement modelRelType = MultiModelRegistry.getExtendibleElement(multiModel, modelRelTypeUri);
 		if (modelRelType instanceof ModelRel) {
 			return (ModelRel) modelRelType;
 		}
@@ -287,7 +256,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static ModelElement getModelElementType(MultiModel multiModel, String modelElemTypeUri) {
 
-		ExtendibleElement modelElemType = getExtendibleType(multiModel, modelElemTypeUri);
+		ExtendibleElement modelElemType = MultiModelRegistry.getExtendibleElement(multiModel, modelElemTypeUri);
 		if (modelElemType instanceof ModelElement) {
 			return (ModelElement) modelElemType;
 		}
@@ -309,7 +278,7 @@ public class MultiModelTypeRegistry {
 
 	public static ModelEndpoint getModelTypeEndpoint(MultiModel multiModel, String modelTypeEndpointUri) {
 
-		ExtendibleElement modelTypeEndpoint = getExtendibleType(multiModel, modelTypeEndpointUri);
+		ExtendibleElement modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(multiModel, modelTypeEndpointUri);
 		if (modelTypeEndpoint instanceof ModelEndpoint) {
 			return (ModelEndpoint) modelTypeEndpoint;
 		}
@@ -333,7 +302,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static Link getLinkType(MultiModel multiModel, String linkTypeUri) {
 
-		ExtendibleElement element = getExtendibleType(multiModel, linkTypeUri);
+		ExtendibleElement element = MultiModelRegistry.getExtendibleElement(multiModel, linkTypeUri);
 		if (element instanceof Link) {
 			return (Link) element;
 		}
@@ -355,7 +324,7 @@ public class MultiModelTypeRegistry {
 
 	public static ModelElementEndpoint getModelElementTypeEndpoint(MultiModel multiModel, String modelElemTypeEndpointUri) {
 
-		ExtendibleElement modelElemTypeEndpoint = getExtendibleType(multiModel, modelElemTypeEndpointUri);
+		ExtendibleElement modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(multiModel, modelElemTypeEndpointUri);
 		if (modelElemTypeEndpoint instanceof ModelElementEndpoint) {
 			return (ModelElementEndpoint) modelElemTypeEndpoint;
 		}
@@ -369,7 +338,7 @@ public class MultiModelTypeRegistry {
 
 	public static Editor getEditorType(MultiModel multiModel, String editorTypeUri) {
 
-		ExtendibleElement editorType = getExtendibleType(multiModel, editorTypeUri);
+		ExtendibleElement editorType = MultiModelRegistry.getExtendibleElement(multiModel, editorTypeUri);
 		if (editorType instanceof Editor) {
 			return (Editor) editorType;
 		}
@@ -411,7 +380,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static Operator getOperatorType(MultiModel multiModel, String operatorTypeUri) {
 
-		ExtendibleElement operatorType = getExtendibleType(multiModel, operatorTypeUri);
+		ExtendibleElement operatorType = MultiModelRegistry.getExtendibleElement(multiModel, operatorTypeUri);
 		if (operatorType instanceof Operator) {
 			return (Operator) operatorType;
 		}
