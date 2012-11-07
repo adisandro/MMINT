@@ -63,7 +63,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		return status;
     }
-	
+
     /**
      * Overrides superclass to re-initialize diagram type hierarchy.
      */
@@ -110,7 +110,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		String constraint = MidDiagramTrait.getBigStringInput("Create new light model type", "Insert new model type constraint");
 		Model newModelType = MultiModelLightTypeFactory.createLightModelType(modelType, newModelTypeName, constraint);
 		MMTF.initTypeHierarchy(multiModel);
-		
+
 		return newModelType;
 	}
 
