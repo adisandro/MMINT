@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
 /**
@@ -25,6 +26,6 @@ public class ExtendibleElementSupertypeSemanticEditPolicy extends ExtendibleElem
 	@Override
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
 }

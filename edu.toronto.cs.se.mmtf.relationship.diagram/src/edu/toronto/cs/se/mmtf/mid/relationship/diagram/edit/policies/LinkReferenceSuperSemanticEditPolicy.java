@@ -23,7 +23,7 @@ public class LinkReferenceSuperSemanticEditPolicy extends LinkReference2ItemSema
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	@Override

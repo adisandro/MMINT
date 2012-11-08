@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
 /**
@@ -26,16 +26,16 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 public class ModelElementEndpointReferenceSuperSemanticEditPolicy extends ModelElementEndpointReference2ItemSemanticEditPolicy {
 
 	/**
-	 * Gets the command to remove a model element reference from a link.
+	 * Gets the command to remove a model element endpoint reference from a link.
 	 * 
 	 * @param req
 	 *            The request.
 	 * @return The executable command.
 	 */
 	@Override
-	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	@Override

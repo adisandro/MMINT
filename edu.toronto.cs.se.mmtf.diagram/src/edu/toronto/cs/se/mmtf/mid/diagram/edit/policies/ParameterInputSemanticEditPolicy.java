@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 /**
@@ -31,7 +32,7 @@ public class ParameterInputSemanticEditPolicy extends ParameterItemSemanticEditP
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

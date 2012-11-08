@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 
 /**
@@ -34,7 +35,7 @@ public class ModelEndpointReferenceSuperComponentEditPolicy extends ComponentEdi
 	@Override
 	public Command getCommand(Request request) {
 
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

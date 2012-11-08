@@ -37,7 +37,7 @@ public class ModelElementReferenceSuperSemanticEditPolicy extends ModelElementRe
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**

@@ -35,7 +35,7 @@ public class ModelEndpointReferenceSuperSemanticEditPolicy extends ModelEndpoint
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
