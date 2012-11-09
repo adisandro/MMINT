@@ -18,10 +18,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 /**
  * The component edit policy for model references.
  * 
- * @author Alessio Di Sandro
+ * @author Vivien Suen
  * 
  */
-public class ModelEndpointReferenceSuperComponentEditPolicy extends ComponentEditPolicy {
+public class LinkReferenceSuperComponentEditPolicy extends ComponentEditPolicy {
 
 	/**
 	 * Gets the command to delete a model reference when "Del" keyboard button
