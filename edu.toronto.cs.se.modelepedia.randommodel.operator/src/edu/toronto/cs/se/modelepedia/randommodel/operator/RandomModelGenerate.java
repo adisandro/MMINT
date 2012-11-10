@@ -17,24 +17,22 @@ import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
 public class RandomModelGenerate extends OperatorExecutableImpl {
 
-	private static final String RANDOM_SUFFIX = "_random_";
+	private static final String RANDOM_SUFFIX = "_random";
 	private static final String PYTHON_SCRIPT = "script/graph_gen.py";
 	/** % of annotated elements in the random model. */
 	private static final String PROPERTY_IN_ANNOTATIONS = "annotations";
@@ -73,27 +71,23 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		// create random instance
-		Model model = actualParameters.get(0);
+		Model typegraphModel = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
-			model,
+			typegraphModel,
 			null,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
-		String baseUri = model.getUri().substring(0, model.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String subdir = MultiModelOperatorUtils.getCreateSubdir(model, inputProperties);
+
+		// create random instance
+		String modelType = ((RandomModel) typegraphModel.getRoot()).getName();
+		String newLastSegmentUri = modelType + RANDOM_SUFFIX + (new Date()).getTime() + MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
+		String subdir = MultiModelOperatorUtils.getCreateSubdir(typegraphModel, inputProperties);
 		if (subdir != null) {
-			baseUri += subdir + IPath.SEPARATOR;
+			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;
 		}
-		String modelType = ((RandomModel) model.getRoot()).getName();
-		String randomUri =
-			baseUri +
-			modelType +
-			RANDOM_SUFFIX +
-			(new Date()).getTime() +
-			"." + RandomModelPackage.eNAME;
+		String newRandommodelModelUri = MultiModelRegistry.replaceLastSegmentInUri(typegraphModel.getUri(), newLastSegmentUri);
 		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry("/");
 		String pythonPath = FileLocator.toFileURL(url).getPath() + PYTHON_SCRIPT;
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
@@ -101,11 +95,11 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			"python",
 			pythonPath,
 			"-input",
-			workspaceUri + model.getUri(),
+			workspaceUri + typegraphModel.getUri(),
 			"-output",
-			workspaceUri + randomUri,
+			workspaceUri + newRandommodelModelUri,
 			"-instname",
-			randomUri,
+			newRandommodelModelUri,
 			"-annotated",
 			String.valueOf(annotations),
 			"-may",
@@ -135,24 +129,13 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		// create model
 		EList<Model> result = new BasicEList<Model>();
 		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
-		URI modelUri = URI.createPlatformResourceURI(randomUri, true);
-		MultiModel owner;
-		Model newElement;
-		if (updateMid) {
-			owner = (MultiModel) model.eContainer();
-			MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
-		}
-		else {
-			owner = null;
-		}
-		newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
-		if (updateMid) {
-			Editor editor = MultiModelInstanceFactory.createEditor(newElement);
-			if (editor != null) {
-				MultiModelInstanceFactory.addModelEditor(editor, owner);
-			}
-		}
-		result.add(newElement);
+		MultiModel multiModel = (updateMid) ?
+			MultiModelRegistry.getMultiModel(typegraphModel) :
+			null;
+		Model newRandommodelModel = (updateMid) ?
+			MultiModelInstanceFactory.createModelAndEditor(null, newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
+			MultiModelInstanceFactory.createModel(null, newRandommodelModelUri, ModelOrigin.CREATED, null);
+		result.add(newRandommodelModel);
 
 		return result;
 	}

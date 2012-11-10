@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
@@ -60,9 +59,15 @@ public class MultiModelInstanceFactory {
 
 	private static void addExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, String newElementUri, String newElementName, MultiModel multiModel) throws MMTFException {
 
-		if (newElementUri != null && multiModel.getExtendibleTable().containsKey(newElementUri)) {
+		if (multiModel.getExtendibleTable().containsKey(newElementUri)) {
 			throw new MMTFException("Extendible element with uri " + newElementUri + " is already in this instance MID");
 		}
+		multiModel.getExtendibleTable().put(newElementUri, newElement);
+
+		addBasicExtendibleElement(newElement, elementType, newElementUri, newElementName);
+	}
+
+	private static void addBasicExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, String newElementUri, String newElementName) throws MMTFException {
 
 		newElement.setUri(newElementUri);
 		newElement.setName(newElementName);
@@ -80,12 +85,9 @@ public class MultiModelInstanceFactory {
 		else { // use static metatype
 			newElement.setMetatypeUri(elementType.getUri());
 		}
-		if (newElementUri != null) {
-			multiModel.getExtendibleTable().put(newElementUri, newElement);
-		}
 	}
 
-	protected static void addExtendibleElementEndpoint(ExtendibleElementEndpoint newElementEndpoint, ExtendibleElement newElement) {
+	private static void addExtendibleElementEndpoint(ExtendibleElementEndpoint newElementEndpoint, ExtendibleElement newElement) {
 
 		newElementEndpoint.setTarget(newElement);
 		newElementEndpoint.setLowerBound(1);
@@ -172,7 +174,7 @@ public class MultiModelInstanceFactory {
 	 * @param modelUri
 	 *            The uri of the model to add (possibly null).
 	 */
-	private static void addModel(Model model, Model modelType, ModelOrigin origin, MultiModel multiModel, URI modelUri) {
+	private static void addModelOld(Model model, Model modelType, ModelOrigin origin, MultiModel multiModel, URI modelUri) {
 
 		String fileName, fileExtension;
 		// model relationship
@@ -198,37 +200,19 @@ public class MultiModelInstanceFactory {
 		model.setFileExtension(fileExtension);
 	}
 
-	/**
-	 * Creates and adds a model to a multimodel.
-	 * 
-	 * @param modelType
-	 *            The model type.
-	 * @param origin
-	 *            The origin of the model.
-	 * @param multiModel
-	 *            The root multimodel, null if the root is a relationship.
-	 * @param modelUri
-	 *            The uri of the model to add.
-	 * @return The model just created.
-	 */
-	public static Model createModel(Model modelType, ModelOrigin origin, MultiModel multiModel, URI modelUri) {
-
-		Model model = MidFactory.eINSTANCE.createModel();
-		addModel(model, modelType, origin, multiModel, modelUri);
-
-		return model;
-	}
-
 	private static void addModel(Model newModel, Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
-		String lastSegmentUri = newModelUri.substring(newModelUri.lastIndexOf(MMTF.URI_SEPARATOR) + 1, newModelUri.length());
-		String newModelName = lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR));
-		addExtendibleElement(newModel, modelType, newModelUri, newModelName, multiModel);
-		String fileExtension = lastSegmentUri.substring(lastSegmentUri.lastIndexOf(MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
+		String newModelName = MultiModelRegistry.getFileNameFromUri(newModelUri);
+		if (multiModel == null) {
+			addBasicExtendibleElement(newModel, modelType, newModelUri, newModelName);
+		}
+		else {
+			addExtendibleElement(newModel, modelType, newModelUri, newModelName, multiModel);
+			multiModel.getModels().add(newModel);
+		}
+		String fileExtension = MultiModelRegistry.getFileExtensionFromUri(newModelUri);
 		newModel.setOrigin(origin);
 		newModel.setFileExtension(fileExtension);
-
-		multiModel.getModels().add(newModel);
 	}
 
 	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
@@ -239,6 +223,13 @@ public class MultiModelInstanceFactory {
 		if (modelRoot instanceof MAVOModel) {
 			newModel.setInc(((MAVOModel) modelRoot).isInc());
 		}
+
+		return newModel;
+	}
+
+	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
+
+		Model newModel = createModel(modelType, newModelUri, origin, multiModel);
 		Editor newEditor = MultiModelInstanceFactory.createEditor(newModel);
 		if (newEditor != null) {
 			MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
@@ -308,7 +299,7 @@ public class MultiModelInstanceFactory {
 	public static ModelRel createModelRel(ModelRel modelRelType, MultiModel multiModel, ModelOrigin origin, URI modelRelUri, EClass modelRelClass) {
 
 		ModelRel modelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelClass);
-		addModel(modelRel, modelRelType, origin, multiModel, modelRelUri);
+		addModelOld(modelRel, modelRelType, origin, multiModel, modelRelUri);
 
 		return modelRel;
 	}
@@ -354,8 +345,7 @@ public class MultiModelInstanceFactory {
 	public static ModelEndpointReference createModelEndpointAndModelEndpointReference(ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel, boolean isBinarySrc) throws MMTFException {
 
 		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		MultiModel multiModel = (MultiModel) modelRel.eContainer();
-		addExtendibleElement(newModelEndpoint, modelTypeEndpoint, null, null, multiModel);
+		addBasicExtendibleElement(newModelEndpoint, modelTypeEndpoint, null, newModel.getName());
 		addExtendibleElementEndpoint(newModelEndpoint, newModel);
 		if (isBinarySrc) {
 			modelRel.getModelEndpoints().add(0, newModelEndpoint);
@@ -363,7 +353,6 @@ public class MultiModelInstanceFactory {
 		else {
 			modelRel.getModelEndpoints().add(newModelEndpoint);
 		}
-		newModelEndpoint.setName(newModel.getName());
 		ModelEndpointReference modelEndpointRef = createModelEndpointReference(modelRel, newModelEndpoint, isBinarySrc);
 
 		return modelEndpointRef;
@@ -371,8 +360,7 @@ public class MultiModelInstanceFactory {
 
 	public static void replaceModelEndpointAndModelEndpointReference(ModelEndpoint oldModelEndpoint, ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel) throws MMTFException {
 
-		MultiModel multiModel = (MultiModel) modelRel.eContainer();
-		addExtendibleElement(oldModelEndpoint, modelTypeEndpoint, null, null, multiModel);
+		addBasicExtendibleElement(oldModelEndpoint, modelTypeEndpoint, null, null);
 		oldModelEndpoint.setTarget(newModel);
 	}
 
@@ -469,8 +457,7 @@ public class MultiModelInstanceFactory {
 	public static ModelElementEndpointReference createModelElementEndpointAndModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef, boolean isBinarySrc) throws MMTFException {
 
 		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
-		MultiModel multiModel = (MultiModel) linkRef.eContainer().eContainer();
-		addExtendibleElement(newModelElemEndpoint, modelElemTypeEndpoint, null, null, multiModel);
+		addBasicExtendibleElement(newModelElemEndpoint, modelElemTypeEndpoint, null, newModelElemRef.getObject().getName());
 		addExtendibleElementEndpoint(newModelElemEndpoint, newModelElemRef.getObject());
 		if (isBinarySrc) {
 			linkRef.getObject().getModelElemEndpoints().add(0, newModelElemEndpoint);
@@ -503,81 +490,57 @@ public class MultiModelInstanceFactory {
 
 	public static void replaceModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef) throws MMTFException {
 
-		MultiModel multiModel = (MultiModel) linkRef.eContainer().eContainer();
 		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
-		addExtendibleElement(oldModelElemEndpoint, modelElemTypeEndpoint, null, null, multiModel);
+		addBasicExtendibleElement(oldModelElemEndpoint, modelElemTypeEndpoint, null, null);
 		oldModelElemEndpoint.setTarget(newModelElemRef.getObject());
 		oldModelElemEndpointRef.setModelElemRef(newModelElemRef);
 	}
 
-	/**
-	 * Creates an editor for a model.
-	 * 
-	 * @param model
-	 *            The model.
-	 * @return The editor just created.
-	 */
-	public static Editor createEditor(Model model) {
+	public static Editor createEditor(Model model) throws MMTFException {
 
-		URI modelUri = URI.createPlatformResourceURI(model.getUri(), true);
 		EList<Editor> editorTypes = MultiModelTypeRegistry.getModelTypeEditors(model.getMetatypeUri());
 		if (editorTypes.size() != 0) {
-			//TODO MMTF: prioritize editors list instead of running twice
+			//TODO MMTF: prioritize editors list instead of running twice?
 			//TODO MMTF: check if editor file really exists in model directory
 			for (Editor editorType : editorTypes) {
 				if (editorType instanceof Diagram) {
-					return createEditor(editorType, modelUri);
+					return createEditor(editorType, model.getUri());
 				}
 			}
 			for (Editor editorType : editorTypes) {
-				return createEditor(editorType, modelUri);
+				return createEditor(editorType, model.getUri());
 			}
 		}
 
 		return null;
 	}
 
-	/**
-	 * Creates an editor for a model.
-	 * 
-	 * @param editorType
-	 *            The editor type.
-	 * @param modelUri
-	 *            The uri of the model that will use the editor.
-	 * @return The editor just created.
-	 */
-	public static Editor createEditor(Editor editorType, URI modelUri) {
+	public static Editor createEditor(Editor editorType, String modelUri) throws MMTFException {
 
-		Editor editor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
-		String editorName = editorType.getName() + " for model " + modelUri;
-		String stringModelUri = modelUri.toPlatformString(true);
-		URI editorUri = URI.createPlatformResourceURI(
-			stringModelUri.substring(0, stringModelUri.lastIndexOf('.')+1) + editorType.getFileExtensions().get(0),
-			true
-			//TODO MMTF: metatypeuri here
-		);
-		addExtendibleElementOld(editor, editorType, null, editorUri, editorName);
+		Editor newEditor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
+		String newEditorName = editorType.getName() + " for model " + modelUri;
+		String newEditorUri = MultiModelRegistry.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
+		addBasicExtendibleElement(newEditor, editorType, newEditorUri, newEditorName);
+		newEditor.setModelUri(modelUri);
+		newEditor.setId(editorType.getId());
+		newEditor.setWizardId(editorType.getWizardId());
 
-		editor.setModelUri(stringModelUri);
-		editor.setId(editorType.getId());
-		editor.setWizardId(editorType.getWizardId());
-
-		return editor;
+		return newEditor;
 	}
 
 	/**
-	 * Adds an editor to a model.
+	 * Binds an editor to its model and adds it to a multimodel.
 	 * 
 	 * @param editor
 	 *            The editor.
 	 * @param multiModel
-	 *            The root multimodel.
+	 *            The multimodel.
 	 */
 	public static void addModelEditor(Editor editor, MultiModel multiModel) {
 
-		ExtendibleElement model = multiModel.getExtendibleTable().get(editor.getModelUri());
-		if (model != null && model instanceof Model) {
-			((Model) model).getEditors().add(editor);
+		Model model = MultiModelRegistry.getModel(multiModel, editor.getModelUri());
+		if (model != null) {
+			model.getEditors().add(editor);
 			multiModel.getEditors().add(editor);
 		}
 	}
@@ -787,26 +750,7 @@ public class MultiModelInstanceFactory {
 
 		MultiModel multiModel = (MultiModel) editor.eContainer();
 		multiModel.getEditors().remove(editor);
-	}
-
-	/**
-	 * Checks the uniqueness of a model in a MID.
-	 * 
-	 * @param multiModel
-	 *            The root multimodel.
-	 * @param modelUri
-	 *            The uri of the model to be checked.
-	 * @return Null if the model is unique, the model already in the MID
-	 *         otherwise.
-	 */
-	public static Model getModelUnique(MultiModel multiModel, URI modelUri) {
-
-		ExtendibleElement model = multiModel.getExtendibleTable().get(modelUri.toPlatformString(true));
-		if (model != null && model instanceof Model) {
-			return (Model) model;
-		}
-
-		return null;
+		// no need to removeExtendibleElement
 	}
 
 	public static ModelElement getModelElementUnique(MultiModel multiModel, URI modelElemUri) {
@@ -851,26 +795,6 @@ public class MultiModelInstanceFactory {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Checks the uniqueness of a model in a MID.
-	 * 
-	 * @param multiModel
-	 *            The root multimodel.
-	 * @param modelUri
-	 *            The uri of the model to be checked.
-	 * @return True if the model is unique.
-	 * @throws MMTFException
-	 *             If the model is not unique.
-	 */
-	public static boolean assertModelUnique(MultiModel multiModel, URI modelUri) throws MMTFException {
-
-		if (getModelUnique(multiModel, modelUri) != null) {
-			throw new MMTFException("Model " + modelUri + " is already in the diagram");
-		}
-
-		return true;
 	}
 
 	/**

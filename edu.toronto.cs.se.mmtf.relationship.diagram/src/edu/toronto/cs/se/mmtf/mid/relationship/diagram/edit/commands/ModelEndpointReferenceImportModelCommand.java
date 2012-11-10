@@ -81,39 +81,40 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 
 	protected ModelEndpointReference doExecuteInstancesLevel() throws Exception{
 
-		//TODO MMTF: completely review this whole class
-		URI modelUri = MidDiagramTrait.selectModelToImport(false);
-		ModelRel owner = (ModelRel) getElementToEdit();
-		Model newModel;
-
-		MultiModelInstanceFactory.assertModelUnique(owner, modelUri); // model must not be already in the mapping
-		if (owner.eContainer() == null) { // standalone mapping reference
-			newModel = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, null, modelUri);
-		}
-		else {
-			newModel = MultiModelInstanceFactory.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
-			if (newModel == null) {
-				newModel = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
-				Editor editor = MultiModelInstanceFactory.createEditor(newModel);
-				if (editor != null) {
-					MultiModelInstanceFactory.addModelEditor(editor, (MultiModel) owner.eContainer());
-				}
-			}
-		}
-		EList<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(owner, (Model) newModel);
-		ModelEndpointReference modelTypeEndpointRef = RelationshipDiagramTrait.selectModelTypeEndpointToCreate(owner, modelTypeEndpointUris, "");
-		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			modelTypeEndpointRef.getObject(),
-			owner,
-			newModel,
-			false
-		);
-
-		// update outline
-		MidDiagramEditor editor = (MidDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		editor.getOutlinePage().addInput(modelUri);
-
-		return newModelEndpointRef;
+		//TODO MMTF: completely review this whole class, now we don't just import a model, we can also add an endpoint to the same model
+//		String modelUri = MidDiagramTrait.selectModelToImport(false);
+//		ModelRel owner = (ModelRel) getElementToEdit();
+//		Model newModel;
+//
+//		MultiModelInstanceFactory.assertModelUnique(owner, modelUri); // model must not be already in the mapping
+//		if (owner.eContainer() == null) { // standalone mapping reference
+//			newModel = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, null, modelUri);
+//		}
+//		else {
+//			newModel = MultiModelInstanceFactory.getModelUnique((MultiModel) owner.eContainer(), modelUri); // model can be already in the MID
+//			if (newModel == null) {
+//				newModel = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, (MultiModel) owner.eContainer(), modelUri);
+//				Editor editor = MultiModelInstanceFactory.createEditor(newModel);
+//				if (editor != null) {
+//					MultiModelInstanceFactory.addModelEditor(editor, (MultiModel) owner.eContainer());
+//				}
+//			}
+//		}
+//		EList<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(owner, (Model) newModel);
+//		ModelEndpointReference modelTypeEndpointRef = RelationshipDiagramTrait.selectModelTypeEndpointToCreate(owner, modelTypeEndpointUris, "");
+//		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
+//			modelTypeEndpointRef.getObject(),
+//			owner,
+//			newModel,
+//			false
+//		);
+//
+//		// update outline
+//		MidDiagramEditor editor = (MidDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+//		editor.getOutlinePage().addInput(modelUri);
+//
+//		return newModelEndpointRef;
+		return null;
 	}
 
 	/**

@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.powerwindow.operator;
 
-import java.util.Collections;
 import java.util.Date;
 
 import org.eclipse.core.resources.IFile;
@@ -20,17 +19,13 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNetFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNetPackage;
@@ -40,8 +35,8 @@ import edu.toronto.cs.se.modelepedia.powerwindow.Window;
 public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 	private static final int DELAY_BOUND = 50;
-	private static final String FILE_SUFFIX = "_pw2pn_";
-	private Model newElement;
+	private static final String FILE_SUFFIX = "_pw2pn";
+	private Model newPetrinetModel;
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
@@ -49,36 +44,23 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 		// convert
 		Model windowModel = actualParameters.get(0);
 		Window window = (Window) windowModel.getRoot();
-		PetriNet petriNet = PetriNetFactory.eINSTANCE.createPetriNet();
+		PetriNet newPetrinet = PetriNetFactory.eINSTANCE.createPetriNet();
 		if (window.getSensor() != null && window.getSensor().getDelay() < DELAY_BOUND) {
-			Place place = PetriNetFactory.eINSTANCE.createPlace();
-			petriNet.getNodes().add(place);
+			Place newPlace = PetriNetFactory.eINSTANCE.createPlace();
+			newPetrinet.getNodes().add(newPlace);
 		}
 
 		// serialize
-		String uri = windowModel.getUri();
-		uri = uri.substring(0, uri.lastIndexOf(IPath.SEPARATOR)+1) +
-			windowModel.getName() +
-			FILE_SUFFIX +
-			(new Date()).getTime() +
-			"." + PetriNetPackage.eNAME;
-		URI modelUri = URI.createPlatformResourceURI(uri, true);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(modelUri);
-		resource.getContents().add(petriNet);
-		resource.save(Collections.EMPTY_MAP);
+		String newPetrinetModelUri = MultiModelRegistry.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
+		newPetrinetModelUri = MultiModelRegistry.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
+		MultiModelTypeIntrospection.writeRoot(newPetrinet, newPetrinetModelUri, true);
 
 		// create model
-		MultiModel owner = (MultiModel) windowModel.eContainer();
-		MultiModelInstanceFactory.assertModelUnique(owner, modelUri);
-		newElement = MultiModelInstanceFactory.createModel(null, ModelOrigin.CREATED, owner, modelUri);
-		Editor editor = MultiModelInstanceFactory.createEditor(newElement);
-		if (editor != null) {
-			MultiModelInstanceFactory.addModelEditor(editor, owner);
-		}
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(windowModel);
+		newPetrinetModel = MultiModelInstanceFactory.createModelAndEditor(null, newPetrinetModelUri, ModelOrigin.CREATED, multiModel);
 
 		EList<Model> result = new BasicEList<Model>();
-		result.add(newElement);
+		result.add(newPetrinetModel);
 
 		return result;
 	}
@@ -86,12 +68,12 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 	@Override
 	public void cleanup() throws Exception {
 
-		if (newElement != null) {
-			MultiModelInstanceFactory.removeModel(newElement);
-			IPath path = new Path(newElement.getUri());
+		if (newPetrinetModel != null) {
+			MultiModelInstanceFactory.removeModel(newPetrinetModel);
+			IPath path = new Path(newPetrinetModel.getUri());
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 			file.delete(true, null);
-			newElement = null;
+			newPetrinetModel = null;
 		}
 	}
 

@@ -412,12 +412,12 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param multiModel
 	 *            The multimodel.
-	 * @param uri
+	 * @param edito
 	 *            The editor type's uri.
 	 */
-	private static Editor removeEditorType(MultiModel multiModel, String uri) {
+	private static Editor removeEditorType(MultiModel multiModel, Editor editorType) {
 
-		Editor editorType = (Editor) multiModel.getExtendibleTable().removeKey(uri);
+		removeExtendibleElementType(multiModel, editorType.getUri());
 		multiModel.getEditors().remove(editorType);
 		Model modelType = MultiModelRegistry.getModel(multiModel, editorType.getModelUri());
 		if (modelType != null) {
@@ -436,9 +436,10 @@ public class MultiModelTypeFactory {
 	public static void removeEditorType(Editor editorType) {
 
 		MultiModel multiModel = (MultiModel) editorType.eContainer();
-		removeEditorType(multiModel, editorType.getUri());
+		removeEditorType(multiModel, editorType);
 		for (String editorSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, editorType)) {
-			removeEditorType(multiModel, editorSubtypeUri);
+			Editor editorSubtype = MultiModelRegistry.getEditorType(multiModel, editorSubtypeUri);
+			removeEditorType(multiModel, editorSubtype);
 		}
 	}
 

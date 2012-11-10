@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
@@ -23,7 +22,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to import an existing model relationship.
@@ -60,8 +58,9 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 	protected ModelRel doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		URI newModelRelUri = MidDiagramTrait.selectModelToImport(true);
-		ModelRel newModelRel = null;//MultiModelInstanceFactory.copyModelRel(multiModel, newModelRelUri);
+		String newModelRelUri = MidDiagramTrait.selectModelToImport(true);
+		ModelRel newModelRel = null;
+		//TODO MMTF: MultiModelInstanceFactory.copyModelRel(multiModel, newModelRelUri);
 
 		return newModelRel;
 	}

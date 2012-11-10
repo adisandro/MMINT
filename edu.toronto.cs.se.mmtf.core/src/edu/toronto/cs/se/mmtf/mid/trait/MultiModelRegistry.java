@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -181,10 +182,53 @@ public class MultiModelRegistry {
 			labelProvider.getText(eObject);
 	}
 
+	private static String getLastSegmentFromUri(String uri) {
+
+		return uri.substring(uri.lastIndexOf(MMTF.URI_SEPARATOR) + 1, uri.length());
+	}
+
+	public static String getFileNameFromUri(String uri) {
+
+		String lastSegmentUri = getLastSegmentFromUri(uri);
+
+		return lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(ECORE_MODEL_FILEEXTENSION_SEPARATOR));
+	}
+
+	public static String getFileExtensionFromUri(String uri) {
+
+		String lastSegmentUri = getLastSegmentFromUri(uri);
+
+		return lastSegmentUri.substring(lastSegmentUri.lastIndexOf(ECORE_MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
+	}
+
+	public static String replaceLastSegmentInUri(String uri, String newLastSegmentUri) {
+
+		String lastSegmentUri = getLastSegmentFromUri(uri);
+
+		return uri.replace(lastSegmentUri, newLastSegmentUri);
+	}
+
+	public static String replaceFileExtensionInUri(String uri, String newFileExtension) {
+
+		String fileExtension = getFileExtensionFromUri(uri);
+
+		return uri.replace(fileExtension, newFileExtension);
+	}
+
+	public static String addFileNameSuffixInUri(String uri, String newFileNameSuffix) {
+
+		String fileExtension = getFileExtensionFromUri(uri);
+
+		return uri.replace(ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
+	}
+
 	public static MultiModel getMultiModel(ExtendibleElement element) {
 
 		MultiModel multiModel = null;
-		if (element instanceof ModelElement) {
+		if (element instanceof Model) {
+			multiModel = (MultiModel) element.eContainer();
+		}
+		else if (element instanceof ModelElement) {
 			multiModel = (MultiModel) element.eContainer().eContainer();
 		}
 		//TODO MMTF: to be continued..
@@ -232,6 +276,25 @@ public class MultiModelRegistry {
 		ExtendibleElement model = MultiModelRegistry.getExtendibleElement(multiModel, modelUri);
 		if (model instanceof Model) {
 			return (Model) model;
+		}
+		return null;
+	}
+
+	/**
+	 * Gets an editor (type or instance) from a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * @param editorUri
+	 *            The uri of the editor.
+	 * @return The editor, or null if its uri is not found or found not to be an
+	 *         editor.
+	 */
+	public static Editor getEditorType(MultiModel multiModel, String editorUri) {
+	
+		ExtendibleElement editor = getExtendibleElement(multiModel, editorUri);
+		if (editor instanceof Editor) {
+			return (Editor) editor;
 		}
 		return null;
 	}

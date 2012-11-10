@@ -15,7 +15,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
@@ -93,10 +92,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		Editor newEditor = MidDiagramTrait.selectModelTypeToCreate();
-		URI newModelUri = URI.createPlatformResourceURI(newEditor.getModelUri(), true);
-		MultiModelInstanceFactory.assertModelUnique(multiModel, newModelUri);
 		Model modelType = MultiModelTypeRegistry.getModelType(newEditor.getMetatype().getModelUri());
-		Model newModel = MultiModelInstanceFactory.createModel(modelType, ModelOrigin.CREATED, multiModel, newModelUri);
+		Model newModel = MultiModelInstanceFactory.createModel(modelType, newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
 		MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
 
 		return newModel;

@@ -97,7 +97,7 @@
             isConversion="false">
          <extendibleType
                name="ExperimentDriver"
-               uri="http://se.cs.toronto.edu/modelepedia/operator/statistics/ExperimentDriver">
+               uri="http://se.cs.toronto.edu/modelepedia/operator/experiment/ExperimentDriver">
          </extendibleType>
          <input>
             <parameter
@@ -118,7 +118,7 @@
             isConversion="false">
          <extendibleType
                name="AlloyChecker"
-               uri="http://se.cs.toronto.edu/modelepedia/operator/alloy/AlloyChecker">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_AlloyChecker">
          </extendibleType>
          <input>
             <parameter
@@ -139,7 +139,7 @@
             isConversion="false">
          <extendibleType
                name="ModelNameMatch"
-               uri="http://se.cs.toronto.edu/modelepedia/operator/match/ModelNameMatch">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelNameMatch">
          </extendibleType>
          <input>
             <parameter
@@ -165,7 +165,7 @@
             isConversion="false">
          <extendibleType
                name="ModelDifference"
-               uri="http://se.cs.toronto.edu/modelepedia/operator/diff/ModelDifference">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelDifference">
          </extendibleType>
          <input>
             <parameter
@@ -201,7 +201,7 @@
             isConversion="false">
          <extendibleType
                name="ChangeImpact"
-               uri="http://se.cs.toronto.edu/modelepedia/operator/slice/ChangeImpact">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangeImpact">
          </extendibleType>
          <input>
             <parameter
@@ -247,7 +247,7 @@
             isConversion="false">
          <extendibleType
                name="ChangePropagation"
-               uri="http://se.cs.toronto.edu/modelepedia/operator/propagate/ChangePropagation">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangePropagation">
          </extendibleType>
          <input>
             <parameter

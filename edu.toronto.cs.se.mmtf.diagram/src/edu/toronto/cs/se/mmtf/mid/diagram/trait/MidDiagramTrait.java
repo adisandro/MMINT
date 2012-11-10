@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.trait;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -78,7 +77,7 @@ public class MidDiagramTrait {
 	 * @throws Exception
 	 *             If the model import was not completed for any reason.
 	 */
-	public static URI selectModelToImport(boolean relOnly) throws Exception {
+	public static String selectModelToImport(boolean relOnly) throws Exception {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		DiagramDocumentEditor editor = (DiagramDocumentEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -89,7 +88,7 @@ public class MidDiagramTrait {
 			throw new MMTFException("Dialog cancel button pressed");
 		}
 
-		return dialog.getSelectedModelElementURI();
+		return dialog.getSelectedModelElementURI().toPlatformString(true);
 	}
 
 	/**
@@ -128,7 +127,7 @@ public class MidDiagramTrait {
 		if (wizDialog.open() == Window.CANCEL) {
 			throw new MMTFException("Wizard dialog cancel button pressed");
 		}
-		Editor editor = MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri());
+		Editor editor = MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri().toPlatformString(true));
 
 		return editor;
 	}

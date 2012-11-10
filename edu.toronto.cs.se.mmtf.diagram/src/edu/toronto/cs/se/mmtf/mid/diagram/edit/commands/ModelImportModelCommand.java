@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
@@ -23,7 +22,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
@@ -62,13 +60,8 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected Model doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		URI newModelUri = MidDiagramTrait.selectModelToImport(false);
-		MultiModelInstanceFactory.assertModelUnique(multiModel, newModelUri);
-		Model newModel = MultiModelInstanceFactory.createModel(null, ModelOrigin.IMPORTED, multiModel, newModelUri);
-		Editor newEditor = MultiModelInstanceFactory.createEditor(newModel);
-		if (newEditor != null) {
-			MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
-		}
+		String newModelUri = MidDiagramTrait.selectModelToImport(false);
+		Model newModel = MultiModelInstanceFactory.createModelAndEditor(null, newModelUri, ModelOrigin.IMPORTED, multiModel);
 
 		return newModel;
 	}

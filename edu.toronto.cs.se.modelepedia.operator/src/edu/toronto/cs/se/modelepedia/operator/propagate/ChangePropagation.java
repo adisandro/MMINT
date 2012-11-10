@@ -64,16 +64,12 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		// copy and serialize new model
 		EObject relatedRoot = relatedModel.getRoot();
 		EObject copyRoot = EcoreUtil.copy(relatedRoot);
-		String fileExtension = relatedModel.getUri().substring(
-			relatedModel.getUri().lastIndexOf(MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR),
-			relatedModel.getUri().length()
-		);
-		String newCopyUri = relatedModel.getUri().replace(fileExtension, PROP_MODEL_SUFFIX + fileExtension);
+		String newCopyUri = MultiModelRegistry.addFileNameSuffixInUri(relatedModel.getUri(), PROP_MODEL_SUFFIX);
 		MultiModelTypeIntrospection.writeRoot(copyRoot, newCopyUri, true);
 
 		// create model in multimodel
-		MultiModel multiModel = (MultiModel) relatedModel.eContainer();
-		Model newCopyModel = MultiModelInstanceFactory.createModel(relatedModel.getMetatype(), newCopyUri, ModelOrigin.IMPORTED, multiModel);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(relatedModel);
+		Model newCopyModel = MultiModelInstanceFactory.createModelAndEditor(relatedModel.getMetatype(), newCopyUri, ModelOrigin.IMPORTED, multiModel);
 
 		return newCopyModel;
 	}

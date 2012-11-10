@@ -336,18 +336,17 @@ public class MultiModelTypeRegistry {
 		return getModelElementTypeEndpoint(MMTF.repository, modelElemTypeEndpointUri);
 	}
 
-	public static Editor getEditorType(MultiModel multiModel, String editorTypeUri) {
-
-		ExtendibleElement editorType = MultiModelRegistry.getExtendibleElement(multiModel, editorTypeUri);
-		if (editorType instanceof Editor) {
-			return (Editor) editorType;
-		}
-		return null;
-	}
-
+	/**
+	 * Gets an editor type from the repository.
+	 * 
+	 * @param editorTypeUri
+	 *            The uri of the editor type.
+	 * @return The editor type, or null if its uri is not found or found not
+	 *         to be an editor type.
+	 */
 	public static Editor getEditorType(String editorTypeUri) {
 
-		return getEditorType(MMTF.repository, editorTypeUri);
+		return MultiModelRegistry.getEditorType(MMTF.repository, editorTypeUri);
 	}
 
 	/**
