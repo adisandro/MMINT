@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
@@ -167,7 +166,7 @@ supertypes:
 			String modelElemTypeUri = (newDroppedEObject instanceof EReference) ?
 				MMTF.ROOT_MODELELEMENT_RELATIONSHIP_URI :
 				MMTF.ROOT_MODELELEMENT_ENTITY_URI;
-			modelElemType = MultiModelTypeRegistry.getModelElementType(multiModel, modelElemTypeUri);
+			modelElemType = MultiModelRegistry.getModelElement(multiModel, modelElemTypeUri);
 			//TODO MMTF: move getXType into a generic type registry, I need those functions for instances too (only the ones with a multiModel argument)
 			//TODO MMTF: clean things in instances (order of arguments like in types, URI instead of String uri, name as argument)
 			//TODO MMTF: write a todo somewhere to remember to handle the import of a model rel instance

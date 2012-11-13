@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 
 public class MultiModelRegistry {
@@ -225,7 +226,7 @@ public class MultiModelRegistry {
 	public static MultiModel getMultiModel(ExtendibleElement element) {
 
 		MultiModel multiModel = null;
-		if (element instanceof Model) {
+		if (element instanceof Model || element instanceof ModelRel) {
 			multiModel = (MultiModel) element.eContainer();
 		}
 		else if (element instanceof ModelElement) {
@@ -276,6 +277,44 @@ public class MultiModelRegistry {
 		ExtendibleElement model = MultiModelRegistry.getExtendibleElement(multiModel, modelUri);
 		if (model instanceof Model) {
 			return (Model) model;
+		}
+		return null;
+	}
+
+	/**
+	 * Gets a model relationship (type or instance) from a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * @param modelRelUri
+	 *            The uri of the model relationship.
+	 * @return The model relationship, or null if its uri is not found or found
+	 *         not to be a model relationship.
+	 */
+	public static ModelRel getModelRel(MultiModel multiModel, String modelRelUri) {
+	
+		ExtendibleElement modelRel = getExtendibleElement(multiModel, modelRelUri);
+		if (modelRel instanceof ModelRel) {
+			return (ModelRel) modelRel;
+		}
+		return null;
+	}
+
+	/**
+	 * Gets a model element (type or instance) from a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * @param modelElemUri
+	 *            The uri of the model element.
+	 * @return The model element, or null if its uri is not found or found not
+	 *         to be a model element.
+	 */
+	public static ModelElement getModelElement(MultiModel multiModel, String modelElemUri) {
+	
+		ExtendibleElement modelElem = getExtendibleElement(multiModel, modelElemUri);
+		if (modelElem instanceof ModelElement) {
+			return (ModelElement) modelElem;
 		}
 		return null;
 	}

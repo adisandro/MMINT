@@ -16,12 +16,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
 
 /**
@@ -86,7 +86,7 @@ public class RelationshipTypesDialogContentProvider implements ITreeContentProvi
 			// add root links
 			if (showRootTypes) {
 				MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-				ModelRel rootModelRelType = MultiModelTypeRegistry.getModelRelType(multiModel, ROOT_MODELREL_URI);
+				ModelRel rootModelRelType = MultiModelRegistry.getModelRel(multiModel, ROOT_MODELREL_URI);
 				LinkReference rootLinkTypeRef = rootModelRelType.getLinkRefs().get(0);
 				userLinkTypes.add(rootLinkTypeRef);
 				//TODO MMTF: this won't work for standalone model relationship types (will it ever be a usecase?)

@@ -213,25 +213,6 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a model relationship type from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param modelRelTypeUri
-	 *            The uri of the model relationship type.
-	 * @return The model relationship type, or null if its uri is not found
-	 *         or found not to be a model relationship type.
-	 */
-	public static ModelRel getModelRelType(MultiModel multiModel, String modelRelTypeUri) {
-
-		ExtendibleElement modelRelType = MultiModelRegistry.getExtendibleElement(multiModel, modelRelTypeUri);
-		if (modelRelType instanceof ModelRel) {
-			return (ModelRel) modelRelType;
-		}
-		return null;
-	}
-
-	/**
 	 * Gets a model relationship type from the repository.
 	 * 
 	 * @param modelRelTypeUri
@@ -241,26 +222,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static ModelRel getModelRelType(String modelRelTypeUri) {
 
-		return getModelRelType(MMTF.repository, modelRelTypeUri);
-	}
-
-	/**
-	 * Gets a model element type from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param modelElemTypeUri
-	 *            The uri of the model element type.
-	 * @return The model element type, or null if its uri is not found or found
-	 *         not to be a model element type.
-	 */
-	public static ModelElement getModelElementType(MultiModel multiModel, String modelElemTypeUri) {
-
-		ExtendibleElement modelElemType = MultiModelRegistry.getExtendibleElement(multiModel, modelElemTypeUri);
-		if (modelElemType instanceof ModelElement) {
-			return (ModelElement) modelElemType;
-		}
-		return null;
+		return MultiModelRegistry.getModelRel(MMTF.repository, modelRelTypeUri);
 	}
 
 	/**
@@ -268,12 +230,12 @@ public class MultiModelTypeRegistry {
 	 * 
 	 * @param modelElemTypeUri
 	 *            The uri of the model element type.
-	 * @return The model element type, or null if its uri is not found or
-	 *         found not to be a model element type.
+	 * @return The model element type, or null if its uri is not found or found
+	 *         not to be a model element type.
 	 */
 	public static ModelElement getModelElementType(String modelElemTypeUri) {
 
-		return getModelElementType(MMTF.repository, modelElemTypeUri);
+		return MultiModelRegistry.getModelElement(MMTF.repository, modelElemTypeUri);
 	}
 
 	public static ModelEndpoint getModelTypeEndpoint(MultiModel multiModel, String modelTypeEndpointUri) {

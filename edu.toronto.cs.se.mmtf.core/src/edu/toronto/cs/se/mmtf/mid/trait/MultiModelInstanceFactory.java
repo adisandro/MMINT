@@ -244,7 +244,7 @@ public class MultiModelInstanceFactory {
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
 
 		//TODO MMTF: String newModelElemUri = newModelElemUri + MMTF.URI_SEPARATOR + classLiteral;
-		ModelElement newModelElem = MultiModelTypeRegistry.getModelElementType(multiModel, newModelElemUri);
+		ModelElement newModelElem = MultiModelRegistry.getModelElement(multiModel, newModelElemUri);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
 			addExtendibleElement(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
