@@ -53,46 +53,66 @@ def input_typegraph(quiet, input_file_name):
             edge.getAttribute('src'), edge.getAttribute('tgt'), min_inst, max_inst)
     return graph
 
-def output_instgraph(quiet, graph, output_file_name):
+def output_instgraph(quiet, graph, output_graph_file_name, output_mavoelems_file_name):
     try:
-        out_file = file(output_file_name, 'w')
+        out_graph_file = open(output_graph_file_name, 'w')
+        out_mavoelems_file = open(output_mavoelems_file_name, 'w')
     except IOError:
-        print "Error: cannot write to file: ", out_file
+        print "Error: cannot write to file: ", out_graph_file_name, " or ", out_mavoelems_file_name
         sys.exit(1)
-    if not quiet: print "Writing output graph:", output_file_name
+    if not quiet: print "Writing output graph:", output_graph_file_name
 
-    print >> out_file, '<?xml version="1.0" encoding="UTF-8"?>'
-    print >> out_file, '<randommodel:RandomModel'
-    print >> out_file, '    xmi:version="2.0"'
-    print >> out_file, '    xmlns:xmi="http://www.omg.org/XMI"'
-    print >> out_file, '    xmlns:randommodel="http://se.cs.toronto.edu/modelepedia/RandomModel"'
-    print >> out_file, '    name="{}"'.format(graph.name_str)
-    print >> out_file, '    type="{}" >'.format(graph.type_str)
+    may_elems = []
+    var_elems = []
+    set_elems = []
+    print >> out_graph_file, '<?xml version="1.0" encoding="UTF-8"?>'
+    print >> out_graph_file, '<randommodel:RandomModel'
+    print >> out_graph_file, '    xmi:version="2.0"'
+    print >> out_graph_file, '    xmlns:xmi="http://www.omg.org/XMI"'
+    print >> out_graph_file, '    xmlns:randommodel="http://se.cs.toronto.edu/modelepedia/RandomModel"'
+    print >> out_graph_file, '    name="{}"'.format(graph.name_str)
+    print >> out_graph_file, '    type="{}" >'.format(graph.type_str)
     for node in graph.nodes.itervalues():
-        print >> out_file, '  <nodes name="{}"'.format(node.name_str)
-        print >> out_file, '      type="{}"'.format(node.type_str),
-        if node.may_anno: print >> out_file, '\n      may="true"',
-        if node.var_anno: print >> out_file, '\n      var="true"',
-        if node.set_anno: print >> out_file, '\n      set="true"',
-        print >> out_file, '/>'
+        print >> out_graph_file, '  <nodes name="{}"'.format(node.name_str)
+        print >> out_graph_file, '      type="{}"'.format(node.type_str),
+        if node.may_anno:
+            print >> out_graph_file, '\n      may="true"',
+            may_elems.append(node.name_str)
+        if node.var_anno:
+            print >> out_graph_file, '\n      var="true"',
+            var_elems.append(node.name_str)
+        if node.set_anno:
+            print >> out_graph_file, '\n      set="true"',
+            set_elems.append(node.name_str)
+        print >> out_graph_file, '/>'
     for edge in graph.edges.itervalues():
-        print >> out_file, '  <edges name="{}"'.format(edge.name_str)
-        print >> out_file, '      type="{}"'.format(edge.type_str)
-        if edge.may_anno: print >> out_file, '      may="true"'
-        if edge.var_anno: print >> out_file, '      var="true"'
-        if edge.set_anno: print >> out_file, '      set="true"'
-        print >> out_file, '      src="{}"'.format(edge.src)
-        print >> out_file, '      tgt="{}" />'.format(edge.tgt)
-    print >> out_file, '</randommodel:RandomModel>'
-    out_file.close()
+        print >> out_graph_file, '  <edges name="{}"'.format(edge.name_str)
+        print >> out_graph_file, '      type="{}"'.format(edge.type_str)
+        if edge.may_anno:
+            print >> out_graph_file, '      may="true"'
+            may_elems.append(edge.name_str)
+        if edge.var_anno:
+            print >> out_graph_file, '      var="true"'
+            var_elems.append(edge.name_str)
+        if edge.set_anno:
+            print >> out_graph_file, '      set="true"'
+            set_elems.append(edge.name_str)
+        print >> out_graph_file, '      src="{}"'.format(edge.src)
+        print >> out_graph_file, '      tgt="{}" />'.format(edge.tgt)
+    print >> out_graph_file, '</randommodel:RandomModel>'
+    out_graph_file.close()
+    print >> out_mavoelems_file, 'mayElems=' + ','.join(may_elems)
+    print >> out_mavoelems_file, 'varElems=' + ','.join(var_elems)
+    print >> out_mavoelems_file, 'setElems=' + ','.join(set_elems)
+    out_mavoelems_file.close()
 
 #Output a file in the DOT language showing the graph for reading by Graphviz
-def output_graphviz(quiet, graph, output_file_name):
-    if not quiet: print "Writing output graph:", output_file_name
+def output_graphviz(quiet, graph, output_graph_file_name):
+    if not quiet: print "Writing output graph:", output_graph_file_name
     try:
-        out_file = file(output_file_name, 'w')
+        out_file = open(output_graph_file_name, 'w')
     except IOError:
-        print "Error: cannot write to file: ", out_file
+        print "Error: cannot write to file: ", output_graph_file_name
         sys.exit(1)
     elem_annotations = {}
     for elem in graph.nodes.values() + graph.edges.values():
@@ -128,7 +148,7 @@ def saveRandom(stateFile):
         with open(stateFile, 'wb') as file:
             pickle.dump(random.getstate(), file, pickle.HIGHEST_PROTOCOL)
 
-def generate_graphs(quiet, input_file_name, output_file_name, instance_name,
+def generate_graphs(quiet, input_file_name, output_graph_file_name, output_mavoelems_file_name, instance_name,
     output_type, annotated_fraction, may_fraction, var_fraction, set_fraction,
     seed=None, state_file=None):
     importRandom(seed, state_file)
@@ -144,9 +164,9 @@ def generate_graphs(quiet, input_file_name, output_file_name, instance_name,
     else:
         raise GeneratorException("Error: unknown type graph name: " + type_graph.name_str)
     if output_type == 'ecore':
-        output_instgraph(quiet, instance_graph, output_file_name)
+        output_instgraph(quiet, instance_graph, output_graph_file_name, output_mavoelems_file_name)
     elif output_type == 'graphviz':
-        output_graphviz(quiet, instance_graph, output_file_name)
+        output_graphviz(quiet, instance_graph, output_graph_file_name)
     else: assert False
     saveRandom(state_file)
 
@@ -154,7 +174,7 @@ if __name__ == '__main__':
     arg_processor = process_args()
     try:
         generate_graphs(arg_processor.quiet, arg_processor.input_file_name,
-            arg_processor.output_file_name, arg_processor.instance_name,
+            arg_processor.output_graph_file_name, arg_processor.output_mavoelems_file_name, arg_processor.instance_name,
             arg_processor.output_type, arg_processor.annotated_fraction,
             arg_processor.may_fraction, arg_processor.var_fraction,
             arg_processor.set_fraction, arg_processor.initial_seed,

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.presentation;
 
+import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
@@ -49,6 +50,7 @@ public final class RandomModelEditorPlugin extends EMFPlugin {
 	public RandomModelEditorPlugin() {
 		super
 			(new ResourceLocator [] {
+				MidEditPlugin.INSTANCE,
 			});
 	}
 

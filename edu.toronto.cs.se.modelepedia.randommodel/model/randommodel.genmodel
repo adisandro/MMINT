@@ -4,7 +4,8 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.randommodel/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.randommodel.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.randommodel.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.randommodel"
     modelName="RandomModel" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0"
-    copyrightFields="false" operationReflection="true">
+    copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmtf.core/model/mid.genmodel#//mavo"
+    operationReflection="true">
   <foreignModel>randommodel.ecore</foreignModel>
   <genPackages prefix="RandomModel" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       ecorePackage="randommodel.ecore#/">
@@ -24,9 +25,6 @@
     <genClasses image="false" ecoreClass="randommodel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//NamedElement/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//NamedElement/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//NamedElement/may"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//NamedElement/set"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//NamedElement/var"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//NamedElement/minimumNumberOfInstances"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//NamedElement/maximumNumberOfInstances"/>
     </genClasses>

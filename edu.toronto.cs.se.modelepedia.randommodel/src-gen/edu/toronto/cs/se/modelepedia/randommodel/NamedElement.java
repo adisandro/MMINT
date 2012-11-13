@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel;
 
-import org.eclipse.emf.ecore.EObject;
+import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,9 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isMay <em>May</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isSet <em>Set</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isVar <em>Var</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#getMinimumNumberOfInstances <em>Minimum Number Of Instances</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#getMaximumNumberOfInstances <em>Maximum Number Of Instances</em>}</li>
  * </ul>
@@ -35,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface NamedElement extends EObject {
+public interface NamedElement extends MAVOElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * The default value is <code>""</code>.
@@ -88,87 +85,6 @@ public interface NamedElement extends EObject {
 	 * @generated
 	 */
 	void setType(String value);
-
-	/**
-	 * Returns the value of the '<em><b>May</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>May</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>May</em>' attribute.
-	 * @see #setMay(boolean)
-	 * @see edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage#getNamedElement_May()
-	 * @model default="false" required="true"
-	 * @generated
-	 */
-	boolean isMay();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isMay <em>May</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>May</em>' attribute.
-	 * @see #isMay()
-	 * @generated
-	 */
-	void setMay(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Set</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Set</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Set</em>' attribute.
-	 * @see #setSet(boolean)
-	 * @see edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage#getNamedElement_Set()
-	 * @model default="false" required="true"
-	 * @generated
-	 */
-	boolean isSet();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isSet <em>Set</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Set</em>' attribute.
-	 * @see #isSet()
-	 * @generated
-	 */
-	void setSet(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Var</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Var</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Var</em>' attribute.
-	 * @see #setVar(boolean)
-	 * @see edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage#getNamedElement_Var()
-	 * @model default="false" required="true"
-	 * @generated
-	 */
-	boolean isVar();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isVar <em>Var</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Var</em>' attribute.
-	 * @see #isVar()
-	 * @generated
-	 */
-	void setVar(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Minimum Number Of Instances</b></em>' attribute.

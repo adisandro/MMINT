@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.impl;
 
+import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
@@ -105,6 +106,9 @@ public class RandomModelPackageImpl extends EPackageImpl implements RandomModelP
 		RandomModelPackageImpl theRandomModelPackage = (RandomModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RandomModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RandomModelPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		MavoPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theRandomModelPackage.createPackageContents();
@@ -252,7 +256,7 @@ public class RandomModelPackageImpl extends EPackageImpl implements RandomModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElement_May() {
+	public EAttribute getNamedElement_MinimumNumberOfInstances() {
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -261,35 +265,8 @@ public class RandomModelPackageImpl extends EPackageImpl implements RandomModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElement_Set() {
-		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNamedElement_Var() {
-		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNamedElement_MinimumNumberOfInstances() {
-		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getNamedElement_MaximumNumberOfInstances() {
-		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -337,9 +314,6 @@ public class RandomModelPackageImpl extends EPackageImpl implements RandomModelP
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__TYPE);
-		createEAttribute(namedElementEClass, NAMED_ELEMENT__MAY);
-		createEAttribute(namedElementEClass, NAMED_ELEMENT__SET);
-		createEAttribute(namedElementEClass, NAMED_ELEMENT__VAR);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__MAXIMUM_NUMBER_OF_INSTANCES);
 	}
@@ -367,13 +341,18 @@ public class RandomModelPackageImpl extends EPackageImpl implements RandomModelP
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		MavoPackage theMavoPackage = (MavoPackage)EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		randomModelEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
 		nodeEClass.getESuperTypes().add(this.getNamedElement());
 		edgeEClass.getESuperTypes().add(this.getNamedElement());
+		namedElementEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(randomModelEClass, RandomModel.class, "RandomModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -393,9 +372,6 @@ public class RandomModelPackageImpl extends EPackageImpl implements RandomModelP
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", "", 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNamedElement_Type(), ecorePackage.getEString(), "type", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNamedElement_May(), ecorePackage.getEBoolean(), "may", "false", 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNamedElement_Set(), ecorePackage.getEBoolean(), "set", "false", 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNamedElement_Var(), ecorePackage.getEBoolean(), "var", "false", 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNamedElement_MinimumNumberOfInstances(), ecorePackage.getEInt(), "minimumNumberOfInstances", "0", 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNamedElement_MaximumNumberOfInstances(), ecorePackage.getEInt(), "maximumNumberOfInstances", "0", 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

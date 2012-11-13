@@ -33,6 +33,7 @@ import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 public class RandomModelGenerate extends OperatorExecutableImpl {
 
 	private static final String RANDOM_SUFFIX = "_random";
+	private static final String MAVOELEMS_FILEEXTENSION = "mavoelems";
 	private static final String PYTHON_SCRIPT = "script/graph_gen.py";
 	/** % of annotated elements in the random model. */
 	private static final String PROPERTY_IN_ANNOTATIONS = "annotations";
@@ -88,6 +89,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;
 		}
 		String newRandommodelModelUri = MultiModelRegistry.replaceLastSegmentInUri(typegraphModel.getUri(), newLastSegmentUri);
+		String newMavoElemsFileUri = MultiModelRegistry.replaceFileExtensionInUri(newRandommodelModelUri, MAVOELEMS_FILEEXTENSION); 
 		URL url = RandomModelOperatorActivator.getDefault().getBundle().getEntry("/");
 		String pythonPath = FileLocator.toFileURL(url).getPath() + PYTHON_SCRIPT;
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
@@ -96,8 +98,10 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			pythonPath,
 			"-input",
 			workspaceUri + typegraphModel.getUri(),
-			"-output",
+			"-outgraph",
 			workspaceUri + newRandommodelModelUri,
+			"-outmavoelems",
+			workspaceUri + newMavoElemsFileUri,
 			"-instname",
 			newRandommodelModelUri,
 			"-annotated",

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.impl;
 
+import edu.toronto.cs.se.mmtf.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
@@ -27,8 +28,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -50,7 +49,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class RandomModelImpl extends EObjectImpl implements RandomModel {
+public class RandomModelImpl extends MAVOModelImpl implements RandomModel {
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

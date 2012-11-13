@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.impl;
 
+import edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
@@ -19,7 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,9 +30,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl#isMay <em>May</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl#isSet <em>Set</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl#isVar <em>Var</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl#getMinimumNumberOfInstances <em>Minimum Number Of Instances</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl#getMaximumNumberOfInstances <em>Maximum Number Of Instances</em>}</li>
  * </ul>
@@ -40,7 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class NamedElementImpl extends EObjectImpl implements NamedElement {
+public abstract class NamedElementImpl extends MAVOElementImpl implements NamedElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -80,66 +77,6 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	 * @ordered
 	 */
 	protected String type = TYPE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isMay() <em>May</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isMay()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean MAY_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isMay() <em>May</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isMay()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean may = MAY_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isSet() <em>Set</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean SET_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isSet() <em>Set</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean set = SET_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isVar() <em>Var</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isVar()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean VAR_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isVar() <em>Var</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isVar()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean var = VAR_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMinimumNumberOfInstances() <em>Minimum Number Of Instances</em>}' attribute.
@@ -265,69 +202,6 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isMay() {
-		return may;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMay(boolean newMay) {
-		boolean oldMay = may;
-		may = newMay;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelPackage.NAMED_ELEMENT__MAY, oldMay, may));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSet() {
-		return set;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSet(boolean newSet) {
-		boolean oldSet = set;
-		set = newSet;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelPackage.NAMED_ELEMENT__SET, oldSet, set));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isVar() {
-		return var;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setVar(boolean newVar) {
-		boolean oldVar = var;
-		var = newVar;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelPackage.NAMED_ELEMENT__VAR, oldVar, var));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getMinimumNumberOfInstances() {
 		return minimumNumberOfInstances;
 	}
@@ -427,12 +301,6 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 				return getName();
 			case RandomModelPackage.NAMED_ELEMENT__TYPE:
 				return getType();
-			case RandomModelPackage.NAMED_ELEMENT__MAY:
-				return isMay();
-			case RandomModelPackage.NAMED_ELEMENT__SET:
-				return isSet();
-			case RandomModelPackage.NAMED_ELEMENT__VAR:
-				return isVar();
 			case RandomModelPackage.NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES:
 				return getMinimumNumberOfInstances();
 			case RandomModelPackage.NAMED_ELEMENT__MAXIMUM_NUMBER_OF_INSTANCES:
@@ -454,15 +322,6 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 				return;
 			case RandomModelPackage.NAMED_ELEMENT__TYPE:
 				setType((String)newValue);
-				return;
-			case RandomModelPackage.NAMED_ELEMENT__MAY:
-				setMay((Boolean)newValue);
-				return;
-			case RandomModelPackage.NAMED_ELEMENT__SET:
-				setSet((Boolean)newValue);
-				return;
-			case RandomModelPackage.NAMED_ELEMENT__VAR:
-				setVar((Boolean)newValue);
 				return;
 			case RandomModelPackage.NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES:
 				setMinimumNumberOfInstances((Integer)newValue);
@@ -488,15 +347,6 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 			case RandomModelPackage.NAMED_ELEMENT__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case RandomModelPackage.NAMED_ELEMENT__MAY:
-				setMay(MAY_EDEFAULT);
-				return;
-			case RandomModelPackage.NAMED_ELEMENT__SET:
-				setSet(SET_EDEFAULT);
-				return;
-			case RandomModelPackage.NAMED_ELEMENT__VAR:
-				setVar(VAR_EDEFAULT);
-				return;
 			case RandomModelPackage.NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES:
 				unsetMinimumNumberOfInstances();
 				return;
@@ -519,12 +369,6 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RandomModelPackage.NAMED_ELEMENT__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case RandomModelPackage.NAMED_ELEMENT__MAY:
-				return may != MAY_EDEFAULT;
-			case RandomModelPackage.NAMED_ELEMENT__SET:
-				return set != SET_EDEFAULT;
-			case RandomModelPackage.NAMED_ELEMENT__VAR:
-				return var != VAR_EDEFAULT;
 			case RandomModelPackage.NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES:
 				return isSetMinimumNumberOfInstances();
 			case RandomModelPackage.NAMED_ELEMENT__MAXIMUM_NUMBER_OF_INSTANCES:
@@ -547,12 +391,6 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 		result.append(name);
 		result.append(", type: ");
 		result.append(type);
-		result.append(", may: ");
-		result.append(may);
-		result.append(", set: ");
-		result.append(set);
-		result.append(", var: ");
-		result.append(var);
 		result.append(", minimumNumberOfInstances: ");
 		if (minimumNumberOfInstancesESet) result.append(minimumNumberOfInstances); else result.append("<unset>");
 		result.append(", maximumNumberOfInstances: ");

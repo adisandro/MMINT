@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.randommodel.provider;
 
 
+import edu.toronto.cs.se.mmtf.mavo.provider.MAVOElementItemProvider;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
@@ -31,7 +32,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -41,7 +41,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class NamedElementItemProvider
-	extends ItemProviderAdapter
+	extends MAVOElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -71,9 +71,6 @@ public class NamedElementItemProvider
 
 			addNamePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
-			addMayPropertyDescriptor(object);
-			addSetPropertyDescriptor(object);
-			addVarPropertyDescriptor(object);
 			addMinimumNumberOfInstancesPropertyDescriptor(object);
 			addMaximumNumberOfInstancesPropertyDescriptor(object);
 		}
@@ -120,72 +117,6 @@ public class NamedElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the May feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMayPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NamedElement_may_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_may_feature", "_UI_NamedElement_type"),
-				 RandomModelPackage.Literals.NAMED_ELEMENT__MAY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Set feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NamedElement_set_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_set_feature", "_UI_NamedElement_type"),
-				 RandomModelPackage.Literals.NAMED_ELEMENT__SET,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Var feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addVarPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NamedElement_var_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_var_feature", "_UI_NamedElement_type"),
-				 RandomModelPackage.Literals.NAMED_ELEMENT__VAR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -262,9 +193,6 @@ public class NamedElementItemProvider
 		switch (notification.getFeatureID(NamedElement.class)) {
 			case RandomModelPackage.NAMED_ELEMENT__NAME:
 			case RandomModelPackage.NAMED_ELEMENT__TYPE:
-			case RandomModelPackage.NAMED_ELEMENT__MAY:
-			case RandomModelPackage.NAMED_ELEMENT__SET:
-			case RandomModelPackage.NAMED_ELEMENT__VAR:
 			case RandomModelPackage.NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES:
 			case RandomModelPackage.NAMED_ELEMENT__MAXIMUM_NUMBER_OF_INSTANCES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

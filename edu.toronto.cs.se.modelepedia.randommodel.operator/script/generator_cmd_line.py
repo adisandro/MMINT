@@ -67,13 +67,20 @@ def process_args():
             None,
             None,
             "Input file name"))
-    arg_processor.add_program_arg('-output',
-        ArgDefinition('output_file_name',
+    arg_processor.add_program_arg('-outgraph',
+        ArgDefinition('output_graph_file_name',
             True,
             None,
             None,
             None,
-            "Output file name"))
+            "Output graph file name"))
+    arg_processor.add_program_arg('-outmavoelems',
+        ArgDefinition('output_mavoelems_file_name',
+            True,
+            None,
+            None,
+            None,
+            "Output MAVO elements file name"))
     arg_processor.add_program_arg('-instname',
         ArgDefinition('instance_name',
             True,

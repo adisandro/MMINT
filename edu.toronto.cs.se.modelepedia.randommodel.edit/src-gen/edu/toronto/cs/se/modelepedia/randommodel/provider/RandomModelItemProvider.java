@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.randommodel.provider;
 
 
+import edu.toronto.cs.se.mmtf.mavo.provider.MAVOModelItemProvider;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelFactory;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
@@ -34,7 +35,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -44,7 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class RandomModelItemProvider
-	extends ItemProviderAdapter
+	extends MAVOModelItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

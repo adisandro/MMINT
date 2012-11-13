@@ -11,9 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel;
 
+import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface RandomModel extends EObject {
+public interface RandomModel extends MAVOModel {
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.randommodel.Node}.

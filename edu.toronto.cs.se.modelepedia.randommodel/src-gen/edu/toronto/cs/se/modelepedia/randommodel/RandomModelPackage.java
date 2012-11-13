@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel;
 
+import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -76,13 +77,22 @@ public interface RandomModelPackage extends EPackage {
 	int RANDOM_MODEL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Inc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_MODEL__INC = MavoPackage.MAVO_MODEL__INC;
+
+	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL__NODES = 0;
+	int RANDOM_MODEL__NODES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
@@ -91,7 +101,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL__EDGES = 1;
+	int RANDOM_MODEL__EDGES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -100,7 +110,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL__NAME = 2;
+	int RANDOM_MODEL__NAME = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -109,7 +119,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL__TYPE = 3;
+	int RANDOM_MODEL__TYPE = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Default Minimum Number Of Instances</b></em>' attribute.
@@ -118,7 +128,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL__DEFAULT_MINIMUM_NUMBER_OF_INSTANCES = 4;
+	int RANDOM_MODEL__DEFAULT_MINIMUM_NUMBER_OF_INSTANCES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Default Maximum Number Of Instances</b></em>' attribute.
@@ -127,7 +137,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL__DEFAULT_MAXIMUM_NUMBER_OF_INSTANCES = 5;
+	int RANDOM_MODEL__DEFAULT_MAXIMUM_NUMBER_OF_INSTANCES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Random Model</em>' class.
@@ -136,7 +146,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL_FEATURE_COUNT = 6;
+	int RANDOM_MODEL_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Random Model</em>' class.
@@ -145,7 +155,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL_OPERATION_COUNT = 0;
+	int RANDOM_MODEL_OPERATION_COUNT = MavoPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -158,31 +168,13 @@ public interface RandomModelPackage extends EPackage {
 	int NAMED_ELEMENT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__TYPE = 1;
-
-	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__MAY = 2;
+	int NAMED_ELEMENT__MAY = MavoPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -191,7 +183,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__SET = 3;
+	int NAMED_ELEMENT__SET = MavoPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -200,7 +192,25 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__VAR = 4;
+	int NAMED_ELEMENT__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__TYPE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Minimum Number Of Instances</b></em>' attribute.
@@ -209,7 +219,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES = 5;
+	int NAMED_ELEMENT__MINIMUM_NUMBER_OF_INSTANCES = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Number Of Instances</b></em>' attribute.
@@ -218,7 +228,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__MAXIMUM_NUMBER_OF_INSTANCES = 6;
+	int NAMED_ELEMENT__MAXIMUM_NUMBER_OF_INSTANCES = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
@@ -227,7 +237,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = 7;
+	int NAMED_ELEMENT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -236,7 +246,7 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+	int NAMED_ELEMENT_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.randommodel.impl.NodeImpl <em>Node</em>}' class.
@@ -247,24 +257,6 @@ public interface RandomModelPackage extends EPackage {
 	 * @generated
 	 */
 	int NODE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__TYPE = NAMED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -292,6 +284,24 @@ public interface RandomModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NODE__VAR = NAMED_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__TYPE = NAMED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Minimum Number Of Instances</b></em>' attribute.
@@ -340,24 +350,6 @@ public interface RandomModelPackage extends EPackage {
 	int EDGE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__TYPE = NAMED_ELEMENT__TYPE;
-
-	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -383,6 +375,24 @@ public interface RandomModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int EDGE__VAR = NAMED_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__TYPE = NAMED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Minimum Number Of Instances</b></em>' attribute.
@@ -590,39 +600,6 @@ public interface RandomModelPackage extends EPackage {
 	EAttribute getNamedElement_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isMay <em>May</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>May</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isMay()
-	 * @see #getNamedElement()
-	 * @generated
-	 */
-	EAttribute getNamedElement_May();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isSet <em>Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Set</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isSet()
-	 * @see #getNamedElement()
-	 * @generated
-	 */
-	EAttribute getNamedElement_Set();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isVar <em>Var</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Var</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.randommodel.NamedElement#isVar()
-	 * @see #getNamedElement()
-	 * @generated
-	 */
-	EAttribute getNamedElement_Var();
-
-	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.randommodel.NamedElement#getMinimumNumberOfInstances <em>Minimum Number Of Instances</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -786,30 +763,6 @@ public interface RandomModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__TYPE = eINSTANCE.getNamedElement_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>May</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NAMED_ELEMENT__MAY = eINSTANCE.getNamedElement_May();
-
-		/**
-		 * The meta object literal for the '<em><b>Set</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NAMED_ELEMENT__SET = eINSTANCE.getNamedElement_Set();
-
-		/**
-		 * The meta object literal for the '<em><b>Var</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NAMED_ELEMENT__VAR = eINSTANCE.getNamedElement_Var();
 
 		/**
 		 * The meta object literal for the '<em><b>Minimum Number Of Instances</b></em>' attribute feature.
