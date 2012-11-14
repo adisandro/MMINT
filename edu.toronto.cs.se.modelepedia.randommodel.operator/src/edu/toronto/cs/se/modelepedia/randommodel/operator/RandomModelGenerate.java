@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
@@ -137,8 +137,8 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 			MultiModelRegistry.getMultiModel(typegraphModel) :
 			null;
 		Model newRandommodelModel = (updateMid) ?
-			MultiModelInstanceFactory.createModelAndEditor(null, newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
-			MultiModelInstanceFactory.createModel(null, newRandommodelModelUri, ModelOrigin.CREATED, null);
+			MultiModelMAVOInstanceFactory.createModelAndEditor(null, newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
+			MultiModelMAVOInstanceFactory.createModel(null, newRandommodelModelUri, ModelOrigin.CREATED, null);
 		result.add(newRandommodelModel);
 
 		return result;

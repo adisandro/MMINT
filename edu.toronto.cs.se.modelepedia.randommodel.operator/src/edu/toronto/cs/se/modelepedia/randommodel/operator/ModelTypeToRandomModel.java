@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
@@ -90,8 +91,8 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 			MultiModelRegistry.getMultiModel(model) :
 			null;
 		newTypegraphModel = (updateMid) ?
-			MultiModelInstanceFactory.createModelAndEditor(null, newTypegraphModelUri, ModelOrigin.CREATED, multiModel) :
-			MultiModelInstanceFactory.createModel(null, newTypegraphModelUri, ModelOrigin.CREATED, null);
+			MultiModelMAVOInstanceFactory.createModelAndEditor(null, newTypegraphModelUri, ModelOrigin.CREATED, multiModel) :
+			MultiModelMAVOInstanceFactory.createModel(null, newTypegraphModelUri, ModelOrigin.CREATED, null);
 		result.add(newTypegraphModel);
 
 		// set min and max number of instances and reserialize

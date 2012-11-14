@@ -23,7 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 
 /**
  * The command to import an existing model.
@@ -61,7 +61,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		String newModelUri = MidDiagramTrait.selectModelToImport(false);
-		Model newModel = MultiModelInstanceFactory.createModelAndEditor(null, newModelUri, ModelOrigin.IMPORTED, multiModel);
+		Model newModel = MultiModelMAVOInstanceFactory.createModelAndEditor(null, newModelUri, ModelOrigin.IMPORTED, multiModel);
 
 		return newModel;
 	}

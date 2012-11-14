@@ -226,7 +226,7 @@ public class MultiModelRegistry {
 	public static MultiModel getMultiModel(ExtendibleElement element) {
 
 		MultiModel multiModel = null;
-		if (element instanceof Model || element instanceof ModelRel) {
+		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor) {
 			multiModel = (MultiModel) element.eContainer();
 		}
 		else if (element instanceof ModelElement) {

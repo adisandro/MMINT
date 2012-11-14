@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
 public class ModelDifference extends OperatorExecutableImpl {
@@ -77,7 +78,7 @@ public class ModelDifference extends OperatorExecutableImpl {
 		);
 		for (EObject modelEObject : diffModelEObjects) {
 			// create model element
-			ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
+			ModelElementReference newModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 				newModelEndpointRef,
 				null,
 				modelEObject

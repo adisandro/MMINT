@@ -14,6 +14,8 @@ package edu.toronto.cs.se.mmtf.mavo.trait;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
+import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 
@@ -36,7 +38,16 @@ public class MAVOUtils {
 		return label;
 	}
 
-	public static void annotateMAVODroppedEObject(EObject droppedEObject, ModelElementReference modelElemRef) {
+	public static void annotateMAVOModel(EObject rootEObject, Model model) {
+
+		if (!(rootEObject instanceof MAVOModel)) {
+			return;
+		}
+
+		model.setInc(((MAVOModel) rootEObject).isInc());
+	}
+
+	public static void annotateMAVOModelElement(EObject droppedEObject, ModelElementReference modelElemRef) {
 
 		if (!(droppedEObject instanceof MAVOElement)) {
 			return;

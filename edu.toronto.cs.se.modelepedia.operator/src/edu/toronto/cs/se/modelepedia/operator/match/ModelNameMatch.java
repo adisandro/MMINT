@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class ModelNameMatch extends OperatorExecutableImpl {
@@ -114,7 +115,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				for (EObject eObject : eObjects) {
 					ModelEndpointReference modelEndpointRef = eObjectModels.get(eObject);
 					// create model element
-					ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
+					ModelElementReference newModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 						modelEndpointRef,
 						null,
 						eObject

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro - Implementation.
+ *    Alessio Di Sandro, Vivien Suen - Implementation.
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
-import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
@@ -219,20 +217,29 @@ public class MultiModelInstanceFactory {
 
 		Model newModel = MidFactory.eINSTANCE.createModel();
 		addModel(newModel, modelType, newModelUri, origin, multiModel);
-		EObject modelRoot = newModel.getRoot();
-		if (modelRoot instanceof MAVOModel) {
-			newModel.setInc(((MAVOModel) modelRoot).isInc());
-		}
 
 		return newModel;
+	}
+
+	public static ModelRel createModelRel(ModelRel modelRelType, String newModelRelUri, ModelOrigin origin, EClass modelRelClass, MultiModel multiModel) throws MMTFException {
+
+		ModelRel newModelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelClass);
+		if (newModelRelUri == null) {
+			//TODO MMTF: addBasicModel or checks inside addModel?
+		}
+		else {
+			addModel(newModelRel, modelRelType, newModelRelUri, origin, multiModel);
+		}
+
+		return newModelRel;
 	}
 
 	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
 		Model newModel = createModel(modelType, newModelUri, origin, multiModel);
-		Editor newEditor = MultiModelInstanceFactory.createEditor(newModel);
+		Editor newEditor = createEditor(newModel);
 		if (newEditor != null) {
-			MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
+			addModelEditor(newEditor, multiModel);
 		}
 
 		return newModel;
@@ -275,7 +282,6 @@ public class MultiModelInstanceFactory {
 			category,
 			classLiteral
 		);
-		MAVOUtils.annotateMAVODroppedEObject(modelEObject, newModelElemRef);
 
 		return newModelElemRef;
 	}
@@ -312,7 +318,7 @@ public class MultiModelInstanceFactory {
 
 		MultiModel multiModel = (MultiModel) models[0].eContainer();
 		// create model rel
-		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
+		ModelRel newModelRel = createModelRel(
 			modelRelType,
 			multiModel,
 			origin,
@@ -321,7 +327,7 @@ public class MultiModelInstanceFactory {
 		);
 		// create model rel endpoints
 		for (Model model : models) {
-			MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
+			createModelEndpointAndModelEndpointReference(
 				null,
 				newModelRel,
 				model,
@@ -434,7 +440,7 @@ public class MultiModelInstanceFactory {
 
 		ModelRel modelRel = (ModelRel) modelElemRefs[0].eContainer().eContainer();
 		// create link
-		LinkReference newLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
+		LinkReference newLinkRef = createLinkAndLinkReference(
 			linkType,
 			modelRel,
 			linkClass,
@@ -442,7 +448,7 @@ public class MultiModelInstanceFactory {
 		);
 		// create model element endpoints
 		for (ModelElementReference modelElemRef : modelElemRefs) {
-			ModelElementEndpointReference newModelElemEndpointRef = MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
+			ModelElementEndpointReference newModelElemEndpointRef = createModelElementEndpointAndModelElementEndpointReference(
 				null,
 				newLinkRef,
 				modelElemRef,
@@ -618,7 +624,7 @@ public class MultiModelInstanceFactory {
 	 */
 	public static void removeModel(Model model) {
 
-		MultiModel multiModel = (MultiModel) model.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(model);
 		removeExtendibleElement(multiModel, model.getUri());
 		multiModel.getModels().remove(model);
 
@@ -748,7 +754,7 @@ public class MultiModelInstanceFactory {
 	 */
 	public static void removeEditor(Editor editor) {
 
-		MultiModel multiModel = (MultiModel) editor.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(editor);
 		multiModel.getEditors().remove(editor);
 		// no need to removeExtendibleElement
 	}

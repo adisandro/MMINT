@@ -24,6 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
@@ -57,7 +58,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 		// create model
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(windowModel);
-		newPetrinetModel = MultiModelInstanceFactory.createModelAndEditor(null, newPetrinetModelUri, ModelOrigin.CREATED, multiModel);
+		newPetrinetModel = MultiModelMAVOInstanceFactory.createModelAndEditor(null, newPetrinetModelUri, ModelOrigin.CREATED, multiModel);
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newPetrinetModel);

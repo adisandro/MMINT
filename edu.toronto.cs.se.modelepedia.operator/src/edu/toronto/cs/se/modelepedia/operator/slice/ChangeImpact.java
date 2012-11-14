@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
 public class ChangeImpact extends OperatorExecutableImpl {
@@ -149,7 +150,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 					// create or get impacted model element ref
 					ModelElementReference newImpactedModelElemRef = MultiModelHierarchyUtils.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {
-						newImpactedModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
+						newImpactedModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 							impactedModelEndpointRef,
 							null,
 							impactedUnifiable
@@ -202,7 +203,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		for (Link diffLink : diffRel.getLinks()) {
 			ModelElement diffModelElem = diffLink.getModelElemEndpoints().get(0).getTarget();
 			// create diff model element ref
-			ModelElementReference newDiffModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
+			ModelElementReference newDiffModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 				newDiffModelEndpointRef,
 				diffModelElem.getName(),
 				diffModelElem
