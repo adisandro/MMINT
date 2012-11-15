@@ -103,7 +103,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		Node node;
 		for (int i = 0; i < numModelElems[0]; i++) {
 			node = RandomModelFactory.eINSTANCE.createNode();
-			node.setName("Node" + i);
+			node.setName(String.valueOf(i));
 			randomNodes.add(node);
 			randomModelElems.add(node);
 		}
@@ -111,7 +111,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		Edge edge;
 		for (int i = 0; i < numModelElems[1]; i++) {
 			edge = RandomModelFactory.eINSTANCE.createEdge();
-			edge.setName("Edge" + i);
+			edge.setName(String.valueOf(i));
 			edge.setSrc(randomNodes.get(state.nextInt(numModelElems[0])));
 			edge.setTgt(randomNodes.get(state.nextInt(numModelElems[0])));
 			randomEdges.add(edge);
