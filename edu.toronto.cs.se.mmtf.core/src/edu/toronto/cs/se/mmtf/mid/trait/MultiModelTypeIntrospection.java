@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 /**
  * The type introspection engine for multimodels.
@@ -43,7 +43,7 @@ import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
+public class MultiModelTypeIntrospection implements MMTFConstants {
 
 	private static EList<ExtendibleElement> getRuntimeTypes(Model model) {
 

@@ -24,9 +24,9 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
-public class MultiModelHierarchyUtils implements MMTFExtensionPoints {
+public class MultiModelHierarchyUtils implements MMTFConstants {
 
 	private static class ExtensionHierarchyComparator implements Comparator<IConfigurationElement> {
 

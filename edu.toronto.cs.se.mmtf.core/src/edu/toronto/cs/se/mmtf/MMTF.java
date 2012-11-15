@@ -49,7 +49,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
-import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.OperatorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
@@ -65,7 +65,7 @@ import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
  * @author Alessio Di Sandro
  * 
  */
-public class MMTF implements MMTFExtensionPoints {
+public class MMTF implements MMTFConstants {
 
 	/** The singleton instance. */
 	static final MMTF INSTANCE = new MMTF();

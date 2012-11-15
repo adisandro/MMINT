@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.*;
 
 import java.util.Map;
 
+import java.util.Random;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -87,6 +88,8 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 		switch (eDataType.getClassifierID()) {
 			case OperatorPackage.EXCEPTION:
 				return createExceptionFromString(eDataType, initialValue);
+			case OperatorPackage.RANDOM:
+				return createRandomFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -102,6 +105,8 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 		switch (eDataType.getClassifierID()) {
 			case OperatorPackage.EXCEPTION:
 				return convertExceptionToString(eDataType, instanceValue);
+			case OperatorPackage.RANDOM:
+				return convertRandomToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -162,6 +167,24 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 * @generated
 	 */
 	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Random createRandomFromString(EDataType eDataType, String initialValue) {
+		return (Random)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRandomToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

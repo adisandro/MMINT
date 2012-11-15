@@ -169,6 +169,7 @@
     <nestedGenPackages prefix="Operator" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//operator">
       <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
       <genClasses ecoreClass="mid.ecore#//operator/EStringToParameterMap">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToParameterMap/key"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToParameterMap/value"/>
@@ -195,6 +196,9 @@
       </genClasses>
       <genClasses image="false" ecoreClass="mid.ecore#//operator/ConversionOperatorExecutable">
         <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperatorExecutable/cleanup"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mid.ecore#//operator/RandomOperatorExecutable">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/RandomOperatorExecutable/state"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.operator.experiment;
 
 import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -23,7 +24,9 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
@@ -64,8 +67,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
 	/** The initial seed for the pseudorandom generator. */
 	private static final String PROPERTY_IN_SEED = "seed";
-	/** The file name for loading/saving the random generator internal state. */
-	private static final String PROPERTY_IN_STATE = "state";
 	/** Min number of iterations (i.e. samples to generate). */
 	private static final String PROPERTY_IN_MINSAMPLES = "minSamples";
 	/** Max number of iterations (i.e. samples to generate). */
@@ -102,8 +103,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private int numExperiments;
 	private String[][] experimentSetups;
 	// experiment randomness parameters
-	private String seed;
-	private String state;
+	private long seed;
+	private Random state;
 	private int minSamples;
 	private int maxSamples;
 	private double min;
@@ -132,8 +133,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_SEED);
-		state = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_STATE);
+		seed = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_SEED);
 		minSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINSAMPLES);
 		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXSAMPLES);
 		min = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_MINSAMPLEVALUE);
@@ -204,6 +204,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		if (operator == null) {
 			throw new MMTFException("Operator uri " + operatorUri + " is not registered");
 		}
+		OperatorExecutable executable = operator.getExecutable();
 
 		// write operator input properties
 		Properties operatorProperties = new Properties();
@@ -215,9 +216,10 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				}
 			}
 		}
-		// write seed and state everywhere, the operator who needs it will use it
-		operatorProperties.setProperty(PROPERTY_IN_SEED, seed);
-		operatorProperties.setProperty(PROPERTY_IN_STATE, state);
+		// set state if operator needs it
+		if (executable instanceof RandomOperatorExecutableImpl) {
+			((RandomOperatorExecutableImpl) executable).setState(state);
+		}
 		// never update the mid, it will explode
 		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
 		// figure out experiment subdir
@@ -234,7 +236,13 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 
-		return operator.getExecutable().execute(actualParameters);
+		// execute and get state
+		EList<Model> result = executable.execute(actualParameters);
+		if (executable instanceof RandomOperatorExecutableImpl) {
+			state = ((RandomOperatorExecutableImpl) executable).getState();
+		}
+
+		return result;
 	}
 
 	private double getOutput(EList<Model> parameters, int outputIndex, int statisticsIndex) throws Exception {
@@ -271,6 +279,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		readProperties(inputProperties);
 
 		// prepare experiment setup
+		state = new Random(seed);
 		experimentSetups = new String[numExperiments][vars.length];
 		cartesianProduct(experimentSetups);
 

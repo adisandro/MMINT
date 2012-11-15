@@ -29,12 +29,14 @@ import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 
+import edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.util.OperatorValidator;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl;
 import java.util.Map;
 
+import java.util.Random;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -99,7 +101,21 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass randomOperatorExecutableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType exceptionEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType randomEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -361,8 +377,35 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRandomOperatorExecutable() {
+		return randomOperatorExecutableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRandomOperatorExecutable_State() {
+		return (EAttribute)randomOperatorExecutableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getException() {
 		return exceptionEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getRandom() {
+		return randomEDataType;
 	}
 
 	/**
@@ -418,8 +461,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		conversionOperatorExecutableEClass = createEClass(CONVERSION_OPERATOR_EXECUTABLE);
 		createEOperation(conversionOperatorExecutableEClass, CONVERSION_OPERATOR_EXECUTABLE___CLEANUP);
 
+		randomOperatorExecutableEClass = createEClass(RANDOM_OPERATOR_EXECUTABLE);
+		createEAttribute(randomOperatorExecutableEClass, RANDOM_OPERATOR_EXECUTABLE__STATE);
+
 		// Create data types
 		exceptionEDataType = createEDataType(EXCEPTION);
+		randomEDataType = createEDataType(RANDOM);
 	}
 
 	/**
@@ -456,6 +503,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		operatorEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
 		conversionOperatorExecutableEClass.getESuperTypes().add(this.getOperatorExecutable());
+		randomOperatorExecutableEClass.getESuperTypes().add(this.getOperatorExecutable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(eStringToParameterMapEClass, Map.Entry.class, "EStringToParameterMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -490,8 +538,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		op = initEOperation(getConversionOperatorExecutable__Cleanup(), null, "cleanup", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
+		initEClass(randomOperatorExecutableEClass, RandomOperatorExecutable.class, "RandomOperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRandomOperatorExecutable_State(), this.getRandom(), "state", null, 1, 1, RandomOperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize data types
 		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -521,7 +573,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   source, 
 		   new String[] {
 			 "constraints", "conversion executable"
-		   });												
+		   });															
 	}
 
 	/**
@@ -538,7 +590,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   new String[] {
 			 "conversion", "inputs->size() = 1 and outputs->size() = 1",
 			 "executable", "executable.oclIsKindOf(ConversionOperatorExecutable)"
-		   });										
+		   });													
 	}
 
 } //OperatorPackageImpl

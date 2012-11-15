@@ -12,12 +12,12 @@
 package edu.toronto.cs.se.mmtf.repository;
 
 /**
- * The list of all the fields in MMTF's extension points.
+ * The list of all MMTF constants.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public interface MMTFExtensionPoints {
+public interface MMTFConstants {
 
 	public final static String URI_SEPARATOR = "/";
 	public final static String ENDPOINT_SEPARATOR = "-";

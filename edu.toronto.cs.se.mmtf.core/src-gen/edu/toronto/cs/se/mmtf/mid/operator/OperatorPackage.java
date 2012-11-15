@@ -599,6 +599,52 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR_EXECUTABLE_OPERATION_COUNT = OPERATOR_EXECUTABLE_OPERATION_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl <em>Random Operator Executable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandomOperatorExecutable()
+	 * @generated
+	 */
+	int RANDOM_OPERATOR_EXECUTABLE = 6;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_EXECUTABLE__STATE = OPERATOR_EXECUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Random Operator Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_EXECUTABLE_FEATURE_COUNT = OPERATOR_EXECUTABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_EXECUTABLE___EXECUTE__ELIST = OPERATOR_EXECUTABLE___EXECUTE__ELIST;
+
+	/**
+	 * The number of operations of the '<em>Random Operator Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_EXECUTABLE_OPERATION_COUNT = OPERATOR_EXECUTABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,7 +652,18 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 6;
+	int EXCEPTION = 7;
+
+
+	/**
+	 * The meta object id for the '<em>Random</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.util.Random
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandom()
+	 * @generated
+	 */
+	int RANDOM = 8;
 
 
 	/**
@@ -811,6 +868,27 @@ public interface OperatorPackage extends EPackage {
 	EOperation getConversionOperatorExecutable__Cleanup();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable <em>Random Operator Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Random Operator Executable</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable
+	 * @generated
+	 */
+	EClass getRandomOperatorExecutable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable#getState()
+	 * @see #getRandomOperatorExecutable()
+	 * @generated
+	 */
+	EAttribute getRandomOperatorExecutable_State();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -820,6 +898,17 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getException();
+
+	/**
+	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Random</em>'.
+	 * @see java.util.Random
+	 * @model instanceClass="java.util.Random"
+	 * @generated
+	 */
+	EDataType getRandom();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1009,6 +1098,24 @@ public interface OperatorPackage extends EPackage {
 		EOperation CONVERSION_OPERATOR_EXECUTABLE___CLEANUP = eINSTANCE.getConversionOperatorExecutable__Cleanup();
 
 		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl <em>Random Operator Executable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandomOperatorExecutable()
+		 * @generated
+		 */
+		EClass RANDOM_OPERATOR_EXECUTABLE = eINSTANCE.getRandomOperatorExecutable();
+
+		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANDOM_OPERATOR_EXECUTABLE__STATE = eINSTANCE.getRandomOperatorExecutable_State();
+
+		/**
 		 * The meta object literal for the '<em>Exception</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1017,6 +1124,16 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType EXCEPTION = eINSTANCE.getException();
+
+		/**
+		 * The meta object literal for the '<em>Random</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.util.Random
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandom()
+		 * @generated
+		 */
+		EDataType RANDOM = eINSTANCE.getRandom();
 
 	}
 

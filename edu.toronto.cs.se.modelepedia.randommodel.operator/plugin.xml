@@ -15,6 +15,7 @@
 
 <plugin>
 
+<!--
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
@@ -66,6 +67,7 @@
          </output>
       </operatorType>
    </extension>
+-->
 
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
@@ -100,7 +102,7 @@
          <input>
             <parameter
                   isVararg="false"
-                  name="randomModelTypeGraph"
+                  name="modelType"
                   modelTypeUri="http://se.cs.toronto.edu/modelepedia/LabeledGraph">
             </parameter>
          </input>

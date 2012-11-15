@@ -106,6 +106,10 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createConversionOperatorExecutableAdapter();
 			}
 			@Override
+			public Adapter caseRandomOperatorExecutable(RandomOperatorExecutable object) {
+				return createRandomOperatorExecutableAdapter();
+			}
+			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
@@ -214,6 +218,20 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConversionOperatorExecutableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable <em>Random Operator Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable
+	 * @generated
+	 */
+	public Adapter createRandomOperatorExecutableAdapter() {
 		return null;
 	}
 

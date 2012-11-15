@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 /**
  * The content provider for the Relationship types tree dialog.
@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
  * @author Alessio Di Sandro
  * 
  */
-public class RelationshipTypesDialogContentProvider implements ITreeContentProvider, MMTFExtensionPoints {
+public class RelationshipTypesDialogContentProvider implements ITreeContentProvider, MMTFConstants {
 
 	/** The root model relationship. */
 	private ModelRel modelRelType;

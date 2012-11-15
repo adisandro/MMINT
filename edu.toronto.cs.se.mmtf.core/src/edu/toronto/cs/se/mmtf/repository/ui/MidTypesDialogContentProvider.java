@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 /**
  * The content provider for the Mid types tree dialog.
@@ -29,7 +29,7 @@ import edu.toronto.cs.se.mmtf.repository.MMTFExtensionPoints;
  * @author Alessio Di Sandro
  * 
  */
-public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTFExtensionPoints {
+public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTFConstants {
 
 	/** The root multimodel. */
 	private MultiModel multiModel;

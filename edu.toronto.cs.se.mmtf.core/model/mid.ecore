@@ -904,5 +904,22 @@
         <details key="documentation" value="Any possible exception thrown during the execution of the operator."/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RandomOperatorExecutable" abstract="true"
+        eSuperTypes="#//operator/OperatorExecutable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The executable implementation interface of a random operator."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1"
+          eType="#//operator/Random">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The random variable."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="Random" instanceClassName="java.util.Random">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The random variable type for a random operator."/>
+      </eAnnotations>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

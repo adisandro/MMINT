@@ -17,6 +17,7 @@ import edu.toronto.cs.se.mmtf.mid.util.MidValidator;
 
 import java.util.Map;
 
+import java.util.Random;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -119,8 +120,12 @@ public class OperatorValidator extends EObjectValidator {
 				return validateOperatorExecutable((OperatorExecutable)value, diagnostics, context);
 			case OperatorPackage.CONVERSION_OPERATOR_EXECUTABLE:
 				return validateConversionOperatorExecutable((ConversionOperatorExecutable)value, diagnostics, context);
+			case OperatorPackage.RANDOM_OPERATOR_EXECUTABLE:
+				return validateRandomOperatorExecutable((RandomOperatorExecutable)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
 				return validateException((Exception)value, diagnostics, context);
+			case OperatorPackage.RANDOM:
+				return validateRandom((Random)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -269,7 +274,25 @@ public class OperatorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateRandomOperatorExecutable(RandomOperatorExecutable randomOperatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(randomOperatorExecutable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateException(Exception exception, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRandom(Random random, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
