@@ -71,7 +71,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		}
 
 		// convert and serialize
-		String modelType = ((EPackage) model.getMetatype().getRoot()).getName();
+		String modelType = ((EPackage) MultiModelTypeIntrospection.getRoot(model.getMetatype())).getName();
 		String newLastSegmentUri = modelType + TYPEGRAPH_SUFFIX + (new Date()).getTime() + MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
 		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
 		if (subdir != null) {
@@ -96,7 +96,7 @@ public class ModelTypeToRandomModel extends ConversionOperatorExecutableImpl {
 		result.add(newTypegraphModel);
 
 		// set min and max number of instances and reserialize
-		RandomModel root = (RandomModel) newTypegraphModel.getRoot();
+		RandomModel root = (RandomModel) MultiModelTypeIntrospection.getRoot(newTypegraphModel);
 		root.setDefaultMinimumNumberOfInstances(minInstances);
 		root.setDefaultMaximumNumberOfInstances(maxInstances);
 		MultiModelTypeIntrospection.writeRoot(root, newTypegraphModel.getUri(), true);

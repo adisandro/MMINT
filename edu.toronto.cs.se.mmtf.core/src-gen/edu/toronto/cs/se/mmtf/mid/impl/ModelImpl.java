@@ -23,8 +23,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import java.lang.reflect.InvocationTargetException;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -33,7 +31,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -50,7 +47,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#isInc <em>Inc</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
@@ -201,40 +197,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		inc = newInc;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__INC, oldInc, inc));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObject getRoot() {
-		EObject root = basicGetRoot();
-		return root != null && root.eIsProxy() ? eResolveProxy((InternalEObject)root) : root;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObject basicGetRootGen() {
-		// TODO: implement this method to return the 'Root' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Gets the root element at runtime, storing it has no meaning (especially
-	 * when serializing/deserializing), thus preventing us from using it in a
-	 * proper way.
-	 * 
-	 * @generated NOT
-	 */
-	public EObject basicGetRoot() {
-
-		return MultiModelTypeIntrospection.getRoot(this);
 	}
 
 	/**
@@ -404,9 +366,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		switch (featureID) {
 			case MidPackage.MODEL__INC:
 				return isInc();
-			case MidPackage.MODEL__ROOT:
-				if (resolve) return getRoot();
-				return basicGetRoot();
 			case MidPackage.MODEL__ORIGIN:
 				return getOrigin();
 			case MidPackage.MODEL__FILE_EXTENSION:
@@ -503,8 +462,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		switch (featureID) {
 			case MidPackage.MODEL__INC:
 				return inc != INC_EDEFAULT;
-			case MidPackage.MODEL__ROOT:
-				return basicGetRoot() != null;
 			case MidPackage.MODEL__ORIGIN:
 				return origin != ORIGIN_EDEFAULT;
 			case MidPackage.MODEL__FILE_EXTENSION:

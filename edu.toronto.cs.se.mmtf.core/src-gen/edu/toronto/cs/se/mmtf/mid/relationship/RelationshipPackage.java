@@ -390,15 +390,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__INC = MidPackage.MODEL__INC;
 
 	/**
-	 * The feature id for the '<em><b>Root</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__ROOT = MidPackage.MODEL__ROOT;
-
-	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,15 +613,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__INC = MODEL_REL__INC;
-
-	/**
-	 * The feature id for the '<em><b>Root</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__ROOT = MODEL_REL__ROOT;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.

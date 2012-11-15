@@ -90,7 +90,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			);
 			newModelEndpointRef.getObject().setName(model.getName());
 			// look for identical names in the models
-			checkEObjectNames(model.getRoot(), newModelEndpointRef, eObjectNames, eObjectModels);
+			checkEObjectNames(MultiModelTypeIntrospection.getRoot(model), newModelEndpointRef, eObjectNames, eObjectModels);
 		}
 
 		// create model relationship structure

@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * The outline page of the Mapping diagram.
@@ -109,7 +110,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 				}
 				else {
 					//TODO MMTF: What if two models in the reldiag share the same root?
-					resourceSet.getResources().add(model.getRoot().eResource());
+					resourceSet.getResources().add(MultiModelTypeIntrospection.getRoot(model).eResource());
 				}
 			}
 			catch (Exception e) {

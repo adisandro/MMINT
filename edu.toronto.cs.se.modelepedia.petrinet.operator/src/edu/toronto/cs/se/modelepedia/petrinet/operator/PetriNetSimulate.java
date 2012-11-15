@@ -18,6 +18,7 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 
 public class PetriNetSimulate extends OperatorExecutableImpl {
@@ -26,7 +27,7 @@ public class PetriNetSimulate extends OperatorExecutableImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// simulate
-		PetriNet petrinet = (PetriNet) actualParameters.get(0).getRoot();
+		PetriNet petrinet = (PetriNet) MultiModelTypeIntrospection.getRoot(actualParameters.get(0));
 		boolean goodResult = !petrinet.getNodes().isEmpty();
 
 		// show result

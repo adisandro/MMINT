@@ -16,8 +16,6 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model</b></em>'.
@@ -30,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getEditors <em>Editors</em>}</li>
@@ -45,20 +42,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Model extends ExtendibleElement, MAVOModel {
-	/**
-	 * Returns the value of the '<em><b>Root</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The root of the model (types: the metamodel package; instances: the model root object instance).
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Root</em>' reference.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Root()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
-	EObject getRoot();
-
 	/**
 	 * Returns the value of the '<em><b>Origin</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.ModelOrigin}.

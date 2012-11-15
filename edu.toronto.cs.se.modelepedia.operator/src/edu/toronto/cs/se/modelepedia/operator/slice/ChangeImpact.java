@@ -37,6 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class ChangeImpact extends OperatorExecutableImpl {
 
@@ -89,7 +90,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			EList<EObject> unifiablesFromSameType = new BasicEList<EObject>();
 			typeTable.put(modelElemType.getUri(), unifiablesFromSameType);
 		}
-		TreeIterator<EObject> iterator = model.getRoot().eAllContents();
+		TreeIterator<EObject> iterator = MultiModelTypeIntrospection.getRoot(model).eAllContents();
 		while (iterator.hasNext()) {
 			EObject modelEObject = iterator.next();
 			if (!(modelEObject instanceof MAVOElement)) {

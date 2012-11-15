@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class ModelDifference extends OperatorExecutableImpl {
 
@@ -53,7 +54,7 @@ public class ModelDifference extends OperatorExecutableImpl {
 	private EList<EObject> getDiffModelElements(Model model, HashMap<String, ModelElementReference> modelElemRefTable) {
 
 		EList<EObject> diffModelEObjects = new BasicEList<EObject>();
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getRoot(), true);
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(MultiModelTypeIntrospection.getRoot(model), true);
 		while (iterator.hasNext()) {
 			EObject modelEObject = iterator.next();
 			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, true)[1];

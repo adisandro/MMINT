@@ -54,7 +54,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 		String staticModelTypeUri = model.getMetatypeUri();
 		if (staticModelTypeUri == null) {
 			// this means getRuntimeTypes itself is used to set the initial static metatype
-			staticModelTypeUri = model.getRoot().eClass().getEPackage().getNsURI();
+			staticModelTypeUri = getRoot(model).eClass().getEPackage().getNsURI();
 			staticModelType = MultiModelTypeRegistry.getModelType(staticModelTypeUri);
 		}
 		else {
@@ -434,7 +434,7 @@ public class MultiModelTypeIntrospection implements MMTFExtensionPoints {
 			}
 			else {
 				String[] literals = modelElem.getClassLiteral().split(MMTF.URI_SEPARATOR);
-				pointer = ((EPackage) model.getRoot()).getEClassifier(literals[0]);
+				pointer = ((EPackage) getRoot(model)).getEClassifier(literals[0]);
 				if (literals.length > 1) {
 					pointer = ((EClass) pointer).getEStructuralFeature(literals[1]);
 				}

@@ -434,17 +434,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModel_Root() {
-		return (EReference)modelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getModel_Origin() {
-		return (EAttribute)modelEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -453,7 +444,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	public EAttribute getModel_FileExtension() {
-		return (EAttribute)modelEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -462,7 +453,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	public EReference getModel_Editors() {
-		return (EReference)modelEClass.getEStructuralFeatures().get(3);
+		return (EReference)modelEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -471,7 +462,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	public EReference getModel_Elements() {
-		return (EReference)modelEClass.getEStructuralFeatures().get(4);
+		return (EReference)modelEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -480,7 +471,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	public EReference getModel_Constraint() {
-		return (EReference)modelEClass.getEStructuralFeatures().get(5);
+		return (EReference)modelEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -489,7 +480,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	public EReference getModel_ConversionOperators() {
-		return (EReference)modelEClass.getEStructuralFeatures().get(6);
+		return (EReference)modelEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -765,7 +756,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(multiModelEClass, MULTI_MODEL__LEVEL);
 
 		modelEClass = createEClass(MODEL);
-		createEReference(modelEClass, MODEL__ROOT);
 		createEAttribute(modelEClass, MODEL__ORIGIN);
 		createEAttribute(modelEClass, MODEL__FILE_EXTENSION);
 		createEReference(modelEClass, MODEL__EDITORS);
@@ -880,7 +870,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getMultiModel_Level(), this.getMidLevel(), "level", null, 1, 1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModel_Root(), ecorePackage.getEObject(), null, "root", null, 1, 1, Model.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModel_Origin(), this.getModelOrigin(), "origin", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModel_FileExtension(), ecorePackage.getEString(), "fileExtension", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -969,7 +958,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																															
+		   });																																														
 	}
 
 	/**
@@ -999,7 +988,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																							
+		   });																																						
 	}
 
 } //MidPackageImpl

@@ -63,7 +63,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 	private Model createRelatedModelCopy(Model relatedModel) throws Exception {
 
 		// copy and serialize new model
-		EObject relatedRoot = relatedModel.getRoot();
+		EObject relatedRoot = MultiModelTypeIntrospection.getRoot(relatedModel);
 		EObject copyRoot = EcoreUtil.copy(relatedRoot);
 		String newCopyUri = MultiModelRegistry.addFileNameSuffixInUri(relatedModel.getUri(), PROP_MODEL_SUFFIX);
 		MultiModelTypeIntrospection.writeRoot(copyRoot, newCopyUri, true);
@@ -434,7 +434,7 @@ traceLinks:
 
 		ModelEndpointReference modelEndpointRef = ((BinaryModelRel) traceLinkRef.eContainer()).getModelEndpointRefs().get(indexB);
 		Model model = modelEndpointRef.getObject().getTarget();
-		EFactory modelTypeFactory = ((EPackage) model.getMetatype().getRoot()).getEFactoryInstance();
+		EFactory modelTypeFactory = ((EPackage) MultiModelTypeIntrospection.getRoot(model.getMetatype())).getEFactoryInstance();
 		ModelElementEndpointReference modelElemTypeEndpointRef = traceLinkRef.getObject().getMetatype().getModelElemEndpointRefs().get(indexB);
 		ModelElement modelElemType = modelElemTypeEndpointRef.getModelElemRef().getObject();
 		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getPointer(), false)[1];
@@ -616,7 +616,7 @@ traceLinks:
 			EList<BinaryLinkReference> propTraceLinkRefs = propagateTraceLinksFromRefinements(refinementLinkRef, traceRel, newPropModel, newPropTraceRel);
 			propTraceLinkRefsList.add(propTraceLinkRefs);
 		}
-		EObject newPropModelRoot = newPropModel.getRoot();
+		EObject newPropModelRoot = MultiModelTypeIntrospection.getRoot(newPropModel);
 		for (EList<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			reduceTraceLinkUncertainty(newPropModelRoot, propTraceLinkRefs, 0, 1);
 		}

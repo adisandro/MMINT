@@ -26,7 +26,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
 		Model newModel = MultiModelInstanceFactory.createModel(modelType, newModelUri, origin, multiModel);
-		MAVOUtils.annotateMAVOModel(newModel.getRoot(), newModel);
+		MAVOUtils.annotateMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
 
 		return newModel;
 	}
@@ -34,7 +34,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
 		Model newModel = MultiModelInstanceFactory.createModelAndEditor(modelType, newModelUri, origin, multiModel);
-		MAVOUtils.annotateMAVOModel(newModel.getRoot(), newModel);
+		MAVOUtils.annotateMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
 
 		return newModel;
 	}

@@ -368,14 +368,14 @@ linkTypes:
 			String modelTypeEndpointName = oclConstraint.substring(OCL_MODELENDPOINT_VAR.length(), oclConstraint.indexOf(OCL_VAR_SEPARATOR));
 			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
 				if (modelTypeEndpointName.equals(modelEndpointRef.getObject().getMetatype().getName())) {
-					root = modelEndpointRef.getObject().getTarget().getRoot();
+					root = MultiModelTypeIntrospection.getRoot(modelEndpointRef.getObject().getTarget());
 					break;
 				}
 			}
 			oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VAR_SEPARATOR) + 1, oclConstraint.length());
 		}
 		else {
-			root = model.getRoot();
+			root = MultiModelTypeIntrospection.getRoot(model);
 		}
 
 		OCL ocl = OCL.newInstance();

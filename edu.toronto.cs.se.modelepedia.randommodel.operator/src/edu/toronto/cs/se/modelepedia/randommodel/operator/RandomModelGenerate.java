@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
@@ -82,7 +83,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		readProperties(inputProperties);
 
 		// create random instance
-		String modelType = ((RandomModel) typegraphModel.getRoot()).getName();
+		String modelType = ((RandomModel) MultiModelTypeIntrospection.getRoot(typegraphModel)).getName();
 		String newLastSegmentUri = modelType + RANDOM_SUFFIX + (new Date()).getTime() + MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
 		String subdir = MultiModelOperatorUtils.getCreateSubdir(typegraphModel, inputProperties);
 		if (subdir != null) {
