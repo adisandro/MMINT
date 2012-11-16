@@ -37,8 +37,8 @@
 ;Symmetry-breaking
 (assert (forall ((k Node)) (=> (node k) (<= k numberOfNodes))))
 (assert (forall ((k Edge)) (=> (edge k) (<= k numberOfEdges))))
-(assert (forall ((k Node)) (=> (node k) (>= k 0))))
-(assert (forall ((k Edge)) (=> (edge k) (>= k 0))))
+(assert (forall ((k Node)) (=> (node k) (> k 0))))
+(assert (forall ((k Edge)) (=> (edge k) (> k 0))))
 
 ;Encoding of the model and graph structure of the model
 ;May elements correspond to commented out assertions
@@ -46,9 +46,9 @@
 
 [template private encodeNamedElement(element : NamedElement)]
 	[if (element.may)]
-;(assert (node [element.name/]))
+;(assert ([element.type/] [element.name/]))
 	[else]
-(assert (node [element.name/]))
+(assert ([element.type/] [element.name/]))
 	[/if]
 [/template]
 
@@ -73,15 +73,18 @@
 
 ;Property
 [property/]
+
+;Run!!
+(check-sat)
 [/template]
 
 [**
  * 
  * @param randommodel The random model.
  */]
-[template public generateElement(randommodel : RandomModel, concretizations : String, property : String)]
+[template public encodeRandomModel(randommodel : RandomModel, concretizations : String, property : String)]
 [comment @main/]
-[file (randommodel.name + '.smt', false, 'UTF-8')]
+[file (randommodel.name + '.smt2', false, 'UTF-8')]
 [encodePreamble(randommodel)/]
 [encodeNodes(randommodel)/]
 [encodeEdges(randommodel)/]

@@ -11,14 +11,17 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.experiment;
 
+import java.io.File;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
@@ -28,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
 public class ExperimentDriver extends OperatorExecutableImpl {
@@ -81,6 +85,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_IN_REQUESTEDCONFIDENCE = "requestedConfidence";
 	/** The operators to be launched in the outer experiment setup cycle. */
 	private static final String PROPERTY_IN_EXPERIMENTOPERATORS = "experimentOperators";
+	private static final String[] PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT = new String[] {};
 	/** The operators to be launched in the inner statistics cycle. */
 	private static final String PROPERTY_IN_STATISTICSOPERATORS = "statisticsOperators";
 	/** The variable operators property suffix. */
@@ -96,6 +101,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_OUT_RESULTUP_SUFFIX = ".resultUp";
 	private static final String PROPERTY_OUT_NUMSAMPLES = "numSamples";
 	private static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
+	private static final String EXPERIMENT_SUBDIR = "experiment";
+	private static final String SAMPLE_SUBDIR = "sample";
 
 	// experiment setup parameters
 	private String[] vars;
@@ -142,7 +149,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_REQUESTEDCONFIDENCE);
 
 		// operators
-		experimentOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_EXPERIMENTOPERATORS);
+		experimentOperators = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
 		statisticsOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_STATISTICSOPERATORS);
 		varOperators = new String[vars.length][];
 		for (int i = 0; i < vars.length; i++) {
@@ -224,7 +231,15 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
 		// figure out experiment subdir
 		if (operatorIndex == 0) {
-			String nextOutputSubdir = (statisticsIndex >= 0) ? "sample" + statisticsIndex : "experiment" + experimentIndex;
+			String nextOutputSubdir;
+			if (statisticsIndex < 0) {
+				nextOutputSubdir = EXPERIMENT_SUBDIR + experimentIndex;
+			}
+			else {
+				nextOutputSubdir = (experimentOperators.length == 0) ?
+					EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
+					SAMPLE_SUBDIR + statisticsIndex;
+			}
 			operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextOutputSubdir);
 		}
 		// write input properties for the operator
@@ -253,7 +268,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			throw new MMTFException("Operator uri " + outputOperators[outputIndex] + " is not registered");
 		}
 
-		String experimentSubdir = "sample" + statisticsIndex;
+		String experimentSubdir = SAMPLE_SUBDIR + statisticsIndex;
 		Properties resultProperties = MultiModelOperatorUtils.getPropertiesFile(
 			operator.getExecutable(),
 			parameters.get(0),
@@ -269,10 +284,10 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// get experiment properties
-		Model model = actualParameters.get(0);
+		Model initialModel = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
-			model,
+			initialModel,
 			null,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
@@ -282,10 +297,17 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		state = new Random(seed);
 		experimentSetups = new String[numExperiments][vars.length];
 		cartesianProduct(experimentSetups);
+		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 
 		// outer cycle: vary experiment setup
 experimentCycle:
 		for (int i = 0; i < numExperiments; i++) {
+			// create experiment folder
+			File experimentFolder = new File(workspaceUri + MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i));
+			if (!experimentFolder.exists()) {
+				experimentFolder.mkdir();
+			}
+			// run chain of operators
 			EList<Model> outerParameters = actualParameters;
 			for (int op = 0; op < experimentOperators.length; op++) {
 				try {
@@ -296,8 +318,8 @@ experimentCycle:
 					MultiModelOperatorUtils.writePropertiesFile(
 						writeProperties(null, i, 0),
 						this,
-						model,
-						"experiment" + i,
+						initialModel,
+						EXPERIMENT_SUBDIR + i,
 						MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 					);
 					continue experimentCycle;
@@ -312,10 +334,15 @@ experimentCycle:
 			// inner cycle: experiment setup is fixed, vary randomness and statistics
 			int j;
 			for (j = 0; j < maxSamples; j++) {
+				// create sample folder
+				File sampleFolder = new File(workspaceUri + MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j));
+				if (!sampleFolder.exists()) {
+					sampleFolder.mkdir();
+				}
 				EList<Model> innerParameters = outerParameters;
 				boolean timedOut = false;
 				boolean confidenceOk = true;
-				// launch time-bounded chain of operators
+				// run time-bounded chain of operators
 				ExecutorService executor = Executors.newSingleThreadExecutor();
 				try {
 					executor.submit(
@@ -355,8 +382,8 @@ experimentCycle:
 			MultiModelOperatorUtils.writePropertiesFile(
 				writeProperties(experiment, i, j),
 				this,
-				model,
-				"experiment" + i,
+				initialModel,
+				EXPERIMENT_SUBDIR + i,
 				MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 			);
 		}

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
@@ -52,11 +53,11 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 	/** % of var elements among the annotated elements. */
 	private static final String PROPERTY_IN_PERCVAR = "percVar";
 	/** The list of may annotated model elements. */
-	private static final String PROPERTY_OUT_MAYMODELELEMS = "mayModelElems";
+	public static final String PROPERTY_OUT_MAYMODELELEMS = "mayModelElems";
 	/** The list of set annotated model elements. */
-	private static final String PROPERTY_OUT_SETMODELELEMS = "setModelElems";
+	public static final String PROPERTY_OUT_SETMODELELEMS = "setModelElems";
 	/** The list of var annotated model elements. */
-	private static final String PROPERTY_OUT_VARMODELELEMS = "varModelElems";
+	public static final String PROPERTY_OUT_VARMODELELEMS = "varModelElems";
 	private static final String RANDOM_SUFFIX = "_random";
 
 	private int minModelElems;
@@ -101,23 +102,28 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		RandomModel randomRoot = RandomModelFactory.eINSTANCE.createRandomModel();
 		EList<Node> randomNodes = randomRoot.getNodes();
 		Node node;
+		String nodeType = RandomModelPackage.eINSTANCE.getNode().getName().toLowerCase();
 		for (int i = 0; i < numModelElems[0]; i++) {
 			node = RandomModelFactory.eINSTANCE.createNode();
-			node.setName(String.valueOf(i));
+			node.setName(String.valueOf(i+1));
+			node.setType(nodeType);
 			randomNodes.add(node);
 			randomModelElems.add(node);
 		}
 		EList<Edge> randomEdges = randomRoot.getEdges();
 		Edge edge;
+		String edgeType = RandomModelPackage.eINSTANCE.getEdge().getName().toLowerCase();
 		for (int i = 0; i < numModelElems[1]; i++) {
 			edge = RandomModelFactory.eINSTANCE.createEdge();
-			edge.setName(String.valueOf(i));
+			edge.setName(String.valueOf(i+1));
+			edge.setType(edgeType);
 			edge.setSrc(randomNodes.get(state.nextInt(numModelElems[0])));
 			edge.setTgt(randomNodes.get(state.nextInt(numModelElems[0])));
 			randomEdges.add(edge);
 			randomModelElems.add(edge);
 		}
 
+		//TODO MMTF: compact this copied and pasted code
 		// all annotated elements
 		List<MAVOElement> annotatedModelElems = new ArrayList<MAVOElement>();
 		int numAnnotations = (int) Math.round(percAnnotations * randomModelElems.size());
@@ -132,6 +138,8 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		for (int i = 0; i < numMay; i++) {
 			mavoAnnotatedModelElem = mavoAnnotatedModelElems.remove(state.nextInt(mavoAnnotatedModelElems.size()));
 			mavoAnnotatedModelElem.setMay(true);
+			mavoString.append(mavoAnnotatedModelElem.eClass().getName().toLowerCase());
+			mavoString.append(" ");
 			mavoString.append(((NamedElement) mavoAnnotatedModelElem).getName());
 			mavoString.append(',');
 		}
@@ -146,6 +154,8 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		for (int i = 0; i < numSet; i++) {
 			mavoAnnotatedModelElem = mavoAnnotatedModelElems.remove(state.nextInt(mavoAnnotatedModelElems.size()));
 			mavoAnnotatedModelElem.setSet(true);
+			mavoString.append(mavoAnnotatedModelElem.eClass().getName().toLowerCase());
+			mavoString.append(" ");
 			mavoString.append(((NamedElement) mavoAnnotatedModelElem).getName());
 			mavoString.append(',');
 		}
@@ -160,6 +170,8 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		for (int i = 0; i < numVar; i++) {
 			mavoAnnotatedModelElem = mavoAnnotatedModelElems.remove(state.nextInt(mavoAnnotatedModelElems.size()));
 			mavoAnnotatedModelElem.setVar(true);
+			mavoString.append(mavoAnnotatedModelElem.eClass().getName().toLowerCase());
+			mavoString.append(" ");
 			mavoString.append(((NamedElement) mavoAnnotatedModelElem).getName());
 			mavoString.append(',');
 		}
@@ -199,12 +211,14 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		// create random instance
 		String modelTypeName = labeledGraphModel.getMetatype().getName();
 		String newLastSegmentUri = modelTypeName + RANDOM_SUFFIX + (new Date()).getTime() + MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
-		String subdir = MultiModelOperatorUtils.getCreateSubdir(labeledGraphModel, inputProperties);
+		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
 		if (subdir != null) {
 			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;
 		}
 		String newRandommodelModelUri = MultiModelRegistry.replaceLastSegmentInUri(labeledGraphModel.getUri(), newLastSegmentUri);
 		RandomModel randomRoot = generateRandomMAVOModel(labeledGraphModel, inputProperties);
+		randomRoot.setName(MultiModelRegistry.getFileNameFromUri(newRandommodelModelUri));
+		randomRoot.setType(modelTypeName);
 		MultiModelTypeIntrospection.writeRoot(randomRoot, newRandommodelModelUri, true);
 
 		// create model

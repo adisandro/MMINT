@@ -85,7 +85,7 @@ public class RandomModelGenerate extends OperatorExecutableImpl {
 		// create random instance
 		String modelType = ((RandomModel) MultiModelTypeIntrospection.getRoot(typegraphModel)).getName();
 		String newLastSegmentUri = modelType + RANDOM_SUFFIX + (new Date()).getTime() + MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
-		String subdir = MultiModelOperatorUtils.getCreateSubdir(typegraphModel, inputProperties);
+		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
 		if (subdir != null) {
 			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;
 		}

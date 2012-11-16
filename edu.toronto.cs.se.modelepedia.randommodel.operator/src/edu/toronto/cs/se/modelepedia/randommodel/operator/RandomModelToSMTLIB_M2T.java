@@ -42,7 +42,7 @@ public class RandomModelToSMTLIB_M2T extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateElement" };
+    public static final String[] TEMPLATE_NAMES = { "encodeRandomModel" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).

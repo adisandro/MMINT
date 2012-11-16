@@ -138,6 +138,16 @@ public class MultiModelOperatorUtils {
 		return getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR);
 	}
 
+	public static String[] getOptionalStringProperties(Properties properties, String propertyName, String[] defaultValue) {
+
+		try {
+			return getStringProperties(properties, propertyName);
+		}
+		catch (MMTFException e) {
+			return defaultValue;
+		}
+	}
+
 	public static boolean isUpdatingMid(Properties properties) {
 
 		try {
@@ -156,21 +166,6 @@ public class MultiModelOperatorUtils {
 		catch (MMTFException e) {
 			return null;
 		}
-	}
-
-	public static String getCreateSubdir(Model anyOperatorParameter, Properties properties) {
-
-		String subdirName = getSubdir(properties);
-		if (subdirName != null) {
-			String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-			String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-			File dir = new File(workspaceUri + projectUri + subdirName);
-			if (!dir.exists()) {
-				dir.mkdir();
-			}
-		}
-
-		return subdirName;
 	}
 
 }
