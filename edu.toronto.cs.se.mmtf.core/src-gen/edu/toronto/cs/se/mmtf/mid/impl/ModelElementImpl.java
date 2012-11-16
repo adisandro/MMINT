@@ -16,15 +16,10 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import java.lang.reflect.InvocationTargetException;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -35,7 +30,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl#getPointer <em>Pointer</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl#getClassLiteral <em>Class Literal</em>}</li>
  * </ul>
  * </p>
@@ -128,40 +122,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getPointer() {
-		EObject pointer = basicGetPointer();
-		return pointer != null && pointer.eIsProxy() ? eResolveProxy((InternalEObject)pointer) : pointer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObject basicGetPointerGen() {
-		// TODO: implement this method to return the 'Pointer' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Gets the element pointer at runtime, storing it has no meaning
-	 * (especially when serializing/deserializing), thus preventing us from
-	 * using it in a proper way.
-	 * 
-	 * @generated NOT
-	 */
-	public EObject basicGetPointer() {
-
-		return MultiModelTypeIntrospection.getPointer(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getClassLiteral() {
 		return classLiteral;
 	}
@@ -208,9 +168,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		switch (featureID) {
 			case MidPackage.MODEL_ELEMENT__CATEGORY:
 				return getCategory();
-			case MidPackage.MODEL_ELEMENT__POINTER:
-				if (resolve) return getPointer();
-				return basicGetPointer();
 			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				return getClassLiteral();
 		}
@@ -263,8 +220,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		switch (featureID) {
 			case MidPackage.MODEL_ELEMENT__CATEGORY:
 				return category != CATEGORY_EDEFAULT;
-			case MidPackage.MODEL_ELEMENT__POINTER:
-				return basicGetPointer() != null;
 			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				return CLASS_LITERAL_EDEFAULT == null ? classLiteral != null : !CLASS_LITERAL_EDEFAULT.equals(classLiteral);
 		}

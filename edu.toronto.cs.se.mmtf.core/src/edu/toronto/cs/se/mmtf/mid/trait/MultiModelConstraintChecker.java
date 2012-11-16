@@ -275,7 +275,7 @@ public class MultiModelConstraintChecker {
 			if (modelElemType.getCategory() != ModelElementCategory.RELATIONSHIP) {
 				return false;
 			}
-			EStructuralFeature feature = (EStructuralFeature) modelElemType.getPointer();
+			EStructuralFeature feature = (EStructuralFeature) MultiModelTypeIntrospection.getPointer(modelElemType);
 			metaName = feature.getName();
 			if (metaName.equals(RELATIONSHIP_WILDCARD_FEATURE_NAME)) {
 				return true;
@@ -285,7 +285,7 @@ public class MultiModelConstraintChecker {
 			if (modelElemType.getCategory() != ModelElementCategory.ENTITY) {
 				return false;
 			}
-			EClassifier classifier = (EClassifier) modelElemType.getPointer();
+			EClassifier classifier = (EClassifier) MultiModelTypeIntrospection.getPointer(modelElemType);
 			metaName = classifier.getName();
 			if (metaName.equals(ENTITY_WILDCARD_CLASSIFIER_NAME)) {
 				return true;

@@ -67,7 +67,6 @@ public class ModelElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addCategoryPropertyDescriptor(object);
-			addPointerPropertyDescriptor(object);
 			addClassLiteralPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -91,28 +90,6 @@ public class ModelElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Pointer feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPointerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelElement_pointer_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_pointer_feature", "_UI_ModelElement_type"),
-				 MidPackage.Literals.MODEL_ELEMENT__POINTER,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

@@ -67,7 +67,6 @@
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/category"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/pointer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/classLiteral"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype"/>

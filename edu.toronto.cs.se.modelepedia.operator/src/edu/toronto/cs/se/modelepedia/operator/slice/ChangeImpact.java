@@ -224,7 +224,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			EList<ModelElementReference> origUnifiables = origUnifyTable.get(diffModelElem.getUri());
 			if (origUnifiables == null) { // not in the trace rel
 				// get the type it would have if it was in the trace rel
-				ModelElement diffModelElemType = MultiModelConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getPointer());
+				ModelElement diffModelElemType = MultiModelConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), MultiModelTypeIntrospection.getPointer(diffModelElem));
 				if (diffModelElemType != null) {
 					EList<ModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
 					for (ModelElementReference origUnifiable : origUnifiablesFromSameType) {

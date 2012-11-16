@@ -551,17 +551,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElement_Pointer() {
-		return (EReference)modelElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getModelElement_ClassLiteral() {
-		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -771,7 +762,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CATEGORY);
-		createEReference(modelElementEClass, MODEL_ELEMENT__POINTER);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CLASS_LITERAL);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
@@ -887,7 +877,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelElement_Category(), this.getModelElementCategory(), "category", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_Pointer(), ecorePackage.getEObject(), null, "pointer", null, 1, 1, ModelElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelElement_ClassLiteral(), ecorePackage.getEString(), "classLiteral", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModelElement__GetMetatype(), this.getModelElement(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -958,7 +947,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																														
+		   });																																													
 	}
 
 	/**
@@ -988,7 +977,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																						
+		   });																																					
 	}
 
 } //MidPackageImpl

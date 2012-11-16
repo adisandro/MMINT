@@ -37,6 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class SpecializeTypeListener extends SelectionAdapter {
 
@@ -87,7 +88,7 @@ public class SpecializeTypeListener extends SelectionAdapter {
 				for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
 					for (ModelElementReference modelElemRef : modelEndpointRef.getModelElemRefs()) {
 						ModelElement modelElem = modelElemRef.getObject();
-						ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getPointer());
+						ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, MultiModelTypeIntrospection.getPointer(modelElem));
 						if (modelElemType != null) {
 							modelElem.setMetatypeUri(modelElemType.getUri());
 						}

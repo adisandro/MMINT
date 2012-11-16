@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPa
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * The drag and drop edit policy for the Mapping diagram (i.e. a mapping
@@ -86,7 +87,7 @@ modelEndpointRef:
 						}
 						else {
 							//TODO MMTF: why? check this, looks wrong
-							if (EcoreUtil.equals(elementRef.getObject().getPointer(), droppedEObject)) {
+							if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(elementRef.getObject()), droppedEObject)) {
 								continue modelEndpointRef;
 							}
 						}

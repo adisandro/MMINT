@@ -842,22 +842,13 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT__CATEGORY = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Pointer</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__POINTER = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Class Literal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__CLASS_LITERAL = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT__CLASS_LITERAL = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
@@ -866,7 +857,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1531,17 +1522,6 @@ public interface MidPackage extends EPackage {
 	EAttribute getModelElement_Category();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer <em>Pointer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pointer</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getPointer()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EReference getModelElement_Pointer();
-
-	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2019,14 +1999,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_ELEMENT__CATEGORY = eINSTANCE.getModelElement_Category();
-
-		/**
-		 * The meta object literal for the '<em><b>Pointer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT__POINTER = eINSTANCE.getModelElement_Pointer();
 
 		/**
 		 * The meta object literal for the '<em><b>Class Literal</b></em>' attribute feature.
