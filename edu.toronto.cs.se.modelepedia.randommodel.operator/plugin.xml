@@ -15,60 +15,6 @@
 
 <plugin>
 
-<!--
-   <extension
-         point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.randommodel.operator.ModelTypeToRandomModel"
-            isConversion="true">
-         <extendibleType
-               name="ModelTypeToRandomModel"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelTypeToRandomModel">
-         </extendibleType>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="modelType"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
-            </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="randomModelTypeGraph"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/RandomModel">
-            </parameter>
-         </output>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelGenerate"
-            isConversion="false">
-         <extendibleType
-               name="RandomModelGenerate"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_RandomModelGenerate">
-         </extendibleType>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="randomModelTypeGraph"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/RandomModel">
-            </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="randomModel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/RandomModel">
-            </parameter>
-         </output>
-      </operatorType>
-   </extension>
--->
-
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType

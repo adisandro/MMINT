@@ -11,14 +11,15 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.experiment;
 
-import java.io.File;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.MMTF;
@@ -297,17 +298,15 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		state = new Random(seed);
 		experimentSetups = new String[numExperiments][vars.length];
 		cartesianProduct(experimentSetups);
-		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 
 		// outer cycle: vary experiment setup
 experimentCycle:
 		for (int i = 0; i < numExperiments; i++) {
 			// create experiment folder
-			File experimentFolder = new File(workspaceUri + MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i));
-			if (!experimentFolder.exists()) {
-				experimentFolder.mkdir();
+			IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i)));
+			if (!folder.exists(null)) {
+				folder.create(true, true, null);
 			}
-			// run chain of operators
 			EList<Model> outerParameters = actualParameters;
 			for (int op = 0; op < experimentOperators.length; op++) {
 				try {
@@ -335,9 +334,9 @@ experimentCycle:
 			int j;
 			for (j = 0; j < maxSamples; j++) {
 				// create sample folder
-				File sampleFolder = new File(workspaceUri + MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j));
-				if (!sampleFolder.exists()) {
-					sampleFolder.mkdir();
+				folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+				if (!folder.exists(null)) {
+					folder.create(true, true, null);
 				}
 				EList<Model> innerParameters = outerParameters;
 				boolean timedOut = false;

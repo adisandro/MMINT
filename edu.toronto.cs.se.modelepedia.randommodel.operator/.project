@@ -21,11 +21,6 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.m2m.atl.adt.builder.atlBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.eclipse.acceleo.ide.ui.acceleoBuilder</name>
 			<arguments>
 				<dictionary>
@@ -44,7 +39,6 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.m2m.atl.adt.builder.atlNature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.acceleo.ide.ui.acceleoNature</nature>
