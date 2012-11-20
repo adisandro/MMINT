@@ -114,7 +114,7 @@
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
-            class="edu.toronto.cs.se.modelepedia.operator.alloy.AlloyChecker"
+            class="edu.toronto.cs.se.modelepedia.operator.reasoning.AlloyChecker"
             isConversion="false">
          <extendibleType
                name="AlloyChecker"
@@ -292,6 +292,27 @@
                   name="propagatedTrace"
                   modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </parameter>
+         </output>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operatorType
+            class="edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver"
+            isConversion="false">
+         <extendibleType
+               name="Z3SMTSolver"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Z3SMTSolver">
+         </extendibleType>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="anything"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+         </input>
+         <output>
          </output>
       </operatorType>
    </extension>

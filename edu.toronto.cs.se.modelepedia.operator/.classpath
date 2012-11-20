@@ -4,6 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-gen"/>
-	<classpathentry kind="lib" path="jars/alloy4.2-rc.jar"/>
+	<classpathentry kind="lib" path="lib/alloy4.2-rc.jar"/>
+	<classpathentry kind="lib" path="lib/jna.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

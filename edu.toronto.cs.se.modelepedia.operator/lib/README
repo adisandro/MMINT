@@ -1,0 +1,3 @@
+gcc -c -fpic -o Z3SMTSolver.o Z3SMTSolver.c
+gcc -shared -o libZ3SMTSolver.so Z3SMTSolver.o
+sudo mv libZ3SMTSolver.so /usr/lib/

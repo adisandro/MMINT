@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.alloy;
+package edu.toronto.cs.se.modelepedia.operator.reasoning;
 
 import java.util.ArrayList;
 import java.util.HashMap;
