@@ -17,7 +17,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//RandomModel/defaultMinimumNumberOfInstances"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute randommodel.ecore#//RandomModel/defaultMaximumNumberOfInstances"/>
     </genClasses>
-    <genClasses ecoreClass="randommodel.ecore#//Node"/>
+    <genClasses ecoreClass="randommodel.ecore#//Node">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference randommodel.ecore#//Node/edgesAsSrc"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference randommodel.ecore#//Node/edgesAsTgt"/>
+    </genClasses>
     <genClasses ecoreClass="randommodel.ecore#//Edge">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference randommodel.ecore#//Edge/src"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference randommodel.ecore#//Edge/tgt"/>

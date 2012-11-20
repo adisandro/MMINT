@@ -322,13 +322,31 @@ public interface RandomModelPackage extends EPackage {
 	int NODE__MAXIMUM_NUMBER_OF_INSTANCES = NAMED_ELEMENT__MAXIMUM_NUMBER_OF_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Edges As Src</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__EDGES_AS_SRC = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Edges As Tgt</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__EDGES_AS_TGT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int NODE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Node</em>' class.
@@ -536,6 +554,28 @@ public interface RandomModelPackage extends EPackage {
 	EClass getNode();
 
 	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsSrc <em>Edges As Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Edges As Src</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsSrc()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_EdgesAsSrc();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsTgt <em>Edges As Tgt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Edges As Tgt</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsTgt()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_EdgesAsTgt();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.randommodel.Edge <em>Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -711,6 +751,22 @@ public interface RandomModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NODE = eINSTANCE.getNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Edges As Src</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__EDGES_AS_SRC = eINSTANCE.getNode_EdgesAsSrc();
+
+		/**
+		 * The meta object literal for the '<em><b>Edges As Tgt</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__EDGES_AS_TGT = eINSTANCE.getNode_EdgesAsTgt();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.randommodel.impl.EdgeImpl <em>Edge</em>}' class.

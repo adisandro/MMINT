@@ -127,7 +127,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 			category,
 			classLiteral
 		);
-		MAVOUtils.annotateMAVOModelElement(newDroppedEObject, newModelElemRef);
+		MAVOUtils.annotateMAVOModelElementReference(newDroppedEObject, newModelElemRef);
 
 		return newModelElemRef;
 	}
@@ -182,7 +182,7 @@ supertypes:
 			category,
 			classLiteral
 		);
-		MAVOUtils.annotateMAVOModelElement(newDroppedEObject, newModelElemTypeRef);
+		MAVOUtils.annotateMAVOModelElementReference(newDroppedEObject, newModelElemTypeRef);
 		MMTF.initTypeHierarchy(multiModel);
 
 		return newModelElemTypeRef;

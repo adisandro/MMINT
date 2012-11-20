@@ -17,6 +17,7 @@ import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -107,11 +108,33 @@ public class EdgeImpl extends NamedElementImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSrc(Node newSrc) {
+	public NotificationChain basicSetSrc(Node newSrc, NotificationChain msgs) {
 		Node oldSrc = src;
 		src = newSrc;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelPackage.EDGE__SRC, oldSrc, src));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomModelPackage.EDGE__SRC, oldSrc, newSrc);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSrc(Node newSrc) {
+		if (newSrc != src) {
+			NotificationChain msgs = null;
+			if (src != null)
+				msgs = ((InternalEObject)src).eInverseRemove(this, RandomModelPackage.NODE__EDGES_AS_SRC, Node.class, msgs);
+			if (newSrc != null)
+				msgs = ((InternalEObject)newSrc).eInverseAdd(this, RandomModelPackage.NODE__EDGES_AS_SRC, Node.class, msgs);
+			msgs = basicSetSrc(newSrc, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelPackage.EDGE__SRC, newSrc, newSrc));
 	}
 
 	/**
@@ -145,11 +168,69 @@ public class EdgeImpl extends NamedElementImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTgt(Node newTgt) {
+	public NotificationChain basicSetTgt(Node newTgt, NotificationChain msgs) {
 		Node oldTgt = tgt;
 		tgt = newTgt;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelPackage.EDGE__TGT, oldTgt, tgt));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomModelPackage.EDGE__TGT, oldTgt, newTgt);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTgt(Node newTgt) {
+		if (newTgt != tgt) {
+			NotificationChain msgs = null;
+			if (tgt != null)
+				msgs = ((InternalEObject)tgt).eInverseRemove(this, RandomModelPackage.NODE__EDGES_AS_TGT, Node.class, msgs);
+			if (newTgt != null)
+				msgs = ((InternalEObject)newTgt).eInverseAdd(this, RandomModelPackage.NODE__EDGES_AS_TGT, Node.class, msgs);
+			msgs = basicSetTgt(newTgt, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelPackage.EDGE__TGT, newTgt, newTgt));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RandomModelPackage.EDGE__SRC:
+				if (src != null)
+					msgs = ((InternalEObject)src).eInverseRemove(this, RandomModelPackage.NODE__EDGES_AS_SRC, Node.class, msgs);
+				return basicSetSrc((Node)otherEnd, msgs);
+			case RandomModelPackage.EDGE__TGT:
+				if (tgt != null)
+					msgs = ((InternalEObject)tgt).eInverseRemove(this, RandomModelPackage.NODE__EDGES_AS_TGT, Node.class, msgs);
+				return basicSetTgt((Node)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RandomModelPackage.EDGE__SRC:
+				return basicSetSrc(null, msgs);
+			case RandomModelPackage.EDGE__TGT:
+				return basicSetTgt(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

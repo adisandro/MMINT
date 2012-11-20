@@ -45,7 +45,7 @@ public interface NamedElement extends MAVOElement {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage#getNamedElement_Name()
-	 * @model default="" id="true" required="true"
+	 * @model default="" required="true"
 	 * @generated
 	 */
 	String getName();

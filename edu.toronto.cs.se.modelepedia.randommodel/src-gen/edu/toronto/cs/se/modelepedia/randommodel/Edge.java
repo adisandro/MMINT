@@ -32,6 +32,7 @@ package edu.toronto.cs.se.modelepedia.randommodel;
 public interface Edge extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Src</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsSrc <em>Edges As Src</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Src</em>' reference isn't clear,
@@ -41,7 +42,8 @@ public interface Edge extends NamedElement {
 	 * @return the value of the '<em>Src</em>' reference.
 	 * @see #setSrc(Node)
 	 * @see edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage#getEdge_Src()
-	 * @model required="true"
+	 * @see edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsSrc
+	 * @model opposite="edgesAsSrc" required="true"
 	 * @generated
 	 */
 	Node getSrc();
@@ -58,6 +60,7 @@ public interface Edge extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Tgt</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsTgt <em>Edges As Tgt</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tgt</em>' reference isn't clear,
@@ -67,7 +70,8 @@ public interface Edge extends NamedElement {
 	 * @return the value of the '<em>Tgt</em>' reference.
 	 * @see #setTgt(Node)
 	 * @see edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage#getEdge_Tgt()
-	 * @model required="true"
+	 * @see edu.toronto.cs.se.modelepedia.randommodel.Node#getEdgesAsTgt
+	 * @model opposite="edgesAsTgt" required="true"
 	 * @generated
 	 */
 	Node getTgt();

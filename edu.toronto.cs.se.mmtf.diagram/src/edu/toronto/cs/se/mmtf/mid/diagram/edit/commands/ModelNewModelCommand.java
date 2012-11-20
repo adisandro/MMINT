@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -29,7 +30,6 @@ import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 
 /**
  * The command to create a model.

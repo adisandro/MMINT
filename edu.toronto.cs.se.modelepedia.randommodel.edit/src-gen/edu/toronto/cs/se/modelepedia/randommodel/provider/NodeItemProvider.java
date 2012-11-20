@@ -14,12 +14,14 @@ package edu.toronto.cs.se.modelepedia.randommodel.provider;
 
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
 
+import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -62,8 +64,54 @@ public class NodeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addEdgesAsSrcPropertyDescriptor(object);
+			addEdgesAsTgtPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Edges As Src feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEdgesAsSrcPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_edgesAsSrc_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_edgesAsSrc_feature", "_UI_Node_type"),
+				 RandomModelPackage.Literals.NODE__EDGES_AS_SRC,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Edges As Tgt feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEdgesAsTgtPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_edgesAsTgt_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_edgesAsTgt_feature", "_UI_Node_type"),
+				 RandomModelPackage.Literals.NODE__EDGES_AS_TGT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

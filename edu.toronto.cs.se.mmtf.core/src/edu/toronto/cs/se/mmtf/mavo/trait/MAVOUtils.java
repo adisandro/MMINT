@@ -47,17 +47,25 @@ public class MAVOUtils {
 		model.setInc(((MAVOModel) rootEObject).isInc());
 	}
 
-	public static void annotateMAVOModelElement(EObject droppedEObject, ModelElementReference modelElemRef) {
+	public static void annotateMAVOModelElement(EObject modelObj, ModelElement modelElem) {
 
-		if (!(droppedEObject instanceof MAVOElement)) {
+		if (!(modelObj instanceof MAVOElement)) {
 			return;
 		}
 
-		MAVOElement mavoElem = (MAVOElement) droppedEObject;
-		ModelElement modelElem = modelElemRef.getObject();
-		modelElem.setMay(mavoElem.isMay());
-		modelElem.setSet(mavoElem.isSet());
-		modelElem.setVar(mavoElem.isVar());
+		MAVOElement mavoObj = (MAVOElement) modelObj;
+		modelElem.setMay(mavoObj.isMay());
+		modelElem.setSet(mavoObj.isSet());
+		modelElem.setVar(mavoObj.isVar());
+	}
+
+	public static void annotateMAVOModelElementReference(EObject modelObj, ModelElementReference modelElemRef) {
+
+		if (!(modelObj instanceof MAVOElement)) {
+			return;
+		}
+
+		annotateMAVOModelElement(modelObj, modelElemRef.getObject());
 	}
 
 }

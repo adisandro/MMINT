@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -31,7 +32,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 

@@ -9,17 +9,18 @@
  * Contributors:
  *    Alessio Di Sandro, Vivien Suen - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.trait;
+package edu.toronto.cs.se.mmtf.mavo.trait;
 
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 
@@ -42,7 +43,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelEObject) throws MMTFException {
 
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(modelEndpointRef, newModelElemName, modelEObject);
-		MAVOUtils.annotateMAVOModelElement(modelEObject, newModelElemRef);
+		MAVOUtils.annotateMAVOModelElementReference(modelEObject, newModelElemRef);
 
 		return newModelElemRef;
 	}

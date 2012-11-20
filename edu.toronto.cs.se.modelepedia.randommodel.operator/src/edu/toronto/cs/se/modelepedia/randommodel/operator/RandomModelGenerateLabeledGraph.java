@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
-import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelFactory;
@@ -40,157 +39,142 @@ import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
 public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImpl {
 
-	/** Min number of model elements in the random model. */
-	private static final String PROPERTY_IN_MINMODELELEMS = "minModelElems";
-	/** Max number of model elements in the random model. */
-	private static final String PROPERTY_IN_MAXMODELELEMS = "maxModelElems";
-	/** % of annotated elements in the random model. */
+	/** Min number of model objects in the random model. */
+	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";
+	/** Max number of model objects in the random model. */
+	private static final String PROPERTY_IN_MAXMODELOBJS = "maxModelObjs";
+	//TODO MMTF: to be generic here we need a list a model elements and a density formula
+	private static final String PROPERTY_IN_EDGESDENSITYMODELOBJS = "edges.densityModelObjs";
+	/** % of annotated objects in the random model. */
 	private static final String PROPERTY_IN_PERCANNOTATIONS = "percAnnotations";
-	/** % of may elements among the annotated elements. */
+	/** % of may objects among the annotated elements. */
 	private static final String PROPERTY_IN_PERCMAY = "percMay";
-	/** % of set elements among the annotated elements. */
+	/** % of set objects among the annotated elements. */
 	private static final String PROPERTY_IN_PERCSET = "percSet";
-	/** % of var elements among the annotated elements. */
+	/** % of var objects among the annotated elements. */
 	private static final String PROPERTY_IN_PERCVAR = "percVar";
-	/** The list of may annotated model elements. */
-	public static final String PROPERTY_OUT_MAYMODELELEMS = "mayModelElems";
-	/** The list of set annotated model elements. */
-	public static final String PROPERTY_OUT_SETMODELELEMS = "setModelElems";
-	/** The list of var annotated model elements. */
-	public static final String PROPERTY_OUT_VARMODELELEMS = "varModelElems";
 	private static final String RANDOM_SUFFIX = "_random";
 
-	private int minModelElems;
-	private int maxModelElems;
+	private int minModelObjs;
+	private int maxModelObjs;
+	private double edgesDensityModelObjs;
 	private double percAnnotations;
 	private double percMay;
 	private double percSet;
 	private double percVar;
+	private List<MAVOElement> mavoModelObjs;
+
+	public enum MAVOAnnotation {
+		M, S, V
+	}
 
 	private void readProperties(Properties properties) throws Exception {
 
-		minModelElems = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINMODELELEMS);
-		maxModelElems = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXMODELELEMS);
+		minModelObjs = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINMODELOBJS);
+		maxModelObjs = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXMODELOBJS);
+		edgesDensityModelObjs = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_EDGESDENSITYMODELOBJS);
 		percAnnotations = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCANNOTATIONS);
 		percMay = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCMAY);
 		percSet = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCSET);
 		percVar = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCVAR);
 	}
 
-	private void writeProperties(Properties properties, String mayModelElems, String setModelElems, String varModelElems) {
+	private int increaseEdgesMayUncertainty(Model newRandommodelModel, Node mayAnnotatedNode, List<MAVOElement> mavoAnnotatableModelObjs) {
 
-		properties.setProperty(PROPERTY_OUT_MAYMODELELEMS, mayModelElems);
-		properties.setProperty(PROPERTY_OUT_SETMODELELEMS, setModelElems);
-		properties.setProperty(PROPERTY_OUT_VARMODELELEMS, varModelElems);
+		int i = 0;
+		for (Edge edgeAsSrc : mayAnnotatedNode.getEdgesAsSrc()) {
+			if (!edgeAsSrc.isMay()) {
+				mavoAnnotatableModelObjs.remove(edgeAsSrc);
+				edgeAsSrc.setMay(true);
+				mavoModelObjs.add(edgeAsSrc);
+				i++;
+			}
+		}
+		for (Edge edgeAsTgt : mayAnnotatedNode.getEdgesAsTgt()) {
+			if (!edgeAsTgt.isMay()) {
+				mavoAnnotatableModelObjs.remove(edgeAsTgt);
+				edgeAsTgt.setMay(true);
+				mavoModelObjs.add(edgeAsTgt);
+				i++;
+			}
+		}
+
+		return i;
 	}
 
-	private RandomModel generateRandomMAVOModel(Model labeledGraphModel, Properties inputProperties) throws Exception {
+	private void annotateMAVOElements(Model newRandommodelModel, List<MAVOElement> annotatableModelObjs, MAVOAnnotation mavoAnnotation, double mavoPerc) {
 
-		int totModelElems = state.nextInt(maxModelElems - minModelElems + 1) + minModelElems;
-		double[] percModelElems = new double[2];
-		int[] numModelElems = new int[2];
-		double sumPercModelElems = 0;
-		for (int i = 0; i < percModelElems.length; i++) {
-			percModelElems[i] = state.nextDouble();
-			sumPercModelElems += percModelElems[i];
+		List<MAVOElement> mavoAnnotatableModelObjs = new ArrayList<MAVOElement>(annotatableModelObjs);
+		MAVOElement mavoModelObj;
+		int numMavo = (int) Math.round(mavoPerc * annotatableModelObjs.size());
+		for (int i = 0; i < numMavo; i++) {
+			mavoModelObj = mavoAnnotatableModelObjs.remove(state.nextInt(mavoAnnotatableModelObjs.size()));
+			switch (mavoAnnotation) {
+				case M:
+					mavoModelObj.setMay(true);
+					if (mavoModelObj instanceof Node) {
+						i += increaseEdgesMayUncertainty(newRandommodelModel, (Node) mavoModelObj, mavoAnnotatableModelObjs);
+					}
+					break;
+				case S:
+					mavoModelObj.setSet(true);
+					break;
+				case V:
+					mavoModelObj.setVar(true);
+					break;
+			}
+			mavoModelObjs.add(mavoModelObj);
 		}
-		for (int i = 0; i < numModelElems.length; i++) {
-			numModelElems[i] = (int) Math.round(percModelElems[i] / sumPercModelElems * totModelElems);
-		}
+	}
 
-		List<MAVOElement> randomModelElems = new ArrayList<MAVOElement>();
+	private RandomModel generateRandomMAVOModel(Model labeledGraphModel, Model newRandommodelModel) throws Exception {
+
+		int totModelObjs = state.nextInt(maxModelObjs - minModelObjs + 1) + minModelObjs;
+		int[] numModelObjs = new int[2];
+		numModelObjs[0] = (int) Math.round((-1 + Math.sqrt(4 * edgesDensityModelObjs * totModelObjs)) / (2 * edgesDensityModelObjs)); // graph density
+		numModelObjs[1] = totModelObjs - numModelObjs[0];
+
+		List<MAVOElement> randomModelObjs = new ArrayList<MAVOElement>();
 		RandomModel randomRoot = RandomModelFactory.eINSTANCE.createRandomModel();
 		EList<Node> randomNodes = randomRoot.getNodes();
 		Node node;
 		String nodeType = RandomModelPackage.eINSTANCE.getNode().getName().toLowerCase();
-		for (int i = 0; i < numModelElems[0]; i++) {
+		for (int i = 0; i < numModelObjs[0]; i++) {
 			node = RandomModelFactory.eINSTANCE.createNode();
 			node.setName(String.valueOf(i+1));
 			node.setType(nodeType);
 			randomNodes.add(node);
-			randomModelElems.add(node);
+			randomModelObjs.add(node);
 		}
 		EList<Edge> randomEdges = randomRoot.getEdges();
 		Edge edge;
 		String edgeType = RandomModelPackage.eINSTANCE.getEdge().getName().toLowerCase();
-		for (int i = 0; i < numModelElems[1]; i++) {
+		for (int i = 0; i < numModelObjs[1]; i++) {
 			edge = RandomModelFactory.eINSTANCE.createEdge();
 			edge.setName(String.valueOf(i+1));
 			edge.setType(edgeType);
-			edge.setSrc(randomNodes.get(state.nextInt(numModelElems[0])));
-			edge.setTgt(randomNodes.get(state.nextInt(numModelElems[0])));
+			edge.setSrc(randomNodes.get(state.nextInt(numModelObjs[0])));
+			edge.setTgt(randomNodes.get(state.nextInt(numModelObjs[0])));
 			randomEdges.add(edge);
-			randomModelElems.add(edge);
+			randomModelObjs.add(edge);
 		}
 
-		//TODO MMTF: compact this copied and pasted code
 		// all annotated elements
-		List<MAVOElement> annotatedModelElems = new ArrayList<MAVOElement>();
-		int numAnnotations = (int) Math.round(percAnnotations * randomModelElems.size());
+		List<MAVOElement> annotatableModelObjs = new ArrayList<MAVOElement>();
+		int numAnnotations = (int) Math.round(percAnnotations * randomModelObjs.size());
 		for (int i = 0; i < numAnnotations; i++) {
-			annotatedModelElems.add(randomModelElems.remove(state.nextInt(randomModelElems.size())));
+			annotatableModelObjs.add(randomModelObjs.remove(state.nextInt(randomModelObjs.size())));
 		}
-		// may
-		List<MAVOElement> mavoAnnotatedModelElems = new ArrayList<MAVOElement>(annotatedModelElems);
-		MAVOElement mavoAnnotatedModelElem;
-		StringBuilder mavoString = new StringBuilder();
-		int numMay = (int) Math.round(percMay * annotatedModelElems.size());
-		for (int i = 0; i < numMay; i++) {
-			mavoAnnotatedModelElem = mavoAnnotatedModelElems.remove(state.nextInt(mavoAnnotatedModelElems.size()));
-			mavoAnnotatedModelElem.setMay(true);
-			mavoString.append(mavoAnnotatedModelElem.eClass().getName().toLowerCase());
-			mavoString.append(" ");
-			mavoString.append(((NamedElement) mavoAnnotatedModelElem).getName());
-			mavoString.append(',');
-		}
-		if (mavoString.length() > 0) {
-			mavoString.deleteCharAt(mavoString.length() - 1);
-		}
-		String mayModelElems = mavoString.toString();
-		// set
-		mavoAnnotatedModelElems = new ArrayList<MAVOElement>(annotatedModelElems);
-		mavoString = new StringBuilder();
-		int numSet = (int) Math.round(percSet * annotatedModelElems.size());
-		for (int i = 0; i < numSet; i++) {
-			mavoAnnotatedModelElem = mavoAnnotatedModelElems.remove(state.nextInt(mavoAnnotatedModelElems.size()));
-			mavoAnnotatedModelElem.setSet(true);
-			mavoString.append(mavoAnnotatedModelElem.eClass().getName().toLowerCase());
-			mavoString.append(" ");
-			mavoString.append(((NamedElement) mavoAnnotatedModelElem).getName());
-			mavoString.append(',');
-		}
-		if (mavoString.length() > 0) {
-			mavoString.deleteCharAt(mavoString.length() - 1);
-		}
-		String setModelElems = mavoString.toString();
-		// var
-		mavoAnnotatedModelElems = new ArrayList<MAVOElement>(annotatedModelElems);
-		mavoString = new StringBuilder();
-		int numVar = (int) Math.round(percVar * annotatedModelElems.size());
-		for (int i = 0; i < numVar; i++) {
-			mavoAnnotatedModelElem = mavoAnnotatedModelElems.remove(state.nextInt(mavoAnnotatedModelElems.size()));
-			mavoAnnotatedModelElem.setVar(true);
-			mavoString.append(mavoAnnotatedModelElem.eClass().getName().toLowerCase());
-			mavoString.append(" ");
-			mavoString.append(((NamedElement) mavoAnnotatedModelElem).getName());
-			mavoString.append(',');
-		}
-		if (mavoString.length() > 0) {
-			mavoString.deleteCharAt(mavoString.length() - 1);
-		}
-		String varModelElems = mavoString.toString();
-		// output properties
-		Properties outputProperties = new Properties();
-		writeProperties(outputProperties, mayModelElems, setModelElems, varModelElems);
-		MultiModelOperatorUtils.writePropertiesFile(
-			outputProperties,
-			this,
-			labeledGraphModel,
-			MultiModelOperatorUtils.getSubdir(inputProperties),
-			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
-		);
+		annotateMAVOElements(newRandommodelModel, annotatableModelObjs, MAVOAnnotation.M, percMay);
+		annotateMAVOElements(newRandommodelModel, annotatableModelObjs, MAVOAnnotation.S, percSet);
+		annotateMAVOElements(newRandommodelModel, annotatableModelObjs, MAVOAnnotation.V, percVar);
 
 		return randomRoot;
+	}
+
+	public List<MAVOElement> getMAVOModelObjects() {
+
+		return mavoModelObjs;
 	}
 
 	@Override
@@ -204,11 +188,12 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
-		if (minModelElems > maxModelElems) {
-			throw new MMTFException("minModelElems (" + minModelElems + ") > maxModelElems (" + maxModelElems + ")");
+		if (minModelObjs > maxModelObjs) {
+			throw new MMTFException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
 		}
+		mavoModelObjs = new ArrayList<MAVOElement>();
 
-		// create random instance
+		// create model first in order to contain mavo model elements
 		String modelTypeName = labeledGraphModel.getMetatype().getName();
 		String newLastSegmentUri = modelTypeName + RANDOM_SUFFIX + (new Date()).getTime() + MultiModelRegistry.ECORE_MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
 		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
@@ -216,12 +201,6 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;
 		}
 		String newRandommodelModelUri = MultiModelRegistry.replaceLastSegmentInUri(labeledGraphModel.getUri(), newLastSegmentUri);
-		RandomModel randomRoot = generateRandomMAVOModel(labeledGraphModel, inputProperties);
-		randomRoot.setName(MultiModelRegistry.getFileNameFromUri(newRandommodelModelUri));
-		randomRoot.setType(modelTypeName);
-		MultiModelTypeIntrospection.writeRoot(randomRoot, newRandommodelModelUri, true);
-
-		// create model
 		EList<Model> result = new BasicEList<Model>();
 		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
 		MultiModel multiModel = (updateMid) ?
@@ -232,6 +211,12 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 			MultiModelInstanceFactory.createModelAndEditor(modelType, newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
 			MultiModelInstanceFactory.createModel(modelType, newRandommodelModelUri, ModelOrigin.CREATED, null);
 		result.add(newRandommodelModel);
+
+		// create random instance
+		RandomModel randomRoot = generateRandomMAVOModel(labeledGraphModel, newRandommodelModel);
+		randomRoot.setName(MultiModelRegistry.getFileNameFromUri(newRandommodelModelUri));
+		randomRoot.setType(modelTypeName);
+		MultiModelTypeIntrospection.writeRoot(randomRoot, newRandommodelModelUri, true);
 
 		return result;
 	}

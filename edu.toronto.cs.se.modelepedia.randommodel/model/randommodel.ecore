@@ -16,14 +16,21 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edgesAsSrc" upperBound="-1"
+        eType="#//Edge" eOpposite="#//Edge/src"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edgesAsTgt" upperBound="-1"
+        eType="#//Edge" eOpposite="#//Edge/tgt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Node"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tgt" lowerBound="1" eType="#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Node"
+        eOpposite="#//Node/edgesAsSrc"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tgt" lowerBound="1" eType="#//Node"
+        eOpposite="#//Node/edgesAsTgt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="" iD="true"/>
+        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumNumberOfInstances"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -34,7 +35,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class ModelNameMatch extends OperatorExecutableImpl {
