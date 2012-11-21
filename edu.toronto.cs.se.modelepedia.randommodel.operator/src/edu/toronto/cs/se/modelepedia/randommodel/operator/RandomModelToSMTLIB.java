@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.randommodel.operator;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,9 +21,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.acceleo.common.preference.AcceleoPreferences;
+import org.eclipse.acceleo.engine.event.AcceleoTextGenerationEvent;
+import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
@@ -37,19 +42,60 @@ import edu.toronto.cs.se.modelepedia.randommodel.Node;
 
 public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 
+	public class RandomModelToSMTLIB_M2TWithListeners extends RandomModelToSMTLIB_M2T {
+
+		public class RandomModelToSMTLIBListener implements IAcceleoTextGenerationListener {
+
+			@Override
+			public void textGenerated(AcceleoTextGenerationEvent event) {
+				smtlibEncoding = event.getText();
+			}
+
+			@Override
+			public void filePathComputed(AcceleoTextGenerationEvent event) {
+			}
+
+			@Override
+			public void fileGenerated(AcceleoTextGenerationEvent event) {
+			}
+
+			@Override
+			public void generationEnd(AcceleoTextGenerationEvent event) {
+			}
+
+			@Override
+			public boolean listensToGenerationEnd() {
+				return false;
+			}
+			
+		}
+
+		public RandomModelToSMTLIB_M2TWithListeners(EObject model, File targetFolder, List<? extends Object> arguments) throws IOException {
+
+			super(model, targetFolder, arguments);
+	    }
+
+		@Override
+	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
+
+			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
+			listeners.add(new RandomModelToSMTLIBListener());
+
+			return listeners;
+		}
+	}
+
 	private static final String PROPERTY_IN_NUMCONCRETIZATIONS = "numConcretizations";
-	private static final String PROPERTY_IN_PROPERTY = "property";
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelGenerateLabeledGraph";
 	private static final String SMT_CONCRETIZATION_PREAMBLE = "(assert (or\n";
 	private static final String SMT_CONCRETIZATION_POSTAMBLE = "))";
 
 	private int numConcretizations;
-	private String property;
+	private String smtlibEncoding;
 
 	private void readProperties(Properties properties) throws Exception {
 
 		numConcretizations = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_NUMCONCRETIZATIONS);
-		property = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_PROPERTY);
 	}
 
 	private String getNamedElementSMTEncoding(NamedElement namedElement) {
@@ -110,6 +156,11 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		concretizations.add(concretization.toString());
 	}
 
+	public String getSMTLIBEncoding() {
+
+		return smtlibEncoding;
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -146,10 +197,10 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		}
 		smtConcretizations.append(SMT_CONCRETIZATION_POSTAMBLE);
 		m2tArgs.add(smtConcretizations.toString());
-		m2tArgs.add(property);
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		File folder = (new File(workspaceUri + randommodelModel.getUri())).getParentFile();
-		RandomModelToSMTLIB_M2T m2t = new RandomModelToSMTLIB_M2T(MultiModelTypeIntrospection.getRoot(randommodelModel), folder, m2tArgs);
+		AcceleoPreferences.switchNotifications(false);
+		RandomModelToSMTLIB_M2T m2t = new RandomModelToSMTLIB_M2TWithListeners(MultiModelTypeIntrospection.getRoot(randommodelModel), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;

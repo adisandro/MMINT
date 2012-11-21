@@ -66,13 +66,10 @@
 	[/for]
 [/template]
 
-[template private encodePostamble(concretizations : String, property : String)]
+[template private encodePostamble(concretizations : String)]
 
 ;May formula
 [concretizations/]
-
-;Property
-[property/]
 
 ;Run!!
 (check-sat)
@@ -82,12 +79,12 @@
  * 
  * @param randommodel The random model.
  */]
-[template public encodeRandomModel(randommodel : RandomModel, concretizations : String, property : String)]
+[template public encodeRandomModel(randommodel : RandomModel, concretizations : String)]
 [comment @main/]
 [file (randommodel.name + '.smt2', false, 'UTF-8')]
 [encodePreamble(randommodel)/]
 [encodeNodes(randommodel)/]
 [encodeEdges(randommodel)/]
-[encodePostamble(concretizations, property)/]
+[encodePostamble(concretizations)/]
 [/file]
 [/template]

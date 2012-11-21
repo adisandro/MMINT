@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.reasoning;
 
+import java.util.Properties;
+
 import org.eclipse.emf.common.util.EList;
 
 import com.sun.jna.Library;
@@ -18,12 +20,16 @@ import com.sun.jna.Native;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 
 public class Z3SMTSolver extends OperatorExecutableImpl {
 
+	private static final String PROPERTY_IN_PROPERTY = "property";
 	private static final String Z3_LIBRARY_NAME = "z3";
 	private static final String OPERATOR_LIBRARY_NAME = "Z3SMTSolver";
-	private static final String Z3_LIBRARY_PATH = "/usr/lib";
+	private static final String LIBRARY_PATH = "/usr/lib";
+
+	private String property;
 
 	public interface CLibrary extends Library {
 
@@ -33,11 +39,24 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		int checkSat(String smtString);
 	}
 
+	private void readProperties(Properties properties) throws Exception {
+
+		property = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_PROPERTY);
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		System.setProperty("jna.library.path", Z3_LIBRARY_PATH);
+		Model randommodelModel = actualParameters.get(0);
+		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
+			this,
+			randommodelModel,
+			null,
+			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
+		);
+		readProperties(inputProperties);
 
+		System.setProperty("jna.library.path", LIBRARY_PATH);
 		String test = "";
 		int x = CLibrary.OPERATOR_INSTANCE.checkSat(test);
 		System.err.println(x);
