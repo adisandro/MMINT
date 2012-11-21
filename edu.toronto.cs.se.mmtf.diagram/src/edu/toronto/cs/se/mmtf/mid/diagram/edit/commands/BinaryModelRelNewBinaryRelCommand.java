@@ -109,10 +109,10 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(getSource(), getTarget());
 		BinaryModelRel newModelRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			modelRelType,
-			multiModel,
-			ModelOrigin.CREATED,
 			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel()
+			ModelOrigin.CREATED,
+			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			multiModel
 		);
 
 		EList<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());

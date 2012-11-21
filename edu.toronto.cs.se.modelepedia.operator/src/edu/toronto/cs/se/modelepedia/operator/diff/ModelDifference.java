@@ -116,10 +116,10 @@ public class ModelDifference extends OperatorExecutableImpl {
 		MultiModel multiModel = (MultiModel) srcModel.eContainer();
 		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
 			null,
-			multiModel,
-			ModelOrigin.CREATED,
 			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel()
+			ModelOrigin.CREATED,
+			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			multiModel
 		);
 		newModelRel.setName(MODEL_REL_NAME);
 

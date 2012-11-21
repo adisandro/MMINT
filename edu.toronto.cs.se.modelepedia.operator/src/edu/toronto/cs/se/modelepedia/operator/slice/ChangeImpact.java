@@ -190,8 +190,8 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		// create output model relationship
 		ModelRel newImpactModelRel = MultiModelInstanceFactory.createModelRelAndModelEndpointsAndModelEndpointReferences(
 			null,
-			ModelOrigin.CREATED,
 			null,
+			ModelOrigin.CREATED,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
 			diffRel,
 			impactedModel

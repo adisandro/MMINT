@@ -93,10 +93,10 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(null, null);
 		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
 			modelRelType,
-			multiModel,
-			ModelOrigin.CREATED,
 			null,
-			RelationshipPackage.eINSTANCE.getModelRel()
+			ModelOrigin.CREATED,
+			RelationshipPackage.eINSTANCE.getModelRel(),
+			multiModel
 		);
 
 		return newModelRel;

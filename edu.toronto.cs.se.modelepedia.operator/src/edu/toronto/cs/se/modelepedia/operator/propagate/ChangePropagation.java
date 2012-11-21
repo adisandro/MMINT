@@ -571,10 +571,10 @@ traceLinks:
 		Model newPropModel = createRelatedModelCopy(relatedModel);
 		BinaryModelRel newPropRefinementRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			refinementRel.getMetatype(),
-			multiModel,
-			ModelOrigin.CREATED,
 			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel()
+			ModelOrigin.CREATED,
+			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			multiModel
 		);
 		newPropRefinementRel.setName(PROPREFINEMENT_MODELREL_NAME);
 		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
@@ -591,10 +591,10 @@ traceLinks:
 		);
 		BinaryModelRel newPropTraceRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			traceRel.getMetatype(),
-			multiModel,
-			ModelOrigin.CREATED,
 			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel()
+			ModelOrigin.CREATED,
+			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			multiModel
 		);
 		newPropTraceRel.setName(PROPTRACE_MODELREL_NAME);
 		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(

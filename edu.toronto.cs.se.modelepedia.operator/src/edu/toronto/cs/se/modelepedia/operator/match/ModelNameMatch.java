@@ -70,10 +70,10 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			RelationshipPackage.eINSTANCE.getModelRel();
 		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
 			null,
-			multiModel,
-			ModelOrigin.CREATED,
 			null,
-			modelRelClass
+			ModelOrigin.CREATED,
+			modelRelClass,
+			multiModel
 		);
 		newModelRel.setName(MODEL_REL_NAME);
 
