@@ -39,7 +39,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private final static String SMTLIB_ASSERT = "(assert ";
 	private final static String SMTLIB_NOT = "(not ";
 	private final static String SMTLIB_PREDICATE_END = ")";
-	private final static String SMTLIB_ENCODING_POSTAMBLE = "(check-sat)";
+	private final static String SMTLIB_ENCODING_POSTAMBLE = "\n(check-sat)";
 
 	private String property;
 
