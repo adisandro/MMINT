@@ -24,3 +24,5 @@ Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Bundle-Activator: edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelOperatorActivator
 Export-Package: edu.toronto.cs.se.modelepedia.randommodel.operator
+Bundle-ClassPath: lib/jna.jar,
+ .

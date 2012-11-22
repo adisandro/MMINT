@@ -6,6 +6,7 @@ int checkSat(char *smtString) {
 	Z3_config cfg = Z3_mk_config();
 	Z3_context ctx = Z3_mk_context(cfg);
 	Z3_del_config(cfg);
+	Z3_parse_smtlib2_string(ctx, smtString, 0, 0, 0, 0, 0, 0);
 
-	return 0;
+	return (int) Z3_check(ctx);
 }

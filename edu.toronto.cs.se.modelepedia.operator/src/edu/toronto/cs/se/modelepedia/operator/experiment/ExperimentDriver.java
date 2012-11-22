@@ -261,7 +261,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		return result;
 	}
 
-	private double getOutput(EList<Model> parameters, int outputIndex, int statisticsIndex) throws Exception {
+	private double getOutput(Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
 
 		// get output operator
 		Operator operator = MultiModelTypeRegistry.getOperatorType(outputOperators[outputIndex]);
@@ -269,10 +269,10 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			throw new MMTFException("Operator uri " + outputOperators[outputIndex] + " is not registered");
 		}
 
-		String experimentSubdir = SAMPLE_SUBDIR + statisticsIndex;
+		String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
 		Properties resultProperties = MultiModelOperatorUtils.getPropertiesFile(
 			operator.getExecutable(),
-			parameters.get(0),
+			initialModel,
 			experimentSubdir,
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
@@ -359,7 +359,7 @@ experimentCycle:
 					try {
 						double sample = (timedOut) ?
 							outputDefaults[out] :
-							getOutput(innerParameters, out, j);
+							getOutput(initialModel, out, i, j);
 						if (sample == Double.MAX_VALUE) {
 							confidenceOk = false;
 							continue;

@@ -46,9 +46,30 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 
 		public class RandomModelToSMTLIBListener implements IAcceleoTextGenerationListener {
 
+			private StringBuilder textGeneration;
+			private boolean isListening;
+
+			public RandomModelToSMTLIBListener() {
+				textGeneration = new StringBuilder();
+				isListening = true;
+			}
+
 			@Override
 			public void textGenerated(AcceleoTextGenerationEvent event) {
-				smtlibEncoding = event.getText();
+
+				if (!isListening) {
+					return;
+				}
+
+				String text = event.getText();
+				if (text.startsWith(SMTLIB_CONCRETIZATION_MARKER1)) {
+					smtlibEncoding = textGeneration.toString();
+				}
+				if (text.startsWith(SMTLIB_CONCRETIZATION_MARKER2)) {
+					smtlibMavoEncoding = textGeneration.toString();
+					isListening = false;
+				}
+				textGeneration.append(event.getText());
 			}
 
 			@Override
@@ -87,11 +108,15 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 
 	private static final String PROPERTY_IN_NUMCONCRETIZATIONS = "numConcretizations";
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelGenerateLabeledGraph";
-	private static final String SMT_CONCRETIZATION_PREAMBLE = "(assert (or\n";
-	private static final String SMT_CONCRETIZATION_POSTAMBLE = "))";
+	private static final String SMTLIB_CONCRETIZATION_MARKER1 = ";Concretizations-START";
+	private static final String SMTLIB_CONCRETIZATION_MARKER2 = ";Concretizations-END";
+	private static final String SMTLIB_CONCRETIZATION_PREAMBLE = "(assert (or\n";
+	private static final String SMTLIB_CONCRETIZATION_POSTAMBLE = "))";
 
 	private int numConcretizations;
+	private String smtlibMavoEncoding;
 	private String smtlibEncoding;
+	private HashSet<String> smtlibConcretizations;
 
 	private void readProperties(Properties properties) throws Exception {
 
@@ -143,14 +168,14 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 				if (!exists) {
 					concretization.append("(not ");
 				}
-				concretization.append("(");
+				concretization.append('(');
 				concretization.append(mayModelObjSMTEncoding);
-				concretization.append(")");
+				concretization.append(')');
 				if (!exists) {
-					concretization.append(")");
+					concretization.append(')');
 				}
 			}
-			concretization.append(")");
+			concretization.append(')');
 		}
 		while (concretizations.contains(concretization.toString()));
 		concretizations.add(concretization.toString());
@@ -159,6 +184,16 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 	public String getSMTLIBEncoding() {
 
 		return smtlibEncoding;
+	}
+
+	public String getSMTLIBMAVOEncoding() {
+
+		return smtlibMavoEncoding;
+	}
+
+	public HashSet<String> getSMTLIBConcretizations() {
+
+		return smtlibConcretizations;
 	}
 
 	@Override
@@ -181,24 +216,31 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		}
 
 		// generate smt concretizations
-		//TODO MMTF: add heuristics to detect too large number of concretizations (when it's more efficient to generate them all and then cut some)
-		HashSet<String> concretizations = new HashSet<String>();
-		for (int i = 0; i < numConcretizations; i++) {
-			generateConcretization(concretizations, mayModelObjs);
+		smtlibConcretizations = new HashSet<String>();
+		String concretizations = "";
+		if (maxConcretizations > 1) {
+			//TODO MMTF: add heuristics to detect too large number of concretizations (when it's more efficient to generate them all and then cut some)
+			for (int i = 0; i < numConcretizations; i++) {
+				generateConcretization(smtlibConcretizations, mayModelObjs);
+			}
+			StringBuilder concretizationsBuilder = new StringBuilder(SMTLIB_CONCRETIZATION_PREAMBLE);
+			Iterator<String> iter = smtlibConcretizations.iterator();
+			while (iter.hasNext()) {
+				concretizationsBuilder.append(iter.next());
+				concretizationsBuilder.append('\n');
+			}
+			concretizationsBuilder.append(SMTLIB_CONCRETIZATION_POSTAMBLE);
+			concretizations = concretizationsBuilder.toString();
 		}
 
 		// generate smt-lib representation of the random model
 		List<Object> m2tArgs = new ArrayList<Object>();
-		StringBuilder smtConcretizations = new StringBuilder(SMT_CONCRETIZATION_PREAMBLE);
-		Iterator<String> iter = concretizations.iterator();
-		while (iter.hasNext()) {
-			smtConcretizations.append(iter.next());
-			smtConcretizations.append("\n");
-		}
-		smtConcretizations.append(SMT_CONCRETIZATION_POSTAMBLE);
-		m2tArgs.add(smtConcretizations.toString());
+		m2tArgs.add(SMTLIB_CONCRETIZATION_MARKER1);
+		m2tArgs.add(SMTLIB_CONCRETIZATION_MARKER2);
+		m2tArgs.add(concretizations);
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		File folder = (new File(workspaceUri + randommodelModel.getUri())).getParentFile();
+		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
 		RandomModelToSMTLIB_M2T m2t = new RandomModelToSMTLIB_M2TWithListeners(MultiModelTypeIntrospection.getRoot(randommodelModel), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());

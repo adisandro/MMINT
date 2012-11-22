@@ -5,7 +5,7 @@
 [module RandomModelToSMTLIB_M2T('http://se.cs.toronto.edu/mmtf/MAVO', 'http://se.cs.toronto.edu/modelepedia/RandomModel')]
 
 [template private encodePreamble(randommodel : RandomModel)]
-;PARAMETER: maximum number of nodes
+;Parameters
 (declare-const numberOfNodes Int)
 (assert (= numberOfNodes [randommodel.nodes->size()/]))
 (declare-const numberOfEdges Int)
@@ -66,12 +66,11 @@
 	[/for]
 [/template]
 
-[template private encodePostamble(concretizations : String)]
-
-;May formula
+[template private encodePostamble(, concretizationsMarker1 : String, concretizationsMarker2 : String, concretizations : String)]
+[concretizationsMarker1/]
 [concretizations/]
-
-;Run!!
+[concretizationsMarker2/]
+;Run
 (check-sat)
 [/template]
 
@@ -79,12 +78,12 @@
  * 
  * @param randommodel The random model.
  */]
-[template public encodeRandomModel(randommodel : RandomModel, concretizations : String)]
+[template public encodeRandomModel(randommodel : RandomModel, concretizationsMarker1 : String, concretizationsMarker2 : String, concretizations : String)]
 [comment @main/]
 [file (randommodel.name + '.smt2', false, 'UTF-8')]
 [encodePreamble(randommodel)/]
 [encodeNodes(randommodel)/]
 [encodeEdges(randommodel)/]
-[encodePostamble(concretizations)/]
+[encodePostamble(concretizationsMarker1, concretizationsMarker2, concretizations)/]
 [/file]
 [/template]
