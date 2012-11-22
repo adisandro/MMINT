@@ -72,6 +72,8 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
 	/** The initial seed for the pseudorandom generator. */
 	private static final String PROPERTY_IN_SEED = "seed";
+	/** Number of samples to discard at the beginning of each experiment (warmup phase). */
+	private static final String PROPERTY_IN_SKIPWARMUPSAMPLES = "skipWarmupSamples";
 	/** Min number of iterations (i.e. samples to generate). */
 	private static final String PROPERTY_IN_MINSAMPLES = "minSamples";
 	/** Max number of iterations (i.e. samples to generate). */
@@ -113,6 +115,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	// experiment randomness parameters
 	private long seed;
 	private Random state;
+	private int skipWarmupSamples;
 	private int minSamples;
 	private int maxSamples;
 	private double min;
@@ -142,6 +145,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
 		seed = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_SEED);
+		skipWarmupSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_SKIPWARMUPSAMPLES);
 		minSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINSAMPLES);
 		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXSAMPLES);
 		min = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_MINSAMPLEVALUE);
@@ -327,7 +331,7 @@ experimentCycle:
 
 			ExperimentSamples[] experiment = new ExperimentSamples[outputs.length];
 			for (int out = 0; out < outputs.length; out++) {
-				experiment[out] = new ExperimentSamples(maxSamples, distribution, min, max, requestedConfidence);
+				experiment[out] = new ExperimentSamples(maxSamples - skipWarmupSamples, distribution, min, max, requestedConfidence);
 			}
 
 			// inner cycle: experiment setup is fixed, vary randomness and statistics
@@ -354,6 +358,10 @@ experimentCycle:
 					timedOut = true;
 					MMTFException.print(Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + ", sample " + j + " ran over time limit", e);
 				}
+				// skip warmup phase
+				if (j < skipWarmupSamples) {
+					continue;
+				}
 				// get results
 				for (int out = 0; out < outputs.length; out++) {
 					try {
@@ -379,7 +387,7 @@ experimentCycle:
 
 			// save output
 			MultiModelOperatorUtils.writePropertiesFile(
-				writeProperties(experiment, i, j),
+				writeProperties(experiment, i, j - skipWarmupSamples),
 				this,
 				initialModel,
 				EXPERIMENT_SUBDIR + i,

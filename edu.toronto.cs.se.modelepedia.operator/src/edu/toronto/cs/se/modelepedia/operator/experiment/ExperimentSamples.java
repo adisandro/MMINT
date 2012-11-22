@@ -178,12 +178,12 @@ public class ExperimentSamples {
 		sum += sample;
 
 		double avg = sum / numSamples;
-		double diff = 0;
-		for (int i = 0; i < numSamples; i++) {
-			diff += Math.pow(samples[i]-avg, 2);
-		}
 
 		if (numSamples > 1) {
+			double diff = 0;
+			for (int i = 0; i < numSamples; i++) {
+				diff += Math.pow(samples[i]-avg, 2);
+			}
 			inf = avg - getDistributionValue(numSamples-2) * Math.sqrt(diff / (numSamples*(numSamples-1)));
 			sup = avg + getDistributionValue(numSamples-2) * Math.sqrt(diff / (numSamples*(numSamples-1)));
 			inf = ((inf < min) ? min : ((inf > max) ? max : inf));
