@@ -114,6 +114,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 	private static final String SMTLIB_CONCRETIZATION_POSTAMBLE = "))";
 
 	private int numConcretizations;
+	private List<MAVOElement> mayModelObjs;
 	private String smtlibMavoEncoding;
 	private String smtlibEncoding;
 	private HashSet<String> smtlibConcretizations;
@@ -123,9 +124,9 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		numConcretizations = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_NUMCONCRETIZATIONS);
 	}
 
-	private String getNamedElementSMTEncoding(NamedElement namedElement) {
+	public String getNamedElementSMTEncoding(NamedElement namedElement) {
 
-		return namedElement.getType() + " " + namedElement.getName();
+		return '(' + namedElement.getType() + ' ' + namedElement.getName() + ')';
 	}
 
 	private void generateConcretization(HashSet<String> concretizations, List<MAVOElement> mayModelObjs) {
@@ -168,9 +169,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 				if (!exists) {
 					concretization.append("(not ");
 				}
-				concretization.append('(');
 				concretization.append(mayModelObjSMTEncoding);
-				concretization.append(')');
 				if (!exists) {
 					concretization.append(')');
 				}
@@ -179,6 +178,11 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		}
 		while (concretizations.contains(concretization.toString()));
 		concretizations.add(concretization.toString());
+	}
+
+	public List<MAVOElement> getMayModelObjects() {
+
+		return mayModelObjs;
 	}
 
 	public String getSMTLIBEncoding() {
@@ -209,7 +213,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		readProperties(inputProperties);
 
 		// get output from previous operator
-		List<MAVOElement> mayModelObjs = ((RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable()).getMAVOModelObjects();
+		mayModelObjs = ((RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable()).getMAVOModelObjects();
 		long maxConcretizations = Math.round(Math.pow(2, mayModelObjs.size()));
 		if (numConcretizations > maxConcretizations) {
 			throw new MMTFException("numConcretizations (" + numConcretizations + ") > maxConcretizations (" + maxConcretizations + ")");

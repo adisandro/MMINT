@@ -18,21 +18,6 @@
 (declare-fun tgt (Edge) Node)
 (declare-fun node (Node) bool)
 (declare-fun edge (Edge) bool)
-;Well-formedness constraint for simple graphs
-(assert (forall 
-		((e Edge)) 
-		(=>
-			(edge e)
-			(exists ((n1 Node) (n2 Node))
-				(and 
-					(node n1) (node n2)
-					(= (src e) n1)
-					(= (tgt e) n2)
-				)
-			)
-		)
-	)
-)
 
 ;Symmetry-breaking
 (assert (forall ((k Node)) (=> (node k) (<= k numberOfNodes))))
