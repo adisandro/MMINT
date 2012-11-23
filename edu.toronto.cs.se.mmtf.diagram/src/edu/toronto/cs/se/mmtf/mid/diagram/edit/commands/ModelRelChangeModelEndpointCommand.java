@@ -102,7 +102,6 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		MultiModelInstanceFactory.replaceModelEndpointAndModelEndpointReference(
 			getLink(),
 			modelTypeEndpointRef.getObject(),
-			modelRel,
 			model
 		);
 	}

@@ -114,7 +114,6 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		MultiModelInstanceFactory.replaceModelEndpointAndModelEndpointReference(
 			oldModelEndpoint,
 			modelTypeEndpointRef.getObject(),
-			modelRel,
 			model
 		);
 	}
