@@ -11,12 +11,12 @@
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -203,13 +203,13 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static EList<String> getAllowedModelEndpoints(ModelRel modelRel, Model newModel) {
+	public static List<String> getAllowedModelEndpoints(ModelRel modelRel, Model newModel) {
 
 		if (newModel == null) { // model not added yet
-			return new BasicEList<String>();
+			return new ArrayList<String>();
 		}
 
-		EList<String> modelTypeEndpointUris = null;
+		List<String> modelTypeEndpointUris = null;
 		// count existing instances
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
@@ -219,7 +219,7 @@ public class MultiModelConstraintChecker {
 		for (ModelEndpointReference modelTypeEndpointRef : modelRel.getMetatype().getModelEndpointRefs()) {
 			if (isAllowedModelEndpoint(modelTypeEndpointRef, newModel, cardinalityTable)) {
 				if (modelTypeEndpointUris == null) {
-					modelTypeEndpointUris = new BasicEList<String>();
+					modelTypeEndpointUris = new ArrayList<String>();
 				}
 				modelTypeEndpointUris.add(modelTypeEndpointRef.getUri());
 			}
@@ -242,13 +242,13 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static EList<String> getAllowedModelElementEndpointReferences(LinkReference linkRef, ModelElementReference newModelElemRef) {
+	public static List<String> getAllowedModelElementEndpointReferences(LinkReference linkRef, ModelElementReference newModelElemRef) {
 
 		if (newModelElemRef == null) { // model element reference not added yet
-			return new BasicEList<String>();
+			return new ArrayList<String>();
 		}
 
-		EList<String> modelElemTypeEndpointUris = null;
+		List<String> modelElemTypeEndpointUris = null;
 		// count existing instances
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
 		for (ModelElementEndpointReference modelElemEndpointRef : linkRef.getModelElemEndpointRefs()) {
@@ -258,7 +258,7 @@ public class MultiModelConstraintChecker {
 		for (ModelElementEndpoint modelElemTypeEndpoint : linkRef.getObject().getMetatype().getModelElemEndpoints()) {
 			if (isAllowedModelElementEndpointReference(modelElemTypeEndpoint, newModelElemRef, cardinalityTable)) {
 				if (modelElemTypeEndpointUris == null) {
-					modelElemTypeEndpointUris = new BasicEList<String>();
+					modelElemTypeEndpointUris = new ArrayList<String>();
 				}
 				modelElemTypeEndpointUris.add(modelElemTypeEndpoint.getUri());
 			}

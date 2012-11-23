@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
@@ -121,21 +122,21 @@ public class MultiModelTypeRegistry {
 			MMTF.substTableMID;
 	}
 
-	private static HashMap<String, HashMap<String, EList<String>>> getConversionTable(MultiModel multiModel) {
+	private static HashMap<String, HashMap<String, List<String>>> getConversionTable(MultiModel multiModel) {
 
 		return (multiModel == MMTF.repository) ?
 			MMTF.convTable :
 			MMTF.convTableMID;
 	}
 
-	public static EList<String> getSupertypeUris(String subtypeUri) {
+	public static List<String> getSupertypeUris(String subtypeUri) {
 
 		return getSupertypeUris(MMTF.repository, subtypeUri);
 	}
 
-	public static EList<String> getSupertypeUris(MultiModel multiModel, String subtypeUri) {
+	public static List<String> getSupertypeUris(MultiModel multiModel, String subtypeUri) {
 
-		EList<String> supertypeUris = new BasicEList<String>();
+		List<String> supertypeUris = new ArrayList<String>();
 		for (String supertypeUri : getSubstitutabilityTable(multiModel).get(subtypeUri)) {
 			if (getConversionTable(multiModel).get(subtypeUri).get(supertypeUri).isEmpty()) {
 				supertypeUris.add(supertypeUri);
@@ -161,14 +162,14 @@ public class MultiModelTypeRegistry {
 			getConversionTable(multiModel).get(subtypeUri).get(supertypeUri).isEmpty();
 	}
 
-	public static EList<String> getSubtypeUris(ExtendibleElement type) {
+	public static List<String> getSubtypeUris(ExtendibleElement type) {
 
 		return getSubtypeUris(MMTF.repository, type);
 	}
 
-	public static EList<String> getSubtypeUris(MultiModel multiModel, ExtendibleElement type) {
+	public static List<String> getSubtypeUris(MultiModel multiModel, ExtendibleElement type) {
 
-		EList<String> subtypeUris = new BasicEList<String>();
+		List<String> subtypeUris = new ArrayList<String>();
 		if (getSubstitutabilityTable(multiModel) == null) {
 			return subtypeUris;
 		}
@@ -316,7 +317,7 @@ public class MultiModelTypeRegistry {
 	 * 
 	 * @return The list of registered operator types.
 	 */
-	public static EList<Operator> getOperatorTypes() {
+	public static List<Operator> getOperatorTypes() {
 
 		return getOperatorTypes(MMTF.repository);
 	}
@@ -326,7 +327,7 @@ public class MultiModelTypeRegistry {
 	 * 
 	 * @return The list of registered operator types in the multimodel.
 	 */
-	public static EList<Operator> getOperatorTypes(MultiModel multiModel) {
+	public static List<Operator> getOperatorTypes(MultiModel multiModel) {
 
 		return multiModel.getOperators();
 	}
@@ -512,10 +513,10 @@ public class MultiModelTypeRegistry {
 	 */
 	public static MultiModelTreeSelectionDialog getModelRelCreationDialog(Model newSrcModel, Model newTgtModel) {
 
-		EList<String> modelRelTypeUris = null;
+		List<String> modelRelTypeUris = null;
 
 		if (newSrcModel != null && newTgtModel != null) {
-			modelRelTypeUris = new BasicEList<String>();
+			modelRelTypeUris = new ArrayList<String>();
 			for (ModelRel modelRelType : getModelRelTypes()) {
 				boolean okSrc = false, okTgt = false;
 				HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
@@ -557,7 +558,7 @@ public class MultiModelTypeRegistry {
 		return dialog;
 	}
 
-	public static MultiModelTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, EList<String> modelTypeEndpointUris) {
+	public static MultiModelTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
@@ -596,14 +597,14 @@ public class MultiModelTypeRegistry {
 	 */
 	public static MultiModelTreeSelectionDialog getModelRelTypeCreationDialog(MultiModel multiModel, Model newSrcModelType, Model newTgtModelType) {
 
-		EList<String> modelRelTypeUris = null;
+		List<String> modelRelTypeUris = null;
 
 		if (newSrcModelType != null && newTgtModelType != null) {
 			String newSrcUri = newSrcModelType.getUri();
 			String newTgtUri = newTgtModelType.getUri();
-			EList<String> newSrcSupertypeUris = getSupertypeUris(multiModel, newSrcUri);
-			EList<String> newTgtSupertypeUris = getSupertypeUris(multiModel, newTgtUri);
-			modelRelTypeUris = new BasicEList<String>();
+			List<String> newSrcSupertypeUris = getSupertypeUris(multiModel, newSrcUri);
+			List<String> newTgtSupertypeUris = getSupertypeUris(multiModel, newTgtUri);
+			modelRelTypeUris = new ArrayList<String>();
 
 			for (ModelRel modelRelType : getModelRelTypes(multiModel)) {
 				// binary can only inherit from binary
@@ -644,11 +645,11 @@ public class MultiModelTypeRegistry {
 	 */
 	public static MultiModelTreeSelectionDialog getLinkReferenceCreationDialog(ModelRel modelRel, ModelElementReference newSrcModelElemRef, ModelElementReference newTgtModelElemRef) {
 
-		EList<String> linkTypeUris = null;
+		List<String> linkTypeUris = null;
 		ModelRel modelRelType = modelRel.getMetatype();
 
 		if (newSrcModelElemRef != null && newTgtModelElemRef != null) {
-			linkTypeUris = new BasicEList<String>();
+			linkTypeUris = new ArrayList<String>();
 			for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
 				boolean okSrc = false, okTgt = false;
 				Link linkType = linkTypeRef.getObject();
@@ -691,7 +692,7 @@ public class MultiModelTypeRegistry {
 		return dialog;
 	}
 
-	public static MultiModelTreeSelectionDialog getModelElementEndpointCreationDialog(LinkReference linkRef, EList<String> modelElemTypeEndpointUris) {
+	public static MultiModelTreeSelectionDialog getModelElementEndpointCreationDialog(LinkReference linkRef, List<String> modelElemTypeEndpointUris) {
 
 		Link linkType = linkRef.getObject().getMetatype();
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -707,15 +708,15 @@ public class MultiModelTypeRegistry {
 
 	public static MultiModelTreeSelectionDialog getLinkTypeReferenceCreationDialog(ModelRel modelRelType, ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef) {
 
-		EList<String> linkTypeUris = null;
+		List<String> linkTypeUris = null;
 
 		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
 			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
-			EList<String> newSrcSupertypeUris = getSupertypeUris(multiModel, newSrcUri);
-			EList<String> newTgtSupertypeUris = getSupertypeUris(multiModel, newTgtUri);
-			linkTypeUris = new BasicEList<String>();
+			List<String> newSrcSupertypeUris = getSupertypeUris(multiModel, newSrcUri);
+			List<String> newTgtSupertypeUris = getSupertypeUris(multiModel, newTgtUri);
+			linkTypeUris = new ArrayList<String>();
 
 			for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
 				// binary can only inherit from binary
@@ -802,8 +803,8 @@ public class MultiModelTypeRegistry {
 
 	private static EList<ConversionOperator> isEligibleParameter(Model actualParameter, Model formalParameter) {
 
-		EList<String> actualUris = new BasicEList<String>();
-		EList<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(actualParameter);
+		List<String> actualUris = new ArrayList<String>();
+		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(actualParameter);
 		for (int i = 0; i < runtimeTypes.size(); i++) {
 			actualUris.add(
 				((Model) runtimeTypes.get(i)).getUri()

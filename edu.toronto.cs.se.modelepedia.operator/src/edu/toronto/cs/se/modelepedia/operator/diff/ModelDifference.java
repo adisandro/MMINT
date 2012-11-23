@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.diff;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -51,9 +53,9 @@ public class ModelDifference extends OperatorExecutableImpl {
 		return modelElemRefTable;
 	}
 
-	private EList<EObject> getDiffModelElements(Model model, HashMap<String, ModelElementReference> modelElemRefTable) {
+	private List<EObject> getDiffModelElements(Model model, HashMap<String, ModelElementReference> modelElemRefTable) {
 
-		EList<EObject> diffModelEObjects = new BasicEList<EObject>();
+		List<EObject> diffModelEObjects = new ArrayList<EObject>();
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(MultiModelTypeIntrospection.getRoot(model), true);
 		while (iterator.hasNext()) {
 			EObject modelEObject = iterator.next();
@@ -70,7 +72,7 @@ public class ModelDifference extends OperatorExecutableImpl {
 
 		Model model = modelEndpointReference.getObject().getTarget();
 		HashMap<String, ModelElementReference> modelElemRefTable = createModelElementReferenceTable(modelEndpointReference);
-		EList<EObject> diffModelEObjects = getDiffModelElements(model, modelElemRefTable);
+		List<EObject> diffModelEObjects = getDiffModelElements(model, modelElemRefTable);
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			null,
 			newModelRel,

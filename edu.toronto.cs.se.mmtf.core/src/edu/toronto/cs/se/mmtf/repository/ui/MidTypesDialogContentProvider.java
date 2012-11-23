@@ -11,8 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf.repository.ui;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
@@ -33,7 +34,7 @@ public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTF
 
 	/** The root multimodel. */
 	private MultiModel multiModel;
-	private EList<String> allowedUris;
+	private List<String> allowedUris;
 	private boolean showRoots;
 	private boolean showModels;
 	private boolean showModelRels;
@@ -48,7 +49,7 @@ public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTF
 	 * @param showEditors
 	 *            True if editors are going to be shown.
 	 */
-	public MidTypesDialogContentProvider(MultiModel multiModel, EList<String> allowedUris, boolean showRoots, boolean showModels, boolean showModelRels, boolean showEditors) {
+	public MidTypesDialogContentProvider(MultiModel multiModel, List<String> allowedUris, boolean showRoots, boolean showModels, boolean showModelRels, boolean showEditors) {
 
 		this.multiModel = multiModel;
 		this.allowedUris = allowedUris;
@@ -92,7 +93,7 @@ public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTF
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof MultiModel) {
-			EList<Model> userModels = new BasicEList<Model>();
+			List<Model> userModels = new ArrayList<Model>();
 			for (Model model : ((MultiModel) parentElement).getModels()) {
 				boolean isRoot = model.getUri().equals(ROOT_MODEL_URI) || model.getUri().equals(ROOT_MODELREL_URI);
 				// remove models
@@ -115,7 +116,7 @@ public class MidTypesDialogContentProvider implements ITreeContentProvider, MMTF
 			return userModels.toArray();
 		}
 		if (parentElement instanceof ModelRel && !showModelRels) {
-			EList<ModelEndpointReference> userEndpointRefs = new BasicEList<ModelEndpointReference>();
+			List<ModelEndpointReference> userEndpointRefs = new ArrayList<ModelEndpointReference>();
 			for (ModelEndpointReference modelEndpointRef : ((ModelRel) parentElement).getModelEndpointRefs()) {
 				// remove model endpoints which are not allowed
 				if (allowedUris == null || allowedUris.contains(modelEndpointRef.getUri())) {

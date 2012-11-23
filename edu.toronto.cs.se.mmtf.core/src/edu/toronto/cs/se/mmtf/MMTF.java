@@ -11,9 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,7 +23,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.RegistryFactory;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -79,13 +80,13 @@ public class MMTF implements MMTFConstants {
 	static HashMap<String, HashSet<String>> substTable;
 
 	/**	The table for model types conversion. */
-	static HashMap<String, HashMap<String, EList<String>>> convTable;
+	static HashMap<String, HashMap<String, List<String>>> convTable;
 
 	/**	The table for model types substitutability in the type MID. */
 	static HashMap<String, HashSet<String>> substTableMID;
 
 	/**	The table for model types conversion in the type MID. */
-	static HashMap<String, HashMap<String, EList<String>>> convTableMID;
+	static HashMap<String, HashMap<String, List<String>>> convTableMID;
 
 	public static final String TYPE_MID_FILENAME = "types.mid";
 
@@ -426,10 +427,10 @@ public class MMTF implements MMTFConstants {
 //		}
 //	}
 
-	private static void addTypeHierarchy(ExtendibleElement type, HashSet<String> substitutableTypes, HashMap<String, EList<String>> conversionTypes) {
+	private static void addTypeHierarchy(ExtendibleElement type, HashSet<String> substitutableTypes, HashMap<String, List<String>> conversionTypes) {
 
 		// previous conversions
-		EList<String> previousConversions = conversionTypes.get(type.getUri());
+		List<String> previousConversions = conversionTypes.get(type.getUri());
 
 		// add supertypes
 		ExtendibleElement supertype = type.getSupertype();
@@ -438,9 +439,9 @@ public class MMTF implements MMTFConstants {
 			if (!substitutableTypes.contains(supertypeUri)) {
 				substitutableTypes.add(supertypeUri);
 				// keep track of conversion operators used
-				EList<String> conversions = (previousConversions == null) ?
-					new BasicEList<String>() :
-					new BasicEList<String>(previousConversions);
+				List<String> conversions = (previousConversions == null) ?
+					new ArrayList<String>() :
+					new ArrayList<String>(previousConversions);
 				conversionTypes.put(supertypeUri, conversions);
 				// recursion
 				addTypeHierarchy(supertype, substitutableTypes, conversionTypes);
@@ -455,9 +456,9 @@ public class MMTF implements MMTFConstants {
 				if (!substitutableTypes.contains(conversionUri)) { // coherence of multiple paths is assumed
 					substitutableTypes.add(conversionUri);
 					// keep track of conversion operators used
-					EList<String> conversions = (previousConversions == null) ?
-						new BasicEList<String>() :
-						new BasicEList<String>(previousConversions);
+					List<String> conversions = (previousConversions == null) ?
+						new ArrayList<String>() :
+						new ArrayList<String>(previousConversions);
 					conversions.add(operatorType.getUri()); // add new operator to use
 					conversionTypes.put(conversionUri, conversions);
 					// recursion
@@ -467,13 +468,13 @@ public class MMTF implements MMTFConstants {
 		}
 	}
 
-	private static void initTypeHierarchy(MultiModel multiModel, HashMap<String, HashSet<String>> substTable, HashMap<String, HashMap<String, EList<String>>> convTable) {
+	private static void initTypeHierarchy(MultiModel multiModel, HashMap<String, HashSet<String>> substTable, HashMap<String, HashMap<String, List<String>>> convTable) {
 
 		substTable.clear();
 		convTable.clear();
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
 			HashSet<String> substitutableTypes = new HashSet<String>();
-			HashMap<String, EList<String>> conversionTypes = new HashMap<String, EList<String>>();
+			HashMap<String, List<String>> conversionTypes = new HashMap<String, List<String>>();
 			addTypeHierarchy(type, substitutableTypes, conversionTypes);
 			substTable.put(type.getUri(), substitutableTypes);
 			convTable.put(type.getUri(), conversionTypes);
@@ -617,9 +618,9 @@ public class MMTF implements MMTFConstants {
 		// type hierarchy
 		//TODO: MMTF why the table is to get the supertypes, rather than subtypes?
 		substTable = new HashMap<String, HashSet<String>>();
-		convTable = new HashMap<String, HashMap<String, EList<String>>>();
+		convTable = new HashMap<String, HashMap<String, List<String>>>();
 		substTableMID = new HashMap<String, HashSet<String>>();
-		convTableMID = new HashMap<String, HashMap<String, EList<String>>>();
+		convTableMID = new HashMap<String, HashMap<String, List<String>>>();
 		storeRepository();
 	}
 
@@ -631,12 +632,12 @@ public class MMTF implements MMTFConstants {
 		}
 	}
 
-	private static void copyConversionTable(HashMap<String, HashMap<String, EList<String>>> srcTable, HashMap<String, HashMap<String, EList<String>>> tgtTable) {
+	private static void copyConversionTable(HashMap<String, HashMap<String, List<String>>> srcTable, HashMap<String, HashMap<String, List<String>>> tgtTable) {
 
-		for (Map.Entry<String, HashMap<String, EList<String>>> entry : srcTable.entrySet()) {
-			HashMap<String, EList<String>> newValue = new HashMap<String, EList<String>>();
-			for (Map.Entry<String, EList<String>> nestedEntry : entry.getValue().entrySet()) {
-				EList<String> newNestedValue = new BasicEList<String>(nestedEntry.getValue());
+		for (Map.Entry<String, HashMap<String, List<String>>> entry : srcTable.entrySet()) {
+			HashMap<String, List<String>> newValue = new HashMap<String, List<String>>();
+			for (Map.Entry<String, List<String>> nestedEntry : entry.getValue().entrySet()) {
+				List<String> newNestedValue = new ArrayList<String>(nestedEntry.getValue());
 				newValue.put(nestedEntry.getKey(), newNestedValue);
 			}
 			tgtTable.put(entry.getKey(), newValue);
@@ -660,7 +661,7 @@ public class MMTF implements MMTFConstants {
 
 	public static void syncRepository(MultiModel multiModel) {
 
-		EList<OperatorExecutable> executables = new BasicEList<OperatorExecutable>();
+		List<OperatorExecutable> executables = new ArrayList<OperatorExecutable>();
 		for (Operator operator : repository.getOperators()) {
 			executables.add(operator.getExecutable());
 		}

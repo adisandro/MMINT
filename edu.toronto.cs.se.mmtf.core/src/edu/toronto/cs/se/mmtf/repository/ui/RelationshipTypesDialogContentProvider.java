@@ -11,8 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf.repository.ui;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
@@ -34,14 +35,14 @@ public class RelationshipTypesDialogContentProvider implements ITreeContentProvi
 
 	/** The root model relationship. */
 	private ModelRel modelRelType;
-	private EList<String> allowedUris;
+	private List<String> allowedUris;
 	private boolean showRootTypes;
 
 	/**
 	 * Constructor: initialises the repository.
 	 * 
 	 */
-	public RelationshipTypesDialogContentProvider(ModelRel modelRelType, EList<String> allowedUris, boolean showRootTypes) {
+	public RelationshipTypesDialogContentProvider(ModelRel modelRelType, List<String> allowedUris, boolean showRootTypes) {
 
 		this.modelRelType = modelRelType;
 		this.allowedUris = allowedUris;
@@ -82,7 +83,7 @@ public class RelationshipTypesDialogContentProvider implements ITreeContentProvi
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof ModelRel) {
-			EList<LinkReference> userLinkTypes = new BasicEList<LinkReference>();
+			List<LinkReference> userLinkTypes = new ArrayList<LinkReference>();
 			// add root links
 			if (showRootTypes) {
 				MultiModel multiModel = (MultiModel) modelRelType.eContainer();
@@ -101,7 +102,7 @@ public class RelationshipTypesDialogContentProvider implements ITreeContentProvi
 			return userLinkTypes.toArray();
 		}
 		if (parentElement instanceof Link) {
-			EList<ModelElementEndpointReference> userEndpointRefs = new BasicEList<ModelElementEndpointReference>();
+			List<ModelElementEndpointReference> userEndpointRefs = new ArrayList<ModelElementEndpointReference>();
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : ((Link) parentElement).getModelElemEndpointRefs()) {
 				// remove model endpoints which are not allowed
 				if (allowedUris == null || allowedUris.contains(modelElemTypeEndpointRef.getUri())) {

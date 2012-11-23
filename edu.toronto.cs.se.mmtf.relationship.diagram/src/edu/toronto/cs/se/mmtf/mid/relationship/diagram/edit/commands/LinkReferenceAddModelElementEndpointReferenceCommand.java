@@ -11,10 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -36,7 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
  */
 public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelElementEndpointReferenceCreateCommand {
 
-	private EList<String> modelElemTypeEndpointUris;
+	private List<String> modelElemTypeEndpointUris;
 
 	/**
 	 * Constructor: initialises the superclass.

@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.mmtf.mid.trait;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -106,7 +106,7 @@ public class MultiModelInstanceFactory {
 			//TODO MMTF: now is the first == the most conservative
 			//TODO MMTF: do I fix everything by just letting the user choose with a dialog?
 			//TODO MMTF: actually it's kind of useless for rels/links, i should just set the root type, because at creation time it's hard to already have all connections
-			EList<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(newElement);
+			List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(newElement);
 			newElement.setMetatypeUri(runtimeTypes.get(0).getUri());
 		}
 		else { // use static metatype
@@ -803,7 +803,7 @@ public class MultiModelInstanceFactory {
 
 		// TODO MMTF: For binary links, we need to remove the links (and thus the setting of 
 		//			  the ModelEndpointRefs to null) outside of the for loop
-		EList<LinkReference> linksToBeRemoved = new BasicEList<LinkReference>();
+		List<LinkReference> linksToBeRemoved = new ArrayList<LinkReference>();
 		
 		for (ModelElementEndpointReference modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
 			LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();

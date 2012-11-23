@@ -13,8 +13,8 @@ package edu.toronto.cs.se.mmtf;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -567,7 +567,7 @@ public class MultiModelTypeFactory {
 
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) modelElemTypeRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-		EList<BinaryLinkReference> linkTypeRefsToDelete = new BasicEList<BinaryLinkReference>();
+		List<BinaryLinkReference> linkTypeRefsToDelete = new ArrayList<BinaryLinkReference>();
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemTypeRef.getModelElemEndpointRefs()) {
 			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
 			if (linkTypeRef instanceof BinaryLinkReference) {

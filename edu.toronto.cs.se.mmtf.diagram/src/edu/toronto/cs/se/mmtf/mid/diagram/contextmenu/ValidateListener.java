@@ -22,8 +22,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.GraphicalEditPart;
@@ -93,7 +91,7 @@ public class ValidateListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			// remove previous decorations
-			EList<Decoration> decorations = new BasicEList<Decoration>();
+			List<Decoration> decorations = new ArrayList<Decoration>();
 			for (Object decoration : editPart.getViewer().getVisualPartMap().keySet()) {
 				if (decoration instanceof Decoration) {
 					decorations.add((Decoration) decoration);

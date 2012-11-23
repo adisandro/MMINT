@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.slice;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -46,32 +48,32 @@ public class ChangeImpact extends OperatorExecutableImpl {
 	private final static String SRC_MODELELEMENDPOINT_NAME = "diff";
 	private final static String TGT_MODELELEMENDPOINT_NAME = "impacted";
 
-	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, EList<ModelElementReference>> unifyTable, HashMap<String, EList<ModelElementReference>> typeTable) {
+	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<ModelElementReference>> unifyTable, HashMap<String, List<ModelElementReference>> typeTable) {
 
 		// O(n) + O(m i log i), O(n) best case when m=n and i=1, O(n log n) worst case when m=1 and i=n
 		// type table
 		for (ModelElementReference modelElemRef : modelEndpointRef.getModelElemRefs()) { // O(n)
 			String modelElemTypeUri = modelElemRef.getObject().getMetatypeUri();
-			EList<ModelElementReference> unifiablesFromSameType = typeTable.get(modelElemTypeUri);
+			List<ModelElementReference> unifiablesFromSameType = typeTable.get(modelElemTypeUri);
 			if (unifiablesFromSameType == null) {
-				unifiablesFromSameType = new BasicEList<ModelElementReference>();
+				unifiablesFromSameType = new ArrayList<ModelElementReference>();
 				typeTable.put(modelElemTypeUri, unifiablesFromSameType);
 			}
 			unifiablesFromSameType.add(modelElemRef);
 		}
 		// merge table
-		for (EList<ModelElementReference> unifiablesFromSameType : typeTable.values()) { // + O(m), m<=n
+		for (List<ModelElementReference> unifiablesFromSameType : typeTable.values()) { // + O(m), m<=n
 			for (ModelElementReference modelElemRef : unifiablesFromSameType) {
-				EList<ModelElementReference> unifiables = new BasicEList<ModelElementReference>();
+				List<ModelElementReference> unifiables = new ArrayList<ModelElementReference>();
 				unifyTable.put(modelElemRef.getUri(), unifiables);
 				unifiables.add(modelElemRef);
 			}
 			for (int i = 0; i < unifiablesFromSameType.size(); i++) { // * O(i), i<=n, SUM(i_k)=n for k=0..m
 				ModelElementReference modelElemRef = unifiablesFromSameType.get(i);
-				EList<ModelElementReference> unifiables = unifyTable.get(modelElemRef.getUri());
+				List<ModelElementReference> unifiables = unifyTable.get(modelElemRef.getUri());
 				for (int j = i+1; j < unifiablesFromSameType.size(); j++) { // * O(log i)
 					ModelElementReference modelElemRef2 = unifiablesFromSameType.get(j);
-					EList<ModelElementReference> unifiables2 = unifyTable.get(modelElemRef2.getUri());
+					List<ModelElementReference> unifiables2 = unifyTable.get(modelElemRef2.getUri());
 					if (modelElemRef.getObject().isVar() || modelElemRef2.getObject().isVar()) {
 						unifiables.add(modelElemRef2);
 						unifiables2.add(modelElemRef);
@@ -82,12 +84,12 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, EList<EObject>> unifyTable, HashMap<String, EList<EObject>> typeTable) {
+	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<EObject>> unifyTable, HashMap<String, List<EObject>> typeTable) {
 
 		// type table
 		Model model = modelEndpointRef.getObject().getTarget();
 		for (ModelElement modelElemType : model.getMetatype().getElements()) {
-			EList<EObject> unifiablesFromSameType = new BasicEList<EObject>();
+			List<EObject> unifiablesFromSameType = new ArrayList<EObject>();
 			typeTable.put(modelElemType.getUri(), unifiablesFromSameType);
 		}
 		TreeIterator<EObject> iterator = MultiModelTypeIntrospection.getRoot(model).eAllContents();
@@ -100,13 +102,13 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			if (modelElemType == null) {
 				continue;
 			}
-			EList<EObject> unifiablesFromSameType = typeTable.get(modelElemType.getUri());
+			List<EObject> unifiablesFromSameType = typeTable.get(modelElemType.getUri());
 			unifiablesFromSameType.add(modelEObject);
 		}
 		// merge table
-		for (EList<EObject> unifiablesFromSameType : typeTable.values()) {
+		for (List<EObject> unifiablesFromSameType : typeTable.values()) {
 			for (EObject modelEObject : unifiablesFromSameType) {
-				EList<EObject> unifiables = new BasicEList<EObject>();
+				List<EObject> unifiables = new ArrayList<EObject>();
 				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, true)[1];
 				unifyTable.put(modelEObjectUri, unifiables);
 				unifiables.add(modelEObject);
@@ -114,11 +116,11 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			for (int i = 0; i < unifiablesFromSameType.size(); i++) {
 				EObject modelEObject = unifiablesFromSameType.get(i);
 				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, true)[1];
-				EList<EObject> unifiables = unifyTable.get(modelEObjectUri);
+				List<EObject> unifiables = unifyTable.get(modelEObjectUri);
 				for (int j = i+1; j < unifiablesFromSameType.size(); j++) {
 					EObject modelEObject2 = unifiablesFromSameType.get(j);
 					String modelEObjectUri2 = MultiModelRegistry.getModelAndModelElementUris(modelEObject2, true)[1];
-					EList<EObject> unifiables2 = unifyTable.get(modelEObjectUri2);
+					List<EObject> unifiables2 = unifyTable.get(modelEObjectUri2);
 					if ((((MAVOElement) modelEObject).isVar() || ((MAVOElement) modelEObject2).isVar())) {
 						unifiables.add(modelEObject2);
 						unifiables2.add(modelEObject);
@@ -129,7 +131,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, LinkReference impactLinkRef, HashMap<String, EList<EObject>> impactedUnifyTable) throws MMTFException {
+	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, LinkReference impactLinkRef, HashMap<String, List<EObject>> impactedUnifyTable) throws MMTFException {
 
 		if (origModelElemRef.getModelElemEndpointRefs().isEmpty()) {
 			return;
@@ -145,7 +147,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 				}
 				ModelElementReference impactedModelElemRef = traceModelElemEndpointRef.getModelElemRef();
 				// navigate tgt mergeability
-				EList<EObject> impactedUnifiables = impactedUnifyTable.get(impactedModelElemRef.getUri());
+				List<EObject> impactedUnifiables = impactedUnifyTable.get(impactedModelElemRef.getUri());
 				for (EObject impactedUnifiable : impactedUnifiables) {
 					String impactedModelElemUri = MultiModelRegistry.getModelAndModelElementUris(impactedUnifiable, true)[1];
 					// create or get impacted model element ref
@@ -179,10 +181,10 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		BinaryModelRel traceRel = (BinaryModelRel) actualParameters.get(3);
 		Model impactedModel = actualParameters.get(4);
 
-		HashMap<String, EList<ModelElementReference>> origUnifyTable = new HashMap<String, EList<ModelElementReference>>();
-		HashMap<String, EList<ModelElementReference>> origTypeTable = new HashMap<String, EList<ModelElementReference>>();
-		HashMap<String, EList<EObject>> impactedUnifyTable = new HashMap<String, EList<EObject>>();
-		HashMap<String, EList<EObject>> impactedTypeTable = new HashMap<String, EList<EObject>>();
+		HashMap<String, List<ModelElementReference>> origUnifyTable = new HashMap<String, List<ModelElementReference>>();
+		HashMap<String, List<ModelElementReference>> origTypeTable = new HashMap<String, List<ModelElementReference>>();
+		HashMap<String, List<EObject>> impactedUnifyTable = new HashMap<String, List<EObject>>();
+		HashMap<String, List<EObject>> impactedTypeTable = new HashMap<String, List<EObject>>();
 		//TODO MMTF: be careful when overriding is implemented
 		createOrigVarTables(traceRel.getModelEndpointRefs().get(0), origUnifyTable, origTypeTable); // O(n log n)
 		createImpactedVarTables(traceRel.getModelEndpointRefs().get(1), impactedUnifyTable, impactedTypeTable); // O(n log n)
@@ -221,12 +223,12 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			newDiffModelElemEndpointRef.getObject().setName(SRC_MODELELEMENDPOINT_NAME);
 
 			// change impact algorithm
-			EList<ModelElementReference> origUnifiables = origUnifyTable.get(diffModelElem.getUri());
+			List<ModelElementReference> origUnifiables = origUnifyTable.get(diffModelElem.getUri());
 			if (origUnifiables == null) { // not in the trace rel
 				// get the type it would have if it was in the trace rel
 				ModelElement diffModelElemType = MultiModelConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), MultiModelTypeIntrospection.getPointer(diffModelElem));
 				if (diffModelElemType != null) {
-					EList<ModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
+					List<ModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
 					for (ModelElementReference origUnifiable : origUnifiablesFromSameType) {
 						if (origUnifiable.getObject().isVar()) {
 							addImpactedModelElementReferences(origUnifiable, newImpactedModelEndpointRef, newImpactLinkRef, impactedUnifyTable);

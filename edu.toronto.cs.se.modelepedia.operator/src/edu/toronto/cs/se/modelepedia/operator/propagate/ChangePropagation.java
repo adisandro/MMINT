@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -75,14 +77,14 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		return newCopyModel;
 	}
 
-	private EList<BinaryLinkReference> propagateTraceLinksFromRefinements(LinkReference refinementLinkRef, BinaryModelRel traceRel, Model newPropModel, BinaryModelRel newPropTraceRel) throws Exception {
+	private List<BinaryLinkReference> propagateTraceLinksFromRefinements(LinkReference refinementLinkRef, BinaryModelRel traceRel, Model newPropModel, BinaryModelRel newPropTraceRel) throws Exception {
 
 		ModelEndpointReference origModelEndpointRef_traceRel = traceRel.getModelEndpointRefs().get(0);
 		String origModelUri = origModelEndpointRef_traceRel.getTargetUri();
 
 		// get model element refs in trace rel that got refined
-		EList<ModelElementReference> refinedModelElemRefs_refinementRel = new BasicEList<ModelElementReference>();
-		EList<ModelElementReference> origModelElemRefs_traceRel = new BasicEList<ModelElementReference>();
+		List<ModelElementReference> refinedModelElemRefs_refinementRel = new ArrayList<ModelElementReference>();
+		List<ModelElementReference> origModelElemRefs_traceRel = new ArrayList<ModelElementReference>();
 		for (ModelElementEndpointReference refinementModelElemEndpointRef : refinementLinkRef.getModelElemEndpointRefs()) {
 			ModelElementReference refinementModelElemRef = refinementModelElemEndpointRef.getModelElemRef();
 			if (((ModelEndpointReference) refinementModelElemRef.eContainer()).getTargetUri().equals(origModelUri)) { // orig model element ref in trace rel
@@ -98,7 +100,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		}
 
 		// no propagation or rule 4 propagation
-		EList<BinaryLinkReference> newPropTraceLinkRefs = new BasicEList<BinaryLinkReference>();
+		List<BinaryLinkReference> newPropTraceLinkRefs = new ArrayList<BinaryLinkReference>();
 		if (origModelElemRefs_traceRel.isEmpty()) {
 			for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
 				BinaryLinkReference newPropTraceLinkRef = createDanglingTraceLink(refinedModelElemRef_refinementRel, newPropTraceRel, 0, 1);
@@ -110,7 +112,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		}
 
 		// propagate trace links
-		EList<ModelElementReference> newRefinedModelElemRefs_propTraceRel = new BasicEList<ModelElementReference>();
+		List<ModelElementReference> newRefinedModelElemRefs_propTraceRel = new ArrayList<ModelElementReference>();
 		ModelEndpointReference refinedModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(0);
 		for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
 			// create refined model elem ref in propagated trace rel
@@ -214,11 +216,11 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		return newTraceLinkRef;
 	}
 
-	private EList<BinaryLinkReference> reduceTraceLinkUncertainty(EObject modelRootB, EList<BinaryLinkReference> traceLinkRefs, int indexA, int indexB) throws Exception {
+	private List<BinaryLinkReference> reduceTraceLinkUncertainty(EObject modelRootB, List<BinaryLinkReference> propTraceLinkRefs, int indexA, int indexB) throws Exception {
 
 		int n = 0;
 		HashSet<String> uniqueModelElemUrisB = new HashSet<String>();
-		for (BinaryLinkReference traceLinkRef : traceLinkRefs) {
+		for (BinaryLinkReference traceLinkRef : propTraceLinkRefs) {
 			if (traceLinkRef.getModelElemEndpointRefs().size() == 1) { // dangling link
 				continue;
 			}
@@ -232,7 +234,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		boolean again = false;
 		LinkReference unifiedLinkRef = null;
 traceLinks:
-		for (BinaryLinkReference traceLinkRef : traceLinkRefs) {
+		for (BinaryLinkReference traceLinkRef : propTraceLinkRefs) {
 			ModelElementEndpointReference traceModelElemEndpointRefA = traceLinkRef.getModelElemEndpointRefs().get(indexA);
 			ModelElementReference modelElemRefA = traceModelElemEndpointRefA.getModelElemRef();
 			ModelElement modelElemA = modelElemRefA.getObject();
@@ -294,7 +296,7 @@ traceLinks:
 				}
 				// rule 7
 				if (Vab && Vb && !Mab) {
-					for (BinaryLinkReference traceLinkRef2 : traceLinkRefs) {
+					for (BinaryLinkReference traceLinkRef2 : propTraceLinkRefs) {
 						if (traceLinkRef2 == traceLinkRef) {
 							continue;
 						}
@@ -311,16 +313,16 @@ traceLinks:
 		}
 		// rule 7
 		if (unifiedLinkRef != null) {
-			traceLinkRefs.remove(unifiedLinkRef);
+			propTraceLinkRefs.remove(unifiedLinkRef);
 			unifiedLinkRef = null;
 		}
 
 		// keep reducing uncertainty
 		if (again) {
-			reduceTraceLinkUncertainty(modelRootB, traceLinkRefs, indexA, indexB);
+			reduceTraceLinkUncertainty(modelRootB, propTraceLinkRefs, indexA, indexB);
 		}
 
-		return traceLinkRefs;
+		return propTraceLinkRefs;
 	}
 
 	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
@@ -332,7 +334,7 @@ traceLinks:
 		String unifiedModelElemUriBase = unifiedModelElemUri.substring(0, unifiedModelElemUri.lastIndexOf('.')+1);
 		int unifiedModelElemUriIndex = Integer.parseInt(unifiedModelElemUri.substring(unifiedModelElemUri.lastIndexOf('.')+1));
 
-		EList<ModelElement> otherModelElems = new BasicEList<ModelElement>();
+		List<ModelElement> otherModelElems = new ArrayList<ModelElement>();
 		// first pass, modify model element uris
 		for (ModelElement otherModelElem : modelEndpointRef.getObject().getTarget().getElements()) {
 			String otherModelElemUri = otherModelElem.getUri();
@@ -611,17 +613,17 @@ traceLinks:
 		);
 
 		// change propagation algorithm
-		EList<EList<BinaryLinkReference>> propTraceLinkRefsList = new BasicEList<EList<BinaryLinkReference>>();
+		List<List<BinaryLinkReference>> propTraceLinkRefsList = new ArrayList<List<BinaryLinkReference>>();
 		for (LinkReference refinementLinkRef : refinementRel.getLinkRefs()) {
-			EList<BinaryLinkReference> propTraceLinkRefs = propagateTraceLinksFromRefinements(refinementLinkRef, traceRel, newPropModel, newPropTraceRel);
+			List<BinaryLinkReference> propTraceLinkRefs = propagateTraceLinksFromRefinements(refinementLinkRef, traceRel, newPropModel, newPropTraceRel);
 			propTraceLinkRefsList.add(propTraceLinkRefs);
 		}
 		EObject newPropModelRoot = MultiModelTypeIntrospection.getRoot(newPropModel);
-		for (EList<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
+		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			reduceTraceLinkUncertainty(newPropModelRoot, propTraceLinkRefs, 0, 1);
 		}
 		MultiModelTypeIntrospection.writeRoot(newPropModelRoot, newPropModel.getUri(), true);
-		for (EList<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
+		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			for (BinaryLinkReference propTraceLinkRef : propTraceLinkRefs) {
 				propagateRefinementLinks(propTraceLinkRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
 			}

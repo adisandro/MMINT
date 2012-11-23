@@ -11,7 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.trait;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -132,7 +133,7 @@ public class MidDiagramTrait {
 		return editor;
 	}
 
-	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, EList<String> modelTypeEndpointUris, String modelEndpointId) throws Exception {
+	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws Exception {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
 		String title = "Create new model endpoint";

@@ -11,9 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -45,9 +46,9 @@ import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
  */
 public class MultiModelTypeIntrospection implements MMTFConstants {
 
-	private static EList<ExtendibleElement> getRuntimeTypes(Model model) {
+	private static List<ExtendibleElement> getRuntimeTypes(Model model) {
 
-		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
+		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		// static type
 		Model staticModelType;
@@ -88,9 +89,9 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return types;
 	}
 
-	private static EList<ExtendibleElement> getRuntimeTypes(ModelRel modelRel) {
+	private static List<ExtendibleElement> getRuntimeTypes(ModelRel modelRel) {
 
-		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
+		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		// static type
 		ModelRel staticModelRelType;
@@ -175,10 +176,10 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 	}
 
 	//TODO MMTF: not needed if specialization is not allowed
-	private static EList<ExtendibleElement> getRuntimeTypes(ModelElement modelElem) {
+	private static List<ExtendibleElement> getRuntimeTypes(ModelElement modelElem) {
 
 		//TODO MMTF: implementare
-		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
+		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		ModelElement staticElementType;
 		String elementTypeUri = modelElem.getMetatypeUri();
@@ -205,9 +206,9 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 	}
 
 	//TODO MMTF: not needed if specialization is not allowed
-	private static EList<ExtendibleElement> getRuntimeTypes(Link link) {
+	private static List<ExtendibleElement> getRuntimeTypes(Link link) {
 
-		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
+		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 		ModelRel modelRel = (ModelRel) link.eContainer();
 
 //		// not specialized yet
@@ -250,9 +251,9 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return types;
 	}
 
-	private static EList<ExtendibleElement> getRuntimeTypes(Editor editor) {
+	private static List<ExtendibleElement> getRuntimeTypes(Editor editor) {
 
-		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
+		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		//TODO MMTF: fallback to root text editor?
 		types.add(MultiModelTypeRegistry.getExtendibleElementType(editor.getUri()));
@@ -260,9 +261,9 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return types;
 	}
 
-	private static EList<ExtendibleElement> getRuntimeTypes(ModelEndpoint modelEndpoint) {
+	private static List<ExtendibleElement> getRuntimeTypes(ModelEndpoint modelEndpoint) {
 
-		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
+		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		types.add(MultiModelTypeRegistry.getExtendibleElementType(
 			MultiModelTypeRegistry.getRootTypeUri(modelEndpoint))
@@ -271,9 +272,9 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return types;
 	}
 
-	private static EList<ExtendibleElement> getRuntimeTypes(ModelElementEndpoint modelElemEndpoint) {
+	private static List<ExtendibleElement> getRuntimeTypes(ModelElementEndpoint modelElemEndpoint) {
 
-		EList<ExtendibleElement> types = new BasicEList<ExtendibleElement>();
+		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		types.add(MultiModelTypeRegistry.getExtendibleElementType(
 			MultiModelTypeRegistry.getRootTypeUri(modelElemEndpoint))
@@ -282,7 +283,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return types;
 	}
 
-	public static EList<ExtendibleElement> getRuntimeTypes(ExtendibleElement element) {
+	public static List<ExtendibleElement> getRuntimeTypes(ExtendibleElement element) {
 
 		if (element.getLevel() == MidLevel.TYPES) {
 			return null;

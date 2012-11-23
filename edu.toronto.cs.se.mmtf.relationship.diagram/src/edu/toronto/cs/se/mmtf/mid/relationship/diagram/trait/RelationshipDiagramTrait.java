@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
@@ -48,7 +48,7 @@ public class RelationshipDiagramTrait extends MidDiagramTrait {
 		return (LinkReference) openSelectDialog(dialog, title, message);
 	}
 
-	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(LinkReference linkRef, EList<String> modelElemTypeEndpointUris) throws MMTFException {
+	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(LinkReference linkRef, List<String> modelElemTypeEndpointUris) throws MMTFException {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelElementEndpointCreationDialog(linkRef, modelElemTypeEndpointUris);
 		String title = "Create new model endpoint";

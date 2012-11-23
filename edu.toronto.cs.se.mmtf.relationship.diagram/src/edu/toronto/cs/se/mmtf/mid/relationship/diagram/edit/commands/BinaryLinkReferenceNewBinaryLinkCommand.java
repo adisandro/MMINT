@@ -11,11 +11,12 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -115,7 +116,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			RelationshipPackage.eINSTANCE.getBinaryLinkReference()
 		);
 
-		EList<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getSource());
+		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getSource());
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramTrait.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
 		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 			modelElemTypeEndpointRef.getObject(),

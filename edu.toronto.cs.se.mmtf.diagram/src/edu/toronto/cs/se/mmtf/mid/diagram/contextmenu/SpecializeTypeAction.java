@@ -11,7 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -92,7 +93,7 @@ public class SpecializeTypeAction extends ContributionItem {
 		}
 
 		// get runtime types
-		EList<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(model);
+		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(model);
 		if (runtimeTypes.size() == 1) {
 			return;
 		}
