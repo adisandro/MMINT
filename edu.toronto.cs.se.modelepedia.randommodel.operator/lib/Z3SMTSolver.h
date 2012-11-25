@@ -6,6 +6,8 @@ typedef struct {
 	char *model;
 } Z3Result;
 
-Z3Result checkSat(char *smtString, int getModel);
+int checkSat(char *smtString);
+Z3Result *checkSatAndGetModel(char *smtString);
+void freeResult(Z3Result *result);
 
 #endif  // Z3SMTSOLVER_H__

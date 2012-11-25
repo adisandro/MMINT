@@ -33,22 +33,24 @@ import edu.toronto.cs.se.modelepedia.randommodel.operator.Z3SMTSolver.CLibrary.Z
 
 public class Z3SMTSolver extends OperatorExecutableImpl {
 
-	private static final String PROPERTY_IN_PROPERTY = "property";
 	private static final String Z3_LIBRARY_NAME = "z3";
 	private static final String OPERATOR_LIBRARY_NAME = "Z3SMTSolver";
 	private static final String LIBRARY_PATH = "/usr/lib";
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelToSMTLIB";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
-	private static final String PROPERTY_OUT_TIMEBACKBONE = "timeBackbone";
+	private static final String PROPERTY_OUT_TIMEMAVOBACKBONE = "timeBackbone";
 	private static final String PROPERTY_OUT_TIME = "time";
-	private static final String PROPERTY_OUT_CHECKS = "checks";
+	private static final String PROPERTY_OUT_FLAGS = "flags";
 
-	private final static String SMTLIB_ASSERT = "(assert ";
-	private final static String SMTLIB_NOT = "(not ";
-	private final static String SMTLIB_PREDICATE_END = ")\n";
-	private final static String SMTLIB_ENCODING_POSTAMBLE = "(check-sat)";
-
-	private String property;
+	public final static String SMTLIB_PREDICATE_START = "(";
+	public final static String SMTLIB_PREDICATE_END = ")";
+	public final static String SMTLIB_TRUE = " true ";
+	public final static String SMTLIB_FALSE = " false ";
+	public final static String SMTLIB_ASSERT = SMTLIB_PREDICATE_START + "assert";
+	public final static String SMTLIB_AND = SMTLIB_PREDICATE_START + "and";
+	public final static String SMTLIB_OR = SMTLIB_PREDICATE_START + "or";
+	public final static String SMTLIB_NOT = SMTLIB_PREDICATE_START + "not";
+	private final static String SMTLIB_ENCODING_POSTAMBLE = "\n(check-sat)";
 
 	public interface CLibrary extends Library {
 
@@ -70,20 +72,92 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			}
 		}
 
-		Z3Result checkSat(String smtString, int getModel);
+		int checkSat(String smtString);
+		Z3Result checkSatAndGetModel(String smtString);
+		void freeResult(Z3Result result);
 	}
 
 	private void readProperties(Properties properties) throws Exception {
 
-		property = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_PROPERTY);
 	}
 
 	private void writeProperties(Properties properties, long timeMAVO, long timeBackbone, long time, String checks) {
 
 		properties.setProperty(PROPERTY_OUT_TIMEMAVO, String.valueOf(timeMAVO));
-		properties.setProperty(PROPERTY_OUT_TIMEBACKBONE, String.valueOf(timeBackbone));
+		properties.setProperty(PROPERTY_OUT_TIMEMAVOBACKBONE, String.valueOf(timeBackbone));
 		properties.setProperty(PROPERTY_OUT_TIME, String.valueOf(time));
-		properties.setProperty(PROPERTY_OUT_CHECKS, checks);
+		properties.setProperty(PROPERTY_OUT_FLAGS, checks);
+	}
+
+	private long doMAVOPropertyCheck(String smtlibMavoEncoding, String property, StringBuilder flags) {
+
+		int z3Result;
+		String finalEncoding;
+
+		long startTime = System.nanoTime();
+		finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
+		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding);
+		flags.append(z3Result);
+		flags.append(',');
+		finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + SMTLIB_NOT + property + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
+		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding);
+		flags.append(z3Result);
+		flags.append(',');
+		long endTime = System.nanoTime();
+
+		return endTime - startTime;
+	}
+
+	private long doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, StringBuilder flags, List<MAVOElement> mayModelObjs, RandomModelToSMTLIB previousOperator) {
+
+		Z3Result z3Result;
+		String finalEncoding;
+
+		long startTime = System.nanoTime();
+		for (MAVOElement mayModelObj : mayModelObjs) {
+			finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + previousOperator.getNamedElementSMTLIBEncoding((NamedElement) mayModelObj) + SMTLIB_PREDICATE_END + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
+			z3Result = CLibrary.OPERATOR_INSTANCE.checkSatAndGetModel(finalEncoding);
+			flags.append(z3Result.flag);
+			flags.append(',');
+			if (z3Result.flag == -1) {
+				CLibrary.OPERATOR_INSTANCE.freeResult(z3Result);
+				continue;
+			}
+			CLibrary.OPERATOR_INSTANCE.freeResult(z3Result);
+			finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + SMTLIB_NOT + previousOperator.getNamedElementSMTLIBEncoding((NamedElement) mayModelObj) + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
+			z3Result = CLibrary.OPERATOR_INSTANCE.checkSatAndGetModel(finalEncoding);
+			flags.append(z3Result.flag);
+			flags.append(',');
+			//TODO MMTF: do we need to try !property too?
+			//TODO MMTF: optimizations if result == 1?
+			CLibrary.OPERATOR_INSTANCE.freeResult(z3Result);
+		}
+		long endTime = System.nanoTime();
+
+		return endTime - startTime;
+	}
+
+	private long doNonMAVOPropertyCheck(String smtlibEncoding, String property, StringBuilder flags, HashSet<String> smtlibConcretizations) {
+
+		int z3Result;
+		String finalEncoding;
+
+		long startTime = System.nanoTime();
+		Iterator<String> iter = smtlibConcretizations.iterator();
+		while (iter.hasNext()) {
+			String concretization = iter.next();
+			finalEncoding = smtlibEncoding + SMTLIB_ASSERT + concretization + SMTLIB_PREDICATE_END + '\n' + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
+			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding);
+			flags.append(z3Result);
+			flags.append(',');
+			finalEncoding = smtlibEncoding + SMTLIB_ASSERT + concretization + SMTLIB_PREDICATE_END + '\n' + SMTLIB_ASSERT + SMTLIB_NOT + property + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
+			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding);
+			flags.append(z3Result);
+			flags.append(',');
+		}
+		long endTime = System.nanoTime();
+
+		return endTime - startTime;
 	}
 
 	@Override
@@ -104,62 +178,18 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 		final String smtlibMavoEncoding = previousOperator.getSMTLIBMAVOEncoding();
 		HashSet<String> smtlibConcretizations = previousOperator.getSMTLIBConcretizations();
+		final String property = previousOperator.getGroundedProperty();
 
 		// run solver
 		System.setProperty("jna.library.path", LIBRARY_PATH);
-		StringBuilder checks = new StringBuilder((smtlibConcretizations.size() + 1) * 4);
-		Z3Result z3Result;
-		// MAVO property check
-		long startTimeMAVO = System.nanoTime();
-		String finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
-		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding, 0);
-		checks.append(z3Result.flag);
-		checks.append(',');
-		finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + SMTLIB_NOT + property + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
-		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding, 0);
-		checks.append(z3Result.flag);
-		checks.append(',');
-		long endTimeMAVO = System.nanoTime();
-		// backbone property check
-		long startTimeBackbone = System.nanoTime();
-		for (MAVOElement mayModelObj : mayModelObjs) {
-			finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + previousOperator.getNamedElementSMTEncoding((NamedElement) mayModelObj) + SMTLIB_PREDICATE_END + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
-			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding, 1);
-			checks.append(z3Result.flag);
-			checks.append(',');
-			if (z3Result.flag == -1) {
-				continue;
-			}
-			finalEncoding = smtlibMavoEncoding + SMTLIB_ASSERT + SMTLIB_NOT + previousOperator.getNamedElementSMTEncoding((NamedElement) mayModelObj) + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
-			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding, 1);
-			checks.append(z3Result.flag);
-			checks.append(',');
-			//TODO MMTF: do we need to try !property too?
-			//TODO MMTF: optimizations if result == 1?
-		}
-		long endTimeBackbone = System.nanoTime();
-		// non-MAVO property check
-		long startTime = System.nanoTime();
-		Iterator<String> iter = smtlibConcretizations.iterator();
-		while (iter.hasNext()) {
-			String concretization = iter.next();
-			finalEncoding = smtlibEncoding + SMTLIB_ASSERT + concretization + SMTLIB_PREDICATE_END + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
-			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding, 0);
-			checks.append(z3Result.flag);
-			checks.append(',');
-			finalEncoding = smtlibEncoding + SMTLIB_ASSERT + concretization + SMTLIB_PREDICATE_END + SMTLIB_ASSERT + SMTLIB_NOT + property + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_ENCODING_POSTAMBLE;
-			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(finalEncoding, 0);
-			checks.append(z3Result.flag);
-			checks.append(',');
-		}
-		long endTime = System.nanoTime();
+		StringBuilder flags = new StringBuilder((smtlibConcretizations.size() + 1) * 4);//TODO MMTF: bigger
+		long timeMAVO = doMAVOPropertyCheck(smtlibMavoEncoding, property, flags);
+		//long timeMAVOBackbone = doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, flags, mayModelObjs, previousOperator);
+		long time = doNonMAVOPropertyCheck(smtlibEncoding, property, flags, smtlibConcretizations);
 
 		// save execution times
-		long timeMAVO = endTimeMAVO - startTimeMAVO;
-		long timeBackbone = endTimeBackbone - startTimeBackbone;
-		long time = endTime - startTime;
 		Properties outputProperties = new Properties();
-		writeProperties(outputProperties, timeMAVO, timeBackbone, time, checks.toString());
+		writeProperties(outputProperties, timeMAVO, 0, time, flags.toString());
 		MultiModelOperatorUtils.writePropertiesFile(
 			outputProperties,
 			this,

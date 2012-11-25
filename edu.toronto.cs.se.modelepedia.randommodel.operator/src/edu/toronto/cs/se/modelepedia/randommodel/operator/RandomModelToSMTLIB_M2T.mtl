@@ -48,13 +48,20 @@
 [encodeNamedElement(edge)/]
 (assert (= (src [edge.name/]) [edge.src.name/]))
 (assert (= (tgt [edge.name/]) [edge.tgt.name/]))
+
 	[/for]
 [/template]
 
-[template private encodePostamble(, concretizationsMarker1 : String, concretizationsMarker2 : String, concretizations : String)]
+[template private encodePostamble(, concretizationsMarker1 : String, concretizationsMarker2 : String, concretizations : String, property : String)]
 [concretizationsMarker1/]
 [concretizations/]
 [concretizationsMarker2/]
+
+;Property
+(assert
+[property/]
+)
+
 ;Run
 (check-sat)
 [/template]
@@ -63,12 +70,12 @@
  * 
  * @param randommodel The random model.
  */]
-[template public encodeRandomModel(randommodel : RandomModel, concretizationsMarker1 : String, concretizationsMarker2 : String, concretizations : String)]
+[template public encodeRandomModel(randommodel : RandomModel, concretizationsMarker1 : String, concretizationsMarker2 : String, concretizations : String, property : String)]
 [comment @main/]
 [file (randommodel.name + '.smt2', false, 'UTF-8')]
 [encodePreamble(randommodel)/]
 [encodeNodes(randommodel)/]
 [encodeEdges(randommodel)/]
-[encodePostamble(concretizationsMarker1, concretizationsMarker2, concretizations)/]
+[encodePostamble(concretizationsMarker1, concretizationsMarker2, concretizations, property)/]
 [/file]
 [/template]

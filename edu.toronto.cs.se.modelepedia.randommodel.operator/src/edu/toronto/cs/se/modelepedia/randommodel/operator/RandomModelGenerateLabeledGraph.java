@@ -63,6 +63,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 	private double percSet;
 	private double percVar;
 	private List<MAVOElement> mavoModelObjs;
+	private EList<Node> randommodelNodes;
 
 	public enum MAVOAnnotation {
 		M, S, V
@@ -70,8 +71,8 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 
 	private void readProperties(Properties properties) throws Exception {
 
-		minModelObjs = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINMODELOBJS);
 		maxModelObjs = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXMODELOBJS);
+		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(properties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
 		edgesDensityModelObjs = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_EDGESDENSITYMODELOBJS);
 		percAnnotations = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCANNOTATIONS);
 		percMay = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCMAY);
@@ -131,31 +132,34 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 
 		int totModelObjs = state.nextInt(maxModelObjs - minModelObjs + 1) + minModelObjs;
 		int[] numModelObjs = new int[2];
-		numModelObjs[0] = (int) Math.round((-1 + Math.sqrt(4 * edgesDensityModelObjs * totModelObjs)) / (2 * edgesDensityModelObjs)); // graph density
+		numModelObjs[0] = Math.max(
+			1,
+			(int) Math.round((-1 + Math.sqrt(4 * edgesDensityModelObjs * totModelObjs)) / (2 * edgesDensityModelObjs)) // graph density
+		);
 		numModelObjs[1] = totModelObjs - numModelObjs[0];
 
 		List<MAVOElement> randomModelObjs = new ArrayList<MAVOElement>();
 		RandomModel randomRoot = RandomModelFactory.eINSTANCE.createRandomModel();
-		EList<Node> randomNodes = randomRoot.getNodes();
+		randommodelNodes = randomRoot.getNodes();
 		Node node;
 		String nodeType = RandomModelPackage.eINSTANCE.getNode().getName().toLowerCase();
 		for (int i = 0; i < numModelObjs[0]; i++) {
 			node = RandomModelFactory.eINSTANCE.createNode();
 			node.setName(String.valueOf(i+1));
 			node.setType(nodeType);
-			randomNodes.add(node);
+			randommodelNodes.add(node);
 			randomModelObjs.add(node);
 		}
-		EList<Edge> randomEdges = randomRoot.getEdges();
+		EList<Edge> randommodelEdges = randomRoot.getEdges();
 		Edge edge;
 		String edgeType = RandomModelPackage.eINSTANCE.getEdge().getName().toLowerCase();
 		for (int i = 0; i < numModelObjs[1]; i++) {
 			edge = RandomModelFactory.eINSTANCE.createEdge();
 			edge.setName(String.valueOf(i+1));
 			edge.setType(edgeType);
-			edge.setSrc(randomNodes.get(state.nextInt(numModelObjs[0])));
-			edge.setTgt(randomNodes.get(state.nextInt(numModelObjs[0])));
-			randomEdges.add(edge);
+			edge.setSrc(randommodelNodes.get(state.nextInt(numModelObjs[0])));
+			edge.setTgt(randommodelNodes.get(state.nextInt(numModelObjs[0])));
+			randommodelEdges.add(edge);
 			randomModelObjs.add(edge);
 		}
 
@@ -175,6 +179,11 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 	public List<MAVOElement> getMAVOModelObjects() {
 
 		return mavoModelObjs;
+	}
+
+	public EList<Node> getRandommodelNodes() {
+
+		return randommodelNodes;
 	}
 
 	@Override
