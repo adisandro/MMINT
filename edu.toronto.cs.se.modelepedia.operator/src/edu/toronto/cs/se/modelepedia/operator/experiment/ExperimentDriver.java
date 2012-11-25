@@ -288,6 +288,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
+		long startTime = System.nanoTime();
 		// get experiment properties
 		Model initialModel = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
@@ -393,6 +394,8 @@ experimentCycle:
 				EXPERIMENT_SUBDIR + i,
 				MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 			);
+			long endTime = System.nanoTime();
+			System.err.println("The whole experiment driver took " + (endTime-startTime) + " nanoseconds");
 		}
 
 		return null;
