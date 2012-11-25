@@ -394,9 +394,9 @@ experimentCycle:
 				EXPERIMENT_SUBDIR + i,
 				MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 			);
-			long endTime = System.nanoTime();
-			System.err.println("The whole experiment driver took " + (endTime-startTime) + " nanoseconds");
 		}
+		long endTime = System.nanoTime();
+		System.err.println("The whole experiment driver took " + (endTime-startTime) + " nanoseconds");
 
 		return null;
 	}
