@@ -55,12 +55,9 @@ public class EditModelepediaListener extends SelectionAdapter {
 				args = args + "&arguments=";
 			
 			for (ModelEndpoint modelEndpoint : modelRelType.getModelEndpoints()) {
-				cardinality = (modelEndpoint.getUpperBound() == -1) ?
-					"*" :
-					Integer.toString(modelEndpoint.getUpperBound());
 				if (i != 1)
 					args = args + ", ";
-				args = args + modelEndpoint.getName() + ";" + cardinality;
+				args = args + modelEndpoint.getTarget().getName() + ";" + modelEndpoint.getName();
 				i++;
 			}
 		}
