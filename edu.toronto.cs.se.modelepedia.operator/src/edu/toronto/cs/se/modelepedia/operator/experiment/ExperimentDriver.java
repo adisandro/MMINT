@@ -78,10 +78,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_IN_MINSAMPLES = "minSamples";
 	/** Max number of iterations (i.e. samples to generate). */
 	private static final String PROPERTY_IN_MAXSAMPLES = "maxSamples";
-	/** Min value a sample can take. */
-	private static final String PROPERTY_IN_MINSAMPLEVALUE = "minSampleValue";
-	/** Max value a sample can take, -1 for unlimited. */
-	private static final String PROPERTY_IN_MAXSAMPLEVALUE = "maxSampleValue";
 	/** The distribution type to be used when evaluating the confidence. */
 	private static final String PROPERTY_IN_DISTRIBUTIONTYPE = "distributionType";
 	/** The requested range of confidence interval (% with respect to average value), after which the experiment can be stopped. */
@@ -97,6 +93,11 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_IN_OUTPUTS = "outputs";
 	/** The output default result property suffix. */
 	private static final String PROPERTY_IN_OUTPUTDEFAULT_SUFFIX = ".defaultResult";
+	/** Min value a sample can take. */
+	private static final String PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX = ".minSampleValue";
+	/** Max value a sample can take, -1 for unlimited. */
+	private static final String PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX = ".maxSampleValue";
+	private static final String PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
 	/** Max processing time to generate the outputs. */
 	private static final String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
 	private static final String PROPERTY_OUT_RESULTLOW_SUFFIX = ".resultLow";
@@ -118,8 +119,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private int skipWarmupSamples;
 	private int minSamples;
 	private int maxSamples;
-	private double min;
-	private double max;
 	private DistributionType distribution;
 	private double requestedConfidence;
 	// experiment operators
@@ -130,6 +129,9 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private String[] outputs;
 	private String[] outputOperators;
 	private double[] outputDefaults;
+	private double[] outputMins;
+	private double[] outputMaxs;
+	private boolean[] outputDoConfidences;
 	private int maxProcessingTime;
 
 	private void readProperties(Properties properties) throws Exception {
@@ -148,8 +150,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		skipWarmupSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_SKIPWARMUPSAMPLES);
 		minSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINSAMPLES);
 		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXSAMPLES);
-		min = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_MINSAMPLEVALUE);
-		max = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_MAXSAMPLEVALUE);
 		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_DISTRIBUTIONTYPE));
 		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_REQUESTEDCONFIDENCE);
 
@@ -165,9 +165,15 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		outputs = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_OUTPUTS);
 		outputOperators = new String[outputs.length];
 		outputDefaults = new double[outputs.length];
+		outputMins = new double[outputs.length];
+		outputMaxs = new double[outputs.length];
+		outputDoConfidences = new boolean[outputs.length];
 		for (int i = 0; i < outputs.length; i++) {
 			outputOperators[i] = MultiModelOperatorUtils.getStringProperty(properties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
 			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
+			outputMins[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
+			outputMaxs[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
+			outputDoConfidences[i] = MultiModelOperatorUtils.getBoolProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
 		}
 		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXPROCESSINGTIME);
 	}
@@ -332,7 +338,7 @@ experimentCycle:
 
 			ExperimentSamples[] experiment = new ExperimentSamples[outputs.length];
 			for (int out = 0; out < outputs.length; out++) {
-				experiment[out] = new ExperimentSamples(maxSamples - skipWarmupSamples, distribution, min, max, requestedConfidence);
+				experiment[out] = new ExperimentSamples(maxSamples - skipWarmupSamples, distribution, outputMins[out], outputMaxs[out], requestedConfidence, outputDoConfidences[out]);
 			}
 
 			// inner cycle: experiment setup is fixed, vary randomness and statistics

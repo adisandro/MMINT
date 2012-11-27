@@ -93,6 +93,23 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
+	public static boolean getBoolProperty(Properties properties, String propertyName) throws MMTFException {
+
+		boolean property = Boolean.parseBoolean(getStringProperty(properties, propertyName));
+
+		return property;
+	}
+
+	public static boolean getOptionalBoolProperty(Properties properties, String propertyName, boolean defaultValue) throws MMTFException {
+
+		try {
+			return getBoolProperty(properties, propertyName);
+		}
+		catch (MMTFException e) {
+			return defaultValue;
+		}
+	}
+
 	public static int getIntProperty(Properties properties, String propertyName) throws MMTFException {
 
 		int property = Integer.parseInt(getStringProperty(properties, propertyName));

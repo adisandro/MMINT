@@ -120,6 +120,7 @@ public class ExperimentSamples {
 	private double sup;
 	private double max;
 	private double requestedConfidence;
+	private boolean doConfidence;
 
 	private double getDistributionValue(int index) {
 
@@ -158,17 +159,18 @@ public class ExperimentSamples {
 		return value;
 	}
 
-	public ExperimentSamples(int maxSamples, DistributionType distribution, double min, double max, double requestedConfidence) {
+	public ExperimentSamples(int maxSamples, DistributionType distribution, double min, double max, double requestedConfidence, boolean doConfidence) {
 
 		samples = new double[maxSamples];
 		numSamples = 0;
 		sum = 0;
 		inf = 0;
 		sup = 0;
+		this.distribution = distribution;
 		this.min = min;
 		this.max = max;
 		this.requestedConfidence = requestedConfidence;
-		this.distribution = distribution;
+		this.doConfidence = doConfidence;
 	}
 
 	public boolean addSample(double sample) {
@@ -177,9 +179,12 @@ public class ExperimentSamples {
 		numSamples++;
 		sum += sample;
 
-		double avg = sum / numSamples;
+		if (!doConfidence) {
+			return true;
+		}
 
 		if (numSamples > 1) {
+			double avg = sum / numSamples;
 			double diff = 0;
 			for (int i = 0; i < numSamples; i++) {
 				diff += Math.pow(samples[i]-avg, 2);
