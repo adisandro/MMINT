@@ -43,8 +43,8 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";
 	/** Max number of model objects in the random model. */
 	private static final String PROPERTY_IN_MAXMODELOBJS = "maxModelObjs";
-	//TODO MMTF: to be generic here we need a list a model elements and a density formula
-	private static final String PROPERTY_IN_EDGESDENSITYMODELOBJS = "edges.densityModelObjs";
+	//TODO MMTF: to be generic here we need a list a model elements and a ratio formula
+	private static final String PROPERTY_IN_EDGESTONODESRATIO = "edges.toNodesRatio";
 	/** % of annotated objects in the random model. */
 	private static final String PROPERTY_IN_PERCANNOTATIONS = "percAnnotations";
 	/** % of may objects among the annotated elements. */
@@ -57,7 +57,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 
 	private int minModelObjs;
 	private int maxModelObjs;
-	private double edgesDensityModelObjs;
+	private double edgesToNodesRatio;
 	private double percAnnotations;
 	private double percMay;
 	private double percSet;
@@ -73,7 +73,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 
 		maxModelObjs = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXMODELOBJS);
 		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(properties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
-		edgesDensityModelObjs = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_EDGESDENSITYMODELOBJS);
+		edgesToNodesRatio = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_EDGESTONODESRATIO);
 		percAnnotations = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCANNOTATIONS);
 		percMay = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCMAY);
 		percSet = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCSET);
@@ -134,7 +134,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		int[] numModelObjs = new int[2];
 		numModelObjs[0] = Math.max(
 			1,
-			(int) Math.round((-1 + Math.sqrt(4 * edgesDensityModelObjs * totModelObjs)) / (2 * edgesDensityModelObjs)) // graph density
+			(int) Math.round(totModelObjs / (1 + edgesToNodesRatio))
 		);
 		numModelObjs[1] = totModelObjs - numModelObjs[0];
 
