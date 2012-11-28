@@ -133,7 +133,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		return Z3SMTSolver.SMTLIB_PREDICATE_START + namedElement.getType() + ' ' + namedElement.getName() + Z3SMTSolver.SMTLIB_PREDICATE_END;
 	}
 
-	private void generateSMTLIBConcretization(HashSet<String> concretizations, List<MAVOElement> mayModelObjs) {
+	private void generateSMTLIBConcretization() {
 
 		StringBuilder concretization;
 		Map<String, Boolean> wellFormednessConstraints = new HashMap<String, Boolean>();
@@ -180,8 +180,8 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 			}
 			concretization.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
 		}
-		while (concretizations.contains(concretization.toString()));
-		concretizations.add(concretization.toString());
+		while (smtlibConcretizations.contains(concretization.toString()));
+		smtlibConcretizations.add(concretization.toString());
 	}
 
 	private void groundProperty5(Node node, StringBuilder propertyBuilder) {
@@ -393,7 +393,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		if (maxConcretizations > 1) {
 			//TODO MMTF: add heuristics to detect too large number of concretizations (when it's more efficient to generate them all and then cut some)
 			for (int i = 0; i < numConcretizations; i++) {
-				generateSMTLIBConcretization(smtlibConcretizations, mayModelObjs);
+				generateSMTLIBConcretization();
 			}
 			StringBuilder concretizationsBuilder = new StringBuilder(SMTLIB_CONCRETIZATION_PREAMBLE);
 			Iterator<String> iter = smtlibConcretizations.iterator();

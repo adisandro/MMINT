@@ -189,8 +189,9 @@ public class ExperimentSamples {
 			for (int i = 0; i < numSamples; i++) {
 				diff += Math.pow(samples[i]-avg, 2);
 			}
-			inf = avg - getDistributionValue(numSamples-2) * Math.sqrt(diff / (numSamples*(numSamples-1)));
-			sup = avg + getDistributionValue(numSamples-2) * Math.sqrt(diff / (numSamples*(numSamples-1)));
+			double confidence = getDistributionValue(numSamples-2) * Math.sqrt(diff / (numSamples*(numSamples-1)));
+			inf = avg - confidence;
+			sup = avg + confidence;
 			inf = ((inf < min) ? min : ((inf > max) ? max : inf));
 			sup = ((sup < min) ? min : ((sup > max) ? max : sup));
 			if((sup - inf) <= (avg * requestedConfidence)) {
