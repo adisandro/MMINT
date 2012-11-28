@@ -62,7 +62,7 @@ void freeResult(Z3Result *result) {
 	free(result);
 }
 
-static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding) {
+static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion) {
 
 	Z3_context context = incResult->contextPointer;
 	Z3_solver solver = incResult->solverPointer;
@@ -106,14 +106,28 @@ static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtE
 	// check sat and get model
 	incResult->flag = Z3_solver_check(context, solver);
 	if (incResult->flag == 1) {
-		if (incResult->modelPointer != NULL) {
+		// get rid of previous model if assertions are piling up
+		if (removeLastAssertion == 0 && incResult->modelPointer != NULL) {
 			Z3_model_dec_ref(context, model);
+		}
+		// get rid of previous model string, always
+		if (incResult->model != NULL) {
+			free(incResult->model);
 		}
 		model = Z3_solver_get_model(context, solver);
 		Z3_model_inc_ref(context, model);
-		incResult->modelPointer = model;
 		Z3_string modelString = Z3_model_to_string(context, model);
-		incResult->model = modelString;
+		int modelLen = sizeof(char) * (strlen(modelString) + 1);
+		incResult->model = malloc(modelLen);
+		strncpy(incResult->model, modelString, modelLen);
+		// store current model if assertions are piling up
+		if (removeLastAssertion == 0) {
+			incResult->modelPointer = model;
+		}
+		// keep the previous model if assertions are not piling up, throw the current one
+		else {
+			Z3_model_dec_ref(context, model);
+		}
 	}
 }
 
@@ -130,7 +144,8 @@ Z3IncResult *firstCheckSatAndGetModelIncremental(char *smtEncoding) {
 	Z3IncResult *incResult = calloc(1, sizeof(Z3IncResult));
 	incResult->contextPointer = context;
 	incResult->solverPointer = solver;
-	runCheckSatAndGetModelIncremental(incResult, smtEncoding);
+	// first run is always piling up the initial assertion
+	runCheckSatAndGetModelIncremental(incResult, smtEncoding, 0);
 
 	return incResult;
 }
@@ -143,7 +158,7 @@ void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, i
 	if (removeLastAssertion == 1) {
 		Z3_solver_push(context, solver);
 	}
-	runCheckSatAndGetModelIncremental(incResult, smtEncoding);
+	runCheckSatAndGetModelIncremental(incResult, smtEncoding, removeLastAssertion);
 	if (removeLastAssertion == 1) {
 		Z3_solver_pop(context, solver, 1);
 	}
@@ -160,6 +175,9 @@ void freeResultIncremental(Z3IncResult *incResult) {
 	}
 	Z3_solver_dec_ref(context, solver);
 	Z3_del_context(context);
+	if (incResult->model != NULL) {
+		free(incResult->model);
+	}
 	free(incResult);
 }
 

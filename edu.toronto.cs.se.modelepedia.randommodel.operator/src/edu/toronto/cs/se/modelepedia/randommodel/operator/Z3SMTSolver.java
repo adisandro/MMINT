@@ -132,6 +132,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		timeStandardMaybe = 0;
 		timeStandardAll = 0;
 		timeMAVOBackbone = 0;
+		timeMAVOAllsat = 0;
 		flags = new StringBuilder((smtlibConcretizations.size() + 2) * 3);
 		speedupMAVOStandard = 0;
 	}
@@ -195,7 +196,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		timeStandardMaybe = (endTimeMaybe == 0) ? timeStandardAll : (endTimeMaybe - startTime);
 	}
 
-	private void parseZ3Elements(String z3Model, String z3ElemType, int z3MaxElems, Map<String, Boolean> z3Elems, List<MAVOElement> mayModelObjs, RandomModelToSMTLIB previousOperator) {
+	private void parseZ3Elements(String z3Model, String z3ElemType, int z3MaxElems, Map<String, Boolean> z3ModelElems, Set<String> z3MayModelElems) {
 
 		int z3ElemsIndex = z3Model.indexOf(Z3_ELEMFUNC_NEWLINE + z3ElemType + Z3_ELEMFUNC_PLACEHOLDER);
 		if (z3ElemsIndex != -1) {
@@ -204,7 +205,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			String z3ElemsString = z3Model.substring(begin, end).trim();
 			int newLine = z3ElemsString.indexOf(Z3_ELEMFUNC_NEWLINE);
 			int z3ElemArg;
-			boolean z3ElemValue;
+			boolean z3ModelElemValue;
 			while (!z3ElemsString.isEmpty()) {
 				String[] z3ElemFunc = z3ElemsString.substring(0, newLine).split(Z3_ELEMFUNC_SEPARATOR);
 				z3ElemsString = z3ElemsString.substring(newLine).trim();
@@ -212,38 +213,43 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 				if (newLine == -1) {
 					newLine = z3ElemsString.length();
 				}
-				z3ElemValue = Boolean.parseBoolean(z3ElemFunc[1]);
+				z3ModelElemValue = Boolean.parseBoolean(z3ElemFunc[1]);
 				try {
 					z3ElemArg = Integer.parseInt(z3ElemFunc[0]);
 				}
 				catch(NumberFormatException e) {
-					for (MAVOElement mayModelObj : mayModelObjs) {
-						String smtEncodingMayModelObj = previousOperator.getNamedElementSMTLIBEncoding((NamedElement) mayModelObj);
-						if (!smtEncodingMayModelObj.startsWith(SMTLIB_PREDICATE_START + z3ElemType) || z3Elems.containsKey(smtEncodingMayModelObj)) {
+					Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
+					while (z3MayModelElemsIter.hasNext()) {
+						String z3MayModelElem = z3MayModelElemsIter.next();
+						if (!z3MayModelElem.startsWith(SMTLIB_PREDICATE_START + z3ElemType) || z3ModelElems.containsKey(z3MayModelElem)) {
 							continue;
 						}
-						z3Elems.put(smtEncodingMayModelObj, new Boolean(z3ElemValue));
+						z3ModelElems.put(z3MayModelElem, new Boolean(z3ModelElemValue));
 					}
 					break;
 				}
-				if (z3ElemArg == 0 || z3ElemArg >= z3MaxElems) {
+				if (z3ElemArg == 0 || z3ElemArg > z3MaxElems) {
 					continue;
 				}
-				z3Elems.put(SMTLIB_PREDICATE_START + z3ElemType + ' ' + z3ElemArg + SMTLIB_PREDICATE_END, new Boolean(z3ElemValue));
+				String z3ModelElemName = SMTLIB_PREDICATE_START + z3ElemType + ' ' + z3ElemArg + SMTLIB_PREDICATE_END;
+				if (!z3MayModelElems.contains(z3ModelElemName)) {
+					continue;
+				}
+				z3ModelElems.put(z3ModelElemName, new Boolean(z3ModelElemValue));
 			}
 		}
 	}
 
-	private Map<String, Boolean> parseZ3Model(String z3Model, List<MAVOElement> mayModelObjs, RandomModelToSMTLIB previousOperator) {
+	private Map<String, Boolean> parseZ3Model(String z3Model, Set<String> z3MayModelElems) {
 
 		// nodes
-		Map<String, Boolean> z3Elems = new HashMap<String, Boolean>();
+		Map<String, Boolean> z3ModelElems = new HashMap<String, Boolean>();
 		String z3ElemType = RandomModelPackage.eINSTANCE.getNode().getName();
 		String z3ElemString = "numberOf" + z3ElemType + 's' + Z3_ELEMFUNC_SEPARATOR;
 		int begin = z3Model.indexOf(z3ElemString) + z3ElemString.length();
 		int end = z3Model.indexOf(Z3_ELEMFUNC_NEWLINE, begin);
 		int z3MaxElems = Integer.parseInt(z3Model.substring(begin, end));
-		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3Elems, mayModelObjs, previousOperator);
+		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3ModelElems, z3MayModelElems);
 
 		// edges
 		z3ElemType = RandomModelPackage.eINSTANCE.getEdge().getName();
@@ -251,28 +257,31 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		begin = z3Model.indexOf(z3ElemString) + z3ElemString.length();
 		end = z3Model.indexOf(Z3_ELEMFUNC_NEWLINE, begin);
 		z3MaxElems = Integer.parseInt(z3Model.substring(begin, end));
-		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3Elems, mayModelObjs, previousOperator);
+		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3ModelElems, z3MayModelElems);
 
-		return z3Elems;
+		return z3ModelElems;
 	}
 
-	private void optimizeBackboneElements(Map<String, Boolean> initialZ3Elems, Map<String, Boolean> currentZ3Elems, Set<String> outOfBackboneZ3Elems) {
+	private void optimizeBackboneElements(Map<String, Boolean> initialZ3ModelElems, Map<String, Boolean> currentZ3ModelElems, Set<String> outOfBackboneZ3ModelElems) {
 
-		for (Map.Entry<String, Boolean> currentZ3Elem : currentZ3Elems.entrySet()) {
-			String currentZ3ElemName = currentZ3Elem.getKey();
-			boolean currentZ3ElemValue = currentZ3Elem.getValue();
-			boolean initialZ3ElemValue = initialZ3Elems.get(currentZ3ElemName);
-			if (currentZ3ElemValue != initialZ3ElemValue) {
-				outOfBackboneZ3Elems.add(currentZ3ElemName);
+		for (Map.Entry<String, Boolean> currentZ3ModelElem : currentZ3ModelElems.entrySet()) {
+			String currentZ3ModelElemName = currentZ3ModelElem.getKey();
+			Boolean currentZ3ModelElemValue = currentZ3ModelElem.getValue();
+			Boolean initialZ3ModelElemValue = initialZ3ModelElems.get(currentZ3ModelElemName);
+			if (initialZ3ModelElemValue == null) {
+				continue;
+			}
+			if (currentZ3ModelElemValue.booleanValue() != initialZ3ModelElemValue.booleanValue()) {
+				outOfBackboneZ3ModelElems.add(currentZ3ModelElemName);
 			}
 		}
 	}
 
-	private void doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, List<MAVOElement> mayModelObjs, RandomModelToSMTLIB previousOperator) {
+	private void doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) {
 
 		Z3IncResult z3IncResult;
 		String encoding;
-		Set<String> outOfBackboneZ3Elems = new HashSet<String>();
+		Set<String> outOfBackboneZ3ModelElems = new HashSet<String>();
 
 		long startTime = System.nanoTime();
 		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
@@ -280,28 +289,29 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		flags.append(z3IncResult.flag);
 		flags.append(',');
 		if (z3IncResult.flag == 1) {
-			Map<String, Boolean> initialZ3Elems = parseZ3Model(z3IncResult.model, mayModelObjs, previousOperator);
-			for (MAVOElement mayModelObj : mayModelObjs) {
-				String smtEncodingMayModelObj = previousOperator.getNamedElementSMTLIBEncoding((NamedElement) mayModelObj);
-				if (outOfBackboneZ3Elems.contains(smtEncodingMayModelObj)) { // optimization
+			Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+			Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
+			while (z3MayModelElemsIter.hasNext()) {
+				String z3MayModelElem = z3MayModelElemsIter.next();System.err.println(z3MayModelElem);
+				if (outOfBackboneZ3ModelElems.contains(z3MayModelElem)) { // optimization
 					continue;
 				}
-				encoding = SMTLIB_ASSERT + smtEncodingMayModelObj + SMTLIB_PREDICATE_END;
+				encoding = SMTLIB_ASSERT + z3MayModelElem + SMTLIB_PREDICATE_END;
 				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
 				flags.append(z3IncResult.flag);
 				flags.append(',');
 				if (z3IncResult.flag == -1) {
 					continue;
 				}
-				encoding = SMTLIB_ASSERT + SMTLIB_NOT + smtEncodingMayModelObj + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+				encoding = SMTLIB_ASSERT + SMTLIB_NOT + z3MayModelElem + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
 				flags.append(z3IncResult.flag);
 				flags.append(',');
 				if (z3IncResult.flag == -1) {
 					continue;
 				}
-				Map<String, Boolean> currentZ3Elems = parseZ3Model(z3IncResult.model, mayModelObjs, previousOperator);
-				optimizeBackboneElements(initialZ3Elems, currentZ3Elems, outOfBackboneZ3Elems);
+				Map<String, Boolean> currentZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+				optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 			}
 		}
 		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
@@ -310,7 +320,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		timeMAVOBackbone = endTime - startTime;
 	}
 
-	private void doMAVOAllsatPropertyCheck(String smtlibMavoEncoding, String property, List<MAVOElement> mayModelObjs, RandomModelToSMTLIB previousOperator) {
+	private void doMAVOAllsatPropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) {
 
 		Z3IncResult z3IncResult;
 		String encoding;
@@ -321,20 +331,20 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		flags.append(z3IncResult.flag);
 		flags.append(',');
 		while (z3IncResult.flag == 1) {
-			Map<String, Boolean> z3Elems = parseZ3Model(z3IncResult.model, mayModelObjs, previousOperator);
+			Map<String, Boolean> z3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
 			StringBuilder encodingBuilder = new StringBuilder();
 			encodingBuilder.append(SMTLIB_ASSERT);
 			encodingBuilder.append(SMTLIB_OR);
-			for (Map.Entry<String, Boolean> z3Elem : z3Elems.entrySet()) {
-				String z3ElemName = z3Elem.getKey();
-				boolean z3ElemValue = z3Elem.getValue();
-				if (z3ElemValue) {
+			for (Map.Entry<String, Boolean> z3ModelElem : z3ModelElems.entrySet()) {
+				String z3ModelElemName = z3ModelElem.getKey();
+				boolean z3ModelElemValue = z3ModelElem.getValue();
+				if (z3ModelElemValue) {
 					encodingBuilder.append(SMTLIB_NOT);
-					encodingBuilder.append(z3ElemName);
+					encodingBuilder.append(z3ModelElemName);
 					encodingBuilder.append(SMTLIB_PREDICATE_END);
 				}
 				else {
-					encodingBuilder.append(z3ElemName);
+					encodingBuilder.append(z3ModelElemName);
 				}
 			}
 			encodingBuilder.append(SMTLIB_PREDICATE_END);
@@ -363,19 +373,22 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 
 		// get output from previous operator
 		RandomModelToSMTLIB previousOperator = (RandomModelToSMTLIB) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable();
-		List<MAVOElement> mayModelObjs = previousOperator.getMayModelObjects();
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 		final String smtlibMavoEncoding = previousOperator.getSMTLIBMAVOEncoding();
 		HashSet<String> smtlibConcretizations = previousOperator.getSMTLIBConcretizations();
 		final String property = previousOperator.getGroundedProperty();
+		Set<String> z3MayModelElems = new HashSet<String>();
+		for (MAVOElement mayModelObj : previousOperator.getMayModelObjects()) {
+			z3MayModelElems.add(previousOperator.getNamedElementSMTLIBEncoding((NamedElement) mayModelObj));
+		}
 
 		// run solver
 		initOutput(smtlibConcretizations);
 		System.setProperty("jna.library.path", LIBRARY_PATH);
 		doMAVOPropertyCheck(smtlibMavoEncoding, property);
 		doNonMAVOPropertyCheck(smtlibEncoding, property, smtlibConcretizations);
-		doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, mayModelObjs, previousOperator);
-		doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, mayModelObjs, previousOperator);
+		doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
+		doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
 		speedupMAVOStandard = ((double) timeStandardMaybe) / timeMAVO;
 
 		// save execution times

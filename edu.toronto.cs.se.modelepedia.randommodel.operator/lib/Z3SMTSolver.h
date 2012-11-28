@@ -8,7 +8,7 @@ typedef struct {
 
 typedef struct {
 	int flag;
-	const char *model;
+	char *model;
 	Z3_context contextPointer;
 	Z3_solver solverPointer;
 	Z3_model modelPointer;
@@ -17,7 +17,7 @@ typedef struct {
 int checkSat(char *smtEncoding);
 Z3Result *checkSatAndGetModel(char *smtEncoding);
 void freeResult(Z3Result *result);
-static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding);
+static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion);
 Z3IncResult *firstCheckSatAndGetModelIncremental(char *smtEncoding);
 void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion);
 void freeResultIncremental(Z3IncResult *incResult);
