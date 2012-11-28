@@ -19,7 +19,7 @@ Z3Result *checkSatAndGetModel(char *smtEncoding);
 void freeResult(Z3Result *result);
 static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding);
 Z3IncResult *firstCheckSatAndGetModelIncremental(char *smtEncoding);
-void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding);
+void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion);
 void freeResultIncremental(Z3IncResult *incResult);
 
 #endif  // Z3SMTSOLVER_H__

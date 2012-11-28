@@ -135,14 +135,18 @@ Z3IncResult *firstCheckSatAndGetModelIncremental(char *smtEncoding) {
 	return incResult;
 }
 
-void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding) {
+void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion) {
 
 	// incremental check sat and get model
 	Z3_context context = incResult->contextPointer;
 	Z3_solver solver = incResult->solverPointer;
-	Z3_solver_push(context, solver);
+	if (removeLastAssertion == 1) {
+		Z3_solver_push(context, solver);
+	}
 	runCheckSatAndGetModelIncremental(incResult, smtEncoding);
-	Z3_solver_pop(context, solver, 1);
+	if (removeLastAssertion == 1) {
+		Z3_solver_pop(context, solver, 1);
+	}
 }
 
 void freeResultIncremental(Z3IncResult *incResult) {
