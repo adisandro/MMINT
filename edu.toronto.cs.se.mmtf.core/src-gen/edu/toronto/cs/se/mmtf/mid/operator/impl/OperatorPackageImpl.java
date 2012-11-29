@@ -350,6 +350,24 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOperatorExecutable_InputSubdir() {
+		return (EAttribute)operatorExecutableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorExecutable_PreviousExecutable() {
+		return (EReference)operatorExecutableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getOperatorExecutable__Execute__EList() {
 		return operatorExecutableEClass.getEOperations().get(0);
 	}
@@ -456,6 +474,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEReference(parameterEClass, PARAMETER__MODEL);
 
 		operatorExecutableEClass = createEClass(OPERATOR_EXECUTABLE);
+		createEAttribute(operatorExecutableEClass, OPERATOR_EXECUTABLE__INPUT_SUBDIR);
+		createEReference(operatorExecutableEClass, OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE);
 		createEOperation(operatorExecutableEClass, OPERATOR_EXECUTABLE___EXECUTE__ELIST);
 
 		conversionOperatorExecutableEClass = createEClass(CONVERSION_OPERATOR_EXECUTABLE);
@@ -528,6 +548,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEReference(getParameter_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operatorExecutableEClass, OperatorExecutable.class, "OperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOperatorExecutable_InputSubdir(), ecorePackage.getEString(), "inputSubdir", null, 0, 1, OperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperatorExecutable_PreviousExecutable(), this.getOperatorExecutable(), null, "previousExecutable", null, 0, 1, OperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getOperatorExecutable__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
@@ -573,7 +595,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   source, 
 		   new String[] {
 			 "constraints", "conversion executable"
-		   });															
+		   });																	
 	}
 
 	/**
@@ -590,7 +612,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   new String[] {
 			 "conversion", "inputs->size() = 1 and outputs->size() = 1",
 			 "executable", "executable.oclIsKindOf(ConversionOperatorExecutable)"
-		   });													
+		   });															
 	}
 
 } //OperatorPackageImpl

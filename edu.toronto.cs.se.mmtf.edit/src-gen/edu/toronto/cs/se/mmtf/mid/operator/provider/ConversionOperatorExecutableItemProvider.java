@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.operator.provider;
 
 
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable;
 import java.util.Collection;
 import java.util.List;
 
@@ -72,7 +73,10 @@ public class ConversionOperatorExecutableItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ConversionOperatorExecutable_type");
+		String label = ((ConversionOperatorExecutable)object).getInputSubdir();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ConversionOperatorExecutable_type") :
+			getString("_UI_ConversionOperatorExecutable_type") + " " + label;
 	}
 
 	/**

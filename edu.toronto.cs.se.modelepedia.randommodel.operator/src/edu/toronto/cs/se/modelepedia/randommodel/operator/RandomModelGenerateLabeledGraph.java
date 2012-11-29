@@ -189,11 +189,12 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
+		//TODO MMTF: fix this inputSubdir thing
 		Model labeledGraphModel = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
 			labeledGraphModel,
-			null,
+			inputSubdir,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);

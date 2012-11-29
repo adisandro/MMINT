@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.mmtf.mid.operator.provider;
 
 
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
 
 import java.util.Collection;
@@ -22,13 +24,16 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable} object.
@@ -65,8 +70,54 @@ public class OperatorExecutableItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addInputSubdirPropertyDescriptor(object);
+			addPreviousExecutablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Input Subdir feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInputSubdirPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OperatorExecutable_inputSubdir_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OperatorExecutable_inputSubdir_feature", "_UI_OperatorExecutable_type"),
+				 OperatorPackage.Literals.OPERATOR_EXECUTABLE__INPUT_SUBDIR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Previous Executable feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPreviousExecutablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OperatorExecutable_previousExecutable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OperatorExecutable_previousExecutable_feature", "_UI_OperatorExecutable_type"),
+				 OperatorPackage.Literals.OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,7 +128,10 @@ public class OperatorExecutableItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_OperatorExecutable_type");
+		String label = ((OperatorExecutable)object).getInputSubdir();
+		return label == null || label.length() == 0 ?
+			getString("_UI_OperatorExecutable_type") :
+			getString("_UI_OperatorExecutable_type") + " " + label;
 	}
 
 	/**
@@ -90,6 +144,12 @@ public class OperatorExecutableItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(OperatorExecutable.class)) {
+			case OperatorPackage.OPERATOR_EXECUTABLE__INPUT_SUBDIR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

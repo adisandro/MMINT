@@ -526,13 +526,31 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_EXECUTABLE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXECUTABLE__INPUT_SUBDIR = 0;
+
+	/**
+	 * The feature id for the '<em><b>Previous Executable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Executable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXECUTABLE_FEATURE_COUNT = 0;
+	int OPERATOR_EXECUTABLE_FEATURE_COUNT = 2;
 
 	/**
 	 * The operation id for the '<em>Execute</em>' operation.
@@ -561,6 +579,24 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int CONVERSION_OPERATOR_EXECUTABLE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR_EXECUTABLE__INPUT_SUBDIR = OPERATOR_EXECUTABLE__INPUT_SUBDIR;
+
+	/**
+	 * The feature id for the '<em><b>Previous Executable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE;
 
 	/**
 	 * The number of structural features of the '<em>Conversion Operator Executable</em>' class.
@@ -607,6 +643,24 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int RANDOM_OPERATOR_EXECUTABLE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_EXECUTABLE__INPUT_SUBDIR = OPERATOR_EXECUTABLE__INPUT_SUBDIR;
+
+	/**
+	 * The feature id for the '<em><b>Previous Executable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -836,6 +890,28 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOperatorExecutable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getInputSubdir <em>Input Subdir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Input Subdir</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getInputSubdir()
+	 * @see #getOperatorExecutable()
+	 * @generated
+	 */
+	EAttribute getOperatorExecutable_InputSubdir();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getPreviousExecutable <em>Previous Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Previous Executable</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getPreviousExecutable()
+	 * @see #getOperatorExecutable()
+	 * @generated
+	 */
+	EReference getOperatorExecutable_PreviousExecutable();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
@@ -1070,6 +1146,22 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OPERATOR_EXECUTABLE = eINSTANCE.getOperatorExecutable();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Subdir</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR_EXECUTABLE__INPUT_SUBDIR = eINSTANCE.getOperatorExecutable_InputSubdir();
+
+		/**
+		 * The meta object literal for the '<em><b>Previous Executable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = eINSTANCE.getOperatorExecutable_PreviousExecutable();
 
 		/**
 		 * The meta object literal for the '<em><b>Execute</b></em>' operation.

@@ -17,8 +17,6 @@ import edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -102,8 +100,7 @@ public class RandomOperatorExecutableItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Random labelValue = ((RandomOperatorExecutable)object).getState();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((RandomOperatorExecutable)object).getInputSubdir();
 		return label == null || label.length() == 0 ?
 			getString("_UI_RandomOperatorExecutable_type") :
 			getString("_UI_RandomOperatorExecutable_type") + " " + label;

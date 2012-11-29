@@ -379,7 +379,9 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		readProperties(inputProperties);
 
 		// get output from previous operator
-		RandomModelGenerateLabeledGraph previousOperator = (RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable();
+		RandomModelGenerateLabeledGraph previousOperator = (previousExecutable == null) ?
+			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(RandomModelGenerateLabeledGraph) previousExecutable;
 		mayModelObjs = previousOperator.getMAVOModelObjects();
 		long maxConcretizations = Math.round(Math.pow(2, mayModelObjs.size()));
 		if (numConcretizations > maxConcretizations) {

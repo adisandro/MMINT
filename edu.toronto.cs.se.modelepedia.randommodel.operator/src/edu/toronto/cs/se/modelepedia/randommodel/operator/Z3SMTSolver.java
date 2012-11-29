@@ -405,7 +405,9 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		readProperties(inputProperties);
 
 		// get output from previous operator
-		RandomModelToSMTLIB previousOperator = (RandomModelToSMTLIB) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable();
+		RandomModelToSMTLIB previousOperator = (previousExecutable == null) ?
+			(RandomModelToSMTLIB) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(RandomModelToSMTLIB) previousExecutable;
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 		final String smtlibMavoEncoding = previousOperator.getSMTLIBMAVOEncoding();
 		HashSet<String> smtlibConcretizations = previousOperator.getSMTLIBConcretizations();
