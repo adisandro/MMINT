@@ -27,6 +27,7 @@ import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -48,7 +49,9 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private static final String PROPERTY_OUT_TIMEMAVOBACKBONE = "timeMAVOBackbone";
 	private static final String PROPERTY_OUT_TIMEMAVOALLSAT = "timeMAVOAllsat";
 	private static final String PROPERTY_OUT_FLAGS = "flags";
-	private static final String PROPERTY_OUT_SPEEDUPMAVOSTANDARD = "speedupMAVOStandard";
+	private static final String PROPERTY_OUT_SPEEDUPMAVOSTANDARDMAYBE = "speedupMAVOStandardMaybe";
+	private static final String PROPERTY_OUT_SPEEDUPMAVOBACKBONESTANDARDALL = "speedupMAVOBackboneStandardAll";
+	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATSTANDARDALL = "speedupMAVOAllsatStandardAll";
 
 	public static final String SMTLIB_PREDICATE_START = "(";
 	public static final String SMTLIB_PREDICATE_END = ")";
@@ -71,7 +74,11 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private long timeMAVOBackbone;
 	private long timeMAVOAllsat;
 	private StringBuilder flags;
-	private double speedupMAVOStandard;
+	private double speedupMAVOStandardMaybe;
+	private double speedupMAVOBackboneStandardAll;
+	private double speedupMAVOAllsatStandardAll;
+	private boolean doMAVOBackbone;
+	private boolean doMAVOAllsat;
 
 	public interface CLibrary extends Library {
 
@@ -128,13 +135,17 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 
 	private void initOutput(HashSet<String> smtlibConcretizations) {
 
-		timeMAVO = 0;
-		timeStandardMaybe = 0;
-		timeStandardAll = 0;
-		timeMAVOBackbone = 0;
-		timeMAVOAllsat = 0;
+		timeMAVO = -1;
+		timeStandardMaybe = -1;
+		timeStandardAll = -1;
+		timeMAVOBackbone = -1;
+		timeMAVOAllsat = -1;
 		flags = new StringBuilder((smtlibConcretizations.size() + 2) * 3);
-		speedupMAVOStandard = 0;
+		speedupMAVOStandardMaybe = -1;
+		speedupMAVOBackboneStandardAll = -1;
+		speedupMAVOAllsatStandardAll = -1;
+		doMAVOBackbone = true;
+		doMAVOAllsat = true;
 	}
 
 	private void writeProperties(Properties properties) {
@@ -145,7 +156,9 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		properties.setProperty(PROPERTY_OUT_TIMEMAVOBACKBONE, String.valueOf(timeMAVOBackbone));
 		properties.setProperty(PROPERTY_OUT_TIMEMAVOALLSAT, String.valueOf(timeMAVOAllsat));
 		properties.setProperty(PROPERTY_OUT_FLAGS, flags.toString());
-		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOSTANDARD, String.valueOf(speedupMAVOStandard));
+		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOSTANDARDMAYBE, String.valueOf(speedupMAVOStandardMaybe));
+		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOBACKBONESTANDARDALL, String.valueOf(speedupMAVOBackboneStandardAll));
+		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOALLSATSTANDARDALL, String.valueOf(speedupMAVOAllsatStandardAll));
 	}
 
 	private void doMAVOPropertyCheck(String smtlibMavoEncoding, String property) {
@@ -156,10 +169,17 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		long startTime = System.nanoTime();
 		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
 		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
+		if (z3Result != 1) {
+			doMAVOBackbone = false;
+			doMAVOAllsat = false;
+		}
 		flags.append(z3Result);
 		flags.append(',');
 		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + SMTLIB_NOT + property + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
+		if (z3Result != 1) {
+			doMAVOBackbone = false;
+		}
 		flags.append(z3Result);
 		flags.append(',');
 		long endTime = System.nanoTime();
@@ -262,22 +282,27 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		return z3ModelElems;
 	}
 
+	private boolean optimizeBackboneElement(Map<String, Boolean> initialZ3ModelElems, String currentZ3ModelElem, Boolean currentZ3ModelElemValue, Set<String> outOfBackboneZ3ModelElems) {
+
+		Boolean initialZ3ModelElemValue = initialZ3ModelElems.get(currentZ3ModelElem);
+		if (initialZ3ModelElemValue == null || (currentZ3ModelElemValue.booleanValue() == initialZ3ModelElemValue.booleanValue())) {
+			return false;
+		}
+		outOfBackboneZ3ModelElems.add(currentZ3ModelElem);
+
+		return true;
+	}
+
 	private void optimizeBackboneElements(Map<String, Boolean> initialZ3ModelElems, Map<String, Boolean> currentZ3ModelElems, Set<String> outOfBackboneZ3ModelElems) {
 
-		for (Map.Entry<String, Boolean> currentZ3ModelElem : currentZ3ModelElems.entrySet()) {
-			String currentZ3ModelElemName = currentZ3ModelElem.getKey();
-			Boolean currentZ3ModelElemValue = currentZ3ModelElem.getValue();
-			Boolean initialZ3ModelElemValue = initialZ3ModelElems.get(currentZ3ModelElemName);
-			if (initialZ3ModelElemValue == null) {
-				continue;
-			}
-			if (currentZ3ModelElemValue.booleanValue() != initialZ3ModelElemValue.booleanValue()) {
-				outOfBackboneZ3ModelElems.add(currentZ3ModelElemName);
-			}
+		for (Map.Entry<String, Boolean> currentZ3ModelElemEntry : currentZ3ModelElems.entrySet()) {
+			String currentZ3ModelElem = currentZ3ModelElemEntry.getKey();
+			Boolean currentZ3ModelElemValue = currentZ3ModelElemEntry.getValue();
+			optimizeBackboneElement(initialZ3ModelElems, currentZ3ModelElem, currentZ3ModelElemValue, outOfBackboneZ3ModelElems);
 		}
 	}
 
-	private void doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) {
+	private void doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) throws MMTFException {
 
 		Z3IncResult z3IncResult;
 		String encoding;
@@ -288,31 +313,39 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(encoding);
 		flags.append(z3IncResult.flag);
 		flags.append(',');
-		if (z3IncResult.flag == 1) {
-			Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
-			Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
-			while (z3MayModelElemsIter.hasNext()) {
-				String z3MayModelElem = z3MayModelElemsIter.next();System.err.println(z3MayModelElem);
-				if (outOfBackboneZ3ModelElems.contains(z3MayModelElem)) { // optimization
-					continue;
-				}
-				encoding = SMTLIB_ASSERT + z3MayModelElem + SMTLIB_PREDICATE_END;
-				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
-				flags.append(z3IncResult.flag);
-				flags.append(',');
-				if (z3IncResult.flag == -1) {
-					continue;
-				}
-				encoding = SMTLIB_ASSERT + SMTLIB_NOT + z3MayModelElem + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
-				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
-				flags.append(z3IncResult.flag);
-				flags.append(',');
-				if (z3IncResult.flag == -1) {
-					continue;
-				}
-				Map<String, Boolean> currentZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
-				optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
+		if (z3IncResult.flag != 1) {
+			throw new MMTFException("Property checking for MAVO model was SAT-SAT but the incremental baseline now is UNSAT.");
+		}
+		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+		Map<String, Boolean> currentZ3ModelElems;
+		Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
+		while (z3MayModelElemsIter.hasNext()) {
+			String z3MayModelElem = z3MayModelElemsIter.next();
+			if (outOfBackboneZ3ModelElems.contains(z3MayModelElem)) { // optimization
+				continue;
 			}
+			encoding = SMTLIB_ASSERT + z3MayModelElem + SMTLIB_PREDICATE_END;
+			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
+			flags.append(z3IncResult.flag);
+			flags.append(',');
+			if (z3IncResult.flag != 1) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
+				continue;
+			}
+			currentZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
+			initialZ3ModelElems.get(z3MayModelElem);
+			if (optimizeBackboneElement(initialZ3ModelElems, z3MayModelElem, currentZ3ModelElems.get(z3MayModelElem), outOfBackboneZ3ModelElems)) { // z3MayModelElem value has already changed
+				continue;
+			}
+			encoding = SMTLIB_ASSERT + SMTLIB_NOT + z3MayModelElem + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
+			flags.append(z3IncResult.flag);
+			flags.append(',');
+			if (z3IncResult.flag != 1) { // UNSAT
+				continue;
+			}
+			currentZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 		}
 		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 		long endTime = System.nanoTime();
@@ -387,9 +420,15 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		System.setProperty("jna.library.path", LIBRARY_PATH);
 		doMAVOPropertyCheck(smtlibMavoEncoding, property);
 		doNonMAVOPropertyCheck(smtlibEncoding, property, smtlibConcretizations);
-		doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
-		doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
-		speedupMAVOStandard = ((double) timeStandardMaybe) / timeMAVO;
+		if (doMAVOBackbone) {
+			doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
+			speedupMAVOBackboneStandardAll = ((double) timeStandardAll) / timeMAVOBackbone;
+		}
+		if (doMAVOAllsat) {
+			doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
+			speedupMAVOAllsatStandardAll = ((double) timeStandardAll) / timeMAVOAllsat;
+		}
+		speedupMAVOStandardMaybe = ((double) timeStandardMaybe) / timeMAVO;
 
 		// save execution times
 		Properties outputProperties = new Properties();

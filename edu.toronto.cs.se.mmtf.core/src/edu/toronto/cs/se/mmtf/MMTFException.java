@@ -44,10 +44,14 @@ public class MMTFException extends Exception {
 				message = "UNKNOWN PROBLEM: " + message;
 		}
 		System.err.println(message);
-		System.err.println(" -> " + e.getMessage());
+		if (e != null) {
+			System.err.println(" -> " + e.getMessage());
+		}
 
 		if (type == Type.ERROR) {
-			e.printStackTrace();
+			if (e != null) {
+				e.printStackTrace();
+			}
 			System.exit(-1);
 		}
 	}
