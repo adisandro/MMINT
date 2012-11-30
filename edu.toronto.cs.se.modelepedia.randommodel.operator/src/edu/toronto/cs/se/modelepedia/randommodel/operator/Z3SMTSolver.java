@@ -141,7 +141,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
-	private void initOutput(HashSet<String> smtlibConcretizations) {
+	private void initOutput() {
 
 		timeMAVO = -1;
 		timeStandardMaybe = -1;
@@ -439,7 +439,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		}
 
 		// run solver
-		initOutput(smtlibConcretizations);
+		initOutput();
 		System.setProperty("jna.library.path", LIBRARY_PATH);
 		doMAVOPropertyCheck(smtlibMavoEncoding, property);
 		if (timeStandardMaybeEnabled || timeStandardAllEnabled) {
