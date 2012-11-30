@@ -45,13 +45,18 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		private ExperimentDriver driver;
 		private EList<Model> actualParameters;
-		private int i;
+		private int experimentIndex;
+		private boolean[] outputConfidences;
 
-		public ExperimentWatchdog(ExperimentDriver driver, EList<Model> actualParameters, int i) {
+		public ExperimentWatchdog(ExperimentDriver driver, EList<Model> actualParameters, int experimentIndex) {
 
 			this.driver = driver;
 			this.actualParameters = actualParameters;
-			this.i = i;
+			this.experimentIndex = experimentIndex;
+			outputConfidences = new boolean[outputs.length];
+			for (int out = 0; out < outputs.length; out++) {
+				outputConfidences[out] = (outputDoConfidences[out]) ? false : true;
+			}
 		}
 
 		@Override
@@ -60,7 +65,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			try {
 				// create experiment folder
 				Model initialModel = actualParameters.get(0);
-				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i)));
+				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
 				if (!folder.exists(null)) {
 					folder.create(true, true, null);
 				}
@@ -68,15 +73,15 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				EList<Model> outerParameters = actualParameters;
 				for (int op = 0; op < experimentOperators.length; op++) {
 					try {
-						outerParameters = executeOperator(i, -1, op, experimentOperators[op], outerParameters, operatorChain);
+						outerParameters = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerParameters, operatorChain, outputConfidences);
 					}
 					catch (Exception e) {
-						MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
+						MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
 						MultiModelOperatorUtils.writePropertiesFile(
-							writeProperties(null, i, 0),
+							writeProperties(null, experimentIndex, 0),
 							driver,
 							initialModel,
-							EXPERIMENT_SUBDIR + i,
+							EXPERIMENT_SUBDIR + experimentIndex,
 							MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 						);
 						return;
@@ -92,7 +97,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				int j;
 				for (j = 0; j < maxSamples; j++) {
 					// create sample folder
-					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + i + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
 					if (!folder.exists(null)) {
 						folder.create(true, true, null);
 					}
@@ -102,14 +107,14 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 					ExecutorService executor = Executors.newSingleThreadExecutor();
 					try {
 						executor.submit(
-							new SampleWatchdog(i, j, innerParameters, operatorChain)
+							new SampleWatchdog(experimentIndex, j, innerParameters, operatorChain, outputConfidences)
 						).get(maxProcessingTime, TimeUnit.SECONDS);
 						executor.shutdown();
 					}
 					catch (Exception e) {
 						executor.shutdownNow();
 						timedOut = true;
-						MMTFException.print(Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + ", sample " + j + " ran over time limit", e);
+						MMTFException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + " ran over time limit", e);
 					}
 					// skip warmup phase
 					if (j < skipWarmupSamples) {
@@ -120,15 +125,15 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 						try {
 							double sample = (timedOut) ?
 								outputDefaults[out] :
-								getOutput(initialModel, out, i, j);
+								getOutput(initialModel, out, experimentIndex, j);
 							if (sample == Double.MAX_VALUE) {
-								MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
+								MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
 								continue;
 							}
 							outputConfidences[out] = experiment[out].addSample(sample);
 						}
 						catch (Exception e) {
-							MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
+							MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
 						}
 					}
 					// evaluate confidence intervals
@@ -143,16 +148,16 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	
 				// save output
 				MultiModelOperatorUtils.writePropertiesFile(
-					writeProperties(experiment, i, j - skipWarmupSamples),
+					writeProperties(experiment, experimentIndex, j - skipWarmupSamples),
 					driver,
 					initialModel,
-					EXPERIMENT_SUBDIR + i,
+					EXPERIMENT_SUBDIR + experimentIndex,
 					MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 				);
-				writeGnuplotFile(driver, initialModel, experiment, i, varX);
+				writeGnuplotFile(driver, initialModel, experiment, experimentIndex, varX);
 			}
 			catch (Exception e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
+				MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
 			}
 		}
 	}
@@ -163,13 +168,15 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		private int statisticsIndex;
 		private EList<Model> parameters;
 		private List<Operator> operatorChain;
+		private boolean[] outputConfidences;
 
-		public SampleWatchdog(int i, int j, EList<Model> parameters, List<Operator> operatorChain) {
+		public SampleWatchdog(int experimentIndex, int statisticsIndex, EList<Model> parameters, List<Operator> operatorChain, boolean[] outputConfidences) {
 
-			experimentIndex = i;
-			statisticsIndex = j;
+			this.experimentIndex = experimentIndex;
+			this.statisticsIndex = statisticsIndex;
 			this.parameters = parameters;
 			this.operatorChain = operatorChain;
+			this.outputConfidences = outputConfidences;
 		}
 
 		@Override
@@ -177,7 +184,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 			for (int op = 0; op < statisticsOperators.length; op++) {
 				try {
-					parameters = executeOperator(experimentIndex, statisticsIndex, op, statisticsOperators[op], parameters, operatorChain);
+					parameters = executeOperator(experimentIndex, statisticsIndex, op, statisticsOperators[op], parameters, operatorChain, outputConfidences);
 				}
 				catch (Exception e) {
 					MMTFException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex + " failed", e);
@@ -259,7 +266,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private double[] outputMins;
 	private double[] outputMaxs;
 	private boolean[] outputDoConfidences;
-	boolean[] outputConfidences;
 	// experiment efficiency
 	private int maxProcessingTime;
 	private int numThreads;
@@ -301,17 +307,12 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		outputMins = new double[outputs.length];
 		outputMaxs = new double[outputs.length];
 		outputDoConfidences = new boolean[outputs.length];
-		outputConfidences = new boolean[outputs.length];
 		for (int i = 0; i < outputs.length; i++) {
 			outputOperators[i] = MultiModelOperatorUtils.getStringProperty(properties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
 			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
 			outputMins[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
 			outputMaxs[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
 			outputDoConfidences[i] = MultiModelOperatorUtils.getBoolProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
-			outputConfidences[i] = (outputDoConfidences[i]) ? false : true;
-		}
-		for (int out = 0; out < outputs.length; out++) {
-			outputConfidences[out] = (outputDoConfidences[out]) ? false : true;
 		}
 
 		// efficiency
@@ -381,7 +382,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 	}
 
-	private EList<Model> executeOperator(int experimentIndex, int statisticsIndex, int operatorIndex, String operatorUri, EList<Model> actualParameters, List<Operator> operatorChain) throws Exception {
+	private EList<Model> executeOperator(int experimentIndex, int statisticsIndex, int operatorIndex, String operatorUri, EList<Model> actualParameters, List<Operator> operatorChain, boolean[] outputConfidences) throws Exception {
 
 		// empty operator list
 		if (operatorUri.equals("")) {
@@ -517,7 +518,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 
 		executor.shutdown();
-		executor.awaitTermination(24, TimeUnit.HOURS);
+		executor.awaitTermination(36, TimeUnit.HOURS);
 		long endTime = System.nanoTime();
 		System.err.println("The whole experiment driver took " + (endTime-startTime) + " nanoseconds");
 
