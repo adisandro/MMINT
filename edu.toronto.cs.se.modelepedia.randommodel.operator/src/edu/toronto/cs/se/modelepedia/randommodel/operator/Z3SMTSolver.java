@@ -68,6 +68,10 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private static final char Z3_ELEMFUNC_NEWLINE = '\n';
 	private static final String Z3_ELEMFUNC_SEPARATOR = " -> ";
 
+	private boolean timeStandardMaybeEnabled;
+	private boolean timeStandardAllEnabled;
+	private boolean timeMAVOBackboneEnabled;
+	private boolean timeMAVOAllsatEnabled;
 	private long timeMAVO;
 	private long timeStandardMaybe;
 	private long timeStandardAll;
@@ -88,7 +92,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		public class Z3Result extends Structure {
 
 			public int flag;
-			public String model;
+			public Pointer model;
 
 			@Override
 			@SuppressWarnings("rawtypes")
@@ -103,7 +107,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		public class Z3IncResult extends Structure {
 
 			public int flag;
-			public String model;
+			public Pointer model;
 			public Pointer contextPointer;
 			public Pointer solverPointer;
 			public Pointer modelPointer;
@@ -131,6 +135,10 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 
 	private void readProperties(Properties properties) throws Exception {
 
+		timeStandardMaybeEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMESTANDARDMAYBE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeStandardAllEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMESTANDARDALL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
 	private void initOutput(HashSet<String> smtlibConcretizations) {
@@ -140,7 +148,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		timeStandardAll = -1;
 		timeMAVOBackbone = -1;
 		timeMAVOAllsat = -1;
-		flags = new StringBuilder((smtlibConcretizations.size() + 2) * 3);
+		flags = new StringBuilder();
 		speedupMAVOStandardMaybe = -1;
 		speedupMAVOBackboneStandardAll = -1;
 		speedupMAVOAllsatStandardAll = -1;
@@ -199,21 +207,34 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			String concretization = iter.next();
 			encoding = smtlibEncoding + SMTLIB_ASSERT + concretization + SMTLIB_PREDICATE_END + '\n' + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
 			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
+			flags.append(z3Result);
+			flags.append(',');
 			if (endTimeMaybe == 0) {
 				if (firstZ3Result == 0) {
 					firstZ3Result = z3Result;
 				}
 				if (z3Result == 0 || (z3Result != firstZ3Result)) {
 					endTimeMaybe = System.nanoTime();
+					if (!timeStandardAllEnabled) {
+						break;
+					}
 				}
 			}
-			flags.append(z3Result);
-			flags.append(',');
 		}
 		long endTime = System.nanoTime();
 
-		timeStandardAll = endTime - startTime;
-		timeStandardMaybe = (endTimeMaybe == 0) ? timeStandardAll : (endTimeMaybe - startTime);
+		// if we're here we have maybe even if it's disabled
+		if (endTimeMaybe == 0) {
+			// if we're here we have all even if it's disabled
+			timeStandardAll = endTime - startTime;
+			timeStandardMaybe = timeStandardAll;
+		}
+		else {
+			if (timeStandardAllEnabled) {
+				timeStandardAll = endTime - startTime;
+			}
+			timeStandardMaybe = endTimeMaybe - startTime;
+		}
 	}
 
 	private void parseZ3Elements(String z3Model, String z3ElemType, int z3MaxElems, Map<String, Boolean> z3ModelElems, Set<String> z3MayModelElems) {
@@ -316,7 +337,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		if (z3IncResult.flag != 1) {
 			throw new MMTFException("Property checking for MAVO model was SAT-SAT but the incremental baseline now is UNSAT.");
 		}
-		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
 		Map<String, Boolean> currentZ3ModelElems;
 		Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
 		while (z3MayModelElemsIter.hasNext()) {
@@ -331,7 +352,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			if (z3IncResult.flag != 1) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 			initialZ3ModelElems.get(z3MayModelElem);
 			if (optimizeBackboneElement(initialZ3ModelElems, z3MayModelElem, currentZ3ModelElems.get(z3MayModelElem), outOfBackboneZ3ModelElems)) { // z3MayModelElem value has already changed
@@ -344,7 +365,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			if (z3IncResult.flag != 1) { // UNSAT
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 		}
 		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
@@ -364,7 +385,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		flags.append(z3IncResult.flag);
 		flags.append(',');
 		while (z3IncResult.flag == 1) {
-			Map<String, Boolean> z3ModelElems = parseZ3Model(z3IncResult.model, z3MayModelElems);
+			Map<String, Boolean> z3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
 			StringBuilder encodingBuilder = new StringBuilder();
 			encodingBuilder.append(SMTLIB_ASSERT);
 			encodingBuilder.append(SMTLIB_OR);
@@ -421,16 +442,22 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		initOutput(smtlibConcretizations);
 		System.setProperty("jna.library.path", LIBRARY_PATH);
 		doMAVOPropertyCheck(smtlibMavoEncoding, property);
-		doNonMAVOPropertyCheck(smtlibEncoding, property, smtlibConcretizations);
-		if (doMAVOBackbone) {
+		if (timeStandardMaybeEnabled || timeStandardAllEnabled) {
+			doNonMAVOPropertyCheck(smtlibEncoding, property, smtlibConcretizations);
+			speedupMAVOStandardMaybe = ((double) timeStandardMaybe) / timeMAVO;
+		}
+		if (timeMAVOBackboneEnabled && doMAVOBackbone) {
 			doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
-			speedupMAVOBackboneStandardAll = ((double) timeStandardAll) / timeMAVOBackbone;
+			if (timeStandardAllEnabled) {
+				speedupMAVOBackboneStandardAll = ((double) timeStandardAll) / timeMAVOBackbone;
+			}
 		}
-		if (doMAVOAllsat) {
+		if (timeMAVOAllsatEnabled && doMAVOAllsat) {
 			doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
-			speedupMAVOAllsatStandardAll = ((double) timeStandardAll) / timeMAVOAllsat;
+			if (timeStandardAllEnabled) {
+				speedupMAVOAllsatStandardAll = ((double) timeStandardAll) / timeMAVOAllsat;
+			}
 		}
-		speedupMAVOStandardMaybe = ((double) timeStandardMaybe) / timeMAVO;
 
 		// save execution times
 		Properties outputProperties = new Properties();

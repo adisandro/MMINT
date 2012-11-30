@@ -113,6 +113,7 @@ public class ExperimentSamples {
 
 	private DistributionType distribution;
 	private double[] samples;
+	private int minSamples;
 	private int numSamples;
 	private double sum;
 	private double inf;
@@ -159,9 +160,10 @@ public class ExperimentSamples {
 		return value;
 	}
 
-	public ExperimentSamples(int maxSamples, DistributionType distribution, double min, double max, double requestedConfidence, boolean doConfidence) {
+	public ExperimentSamples(int minSamples, int maxSamples, DistributionType distribution, double min, double max, double requestedConfidence, boolean doConfidence) {
 
 		samples = new double[maxSamples];
+		this.minSamples = minSamples;
 		numSamples = 0;
 		sum = 0;
 		inf = 0;
@@ -194,7 +196,7 @@ public class ExperimentSamples {
 			sup = avg + confidence;
 			inf = ((inf < min) ? min : ((inf > max) ? max : inf));
 			sup = ((sup < min) ? min : ((sup > max) ? max : sup));
-			if((sup - inf) <= (avg * requestedConfidence)) {
+			if((numSamples >= minSamples) && ((sup - inf) <= (avg * requestedConfidence))) {
 				return true;
 			}
 		}

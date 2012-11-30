@@ -11,9 +11,12 @@
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -33,6 +36,7 @@ public class MultiModelOperatorUtils {
 	private static final String PROPERTY_SEPARATOR = ",";
 	public static final String PROPERTY_IN_UPDATEMID = "updateMid";
 	public static final String PROPERTY_IN_SUBDIR = "subdir";
+	public static final String PROPERTY_IN_OUTPUTENABLED_SUFFIX = ".enabled";
 
 	private static String getPropertiesUri(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
@@ -70,7 +74,25 @@ public class MultiModelOperatorUtils {
 			getPropertiesUri(operator, anyOperatorParameter, subdirName, false) +
 			suffix +
 			PROPERTIES_SUFFIX;
-		outputProperties.store(new FileOutputStream(outputPropertiesFile), "");
+		outputProperties.store(new FileOutputStream(outputPropertiesFile), null);
+	}
+
+	public static void writeTextFile(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, String suffix, StringBuilder fileContent) throws IOException {
+
+		String outputTextFile = getPropertiesUri(operator, anyOperatorParameter, subdirName, false) + suffix;
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter(outputTextFile));
+			writer.append(fileContent);
+		}
+		catch (IOException e) {
+			throw e;
+		}
+		finally {
+			if (writer != null) {
+				writer.close();
+			}
+		}
 	}
 
 	public static String getStringProperty(Properties properties, String propertyName) throws MMTFException {

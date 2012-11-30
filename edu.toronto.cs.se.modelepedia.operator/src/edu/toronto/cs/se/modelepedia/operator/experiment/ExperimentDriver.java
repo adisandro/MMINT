@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.experiment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -84,7 +85,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	
 				ExperimentSamples[] experiment = new ExperimentSamples[outputs.length];
 				for (int out = 0; out < outputs.length; out++) {
-					experiment[out] = new ExperimentSamples(maxSamples - skipWarmupSamples, distribution, outputMins[out], outputMaxs[out], requestedConfidence, outputDoConfidences[out]);
+					experiment[out] = new ExperimentSamples(minSamples, maxSamples - skipWarmupSamples, distribution, outputMins[out], outputMaxs[out], requestedConfidence, outputDoConfidences[out]);
 				}
 	
 				// inner cycle: experiment setup is fixed, vary randomness and statistics
@@ -97,7 +98,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 					}
 					EList<Model> innerParameters = outerParameters;
 					boolean timedOut = false;
-					boolean confidenceOk = true;
 					// run time-bounded chain of operators
 					ExecutorService executor = Executors.newSingleThreadExecutor();
 					try {
@@ -123,18 +123,20 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 								getOutput(initialModel, out, i, j);
 							if (sample == Double.MAX_VALUE) {
 								MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
-								confidenceOk = false;
 								continue;
 							}
-							confidenceOk = experiment[out].addSample(sample) && confidenceOk;
+							outputConfidences[out] = experiment[out].addSample(sample);
 						}
 						catch (Exception e) {
 							MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
-							confidenceOk = false;
 						}
 					}
-					// evaluate confidence interval
-					if (confidenceOk && j >= minSamples) {
+					// evaluate confidence intervals
+					boolean allConfidence = true;
+					for (int out = 0; out < outputs.length; out++) {
+						allConfidence = outputConfidences[out] && allConfidence;
+					}
+					if (allConfidence) {
 						break;
 					}
 				}
@@ -147,6 +149,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 					EXPERIMENT_SUBDIR + i,
 					MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 				);
+				writeGnuplotFile(driver, initialModel, experiment, i, varX);
 			}
 			catch (Exception e) {
 				MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
@@ -189,6 +192,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_IN_VARIABLES = "variables";
 	/** The variable values property suffix. */
 	private static final String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
+	private static final String PROPERTY_IN_VARIABLEX_SUFFIX = ".varX";
 	/** The initial seed for the pseudorandom generator. */
 	private static final String PROPERTY_IN_SEED = "seed";
 	/** Number of samples to discard at the beginning of each experiment (warmup phase). */
@@ -228,10 +232,12 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
 	private static final String EXPERIMENT_SUBDIR = "experiment";
 	private static final String SAMPLE_SUBDIR = "sample";
+	private static final String GNUPLOT_SUFFIX = MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX + ".dat";
 
 	// experiment setup parameters
 	private String[] vars;
 	private String[][] varValues;
+	private int varX;
 	private int numExperiments;
 	private String[][] experimentSetups;
 	// experiment randomness parameters
@@ -242,7 +248,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private int maxSamples;
 	private DistributionType distribution;
 	private double requestedConfidence;
-	private int numThreads;
 	// experiment operators
 	private String[] experimentOperators;
 	private String[] statisticsOperators;
@@ -254,7 +259,10 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private double[] outputMins;
 	private double[] outputMaxs;
 	private boolean[] outputDoConfidences;
+	boolean[] outputConfidences;
+	// experiment efficiency
 	private int maxProcessingTime;
+	private int numThreads;
 
 	private void readProperties(Properties properties) throws Exception {
 
@@ -265,6 +273,9 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		for (int i = 0; i < vars.length; i++) {
 			varValues[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
 			numExperiments *= varValues[i].length;
+			if (MultiModelOperatorUtils.getOptionalBoolProperty(properties, vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
+				varX = i;
+			}
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
@@ -274,7 +285,6 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXSAMPLES);
 		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_DISTRIBUTIONTYPE));
 		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_REQUESTEDCONFIDENCE);
-		numThreads = MultiModelOperatorUtils.getOptionalIntProperty(properties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
 
 		// operators
 		experimentOperators = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
@@ -291,26 +301,34 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		outputMins = new double[outputs.length];
 		outputMaxs = new double[outputs.length];
 		outputDoConfidences = new boolean[outputs.length];
+		outputConfidences = new boolean[outputs.length];
 		for (int i = 0; i < outputs.length; i++) {
 			outputOperators[i] = MultiModelOperatorUtils.getStringProperty(properties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
 			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
 			outputMins[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
 			outputMaxs[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
 			outputDoConfidences[i] = MultiModelOperatorUtils.getBoolProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
+			outputConfidences[i] = (outputDoConfidences[i]) ? false : true;
 		}
+		for (int out = 0; out < outputs.length; out++) {
+			outputConfidences[out] = (outputDoConfidences[out]) ? false : true;
+		}
+
+		// efficiency
 		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXPROCESSINGTIME);
+		numThreads = MultiModelOperatorUtils.getOptionalIntProperty(properties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
 	}
 
 	private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex, int statisticsIndex) {
 
 		Properties properties = new Properties();
 
-		if (experiment != null) {
+		if (experiment != null) { // only with outputs
 			for (int out = 0; out < outputs.length; out++) {
 				properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTAVG_SUFFIX, String.valueOf(experiment[out].getAverage()));
 				if (outputDoConfidences[out]) {
-					properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
 					properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTUP_SUFFIX, String.valueOf(experiment[out].getUpperConfidence()));
+					properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
 				}
 			}
 		}
@@ -320,6 +338,34 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 
 		return properties;
+	}
+
+	private void writeGnuplotFile(OperatorExecutable driver, Model initialModel, ExperimentSamples[] experiment, int experimentIndex, int varX) {
+
+		if (experiment == null) { // no outputs
+			return;
+		}
+
+		// append outputs
+		StringBuilder gnuplotBuilder = new StringBuilder(experimentSetups[experimentIndex][varX]);
+		for (int out = 0; out < outputs.length; out++) {
+			gnuplotBuilder.append(' ');
+			gnuplotBuilder.append(experiment[out].getAverage());
+			if (outputDoConfidences[out]) {
+				gnuplotBuilder.append(' ');
+				gnuplotBuilder.append(experiment[out].getUpperConfidence());
+				gnuplotBuilder.append(' ');
+				gnuplotBuilder.append(experiment[out].getLowerConfidence());
+			}
+		}		
+
+		// write output
+		try {
+			MultiModelOperatorUtils.writeTextFile(driver, initialModel, EXPERIMENT_SUBDIR + experimentIndex, GNUPLOT_SUFFIX, gnuplotBuilder);
+		}
+		catch (IOException e) {
+			MMTFException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", gnuplot output failed", e);
+		}
 	}
 
 	private void cartesianProduct(String[][] experimentSetups) {
@@ -368,24 +414,29 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				}
 			}
 		}
+		for (int out = 0; out < outputs.length; out++) {
+			if (outputDoConfidences[out] && operatorUri.equals(outputOperators[out])) {
+				if (!outputConfidences[out]) {
+					operatorProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
+				}
+				else {
+					operatorProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
+				}
+			}
+		}
 		// figure out experiment subdirs
+		String nextSubdir = null;
 		if (operatorIndex == 0) {
-			String nextOutputSubdir;
 			if (statisticsIndex < 0) {
-				nextOutputSubdir = EXPERIMENT_SUBDIR + experimentIndex;
+				nextSubdir = EXPERIMENT_SUBDIR + experimentIndex;
 			}
 			else {
-				nextOutputSubdir = (experimentOperators.length == 0) ?
+				nextSubdir = (experimentOperators.length == 0) ?
 					EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
 					SAMPLE_SUBDIR + statisticsIndex;
 			}
-			operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextOutputSubdir);
-		}
-		//TODO MMTF: adjust this, is ad-hoc
-		String nextInputSubdir = null;
-		if (operatorType.getName().equals("RandomModelGenerateLabeledGraph")) {
-			nextInputSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
-			executable.setInputSubdir(nextInputSubdir);
+			operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
+			executable.setInputSubdir(nextSubdir);
 		}
 		// set state if operator needs it
 		if (executable instanceof RandomOperatorExecutableImpl) {
@@ -398,7 +449,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			operatorProperties,
 			operatorType.getExecutable(),
 			actualParameters.get(0),
-			nextInputSubdir,
+			nextSubdir,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 

@@ -184,6 +184,109 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		smtlibConcretizations.add(concretization.toString());
 	}
 
+	//TODO MMTF: this would remove unnecessary logic
+//	private boolean groundProperty6(Node node, StringBuilder propertyBuilder) {
+//
+//		// property 6: not more than one edge from a node to another
+//		// true by construction
+//		if (node.getEdgesAsSrc().size() <= 1) {
+//			return true;
+//		}
+//		// construct map of target nodes
+//		Map<Node, List<Edge>> tgtNode2EdgesMap = new HashMap<Node, List<Edge>>();
+//		for (Edge outEdge : node.getEdgesAsSrc()) {
+//			List<Edge> tgtNode2Edges = tgtNode2EdgesMap.get(outEdge.getTgt());
+//			if (tgtNode2Edges == null) {
+//				tgtNode2Edges = new ArrayList<Edge>();
+//				tgtNode2Edges.add(outEdge);
+//				tgtNode2EdgesMap.put(outEdge.getTgt(), tgtNode2Edges);
+//			}
+//			else {
+//				tgtNode2Edges.add(outEdge);
+//			}
+//		}
+//		// use map of target nodes
+//		boolean allTrueByConstruction = true;
+//		for (List<Edge> tgtNode2Edges : tgtNode2EdgesMap.values()) {
+//			// true by construction
+//			if (tgtNode2Edges.size() <= 1) {
+//				continue;
+//			}
+//			// do this only once, outer AND
+//			if (allTrueByConstruction) {
+//				propertyBuilder.append('\n');
+//				propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+//				allTrueByConstruction = false;
+//			}
+//			propertyBuilder.append(Z3SMTSolver.SMTLIB_OR);
+//			// no edges
+//			propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+//			for (Edge outEdge : tgtNode2Edges) {
+//				propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+//				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdge));
+//				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//			}
+//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//			// one edge only
+//			for (Edge outEdgeI : tgtNode2Edges) {
+//				propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+//				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeI));
+//				for (Edge outEdgeJ : tgtNode2Edges) {
+//					if (outEdgeI == outEdgeJ) {
+//						continue;
+//					}
+//					propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+//					propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeJ));
+//					propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//				}
+//				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//			}
+//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//		}
+//		if (!allTrueByConstruction) {
+//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//		}
+//
+//		return allTrueByConstruction;
+//	}
+//
+//	private void generateSMTLIBGroundedProperty(EList<Node> randommodelNodes) {
+//
+//		StringBuilder propertyBuilder = new StringBuilder();
+//		boolean allTrueByConstruction = true;
+//nodes:
+//		for (Node node : randommodelNodes) {
+//
+//			switch (property) {
+//				case 5:
+//					groundProperty5(node, propertyBuilder);
+//					break;
+//				case 6:
+//					if (groundProperty6(node, propertyBuilder)) {
+//						continue nodes;
+//					}
+//					break;
+//				case 8:
+//					groundProperty8(node, propertyBuilder);
+//					break;
+//				case 10:
+//					groundProperty10(node, propertyBuilder);
+//					break;
+//			}
+//			// do this only once, outer AND
+//			if (allTrueByConstruction) {
+//				propertyBuilder.insert(0, Z3SMTSolver.SMTLIB_AND + '\n');
+//				allTrueByConstruction = false;
+//			}
+//		}
+//
+//		if (!allTrueByConstruction) {
+//			propertyBuilder.append('\n');
+//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//		}
+//		groundedProperty = propertyBuilder.toString();
+//	}
+
 	private void groundProperty5(Node node, StringBuilder propertyBuilder) {
 
 		// property 5: at most one outgoing edge per node
