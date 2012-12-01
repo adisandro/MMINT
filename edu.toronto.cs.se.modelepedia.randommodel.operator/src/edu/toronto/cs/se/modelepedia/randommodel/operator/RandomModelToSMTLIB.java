@@ -69,7 +69,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 					smtlibMavoEncoding = textGeneration.toString();
 					isListening = false;
 				}
-				textGeneration.append(event.getText());
+				textGeneration.append(text);
 			}
 
 			@Override
