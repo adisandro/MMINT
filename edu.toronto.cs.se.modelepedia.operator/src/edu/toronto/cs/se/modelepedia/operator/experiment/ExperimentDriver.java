@@ -78,7 +78,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 					catch (Exception e) {
 						MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
 						MultiModelOperatorUtils.writePropertiesFile(
-							writeProperties(null, experimentIndex, 0),
+							writeProperties(null, experimentIndex),
 							driver,
 							initialModel,
 							EXPERIMENT_SUBDIR + experimentIndex,
@@ -148,7 +148,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	
 				// save output
 				MultiModelOperatorUtils.writePropertiesFile(
-					writeProperties(experiment, experimentIndex, j - skipWarmupSamples),
+					writeProperties(experiment, experimentIndex),
 					driver,
 					initialModel,
 					EXPERIMENT_SUBDIR + experimentIndex,
@@ -235,7 +235,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_OUT_RESULTLOW_SUFFIX = ".resultLow";
 	private static final String PROPERTY_OUT_RESULTAVG_SUFFIX = ".resultAvg";
 	private static final String PROPERTY_OUT_RESULTUP_SUFFIX = ".resultUp";
-	private static final String PROPERTY_OUT_NUMSAMPLES = "numSamples";
+	private static final String PROPERTY_OUT_NUMSAMPLES_SUFFIX = ".numSamples";
 	private static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
 	private static final String EXPERIMENT_SUBDIR = "experiment";
 	private static final String SAMPLE_SUBDIR = "sample";
@@ -320,7 +320,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		numThreads = MultiModelOperatorUtils.getOptionalIntProperty(properties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
 	}
 
-	private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex, int statisticsIndex) {
+	private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex) {
 
 		Properties properties = new Properties();
 
@@ -331,9 +331,9 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 					properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTUP_SUFFIX, String.valueOf(experiment[out].getUpperConfidence()));
 					properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
 				}
+				properties.setProperty(outputs[out]+PROPERTY_OUT_NUMSAMPLES_SUFFIX, String.valueOf(experiment[out].getNumSamples()));
 			}
 		}
-		properties.setProperty(PROPERTY_OUT_NUMSAMPLES, String.valueOf(statisticsIndex));
 		for (int i = 0; i < vars.length; i++) {
 			properties.setProperty(vars[i]+PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX, experimentSetups[experimentIndex][i]);
 		}

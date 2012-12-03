@@ -82,7 +82,6 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private double speedupMAVOBackboneStandardAll;
 	private double speedupMAVOAllsatStandardAll;
 	private boolean doMAVOBackbone;
-	private boolean doMAVOAllsat;
 
 	public interface CLibrary extends Library {
 
@@ -153,7 +152,6 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		speedupMAVOBackboneStandardAll = -1;
 		speedupMAVOAllsatStandardAll = -1;
 		doMAVOBackbone = true;
-		doMAVOAllsat = true;
 	}
 
 	private void writeProperties(Properties properties) {
@@ -179,7 +177,6 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 		if (z3Result != 1) {
 			doMAVOBackbone = false;
-			doMAVOAllsat = false;
 		}
 		flags.append(z3Result);
 		flags.append(',');
@@ -452,7 +449,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 				speedupMAVOBackboneStandardAll = ((double) timeStandardAll) / timeMAVOBackbone;
 			}
 		}
-		if (timeMAVOAllsatEnabled && doMAVOAllsat) {
+		if (timeMAVOAllsatEnabled && doMAVOBackbone) {
 			doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
 			if (timeStandardAllEnabled) {
 				speedupMAVOAllsatStandardAll = ((double) timeStandardAll) / timeMAVOAllsat;

@@ -223,4 +223,9 @@ public class ExperimentSamples {
 		return sup;
 	}
 
+	public int getNumSamples() {
+
+		return numSamples;
+	}
+
 }
