@@ -44,14 +44,12 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private static final String LIBRARY_PATH = "/usr/lib";
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelToSMTLIB";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
-	private static final String PROPERTY_OUT_TIMESTANDARDMAYBE = "timeStandardMaybe";
-	private static final String PROPERTY_OUT_TIMESTANDARDALL = "timeStandardAll";
+	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	private static final String PROPERTY_OUT_TIMEMAVOBACKBONE = "timeMAVOBackbone";
 	private static final String PROPERTY_OUT_TIMEMAVOALLSAT = "timeMAVOAllsat";
 	private static final String PROPERTY_OUT_FLAGS = "flags";
-	private static final String PROPERTY_OUT_SPEEDUPMAVOSTANDARDMAYBE = "speedupMAVOStandardMaybe";
-	private static final String PROPERTY_OUT_SPEEDUPMAVOBACKBONESTANDARDALL = "speedupMAVOBackboneStandardAll";
-	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATSTANDARDALL = "speedupMAVOAllsatStandardAll";
+	private static final String PROPERTY_OUT_SPEEDUPCLASSICALMAVO = "speedupClassicalMAVO";
+	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE = "speedupMAVOAllsatMAVOBackbone";
 
 	public static final String SMTLIB_PREDICATE_START = "(";
 	public static final String SMTLIB_PREDICATE_END = ")";
@@ -68,20 +66,17 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private static final char Z3_ELEMFUNC_NEWLINE = '\n';
 	private static final String Z3_ELEMFUNC_SEPARATOR = " -> ";
 
-	private boolean timeStandardMaybeEnabled;
-	private boolean timeStandardAllEnabled;
+	private boolean timeClassicalEnabled;
 	private boolean timeMAVOBackboneEnabled;
 	private boolean timeMAVOAllsatEnabled;
 	private long timeMAVO;
-	private long timeStandardMaybe;
-	private long timeStandardAll;
+	private long timeClassical;
 	private long timeMAVOBackbone;
 	private long timeMAVOAllsat;
 	private StringBuilder flags;
-	private double speedupMAVOStandardMaybe;
-	private double speedupMAVOBackboneStandardAll;
-	private double speedupMAVOAllsatStandardAll;
-	private boolean doMAVOBackbone;
+	private double speedupClassicalMAVO;
+	private double speedupMAVOAllsatMAVOBackbone;
+	private boolean isMAVOMaybe;
 
 	public interface CLibrary extends Library {
 
@@ -134,8 +129,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 
 	private void readProperties(Properties properties) throws Exception {
 
-		timeStandardMaybeEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMESTANDARDMAYBE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeStandardAllEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMESTANDARDALL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
@@ -143,28 +137,24 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private void initOutput() {
 
 		timeMAVO = -1;
-		timeStandardMaybe = -1;
-		timeStandardAll = -1;
+		timeClassical = -1;
 		timeMAVOBackbone = -1;
 		timeMAVOAllsat = -1;
 		flags = new StringBuilder();
-		speedupMAVOStandardMaybe = -1;
-		speedupMAVOBackboneStandardAll = -1;
-		speedupMAVOAllsatStandardAll = -1;
-		doMAVOBackbone = true;
+		speedupClassicalMAVO = -1;
+		speedupMAVOAllsatMAVOBackbone = -1;
+		isMAVOMaybe = true;
 	}
 
 	private void writeProperties(Properties properties) {
 
 		properties.setProperty(PROPERTY_OUT_TIMEMAVO, String.valueOf(timeMAVO));
-		properties.setProperty(PROPERTY_OUT_TIMESTANDARDMAYBE, String.valueOf(timeStandardMaybe));
-		properties.setProperty(PROPERTY_OUT_TIMESTANDARDALL, String.valueOf(timeStandardAll));
+		properties.setProperty(PROPERTY_OUT_TIMECLASSICAL, String.valueOf(timeClassical));
 		properties.setProperty(PROPERTY_OUT_TIMEMAVOBACKBONE, String.valueOf(timeMAVOBackbone));
 		properties.setProperty(PROPERTY_OUT_TIMEMAVOALLSAT, String.valueOf(timeMAVOAllsat));
 		properties.setProperty(PROPERTY_OUT_FLAGS, flags.toString());
-		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOSTANDARDMAYBE, String.valueOf(speedupMAVOStandardMaybe));
-		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOBACKBONESTANDARDALL, String.valueOf(speedupMAVOBackboneStandardAll));
-		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOALLSATSTANDARDALL, String.valueOf(speedupMAVOAllsatStandardAll));
+		properties.setProperty(PROPERTY_OUT_SPEEDUPCLASSICALMAVO, String.valueOf(speedupClassicalMAVO));
+		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE, String.valueOf(speedupMAVOAllsatMAVOBackbone));
 	}
 
 	private void doMAVOPropertyCheck(String smtlibMavoEncoding, String property) {
@@ -176,14 +166,14 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
 		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 		if (z3Result != 1) {
-			doMAVOBackbone = false;
+			isMAVOMaybe = false;
 		}
 		flags.append(z3Result);
 		flags.append(',');
 		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + SMTLIB_NOT + property + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 		if (z3Result != 1) {
-			doMAVOBackbone = false;
+			isMAVOMaybe = false;
 		}
 		flags.append(z3Result);
 		flags.append(',');
@@ -192,11 +182,11 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		timeMAVO = endTime - startTime;
 	}
 
-	private void doNonMAVOPropertyCheck(String smtlibEncoding, String property, HashSet<String> smtlibConcretizations) {
+	private void doClassicalPropertyCheck(String smtlibEncoding, String property, HashSet<String> smtlibConcretizations) {
 
 		int z3Result, firstZ3Result = 0;
 		String encoding;
-		long endTimeMaybe = 0;
+		long endTime = 0;
 
 		long startTime = System.nanoTime();
 		Iterator<String> iter = smtlibConcretizations.iterator();
@@ -206,32 +196,19 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 			flags.append(z3Result);
 			flags.append(',');
-			if (endTimeMaybe == 0) {
-				if (firstZ3Result == 0) {
-					firstZ3Result = z3Result;
-				}
-				if (z3Result == 0 || (z3Result != firstZ3Result)) {
-					endTimeMaybe = System.nanoTime();
-					if (!timeStandardAllEnabled) {
-						break;
-					}
-				}
+			if (firstZ3Result == 0) {
+				firstZ3Result = z3Result;
+			}
+			if (z3Result == 0 || (z3Result != firstZ3Result)) {
+				endTime = System.nanoTime();
+				break;
 			}
 		}
-		long endTime = System.nanoTime();
+		if (endTime == 0) {
+			endTime = System.nanoTime();
+		}
 
-		// if we're here we have maybe even if it's disabled
-		if (endTimeMaybe == 0) {
-			// if we're here we have all even if it's disabled
-			timeStandardAll = endTime - startTime;
-			timeStandardMaybe = timeStandardAll;
-		}
-		else {
-			if (timeStandardAllEnabled) {
-				timeStandardAll = endTime - startTime;
-			}
-			timeStandardMaybe = endTimeMaybe - startTime;
-		}
+		timeClassical = endTime - startTime;
 	}
 
 	private void parseZ3Elements(String z3Model, String z3ElemType, int z3MaxElems, Map<String, Boolean> z3ModelElems, Set<String> z3MayModelElems) {
@@ -439,20 +416,19 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		initOutput();
 		System.setProperty("jna.library.path", LIBRARY_PATH);
 		doMAVOPropertyCheck(smtlibMavoEncoding, property);
-		if (timeStandardMaybeEnabled || timeStandardAllEnabled) {
-			doNonMAVOPropertyCheck(smtlibEncoding, property, smtlibConcretizations);
-			speedupMAVOStandardMaybe = ((double) timeStandardMaybe) / timeMAVO;
+		if (timeClassicalEnabled) {
+			doClassicalPropertyCheck(smtlibEncoding, property, smtlibConcretizations);
+			speedupClassicalMAVO = ((double) timeClassical) / timeMAVO;
 		}
-		if (timeMAVOBackboneEnabled && doMAVOBackbone) {
-			doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
-			if (timeStandardAllEnabled) {
-				speedupMAVOBackboneStandardAll = ((double) timeStandardAll) / timeMAVOBackbone;
+		if (isMAVOMaybe) {
+			if (timeMAVOBackboneEnabled) {
+				doMAVOBackbonePropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
 			}
-		}
-		if (timeMAVOAllsatEnabled && doMAVOBackbone) {
-			doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
-			if (timeStandardAllEnabled) {
-				speedupMAVOAllsatStandardAll = ((double) timeStandardAll) / timeMAVOAllsat;
+			if (timeMAVOAllsatEnabled) {
+				doMAVOAllsatPropertyCheck(smtlibMavoEncoding, property, z3MayModelElems);
+			}
+			if (timeMAVOBackboneEnabled && timeMAVOAllsatEnabled) {
+				speedupMAVOAllsatMAVOBackbone = ((double) timeMAVOAllsat) / timeMAVOBackbone;
 			}
 		}
 
