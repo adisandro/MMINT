@@ -713,6 +713,12 @@ Contributors:
                   style="push"
                   tooltip="Opens the Type MID showing all MMTF registered types">
             </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
+                  label="Open MMTF Wiki"
+                  style="push"
+                  tooltip="Opens the MMTF Wiki">
+            </command>
          </menu>
       </menuContribution>
    </extension>
@@ -723,6 +729,11 @@ Contributors:
             defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
             id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
             name="Open Type MID">
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
+            name="Open MMTF Wiki">
       </command>
    </extension>
 
