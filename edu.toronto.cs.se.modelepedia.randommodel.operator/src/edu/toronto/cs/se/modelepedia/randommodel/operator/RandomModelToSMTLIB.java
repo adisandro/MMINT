@@ -25,6 +25,7 @@ import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.AcceleoTextGenerationEvent;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -418,6 +419,11 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 
 	private void generateSMTLIBGroundedProperty(EList<Node> randommodelNodes) {
 
+		if (randommodelNodes.isEmpty()) {
+			groundedProperty = "";
+			return;
+		}
+
 		StringBuilder propertyBuilder = new StringBuilder();
 		propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
 		for (Node node : randommodelNodes) {
@@ -486,11 +492,17 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(RandomModelGenerateLabeledGraph) previousExecutable;
 		mayModelObjs = previousOperator.getMAVOModelObjects();
+		if (mayModelObjs == null) {
+			mayModelObjs = new ArrayList<MAVOElement>();
+		}
 		long maxConcretizations = Math.round(Math.pow(2, mayModelObjs.size()));
 		if (numConcretizations > maxConcretizations) {
 			throw new MMTFException("numConcretizations (" + numConcretizations + ") > maxConcretizations (" + maxConcretizations + ")");
 		}
 		EList<Node> randommodelNodes = previousOperator.getRandommodelNodes();
+		if (randommodelNodes == null) {
+			randommodelNodes = new BasicEList<Node>();
+		}
 
 		// generate smt-lib concretizations
 		smtlibConcretizations = new HashSet<String>();
