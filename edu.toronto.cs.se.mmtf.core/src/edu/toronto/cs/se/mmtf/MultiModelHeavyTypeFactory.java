@@ -44,11 +44,9 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 
 public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 
-	@SuppressWarnings("unchecked")
 	private static <T extends ExtendibleElement> T getSupertype(T newElementType, String newElementTypeUri, String elementTypeUri) {
 
 		T elementType = null;
@@ -57,7 +55,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 			elementTypeUri = rootUri;
 		}
 		if (elementTypeUri != null) {
-			elementType = (T) MultiModelTypeRegistry.getExtendibleElementType(elementTypeUri);
+			elementType = MultiModelTypeRegistry.getExtendibleElementType(elementTypeUri);
 		}
 
 		return elementType;
@@ -142,7 +140,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		Link linkType = getSupertype(newLinkType, newLinkTypeUri, linkTypeUri);
 		addHeavyExtendibleType(newLinkType, linkType, newLinkTypeUri, newLinkTypeName);
 		addLinkType(modelRelType, newLinkType, linkType);
-		LinkReference linkTypeRef = MultiModelHierarchyUtils.getReference(linkTypeUri, modelRelType.getLinkRefs());
+		LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeUri, modelRelType.getLinkRefs());
 		LinkReference newLinkTypeRef = createLinkTypeReference(modelRelType, linkTypeRef, newLinkType, newLinkTypeRefClass, true);
 
 		return newLinkTypeRef;
@@ -199,7 +197,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 
 	public static void createHeavyModelTypeEditor(Editor editorType, String modelTypeUri) {
 
-		Model modelType = MultiModelTypeRegistry.getModelType(modelTypeUri);
+		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(modelTypeUri);
 		if (modelType != null) {
 			addModelTypeEditor(editorType, modelType);
 			editorType.getFileExtensions().add(modelType.getFileExtension());
@@ -229,7 +227,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	public static void createHeavyOperatorTypeParameter(Operator operatorType, String modelTypeUri, EList<Parameter> paramTypes, String newParamTypeName, boolean isVararg) throws MMTFException {
 
 		Parameter newParamType = OperatorFactory.eINSTANCE.createParameter();
-		Model modelType = MultiModelTypeRegistry.getModelType(modelTypeUri);
+		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(modelTypeUri);
 		if (modelType == null) {
 			throw new MMTFException("Model type " + modelTypeUri + " is not registered");
 		}

@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -36,7 +37,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
@@ -151,7 +151,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 				for (EObject impactedUnifiable : impactedUnifiables) {
 					String impactedModelElemUri = MultiModelRegistry.getModelAndModelElementUris(impactedUnifiable, true)[1];
 					// create or get impacted model element ref
-					ModelElementReference newImpactedModelElemRef = MultiModelHierarchyUtils.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
+					ModelElementReference newImpactedModelElemRef = MultiModelTypeHierarchy.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {
 						newImpactedModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 							impactedModelEndpointRef,

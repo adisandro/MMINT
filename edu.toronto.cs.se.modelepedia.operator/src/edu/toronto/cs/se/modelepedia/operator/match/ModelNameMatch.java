@@ -133,7 +133,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			}
 		}
 		//TODO MMTF: this specialization is too rough
-		List<ExtendibleElement> runtimeMetatypes = MultiModelTypeIntrospection.getRuntimeTypes(newModelRel);
+		List<ExtendibleElement> runtimeMetatypes = MultiModelTypeIntrospection.getRuntimeTypesOld(newModelRel);
 		newModelRel.setMetatypeUri(((ModelRel) runtimeMetatypes.get(runtimeMetatypes.size()-1)).getUri());
 
 		EList<Model> result = new BasicEList<Model>();

@@ -59,7 +59,7 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLETYPE_ATTR_URI);
-				Model modelType = MultiModelTypeRegistry.getModelType(uri);
+				Model modelType = MultiModelTypeRegistry.getExtendibleElementType(uri);
 				if (modelType != null) {
 					MultiModelTypeFactory.removeModelType(modelType);
 				}

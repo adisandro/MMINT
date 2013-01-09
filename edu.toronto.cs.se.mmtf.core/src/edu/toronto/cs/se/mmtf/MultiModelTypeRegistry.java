@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmtf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
@@ -30,7 +29,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
@@ -115,201 +113,17 @@ public class MultiModelTypeRegistry {
 		return rootUri;
 	}
 
-	private static HashMap<String, HashSet<String>> getSubstitutabilityTable(MultiModel multiModel) {
-
-		return (multiModel == MMTF.repository) ?
-			MMTF.substTable :
-			MMTF.substTableMID;
-	}
-
-	private static HashMap<String, HashMap<String, List<String>>> getConversionTable(MultiModel multiModel) {
-
-		return (multiModel == MMTF.repository) ?
-			MMTF.convTable :
-			MMTF.convTableMID;
-	}
-
-	public static List<String> getSupertypeUris(String subtypeUri) {
-
-		return getSupertypeUris(MMTF.repository, subtypeUri);
-	}
-
-	public static List<String> getSupertypeUris(MultiModel multiModel, String subtypeUri) {
-
-		List<String> supertypeUris = new ArrayList<String>();
-		for (String supertypeUri : getSubstitutabilityTable(multiModel).get(subtypeUri)) {
-			if (getConversionTable(multiModel).get(subtypeUri).get(supertypeUri).isEmpty()) {
-				supertypeUris.add(supertypeUri);
-			}
-		}
-
-		return supertypeUris;
-	}
-
-	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
-
-		return isSubtypeOf(MMTF.repository, subtypeUri, supertypeUri);
-	}
-
-	public static boolean isSubtypeOf(MultiModel multiModel, String subtypeUri, String supertypeUri) {
-
-		if (getSubstitutabilityTable(multiModel) == null) {
-			return false;
-		}
-
-		return
-			getSubstitutabilityTable(multiModel).get(subtypeUri).contains(supertypeUri) &&
-			getConversionTable(multiModel).get(subtypeUri).get(supertypeUri).isEmpty();
-	}
-
-	public static List<String> getSubtypeUris(ExtendibleElement type) {
-
-		return getSubtypeUris(MMTF.repository, type);
-	}
-
-	public static List<String> getSubtypeUris(MultiModel multiModel, ExtendibleElement type) {
-
-		List<String> subtypeUris = new ArrayList<String>();
-		if (getSubstitutabilityTable(multiModel) == null) {
-			return subtypeUris;
-		}
-
-		for (ExtendibleElement subtype : multiModel.getExtendibleTable().values()) {
-			if (subtype.getClass() != type.getClass()) {
-				continue;
-			}
-			if (isSubtypeOf(multiModel, subtype.getUri(), type.getUri())) {
-				subtypeUris.add(subtype.getUri());
-			}
-		}
-
-		return subtypeUris;
-	}
-
 	/**
-	 * Gets an extendible element type from a multimodel.
+	 * Gets an extendible element type from the repository.
 	 * 
-	 * @param multiModel
-	 *            The multimodel.
 	 * @param elementTypeUri
 	 *            The uri of the extendible element type.
-	 * @return The extendible element type, or null if the uri is not found.
+	 * @return The extendible element type, or null if the uri is not found or
+	 *         found not to be of the desired class.
 	 */
-	public static ExtendibleElement getExtendibleElementType(String elementTypeUri) {
+	public static <T extends ExtendibleElement> T getExtendibleElementType(String elementTypeUri) {
 
 		return MultiModelRegistry.getExtendibleElement(MMTF.repository, elementTypeUri);
-	}
-
-	/**
-	 * Gets a model type from the repository.
-	 * 
-	 * @param modelTypeUri
-	 *            The uri of the model type.
-	 * @return The model type, or null if its uri is not found or found not
-	 *         to be a model type.
-	 */
-	public static Model getModelType(String modelTypeUri) {
-
-		return MultiModelRegistry.getModel(MMTF.repository, modelTypeUri);
-	}
-
-	/**
-	 * Gets a model relationship type from the repository.
-	 * 
-	 * @param modelRelTypeUri
-	 *            The uri of the model relationship type.
-	 * @return The model relationship type, or null if its uri is not found
-	 *         or found not to be a model relationship type.
-	 */
-	public static ModelRel getModelRelType(String modelRelTypeUri) {
-
-		return MultiModelRegistry.getModelRel(MMTF.repository, modelRelTypeUri);
-	}
-
-	/**
-	 * Gets a model element type from the repository.
-	 * 
-	 * @param modelElemTypeUri
-	 *            The uri of the model element type.
-	 * @return The model element type, or null if its uri is not found or found
-	 *         not to be a model element type.
-	 */
-	public static ModelElement getModelElementType(String modelElemTypeUri) {
-
-		return MultiModelRegistry.getModelElement(MMTF.repository, modelElemTypeUri);
-	}
-
-	public static ModelEndpoint getModelTypeEndpoint(MultiModel multiModel, String modelTypeEndpointUri) {
-
-		ExtendibleElement modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(multiModel, modelTypeEndpointUri);
-		if (modelTypeEndpoint instanceof ModelEndpoint) {
-			return (ModelEndpoint) modelTypeEndpoint;
-		}
-		return null;
-	}
-
-	public static ModelEndpoint getModelTypeEndpoint(String modelTypeEndpointUri) {
-
-		return getModelTypeEndpoint(MMTF.repository, modelTypeEndpointUri);
-	}
-
-	/**
-	 * Gets a link type from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param linkTypeUri
-	 *            The uri of the link type.
-	 * @return The link type, or null if its uri is not found or found
-	 *         not to be a link type.
-	 */
-	public static Link getLinkType(MultiModel multiModel, String linkTypeUri) {
-
-		ExtendibleElement element = MultiModelRegistry.getExtendibleElement(multiModel, linkTypeUri);
-		if (element instanceof Link) {
-			return (Link) element;
-		}
-		return null;
-	}
-
-	/**
-	 * Gets a link type from the repository.
-	 * 
-	 * @param linkTypeUri
-	 *            The uri of the link type.
-	 * @return The link type, or null if its uri is not found or
-	 *         found not to be a link type.
-	 */
-	public static Link getLinkType(String linkTypeUri) {
-
-		return getLinkType(MMTF.repository, linkTypeUri);
-	}
-
-	public static ModelElementEndpoint getModelElementTypeEndpoint(MultiModel multiModel, String modelElemTypeEndpointUri) {
-
-		ExtendibleElement modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(multiModel, modelElemTypeEndpointUri);
-		if (modelElemTypeEndpoint instanceof ModelElementEndpoint) {
-			return (ModelElementEndpoint) modelElemTypeEndpoint;
-		}
-		return null;
-	}
-
-	public static ModelElementEndpoint getModelElementTypeEndpoint(String modelElemTypeEndpointUri) {
-
-		return getModelElementTypeEndpoint(MMTF.repository, modelElemTypeEndpointUri);
-	}
-
-	/**
-	 * Gets an editor type from the repository.
-	 * 
-	 * @param editorTypeUri
-	 *            The uri of the editor type.
-	 * @return The editor type, or null if its uri is not found or found not
-	 *         to be an editor type.
-	 */
-	public static Editor getEditorType(String editorTypeUri) {
-
-		return MultiModelRegistry.getEditorType(MMTF.repository, editorTypeUri);
 	}
 
 	/**
@@ -321,7 +135,7 @@ public class MultiModelTypeRegistry {
 
 		return getOperatorTypes(MMTF.repository);
 	}
-	
+
 	/**
 	 * Gets the list of registered operator types in the multimodel.
 	 * 
@@ -333,36 +147,6 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets an operator type from a multimodel.
-	 * 
-	 * @param operatorTypeUri
-	 *            The uri of the operator type.
-	 * @return The operator type, or null if its uri is not found or found
-	 *         not to be an operator type.
-	 */
-	public static Operator getOperatorType(MultiModel multiModel, String operatorTypeUri) {
-
-		ExtendibleElement operatorType = MultiModelRegistry.getExtendibleElement(multiModel, operatorTypeUri);
-		if (operatorType instanceof Operator) {
-			return (Operator) operatorType;
-		}
-		return null;
-	}
-
-	/**
-	 * Gets an operator type from the repository.
-	 * 
-	 * @param operatorTypeUri
-	 *            The uri of the operator type.
-	 * @return The operator type, or null if its uri is not found or found
-	 *         not to be an operator type.
-	 */
-	public static Operator getOperatorType(String operatorTypeUri) {
-
-		return getOperatorType(MMTF.repository, operatorTypeUri);
-	}
-
-	/**
 	 * Gets the list of registered model types.
 	 * 
 	 * @return The list of registered model types.
@@ -371,7 +155,7 @@ public class MultiModelTypeRegistry {
 
 		return getModelTypes(MMTF.repository);
 	}
-	
+
 	/**
 	 * Gets the list of registered model types in the multimodel.
 	 * 
@@ -391,7 +175,7 @@ public class MultiModelTypeRegistry {
 
 		return getModelRelTypes(MMTF.repository);
 	}
-	
+
 	/**
 	 * Gets the list of registered model relationship types in multimodel.
 	 * 
@@ -476,7 +260,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Editor> getModelTypeEditors(String modelTypeUri) {
 
-		Model model = getModelType(modelTypeUri);
+		Model model = getExtendibleElementType(modelTypeUri);
 		if (model != null) {
 			return model.getEditors();
 		}
@@ -602,8 +386,6 @@ public class MultiModelTypeRegistry {
 		if (newSrcModelType != null && newTgtModelType != null) {
 			String newSrcUri = newSrcModelType.getUri();
 			String newTgtUri = newTgtModelType.getUri();
-			List<String> newSrcSupertypeUris = getSupertypeUris(multiModel, newSrcUri);
-			List<String> newTgtSupertypeUris = getSupertypeUris(multiModel, newTgtUri);
 			modelRelTypeUris = new ArrayList<String>();
 
 			for (ModelRel modelRelType : getModelRelTypes(multiModel)) {
@@ -616,9 +398,9 @@ public class MultiModelTypeRegistry {
 				// new model rel type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(newSrcSupertypeUris.contains(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && newTgtSupertypeUris.contains(tgtUri)) ||
-					(newSrcSupertypeUris.contains(srcUri) && newTgtSupertypeUris.contains(tgtUri))
+					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) ||
+					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri))
 				) {
 					modelRelTypeUris.add(modelRelType.getUri());
 				}
@@ -714,8 +496,6 @@ public class MultiModelTypeRegistry {
 			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
-			List<String> newSrcSupertypeUris = getSupertypeUris(multiModel, newSrcUri);
-			List<String> newTgtSupertypeUris = getSupertypeUris(multiModel, newTgtUri);
 			linkTypeUris = new ArrayList<String>();
 
 			for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
@@ -729,9 +509,9 @@ public class MultiModelTypeRegistry {
 				// new link type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(newSrcSupertypeUris.contains(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && newTgtSupertypeUris.contains(tgtUri)) ||
-					(newSrcSupertypeUris.contains(srcUri) && newTgtSupertypeUris.contains(tgtUri))
+					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) ||
+					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri))
 				) {
 					linkTypeUris.add(linkTypeRef.getUri());
 				}
@@ -799,82 +579,6 @@ public class MultiModelTypeRegistry {
 		signature += ")";
 
 		return signature;
-	}
-
-	private static EList<ConversionOperator> isEligibleParameter(Model actualParameter, Model formalParameter) {
-
-		List<String> actualUris = new ArrayList<String>();
-		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(actualParameter);
-		for (int i = 0; i < runtimeTypes.size(); i++) {
-			actualUris.add(
-				((Model) runtimeTypes.get(i)).getUri()
-			);
-		}
-
-		String formalUri = formalParameter.getUri();
-		EList<ConversionOperator> result = new BasicEList<ConversionOperator>();
-
-		// substitutable type
-		if (!actualUris.contains(formalUri)) {
-nextRuntimeType:
-			for (String actualUri : actualUris) {
-				if (getSubstitutabilityTable(MMTF.repository).get(actualUri).contains(formalUri)) {
-					// use first substitution found
-					for (String conversionUri : getConversionTable(MMTF.repository).get(actualUri).get(formalUri)) {
-						Operator operatorType = getOperatorType(conversionUri);
-						if (operatorType == null || !(operatorType instanceof ConversionOperator)) {
-							result.clear();
-							continue nextRuntimeType;
-						}
-						result.add((ConversionOperator) operatorType);
-					}
-					break;
-				}
-			}
-		}
-
-		return result;
-	}
-
-	public static EList<Operator> getExecutableOperators(EList<Model> actualParameters, EList<HashMap<Integer, EList<ConversionOperator>>> conversions) {
-
-		EList<Operator> executableOperators = new BasicEList<Operator>();
-
-nextOperator:
-		for (Operator operator : getOperatorTypes()) {
-			int i = 0;
-			HashMap<Integer, EList<ConversionOperator>> conversionMap = new HashMap<Integer, EList<ConversionOperator>>();
-			for (Parameter parameter : operator.getInputs()) {
-				// check 1: not enough actual parameters
-				if (i >= actualParameters.size()) {
-					continue nextOperator;
-				}
-				// check 2: type or substitutable types
-				while (i < actualParameters.size()) {
-					EList<ConversionOperator> conversionList = isEligibleParameter(actualParameters.get(i), parameter.getModel());
-					if (conversionList == null) {
-						continue nextOperator;
-					}
-					if (!conversionList.isEmpty()) {
-						conversionMap.put(new Integer(i), conversionList);
-					}
-					i++;
-					if (!parameter.isVararg()) {
-						//TODO MMTF: introduce vararg with low multeplicity
-						break;
-					}
-				}
-			}
-			// check 3: too many actual parameters
-			if (i < actualParameters.size()) {
-				continue nextOperator;
-			}
-			// checks passed
-			executableOperators.add(operator);
-			conversions.add(conversionMap);
-		}
-
-		return executableOperators;
 	}
 
 }

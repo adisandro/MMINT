@@ -216,7 +216,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		MultiModel multiModel = (updateMid) ?
 			MultiModelRegistry.getMultiModel(labeledGraphModel) :
 			null;
-		Model modelType = MultiModelTypeRegistry.getModelType(RandomModelPackage.eINSTANCE.getNsURI());
+		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(RandomModelPackage.eINSTANCE.getNsURI());
 		Model newRandommodelModel = (updateMid) ?
 			MultiModelInstanceFactory.createModelAndEditor(modelType, newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
 			MultiModelInstanceFactory.createModel(modelType, newRandommodelModelUri, ModelOrigin.CREATED, null);

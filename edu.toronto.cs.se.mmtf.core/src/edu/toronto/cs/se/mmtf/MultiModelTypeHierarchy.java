@@ -9,24 +9,34 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.trait;
+package edu.toronto.cs.se.mmtf;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
-public class MultiModelHierarchyUtils implements MMTFConstants {
+public class MultiModelTypeHierarchy implements MMTFConstants {
 
 	private static class ExtensionHierarchyComparator implements Comparator<IConfigurationElement> {
 
@@ -155,7 +165,7 @@ public class MultiModelHierarchyUtils implements MMTFConstants {
 	}
 
 	//TODO MMTF: are type and type ref iterators really needed, or are the lists already ordered by construction?
-	public static <T extends ExtendibleElement> TreeSet<T> getTypeHierarchy(EList<T> elementTypes) {
+	private static <T extends ExtendibleElement> TreeSet<T> getTypeHierarchy(EList<T> elementTypes) {
 
 		TreeSet<T> hierarchy = new TreeSet<T>(
 			new TypeHierarchyComparator()
@@ -255,13 +265,13 @@ public class MultiModelHierarchyUtils implements MMTFConstants {
 		return getReference(correspondingElementTypeRef.getUri(), elementTypeRefs);
 	}
 
-	public static <T extends ExtendibleElementEndpointReference> EList<T> getEndpointReferences(String targetTypeUri, EList<T> typeEndpointRefs) {
+	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetTypeUri, EList<T> typeEndpointRefs) {
 
 		if (targetTypeUri == null) {
 			return null;
 		}
 
-		EList<T> targetTypeEndpointRefs = new BasicEList<T>();
+		List<T> targetTypeEndpointRefs = new ArrayList<T>();
 		for (T typeEndpointRef : typeEndpointRefs) {
 			if (targetTypeUri.equals(typeEndpointRef.getTargetUri())) {
 				targetTypeEndpointRefs.add(typeEndpointRef);
@@ -284,6 +294,130 @@ public class MultiModelHierarchyUtils implements MMTFConstants {
 		}
 
 		return null;
+	}
+
+	private static Map<String, Set<String>> getSubtypeTable(MultiModel multiModel) {
+	
+		return (multiModel == MMTF.repository) ?
+			MMTF.subtypeTable :
+			MMTF.subtypeTableMID;
+	}
+
+	private static Map<String, Map<String, List<String>>> getConversionTable(MultiModel multiModel) {
+	
+		return (multiModel == MMTF.repository) ?
+			MMTF.conversionTable :
+			MMTF.conversionTableMID;
+	}
+
+	public static boolean isSubtypeOf(MultiModel multiModel, String subtypeUri, String supertypeUri) {
+
+		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
+
+		return (subtypeTable == null) ? false : subtypeTable.get(supertypeUri).contains(subtypeUri);
+	}
+
+	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
+
+		return isSubtypeOf(MMTF.repository, subtypeUri, supertypeUri);
+	}
+
+	public static <T extends ExtendibleElement> List<T> getSubtypes(MultiModel multiModel, T supertype) {
+
+		List<T> subtypes = new ArrayList<T>();
+		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
+		if (subtypeTable == null) {
+			return subtypes;
+		}
+
+		for (String subtypeUri : subtypeTable.get(supertype.getUri())) {
+			T subtype = MultiModelRegistry.getExtendibleElement(multiModel, subtypeUri);
+			if (subtype != null) {
+				subtypes.add(subtype);
+			}
+		}
+		return subtypes;
+	}
+
+	public static <T extends ExtendibleElement> List<T> getSubtypes(T supertype) {
+
+		return getSubtypes(MMTF.repository, supertype);
+	}
+
+	private static List<ConversionOperator> isEligibleParameter(Model actualModel, Model formalModelType) {
+
+		// polymorphism
+		List<String> actualModelTypeUris = new ArrayList<String>();
+		for (Model actualModelType : MultiModelTypeIntrospection.getRuntimeTypes(actualModel)) {
+			actualModelTypeUris.add(actualModelType.getUri());
+		}
+		String formalModelTypeUri = formalModelType.getUri();
+
+		// same type or subtype
+		for (String actualModelTypeUri : actualModelTypeUris) {
+			if (actualModelTypeUri.equals(formalModelTypeUri) || isSubtypeOf(actualModelTypeUri, formalModelTypeUri)) {
+				return new ArrayList<ConversionOperator>();
+			}
+		}
+		// convertible type
+		for (String actualModelTypeUri : actualModelTypeUris) {
+			Map<String, List<String>> conversions = getConversionTable(MMTF.repository).get(actualModelTypeUri);
+			for (Map.Entry<String, List<String>> conversion : conversions.entrySet()) {
+				// use first substitution found
+				String convertedActualModelTypeUri = conversion.getKey();
+				if (formalModelTypeUri.equals(convertedActualModelTypeUri) || isSubtypeOf(convertedActualModelTypeUri, formalModelTypeUri)) {
+					List<ConversionOperator> conversionOperatorTypes = new ArrayList<ConversionOperator>();
+					for (String conversionOperatorTypeUri : conversion.getValue()) {
+						ConversionOperator conversionOperatorType = MultiModelTypeRegistry.getExtendibleElementType(conversionOperatorTypeUri);
+						conversionOperatorTypes.add(conversionOperatorType);
+					}
+					return conversionOperatorTypes;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public static List<Operator> getExecutableOperators(EList<Model> actualParameters, List<Map<Integer, List<ConversionOperator>>> conversions) {
+
+		List<Operator> executableOperatorTypes = new ArrayList<Operator>();
+
+nextOperatorType:
+		for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
+			int i = 0;
+			Map<Integer, List<ConversionOperator>> conversionMap = new HashMap<Integer, List<ConversionOperator>>();
+			for (Parameter parameter : operatorType.getInputs()) {
+				// check 1: not enough actual parameters
+				if (i >= actualParameters.size()) {
+					continue nextOperatorType;
+				}
+				// check 2: type or substitutable types
+				while (i < actualParameters.size()) {
+					List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualParameters.get(i), parameter.getModel());
+					if (conversionOperatorTypes == null) {
+						continue nextOperatorType;
+					}
+					if (!conversionOperatorTypes.isEmpty()) {
+						conversionMap.put(new Integer(i), conversionOperatorTypes);
+					}
+					i++;
+					if (!parameter.isVararg()) {
+						//TODO MMTF: introduce vararg with low multeplicity
+						break;
+					}
+				}
+			}
+			// check 3: too many actual parameters
+			if (i < actualParameters.size()) {
+				continue nextOperatorType;
+			}
+			// checks passed
+			executableOperatorTypes.add(operatorType);
+			conversions.add(conversionMap);
+		}
+
+		return executableOperatorTypes;
 	}
 
 }

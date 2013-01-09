@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
@@ -93,8 +92,8 @@ public class SpecializeTypeAction extends ContributionItem {
 		}
 
 		// get runtime types
-		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(model);
-		if (runtimeTypes.size() == 1) {
+		List<Model> runtimeModelTypes = MultiModelTypeIntrospection.getRuntimeTypes(model);
+		if (runtimeModelTypes.size() == 1) {
 			return;
 		}
 
@@ -103,14 +102,14 @@ public class SpecializeTypeAction extends ContributionItem {
 		cascadeItem.setText("Specialize Type");
 		Menu operatorsMenu = new Menu(menu);
 		cascadeItem.setMenu(operatorsMenu);
-		for (ExtendibleElement runtimeType : runtimeTypes) {
-			if (((Model) runtimeType).getUri().equals(model.getMetatypeUri())) {
+		for (Model runtimeModelType : runtimeModelTypes) {
+			if (runtimeModelType.getUri().equals(model.getMetatypeUri())) {
 				continue;
 			}
 			MenuItem typeItem = new MenuItem(operatorsMenu, SWT.NONE);
-			typeItem.setText(runtimeType.getName());
+			typeItem.setText(runtimeModelType.getName());
 			typeItem.addSelectionListener(
-				new SpecializeTypeListener(model, (Model) runtimeType, label)
+				new SpecializeTypeListener(model, runtimeModelType, label)
 			);
 		}
 	}

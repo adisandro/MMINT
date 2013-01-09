@@ -106,7 +106,7 @@ public class MultiModelInstanceFactory {
 			//TODO MMTF: now is the first == the most conservative
 			//TODO MMTF: do I fix everything by just letting the user choose with a dialog?
 			//TODO MMTF: actually it's kind of useless for rels/links, i should just set the root type, because at creation time it's hard to already have all connections
-			List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(newElement);
+			List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypesOld(newElement);
 			newElement.setMetatypeUri(runtimeTypes.get(0).getUri());
 		}
 		else { // use static metatype
@@ -298,7 +298,7 @@ public class MultiModelInstanceFactory {
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
 
 		//TODO MMTF: String newModelElemUri = newModelElemUri + MMTF.URI_SEPARATOR + classLiteral;
-		ModelElement newModelElem = MultiModelRegistry.getModelElement(multiModel, newModelElemUri);
+		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(multiModel, newModelElemUri);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
 			addExtendibleElement(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
@@ -655,7 +655,7 @@ public class MultiModelInstanceFactory {
 	 */
 	public static void addModelEditor(Editor editor, MultiModel multiModel) {
 
-		Model model = MultiModelRegistry.getModel(multiModel, editor.getModelUri());
+		Model model = MultiModelRegistry.getExtendibleElement(multiModel, editor.getModelUri());
 		if (model != null) {
 			model.getEditors().add(editor);
 			multiModel.getEditors().add(editor);
@@ -731,13 +731,15 @@ public class MultiModelInstanceFactory {
 			removeEditor(editor);
 		}
 		// remove model relationships and endpoints that use this model
-		ArrayList<ModelRel> delModelRels = new ArrayList<ModelRel>();
-		ArrayList<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
+		List<ModelRel> delModelRels = new ArrayList<ModelRel>();
+		List<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
 		for (ModelRel modelRel : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {//TODO MMTF: put this function into the generic registry
 			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
-				if (modelEndpoint.getTargetUri().equals(model.getUri()) && !delModelRels.contains(modelRel)) {
+				if (modelEndpoint.getTargetUri().equals(model.getUri())) {
 					if (modelRel instanceof BinaryModelRel) {
-						delModelRels.add(modelRel);
+						if (!delModelRels.contains(modelRel)) {
+							delModelRels.add(modelRel);
+						}
 					}
 					else {
 						delModelEndpoints.add(modelEndpoint);
@@ -801,24 +803,22 @@ public class MultiModelInstanceFactory {
 
 	public static void removeModelElementReference(ModelElementReference modelElemRef) {
 
-		// TODO MMTF: For binary links, we need to remove the links (and thus the setting of 
-		//			  the ModelEndpointRefs to null) outside of the for loop
-		List<LinkReference> linksToBeRemoved = new ArrayList<LinkReference>();
-		
+		List<LinkReference> delLinkRefs = new ArrayList<LinkReference>();
 		for (ModelElementEndpointReference modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
 			LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();
 			if (linkRef instanceof BinaryLinkReference) {
-				linksToBeRemoved.add(linkRef);
+				if (!delLinkRefs.contains(linkRef)) {
+					delLinkRefs.add(linkRef);
+				}
 			}
 			else {
 				removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);
 			}
 		}
-		
-		for (LinkReference linkRef : linksToBeRemoved) {
+		for (LinkReference linkRef : delLinkRefs) {
 			removeLinkAndLinkReference(linkRef);
 		}
-		
+
 		((ModelEndpointReference) modelElemRef.eContainer()).getModelElemRefs().remove(modelElemRef);
 	}
 

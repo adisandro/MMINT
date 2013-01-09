@@ -25,7 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -58,6 +59,7 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 
 		ModelRelEditPart modelRelEditPart = (ModelRelEditPart) getHost();
 		ModelRel modelRel = (ModelRel) ((View) modelRelEditPart.getModel()).getElement();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRel);
 		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(modelRel);
 		CompoundCommand command = new CompoundCommand("Add model element references");
 		IElementType elementType = MidElementTypes.getElementType(ModelElementReferenceEditPart.VISUAL_ID);
@@ -76,7 +78,7 @@ modelEndpointRef:
 				if (
 					modelUri.equals(modelEndpointRef.getTargetUri()) || (
 						!isInstancesLevel &&
-						MultiModelTypeRegistry.isSubtypeOf(modelEndpointRef.getTargetUri(), modelUri) // for light types
+						MultiModelTypeHierarchy.isSubtypeOf(multiModel, modelEndpointRef.getTargetUri(), modelUri) // for light types
 					)
 				) {
 					for (ModelElementReference elementRef : modelEndpointRef.getModelElemRefs()) { // avoid duplicates

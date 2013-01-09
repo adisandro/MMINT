@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
@@ -401,7 +402,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 
 		// get output from previous operator
 		RandomModelToSMTLIB previousOperator = (previousExecutable == null) ?
-			(RandomModelToSMTLIB) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(RandomModelToSMTLIB) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(RandomModelToSMTLIB) previousExecutable;
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 		final String smtlibMavoEncoding = previousOperator.getSMTLIBMAVOEncoding();

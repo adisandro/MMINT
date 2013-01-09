@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
@@ -489,7 +490,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 
 		// get output from previous operator
 		RandomModelGenerateLabeledGraph previousOperator = (previousExecutable == null) ?
-			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.getOperatorType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(RandomModelGenerateLabeledGraph) previousExecutable;
 		mayModelObjs = previousOperator.getMAVOModelObjects();
 		if (mayModelObjs == null) {

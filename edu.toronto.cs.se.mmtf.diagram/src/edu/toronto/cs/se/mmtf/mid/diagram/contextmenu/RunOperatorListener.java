@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -42,9 +42,9 @@ public class RunOperatorListener extends SelectionAdapter {
 
 	Operator operator;
 	EList<Model> actualParameters;
-	HashMap<Integer, EList<ConversionOperator>> conversionMap;
+	Map<Integer, List<ConversionOperator>> conversionMap;
 
-	public RunOperatorListener(Operator operator, EList<Model> actualParameters, HashMap<Integer, EList<ConversionOperator>> conversionMap) {
+	public RunOperatorListener(Operator operator, EList<Model> actualParameters, Map<Integer, List<ConversionOperator>> conversionMap) {
 
 		this.operator = operator;
 		this.actualParameters = actualParameters;
@@ -84,9 +84,9 @@ public class RunOperatorListener extends SelectionAdapter {
 				//TODO MMTF: is conversionMap ordered?? I don't think so
 				// run all conversion operators
 				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
+					for (Entry<Integer, List<ConversionOperator>> entry : conversionMap.entrySet()) {
 						int i = entry.getKey();
-						EList<ConversionOperator> conversionList = entry.getValue();
+						List<ConversionOperator> conversionList = entry.getValue();
 						Model newActualParameter = actualParameters.get(i);
 						for (ConversionOperator operator : conversionList) {
 							EList<Model> operatorParameters = new BasicEList<Model>();
@@ -100,7 +100,7 @@ public class RunOperatorListener extends SelectionAdapter {
 				operator.getExecutable().execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
+					for (Entry<Integer, List<ConversionOperator>> entry : conversionMap.entrySet()) {
 						for (ConversionOperator operator : entry.getValue()) {
 							((ConversionOperatorExecutable) operator.getExecutable()).cleanup();
 						}

@@ -87,7 +87,7 @@ public class RelationshipTypesDialogContentProvider implements ITreeContentProvi
 			// add root links
 			if (showRootTypes) {
 				MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-				ModelRel rootModelRelType = MultiModelRegistry.getModelRel(multiModel, ROOT_MODELREL_URI);
+				ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(multiModel, ROOT_MODELREL_URI);
 				LinkReference rootLinkTypeRef = rootModelRelType.getLinkRefs().get(0);
 				userLinkTypes.add(rootLinkTypeRef);
 				//TODO MMTF: this won't work for standalone model relationship types (will it ever be a usecase?)

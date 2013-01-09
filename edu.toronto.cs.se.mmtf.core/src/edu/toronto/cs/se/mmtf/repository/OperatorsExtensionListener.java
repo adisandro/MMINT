@@ -62,7 +62,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLETYPE_ATTR_URI);
-				Operator operatorType = MultiModelTypeRegistry.getOperatorType(uri);
+				Operator operatorType = MultiModelTypeRegistry.getExtendibleElementType(uri);
 				if (operatorType != null) {
 					MultiModelTypeFactory.removeOperatorType(operatorType);
 				}

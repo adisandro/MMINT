@@ -31,10 +31,13 @@ import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -122,13 +125,10 @@ public class MultiModelConstraintChecker {
 
 	public static boolean isAllowedModelType(ModelRel modelRelType) {
 
-		for (ModelRel subModelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
-			if (MultiModelTypeRegistry.isSubtypeOf(subModelRelType.getUri(), modelRelType.getUri())) {
-				return false;
-			}
-		}
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+		List<ModelRel> modelRelSubtypes = MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType);
 
-		return true;
+		return (modelRelSubtypes.isEmpty()) ? true : false;
 	}	
 
 	public static boolean isAllowedModelTypeEndpoint(BinaryModelRel modelRelType, Model newSrcModelType, Model newTgtModelType) {
@@ -144,14 +144,14 @@ public class MultiModelConstraintChecker {
 			if (newSrcModelType != null) {
 				String srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelType.getUri();
-				if (!newSrcUri.equals(srcUri) && !MultiModelTypeRegistry.isSubtypeOf(multiModel, newSrcUri, srcUri)) {
+				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri)) {
 					return false;
 				}
 			}
 			if (newTgtModelType != null) {
 				String tgtUri = modelRelTypeSuper.getModelEndpoints().get(1).getTargetUri();
 				String newTgtUri = newTgtModelType.getUri();
-				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeRegistry.isSubtypeOf(multiModel, newTgtUri, tgtUri)) {
+				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) {
 					return false;
 				}
 			}
@@ -173,14 +173,14 @@ public class MultiModelConstraintChecker {
 			if (newSrcModelElemTypeRef != null) {
 				String srcUri = linkTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelElemTypeRef.getUri();
-				if (!newSrcUri.equals(srcUri) && !MultiModelTypeRegistry.isSubtypeOf(multiModel, newSrcUri, srcUri)) {
+				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri)) {
 					return false;
 				}
 			}
 			if (newTgtModelElemTypeRef != null) {
 				String tgtUri = linkTypeSuper.getModelElemEndpoints().get(1).getTargetUri();
 				String newTgtUri = newTgtModelElemTypeRef.getUri();
-				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeRegistry.isSubtypeOf(multiModel, newTgtUri, tgtUri)) {
+				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) {
 					return false;
 				}
 			}
@@ -193,7 +193,7 @@ public class MultiModelConstraintChecker {
 
 		String newModelTypeUri = newModel.getMetatypeUri();
 		// check if the type is allowed
-		if (modelTypeEndpointRef.getTargetUri().equals(newModelTypeUri) || MultiModelTypeRegistry.isSubtypeOf(newModelTypeUri, modelTypeEndpointRef.getTargetUri())) {
+		if (modelTypeEndpointRef.getTargetUri().equals(newModelTypeUri) || MultiModelTypeHierarchy.isSubtypeOf(newModelTypeUri, modelTypeEndpointRef.getTargetUri())) {
 			// check if the cardinality is allowed
 			if (MultiModelRegistry.checkNewEndpointUpperCardinality(modelTypeEndpointRef.getObject(), cardinalityTable)) {
 				return true;
@@ -232,7 +232,7 @@ public class MultiModelConstraintChecker {
 
 		String newModelElemTypeUri = newModelElemRef.getObject().getMetatypeUri();
 		// check if the type is allowed
-		if (modelElemTypeEndpoint.getTargetUri().equals(newModelElemTypeUri) || MultiModelTypeRegistry.isSubtypeOf(newModelElemTypeUri, modelElemTypeEndpoint.getTargetUri())) {
+		if (modelElemTypeEndpoint.getTargetUri().equals(newModelElemTypeUri) || MultiModelTypeHierarchy.isSubtypeOf(newModelElemTypeUri, modelElemTypeEndpoint.getTargetUri())) {
 			// check if the cardinality is allowed
 			if (MultiModelRegistry.checkNewEndpointUpperCardinality(modelElemTypeEndpoint, cardinalityTable)) {
 				return true;
@@ -313,9 +313,9 @@ public class MultiModelConstraintChecker {
 	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, EObject newEObject) {
 
 		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
-		ModelEndpointReference modelTypeEndpointRef = MultiModelHierarchyUtils.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
+		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
 		//TODO MMTF: fix here needed for root model rel
-		Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelHierarchyUtils.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
+		Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
 			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
 			if (isAllowedModelElement(modelElemTypeRef.getObject(), newEObject)) {
@@ -349,20 +349,31 @@ linkTypes:
 	}
 
 	/**
-	 * Checks if an OCL constraint is satisfied on a model.
+	 * Checks if a constraint is satisfied on an extendible element (only OCL
+	 * constraints and models are currently evaluated).
 	 * 
-	 * @param model
-	 *            The model.
-	 * @param oclConstraint
-	 *            The OCL constraint.
-	 * @return True if the OCL constraint is satisfied, false otherwise.
+	 * @param element
+	 *            The extendible element.
+	 * @param constraint
+	 *            The constraint.
+	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static boolean checkOCLConstraint(Model model, String oclConstraint) {
+	public static boolean checkConstraint(ExtendibleElement element, ModelConstraint constraint) {
 
+		//TODO MMTF: support all extendible elements?
+		if (!(element instanceof Model)) {
+			return true;
+		}
+		//TODO MMTF: support other engines?
+		if (constraint == null || constraint.getEngine() != ModelConstraintEngine.OCL) {
+			return true;
+		}
+		String oclConstraint = constraint.getBody();
 		if (oclConstraint.equals("")) { // empty constraint
 			return true;
 		}
 
+		Model model = (Model) element;
 		EObject root = null;
 		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VAR)) {
 			String modelTypeEndpointName = oclConstraint.substring(OCL_MODELENDPOINT_VAR.length(), oclConstraint.indexOf(OCL_VAR_SEPARATOR));
@@ -393,8 +404,8 @@ linkTypes:
 		helper.setContext(pivotType);
 
 		try {
-			ExpressionInOCL constraint = helper.createInvariant(oclConstraint);
-			return ocl.check(root, constraint);
+			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
+			return ocl.check(root, expression);
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "Constraint error: " + oclConstraint, e);

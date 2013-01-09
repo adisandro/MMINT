@@ -11,11 +11,12 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -24,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -33,7 +35,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
@@ -147,13 +148,13 @@ supertypes:
 				String[] uris = MultiModelRegistry.getModelAndModelElementUris(droppedEObject, false);
 				String modelTypeUri = uris[0];
 				String modelElemTypeUri = uris[1];
-				EList<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MultiModelHierarchyUtils.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
+				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MultiModelTypeHierarchy.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
 				if (modelTypeEndpointRefsOrModelTypeEndpointRefsSuper == null) {
 					continue;
 				}
 				for (ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper : modelTypeEndpointRefsOrModelTypeEndpointRefsSuper) {
 					modelElemTypeUri = MultiModelLightTypeFactory.getNewExtendibleTypeUri(modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject(), null, modelElemTypeUri);
-					modelElemTypeRef = MultiModelHierarchyUtils.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
+					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
 					if (modelElemTypeRef != null) {
 						modelElemType = modelElemTypeRef.getObject();
 						break supertypes;
@@ -166,7 +167,7 @@ supertypes:
 			String modelElemTypeUri = (newDroppedEObject instanceof EReference) ?
 				MMTF.ROOT_MODELELEMENT_RELATIONSHIP_URI :
 				MMTF.ROOT_MODELELEMENT_ENTITY_URI;
-			modelElemType = MultiModelRegistry.getModelElement(multiModel, modelElemTypeUri);
+			modelElemType = MultiModelRegistry.getExtendibleElement(multiModel, modelElemTypeUri);
 			//TODO MMTF: move getXType into a generic type registry, I need those functions for instances too (only the ones with a multiModel argument)
 			//TODO MMTF: clean things in instances (order of arguments like in types, URI instead of String uri, name as argument)
 			//TODO MMTF: write a todo somewhere to remember to handle the import of a model rel instance

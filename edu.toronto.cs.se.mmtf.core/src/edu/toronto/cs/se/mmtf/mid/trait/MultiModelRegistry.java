@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 
@@ -229,7 +229,7 @@ public class MultiModelRegistry {
 		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor) {
 			multiModel = (MultiModel) element.eContainer();
 		}
-		else if (element instanceof ModelElement) {
+		else if (element instanceof ModelElement || element instanceof Link) {
 			multiModel = (MultiModel) element.eContainer().eContainer();
 		}
 		//TODO MMTF: to be continued..
@@ -239,13 +239,7 @@ public class MultiModelRegistry {
 
 	public static MultiModel getMultiModel(ExtendibleElementReference elementRef) {
 
-		MultiModel multiModel = null;
-		if (elementRef instanceof ModelElementReference) {
-			multiModel = (MultiModel) elementRef.eContainer().eContainer().eContainer();
-		}
-		//TODO MMTF: to be continued..
-
-		return multiModel;
+		return getMultiModel(elementRef.getObject());
 	}
 
 	/**
@@ -255,87 +249,23 @@ public class MultiModelRegistry {
 	 *            The multimodel.
 	 * @param elementUri
 	 *            The uri of the extendible element.
-	 * @return The extendible element, or null if the uri is not found.
+	 * @return The extendible element, or null if the uri is not found or found
+	 *         not to be of the desired class.
 	 */
-	public static ExtendibleElement getExtendibleElement(MultiModel multiModel, String elementUri) {
+	@SuppressWarnings("unchecked")
+	public static <T extends ExtendibleElement> T getExtendibleElement(MultiModel multiModel, String elementUri) {
 
-		return multiModel.getExtendibleTable().get(elementUri);
-	}
-
-	/**
-	 * Gets a model (type or instance) from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param modelUri
-	 *            The uri of the model.
-	 * @return The model, or null if its uri is not found or found not to be a
-	 *         model.
-	 */
-	public static Model getModel(MultiModel multiModel, String modelUri) {
-	
-		ExtendibleElement model = MultiModelRegistry.getExtendibleElement(multiModel, modelUri);
-		if (model instanceof Model) {
-			return (Model) model;
+		ExtendibleElement element = multiModel.getExtendibleTable().get(elementUri);
+		if (element == null) {
+			return null;
 		}
-		return null;
-	}
 
-	/**
-	 * Gets a model relationship (type or instance) from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param modelRelUri
-	 *            The uri of the model relationship.
-	 * @return The model relationship, or null if its uri is not found or found
-	 *         not to be a model relationship.
-	 */
-	public static ModelRel getModelRel(MultiModel multiModel, String modelRelUri) {
-	
-		ExtendibleElement modelRel = getExtendibleElement(multiModel, modelRelUri);
-		if (modelRel instanceof ModelRel) {
-			return (ModelRel) modelRel;
+		try {
+			return (T) element;
 		}
-		return null;
-	}
-
-	/**
-	 * Gets a model element (type or instance) from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param modelElemUri
-	 *            The uri of the model element.
-	 * @return The model element, or null if its uri is not found or found not
-	 *         to be a model element.
-	 */
-	public static ModelElement getModelElement(MultiModel multiModel, String modelElemUri) {
-	
-		ExtendibleElement modelElem = getExtendibleElement(multiModel, modelElemUri);
-		if (modelElem instanceof ModelElement) {
-			return (ModelElement) modelElem;
+		catch (ClassCastException e) {
+			return null;
 		}
-		return null;
-	}
-
-	/**
-	 * Gets an editor (type or instance) from a multimodel.
-	 * 
-	 * @param multiModel
-	 *            The multimodel.
-	 * @param editorUri
-	 *            The uri of the editor.
-	 * @return The editor, or null if its uri is not found or found not to be an
-	 *         editor.
-	 */
-	public static Editor getEditorType(MultiModel multiModel, String editorUri) {
-	
-		ExtendibleElement editor = getExtendibleElement(multiModel, editorUri);
-		if (editor instanceof Editor) {
-			return (Editor) editor;
-		}
-		return null;
 	}
 
 }

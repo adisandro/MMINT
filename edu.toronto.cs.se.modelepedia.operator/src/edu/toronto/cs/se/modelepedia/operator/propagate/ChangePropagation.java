@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
@@ -48,7 +49,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
@@ -88,7 +88,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		for (ModelElementEndpointReference refinementModelElemEndpointRef : refinementLinkRef.getModelElemEndpointRefs()) {
 			ModelElementReference refinementModelElemRef = refinementModelElemEndpointRef.getModelElemRef();
 			if (((ModelEndpointReference) refinementModelElemRef.eContainer()).getTargetUri().equals(origModelUri)) { // orig model element ref in trace rel
-				ModelElementReference origModelElemRef_traceRel = MultiModelHierarchyUtils.getReference(refinementModelElemRef.getUri(), origModelEndpointRef_traceRel.getModelElemRefs());
+				ModelElementReference origModelElemRef_traceRel = MultiModelTypeHierarchy.getReference(refinementModelElemRef.getUri(), origModelEndpointRef_traceRel.getModelElemRefs());
 				if (origModelElemRef_traceRel == null) {
 					continue;
 				}
@@ -484,7 +484,7 @@ traceLinks:
 		ModelEndpointReference propModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(1);
 		// create new propagated model element refs in propagated refinement rel
 		boolean duplicateRel = true;
-		ModelElementReference newPropModelElemRef = MultiModelHierarchyUtils.getReference(
+		ModelElementReference newPropModelElemRef = MultiModelTypeHierarchy.getReference(
 			MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(propModelElemRef_propTraceRel.getObject()), true)[1],
 			propModelEndpointRef_propRefinementRel.getModelElemRefs()
 		);
@@ -501,7 +501,7 @@ traceLinks:
 		ModelEndpointReference relatedModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference refinedModelEndpointRef_refinementRel = refinementRel.getModelEndpointRefs().get(1);
 		String refinedModelUri = refinedModelEndpointRef_refinementRel.getTargetUri();
-		ModelElementReference refinedModelElemRef_refinementRel = MultiModelHierarchyUtils.getReference(refinedModelElemRef_propTraceRel, refinedModelEndpointRef_refinementRel.getModelElemRefs());
+		ModelElementReference refinedModelElemRef_refinementRel = MultiModelTypeHierarchy.getReference(refinedModelElemRef_propTraceRel, refinedModelEndpointRef_refinementRel.getModelElemRefs());
 		ModelElementEndpointReference refinementModelElemEndpointRef = refinedModelElemRef_refinementRel.getModelElemEndpointRefs().get(0); // many to one here has to be mapped through an nary link
 		LinkReference refinementLinkRef = (LinkReference) refinementModelElemEndpointRef.eContainer();
 		Link refinementLinkType = refinementLinkRef.getObject().getMetatype();
@@ -527,12 +527,12 @@ traceLinks:
 				continue;
 			}
 			ModelEndpointReference origModelEndpointRef_traceRel = traceRel.getModelEndpointRefs().get(0);
-			ModelElementReference origModelElemRef_traceRel = MultiModelHierarchyUtils.getReference(origModelElemRef_refinementRel, origModelEndpointRef_traceRel.getModelElemRefs());
+			ModelElementReference origModelElemRef_traceRel = MultiModelTypeHierarchy.getReference(origModelElemRef_refinementRel, origModelEndpointRef_traceRel.getModelElemRefs());
 			for (ModelElementEndpointReference traceModelElementEndpoint : origModelElemRef_traceRel.getModelElemEndpointRefs()) {
 				BinaryLinkReference traceLinkRef = (BinaryLinkReference) traceModelElementEndpoint.eContainer();
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
 				// create new related model element refs in propagated refinement rel
-				ModelElementReference newRelatedModelElemRef = MultiModelHierarchyUtils.getReference(
+				ModelElementReference newRelatedModelElemRef = MultiModelTypeHierarchy.getReference(
 					MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(relatedModelElemRef_traceRel.getObject()), true)[1],
 					relatedModelEndpointRef_propRefinementRel.getModelElemRefs()
 				);

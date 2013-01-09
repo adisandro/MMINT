@@ -52,13 +52,11 @@ public class ValidateListener extends SelectionAdapter {
 
 	Model model;
 	GraphicalEditPart editPart;
-	String oclConstraint;
 
-	public ValidateListener(Model model, GraphicalEditPart editPart, String oclConstraint) {
+	public ValidateListener(Model model, GraphicalEditPart editPart) {
 
 		this.model = model;
 		this.editPart = editPart;
-		this.oclConstraint = oclConstraint;
 	}
 
 	@Override
@@ -103,7 +101,7 @@ public class ValidateListener extends SelectionAdapter {
 			}
 
 			// check constraint
-            boolean result = MultiModelConstraintChecker.checkOCLConstraint(model, oclConstraint);
+            boolean result = MultiModelConstraintChecker.checkConstraint(model, model.getMetatype().getConstraint());
 
             // add error decoration
 			if (result == false) {

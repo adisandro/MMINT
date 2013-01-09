@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
@@ -49,7 +50,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
@@ -76,17 +76,17 @@ public class MMTF implements MMTFConstants {
 	/** The repository of registered extensions. */
 	static MultiModel repository;
 
-	/**	The table for model types substitutability. */
-	static HashMap<String, HashSet<String>> substTable;
+	/**	The table for model type hierarchy. */
+	static Map<String, Set<String>> subtypeTable;
 
-	/**	The table for model types conversion. */
-	static HashMap<String, HashMap<String, List<String>>> convTable;
+	/**	The table for model type conversion. */
+	static Map<String, Map<String, List<String>>> conversionTable;
 
-	/**	The table for model types substitutability in the type MID. */
-	static HashMap<String, HashSet<String>> substTableMID;
+	/**	The table for model type hierarchy in the type MID. */
+	static Map<String, Set<String>> subtypeTableMID;
 
-	/**	The table for model types conversion in the type MID. */
-	static HashMap<String, HashMap<String, List<String>>> convTableMID;
+	/**	The table for model type conversion in the type MID. */
+	static Map<String, Map<String, List<String>>> conversionTableMID;
 
 	public static final String TYPE_MID_FILENAME = "types.mid";
 
@@ -167,7 +167,7 @@ public class MMTF implements MMTFConstants {
 				String newModelTypeEndpointName = modelTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
 				modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 				String newModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-				Model newModelType = MultiModelTypeRegistry.getModelType(newModelTypeUri);
+				Model newModelType = MultiModelTypeRegistry.getExtendibleElementType(newModelTypeUri);
 				if (newModelType == null) {
 					continue;
 				}
@@ -192,7 +192,7 @@ public class MMTF implements MMTFConstants {
 					String newModelElemTypeUri = modelElemTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
 					String modelElemTypeUri = modelElemTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
 					String newModelElemTypeName = modelElemTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
-					ModelElement newModelElemType = MultiModelTypeRegistry.getModelElementType(newModelElemTypeUri);
+					ModelElement newModelElemType = MultiModelTypeRegistry.getExtendibleElementType(newModelElemTypeUri);
 					if (newModelElemType == null) { // create new model element type
 						ModelElementCategory category = ModelElementCategory.get(modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CATEGORY));
 						String classLiteral = modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CLASSLITERAL);
@@ -213,7 +213,7 @@ public class MMTF implements MMTFConstants {
 					}
 					ModelElementReference modelElemTypeRef = (modelElemTypeUri == null) ?
 						null :
-						MultiModelHierarchyUtils.getReference(modelElemTypeUri, newModelTypeEndpointRef.getModelElemRefs());
+						MultiModelTypeHierarchy.getReference(modelElemTypeUri, newModelTypeEndpointRef.getModelElemRefs());
 					MultiModelTypeFactory.createModelElementTypeReference(
 						newModelTypeEndpointRef,
 						modelElemTypeRef,
@@ -258,13 +258,13 @@ public class MMTF implements MMTFConstants {
 					String newModelElemTypeEndpointName = modelElemTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
 					modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 					String newModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-					ModelElement modelElemType = MultiModelTypeRegistry.getModelElementType(newModelElemTypeUri);
+					ModelElement modelElemType = MultiModelTypeRegistry.getExtendibleElementType(newModelElemTypeUri);
 					if (modelElemType == null) {
 						continue;
 					}
 					//TODO MMTF: well model elements should *really* be contained in the model endpoint now that they exist
-					ModelEndpointReference modelTypeEndpointRef = MultiModelHierarchyUtils.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
-					ModelElementReference newModelElemTypeRef = MultiModelHierarchyUtils.getReference(newModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
+					ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
+					ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(newModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 					ModelElementEndpointReference newModelElemTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 						newLinkTypeRef,
 						newModelElemTypeEndpointUri,
@@ -427,73 +427,76 @@ public class MMTF implements MMTFConstants {
 //		}
 //	}
 
-	private static void addTypeHierarchy(ExtendibleElement type, HashSet<String> substitutableTypes, HashMap<String, List<String>> conversionTypes) {
+	private static void addTypeHierarchy(ExtendibleElement currentType, ExtendibleElement subtype, Map<String, Set<String>> subtypeTable) {
 
-		// previous conversions
-		List<String> previousConversions = conversionTypes.get(type.getUri());
-
-		// add supertypes
-		ExtendibleElement supertype = type.getSupertype();
+		// add subtype to supertypes
+		String subtypeUri = subtype.getUri();
+		ExtendibleElement supertype = currentType.getSupertype();
 		if (supertype != null) {
 			String supertypeUri = supertype.getUri();
-			if (!substitutableTypes.contains(supertypeUri)) {
-				substitutableTypes.add(supertypeUri);
-				// keep track of conversion operators used
-				List<String> conversions = (previousConversions == null) ?
-					new ArrayList<String>() :
-					new ArrayList<String>(previousConversions);
-				conversionTypes.put(supertypeUri, conversions);
+			Set<String> subtypes = subtypeTable.get(supertypeUri);
+			if (!subtypes.contains(subtypeUri)) {
+				subtypes.add(subtypeUri);
 				// recursion
-				addTypeHierarchy(supertype, substitutableTypes, conversionTypes);
-			}
-		}
-
-		// add conversions
-		if (type instanceof Model) {
-			for (ConversionOperator operatorType : ((Model) type).getConversionOperators()) {
-				Model conversionModel = operatorType.getOutputs().get(0).getModel();
-				String conversionUri = conversionModel.getUri();
-				if (!substitutableTypes.contains(conversionUri)) { // coherence of multiple paths is assumed
-					substitutableTypes.add(conversionUri);
-					// keep track of conversion operators used
-					List<String> conversions = (previousConversions == null) ?
-						new ArrayList<String>() :
-						new ArrayList<String>(previousConversions);
-					conversions.add(operatorType.getUri()); // add new operator to use
-					conversionTypes.put(conversionUri, conversions);
-					// recursion
-					addTypeHierarchy(conversionModel, substitutableTypes, conversionTypes);
-				}
+				addTypeHierarchy(supertype, subtype, subtypeTable);
 			}
 		}
 	}
 
-	private static void initTypeHierarchy(MultiModel multiModel, HashMap<String, HashSet<String>> substTable, HashMap<String, HashMap<String, List<String>>> convTable) {
+	private static void addConversionHierarchy(ExtendibleElement currentType, Map<String, List<String>> conversionTypes) {
 
-		substTable.clear();
-		convTable.clear();
+		// previous conversions
+		List<String> previousConversions = conversionTypes.get(currentType.getUri());
+
+		// add convertions
+		for (ConversionOperator operatorType : ((Model) currentType).getConversionOperators()) {
+			Model conversionType = operatorType.getOutputs().get(0).getModel();
+			String conversionTypeUri = conversionType.getUri();
+			if (!conversionTypes.containsKey(conversionTypeUri)) { // coherence of multiple paths is assumed
+				// keep track of conversion operators used
+				List<String> conversions = (previousConversions == null) ?
+					new ArrayList<String>() :
+					new ArrayList<String>(previousConversions);
+				conversions.add(operatorType.getUri()); // add new operator to be used
+				conversionTypes.put(conversionTypeUri, conversions);
+				// recursion
+				addConversionHierarchy(conversionType, conversionTypes);
+			}
+		}
+	}
+
+	private static void initTypeHierarchy(MultiModel multiModel, Map<String, Set<String>> subtypeTable, Map<String, Map<String, List<String>>> conversionTable) {
+
+		subtypeTable.clear();
+		conversionTable.clear();
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
-			HashSet<String> substitutableTypes = new HashSet<String>();
-			HashMap<String, List<String>> conversionTypes = new HashMap<String, List<String>>();
-			addTypeHierarchy(type, substitutableTypes, conversionTypes);
-			substTable.put(type.getUri(), substitutableTypes);
-			convTable.put(type.getUri(), conversionTypes);
+			subtypeTable.put(type.getUri(), new HashSet<String>());
+			conversionTable.put(type.getUri(), new HashMap<String, List<String>>());
+		}
+		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
+			addTypeHierarchy(type, type, subtypeTable);
+		}
+		for (Model modelType : MultiModelTypeRegistry.getModelTypes(multiModel)) {
+			addConversionHierarchy(modelType, conversionTable.get(modelType.getUri()));
+			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelType)) {
+				addConversionHierarchy(modelType, conversionTable.get(modelSubtype.getUri()));
+			}
 		}
 	}
 
 	public static void initTypeHierarchy() {
 
-		initTypeHierarchy(repository, substTable, convTable);
+		initTypeHierarchy(repository, subtypeTable, conversionTable);
 	}
 
 	public static void initTypeHierarchy(MultiModel multiModel) {
 
-		initTypeHierarchy(multiModel, substTableMID, convTableMID);
+		initTypeHierarchy(multiModel, subtypeTableMID, conversionTableMID);
 	}
 	
 	private Model addDynamicType(Model dynamicModelType) {
 
-		Model modelType = MultiModelTypeRegistry.getModelType(dynamicModelType.getSupertype().getUri());
+		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(dynamicModelType.getSupertype().getUri());
 		if (modelType == null && dynamicModelType.getSupertype().isDynamic()) {
 			modelType = addDynamicType(dynamicModelType.getSupertype());
 		}
@@ -546,9 +549,9 @@ public class MMTF implements MMTFConstants {
 			return;
 		}
 
-		//TODO MMTF: this will break the order of references in the diagram
 		// do model types first
-		for (Model modelType : multiModel.getModels()) {
+		//TODO MMTF: this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
+		for (Model modelType : MultiModelTypeRegistry.getModelTypes(multiModel)) {
 			if (!(modelType instanceof ModelRel) &&
 				modelType.isDynamic() &&
 				MultiModelTypeRegistry.getExtendibleElementType(modelType.getUri()) == null
@@ -556,12 +559,11 @@ public class MMTF implements MMTFConstants {
 				addDynamicType(modelType);
 			}
 		}
-		for (Model modelType : multiModel.getModels()) {
-			if (modelType instanceof ModelRel
-				&& modelType.isDynamic() &&
-				MultiModelTypeRegistry.getExtendibleElementType(modelType.getUri()) == null
+		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {
+			if (modelRelType.isDynamic() &&
+				MultiModelTypeRegistry.getExtendibleElementType(modelRelType.getUri()) == null
 			) {
-				addDynamicType(modelType);
+				addDynamicType(modelRelType);
 			}
 		}
 	}
@@ -581,21 +583,21 @@ public class MMTF implements MMTFConstants {
 
 		// model types
 		config = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null, ROOT_MODEL_URI);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, null, ROOT_MODEL_URI);
 		while (extensionsIter.hasNext()) {
 			createModelType(extensionsIter.next());
 		}
 
 		// model relationship types
 		config = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
 		while (extensionsIter.hasNext()) {
 			createModelRelType(extensionsIter.next());
 		}
 
 		// editor types
 		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null, null);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, null, null);
 		while (extensionsIter.hasNext()) {
 			Editor editorType = createEditorType(extensionsIter.next());
 			MultiModelHeavyTypeFactory.createHeavyModelTypeEditor(editorType, editorType.getModelUri());
@@ -603,7 +605,7 @@ public class MMTF implements MMTFConstants {
 
 		// operator types
 		config = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
-		extensionsIter = MultiModelHierarchyUtils.getExtensionHierarchyIterator(config, null, null);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, null, null);
 		while (extensionsIter.hasNext()) {
 			IConfigurationElement extensionConfig = extensionsIter.next();
 			Operator newOperatorType = createOperatorType(extensionConfig);
@@ -616,26 +618,25 @@ public class MMTF implements MMTFConstants {
 		initDynamicTypes();
 
 		// type hierarchy
-		//TODO: MMTF why the table is to get the supertypes, rather than subtypes?
-		substTable = new HashMap<String, HashSet<String>>();
-		convTable = new HashMap<String, HashMap<String, List<String>>>();
-		substTableMID = new HashMap<String, HashSet<String>>();
-		convTableMID = new HashMap<String, HashMap<String, List<String>>>();
+		subtypeTable = new HashMap<String, Set<String>>();
+		conversionTable = new HashMap<String, Map<String, List<String>>>();
+		subtypeTableMID = new HashMap<String, Set<String>>();
+		conversionTableMID = new HashMap<String, Map<String, List<String>>>();
 		storeRepository();
 	}
 
-	private static void copySubstitutabilityTable(HashMap<String, HashSet<String>> srcTable, HashMap<String, HashSet<String>> tgtTable) {
+	private static void copySubtypeTable(Map<String, Set<String>> srcTable, Map<String, Set<String>> tgtTable) {
 
-		for (Map.Entry<String, HashSet<String>> entry : srcTable.entrySet()) {
-			HashSet<String> newValue = new HashSet<String>(entry.getValue());
+		for (Map.Entry<String, Set<String>> entry : srcTable.entrySet()) {
+			Set<String> newValue = new HashSet<String>(entry.getValue());
 			tgtTable.put(entry.getKey(), newValue);
 		}
 	}
 
-	private static void copyConversionTable(HashMap<String, HashMap<String, List<String>>> srcTable, HashMap<String, HashMap<String, List<String>>> tgtTable) {
+	private static void copyConversionTable(Map<String, Map<String, List<String>>> srcTable, Map<String, Map<String, List<String>>> tgtTable) {
 
-		for (Map.Entry<String, HashMap<String, List<String>>> entry : srcTable.entrySet()) {
-			HashMap<String, List<String>> newValue = new HashMap<String, List<String>>();
+		for (Map.Entry<String, Map<String, List<String>>> entry : srcTable.entrySet()) {
+			Map<String, List<String>> newValue = new HashMap<String, List<String>>();
 			for (Map.Entry<String, List<String>> nestedEntry : entry.getValue().entrySet()) {
 				List<String> newNestedValue = new ArrayList<String>(nestedEntry.getValue());
 				newValue.put(nestedEntry.getKey(), newNestedValue);
@@ -647,8 +648,8 @@ public class MMTF implements MMTFConstants {
 	public static void storeRepository() {
 
 		initTypeHierarchy();
-		copySubstitutabilityTable(substTable, substTableMID);
-		copyConversionTable(convTable, convTableMID);
+		copySubtypeTable(subtypeTable, subtypeTableMID);
+		copyConversionTable(conversionTable, conversionTableMID);
 		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
 		String uri = path + IPath.SEPARATOR + TYPE_MID_FILENAME;
 		try {
@@ -670,8 +671,8 @@ public class MMTF implements MMTFConstants {
 			Operator operator = repository.getOperators().get(i);
 			operator.setExecutable(executables.get(i));
 		}
-		copySubstitutabilityTable(substTableMID, substTable);
-		copyConversionTable(convTableMID, convTable);
+		copySubtypeTable(subtypeTableMID, subtypeTable);
+		copyConversionTable(conversionTableMID, conversionTable);
 	}
 
 	/**

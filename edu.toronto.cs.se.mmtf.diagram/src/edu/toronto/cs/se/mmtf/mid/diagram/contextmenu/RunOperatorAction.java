@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -24,7 +26,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
@@ -91,8 +93,8 @@ public class RunOperatorAction extends ContributionItem {
 		if (actualParameters.isEmpty() || actualParameters.get(0).getLevel() == MidLevel.TYPES) {
 			return;
 		}
-		EList<HashMap<Integer, EList<ConversionOperator>>> conversions = new BasicEList<HashMap<Integer, EList<ConversionOperator>>>();
-		EList<Operator> operators = MultiModelTypeRegistry.getExecutableOperators(actualParameters, conversions);
+		List<Map<Integer, List<ConversionOperator>>> conversions = new ArrayList<Map<Integer, List<ConversionOperator>>>();
+		List<Operator> operators = MultiModelTypeHierarchy.getExecutableOperators(actualParameters, conversions);
 		if (operators.isEmpty()) {
 			return;
 		}
@@ -104,7 +106,7 @@ public class RunOperatorAction extends ContributionItem {
 		cascadeItem.setMenu(operatorsMenu);
 		for (int i = 0; i < operators.size(); i++) {
 			Operator operator = operators.get(i);
-			HashMap<Integer, EList<ConversionOperator>> conversionMap = conversions.get(i);
+			Map<Integer, List<ConversionOperator>> conversionMap = conversions.get(i);
 			MenuItem operatorItem = new MenuItem(operatorsMenu, SWT.NONE);
 			String itemText = operator.getName();
 			if (operator instanceof ConversionOperator) {

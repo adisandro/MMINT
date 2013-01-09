@@ -46,7 +46,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelHierarchyUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
 /**
@@ -119,10 +118,10 @@ public class MultiModelTypeFactory {
 		}
 
 		// copy model type references
-		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MultiModelHierarchyUtils.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
+		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
 		while (modelTypeEndpointRefIter.hasNext()) {
 			ModelEndpointReference modelTypeEndpointRefSuper = modelTypeEndpointRefIter.next();
-			ModelEndpointReference modelTypeEndpointRef = MultiModelHierarchyUtils.getReference(modelTypeEndpointRefSuper.getSupertypeRef(), newModelRelType.getModelEndpointRefs());
+			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRefSuper.getSupertypeRef(), newModelRelType.getModelEndpointRefs());
 			ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(
 				newModelRelType,
 				modelTypeEndpointRef,
@@ -131,10 +130,10 @@ public class MultiModelTypeFactory {
 				false
 			);
 			// copy model element type references
-			Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelHierarchyUtils.getTypeRefHierarchyIterator(modelTypeEndpointRefSuper.getModelElemRefs());
+			Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelTypeEndpointRefSuper.getModelElemRefs());
 			while (modelElemTypeRefIter.hasNext()) {
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeRefIter.next();
-				ModelElementReference modelElemTypeRef = MultiModelHierarchyUtils.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
+				ModelElementReference modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
 				createModelElementTypeReference(
 					newModelTypeEndpointRef,
 					modelElemTypeRef,
@@ -144,10 +143,10 @@ public class MultiModelTypeFactory {
 			}
 		}
 		// copy link type references
-		Iterator<LinkReference> linkTypeRefIter = MultiModelHierarchyUtils.getTypeRefHierarchyIterator(modelRelType.getLinkRefs());
+		Iterator<LinkReference> linkTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getLinkRefs());
 		while (linkTypeRefIter.hasNext()) {
 			LinkReference linkTypeRefSuper = linkTypeRefIter.next();
-			LinkReference linkTypeRef = MultiModelHierarchyUtils.getReference(linkTypeRefSuper.getSupertypeRef(), newModelRelType.getLinkRefs());
+			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeRefSuper.getSupertypeRef(), newModelRelType.getLinkRefs());
 			LinkReference newLinkTypeRef = createLinkTypeReference(
 				newModelRelType,
 				linkTypeRef,
@@ -156,19 +155,19 @@ public class MultiModelTypeFactory {
 				false
 			);
 			// connect it to model element type references (takes care of binary too)
-			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MultiModelHierarchyUtils.getTypeRefHierarchyIterator(linkTypeRefSuper.getModelElemEndpointRefs());
+			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(linkTypeRefSuper.getModelElemEndpointRefs());
 			while (modelElemTypeEndpointRefIter.hasNext()) {
 				ModelElementEndpointReference modelElemTypeEndpointRefSuper = modelElemTypeEndpointRefIter.next();
 				ModelElementEndpointReference modelElemTypeEndpointRef = null;
 				ModelElementEndpointReference modelElemTypeEndpointRefSuper2 = modelElemTypeEndpointRefSuper.getSupertypeRef();
 				if (modelElemTypeEndpointRefSuper2 != null) {
 					LinkReference linkTypeRefSuper2 = (LinkReference) modelElemTypeEndpointRefSuper2.eContainer();
-					LinkReference linkTypeRef2 = MultiModelHierarchyUtils.getReference(linkTypeRefSuper2, newModelRelType.getLinkRefs());
-					modelElemTypeEndpointRef = MultiModelHierarchyUtils.getReference(modelElemTypeEndpointRefSuper2, linkTypeRef2.getModelElemEndpointRefs());
+					LinkReference linkTypeRef2 = MultiModelTypeHierarchy.getReference(linkTypeRefSuper2, newModelRelType.getLinkRefs());
+					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpointRefSuper2, linkTypeRef2.getModelElemEndpointRefs());
 				}
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeEndpointRefSuper.getModelElemRef();
-				ModelEndpointReference modelTypeEndpointRef = MultiModelHierarchyUtils.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newModelElemTypeRef = MultiModelHierarchyUtils.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
+				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
 				createModelElementTypeEndpointReference(newLinkTypeRef, modelElemTypeEndpointRef, modelElemTypeEndpointRefSuper.getObject(), newModelElemTypeRef, false, false);
 			}
 		}
@@ -313,7 +312,7 @@ public class MultiModelTypeFactory {
 
 		removeExtendibleElementType(multiModel, modelType.getUri());
 		multiModel.getModels().remove(modelType);
-		ArrayList<String> delOperatorTypeUris = new ArrayList<String>();
+		List<String> delOperatorTypeUris = new ArrayList<String>();
 
 		// remove model element types
 		for (ModelElement modelElementType : modelType.getElements()) {
@@ -333,17 +332,19 @@ public class MultiModelTypeFactory {
 			}
 		}
 		for (String operatorTypeUri : delOperatorTypeUris) {
-			Operator operatorType = MultiModelTypeRegistry.getOperatorType(multiModel, operatorTypeUri);
+			Operator operatorType = MultiModelRegistry.getExtendibleElement(multiModel, operatorTypeUri);
 			removeOperatorType(operatorType);
 		}
 		// remove model relationship types and endpoints that use this model type
-		ArrayList<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
-		ArrayList<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
+		List<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
+		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
 		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(modelType.getUri())) {
-					if (modelRelType instanceof BinaryModelRel && !delModelRelTypes.contains(modelRelType)) {
-						delModelRelTypes.add(modelRelType);
+					if (modelRelType instanceof BinaryModelRel) {
+						if (!delModelRelTypes.contains(modelRelType)) {
+							delModelRelTypes.add(modelRelType);
+						}
 					}
 					else {
 						delModelTypeEndpoints.add(modelTypeEndpoint);
@@ -371,8 +372,7 @@ public class MultiModelTypeFactory {
 		// delete the "thing"
 		removeModelType(multiModel, modelType);
 		// delete the subtypes of the "thing"
-		for (String modelSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, modelType)) {
-			Model modelSubtype = MultiModelRegistry.getModel(multiModel, modelSubtypeUri);
+		for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelType)) {
 			removeModelType(multiModel, modelSubtype);
 		}
 	}
@@ -401,8 +401,7 @@ public class MultiModelTypeFactory {
 		// delete the "thing"
 		removeModelRelType(multiModel, modelRelType);
 		// delete the subtypes of the "thing"
-		for (String modelRelSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, modelRelType)) {
-			ModelRel modelRelSubtype = MultiModelRegistry.getModelRel(multiModel, modelRelSubtypeUri);
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
 			removeModelRelType(multiModel, modelRelSubtype);
 		}
 	}
@@ -419,7 +418,7 @@ public class MultiModelTypeFactory {
 
 		removeExtendibleElementType(multiModel, editorType.getUri());
 		multiModel.getEditors().remove(editorType);
-		Model modelType = MultiModelRegistry.getModel(multiModel, editorType.getModelUri());
+		Model modelType = MultiModelRegistry.getExtendibleElement(multiModel, editorType.getModelUri());
 		if (modelType != null) {
 			modelType.getEditors().remove(editorType);
 		}
@@ -437,8 +436,7 @@ public class MultiModelTypeFactory {
 
 		MultiModel multiModel = (MultiModel) editorType.eContainer();
 		removeEditorType(multiModel, editorType);
-		for (String editorSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, editorType)) {
-			Editor editorSubtype = MultiModelRegistry.getEditorType(multiModel, editorSubtypeUri);
+		for (Editor editorSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, editorType)) {
 			removeEditorType(multiModel, editorSubtype);
 		}
 	}
@@ -473,8 +471,8 @@ public class MultiModelTypeFactory {
 
 		MultiModel multiModel = (MultiModel) operatorType.eContainer();
 		removeOperatorType(multiModel, operatorType.getUri());
-		for (String operatorSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, operatorType)) {
-			removeOperatorType(multiModel, operatorSubtypeUri);
+		for (Operator operatorSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, operatorType)) {
+			removeOperatorType(multiModel, operatorSubtype.getUri());
 		}
 	}
 
@@ -506,18 +504,22 @@ public class MultiModelTypeFactory {
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		// delete the "thing" and the corresponding reference
 		removeModelTypeEndpoint(modelTypeEndpoint, isFullRemove);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelHierarchyUtils.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
+		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
 		removeModelTypeEndpointReference(modelTypeEndpointRef, isFullRemove);
 		// delete references of the "thing" in subtypes of the container
-		for (String modelRelSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, modelRelType)) {
-			ModelRel modelRelSubtype = MultiModelRegistry.getModelRel(multiModel, modelRelSubtypeUri);
-			ModelEndpointReference modelSubtypeEndpointRef = MultiModelHierarchyUtils.getReference(modelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
+			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
 			removeModelTypeEndpointReference(modelSubtypeEndpointRef, isFullRemove);
 		}
 	}
 
 	private static void removeLinkType(ModelRel modelRelType, Link linkType) {
 
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+		removeExtendibleElementType(multiModel, linkType.getUri());
+		for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
+			removeModelElementTypeEndpoint(modelElemTypeEndpoint, false);
+		}
 		modelRelType.getLinks().remove(linkType);
 	}
 
@@ -531,14 +533,12 @@ public class MultiModelTypeFactory {
 
 	private static void removeLinkTypeAndLinkTypeReference(ModelRel modelRelType, LinkReference linkTypeRef) {
 
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-		Link linkType = (Link) removeExtendibleElementType(multiModel, linkTypeRef.getUri());
-		removeLinkType(modelRelType, linkType);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+		removeLinkType(modelRelType, linkTypeRef.getObject());
 		removeLinkTypeReference(modelRelType, linkTypeRef);
 		// delete references of the "thing" in subtypes of the container
-		for (String modelRelSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, modelRelType)) {
-			ModelRel modelRelSubtype = MultiModelRegistry.getModelRel(multiModel, modelRelSubtypeUri);
-			LinkReference linkSubtypeRef = MultiModelHierarchyUtils.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
+			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
 			removeLinkTypeReference(modelRelSubtype, linkSubtypeRef);
 		}
 	}
@@ -546,14 +546,13 @@ public class MultiModelTypeFactory {
 	public static void removeLinkTypeAndLinkTypeReference(LinkReference linkTypeRef) {
 
 		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 		// delete the "thing" and the corresponding reference
 		removeLinkTypeAndLinkTypeReference(modelRelType, linkTypeRef);
 		// delete the subtypes of the "thing"
-		for (String linkSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, linkTypeRef.getObject())) {
-			Link linkSubtype = MultiModelTypeRegistry.getLinkType(multiModel, linkSubtypeUri);
+		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, linkTypeRef.getObject())) {
 			ModelRel modelRelTypeOrSubtype = (ModelRel) linkSubtype.eContainer();
-			LinkReference linkSubtypeRef = MultiModelHierarchyUtils.getReference(linkSubtype.getUri(), modelRelTypeOrSubtype.getLinkRefs());
+			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkSubtype.getUri(), modelRelTypeOrSubtype.getLinkRefs());
 			removeLinkTypeAndLinkTypeReference(modelRelTypeOrSubtype, linkSubtypeRef);
 		}
 	}
@@ -567,26 +566,27 @@ public class MultiModelTypeFactory {
 
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) modelElemTypeRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-		List<BinaryLinkReference> linkTypeRefsToDelete = new ArrayList<BinaryLinkReference>();
+		List<BinaryLinkReference> delLinkTypeRefs = new ArrayList<BinaryLinkReference>();
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemTypeRef.getModelElemEndpointRefs()) {
 			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
 			if (linkTypeRef instanceof BinaryLinkReference) {
 				// avoid iterating over the list
-				linkTypeRefsToDelete.add((BinaryLinkReference) linkTypeRef);
+				if (!delLinkTypeRefs.contains(linkTypeRef)) {
+					delLinkTypeRefs.add((BinaryLinkReference) linkTypeRef);
+				}
 			}
 			else {
 				removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
 			}
 		}
-		for (BinaryLinkReference linkTypeRef : linkTypeRefsToDelete) {
+		for (BinaryLinkReference linkTypeRef : delLinkTypeRefs) {
 			removeLinkTypeAndLinkTypeReference(linkTypeRef);
 		}
 		removeModelElementTypeReference(modelTypeEndpointRef, modelElemTypeRef);
 		// delete references of the "thing" in subtypes of the container
-		for (String modelRelSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, modelRelType)) {
-			ModelRel modelRelSubtype = MultiModelRegistry.getModelRel(multiModel, modelRelSubtypeUri);
-			ModelEndpointReference modelSubtypeEndpointRef = MultiModelHierarchyUtils.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelElementReference modelElemSubtypeRef = MultiModelHierarchyUtils.getReference(modelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
+			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelElementReference modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
 			if (modelElemSubtypeRef.getModelElemEndpointRefs().size() == 0) {
 				removeModelElementTypeReference(modelSubtypeEndpointRef, modelElemSubtypeRef);
 			}
@@ -612,11 +612,10 @@ public class MultiModelTypeFactory {
 		// don't delete the subtypes of the "thing", the model element is not deleted from its metamodel
 	}
 
-	private static void removeModelElementTypeEndpoint(ModelElementEndpointReference modelElemTypeEndpointRef, boolean isFullRemove) {
+	private static void removeModelElementTypeEndpoint(ModelElementEndpoint modelElemTypeEndpoint, boolean isFullRemove) {
 
-		ModelElementEndpoint modelElemTypeEndpoint = modelElemTypeEndpointRef.getObject();
 		Link linkType = (Link) modelElemTypeEndpoint.eContainer();
-		MultiModel multiModel = (MultiModel) linkType.eContainer().eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(linkType);
 		removeExtendibleElementType(multiModel, modelElemTypeEndpoint.getUri());
 		if (isFullRemove) {
 			linkType.getModelElemEndpoints().remove(modelElemTypeEndpoint);
@@ -645,19 +644,17 @@ public class MultiModelTypeFactory {
 		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		// delete the "thing" and the corresponding reference
-		removeModelElementTypeEndpoint(modelElemTypeEndpointRef, isFullRemove);
+		removeModelElementTypeEndpoint(modelElemTypeEndpointRef.getObject(), isFullRemove);
 		removeModelElementTypeEndpointReference(linkTypeRef.getObject(), modelElemTypeEndpointRef, isFullRemove);
 		removeModelElementTypeEndpointReference(modelElemTypeEndpointRef, isFullRemove);
 		// delete references of the "thing" in subtypes of the container's container
-		for (String modelRelSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, modelRelType)) {
-			ModelRel modelRelSubtype = MultiModelRegistry.getModelRel(multiModel, modelRelSubtypeUri);
-			LinkReference linkSubtypeRef = MultiModelHierarchyUtils.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
-			ModelElementEndpointReference modelElemSubtypeEndpointRef = MultiModelHierarchyUtils.getReference(modelElemTypeEndpointRef, linkSubtypeRef.getModelElemEndpointRefs());
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
+			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
+			ModelElementEndpointReference modelElemSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpointRef, linkSubtypeRef.getModelElemEndpointRefs());
 			removeModelElementTypeEndpointReference(modelElemSubtypeEndpointRef, isFullRemove);
 		}
 		// delete references of the "thing" in subtypes of the container
-		for (String linkSubtypeUri : MultiModelTypeRegistry.getSubtypeUris(multiModel, linkTypeRef.getObject())) {
-			Link linkSubtype = MultiModelTypeRegistry.getLinkType(multiModel, linkSubtypeUri);
+		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, linkTypeRef.getObject())) {
 			removeModelElementTypeEndpointReference(linkSubtype, modelElemTypeEndpointRef, isFullRemove);
 		}
 	}

@@ -26,11 +26,9 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkReferenceChangeModelElementReferenceCommand;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkReferenceDelCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.BinaryLinkReferenceNewBinaryLinkCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkReferenceAddModelElementEndpointReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkReferenceChangeModelElementEndpointReferenceCommand;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.LinkReferenceRemoveModelElementEndpointReferenceCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ModelElementReferenceDelCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ExtendibleElementReferenceSupertypeRefEditPart;
@@ -59,16 +57,10 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelElementEndpointReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
-				cmd.add(new LinkReferenceRemoveModelElementEndpointReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
-				cmd.add(new BinaryLinkReferenceDelCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -80,9 +72,6 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 				continue;
 			}
 			if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
-				cmd.add(new BinaryLinkReferenceDelCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}

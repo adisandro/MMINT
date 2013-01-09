@@ -81,14 +81,11 @@ public class ValidateAction extends ContributionItem {
 			return;
 		}
 
-		// get OCL constraint
-		String oclConstraint = model.getMetatype().getConstraint().getBody();
-
 		// create dynamic menu
 		MenuItem validateItem = new MenuItem(menu, SWT.NONE, index);
 		validateItem.setText("Validate");
 		validateItem.addSelectionListener(
-			new ValidateListener(model, editPart, oclConstraint)
+			new ValidateListener(model, editPart)
 		);
 	}
 

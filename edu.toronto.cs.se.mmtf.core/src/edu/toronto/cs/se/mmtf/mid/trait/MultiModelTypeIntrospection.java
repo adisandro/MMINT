@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
@@ -46,7 +47,100 @@ import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
  */
 public class MultiModelTypeIntrospection implements MMTFConstants {
 
-	private static List<ExtendibleElement> getRuntimeTypes(Model model) {
+	private static <T extends ExtendibleElement> boolean validateType(T elementType, T element) {
+
+		boolean validates = false;
+
+		if (element instanceof Model) {
+			if (elementType instanceof ModelRel) { // checking against root model rel
+				return validates;
+			}
+			Model modelType = (Model) elementType;
+			validates = MultiModelConstraintChecker.checkConstraint(element, modelType.getConstraint());
+
+			if (element instanceof ModelRel) {
+				//TODO MMTF: do additional structure checks
+			}
+		}
+
+		return validates;
+	}
+
+	private static <T extends ExtendibleElement> List<T> filterSubtypes(T element, T currentElementType, List<T> elementSubtypes, boolean isRoot) {
+
+		List<T> filteredElementSubtypes = new ArrayList<T>();
+
+		// only direct subtypes
+		for (T elementSubtype : elementSubtypes) {
+			if (elementSubtype.getSupertype().getUri().equals(currentElementType.getUri())) {
+				filteredElementSubtypes.add(elementSubtype);
+			}
+		}
+
+		if (currentElementType instanceof ModelRel) { // explore all subtrees
+			return filteredElementSubtypes;
+		}
+		if (currentElementType instanceof Model) {
+			if (!isRoot) { // once in a subtree, explore it all
+				return filteredElementSubtypes;
+			}
+			// explore just the metamodel subtree
+			List<T> metamodelSubtypes = new ArrayList<T>();
+			String metamodelUri = getRoot((Model) element).eClass().getEPackage().getNsURI();
+			for (T filteredElementSubtype : filteredElementSubtypes) {
+				if (
+					metamodelUri.equals(filteredElementSubtype.getUri()) ||
+					MultiModelTypeHierarchy.isSubtypeOf(metamodelUri, filteredElementSubtype.getUri())
+				) {
+					metamodelSubtypes.add(filteredElementSubtype);
+					break;
+				}
+			}
+			return metamodelSubtypes;
+		}
+
+		return filteredElementSubtypes;
+	}
+
+	private static <T extends ExtendibleElement> boolean getRuntimeTypes(T element, T currentElementType, List<T> runtimeTypes) {
+
+		// first check: validation
+		if (!validateType(currentElementType, element)) {
+			return false;
+		}
+
+		boolean isRoot = currentElementType.getUri().equals(MultiModelTypeRegistry.getRootTypeUri(currentElementType));
+		List<T> elementSubtypes = filterSubtypes(element, currentElementType, MultiModelTypeHierarchy.getSubtypes(currentElementType), isRoot);
+		// second check: has subtypes
+		if (elementSubtypes.isEmpty()) {
+			runtimeTypes.add(currentElementType);
+		}
+		// third check: recurse for each subtype
+		else {
+			boolean existsValidSubtype = false;
+			for (T elementSubtype : elementSubtypes) {
+				existsValidSubtype |= getRuntimeTypes(element, elementSubtype, runtimeTypes);
+			}
+			if (isRoot || !existsValidSubtype) {
+				runtimeTypes.add(currentElementType);
+			}
+		}
+
+		return true;
+	}
+
+	//TODO MMTF: the root is not needed for operator invocation and specilization (if we don't want to downcast to it)
+	public static <T extends ExtendibleElement> List<T> getRuntimeTypes(T element) {
+
+		List<T> elementTypes = new ArrayList<T>();
+		// add root
+		T rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(element));
+		getRuntimeTypes(element, rootType, elementTypes);
+
+		return elementTypes;
+	}
+
+	private static List<ExtendibleElement> getRuntimeTypesOldModel(Model model) {
 
 		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
@@ -56,7 +150,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		if (staticModelTypeUri == null) {
 			// this means getRuntimeTypes itself is used to set the initial static metatype
 			staticModelTypeUri = getRoot(model).eClass().getEPackage().getNsURI();
-			staticModelType = MultiModelTypeRegistry.getModelType(staticModelTypeUri);
+			staticModelType = MultiModelTypeRegistry.getExtendibleElementType(staticModelTypeUri);
 		}
 		else {
 			staticModelType = model.getMetatype();
@@ -65,7 +159,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		// fallback to root type
 		if (staticModelType == null) {
 			staticModelTypeUri = ROOT_MODEL_URI;
-			staticModelType = MultiModelTypeRegistry.getModelType(ROOT_MODEL_URI);
+			staticModelType = MultiModelTypeRegistry.getExtendibleElementType(ROOT_MODEL_URI);
 		}
 
 		// init
@@ -79,8 +173,8 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 			}
 
 			// light model subtype
-			if (lightModelSubtype.getConstraint() != null && MultiModelTypeRegistry.isSubtypeOf(lightModelSubtype.getUri(), staticModelTypeUri)) {
-				if (MultiModelConstraintChecker.checkOCLConstraint(model, lightModelSubtype.getConstraint().getBody())) {
+			if (lightModelSubtype.getConstraint() != null && MultiModelTypeHierarchy.isSubtypeOf(lightModelSubtype.getUri(), staticModelTypeUri)) {
+				if (MultiModelConstraintChecker.checkConstraint(model, lightModelSubtype.getConstraint())) {
 					types.add(lightModelSubtype);
 				}
 			}
@@ -89,7 +183,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return types;
 	}
 
-	private static List<ExtendibleElement> getRuntimeTypes(ModelRel modelRel) {
+	private static List<ExtendibleElement> getRuntimeTypesOldModelRel(ModelRel modelRel) {
 
 		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
@@ -107,7 +201,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		// fallback to root type
 		if (staticModelRelType == null) {
 			staticModelRelTypeUri = ROOT_MODELREL_URI;
-			staticModelRelType = MultiModelTypeRegistry.getModelRelType(ROOT_MODELREL_URI);
+			staticModelRelType = MultiModelTypeRegistry.getExtendibleElementType(ROOT_MODELREL_URI);
 		}
 
 		// init
@@ -266,8 +360,8 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		types.add(MultiModelTypeRegistry.getExtendibleElementType(
-			MultiModelTypeRegistry.getRootTypeUri(modelEndpoint))
-		);
+			MultiModelTypeRegistry.getRootTypeUri(modelEndpoint)
+		));
 
 		return types;
 	}
@@ -277,23 +371,23 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		List<ExtendibleElement> types = new ArrayList<ExtendibleElement>();
 
 		types.add(MultiModelTypeRegistry.getExtendibleElementType(
-			MultiModelTypeRegistry.getRootTypeUri(modelElemEndpoint))
-		);
+			MultiModelTypeRegistry.getRootTypeUri(modelElemEndpoint)
+		));
 
 		return types;
 	}
 
-	public static List<ExtendibleElement> getRuntimeTypes(ExtendibleElement element) {
+	public static List<ExtendibleElement> getRuntimeTypesOld(ExtendibleElement element) {
 
 		if (element.getLevel() == MidLevel.TYPES) {
 			return null;
 		}
 
 		if (element instanceof ModelRel) {
-			return getRuntimeTypes((ModelRel) element);
+			return getRuntimeTypesOldModelRel((ModelRel) element);
 		}
 		if (element instanceof Model) {
-			return getRuntimeTypes((Model) element);
+			return getRuntimeTypesOldModel((Model) element);
 		}
 		if (element instanceof ModelEndpoint) {
 			return getRuntimeTypes((ModelEndpoint) element);
