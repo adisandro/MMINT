@@ -27,6 +27,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/dependencies"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/composite"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/contributionsAsContributor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/fullySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/partiallySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/unknown"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/conflict"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/partiallyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/fullyDenied"/>
     </genClasses>
     <genClasses ecoreClass="istar_mavo.ecore#//Task">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Task/components"/>

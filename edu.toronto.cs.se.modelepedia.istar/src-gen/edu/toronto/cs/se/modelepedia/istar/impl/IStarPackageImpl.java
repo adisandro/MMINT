@@ -309,6 +309,60 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getIntentionalElement_FullySatisfied() {
+		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntentionalElement_PartiallySatisfied() {
+		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntentionalElement_Unknown() {
+		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntentionalElement_Conflict() {
+		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntentionalElement_PartiallyDenied() {
+		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntentionalElement_FullyDenied() {
+		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTask() {
 		return taskEClass;
 	}
@@ -494,6 +548,12 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__DEPENDENCIES);
 		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__COMPOSITE);
 		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR);
+		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__FULLY_SATISFIED);
+		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED);
+		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__UNKNOWN);
+		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__CONFLICT);
+		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__PARTIALLY_DENIED);
+		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__FULLY_DENIED);
 
 		taskEClass = createEClass(TASK);
 		createEReference(taskEClass, TASK__END);
@@ -572,6 +632,12 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		initEReference(getIntentionalElement_Dependencies(), this.getDependency(), this.getDependency_Dependum(), "dependencies", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntentionalElement_Composite(), this.getTask(), this.getTask_Components(), "composite", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntentionalElement_ContributionsAsContributor(), this.getContribution(), this.getContribution_Contributor(), "contributionsAsContributor", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntentionalElement_FullySatisfied(), ecorePackage.getEBoolean(), "fullySatisfied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntentionalElement_PartiallySatisfied(), ecorePackage.getEBoolean(), "partiallySatisfied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntentionalElement_Unknown(), ecorePackage.getEBoolean(), "unknown", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntentionalElement_Conflict(), ecorePackage.getEBoolean(), "conflict", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntentionalElement_PartiallyDenied(), ecorePackage.getEBoolean(), "partiallyDenied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntentionalElement_FullyDenied(), ecorePackage.getEBoolean(), "fullyDenied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTask_End(), this.getGoal(), this.getGoal_Means(), "end", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

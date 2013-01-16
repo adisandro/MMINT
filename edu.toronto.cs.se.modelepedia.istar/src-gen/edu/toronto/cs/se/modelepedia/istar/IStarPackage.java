@@ -368,13 +368,67 @@ public interface IStarPackage extends EPackage {
 	int INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTIONAL_ELEMENT__FULLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTIONAL_ELEMENT__UNKNOWN = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTIONAL_ELEMENT__CONFLICT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTIONAL_ELEMENT__PARTIALLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTIONAL_ELEMENT__FULLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Intentional Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 3;
+	int INTENTIONAL_ELEMENT_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Intentional Element</em>' class.
@@ -448,6 +502,60 @@ public interface IStarPackage extends EPackage {
 	 * @ordered
 	 */
 	int TASK__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+
+	/**
+	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+
+	/**
+	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+
+	/**
+	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>End</b></em>' reference.
@@ -550,6 +658,60 @@ public interface IStarPackage extends EPackage {
 	int RESOURCE__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
 
 	/**
+	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+
+	/**
+	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+
+	/**
+	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+
+	/**
+	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+
+	/**
 	 * The number of structural features of the '<em>Resource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -630,6 +792,60 @@ public interface IStarPackage extends EPackage {
 	 * @ordered
 	 */
 	int GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+
+	/**
+	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+
+	/**
+	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+
+	/**
+	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Means</b></em>' reference list.
@@ -721,6 +937,60 @@ public interface IStarPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR = GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__FULLY_SATISFIED = GOAL__FULLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__PARTIALLY_SATISFIED = GOAL__PARTIALLY_SATISFIED;
+
+	/**
+	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__UNKNOWN = GOAL__UNKNOWN;
+
+	/**
+	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__CONFLICT = GOAL__CONFLICT;
+
+	/**
+	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__PARTIALLY_DENIED = GOAL__PARTIALLY_DENIED;
+
+	/**
+	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__FULLY_DENIED = GOAL__FULLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Means</b></em>' reference list.
@@ -974,6 +1244,72 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIntentionalElement_ContributionsAsContributor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullySatisfied <em>Fully Satisfied</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fully Satisfied</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullySatisfied()
+	 * @see #getIntentionalElement()
+	 * @generated
+	 */
+	EAttribute getIntentionalElement_FullySatisfied();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallySatisfied <em>Partially Satisfied</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Partially Satisfied</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallySatisfied()
+	 * @see #getIntentionalElement()
+	 * @generated
+	 */
+	EAttribute getIntentionalElement_PartiallySatisfied();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isUnknown <em>Unknown</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unknown</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isUnknown()
+	 * @see #getIntentionalElement()
+	 * @generated
+	 */
+	EAttribute getIntentionalElement_Unknown();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isConflict <em>Conflict</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Conflict</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isConflict()
+	 * @see #getIntentionalElement()
+	 * @generated
+	 */
+	EAttribute getIntentionalElement_Conflict();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallyDenied <em>Partially Denied</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Partially Denied</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallyDenied()
+	 * @see #getIntentionalElement()
+	 * @generated
+	 */
+	EAttribute getIntentionalElement_PartiallyDenied();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullyDenied <em>Fully Denied</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fully Denied</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullyDenied()
+	 * @see #getIntentionalElement()
+	 * @generated
+	 */
+	EAttribute getIntentionalElement_FullyDenied();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Task <em>Task</em>}'.
@@ -1295,6 +1631,54 @@ public interface IStarPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR = eINSTANCE.getIntentionalElement_ContributionsAsContributor();
+
+		/**
+		 * The meta object literal for the '<em><b>Fully Satisfied</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTIONAL_ELEMENT__FULLY_SATISFIED = eINSTANCE.getIntentionalElement_FullySatisfied();
+
+		/**
+		 * The meta object literal for the '<em><b>Partially Satisfied</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED = eINSTANCE.getIntentionalElement_PartiallySatisfied();
+
+		/**
+		 * The meta object literal for the '<em><b>Unknown</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTIONAL_ELEMENT__UNKNOWN = eINSTANCE.getIntentionalElement_Unknown();
+
+		/**
+		 * The meta object literal for the '<em><b>Conflict</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTIONAL_ELEMENT__CONFLICT = eINSTANCE.getIntentionalElement_Conflict();
+
+		/**
+		 * The meta object literal for the '<em><b>Partially Denied</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTIONAL_ELEMENT__PARTIALLY_DENIED = eINSTANCE.getIntentionalElement_PartiallyDenied();
+
+		/**
+		 * The meta object literal for the '<em><b>Fully Denied</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTIONAL_ELEMENT__FULLY_DENIED = eINSTANCE.getIntentionalElement_FullyDenied();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.TaskImpl <em>Task</em>}' class.

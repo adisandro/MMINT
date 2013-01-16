@@ -71,4 +71,11 @@ Famelis, Rick Salay, Vivien Suen. All rights reserved.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.istar_mavo.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

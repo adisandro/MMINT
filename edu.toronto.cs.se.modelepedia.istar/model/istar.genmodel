@@ -26,6 +26,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/dependencies"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/composite"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/contributionsAsContributor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/fullySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/partiallySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/unknown"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/conflict"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/partiallyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/fullyDenied"/>
     </genClasses>
     <genClasses ecoreClass="istar.ecore#//Task">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Task/end"/>
