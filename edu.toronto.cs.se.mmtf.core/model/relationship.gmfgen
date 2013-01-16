@@ -972,7 +972,7 @@
       iD="edu.toronto.cs.se.mmtf.relationship.diagram"
       name="Relationship Diagram Type"
       provider="Software Engineering Group, University of Toronto"
-      version="1.0.0">
+      version="1.0.1">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
