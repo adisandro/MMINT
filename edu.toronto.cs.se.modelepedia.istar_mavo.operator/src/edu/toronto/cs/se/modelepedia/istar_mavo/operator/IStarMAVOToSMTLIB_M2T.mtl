@@ -13,11 +13,14 @@
 [component.src.name.replaceAll(' ', '')/]2[component.tgt.name.replaceAll(' ', '')/]
 [/template]
 
-[comment l'ie contiene già tutto, basta usare il suo ocl type/nome upper e lower case -> farlo anche per le funzioni sottostanti /]
-[template private encodeInitialAnalysis(ie : IntentionalElement, sort : String, fun : String, name : String)]
-;[name/] initial analysis tag
-(assert (forall ((c [sort/])) (=>
-	([fun/] [name/] c)
+[template private contributionName(contribution : Contribution)]
+[contribution.contributor.name.replaceAll(' ', '')/]2[contribution.contributee.name.replaceAll(' ', '')/]
+[/template]
+
+[template private encodeInitialAnalysis(ie : IntentionalElement)]
+;[ie.name.replaceAll(' ', '')/] initial analysis tag
+(assert (forall ((c [ie.eClass().name/]Concretization)) (=>
+	([ie.eClass().name.toLower()/] [ie.name.replaceAll(' ', '')/] c)
 [if (ie.fullySatisfied or ie.partiallySatisfied or ie.unknown or ie.conflict or ie.partiallyDenied or ie.fullyDenied)]
 	(and
 	[if (ie.fullySatisfied)]
@@ -58,19 +61,22 @@
 )))
 [/template]
 
-[template private encodeMetamodelType(sort : String, fun : String, name : String, const : String)]
-;[name/] type
+[template private encodeMetamodelConstant(sort : String, fun : String, name : String, funConst : String, const : String)]
+;[name/] [funConst/] constant
 (assert (forall ((c [sort/])) (=>
 	([fun/] [name/] c)
-	(= (decompositionType c) [const/])
+	(= ([funConst/] c) [const/])
 )))
 [/template]
 
-[template private encodeMetamodelConstraint(sort : String, fun : String, funOverload : String, name : String, funSrc : String, nameSrc : String, funTgt : String, nameTgt : String)]
+[template private encodeMetamodelConstraint(sort : String, fun : String, name : String, funSrc : String, funOverloadSrc : String, nameSrc : String, funTgt : String, funOverloadTgt : String, nameTgt : String)]
 ;[name/] src and tgt
 (assert (forall ((c [sort/])) (=>
 	([fun/] [name/] c)
-	(and ([funSrc/] [nameSrc/] ([fun/]Src c)) ([funTgt/] [nameTgt/] ([if (funOverload.oclIsUndefined())][fun/]Tgt[else](as [fun/]Tgt ([funOverload/]))[/if] c)))
+	(and
+		([funSrc/] [nameSrc/] ([if (funOverloadSrc.oclIsUndefined())]src[else](as src ([funOverloadSrc/]))[/if] c))
+		([funTgt/] [nameTgt/] ([if (funOverloadTgt.oclIsUndefined())]tgt[else](as tgt ([funOverloadTgt/]))[/if] c))
+	)
 )))
 [/template]
 
@@ -96,19 +102,29 @@
 [/template]
 
 [template private encodeConstants(istar : IStar)]
-;Decomposition Types
-(declare-const DECOMPOSITION_TASK Int)
-(declare-const DECOMPOSITION_GOAL Int)
-(declare-const DECOMPOSITION_SOFTGOAL Int)
-(assert (= DECOMPOSITION_TASK 1))
-(assert (= DECOMPOSITION_GOAL 2))
-(assert (= DECOMPOSITION_SOFTGOAL 3))
+;Endpoint Types
+(declare-const ENDPOINT_TASK Int)
+(declare-const ENDPOINT_GOAL Int)
+(declare-const ENDPOINT_SOFTGOAL Int)
+(assert (= ENDPOINT_TASK 1))
+(assert (= ENDPOINT_GOAL 2))
+(assert (= ENDPOINT_SOFTGOAL 3))
 
 ;Contribution Types
-(declare-const UNKNOWN Int)
-(declare-const HELP Int)
-(assert (= UNKNOWN 4))
-(assert (= HELP 5))
+(declare-const CONTRIBUTION_MAKE Int)
+(declare-const CONTRIBUTION_HELP Int)
+(declare-const CONTRIBUTION_SOMEPLUS Int)
+(declare-const CONTRIBUTION_BREAK Int)
+(declare-const CONTRIBUTION_HURT Int)
+(declare-const CONTRIBUTION_SOMEMINUS Int)
+(declare-const CONTRIBUTION_UNKNOWN Int)
+(assert (= CONTRIBUTION_MAKE 11))
+(assert (= CONTRIBUTION_HELP 12))
+(assert (= CONTRIBUTION_SOMEPLUS 13))
+(assert (= CONTRIBUTION_BREAK 14))
+(assert (= CONTRIBUTION_HURT 15))
+(assert (= CONTRIBUTION_SOMEMINUS 16))
+(assert (= CONTRIBUTION_UNKNOWN 17))
 [/template]
 
 [template private encodeModel(istar : IStar)]
@@ -153,6 +169,15 @@
 		[/for]
 	[/for]
 )))
+(declare-datatypes () ((Contribution
+	[for (actor : Actor | istar.actors)]
+		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
+			[for (contribution : Contribution | softgoal.oclAsType(SoftGoal).contributionsAsContributee)]
+	[contributionName(contribution)/]
+			[/for]
+		[/for]
+	[/for]
+)))
 
 ;Concretizations
 (declare-sort TaskConcretization)
@@ -160,18 +185,26 @@
 (declare-sort SoftGoalConcretization)
 (declare-sort MeansEndConcretization)
 (declare-sort DecompositionConcretization)
+(declare-sort ContributionConcretization)
 (declare-fun task (Task TaskConcretization) Bool)
 (declare-fun goal (Goal GoalConcretization) Bool)
 (declare-fun softgoal (SoftGoal SoftGoalConcretization) Bool)
 (declare-fun meansend (MeansEnd MeansEndConcretization) Bool)
-(declare-fun meansendSrc (MeansEndConcretization) TaskConcretization)
-(declare-fun meansendTgt (MeansEndConcretization) GoalConcretization)
+(declare-fun src (MeansEndConcretization) TaskConcretization)
+(declare-fun tgt (MeansEndConcretization) GoalConcretization)
 (declare-fun decomposition (Decomposition DecompositionConcretization) Bool)
-(declare-fun decompositionType (DecompositionConcretization) Int)
-(declare-fun decompositionSrc (DecompositionConcretization) TaskConcretization)
-(declare-fun decompositionTgt (DecompositionConcretization) TaskConcretization)
-(declare-fun decompositionTgt (DecompositionConcretization) GoalConcretization)
-(declare-fun decompositionTgt (DecompositionConcretization) SoftGoalConcretization)
+(declare-fun endpoint (DecompositionConcretization) Int)
+(declare-fun src (DecompositionConcretization) TaskConcretization)
+(declare-fun tgt (DecompositionConcretization) TaskConcretization)
+(declare-fun tgt (DecompositionConcretization) GoalConcretization)
+(declare-fun tgt (DecompositionConcretization) SoftGoalConcretization)
+(declare-fun contribution (Contribution ContributionConcretization) Bool)
+(declare-fun endpoint (ContributionConcretization) Int)
+(declare-fun type (ContributionConcretization) Int)
+(declare-fun src (ContributionConcretization) TaskConcretization)
+(declare-fun src (ContributionConcretization) GoalConcretization)
+(declare-fun src (ContributionConcretization) SoftGoalConcretization)
+(declare-fun tgt (ContributionConcretization) SoftGoalConcretization)
 [/template]
 
 [template private encodeAnalysis(istar : IStar)]
@@ -180,105 +213,273 @@
 (declare-fun inited (TaskConcretization) Bool)
 (declare-fun inited (GoalConcretization) Bool)
 (declare-fun inited (SoftGoalConcretization) Bool)
+(declare-fun fsEndpoint (MeansEndConcretization) Bool)
+(declare-fun fsEndpoint (DecompositionConcretization) Bool)
+(declare-fun fsEndpoint (ContributionConcretization) Bool)
+(declare-fun psEndpoint (MeansEndConcretization) Bool)
+(declare-fun psEndpoint (DecompositionConcretization) Bool)
+(declare-fun psEndpoint (ContributionConcretization) Bool)
+(declare-fun unEndpoint (MeansEndConcretization) Bool)
+(declare-fun unEndpoint (DecompositionConcretization) Bool)
+(declare-fun unEndpoint (ContributionConcretization) Bool)
+(declare-fun coEndpoint (MeansEndConcretization) Bool)
+(declare-fun coEndpoint (DecompositionConcretization) Bool)
+(declare-fun coEndpoint (ContributionConcretization) Bool)
+(declare-fun pdEndpoint (MeansEndConcretization) Bool)
+(declare-fun pdEndpoint (DecompositionConcretization) Bool)
+(declare-fun pdEndpoint (ContributionConcretization) Bool)
+(declare-fun fdEndpoint (MeansEndConcretization) Bool)
+(declare-fun fdEndpoint (DecompositionConcretization) Bool)
+(declare-fun fdEndpoint (ContributionConcretization) Bool)
 (declare-fun fs (TaskConcretization) Bool)
 (declare-fun fs (GoalConcretization) Bool)
 (declare-fun fs (SoftGoalConcretization) Bool)
 (declare-fun fs (MeansEndConcretization) Bool)
 (declare-fun fs (DecompositionConcretization) Bool)
+(declare-fun fs (ContributionConcretization) Bool)
 (declare-fun ps (TaskConcretization) Bool)
 (declare-fun ps (GoalConcretization) Bool)
 (declare-fun ps (SoftGoalConcretization) Bool)
 (declare-fun ps (MeansEndConcretization) Bool)
 (declare-fun ps (DecompositionConcretization) Bool)
+(declare-fun ps (ContributionConcretization) Bool)
 (declare-fun un (TaskConcretization) Bool)
 (declare-fun un (GoalConcretization) Bool)
 (declare-fun un (SoftGoalConcretization) Bool)
 (declare-fun un (MeansEndConcretization) Bool)
 (declare-fun un (DecompositionConcretization) Bool)
+(declare-fun un (ContributionConcretization) Bool)
 (declare-fun co (TaskConcretization) Bool)
 (declare-fun co (GoalConcretization) Bool)
 (declare-fun co (SoftGoalConcretization) Bool)
 (declare-fun co (MeansEndConcretization) Bool)
 (declare-fun co (DecompositionConcretization) Bool)
+(declare-fun co (ContributionConcretization) Bool)
 (declare-fun pd (TaskConcretization) Bool)
 (declare-fun pd (GoalConcretization) Bool)
 (declare-fun pd (SoftGoalConcretization) Bool)
 (declare-fun pd (MeansEndConcretization) Bool)
 (declare-fun pd (DecompositionConcretization) Bool)
+(declare-fun pd (ContributionConcretization) Bool)
 (declare-fun fd (TaskConcretization) Bool)
 (declare-fun fd (GoalConcretization) Bool)
 (declare-fun fd (SoftGoalConcretization) Bool)
 (declare-fun fd (MeansEndConcretization) Bool)
 (declare-fun fd (DecompositionConcretization) Bool)
-(assert (forall ((mec MeansEndConcretization)) (= (fs mec)
-	(fs (meansendSrc mec))
-)))
-(assert (forall ((mec MeansEndConcretization)) (= (ps mec)
-	(ps (meansendSrc mec))
-)))
-(assert (forall ((mec MeansEndConcretization)) (= (un mec)
-	(un (meansendSrc mec))
-)))
-(assert (forall ((mec MeansEndConcretization)) (= (co mec)
-	(co (meansendSrc mec))
-)))
-(assert (forall ((mec MeansEndConcretization)) (= (pd mec)
-	(pd (meansendSrc mec))
-)))
-(assert (forall ((mec MeansEndConcretization)) (= (fd mec)
-	(fd (meansendSrc mec))
-)))
-(assert (forall ((dc DecompositionConcretization)) (= (fs dc)
-	(ite (= (decompositionType dc) DECOMPOSITION_TASK)
-		(fs ((as decompositionTgt (TaskConcretization)) dc))
-		(ite (= (decompositionType dc) DECOMPOSITION_GOAL)
-			(fs ((as decompositionTgt (GoalConcretization)) dc))
-			(fs ((as decompositionTgt (SoftGoalConcretization)) dc))
+(declare-fun fd (ContributionConcretization) Bool)
+(assert (forall ((mec MeansEndConcretization)) (= (fsEndpoint mec) (fs (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (psEndpoint mec) (ps (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (unEndpoint mec) (un (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (coEndpoint mec) (co (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (pdEndpoint mec) (pd (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (fdEndpoint mec) (fd (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (fs mec) (fsEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (ps mec) (psEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (un mec) (unEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (co mec) (coEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (pd mec) (pdEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (fd mec) (fdEndpoint mec))))
+(assert (forall ((dc DecompositionConcretization)) (= (fsEndpoint dc)
+	(ite (= (endpoint dc) ENDPOINT_TASK)
+		(fs ((as tgt (TaskConcretization)) dc))
+		(ite (= (endpoint dc) ENDPOINT_GOAL)
+			(fs ((as tgt (GoalConcretization)) dc))
+			(fs ((as tgt (SoftGoalConcretization)) dc))
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (ps dc)
-	(ite (= (decompositionType dc) DECOMPOSITION_TASK)
-		(ps ((as decompositionTgt (TaskConcretization)) dc))
-		(ite (= (decompositionType dc) DECOMPOSITION_GOAL)
-			(ps ((as decompositionTgt (GoalConcretization)) dc))
-			(ps ((as decompositionTgt (SoftGoalConcretization)) dc))
+(assert (forall ((dc DecompositionConcretization)) (= (psEndpoint dc)
+	(ite (= (endpoint dc) ENDPOINT_TASK)
+		(ps ((as tgt (TaskConcretization)) dc))
+		(ite (= (endpoint dc) ENDPOINT_GOAL)
+			(ps ((as tgt (GoalConcretization)) dc))
+			(ps ((as tgt (SoftGoalConcretization)) dc))
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (un dc)
-	(ite (= (decompositionType dc) DECOMPOSITION_TASK)
-		(un ((as decompositionTgt (TaskConcretization)) dc))
-		(ite (= (decompositionType dc) DECOMPOSITION_GOAL)
-			(un ((as decompositionTgt (GoalConcretization)) dc))
-			(un ((as decompositionTgt (SoftGoalConcretization)) dc))
+(assert (forall ((dc DecompositionConcretization)) (= (unEndpoint dc)
+	(ite (= (endpoint dc) ENDPOINT_TASK)
+		(un ((as tgt (TaskConcretization)) dc))
+		(ite (= (endpoint dc) ENDPOINT_GOAL)
+			(un ((as tgt (GoalConcretization)) dc))
+			(un ((as tgt (SoftGoalConcretization)) dc))
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (co dc)
-	(ite (= (decompositionType dc) DECOMPOSITION_TASK)
-		(co ((as decompositionTgt (TaskConcretization)) dc))
-		(ite (= (decompositionType dc) DECOMPOSITION_GOAL)
-			(co ((as decompositionTgt (GoalConcretization)) dc))
-			(co ((as decompositionTgt (SoftGoalConcretization)) dc))
+(assert (forall ((dc DecompositionConcretization)) (= (coEndpoint dc)
+	(ite (= (endpoint dc) ENDPOINT_TASK)
+		(co ((as tgt (TaskConcretization)) dc))
+		(ite (= (endpoint dc) ENDPOINT_GOAL)
+			(co ((as tgt (GoalConcretization)) dc))
+			(co ((as tgt (SoftGoalConcretization)) dc))
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (pd dc)
-	(ite (= (decompositionType dc) DECOMPOSITION_TASK)
-		(pd ((as decompositionTgt (TaskConcretization)) dc))
-		(ite (= (decompositionType dc) DECOMPOSITION_GOAL)
-			(pd ((as decompositionTgt (GoalConcretization)) dc))
-			(pd ((as decompositionTgt (SoftGoalConcretization)) dc))
+(assert (forall ((dc DecompositionConcretization)) (= (pdEndpoint dc)
+	(ite (= (endpoint dc) ENDPOINT_TASK)
+		(pd ((as tgt (TaskConcretization)) dc))
+		(ite (= (endpoint dc) ENDPOINT_GOAL)
+			(pd ((as tgt (GoalConcretization)) dc))
+			(pd ((as tgt (SoftGoalConcretization)) dc))
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (fd dc)
-	(ite (= (decompositionType dc) DECOMPOSITION_TASK)
-		(fd ((as decompositionTgt (TaskConcretization)) dc))
-		(ite (= (decompositionType dc) DECOMPOSITION_GOAL)
-			(fd ((as decompositionTgt (GoalConcretization)) dc))
-			(fd ((as decompositionTgt (SoftGoalConcretization)) dc))
+(assert (forall ((dc DecompositionConcretization)) (= (fdEndpoint dc)
+	(ite (= (endpoint dc) ENDPOINT_TASK)
+		(fd ((as tgt (TaskConcretization)) dc))
+		(ite (= (endpoint dc) ENDPOINT_GOAL)
+			(fd ((as tgt (GoalConcretization)) dc))
+			(fd ((as tgt (SoftGoalConcretization)) dc))
+		)
+	)
+)))
+(assert (forall ((dc DecompositionConcretization)) (= (fs dc) (fsEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (ps dc) (psEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (un dc) (unEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (co dc) (coEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (pd dc) (pdEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (fd dc) (fdEndpoint dc))))
+(assert (forall ((cc ContributionConcretization)) (= (fsEndpoint cc)
+	(ite (= (endpoint cc) ENDPOINT_TASK)
+		(fs ((as src (TaskConcretization)) cc))
+		(ite (= (endpoint cc) ENDPOINT_GOAL)
+			(fs ((as src (GoalConcretization)) cc))
+			(fs ((as src (SoftGoalConcretization)) cc))
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (psEndpoint cc)
+	(ite (= (endpoint cc) ENDPOINT_TASK)
+		(ps ((as src (TaskConcretization)) cc))
+		(ite (= (endpoint cc) ENDPOINT_GOAL)
+			(ps ((as src (GoalConcretization)) cc))
+			(ps ((as src (SoftGoalConcretization)) cc))
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (unEndpoint cc)
+	(ite (= (endpoint cc) ENDPOINT_TASK)
+		(un ((as src (TaskConcretization)) cc))
+		(ite (= (endpoint cc) ENDPOINT_GOAL)
+			(un ((as src (GoalConcretization)) cc))
+			(un ((as src (SoftGoalConcretization)) cc))
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (coEndpoint cc)
+	(ite (= (endpoint cc) ENDPOINT_TASK)
+		(co ((as src (TaskConcretization)) cc))
+		(ite (= (endpoint cc) ENDPOINT_GOAL)
+			(co ((as src (GoalConcretization)) cc))
+			(co ((as src (SoftGoalConcretization)) cc))
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (pdEndpoint cc)
+	(ite (= (endpoint cc) ENDPOINT_TASK)
+		(pd ((as src (TaskConcretization)) cc))
+		(ite (= (endpoint cc) ENDPOINT_GOAL)
+			(pd ((as src (GoalConcretization)) cc))
+			(pd ((as src (SoftGoalConcretization)) cc))
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (fdEndpoint cc)
+	(ite (= (endpoint cc) ENDPOINT_TASK)
+		(fd ((as src (TaskConcretization)) cc))
+		(ite (= (endpoint cc) ENDPOINT_GOAL)
+			(fd ((as src (GoalConcretization)) cc))
+			(fd ((as src (SoftGoalConcretization)) cc))
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (fs cc)
+	(ite (= (type cc) CONTRIBUTION_MAKE)
+		(ite (fsEndpoint cc)
+			true
+			false
+		)
+		false
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (ps cc)
+	(ite (= (type cc) CONTRIBUTION_MAKE)
+		(ite (psEndpoint cc)
+			true
+			false
+		)
+		(ite (or (= (type cc) CONTRIBUTION_HELP) (= (type cc) CONTRIBUTION_SOMEPLUS))
+			(ite (or (fsEndpoint cc) (psEndpoint cc))
+				true
+				false
+			)
+			(ite (or (= (type cc) CONTRIBUTION_BREAK) (= (type cc) CONTRIBUTION_HURT) (= (type cc) CONTRIBUTION_SOMEMINUS))
+				(ite (or (pdEndpoint cc) (fdEndpoint cc))
+					true
+					false
+				)
+				false
+			)
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (un cc)
+	(ite (= (type cc) CONTRIBUTION_UNKNOWN)
+		true
+		(ite (unEndpoint cc)
+			true
+			false
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (co cc)
+	(ite (= (type cc) CONTRIBUTION_UNKNOWN)
+		false
+		(ite (coEndpoint cc)
+			true
+			false
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (pd cc)
+	(ite (= (type cc) CONTRIBUTION_MAKE)
+		(ite (pdEndpoint cc)
+			true
+			false
+		)
+		(ite (or (= (type cc) CONTRIBUTION_HELP) (= (type cc) CONTRIBUTION_SOMEPLUS))
+			(ite (or (pdEndpoint cc) (fdEndpoint cc))
+				true
+				false
+			)
+			(ite (= (type cc) CONTRIBUTION_BREAK)
+				(ite (psEndpoint cc)
+					true
+					false
+				)
+				(ite (or (= (type cc) CONTRIBUTION_HURT) (= (type cc) CONTRIBUTION_SOMEMINUS))
+					(ite (or (fsEndpoint cc) (psEndpoint cc))
+						true
+						false
+					)
+					false
+				)
+			)
+		)
+	)
+)))
+(assert (forall ((cc ContributionConcretization)) (= (fd cc)
+	(ite (= (type cc) CONTRIBUTION_MAKE)
+		(ite (fdEndpoint cc)
+			true
+			false
+		)
+		(ite (= (type cc) CONTRIBUTION_BREAK)
+			(ite (fsEndpoint cc)
+				true
+				false
+			)
+			false
 		)
 	)
 )))
@@ -326,11 +527,20 @@
 		[/for]
 	[/for]
 )))
+(assert (forall ((cc ContributionConcretization)) (or
+	[for (actor : Actor | istar.actors)]
+		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
+			[for (contribution : Contribution | softgoal.oclAsType(SoftGoal).contributionsAsContributee)]
+	(contribution [contributionName(contribution)/] cc)
+			[/for]
+		[/for]
+	[/for]
+)))
 
 ;Model Elements
 	[for (actor : Actor | istar.actors)]
 		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-[encodeInitialAnalysis(task, 'TaskConcretization', 'task', intentionalElementName(task))/]
+[encodeInitialAnalysis(task)/]
 			[if (not task.may)]
 [encodeMayConstraint('TaskConcretization', 'task', intentionalElementName(task))/]
 			[/if]
@@ -350,7 +560,7 @@
 	[/for]
 	[for (actor : Actor | istar.actors)]
 		[for (goal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Goal)))]
-[encodeInitialAnalysis(goal, 'GoalConcretization', 'goal', intentionalElementName(goal))/]
+[encodeInitialAnalysis(goal)/]
 			[if (not goal.may)]
 [encodeMayConstraint('GoalConcretization', 'goal', intentionalElementName(goal))/]
 			[/if]
@@ -370,7 +580,7 @@
 	[/for]
 	[for (actor : Actor | istar.actors)]
 		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
-[encodeInitialAnalysis(softgoal, 'SoftGoalConcretization', 'softgoal', intentionalElementName(softgoal))/]
+[encodeInitialAnalysis(softgoal)/]
 			[if (not softgoal.may)]
 [encodeMayConstraint('SoftGoalConcretization', 'softgoal', intentionalElementName(softgoal))/]
 			[/if]
@@ -391,7 +601,7 @@
 	[for (actor : Actor | istar.actors)]
 		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
 			[for (end : EndReference | task.oclAsType(Task).end)]
-[encodeMetamodelConstraint('MeansEndConcretization', 'meansend', null, endReferenceName(end), 'task', intentionalElementName(end.src), 'goal', intentionalElementName(end.tgt))/]
+[encodeMetamodelConstraint('MeansEndConcretization', 'meansend', endReferenceName(end), 'task', null, intentionalElementName(end.src), 'goal', null, intentionalElementName(end.tgt))/]
 				[if (not end.may)]
 [encodeMayConstraint('MeansEndConcretization', 'meansend', endReferenceName(end))/]
 				[/if]
@@ -415,15 +625,13 @@
 	[for (actor : Actor | istar.actors)]
 		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
 			[for (component : ComponentsReference | task.oclAsType(Task).components)]
+[encodeMetamodelConstant('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'endpoint', 'ENDPOINT_'+component.tgt.eClass().name.toUpper())/]
 				[if (component.tgt.oclIsTypeOf(Task))]
-[encodeMetamodelType('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'DECOMPOSITION_TASK')/]
-[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', 'TaskConcretization', componentsReferenceName(component), 'task', intentionalElementName(component.src), 'task', intentionalElementName(component.tgt))/]
+[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'task', null, intentionalElementName(component.src), 'task', 'TaskConcretization', intentionalElementName(component.tgt))/]
 				[elseif (component.tgt.oclIsTypeOf(Goal))]
-[encodeMetamodelType('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'DECOMPOSITION_GOAL')/]
-[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', 'GoalConcretization', componentsReferenceName(component), 'task', intentionalElementName(component.src), 'goal', intentionalElementName(component.tgt))/]
+[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'task', null, intentionalElementName(component.src), 'goal', 'GoalConcretization', intentionalElementName(component.tgt))/]
 				[elseif (component.tgt.oclIsTypeOf(SoftGoal))]
-[encodeMetamodelType('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'DECOMPOSITION_SOFTGOAL')/]
-[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', 'SoftGoalConcretization', componentsReferenceName(component), 'task', intentionalElementName(component.src), 'softgoal', intentionalElementName(component.tgt))/]
+[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'task', null, intentionalElementName(component.src), 'softgoal', 'SoftGoalConcretization', intentionalElementName(component.tgt))/]
 				[/if]
 				[if (not component.may)]
 [encodeMayConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component))/]
@@ -445,70 +653,98 @@
 			[/for]
 		[/for]
 	[/for]
+	[for (actor : Actor | istar.actors)]
+		[for (contribution : Contribution | actor.contributions)]
+[encodeMetamodelConstant('ContributionConcretization', 'contribution', contributionName(contribution), 'type', 'CONTRIBUTION_'+contribution.type.toUpper())/]
+[encodeMetamodelConstant('ContributionConcretization', 'contribution', contributionName(contribution), 'endpoint', 'ENDPOINT_'+contribution.contributor.eClass().name.toUpper())/]
+			[if (contribution.contributor.oclIsTypeOf(Task))]
+[encodeMetamodelConstraint('ContributionConcretization', 'contribution', contributionName(contribution), 'task', 'TaskConcretization', intentionalElementName(contribution.contributor), 'softgoal', null, intentionalElementName(contribution.contributee))/]
+			[elseif (contribution.contributor.oclIsTypeOf(Goal))]
+[encodeMetamodelConstraint('ContributionConcretization', 'contribution', contributionName(contribution), 'goal', 'GoalConcretization', intentionalElementName(contribution.contributor), 'softgoal', null, intentionalElementName(contribution.contributee))/]
+			[elseif (contribution.contributor.oclIsTypeOf(SoftGoal))]
+[encodeMetamodelConstraint('ContributionConcretization', 'contribution', contributionName(contribution), 'softgoal', 'SoftGoalConcretization', intentionalElementName(contribution.contributor), 'softgoal', null, intentionalElementName(contribution.contributee))/]
+			[/if]
+			[if (not contribution.may)]
+[encodeMayConstraint('ContributionConcretization', 'contribution', contributionName(contribution))/]
+			[/if]
+			[if (not contribution.set)]
+[encodeSetConstraint('ContributionConcretization', 'contribution', contributionName(contribution))/]
+			[/if]
+			[if (not contribution.var)]
+				[for (actor2 : Actor | istar.actors)]
+					[for (contribution2 : Contribution | actor2.contributions)]
+						[if (not (contributionName(contribution) = contributionName(contribution2)))]
+[encodeVarConstraint('ContributionConcretization', 'contribution', contributionName(contribution), contributionName(contribution2))/]
+						[/if]
+					[/for]
+				[/for]
+			[/if]
+		[/for]
+	[/for]
 [/template]
 
 [template private encodePropagation(istar : IStar)]
 
 ;MeansEnd Propagation
 (assert	(forall ((gc GoalConcretization)) (=> (not (inited gc)) (= (fs gc) (ite
-	(exists ((mec MeansEndConcretization)) (and (= (meansendTgt mec) gc) (fs mec)))
+	(exists ((mec MeansEndConcretization)) (and (= (tgt mec) gc) (fs mec)))
 	true
 	false
 )))))
 (assert	(forall ((gc GoalConcretization)) (=> (not (inited gc)) (= (ps gc) (ite
-	(and (exists ((mec1 MeansEndConcretization)) (and (= (meansendTgt mec1) gc) (ps mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (meansendTgt mec2) gc) (fs mec2)))))
+	(and (exists ((mec1 MeansEndConcretization)) (and (= (tgt mec1) gc) (ps mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (tgt mec2) gc) (fs mec2)))))
 	true
 	false
 )))))
 (assert	(forall ((gc GoalConcretization)) (=> (not (inited gc)) (= (un gc) (ite
-	(and (exists ((mec1 MeansEndConcretization)) (and (= (meansendTgt mec1) gc) (un mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (meansendTgt mec2) gc) (or (fs mec2) (ps mec2))))))
+	(and (exists ((mec1 MeansEndConcretization)) (and (= (tgt mec1) gc) (un mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (tgt mec2) gc) (or (fs mec2) (ps mec2))))))
 	true
 	false
 )))))
 (assert	(forall ((gc GoalConcretization)) (=> (not (inited gc)) (= (co gc) (ite
-	(and (exists ((mec1 MeansEndConcretization)) (and (= (meansendTgt mec1) gc) (co mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (meansendTgt mec2) gc) (or (fs mec2) (ps mec2) (un mec2))))))
+	(and (exists ((mec1 MeansEndConcretization)) (and (= (tgt mec1) gc) (co mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (tgt mec2) gc) (or (fs mec2) (ps mec2) (un mec2))))))
 	true
 	false
 )))))
 (assert	(forall ((gc GoalConcretization)) (=> (not (inited gc)) (= (pd gc) (ite
-	(and (exists ((mec1 MeansEndConcretization)) (and (= (meansendTgt mec1) gc) (pd mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (meansendTgt mec2) gc) (or (fs mec2) (ps mec2) (un mec2) (co mec2))))))
+	(and (exists ((mec1 MeansEndConcretization)) (and (= (tgt mec1) gc) (pd mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (tgt mec2) gc) (or (fs mec2) (ps mec2) (un mec2) (co mec2))))))
 	true
 	false
 )))))
 (assert	(forall ((gc GoalConcretization)) (=> (not (inited gc)) (= (fd gc) (ite
-	(and (exists ((mec1 MeansEndConcretization)) (and (= (meansendTgt mec1) gc) (fd mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (meansendTgt mec2) gc) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2))))))
+	(and (exists ((mec1 MeansEndConcretization)) (and (= (tgt mec1) gc) (fd mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (tgt mec2) gc) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2))))))
 	true
 	false
 )))))
 
 ;Decomposition Propagation
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc)) (= (fd tc) (ite
-	(exists ((dc DecompositionConcretization)) (and (= (decompositionSrc dc) tc) (fd dc)))
+	(exists ((dc DecompositionConcretization)) (and (= (src dc) tc) (fd dc)))
 	true
 	false
 )))))
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc))  (= (pd tc) (ite
-	(and (exists ((dc1 DecompositionConcretization)) (and (= (decompositionSrc dc1) tc) (pd dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (decompositionSrc dc2) tc) (fd dc2)))))
+	(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) tc) (pd dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) tc) (fd dc2)))))
 	true
 	false
 )))))
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc))  (= (co tc) (ite
-	(and (exists ((dc1 DecompositionConcretization)) (and (= (decompositionSrc dc1) tc) (co dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (decompositionSrc dc2) tc) (or (fd dc2) (pd dc2))))))
+	(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) tc) (co dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) tc) (or (fd dc2) (pd dc2))))))
 	true
 	false
 )))))
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc))  (= (un tc) (ite
-	(and (exists ((dc1 DecompositionConcretization)) (and (= (decompositionSrc dc1) tc) (un dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (decompositionSrc dc2) tc) (or (fd dc2) (pd dc2) (co dc2))))))
+	(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) tc) (un dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) tc) (or (fd dc2) (pd dc2) (co dc2))))))
 	true
 	false
 )))))
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc))  (= (ps tc) (ite
-	(and (exists ((dc1 DecompositionConcretization)) (and (= (decompositionSrc dc1) tc) (ps dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (decompositionSrc dc2) tc) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
+	(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) tc) (ps dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) tc) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
 	true
 	false
 )))))
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc))  (= (fs tc) (ite
-	(and (exists ((dc1 DecompositionConcretization)) (and (= (decompositionSrc dc1) tc) (fs dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (decompositionSrc dc2) tc) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (ps dc2))))))
+	(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) tc) (fs dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) tc) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (ps dc2))))))
 	true
 	false
 )))))
