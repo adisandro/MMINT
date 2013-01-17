@@ -5,58 +5,42 @@
 [ie.name.replaceAll(' ', '')/]
 [/template]
 
-[template private endReferenceName(end : EndReference)]
+[template private linkName(end : EndReference)]
 [end.src.name.replaceAll(' ', '')/]2[end.tgt.name.replaceAll(' ', '')/]
 [/template]
 
-[template private componentsReferenceName(component : ComponentsReference)]
+[template private linkName(component : ComponentsReference)]
 [component.src.name.replaceAll(' ', '')/]2[component.tgt.name.replaceAll(' ', '')/]
 [/template]
 
-[template private contributionName(contribution : Contribution)]
+[template private linkName(contribution : Contribution)]
 [contribution.contributor.name.replaceAll(' ', '')/]2[contribution.contributee.name.replaceAll(' ', '')/]
+[/template]
+
+[template private linkName(depender : DependerReference)]
+[depender.tgt.name.replaceAll(' ', '')/]2[depender.src.dependum.name.replaceAll(' ', '')/]
+[/template]
+
+[template private linkName(dependee : DependeeReference)]
+[dependee.src.dependum.name.replaceAll(' ', '')/]2[dependee.tgt.name.replaceAll(' ', '')/]
 [/template]
 
 [template private encodeInitialAnalysis(ie : IntentionalElement)]
 ;[ie.name.replaceAll(' ', '')/] initial analysis tag
 (assert (forall ((c [ie.eClass().name/]Concretization)) (=>
-	([ie.eClass().name.toLower()/] [ie.name.replaceAll(' ', '')/] c)
+	(node [ie.name.replaceAll(' ', '')/] c)
 [if (ie.fullySatisfied or ie.partiallySatisfied or ie.unknown or ie.conflict or ie.partiallyDenied or ie.fullyDenied)]
 	(and
-	[if (ie.fullySatisfied)]
-		(fs c)
-	[else]
-		(not (fs c))
-	[/if]
-	[if (ie.partiallySatisfied)]
-		(ps c)
-	[else]
-		(not (ps c))
-	[/if]
-	[if (ie.unknown)]
-		(un c)
-	[else]
-		(not (un c))
-	[/if]
-	[if (ie.conflict)]
-		(co c)
-	[else]
-		(not (co c))
-	[/if]
-	[if (ie.partiallyDenied)]
-		(pd c)
-	[else]
-		(not (pd c))
-	[/if]
-	[if (ie.fullyDenied)]
-		(fd c)
-	[else]
-		(not (fd c))
-	[/if]
-		(inited c)
+		(= (fs c) [if (ie.fullySatisfied)]true[else]false[/if])
+		(= (ps c) [if (ie.partiallySatisfied)]true[else]false[/if])
+		(= (un c) [if (ie.unknown)]true[else]false[/if])
+		(= (co c) [if (ie.conflict)]true[else]false[/if])
+		(= (pd c) [if (ie.partiallyDenied)]true[else]false[/if])
+		(= (fd c) [if (ie.fullyDenied)]true[else]false[/if])
+		(= (inited c) true)
 	)
 [else]
-	(not (inited c))
+	(= (inited c) false)
 [/if]
 )))
 [/template]
@@ -70,7 +54,7 @@
 [/template]
 
 [template private encodeMetamodelConstraint(sort : String, fun : String, name : String, funSrc : String, funOverloadSrc : String, nameSrc : String, funTgt : String, funOverloadTgt : String, nameTgt : String)]
-;[name/] src and tgt
+;[name/] endpoints
 (assert (forall ((c [sort/])) (=>
 	([fun/] [name/] c)
 	(and
@@ -106,9 +90,11 @@
 (declare-const ENDPOINT_TASK Int)
 (declare-const ENDPOINT_GOAL Int)
 (declare-const ENDPOINT_SOFTGOAL Int)
+(declare-const ENDPOINT_RESOURCE Int)
 (assert (= ENDPOINT_TASK 1))
 (assert (= ENDPOINT_GOAL 2))
 (assert (= ENDPOINT_SOFTGOAL 3))
+(assert (= ENDPOINT_RESOURCE 4))
 
 ;Contribution Types
 (declare-const CONTRIBUTION_MAKE Int)
@@ -131,80 +117,125 @@
 
 ;Model
 (declare-datatypes () ((Task
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+[for (task : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Task)))]
 	[intentionalElementName(task)/]
-		[/for]
-	[/for]
+[/for]
 )))
 (declare-datatypes () ((Goal
-	[for (actor : Actor | istar.actors)]
-		[for (goal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Goal)))]
+[for (goal : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Goal)))]
 	[intentionalElementName(goal)/]
-		[/for]
-	[/for]
+[/for]
 )))
 (declare-datatypes () ((SoftGoal
-	[for (actor : Actor | istar.actors)]
-		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
+[for (softgoal : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(SoftGoal)))]
 	[intentionalElementName(softgoal)/]
-		[/for]
-	[/for]
+[/for]
+)))
+(declare-datatypes () ((Resource
+[for (resource : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Resource)))]
+	[intentionalElementName(resource)/]
+[/for]
 )))
 (declare-datatypes () ((MeansEnd
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-			[for (end : EndReference | task.oclAsType(Task).end)]
-	[endReferenceName(end)/]
-			[/for]
+[for (actor : Actor | istar.actors)]
+	[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+		[for (end : EndReference | task.oclAsType(Task).end)]
+	[linkName(end)/]
 		[/for]
 	[/for]
+[/for]
 )))
 (declare-datatypes () ((Decomposition
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-			[for (component : ComponentsReference | task.oclAsType(Task).components)]
-	[componentsReferenceName(component)/]
-			[/for]
+[for (actor : Actor | istar.actors)]
+	[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+		[for (component : ComponentsReference | task.oclAsType(Task).components)]
+	[linkName(component)/]
 		[/for]
 	[/for]
+[/for]
 )))
 (declare-datatypes () ((Contribution
-	[for (actor : Actor | istar.actors)]
-		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
-			[for (contribution : Contribution | softgoal.oclAsType(SoftGoal).contributionsAsContributee)]
-	[contributionName(contribution)/]
-			[/for]
+[for (actor : Actor | istar.actors)]
+	[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
+		[for (contribution : Contribution | softgoal.oclAsType(SoftGoal).contributionsAsContributee)]
+	[linkName(contribution)/]
 		[/for]
 	[/for]
+[/for]
+)))
+(declare-datatypes () ((Depender
+[for (dependency : Dependency | istar.dependencies)]
+	[for (depender : DependerReference | dependency.depender)]
+		[if (not depender.tgt.oclIsTypeOf(Actor))]
+	[linkName(depender)/]
+		[/if]
+	[/for]
+[/for]
+)))
+(declare-datatypes () ((Dependee
+[for (dependency : Dependency | istar.dependencies)]
+	[for (dependee : DependeeReference | dependency.dependee)]
+		[if (not dependee.tgt.oclIsTypeOf(Actor))]
+	[linkName(dependee)/]
+		[/if]
+	[/for]
+[/for]
 )))
 
 ;Concretizations
 (declare-sort TaskConcretization)
 (declare-sort GoalConcretization)
 (declare-sort SoftGoalConcretization)
+(declare-sort ResourceConcretization)
 (declare-sort MeansEndConcretization)
 (declare-sort DecompositionConcretization)
 (declare-sort ContributionConcretization)
-(declare-fun task (Task TaskConcretization) Bool)
-(declare-fun goal (Goal GoalConcretization) Bool)
-(declare-fun softgoal (SoftGoal SoftGoalConcretization) Bool)
-(declare-fun meansend (MeansEnd MeansEndConcretization) Bool)
+(declare-sort DependerConcretization)
+(declare-sort DependeeConcretization)
+(declare-fun node (Task TaskConcretization) Bool)
+(declare-fun node (Goal GoalConcretization) Bool)
+(declare-fun node (SoftGoal SoftGoalConcretization) Bool)
+(declare-fun node (Resource ResourceConcretization) Bool)
+(declare-fun edge (MeansEnd MeansEndConcretization) Bool)
 (declare-fun src (MeansEndConcretization) TaskConcretization)
 (declare-fun tgt (MeansEndConcretization) GoalConcretization)
-(declare-fun decomposition (Decomposition DecompositionConcretization) Bool)
-(declare-fun endpoint (DecompositionConcretization) Int)
+(declare-fun edge (Decomposition DecompositionConcretization) Bool)
+(declare-fun tgtEndpoint (DecompositionConcretization) Int)
 (declare-fun src (DecompositionConcretization) TaskConcretization)
 (declare-fun tgt (DecompositionConcretization) TaskConcretization)
 (declare-fun tgt (DecompositionConcretization) GoalConcretization)
 (declare-fun tgt (DecompositionConcretization) SoftGoalConcretization)
-(declare-fun contribution (Contribution ContributionConcretization) Bool)
-(declare-fun endpoint (ContributionConcretization) Int)
+(declare-fun tgt (DecompositionConcretization) ResourceConcretization)
+(declare-fun edge (Contribution ContributionConcretization) Bool)
+(declare-fun srcEndpoint (ContributionConcretization) Int)
 (declare-fun type (ContributionConcretization) Int)
 (declare-fun src (ContributionConcretization) TaskConcretization)
 (declare-fun src (ContributionConcretization) GoalConcretization)
 (declare-fun src (ContributionConcretization) SoftGoalConcretization)
+(declare-fun src (ContributionConcretization) ResourceConcretization)
 (declare-fun tgt (ContributionConcretization) SoftGoalConcretization)
+(declare-fun edge (Depender DependerConcretization) Bool)
+(declare-fun srcEndpoint (DependerConcretization) Int)
+(declare-fun tgtEndpoint (DependerConcretization) Int)
+(declare-fun src (DependerConcretization) TaskConcretization)
+(declare-fun src (DependerConcretization) GoalConcretization)
+(declare-fun src (DependerConcretization) SoftGoalConcretization)
+(declare-fun src (DependerConcretization) ResourceConcretization)
+(declare-fun tgt (DependerConcretization) TaskConcretization)
+(declare-fun tgt (DependerConcretization) GoalConcretization)
+(declare-fun tgt (DependerConcretization) SoftGoalConcretization)
+(declare-fun tgt (DependerConcretization) ResourceConcretization)
+(declare-fun edge (Dependee DependeeConcretization) Bool)
+(declare-fun srcEndpoint (DependeeConcretization) Int)
+(declare-fun tgtEndpoint (DependeeConcretization) Int)
+(declare-fun src (DependeeConcretization) TaskConcretization)
+(declare-fun src (DependeeConcretization) GoalConcretization)
+(declare-fun src (DependeeConcretization) SoftGoalConcretization)
+(declare-fun src (DependeeConcretization) ResourceConcretization)
+(declare-fun tgt (DependeeConcretization) TaskConcretization)
+(declare-fun tgt (DependeeConcretization) GoalConcretization)
+(declare-fun tgt (DependeeConcretization) SoftGoalConcretization)
+(declare-fun tgt (DependeeConcretization) ResourceConcretization)
 [/template]
 
 [template private encodeAnalysis(istar : IStar)]
@@ -213,189 +244,232 @@
 (declare-fun inited (TaskConcretization) Bool)
 (declare-fun inited (GoalConcretization) Bool)
 (declare-fun inited (SoftGoalConcretization) Bool)
-(declare-fun fsEndpoint (MeansEndConcretization) Bool)
-(declare-fun fsEndpoint (DecompositionConcretization) Bool)
-(declare-fun fsEndpoint (ContributionConcretization) Bool)
-(declare-fun psEndpoint (MeansEndConcretization) Bool)
-(declare-fun psEndpoint (DecompositionConcretization) Bool)
-(declare-fun psEndpoint (ContributionConcretization) Bool)
-(declare-fun unEndpoint (MeansEndConcretization) Bool)
-(declare-fun unEndpoint (DecompositionConcretization) Bool)
-(declare-fun unEndpoint (ContributionConcretization) Bool)
-(declare-fun coEndpoint (MeansEndConcretization) Bool)
-(declare-fun coEndpoint (DecompositionConcretization) Bool)
-(declare-fun coEndpoint (ContributionConcretization) Bool)
-(declare-fun pdEndpoint (MeansEndConcretization) Bool)
-(declare-fun pdEndpoint (DecompositionConcretization) Bool)
-(declare-fun pdEndpoint (ContributionConcretization) Bool)
-(declare-fun fdEndpoint (MeansEndConcretization) Bool)
-(declare-fun fdEndpoint (DecompositionConcretization) Bool)
-(declare-fun fdEndpoint (ContributionConcretization) Bool)
+(declare-fun inited (ResourceConcretization) Bool)
+(declare-fun fsSrcEndpoint (MeansEndConcretization) Bool)
+(declare-fun fsTgtEndpoint (DecompositionConcretization) Bool)
+(declare-fun fsSrcEndpoint (ContributionConcretization) Bool)
+(declare-fun psSrcEndpoint (MeansEndConcretization) Bool)
+(declare-fun psTgtEndpoint (DecompositionConcretization) Bool)
+(declare-fun psSrcEndpoint (ContributionConcretization) Bool)
+(declare-fun unSrcEndpoint (MeansEndConcretization) Bool)
+(declare-fun unTgtEndpoint (DecompositionConcretization) Bool)
+(declare-fun unSrcEndpoint (ContributionConcretization) Bool)
+(declare-fun coSrcEndpoint (MeansEndConcretization) Bool)
+(declare-fun coTgtEndpoint (DecompositionConcretization) Bool)
+(declare-fun coSrcEndpoint (ContributionConcretization) Bool)
+(declare-fun pdSrcEndpoint (MeansEndConcretization) Bool)
+(declare-fun pdTgtEndpoint (DecompositionConcretization) Bool)
+(declare-fun pdSrcEndpoint (ContributionConcretization) Bool)
+(declare-fun fdSrcEndpoint (MeansEndConcretization) Bool)
+(declare-fun fdTgtEndpoint (DecompositionConcretization) Bool)
+(declare-fun fdSrcEndpoint (ContributionConcretization) Bool)
 (declare-fun fs (TaskConcretization) Bool)
 (declare-fun fs (GoalConcretization) Bool)
 (declare-fun fs (SoftGoalConcretization) Bool)
+(declare-fun fs (ResourceConcretization) Bool)
 (declare-fun fs (MeansEndConcretization) Bool)
 (declare-fun fs (DecompositionConcretization) Bool)
 (declare-fun fs (ContributionConcretization) Bool)
 (declare-fun ps (TaskConcretization) Bool)
 (declare-fun ps (GoalConcretization) Bool)
 (declare-fun ps (SoftGoalConcretization) Bool)
+(declare-fun ps (ResourceConcretization) Bool)
 (declare-fun ps (MeansEndConcretization) Bool)
 (declare-fun ps (DecompositionConcretization) Bool)
 (declare-fun ps (ContributionConcretization) Bool)
 (declare-fun un (TaskConcretization) Bool)
 (declare-fun un (GoalConcretization) Bool)
 (declare-fun un (SoftGoalConcretization) Bool)
+(declare-fun un (ResourceConcretization) Bool)
 (declare-fun un (MeansEndConcretization) Bool)
 (declare-fun un (DecompositionConcretization) Bool)
 (declare-fun un (ContributionConcretization) Bool)
 (declare-fun co (TaskConcretization) Bool)
 (declare-fun co (GoalConcretization) Bool)
 (declare-fun co (SoftGoalConcretization) Bool)
+(declare-fun co (ResourceConcretization) Bool)
 (declare-fun co (MeansEndConcretization) Bool)
 (declare-fun co (DecompositionConcretization) Bool)
 (declare-fun co (ContributionConcretization) Bool)
 (declare-fun pd (TaskConcretization) Bool)
 (declare-fun pd (GoalConcretization) Bool)
 (declare-fun pd (SoftGoalConcretization) Bool)
+(declare-fun pd (ResourceConcretization) Bool)
 (declare-fun pd (MeansEndConcretization) Bool)
 (declare-fun pd (DecompositionConcretization) Bool)
 (declare-fun pd (ContributionConcretization) Bool)
 (declare-fun fd (TaskConcretization) Bool)
 (declare-fun fd (GoalConcretization) Bool)
 (declare-fun fd (SoftGoalConcretization) Bool)
+(declare-fun fd (ResourceConcretization) Bool)
 (declare-fun fd (MeansEndConcretization) Bool)
 (declare-fun fd (DecompositionConcretization) Bool)
 (declare-fun fd (ContributionConcretization) Bool)
-(assert (forall ((mec MeansEndConcretization)) (= (fsEndpoint mec) (fs (src mec)))))
-(assert (forall ((mec MeansEndConcretization)) (= (psEndpoint mec) (ps (src mec)))))
-(assert (forall ((mec MeansEndConcretization)) (= (unEndpoint mec) (un (src mec)))))
-(assert (forall ((mec MeansEndConcretization)) (= (coEndpoint mec) (co (src mec)))))
-(assert (forall ((mec MeansEndConcretization)) (= (pdEndpoint mec) (pd (src mec)))))
-(assert (forall ((mec MeansEndConcretization)) (= (fdEndpoint mec) (fd (src mec)))))
-(assert (forall ((mec MeansEndConcretization)) (= (fs mec) (fsEndpoint mec))))
-(assert (forall ((mec MeansEndConcretization)) (= (ps mec) (psEndpoint mec))))
-(assert (forall ((mec MeansEndConcretization)) (= (un mec) (unEndpoint mec))))
-(assert (forall ((mec MeansEndConcretization)) (= (co mec) (coEndpoint mec))))
-(assert (forall ((mec MeansEndConcretization)) (= (pd mec) (pdEndpoint mec))))
-(assert (forall ((mec MeansEndConcretization)) (= (fd mec) (fdEndpoint mec))))
-(assert (forall ((dc DecompositionConcretization)) (= (fsEndpoint dc)
-	(ite (= (endpoint dc) ENDPOINT_TASK)
+(assert (forall ((mec MeansEndConcretization)) (= (fsSrcEndpoint mec) (fs (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (psSrcEndpoint mec) (ps (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (unSrcEndpoint mec) (un (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (coSrcEndpoint mec) (co (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (pdSrcEndpoint mec) (pd (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (fdSrcEndpoint mec) (fd (src mec)))))
+(assert (forall ((mec MeansEndConcretization)) (= (fs mec) (fsSrcEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (ps mec) (psSrcEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (un mec) (unSrcEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (co mec) (coSrcEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (pd mec) (pdSrcEndpoint mec))))
+(assert (forall ((mec MeansEndConcretization)) (= (fd mec) (fdSrcEndpoint mec))))
+(assert (forall ((dc DecompositionConcretization)) (= (fsTgtEndpoint dc)
+	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
 		(fs ((as tgt (TaskConcretization)) dc))
-		(ite (= (endpoint dc) ENDPOINT_GOAL)
+		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
 			(fs ((as tgt (GoalConcretization)) dc))
-			(fs ((as tgt (SoftGoalConcretization)) dc))
+			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
+				(fs ((as tgt (SoftGoalConcretization)) dc))
+				(fs ((as tgt (ResourceConcretization)) dc))
+			)
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (psEndpoint dc)
-	(ite (= (endpoint dc) ENDPOINT_TASK)
+(assert (forall ((dc DecompositionConcretization)) (= (psTgtEndpoint dc)
+	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
 		(ps ((as tgt (TaskConcretization)) dc))
-		(ite (= (endpoint dc) ENDPOINT_GOAL)
+		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
 			(ps ((as tgt (GoalConcretization)) dc))
-			(ps ((as tgt (SoftGoalConcretization)) dc))
+			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
+				(ps ((as tgt (SoftGoalConcretization)) dc))
+				(ps ((as tgt (ResourceConcretization)) dc))
+			)
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (unEndpoint dc)
-	(ite (= (endpoint dc) ENDPOINT_TASK)
+(assert (forall ((dc DecompositionConcretization)) (= (unTgtEndpoint dc)
+	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
 		(un ((as tgt (TaskConcretization)) dc))
-		(ite (= (endpoint dc) ENDPOINT_GOAL)
+		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
 			(un ((as tgt (GoalConcretization)) dc))
-			(un ((as tgt (SoftGoalConcretization)) dc))
+			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
+				(un ((as tgt (SoftGoalConcretization)) dc))
+				(un ((as tgt (ResourceConcretization)) dc))
+			)
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (coEndpoint dc)
-	(ite (= (endpoint dc) ENDPOINT_TASK)
+(assert (forall ((dc DecompositionConcretization)) (= (coTgtEndpoint dc)
+	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
 		(co ((as tgt (TaskConcretization)) dc))
-		(ite (= (endpoint dc) ENDPOINT_GOAL)
+		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
 			(co ((as tgt (GoalConcretization)) dc))
-			(co ((as tgt (SoftGoalConcretization)) dc))
+			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
+				(co ((as tgt (SoftGoalConcretization)) dc))
+				(co ((as tgt (ResourceConcretization)) dc))
+			)
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (pdEndpoint dc)
-	(ite (= (endpoint dc) ENDPOINT_TASK)
+(assert (forall ((dc DecompositionConcretization)) (= (pdTgtEndpoint dc)
+	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
 		(pd ((as tgt (TaskConcretization)) dc))
-		(ite (= (endpoint dc) ENDPOINT_GOAL)
+		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
 			(pd ((as tgt (GoalConcretization)) dc))
-			(pd ((as tgt (SoftGoalConcretization)) dc))
+			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
+				(pd ((as tgt (SoftGoalConcretization)) dc))
+				(pd ((as tgt (ResourceConcretization)) dc))
+			)
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (fdEndpoint dc)
-	(ite (= (endpoint dc) ENDPOINT_TASK)
+(assert (forall ((dc DecompositionConcretization)) (= (fdTgtEndpoint dc)
+	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
 		(fd ((as tgt (TaskConcretization)) dc))
-		(ite (= (endpoint dc) ENDPOINT_GOAL)
+		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
 			(fd ((as tgt (GoalConcretization)) dc))
-			(fd ((as tgt (SoftGoalConcretization)) dc))
+			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
+				(fd ((as tgt (SoftGoalConcretization)) dc))
+				(fd ((as tgt (ResourceConcretization)) dc))
+			)
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (fs dc) (fsEndpoint dc))))
-(assert (forall ((dc DecompositionConcretization)) (= (ps dc) (psEndpoint dc))))
-(assert (forall ((dc DecompositionConcretization)) (= (un dc) (unEndpoint dc))))
-(assert (forall ((dc DecompositionConcretization)) (= (co dc) (coEndpoint dc))))
-(assert (forall ((dc DecompositionConcretization)) (= (pd dc) (pdEndpoint dc))))
-(assert (forall ((dc DecompositionConcretization)) (= (fd dc) (fdEndpoint dc))))
-(assert (forall ((cc ContributionConcretization)) (= (fsEndpoint cc)
-	(ite (= (endpoint cc) ENDPOINT_TASK)
+(assert (forall ((dc DecompositionConcretization)) (= (fs dc) (fsTgtEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (ps dc) (psTgtEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (un dc) (unTgtEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (co dc) (coTgtEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (pd dc) (pdTgtEndpoint dc))))
+(assert (forall ((dc DecompositionConcretization)) (= (fd dc) (fdTgtEndpoint dc))))
+(assert (forall ((cc ContributionConcretization)) (= (fsSrcEndpoint cc)
+	(ite (= (srcEndpoint cc) ENDPOINT_TASK)
 		(fs ((as src (TaskConcretization)) cc))
-		(ite (= (endpoint cc) ENDPOINT_GOAL)
+		(ite (= (srcEndpoint cc) ENDPOINT_GOAL)
 			(fs ((as src (GoalConcretization)) cc))
-			(fs ((as src (SoftGoalConcretization)) cc))
+			(ite (= (srcEndpoint cc) ENDPOINT_SOFTGOAL)
+				(fs ((as src (SoftGoalConcretization)) cc))
+				(fs ((as src (ResourceConcretization)) cc))
+			)
 		)
 	)
 )))
-(assert (forall ((cc ContributionConcretization)) (= (psEndpoint cc)
-	(ite (= (endpoint cc) ENDPOINT_TASK)
+(assert (forall ((cc ContributionConcretization)) (= (psSrcEndpoint cc)
+	(ite (= (srcEndpoint cc) ENDPOINT_TASK)
 		(ps ((as src (TaskConcretization)) cc))
-		(ite (= (endpoint cc) ENDPOINT_GOAL)
+		(ite (= (srcEndpoint cc) ENDPOINT_GOAL)
 			(ps ((as src (GoalConcretization)) cc))
-			(ps ((as src (SoftGoalConcretization)) cc))
+			(ite (= (srcEndpoint cc) ENDPOINT_SOFTGOAL)
+				(ps ((as src (SoftGoalConcretization)) cc))
+				(ps ((as src (ResourceConcretization)) cc))
+			)
 		)
 	)
 )))
-(assert (forall ((cc ContributionConcretization)) (= (unEndpoint cc)
-	(ite (= (endpoint cc) ENDPOINT_TASK)
+(assert (forall ((cc ContributionConcretization)) (= (unSrcEndpoint cc)
+	(ite (= (srcEndpoint cc) ENDPOINT_TASK)
 		(un ((as src (TaskConcretization)) cc))
-		(ite (= (endpoint cc) ENDPOINT_GOAL)
+		(ite (= (srcEndpoint cc) ENDPOINT_GOAL)
 			(un ((as src (GoalConcretization)) cc))
-			(un ((as src (SoftGoalConcretization)) cc))
+			(ite (= (srcEndpoint cc) ENDPOINT_SOFTGOAL)
+				(un ((as src (SoftGoalConcretization)) cc))
+				(un ((as src (ResourceConcretization)) cc))
+			)
 		)
 	)
 )))
-(assert (forall ((cc ContributionConcretization)) (= (coEndpoint cc)
-	(ite (= (endpoint cc) ENDPOINT_TASK)
+(assert (forall ((cc ContributionConcretization)) (= (coSrcEndpoint cc)
+	(ite (= (srcEndpoint cc) ENDPOINT_TASK)
 		(co ((as src (TaskConcretization)) cc))
-		(ite (= (endpoint cc) ENDPOINT_GOAL)
+		(ite (= (srcEndpoint cc) ENDPOINT_GOAL)
 			(co ((as src (GoalConcretization)) cc))
-			(co ((as src (SoftGoalConcretization)) cc))
+			(ite (= (srcEndpoint cc) ENDPOINT_SOFTGOAL)
+				(co ((as src (SoftGoalConcretization)) cc))
+				(co ((as src (ResourceConcretization)) cc))
+			)
 		)
 	)
 )))
-(assert (forall ((cc ContributionConcretization)) (= (pdEndpoint cc)
-	(ite (= (endpoint cc) ENDPOINT_TASK)
+(assert (forall ((cc ContributionConcretization)) (= (pdSrcEndpoint cc)
+	(ite (= (srcEndpoint cc) ENDPOINT_TASK)
 		(pd ((as src (TaskConcretization)) cc))
-		(ite (= (endpoint cc) ENDPOINT_GOAL)
+		(ite (= (srcEndpoint cc) ENDPOINT_GOAL)
 			(pd ((as src (GoalConcretization)) cc))
-			(pd ((as src (SoftGoalConcretization)) cc))
+			(ite (= (srcEndpoint cc) ENDPOINT_SOFTGOAL)
+				(pd ((as src (SoftGoalConcretization)) cc))
+				(pd ((as src (ResourceConcretization)) cc))
+			)
 		)
 	)
 )))
-(assert (forall ((cc ContributionConcretization)) (= (fdEndpoint cc)
-	(ite (= (endpoint cc) ENDPOINT_TASK)
+(assert (forall ((cc ContributionConcretization)) (= (fdSrcEndpoint cc)
+	(ite (= (srcEndpoint cc) ENDPOINT_TASK)
 		(fd ((as src (TaskConcretization)) cc))
-		(ite (= (endpoint cc) ENDPOINT_GOAL)
+		(ite (= (srcEndpoint cc) ENDPOINT_GOAL)
 			(fd ((as src (GoalConcretization)) cc))
-			(fd ((as src (SoftGoalConcretization)) cc))
+			(ite (= (srcEndpoint cc) ENDPOINT_SOFTGOAL)
+				(fd ((as src (SoftGoalConcretization)) cc))
+				(fd ((as src (ResourceConcretization)) cc))
+			)
 		)
 	)
 )))
 (assert (forall ((cc ContributionConcretization)) (= (fs cc)
 	(ite (= (type cc) CONTRIBUTION_MAKE)
-		(ite (fsEndpoint cc)
+		(ite (fsSrcEndpoint cc)
 			true
 			false
 		)
@@ -404,17 +478,17 @@
 )))
 (assert (forall ((cc ContributionConcretization)) (= (ps cc)
 	(ite (= (type cc) CONTRIBUTION_MAKE)
-		(ite (psEndpoint cc)
+		(ite (psSrcEndpoint cc)
 			true
 			false
 		)
 		(ite (or (= (type cc) CONTRIBUTION_HELP) (= (type cc) CONTRIBUTION_SOMEPLUS))
-			(ite (or (fsEndpoint cc) (psEndpoint cc))
+			(ite (or (fsSrcEndpoint cc) (psSrcEndpoint cc))
 				true
 				false
 			)
 			(ite (or (= (type cc) CONTRIBUTION_BREAK) (= (type cc) CONTRIBUTION_HURT) (= (type cc) CONTRIBUTION_SOMEMINUS))
-				(ite (or (pdEndpoint cc) (fdEndpoint cc))
+				(ite (or (pdSrcEndpoint cc) (fdSrcEndpoint cc))
 					true
 					false
 				)
@@ -426,7 +500,7 @@
 (assert (forall ((cc ContributionConcretization)) (= (un cc)
 	(ite (= (type cc) CONTRIBUTION_UNKNOWN)
 		true
-		(ite (unEndpoint cc)
+		(ite (unSrcEndpoint cc)
 			true
 			false
 		)
@@ -435,7 +509,7 @@
 (assert (forall ((cc ContributionConcretization)) (= (co cc)
 	(ite (= (type cc) CONTRIBUTION_UNKNOWN)
 		false
-		(ite (coEndpoint cc)
+		(ite (coSrcEndpoint cc)
 			true
 			false
 		)
@@ -443,22 +517,22 @@
 )))
 (assert (forall ((cc ContributionConcretization)) (= (pd cc)
 	(ite (= (type cc) CONTRIBUTION_MAKE)
-		(ite (pdEndpoint cc)
+		(ite (pdSrcEndpoint cc)
 			true
 			false
 		)
 		(ite (or (= (type cc) CONTRIBUTION_HELP) (= (type cc) CONTRIBUTION_SOMEPLUS))
-			(ite (or (pdEndpoint cc) (fdEndpoint cc))
+			(ite (or (pdSrcEndpoint cc) (fdSrcEndpoint cc))
 				true
 				false
 			)
 			(ite (= (type cc) CONTRIBUTION_BREAK)
-				(ite (psEndpoint cc)
+				(ite (psSrcEndpoint cc)
 					true
 					false
 				)
 				(ite (or (= (type cc) CONTRIBUTION_HURT) (= (type cc) CONTRIBUTION_SOMEMINUS))
-					(ite (or (fsEndpoint cc) (psEndpoint cc))
+					(ite (or (fsSrcEndpoint cc) (psSrcEndpoint cc))
 						true
 						false
 					)
@@ -470,12 +544,12 @@
 )))
 (assert (forall ((cc ContributionConcretization)) (= (fd cc)
 	(ite (= (type cc) CONTRIBUTION_MAKE)
-		(ite (fdEndpoint cc)
+		(ite (fdSrcEndpoint cc)
 			true
 			false
 		)
 		(ite (= (type cc) CONTRIBUTION_BREAK)
-			(ite (fsEndpoint cc)
+			(ite (fsSrcEndpoint cc)
 				true
 				false
 			)
@@ -489,203 +563,214 @@
 
 ;Complete Model
 (assert	(forall ((tc TaskConcretization)) (or
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-	(task [intentionalElementName(task)/] tc)
-		[/for]
-	[/for]
+[for (task : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Task)))]
+	(node [intentionalElementName(task)/] tc)
+[/for]
 )))
 (assert (forall ((gc GoalConcretization)) (or
-	[for (actor : Actor | istar.actors)]
-		[for (goal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Goal)))]
-	(goal [intentionalElementName(goal)/] gc)
-		[/for]
-	[/for]
+[for (goal : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Goal)))]
+	(node [intentionalElementName(goal)/] gc)
+[/for]
 )))
 (assert (forall ((sgc SoftGoalConcretization)) (or
-	[for (actor : Actor | istar.actors)]
-		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
-	(softgoal [intentionalElementName(softgoal)/] sgc)
-		[/for]
-	[/for]
+[for (softgoal : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(SoftGoal)))]
+	(node [intentionalElementName(softgoal)/] sgc)
+[/for]
+)))
+(assert (forall ((rc ResourceConcretization)) (or
+[for (resource : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Resource)))]
+	(node [intentionalElementName(resource)/] rc)
+[/for]
 )))
 (assert (forall ((mec MeansEndConcretization)) (or
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-			[for (end : EndReference | task.oclAsType(Task).end)]
-	(meansend [endReferenceName(end)/] mec)
-			[/for]
+[for (actor : Actor | istar.actors)]
+	[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+		[for (end : EndReference | task.oclAsType(Task).end)]
+	(edge [linkName(end)/] mec)
 		[/for]
 	[/for]
+[/for]
 )))
 (assert (forall ((dc DecompositionConcretization)) (or
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-			[for (component : ComponentsReference | task.oclAsType(Task).components)]
-	(decomposition [componentsReferenceName(component)/] dc)
-			[/for]
+[for (actor : Actor | istar.actors)]
+	[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+		[for (component : ComponentsReference | task.oclAsType(Task).components)]
+	(edge [linkName(component)/] dc)
 		[/for]
 	[/for]
+[/for]
 )))
 (assert (forall ((cc ContributionConcretization)) (or
-	[for (actor : Actor | istar.actors)]
-		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
-			[for (contribution : Contribution | softgoal.oclAsType(SoftGoal).contributionsAsContributee)]
-	(contribution [contributionName(contribution)/] cc)
-			[/for]
+[for (actor : Actor | istar.actors)]
+	[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
+		[for (contribution : Contribution | softgoal.oclAsType(SoftGoal).contributionsAsContributee)]
+	(edge [linkName(contribution)/] cc)
 		[/for]
 	[/for]
+[/for]
 )))
 
 ;Model Elements
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+[for (task : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Task)))]
 [encodeInitialAnalysis(task)/]
-			[if (not task.may)]
-[encodeMayConstraint('TaskConcretization', 'task', intentionalElementName(task))/]
+	[if (not task.may)]
+[encodeMayConstraint('TaskConcretization', 'node', intentionalElementName(task))/]
+	[/if]
+	[if (not task.set)]
+[encodeSetConstraint('TaskConcretization', 'node', intentionalElementName(task))/]
+	[/if]
+	[if (not task.var)]
+		[for (actor2 : Actor | istar.actors)]
+			[for (task2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Task)))]
+				[if (not (task.name = task2.name))]
+[encodeVarConstraint('TaskConcretization', 'node', intentionalElementName(task), intentionalElementName(task2))/]
+				[/if]
+			[/for]
+		[/for]
+	[/if]
+[/for]
+[for (goal : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Goal)))]
+[encodeInitialAnalysis(goal)/]
+	[if (not goal.may)]
+[encodeMayConstraint('GoalConcretization', 'node', intentionalElementName(goal))/]
+	[/if]
+	[if (not goal.set)]
+[encodeSetConstraint('GoalConcretization', 'node', intentionalElementName(goal))/]
+	[/if]
+	[if (not goal.var)]
+		[for (actor2 : Actor | istar.actors)]
+			[for (goal2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Goal)))]
+				[if (not (goal.name = goal2.name))]
+[encodeVarConstraint('GoalConcretization', 'node', intentionalElementName(goal), intentionalElementName(goal2))/]
+				[/if]
+			[/for]
+		[/for]
+	[/if]
+[/for]
+[for (softgoal : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(SoftGoal)))]
+[encodeInitialAnalysis(softgoal)/]
+	[if (not softgoal.may)]
+[encodeMayConstraint('SoftGoalConcretization', 'node', intentionalElementName(softgoal))/]
+	[/if]
+	[if (not softgoal.set)]
+[encodeSetConstraint('SoftGoalConcretization', 'node', intentionalElementName(softgoal))/]
+	[/if]
+	[if (not softgoal.var)]
+		[for (actor2 : Actor | istar.actors)]
+			[for (softgoal2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
+				[if (not (softgoal.name = softgoal2.name))]
+[encodeVarConstraint('SoftGoalConcretization', 'node', intentionalElementName(softgoal), intentionalElementName(softgoal2))/]
+				[/if]
+			[/for]
+		[/for]
+	[/if]
+[/for]
+[for (resource : IntentionalElement | istar.actors->collect(intentionalElements)->addAll(istar.dependums)->select(oclIsTypeOf(Resource)))]
+[encodeInitialAnalysis(resource)/]
+	[if (not resource.may)]
+[encodeMayConstraint('ResourceConcretization', 'node', intentionalElementName(resource))/]
+	[/if]
+	[if (not resource.set)]
+[encodeSetConstraint('ResourceConcretization', 'node', intentionalElementName(resource))/]
+	[/if]
+	[if (not resource.var)]
+		[for (actor2 : Actor | istar.actors)]
+			[for (resource2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Resource)))]
+				[if (not (resource.name = resource2.name))]
+[encodeVarConstraint('ResourceConcretization', 'node', intentionalElementName(resource), intentionalElementName(resource2))/]
+				[/if]
+			[/for]
+		[/for]
+	[/if]
+[/for]
+[for (actor : Actor | istar.actors)]
+	[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+		[for (end : EndReference | task.oclAsType(Task).end)]
+[encodeMetamodelConstraint('MeansEndConcretization', 'edge', linkName(end), 'node', null, intentionalElementName(end.src), 'node', null, intentionalElementName(end.tgt))/]
+			[if (not end.may)]
+[encodeMayConstraint('MeansEndConcretization', 'edge', linkName(end))/]
 			[/if]
-			[if (not task.set)]
-[encodeSetConstraint('TaskConcretization', 'task', intentionalElementName(task))/]
+			[if (not end.set)]
+[encodeSetConstraint('MeansEndConcretization', 'edge', linkName(end))/]
 			[/if]
-			[if (not task.var)]
+			[if (not end.var)]
 				[for (actor2 : Actor | istar.actors)]
 					[for (task2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Task)))]
-						[if (not (task.name = task2.name))]
-[encodeVarConstraint('TaskConcretization', 'task', intentionalElementName(task), intentionalElementName(task2))/]
-						[/if]
-					[/for]
-				[/for]
-			[/if]
-		[/for]
-	[/for]
-	[for (actor : Actor | istar.actors)]
-		[for (goal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Goal)))]
-[encodeInitialAnalysis(goal)/]
-			[if (not goal.may)]
-[encodeMayConstraint('GoalConcretization', 'goal', intentionalElementName(goal))/]
-			[/if]
-			[if (not goal.set)]
-[encodeSetConstraint('GoalConcretization', 'goal', intentionalElementName(goal))/]
-			[/if]
-			[if (not goal.var)]
-				[for (actor2 : Actor | istar.actors)]
-					[for (goal2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Goal)))]
-						[if (not (goal.name = goal2.name))]
-[encodeVarConstraint('GoalConcretization', 'goal', intentionalElementName(goal), intentionalElementName(goal2))/]
-						[/if]
-					[/for]
-				[/for]
-			[/if]
-		[/for]
-	[/for]
-	[for (actor : Actor | istar.actors)]
-		[for (softgoal : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
-[encodeInitialAnalysis(softgoal)/]
-			[if (not softgoal.may)]
-[encodeMayConstraint('SoftGoalConcretization', 'softgoal', intentionalElementName(softgoal))/]
-			[/if]
-			[if (not softgoal.set)]
-[encodeSetConstraint('SoftGoalConcretization', 'softgoal', intentionalElementName(softgoal))/]
-			[/if]
-			[if (not softgoal.var)]
-				[for (actor2 : Actor | istar.actors)]
-					[for (softgoal2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(SoftGoal)))]
-						[if (not (softgoal.name = softgoal2.name))]
-[encodeVarConstraint('SoftGoalConcretization', 'softgoal', intentionalElementName(softgoal), intentionalElementName(softgoal2))/]
-						[/if]
-					[/for]
-				[/for]
-			[/if]
-		[/for]
-	[/for]
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-			[for (end : EndReference | task.oclAsType(Task).end)]
-[encodeMetamodelConstraint('MeansEndConcretization', 'meansend', endReferenceName(end), 'task', null, intentionalElementName(end.src), 'goal', null, intentionalElementName(end.tgt))/]
-				[if (not end.may)]
-[encodeMayConstraint('MeansEndConcretization', 'meansend', endReferenceName(end))/]
-				[/if]
-				[if (not end.set)]
-[encodeSetConstraint('MeansEndConcretization', 'meansend', endReferenceName(end))/]
-				[/if]
-				[if (not end.var)]
-					[for (actor2 : Actor | istar.actors)]
-						[for (task2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Task)))]
-							[for (end2 : EndReference | task2.oclAsType(Task).end)]
-								[if (not (endReferenceName(end) = endReferenceName(end2)))]
-[encodeVarConstraint('MeansEndConcretization', 'meansend', endReferenceName(end), endReferenceName(end2))/]
-								[/if]
-							[/for]
+						[for (end2 : EndReference | task2.oclAsType(Task).end)]
+							[if (not (linkName(end) = linkName(end2)))]
+[encodeVarConstraint('MeansEndConcretization', 'edge', linkName(end), linkName(end2))/]
+							[/if]
 						[/for]
 					[/for]
-				[/if]
-			[/for]
+				[/for]
+			[/if]
 		[/for]
 	[/for]
-	[for (actor : Actor | istar.actors)]
-		[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
-			[for (component : ComponentsReference | task.oclAsType(Task).components)]
-[encodeMetamodelConstant('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'endpoint', 'ENDPOINT_'+component.tgt.eClass().name.toUpper())/]
-				[if (component.tgt.oclIsTypeOf(Task))]
-[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'task', null, intentionalElementName(component.src), 'task', 'TaskConcretization', intentionalElementName(component.tgt))/]
-				[elseif (component.tgt.oclIsTypeOf(Goal))]
-[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'task', null, intentionalElementName(component.src), 'goal', 'GoalConcretization', intentionalElementName(component.tgt))/]
-				[elseif (component.tgt.oclIsTypeOf(SoftGoal))]
-[encodeMetamodelConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component), 'task', null, intentionalElementName(component.src), 'softgoal', 'SoftGoalConcretization', intentionalElementName(component.tgt))/]
-				[/if]
-				[if (not component.may)]
-[encodeMayConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component))/]
-				[/if]
-				[if (not component.set)]
-[encodeSetConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component))/]
-				[/if]
-				[if (not component.var)]
-					[for (actor2 : Actor | istar.actors)]
-						[for (task2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Task)))]
-							[for (component2 : ComponentsReference | task2.oclAsType(Task).components)]
-								[if (not (componentsReferenceName(component) = componentsReferenceName(component2)))]
-[encodeVarConstraint('DecompositionConcretization', 'decomposition', componentsReferenceName(component), componentsReferenceName(component2))/]
-								[/if]
-							[/for]
-						[/for]
-					[/for]
-				[/if]
-			[/for]
-		[/for]
-	[/for]
-	[for (actor : Actor | istar.actors)]
-		[for (contribution : Contribution | actor.contributions)]
-[encodeMetamodelConstant('ContributionConcretization', 'contribution', contributionName(contribution), 'type', 'CONTRIBUTION_'+contribution.type.toUpper())/]
-[encodeMetamodelConstant('ContributionConcretization', 'contribution', contributionName(contribution), 'endpoint', 'ENDPOINT_'+contribution.contributor.eClass().name.toUpper())/]
-			[if (contribution.contributor.oclIsTypeOf(Task))]
-[encodeMetamodelConstraint('ContributionConcretization', 'contribution', contributionName(contribution), 'task', 'TaskConcretization', intentionalElementName(contribution.contributor), 'softgoal', null, intentionalElementName(contribution.contributee))/]
-			[elseif (contribution.contributor.oclIsTypeOf(Goal))]
-[encodeMetamodelConstraint('ContributionConcretization', 'contribution', contributionName(contribution), 'goal', 'GoalConcretization', intentionalElementName(contribution.contributor), 'softgoal', null, intentionalElementName(contribution.contributee))/]
-			[elseif (contribution.contributor.oclIsTypeOf(SoftGoal))]
-[encodeMetamodelConstraint('ContributionConcretization', 'contribution', contributionName(contribution), 'softgoal', 'SoftGoalConcretization', intentionalElementName(contribution.contributor), 'softgoal', null, intentionalElementName(contribution.contributee))/]
+[/for]
+[for (actor : Actor | istar.actors)]
+	[for (task : IntentionalElement | actor.intentionalElements->select(oclIsTypeOf(Task)))]
+		[for (component : ComponentsReference | task.oclAsType(Task).components)]
+[encodeMetamodelConstant('DecompositionConcretization', 'edge', linkName(component), 'tgtEndpoint', 'ENDPOINT_'+component.tgt.eClass().name.toUpper())/]
+			[if (component.tgt.oclIsTypeOf(Task))]
+[encodeMetamodelConstraint('DecompositionConcretization', 'edge', linkName(component), 'node', null, intentionalElementName(component.src), 'node', 'TaskConcretization', intentionalElementName(component.tgt))/]
+			[elseif (component.tgt.oclIsTypeOf(Goal))]
+[encodeMetamodelConstraint('DecompositionConcretization', 'edge', linkName(component), 'node', null, intentionalElementName(component.src), 'node', 'GoalConcretization', intentionalElementName(component.tgt))/]
+			[elseif (component.tgt.oclIsTypeOf(SoftGoal))]
+[encodeMetamodelConstraint('DecompositionConcretization', 'edge', linkName(component), 'node', null, intentionalElementName(component.src), 'node', 'SoftGoalConcretization', intentionalElementName(component.tgt))/]
 			[/if]
-			[if (not contribution.may)]
-[encodeMayConstraint('ContributionConcretization', 'contribution', contributionName(contribution))/]
+			[if (not component.may)]
+[encodeMayConstraint('DecompositionConcretization', 'edge', linkName(component))/]
 			[/if]
-			[if (not contribution.set)]
-[encodeSetConstraint('ContributionConcretization', 'contribution', contributionName(contribution))/]
+			[if (not component.set)]
+[encodeSetConstraint('DecompositionConcretization', 'edge', linkName(component))/]
 			[/if]
-			[if (not contribution.var)]
+			[if (not component.var)]
 				[for (actor2 : Actor | istar.actors)]
-					[for (contribution2 : Contribution | actor2.contributions)]
-						[if (not (contributionName(contribution) = contributionName(contribution2)))]
-[encodeVarConstraint('ContributionConcretization', 'contribution', contributionName(contribution), contributionName(contribution2))/]
-						[/if]
+					[for (task2 : IntentionalElement | actor2.intentionalElements->select(oclIsTypeOf(Task)))]
+						[for (component2 : ComponentsReference | task2.oclAsType(Task).components)]
+							[if (not (linkName(component) = linkName(component2)))]
+[encodeVarConstraint('DecompositionConcretization', 'edge', linkName(component), linkName(component2))/]
+							[/if]
+						[/for]
 					[/for]
 				[/for]
 			[/if]
 		[/for]
 	[/for]
+[/for]
+[for (actor : Actor | istar.actors)]
+	[for (contribution : Contribution | actor.contributions)]
+[encodeMetamodelConstant('ContributionConcretization', 'edge', linkName(contribution), 'type', 'CONTRIBUTION_'+contribution.type.toUpper())/]
+[encodeMetamodelConstant('ContributionConcretization', 'edge', linkName(contribution), 'srcEndpoint', 'ENDPOINT_'+contribution.contributor.eClass().name.toUpper())/]
+		[if (contribution.contributor.oclIsTypeOf(Task))]
+[encodeMetamodelConstraint('ContributionConcretization', 'edge', linkName(contribution), 'node', 'TaskConcretization', intentionalElementName(contribution.contributor), 'node', null, intentionalElementName(contribution.contributee))/]
+		[elseif (contribution.contributor.oclIsTypeOf(Goal))]
+[encodeMetamodelConstraint('ContributionConcretization', 'edge', linkName(contribution), 'node', 'GoalConcretization', intentionalElementName(contribution.contributor), 'node', null, intentionalElementName(contribution.contributee))/]
+		[elseif (contribution.contributor.oclIsTypeOf(SoftGoal))]
+[encodeMetamodelConstraint('ContributionConcretization', 'edge', linkName(contribution), 'node', 'SoftGoalConcretization', intentionalElementName(contribution.contributor), 'node', null, intentionalElementName(contribution.contributee))/]
+		[/if]
+		[if (not contribution.may)]
+[encodeMayConstraint('ContributionConcretization', 'edge', linkName(contribution))/]
+		[/if]
+		[if (not contribution.set)]
+[encodeSetConstraint('ContributionConcretization', 'edge', linkName(contribution))/]
+		[/if]
+		[if (not contribution.var)]
+			[for (actor2 : Actor | istar.actors)]
+				[for (contribution2 : Contribution | actor2.contributions)]
+					[if (not (linkName(contribution) = linkName(contribution2)))]
+[encodeVarConstraint('ContributionConcretization', 'edge', linkName(contribution), linkName(contribution2))/]
+					[/if]
+				[/for]
+			[/for]
+		[/if]
+	[/for]
+[/for]
 [/template]
 
 [template private encodePropagation(istar : IStar)]
 
-;MeansEnd Propagation
+;MeansEnd propagation
 (assert	(forall ((gc GoalConcretization)) (=> (not (inited gc)) (= (fs gc) (ite
 	(exists ((mec MeansEndConcretization)) (and (= (tgt mec) gc) (fs mec)))
 	true
@@ -717,7 +802,7 @@
 	false
 )))))
 
-;Decomposition Propagation
+;Decomposition propagation
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc)) (= (fd tc) (ite
 	(exists ((dc DecompositionConcretization)) (and (= (src dc) tc) (fd dc)))
 	true
@@ -745,6 +830,38 @@
 )))))
 (assert (forall ((tc TaskConcretization)) (=> (not (inited tc))  (= (fs tc) (ite
 	(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) tc) (fs dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) tc) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (ps dc2))))))
+	true
+	false
+)))))
+
+;Contribution propagation
+(assert (forall ((sgc SoftGoalConcretization)) (=> (not (inited sgc)) (= (co sgc) (ite
+	(or (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) sgc) (co cc1))) (exists ((cc2 ContributionConcretization) (cc3 ContributionConcretization)) (and (= (tgt cc2) sgc) (and (= (tgt cc3) sgc) (and (or (fs cc2) (ps cc2)) (or (pd cc3) (fd cc3)))))))
+	true
+	false
+)))))
+(assert (forall ((sgc SoftGoalConcretization)) (=> (not (inited sgc)) (= (un sgc) (ite
+	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) sgc) (un cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) sgc) (co cc2)))) (not (exists ((cc3 ContributionConcretization) (cc4 ContributionConcretization)) (and (= (tgt cc3) sgc) (and (= (tgt cc4) sgc) (and (or (fs cc3) (ps cc3)) (or (pd cc4) (fd cc4))))))))
+	true
+	false
+)))))
+(assert (forall ((sgc SoftGoalConcretization)) (=> (not (inited sgc)) (= (fs sgc) (ite
+	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) sgc) (fs cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) sgc) (or (un cc2) (co cc2) (pd cc2) (fd cc2))))))
+	true
+	false
+)))))
+(assert (forall ((sgc SoftGoalConcretization)) (=> (not (inited sgc)) (= (ps sgc) (ite
+	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) sgc) (ps cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) sgc) (or (fs cc2) (un cc2) (co cc2) (pd cc2) (fd cc2))))))
+	true
+	false
+)))))
+(assert (forall ((sgc SoftGoalConcretization)) (=> (not (inited sgc)) (= (fd sgc) (ite
+	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) sgc) (fd cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) sgc) (or (fs cc2) (ps cc2) (un cc2) (co cc2))))))
+	true
+	false
+)))))
+(assert (forall ((sgc SoftGoalConcretization)) (=> (not (inited sgc)) (= (pd sgc) (ite
+	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) sgc) (pd cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) sgc) (or (fs cc2) (ps cc2) (un cc2) (co cc2) (fd cc2))))))
 	true
 	false
 )))))
