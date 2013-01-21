@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.core.runtime,
  com.google.guava,
  edu.toronto.cs.se.mmtf.core,
  edu.toronto.cs.se.modelepedia.istar_mavo,
- org.eclipse.core.resources
+ org.eclipse.core.resources,
+ edu.toronto.cs.se.modelepedia.operator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

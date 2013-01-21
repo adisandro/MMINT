@@ -96,17 +96,17 @@
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
-            class="edu.toronto.cs.se.modelepedia.randommodel.operator.Z3SMTSolver"
+            class="edu.toronto.cs.se.modelepedia.randommodel.operator.TOSEM12"
             isConversion="false">
          <extendibleType
-               name="Z3SMTSolver"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_Z3SMTSolver">
+               name="TOSEM12"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_TOSEM12">
          </extendibleType>
          <input>
             <parameter
                   isVararg="false"
-                  name="anything"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  name="randomModel"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/RandomModel">
             </parameter>
          </input>
          <output>

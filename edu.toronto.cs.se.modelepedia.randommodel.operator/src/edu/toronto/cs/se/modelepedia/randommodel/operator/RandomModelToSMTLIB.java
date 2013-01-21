@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.AcceleoTextGenerationEvent;
@@ -38,6 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
@@ -52,6 +54,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 			private boolean isListening;
 
 			public RandomModelToSMTLIBListener() {
+
 				textGeneration = new StringBuilder();
 				isListening = true;
 			}
@@ -121,7 +124,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 	private List<MAVOElement> mayModelObjs;
 	private String smtlibMavoEncoding;
 	private String smtlibEncoding;
-	private HashSet<String> smtlibConcretizations;
+	private Set<String> smtlibConcretizations;
 	private String groundedProperty;
 
 	private void readProperties(Properties properties) throws Exception {
@@ -466,7 +469,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		return smtlibMavoEncoding;
 	}
 
-	public HashSet<String> getSMTLIBConcretizations() {
+	public Set<String> getSMTLIBConcretizations() {
 
 		return smtlibConcretizations;
 	}

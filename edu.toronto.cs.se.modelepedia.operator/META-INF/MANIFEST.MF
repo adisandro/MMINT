@@ -10,5 +10,8 @@ Require-Bundle: edu.toronto.cs.se.mmtf.core,
  org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  org.eclipse.core.resources
-Bundle-ClassPath: lib/alloy4.2-rc.jar,
+Bundle-ClassPath: lib/jna.jar,
+ lib/alloy4.2-rc.jar,
  .
+Export-Package: com.sun.jna,
+ edu.toronto.cs.se.modelepedia.operator.reasoning

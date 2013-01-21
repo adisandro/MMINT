@@ -100,13 +100,13 @@
 [if (node.eContainer().oclIsTypeOf(IStar))]
 	[for (actor2 : Actor | istar.actors)]
 		[for (node2 : IntentionalElement | actor2.intentionalElements->select(eClass().name = nodeType))]
-	[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
+[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
 		[/for]
 	[/for]
 	[if (not node.var)]
 		[for (node2 : IntentionalElement | istar.dependums->select(eClass().name = nodeType))]
 			[if (not (node.name = node2.name))]
-	[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
+[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
 			[/if]
 		[/for]
 	[/if]
@@ -117,14 +117,14 @@
 	[for (actor2 : Actor | istar.actors)]
 		[if (not (node.eContainer().oclAsType(Actor).name = actor2.name) and not actor2.var and not node.var)]
 			[for (node2 : IntentionalElement | actor2.intentionalElements->select(eClass().name = nodeType))]
-	[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
+[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
 			[/for]
 		[/if]
 	[/for]
 	[if (not node.var)]
 		[for (node2 : IntentionalElement | node.eContainer().oclAsType(Actor).intentionalElements->select(eClass().name = nodeType))]
 			[if (not (node.name = node2.name))]
-	[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
+[encodeVarConstraint(nodeType+'Concretization', 'node', nodeName(node), nodeName(node2))/]
 			[/if]
 		[/for]
 	[/if]
@@ -694,14 +694,14 @@
 		)
 	)
 )))
-(assert (forall ((dc DependerConcretization)) (= (pdTgtEndpoint dc)
-	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
-		(pd ((as tgt (TaskConcretization)) dc))
-		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
-			(pd ((as tgt (GoalConcretization)) dc))
-			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
-				(pd ((as tgt (SoftGoalConcretization)) dc))
-				(pd ((as tgt (ResourceConcretization)) dc))
+(assert (forall ((c DependerConcretization)) (= (pdTgtEndpoint c)
+	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
+		(pd ((as tgt (TaskConcretization)) c))
+		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
+			(pd ((as tgt (GoalConcretization)) c))
+			(ite (= (tgtEndpoint c) ENDPOINT_SOFTGOAL)
+				(pd ((as tgt (SoftGoalConcretization)) c))
+				(pd ((as tgt (ResourceConcretization)) c))
 			)
 		)
 	)
@@ -772,14 +772,14 @@
 		)
 	)
 )))
-(assert (forall ((dc DependeeConcretization)) (= (pdTgtEndpoint dc)
-	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
-		(pd ((as tgt (TaskConcretization)) dc))
-		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
-			(pd ((as tgt (GoalConcretization)) dc))
-			(ite (= (tgtEndpoint dc) ENDPOINT_SOFTGOAL)
-				(pd ((as tgt (SoftGoalConcretization)) dc))
-				(pd ((as tgt (ResourceConcretization)) dc))
+(assert (forall ((c DependeeConcretization)) (= (pdTgtEndpoint c)
+	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
+		(pd ((as tgt (TaskConcretization)) c))
+		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
+			(pd ((as tgt (GoalConcretization)) c))
+			(ite (= (tgtEndpoint c) ENDPOINT_SOFTGOAL)
+				(pd ((as tgt (SoftGoalConcretization)) c))
+				(pd ((as tgt (ResourceConcretization)) c))
 			)
 		)
 	)
@@ -1262,9 +1262,9 @@
 )))))
 [/template]
 
-[template public encodeIStarMAVO(istar : IStar)]
+[template public encodeIStarMAVO(istar : IStar, modelName : String)]
 [comment @main/]
-[file ('encoding.smt2', false, 'UTF-8')]
+[file (modelName + '.smt2', false, 'UTF-8')]
 [encodeConstants(istar)/]
 [encodeModel(istar)/]
 [encodeAnalysis(istar)/]

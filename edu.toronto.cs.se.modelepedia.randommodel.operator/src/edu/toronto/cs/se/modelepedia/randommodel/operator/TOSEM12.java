@@ -11,21 +11,14 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.operator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-
-import com.sun.jna.Library;
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
@@ -34,15 +27,13 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
+import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
-import edu.toronto.cs.se.modelepedia.randommodel.operator.Z3SMTSolver.CLibrary.Z3IncResult;
 
-public class Z3SMTSolver extends OperatorExecutableImpl {
+public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 
-	private static final String Z3_LIBRARY_NAME = "z3";
-	private static final String OPERATOR_LIBRARY_NAME = "Z3SMTSolver";
-	private static final String LIBRARY_PATH = "/usr/lib";
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelToSMTLIB";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
@@ -51,15 +42,6 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private static final String PROPERTY_OUT_FLAGS = "flags";
 	private static final String PROPERTY_OUT_SPEEDUPCLASSICALMAVO = "speedupClassicalMAVO";
 	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE = "speedupMAVOAllsatMAVOBackbone";
-
-	public static final String SMTLIB_PREDICATE_START = "(";
-	public static final String SMTLIB_PREDICATE_END = ")";
-	public static final String SMTLIB_TRUE = " true ";
-	public static final String SMTLIB_FALSE = " false ";
-	public static final String SMTLIB_ASSERT = SMTLIB_PREDICATE_START + "assert";
-	public static final String SMTLIB_AND = SMTLIB_PREDICATE_START + "and";
-	public static final String SMTLIB_OR = SMTLIB_PREDICATE_START + "or";
-	public static final String SMTLIB_NOT = SMTLIB_PREDICATE_START + "not";
 
 	private static final char Z3_ELEMFUNC_PLACEHOLDER = '!';
 	private static final char Z3_ELEMFUNC_BEGIN = '{';
@@ -78,55 +60,6 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 	private double speedupClassicalMAVO;
 	private double speedupMAVOAllsatMAVOBackbone;
 	private boolean isMAVOMaybe;
-
-	public interface CLibrary extends Library {
-
-		CLibrary Z3_INSTANCE = (CLibrary) Native.loadLibrary(Z3_LIBRARY_NAME, CLibrary.class);
-		CLibrary OPERATOR_INSTANCE = (CLibrary) Native.loadLibrary(OPERATOR_LIBRARY_NAME, CLibrary.class);
-
-		public class Z3Result extends Structure {
-
-			public int flag;
-			public Pointer model;
-
-			@Override
-			@SuppressWarnings("rawtypes")
-			protected List getFieldOrder() {
-				List<String> fields = new ArrayList<String>();
-				fields.add("flag");
-				fields.add("model");
-				return fields;
-			}
-		}
-
-		public class Z3IncResult extends Structure {
-
-			public int flag;
-			public Pointer model;
-			public Pointer contextPointer;
-			public Pointer solverPointer;
-			public Pointer modelPointer;
-
-			@Override
-			@SuppressWarnings("rawtypes")
-			protected List getFieldOrder() {
-				List<String> fields = new ArrayList<String>();
-				fields.add("flag");
-				fields.add("model");
-				fields.add("contextPointer");
-				fields.add("solverPointer");
-				fields.add("modelPointer");
-				return fields;
-			}
-		}
-
-		int checkSat(String smtEncoding);
-		Z3Result checkSatAndGetModel(String smtEncoding);
-		void freeResult(Z3Result result);
-		Z3IncResult firstCheckSatAndGetModelIncremental(String smtEncoding);
-		void checkSatAndGetModelIncremental(Z3IncResult incResult, String smtEncoding, int removeLastAssertion);
-		void freeResultIncremental(Z3IncResult incResult);
-	}
 
 	private void readProperties(Properties properties) throws Exception {
 
@@ -183,7 +116,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		timeMAVO = endTime - startTime;
 	}
 
-	private void doClassicalPropertyCheck(String smtlibEncoding, String property, HashSet<String> smtlibConcretizations) {
+	private void doClassicalPropertyCheck(String smtlibEncoding, String property, Set<String> smtlibConcretizations) {
 
 		int z3Result, firstZ3Result = 0;
 		String encoding;
@@ -399,6 +332,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
+		initOutput();
 
 		// get output from previous operator
 		RandomModelToSMTLIB previousOperator = (previousExecutable == null) ?
@@ -406,7 +340,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			(RandomModelToSMTLIB) previousExecutable;
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 		final String smtlibMavoEncoding = previousOperator.getSMTLIBMAVOEncoding();
-		HashSet<String> smtlibConcretizations = previousOperator.getSMTLIBConcretizations();
+		Set<String> smtlibConcretizations = previousOperator.getSMTLIBConcretizations();
 		final String property = previousOperator.getGroundedProperty();
 		Set<String> z3MayModelElems = new HashSet<String>();
 		for (MAVOElement mayModelObj : previousOperator.getMayModelObjects()) {
@@ -414,8 +348,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 		}
 
 		// run solver
-		initOutput();
-		System.setProperty("jna.library.path", LIBRARY_PATH);
+		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
 		doMAVOPropertyCheck(smtlibMavoEncoding, property);
 		if (timeClassicalEnabled) {
 			doClassicalPropertyCheck(smtlibEncoding, property, smtlibConcretizations);
@@ -433,7 +366,7 @@ public class Z3SMTSolver extends OperatorExecutableImpl {
 			}
 		}
 
-		// save execution times
+		// save output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(
