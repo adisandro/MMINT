@@ -310,36 +310,12 @@
 (declare-fun inited (GoalConcretization) Bool)
 (declare-fun inited (SoftGoalConcretization) Bool)
 (declare-fun inited (ResourceConcretization) Bool)
-(declare-fun fsSrcEndpoint (MeansEndConcretization) Bool)
-(declare-fun fsTgtEndpoint (DecompositionConcretization) Bool)
 (declare-fun fsSrcEndpoint (ContributionConcretization) Bool)
-(declare-fun fsTgtEndpoint (DependerConcretization) Bool)
-(declare-fun fsTgtEndpoint (DependeeConcretization) Bool)
-(declare-fun psSrcEndpoint (MeansEndConcretization) Bool)
-(declare-fun psTgtEndpoint (DecompositionConcretization) Bool)
 (declare-fun psSrcEndpoint (ContributionConcretization) Bool)
-(declare-fun psTgtEndpoint (DependerConcretization) Bool)
-(declare-fun psTgtEndpoint (DependeeConcretization) Bool)
-(declare-fun unSrcEndpoint (MeansEndConcretization) Bool)
-(declare-fun unTgtEndpoint (DecompositionConcretization) Bool)
 (declare-fun unSrcEndpoint (ContributionConcretization) Bool)
-(declare-fun unTgtEndpoint (DependerConcretization) Bool)
-(declare-fun unTgtEndpoint (DependeeConcretization) Bool)
-(declare-fun coSrcEndpoint (MeansEndConcretization) Bool)
-(declare-fun coTgtEndpoint (DecompositionConcretization) Bool)
 (declare-fun coSrcEndpoint (ContributionConcretization) Bool)
-(declare-fun coTgtEndpoint (DependerConcretization) Bool)
-(declare-fun coTgtEndpoint (DependeeConcretization) Bool)
-(declare-fun pdSrcEndpoint (MeansEndConcretization) Bool)
-(declare-fun pdTgtEndpoint (DecompositionConcretization) Bool)
 (declare-fun pdSrcEndpoint (ContributionConcretization) Bool)
-(declare-fun pdTgtEndpoint (DependerConcretization) Bool)
-(declare-fun pdTgtEndpoint (DependeeConcretization) Bool)
-(declare-fun fdSrcEndpoint (MeansEndConcretization) Bool)
-(declare-fun fdTgtEndpoint (DecompositionConcretization) Bool)
 (declare-fun fdSrcEndpoint (ContributionConcretization) Bool)
-(declare-fun fdTgtEndpoint (DependerConcretization) Bool)
-(declare-fun fdTgtEndpoint (DependeeConcretization) Bool)
 (declare-fun fs (TaskConcretization) Bool)
 (declare-fun fs (GoalConcretization) Bool)
 (declare-fun fs (SoftGoalConcretization) Bool)
@@ -394,19 +370,13 @@
 (declare-fun fd (ContributionConcretization) Bool)
 (declare-fun fd (DependerConcretization) Bool)
 (declare-fun fd (DependeeConcretization) Bool)
-(assert (forall ((c MeansEndConcretization)) (= (fsSrcEndpoint c) (fs (src c)))))
-(assert (forall ((c MeansEndConcretization)) (= (psSrcEndpoint c) (ps (src c)))))
-(assert (forall ((c MeansEndConcretization)) (= (unSrcEndpoint c) (un (src c)))))
-(assert (forall ((c MeansEndConcretization)) (= (coSrcEndpoint c) (co (src c)))))
-(assert (forall ((c MeansEndConcretization)) (= (pdSrcEndpoint c) (pd (src c)))))
-(assert (forall ((c MeansEndConcretization)) (= (fdSrcEndpoint c) (fd (src c)))))
-(assert (forall ((c MeansEndConcretization)) (= (fs c) (fsSrcEndpoint c))))
-(assert (forall ((c MeansEndConcretization)) (= (ps c) (psSrcEndpoint c))))
-(assert (forall ((c MeansEndConcretization)) (= (un c) (unSrcEndpoint c))))
-(assert (forall ((c MeansEndConcretization)) (= (co c) (coSrcEndpoint c))))
-(assert (forall ((c MeansEndConcretization)) (= (pd c) (pdSrcEndpoint c))))
-(assert (forall ((c MeansEndConcretization)) (= (fd c) (fdSrcEndpoint c))))
-(assert (forall ((c DecompositionConcretization)) (= (fsTgtEndpoint c)
+(assert (forall ((c MeansEndConcretization)) (= (fs c) (fs (src c)))))
+(assert (forall ((c MeansEndConcretization)) (= (ps c) (ps (src c)))))
+(assert (forall ((c MeansEndConcretization)) (= (un c) (un (src c)))))
+(assert (forall ((c MeansEndConcretization)) (= (co c) (co (src c)))))
+(assert (forall ((c MeansEndConcretization)) (= (pd c) (pd (src c)))))
+(assert (forall ((c MeansEndConcretization)) (= (fd c) (fd (src c)))))
+(assert (forall ((c DecompositionConcretization)) (= (fs c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(fs ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -418,7 +388,7 @@
 		)
 	)
 )))
-(assert (forall ((c DecompositionConcretization)) (= (psTgtEndpoint c)
+(assert (forall ((c DecompositionConcretization)) (= (ps c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(ps ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -430,7 +400,7 @@
 		)
 	)
 )))
-(assert (forall ((c DecompositionConcretization)) (= (unTgtEndpoint c)
+(assert (forall ((c DecompositionConcretization)) (= (un c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(un ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -442,7 +412,7 @@
 		)
 	)
 )))
-(assert (forall ((c DecompositionConcretization)) (= (coTgtEndpoint c)
+(assert (forall ((c DecompositionConcretization)) (= (co c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(co ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -454,7 +424,7 @@
 		)
 	)
 )))
-(assert (forall ((dc DecompositionConcretization)) (= (pdTgtEndpoint dc)
+(assert (forall ((dc DecompositionConcretization)) (= (pd dc)
 	(ite (= (tgtEndpoint dc) ENDPOINT_TASK)
 		(pd ((as tgt (TaskConcretization)) dc))
 		(ite (= (tgtEndpoint dc) ENDPOINT_GOAL)
@@ -466,7 +436,7 @@
 		)
 	)
 )))
-(assert (forall ((c DecompositionConcretization)) (= (fdTgtEndpoint c)
+(assert (forall ((c DecompositionConcretization)) (= (fd c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(fd ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -478,12 +448,6 @@
 		)
 	)
 )))
-(assert (forall ((c DecompositionConcretization)) (= (fs c) (fsTgtEndpoint c))))
-(assert (forall ((c DecompositionConcretization)) (= (ps c) (psTgtEndpoint c))))
-(assert (forall ((c DecompositionConcretization)) (= (un c) (unTgtEndpoint c))))
-(assert (forall ((c DecompositionConcretization)) (= (co c) (coTgtEndpoint c))))
-(assert (forall ((c DecompositionConcretization)) (= (pd c) (pdTgtEndpoint c))))
-(assert (forall ((c DecompositionConcretization)) (= (fd c) (fdTgtEndpoint c))))
 (assert (forall ((c ContributionConcretization)) (= (fsSrcEndpoint c)
 	(ite (= (srcEndpoint c) ENDPOINT_TASK)
 		(fs ((as src (TaskConcretization)) c))
@@ -646,7 +610,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependerConcretization)) (= (fsTgtEndpoint c)
+(assert (forall ((c DependerConcretization)) (= (fs c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(fs ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -658,7 +622,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependerConcretization)) (= (psTgtEndpoint c)
+(assert (forall ((c DependerConcretization)) (= (ps c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(ps ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -670,7 +634,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependerConcretization)) (= (unTgtEndpoint c)
+(assert (forall ((c DependerConcretization)) (= (un c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(un ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -682,7 +646,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependerConcretization)) (= (coTgtEndpoint c)
+(assert (forall ((c DependerConcretization)) (= (co c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(co ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -694,7 +658,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependerConcretization)) (= (pdTgtEndpoint c)
+(assert (forall ((c DependerConcretization)) (= (pd c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(pd ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -706,7 +670,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependerConcretization)) (= (fdTgtEndpoint c)
+(assert (forall ((c DependerConcretization)) (= (fd c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(fd ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -718,13 +682,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependerConcretization)) (= (fs c) (fsTgtEndpoint c))))
-(assert (forall ((c DependerConcretization)) (= (ps c) (psTgtEndpoint c))))
-(assert (forall ((c DependerConcretization)) (= (un c) (unTgtEndpoint c))))
-(assert (forall ((c DependerConcretization)) (= (co c) (coTgtEndpoint c))))
-(assert (forall ((c DependerConcretization)) (= (pd c) (pdTgtEndpoint c))))
-(assert (forall ((c DependerConcretization)) (= (fd c) (fdTgtEndpoint c))))
-(assert (forall ((c DependeeConcretization)) (= (fsTgtEndpoint c)
+(assert (forall ((c DependeeConcretization)) (= (fs c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(fs ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -736,7 +694,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependeeConcretization)) (= (psTgtEndpoint c)
+(assert (forall ((c DependeeConcretization)) (= (ps c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(ps ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -748,7 +706,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependeeConcretization)) (= (unTgtEndpoint c)
+(assert (forall ((c DependeeConcretization)) (= (un c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(un ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -760,7 +718,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependeeConcretization)) (= (coTgtEndpoint c)
+(assert (forall ((c DependeeConcretization)) (= (co c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(co ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -772,7 +730,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependeeConcretization)) (= (pdTgtEndpoint c)
+(assert (forall ((c DependeeConcretization)) (= (pd c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(pd ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -784,7 +742,7 @@
 		)
 	)
 )))
-(assert (forall ((c DependeeConcretization)) (= (fdTgtEndpoint c)
+(assert (forall ((c DependeeConcretization)) (= (fd c)
 	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
 		(fd ((as tgt (TaskConcretization)) c))
 		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
@@ -796,19 +754,66 @@
 		)
 	)
 )))
-(assert (forall ((c DependeeConcretization)) (= (fs c) (fsTgtEndpoint c))))
-(assert (forall ((c DependeeConcretization)) (= (ps c) (psTgtEndpoint c))))
-(assert (forall ((c DependeeConcretization)) (= (un c) (unTgtEndpoint c))))
-(assert (forall ((c DependeeConcretization)) (= (co c) (coTgtEndpoint c))))
-(assert (forall ((c DependeeConcretization)) (= (pd c) (pdTgtEndpoint c))))
-(assert (forall ((c DependeeConcretization)) (= (fd c) (fdTgtEndpoint c))))
 
 ;Uninitialized labels
 (declare-fun n (TaskConcretization) Bool)
 (declare-fun n (GoalConcretization) Bool)
 (declare-fun n (SoftGoalConcretization) Bool)
 (declare-fun n (ResourceConcretization) Bool)
-;TODO need also all the endpoint switches, because (not (n c)) has to go in some rule downstairs
+(declare-fun n (MeansEndConcretization) Bool)
+(declare-fun n (DecompositionConcretization) Bool)
+(declare-fun n (ContributionConcretization) Bool)
+(declare-fun n (DependerConcretization) Bool)
+(declare-fun n (DependeeConcretization) Bool)
+(assert (forall ((c MeansEndConcretization)) (= (n c) (n (src c)))))
+(assert (forall ((c DecompositionConcretization)) (= (n c)
+	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
+		(n ((as tgt (TaskConcretization)) c))
+		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
+			(n ((as tgt (GoalConcretization)) c))
+			(ite (= (tgtEndpoint c) ENDPOINT_SOFTGOAL)
+				(n ((as tgt (SoftGoalConcretization)) c))
+				(n ((as tgt (ResourceConcretization)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c ContributionConcretization)) (= (n c)
+	(ite (= (srcEndpoint c) ENDPOINT_TASK)
+		(n ((as src (TaskConcretization)) c))
+		(ite (= (srcEndpoint c) ENDPOINT_GOAL)
+			(n ((as src (GoalConcretization)) c))
+			(ite (= (srcEndpoint c) ENDPOINT_SOFTGOAL)
+				(n ((as src (SoftGoalConcretization)) c))
+				(n ((as src (ResourceConcretization)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c DependerConcretization)) (= (n c)
+	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
+		(n ((as tgt (TaskConcretization)) c))
+		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
+			(n ((as tgt (GoalConcretization)) c))
+			(ite (= (tgtEndpoint c) ENDPOINT_SOFTGOAL)
+				(n ((as tgt (SoftGoalConcretization)) c))
+				(n ((as tgt (ResourceConcretization)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c DependeeConcretization)) (= (n c)
+	(ite (= (tgtEndpoint c) ENDPOINT_TASK)
+		(n ((as tgt (TaskConcretization)) c))
+		(ite (= (tgtEndpoint c) ENDPOINT_GOAL)
+			(n ((as tgt (GoalConcretization)) c))
+			(ite (= (tgtEndpoint c) ENDPOINT_SOFTGOAL)
+				(n ((as tgt (SoftGoalConcretization)) c))
+				(n ((as tgt (ResourceConcretization)) c))
+			)
+		)
+	)
+)))
 
 ;One analysis tag constraint
 (assert (forall ((c TaskConcretization)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
@@ -1104,17 +1109,11 @@
 
 [template private encodePropagation(istar : IStar)]
 
-;TODO need to include n in all AND cases
 ;Goal propagation (MeansEnd + Dependee)
-(assert (forall ((c GoalConcretization)) ((=> (not (inited c)) (= (n c) (ite
-	(and (not (exists ((mec MeansEndConcretization)) (= (tgt mec) c))) (not (exists ((dc DependeeConcretization)) (= ((as src (GoalConcretization)) dc) c))))
-	true
-	false
-))))))
 (assert	(forall ((c GoalConcretization)) (=> (not (inited c)) (= (fs c) (ite
 	(or
 		(exists ((mec MeansEndConcretization)) (and (= (tgt mec) c) (fs mec)))
-		(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc1) c) (fs dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (ps dc2))))))
+		(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc1) c) (fs dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))))
 	)
 	true
 	false
@@ -1122,7 +1121,16 @@
 (assert	(forall ((c GoalConcretization)) (=> (not (inited c)) (= (ps c) (ite
 	(or
 		(and (exists ((mec1 MeansEndConcretization)) (and (= (tgt mec1) c) (ps mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (tgt mec2) c) (fs mec2)))))
-		(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc1) c) (ps dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
+		(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc1) c) (ps dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))))
+	)
+	true
+	false
+)))))
+(assert (forall ((c GoalConcretization)) (=> (not (inited c)) (= (n c) (ite
+	(or
+		(and (not (exists ((mec1 MeansEndConcretization)) (= (tgt mec1) c))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc2) c)))))
+		(and (exists ((mec1 MeansEndConcretization)) (and (= (tgt mec1) c) (n mec1))) (not (exists ((mec2 MeansEndConcretization)) (and (= (tgt mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2) (fd mec2))))))
+		(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc1) c) (n dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_GOAL) (= ((as src (GoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
 	)
 	true
 	false
@@ -1161,11 +1169,6 @@
 )))))
 
 ;Task propagation (Decomposition + Depender)
-(assert (forall ((c TaskConcretization)) ((=> (not (inited c)) (= (n c) (ite
-	(and (not (exists ((dc1 DecompositionConcretization)) (= (src dc1) c))) (not (exists ((dc2 DependerConcretization)) (= ((as src (TaskConcretization)) dc2) c))))
-	true
-	false
-))))))
 (assert (forall ((c TaskConcretization)) (=> (not (inited c)) (= (fd c) (ite
 	(or
 		(exists ((dc DecompositionConcretization)) (and (= (src dc) c) (fd dc)))
@@ -1198,29 +1201,41 @@
 	true
 	false
 )))))
+(assert (forall ((c TaskConcretization)) (=> (not (inited c)) (= (n c) (ite
+	(or
+		(and (not (exists ((dc1 DecompositionConcretization)) (= (src dc1) c))) (not (exists ((dc2 DependerConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc2) c)))))
+		(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) c) (n dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 DependerConcretization)) (and (= (srcEndpoint dc3) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
+		(and (exists ((dc1 DependerConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc1) c) (n dc1))) (not (exists ((dc2 DependerConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 DecompositionConcretization)) (and (= (src dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
+	)
+	true
+	false
+)))))
 (assert (forall ((c TaskConcretization)) (=> (not (inited c))  (= (ps c) (ite
 	(or
-		(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) c) (ps dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 DependerConcretization)) (and (= (srcEndpoint dc3) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
-		(and (exists ((dc1 DependerConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc1) c) (ps dc1))) (not (exists ((dc2 DependerConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 DecompositionConcretization)) (and (= (src dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
+		(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) c) (ps dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))) (not (exists ((dc3 DependerConcretization)) (and (= (srcEndpoint dc3) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3))))))
+		(and (exists ((dc1 DependerConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc1) c) (ps dc1))) (not (exists ((dc2 DependerConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))) (not (exists ((dc3 DecompositionConcretization)) (and (= (src dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3))))))
 	)
 	true
 	false
 )))))
 (assert (forall ((c TaskConcretization)) (=> (not (inited c))  (= (fs c) (ite
 	(or
-		(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) c) (fs dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (ps dc2))))) (not (exists ((dc3 DependerConcretization)) (and (= (srcEndpoint dc3) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (ps dc3))))))
-		(and (exists ((dc1 DependerConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc1) c) (fs dc1))) (not (exists ((dc2 DependerConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (ps dc2))))) (not (exists ((dc3 DecompositionConcretization)) (and (= (src dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (ps dc3))))))
+		(and (exists ((dc1 DecompositionConcretization)) (and (= (src dc1) c) (fs dc1))) (not (exists ((dc2 DecompositionConcretization)) (and (= (src dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))) (not (exists ((dc3 DependerConcretization)) (and (= (srcEndpoint dc3) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3) (ps dc3))))))
+		(and (exists ((dc1 DependerConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc1) c) (fs dc1))) (not (exists ((dc2 DependerConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_TASK) (= ((as src (TaskConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))) (not (exists ((dc3 DecompositionConcretization)) (and (= (src dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3) (ps dc3))))))
 	)
 	true
 	false
 )))))
 
 ;SoftGoal propagation (only Contribution)
-(assert (forall ((c SoftGoalConcretization)) ((=> (not (inited c)) (= (n c) (ite
-	(not (exists ((cc ContributionConcretization)) (= (tgt cc) c))))
+(assert (forall ((c SoftGoalConcretization)) (=> (not (inited c)) (= (n c) (ite
+	(or
+		(not (exists ((cc ContributionConcretization)) (= (tgt cc) c)))
+		(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (n cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (fs cc2) (ps cc2) (un cc2) (co cc2) (pd cc2) (fd cc2))))))
+	)
 	true
 	false
-))))))
+)))))
 (assert (forall ((c SoftGoalConcretization)) (=> (not (inited c)) (= (co c) (ite
 	(or (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (co cc1))) (exists ((cc2 ContributionConcretization) (cc3 ContributionConcretization)) (and (= (tgt cc2) c) (and (= (tgt cc3) c) (and (or (fs cc2) (ps cc2)) (or (pd cc3) (fd cc3)))))))
 	true
@@ -1253,11 +1268,6 @@
 )))))
 
 ;Resource propagation (only Dependee)
-(assert (forall ((c ResourceConcretization)) ((=> (not (inited c)) (= (n c) (ite
-	(not (exists ((dc DependeeConcretization)) (= ((as src (ResourceConcretization)) dc) c))))
-	true
-	false
-))))))
 (assert (forall ((c ResourceConcretization)) (=> (not (inited c)) (= (fd c) (ite
 	(exists ((dc DependeeConcretization)) (and (= (srcEndpoint dc) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc) c) (fd dc)))
 	true
@@ -1278,13 +1288,21 @@
 	true
 	false
 )))))
+(assert (forall ((c ResourceConcretization)) (=> (not (inited c)) (= (n c) (ite
+	(or
+		(not (exists ((dc DependeeConcretization)) (and (= (srcEndpoint dc) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc) c))))
+		(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc1) c) (n dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
+	)
+	true
+	false
+)))))
 (assert (forall ((c ResourceConcretization)) (=> (not (inited c))  (= (ps c) (ite
-	(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc1) c) (ps dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
+	(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc1) c) (ps dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))))
 	true
 	false
 )))))
 (assert (forall ((c ResourceConcretization)) (=> (not (inited c))  (= (fs c) (ite
-	(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc1) c) (fs dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (ps dc2))))))
+	(and (exists ((dc1 DependeeConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc1) c) (fs dc1))) (not (exists ((dc2 DependeeConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_RESOURCE) (= ((as src (ResourceConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))))
 	true
 	false
 )))))

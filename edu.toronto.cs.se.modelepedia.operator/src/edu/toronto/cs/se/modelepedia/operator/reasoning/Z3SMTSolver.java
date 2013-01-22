@@ -30,6 +30,7 @@ public interface Z3SMTSolver {
 	public static final String SMTLIB_TRUE = " true ";
 	public static final String SMTLIB_FALSE = " false ";
 	public static final String SMTLIB_ASSERT = SMTLIB_PREDICATE_START + "assert";
+	public static final String SMTLIB_EXISTS = SMTLIB_PREDICATE_START + "exists";
 	public static final String SMTLIB_FORALL = SMTLIB_PREDICATE_START + "forall";
 	public static final String SMTLIB_AND = SMTLIB_PREDICATE_START + "and";
 	public static final String SMTLIB_OR = SMTLIB_PREDICATE_START + "or";

@@ -104,7 +104,19 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		long startTime = System.nanoTime();
 		for (Map.Entry<String, IntentionalElement> entry : intentionalElements.entrySet()) {
 			IntentionalElement element = entry.getValue();
-			elementProperty =
+			elementProperty = "";
+			if (element.isMay()) {
+				elementProperty +=
+					SMTLIB_AND +
+					SMTLIB_EXISTS +
+					SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
+					"c " + element.eClass().getName() + "Concretization" +
+					SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
+					SMTLIB_PREDICATE_START + "node " + entry.getKey() + " c" + SMTLIB_PREDICATE_END +
+					SMTLIB_PREDICATE_END
+				;
+			}
+			elementProperty +=
 				SMTLIB_FORALL +
 				SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
 				"c " + element.eClass().getName() + "Concretization" +
@@ -114,6 +126,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 			;
 			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
 				property = elementProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + " c" + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+				if (element.isMay()) {
+					property += SMTLIB_PREDICATE_END;
+				}System.err.println(property);
 				encoding = smtlibEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
 				z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 				if (z3Result == 1) {
