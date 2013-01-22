@@ -422,13 +422,22 @@ public interface IStarPackage extends EPackage {
 	int INTENTIONAL_ELEMENT__FULLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTIONAL_ELEMENT__NOTHING = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Intentional Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 9;
+	int INTENTIONAL_ELEMENT_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Intentional Element</em>' class.
@@ -556,6 +565,15 @@ public interface IStarPackage extends EPackage {
 	 * @ordered
 	 */
 	int TASK__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+
+	/**
+	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
 
 	/**
 	 * The feature id for the '<em><b>End</b></em>' reference.
@@ -712,6 +730,15 @@ public interface IStarPackage extends EPackage {
 	int RESOURCE__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
 
 	/**
+	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
+
+	/**
 	 * The number of structural features of the '<em>Resource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -846,6 +873,15 @@ public interface IStarPackage extends EPackage {
 	 * @ordered
 	 */
 	int GOAL__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+
+	/**
+	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
 
 	/**
 	 * The feature id for the '<em><b>Means</b></em>' reference list.
@@ -991,6 +1027,15 @@ public interface IStarPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFT_GOAL__FULLY_DENIED = GOAL__FULLY_DENIED;
+
+	/**
+	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__NOTHING = GOAL__NOTHING;
 
 	/**
 	 * The feature id for the '<em><b>Means</b></em>' reference list.
@@ -1310,6 +1355,17 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIntentionalElement_FullyDenied();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isNothing <em>Nothing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nothing</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isNothing()
+	 * @see #getIntentionalElement()
+	 * @generated
+	 */
+	EAttribute getIntentionalElement_Nothing();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Task <em>Task</em>}'.
@@ -1679,6 +1735,14 @@ public interface IStarPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute INTENTIONAL_ELEMENT__FULLY_DENIED = eINSTANCE.getIntentionalElement_FullyDenied();
+
+		/**
+		 * The meta object literal for the '<em><b>Nothing</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTIONAL_ELEMENT__NOTHING = eINSTANCE.getIntentionalElement_Nothing();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.TaskImpl <em>Task</em>}' class.

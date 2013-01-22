@@ -75,6 +75,7 @@ public class IntentionalElementItemProvider
 			addConflictPropertyDescriptor(object);
 			addPartiallyDeniedPropertyDescriptor(object);
 			addFullyDeniedPropertyDescriptor(object);
+			addNothingPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -278,6 +279,28 @@ public class IntentionalElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Nothing feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNothingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IntentionalElement_nothing_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IntentionalElement_nothing_feature", "_UI_IntentionalElement_type"),
+				 IStar_MAVOPackage.Literals.INTENTIONAL_ELEMENT__NOTHING,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns IntentionalElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,6 +343,7 @@ public class IntentionalElementItemProvider
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONFLICT:
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_DENIED:
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

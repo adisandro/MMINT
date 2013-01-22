@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isConflict <em>Conflict</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isPartiallyDenied <em>Partially Denied</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isFullyDenied <em>Fully Denied</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isNothing <em>Nothing</em>}</li>
  * </ul>
  * </p>
  *
@@ -202,6 +203,26 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	 * @ordered
 	 */
 	protected boolean fullyDenied = FULLY_DENIED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isNothing() <em>Nothing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNothing()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean NOTHING_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isNothing() <em>Nothing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNothing()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean nothing = NOTHING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -389,6 +410,27 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isNothing() {
+		return nothing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNothing(boolean newNothing) {
+		boolean oldNothing = nothing;
+		nothing = newNothing;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING, oldNothing, nothing));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -447,6 +489,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 				return isPartiallyDenied();
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
 				return isFullyDenied();
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
+				return isNothing();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -490,6 +534,9 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
 				setFullyDenied((Boolean)newValue);
 				return;
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
+				setNothing((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -529,6 +576,9 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
 				setFullyDenied(FULLY_DENIED_EDEFAULT);
 				return;
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
+				setNothing(NOTHING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -559,6 +609,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 				return partiallyDenied != PARTIALLY_DENIED_EDEFAULT;
 			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
 				return fullyDenied != FULLY_DENIED_EDEFAULT;
+			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
+				return nothing != NOTHING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -585,6 +637,8 @@ public class IntentionalElementImpl extends DependencyEndpointImpl implements In
 		result.append(partiallyDenied);
 		result.append(", fullyDenied: ");
 		result.append(fullyDenied);
+		result.append(", nothing: ");
+		result.append(nothing);
 		result.append(')');
 		return result.toString();
 	}

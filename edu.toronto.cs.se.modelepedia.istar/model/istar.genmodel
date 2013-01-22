@@ -32,6 +32,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/conflict"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/partiallyDenied"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/fullyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/nothing"/>
     </genClasses>
     <genClasses ecoreClass="istar.ecore#//Task">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Task/end"/>

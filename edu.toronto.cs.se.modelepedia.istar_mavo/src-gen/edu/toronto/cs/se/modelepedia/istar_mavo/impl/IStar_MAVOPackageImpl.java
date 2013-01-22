@@ -400,6 +400,15 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getIntentionalElement_Nothing() {
+		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTask() {
 		return taskEClass;
 	}
@@ -699,6 +708,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__CONFLICT);
 		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__PARTIALLY_DENIED);
 		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__FULLY_DENIED);
+		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__NOTHING);
 
 		taskEClass = createEClass(TASK);
 		createEReference(taskEClass, TASK__COMPONENTS);
@@ -810,6 +820,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		initEAttribute(getIntentionalElement_Conflict(), ecorePackage.getEBoolean(), "conflict", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIntentionalElement_PartiallyDenied(), ecorePackage.getEBoolean(), "partiallyDenied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIntentionalElement_FullyDenied(), ecorePackage.getEBoolean(), "fullyDenied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntentionalElement_Nothing(), ecorePackage.getEBoolean(), "nothing", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTask_Components(), this.getComponentsReference(), this.getComponentsReference_Src(), "components", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -35,7 +35,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
 	private static final String PROPERTY_OUT_LABELS_SUFFIX = ".labels";
 	private static final String PROPERTY_OUT_TIME = "time";
-	private static final String[] LABELS = {"fs", "ps", "un", "co", "pd", "fd"};
+	private static final String[] SMTLIB_LABELS = {"fs", "ps", "un", "co", "pd", "fd", "n"};
 
 	private Map<String, IntentionalElement> intentionalElements;
 	private long time;
@@ -68,6 +68,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 			case 5:
 				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_FullyDenied();
 				break;
+			case 6:
+				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_Nothing();
+				break;
 		}
 
 		return feature;
@@ -81,9 +84,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		for (Map.Entry<String, IntentionalElement> entry : intentionalElements.entrySet()) {
 			IntentionalElement element = entry.getValue();
 			labels = "";
-			for (int i = 0; i < LABELS.length; i++) {
+			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
 				if ((boolean) element.eGet(labelSwitch(i))) {
-					labels += LABELS[i] + ",";
+					labels += SMTLIB_LABELS[i] + ",";
 				}
 			}
 			if (!labels.equals("")) {
@@ -109,8 +112,8 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				SMTLIB_IMPLICATION +
 				SMTLIB_PREDICATE_START + "node " + entry.getKey() + " c" + SMTLIB_PREDICATE_END
 			;
-			for (int i = 0; i < LABELS.length; i++) {
-				property = elementProperty + SMTLIB_PREDICATE_START + LABELS[i] + " c" + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
+				property = elementProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + " c" + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 				encoding = smtlibEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
 				z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 				if (z3Result == 1) {

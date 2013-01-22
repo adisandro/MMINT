@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isConflict <em>Conflict</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallyDenied <em>Partially Denied</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullyDenied <em>Fully Denied</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isNothing <em>Nothing</em>}</li>
  * </ul>
  * </p>
  *
@@ -257,5 +258,31 @@ public interface IntentionalElement extends DependencyEndpoint {
 	 * @generated
 	 */
 	void setFullyDenied(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Nothing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nothing</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nothing</em>' attribute.
+	 * @see #setNothing(boolean)
+	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getIntentionalElement_Nothing()
+	 * @model
+	 * @generated
+	 */
+	boolean isNothing();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isNothing <em>Nothing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nothing</em>' attribute.
+	 * @see #isNothing()
+	 * @generated
+	 */
+	void setNothing(boolean value);
 
 } // IntentionalElement

@@ -33,6 +33,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/conflict"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/partiallyDenied"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/fullyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/nothing"/>
     </genClasses>
     <genClasses ecoreClass="istar_mavo.ecore#//Task">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Task/components"/>
