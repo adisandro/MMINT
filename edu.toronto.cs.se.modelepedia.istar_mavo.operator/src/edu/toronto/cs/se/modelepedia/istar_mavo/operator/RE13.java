@@ -59,7 +59,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		intentionalElements = new HashMap<String, IntentionalElement>();
 		timeAnalysis = -1;
 		timeTargets = -1;
-		targets = "";
+		targets = "0";
 	}
 
 	private void writeProperties(Properties properties) {
@@ -146,7 +146,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				property = elementProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + " c" + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 				if (element.isMay()) {
 					property += SMTLIB_PREDICATE_END;
-				}System.err.println(property);
+				}
 				encoding = smtlibEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
 				z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 				if (z3Result == 1) {
