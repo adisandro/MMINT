@@ -33,17 +33,55 @@ import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
 public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
+	private static final String PROPERTY_IN_TARGETSPROPERTY = "targetsProperty";
+	private static final String PROPERTY_OUT_TIMEANALYSIS = "timeAnalysis";
+	private static final String PROPERTY_OUT_TIMETARGETS = "timeTargets";
 	private static final String PROPERTY_OUT_LABELS_SUFFIX = ".labels";
-	private static final String PROPERTY_OUT_TIME = "time";
+	private static final String PROPERTY_OUT_TARGETS = "targets";
+
 	private static final String[] SMTLIB_LABELS = {"fs", "ps", "un", "co", "pd", "fd", "n"};
 
+	private boolean timeTargetsEnabled;
+	private String targetsProperty;
 	private Map<String, IntentionalElement> intentionalElements;
-	private long time;
+	private long timeAnalysis;
+	private long timeTargets;
+	private String targets;
+
+	private void readProperties(Properties properties) throws Exception {
+
+		timeTargetsEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMETARGETS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		targetsProperty = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_TARGETSPROPERTY);
+	}
 
 	private void initOutput() {
 
 		intentionalElements = new HashMap<String, IntentionalElement>();
-		time = -1;
+		timeAnalysis = -1;
+		timeTargets = -1;
+		targets = "";
+	}
+
+	private void writeProperties(Properties properties) {
+
+		String labels;
+
+		properties.setProperty(PROPERTY_OUT_TIMEANALYSIS, String.valueOf(timeAnalysis));
+		properties.setProperty(PROPERTY_OUT_TIMETARGETS, String.valueOf(timeTargets));
+		properties.setProperty(PROPERTY_OUT_TARGETS, targets);
+		for (Map.Entry<String, IntentionalElement> entry : intentionalElements.entrySet()) {
+			IntentionalElement element = entry.getValue();
+			labels = "";
+			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
+				if ((boolean) element.eGet(labelSwitch(i))) {
+					labels += SMTLIB_LABELS[i] + ",";
+				}
+			}
+			if (!labels.equals("")) {
+				labels = labels.substring(0, labels.length()-1);
+			}
+			properties.setProperty(entry.getKey()+PROPERTY_OUT_LABELS_SUFFIX, labels);
+		}
 	}
 
 	private EStructuralFeature labelSwitch(int i) {
@@ -76,27 +114,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		return feature;
 	}
 
-	private void writeProperties(Properties properties) {
-
-		String labels;
-
-		properties.setProperty(PROPERTY_OUT_TIME, String.valueOf(time));
-		for (Map.Entry<String, IntentionalElement> entry : intentionalElements.entrySet()) {
-			IntentionalElement element = entry.getValue();
-			labels = "";
-			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
-				if ((boolean) element.eGet(labelSwitch(i))) {
-					labels += SMTLIB_LABELS[i] + ",";
-				}
-			}
-			if (!labels.equals("")) {
-				labels = labels.substring(0, labels.length()-1);
-			}
-			properties.setProperty(entry.getKey()+PROPERTY_OUT_LABELS_SUFFIX, labels);
-		}
-	}
-
-	private void doAnalysis(String smtlibEncoding, Map<String, IntentionalElement> intentionalElements) {
+	private void doAnalysis(String smtlibEncoding) {
 
 		int z3Result;
 		String encoding, elementProperty, property;
@@ -140,13 +158,30 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 		long endTime = System.nanoTime();
 
-		time = endTime - startTime;
+		timeAnalysis = endTime - startTime;
+	}
+
+	private void doTargets(String smtlibEncoding) {
+
+		long startTime = System.nanoTime();
+		String encoding = smtlibEncoding + SMTLIB_ASSERT + targetsProperty + SMTLIB_PREDICATE_END;
+		targets = Integer.toString(CLibrary.OPERATOR_INSTANCE.checkSat(encoding));
+		long endTime = System.nanoTime();
+
+		timeTargets = endTime - startTime;
 	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
+		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
+			this,
+			istarModel,
+			null,
+			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
+		);
+		readProperties(inputProperties);
 		initOutput();
 
 		// get output from previous operator
@@ -168,7 +203,10 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 		// run solver
 		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
-		doAnalysis(smtlibEncoding, intentionalElements);
+		doAnalysis(smtlibEncoding);
+		if (timeTargetsEnabled) {
+			doTargets(smtlibEncoding);
+		}
 
 		// save output
 		Properties outputProperties = new Properties();
