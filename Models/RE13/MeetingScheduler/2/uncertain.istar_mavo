@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+  <actors name="Meeting Initiator">
+    <intentionalElements xsi:type="istar_mavo:Goal" name="Meeting Be Scheduled MI" composite="//@actors.0/@intentionalElements.3/@components.1" means="//@actors.0/@intentionalElements.1/@end.0 //@actors.0/@intentionalElements.2/@end.0"/>
+    <intentionalElements xsi:type="istar_mavo:Task" set="true" name="Ways To Organize Meeting" contributionsAsContributor="//@actors.0/@contributions.0 //@actors.0/@contributions.1" fullyDenied="true">
+      <end set="true" tgt="//@actors.0/@intentionalElements.0"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependencies.1/@depender.0" name="Let Scheduler Schedule Meeting" contributionsAsContributor="//@actors.0/@contributions.2 //@actors.0/@contributions.3">
+      <end tgt="//@actors.0/@intentionalElements.0"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependencies.0/@depender.0" name="Organize Meeting">
+      <components tgt="//@actors.0/@intentionalElements.4"/>
+      <components tgt="//@actors.0/@intentionalElements.0"/>
+      <components tgt="//@actors.0/@intentionalElements.5"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" name="Quick" composite="//@actors.0/@intentionalElements.3/@components.0" contributionsAsContributee="//@actors.0/@contributions.0 //@actors.0/@contributions.2"/>
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" name="Low Effort MI" composite="//@actors.0/@intentionalElements.3/@components.2" contributionsAsContributee="//@actors.0/@contributions.1 //@actors.0/@contributions.3"/>
+    <contributions set="true" type="Unknown" contributor="//@actors.0/@intentionalElements.1" contributee="//@actors.0/@intentionalElements.4"/>
+    <contributions set="true" type="Unknown" contributor="//@actors.0/@intentionalElements.1" contributee="//@actors.0/@intentionalElements.5"/>
+    <contributions type="Help" contributor="//@actors.0/@intentionalElements.2" contributee="//@actors.0/@intentionalElements.4"/>
+    <contributions type="Help" contributor="//@actors.0/@intentionalElements.2" contributee="//@actors.0/@intentionalElements.5"/>
+  </actors>
+  <actors name="Meeting Scheduler">
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependencies.2/@depender.0" dependenciesAsDependee="//@dependencies.1/@dependee.0" name="Schedule Meeting"/>
+  </actors>
+  <actors name="Meeting Participant">
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependencies.0/@dependee.0" name="Participate In Meeting">
+      <components tgt="//@actors.2/@intentionalElements.1"/>
+      <components may="true" set="true" tgt="//@actors.2/@intentionalElements.2"/>
+      <components var="true" tgt="//@actors.2/@intentionalElements.3"/>
+      <components may="true" var="true" tgt="//@actors.2/@intentionalElements.4"/>
+      <components may="true" tgt="//@actors.2/@intentionalElements.7"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Task" name="Attend Meeting" composite="//@actors.2/@intentionalElements.0/@components.0" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" set="true" dependenciesAsDependee="//@dependencies.2/@dependee.0" name="Provide Details" composite="//@actors.2/@intentionalElements.0/@components.1">
+      <components may="true" set="true" tgt="//@actors.2/@intentionalElements.6"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Goal" var="true" name="Agreeable Meeting Date" composite="//@actors.2/@intentionalElements.0/@components.2" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Goal" may="true" var="true" name="Convenient Meeting Date" composite="//@actors.2/@intentionalElements.0/@components.3" means="//@actors.2/@intentionalElements.5/@end.0"/>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" name="Decide Convenient Dates" fullySatisfied="true">
+      <end may="true" tgt="//@actors.2/@intentionalElements.4"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" name="Low Effort MP" composite="//@actors.2/@intentionalElements.2/@components.0" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" name="Use Profiles" composite="//@actors.2/@intentionalElements.0/@components.4" fullySatisfied="true"/>
+  </actors>
+  <actors var="true" name="Date Determiner">
+    <intentionalElements xsi:type="istar_mavo:Task" name="Determine Meeting Date" fullySatisfied="true"/>
+  </actors>
+  <dependencies dependum="//@dependums.0">
+    <depender may="true" set="true" tgt="//@actors.0/@intentionalElements.3"/>
+    <dependee may="true" set="true" tgt="//@actors.2/@intentionalElements.0"/>
+  </dependencies>
+  <dependencies dependum="//@dependums.1">
+    <depender tgt="//@actors.0/@intentionalElements.2"/>
+    <dependee tgt="//@actors.1/@intentionalElements.0"/>
+  </dependencies>
+  <dependencies dependum="//@dependums.2">
+    <depender set="true" tgt="//@actors.1/@intentionalElements.0"/>
+    <dependee may="true" set="true" tgt="//@actors.2/@intentionalElements.2"/>
+  </dependencies>
+  <dependums xsi:type="istar_mavo:Goal" may="true" set="true" name="Dependencies" dependencies="//@dependencies.0"/>
+  <dependums xsi:type="istar_mavo:Goal" name="Meeting Be Scheduled" dependencies="//@dependencies.1"/>
+  <dependums xsi:type="istar_mavo:Resource" set="true" name="Details" dependencies="//@dependencies.2"/>
+</istar_mavo:IStar>
