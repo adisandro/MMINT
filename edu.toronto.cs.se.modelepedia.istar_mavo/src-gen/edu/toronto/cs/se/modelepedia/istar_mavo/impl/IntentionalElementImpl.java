@@ -53,7 +53,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class IntentionalElementImpl extends DependencyEndpointImpl implements IntentionalElement {
+public abstract class IntentionalElementImpl extends DependencyEndpointImpl implements IntentionalElement {
 	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
 	 * <!-- begin-user-doc -->

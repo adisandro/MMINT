@@ -174,11 +174,6 @@ public class IStarItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS,
-				 IStar_MAVOFactory.eINSTANCE.createIntentionalElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS,
 				 IStar_MAVOFactory.eINSTANCE.createTask()));
 
 		newChildDescriptors.add

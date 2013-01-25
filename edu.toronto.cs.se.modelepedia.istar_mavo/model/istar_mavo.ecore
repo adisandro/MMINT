@@ -24,7 +24,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependum" lowerBound="1"
         eType="#//IntentionalElement" eOpposite="#//IntentionalElement/dependencies"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntentionalElement" eSuperTypes="#//DependencyEndpoint">
+  <eClassifiers xsi:type="ecore:EClass" name="IntentionalElement" abstract="true"
+      eSuperTypes="#//DependencyEndpoint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="#//Dependency" eOpposite="#//Dependency/dependum"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="composite" upperBound="-1"

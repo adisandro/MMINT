@@ -58,15 +58,6 @@ public interface IStar_MAVOFactory extends EFactory {
 	Dependency createDependency();
 
 	/**
-	 * Returns a new object of class '<em>Intentional Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Intentional Element</em>'.
-	 * @generated
-	 */
-	IntentionalElement createIntentionalElement();
-
-	/**
 	 * Returns a new object of class '<em>Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

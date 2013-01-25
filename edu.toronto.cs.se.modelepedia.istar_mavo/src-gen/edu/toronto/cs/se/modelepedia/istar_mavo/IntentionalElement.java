@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntentionalElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface IntentionalElement extends DependencyEndpoint {

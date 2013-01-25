@@ -150,29 +150,6 @@ public class IStar_MAVOItemProviderAdapterFactory extends IStar_MAVOAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IntentionalElementItemProvider intentionalElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIntentionalElementAdapter() {
-		if (intentionalElementItemProvider == null) {
-			intentionalElementItemProvider = new IntentionalElementItemProvider(this);
-		}
-
-		return intentionalElementItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.Task} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -481,7 +458,6 @@ public class IStar_MAVOItemProviderAdapterFactory extends IStar_MAVOAdapterFacto
 		if (iStarItemProvider != null) iStarItemProvider.dispose();
 		if (actorItemProvider != null) actorItemProvider.dispose();
 		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
-		if (intentionalElementItemProvider != null) intentionalElementItemProvider.dispose();
 		if (taskItemProvider != null) taskItemProvider.dispose();
 		if (resourceItemProvider != null) resourceItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();

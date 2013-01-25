@@ -161,11 +161,6 @@ public class ActorItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONAL_ELEMENTS,
-				 IStar_MAVOFactory.eINSTANCE.createIntentionalElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONAL_ELEMENTS,
 				 IStar_MAVOFactory.eINSTANCE.createTask()));
 
 		newChildDescriptors.add

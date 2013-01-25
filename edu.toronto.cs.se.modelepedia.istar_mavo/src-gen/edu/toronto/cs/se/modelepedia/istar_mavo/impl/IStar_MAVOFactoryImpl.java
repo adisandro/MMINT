@@ -68,7 +68,6 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 			case IStar_MAVOPackage.ISTAR: return createIStar();
 			case IStar_MAVOPackage.ACTOR: return createActor();
 			case IStar_MAVOPackage.DEPENDENCY: return createDependency();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT: return createIntentionalElement();
 			case IStar_MAVOPackage.TASK: return createTask();
 			case IStar_MAVOPackage.RESOURCE: return createResource();
 			case IStar_MAVOPackage.GOAL: return createGoal();
@@ -111,16 +110,6 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	public Dependency createDependency() {
 		DependencyImpl dependency = new DependencyImpl();
 		return dependency;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntentionalElement createIntentionalElement() {
-		IntentionalElementImpl intentionalElement = new IntentionalElementImpl();
-		return intentionalElement;
 	}
 
 	/**
