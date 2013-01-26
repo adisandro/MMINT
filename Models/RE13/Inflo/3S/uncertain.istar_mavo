@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+  <actors name="Inflo User">
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" name="Make Models Trustworthy" contributionsAsContributee="//@actors.0/@contributions.0 //@actors.0/@contributions.1"/>
+    <intentionalElements xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependencies.1/@depender.0" name="Use Inflo" means="//@actors.0/@intentionalElements.4/@end.0 //@actors.0/@intentionalElements.5/@end.0 //@actors.0/@intentionalElements.6/@end.0"/>
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" var="true" name="Validate Model" contributionsAsContributor="//@actors.0/@contributions.0" contributionsAsContributee="//@actors.0/@contributions.2"/>
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" var="true" name="Get Feedback" contributionsAsContributor="//@actors.0/@contributions.1" contributionsAsContributee="//@actors.0/@contributions.3 //@actors.0/@contributions.4"/>
+    <intentionalElements xsi:type="istar_mavo:Task" name="Browsing">
+      <components tgt="//@actors.0/@intentionalElements.8"/>
+      <end tgt="//@actors.0/@intentionalElements.1"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependencies.4/@dependee.0" name="Create Graph">
+      <components tgt="//@actors.0/@intentionalElements.9"/>
+      <end tgt="//@actors.0/@intentionalElements.1"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Task" name="Use Discussions" contributionsAsContributor="//@actors.0/@contributions.2 //@actors.0/@contributions.4">
+      <components may="true" var="true" tgt="//@actors.0/@intentionalElements.10"/>
+      <end tgt="//@actors.0/@intentionalElements.1"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependencies.0/@depender.0" name="Inflo Be Moderated" contributionsAsContributor="//@actors.0/@contributions.3"/>
+    <intentionalElements xsi:type="istar_mavo:Task" name="Make Views" composite="//@actors.0/@intentionalElements.4/@components.0" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependencies.3/@depender.0" name="Add Source In Description" composite="//@actors.0/@intentionalElements.5/@components.0"/>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" var="true" dependenciesAsDependee="//@dependencies.4/@dependee.1" name="Create Discussions" composite="//@actors.0/@intentionalElements.6/@components.0" fullySatisfied="true"/>
+    <contributions var="true" type="Help" contributor="//@actors.0/@intentionalElements.2" contributee="//@actors.0/@intentionalElements.0"/>
+    <contributions var="true" type="Help" contributor="//@actors.0/@intentionalElements.3" contributee="//@actors.0/@intentionalElements.0"/>
+    <contributions type="SomePlus" contributor="//@actors.0/@intentionalElements.6" contributee="//@actors.0/@intentionalElements.2"/>
+    <contributions type="Hurt" contributor="//@actors.0/@intentionalElements.7" contributee="//@actors.0/@intentionalElements.3"/>
+    <contributions may="true" type="Help" contributor="//@actors.0/@intentionalElements.6" contributee="//@actors.0/@intentionalElements.3"/>
+  </actors>
+  <actors name="Inflo Manager Editors">
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependencies.0/@dependee.1" name="Extensive Moderation">
+      <components may="true" tgt="//@actors.1/@intentionalElements.1"/>
+      <end may="true" tgt="//@actors.1/@intentionalElements.2"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependencies.2/@depender.0" name="Use Automated Reputation System" composite="//@actors.1/@intentionalElements.0/@components.0 //@actors.1/@intentionalElements.3/@components.0">
+      <end may="true" tgt="//@actors.1/@intentionalElements.2"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Goal" dependenciesAsDependee="//@dependencies.0/@dependee.0" name="Moderate Inflo" means="//@actors.1/@intentionalElements.3/@end.0 //@actors.1/@intentionalElements.1/@end.0 //@actors.1/@intentionalElements.0/@end.0"/>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" var="true" name="Less Extensive Moderation">
+      <components may="true" tgt="//@actors.1/@intentionalElements.1"/>
+      <end may="true" var="true" tgt="//@actors.1/@intentionalElements.2"/>
+    </intentionalElements>
+  </actors>
+  <actors dependenciesAsDependee="//@dependencies.3/@dependee.0" name="Source"/>
+  <actors name="Automated Reputation System">
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependencies.2/@dependee.0" name="Provide Reputations" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" dependenciesAsDependee="//@dependencies.0/@dependee.2" name="ModerationARS" fullyDenied="true"/>
+  </actors>
+  <actors name="Inflo">
+    <intentionalElements xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependencies.0/@depender.1" name="Allow Moderation" means="//@actors.4/@intentionalElements.6/@end.0"/>
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependencies.4/@depender.0" name="Track Authorship" composite="//@actors.4/@intentionalElements.5/@components.0"/>
+    <intentionalElements xsi:type="istar_mavo:Task" name="Display Graphs" composite="//@actors.4/@intentionalElements.5/@components.1" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Task" name="Track Revisions" composite="//@actors.4/@intentionalElements.5/@components.2" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Task" name="Create Graphs" composite="//@actors.4/@intentionalElements.5/@components.3" fullySatisfied="true"/>
+    <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependencies.1/@dependee.0" name="Be Inflo">
+      <components tgt="//@actors.4/@intentionalElements.1"/>
+      <components tgt="//@actors.4/@intentionalElements.2"/>
+      <components tgt="//@actors.4/@intentionalElements.3"/>
+      <components tgt="//@actors.4/@intentionalElements.4"/>
+    </intentionalElements>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" name="Moderation Tasks" fullyDenied="true">
+      <end may="true" tgt="//@actors.4/@intentionalElements.0"/>
+    </intentionalElements>
+  </actors>
+  <dependencies dependum="//@dependums.0">
+    <depender tgt="//@actors.0/@intentionalElements.7"/>
+    <depender tgt="//@actors.4/@intentionalElements.0"/>
+    <dependee may="true" tgt="//@actors.1/@intentionalElements.2"/>
+    <dependee may="true" tgt="//@actors.1/@intentionalElements.0"/>
+    <dependee may="true" tgt="//@actors.3/@intentionalElements.1"/>
+  </dependencies>
+  <dependencies dependum="//@dependums.1">
+    <depender tgt="//@actors.0/@intentionalElements.1"/>
+    <dependee tgt="//@actors.4/@intentionalElements.5"/>
+  </dependencies>
+  <dependencies dependum="//@dependums.2">
+    <depender tgt="//@actors.1/@intentionalElements.1"/>
+    <dependee tgt="//@actors.3/@intentionalElements.0"/>
+  </dependencies>
+  <dependencies dependum="//@dependums.3">
+    <depender tgt="//@actors.0/@intentionalElements.9"/>
+    <dependee tgt="//@actors.2"/>
+  </dependencies>
+  <dependencies dependum="//@dependums.4">
+    <depender may="true" tgt="//@actors.4/@intentionalElements.1"/>
+    <dependee may="true" tgt="//@actors.0/@intentionalElements.5"/>
+    <dependee may="true" tgt="//@actors.0/@intentionalElements.10"/>
+  </dependencies>
+  <dependums xsi:type="istar_mavo:Resource" name="Moderation" dependencies="//@dependencies.0"/>
+  <dependums xsi:type="istar_mavo:Resource" name="Graphing" dependencies="//@dependencies.1"/>
+  <dependums xsi:type="istar_mavo:Resource" name="Reputation Values" dependencies="//@dependencies.2"/>
+  <dependums xsi:type="istar_mavo:Resource" name="Info" dependencies="//@dependencies.3" fullySatisfied="true"/>
+  <dependums xsi:type="istar_mavo:Resource" may="true" name="Authorship" dependencies="//@dependencies.4"/>
+</istar_mavo:IStar>

@@ -3,8 +3,8 @@
   <actors name="Inflo User">
     <intentionalElements xsi:type="istar_mavo:SoftGoal" name="Make Models Trustworthy" contributionsAsContributee="//@actors.0/@contributions.0 //@actors.0/@contributions.1"/>
     <intentionalElements xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependencies.1/@depender.0" name="Use Inflo" means="//@actors.0/@intentionalElements.4/@end.0 //@actors.0/@intentionalElements.5/@end.0 //@actors.0/@intentionalElements.6/@end.0"/>
-    <intentionalElements xsi:type="istar_mavo:SoftGoal" name="Validate Model" contributionsAsContributor="//@actors.0/@contributions.0" contributionsAsContributee="//@actors.0/@contributions.2"/>
-    <intentionalElements xsi:type="istar_mavo:SoftGoal" name="Get Feedback" contributionsAsContributor="//@actors.0/@contributions.1" contributionsAsContributee="//@actors.0/@contributions.3 //@actors.0/@contributions.4"/>
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" var="true" name="Validate Model" contributionsAsContributor="//@actors.0/@contributions.0" contributionsAsContributee="//@actors.0/@contributions.2"/>
+    <intentionalElements xsi:type="istar_mavo:SoftGoal" var="true" name="Get Feedback" contributionsAsContributor="//@actors.0/@contributions.1" contributionsAsContributee="//@actors.0/@contributions.3 //@actors.0/@contributions.4"/>
     <intentionalElements xsi:type="istar_mavo:Task" name="Browsing">
       <components tgt="//@actors.0/@intentionalElements.8"/>
       <end tgt="//@actors.0/@intentionalElements.1"/>
@@ -14,15 +14,15 @@
       <end tgt="//@actors.0/@intentionalElements.1"/>
     </intentionalElements>
     <intentionalElements xsi:type="istar_mavo:Task" name="Use Discussions" contributionsAsContributor="//@actors.0/@contributions.2 //@actors.0/@contributions.4">
-      <components may="true" tgt="//@actors.0/@intentionalElements.10"/>
+      <components may="true" var="true" tgt="//@actors.0/@intentionalElements.10"/>
       <end tgt="//@actors.0/@intentionalElements.1"/>
     </intentionalElements>
     <intentionalElements xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependencies.0/@depender.0" name="Inflo Be Moderated" contributionsAsContributor="//@actors.0/@contributions.3"/>
     <intentionalElements xsi:type="istar_mavo:Task" name="Make Views" composite="//@actors.0/@intentionalElements.4/@components.0" fullySatisfied="true"/>
     <intentionalElements xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependencies.3/@depender.0" name="Add Source In Description" composite="//@actors.0/@intentionalElements.5/@components.0"/>
-    <intentionalElements xsi:type="istar_mavo:Task" may="true" dependenciesAsDependee="//@dependencies.4/@dependee.1" name="Create Discussions" composite="//@actors.0/@intentionalElements.6/@components.0" fullyDenied="true"/>
-    <contributions type="Help" contributor="//@actors.0/@intentionalElements.2" contributee="//@actors.0/@intentionalElements.0"/>
-    <contributions type="Help" contributor="//@actors.0/@intentionalElements.3" contributee="//@actors.0/@intentionalElements.0"/>
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" var="true" dependenciesAsDependee="//@dependencies.4/@dependee.1" name="Create Discussions" composite="//@actors.0/@intentionalElements.6/@components.0" fullySatisfied="true"/>
+    <contributions var="true" type="Help" contributor="//@actors.0/@intentionalElements.2" contributee="//@actors.0/@intentionalElements.0"/>
+    <contributions var="true" type="Help" contributor="//@actors.0/@intentionalElements.3" contributee="//@actors.0/@intentionalElements.0"/>
     <contributions type="SomePlus" contributor="//@actors.0/@intentionalElements.6" contributee="//@actors.0/@intentionalElements.2"/>
     <contributions type="Hurt" contributor="//@actors.0/@intentionalElements.7" contributee="//@actors.0/@intentionalElements.3"/>
     <contributions may="true" type="Help" contributor="//@actors.0/@intentionalElements.6" contributee="//@actors.0/@intentionalElements.3"/>
@@ -36,9 +36,9 @@
       <end may="true" tgt="//@actors.1/@intentionalElements.2"/>
     </intentionalElements>
     <intentionalElements xsi:type="istar_mavo:Goal" dependenciesAsDependee="//@dependencies.0/@dependee.0" name="Moderate Inflo" means="//@actors.1/@intentionalElements.3/@end.0 //@actors.1/@intentionalElements.1/@end.0 //@actors.1/@intentionalElements.0/@end.0"/>
-    <intentionalElements xsi:type="istar_mavo:Task" may="true" name="Less Extensive Moderation">
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" var="true" name="Less Extensive Moderation">
       <components may="true" tgt="//@actors.1/@intentionalElements.1"/>
-      <end may="true" tgt="//@actors.1/@intentionalElements.2"/>
+      <end may="true" var="true" tgt="//@actors.1/@intentionalElements.2"/>
     </intentionalElements>
   </actors>
   <actors dependenciesAsDependee="//@dependencies.3/@dependee.0" name="Source"/>
@@ -58,7 +58,7 @@
       <components tgt="//@actors.4/@intentionalElements.3"/>
       <components tgt="//@actors.4/@intentionalElements.4"/>
     </intentionalElements>
-    <intentionalElements xsi:type="istar_mavo:Task" may="true" name="Moderation Tasks" fullySatisfied="true">
+    <intentionalElements xsi:type="istar_mavo:Task" may="true" name="Moderation Tasks" fullyDenied="true">
       <end may="true" tgt="//@actors.4/@intentionalElements.0"/>
     </intentionalElements>
   </actors>

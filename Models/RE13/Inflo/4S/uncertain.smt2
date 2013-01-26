@@ -1440,12 +1440,12 @@
 (assert (forall ((c TaskConcretization)) (=>
 	(node CreateDiscussions c)
 	(and
-		(= (fs c) false)
+		(= (fs c) true)
 		(= (ps c) false)
 		(= (un c) false)
 		(= (co c) false)
 		(= (pd c) false)
-		(= (fd c) true)
+		(= (fd c) false)
 		(= (n c) false)
 		(= (inited c) true)
 	)
@@ -1772,12 +1772,12 @@
 (assert (forall ((c TaskConcretization)) (=>
 	(node ProvideReputations c)
 	(and
-		(= (fs c) false)
+		(= (fs c) true)
 		(= (ps c) false)
 		(= (un c) false)
 		(= (co c) false)
 		(= (pd c) false)
-		(= (fd c) true)
+		(= (fd c) false)
 		(= (n c) false)
 		(= (inited c) true)
 	)
@@ -1874,12 +1874,12 @@
 (assert (forall ((c TaskConcretization)) (=>
 	(node ModerationARS c)
 	(and
-		(= (fs c) false)
+		(= (fs c) true)
 		(= (ps c) false)
 		(= (un c) false)
 		(= (co c) false)
 		(= (pd c) false)
-		(= (fd c) true)
+		(= (fd c) false)
 		(= (n c) false)
 		(= (inited c) true)
 	)
