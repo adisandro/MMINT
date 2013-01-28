@@ -164,7 +164,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private void doTargets(String smtlibEncoding) {
 
 		long startTime = System.nanoTime();
-		String encoding = smtlibEncoding + SMTLIB_ASSERT + targetsProperty + SMTLIB_PREDICATE_END;
+		String encoding = (targetsProperty.equals("")) ?
+			smtlibEncoding :
+			smtlibEncoding + SMTLIB_ASSERT + targetsProperty + SMTLIB_PREDICATE_END;
 		targets = Integer.toString(CLibrary.OPERATOR_INSTANCE.checkSat(encoding));
 		long endTime = System.nanoTime();
 
