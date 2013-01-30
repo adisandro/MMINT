@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ResourceImpl extends IntentionalElementImpl implements Resource {
+public class ResourceImpl extends IntentionImpl implements Resource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

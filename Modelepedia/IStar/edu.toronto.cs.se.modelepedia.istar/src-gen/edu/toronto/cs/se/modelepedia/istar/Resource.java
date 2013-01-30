@@ -22,5 +22,5 @@ package edu.toronto.cs.se.modelepedia.istar;
  * @model
  * @generated
  */
-public interface Resource extends IntentionalElement {
+public interface Resource extends Intention {
 } // Resource

@@ -8,52 +8,63 @@
   <foreignModel>istar.ecore</foreignModel>
   <genPackages prefix="IStar" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       ecorePackage="istar.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="istar.ecore#//ContributionType">
+      <genEnumLiterals ecoreEnumLiteral="istar.ecore#//ContributionType/MAKE"/>
+      <genEnumLiterals ecoreEnumLiteral="istar.ecore#//ContributionType/HELP"/>
+      <genEnumLiterals ecoreEnumLiteral="istar.ecore#//ContributionType/SOMEPLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="istar.ecore#//ContributionType/BREAK"/>
+      <genEnumLiterals ecoreEnumLiteral="istar.ecore#//ContributionType/HURT"/>
+      <genEnumLiterals ecoreEnumLiteral="istar.ecore#//ContributionType/SOMEMINUS"/>
+      <genEnumLiterals ecoreEnumLiteral="istar.ecore#//ContributionType/UNKNOWN"/>
+    </genEnums>
     <genClasses ecoreClass="istar.ecore#//IStar">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//IStar/actors"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//IStar/dependencies"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//IStar/dependums"/>
     </genClasses>
     <genClasses ecoreClass="istar.ecore#//Actor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Actor/intentionalElements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Actor/contributions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Actor/intentions"/>
     </genClasses>
-    <genClasses ecoreClass="istar.ecore#//Dependency">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Dependency/depender"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Dependency/dependee"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Dependency/dependum"/>
+    <genClasses image="false" ecoreClass="istar.ecore#//Intention">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Intention/fullySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Intention/partiallySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Intention/unknown"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Intention/conflict"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Intention/partiallyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Intention/fullyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Intention/noLabel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Intention/linksAsSrc"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Intention/linksAsTgt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Intention/dependerLinks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar.ecore#//Intention/dependeeLinks"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="istar.ecore#//IntentionalElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/dependencies"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/composite"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionalElement/contributionsAsContributor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/fullySatisfied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/partiallySatisfied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/unknown"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/conflict"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/partiallyDenied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/fullyDenied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionalElement/nothing"/>
-    </genClasses>
-    <genClasses ecoreClass="istar.ecore#//Task">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Task/end"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Task/components"/>
-    </genClasses>
+    <genClasses ecoreClass="istar.ecore#//Task"/>
     <genClasses ecoreClass="istar.ecore#//Resource"/>
-    <genClasses ecoreClass="istar.ecore#//Goal">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Goal/means"/>
-    </genClasses>
-    <genClasses ecoreClass="istar.ecore#//SoftGoal">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//SoftGoal/contributionsAsContributee"/>
-    </genClasses>
-    <genClasses ecoreClass="istar.ecore#//Contribution">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Contribution/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Contribution/contributor"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//Contribution/contributee"/>
-    </genClasses>
+    <genClasses ecoreClass="istar.ecore#//Goal"/>
+    <genClasses ecoreClass="istar.ecore#//SoftGoal"/>
     <genClasses image="false" ecoreClass="istar.ecore#//DependencyEndpoint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//DependencyEndpoint/dependenciesAsDepender"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//DependencyEndpoint/dependenciesAsDependee"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//DependencyEndpoint/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="istar.ecore#//IntentionLink">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//IntentionLink/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar.ecore#//IntentionLink/src"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//IntentionLink/tgt"/>
+    </genClasses>
+    <genClasses ecoreClass="istar.ecore#//MeansEnd"/>
+    <genClasses ecoreClass="istar.ecore#//Decomposition"/>
+    <genClasses ecoreClass="istar.ecore#//Contribution">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//Contribution/type"/>
+    </genClasses>
+    <genClasses ecoreClass="istar.ecore#//DependerLink">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//DependerLink/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//DependerLink/depender"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar.ecore#//DependerLink/dependum"/>
+    </genClasses>
+    <genClasses ecoreClass="istar.ecore#//DependeeLink">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute istar.ecore#//DependeeLink/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar.ecore#//DependeeLink/dependum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar.ecore#//DependeeLink/dependee"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

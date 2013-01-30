@@ -12,7 +12,8 @@
 package edu.toronto.cs.se.modelepedia.istar.provider;
 
 
-import edu.toronto.cs.se.modelepedia.istar.SoftGoal;
+import edu.toronto.cs.se.modelepedia.istar.DependeeLink;
+import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,21 +21,27 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar.SoftGoal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar.DependeeLink} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SoftGoalItemProvider
-	extends GoalItemProvider
+public class DependeeLinkItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -47,7 +54,7 @@ public class SoftGoalItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SoftGoalItemProvider(AdapterFactory adapterFactory) {
+	public DependeeLinkItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,19 +69,65 @@ public class SoftGoalItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addDependeePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns SoftGoal.gif.
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DependeeLink_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DependeeLink_name_feature", "_UI_DependeeLink_type"),
+				 IStarPackage.Literals.DEPENDEE_LINK__NAME,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Dependee feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDependeePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DependeeLink_dependee_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DependeeLink_dependee_feature", "_UI_DependeeLink_type"),
+				 IStarPackage.Literals.DEPENDEE_LINK__DEPENDEE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns DependeeLink.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SoftGoal"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DependeeLink"));
 	}
 
 	/**
@@ -85,10 +138,10 @@ public class SoftGoalItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SoftGoal)object).getName();
+		String label = ((DependeeLink)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SoftGoal_type") :
-			getString("_UI_SoftGoal_type") + " " + label;
+			getString("_UI_DependeeLink_type") :
+			getString("_UI_DependeeLink_type") + " " + label;
 	}
 
 	/**
@@ -101,6 +154,12 @@ public class SoftGoalItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(DependeeLink.class)) {
+			case IStarPackage.DEPENDEE_LINK__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -114,6 +173,17 @@ public class SoftGoalItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return IStarEditPlugin.INSTANCE;
 	}
 
 }

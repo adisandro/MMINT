@@ -14,13 +14,14 @@ package edu.toronto.cs.se.modelepedia.istar;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Soft Goal</b></em>'.
+ * A representation of the model object '<em><b>Decomposition</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getSoftGoal()
- * @model
+ * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDecomposition()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtTask'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot tgtTask='tgt.oclIsTypeOf(Task)'"
  * @generated
  */
-public interface SoftGoal extends Goal {
-} // SoftGoal
+public interface Decomposition extends IntentionLink {
+} // Decomposition

@@ -11,27 +11,27 @@
  */
 package edu.toronto.cs.se.modelepedia.istar.impl;
 
+import edu.toronto.cs.se.modelepedia.istar.Decomposition;
 import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
-import edu.toronto.cs.se.modelepedia.istar.SoftGoal;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Soft Goal</b></em>'.
+ * An implementation of the model object '<em><b>Decomposition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class SoftGoalImpl extends GoalImpl implements SoftGoal {
+public class DecompositionImpl extends IntentionLinkImpl implements Decomposition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SoftGoalImpl() {
+	protected DecompositionImpl() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public class SoftGoalImpl extends GoalImpl implements SoftGoal {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return IStarPackage.Literals.SOFT_GOAL;
+		return IStarPackage.Literals.DECOMPOSITION;
 	}
 
-} //SoftGoalImpl
+} //DecompositionImpl

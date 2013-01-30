@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface DependencyEndpoint extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Dependencies As Depender</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.Dependency}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDepender <em>Depender</em>}'.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.DependerLink}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar.DependerLink#getDepender <em>Depender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependencies As Depender</em>' reference list isn't clear,
@@ -46,16 +46,16 @@ public interface DependencyEndpoint extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependencies As Depender</em>' reference list.
 	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDependencyEndpoint_DependenciesAsDepender()
-	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency#getDepender
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependerLink#getDepender
 	 * @model opposite="depender"
 	 * @generated
 	 */
-	EList<Dependency> getDependenciesAsDepender();
+	EList<DependerLink> getDependenciesAsDepender();
 
 	/**
 	 * Returns the value of the '<em><b>Dependencies As Dependee</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.Dependency}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDependee <em>Dependee</em>}'.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.DependeeLink}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar.DependeeLink#getDependee <em>Dependee</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependencies As Dependee</em>' reference list isn't clear,
@@ -64,11 +64,11 @@ public interface DependencyEndpoint extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependencies As Dependee</em>' reference list.
 	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDependencyEndpoint_DependenciesAsDependee()
-	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency#getDependee
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependeeLink#getDependee
 	 * @model opposite="dependee"
 	 * @generated
 	 */
-	EList<Dependency> getDependenciesAsDependee();
+	EList<DependeeLink> getDependenciesAsDependee();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

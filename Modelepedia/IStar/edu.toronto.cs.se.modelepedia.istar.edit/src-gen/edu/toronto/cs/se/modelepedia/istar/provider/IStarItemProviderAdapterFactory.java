@@ -127,29 +127,6 @@ public class IStarItemProviderAdapterFactory extends IStarAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar.Dependency} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DependencyItemProvider dependencyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar.Dependency}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDependencyAdapter() {
-		if (dependencyItemProvider == null) {
-			dependencyItemProvider = new DependencyItemProvider(this);
-		}
-
-		return dependencyItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar.Task} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +219,52 @@ public class IStarItemProviderAdapterFactory extends IStarAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar.MeansEnd} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MeansEndItemProvider meansEndItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar.MeansEnd}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMeansEndAdapter() {
+		if (meansEndItemProvider == null) {
+			meansEndItemProvider = new MeansEndItemProvider(this);
+		}
+
+		return meansEndItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar.Decomposition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DecompositionItemProvider decompositionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar.Decomposition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDecompositionAdapter() {
+		if (decompositionItemProvider == null) {
+			decompositionItemProvider = new DecompositionItemProvider(this);
+		}
+
+		return decompositionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar.Contribution} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -262,6 +285,52 @@ public class IStarItemProviderAdapterFactory extends IStarAdapterFactory impleme
 		}
 
 		return contributionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar.DependerLink} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DependerLinkItemProvider dependerLinkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar.DependerLink}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDependerLinkAdapter() {
+		if (dependerLinkItemProvider == null) {
+			dependerLinkItemProvider = new DependerLinkItemProvider(this);
+		}
+
+		return dependerLinkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar.DependeeLink} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DependeeLinkItemProvider dependeeLinkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar.DependeeLink}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDependeeLinkAdapter() {
+		if (dependeeLinkItemProvider == null) {
+			dependeeLinkItemProvider = new DependeeLinkItemProvider(this);
+		}
+
+		return dependeeLinkItemProvider;
 	}
 
 	/**
@@ -365,12 +434,15 @@ public class IStarItemProviderAdapterFactory extends IStarAdapterFactory impleme
 	public void dispose() {
 		if (iStarItemProvider != null) iStarItemProvider.dispose();
 		if (actorItemProvider != null) actorItemProvider.dispose();
-		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
 		if (taskItemProvider != null) taskItemProvider.dispose();
 		if (resourceItemProvider != null) resourceItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();
 		if (softGoalItemProvider != null) softGoalItemProvider.dispose();
+		if (meansEndItemProvider != null) meansEndItemProvider.dispose();
+		if (decompositionItemProvider != null) decompositionItemProvider.dispose();
 		if (contributionItemProvider != null) contributionItemProvider.dispose();
+		if (dependerLinkItemProvider != null) dependerLinkItemProvider.dispose();
+		if (dependeeLinkItemProvider != null) dependeeLinkItemProvider.dispose();
 	}
 
 }

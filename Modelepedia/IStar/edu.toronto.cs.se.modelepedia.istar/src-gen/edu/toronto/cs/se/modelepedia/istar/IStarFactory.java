@@ -49,15 +49,6 @@ public interface IStarFactory extends EFactory {
 	Actor createActor();
 
 	/**
-	 * Returns a new object of class '<em>Dependency</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Dependency</em>'.
-	 * @generated
-	 */
-	Dependency createDependency();
-
-	/**
 	 * Returns a new object of class '<em>Task</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,6 +85,24 @@ public interface IStarFactory extends EFactory {
 	SoftGoal createSoftGoal();
 
 	/**
+	 * Returns a new object of class '<em>Means End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Means End</em>'.
+	 * @generated
+	 */
+	MeansEnd createMeansEnd();
+
+	/**
+	 * Returns a new object of class '<em>Decomposition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Decomposition</em>'.
+	 * @generated
+	 */
+	Decomposition createDecomposition();
+
+	/**
 	 * Returns a new object of class '<em>Contribution</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,6 +110,24 @@ public interface IStarFactory extends EFactory {
 	 * @generated
 	 */
 	Contribution createContribution();
+
+	/**
+	 * Returns a new object of class '<em>Depender Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Depender Link</em>'.
+	 * @generated
+	 */
+	DependerLink createDependerLink();
+
+	/**
+	 * Returns a new object of class '<em>Dependee Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dependee Link</em>'.
+	 * @generated
+	 */
+	DependeeLink createDependeeLink();
 
 	/**
 	 * Returns the package supported by this factory.

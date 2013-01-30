@@ -11,8 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.istar.impl;
 
-import edu.toronto.cs.se.modelepedia.istar.Dependency;
+import edu.toronto.cs.se.modelepedia.istar.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar.DependencyEndpoint;
+import edu.toronto.cs.se.modelepedia.istar.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
 
 import java.util.Collection;
@@ -55,7 +56,7 @@ public abstract class DependencyEndpointImpl extends EObjectImpl implements Depe
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Dependency> dependenciesAsDepender;
+	protected EList<DependerLink> dependenciesAsDepender;
 
 	/**
 	 * The cached value of the '{@link #getDependenciesAsDependee() <em>Dependencies As Dependee</em>}' reference list.
@@ -65,7 +66,7 @@ public abstract class DependencyEndpointImpl extends EObjectImpl implements Depe
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Dependency> dependenciesAsDependee;
+	protected EList<DependeeLink> dependenciesAsDependee;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -111,9 +112,9 @@ public abstract class DependencyEndpointImpl extends EObjectImpl implements Depe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Dependency> getDependenciesAsDepender() {
+	public EList<DependerLink> getDependenciesAsDepender() {
 		if (dependenciesAsDepender == null) {
-			dependenciesAsDepender = new EObjectWithInverseResolvingEList<Dependency>(Dependency.class, this, IStarPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER, IStarPackage.DEPENDENCY__DEPENDER);
+			dependenciesAsDepender = new EObjectWithInverseResolvingEList<DependerLink>(DependerLink.class, this, IStarPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER, IStarPackage.DEPENDER_LINK__DEPENDER);
 		}
 		return dependenciesAsDepender;
 	}
@@ -123,9 +124,9 @@ public abstract class DependencyEndpointImpl extends EObjectImpl implements Depe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Dependency> getDependenciesAsDependee() {
+	public EList<DependeeLink> getDependenciesAsDependee() {
 		if (dependenciesAsDependee == null) {
-			dependenciesAsDependee = new EObjectWithInverseResolvingEList<Dependency>(Dependency.class, this, IStarPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE, IStarPackage.DEPENDENCY__DEPENDEE);
+			dependenciesAsDependee = new EObjectWithInverseResolvingEList<DependeeLink>(DependeeLink.class, this, IStarPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE, IStarPackage.DEPENDEE_LINK__DEPENDEE);
 		}
 		return dependenciesAsDependee;
 	}
@@ -213,11 +214,11 @@ public abstract class DependencyEndpointImpl extends EObjectImpl implements Depe
 		switch (featureID) {
 			case IStarPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER:
 				getDependenciesAsDepender().clear();
-				getDependenciesAsDepender().addAll((Collection<? extends Dependency>)newValue);
+				getDependenciesAsDepender().addAll((Collection<? extends DependerLink>)newValue);
 				return;
 			case IStarPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE:
 				getDependenciesAsDependee().clear();
-				getDependenciesAsDependee().addAll((Collection<? extends Dependency>)newValue);
+				getDependenciesAsDependee().addAll((Collection<? extends DependeeLink>)newValue);
 				return;
 			case IStarPackage.DEPENDENCY_ENDPOINT__NAME:
 				setName((String)newValue);

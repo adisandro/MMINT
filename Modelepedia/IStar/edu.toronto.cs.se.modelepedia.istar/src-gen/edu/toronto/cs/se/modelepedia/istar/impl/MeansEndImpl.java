@@ -12,26 +12,26 @@
 package edu.toronto.cs.se.modelepedia.istar.impl;
 
 import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
-import edu.toronto.cs.se.modelepedia.istar.SoftGoal;
+import edu.toronto.cs.se.modelepedia.istar.MeansEnd;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Soft Goal</b></em>'.
+ * An implementation of the model object '<em><b>Means End</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class SoftGoalImpl extends GoalImpl implements SoftGoal {
+public class MeansEndImpl extends IntentionLinkImpl implements MeansEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SoftGoalImpl() {
+	protected MeansEndImpl() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public class SoftGoalImpl extends GoalImpl implements SoftGoal {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return IStarPackage.Literals.SOFT_GOAL;
+		return IStarPackage.Literals.MEANS_END;
 	}
 
-} //SoftGoalImpl
+} //MeansEndImpl

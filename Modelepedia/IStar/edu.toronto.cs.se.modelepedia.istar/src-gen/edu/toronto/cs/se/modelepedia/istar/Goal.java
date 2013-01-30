@@ -11,41 +11,16 @@
  */
 package edu.toronto.cs.se.modelepedia.istar;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Goal</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar.Goal#getMeans <em>Means</em>}</li>
- * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getGoal()
  * @model
  * @generated
  */
-public interface Goal extends IntentionalElement {
-	/**
-	 * Returns the value of the '<em><b>Means</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.Task}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar.Task#getEnd <em>End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Means</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Means</em>' reference list.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getGoal_Means()
-	 * @see edu.toronto.cs.se.modelepedia.istar.Task#getEnd
-	 * @model opposite="end"
-	 * @generated
-	 */
-	EList<Task> getMeans();
-
+public interface Goal extends Intention {
 } // Goal

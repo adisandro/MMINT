@@ -12,18 +12,14 @@
 package edu.toronto.cs.se.modelepedia.istar.impl;
 
 import edu.toronto.cs.se.modelepedia.istar.Contribution;
+import edu.toronto.cs.se.modelepedia.istar.ContributionType;
 import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
-import edu.toronto.cs.se.modelepedia.istar.IntentionalElement;
-import edu.toronto.cs.se.modelepedia.istar.SoftGoal;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,14 +29,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl#getContributor <em>Contributor</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl#getContributee <em>Contributee</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ContributionImpl extends EObjectImpl implements Contribution {
+public class ContributionImpl extends IntentionLinkImpl implements Contribution {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,7 +43,7 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final ContributionType TYPE_EDEFAULT = ContributionType.MAKE;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -59,27 +53,7 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 	 * @generated
 	 * @ordered
 	 */
-	protected String type = TYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getContributor() <em>Contributor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContributor()
-	 * @generated
-	 * @ordered
-	 */
-	protected IntentionalElement contributor;
-
-	/**
-	 * The cached value of the '{@link #getContributee() <em>Contributee</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContributee()
-	 * @generated
-	 * @ordered
-	 */
-	protected SoftGoal contributee;
+	protected ContributionType type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,7 +79,7 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getType() {
+	public ContributionType getType() {
 		return type;
 	}
 
@@ -114,167 +88,11 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
+	public void setType(ContributionType newType) {
+		ContributionType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, IStarPackage.CONTRIBUTION__TYPE, oldType, type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntentionalElement getContributor() {
-		if (contributor != null && contributor.eIsProxy()) {
-			InternalEObject oldContributor = (InternalEObject)contributor;
-			contributor = (IntentionalElement)eResolveProxy(oldContributor);
-			if (contributor != oldContributor) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStarPackage.CONTRIBUTION__CONTRIBUTOR, oldContributor, contributor));
-			}
-		}
-		return contributor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntentionalElement basicGetContributor() {
-		return contributor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContributor(IntentionalElement newContributor, NotificationChain msgs) {
-		IntentionalElement oldContributor = contributor;
-		contributor = newContributor;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IStarPackage.CONTRIBUTION__CONTRIBUTOR, oldContributor, newContributor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContributor(IntentionalElement newContributor) {
-		if (newContributor != contributor) {
-			NotificationChain msgs = null;
-			if (contributor != null)
-				msgs = ((InternalEObject)contributor).eInverseRemove(this, IStarPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR, IntentionalElement.class, msgs);
-			if (newContributor != null)
-				msgs = ((InternalEObject)newContributor).eInverseAdd(this, IStarPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR, IntentionalElement.class, msgs);
-			msgs = basicSetContributor(newContributor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStarPackage.CONTRIBUTION__CONTRIBUTOR, newContributor, newContributor));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SoftGoal getContributee() {
-		if (contributee != null && contributee.eIsProxy()) {
-			InternalEObject oldContributee = (InternalEObject)contributee;
-			contributee = (SoftGoal)eResolveProxy(oldContributee);
-			if (contributee != oldContributee) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStarPackage.CONTRIBUTION__CONTRIBUTEE, oldContributee, contributee));
-			}
-		}
-		return contributee;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SoftGoal basicGetContributee() {
-		return contributee;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContributee(SoftGoal newContributee, NotificationChain msgs) {
-		SoftGoal oldContributee = contributee;
-		contributee = newContributee;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IStarPackage.CONTRIBUTION__CONTRIBUTEE, oldContributee, newContributee);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContributee(SoftGoal newContributee) {
-		if (newContributee != contributee) {
-			NotificationChain msgs = null;
-			if (contributee != null)
-				msgs = ((InternalEObject)contributee).eInverseRemove(this, IStarPackage.SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE, SoftGoal.class, msgs);
-			if (newContributee != null)
-				msgs = ((InternalEObject)newContributee).eInverseAdd(this, IStarPackage.SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE, SoftGoal.class, msgs);
-			msgs = basicSetContributee(newContributee, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStarPackage.CONTRIBUTION__CONTRIBUTEE, newContributee, newContributee));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case IStarPackage.CONTRIBUTION__CONTRIBUTOR:
-				if (contributor != null)
-					msgs = ((InternalEObject)contributor).eInverseRemove(this, IStarPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR, IntentionalElement.class, msgs);
-				return basicSetContributor((IntentionalElement)otherEnd, msgs);
-			case IStarPackage.CONTRIBUTION__CONTRIBUTEE:
-				if (contributee != null)
-					msgs = ((InternalEObject)contributee).eInverseRemove(this, IStarPackage.SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE, SoftGoal.class, msgs);
-				return basicSetContributee((SoftGoal)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case IStarPackage.CONTRIBUTION__CONTRIBUTOR:
-				return basicSetContributor(null, msgs);
-			case IStarPackage.CONTRIBUTION__CONTRIBUTEE:
-				return basicSetContributee(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -287,12 +105,6 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 		switch (featureID) {
 			case IStarPackage.CONTRIBUTION__TYPE:
 				return getType();
-			case IStarPackage.CONTRIBUTION__CONTRIBUTOR:
-				if (resolve) return getContributor();
-				return basicGetContributor();
-			case IStarPackage.CONTRIBUTION__CONTRIBUTEE:
-				if (resolve) return getContributee();
-				return basicGetContributee();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -306,13 +118,7 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case IStarPackage.CONTRIBUTION__TYPE:
-				setType((String)newValue);
-				return;
-			case IStarPackage.CONTRIBUTION__CONTRIBUTOR:
-				setContributor((IntentionalElement)newValue);
-				return;
-			case IStarPackage.CONTRIBUTION__CONTRIBUTEE:
-				setContributee((SoftGoal)newValue);
+				setType((ContributionType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -329,12 +135,6 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 			case IStarPackage.CONTRIBUTION__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case IStarPackage.CONTRIBUTION__CONTRIBUTOR:
-				setContributor((IntentionalElement)null);
-				return;
-			case IStarPackage.CONTRIBUTION__CONTRIBUTEE:
-				setContributee((SoftGoal)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -348,11 +148,7 @@ public class ContributionImpl extends EObjectImpl implements Contribution {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case IStarPackage.CONTRIBUTION__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case IStarPackage.CONTRIBUTION__CONTRIBUTOR:
-				return contributor != null;
-			case IStarPackage.CONTRIBUTION__CONTRIBUTEE:
-				return contributee != null;
+				return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

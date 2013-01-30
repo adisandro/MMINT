@@ -21,46 +21,30 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar.Actor#getIntentionalElements <em>Intentional Elements</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar.Actor#getContributions <em>Contributions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar.Actor#getIntentions <em>Intentions</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getActor()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='noDependums'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot noDependums='intentions->forAll(dependerLinks->isEmpty() and dependeeLinks->isEmpty())'"
  * @generated
  */
 public interface Actor extends DependencyEndpoint {
 	/**
-	 * Returns the value of the '<em><b>Intentional Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement}.
+	 * Returns the value of the '<em><b>Intentions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.Intention}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Intentional Elements</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Intentions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Intentional Elements</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getActor_IntentionalElements()
+	 * @return the value of the '<em>Intentions</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getActor_Intentions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IntentionalElement> getIntentionalElements();
-
-	/**
-	 * Returns the value of the '<em><b>Contributions</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.Contribution}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Contributions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contributions</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getActor_Contributions()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Contribution> getContributions();
+	EList<Intention> getIntentions();
 
 } // Actor

@@ -13,7 +13,6 @@ package edu.toronto.cs.se.modelepedia.istar.provider;
 
 
 import edu.toronto.cs.se.modelepedia.istar.Goal;
-import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +20,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -36,7 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class GoalItemProvider
-	extends IntentionalElementItemProvider
+	extends IntentionItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -64,31 +62,8 @@ public class GoalItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMeansPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Means feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMeansPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Goal_means_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_means_feature", "_UI_Goal_type"),
-				 IStarPackage.Literals.GOAL__MEANS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

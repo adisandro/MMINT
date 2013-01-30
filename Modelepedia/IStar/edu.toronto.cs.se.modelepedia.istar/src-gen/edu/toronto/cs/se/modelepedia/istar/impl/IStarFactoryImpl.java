@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.istar.impl;
 import edu.toronto.cs.se.modelepedia.istar.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -67,14 +68,47 @@ public class IStarFactoryImpl extends EFactoryImpl implements IStarFactory {
 		switch (eClass.getClassifierID()) {
 			case IStarPackage.ISTAR: return createIStar();
 			case IStarPackage.ACTOR: return createActor();
-			case IStarPackage.DEPENDENCY: return createDependency();
 			case IStarPackage.TASK: return createTask();
 			case IStarPackage.RESOURCE: return createResource();
 			case IStarPackage.GOAL: return createGoal();
 			case IStarPackage.SOFT_GOAL: return createSoftGoal();
+			case IStarPackage.MEANS_END: return createMeansEnd();
+			case IStarPackage.DECOMPOSITION: return createDecomposition();
 			case IStarPackage.CONTRIBUTION: return createContribution();
+			case IStarPackage.DEPENDER_LINK: return createDependerLink();
+			case IStarPackage.DEPENDEE_LINK: return createDependeeLink();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case IStarPackage.CONTRIBUTION_TYPE:
+				return createContributionTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case IStarPackage.CONTRIBUTION_TYPE:
+				return convertContributionTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -96,16 +130,6 @@ public class IStarFactoryImpl extends EFactoryImpl implements IStarFactory {
 	public Actor createActor() {
 		ActorImpl actor = new ActorImpl();
 		return actor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Dependency createDependency() {
-		DependencyImpl dependency = new DependencyImpl();
-		return dependency;
 	}
 
 	/**
@@ -153,9 +177,69 @@ public class IStarFactoryImpl extends EFactoryImpl implements IStarFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MeansEnd createMeansEnd() {
+		MeansEndImpl meansEnd = new MeansEndImpl();
+		return meansEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Decomposition createDecomposition() {
+		DecompositionImpl decomposition = new DecompositionImpl();
+		return decomposition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Contribution createContribution() {
 		ContributionImpl contribution = new ContributionImpl();
 		return contribution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DependerLink createDependerLink() {
+		DependerLinkImpl dependerLink = new DependerLinkImpl();
+		return dependerLink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DependeeLink createDependeeLink() {
+		DependeeLinkImpl dependeeLink = new DependeeLinkImpl();
+		return dependeeLink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContributionType createContributionTypeFromString(EDataType eDataType, String initialValue) {
+		ContributionType result = ContributionType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertContributionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

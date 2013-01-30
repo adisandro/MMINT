@@ -21,8 +21,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,7 +29,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -41,7 +38,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ContributionItemProvider
-	extends ItemProviderAdapter
+	extends IntentionLinkItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -70,8 +67,6 @@ public class ContributionItemProvider
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
-			addContributorPropertyDescriptor(object);
-			addContributeePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,50 +94,6 @@ public class ContributionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Contributor feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContributorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Contribution_contributor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Contribution_contributor_feature", "_UI_Contribution_type"),
-				 IStarPackage.Literals.CONTRIBUTION__CONTRIBUTOR,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Contributee feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContributeePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Contribution_contributee_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Contribution_contributee_feature", "_UI_Contribution_type"),
-				 IStarPackage.Literals.CONTRIBUTION__CONTRIBUTEE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns Contribution.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,7 +112,7 @@ public class ContributionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Contribution)object).getType();
+		String label = ((Contribution)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Contribution_type") :
 			getString("_UI_Contribution_type") + " " + label;
@@ -196,17 +147,6 @@ public class ContributionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return IStarEditPlugin.INSTANCE;
 	}
 
 }

@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IStar#getActors <em>Actors</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IStar#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar.IStar#getDependums <em>Dependums</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getIStar()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyDependums'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot onlyDependums='dependums->forAll(linksAsSrc->isEmpty() and linksAsTgt->isEmpty())'"
  * @generated
  */
 public interface IStar extends EObject {
@@ -51,24 +51,8 @@ public interface IStar extends EObject {
 	EList<Actor> getActors();
 
 	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.Dependency}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Dependencies</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getIStar_Dependencies()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Dependency> getDependencies();
-
-	/**
 	 * Returns the value of the '<em><b>Dependums</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement}.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar.Intention}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependums</em>' containment reference list isn't clear,
@@ -80,6 +64,6 @@ public interface IStar extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IntentionalElement> getDependums();
+	EList<Intention> getDependums();
 
 } // IStar

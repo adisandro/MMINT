@@ -87,7 +87,6 @@ public class IStarItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(IStarPackage.Literals.ISTAR__ACTORS);
-			childrenFeatures.add(IStarPackage.Literals.ISTAR__DEPENDENCIES);
 			childrenFeatures.add(IStarPackage.Literals.ISTAR__DEPENDUMS);
 		}
 		return childrenFeatures;
@@ -141,7 +140,6 @@ public class IStarItemProvider
 
 		switch (notification.getFeatureID(IStar.class)) {
 			case IStarPackage.ISTAR__ACTORS:
-			case IStarPackage.ISTAR__DEPENDENCIES:
 			case IStarPackage.ISTAR__DEPENDUMS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -164,11 +162,6 @@ public class IStarItemProvider
 			(createChildParameter
 				(IStarPackage.Literals.ISTAR__ACTORS,
 				 IStarFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStarPackage.Literals.ISTAR__DEPENDENCIES,
-				 IStarFactory.eINSTANCE.createDependency()));
 
 		newChildDescriptors.add
 			(createChildParameter

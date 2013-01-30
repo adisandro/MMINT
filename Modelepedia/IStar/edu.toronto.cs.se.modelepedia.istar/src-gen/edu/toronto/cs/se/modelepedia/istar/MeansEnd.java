@@ -14,13 +14,14 @@ package edu.toronto.cs.se.modelepedia.istar;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Soft Goal</b></em>'.
+ * A representation of the model object '<em><b>Means End</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getSoftGoal()
- * @model
+ * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getMeansEnd()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='srcTask tgtGoal'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot srcTask='src.oclIsTypeOf(Task)' tgtGoal='tgt.oclIsTypeOf(Goal)'"
  * @generated
  */
-public interface SoftGoal extends Goal {
-} // SoftGoal
+public interface MeansEnd extends IntentionLink {
+} // MeansEnd

@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.istar.provider;
 
 
-import edu.toronto.cs.se.modelepedia.istar.SoftGoal;
+import edu.toronto.cs.se.modelepedia.istar.Decomposition;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,13 +28,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar.SoftGoal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar.Decomposition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SoftGoalItemProvider
-	extends GoalItemProvider
+public class DecompositionItemProvider
+	extends IntentionLinkItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -47,7 +47,7 @@ public class SoftGoalItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SoftGoalItemProvider(AdapterFactory adapterFactory) {
+	public DecompositionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,14 +67,14 @@ public class SoftGoalItemProvider
 	}
 
 	/**
-	 * This returns SoftGoal.gif.
+	 * This returns Decomposition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SoftGoal"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Decomposition"));
 	}
 
 	/**
@@ -85,10 +85,10 @@ public class SoftGoalItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SoftGoal)object).getName();
+		String label = ((Decomposition)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SoftGoal_type") :
-			getString("_UI_SoftGoal_type") + " " + label;
+			getString("_UI_Decomposition_type") :
+			getString("_UI_Decomposition_type") + " " + label;
 	}
 
 	/**

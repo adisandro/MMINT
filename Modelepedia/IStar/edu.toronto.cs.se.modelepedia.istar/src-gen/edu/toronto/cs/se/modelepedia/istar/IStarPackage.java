@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.istar;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.modelepedia.istar.IStarFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface IStarPackage extends EPackage {
@@ -85,22 +87,13 @@ public interface IStarPackage extends EPackage {
 	int ISTAR__ACTORS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISTAR__DEPENDENCIES = 1;
-
-	/**
 	 * The feature id for the '<em><b>Dependums</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__DEPENDUMS = 2;
+	int ISTAR__DEPENDUMS = 1;
 
 	/**
 	 * The number of structural features of the '<em>IStar</em>' class.
@@ -109,7 +102,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR_FEATURE_COUNT = 3;
+	int ISTAR_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>IStar</em>' class.
@@ -128,7 +121,7 @@ public interface IStarPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDependencyEndpoint()
 	 * @generated
 	 */
-	int DEPENDENCY_ENDPOINT = 9;
+	int DEPENDENCY_ENDPOINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -213,22 +206,13 @@ public interface IStarPackage extends EPackage {
 	int ACTOR__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Intentional Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Intentions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INTENTIONAL_ELEMENTS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Contributions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__CONTRIBUTIONS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
+	int ACTOR__INTENTIONS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Actor</em>' class.
@@ -237,7 +221,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 2;
+	int ACTOR_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Actor</em>' class.
@@ -249,69 +233,14 @@ public interface IStarPackage extends EPackage {
 	int ACTOR_OPERATION_COUNT = DEPENDENCY_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DependencyImpl <em>Dependency</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionImpl <em>Intention</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar.impl.DependencyImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDependency()
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IntentionImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getIntention()
 	 * @generated
 	 */
-	int DEPENDENCY = 2;
-
-	/**
-	 * The feature id for the '<em><b>Depender</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY__DEPENDER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Dependee</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY__DEPENDEE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Dependum</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY__DEPENDUM = 2;
-
-	/**
-	 * The number of structural features of the '<em>Dependency</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Dependency</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl <em>Intentional Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getIntentionalElement()
-	 * @generated
-	 */
-	int INTENTIONAL_ELEMENT = 3;
+	int INTENTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -320,7 +249,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER;
+	int INTENTION__DEPENDENCIES_AS_DEPENDER = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -329,7 +258,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE;
+	int INTENTION__DEPENDENCIES_AS_DEPENDEE = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -338,34 +267,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__NAME = DEPENDENCY_ENDPOINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCIES = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__COMPOSITE = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 2;
+	int INTENTION__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -374,7 +276,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__FULLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 3;
+	int INTENTION__FULLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -383,7 +285,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 4;
+	int INTENTION__PARTIALLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -392,7 +294,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__UNKNOWN = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 5;
+	int INTENTION__UNKNOWN = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -401,7 +303,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__CONFLICT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 6;
+	int INTENTION__CONFLICT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -410,7 +312,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__PARTIALLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 7;
+	int INTENTION__PARTIALLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -419,34 +321,70 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__FULLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 8;
+	int INTENTION__FULLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__NOTHING = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 9;
+	int INTENTION__NO_LABEL = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of structural features of the '<em>Intentional Element</em>' class.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 10;
+	int INTENTION__LINKS_AS_SRC = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 7;
 
 	/**
-	 * The number of operations of the '<em>Intentional Element</em>' class.
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT_OPERATION_COUNT = DEPENDENCY_ENDPOINT_OPERATION_COUNT + 0;
+	int INTENTION__LINKS_AS_TGT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION__DEPENDER_LINKS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION__DEPENDEE_LINKS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 10;
+
+	/**
+	 * The number of structural features of the '<em>Intention</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 11;
+
+	/**
+	 * The number of operations of the '<em>Intention</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_OPERATION_COUNT = DEPENDENCY_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.TaskImpl <em>Task</em>}' class.
@@ -456,7 +394,7 @@ public interface IStarPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getTask()
 	 * @generated
 	 */
-	int TASK = 4;
+	int TASK = 3;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -465,7 +403,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__DEPENDENCIES_AS_DEPENDER = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER;
+	int TASK__DEPENDENCIES_AS_DEPENDER = INTENTION__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -474,7 +412,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__DEPENDENCIES_AS_DEPENDEE = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE;
+	int TASK__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -483,34 +421,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__NAME = INTENTIONAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__COMPOSITE = INTENTIONAL_ELEMENT__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+	int TASK__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -519,7 +430,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+	int TASK__FULLY_SATISFIED = INTENTION__FULLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -528,7 +439,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+	int TASK__PARTIALLY_SATISFIED = INTENTION__PARTIALLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -537,7 +448,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+	int TASK__UNKNOWN = INTENTION__UNKNOWN;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -546,7 +457,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+	int TASK__CONFLICT = INTENTION__CONFLICT;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -555,7 +466,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+	int TASK__PARTIALLY_DENIED = INTENTION__PARTIALLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -564,34 +475,52 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+	int TASK__FULLY_DENIED = INTENTION__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
+	int TASK__NO_LABEL = INTENTION__NO_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>End</b></em>' reference.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__END = INTENTIONAL_ELEMENT_FEATURE_COUNT + 0;
+	int TASK__LINKS_AS_SRC = INTENTION__LINKS_AS_SRC;
 
 	/**
-	 * The feature id for the '<em><b>Components</b></em>' reference list.
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__COMPONENTS = INTENTIONAL_ELEMENT_FEATURE_COUNT + 1;
+	int TASK__LINKS_AS_TGT = INTENTION__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__DEPENDER_LINKS = INTENTION__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__DEPENDEE_LINKS = INTENTION__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Task</em>' class.
@@ -600,7 +529,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_FEATURE_COUNT = INTENTIONAL_ELEMENT_FEATURE_COUNT + 2;
+	int TASK_FEATURE_COUNT = INTENTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Task</em>' class.
@@ -609,7 +538,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_OPERATION_COUNT = INTENTIONAL_ELEMENT_OPERATION_COUNT + 0;
+	int TASK_OPERATION_COUNT = INTENTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.ResourceImpl <em>Resource</em>}' class.
@@ -619,7 +548,7 @@ public interface IStarPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getResource()
 	 * @generated
 	 */
-	int RESOURCE = 5;
+	int RESOURCE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -628,7 +557,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__DEPENDENCIES_AS_DEPENDER = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER;
+	int RESOURCE__DEPENDENCIES_AS_DEPENDER = INTENTION__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -637,7 +566,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__DEPENDENCIES_AS_DEPENDEE = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE;
+	int RESOURCE__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -646,34 +575,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__NAME = INTENTIONAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE__COMPOSITE = INTENTIONAL_ELEMENT__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+	int RESOURCE__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -682,7 +584,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+	int RESOURCE__FULLY_SATISFIED = INTENTION__FULLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -691,7 +593,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+	int RESOURCE__PARTIALLY_SATISFIED = INTENTION__PARTIALLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -700,7 +602,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+	int RESOURCE__UNKNOWN = INTENTION__UNKNOWN;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -709,7 +611,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+	int RESOURCE__CONFLICT = INTENTION__CONFLICT;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -718,7 +620,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+	int RESOURCE__PARTIALLY_DENIED = INTENTION__PARTIALLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -727,16 +629,52 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+	int RESOURCE__FULLY_DENIED = INTENTION__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
+	int RESOURCE__NO_LABEL = INTENTION__NO_LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__LINKS_AS_SRC = INTENTION__LINKS_AS_SRC;
+
+	/**
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__LINKS_AS_TGT = INTENTION__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__DEPENDER_LINKS = INTENTION__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__DEPENDEE_LINKS = INTENTION__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Resource</em>' class.
@@ -745,7 +683,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_FEATURE_COUNT = INTENTIONAL_ELEMENT_FEATURE_COUNT + 0;
+	int RESOURCE_FEATURE_COUNT = INTENTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Resource</em>' class.
@@ -754,7 +692,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_OPERATION_COUNT = INTENTIONAL_ELEMENT_OPERATION_COUNT + 0;
+	int RESOURCE_OPERATION_COUNT = INTENTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.GoalImpl <em>Goal</em>}' class.
@@ -764,7 +702,7 @@ public interface IStarPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getGoal()
 	 * @generated
 	 */
-	int GOAL = 6;
+	int GOAL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -773,7 +711,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__DEPENDENCIES_AS_DEPENDER = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER;
+	int GOAL__DEPENDENCIES_AS_DEPENDER = INTENTION__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -782,7 +720,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__DEPENDENCIES_AS_DEPENDEE = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE;
+	int GOAL__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -791,34 +729,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__NAME = INTENTIONAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__COMPOSITE = INTENTIONAL_ELEMENT__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+	int GOAL__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -827,7 +738,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+	int GOAL__FULLY_SATISFIED = INTENTION__FULLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -836,7 +747,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+	int GOAL__PARTIALLY_SATISFIED = INTENTION__PARTIALLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -845,7 +756,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+	int GOAL__UNKNOWN = INTENTION__UNKNOWN;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -854,7 +765,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+	int GOAL__CONFLICT = INTENTION__CONFLICT;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -863,7 +774,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+	int GOAL__PARTIALLY_DENIED = INTENTION__PARTIALLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -872,25 +783,52 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+	int GOAL__FULLY_DENIED = INTENTION__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
+	int GOAL__NO_LABEL = INTENTION__NO_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Means</b></em>' reference list.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__MEANS = INTENTIONAL_ELEMENT_FEATURE_COUNT + 0;
+	int GOAL__LINKS_AS_SRC = INTENTION__LINKS_AS_SRC;
+
+	/**
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__LINKS_AS_TGT = INTENTION__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__DEPENDER_LINKS = INTENTION__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__DEPENDEE_LINKS = INTENTION__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Goal</em>' class.
@@ -899,7 +837,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_FEATURE_COUNT = INTENTIONAL_ELEMENT_FEATURE_COUNT + 1;
+	int GOAL_FEATURE_COUNT = INTENTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Goal</em>' class.
@@ -908,7 +846,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_OPERATION_COUNT = INTENTIONAL_ELEMENT_OPERATION_COUNT + 0;
+	int GOAL_OPERATION_COUNT = INTENTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.SoftGoalImpl <em>Soft Goal</em>}' class.
@@ -918,7 +856,7 @@ public interface IStarPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getSoftGoal()
 	 * @generated
 	 */
-	int SOFT_GOAL = 7;
+	int SOFT_GOAL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -946,33 +884,6 @@ public interface IStarPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFT_GOAL__NAME = GOAL__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOFT_GOAL__DEPENDENCIES = GOAL__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOFT_GOAL__COMPOSITE = GOAL__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR = GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -1029,31 +940,49 @@ public interface IStarPackage extends EPackage {
 	int SOFT_GOAL__FULLY_DENIED = GOAL__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__NOTHING = GOAL__NOTHING;
+	int SOFT_GOAL__NO_LABEL = GOAL__NO_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Means</b></em>' reference list.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__MEANS = GOAL__MEANS;
+	int SOFT_GOAL__LINKS_AS_SRC = GOAL__LINKS_AS_SRC;
 
 	/**
-	 * The feature id for the '<em><b>Contributions As Contributee</b></em>' reference list.
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE = GOAL_FEATURE_COUNT + 0;
+	int SOFT_GOAL__LINKS_AS_TGT = GOAL__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__DEPENDER_LINKS = GOAL__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__DEPENDEE_LINKS = GOAL__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Soft Goal</em>' class.
@@ -1062,7 +991,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 1;
+	int SOFT_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Soft Goal</em>' class.
@@ -1074,6 +1003,171 @@ public interface IStarPackage extends EPackage {
 	int SOFT_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionLinkImpl <em>Intention Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IntentionLinkImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getIntentionLink()
+	 * @generated
+	 */
+	int INTENTION_LINK = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__SRC = 1;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__TGT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Intention Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Intention Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.MeansEndImpl <em>Means End</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.MeansEndImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getMeansEnd()
+	 * @generated
+	 */
+	int MEANS_END = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__NAME = INTENTION_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__SRC = INTENTION_LINK__SRC;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__TGT = INTENTION_LINK__TGT;
+
+	/**
+	 * The number of structural features of the '<em>Means End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END_FEATURE_COUNT = INTENTION_LINK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Means End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END_OPERATION_COUNT = INTENTION_LINK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DecompositionImpl <em>Decomposition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.DecompositionImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDecomposition()
+	 * @generated
+	 */
+	int DECOMPOSITION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__NAME = INTENTION_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__SRC = INTENTION_LINK__SRC;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__TGT = INTENTION_LINK__TGT;
+
+	/**
+	 * The number of structural features of the '<em>Decomposition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION_FEATURE_COUNT = INTENTION_LINK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Decomposition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION_OPERATION_COUNT = INTENTION_LINK_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl <em>Contribution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1081,7 +1175,34 @@ public interface IStarPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getContribution()
 	 * @generated
 	 */
-	int CONTRIBUTION = 8;
+	int CONTRIBUTION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__NAME = INTENTION_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__SRC = INTENTION_LINK__SRC;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__TGT = INTENTION_LINK__TGT;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1090,25 +1211,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION__TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Contributor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTRIBUTION__CONTRIBUTOR = 1;
-
-	/**
-	 * The feature id for the '<em><b>Contributee</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTRIBUTION__CONTRIBUTEE = 2;
+	int CONTRIBUTION__TYPE = INTENTION_LINK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Contribution</em>' class.
@@ -1117,7 +1220,7 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION_FEATURE_COUNT = 3;
+	int CONTRIBUTION_FEATURE_COUNT = INTENTION_LINK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Contribution</em>' class.
@@ -1126,7 +1229,127 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION_OPERATION_COUNT = 0;
+	int CONTRIBUTION_OPERATION_COUNT = INTENTION_LINK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DependerLinkImpl <em>Depender Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.DependerLinkImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDependerLink()
+	 * @generated
+	 */
+	int DEPENDER_LINK = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Depender</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK__DEPENDER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Dependum</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK__DEPENDUM = 2;
+
+	/**
+	 * The number of structural features of the '<em>Depender Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Depender Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DependeeLinkImpl <em>Dependee Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.DependeeLinkImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDependeeLink()
+	 * @generated
+	 */
+	int DEPENDEE_LINK = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDEE_LINK__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Dependum</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDEE_LINK__DEPENDUM = 1;
+
+	/**
+	 * The feature id for the '<em><b>Dependee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDEE_LINK__DEPENDEE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Dependee Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDEE_LINK_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Dependee Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDEE_LINK_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar.ContributionType <em>Contribution Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar.ContributionType
+	 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getContributionType()
+	 * @generated
+	 */
+	int CONTRIBUTION_TYPE = 14;
 
 
 	/**
@@ -1151,17 +1374,6 @@ public interface IStarPackage extends EPackage {
 	EReference getIStar_Actors();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.IStar#getDependencies <em>Dependencies</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dependencies</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IStar#getDependencies()
-	 * @see #getIStar()
-	 * @generated
-	 */
-	EReference getIStar_Dependencies();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.IStar#getDependums <em>Dependums</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1183,189 +1395,146 @@ public interface IStarPackage extends EPackage {
 	EClass getActor();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.Actor#getIntentionalElements <em>Intentional Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.Actor#getIntentions <em>Intentions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Intentional Elements</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Actor#getIntentionalElements()
+	 * @return the meta object for the containment reference list '<em>Intentions</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Actor#getIntentions()
 	 * @see #getActor()
 	 * @generated
 	 */
-	EReference getActor_IntentionalElements();
+	EReference getActor_Intentions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.Actor#getContributions <em>Contributions</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Intention <em>Intention</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Contributions</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Actor#getContributions()
-	 * @see #getActor()
+	 * @return the meta object for class '<em>Intention</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention
 	 * @generated
 	 */
-	EReference getActor_Contributions();
+	EClass getIntention();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Dependency <em>Dependency</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dependency</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency
-	 * @generated
-	 */
-	EClass getDependency();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDepender <em>Depender</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Depender</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency#getDepender()
-	 * @see #getDependency()
-	 * @generated
-	 */
-	EReference getDependency_Depender();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDependee <em>Dependee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dependee</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency#getDependee()
-	 * @see #getDependency()
-	 * @generated
-	 */
-	EReference getDependency_Dependee();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.Dependency#getDependum <em>Dependum</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dependum</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency#getDependum()
-	 * @see #getDependency()
-	 * @generated
-	 */
-	EReference getDependency_Dependum();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement <em>Intentional Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Intentional Element</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement
-	 * @generated
-	 */
-	EClass getIntentionalElement();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependencies <em>Dependencies</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Dependencies</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getDependencies()
-	 * @see #getIntentionalElement()
-	 * @generated
-	 */
-	EReference getIntentionalElement_Dependencies();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getComposite <em>Composite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Composite</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getComposite()
-	 * @see #getIntentionalElement()
-	 * @generated
-	 */
-	EReference getIntentionalElement_Composite();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getContributionsAsContributor <em>Contributions As Contributor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contributions As Contributor</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#getContributionsAsContributor()
-	 * @see #getIntentionalElement()
-	 * @generated
-	 */
-	EReference getIntentionalElement_ContributionsAsContributor();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullySatisfied <em>Fully Satisfied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Intention#isFullySatisfied <em>Fully Satisfied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Fully Satisfied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullySatisfied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#isFullySatisfied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_FullySatisfied();
+	EAttribute getIntention_FullySatisfied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallySatisfied <em>Partially Satisfied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Intention#isPartiallySatisfied <em>Partially Satisfied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Partially Satisfied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallySatisfied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#isPartiallySatisfied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_PartiallySatisfied();
+	EAttribute getIntention_PartiallySatisfied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isUnknown <em>Unknown</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Intention#isUnknown <em>Unknown</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Unknown</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isUnknown()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#isUnknown()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_Unknown();
+	EAttribute getIntention_Unknown();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isConflict <em>Conflict</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Intention#isConflict <em>Conflict</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Conflict</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isConflict()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#isConflict()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_Conflict();
+	EAttribute getIntention_Conflict();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallyDenied <em>Partially Denied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Intention#isPartiallyDenied <em>Partially Denied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Partially Denied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isPartiallyDenied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#isPartiallyDenied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_PartiallyDenied();
+	EAttribute getIntention_PartiallyDenied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullyDenied <em>Fully Denied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Intention#isFullyDenied <em>Fully Denied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Fully Denied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isFullyDenied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#isFullyDenied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_FullyDenied();
+	EAttribute getIntention_FullyDenied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isNothing <em>Nothing</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Intention#isNoLabel <em>No Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Nothing</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement#isNothing()
-	 * @see #getIntentionalElement()
+	 * @return the meta object for the attribute '<em>No Label</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#isNoLabel()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_Nothing();
+	EAttribute getIntention_NoLabel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.Intention#getLinksAsSrc <em>Links As Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Links As Src</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#getLinksAsSrc()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_LinksAsSrc();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar.Intention#getLinksAsTgt <em>Links As Tgt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Links As Tgt</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#getLinksAsTgt()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_LinksAsTgt();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.Intention#getDependerLinks <em>Depender Links</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Depender Links</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#getDependerLinks()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_DependerLinks();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar.Intention#getDependeeLinks <em>Dependee Links</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dependee Links</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention#getDependeeLinks()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_DependeeLinks();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Task <em>Task</em>}'.
@@ -1376,28 +1545,6 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTask();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.Task#getEnd <em>End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>End</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Task#getEnd()
-	 * @see #getTask()
-	 * @generated
-	 */
-	EReference getTask_End();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar.Task#getComponents <em>Components</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Components</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Task#getComponents()
-	 * @see #getTask()
-	 * @generated
-	 */
-	EReference getTask_Components();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Resource <em>Resource</em>}'.
@@ -1420,17 +1567,6 @@ public interface IStarPackage extends EPackage {
 	EClass getGoal();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar.Goal#getMeans <em>Means</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Means</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Goal#getMeans()
-	 * @see #getGoal()
-	 * @generated
-	 */
-	EReference getGoal_Means();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.SoftGoal <em>Soft Goal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1439,60 +1575,6 @@ public interface IStarPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSoftGoal();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar.SoftGoal#getContributionsAsContributee <em>Contributions As Contributee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contributions As Contributee</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.SoftGoal#getContributionsAsContributee()
-	 * @see #getSoftGoal()
-	 * @generated
-	 */
-	EReference getSoftGoal_ContributionsAsContributee();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Contribution <em>Contribution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Contribution</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Contribution
-	 * @generated
-	 */
-	EClass getContribution();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Contribution#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Contribution#getType()
-	 * @see #getContribution()
-	 * @generated
-	 */
-	EAttribute getContribution_Type();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.Contribution#getContributor <em>Contributor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Contributor</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Contribution#getContributor()
-	 * @see #getContribution()
-	 * @generated
-	 */
-	EReference getContribution_Contributor();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.Contribution#getContributee <em>Contributee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Contributee</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Contribution#getContributee()
-	 * @see #getContribution()
-	 * @generated
-	 */
-	EReference getContribution_Contributee();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.DependencyEndpoint <em>Dependency Endpoint</em>}'.
@@ -1538,6 +1620,186 @@ public interface IStarPackage extends EPackage {
 	EAttribute getDependencyEndpoint_Name();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.IntentionLink <em>Intention Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Intention Link</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionLink
+	 * @generated
+	 */
+	EClass getIntentionLink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.IntentionLink#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionLink#getName()
+	 * @see #getIntentionLink()
+	 * @generated
+	 */
+	EAttribute getIntentionLink_Name();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar.IntentionLink#getSrc <em>Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Src</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionLink#getSrc()
+	 * @see #getIntentionLink()
+	 * @generated
+	 */
+	EReference getIntentionLink_Src();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.IntentionLink#getTgt <em>Tgt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Tgt</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionLink#getTgt()
+	 * @see #getIntentionLink()
+	 * @generated
+	 */
+	EReference getIntentionLink_Tgt();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.MeansEnd <em>Means End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Means End</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.MeansEnd
+	 * @generated
+	 */
+	EClass getMeansEnd();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Decomposition <em>Decomposition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Decomposition</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Decomposition
+	 * @generated
+	 */
+	EClass getDecomposition();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.Contribution <em>Contribution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contribution</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Contribution
+	 * @generated
+	 */
+	EClass getContribution();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.Contribution#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Contribution#getType()
+	 * @see #getContribution()
+	 * @generated
+	 */
+	EAttribute getContribution_Type();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.DependerLink <em>Depender Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Depender Link</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependerLink
+	 * @generated
+	 */
+	EClass getDependerLink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.DependerLink#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependerLink#getName()
+	 * @see #getDependerLink()
+	 * @generated
+	 */
+	EAttribute getDependerLink_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.DependerLink#getDepender <em>Depender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Depender</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependerLink#getDepender()
+	 * @see #getDependerLink()
+	 * @generated
+	 */
+	EReference getDependerLink_Depender();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar.DependerLink#getDependum <em>Dependum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Dependum</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependerLink#getDependum()
+	 * @see #getDependerLink()
+	 * @generated
+	 */
+	EReference getDependerLink_Dependum();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar.DependeeLink <em>Dependee Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dependee Link</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependeeLink
+	 * @generated
+	 */
+	EClass getDependeeLink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar.DependeeLink#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependeeLink#getName()
+	 * @see #getDependeeLink()
+	 * @generated
+	 */
+	EAttribute getDependeeLink_Name();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar.DependeeLink#getDependum <em>Dependum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Dependum</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependeeLink#getDependum()
+	 * @see #getDependeeLink()
+	 * @generated
+	 */
+	EReference getDependeeLink_Dependum();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar.DependeeLink#getDependee <em>Dependee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Dependee</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependeeLink#getDependee()
+	 * @see #getDependeeLink()
+	 * @generated
+	 */
+	EReference getDependeeLink_Dependee();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.istar.ContributionType <em>Contribution Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Contribution Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar.ContributionType
+	 * @generated
+	 */
+	EEnum getContributionType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1579,14 +1841,6 @@ public interface IStarPackage extends EPackage {
 		EReference ISTAR__ACTORS = eINSTANCE.getIStar_Actors();
 
 		/**
-		 * The meta object literal for the '<em><b>Dependencies</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ISTAR__DEPENDENCIES = eINSTANCE.getIStar_Dependencies();
-
-		/**
 		 * The meta object literal for the '<em><b>Dependums</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1605,88 +1859,22 @@ public interface IStarPackage extends EPackage {
 		EClass ACTOR = eINSTANCE.getActor();
 
 		/**
-		 * The meta object literal for the '<em><b>Intentional Elements</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Intentions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTOR__INTENTIONAL_ELEMENTS = eINSTANCE.getActor_IntentionalElements();
+		EReference ACTOR__INTENTIONS = eINSTANCE.getActor_Intentions();
 
 		/**
-		 * The meta object literal for the '<em><b>Contributions</b></em>' containment reference list feature.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionImpl <em>Intention</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IntentionImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getIntention()
 		 * @generated
 		 */
-		EReference ACTOR__CONTRIBUTIONS = eINSTANCE.getActor_Contributions();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DependencyImpl <em>Dependency</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar.impl.DependencyImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDependency()
-		 * @generated
-		 */
-		EClass DEPENDENCY = eINSTANCE.getDependency();
-
-		/**
-		 * The meta object literal for the '<em><b>Depender</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDENCY__DEPENDER = eINSTANCE.getDependency_Depender();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependee</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDENCY__DEPENDEE = eINSTANCE.getDependency_Dependee();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependum</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDENCY__DEPENDUM = eINSTANCE.getDependency_Dependum();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl <em>Intentional Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IntentionalElementImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getIntentionalElement()
-		 * @generated
-		 */
-		EClass INTENTIONAL_ELEMENT = eINSTANCE.getIntentionalElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTENTIONAL_ELEMENT__DEPENDENCIES = eINSTANCE.getIntentionalElement_Dependencies();
-
-		/**
-		 * The meta object literal for the '<em><b>Composite</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTENTIONAL_ELEMENT__COMPOSITE = eINSTANCE.getIntentionalElement_Composite();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributions As Contributor</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR = eINSTANCE.getIntentionalElement_ContributionsAsContributor();
+		EClass INTENTION = eINSTANCE.getIntention();
 
 		/**
 		 * The meta object literal for the '<em><b>Fully Satisfied</b></em>' attribute feature.
@@ -1694,7 +1882,7 @@ public interface IStarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__FULLY_SATISFIED = eINSTANCE.getIntentionalElement_FullySatisfied();
+		EAttribute INTENTION__FULLY_SATISFIED = eINSTANCE.getIntention_FullySatisfied();
 
 		/**
 		 * The meta object literal for the '<em><b>Partially Satisfied</b></em>' attribute feature.
@@ -1702,7 +1890,7 @@ public interface IStarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED = eINSTANCE.getIntentionalElement_PartiallySatisfied();
+		EAttribute INTENTION__PARTIALLY_SATISFIED = eINSTANCE.getIntention_PartiallySatisfied();
 
 		/**
 		 * The meta object literal for the '<em><b>Unknown</b></em>' attribute feature.
@@ -1710,7 +1898,7 @@ public interface IStarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__UNKNOWN = eINSTANCE.getIntentionalElement_Unknown();
+		EAttribute INTENTION__UNKNOWN = eINSTANCE.getIntention_Unknown();
 
 		/**
 		 * The meta object literal for the '<em><b>Conflict</b></em>' attribute feature.
@@ -1718,7 +1906,7 @@ public interface IStarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__CONFLICT = eINSTANCE.getIntentionalElement_Conflict();
+		EAttribute INTENTION__CONFLICT = eINSTANCE.getIntention_Conflict();
 
 		/**
 		 * The meta object literal for the '<em><b>Partially Denied</b></em>' attribute feature.
@@ -1726,7 +1914,7 @@ public interface IStarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__PARTIALLY_DENIED = eINSTANCE.getIntentionalElement_PartiallyDenied();
+		EAttribute INTENTION__PARTIALLY_DENIED = eINSTANCE.getIntention_PartiallyDenied();
 
 		/**
 		 * The meta object literal for the '<em><b>Fully Denied</b></em>' attribute feature.
@@ -1734,15 +1922,47 @@ public interface IStarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__FULLY_DENIED = eINSTANCE.getIntentionalElement_FullyDenied();
+		EAttribute INTENTION__FULLY_DENIED = eINSTANCE.getIntention_FullyDenied();
 
 		/**
-		 * The meta object literal for the '<em><b>Nothing</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>No Label</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__NOTHING = eINSTANCE.getIntentionalElement_Nothing();
+		EAttribute INTENTION__NO_LABEL = eINSTANCE.getIntention_NoLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Links As Src</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__LINKS_AS_SRC = eINSTANCE.getIntention_LinksAsSrc();
+
+		/**
+		 * The meta object literal for the '<em><b>Links As Tgt</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__LINKS_AS_TGT = eINSTANCE.getIntention_LinksAsTgt();
+
+		/**
+		 * The meta object literal for the '<em><b>Depender Links</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__DEPENDER_LINKS = eINSTANCE.getIntention_DependerLinks();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependee Links</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__DEPENDEE_LINKS = eINSTANCE.getIntention_DependeeLinks();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.TaskImpl <em>Task</em>}' class.
@@ -1753,22 +1973,6 @@ public interface IStarPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TASK = eINSTANCE.getTask();
-
-		/**
-		 * The meta object literal for the '<em><b>End</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TASK__END = eINSTANCE.getTask_End();
-
-		/**
-		 * The meta object literal for the '<em><b>Components</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TASK__COMPONENTS = eINSTANCE.getTask_Components();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.ResourceImpl <em>Resource</em>}' class.
@@ -1791,14 +1995,6 @@ public interface IStarPackage extends EPackage {
 		EClass GOAL = eINSTANCE.getGoal();
 
 		/**
-		 * The meta object literal for the '<em><b>Means</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GOAL__MEANS = eINSTANCE.getGoal_Means();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.SoftGoalImpl <em>Soft Goal</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1807,48 +2003,6 @@ public interface IStarPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SOFT_GOAL = eINSTANCE.getSoftGoal();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributions As Contributee</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE = eINSTANCE.getSoftGoal_ContributionsAsContributee();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl <em>Contribution</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getContribution()
-		 * @generated
-		 */
-		EClass CONTRIBUTION = eINSTANCE.getContribution();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONTRIBUTION__TYPE = eINSTANCE.getContribution_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributor</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTRIBUTION__CONTRIBUTOR = eINSTANCE.getContribution_Contributor();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributee</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTRIBUTION__CONTRIBUTEE = eINSTANCE.getContribution_Contributee();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DependencyEndpointImpl <em>Dependency Endpoint</em>}' class.
@@ -1883,6 +2037,156 @@ public interface IStarPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DEPENDENCY_ENDPOINT__NAME = eINSTANCE.getDependencyEndpoint_Name();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.IntentionLinkImpl <em>Intention Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IntentionLinkImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getIntentionLink()
+		 * @generated
+		 */
+		EClass INTENTION_LINK = eINSTANCE.getIntentionLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENTION_LINK__NAME = eINSTANCE.getIntentionLink_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Src</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION_LINK__SRC = eINSTANCE.getIntentionLink_Src();
+
+		/**
+		 * The meta object literal for the '<em><b>Tgt</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION_LINK__TGT = eINSTANCE.getIntentionLink_Tgt();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.MeansEndImpl <em>Means End</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.MeansEndImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getMeansEnd()
+		 * @generated
+		 */
+		EClass MEANS_END = eINSTANCE.getMeansEnd();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DecompositionImpl <em>Decomposition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.DecompositionImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDecomposition()
+		 * @generated
+		 */
+		EClass DECOMPOSITION = eINSTANCE.getDecomposition();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl <em>Contribution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.ContributionImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getContribution()
+		 * @generated
+		 */
+		EClass CONTRIBUTION = eINSTANCE.getContribution();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTRIBUTION__TYPE = eINSTANCE.getContribution_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DependerLinkImpl <em>Depender Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.DependerLinkImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDependerLink()
+		 * @generated
+		 */
+		EClass DEPENDER_LINK = eINSTANCE.getDependerLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPENDER_LINK__NAME = eINSTANCE.getDependerLink_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Depender</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDER_LINK__DEPENDER = eINSTANCE.getDependerLink_Depender();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependum</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDER_LINK__DEPENDUM = eINSTANCE.getDependerLink_Dependum();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.impl.DependeeLinkImpl <em>Dependee Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.DependeeLinkImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getDependeeLink()
+		 * @generated
+		 */
+		EClass DEPENDEE_LINK = eINSTANCE.getDependeeLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPENDEE_LINK__NAME = eINSTANCE.getDependeeLink_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependum</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDEE_LINK__DEPENDUM = eINSTANCE.getDependeeLink_Dependum();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependee</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDEE_LINK__DEPENDEE = eINSTANCE.getDependeeLink_Dependee();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar.ContributionType <em>Contribution Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar.ContributionType
+		 * @see edu.toronto.cs.se.modelepedia.istar.impl.IStarPackageImpl#getContributionType()
+		 * @generated
+		 */
+		EEnum CONTRIBUTION_TYPE = eINSTANCE.getContributionType();
 
 	}
 

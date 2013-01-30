@@ -85,12 +85,8 @@ public class IStarAdapterFactory extends AdapterFactoryImpl {
 				return createActorAdapter();
 			}
 			@Override
-			public Adapter caseDependency(Dependency object) {
-				return createDependencyAdapter();
-			}
-			@Override
-			public Adapter caseIntentionalElement(IntentionalElement object) {
-				return createIntentionalElementAdapter();
+			public Adapter caseIntention(Intention object) {
+				return createIntentionAdapter();
 			}
 			@Override
 			public Adapter caseTask(Task object) {
@@ -109,12 +105,32 @@ public class IStarAdapterFactory extends AdapterFactoryImpl {
 				return createSoftGoalAdapter();
 			}
 			@Override
+			public Adapter caseDependencyEndpoint(DependencyEndpoint object) {
+				return createDependencyEndpointAdapter();
+			}
+			@Override
+			public Adapter caseIntentionLink(IntentionLink object) {
+				return createIntentionLinkAdapter();
+			}
+			@Override
+			public Adapter caseMeansEnd(MeansEnd object) {
+				return createMeansEndAdapter();
+			}
+			@Override
+			public Adapter caseDecomposition(Decomposition object) {
+				return createDecompositionAdapter();
+			}
+			@Override
 			public Adapter caseContribution(Contribution object) {
 				return createContributionAdapter();
 			}
 			@Override
-			public Adapter caseDependencyEndpoint(DependencyEndpoint object) {
-				return createDependencyEndpointAdapter();
+			public Adapter caseDependerLink(DependerLink object) {
+				return createDependerLinkAdapter();
+			}
+			@Override
+			public Adapter caseDependeeLink(DependeeLink object) {
+				return createDependeeLinkAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -165,30 +181,16 @@ public class IStarAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.Dependency <em>Dependency</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.Intention <em>Intention</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar.Dependency
+	 * @see edu.toronto.cs.se.modelepedia.istar.Intention
 	 * @generated
 	 */
-	public Adapter createDependencyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.IntentionalElement <em>Intentional Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionalElement
-	 * @generated
-	 */
-	public Adapter createIntentionalElementAdapter() {
+	public Adapter createIntentionAdapter() {
 		return null;
 	}
 
@@ -249,6 +251,62 @@ public class IStarAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.DependencyEndpoint <em>Dependency Endpoint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependencyEndpoint
+	 * @generated
+	 */
+	public Adapter createDependencyEndpointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.IntentionLink <em>Intention Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar.IntentionLink
+	 * @generated
+	 */
+	public Adapter createIntentionLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.MeansEnd <em>Means End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar.MeansEnd
+	 * @generated
+	 */
+	public Adapter createMeansEndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.Decomposition <em>Decomposition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar.Decomposition
+	 * @generated
+	 */
+	public Adapter createDecompositionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.Contribution <em>Contribution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -263,16 +321,30 @@ public class IStarAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.DependencyEndpoint <em>Dependency Endpoint</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.DependerLink <em>Depender Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar.DependencyEndpoint
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependerLink
 	 * @generated
 	 */
-	public Adapter createDependencyEndpointAdapter() {
+	public Adapter createDependerLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar.DependeeLink <em>Dependee Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar.DependeeLink
+	 * @generated
+	 */
+	public Adapter createDependeeLinkAdapter() {
 		return null;
 	}
 

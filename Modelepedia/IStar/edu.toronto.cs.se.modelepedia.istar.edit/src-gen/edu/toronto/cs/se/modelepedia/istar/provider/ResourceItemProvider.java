@@ -34,7 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ResourceItemProvider
-	extends IntentionalElementItemProvider
+	extends IntentionItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
