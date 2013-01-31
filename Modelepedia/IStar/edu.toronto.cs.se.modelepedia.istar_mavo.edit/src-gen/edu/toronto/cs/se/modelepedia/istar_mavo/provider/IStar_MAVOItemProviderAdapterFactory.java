@@ -127,29 +127,6 @@ public class IStar_MAVOItemProviderAdapterFactory extends IStar_MAVOAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DependencyItemProvider dependencyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDependencyAdapter() {
-		if (dependencyItemProvider == null) {
-			dependencyItemProvider = new DependencyItemProvider(this);
-		}
-
-		return dependencyItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.Task} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +219,52 @@ public class IStar_MAVOItemProviderAdapterFactory extends IStar_MAVOAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MeansEndItemProvider meansEndItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMeansEndAdapter() {
+		if (meansEndItemProvider == null) {
+			meansEndItemProvider = new MeansEndItemProvider(this);
+		}
+
+		return meansEndItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DecompositionItemProvider decompositionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDecompositionAdapter() {
+		if (decompositionItemProvider == null) {
+			decompositionItemProvider = new DecompositionItemProvider(this);
+		}
+
+		return decompositionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -265,95 +288,49 @@ public class IStar_MAVOItemProviderAdapterFactory extends IStar_MAVOAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.EndReference} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EndReferenceItemProvider endReferenceItemProvider;
+	protected DependerLinkItemProvider dependerLinkItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.EndReference}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createEndReferenceAdapter() {
-		if (endReferenceItemProvider == null) {
-			endReferenceItemProvider = new EndReferenceItemProvider(this);
+	public Adapter createDependerLinkAdapter() {
+		if (dependerLinkItemProvider == null) {
+			dependerLinkItemProvider = new DependerLinkItemProvider(this);
 		}
 
-		return endReferenceItemProvider;
+		return dependerLinkItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComponentsReferenceItemProvider componentsReferenceItemProvider;
+	protected DependeeLinkItemProvider dependeeLinkItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComponentsReferenceAdapter() {
-		if (componentsReferenceItemProvider == null) {
-			componentsReferenceItemProvider = new ComponentsReferenceItemProvider(this);
+	public Adapter createDependeeLinkAdapter() {
+		if (dependeeLinkItemProvider == null) {
+			dependeeLinkItemProvider = new DependeeLinkItemProvider(this);
 		}
 
-		return componentsReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DependerReferenceItemProvider dependerReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDependerReferenceAdapter() {
-		if (dependerReferenceItemProvider == null) {
-			dependerReferenceItemProvider = new DependerReferenceItemProvider(this);
-		}
-
-		return dependerReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DependeeReferenceItemProvider dependeeReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDependeeReferenceAdapter() {
-		if (dependeeReferenceItemProvider == null) {
-			dependeeReferenceItemProvider = new DependeeReferenceItemProvider(this);
-		}
-
-		return dependeeReferenceItemProvider;
+		return dependeeLinkItemProvider;
 	}
 
 	/**
@@ -457,16 +434,15 @@ public class IStar_MAVOItemProviderAdapterFactory extends IStar_MAVOAdapterFacto
 	public void dispose() {
 		if (iStarItemProvider != null) iStarItemProvider.dispose();
 		if (actorItemProvider != null) actorItemProvider.dispose();
-		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
 		if (taskItemProvider != null) taskItemProvider.dispose();
 		if (resourceItemProvider != null) resourceItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();
 		if (softGoalItemProvider != null) softGoalItemProvider.dispose();
+		if (meansEndItemProvider != null) meansEndItemProvider.dispose();
+		if (decompositionItemProvider != null) decompositionItemProvider.dispose();
 		if (contributionItemProvider != null) contributionItemProvider.dispose();
-		if (endReferenceItemProvider != null) endReferenceItemProvider.dispose();
-		if (componentsReferenceItemProvider != null) componentsReferenceItemProvider.dispose();
-		if (dependerReferenceItemProvider != null) dependerReferenceItemProvider.dispose();
-		if (dependeeReferenceItemProvider != null) dependeeReferenceItemProvider.dispose();
+		if (dependerLinkItemProvider != null) dependerLinkItemProvider.dispose();
+		if (dependeeLinkItemProvider != null) dependeeLinkItemProvider.dispose();
 	}
 
 }

@@ -11,27 +11,27 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
+import edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Task;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Task</b></em>'.
+ * An implementation of the model object '<em><b>Decomposition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class TaskImpl extends IntentionImpl implements Task {
+public class DecompositionImpl extends IntentionLinkImpl implements Decomposition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TaskImpl() {
+	protected DecompositionImpl() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public class TaskImpl extends IntentionImpl implements Task {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return IStar_MAVOPackage.Literals.TASK;
+		return IStar_MAVOPackage.Literals.DECOMPOSITION;
 	}
 
-} //TaskImpl
+} //DecompositionImpl

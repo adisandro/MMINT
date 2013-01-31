@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
 
 public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
@@ -40,10 +40,13 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private static final String PROPERTY_OUT_TARGETS = "targets";
 
 	private static final String[] SMTLIB_LABELS = {"fs", "ps", "un", "co", "pd", "fd", "n"};
+	private static final String SMTLIB_CONCRETIZATIONVAR = " c ";
+	private static final String SMTLIB_CONCRETIZATIONSUFFIX = "Concretization";
+	private static final String SMTLIB_NODE = "node ";
 
 	private boolean timeTargetsEnabled;
 	private String targetsProperty;
-	private Map<String, IntentionalElement> intentionalElements;
+	private Map<String, Intention> intentions;
 	private long timeAnalysis;
 	private long timeTargets;
 	private String targets;
@@ -56,7 +59,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private void initOutput() {
 
-		intentionalElements = new HashMap<String, IntentionalElement>();
+		intentions = new HashMap<String, Intention>();
 		timeAnalysis = -1;
 		timeTargets = -1;
 		targets = "0";
@@ -69,11 +72,11 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		properties.setProperty(PROPERTY_OUT_TIMEANALYSIS, String.valueOf(timeAnalysis));
 		properties.setProperty(PROPERTY_OUT_TIMETARGETS, String.valueOf(timeTargets));
 		properties.setProperty(PROPERTY_OUT_TARGETS, targets);
-		for (Map.Entry<String, IntentionalElement> entry : intentionalElements.entrySet()) {
-			IntentionalElement element = entry.getValue();
+		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
+			Intention intention = entry.getValue();
 			labels = "";
 			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
-				if ((boolean) element.eGet(labelSwitch(i))) {
+				if ((boolean) intention.eGet(labelSwitch(i))) {
 					labels += SMTLIB_LABELS[i] + ",";
 				}
 			}
@@ -89,25 +92,25 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		EStructuralFeature feature = null;
 		switch (i) {
 			case 0:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_FullySatisfied();
+				feature = IStar_MAVOPackage.eINSTANCE.getIntention_FullySatisfied();
 				break;
 			case 1:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_PartiallySatisfied();
+				feature = IStar_MAVOPackage.eINSTANCE.getIntention_PartiallySatisfied();
 				break;
 			case 2:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_Unknown();
+				feature = IStar_MAVOPackage.eINSTANCE.getIntention_Unknown();
 				break;
 			case 3:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_Conflict();
+				feature = IStar_MAVOPackage.eINSTANCE.getIntention_Conflict();
 				break;
 			case 4:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_PartiallyDenied();
+				feature = IStar_MAVOPackage.eINSTANCE.getIntention_PartiallyDenied();
 				break;
 			case 5:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_FullyDenied();
+				feature = IStar_MAVOPackage.eINSTANCE.getIntention_FullyDenied();
 				break;
 			case 6:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntentionalElement_Nothing();
+				feature = IStar_MAVOPackage.eINSTANCE.getIntention_NoLabel();
 				break;
 		}
 
@@ -120,40 +123,38 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		String encoding, elementProperty, property;
 
 		long startTime = System.nanoTime();
-		for (Map.Entry<String, IntentionalElement> entry : intentionalElements.entrySet()) {
-			IntentionalElement element = entry.getValue();
+		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
+			Intention intention = entry.getValue();
 			elementProperty = "";
-			if (element.isMay()) {
+			if (intention.isMay()) {
 				elementProperty +=
 					SMTLIB_AND +
 					SMTLIB_EXISTS +
 					SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-					"c " + element.eClass().getName() + "Concretization" +
+					SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() + SMTLIB_CONCRETIZATIONSUFFIX +
 					SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
-					SMTLIB_PREDICATE_START + "node " + entry.getKey() + " c" + SMTLIB_PREDICATE_END +
+					SMTLIB_PREDICATE_START + SMTLIB_NODE + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END +
 					SMTLIB_PREDICATE_END
 				;
 			}
 			elementProperty +=
 				SMTLIB_FORALL +
 				SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-				"c " + element.eClass().getName() + "Concretization" +
+				SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() + SMTLIB_CONCRETIZATIONSUFFIX +
 				SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
 				SMTLIB_IMPLICATION +
-				SMTLIB_PREDICATE_START + "node " + entry.getKey() + " c" + SMTLIB_PREDICATE_END
+				SMTLIB_PREDICATE_START + SMTLIB_NODE + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END
 			;
 			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
-				property = elementProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + " c" + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
-				if (element.isMay()) {
+				property = elementProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+				if (intention.isMay()) {
 					property += SMTLIB_PREDICATE_END;
 				}
 				encoding = smtlibEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
 				z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
 				if (z3Result == 1) {
-					element.eSet(labelSwitch(i), true);
+					intention.eSet(labelSwitch(i), true);
 				}
-				//TODO MMTF: encode all these constants
-				//TODO MMTF: try with incremental solver too?
 			}
 		}
 		long endTime = System.nanoTime();
@@ -195,12 +196,12 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		// create list of nodes
 		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
 		for (Actor actor : istar.getActors()) {
-			for (IntentionalElement element : actor.getIntentionalElements()) {
-				intentionalElements.put(element.getName().replace(" ", ""), element);
+			for (Intention intention : actor.getIntentions()) {
+				intentions.put(intention.getName().replace(" ", ""), intention);
 			}
 		}
-		for (IntentionalElement element : istar.getDependums()) {
-			intentionalElements.put(element.getName().replace(" ", ""), element);
+		for (Intention intention : istar.getDependums()) {
+			intentions.put(intention.getName().replace(" ", ""), intention);
 		}
 
 		// run solver

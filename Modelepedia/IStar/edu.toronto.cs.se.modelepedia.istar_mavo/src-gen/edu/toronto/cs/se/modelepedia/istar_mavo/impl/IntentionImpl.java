@@ -11,11 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
-import edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Contribution;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Dependency;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
+import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink;
 
 import java.util.Collection;
 
@@ -28,62 +28,35 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Intentional Element</b></em>'.
+ * An implementation of the model object '<em><b>Intention</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#getDependencies <em>Dependencies</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#getComposite <em>Composite</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#getContributionsAsContributor <em>Contributions As Contributor</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isFullySatisfied <em>Fully Satisfied</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isPartiallySatisfied <em>Partially Satisfied</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isUnknown <em>Unknown</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isConflict <em>Conflict</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isPartiallyDenied <em>Partially Denied</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isFullyDenied <em>Fully Denied</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl#isNothing <em>Nothing</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isFullySatisfied <em>Fully Satisfied</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isPartiallySatisfied <em>Partially Satisfied</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isUnknown <em>Unknown</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isConflict <em>Conflict</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isPartiallyDenied <em>Partially Denied</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isFullyDenied <em>Fully Denied</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isNoLabel <em>No Label</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#getLinksAsSrc <em>Links As Src</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#getLinksAsTgt <em>Links As Tgt</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#getDependerLinks <em>Depender Links</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#getDependeeLinks <em>Dependee Links</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class IntentionalElementImpl extends DependencyEndpointImpl implements IntentionalElement {
-	/**
-	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDependencies()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Dependency> dependencies;
-
-	/**
-	 * The cached value of the '{@link #getComposite() <em>Composite</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComposite()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ComponentsReference> composite;
-
-	/**
-	 * The cached value of the '{@link #getContributionsAsContributor() <em>Contributions As Contributor</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContributionsAsContributor()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Contribution> contributionsAsContributor;
-
+public abstract class IntentionImpl extends DependencyEndpointImpl implements Intention {
 	/**
 	 * The default value of the '{@link #isFullySatisfied() <em>Fully Satisfied</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -205,31 +178,71 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	protected boolean fullyDenied = FULLY_DENIED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isNothing() <em>Nothing</em>}' attribute.
+	 * The default value of the '{@link #isNoLabel() <em>No Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isNothing()
+	 * @see #isNoLabel()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean NOTHING_EDEFAULT = false;
+	protected static final boolean NO_LABEL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isNothing() <em>Nothing</em>}' attribute.
+	 * The cached value of the '{@link #isNoLabel() <em>No Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isNothing()
+	 * @see #isNoLabel()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean nothing = NOTHING_EDEFAULT;
+	protected boolean noLabel = NO_LABEL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLinksAsSrc() <em>Links As Src</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLinksAsSrc()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IntentionLink> linksAsSrc;
+
+	/**
+	 * The cached value of the '{@link #getLinksAsTgt() <em>Links As Tgt</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLinksAsTgt()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IntentionLink> linksAsTgt;
+
+	/**
+	 * The cached value of the '{@link #getDependerLinks() <em>Depender Links</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependerLinks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DependerLink> dependerLinks;
+
+	/**
+	 * The cached value of the '{@link #getDependeeLinks() <em>Dependee Links</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependeeLinks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DependeeLink> dependeeLinks;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IntentionalElementImpl() {
+	protected IntentionImpl() {
 		super();
 	}
 
@@ -240,43 +253,7 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return IStar_MAVOPackage.Literals.INTENTIONAL_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Dependency> getDependencies() {
-		if (dependencies == null) {
-			dependencies = new EObjectWithInverseResolvingEList<Dependency>(Dependency.class, this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES, IStar_MAVOPackage.DEPENDENCY__DEPENDUM);
-		}
-		return dependencies;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ComponentsReference> getComposite() {
-		if (composite == null) {
-			composite = new EObjectWithInverseResolvingEList<ComponentsReference>(ComponentsReference.class, this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE, IStar_MAVOPackage.COMPONENTS_REFERENCE__TGT);
-		}
-		return composite;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Contribution> getContributionsAsContributor() {
-		if (contributionsAsContributor == null) {
-			contributionsAsContributor = new EObjectWithInverseResolvingEList<Contribution>(Contribution.class, this, IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR, IStar_MAVOPackage.CONTRIBUTION__CONTRIBUTOR);
-		}
-		return contributionsAsContributor;
+		return IStar_MAVOPackage.Literals.INTENTION;
 	}
 
 	/**
@@ -297,7 +274,7 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 		boolean oldFullySatisfied = fullySatisfied;
 		fullySatisfied = newFullySatisfied;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_SATISFIED, oldFullySatisfied, fullySatisfied));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION__FULLY_SATISFIED, oldFullySatisfied, fullySatisfied));
 	}
 
 	/**
@@ -318,7 +295,7 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 		boolean oldPartiallySatisfied = partiallySatisfied;
 		partiallySatisfied = newPartiallySatisfied;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED, oldPartiallySatisfied, partiallySatisfied));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION__PARTIALLY_SATISFIED, oldPartiallySatisfied, partiallySatisfied));
 	}
 
 	/**
@@ -339,7 +316,7 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 		boolean oldUnknown = unknown;
 		unknown = newUnknown;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__UNKNOWN, oldUnknown, unknown));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION__UNKNOWN, oldUnknown, unknown));
 	}
 
 	/**
@@ -360,7 +337,7 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 		boolean oldConflict = conflict;
 		conflict = newConflict;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONFLICT, oldConflict, conflict));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION__CONFLICT, oldConflict, conflict));
 	}
 
 	/**
@@ -381,7 +358,7 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 		boolean oldPartiallyDenied = partiallyDenied;
 		partiallyDenied = newPartiallyDenied;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_DENIED, oldPartiallyDenied, partiallyDenied));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION__PARTIALLY_DENIED, oldPartiallyDenied, partiallyDenied));
 	}
 
 	/**
@@ -402,7 +379,7 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 		boolean oldFullyDenied = fullyDenied;
 		fullyDenied = newFullyDenied;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED, oldFullyDenied, fullyDenied));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION__FULLY_DENIED, oldFullyDenied, fullyDenied));
 	}
 
 	/**
@@ -410,8 +387,8 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isNothing() {
-		return nothing;
+	public boolean isNoLabel() {
+		return noLabel;
 	}
 
 	/**
@@ -419,11 +396,59 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNothing(boolean newNothing) {
-		boolean oldNothing = nothing;
-		nothing = newNothing;
+	public void setNoLabel(boolean newNoLabel) {
+		boolean oldNoLabel = noLabel;
+		noLabel = newNoLabel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING, oldNothing, nothing));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION__NO_LABEL, oldNoLabel, noLabel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<IntentionLink> getLinksAsSrc() {
+		if (linksAsSrc == null) {
+			linksAsSrc = new EObjectContainmentWithInverseEList<IntentionLink>(IntentionLink.class, this, IStar_MAVOPackage.INTENTION__LINKS_AS_SRC, IStar_MAVOPackage.INTENTION_LINK__SRC);
+		}
+		return linksAsSrc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<IntentionLink> getLinksAsTgt() {
+		if (linksAsTgt == null) {
+			linksAsTgt = new EObjectWithInverseResolvingEList<IntentionLink>(IntentionLink.class, this, IStar_MAVOPackage.INTENTION__LINKS_AS_TGT, IStar_MAVOPackage.INTENTION_LINK__TGT);
+		}
+		return linksAsTgt;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<DependerLink> getDependerLinks() {
+		if (dependerLinks == null) {
+			dependerLinks = new EObjectContainmentWithInverseEList<DependerLink>(DependerLink.class, this, IStar_MAVOPackage.INTENTION__DEPENDER_LINKS, IStar_MAVOPackage.DEPENDER_LINK__DEPENDUM);
+		}
+		return dependerLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<DependeeLink> getDependeeLinks() {
+		if (dependeeLinks == null) {
+			dependeeLinks = new EObjectContainmentWithInverseEList<DependeeLink>(DependeeLink.class, this, IStar_MAVOPackage.INTENTION__DEPENDEE_LINKS, IStar_MAVOPackage.DEPENDEE_LINK__DEPENDUM);
+		}
+		return dependeeLinks;
 	}
 
 	/**
@@ -435,12 +460,14 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependencies()).basicAdd(otherEnd, msgs);
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComposite()).basicAdd(otherEnd, msgs);
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContributionsAsContributor()).basicAdd(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_SRC:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLinksAsSrc()).basicAdd(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_TGT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLinksAsTgt()).basicAdd(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__DEPENDER_LINKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependerLinks()).basicAdd(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__DEPENDEE_LINKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependeeLinks()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -453,12 +480,14 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
-				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
-				return ((InternalEList<?>)getComposite()).basicRemove(otherEnd, msgs);
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
-				return ((InternalEList<?>)getContributionsAsContributor()).basicRemove(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_SRC:
+				return ((InternalEList<?>)getLinksAsSrc()).basicRemove(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_TGT:
+				return ((InternalEList<?>)getLinksAsTgt()).basicRemove(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__DEPENDER_LINKS:
+				return ((InternalEList<?>)getDependerLinks()).basicRemove(otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION__DEPENDEE_LINKS:
+				return ((InternalEList<?>)getDependeeLinks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -471,26 +500,28 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
-				return getDependencies();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
-				return getComposite();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
-				return getContributionsAsContributor();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_SATISFIED:
 				return isFullySatisfied();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_SATISFIED:
 				return isPartiallySatisfied();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__UNKNOWN:
+			case IStar_MAVOPackage.INTENTION__UNKNOWN:
 				return isUnknown();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONFLICT:
+			case IStar_MAVOPackage.INTENTION__CONFLICT:
 				return isConflict();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_DENIED:
 				return isPartiallyDenied();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_DENIED:
 				return isFullyDenied();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
-				return isNothing();
+			case IStar_MAVOPackage.INTENTION__NO_LABEL:
+				return isNoLabel();
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_SRC:
+				return getLinksAsSrc();
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_TGT:
+				return getLinksAsTgt();
+			case IStar_MAVOPackage.INTENTION__DEPENDER_LINKS:
+				return getDependerLinks();
+			case IStar_MAVOPackage.INTENTION__DEPENDEE_LINKS:
+				return getDependeeLinks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -504,38 +535,42 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection<? extends Dependency>)newValue);
-				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
-				getComposite().clear();
-				getComposite().addAll((Collection<? extends ComponentsReference>)newValue);
-				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
-				getContributionsAsContributor().clear();
-				getContributionsAsContributor().addAll((Collection<? extends Contribution>)newValue);
-				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_SATISFIED:
 				setFullySatisfied((Boolean)newValue);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_SATISFIED:
 				setPartiallySatisfied((Boolean)newValue);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__UNKNOWN:
+			case IStar_MAVOPackage.INTENTION__UNKNOWN:
 				setUnknown((Boolean)newValue);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONFLICT:
+			case IStar_MAVOPackage.INTENTION__CONFLICT:
 				setConflict((Boolean)newValue);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_DENIED:
 				setPartiallyDenied((Boolean)newValue);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_DENIED:
 				setFullyDenied((Boolean)newValue);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
-				setNothing((Boolean)newValue);
+			case IStar_MAVOPackage.INTENTION__NO_LABEL:
+				setNoLabel((Boolean)newValue);
+				return;
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_SRC:
+				getLinksAsSrc().clear();
+				getLinksAsSrc().addAll((Collection<? extends IntentionLink>)newValue);
+				return;
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_TGT:
+				getLinksAsTgt().clear();
+				getLinksAsTgt().addAll((Collection<? extends IntentionLink>)newValue);
+				return;
+			case IStar_MAVOPackage.INTENTION__DEPENDER_LINKS:
+				getDependerLinks().clear();
+				getDependerLinks().addAll((Collection<? extends DependerLink>)newValue);
+				return;
+			case IStar_MAVOPackage.INTENTION__DEPENDEE_LINKS:
+				getDependeeLinks().clear();
+				getDependeeLinks().addAll((Collection<? extends DependeeLink>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -549,35 +584,38 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
-				getComposite().clear();
-				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
-				getContributionsAsContributor().clear();
-				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_SATISFIED:
 				setFullySatisfied(FULLY_SATISFIED_EDEFAULT);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_SATISFIED:
 				setPartiallySatisfied(PARTIALLY_SATISFIED_EDEFAULT);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__UNKNOWN:
+			case IStar_MAVOPackage.INTENTION__UNKNOWN:
 				setUnknown(UNKNOWN_EDEFAULT);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONFLICT:
+			case IStar_MAVOPackage.INTENTION__CONFLICT:
 				setConflict(CONFLICT_EDEFAULT);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_DENIED:
 				setPartiallyDenied(PARTIALLY_DENIED_EDEFAULT);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_DENIED:
 				setFullyDenied(FULLY_DENIED_EDEFAULT);
 				return;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
-				setNothing(NOTHING_EDEFAULT);
+			case IStar_MAVOPackage.INTENTION__NO_LABEL:
+				setNoLabel(NO_LABEL_EDEFAULT);
+				return;
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_SRC:
+				getLinksAsSrc().clear();
+				return;
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_TGT:
+				getLinksAsTgt().clear();
+				return;
+			case IStar_MAVOPackage.INTENTION__DEPENDER_LINKS:
+				getDependerLinks().clear();
+				return;
+			case IStar_MAVOPackage.INTENTION__DEPENDEE_LINKS:
+				getDependeeLinks().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -591,26 +629,28 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__COMPOSITE:
-				return composite != null && !composite.isEmpty();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR:
-				return contributionsAsContributor != null && !contributionsAsContributor.isEmpty();
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_SATISFIED:
 				return fullySatisfied != FULLY_SATISFIED_EDEFAULT;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_SATISFIED:
 				return partiallySatisfied != PARTIALLY_SATISFIED_EDEFAULT;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__UNKNOWN:
+			case IStar_MAVOPackage.INTENTION__UNKNOWN:
 				return unknown != UNKNOWN_EDEFAULT;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__CONFLICT:
+			case IStar_MAVOPackage.INTENTION__CONFLICT:
 				return conflict != CONFLICT_EDEFAULT;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__PARTIALLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__PARTIALLY_DENIED:
 				return partiallyDenied != PARTIALLY_DENIED_EDEFAULT;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__FULLY_DENIED:
+			case IStar_MAVOPackage.INTENTION__FULLY_DENIED:
 				return fullyDenied != FULLY_DENIED_EDEFAULT;
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT__NOTHING:
-				return nothing != NOTHING_EDEFAULT;
+			case IStar_MAVOPackage.INTENTION__NO_LABEL:
+				return noLabel != NO_LABEL_EDEFAULT;
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_SRC:
+				return linksAsSrc != null && !linksAsSrc.isEmpty();
+			case IStar_MAVOPackage.INTENTION__LINKS_AS_TGT:
+				return linksAsTgt != null && !linksAsTgt.isEmpty();
+			case IStar_MAVOPackage.INTENTION__DEPENDER_LINKS:
+				return dependerLinks != null && !dependerLinks.isEmpty();
+			case IStar_MAVOPackage.INTENTION__DEPENDEE_LINKS:
+				return dependeeLinks != null && !dependeeLinks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -637,10 +677,10 @@ public abstract class IntentionalElementImpl extends DependencyEndpointImpl impl
 		result.append(partiallyDenied);
 		result.append(", fullyDenied: ");
 		result.append(fullyDenied);
-		result.append(", nothing: ");
-		result.append(nothing);
+		result.append(", noLabel: ");
+		result.append(noLabel);
 		result.append(')');
 		return result.toString();
 	}
 
-} //IntentionalElementImpl
+} //IntentionImpl

@@ -12,9 +12,8 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Contribution;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 
 import java.util.Collection;
 
@@ -35,8 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ActorImpl#getIntentionalElements <em>Intentional Elements</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ActorImpl#getContributions <em>Contributions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ActorImpl#getIntentions <em>Intentions</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,24 +42,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ActorImpl extends DependencyEndpointImpl implements Actor {
 	/**
-	 * The cached value of the '{@link #getIntentionalElements() <em>Intentional Elements</em>}' containment reference list.
+	 * The cached value of the '{@link #getIntentions() <em>Intentions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIntentionalElements()
+	 * @see #getIntentions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IntentionalElement> intentionalElements;
-
-	/**
-	 * The cached value of the '{@link #getContributions() <em>Contributions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContributions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Contribution> contributions;
+	protected EList<Intention> intentions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,23 +75,11 @@ public class ActorImpl extends DependencyEndpointImpl implements Actor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IntentionalElement> getIntentionalElements() {
-		if (intentionalElements == null) {
-			intentionalElements = new EObjectContainmentEList<IntentionalElement>(IntentionalElement.class, this, IStar_MAVOPackage.ACTOR__INTENTIONAL_ELEMENTS);
+	public EList<Intention> getIntentions() {
+		if (intentions == null) {
+			intentions = new EObjectContainmentEList<Intention>(Intention.class, this, IStar_MAVOPackage.ACTOR__INTENTIONS);
 		}
-		return intentionalElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Contribution> getContributions() {
-		if (contributions == null) {
-			contributions = new EObjectContainmentEList<Contribution>(Contribution.class, this, IStar_MAVOPackage.ACTOR__CONTRIBUTIONS);
-		}
-		return contributions;
+		return intentions;
 	}
 
 	/**
@@ -114,10 +90,8 @@ public class ActorImpl extends DependencyEndpointImpl implements Actor {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStar_MAVOPackage.ACTOR__INTENTIONAL_ELEMENTS:
-				return ((InternalEList<?>)getIntentionalElements()).basicRemove(otherEnd, msgs);
-			case IStar_MAVOPackage.ACTOR__CONTRIBUTIONS:
-				return ((InternalEList<?>)getContributions()).basicRemove(otherEnd, msgs);
+			case IStar_MAVOPackage.ACTOR__INTENTIONS:
+				return ((InternalEList<?>)getIntentions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -130,10 +104,8 @@ public class ActorImpl extends DependencyEndpointImpl implements Actor {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case IStar_MAVOPackage.ACTOR__INTENTIONAL_ELEMENTS:
-				return getIntentionalElements();
-			case IStar_MAVOPackage.ACTOR__CONTRIBUTIONS:
-				return getContributions();
+			case IStar_MAVOPackage.ACTOR__INTENTIONS:
+				return getIntentions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,13 +119,9 @@ public class ActorImpl extends DependencyEndpointImpl implements Actor {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case IStar_MAVOPackage.ACTOR__INTENTIONAL_ELEMENTS:
-				getIntentionalElements().clear();
-				getIntentionalElements().addAll((Collection<? extends IntentionalElement>)newValue);
-				return;
-			case IStar_MAVOPackage.ACTOR__CONTRIBUTIONS:
-				getContributions().clear();
-				getContributions().addAll((Collection<? extends Contribution>)newValue);
+			case IStar_MAVOPackage.ACTOR__INTENTIONS:
+				getIntentions().clear();
+				getIntentions().addAll((Collection<? extends Intention>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -167,11 +135,8 @@ public class ActorImpl extends DependencyEndpointImpl implements Actor {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.ACTOR__INTENTIONAL_ELEMENTS:
-				getIntentionalElements().clear();
-				return;
-			case IStar_MAVOPackage.ACTOR__CONTRIBUTIONS:
-				getContributions().clear();
+			case IStar_MAVOPackage.ACTOR__INTENTIONS:
+				getIntentions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -185,10 +150,8 @@ public class ActorImpl extends DependencyEndpointImpl implements Actor {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.ACTOR__INTENTIONAL_ELEMENTS:
-				return intentionalElements != null && !intentionalElements.isEmpty();
-			case IStar_MAVOPackage.ACTOR__CONTRIBUTIONS:
-				return contributions != null && !contributions.isEmpty();
+			case IStar_MAVOPackage.ACTOR__INTENTIONS:
+				return intentions != null && !intentions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

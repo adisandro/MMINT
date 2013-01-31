@@ -36,8 +36,8 @@ import org.eclipse.emf.common.util.EList;
 public interface DependencyEndpoint extends MAVOElement {
 	/**
 	 * Returns the value of the '<em><b>Dependencies As Depender</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference#getTgt <em>Tgt</em>}'.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getDepender <em>Depender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependencies As Depender</em>' reference list isn't clear,
@@ -46,16 +46,16 @@ public interface DependencyEndpoint extends MAVOElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependencies As Depender</em>' reference list.
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDependencyEndpoint_DependenciesAsDepender()
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference#getTgt
-	 * @model opposite="tgt"
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getDepender
+	 * @model opposite="depender"
 	 * @generated
 	 */
-	EList<DependerReference> getDependenciesAsDepender();
+	EList<DependerLink> getDependenciesAsDepender();
 
 	/**
 	 * Returns the value of the '<em><b>Dependencies As Dependee</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference#getTgt <em>Tgt</em>}'.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependee <em>Dependee</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependencies As Dependee</em>' reference list isn't clear,
@@ -64,11 +64,11 @@ public interface DependencyEndpoint extends MAVOElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependencies As Dependee</em>' reference list.
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDependencyEndpoint_DependenciesAsDependee()
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference#getTgt
-	 * @model opposite="tgt"
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependee
+	 * @model opposite="dependee"
 	 * @generated
 	 */
-	EList<DependeeReference> getDependenciesAsDependee();
+	EList<DependeeLink> getDependenciesAsDependee();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

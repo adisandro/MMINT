@@ -83,8 +83,7 @@ public class ActorItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(IStar_MAVOPackage.Literals.ACTOR__INTENTIONAL_ELEMENTS);
-			childrenFeatures.add(IStar_MAVOPackage.Literals.ACTOR__CONTRIBUTIONS);
+			childrenFeatures.add(IStar_MAVOPackage.Literals.ACTOR__INTENTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -139,8 +138,7 @@ public class ActorItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Actor.class)) {
-			case IStar_MAVOPackage.ACTOR__INTENTIONAL_ELEMENTS:
-			case IStar_MAVOPackage.ACTOR__CONTRIBUTIONS:
+			case IStar_MAVOPackage.ACTOR__INTENTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -160,28 +158,23 @@ public class ActorItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONAL_ELEMENTS,
+				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONS,
 				 IStar_MAVOFactory.eINSTANCE.createTask()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONAL_ELEMENTS,
+				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONS,
 				 IStar_MAVOFactory.eINSTANCE.createResource()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONAL_ELEMENTS,
+				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONS,
 				 IStar_MAVOFactory.eINSTANCE.createGoal()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONAL_ELEMENTS,
+				(IStar_MAVOPackage.Literals.ACTOR__INTENTIONS,
 				 IStar_MAVOFactory.eINSTANCE.createSoftGoal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.ACTOR__CONTRIBUTIONS,
-				 IStar_MAVOFactory.eINSTANCE.createContribution()));
 	}
 
 }

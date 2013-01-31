@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,18 +21,18 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributor <em>Contributor</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributee <em>Contributee</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getContribution()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtSoftgoal'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot tgtSoftgoal='tgt.oclIsTypeOf(SoftGoal)'"
  * @generated
  */
-public interface Contribution extends MAVOElement {
+public interface Contribution extends IntentionLink {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -41,77 +40,23 @@ public interface Contribution extends MAVOElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType
+	 * @see #setType(ContributionType)
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getContribution_Type()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getType();
+	ContributionType getType();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Contributor</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getContributionsAsContributor <em>Contributions As Contributor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Contributor</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contributor</em>' reference.
-	 * @see #setContributor(IntentionalElement)
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getContribution_Contributor()
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getContributionsAsContributor
-	 * @model opposite="contributionsAsContributor" required="true"
-	 * @generated
-	 */
-	IntentionalElement getContributor();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributor <em>Contributor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Contributor</em>' reference.
-	 * @see #getContributor()
-	 * @generated
-	 */
-	void setContributor(IntentionalElement value);
-
-	/**
-	 * Returns the value of the '<em><b>Contributee</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.istar_mavo.SoftGoal#getContributionsAsContributee <em>Contributions As Contributee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Contributee</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contributee</em>' reference.
-	 * @see #setContributee(SoftGoal)
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getContribution_Contributee()
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.SoftGoal#getContributionsAsContributee
-	 * @model opposite="contributionsAsContributee" required="true"
-	 * @generated
-	 */
-	SoftGoal getContributee();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributee <em>Contributee</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Contributee</em>' reference.
-	 * @see #getContributee()
-	 * @generated
-	 */
-	void setContributee(SoftGoal value);
+	void setType(ContributionType value);
 
 } // Contribution

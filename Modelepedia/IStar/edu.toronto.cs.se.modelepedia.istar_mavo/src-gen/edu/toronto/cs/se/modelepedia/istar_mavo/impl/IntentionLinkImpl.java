@@ -11,17 +11,17 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
-import edu.toronto.cs.se.mmtf.mavo.impl.MAVOReferenceImpl;
+import edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl;
 
-import edu.toronto.cs.se.modelepedia.istar_mavo.EndReference;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Goal;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Task;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
+import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -30,19 +30,30 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>End Reference</b></em>'.
+ * An implementation of the model object '<em><b>Intention Link</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.EndReferenceImpl#getSrc <em>Src</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.EndReferenceImpl#getTgt <em>Tgt</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl#getSrc <em>Src</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl#getTgt <em>Tgt</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference {
+public abstract class IntentionLinkImpl extends MAVOElementImpl implements IntentionLink {
+	/**
+	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)IStar_MAVOPackage.Literals.INTENTION_LINK__NAME).getSettingDelegate();
+
 	/**
 	 * The cached value of the '{@link #getTgt() <em>Tgt</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -51,14 +62,14 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * @generated
 	 * @ordered
 	 */
-	protected Goal tgt;
+	protected Intention tgt;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EndReferenceImpl() {
+	protected IntentionLinkImpl() {
 		super();
 	}
 
@@ -69,7 +80,7 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return IStar_MAVOPackage.Literals.END_REFERENCE;
+		return IStar_MAVOPackage.Literals.INTENTION_LINK;
 	}
 
 	/**
@@ -77,9 +88,8 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Task getSrc() {
-		if (eContainerFeatureID() != IStar_MAVOPackage.END_REFERENCE__SRC) return null;
-		return (Task)eContainer();
+	public String getName() {
+		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -87,8 +97,18 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSrc(Task newSrc, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSrc, IStar_MAVOPackage.END_REFERENCE__SRC, msgs);
+	public Intention getSrc() {
+		if (eContainerFeatureID() != IStar_MAVOPackage.INTENTION_LINK__SRC) return null;
+		return (Intention)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSrc(Intention newSrc, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSrc, IStar_MAVOPackage.INTENTION_LINK__SRC, msgs);
 		return msgs;
 	}
 
@@ -97,20 +117,20 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSrc(Task newSrc) {
-		if (newSrc != eInternalContainer() || (eContainerFeatureID() != IStar_MAVOPackage.END_REFERENCE__SRC && newSrc != null)) {
+	public void setSrc(Intention newSrc) {
+		if (newSrc != eInternalContainer() || (eContainerFeatureID() != IStar_MAVOPackage.INTENTION_LINK__SRC && newSrc != null)) {
 			if (EcoreUtil.isAncestor(this, newSrc))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSrc != null)
-				msgs = ((InternalEObject)newSrc).eInverseAdd(this, IStar_MAVOPackage.TASK__END, Task.class, msgs);
+				msgs = ((InternalEObject)newSrc).eInverseAdd(this, IStar_MAVOPackage.INTENTION__LINKS_AS_SRC, Intention.class, msgs);
 			msgs = basicSetSrc(newSrc, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.END_REFERENCE__SRC, newSrc, newSrc));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION_LINK__SRC, newSrc, newSrc));
 	}
 
 	/**
@@ -118,13 +138,13 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Goal getTgt() {
+	public Intention getTgt() {
 		if (tgt != null && tgt.eIsProxy()) {
 			InternalEObject oldTgt = (InternalEObject)tgt;
-			tgt = (Goal)eResolveProxy(oldTgt);
+			tgt = (Intention)eResolveProxy(oldTgt);
 			if (tgt != oldTgt) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStar_MAVOPackage.END_REFERENCE__TGT, oldTgt, tgt));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IStar_MAVOPackage.INTENTION_LINK__TGT, oldTgt, tgt));
 			}
 		}
 		return tgt;
@@ -135,7 +155,7 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Goal basicGetTgt() {
+	public Intention basicGetTgt() {
 		return tgt;
 	}
 
@@ -144,11 +164,11 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTgt(Goal newTgt, NotificationChain msgs) {
-		Goal oldTgt = tgt;
+	public NotificationChain basicSetTgt(Intention newTgt, NotificationChain msgs) {
+		Intention oldTgt = tgt;
 		tgt = newTgt;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.END_REFERENCE__TGT, oldTgt, newTgt);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION_LINK__TGT, oldTgt, newTgt);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -159,18 +179,18 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTgt(Goal newTgt) {
+	public void setTgt(Intention newTgt) {
 		if (newTgt != tgt) {
 			NotificationChain msgs = null;
 			if (tgt != null)
-				msgs = ((InternalEObject)tgt).eInverseRemove(this, IStar_MAVOPackage.GOAL__MEANS, Goal.class, msgs);
+				msgs = ((InternalEObject)tgt).eInverseRemove(this, IStar_MAVOPackage.INTENTION__LINKS_AS_TGT, Intention.class, msgs);
 			if (newTgt != null)
-				msgs = ((InternalEObject)newTgt).eInverseAdd(this, IStar_MAVOPackage.GOAL__MEANS, Goal.class, msgs);
+				msgs = ((InternalEObject)newTgt).eInverseAdd(this, IStar_MAVOPackage.INTENTION__LINKS_AS_TGT, Intention.class, msgs);
 			msgs = basicSetTgt(newTgt, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.END_REFERENCE__TGT, newTgt, newTgt));
+			eNotify(new ENotificationImpl(this, Notification.SET, IStar_MAVOPackage.INTENTION_LINK__TGT, newTgt, newTgt));
 	}
 
 	/**
@@ -181,14 +201,14 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStar_MAVOPackage.END_REFERENCE__SRC:
+			case IStar_MAVOPackage.INTENTION_LINK__SRC:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetSrc((Task)otherEnd, msgs);
-			case IStar_MAVOPackage.END_REFERENCE__TGT:
+				return basicSetSrc((Intention)otherEnd, msgs);
+			case IStar_MAVOPackage.INTENTION_LINK__TGT:
 				if (tgt != null)
-					msgs = ((InternalEObject)tgt).eInverseRemove(this, IStar_MAVOPackage.GOAL__MEANS, Goal.class, msgs);
-				return basicSetTgt((Goal)otherEnd, msgs);
+					msgs = ((InternalEObject)tgt).eInverseRemove(this, IStar_MAVOPackage.INTENTION__LINKS_AS_TGT, Intention.class, msgs);
+				return basicSetTgt((Intention)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -201,9 +221,9 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case IStar_MAVOPackage.END_REFERENCE__SRC:
+			case IStar_MAVOPackage.INTENTION_LINK__SRC:
 				return basicSetSrc(null, msgs);
-			case IStar_MAVOPackage.END_REFERENCE__TGT:
+			case IStar_MAVOPackage.INTENTION_LINK__TGT:
 				return basicSetTgt(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -217,8 +237,8 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case IStar_MAVOPackage.END_REFERENCE__SRC:
-				return eInternalContainer().eInverseRemove(this, IStar_MAVOPackage.TASK__END, Task.class, msgs);
+			case IStar_MAVOPackage.INTENTION_LINK__SRC:
+				return eInternalContainer().eInverseRemove(this, IStar_MAVOPackage.INTENTION__LINKS_AS_SRC, Intention.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -231,9 +251,11 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case IStar_MAVOPackage.END_REFERENCE__SRC:
+			case IStar_MAVOPackage.INTENTION_LINK__NAME:
+				return getName();
+			case IStar_MAVOPackage.INTENTION_LINK__SRC:
 				return getSrc();
-			case IStar_MAVOPackage.END_REFERENCE__TGT:
+			case IStar_MAVOPackage.INTENTION_LINK__TGT:
 				if (resolve) return getTgt();
 				return basicGetTgt();
 		}
@@ -248,11 +270,11 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case IStar_MAVOPackage.END_REFERENCE__SRC:
-				setSrc((Task)newValue);
+			case IStar_MAVOPackage.INTENTION_LINK__SRC:
+				setSrc((Intention)newValue);
 				return;
-			case IStar_MAVOPackage.END_REFERENCE__TGT:
-				setTgt((Goal)newValue);
+			case IStar_MAVOPackage.INTENTION_LINK__TGT:
+				setTgt((Intention)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -266,11 +288,11 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.END_REFERENCE__SRC:
-				setSrc((Task)null);
+			case IStar_MAVOPackage.INTENTION_LINK__SRC:
+				setSrc((Intention)null);
 				return;
-			case IStar_MAVOPackage.END_REFERENCE__TGT:
-				setTgt((Goal)null);
+			case IStar_MAVOPackage.INTENTION_LINK__TGT:
+				setTgt((Intention)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -284,12 +306,14 @@ public class EndReferenceImpl extends MAVOReferenceImpl implements EndReference 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case IStar_MAVOPackage.END_REFERENCE__SRC:
+			case IStar_MAVOPackage.INTENTION_LINK__NAME:
+				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case IStar_MAVOPackage.INTENTION_LINK__SRC:
 				return getSrc() != null;
-			case IStar_MAVOPackage.END_REFERENCE__TGT:
+			case IStar_MAVOPackage.INTENTION_LINK__TGT:
 				return tgt != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //EndReferenceImpl
+} //IntentionLinkImpl

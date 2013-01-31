@@ -9,68 +9,63 @@
   <foreignModel>istar_mavo.ecore</foreignModel>
   <genPackages prefix="IStar_MAVO" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       ecorePackage="istar_mavo.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="istar_mavo.ecore#//ContributionType">
+      <genEnumLiterals ecoreEnumLiteral="istar_mavo.ecore#//ContributionType/MAKE"/>
+      <genEnumLiterals ecoreEnumLiteral="istar_mavo.ecore#//ContributionType/HELP"/>
+      <genEnumLiterals ecoreEnumLiteral="istar_mavo.ecore#//ContributionType/SOMEPLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="istar_mavo.ecore#//ContributionType/BREAK"/>
+      <genEnumLiterals ecoreEnumLiteral="istar_mavo.ecore#//ContributionType/HURT"/>
+      <genEnumLiterals ecoreEnumLiteral="istar_mavo.ecore#//ContributionType/SOMEMINUS"/>
+      <genEnumLiterals ecoreEnumLiteral="istar_mavo.ecore#//ContributionType/UNKNOWN"/>
+    </genEnums>
     <genClasses ecoreClass="istar_mavo.ecore#//IStar">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IStar/actors"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IStar/dependencies"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IStar/dependums"/>
     </genClasses>
     <genClasses ecoreClass="istar_mavo.ecore#//Actor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Actor/intentionalElements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Actor/contributions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Actor/intentions"/>
     </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//Dependency">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Dependency/depender"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Dependency/dependee"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Dependency/dependum"/>
+    <genClasses image="false" ecoreClass="istar_mavo.ecore#//Intention">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Intention/fullySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Intention/partiallySatisfied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Intention/unknown"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Intention/conflict"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Intention/partiallyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Intention/fullyDenied"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Intention/noLabel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Intention/linksAsSrc"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Intention/linksAsTgt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Intention/dependerLinks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Intention/dependeeLinks"/>
     </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//IntentionalElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/dependencies"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/composite"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionalElement/contributionsAsContributor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/fullySatisfied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/partiallySatisfied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/unknown"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/conflict"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/partiallyDenied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/fullyDenied"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionalElement/nothing"/>
-    </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//Task">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Task/components"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Task/end"/>
-    </genClasses>
+    <genClasses ecoreClass="istar_mavo.ecore#//Task"/>
     <genClasses ecoreClass="istar_mavo.ecore#//Resource"/>
-    <genClasses ecoreClass="istar_mavo.ecore#//Goal">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Goal/means"/>
-    </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//SoftGoal">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//SoftGoal/contributionsAsContributee"/>
-    </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//Contribution">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Contribution/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Contribution/contributor"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//Contribution/contributee"/>
-    </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//EndReference">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar_mavo.ecore#//EndReference/src"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//EndReference/tgt"/>
-    </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//ComponentsReference">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar_mavo.ecore#//ComponentsReference/src"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//ComponentsReference/tgt"/>
-    </genClasses>
+    <genClasses ecoreClass="istar_mavo.ecore#//Goal"/>
+    <genClasses ecoreClass="istar_mavo.ecore#//SoftGoal"/>
     <genClasses image="false" ecoreClass="istar_mavo.ecore#//DependencyEndpoint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependencyEndpoint/dependenciesAsDepender"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependencyEndpoint/dependenciesAsDependee"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//DependencyEndpoint/name"/>
     </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//DependerReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependerReference/tgt"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependerReference/src"/>
+    <genClasses image="false" ecoreClass="istar_mavo.ecore#//IntentionLink">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionLink/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionLink/src"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//IntentionLink/tgt"/>
     </genClasses>
-    <genClasses ecoreClass="istar_mavo.ecore#//DependeeReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependeeReference/tgt"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependeeReference/src"/>
+    <genClasses ecoreClass="istar_mavo.ecore#//MeansEnd"/>
+    <genClasses ecoreClass="istar_mavo.ecore#//Decomposition"/>
+    <genClasses ecoreClass="istar_mavo.ecore#//Contribution">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//Contribution/type"/>
+    </genClasses>
+    <genClasses ecoreClass="istar_mavo.ecore#//DependerLink">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//DependerLink/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependerLink/depender"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependerLink/dependum"/>
+    </genClasses>
+    <genClasses ecoreClass="istar_mavo.ecore#//DependeeLink">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//DependeeLink/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependeeLink/dependum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependeeLink/dependee"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -12,9 +12,9 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.provider;
 
 
-import edu.toronto.cs.se.mmtf.mavo.provider.MAVOReferenceItemProvider;
+import edu.toronto.cs.se.mmtf.mavo.provider.MAVOElementItemProvider;
 
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 
 import java.util.Collection;
@@ -32,15 +32,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DependerReferenceItemProvider
-	extends MAVOReferenceItemProvider
+public class DependerLinkItemProvider
+	extends MAVOElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -53,7 +55,7 @@ public class DependerReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DependerReferenceItemProvider(AdapterFactory adapterFactory) {
+	public DependerLinkItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,25 +70,48 @@ public class DependerReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTgtPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addDependerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Tgt feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTgtPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DependerReference_tgt_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DependerReference_tgt_feature", "_UI_DependerReference_type"),
-				 IStar_MAVOPackage.Literals.DEPENDER_REFERENCE__TGT,
+				 getString("_UI_DependerLink_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DependerLink_name_feature", "_UI_DependerLink_type"),
+				 IStar_MAVOPackage.Literals.DEPENDER_LINK__NAME,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Depender feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDependerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DependerLink_depender_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DependerLink_depender_feature", "_UI_DependerLink_type"),
+				 IStar_MAVOPackage.Literals.DEPENDER_LINK__DEPENDER,
 				 true,
 				 false,
 				 true,
@@ -96,14 +121,14 @@ public class DependerReferenceItemProvider
 	}
 
 	/**
-	 * This returns DependerReference.gif.
+	 * This returns DependerLink.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DependerReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DependerLink"));
 	}
 
 	/**
@@ -114,8 +139,10 @@ public class DependerReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		DependerReference dependerReference = (DependerReference)object;
-		return getString("_UI_DependerReference_type") + " " + dependerReference.isMay();
+		String label = ((DependerLink)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DependerLink_type") :
+			getString("_UI_DependerLink_type") + " " + label;
 	}
 
 	/**
@@ -128,6 +155,12 @@ public class DependerReferenceItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(DependerLink.class)) {
+			case IStar_MAVOPackage.DEPENDER_LINK__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

@@ -14,26 +14,31 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
-import edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Contribution;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Dependency;
+import edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference;
-import edu.toronto.cs.se.modelepedia.istar_mavo.EndReference;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Goal;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
+import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink;
+import edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Resource;
 import edu.toronto.cs.se.modelepedia.istar_mavo.SoftGoal;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Task;
 
+import edu.toronto.cs.se.modelepedia.istar_mavo.util.IStar_MAVOValidator;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -63,14 +68,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dependencyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass intentionalElementEClass = null;
+	private EClass intentionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,27 +103,6 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass contributionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass endReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass componentsReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass dependencyEndpointEClass = null;
 
 	/**
@@ -133,14 +110,49 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dependerReferenceEClass = null;
+	private EClass intentionLinkEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dependeeReferenceEClass = null;
+	private EClass meansEndEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass decompositionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contributionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dependerLinkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dependeeLinkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum contributionTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -197,6 +209,15 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		// Initialize created meta-data
 		theIStar_MAVOPackage.initializePackageContents();
 
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theIStar_MAVOPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return IStar_MAVOValidator.INSTANCE;
+				 }
+			 });
+
 		// Mark meta-data to indicate it can't be changed
 		theIStar_MAVOPackage.freeze();
 
@@ -229,17 +250,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIStar_Dependencies() {
-		return (EReference)iStarEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIStar_Dependums() {
-		return (EReference)iStarEClass.getEStructuralFeatures().get(2);
+		return (EReference)iStarEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -256,7 +268,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActor_IntentionalElements() {
+	public EReference getActor_Intentions() {
 		return (EReference)actorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -265,8 +277,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActor_Contributions() {
-		return (EReference)actorEClass.getEStructuralFeatures().get(1);
+	public EClass getIntention() {
+		return intentionEClass;
 	}
 
 	/**
@@ -274,8 +286,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDependency() {
-		return dependencyEClass;
+	public EAttribute getIntention_FullySatisfied() {
+		return (EAttribute)intentionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -283,8 +295,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependency_Depender() {
-		return (EReference)dependencyEClass.getEStructuralFeatures().get(0);
+	public EAttribute getIntention_PartiallySatisfied() {
+		return (EAttribute)intentionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -292,8 +304,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependency_Dependee() {
-		return (EReference)dependencyEClass.getEStructuralFeatures().get(1);
+	public EAttribute getIntention_Unknown() {
+		return (EAttribute)intentionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -301,8 +313,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependency_Dependum() {
-		return (EReference)dependencyEClass.getEStructuralFeatures().get(2);
+	public EAttribute getIntention_Conflict() {
+		return (EAttribute)intentionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -310,8 +322,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIntentionalElement() {
-		return intentionalElementEClass;
+	public EAttribute getIntention_PartiallyDenied() {
+		return (EAttribute)intentionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -319,8 +331,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIntentionalElement_Dependencies() {
-		return (EReference)intentionalElementEClass.getEStructuralFeatures().get(0);
+	public EAttribute getIntention_FullyDenied() {
+		return (EAttribute)intentionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -328,8 +340,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIntentionalElement_Composite() {
-		return (EReference)intentionalElementEClass.getEStructuralFeatures().get(1);
+	public EAttribute getIntention_NoLabel() {
+		return (EAttribute)intentionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -337,8 +349,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIntentionalElement_ContributionsAsContributor() {
-		return (EReference)intentionalElementEClass.getEStructuralFeatures().get(2);
+	public EReference getIntention_LinksAsSrc() {
+		return (EReference)intentionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -346,8 +358,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIntentionalElement_FullySatisfied() {
-		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(3);
+	public EReference getIntention_LinksAsTgt() {
+		return (EReference)intentionEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -355,8 +367,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIntentionalElement_PartiallySatisfied() {
-		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(4);
+	public EReference getIntention_DependerLinks() {
+		return (EReference)intentionEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -364,44 +376,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIntentionalElement_Unknown() {
-		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntentionalElement_Conflict() {
-		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntentionalElement_PartiallyDenied() {
-		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntentionalElement_FullyDenied() {
-		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntentionalElement_Nothing() {
-		return (EAttribute)intentionalElementEClass.getEStructuralFeatures().get(9);
+	public EReference getIntention_DependeeLinks() {
+		return (EReference)intentionEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -411,24 +387,6 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 */
 	public EClass getTask() {
 		return taskEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTask_Components() {
-		return (EReference)taskEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTask_End() {
-		return (EReference)taskEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -454,116 +412,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGoal_Means() {
-		return (EReference)goalEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSoftGoal() {
 		return softGoalEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSoftGoal_ContributionsAsContributee() {
-		return (EReference)softGoalEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getContribution() {
-		return contributionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getContribution_Type() {
-		return (EAttribute)contributionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getContribution_Contributor() {
-		return (EReference)contributionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getContribution_Contributee() {
-		return (EReference)contributionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEndReference() {
-		return endReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEndReference_Src() {
-		return (EReference)endReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEndReference_Tgt() {
-		return (EReference)endReferenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getComponentsReference() {
-		return componentsReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getComponentsReference_Src() {
-		return (EReference)componentsReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getComponentsReference_Tgt() {
-		return (EReference)componentsReferenceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -607,8 +457,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDependerReference() {
-		return dependerReferenceEClass;
+	public EClass getIntentionLink() {
+		return intentionLinkEClass;
 	}
 
 	/**
@@ -616,8 +466,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependerReference_Tgt() {
-		return (EReference)dependerReferenceEClass.getEStructuralFeatures().get(0);
+	public EAttribute getIntentionLink_Name() {
+		return (EAttribute)intentionLinkEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -625,8 +475,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependerReference_Src() {
-		return (EReference)dependerReferenceEClass.getEStructuralFeatures().get(1);
+	public EReference getIntentionLink_Src() {
+		return (EReference)intentionLinkEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -634,8 +484,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDependeeReference() {
-		return dependeeReferenceEClass;
+	public EReference getIntentionLink_Tgt() {
+		return (EReference)intentionLinkEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -643,8 +493,8 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependeeReference_Tgt() {
-		return (EReference)dependeeReferenceEClass.getEStructuralFeatures().get(0);
+	public EClass getMeansEnd() {
+		return meansEndEClass;
 	}
 
 	/**
@@ -652,8 +502,107 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDependeeReference_Src() {
-		return (EReference)dependeeReferenceEClass.getEStructuralFeatures().get(1);
+	public EClass getDecomposition() {
+		return decompositionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContribution() {
+		return contributionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContribution_Type() {
+		return (EAttribute)contributionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDependerLink() {
+		return dependerLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDependerLink_Name() {
+		return (EAttribute)dependerLinkEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDependerLink_Depender() {
+		return (EReference)dependerLinkEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDependerLink_Dependum() {
+		return (EReference)dependerLinkEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDependeeLink() {
+		return dependeeLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDependeeLink_Name() {
+		return (EAttribute)dependeeLinkEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDependeeLink_Dependum() {
+		return (EReference)dependeeLinkEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDependeeLink_Dependee() {
+		return (EReference)dependeeLinkEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getContributionType() {
+		return contributionTypeEEnum;
 	}
 
 	/**
@@ -686,67 +635,61 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		// Create classes and their features
 		iStarEClass = createEClass(ISTAR);
 		createEReference(iStarEClass, ISTAR__ACTORS);
-		createEReference(iStarEClass, ISTAR__DEPENDENCIES);
 		createEReference(iStarEClass, ISTAR__DEPENDUMS);
 
 		actorEClass = createEClass(ACTOR);
-		createEReference(actorEClass, ACTOR__INTENTIONAL_ELEMENTS);
-		createEReference(actorEClass, ACTOR__CONTRIBUTIONS);
+		createEReference(actorEClass, ACTOR__INTENTIONS);
 
-		dependencyEClass = createEClass(DEPENDENCY);
-		createEReference(dependencyEClass, DEPENDENCY__DEPENDER);
-		createEReference(dependencyEClass, DEPENDENCY__DEPENDEE);
-		createEReference(dependencyEClass, DEPENDENCY__DEPENDUM);
-
-		intentionalElementEClass = createEClass(INTENTIONAL_ELEMENT);
-		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__DEPENDENCIES);
-		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__COMPOSITE);
-		createEReference(intentionalElementEClass, INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR);
-		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__FULLY_SATISFIED);
-		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED);
-		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__UNKNOWN);
-		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__CONFLICT);
-		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__PARTIALLY_DENIED);
-		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__FULLY_DENIED);
-		createEAttribute(intentionalElementEClass, INTENTIONAL_ELEMENT__NOTHING);
+		intentionEClass = createEClass(INTENTION);
+		createEAttribute(intentionEClass, INTENTION__FULLY_SATISFIED);
+		createEAttribute(intentionEClass, INTENTION__PARTIALLY_SATISFIED);
+		createEAttribute(intentionEClass, INTENTION__UNKNOWN);
+		createEAttribute(intentionEClass, INTENTION__CONFLICT);
+		createEAttribute(intentionEClass, INTENTION__PARTIALLY_DENIED);
+		createEAttribute(intentionEClass, INTENTION__FULLY_DENIED);
+		createEAttribute(intentionEClass, INTENTION__NO_LABEL);
+		createEReference(intentionEClass, INTENTION__LINKS_AS_SRC);
+		createEReference(intentionEClass, INTENTION__LINKS_AS_TGT);
+		createEReference(intentionEClass, INTENTION__DEPENDER_LINKS);
+		createEReference(intentionEClass, INTENTION__DEPENDEE_LINKS);
 
 		taskEClass = createEClass(TASK);
-		createEReference(taskEClass, TASK__COMPONENTS);
-		createEReference(taskEClass, TASK__END);
 
 		resourceEClass = createEClass(RESOURCE);
 
 		goalEClass = createEClass(GOAL);
-		createEReference(goalEClass, GOAL__MEANS);
 
 		softGoalEClass = createEClass(SOFT_GOAL);
-		createEReference(softGoalEClass, SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE);
-
-		contributionEClass = createEClass(CONTRIBUTION);
-		createEAttribute(contributionEClass, CONTRIBUTION__TYPE);
-		createEReference(contributionEClass, CONTRIBUTION__CONTRIBUTOR);
-		createEReference(contributionEClass, CONTRIBUTION__CONTRIBUTEE);
-
-		endReferenceEClass = createEClass(END_REFERENCE);
-		createEReference(endReferenceEClass, END_REFERENCE__SRC);
-		createEReference(endReferenceEClass, END_REFERENCE__TGT);
-
-		componentsReferenceEClass = createEClass(COMPONENTS_REFERENCE);
-		createEReference(componentsReferenceEClass, COMPONENTS_REFERENCE__SRC);
-		createEReference(componentsReferenceEClass, COMPONENTS_REFERENCE__TGT);
 
 		dependencyEndpointEClass = createEClass(DEPENDENCY_ENDPOINT);
 		createEReference(dependencyEndpointEClass, DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER);
 		createEReference(dependencyEndpointEClass, DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE);
 		createEAttribute(dependencyEndpointEClass, DEPENDENCY_ENDPOINT__NAME);
 
-		dependerReferenceEClass = createEClass(DEPENDER_REFERENCE);
-		createEReference(dependerReferenceEClass, DEPENDER_REFERENCE__TGT);
-		createEReference(dependerReferenceEClass, DEPENDER_REFERENCE__SRC);
+		intentionLinkEClass = createEClass(INTENTION_LINK);
+		createEAttribute(intentionLinkEClass, INTENTION_LINK__NAME);
+		createEReference(intentionLinkEClass, INTENTION_LINK__SRC);
+		createEReference(intentionLinkEClass, INTENTION_LINK__TGT);
 
-		dependeeReferenceEClass = createEClass(DEPENDEE_REFERENCE);
-		createEReference(dependeeReferenceEClass, DEPENDEE_REFERENCE__TGT);
-		createEReference(dependeeReferenceEClass, DEPENDEE_REFERENCE__SRC);
+		meansEndEClass = createEClass(MEANS_END);
+
+		decompositionEClass = createEClass(DECOMPOSITION);
+
+		contributionEClass = createEClass(CONTRIBUTION);
+		createEAttribute(contributionEClass, CONTRIBUTION__TYPE);
+
+		dependerLinkEClass = createEClass(DEPENDER_LINK);
+		createEAttribute(dependerLinkEClass, DEPENDER_LINK__NAME);
+		createEReference(dependerLinkEClass, DEPENDER_LINK__DEPENDER);
+		createEReference(dependerLinkEClass, DEPENDER_LINK__DEPENDUM);
+
+		dependeeLinkEClass = createEClass(DEPENDEE_LINK);
+		createEAttribute(dependeeLinkEClass, DEPENDEE_LINK__NAME);
+		createEReference(dependeeLinkEClass, DEPENDEE_LINK__DEPENDUM);
+		createEReference(dependeeLinkEClass, DEPENDEE_LINK__DEPENDEE);
+
+		// Create enums
+		contributionTypeEEnum = createEEnum(CONTRIBUTION_TYPE);
 	}
 
 	/**
@@ -782,86 +725,200 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		// Add supertypes to classes
 		iStarEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
 		actorEClass.getESuperTypes().add(this.getDependencyEndpoint());
-		dependencyEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
-		intentionalElementEClass.getESuperTypes().add(this.getDependencyEndpoint());
-		taskEClass.getESuperTypes().add(this.getIntentionalElement());
-		resourceEClass.getESuperTypes().add(this.getIntentionalElement());
-		goalEClass.getESuperTypes().add(this.getIntentionalElement());
+		intentionEClass.getESuperTypes().add(this.getDependencyEndpoint());
+		taskEClass.getESuperTypes().add(this.getIntention());
+		resourceEClass.getESuperTypes().add(this.getIntention());
+		goalEClass.getESuperTypes().add(this.getIntention());
 		softGoalEClass.getESuperTypes().add(this.getGoal());
-		contributionEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
-		endReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
-		componentsReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
 		dependencyEndpointEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
-		dependerReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
-		dependeeReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
+		intentionLinkEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		meansEndEClass.getESuperTypes().add(this.getIntentionLink());
+		decompositionEClass.getESuperTypes().add(this.getIntentionLink());
+		contributionEClass.getESuperTypes().add(this.getIntentionLink());
+		dependerLinkEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		dependeeLinkEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iStarEClass, IStar.class, "IStar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIStar_Actors(), this.getActor(), null, "actors", null, 0, -1, IStar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIStar_Dependencies(), this.getDependency(), null, "dependencies", null, 0, -1, IStar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIStar_Dependums(), this.getIntentionalElement(), null, "dependums", null, 0, -1, IStar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIStar_Dependums(), this.getIntention(), null, "dependums", null, 0, -1, IStar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActor_IntentionalElements(), this.getIntentionalElement(), null, "intentionalElements", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActor_Contributions(), this.getContribution(), null, "contributions", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActor_Intentions(), this.getIntention(), null, "intentions", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDependency_Depender(), this.getDependerReference(), this.getDependerReference_Src(), "depender", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependency_Dependee(), this.getDependeeReference(), this.getDependeeReference_Src(), "dependee", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependency_Dependum(), this.getIntentionalElement(), this.getIntentionalElement_Dependencies(), "dependum", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(intentionalElementEClass, IntentionalElement.class, "IntentionalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIntentionalElement_Dependencies(), this.getDependency(), this.getDependency_Dependum(), "dependencies", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIntentionalElement_Composite(), this.getComponentsReference(), this.getComponentsReference_Tgt(), "composite", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIntentionalElement_ContributionsAsContributor(), this.getContribution(), this.getContribution_Contributor(), "contributionsAsContributor", null, 0, -1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntentionalElement_FullySatisfied(), ecorePackage.getEBoolean(), "fullySatisfied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntentionalElement_PartiallySatisfied(), ecorePackage.getEBoolean(), "partiallySatisfied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntentionalElement_Unknown(), ecorePackage.getEBoolean(), "unknown", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntentionalElement_Conflict(), ecorePackage.getEBoolean(), "conflict", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntentionalElement_PartiallyDenied(), ecorePackage.getEBoolean(), "partiallyDenied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntentionalElement_FullyDenied(), ecorePackage.getEBoolean(), "fullyDenied", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntentionalElement_Nothing(), ecorePackage.getEBoolean(), "nothing", null, 0, 1, IntentionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(intentionEClass, Intention.class, "Intention", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntention_FullySatisfied(), ecorePackage.getEBoolean(), "fullySatisfied", null, 0, 1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntention_PartiallySatisfied(), ecorePackage.getEBoolean(), "partiallySatisfied", null, 0, 1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntention_Unknown(), ecorePackage.getEBoolean(), "unknown", null, 0, 1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntention_Conflict(), ecorePackage.getEBoolean(), "conflict", null, 0, 1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntention_PartiallyDenied(), ecorePackage.getEBoolean(), "partiallyDenied", null, 0, 1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntention_FullyDenied(), ecorePackage.getEBoolean(), "fullyDenied", null, 0, 1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIntention_NoLabel(), ecorePackage.getEBoolean(), "noLabel", null, 0, 1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntention_LinksAsSrc(), this.getIntentionLink(), this.getIntentionLink_Src(), "linksAsSrc", null, 0, -1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntention_LinksAsTgt(), this.getIntentionLink(), this.getIntentionLink_Tgt(), "linksAsTgt", null, 0, -1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntention_DependerLinks(), this.getDependerLink(), this.getDependerLink_Dependum(), "dependerLinks", null, 0, -1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntention_DependeeLinks(), this.getDependeeLink(), this.getDependeeLink_Dependum(), "dependeeLinks", null, 0, -1, Intention.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTask_Components(), this.getComponentsReference(), this.getComponentsReference_Src(), "components", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTask_End(), this.getEndReference(), this.getEndReference_Src(), "end", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(resourceEClass, Resource.class, "Resource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGoal_Means(), this.getEndReference(), this.getEndReference_Tgt(), "means", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(softGoalEClass, SoftGoal.class, "SoftGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSoftGoal_ContributionsAsContributee(), this.getContribution(), this.getContribution_Contributee(), "contributionsAsContributee", null, 0, -1, SoftGoal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(contributionEClass, Contribution.class, "Contribution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContribution_Type(), ecorePackage.getEString(), "type", null, 1, 1, Contribution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getContribution_Contributor(), this.getIntentionalElement(), this.getIntentionalElement_ContributionsAsContributor(), "contributor", null, 1, 1, Contribution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getContribution_Contributee(), this.getSoftGoal(), this.getSoftGoal_ContributionsAsContributee(), "contributee", null, 1, 1, Contribution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(endReferenceEClass, EndReference.class, "EndReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEndReference_Src(), this.getTask(), this.getTask_End(), "src", null, 1, 1, EndReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEndReference_Tgt(), this.getGoal(), this.getGoal_Means(), "tgt", null, 1, 1, EndReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(componentsReferenceEClass, ComponentsReference.class, "ComponentsReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComponentsReference_Src(), this.getTask(), this.getTask_Components(), "src", null, 1, 1, ComponentsReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentsReference_Tgt(), this.getIntentionalElement(), this.getIntentionalElement_Composite(), "tgt", null, 1, 1, ComponentsReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dependencyEndpointEClass, DependencyEndpoint.class, "DependencyEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDependencyEndpoint_DependenciesAsDepender(), this.getDependerReference(), this.getDependerReference_Tgt(), "dependenciesAsDepender", null, 0, -1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependencyEndpoint_DependenciesAsDependee(), this.getDependeeReference(), this.getDependeeReference_Tgt(), "dependenciesAsDependee", null, 0, -1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependencyEndpoint_DependenciesAsDepender(), this.getDependerLink(), this.getDependerLink_Depender(), "dependenciesAsDepender", null, 0, -1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependencyEndpoint_DependenciesAsDependee(), this.getDependeeLink(), this.getDependeeLink_Dependee(), "dependenciesAsDependee", null, 0, -1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDependencyEndpoint_Name(), ecorePackage.getEString(), "name", null, 1, 1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dependerReferenceEClass, DependerReference.class, "DependerReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDependerReference_Tgt(), this.getDependencyEndpoint(), this.getDependencyEndpoint_DependenciesAsDepender(), "tgt", null, 1, 1, DependerReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependerReference_Src(), this.getDependency(), this.getDependency_Depender(), "src", null, 1, 1, DependerReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(intentionLinkEClass, IntentionLink.class, "IntentionLink", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntentionLink_Name(), ecorePackage.getEString(), "name", null, 1, 1, IntentionLink.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getIntentionLink_Src(), this.getIntention(), this.getIntention_LinksAsSrc(), "src", null, 1, 1, IntentionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntentionLink_Tgt(), this.getIntention(), this.getIntention_LinksAsTgt(), "tgt", null, 1, 1, IntentionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dependeeReferenceEClass, DependeeReference.class, "DependeeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDependeeReference_Tgt(), this.getDependencyEndpoint(), this.getDependencyEndpoint_DependenciesAsDependee(), "tgt", null, 1, 1, DependeeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependeeReference_Src(), this.getDependency(), this.getDependency_Dependee(), "src", null, 1, 1, DependeeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(meansEndEClass, MeansEnd.class, "MeansEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(decompositionEClass, Decomposition.class, "Decomposition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(contributionEClass, Contribution.class, "Contribution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getContribution_Type(), this.getContributionType(), "type", null, 1, 1, Contribution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dependerLinkEClass, DependerLink.class, "DependerLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDependerLink_Name(), ecorePackage.getEString(), "name", null, 1, 1, DependerLink.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getDependerLink_Depender(), this.getDependencyEndpoint(), this.getDependencyEndpoint_DependenciesAsDepender(), "depender", null, 1, 1, DependerLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependerLink_Dependum(), this.getIntention(), this.getIntention_DependerLinks(), "dependum", null, 1, 1, DependerLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dependeeLinkEClass, DependeeLink.class, "DependeeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDependeeLink_Name(), ecorePackage.getEString(), "name", null, 1, 1, DependeeLink.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getDependeeLink_Dependum(), this.getIntention(), this.getIntention_DependeeLinks(), "dependum", null, 1, 1, DependeeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependeeLink_Dependee(), this.getDependencyEndpoint(), this.getDependencyEndpoint_DependenciesAsDependee(), "dependee", null, 1, 1, DependeeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(contributionTypeEEnum, ContributionType.class, "ContributionType");
+		addEEnumLiteral(contributionTypeEEnum, ContributionType.MAKE);
+		addEEnumLiteral(contributionTypeEEnum, ContributionType.HELP);
+		addEEnumLiteral(contributionTypeEEnum, ContributionType.SOMEPLUS);
+		addEEnumLiteral(contributionTypeEEnum, ContributionType.BREAK);
+		addEEnumLiteral(contributionTypeEEnum, ContributionType.HURT);
+		addEEnumLiteral(contributionTypeEEnum, ContributionType.SOMEMINUS);
+		addEEnumLiteral(contributionTypeEEnum, ContributionType.UNKNOWN);
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+		   });		
+		addAnnotation
+		  (iStarEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "onlyDependums"
+		   });			
+		addAnnotation
+		  (actorEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "noDependums"
+		   });				
+		addAnnotation
+		  (meansEndEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "srcTask tgtGoal"
+		   });			
+		addAnnotation
+		  (decompositionEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "tgtTask"
+		   });			
+		addAnnotation
+		  (contributionEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "tgtSoftgoal"
+		   });			
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";				
+		addAnnotation
+		  (iStarEClass, 
+		   source, 
+		   new String[] {
+			 "onlyDependums", "dependums->forAll(linksAsSrc->isEmpty() and linksAsTgt->isEmpty())"
+		   });			
+		addAnnotation
+		  (actorEClass, 
+		   source, 
+		   new String[] {
+			 "noDependums", "intentions->forAll(dependerLinks->isEmpty() and dependeeLinks->isEmpty())"
+		   });		
+		addAnnotation
+		  (getIntentionLink_Name(), 
+		   source, 
+		   new String[] {
+			 "derivation", "src.name.concat(\'2\').concat(tgt.name)"
+		   });			
+		addAnnotation
+		  (meansEndEClass, 
+		   source, 
+		   new String[] {
+			 "srcTask", "src.oclIsTypeOf(Task)",
+			 "tgtGoal", "tgt.oclIsTypeOf(Goal)"
+		   });			
+		addAnnotation
+		  (decompositionEClass, 
+		   source, 
+		   new String[] {
+			 "tgtTask", "tgt.oclIsTypeOf(Task)"
+		   });			
+		addAnnotation
+		  (contributionEClass, 
+		   source, 
+		   new String[] {
+			 "tgtSoftgoal", "tgt.oclIsTypeOf(SoftGoal)"
+		   });		
+		addAnnotation
+		  (getDependerLink_Name(), 
+		   source, 
+		   new String[] {
+			 "derivation", "depender.name.concat(\'2\').concat(dependum.name)"
+		   });		
+		addAnnotation
+		  (getDependeeLink_Name(), 
+		   source, 
+		   new String[] {
+			 "derivation", "dependum.name.concat(\'2\').concat(dependee.name)"
+		   });
 	}
 
 } //IStar_MAVOPackageImpl

@@ -13,7 +13,6 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.util;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
-import edu.toronto.cs.se.mmtf.mavo.MAVOReference;
 
 import edu.toronto.cs.se.modelepedia.istar_mavo.*;
 
@@ -94,25 +93,18 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case IStar_MAVOPackage.DEPENDENCY: {
-				Dependency dependency = (Dependency)theEObject;
-				T result = caseDependency(dependency);
-				if (result == null) result = caseMAVOElement(dependency);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case IStar_MAVOPackage.INTENTIONAL_ELEMENT: {
-				IntentionalElement intentionalElement = (IntentionalElement)theEObject;
-				T result = caseIntentionalElement(intentionalElement);
-				if (result == null) result = caseDependencyEndpoint(intentionalElement);
-				if (result == null) result = caseMAVOElement(intentionalElement);
+			case IStar_MAVOPackage.INTENTION: {
+				Intention intention = (Intention)theEObject;
+				T result = caseIntention(intention);
+				if (result == null) result = caseDependencyEndpoint(intention);
+				if (result == null) result = caseMAVOElement(intention);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case IStar_MAVOPackage.TASK: {
 				Task task = (Task)theEObject;
 				T result = caseTask(task);
-				if (result == null) result = caseIntentionalElement(task);
+				if (result == null) result = caseIntention(task);
 				if (result == null) result = caseDependencyEndpoint(task);
 				if (result == null) result = caseMAVOElement(task);
 				if (result == null) result = defaultCase(theEObject);
@@ -121,7 +113,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 			case IStar_MAVOPackage.RESOURCE: {
 				Resource resource = (Resource)theEObject;
 				T result = caseResource(resource);
-				if (result == null) result = caseIntentionalElement(resource);
+				if (result == null) result = caseIntention(resource);
 				if (result == null) result = caseDependencyEndpoint(resource);
 				if (result == null) result = caseMAVOElement(resource);
 				if (result == null) result = defaultCase(theEObject);
@@ -130,7 +122,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 			case IStar_MAVOPackage.GOAL: {
 				Goal goal = (Goal)theEObject;
 				T result = caseGoal(goal);
-				if (result == null) result = caseIntentionalElement(goal);
+				if (result == null) result = caseIntention(goal);
 				if (result == null) result = caseDependencyEndpoint(goal);
 				if (result == null) result = caseMAVOElement(goal);
 				if (result == null) result = defaultCase(theEObject);
@@ -140,32 +132,9 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				SoftGoal softGoal = (SoftGoal)theEObject;
 				T result = caseSoftGoal(softGoal);
 				if (result == null) result = caseGoal(softGoal);
-				if (result == null) result = caseIntentionalElement(softGoal);
+				if (result == null) result = caseIntention(softGoal);
 				if (result == null) result = caseDependencyEndpoint(softGoal);
 				if (result == null) result = caseMAVOElement(softGoal);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case IStar_MAVOPackage.CONTRIBUTION: {
-				Contribution contribution = (Contribution)theEObject;
-				T result = caseContribution(contribution);
-				if (result == null) result = caseMAVOElement(contribution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case IStar_MAVOPackage.END_REFERENCE: {
-				EndReference endReference = (EndReference)theEObject;
-				T result = caseEndReference(endReference);
-				if (result == null) result = caseMAVOReference(endReference);
-				if (result == null) result = caseMAVOElement(endReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case IStar_MAVOPackage.COMPONENTS_REFERENCE: {
-				ComponentsReference componentsReference = (ComponentsReference)theEObject;
-				T result = caseComponentsReference(componentsReference);
-				if (result == null) result = caseMAVOReference(componentsReference);
-				if (result == null) result = caseMAVOElement(componentsReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -176,19 +145,48 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case IStar_MAVOPackage.DEPENDER_REFERENCE: {
-				DependerReference dependerReference = (DependerReference)theEObject;
-				T result = caseDependerReference(dependerReference);
-				if (result == null) result = caseMAVOReference(dependerReference);
-				if (result == null) result = caseMAVOElement(dependerReference);
+			case IStar_MAVOPackage.INTENTION_LINK: {
+				IntentionLink intentionLink = (IntentionLink)theEObject;
+				T result = caseIntentionLink(intentionLink);
+				if (result == null) result = caseMAVOElement(intentionLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case IStar_MAVOPackage.DEPENDEE_REFERENCE: {
-				DependeeReference dependeeReference = (DependeeReference)theEObject;
-				T result = caseDependeeReference(dependeeReference);
-				if (result == null) result = caseMAVOReference(dependeeReference);
-				if (result == null) result = caseMAVOElement(dependeeReference);
+			case IStar_MAVOPackage.MEANS_END: {
+				MeansEnd meansEnd = (MeansEnd)theEObject;
+				T result = caseMeansEnd(meansEnd);
+				if (result == null) result = caseIntentionLink(meansEnd);
+				if (result == null) result = caseMAVOElement(meansEnd);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case IStar_MAVOPackage.DECOMPOSITION: {
+				Decomposition decomposition = (Decomposition)theEObject;
+				T result = caseDecomposition(decomposition);
+				if (result == null) result = caseIntentionLink(decomposition);
+				if (result == null) result = caseMAVOElement(decomposition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case IStar_MAVOPackage.CONTRIBUTION: {
+				Contribution contribution = (Contribution)theEObject;
+				T result = caseContribution(contribution);
+				if (result == null) result = caseIntentionLink(contribution);
+				if (result == null) result = caseMAVOElement(contribution);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case IStar_MAVOPackage.DEPENDER_LINK: {
+				DependerLink dependerLink = (DependerLink)theEObject;
+				T result = caseDependerLink(dependerLink);
+				if (result == null) result = caseMAVOElement(dependerLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case IStar_MAVOPackage.DEPENDEE_LINK: {
+				DependeeLink dependeeLink = (DependeeLink)theEObject;
+				T result = caseDependeeLink(dependeeLink);
+				if (result == null) result = caseMAVOElement(dependeeLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -227,32 +225,17 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dependency</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Intention</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dependency</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Intention</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDependency(Dependency object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Intentional Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Intentional Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIntentionalElement(IntentionalElement object) {
+	public T caseIntention(Intention object) {
 		return null;
 	}
 
@@ -317,51 +300,6 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Contribution</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Contribution</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContribution(Contribution object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>End Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>End Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEndReference(EndReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Components Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Components Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComponentsReference(ComponentsReference object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Dependency Endpoint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -377,32 +315,92 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Depender Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Intention Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Depender Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Intention Link</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDependerReference(DependerReference object) {
+	public T caseIntentionLink(IntentionLink object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dependee Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Means End</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dependee Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Means End</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDependeeReference(DependeeReference object) {
+	public T caseMeansEnd(MeansEnd object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Decomposition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Decomposition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDecomposition(Decomposition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contribution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contribution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContribution(Contribution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Depender Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Depender Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDependerLink(DependerLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dependee Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dependee Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDependeeLink(DependeeLink object) {
 		return null;
 	}
 
@@ -433,21 +431,6 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMAVOElement(MAVOElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOReference(MAVOReference object) {
 		return null;
 	}
 

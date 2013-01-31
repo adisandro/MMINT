@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -67,18 +68,47 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 		switch (eClass.getClassifierID()) {
 			case IStar_MAVOPackage.ISTAR: return createIStar();
 			case IStar_MAVOPackage.ACTOR: return createActor();
-			case IStar_MAVOPackage.DEPENDENCY: return createDependency();
 			case IStar_MAVOPackage.TASK: return createTask();
 			case IStar_MAVOPackage.RESOURCE: return createResource();
 			case IStar_MAVOPackage.GOAL: return createGoal();
 			case IStar_MAVOPackage.SOFT_GOAL: return createSoftGoal();
+			case IStar_MAVOPackage.MEANS_END: return createMeansEnd();
+			case IStar_MAVOPackage.DECOMPOSITION: return createDecomposition();
 			case IStar_MAVOPackage.CONTRIBUTION: return createContribution();
-			case IStar_MAVOPackage.END_REFERENCE: return createEndReference();
-			case IStar_MAVOPackage.COMPONENTS_REFERENCE: return createComponentsReference();
-			case IStar_MAVOPackage.DEPENDER_REFERENCE: return createDependerReference();
-			case IStar_MAVOPackage.DEPENDEE_REFERENCE: return createDependeeReference();
+			case IStar_MAVOPackage.DEPENDER_LINK: return createDependerLink();
+			case IStar_MAVOPackage.DEPENDEE_LINK: return createDependeeLink();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case IStar_MAVOPackage.CONTRIBUTION_TYPE:
+				return createContributionTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case IStar_MAVOPackage.CONTRIBUTION_TYPE:
+				return convertContributionTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -100,16 +130,6 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	public Actor createActor() {
 		ActorImpl actor = new ActorImpl();
 		return actor;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Dependency createDependency() {
-		DependencyImpl dependency = new DependencyImpl();
-		return dependency;
 	}
 
 	/**
@@ -157,6 +177,26 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MeansEnd createMeansEnd() {
+		MeansEndImpl meansEnd = new MeansEndImpl();
+		return meansEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Decomposition createDecomposition() {
+		DecompositionImpl decomposition = new DecompositionImpl();
+		return decomposition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Contribution createContribution() {
 		ContributionImpl contribution = new ContributionImpl();
 		return contribution;
@@ -167,9 +207,9 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EndReference createEndReference() {
-		EndReferenceImpl endReference = new EndReferenceImpl();
-		return endReference;
+	public DependerLink createDependerLink() {
+		DependerLinkImpl dependerLink = new DependerLinkImpl();
+		return dependerLink;
 	}
 
 	/**
@@ -177,9 +217,9 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComponentsReference createComponentsReference() {
-		ComponentsReferenceImpl componentsReference = new ComponentsReferenceImpl();
-		return componentsReference;
+	public DependeeLink createDependeeLink() {
+		DependeeLinkImpl dependeeLink = new DependeeLinkImpl();
+		return dependeeLink;
 	}
 
 	/**
@@ -187,9 +227,10 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DependerReference createDependerReference() {
-		DependerReferenceImpl dependerReference = new DependerReferenceImpl();
-		return dependerReference;
+	public ContributionType createContributionTypeFromString(EDataType eDataType, String initialValue) {
+		ContributionType result = ContributionType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
 	}
 
 	/**
@@ -197,9 +238,8 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DependeeReference createDependeeReference() {
-		DependeeReferenceImpl dependeeReference = new DependeeReferenceImpl();
-		return dependeeReference;
+	public String convertContributionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

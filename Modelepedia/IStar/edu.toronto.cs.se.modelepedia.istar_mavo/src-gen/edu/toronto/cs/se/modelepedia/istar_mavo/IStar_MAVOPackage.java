@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface IStar_MAVOPackage extends EPackage {
@@ -96,22 +98,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int ISTAR__ACTORS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISTAR__DEPENDENCIES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Dependums</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__DEPENDUMS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int ISTAR__DEPENDUMS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>IStar</em>' class.
@@ -120,7 +113,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 3;
+	int ISTAR_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>IStar</em>' class.
@@ -139,7 +132,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependencyEndpoint()
 	 * @generated
 	 */
-	int DEPENDENCY_ENDPOINT = 11;
+	int DEPENDENCY_ENDPOINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -278,22 +271,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int ACTOR__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Intentional Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Intentions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INTENTIONAL_ELEMENTS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Contributions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__CONTRIBUTIONS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
+	int ACTOR__INTENTIONS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Actor</em>' class.
@@ -302,7 +286,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 2;
+	int ACTOR_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Actor</em>' class.
@@ -314,14 +298,14 @@ public interface IStar_MAVOPackage extends EPackage {
 	int ACTOR_OPERATION_COUNT = DEPENDENCY_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyImpl <em>Dependency</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl <em>Intention</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependency()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getIntention()
 	 * @generated
 	 */
-	int DEPENDENCY = 2;
+	int INTENTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -330,7 +314,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int INTENTION__MAY = DEPENDENCY_ENDPOINT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -339,7 +323,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int INTENTION__SET = DEPENDENCY_ENDPOINT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -348,89 +332,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__VAR = MavoPackage.MAVO_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Depender</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY__DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Dependee</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY__DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Dependum</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY__DEPENDUM = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Dependency</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Dependency</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl <em>Intentional Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getIntentionalElement()
-	 * @generated
-	 */
-	int INTENTIONAL_ELEMENT = 3;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__MAY = DEPENDENCY_ENDPOINT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__SET = DEPENDENCY_ENDPOINT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__VAR = DEPENDENCY_ENDPOINT__VAR;
+	int INTENTION__VAR = DEPENDENCY_ENDPOINT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -439,7 +341,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER;
+	int INTENTION__DEPENDENCIES_AS_DEPENDER = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -448,7 +350,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE;
+	int INTENTION__DEPENDENCIES_AS_DEPENDEE = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -457,34 +359,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__NAME = DEPENDENCY_ENDPOINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__DEPENDENCIES = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__COMPOSITE = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 2;
+	int INTENTION__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -493,7 +368,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__FULLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 3;
+	int INTENTION__FULLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -502,7 +377,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 4;
+	int INTENTION__PARTIALLY_SATISFIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -511,7 +386,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__UNKNOWN = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 5;
+	int INTENTION__UNKNOWN = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -520,7 +395,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__CONFLICT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 6;
+	int INTENTION__CONFLICT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -529,7 +404,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__PARTIALLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 7;
+	int INTENTION__PARTIALLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -538,34 +413,70 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__FULLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 8;
+	int INTENTION__FULLY_DENIED = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT__NOTHING = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 9;
+	int INTENTION__NO_LABEL = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of structural features of the '<em>Intentional Element</em>' class.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 10;
+	int INTENTION__LINKS_AS_SRC = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 7;
 
 	/**
-	 * The number of operations of the '<em>Intentional Element</em>' class.
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTIONAL_ELEMENT_OPERATION_COUNT = DEPENDENCY_ENDPOINT_OPERATION_COUNT + 0;
+	int INTENTION__LINKS_AS_TGT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION__DEPENDER_LINKS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION__DEPENDEE_LINKS = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 10;
+
+	/**
+	 * The number of structural features of the '<em>Intention</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_FEATURE_COUNT = DEPENDENCY_ENDPOINT_FEATURE_COUNT + 11;
+
+	/**
+	 * The number of operations of the '<em>Intention</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_OPERATION_COUNT = DEPENDENCY_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.TaskImpl <em>Task</em>}' class.
@@ -575,7 +486,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getTask()
 	 * @generated
 	 */
-	int TASK = 4;
+	int TASK = 3;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -584,7 +495,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__MAY = INTENTIONAL_ELEMENT__MAY;
+	int TASK__MAY = INTENTION__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -593,7 +504,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__SET = INTENTIONAL_ELEMENT__SET;
+	int TASK__SET = INTENTION__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -602,7 +513,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__VAR = INTENTIONAL_ELEMENT__VAR;
+	int TASK__VAR = INTENTION__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -611,7 +522,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__DEPENDENCIES_AS_DEPENDER = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER;
+	int TASK__DEPENDENCIES_AS_DEPENDER = INTENTION__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -620,7 +531,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__DEPENDENCIES_AS_DEPENDEE = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE;
+	int TASK__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -629,34 +540,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__NAME = INTENTIONAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__COMPOSITE = INTENTIONAL_ELEMENT__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+	int TASK__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -665,7 +549,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+	int TASK__FULLY_SATISFIED = INTENTION__FULLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -674,7 +558,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+	int TASK__PARTIALLY_SATISFIED = INTENTION__PARTIALLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -683,7 +567,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+	int TASK__UNKNOWN = INTENTION__UNKNOWN;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -692,7 +576,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+	int TASK__CONFLICT = INTENTION__CONFLICT;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -701,7 +585,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+	int TASK__PARTIALLY_DENIED = INTENTION__PARTIALLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -710,34 +594,52 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+	int TASK__FULLY_DENIED = INTENTION__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
+	int TASK__NO_LABEL = INTENTION__NO_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__COMPONENTS = INTENTIONAL_ELEMENT_FEATURE_COUNT + 0;
+	int TASK__LINKS_AS_SRC = INTENTION__LINKS_AS_SRC;
 
 	/**
-	 * The feature id for the '<em><b>End</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__END = INTENTIONAL_ELEMENT_FEATURE_COUNT + 1;
+	int TASK__LINKS_AS_TGT = INTENTION__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__DEPENDER_LINKS = INTENTION__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__DEPENDEE_LINKS = INTENTION__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Task</em>' class.
@@ -746,7 +648,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_FEATURE_COUNT = INTENTIONAL_ELEMENT_FEATURE_COUNT + 2;
+	int TASK_FEATURE_COUNT = INTENTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Task</em>' class.
@@ -755,7 +657,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_OPERATION_COUNT = INTENTIONAL_ELEMENT_OPERATION_COUNT + 0;
+	int TASK_OPERATION_COUNT = INTENTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ResourceImpl <em>Resource</em>}' class.
@@ -765,7 +667,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getResource()
 	 * @generated
 	 */
-	int RESOURCE = 5;
+	int RESOURCE = 4;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -774,7 +676,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__MAY = INTENTIONAL_ELEMENT__MAY;
+	int RESOURCE__MAY = INTENTION__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -783,7 +685,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__SET = INTENTIONAL_ELEMENT__SET;
+	int RESOURCE__SET = INTENTION__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -792,7 +694,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__VAR = INTENTIONAL_ELEMENT__VAR;
+	int RESOURCE__VAR = INTENTION__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -801,7 +703,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__DEPENDENCIES_AS_DEPENDER = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER;
+	int RESOURCE__DEPENDENCIES_AS_DEPENDER = INTENTION__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -810,7 +712,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__DEPENDENCIES_AS_DEPENDEE = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE;
+	int RESOURCE__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -819,34 +721,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__NAME = INTENTIONAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE__COMPOSITE = INTENTIONAL_ELEMENT__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+	int RESOURCE__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -855,7 +730,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+	int RESOURCE__FULLY_SATISFIED = INTENTION__FULLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -864,7 +739,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+	int RESOURCE__PARTIALLY_SATISFIED = INTENTION__PARTIALLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -873,7 +748,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+	int RESOURCE__UNKNOWN = INTENTION__UNKNOWN;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -882,7 +757,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+	int RESOURCE__CONFLICT = INTENTION__CONFLICT;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -891,7 +766,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+	int RESOURCE__PARTIALLY_DENIED = INTENTION__PARTIALLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -900,16 +775,52 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+	int RESOURCE__FULLY_DENIED = INTENTION__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
+	int RESOURCE__NO_LABEL = INTENTION__NO_LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__LINKS_AS_SRC = INTENTION__LINKS_AS_SRC;
+
+	/**
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__LINKS_AS_TGT = INTENTION__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__DEPENDER_LINKS = INTENTION__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__DEPENDEE_LINKS = INTENTION__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Resource</em>' class.
@@ -918,7 +829,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_FEATURE_COUNT = INTENTIONAL_ELEMENT_FEATURE_COUNT + 0;
+	int RESOURCE_FEATURE_COUNT = INTENTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Resource</em>' class.
@@ -927,7 +838,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_OPERATION_COUNT = INTENTIONAL_ELEMENT_OPERATION_COUNT + 0;
+	int RESOURCE_OPERATION_COUNT = INTENTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.GoalImpl <em>Goal</em>}' class.
@@ -937,7 +848,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getGoal()
 	 * @generated
 	 */
-	int GOAL = 6;
+	int GOAL = 5;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -946,7 +857,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__MAY = INTENTIONAL_ELEMENT__MAY;
+	int GOAL__MAY = INTENTION__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -955,7 +866,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__SET = INTENTIONAL_ELEMENT__SET;
+	int GOAL__SET = INTENTION__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -964,7 +875,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__VAR = INTENTIONAL_ELEMENT__VAR;
+	int GOAL__VAR = INTENTION__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -973,7 +884,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__DEPENDENCIES_AS_DEPENDER = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDER;
+	int GOAL__DEPENDENCIES_AS_DEPENDER = INTENTION__DEPENDENCIES_AS_DEPENDER;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -982,7 +893,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__DEPENDENCIES_AS_DEPENDEE = INTENTIONAL_ELEMENT__DEPENDENCIES_AS_DEPENDEE;
+	int GOAL__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -991,34 +902,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__NAME = INTENTIONAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__DEPENDENCIES = INTENTIONAL_ELEMENT__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__COMPOSITE = INTENTIONAL_ELEMENT__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR = INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR;
+	int GOAL__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -1027,7 +911,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__FULLY_SATISFIED = INTENTIONAL_ELEMENT__FULLY_SATISFIED;
+	int GOAL__FULLY_SATISFIED = INTENTION__FULLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Partially Satisfied</b></em>' attribute.
@@ -1036,7 +920,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__PARTIALLY_SATISFIED = INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED;
+	int GOAL__PARTIALLY_SATISFIED = INTENTION__PARTIALLY_SATISFIED;
 
 	/**
 	 * The feature id for the '<em><b>Unknown</b></em>' attribute.
@@ -1045,7 +929,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__UNKNOWN = INTENTIONAL_ELEMENT__UNKNOWN;
+	int GOAL__UNKNOWN = INTENTION__UNKNOWN;
 
 	/**
 	 * The feature id for the '<em><b>Conflict</b></em>' attribute.
@@ -1054,7 +938,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__CONFLICT = INTENTIONAL_ELEMENT__CONFLICT;
+	int GOAL__CONFLICT = INTENTION__CONFLICT;
 
 	/**
 	 * The feature id for the '<em><b>Partially Denied</b></em>' attribute.
@@ -1063,7 +947,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__PARTIALLY_DENIED = INTENTIONAL_ELEMENT__PARTIALLY_DENIED;
+	int GOAL__PARTIALLY_DENIED = INTENTION__PARTIALLY_DENIED;
 
 	/**
 	 * The feature id for the '<em><b>Fully Denied</b></em>' attribute.
@@ -1072,25 +956,52 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__FULLY_DENIED = INTENTIONAL_ELEMENT__FULLY_DENIED;
+	int GOAL__FULLY_DENIED = INTENTION__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__NOTHING = INTENTIONAL_ELEMENT__NOTHING;
+	int GOAL__NO_LABEL = INTENTION__NO_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Means</b></em>' reference list.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__MEANS = INTENTIONAL_ELEMENT_FEATURE_COUNT + 0;
+	int GOAL__LINKS_AS_SRC = INTENTION__LINKS_AS_SRC;
+
+	/**
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__LINKS_AS_TGT = INTENTION__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__DEPENDER_LINKS = INTENTION__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__DEPENDEE_LINKS = INTENTION__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Goal</em>' class.
@@ -1099,7 +1010,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_FEATURE_COUNT = INTENTIONAL_ELEMENT_FEATURE_COUNT + 1;
+	int GOAL_FEATURE_COUNT = INTENTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Goal</em>' class.
@@ -1108,7 +1019,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_OPERATION_COUNT = INTENTIONAL_ELEMENT_OPERATION_COUNT + 0;
+	int GOAL_OPERATION_COUNT = INTENTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.SoftGoalImpl <em>Soft Goal</em>}' class.
@@ -1118,7 +1029,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getSoftGoal()
 	 * @generated
 	 */
-	int SOFT_GOAL = 7;
+	int SOFT_GOAL = 6;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1175,33 +1086,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	int SOFT_GOAL__NAME = GOAL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOFT_GOAL__DEPENDENCIES = GOAL__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Composite</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOFT_GOAL__COMPOSITE = GOAL__COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Contributions As Contributor</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR = GOAL__CONTRIBUTIONS_AS_CONTRIBUTOR;
-
-	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1256,31 +1140,49 @@ public interface IStar_MAVOPackage extends EPackage {
 	int SOFT_GOAL__FULLY_DENIED = GOAL__FULLY_DENIED;
 
 	/**
-	 * The feature id for the '<em><b>Nothing</b></em>' attribute.
+	 * The feature id for the '<em><b>No Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__NOTHING = GOAL__NOTHING;
+	int SOFT_GOAL__NO_LABEL = GOAL__NO_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Means</b></em>' reference list.
+	 * The feature id for the '<em><b>Links As Src</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__MEANS = GOAL__MEANS;
+	int SOFT_GOAL__LINKS_AS_SRC = GOAL__LINKS_AS_SRC;
 
 	/**
-	 * The feature id for the '<em><b>Contributions As Contributee</b></em>' reference list.
+	 * The feature id for the '<em><b>Links As Tgt</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE = GOAL_FEATURE_COUNT + 0;
+	int SOFT_GOAL__LINKS_AS_TGT = GOAL__LINKS_AS_TGT;
+
+	/**
+	 * The feature id for the '<em><b>Depender Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__DEPENDER_LINKS = GOAL__DEPENDER_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Dependee Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__DEPENDEE_LINKS = GOAL__DEPENDEE_LINKS;
 
 	/**
 	 * The number of structural features of the '<em>Soft Goal</em>' class.
@@ -1289,7 +1191,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 1;
+	int SOFT_GOAL_FEATURE_COUNT = GOAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Soft Goal</em>' class.
@@ -1301,14 +1203,14 @@ public interface IStar_MAVOPackage extends EPackage {
 	int SOFT_GOAL_OPERATION_COUNT = GOAL_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl <em>Contribution</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl <em>Intention Link</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getContribution()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getIntentionLink()
 	 * @generated
 	 */
-	int CONTRIBUTION = 8;
+	int INTENTION_LINK = 8;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1317,7 +1219,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int INTENTION_LINK__MAY = MavoPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1326,7 +1228,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int INTENTION_LINK__SET = MavoPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1335,7 +1237,280 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int INTENTION_LINK__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__SRC = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__TGT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Intention Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Intention Link</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.MeansEndImpl <em>Means End</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.MeansEndImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getMeansEnd()
+	 * @generated
+	 */
+	int MEANS_END = 9;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__MAY = INTENTION_LINK__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__SET = INTENTION_LINK__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__VAR = INTENTION_LINK__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__NAME = INTENTION_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__SRC = INTENTION_LINK__SRC;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__TGT = INTENTION_LINK__TGT;
+
+	/**
+	 * The number of structural features of the '<em>Means End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END_FEATURE_COUNT = INTENTION_LINK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Means End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END_OPERATION_COUNT = INTENTION_LINK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DecompositionImpl <em>Decomposition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DecompositionImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDecomposition()
+	 * @generated
+	 */
+	int DECOMPOSITION = 10;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__MAY = INTENTION_LINK__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__SET = INTENTION_LINK__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__VAR = INTENTION_LINK__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__NAME = INTENTION_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__SRC = INTENTION_LINK__SRC;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__TGT = INTENTION_LINK__TGT;
+
+	/**
+	 * The number of structural features of the '<em>Decomposition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION_FEATURE_COUNT = INTENTION_LINK_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Decomposition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION_OPERATION_COUNT = INTENTION_LINK_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl <em>Contribution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getContribution()
+	 * @generated
+	 */
+	int CONTRIBUTION = 11;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__MAY = INTENTION_LINK__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__SET = INTENTION_LINK__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__VAR = INTENTION_LINK__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__NAME = INTENTION_LINK__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__SRC = INTENTION_LINK__SRC;
+
+	/**
+	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__TGT = INTENTION_LINK__TGT;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1344,25 +1519,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION__TYPE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Contributor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTRIBUTION__CONTRIBUTOR = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Contributee</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTRIBUTION__CONTRIBUTEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int CONTRIBUTION__TYPE = INTENTION_LINK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Contribution</em>' class.
@@ -1371,7 +1528,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int CONTRIBUTION_FEATURE_COUNT = INTENTION_LINK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Contribution</em>' class.
@@ -1380,90 +1537,17 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int CONTRIBUTION_OPERATION_COUNT = INTENTION_LINK_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.EndReferenceImpl <em>End Reference</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerLinkImpl <em>Depender Link</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.EndReferenceImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getEndReference()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerLinkImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependerLink()
 	 * @generated
 	 */
-	int END_REFERENCE = 9;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Src</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_REFERENCE__SRC = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Tgt</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_REFERENCE__TGT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>End Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>End Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ComponentsReferenceImpl <em>Components Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.ComponentsReferenceImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getComponentsReference()
-	 * @generated
-	 */
-	int COMPONENTS_REFERENCE = 10;
+	int DEPENDER_LINK = 12;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1472,7 +1556,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENTS_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+	int DEPENDER_LINK__MAY = MavoPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1481,7 +1565,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENTS_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+	int DEPENDER_LINK__SET = MavoPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1490,53 +1574,62 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENTS_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+	int DEPENDER_LINK__VAR = MavoPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENTS_REFERENCE__SRC = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+	int DEPENDER_LINK__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * The feature id for the '<em><b>Depender</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENTS_REFERENCE__TGT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+	int DEPENDER_LINK__DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Components Reference</em>' class.
+	 * The feature id for the '<em><b>Dependum</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENTS_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+	int DEPENDER_LINK__DEPENDUM = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Components Reference</em>' class.
+	 * The number of structural features of the '<em>Depender Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENTS_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+	int DEPENDER_LINK_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerReferenceImpl <em>Depender Reference</em>}' class.
+	 * The number of operations of the '<em>Depender Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerReferenceImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependerReference()
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl <em>Dependee Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependeeLink()
 	 * @generated
 	 */
-	int DEPENDER_REFERENCE = 12;
+	int DEPENDEE_LINK = 13;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1545,7 +1638,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+	int DEPENDEE_LINK__MAY = MavoPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1554,7 +1647,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+	int DEPENDEE_LINK__SET = MavoPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1563,116 +1656,62 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+	int DEPENDEE_LINK__VAR = MavoPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Tgt</b></em>' reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_REFERENCE__TGT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+	int DEPENDEE_LINK__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Src</b></em>' container reference.
+	 * The feature id for the '<em><b>Dependum</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_REFERENCE__SRC = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+	int DEPENDEE_LINK__DEPENDUM = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Depender Reference</em>' class.
+	 * The feature id for the '<em><b>Dependee</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+	int DEPENDEE_LINK__DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Depender Reference</em>' class.
+	 * The number of structural features of the '<em>Dependee Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+	int DEPENDEE_LINK_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeReferenceImpl <em>Dependee Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeReferenceImpl
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependeeReference()
-	 * @generated
-	 */
-	int DEPENDEE_REFERENCE = 13;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * The number of operations of the '<em>Dependee Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+	int DEPENDEE_LINK_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType <em>Contribution Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getContributionType()
 	 * @generated
-	 * @ordered
 	 */
-	int DEPENDEE_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDEE_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Tgt</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDEE_REFERENCE__TGT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Src</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDEE_REFERENCE__SRC = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Dependee Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDEE_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Dependee Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDEE_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+	int CONTRIBUTION_TYPE = 14;
 
 
 	/**
@@ -1697,17 +1736,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	EReference getIStar_Actors();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IStar#getDependencies <em>Dependencies</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dependencies</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar#getDependencies()
-	 * @see #getIStar()
-	 * @generated
-	 */
-	EReference getIStar_Dependencies();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IStar#getDependums <em>Dependums</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1729,189 +1757,146 @@ public interface IStar_MAVOPackage extends EPackage {
 	EClass getActor();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Actor#getIntentionalElements <em>Intentional Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Actor#getIntentions <em>Intentions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Intentional Elements</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Actor#getIntentionalElements()
+	 * @return the meta object for the containment reference list '<em>Intentions</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Actor#getIntentions()
 	 * @see #getActor()
 	 * @generated
 	 */
-	EReference getActor_IntentionalElements();
+	EReference getActor_Intentions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Actor#getContributions <em>Contributions</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention <em>Intention</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Contributions</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Actor#getContributions()
-	 * @see #getActor()
+	 * @return the meta object for class '<em>Intention</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention
 	 * @generated
 	 */
-	EReference getActor_Contributions();
+	EClass getIntention();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency <em>Dependency</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dependency</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Dependency
-	 * @generated
-	 */
-	EClass getDependency();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDepender <em>Depender</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Depender</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDepender()
-	 * @see #getDependency()
-	 * @generated
-	 */
-	EReference getDependency_Depender();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependee <em>Dependee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dependee</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependee()
-	 * @see #getDependency()
-	 * @generated
-	 */
-	EReference getDependency_Dependee();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependum <em>Dependum</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dependum</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Dependency#getDependum()
-	 * @see #getDependency()
-	 * @generated
-	 */
-	EReference getDependency_Dependum();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement <em>Intentional Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Intentional Element</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement
-	 * @generated
-	 */
-	EClass getIntentionalElement();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependencies <em>Dependencies</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Dependencies</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getDependencies()
-	 * @see #getIntentionalElement()
-	 * @generated
-	 */
-	EReference getIntentionalElement_Dependencies();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getComposite <em>Composite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Composite</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getComposite()
-	 * @see #getIntentionalElement()
-	 * @generated
-	 */
-	EReference getIntentionalElement_Composite();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getContributionsAsContributor <em>Contributions As Contributor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contributions As Contributor</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#getContributionsAsContributor()
-	 * @see #getIntentionalElement()
-	 * @generated
-	 */
-	EReference getIntentionalElement_ContributionsAsContributor();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isFullySatisfied <em>Fully Satisfied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isFullySatisfied <em>Fully Satisfied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Fully Satisfied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isFullySatisfied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isFullySatisfied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_FullySatisfied();
+	EAttribute getIntention_FullySatisfied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isPartiallySatisfied <em>Partially Satisfied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isPartiallySatisfied <em>Partially Satisfied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Partially Satisfied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isPartiallySatisfied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isPartiallySatisfied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_PartiallySatisfied();
+	EAttribute getIntention_PartiallySatisfied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isUnknown <em>Unknown</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isUnknown <em>Unknown</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Unknown</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isUnknown()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isUnknown()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_Unknown();
+	EAttribute getIntention_Unknown();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isConflict <em>Conflict</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isConflict <em>Conflict</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Conflict</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isConflict()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isConflict()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_Conflict();
+	EAttribute getIntention_Conflict();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isPartiallyDenied <em>Partially Denied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isPartiallyDenied <em>Partially Denied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Partially Denied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isPartiallyDenied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isPartiallyDenied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_PartiallyDenied();
+	EAttribute getIntention_PartiallyDenied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isFullyDenied <em>Fully Denied</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isFullyDenied <em>Fully Denied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Fully Denied</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isFullyDenied()
-	 * @see #getIntentionalElement()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isFullyDenied()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_FullyDenied();
+	EAttribute getIntention_FullyDenied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isNothing <em>Nothing</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isNoLabel <em>No Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Nothing</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement#isNothing()
-	 * @see #getIntentionalElement()
+	 * @return the meta object for the attribute '<em>No Label</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isNoLabel()
+	 * @see #getIntention()
 	 * @generated
 	 */
-	EAttribute getIntentionalElement_Nothing();
+	EAttribute getIntention_NoLabel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getLinksAsSrc <em>Links As Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Links As Src</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getLinksAsSrc()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_LinksAsSrc();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getLinksAsTgt <em>Links As Tgt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Links As Tgt</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getLinksAsTgt()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_LinksAsTgt();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getDependerLinks <em>Depender Links</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Depender Links</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getDependerLinks()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_DependerLinks();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getDependeeLinks <em>Dependee Links</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dependee Links</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getDependeeLinks()
+	 * @see #getIntention()
+	 * @generated
+	 */
+	EReference getIntention_DependeeLinks();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Task <em>Task</em>}'.
@@ -1922,28 +1907,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTask();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Task#getComponents <em>Components</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Components</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Task#getComponents()
-	 * @see #getTask()
-	 * @generated
-	 */
-	EReference getTask_Components();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Task#getEnd <em>End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>End</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Task#getEnd()
-	 * @see #getTask()
-	 * @generated
-	 */
-	EReference getTask_End();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Resource <em>Resource</em>}'.
@@ -1966,17 +1929,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	EClass getGoal();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Goal#getMeans <em>Means</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Means</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Goal#getMeans()
-	 * @see #getGoal()
-	 * @generated
-	 */
-	EReference getGoal_Means();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.SoftGoal <em>Soft Goal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1985,124 +1937,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSoftGoal();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.istar_mavo.SoftGoal#getContributionsAsContributee <em>Contributions As Contributee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contributions As Contributee</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.SoftGoal#getContributionsAsContributee()
-	 * @see #getSoftGoal()
-	 * @generated
-	 */
-	EReference getSoftGoal_ContributionsAsContributee();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution <em>Contribution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Contribution</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution
-	 * @generated
-	 */
-	EClass getContribution();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getType()
-	 * @see #getContribution()
-	 * @generated
-	 */
-	EAttribute getContribution_Type();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributor <em>Contributor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Contributor</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributor()
-	 * @see #getContribution()
-	 * @generated
-	 */
-	EReference getContribution_Contributor();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributee <em>Contributee</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Contributee</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getContributee()
-	 * @see #getContribution()
-	 * @generated
-	 */
-	EReference getContribution_Contributee();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.EndReference <em>End Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>End Reference</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.EndReference
-	 * @generated
-	 */
-	EClass getEndReference();
-
-	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.EndReference#getSrc <em>Src</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Src</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.EndReference#getSrc()
-	 * @see #getEndReference()
-	 * @generated
-	 */
-	EReference getEndReference_Src();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.EndReference#getTgt <em>Tgt</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Tgt</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.EndReference#getTgt()
-	 * @see #getEndReference()
-	 * @generated
-	 */
-	EReference getEndReference_Tgt();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference <em>Components Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Components Reference</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference
-	 * @generated
-	 */
-	EClass getComponentsReference();
-
-	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference#getSrc <em>Src</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Src</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference#getSrc()
-	 * @see #getComponentsReference()
-	 * @generated
-	 */
-	EReference getComponentsReference_Src();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference#getTgt <em>Tgt</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Tgt</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference#getTgt()
-	 * @see #getComponentsReference()
-	 * @generated
-	 */
-	EReference getComponentsReference_Tgt();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint <em>Dependency Endpoint</em>}'.
@@ -2148,68 +1982,184 @@ public interface IStar_MAVOPackage extends EPackage {
 	EAttribute getDependencyEndpoint_Name();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference <em>Depender Reference</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink <em>Intention Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Depender Reference</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference
+	 * @return the meta object for class '<em>Intention Link</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink
 	 * @generated
 	 */
-	EClass getDependerReference();
+	EClass getIntentionLink();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference#getTgt <em>Tgt</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Tgt</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference#getTgt()
-	 * @see #getDependerReference()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getName()
+	 * @see #getIntentionLink()
 	 * @generated
 	 */
-	EReference getDependerReference_Tgt();
+	EAttribute getIntentionLink_Name();
 
 	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference#getSrc <em>Src</em>}'.
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getSrc <em>Src</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Src</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference#getSrc()
-	 * @see #getDependerReference()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getSrc()
+	 * @see #getIntentionLink()
 	 * @generated
 	 */
-	EReference getDependerReference_Src();
+	EReference getIntentionLink_Src();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference <em>Dependee Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dependee Reference</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference
-	 * @generated
-	 */
-	EClass getDependeeReference();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference#getTgt <em>Tgt</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getTgt <em>Tgt</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Tgt</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference#getTgt()
-	 * @see #getDependeeReference()
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getTgt()
+	 * @see #getIntentionLink()
 	 * @generated
 	 */
-	EReference getDependeeReference_Tgt();
+	EReference getIntentionLink_Tgt();
 
 	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference#getSrc <em>Src</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd <em>Means End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Src</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference#getSrc()
-	 * @see #getDependeeReference()
+	 * @return the meta object for class '<em>Means End</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd
 	 * @generated
 	 */
-	EReference getDependeeReference_Src();
+	EClass getMeansEnd();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition <em>Decomposition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Decomposition</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition
+	 * @generated
+	 */
+	EClass getDecomposition();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution <em>Contribution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contribution</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution
+	 * @generated
+	 */
+	EClass getContribution();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getType()
+	 * @see #getContribution()
+	 * @generated
+	 */
+	EAttribute getContribution_Type();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink <em>Depender Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Depender Link</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink
+	 * @generated
+	 */
+	EClass getDependerLink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getName()
+	 * @see #getDependerLink()
+	 * @generated
+	 */
+	EAttribute getDependerLink_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getDepender <em>Depender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Depender</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getDepender()
+	 * @see #getDependerLink()
+	 * @generated
+	 */
+	EReference getDependerLink_Depender();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getDependum <em>Dependum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Dependum</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink#getDependum()
+	 * @see #getDependerLink()
+	 * @generated
+	 */
+	EReference getDependerLink_Dependum();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink <em>Dependee Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dependee Link</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink
+	 * @generated
+	 */
+	EClass getDependeeLink();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getName()
+	 * @see #getDependeeLink()
+	 * @generated
+	 */
+	EAttribute getDependeeLink_Name();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependum <em>Dependum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Dependum</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependum()
+	 * @see #getDependeeLink()
+	 * @generated
+	 */
+	EReference getDependeeLink_Dependum();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependee <em>Dependee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Dependee</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependee()
+	 * @see #getDependeeLink()
+	 * @generated
+	 */
+	EReference getDependeeLink_Dependee();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType <em>Contribution Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Contribution Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType
+	 * @generated
+	 */
+	EEnum getContributionType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2253,14 +2203,6 @@ public interface IStar_MAVOPackage extends EPackage {
 		EReference ISTAR__ACTORS = eINSTANCE.getIStar_Actors();
 
 		/**
-		 * The meta object literal for the '<em><b>Dependencies</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ISTAR__DEPENDENCIES = eINSTANCE.getIStar_Dependencies();
-
-		/**
 		 * The meta object literal for the '<em><b>Dependums</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2279,88 +2221,22 @@ public interface IStar_MAVOPackage extends EPackage {
 		EClass ACTOR = eINSTANCE.getActor();
 
 		/**
-		 * The meta object literal for the '<em><b>Intentional Elements</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Intentions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTOR__INTENTIONAL_ELEMENTS = eINSTANCE.getActor_IntentionalElements();
+		EReference ACTOR__INTENTIONS = eINSTANCE.getActor_Intentions();
 
 		/**
-		 * The meta object literal for the '<em><b>Contributions</b></em>' containment reference list feature.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl <em>Intention</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getIntention()
 		 * @generated
 		 */
-		EReference ACTOR__CONTRIBUTIONS = eINSTANCE.getActor_Contributions();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyImpl <em>Dependency</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependency()
-		 * @generated
-		 */
-		EClass DEPENDENCY = eINSTANCE.getDependency();
-
-		/**
-		 * The meta object literal for the '<em><b>Depender</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDENCY__DEPENDER = eINSTANCE.getDependency_Depender();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependee</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDENCY__DEPENDEE = eINSTANCE.getDependency_Dependee();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependum</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDENCY__DEPENDUM = eINSTANCE.getDependency_Dependum();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl <em>Intentional Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionalElementImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getIntentionalElement()
-		 * @generated
-		 */
-		EClass INTENTIONAL_ELEMENT = eINSTANCE.getIntentionalElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTENTIONAL_ELEMENT__DEPENDENCIES = eINSTANCE.getIntentionalElement_Dependencies();
-
-		/**
-		 * The meta object literal for the '<em><b>Composite</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTENTIONAL_ELEMENT__COMPOSITE = eINSTANCE.getIntentionalElement_Composite();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributions As Contributor</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTENTIONAL_ELEMENT__CONTRIBUTIONS_AS_CONTRIBUTOR = eINSTANCE.getIntentionalElement_ContributionsAsContributor();
+		EClass INTENTION = eINSTANCE.getIntention();
 
 		/**
 		 * The meta object literal for the '<em><b>Fully Satisfied</b></em>' attribute feature.
@@ -2368,7 +2244,7 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__FULLY_SATISFIED = eINSTANCE.getIntentionalElement_FullySatisfied();
+		EAttribute INTENTION__FULLY_SATISFIED = eINSTANCE.getIntention_FullySatisfied();
 
 		/**
 		 * The meta object literal for the '<em><b>Partially Satisfied</b></em>' attribute feature.
@@ -2376,7 +2252,7 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__PARTIALLY_SATISFIED = eINSTANCE.getIntentionalElement_PartiallySatisfied();
+		EAttribute INTENTION__PARTIALLY_SATISFIED = eINSTANCE.getIntention_PartiallySatisfied();
 
 		/**
 		 * The meta object literal for the '<em><b>Unknown</b></em>' attribute feature.
@@ -2384,7 +2260,7 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__UNKNOWN = eINSTANCE.getIntentionalElement_Unknown();
+		EAttribute INTENTION__UNKNOWN = eINSTANCE.getIntention_Unknown();
 
 		/**
 		 * The meta object literal for the '<em><b>Conflict</b></em>' attribute feature.
@@ -2392,7 +2268,7 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__CONFLICT = eINSTANCE.getIntentionalElement_Conflict();
+		EAttribute INTENTION__CONFLICT = eINSTANCE.getIntention_Conflict();
 
 		/**
 		 * The meta object literal for the '<em><b>Partially Denied</b></em>' attribute feature.
@@ -2400,7 +2276,7 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__PARTIALLY_DENIED = eINSTANCE.getIntentionalElement_PartiallyDenied();
+		EAttribute INTENTION__PARTIALLY_DENIED = eINSTANCE.getIntention_PartiallyDenied();
 
 		/**
 		 * The meta object literal for the '<em><b>Fully Denied</b></em>' attribute feature.
@@ -2408,15 +2284,47 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__FULLY_DENIED = eINSTANCE.getIntentionalElement_FullyDenied();
+		EAttribute INTENTION__FULLY_DENIED = eINSTANCE.getIntention_FullyDenied();
 
 		/**
-		 * The meta object literal for the '<em><b>Nothing</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>No Label</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTENTIONAL_ELEMENT__NOTHING = eINSTANCE.getIntentionalElement_Nothing();
+		EAttribute INTENTION__NO_LABEL = eINSTANCE.getIntention_NoLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Links As Src</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__LINKS_AS_SRC = eINSTANCE.getIntention_LinksAsSrc();
+
+		/**
+		 * The meta object literal for the '<em><b>Links As Tgt</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__LINKS_AS_TGT = eINSTANCE.getIntention_LinksAsTgt();
+
+		/**
+		 * The meta object literal for the '<em><b>Depender Links</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__DEPENDER_LINKS = eINSTANCE.getIntention_DependerLinks();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependee Links</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION__DEPENDEE_LINKS = eINSTANCE.getIntention_DependeeLinks();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.TaskImpl <em>Task</em>}' class.
@@ -2427,22 +2335,6 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TASK = eINSTANCE.getTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Components</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TASK__COMPONENTS = eINSTANCE.getTask_Components();
-
-		/**
-		 * The meta object literal for the '<em><b>End</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TASK__END = eINSTANCE.getTask_End();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ResourceImpl <em>Resource</em>}' class.
@@ -2465,14 +2357,6 @@ public interface IStar_MAVOPackage extends EPackage {
 		EClass GOAL = eINSTANCE.getGoal();
 
 		/**
-		 * The meta object literal for the '<em><b>Means</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GOAL__MEANS = eINSTANCE.getGoal_Means();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.SoftGoalImpl <em>Soft Goal</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2481,100 +2365,6 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SOFT_GOAL = eINSTANCE.getSoftGoal();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributions As Contributee</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SOFT_GOAL__CONTRIBUTIONS_AS_CONTRIBUTEE = eINSTANCE.getSoftGoal_ContributionsAsContributee();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl <em>Contribution</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getContribution()
-		 * @generated
-		 */
-		EClass CONTRIBUTION = eINSTANCE.getContribution();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONTRIBUTION__TYPE = eINSTANCE.getContribution_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributor</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTRIBUTION__CONTRIBUTOR = eINSTANCE.getContribution_Contributor();
-
-		/**
-		 * The meta object literal for the '<em><b>Contributee</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTRIBUTION__CONTRIBUTEE = eINSTANCE.getContribution_Contributee();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.EndReferenceImpl <em>End Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.EndReferenceImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getEndReference()
-		 * @generated
-		 */
-		EClass END_REFERENCE = eINSTANCE.getEndReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Src</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference END_REFERENCE__SRC = eINSTANCE.getEndReference_Src();
-
-		/**
-		 * The meta object literal for the '<em><b>Tgt</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference END_REFERENCE__TGT = eINSTANCE.getEndReference_Tgt();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ComponentsReferenceImpl <em>Components Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.ComponentsReferenceImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getComponentsReference()
-		 * @generated
-		 */
-		EClass COMPONENTS_REFERENCE = eINSTANCE.getComponentsReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Src</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENTS_REFERENCE__SRC = eINSTANCE.getComponentsReference_Src();
-
-		/**
-		 * The meta object literal for the '<em><b>Tgt</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPONENTS_REFERENCE__TGT = eINSTANCE.getComponentsReference_Tgt();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl <em>Dependency Endpoint</em>}' class.
@@ -2611,48 +2401,22 @@ public interface IStar_MAVOPackage extends EPackage {
 		EAttribute DEPENDENCY_ENDPOINT__NAME = eINSTANCE.getDependencyEndpoint_Name();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerReferenceImpl <em>Depender Reference</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl <em>Intention Link</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerReferenceImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependerReference()
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getIntentionLink()
 		 * @generated
 		 */
-		EClass DEPENDER_REFERENCE = eINSTANCE.getDependerReference();
+		EClass INTENTION_LINK = eINSTANCE.getIntentionLink();
 
 		/**
-		 * The meta object literal for the '<em><b>Tgt</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEPENDER_REFERENCE__TGT = eINSTANCE.getDependerReference_Tgt();
-
-		/**
-		 * The meta object literal for the '<em><b>Src</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDER_REFERENCE__SRC = eINSTANCE.getDependerReference_Src();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeReferenceImpl <em>Dependee Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeReferenceImpl
-		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependeeReference()
-		 * @generated
-		 */
-		EClass DEPENDEE_REFERENCE = eINSTANCE.getDependeeReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Tgt</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPENDEE_REFERENCE__TGT = eINSTANCE.getDependeeReference_Tgt();
+		EAttribute INTENTION_LINK__NAME = eINSTANCE.getIntentionLink_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Src</b></em>' container reference feature.
@@ -2660,7 +2424,131 @@ public interface IStar_MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEPENDEE_REFERENCE__SRC = eINSTANCE.getDependeeReference_Src();
+		EReference INTENTION_LINK__SRC = eINSTANCE.getIntentionLink_Src();
+
+		/**
+		 * The meta object literal for the '<em><b>Tgt</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTENTION_LINK__TGT = eINSTANCE.getIntentionLink_Tgt();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.MeansEndImpl <em>Means End</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.MeansEndImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getMeansEnd()
+		 * @generated
+		 */
+		EClass MEANS_END = eINSTANCE.getMeansEnd();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DecompositionImpl <em>Decomposition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DecompositionImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDecomposition()
+		 * @generated
+		 */
+		EClass DECOMPOSITION = eINSTANCE.getDecomposition();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl <em>Contribution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.ContributionImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getContribution()
+		 * @generated
+		 */
+		EClass CONTRIBUTION = eINSTANCE.getContribution();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTRIBUTION__TYPE = eINSTANCE.getContribution_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerLinkImpl <em>Depender Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependerLinkImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependerLink()
+		 * @generated
+		 */
+		EClass DEPENDER_LINK = eINSTANCE.getDependerLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPENDER_LINK__NAME = eINSTANCE.getDependerLink_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Depender</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDER_LINK__DEPENDER = eINSTANCE.getDependerLink_Depender();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependum</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDER_LINK__DEPENDUM = eINSTANCE.getDependerLink_Dependum();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl <em>Dependee Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getDependeeLink()
+		 * @generated
+		 */
+		EClass DEPENDEE_LINK = eINSTANCE.getDependeeLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPENDEE_LINK__NAME = eINSTANCE.getDependeeLink_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependum</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDEE_LINK__DEPENDUM = eINSTANCE.getDependeeLink_Dependum();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependee</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDEE_LINK__DEPENDEE = eINSTANCE.getDependeeLink_Dependee();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType <em>Contribution Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType
+		 * @see edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStar_MAVOPackageImpl#getContributionType()
+		 * @generated
+		 */
+		EEnum CONTRIBUTION_TYPE = eINSTANCE.getContributionType();
 
 	}
 

@@ -14,13 +14,14 @@ package edu.toronto.cs.se.modelepedia.istar_mavo;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Goal</b></em>'.
+ * A representation of the model object '<em><b>Decomposition</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getGoal()
- * @model
+ * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDecomposition()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtTask'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot tgtTask='tgt.oclIsTypeOf(Task)'"
  * @generated
  */
-public interface Goal extends Intention {
-} // Goal
+public interface Decomposition extends IntentionLink {
+} // Decomposition

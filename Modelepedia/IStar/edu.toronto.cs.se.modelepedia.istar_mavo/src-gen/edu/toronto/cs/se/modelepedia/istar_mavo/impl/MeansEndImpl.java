@@ -12,26 +12,26 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Task;
+import edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Task</b></em>'.
+ * An implementation of the model object '<em><b>Means End</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class TaskImpl extends IntentionImpl implements Task {
+public class MeansEndImpl extends IntentionLinkImpl implements MeansEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TaskImpl() {
+	protected MeansEndImpl() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public class TaskImpl extends IntentionImpl implements Task {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return IStar_MAVOPackage.Literals.TASK;
+		return IStar_MAVOPackage.Literals.MEANS_END;
 	}
 
-} //TaskImpl
+} //MeansEndImpl

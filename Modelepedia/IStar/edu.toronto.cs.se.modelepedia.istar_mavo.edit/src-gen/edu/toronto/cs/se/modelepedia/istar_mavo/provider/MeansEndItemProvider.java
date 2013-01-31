@@ -12,10 +12,7 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.provider;
 
 
-import edu.toronto.cs.se.mmtf.mavo.provider.MAVOReferenceItemProvider;
-
-import edu.toronto.cs.se.modelepedia.istar_mavo.EndReference;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
+import edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,9 +20,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -34,13 +28,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.EndReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EndReferenceItemProvider
-	extends MAVOReferenceItemProvider
+public class MeansEndItemProvider
+	extends IntentionLinkItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -53,7 +47,7 @@ public class EndReferenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EndReferenceItemProvider(AdapterFactory adapterFactory) {
+	public MeansEndItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,42 +62,19 @@ public class EndReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTgtPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Tgt feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTgtPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EndReference_tgt_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EndReference_tgt_feature", "_UI_EndReference_type"),
-				 IStar_MAVOPackage.Literals.END_REFERENCE__TGT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns EndReference.gif.
+	 * This returns MeansEnd.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EndReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MeansEnd"));
 	}
 
 	/**
@@ -114,8 +85,10 @@ public class EndReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		EndReference endReference = (EndReference)object;
-		return getString("_UI_EndReference_type") + " " + endReference.isMay();
+		String label = ((MeansEnd)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_MeansEnd_type") :
+			getString("_UI_MeansEnd_type") + " " + label;
 	}
 
 	/**
@@ -141,17 +114,6 @@ public class EndReferenceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return IStar_MAVOEditPlugin.INSTANCE;
 	}
 
 }

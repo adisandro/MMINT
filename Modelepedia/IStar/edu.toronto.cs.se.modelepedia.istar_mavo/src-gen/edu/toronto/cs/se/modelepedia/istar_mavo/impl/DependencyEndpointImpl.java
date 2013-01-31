@@ -13,9 +13,9 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
 import edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl;
 
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 
 import java.util.Collection;
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -56,7 +57,7 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DependerReference> dependenciesAsDepender;
+	protected EList<DependerLink> dependenciesAsDepender;
 
 	/**
 	 * The cached value of the '{@link #getDependenciesAsDependee() <em>Dependencies As Dependee</em>}' reference list.
@@ -66,7 +67,7 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DependeeReference> dependenciesAsDependee;
+	protected EList<DependeeLink> dependenciesAsDependee;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -112,9 +113,9 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DependerReference> getDependenciesAsDepender() {
+	public EList<DependerLink> getDependenciesAsDepender() {
 		if (dependenciesAsDepender == null) {
-			dependenciesAsDepender = new EObjectWithInverseResolvingEList<DependerReference>(DependerReference.class, this, IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER, IStar_MAVOPackage.DEPENDER_REFERENCE__TGT);
+			dependenciesAsDepender = new EObjectWithInverseResolvingEList<DependerLink>(DependerLink.class, this, IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER, IStar_MAVOPackage.DEPENDER_LINK__DEPENDER);
 		}
 		return dependenciesAsDepender;
 	}
@@ -124,9 +125,9 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DependeeReference> getDependenciesAsDependee() {
+	public EList<DependeeLink> getDependenciesAsDependee() {
 		if (dependenciesAsDependee == null) {
-			dependenciesAsDependee = new EObjectWithInverseResolvingEList<DependeeReference>(DependeeReference.class, this, IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE, IStar_MAVOPackage.DEPENDEE_REFERENCE__TGT);
+			dependenciesAsDependee = new EObjectWithInverseResolvingEList<DependeeLink>(DependeeLink.class, this, IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE, IStar_MAVOPackage.DEPENDEE_LINK__DEPENDEE);
 		}
 		return dependenciesAsDependee;
 	}
@@ -214,11 +215,11 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 		switch (featureID) {
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER:
 				getDependenciesAsDepender().clear();
-				getDependenciesAsDepender().addAll((Collection<? extends DependerReference>)newValue);
+				getDependenciesAsDepender().addAll((Collection<? extends DependerLink>)newValue);
 				return;
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE:
 				getDependenciesAsDependee().clear();
-				getDependenciesAsDependee().addAll((Collection<? extends DependeeReference>)newValue);
+				getDependenciesAsDependee().addAll((Collection<? extends DependeeLink>)newValue);
 				return;
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
 				setName((String)newValue);

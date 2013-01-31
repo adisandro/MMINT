@@ -13,7 +13,6 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.util;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
-import edu.toronto.cs.se.mmtf.mavo.MAVOReference;
 
 import edu.toronto.cs.se.modelepedia.istar_mavo.*;
 
@@ -89,12 +88,8 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createActorAdapter();
 			}
 			@Override
-			public Adapter caseDependency(Dependency object) {
-				return createDependencyAdapter();
-			}
-			@Override
-			public Adapter caseIntentionalElement(IntentionalElement object) {
-				return createIntentionalElementAdapter();
+			public Adapter caseIntention(Intention object) {
+				return createIntentionAdapter();
 			}
 			@Override
 			public Adapter caseTask(Task object) {
@@ -113,28 +108,32 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createSoftGoalAdapter();
 			}
 			@Override
-			public Adapter caseContribution(Contribution object) {
-				return createContributionAdapter();
-			}
-			@Override
-			public Adapter caseEndReference(EndReference object) {
-				return createEndReferenceAdapter();
-			}
-			@Override
-			public Adapter caseComponentsReference(ComponentsReference object) {
-				return createComponentsReferenceAdapter();
-			}
-			@Override
 			public Adapter caseDependencyEndpoint(DependencyEndpoint object) {
 				return createDependencyEndpointAdapter();
 			}
 			@Override
-			public Adapter caseDependerReference(DependerReference object) {
-				return createDependerReferenceAdapter();
+			public Adapter caseIntentionLink(IntentionLink object) {
+				return createIntentionLinkAdapter();
 			}
 			@Override
-			public Adapter caseDependeeReference(DependeeReference object) {
-				return createDependeeReferenceAdapter();
+			public Adapter caseMeansEnd(MeansEnd object) {
+				return createMeansEndAdapter();
+			}
+			@Override
+			public Adapter caseDecomposition(Decomposition object) {
+				return createDecompositionAdapter();
+			}
+			@Override
+			public Adapter caseContribution(Contribution object) {
+				return createContributionAdapter();
+			}
+			@Override
+			public Adapter caseDependerLink(DependerLink object) {
+				return createDependerLinkAdapter();
+			}
+			@Override
+			public Adapter caseDependeeLink(DependeeLink object) {
+				return createDependeeLinkAdapter();
 			}
 			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
@@ -143,10 +142,6 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
-			}
-			@Override
-			public Adapter caseMAVOReference(MAVOReference object) {
-				return createMAVOReferenceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -197,30 +192,16 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Dependency <em>Dependency</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention <em>Intention</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Dependency
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Intention
 	 * @generated
 	 */
-	public Adapter createDependencyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement <em>Intentional Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionalElement
-	 * @generated
-	 */
-	public Adapter createIntentionalElementAdapter() {
+	public Adapter createIntentionAdapter() {
 		return null;
 	}
 
@@ -281,48 +262,6 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution <em>Contribution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution
-	 * @generated
-	 */
-	public Adapter createContributionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.EndReference <em>End Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.EndReference
-	 * @generated
-	 */
-	public Adapter createEndReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference <em>Components Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.ComponentsReference
-	 * @generated
-	 */
-	public Adapter createComponentsReferenceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint <em>Dependency Endpoint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -337,30 +276,86 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference <em>Depender Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink <em>Intention Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerReference
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink
 	 * @generated
 	 */
-	public Adapter createDependerReferenceAdapter() {
+	public Adapter createIntentionLinkAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference <em>Dependee Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd <em>Means End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeReference
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd
 	 * @generated
 	 */
-	public Adapter createDependeeReferenceAdapter() {
+	public Adapter createMeansEndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition <em>Decomposition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition
+	 * @generated
+	 */
+	public Adapter createDecompositionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution <em>Contribution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.Contribution
+	 * @generated
+	 */
+	public Adapter createContributionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink <em>Depender Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink
+	 * @generated
+	 */
+	public Adapter createDependerLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink <em>Dependee Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink
+	 * @generated
+	 */
+	public Adapter createDependeeLinkAdapter() {
 		return null;
 	}
 
@@ -389,20 +384,6 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMAVOElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mavo.MAVOReference <em>MAVO Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mavo.MAVOReference
-	 * @generated
-	 */
-	public Adapter createMAVOReferenceAdapter() {
 		return null;
 	}
 

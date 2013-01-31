@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.provider;
 
 
 import edu.toronto.cs.se.mmtf.mavo.provider.MAVOModelItemProvider;
+
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -87,7 +88,6 @@ public class IStarItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(IStar_MAVOPackage.Literals.ISTAR__ACTORS);
-			childrenFeatures.add(IStar_MAVOPackage.Literals.ISTAR__DEPENDENCIES);
 			childrenFeatures.add(IStar_MAVOPackage.Literals.ISTAR__DEPENDUMS);
 		}
 		return childrenFeatures;
@@ -142,7 +142,6 @@ public class IStarItemProvider
 
 		switch (notification.getFeatureID(IStar.class)) {
 			case IStar_MAVOPackage.ISTAR__ACTORS:
-			case IStar_MAVOPackage.ISTAR__DEPENDENCIES:
 			case IStar_MAVOPackage.ISTAR__DEPENDUMS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -165,11 +164,6 @@ public class IStarItemProvider
 			(createChildParameter
 				(IStar_MAVOPackage.Literals.ISTAR__ACTORS,
 				 IStar_MAVOFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(IStar_MAVOPackage.Literals.ISTAR__DEPENDENCIES,
-				 IStar_MAVOFactory.eINSTANCE.createDependency()));
 
 		newChildDescriptors.add
 			(createChildParameter
