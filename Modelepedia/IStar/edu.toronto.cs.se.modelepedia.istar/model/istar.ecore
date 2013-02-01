@@ -60,7 +60,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="src.name.concat('2').concat(tgt.name)"/>
+        <details key="derivation" value="if src.oclIsUndefined() or tgt.oclIsUndefined() then '' else src.name.concat(' 2 ').concat(tgt.name) endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="#//Intention"
@@ -107,7 +107,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="depender.name.concat('2').concat(dependum.name)"/>
+        <details key="derivation" value="if depender.oclIsUndefined() or dependum.oclIsUndefined() then '' else depender.name.concat(' 2 ').concat(dependum.name) endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="depender" lowerBound="1"
@@ -119,7 +119,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="dependum.name.concat('2').concat(dependee.name)"/>
+        <details key="derivation" value="if dependum.oclIsUndefined() or dependee.oclIsUndefined() then '' else dependum.name.concat(' 2 ').concat(dependee.name) endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependum" lowerBound="1"

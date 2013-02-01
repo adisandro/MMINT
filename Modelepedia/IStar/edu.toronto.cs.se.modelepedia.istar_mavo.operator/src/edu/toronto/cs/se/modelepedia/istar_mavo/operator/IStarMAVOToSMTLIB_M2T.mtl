@@ -2,7 +2,7 @@
 [module IStarMAVOToSMTLIB_M2T('http://se.cs.toronto.edu/mmtf/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
 
 [query private getAllIntentions(istar : IStar) : Collection(Intention) =
-	istar.actors->collect(intentions)
+	istar.actors->collect(intentions)->addAll(istar.dependums)
 /]
 
 [query private getAllIntentions(istar : IStar, intentionClass : String) : Collection(Intention) =
@@ -96,7 +96,7 @@
 
 [template private encodeOWIntentionConstraint(istar : IStar, intentionClass : String)]
 ;[intentionClass/]s are Complete
-(assert	(forall ((c [intentionClass/]Concretization)) (or
+(assert (forall ((c [intentionClass/]Concretization)) (or
 [for (intention : Intention | getAllIntentions(istar, intentionClass))]
 	(node [nodeName(intention)/] c)
 [/for]
@@ -105,7 +105,7 @@
 
 [template private encodeOWIntentionLinkConstraint(istar : IStar, intentionLinkClass : String)]
 ;[intentionLinkClass/]s are Complete
-(assert	(forall ((c [intentionLinkClass/]Concretization)) (or
+(assert (forall ((c [intentionLinkClass/]Concretization)) (or
 [for (intentionLink : IntentionLink | getAllIntentionLinks(istar, intentionLinkClass))]
 	(edge [edgeName(intentionLink)/] c)
 [/for]
@@ -274,16 +274,16 @@
 (assert (forall ((c [sort/]Concretization)) (=>
 	(edge [name/] c)
 	(and
-		(node [nameSrc/] ([if (classSrc.oclIsUndefined())]src[else](as src ([classSrc/]Concretization))[/if] c))
-		(node [nameTgt/] ([if (classTgt.oclIsUndefined())]tgt[else](as tgt ([classTgt/]Concretization))[/if] c))
+		(node [nameSrc/] ([if (classSrc = '')]src[else](as src ([classSrc/]Concretization))[/if] c))
+		(node [nameTgt/] ([if (classTgt = '')]tgt[else](as tgt ([classTgt/]Concretization))[/if] c))
 	)
 )))
 [/template]
 
 [template private encodeIntentionLinkConstraint(intentionLink : IntentionLink, multipleClassSrc : Boolean, multipleClassTgt : Boolean)]
-	[let classSrc : String = if multipleClassSrc then intentionLink.src.eClass().name else null endif]
-	[let classTgt : String = if multipleClassTgt then intentionLink.tgt.eClass().name else null endif]
-[encodeEdgeConstraint(intentionLink.eClass().name, edgeName(intentionLink), nodeName(intentionLink.src), classSrc, nodeName(intentionLink.tgt), classTgt)/]
+	[let classSrc : String = if multipleClassSrc then intentionLink.src.eClass().name else '' endif]
+	[let classTgt : String = if multipleClassTgt then intentionLink.tgt.eClass().name else '' endif]
+[encodeEdgeConstraint(intentionLink.eClass().name, edgeName(intentionLink), classSrc, nodeName(intentionLink.src), classTgt, nodeName(intentionLink.tgt))/]
 	[if (multipleClassSrc)]
 [encodeIntentionLinkConstant(intentionLink, 'srcEndpoint', 'ENDPOINT_'+classSrc.toUpper())/]
 	[/if]
@@ -345,12 +345,12 @@
 [encodeIntentionLinkDatatype(istar, 'Decomposition')/]
 [encodeIntentionLinkDatatype(istar, 'Contribution')/]
 (declare-datatypes () ((DependerLink
-[for (dependerLink : DependerLink | getAllDependerLinks(istar))]
+[for (dependerLink : DependerLink | getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor)))]
 	[edgeName(dependerLink)/]
 [/for]
 )))
 (declare-datatypes () ((DependeeLink
-[for (dependeeLink : DependeeLink | getAllDependeeLinks(istar))]
+[for (dependeeLink : DependeeLink | getAllDependeeLinks(istar)->select(not dependee.oclIsTypeOf(Actor)))]
 	[edgeName(dependeeLink)/]
 [/for]
 )))
@@ -977,12 +977,12 @@
 [encodeOWIntentionLinkConstraint(istar, 'Decomposition')/]
 [encodeOWIntentionLinkConstraint(istar, 'Contribution')/]
 (assert (forall ((c DependerLinkConcretization)) (or
-[for (dependerLink : DependerLink | getAllDependerLinks(istar))]
+[for (dependerLink : DependerLink | getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor)))]
 	(edge [edgeName(dependerLink)/] c)
 [/for]
 )))
 (assert (forall ((c DependeeLinkConcretization)) (or
-[for (dependeeLink : DependeeLink | getAllDependeeLinks(istar))]
+[for (dependeeLink : DependeeLink | getAllDependeeLinks(istar)->select(not dependee.oclIsTypeOf(Actor)))]
 	(edge [edgeName(dependeeLink)/] c)
 [/for]
 )))
@@ -1009,28 +1009,28 @@
 [/for]
 [for (actor : Actor | istar.actors)]
 	[for (intention : Intention | actor.intentions)]
-		[let tgtType : String = intention.eClass().name]
-[encodeModelConstant('IntentionalElement', 'edge', edgeName(intention), 'tgtEndpoint', 'ENDPOINT_'+tgtType.toUpper())/]
-[encodeEdgeConstraint('IntentionalElement', edgeName(intention), null, nodeName(intention.eContainer(Actor)), tgtType, nodeName(intention))/]
+		[let tgtClass : String = intention.eClass().name]
+[encodeModelConstant('Intention', 'edge', edgeName(intention), 'tgtEndpoint', 'ENDPOINT_'+tgtClass.toUpper())/]
+[encodeEdgeConstraint('Intention', edgeName(intention), '', nodeName(intention.eContainer(Actor)), tgtClass, nodeName(intention))/]
 		[if (not intention.may)]
-[encodeMConstraint('IntentionalElement', 'edge', edgeName(intention))/]
+[encodeMConstraint('Intention', 'edge', edgeName(intention))/]
 		[/if]
 		[if (not intention.set)]
-[encodeSConstraint('IntentionalElement', 'edge', edgeName(intention))/]
+[encodeSConstraint('Intention', 'edge', edgeName(intention))/]
 		[/if]
 		[for (actor2 : Actor | istar.actors)]
 			[if (not (actor.name = actor2.name))]
-				[for (intention2 : Intention | actor2.intentions->select(eClass().name = tgtType))]
+				[for (intention2 : Intention | actor2.intentions->select(eClass().name = tgtClass))]
 					[if ((not actor.var and not actor2.var) or (not intention.var and not intention2.var))]
-[encodeVConstraint('IntentionalElement', 'edge', edgeName(intention), edgeName(intention2))/]
+[encodeVConstraint('Intention', 'edge', edgeName(intention), edgeName(intention2))/]
 					[/if]
 				[/for]
 			[/if]
 		[/for]
 		[if (not intention.var)]
-			[for (intention2 : Intention | actor.intentions->select(eClass().name = tgtType))]
+			[for (intention2 : Intention | actor.intentions->select(eClass().name = tgtClass))]
 				[if (not intention2.var and not (edgeName(intention) = edgeName(intention2)))]
-[encodeVConstraint('IntentionalElement', 'edge', edgeName(intention), edgeName(intention2))/]
+[encodeVConstraint('Intention', 'edge', edgeName(intention), edgeName(intention2))/]
 				[/if]
 			[/for]
 		[/if]
@@ -1045,7 +1045,7 @@
 [encodeIntentionLinkConstraint(intentionLink, true, false)/]
 	[elseif (intentionLink.oclIsTypeOf(Contribution))]
 [encodeIntentionLinkConstraint(intentionLink, true, false)/]
-[encodeIntentionLinkConstant(intentionLink, 'type', 'CONTRIBUTION'+intentionLink.oclAsType(Contribution).type)/]
+[encodeIntentionLinkConstant(intentionLink, 'type', 'CONTRIBUTION_'+intentionLink.oclAsType(Contribution).type)/]
 	[/if]
 [/for]
 [for (dependerLink : DependerLink | getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor)))]

@@ -886,7 +886,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		  (getIntentionLink_Name(), 
 		   source, 
 		   new String[] {
-			 "derivation", "src.name.concat(\'2\').concat(tgt.name)"
+			 "derivation", "if src.oclIsUndefined() or tgt.oclIsUndefined() then \'\' else src.name.concat(\' 2 \').concat(tgt.name) endif"
 		   });			
 		addAnnotation
 		  (meansEndEClass, 
@@ -911,13 +911,13 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		  (getDependerLink_Name(), 
 		   source, 
 		   new String[] {
-			 "derivation", "depender.name.concat(\'2\').concat(dependum.name)"
+			 "derivation", "if depender.oclIsUndefined() or dependum.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependum.name) endif"
 		   });		
 		addAnnotation
 		  (getDependeeLink_Name(), 
 		   source, 
 		   new String[] {
-			 "derivation", "dependum.name.concat(\'2\').concat(dependee.name)"
+			 "derivation", "if dependum.oclIsUndefined() or dependee.oclIsUndefined() then \'\' else dependum.name.concat(\' 2 \').concat(dependee.name) endif"
 		   });
 	}
 

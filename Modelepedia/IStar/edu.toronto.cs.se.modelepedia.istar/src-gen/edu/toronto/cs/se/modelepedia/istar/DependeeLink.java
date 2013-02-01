@@ -43,7 +43,7 @@ public interface DependeeLink extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDependeeLink_Name()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='dependum.name.concat(\'2\').concat(dependee.name)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if dependum.oclIsUndefined() or dependee.oclIsUndefined() then \'\' else dependum.name.concat(\' 2 \').concat(dependee.name) endif'"
 	 * @generated
 	 */
 	String getName();

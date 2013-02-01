@@ -43,7 +43,7 @@ public interface DependerLink extends MAVOElement {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDependerLink_Name()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='depender.name.concat(\'2\').concat(dependum.name)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if depender.oclIsUndefined() or dependum.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependum.name) endif'"
 	 * @generated
 	 */
 	String getName();

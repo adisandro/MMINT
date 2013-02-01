@@ -43,7 +43,7 @@ public interface IntentionLink extends MAVOElement {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntentionLink_Name()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='src.name.concat(\'2\').concat(tgt.name)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if src.oclIsUndefined() or tgt.oclIsUndefined() then \'\' else src.name.concat(\' 2 \').concat(tgt.name) endif'"
 	 * @generated
 	 */
 	String getName();
