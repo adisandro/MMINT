@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" inc="true">
+  <classes name="MeetingInitiator" dependenciesAsDepender="//@dependencies.1 //@dependencies.0">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="department"/>
+    <ownedOperations set="true" name="WaysToOrganizeMeeting()" visibility="PUBLIC"/>
+    <ownedOperations name="UseSchedulerToOrganizeMeeting()" visibility="PUBLIC"/>
+    <ownedOperations name="OrganizeMeeting()" visibility="PUBLIC"/>
+  </classes>
+  <classes name="RoomDB" dependenciesAsDependee="//@dependencies.3">
+    <ownedOperations name="FindRoom()" visibility="PUBLIC"/>
+    <ownedOperations name="GetRoomAttributes()" visibility="PUBLIC"/>
+  </classes>
+  <classes name="Calendar" dependenciesAsDependee="//@dependencies.4 //@dependencies.5">
+    <ownedOperations name="FindAvailableDates()" visibility="PUBLIC"/>
+  </classes>
+  <classes name="MeetingScheduler" dependenciesAsDependee="//@dependencies.1" dependenciesAsDepender="//@dependencies.2 //@dependencies.3 //@dependencies.4 //@dependencies.6">
+    <ownedOperations name="ScheduleMeeting()" visibility="PUBLIC"/>
+  </classes>
+  <classes name="MeetingParticipant" dependenciesAsDependee="//@dependencies.0 //@dependencies.2">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="department"/>
+    <ownedOperations name="ParticipateInMeeting()" visibility="PUBLIC"/>
+    <ownedOperations name="AttendMeeting()" visibility="PUBLIC"/>
+    <ownedOperations may="true" set="true" name="ProvideDetails()" visibility="PUBLIC"/>
+    <ownedOperations may="true" name="DecideConvenientDates()" visibility="PUBLIC"/>
+  </classes>
+  <classes var="true" name="DateDeterminer" dependenciesAsDepender="//@dependencies.5">
+    <ownedOperations name="DetermineMeetingDate()" visibility="PUBLIC"/>
+    <ownedOperations name="CheckDateInCalendar()" visibility="PUBLIC"/>
+  </classes>
+  <classes set="true" name="Details" dependenciesAsDependee="//@dependencies.6"/>
+  <dependencies may="true" dependee="//@classes.4" depender="//@classes.0"/>
+  <dependencies dependee="//@classes.3" depender="//@classes.0"/>
+  <dependencies dependee="//@classes.4" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.1" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.2" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.2" depender="//@classes.5"/>
+  <dependencies dependee="//@classes.6" depender="//@classes.3"/>
+</classdiagram_mavo:ClassDiagram>
