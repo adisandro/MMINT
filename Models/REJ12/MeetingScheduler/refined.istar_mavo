@@ -23,31 +23,28 @@
     </intentions>
   </actors>
   <actors name="Meeting Scheduler">
-    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.2/@dependerLinks.0" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0" name="Schedule Meeting"/>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDepender="//@dependums.2/@dependerLinks.0 //@dependums.3/@dependerLinks.0" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0" name="Schedule Meeting"/>
+    <intentions xsi:type="istar_mavo:Task" name="Determine Meeting Date"/>
+    <intentions xsi:type="istar_mavo:Task" name="Book Meeting"/>
   </actors>
   <actors name="Meeting Participant">
-    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" name="Participate In Meeting" linksAsTgt="//@actors.2/@intentions.1/@linksAsSrc.0 //@actors.2/@intentions.2/@linksAsSrc.0 //@actors.2/@intentions.3/@linksAsSrc.0 //@actors.2/@intentions.4/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" name="Participate In Meeting" linksAsTgt="//@actors.2/@intentions.1/@linksAsSrc.0 //@actors.2/@intentions.2/@linksAsSrc.0 //@actors.2/@intentions.3/@linksAsSrc.0 //@actors.2/@intentions.5/@linksAsSrc.0"/>
     <intentions xsi:type="istar_mavo:Task" name="Attend Meeting">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.2/@intentions.0"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" may="true" set="true" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" name="Provide Details" linksAsTgt="//@actors.2/@intentions.6/@linksAsSrc.0">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" set="true" tgt="//@actors.2/@intentions.0"/>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" name="Provide Dates" linksAsTgt="//@actors.2/@intentions.4/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.2/@intentions.0"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Goal" var="true" name="Agreeable Meeting Date">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" var="true" tgt="//@actors.2/@intentions.0"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Goal" may="true" var="true" name="Convenient Meeting Date" linksAsTgt="//@actors.2/@intentions.5/@linksAsSrc.0">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" var="true" tgt="//@actors.2/@intentions.0"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Task" may="true" name="Decide Convenient Dates">
-      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" tgt="//@actors.2/@intentions.4"/>
+    <intentions xsi:type="istar_mavo:Goal" name="Agreeable Meeting Date">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.2/@intentions.0"/>
     </intentions>
     <intentions xsi:type="istar_mavo:SoftGoal" name="Low Effort MP">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" set="true" tgt="//@actors.2/@intentions.2"/>
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.2/@intentions.2"/>
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.2/@intentions.5"/>
     </intentions>
-  </actors>
-  <actors var="true" name="Date Determiner">
-    <intentions xsi:type="istar_mavo:Task" name="Determine Meeting Date"/>
+    <intentions xsi:type="istar_mavo:Task" dependenciesAsDependee="//@dependums.3/@dependeeLinks.0" name="Provide Location" linksAsTgt="//@actors.2/@intentions.4/@linksAsSrc.1">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.2/@intentions.0"/>
+    </intentions>
   </actors>
   <dependums xsi:type="istar_mavo:Goal" may="true" set="true" name="Dependencies">
     <dependerLinks may="true" set="true" depender="//@actors.0/@intentions.3"/>
@@ -57,8 +54,12 @@
     <dependerLinks depender="//@actors.0/@intentions.2"/>
     <dependeeLinks dependee="//@actors.1/@intentions.0"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" set="true" name="Details">
-    <dependerLinks set="true" depender="//@actors.1/@intentions.0"/>
-    <dependeeLinks set="true" dependee="//@actors.2/@intentions.2"/>
+  <dependums xsi:type="istar_mavo:Resource" name="Dates">
+    <dependerLinks depender="//@actors.1/@intentions.0"/>
+    <dependeeLinks dependee="//@actors.2/@intentions.2"/>
+  </dependums>
+  <dependums xsi:type="istar_mavo:Resource" name="Location">
+    <dependerLinks depender="//@actors.1/@intentions.0"/>
+    <dependeeLinks dependee="//@actors.2/@intentions.5"/>
   </dependums>
 </istar_mavo:IStar>

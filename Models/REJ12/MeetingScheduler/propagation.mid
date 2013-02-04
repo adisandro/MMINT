@@ -214,8 +214,10 @@
       <modelElemEndpointRefs referencedObject="//@models.2/@links.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16"/>
     </linkRefs>
   </models>
+  <models uri="/REJ12/MeetingScheduler/refined.istar_mavo" name="refined" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" inc="true" fileExtension="istar_mavo" editors="//@editors.2"/>
   <editors uri="/REJ12/MeetingScheduler/orig.istar_mavo" name="IStar_MAVO tree for model /REJ12/MeetingScheduler/orig.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO" dynamic="true" modelUri="/REJ12/MeetingScheduler/orig.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID"/>
   <editors uri="/REJ12/MeetingScheduler/related.classdiagram_mavo" name="ClassDiagram_MAVO tree for model /REJ12/MeetingScheduler/related.classdiagram_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram_MAVO" dynamic="true" modelUri="/REJ12/MeetingScheduler/related.classdiagram_mavo" id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.presentation.ClassDiagram_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram_mavo.presentation.ClassDiagram_MAVOModelWizardID"/>
+  <editors uri="/REJ12/MeetingScheduler/refined.istar_mavo" name="IStar_MAVO tree for model /REJ12/MeetingScheduler/refined.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO" dynamic="true" modelUri="/REJ12/MeetingScheduler/refined.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID"/>
   <extendibleTable key="/REJ12/MeetingScheduler/orig.istar_mavo" value="//@models.0"/>
   <extendibleTable key="/REJ12/MeetingScheduler/related.classdiagram_mavo" value="//@models.1"/>
   <extendibleTable key="/REJ12/MeetingScheduler/orig.istar_mavo#//@actors.0" value="//@models.0/@elements.0"/>
@@ -251,4 +253,5 @@
   <extendibleTable key="/REJ12/MeetingScheduler/related.classdiagram_mavo#//@dependencies.1" value="//@models.1/@elements.14"/>
   <extendibleTable key="/REJ12/MeetingScheduler/related.classdiagram_mavo#//@dependencies.2" value="//@models.1/@elements.15"/>
   <extendibleTable key="/REJ12/MeetingScheduler/related.classdiagram_mavo#//@classes.6" value="//@models.1/@elements.16"/>
+  <extendibleTable key="/REJ12/MeetingScheduler/refined.istar_mavo" value="//@models.3"/>
 </mid:MultiModel>
