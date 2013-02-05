@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -166,8 +167,8 @@ public class MultiModelRegistry {
 		}
 		else {
 			classLiteral = (eObject instanceof EReference) ?
-				((EReference) eObject).getEContainingClass().getName() + MMTF.URI_SEPARATOR + ((EReference) eObject).getName() :
-				eObject.eClass().getName();
+				((EClass) eObject.eContainer()).getName() + MMTF.URI_SEPARATOR + ((EReference) eObject).getName() :
+				((EClass) eObject).getName();
 		}
 
 		return classLiteral;

@@ -60,25 +60,23 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 			}
 			IConfigurationElement typeConfig1 = extension1.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String uri1 = typeConfig1.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			String supertypeUri1 = extensionUris.get(uri1);
+			String tempUri1 = uri1;
+			String tempSupertypeUri1 = extensionUris.get(uri1);
 			int supertypes1 = (rootUri != null && uri1.equals(rootUri)) ? -1 : 0;
-			while (supertypeUri1 != null) {
+			while (tempSupertypeUri1 != null) {
 				supertypes1++;
-				uri1 = supertypeUri1;
-				supertypeUri1 = extensionUris.get(uri1);
+				tempUri1 = tempSupertypeUri1;
+				tempSupertypeUri1 = extensionUris.get(tempUri1);
 			}
 			IConfigurationElement typeConfig2 = extension2.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String uri2 = typeConfig2.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			if (uri2 == null) {
-				extension2 = extension2.getChildren(CHILD_EXTENDIBLETYPE)[0];
-				uri2 = extension2.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			}
-			String supertypeUri2 = extensionUris.get(uri2);
+			String tempUri2 = uri2;
+			String tempSupertypeUri2 = extensionUris.get(uri2);
 			int supertypes2 = (rootUri != null && uri2.equals(rootUri)) ? -1 : 0;
-			while (supertypeUri2 != null) {
+			while (tempSupertypeUri2 != null) {
 				supertypes2++;
-				uri2 = supertypeUri2;
-				supertypeUri2 = extensionUris.get(uri2);
+				tempUri2 = tempSupertypeUri2;
+				tempSupertypeUri2 = extensionUris.get(tempUri2);
 			}
 
 			int relativeOrder = supertypes1 - supertypes2;
