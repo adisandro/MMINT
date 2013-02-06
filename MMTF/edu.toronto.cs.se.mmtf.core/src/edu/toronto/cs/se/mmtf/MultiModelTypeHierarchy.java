@@ -350,13 +350,12 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 			actualModelTypeUris.add(actualModelType.getUri());
 		}
 		String formalModelTypeUri = formalModelType.getUri();
-
-		// same type or subtype
 		for (String actualModelTypeUri : actualModelTypeUris) {
-			if (actualModelTypeUri.equals(formalModelTypeUri) || isSubtypeOf(actualModelTypeUri, formalModelTypeUri)) {
+			if (actualModelTypeUri.equals(formalModelTypeUri)) {
 				return new ArrayList<ConversionOperator>();
 			}
 		}
+
 		// convertible type
 		for (String actualModelTypeUri : actualModelTypeUris) {
 			Map<String, List<String>> conversions = getConversionTable(MMTF.repository).get(actualModelTypeUri);

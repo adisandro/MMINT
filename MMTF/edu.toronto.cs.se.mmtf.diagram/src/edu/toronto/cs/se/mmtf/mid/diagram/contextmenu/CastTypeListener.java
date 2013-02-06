@@ -39,13 +39,13 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
-public class SpecializeTypeListener extends SelectionAdapter {
+public class CastTypeListener extends SelectionAdapter {
 
 	Model model;
 	Model newMetatype;
 	ITextAwareEditPart label;
 
-	public SpecializeTypeListener(Model model, Model newMetatype, ITextAwareEditPart label) {
+	public CastTypeListener(Model model, Model newMetatype, ITextAwareEditPart label) {
 
 		this.model = model;
 		this.newMetatype = newMetatype;
@@ -60,14 +60,14 @@ public class SpecializeTypeListener extends SelectionAdapter {
 		//TODO MMTF: need domain file too?
 		AbstractTransactionalCommand operatorCommand = new SpecializeTypeCommand(
 			TransactionUtil.getEditingDomain(model),
-			"Specialize type",
+			"Type Cast",
 			files
 		);
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMTFException.print(Type.WARNING, "Specialization of " + model.getName() + " into type " + newMetatype.getName() + " history execution error", ex);
+			MMTFException.print(Type.WARNING, "Casting of " + model.getName() + " into " + newMetatype.getName() + " history execution error", ex);
 		}
 	}
 

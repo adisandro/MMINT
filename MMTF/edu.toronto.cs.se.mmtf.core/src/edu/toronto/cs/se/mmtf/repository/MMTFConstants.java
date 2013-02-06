@@ -21,6 +21,7 @@ public interface MMTFConstants {
 
 	public final static String URI_SEPARATOR = "/";
 	public final static String ENDPOINT_SEPARATOR = "-";
+	public final static String ROLE_SEPARATOR = "_AS_";
 	public final static String ROOT_URI = "http://se.cs.toronto.edu/mmtf";
 	/** The uri of the root model type. */
 	public final static String ROOT_MODEL_URI = ROOT_URI + URI_SEPARATOR + "Model";

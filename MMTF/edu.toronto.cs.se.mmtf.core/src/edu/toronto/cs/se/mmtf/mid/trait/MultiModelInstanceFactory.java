@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -297,7 +299,8 @@ public class MultiModelInstanceFactory {
 		ModelRel modelRel = (ModelRel) modelEndpointRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
 
-		//TODO MMTF: String newModelElemUri = newModelElemUri + MMTF.URI_SEPARATOR + classLiteral;
+		//TODO MMTF: refine when introducing additional model element level
+		newModelElemUri += MMTF.ROLE_SEPARATOR + modelElemType.getUri();
 		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(multiModel, newModelElemUri);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
@@ -330,7 +333,6 @@ public class MultiModelInstanceFactory {
 	 */
 	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelObj) throws MMTFException {
 
-		//TODO MMTF: this should check for an existing model element with same uri and return it instead of creating it (something like checkModelUnique)
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
 		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(modelObj);
 		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];

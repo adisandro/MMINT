@@ -27,7 +27,8 @@
       <modelType>
          <extendibleType
                name="ClassDiagram_MAVO"
-               uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+               uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO"
+               supertypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
          </extendibleType>
       </modelType>
    </extension>

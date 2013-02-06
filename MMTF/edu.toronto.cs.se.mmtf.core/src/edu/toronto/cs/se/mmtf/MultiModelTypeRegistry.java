@@ -113,6 +113,11 @@ public class MultiModelTypeRegistry {
 		return rootUri;
 	}
 
+	public static boolean isRootType(ExtendibleElement type) {
+
+		return type.getUri().equals(getRootTypeUri(type));
+	}
+
 	/**
 	 * Gets an extendible element type from the repository.
 	 * 

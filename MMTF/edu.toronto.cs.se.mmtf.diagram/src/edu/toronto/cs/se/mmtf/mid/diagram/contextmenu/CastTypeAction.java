@@ -42,7 +42,9 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
  * @author Alessio Di Sandro
  * 
  */
-public class SpecializeTypeAction extends ContributionItem {
+public class CastTypeAction extends ContributionItem {
+
+	private static final String DOWNCAST_LABEL = " (downcast)";
 
 	@Override
 	public boolean isDynamic() {
@@ -99,17 +101,20 @@ public class SpecializeTypeAction extends ContributionItem {
 
 		// create dynamic menu
 		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
-		cascadeItem.setText("Specialize Type");
+		cascadeItem.setText("Type Cast");
 		Menu operatorsMenu = new Menu(menu);
 		cascadeItem.setMenu(operatorsMenu);
+		boolean isDowncast = true;
 		for (Model runtimeModelType : runtimeModelTypes) {
 			if (runtimeModelType.getUri().equals(model.getMetatypeUri())) {
+				isDowncast = false;
 				continue;
 			}
 			MenuItem typeItem = new MenuItem(operatorsMenu, SWT.NONE);
-			typeItem.setText(runtimeModelType.getName());
+			String text = (isDowncast) ? runtimeModelType.getName() + DOWNCAST_LABEL : runtimeModelType.getName();
+			typeItem.setText(text);
 			typeItem.addSelectionListener(
-				new SpecializeTypeListener(model, runtimeModelType, label)
+				new CastTypeListener(model, runtimeModelType, label)
 			);
 		}
 	}

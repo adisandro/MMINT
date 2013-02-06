@@ -670,7 +670,7 @@ Contributors:
       </menuContribution>
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.SpecializeTypeAction"
+               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.CastTypeAction"
                id="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.SpecializeTypeAction">
             <visibleWhen>
                <with variable="activePartId">

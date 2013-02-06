@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -47,18 +46,21 @@ import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
  */
 public class MultiModelTypeIntrospection implements MMTFConstants {
 
-	private static <T extends ExtendibleElement> boolean validateType(T elementType, T element) {
+	private static <T extends ExtendibleElement> boolean validateType(T element, T elementType) {
 
 		boolean validates = false;
 
 		if (element instanceof Model) {
-			if (elementType instanceof ModelRel) { // checking against root model rel
-				return validates;
-			}
-			Model modelType = (Model) elementType;
-			validates = MultiModelConstraintChecker.checkConstraint(element, modelType.getConstraint());
 
-			if (element instanceof ModelRel) {
+			boolean isModelRel = element instanceof ModelRel;
+			if (!isModelRel && elementType instanceof ModelRel) { // checking against root model rel
+				return false;
+			}
+
+			// constraint validation
+			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
+
+			if (isModelRel) {
 				//TODO MMTF: do additional structure checks
 			}
 		}
@@ -66,25 +68,21 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return validates;
 	}
 
-	private static <T extends ExtendibleElement> List<T> filterSubtypes(T element, T currentElementType, List<T> elementSubtypes, boolean isRoot) {
+	private static <T extends ExtendibleElement> List<T> filterSubtypes(T element, T elementType, List<T> elementSubtypes) {
 
 		List<T> filteredElementSubtypes = new ArrayList<T>();
 
 		// only direct subtypes
 		for (T elementSubtype : elementSubtypes) {
-			if (elementSubtype.getSupertype().getUri().equals(currentElementType.getUri())) {
+			if (elementSubtype.getSupertype().getUri().equals(elementType.getUri())) {
 				filteredElementSubtypes.add(elementSubtype);
 			}
 		}
 
-		if (currentElementType instanceof ModelRel) { // explore all subtrees
+		if (elementType instanceof ModelRel) { // explore all subtrees
 			return filteredElementSubtypes;
 		}
-		if (currentElementType instanceof Model) {
-			if (!isRoot) { // once in a subtree, explore it all
-				return filteredElementSubtypes;
-			}
-			// explore just the metamodel subtree
+		if (elementType instanceof Model) { // explore metamodel-compatible subtrees
 			List<T> metamodelSubtypes = new ArrayList<T>();
 			String metamodelUri = getRoot((Model) element).eClass().getEPackage().getNsURI();
 			for (T filteredElementSubtype : filteredElementSubtypes) {
@@ -102,38 +100,25 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return filteredElementSubtypes;
 	}
 
-	private static <T extends ExtendibleElement> boolean getRuntimeTypes(T element, T currentElementType, List<T> runtimeTypes) {
+	private static <T extends ExtendibleElement> void getRuntimeTypes(T element, T elementType, List<T> elementTypes) {
 
-		// first check: validation
-		if (!validateType(currentElementType, element)) {
-			return false;
+		// stop condition: validation
+		if (!validateType(element, elementType)) {
+			return;
 		}
 
-		boolean isRoot = currentElementType.getUri().equals(MultiModelTypeRegistry.getRootTypeUri(currentElementType));
-		List<T> elementSubtypes = filterSubtypes(element, currentElementType, MultiModelTypeHierarchy.getSubtypes(currentElementType), isRoot);
-		// second check: has subtypes
-		if (elementSubtypes.isEmpty()) {
-			runtimeTypes.add(currentElementType);
+		elementTypes.add(elementType);
+		List<T> elementSubtypes = filterSubtypes(element, elementType, MultiModelTypeHierarchy.getSubtypes(elementType));
+		// recurse for each subtype
+		for (T elementSubtype : elementSubtypes) {
+			getRuntimeTypes(element, elementSubtype, elementTypes);
 		}
-		// third check: recurse for each subtype
-		else {
-			boolean existsValidSubtype = false;
-			for (T elementSubtype : elementSubtypes) {
-				existsValidSubtype |= getRuntimeTypes(element, elementSubtype, runtimeTypes);
-			}
-			if (isRoot || !existsValidSubtype) {
-				runtimeTypes.add(currentElementType);
-			}
-		}
-
-		return true;
 	}
 
-	//TODO MMTF: the root is not needed for operator invocation and specilization (if we don't want to downcast to it)
 	public static <T extends ExtendibleElement> List<T> getRuntimeTypes(T element) {
 
 		List<T> elementTypes = new ArrayList<T>();
-		// add root
+		// start from root
 		T rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(element));
 		getRuntimeTypes(element, rootType, elementTypes);
 
@@ -488,9 +473,9 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		writeRoot(root, emfUri);
 	}
 
-	public static EObject getPointer(Resource resource, URI uri) throws Exception {
+	public static EObject getPointer(Resource resource, URI emfUri) throws Exception {
 
-		EObject pointer = resource.getEObject(uri.fragment());
+		EObject pointer = resource.getEObject(emfUri.fragment());
 
 		return pointer;
 	}
@@ -502,11 +487,11 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		return getPointer(resource, emfUri);
 	}
 
-	public static EObject getPointer(URI uri) throws Exception {
+	public static EObject getPointer(URI emfUri) throws Exception {
 
 		ResourceSet set = new ResourceSetImpl();
-		Resource resource = set.getResource(uri, true);
-		EObject pointer = resource.getEObject(uri.fragment());
+		Resource resource = set.getResource(emfUri, true);
+		EObject pointer = resource.getEObject(emfUri.fragment());
 
 		return pointer;
 	}
@@ -525,7 +510,8 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 		try {
 			if (MultiModelConstraintChecker.isInstancesLevel(modelElem)) {
-				pointer = getPointer(modelElem.getUri());
+				//TODO MMTF: refine when introducing additional model element level
+				pointer = getPointer(modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMTF.ROLE_SEPARATOR)));
 			}
 			else {
 				String[] literals = modelElem.getClassLiteral().split(MMTF.URI_SEPARATOR);

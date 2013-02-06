@@ -112,13 +112,6 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/mmtf/MAVO"
-            class="edu.toronto.cs.se.mmtf.mavo.MavoPackage"
-            genModel="model/mid.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
             uri="http://se.cs.toronto.edu/mmtf/MID"
             class="edu.toronto.cs.se.mmtf.mid.MidPackage"
             genModel="model/mid.genmodel"/>
@@ -201,6 +194,99 @@
                uri="http://www.eclipse.org/emf/2002/Ecore_diagram">
          </extendibleType>
       </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/mmtf/MAVO"
+            class="edu.toronto.cs.se.mmtf.mavo.MavoPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            constraint="oclIsKindOf(mavo::MAVOModel)">
+         <extendibleType
+               name="MAVOModel"
+               uri="http://se.cs.toronto.edu/mmtf/MAVO"
+               supertypeUri="http://se.cs.toronto.edu/mmtf/Model">
+         </extendibleType>
+      </modelType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel"
+            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.relationships">
+      <relationshipType>
+         <modelType
+               constraint="links-&gt;forAll(let origModelElemEndpoints : Sequence(ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(Model).uri = oclContainer().oclContainer().oclAsType(ModelRel).modelEndpoints-&gt;at(1).target.uri), refinedModelElemEndpoints : Sequence(ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(Model).uri = oclContainer().oclContainer().oclAsType(ModelRel).modelEndpoints-&gt;at(2).target.uri) in ((origModelElemEndpoints-&gt;size() = 1 and ((not origModelElemEndpoints-&gt;at(1).target.may implies refinedModelElemEndpoints-&gt;exists(not target.may)) and (not origModelElemEndpoints-&gt;at(1).target.set implies (refinedModelElemEndpoints-&gt;size() = 1 and refinedModelElemEndpoints-&gt;exists(not target.set))) and (not origModelElemEndpoints-&gt;at(1).target.var implies refinedModelElemEndpoints-&gt;forAll(not target.var)))) or (origModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;at(1).target.may and refinedModelElemEndpoints-&gt;isEmpty())) or (refinedModelElemEndpoints-&gt;size() = 1 and ((origModelElemEndpoints-&gt;exists(not target.may) implies not refinedModelElemEndpoints-&gt;at(1).target.may) and (origModelElemEndpoints-&gt;exists(not target.set) implies not refinedModelElemEndpoints-&gt;at(1).target.set) and (origModelElemEndpoints-&gt;exists(not target.var) implies (origModelElemEndpoints-&gt;one(not target.var) and not refinedModelElemEndpoints-&gt;at(1).target.var)))) or (refinedModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;isEmpty() and oclContainer().oclAsType(ModelRel).modelEndpoints-&gt;at(1).target.inc))))">
+            <extendibleType
+                  name="MAVORefinementRel"
+                  uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel"
+                  supertypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+            </extendibleType>
+         </modelType>
+         <modelTypeEndpoint>
+            <extendibleType
+                  name="MAVOModelEndpoint"
+                  uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint">
+            </extendibleType>
+            <typeEndpoint
+                  lowerBound="2"
+                  upperBound="2"
+                  targetTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </typeEndpoint>
+            <modelElemType
+                  category="ENTITY"
+                  classLiteral="MAVOElement">
+                <extendibleType
+                     name="MAVOElement"
+                     uri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement">
+                </extendibleType>
+            </modelElemType>
+            <modelElemType
+                  category="RELATIONSHIP"
+                  classLiteral="MAVOReference">
+                <extendibleType
+                     name="MAVOReference"
+                     uri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOReference">
+                </extendibleType>
+            </modelElemType>
+         </modelTypeEndpoint>
+         <linkType>
+            <extendibleType
+                  name="RefinementLink"
+                  uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink">
+            </extendibleType>
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="MAVOElementEndpoint"
+                     uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="MAVOReferenceEndpoint"
+                     uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOReference/MAVOReferenceEndpoint">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOReference">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+         </linkType>
+      </relationshipType>
    </extension>
 
 </plugin>
