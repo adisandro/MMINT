@@ -46,7 +46,7 @@ import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
  */
 public class MultiModelTypeIntrospection implements MMTFConstants {
 
-	private static <T extends ExtendibleElement> boolean validateType(T element, T elementType) {
+	public static <T extends ExtendibleElement> boolean validateType(T element, T elementType) {
 
 		boolean validates = false;
 
@@ -63,6 +63,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 			if (isModelRel) {
 				//TODO MMTF: do additional structure checks
 			}
+			//TODO MMTF: figure out how to have multiple functions that validate
 		}
 
 		return validates;
@@ -79,10 +80,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 			}
 		}
 
-		if (elementType instanceof ModelRel) { // explore all subtrees
-			return filteredElementSubtypes;
-		}
-		if (elementType instanceof Model) { // explore metamodel-compatible subtrees
+		if (elementType instanceof Model && !(elementType instanceof ModelRel)) { // explore metamodel-compatible subtrees
 			List<T> metamodelSubtypes = new ArrayList<T>();
 			String metamodelUri = getRoot((Model) element).eClass().getEPackage().getNsURI();
 			for (T filteredElementSubtype : filteredElementSubtypes) {
@@ -121,6 +119,10 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		// start from root
 		T rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(element));
 		getRuntimeTypes(element, rootType, elementTypes);
+		//TODO MMTF: was there a function to check just endpoints for a model rel right?
+		//TODO MMTF: why TypeActions is called twice at every right click?
+		//TODO MMTF: investigate ChangePropagation failure
+		//TODO MMTF: compare time to evaluate ocl constraint on refinement rel
 
 		return elementTypes;
 	}

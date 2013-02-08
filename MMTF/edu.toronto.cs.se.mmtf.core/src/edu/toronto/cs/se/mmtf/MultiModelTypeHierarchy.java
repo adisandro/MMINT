@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class MultiModelTypeHierarchy implements MMTFConstants {
@@ -342,11 +341,11 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 		return getSubtypes(MMTF.repository, supertype);
 	}
 
-	private static List<ConversionOperator> isEligibleParameter(Model actualModel, Model formalModelType) {
+	private static List<ConversionOperator> isEligibleParameter(Model actualModel, List<Model> actualModelTypes, Model formalModelType) {
 
 		// polymorphism
 		List<String> actualModelTypeUris = new ArrayList<String>();
-		for (Model actualModelType : MultiModelTypeIntrospection.getRuntimeTypes(actualModel)) {
+		for (Model actualModelType : actualModelTypes) {
 			actualModelTypeUris.add(actualModelType.getUri());
 		}
 		String formalModelTypeUri = formalModelType.getUri();
@@ -376,7 +375,7 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 		return null;
 	}
 
-	public static List<Operator> getExecutableOperators(EList<Model> actualParameters, List<Map<Integer, List<ConversionOperator>>> conversions) {
+	public static List<Operator> getExecutableOperators(EList<Model> actualParameters, List<List<Model>> runtimeModelTypes, List<Map<Integer, List<ConversionOperator>>> conversions) {
 
 		List<Operator> executableOperatorTypes = new ArrayList<Operator>();
 
@@ -391,16 +390,21 @@ nextOperatorType:
 				}
 				// check 2: type or substitutable types
 				while (i < actualParameters.size()) {
-					List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualParameters.get(i), parameter.getModel());
-					if (conversionOperatorTypes == null) {
-						continue nextOperatorType;
-					}
-					if (!conversionOperatorTypes.isEmpty()) {
-						conversionMap.put(new Integer(i), conversionOperatorTypes);
+					Model actualParameter = actualParameters.get(i);
+					Model formalParameter = parameter.getModel();
+					// easy if formal parameter is root type for actual parameter
+					if (!MultiModelTypeRegistry.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
+						List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualParameter, runtimeModelTypes.get(i), formalParameter);
+						if (conversionOperatorTypes == null) {
+							continue nextOperatorType;
+						}
+						if (!conversionOperatorTypes.isEmpty()) {
+							conversionMap.put(new Integer(i), conversionOperatorTypes);
+						}
 					}
 					i++;
 					if (!parameter.isVararg()) {
-						//TODO MMTF: introduce vararg with low multeplicity
+						//TODO MMTF: introduce vararg with low multiplicity
 						break;
 					}
 				}

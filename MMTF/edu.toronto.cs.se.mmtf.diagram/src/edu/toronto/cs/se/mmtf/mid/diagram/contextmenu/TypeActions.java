@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -27,12 +28,15 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
@@ -71,15 +75,15 @@ public class TypeActions extends ContributionItem {
 		EList<Model> actualParameters = new BasicEList<Model>();
 		ITextAwareEditPart label = null;
 		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
-		for (int i = 0; i < objects.length; i++) {
+		for (Object object : objects) {
 			if (
-				objects[i] instanceof ModelEditPart ||
-				objects[i] instanceof Model2EditPart ||
-				objects[i] instanceof ModelRelEditPart ||
-				objects[i] instanceof ModelRel2EditPart ||
-				objects[i] instanceof BinaryModelRelEditPart
+				object instanceof ModelEditPart ||
+				object instanceof Model2EditPart ||
+				object instanceof ModelRelEditPart ||
+				object instanceof ModelRel2EditPart ||
+				object instanceof BinaryModelRelEditPart
 			) {
-				GraphicalEditPart editPart = (GraphicalEditPart) objects[i];
+				GraphicalEditPart editPart = (GraphicalEditPart) object;
 				Model model = (Model) ((View) editPart.getModel()).getElement();
 				if (doOperator) {
 					actualParameters.add(model);
@@ -95,7 +99,7 @@ public class TypeActions extends ContributionItem {
 				if (doValidate) {
 					editParts.add(editPart);
 				}
-				if (MultiModelConstraintChecker.isInstancesLevel(model)) { // actions don't work on types
+				if (!MultiModelConstraintChecker.isInstancesLevel(model)) { // actions don't work on types
 					doOperator = false;
 					doCast = false;
 					doValidate = false;
@@ -109,36 +113,74 @@ public class TypeActions extends ContributionItem {
 			return;
 		}
 
-		//TODO MMTF: evaluate additional constraints
 		// polymorphism
-		List<List<Model>> runtimeTypes = null;
+		List<List<Model>> runtimeModelTypes = null;
 		if (doOperator || doCast) {
-			runtimeTypes = new ArrayList<List<Model>>();
+			runtimeModelTypes = new ArrayList<List<Model>>();
 			for (Model actualParameter : actualParameters) {
-				runtimeTypes.add(MultiModelTypeIntrospection.getRuntimeTypes(actualParameter));
+				runtimeModelTypes.add(MultiModelTypeIntrospection.getRuntimeTypes(actualParameter));
 			}
 		}
-		//TODO MMTF: use runtime types everywhere they're needed
-
 		// create dynamic menus
 		// run operator
 		if (doOperator) {
-			MenuItem operatorItem = new MenuItem(menu, SWT.CASCADE, index);
-			operatorItem.setText("Run Operator");
-			Menu operatorsMenu = new Menu(menu);
-			operatorItem.setMenu(operatorsMenu);
+			List<Map<Integer, List<ConversionOperator>>> conversions = new ArrayList<Map<Integer, List<ConversionOperator>>>();
+			List<Operator> operators = MultiModelTypeHierarchy.getExecutableOperators(actualParameters, runtimeModelTypes, conversions);
+			if (!operators.isEmpty()) {
+				MenuItem operatorItem = new MenuItem(menu, SWT.CASCADE, index);
+				operatorItem.setText("Run Operator");
+				Menu operatorMenu = new Menu(menu);
+				operatorItem.setMenu(operatorMenu);
+				for (int i = 0; i < operators.size(); i++) {
+					Operator operator = operators.get(i);
+					Map<Integer, List<ConversionOperator>> conversionMap = conversions.get(i);
+					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
+					String text = operator.getName();
+					if (operator instanceof ConversionOperator) {
+						text += " [converter]";
+					}
+					if (!conversionMap.isEmpty()) {
+						text += " [inferred]";
+					}
+					operatorSubitem.setText(text);
+					operatorSubitem.addSelectionListener(
+						new RunOperatorListener(operator, actualParameters, conversionMap)
+					);
+					//TODO MMTF: nice to show label of operator invocation with actual parameters
+					//TODO MMTF: traceability, could be nice to create an instance of operator, with name = actual parameters
+				}
+			}
 		}
 		// cast type
 		if (doCast) {
-			MenuItem castItem = new MenuItem(menu, SWT.CASCADE, index);
-			castItem.setText("Cast Type");
-			Menu castMenu = new Menu(menu);
-			castItem.setMenu(castMenu);
+			if (runtimeModelTypes.get(0).size() > 1) {
+				MenuItem castItem = new MenuItem(menu, SWT.CASCADE, index);
+				castItem.setText("Cast Type");
+				Menu castMenu = new Menu(menu);
+				castItem.setMenu(castMenu);
+				boolean isDowncast = true;
+				for (Model runtimeModelType : runtimeModelTypes.get(0)) {
+					if (runtimeModelType.getUri().equals(actualParameters.get(0).getMetatypeUri())) {
+						isDowncast = false;
+						continue;
+					}
+					MenuItem castSubitem = new MenuItem(castMenu, SWT.NONE);
+					String text = (isDowncast) ? runtimeModelType.getName() + DOWNCAST_LABEL : runtimeModelType.getName();
+					castSubitem.setText(text);
+					castSubitem.addSelectionListener(
+						new CastTypeListener(actualParameters.get(0), runtimeModelType, label)
+					);
+				}
+			}
 		}
 		// validate type
 		if (doValidate) {
 			MenuItem validateItem = new MenuItem(menu, SWT.NONE, index);
-			validateItem.setText("Validate Type");
+			String text = (actualParameters.size() > 1) ? "Validate Types" : "ValidateType";
+			validateItem.setText(text);
+			validateItem.addSelectionListener(
+				new ValidateTypeListener(actualParameters, runtimeModelTypes, editParts)
+			);
 		}
 	}
 
