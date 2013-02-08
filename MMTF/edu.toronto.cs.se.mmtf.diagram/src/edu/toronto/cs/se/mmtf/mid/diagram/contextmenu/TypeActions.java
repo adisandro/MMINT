@@ -49,6 +49,7 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
  */
 public class TypeActions extends ContributionItem {
 
+	private static final int INVALID_MENU_ITEM_LIMIT = 20;
 	private static final String DOWNCAST_LABEL = " (downcast)";
 
 	@Override
@@ -59,6 +60,11 @@ public class TypeActions extends ContributionItem {
 
 	@Override
 	public void fill(Menu menu, int index) {
+
+		// this is a hack to prevent this menu from being created twice
+		if (menu.getItemCount() > INVALID_MENU_ITEM_LIMIT) {
+			return;
+		}
 
 		// check selection
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getSelection();

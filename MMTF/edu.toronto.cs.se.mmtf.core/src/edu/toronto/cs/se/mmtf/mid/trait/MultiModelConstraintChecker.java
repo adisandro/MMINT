@@ -228,6 +228,27 @@ public class MultiModelConstraintChecker {
 		return modelTypeEndpointUris;
 	}
 
+	public static boolean areAllowedModelEndpoints(ModelRel modelRel, ModelRel newModelRelType) {
+
+		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
+			boolean isAllowed = false;
+			//TODO MMTF: order of visit might affect the result, should be from the most specific to the less
+			for (ModelEndpointReference modelTypeEndpointRef : newModelRelType.getModelEndpointRefs()) {
+				//TODO MMTF: consider static (like now) or runtime models?
+				if (isAllowed = isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
+					MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
+					break;
+				}
+			}
+			if (!isAllowed) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public static boolean isAllowedModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef, HashMap<String, Integer> cardinalityTable) {
 
 		String newModelElemTypeUri = newModelElemRef.getObject().getMetatypeUri();

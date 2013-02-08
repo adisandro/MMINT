@@ -61,6 +61,22 @@ public class ChangePropagation extends OperatorExecutableImpl {
 	private final static String PROPTRACE_RULE4_LINK_NAME = "rule4Trace";
 	private final static String NAME_FEATURE = "name";
 
+	private ModelElementReference getModelElementReference(String modelElemRefUri, EList<ModelElementReference> modelElemRefs) {
+
+		if (modelElemRefUri == null) {
+			return null;
+		}
+
+		modelElemRefUri = modelElemRefUri.substring(0, modelElemRefUri.indexOf(MMTF.ROLE_SEPARATOR));
+		for (ModelElementReference modelElemRef : modelElemRefs) {
+			if (modelElemRefUri.equals(modelElemRef.getUri().substring(0, modelElemRef.getUri().indexOf(MMTF.ROLE_SEPARATOR)))) {
+				return modelElemRef;
+			}
+		}
+
+		return null;
+	}
+
 	//TODO MMTF: make this a library function, accessible with ctrl+c/ctrl+v
 	private Model createRelatedModelCopy(Model relatedModel) throws Exception {
 
@@ -88,7 +104,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		for (ModelElementEndpointReference refinementModelElemEndpointRef : refinementLinkRef.getModelElemEndpointRefs()) {
 			ModelElementReference refinementModelElemRef = refinementModelElemEndpointRef.getModelElemRef();
 			if (((ModelEndpointReference) refinementModelElemRef.eContainer()).getTargetUri().equals(origModelUri)) { // orig model element ref in trace rel
-				ModelElementReference origModelElemRef_traceRel = MultiModelTypeHierarchy.getReference(refinementModelElemRef.getUri(), origModelEndpointRef_traceRel.getModelElemRefs());
+				ModelElementReference origModelElemRef_traceRel = getModelElementReference(refinementModelElemRef.getUri(), origModelEndpointRef_traceRel.getModelElemRefs());
 				if (origModelElemRef_traceRel == null) {
 					continue;
 				}

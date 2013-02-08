@@ -214,79 +214,79 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 		return hierarchy.descendingIterator();
 	}
 
-	public static <T extends ExtendibleElement> T get(String elementTypeUri, EList<T> elementTypes) {
+	public static <T extends ExtendibleElement> T get(String elementUri, EList<T> elements) {
 
-		if (elementTypeUri == null) {
+		if (elementUri == null) {
 			return null;
 		}
 
-		for (T elementType : elementTypes) {
-			if (elementTypeUri.equals(elementType.getUri())) {
-				return elementType;
+		for (T element : elements) {
+			if (elementUri.equals(element.getUri())) {
+				return element;
 			}
 		}
 
 		return null;
 	}
 
-	public static <T extends ExtendibleElement> T get(T correspondingElementType, EList<T> elementTypes) {
+	public static <T extends ExtendibleElement> T get(T correspondingElement, EList<T> elements) {
 
-		if (correspondingElementType == null) {
+		if (correspondingElement == null) {
 			return null;
 		}
 
-		return get(correspondingElementType.getUri(), elementTypes);
+		return get(correspondingElement.getUri(), elements);
 	}
 
-	public static <T extends ExtendibleElementReference> T getReference(String elementTypeRefUri, EList<T> elementTypeRefs) {
+	public static <T extends ExtendibleElementReference> T getReference(String elementRefUri, EList<T> elementRefs) {
 
-		if (elementTypeRefUri == null) {
+		if (elementRefUri == null) {
 			return null;
 		}
 
-		for (T elementTypeRef : elementTypeRefs) {
-			if (elementTypeRefUri.equals(elementTypeRef.getUri())) {
-				return elementTypeRef;
+		for (T elementRef : elementRefs) {
+			if (elementRefUri.equals(elementRef.getUri())) {
+				return elementRef;
 			}
 		}
 
 		return null;
 	}
 
-	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementTypeRef, EList<T> elementTypeRefs) {
+	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementRef, EList<T> elementRefs) {
 
-		if (correspondingElementTypeRef == null) {
+		if (correspondingElementRef == null) {
 			return null;
 		}
 
-		return getReference(correspondingElementTypeRef.getUri(), elementTypeRefs);
+		return getReference(correspondingElementRef.getUri(), elementRefs);
 	}
 
-	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetTypeUri, EList<T> typeEndpointRefs) {
+	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetUri, EList<T> endpointRefs) {
 
-		if (targetTypeUri == null) {
+		if (targetUri == null) {
 			return null;
 		}
 
-		List<T> targetTypeEndpointRefs = new ArrayList<T>();
-		for (T typeEndpointRef : typeEndpointRefs) {
-			if (targetTypeUri.equals(typeEndpointRef.getTargetUri())) {
-				targetTypeEndpointRefs.add(typeEndpointRef);
+		List<T> targetEndpointRefs = new ArrayList<T>();
+		for (T endpointRef : endpointRefs) {
+			if (targetUri.equals(endpointRef.getTargetUri())) {
+				targetEndpointRefs.add(endpointRef);
 			}
 		}
 
-		return targetTypeEndpointRefs;
+		return targetEndpointRefs;
 	}
 
-	public static <T extends ExtendibleElementEndpoint> T getEndpoint(String targetTypeUri, EList<T> typeEndpoints) {
+	public static <T extends ExtendibleElementEndpoint> T getEndpoint(String targetUri, EList<T> endpoints) {
 
-		if (targetTypeUri == null) {
+		if (targetUri == null) {
 			return null;
 		}
 
-		for (T typeEndpoint : typeEndpoints) {
-			if (targetTypeUri.equals(typeEndpoint.getTargetUri())) {
-				return typeEndpoint;
+		for (T endpoint : endpoints) {
+			if (targetUri.equals(endpoint.getTargetUri())) {
+				return endpoint;
 			}
 		}
 

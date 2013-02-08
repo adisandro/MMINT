@@ -50,6 +50,14 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 		boolean validates = false;
 
+		if (element instanceof ModelRel) {
+			validates = MultiModelConstraintChecker.areAllowedModelEndpoints((ModelRel) element, (ModelRel) elementType);
+			if (!validates) {
+				return false;
+			}
+			//TODO MMTF: do additional structure checks
+		}
+
 		if (element instanceof Model) {
 
 			boolean isModelRel = element instanceof ModelRel;
@@ -59,10 +67,6 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 			// constraint validation
 			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
-
-			if (isModelRel) {
-				//TODO MMTF: do additional structure checks
-			}
 			//TODO MMTF: figure out how to have multiple functions that validate
 		}
 
@@ -119,10 +123,8 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		// start from root
 		T rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(element));
 		getRuntimeTypes(element, rootType, elementTypes);
-		//TODO MMTF: was there a function to check just endpoints for a model rel right?
-		//TODO MMTF: why TypeActions is called twice at every right click?
-		//TODO MMTF: investigate ChangePropagation failure
 		//TODO MMTF: compare time to evaluate ocl constraint on refinement rel
+		//TODO MMTF: encode inflo example
 
 		return elementTypes;
 	}
