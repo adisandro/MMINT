@@ -77,6 +77,15 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		return null;
 	}
 
+	private ModelElementReference getModelElementReference(ModelElementReference correspondingModelElemRef, EList<ModelElementReference> modelElemRefs) {
+
+		if (correspondingModelElemRef == null) {
+			return null;
+		}
+
+		return getModelElementReference(correspondingModelElemRef.getUri(), modelElemRefs);
+	}
+
 	//TODO MMTF: make this a library function, accessible with ctrl+c/ctrl+v
 	private Model createRelatedModelCopy(Model relatedModel) throws Exception {
 
@@ -517,7 +526,7 @@ traceLinks:
 		ModelEndpointReference relatedModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference refinedModelEndpointRef_refinementRel = refinementRel.getModelEndpointRefs().get(1);
 		String refinedModelUri = refinedModelEndpointRef_refinementRel.getTargetUri();
-		ModelElementReference refinedModelElemRef_refinementRel = MultiModelTypeHierarchy.getReference(refinedModelElemRef_propTraceRel, refinedModelEndpointRef_refinementRel.getModelElemRefs());
+		ModelElementReference refinedModelElemRef_refinementRel = getModelElementReference(refinedModelElemRef_propTraceRel, refinedModelEndpointRef_refinementRel.getModelElemRefs());
 		ModelElementEndpointReference refinementModelElemEndpointRef = refinedModelElemRef_refinementRel.getModelElemEndpointRefs().get(0); // many to one here has to be mapped through an nary link
 		LinkReference refinementLinkRef = (LinkReference) refinementModelElemEndpointRef.eContainer();
 		Link refinementLinkType = refinementLinkRef.getObject().getMetatype();
@@ -543,7 +552,7 @@ traceLinks:
 				continue;
 			}
 			ModelEndpointReference origModelEndpointRef_traceRel = traceRel.getModelEndpointRefs().get(0);
-			ModelElementReference origModelElemRef_traceRel = MultiModelTypeHierarchy.getReference(origModelElemRef_refinementRel, origModelEndpointRef_traceRel.getModelElemRefs());
+			ModelElementReference origModelElemRef_traceRel = getModelElementReference(origModelElemRef_refinementRel, origModelEndpointRef_traceRel.getModelElemRefs());
 			for (ModelElementEndpointReference traceModelElementEndpoint : origModelElemRef_traceRel.getModelElemEndpointRefs()) {
 				BinaryLinkReference traceLinkRef = (BinaryLinkReference) traceModelElementEndpoint.eContainer();
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
@@ -645,6 +654,7 @@ traceLinks:
 			}
 		}
 		//TODO MMTF: reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
+		//TODO MMTF: do walkthrough: fix getPointer with wrong uris, replace remaining getReference functions
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newPropModel);
