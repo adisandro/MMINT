@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
@@ -119,7 +118,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			ModelElementReference refinementModelElemRef = refinementModelElemEndpointRef.getModelElemRef();
 			if (((ModelEndpointReference) refinementModelElemRef.eContainer()).getTargetUri().equals(origModelUri)) { // orig model element ref in trace rel
 				ModelElementReference origModelElemRef_traceRel = getModelElementReference(refinementModelElemRef.getUri(), origModelEndpointRef_traceRel.getModelElemRefs());
-				if (origModelElemRef_traceRel == null) {
+				if (origModelElemRef_traceRel == null) { // no trace for this model element
 					continue;
 				}
 				origModelElemRefs_traceRel.add(origModelElemRef_traceRel);
@@ -132,10 +131,12 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		// no propagation or rule 4 propagation
 		List<BinaryLinkReference> newPropTraceLinkRefs = new ArrayList<BinaryLinkReference>();
 		if (origModelElemRefs_traceRel.isEmpty()) {
-			for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
-				BinaryLinkReference newPropTraceLinkRef = createDanglingTraceLink(refinedModelElemRef_refinementRel, newPropTraceRel, 0, 1);
-				if (newPropTraceLinkRef != null) {
-					newPropTraceLinkRefs.add(newPropTraceLinkRef);
+			if (refinementLinkRef.getModelElemEndpointRefs().size() == 1) {
+				for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
+					BinaryLinkReference newPropTraceLinkRef = createDanglingTraceLink(refinedModelElemRef_refinementRel, newPropTraceRel, 0, 1);
+					if (newPropTraceLinkRef != null) {
+						newPropTraceLinkRefs.add(newPropTraceLinkRef);
+					}
 				}
 			}
 			return newPropTraceLinkRefs;
@@ -339,7 +340,7 @@ traceLinks:
 							continue;
 						}
 						boolean Mac = traceLinkRef2.getObject().isMay();
-						if (!Mac) {//TODO RESUME FROM HERE
+						if (!Mac) {
 							unifyVarTraceLink(modelRootB, traceLinkRef, traceLinkRef2, indexA, indexB);
 							unifiedLinkRef = traceLinkRef;
 							again = true;
@@ -366,8 +367,8 @@ traceLinks:
 	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
 
 		EMap<String, ExtendibleElement> extendibleTable = MultiModelRegistry.getMultiModel(modelElemRef).getExtendibleTable();
-		String unifiedModelElemUri = unifiedModelElemRef.getUri();
-		String modelElemUri = modelElemRef.getUri();
+		String unifiedModelElemUri = getModelEObjectUri(unifiedModelElemRef.getUri());
+		String modelElemUri = getModelEObjectUri(modelElemRef.getUri());
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
 		String unifiedModelElemUriBase = unifiedModelElemUri.substring(0, unifiedModelElemUri.lastIndexOf('.')+1);
 		int unifiedModelElemUriIndex = Integer.parseInt(unifiedModelElemUri.substring(unifiedModelElemUri.lastIndexOf('.')+1));
@@ -375,7 +376,7 @@ traceLinks:
 		List<ModelElement> otherModelElems = new ArrayList<ModelElement>();
 		// first pass, modify model element uris
 		for (ModelElement otherModelElem : modelEndpointRef.getObject().getTarget().getElements()) {
-			String otherModelElemUri = otherModelElem.getUri();
+			String otherModelElemUri = getModelEObjectUri(otherModelElem.getUri());
 			// other model element to be affected by unification of model elements
 			if (otherModelElemUri.contains(unifiedModelElemUriBase)) {
 				String otherModelElemUriExtra = otherModelElemUri.substring(otherModelElemUri.lastIndexOf(unifiedModelElemUriBase) + unifiedModelElemUriBase.length());
@@ -384,13 +385,13 @@ traceLinks:
 					Integer.parseInt(otherModelElemUriExtra.substring(0, otherModelElemUriExtra.indexOf(MMTF.URI_SEPARATOR)));
 				String newOtherModelElemUri = null;
 				if (otherModelElemUriIndex == unifiedModelElemUriIndex) { // uri to be fully replaced
-					newOtherModelElemUri = otherModelElemUri.replace(unifiedModelElemUri, modelElemUri);
+					newOtherModelElemUri = otherModelElem.getUri().replace(unifiedModelElemUri, modelElemUri);
 				}
 				else if (otherModelElemUriIndex > unifiedModelElemUriIndex) { // uri to be shifted
-					newOtherModelElemUri = otherModelElemUri.replace(unifiedModelElemUriBase + otherModelElemUriIndex, unifiedModelElemUriBase + --otherModelElemUriIndex);
+					newOtherModelElemUri = otherModelElem.getUri().replace(unifiedModelElemUriBase + otherModelElemUriIndex, unifiedModelElemUriBase + --otherModelElemUriIndex);
 				}
 				if (newOtherModelElemUri != null) {
-					extendibleTable.removeKey(otherModelElemUri);
+					extendibleTable.removeKey(otherModelElem.getUri());
 					otherModelElem.setUri(newOtherModelElemUri);
 					otherModelElems.add(otherModelElem);
 				}
@@ -408,8 +409,8 @@ traceLinks:
 		ModelElementReference varModelElemRef = varTraceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		// get var object and other object from same resource
-		EObject varModelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), varModelElemRef.getUri());
-		EObject modelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), modelElemRef.getUri());
+		EObject varModelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(varModelElemRef.getUri()));
+		EObject modelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(modelElemRef.getUri()));
 		// unify contents
 		for (EObject varModelEObjectContent : varModelEObject.eContents()) {
 			EStructuralFeature varModelEObjectContainingFeature = varModelEObjectContent.eContainingFeature();
@@ -522,10 +523,12 @@ traceLinks:
 		ModelEndpointReference propModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(1);
 		// create new propagated model element refs in propagated refinement rel
 		boolean duplicateRel = true;
-		ModelElementReference newPropModelElemRef = MultiModelTypeHierarchy.getReference(
-			MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(propModelElemRef_propTraceRel.getObject()), true)[1],
-			propModelEndpointRef_propRefinementRel.getModelElemRefs()
-		);
+		//TODO WHY THIS INDIRECTION propModelElemRef_propTraceRel.getUri() WASN'T ENOUGH?
+//		ModelElementReference newPropModelElemRef = MultiModelTypeHierarchy.getReference(
+//			MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(propModelElemRef_propTraceRel.getObject()), true)[1],
+//			propModelEndpointRef_propRefinementRel.getModelElemRefs()
+//		);
+		ModelElementReference newPropModelElemRef = getModelElementReference(propModelElemRef_propTraceRel, propModelEndpointRef_propRefinementRel.getModelElemRefs());
 		if (newPropModelElemRef == null) {
 			duplicateRel = false;
 			newPropModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
@@ -570,10 +573,12 @@ traceLinks:
 				BinaryLinkReference traceLinkRef = (BinaryLinkReference) traceModelElementEndpoint.eContainer();
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
 				// create new related model element refs in propagated refinement rel
-				ModelElementReference newRelatedModelElemRef = MultiModelTypeHierarchy.getReference(
-					MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(relatedModelElemRef_traceRel.getObject()), true)[1],
-					relatedModelEndpointRef_propRefinementRel.getModelElemRefs()
-				);
+				//TODO WHY THIS INDIRECTION relatedModelElemRef_traceRel.getUri() WASN'T ENOUGH?
+//				ModelElementReference newRelatedModelElemRef = MultiModelTypeHierarchy.getReference(
+//					MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(relatedModelElemRef_traceRel.getObject()), true)[1],
+//					relatedModelEndpointRef_propRefinementRel.getModelElemRefs()
+//				);
+				ModelElementReference newRelatedModelElemRef = getModelElementReference(relatedModelElemRef_traceRel, relatedModelEndpointRef_propRefinementRel.getModelElemRefs());
 				if (newRelatedModelElemRef == null) {
 					duplicateProp = false;
 					newRelatedModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
@@ -667,7 +672,6 @@ traceLinks:
 			}
 		}
 		//TODO MMTF: reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
-		//TODO MMTF: do walkthrough: fix getPointer with wrong uris, replace remaining getReference functions
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newPropModel);
