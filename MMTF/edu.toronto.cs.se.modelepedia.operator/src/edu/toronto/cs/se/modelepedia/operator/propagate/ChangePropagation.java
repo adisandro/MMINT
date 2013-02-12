@@ -61,15 +61,20 @@ public class ChangePropagation extends OperatorExecutableImpl {
 	private final static String PROPTRACE_RULE4_LINK_NAME = "rule4Trace";
 	private final static String NAME_FEATURE = "name";
 
+	private String getModelEObjectUri(String modelElemUri) {
+
+		return modelElemUri.substring(0, modelElemUri.indexOf(MMTF.ROLE_SEPARATOR));
+	}
+
 	private ModelElementReference getModelElementReference(String modelElemRefUri, EList<ModelElementReference> modelElemRefs) {
 
 		if (modelElemRefUri == null) {
 			return null;
 		}
 
-		modelElemRefUri = modelElemRefUri.substring(0, modelElemRefUri.indexOf(MMTF.ROLE_SEPARATOR));
+		modelElemRefUri = getModelEObjectUri(modelElemRefUri);
 		for (ModelElementReference modelElemRef : modelElemRefs) {
-			if (modelElemRefUri.equals(modelElemRef.getUri().substring(0, modelElemRef.getUri().indexOf(MMTF.ROLE_SEPARATOR)))) {
+			if (modelElemRefUri.equals(getModelEObjectUri(modelElemRef.getUri()))) {
 				return modelElemRef;
 			}
 		}
@@ -156,7 +161,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
 				String propModelEObjectUri =
 					newPropModel.getUri() +
-					relatedModelElemRef_traceRel.getUri().substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
+					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
 				EObject propModelEObject = MultiModelTypeIntrospection.getPointer(propModelEObjectUri);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
@@ -203,7 +208,10 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		if (!traceRel.getModelEndpoints().get(indexB).getTarget().isInc()) {
 			return null;
 		}
-		ModelElement modelElemTypeA = MultiModelConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(indexA), MultiModelTypeIntrospection.getPointer(modelElemRefA.getObject()));
+		ModelElement modelElemTypeA = MultiModelConstraintChecker.getAllowedModelElementType(
+			traceRel.getModelEndpointRefs().get(indexA),
+			MultiModelTypeIntrospection.getPointer(modelElemRefA.getObject())
+		);
 		if (modelElemTypeA == null) {
 			return null;
 		}
@@ -235,7 +243,9 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			);
 			newTraceLinkRef.getObject().setVar(true);
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
-			break;
+			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
+			//TODO MMTF: should I also mark them as M, because I want them to be mutually exclusive?
+			//TODO MMTF: (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
 		}
 
 		return newTraceLinkRef;
@@ -280,7 +290,10 @@ traceLinks:
 			boolean Mb = modelElemB.isMay(), Sb = modelElemB.isSet(), Vb = modelElemB.isVar();
 			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
-			MAVOElement modelEObjectB = (MAVOElement) MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), modelElemB.getUri());
+			MAVOElement modelEObjectB = (MAVOElement) MultiModelTypeIntrospection.getPointer(
+				modelRootB.eResource(),
+				getModelEObjectUri(modelElemB.getUri())
+			);
 
 			// rule 1
 			if (Mb && !Mab) {
@@ -326,7 +339,7 @@ traceLinks:
 							continue;
 						}
 						boolean Mac = traceLinkRef2.getObject().isMay();
-						if (!Mac) {
+						if (!Mac) {//TODO RESUME FROM HERE
 							unifyVarTraceLink(modelRootB, traceLinkRef, traceLinkRef2, indexA, indexB);
 							unifiedLinkRef = traceLinkRef;
 							again = true;

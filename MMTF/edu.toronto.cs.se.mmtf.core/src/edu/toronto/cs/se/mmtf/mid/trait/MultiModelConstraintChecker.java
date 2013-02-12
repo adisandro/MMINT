@@ -313,16 +313,16 @@ public class MultiModelConstraintChecker {
 			}
 		}
 
-		// check dropped element compliance
-		String droppedClassLiteral = MultiModelRegistry.getEObjectClassLiteral(newEObject, true);
-		if (modelElemType.getClassLiteral().equals(droppedClassLiteral)) {
+		// check model element compliance
+		String newEObjectClassLiteral = MultiModelRegistry.getEObjectClassLiteral(newEObject, true);
+		if (modelElemType.getClassLiteral().equals(newEObjectClassLiteral)) {
 			return true;
 		}
 		// look for metamodel supertypes
 		//TODO MMTF: looks like there is no way to drop an EReference instance
-		for (EClass droppedEObject : newEObject.eClass().getEAllSuperTypes()) {
-			droppedClassLiteral = MultiModelRegistry.getEObjectClassLiteral(droppedEObject, false);
-			if (modelElemType.getClassLiteral().equals(droppedClassLiteral)) {
+		for (EClass newEObjectSuper : newEObject.eClass().getEAllSuperTypes()) {
+			newEObjectClassLiteral = MultiModelRegistry.getEObjectClassLiteral(newEObjectSuper, false);
+			if (modelElemType.getClassLiteral().equals(newEObjectClassLiteral)) {
 				return true;
 			}
 		}

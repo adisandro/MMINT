@@ -123,8 +123,6 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		// start from root
 		T rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(element));
 		getRuntimeTypes(element, rootType, elementTypes);
-		//TODO MMTF: compare time to evaluate ocl constraint on refinement rel
-		//TODO MMTF: encode inflo example
 
 		return elementTypes;
 	}
@@ -514,7 +512,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 		try {
 			if (MultiModelConstraintChecker.isInstancesLevel(modelElem)) {
-				//TODO MMTF: refine when introducing additional model element level
+				//TODO MMTF: MODELELEM->refine when introducing additional model element level
 				pointer = getPointer(modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMTF.ROLE_SEPARATOR)));
 			}
 			else {
