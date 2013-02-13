@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
-  <classes name="Inflo User" dependenciesAsDependee="//@dependencies.1 //@dependencies.2" dependenciesAsDepender="//@dependencies.0 //@dependencies.3 //@dependencies.4">
+  <classes name="Inflo User" dependenciesAsDependee="//@dependencies.1" dependenciesAsDepender="//@dependencies.0 //@dependencies.3 //@dependencies.4 //@dependencies.2">
     <ownedAttributes name="name"/>
     <ownedAttributes name="email"/>
     <ownedOperations name="Browsing()" visibility="PUBLIC"/>
@@ -17,7 +17,7 @@
     <ownedOperations name="UseAutomatedReputationSystem()" visibility="PUBLIC"/>
     <ownedOperations may="true" var="true" name="LessExtensiveModeration()" visibility="PUBLIC"/>
   </classes>
-  <classes name="Inflo" dependenciesAsDepender="//@dependencies.1 //@dependencies.2 //@dependencies.5 //@dependencies.6">
+  <classes name="Inflo" dependenciesAsDependee="//@dependencies.2" dependenciesAsDepender="//@dependencies.1 //@dependencies.5 //@dependencies.6">
     <ownedOperations name="TrackAuthorship()" visibility="PUBLIC"/>
     <ownedOperations name="DisplayGraphs()" visibility="PUBLIC"/>
     <ownedOperations name="TrackRevisions()" visibility="PUBLIC"/>
@@ -35,7 +35,7 @@
   <classes name="Reputation Values"/>
   <dependencies set="true" dependee="//@classes.1" depender="//@classes.0"/>
   <dependencies may="true" dependee="//@classes.0" depender="//@classes.3"/>
-  <dependencies dependee="//@classes.0" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.3" depender="//@classes.0"/>
   <dependencies may="true" dependee="//@classes.2" depender="//@classes.0"/>
   <dependencies may="true" dependee="//@classes.4" depender="//@classes.0"/>
   <dependencies may="true" dependee="//@classes.2" depender="//@classes.3"/>
