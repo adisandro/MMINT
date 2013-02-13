@@ -4,10 +4,10 @@
     <intentions xsi:type="istar_mavo:SoftGoal" name="Make Models Trustworthy" linksAsTgt="//@actors.0/@intentions.2/@linksAsSrc.0 //@actors.0/@intentions.3/@linksAsSrc.0"/>
     <intentions xsi:type="istar_mavo:Goal" dependenciesAsDepender="//@dependums.1/@dependerLinks.0" name="Use Inflo" linksAsTgt="//@actors.0/@intentions.4/@linksAsSrc.0 //@actors.0/@intentions.5/@linksAsSrc.0 //@actors.0/@intentions.6/@linksAsSrc.0"/>
     <intentions xsi:type="istar_mavo:SoftGoal" var="true" name="Validate Model" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.1">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" var="true" tgt="//@actors.0/@intentions.0" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.0" type="HELP"/>
     </intentions>
     <intentions xsi:type="istar_mavo:SoftGoal" var="true" name="Get Feedback" linksAsTgt="//@actors.0/@intentions.7/@linksAsSrc.0 //@actors.0/@intentions.6/@linksAsSrc.2">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" var="true" tgt="//@actors.0/@intentions.0" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.0" type="HELP"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" name="Browsing" linksAsTgt="//@actors.0/@intentions.8/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.0/@intentions.1"/>
@@ -30,7 +30,7 @@
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.5"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" may="true" var="true" dependenciesAsDependee="//@dependums.4/@dependeeLinks.1" name="Create Discussions">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" var="true" tgt="//@actors.0/@intentions.6"/>
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" tgt="//@actors.0/@intentions.6"/>
     </intentions>
   </actors>
   <actors name="Inflo Manager Editors">

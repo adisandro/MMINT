@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:relationship="http://se.cs.toronto.edu/mmtf/MID/Relationship">
+  <models uri="/REJ12/Inflo/orig.istar_mavo" name="orig" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.0">
+    <elements uri="/REJ12/Inflo/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" dynamic="true" classLiteral="Actor"/>
+    <elements uri="/REJ12/Inflo/orig.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" dynamic="true" classLiteral="Actor"/>
+    <elements uri="/REJ12/Inflo/orig.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" dynamic="true" classLiteral="Actor"/>
+    <elements uri="/REJ12/Inflo/orig.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" dynamic="true" classLiteral="Actor"/>
+    <elements set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" dynamic="true" classLiteral="Actor"/>
+    <elements set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" dynamic="true" classLiteral="Resource"/>
+    <elements uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" dynamic="true" classLiteral="Resource"/>
+    <elements may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" dynamic="true" classLiteral="Resource"/>
+    <elements uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" dynamic="true" classLiteral="Resource"/>
+    <elements uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" dynamic="true" classLiteral="Resource"/>
+  </models>
+  <models uri="/REJ12/Inflo/related.classdiagram_mavo" name="related" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" dynamic="true" fileExtension="classdiagram_mavo" editors="//@editors.1">
+    <elements uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.0_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Inflo User" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.2_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Inflo Manager/Editors" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.3_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Inflo" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.4_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements set="true" uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.1_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Source" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements set="true" uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.5_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Info" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.7_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Graphing" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements may="true" uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.6_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Authorship" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.9_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Reputation Values" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+    <elements uri="/REJ12/Inflo/related.classdiagram_mavo#//@classes.8_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" name="trace" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel" dynamic="true" origin="CREATED">
+    <modelEndpoints name="orig" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-IStar_MAVO/IStarEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints name="related" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-ClassDiagram_MAVO/ClassDiagramEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <links xsi:type="relationship:BinaryLink" name="trace1" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0 //@models.2/@linkRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.0"/>
+      <modelElemEndpoints name="Class Inflo User" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.0"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" name="trace2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0 //@models.2/@linkRefs.1/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.1"/>
+      <modelElemEndpoints name="Class Inflo Manager/Editors" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.1"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" name="trace3" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0 //@models.2/@linkRefs.2/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.2"/>
+      <modelElemEndpoints name="Class Inflo" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.2"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" name="trace4" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.0 //@models.2/@linkRefs.3/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.3"/>
+      <modelElemEndpoints name="Class Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.3"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" set="true" name="trace5" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0 //@models.2/@linkRefs.4/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Actor Source" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+      <modelElemEndpoints name="Class Source" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.4"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" set="true" name="trace6" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.0 //@models.2/@linkRefs.5/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Resource Info" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.5"/>
+      <modelElemEndpoints name="Class Info" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.5"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" name="trace7" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.0 //@models.2/@linkRefs.6/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.6"/>
+      <modelElemEndpoints name="Class Graphing" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.6"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" name="trace8" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.0 //@models.2/@linkRefs.7/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.7"/>
+      <modelElemEndpoints name="Class Authorship" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.7"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" name="trace9" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.0 //@models.2/@linkRefs.8/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.8"/>
+      <modelElemEndpoints name="Class Reputation Values" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.8"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" name="trace10" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.0 //@models.2/@linkRefs.9/@modelElemEndpointRefs.1">
+      <modelElemEndpoints name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.9"/>
+      <modelElemEndpoints name="Class Moderation" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.9"/>
+    </links>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@elements.0" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.1" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.2" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.3" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.4" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.5" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.6" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.7" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.8" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.9" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@elements.0" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.1" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.2" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.3" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.4" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.5" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.6" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.7" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.8" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.9" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.1" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.2" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.3" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.4" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.5" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.6" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.7" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.8" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.9" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9"/>
+    </linkRefs>
+  </models>
+  <editors uri="/REJ12/Inflo/orig.istar_mavo" name="IStar_MAVO tree for model /REJ12/Inflo/orig.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO" dynamic="true" modelUri="/REJ12/Inflo/orig.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID"/>
+  <editors uri="/REJ12/Inflo/related.classdiagram_mavo" name="ClassDiagram_MAVO tree for model /REJ12/Inflo/related.classdiagram_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram_MAVO" dynamic="true" modelUri="/REJ12/Inflo/related.classdiagram_mavo" id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.presentation.ClassDiagram_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram_mavo.presentation.ClassDiagram_MAVOModelWizardID"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo" value="//@models.0"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo" value="//@models.1"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" value="//@models.0/@elements.0"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.0_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.0"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" value="//@models.0/@elements.1"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.2_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.1"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" value="//@models.0/@elements.2"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.3_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.2"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" value="//@models.0/@elements.3"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.4_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.3"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor" value="//@models.0/@elements.4"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.1_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.4"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" value="//@models.0/@elements.5"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.5_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.5"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" value="//@models.0/@elements.6"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.7_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.6"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" value="//@models.0/@elements.7"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.6_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.7"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" value="//@models.0/@elements.8"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.9_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.8"/>
+  <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.8_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" value="//@models.1/@elements.9"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource" value="//@models.0/@elements.9"/>
+</mid:MultiModel>
