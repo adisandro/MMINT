@@ -522,15 +522,10 @@ traceLinks:
 		ModelElementReference propModelElemRef_propTraceRel = propTraceLinkRef.getTargetModelElemRef();
 		ModelEndpointReference propModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(1);
 		// create new propagated model element refs in propagated refinement rel
-		boolean duplicateRel = true;
-		//TODO WHY THIS INDIRECTION propModelElemRef_propTraceRel.getUri() WASN'T ENOUGH?
-//		ModelElementReference newPropModelElemRef = MultiModelTypeHierarchy.getReference(
-//			MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(propModelElemRef_propTraceRel.getObject()), true)[1],
-//			propModelEndpointRef_propRefinementRel.getModelElemRefs()
-//		);
+		boolean duplicateRefinement1 = true;
 		ModelElementReference newPropModelElemRef = getModelElementReference(propModelElemRef_propTraceRel, propModelEndpointRef_propRefinementRel.getModelElemRefs());
 		if (newPropModelElemRef == null) {
-			duplicateRel = false;
+			duplicateRefinement1 = false;
 			newPropModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 				propModelEndpointRef_propRefinementRel,
 				propModelElemRef_propTraceRel.getObject().getName(),
@@ -561,7 +556,7 @@ traceLinks:
 			false
 		);
 
-		boolean duplicateProp = true;
+		boolean duplicateRefinement2 = true;
 		for (ModelElementEndpointReference refinementModelElemEndpointRef2 : refinementLinkRef.getModelElemEndpointRefs()) {
 			ModelElementReference origModelElemRef_refinementRel = refinementModelElemEndpointRef2.getModelElemRef();
 			if (((ModelEndpointReference) origModelElemRef_refinementRel.eContainer()).getTargetUri().equals(refinedModelUri)) {
@@ -572,15 +567,14 @@ traceLinks:
 			for (ModelElementEndpointReference traceModelElementEndpoint : origModelElemRef_traceRel.getModelElemEndpointRefs()) {
 				BinaryLinkReference traceLinkRef = (BinaryLinkReference) traceModelElementEndpoint.eContainer();
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
+				// skip uncorrect refinements due to multiple traces for the same orig model element
+				if (!propModelElemRef_propTraceRel.getObject().getMetatypeUri().equals(relatedModelElemRef_traceRel.getObject().getMetatypeUri())) {
+					continue;
+				}
 				// create new related model element refs in propagated refinement rel
-				//TODO WHY THIS INDIRECTION relatedModelElemRef_traceRel.getUri() WASN'T ENOUGH?
-//				ModelElementReference newRelatedModelElemRef = MultiModelTypeHierarchy.getReference(
-//					MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(relatedModelElemRef_traceRel.getObject()), true)[1],
-//					relatedModelEndpointRef_propRefinementRel.getModelElemRefs()
-//				);
 				ModelElementReference newRelatedModelElemRef = getModelElementReference(relatedModelElemRef_traceRel, relatedModelEndpointRef_propRefinementRel.getModelElemRefs());
 				if (newRelatedModelElemRef == null) {
-					duplicateProp = false;
+					duplicateRefinement2 = false;
 					newRelatedModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 						relatedModelEndpointRef_propRefinementRel,
 						relatedModelElemRef_traceRel.getObject().getName(),
@@ -597,7 +591,7 @@ traceLinks:
 		}
 
 		// remove duplicate
-		if (duplicateRel && duplicateProp) {
+		if (duplicateRefinement1 && duplicateRefinement2) {
 			MultiModelInstanceFactory.removeLinkAndLinkReference(newPropRefinementLinkRef);
 		}
 	}
