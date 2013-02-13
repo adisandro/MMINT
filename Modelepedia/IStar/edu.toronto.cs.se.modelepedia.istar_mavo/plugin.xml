@@ -128,13 +128,13 @@
          </modelTypeEndpoint>
          <linkType>
             <extendibleType
-                  name="ActorLinkClass"
-                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorLinkClass">
+                  name="ActorClassLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink">
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
                      name="ActorEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorLinkClass-Actor/ActorEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
@@ -145,7 +145,7 @@
             <modelElemTypeEndpoint>
                <extendibleType
                      name="ClassEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorLinkClass-Class/ClassEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="1"
@@ -156,13 +156,13 @@
          </linkType>
          <linkType>
             <extendibleType
-                  name="ResourceLinkClass"
-                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceLinkClass">
+                  name="ResourceClassLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink">
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
                      name="ResourceEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceLinkClass-Resource/ResourceEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
@@ -173,7 +173,7 @@
             <modelElemTypeEndpoint>
                <extendibleType
                      name="ClassEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceLinkClass-Class/ClassEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="1"
@@ -184,13 +184,13 @@
          </linkType>
          <linkType>
             <extendibleType
-                  name="TaskLinkOperation"
-                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskLinkOperation">
+                  name="TaskOperationLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink">
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
                      name="TaskEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskLinkOperation-Task/TaskEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
@@ -201,7 +201,7 @@
             <modelElemTypeEndpoint>
                <extendibleType
                      name="OperationEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskLinkOperation-Operation/OperationEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="1"
@@ -212,13 +212,13 @@
          </linkType>
          <linkType>
             <extendibleType
-                  name="GoalDependumLinkDependency"
-                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumLinkDependency">
+                  name="GoalDependumDependencyLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink">
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
                      name="GoalDependumEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumLinkDependency-GoalDependum/GoalDependumEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink-GoalDependum/GoalDependumEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
@@ -229,7 +229,7 @@
             <modelElemTypeEndpoint>
                <extendibleType
                      name="DependencyEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumLinkDependency-Dependency/DependencyEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink-Dependency/DependencyEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="1"
@@ -240,13 +240,13 @@
          </linkType>
          <linkType>
             <extendibleType
-                  name="ResourceDependumLinkDependency"
-                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumLinkDependency">
+                  name="ResourceDependumDependencyLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink">
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
                      name="ResourceDependumEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumLinkDependency-ResourceDependum/ResourceDependumEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
@@ -257,7 +257,7 @@
             <modelElemTypeEndpoint>
                <extendibleType
                      name="DependencyEndpoint"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumLinkDependency-Dependency/DependencyEndpoint">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="1"
