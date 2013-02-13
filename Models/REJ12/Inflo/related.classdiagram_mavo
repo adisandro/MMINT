@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+  <classes name="Inflo User" dependenciesAsDependee="//@dependencies.1 //@dependencies.2" dependenciesAsDepender="//@dependencies.0 //@dependencies.3 //@dependencies.4">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="email"/>
+    <ownedOperations name="Browsing()" visibility="PUBLIC"/>
+    <ownedOperations name="MakeViews()" visibility="PUBLIC"/>
+    <ownedOperations name="CreateGraph()" visibility="PUBLIC"/>
+    <ownedOperations name="UseDiscussions()" visibility="PUBLIC"/>
+    <ownedOperations may="true" var="true" name="CreateDiscussions()" visibility="PUBLIC"/>
+  </classes>
+  <classes set="true" name="Source" dependenciesAsDependee="//@dependencies.0"/>
+  <classes name="Inflo Manager/Editors" dependenciesAsDependee="//@dependencies.3 //@dependencies.5" dependenciesAsDepender="//@dependencies.7">
+    <ownedAttributes name="name"/>
+    <ownedAttributes name="email"/>
+    <ownedOperations name="ExtensiveModeration()" visibility="PUBLIC"/>
+    <ownedOperations name="UseAutomatedReputationSystem()" visibility="PUBLIC"/>
+    <ownedOperations may="true" var="true" name="LessExtensiveModeration()" visibility="PUBLIC"/>
+  </classes>
+  <classes name="Inflo" dependenciesAsDepender="//@dependencies.1 //@dependencies.2 //@dependencies.5 //@dependencies.6">
+    <ownedOperations name="TrackAuthorship()" visibility="PUBLIC"/>
+    <ownedOperations name="DisplayGraphs()" visibility="PUBLIC"/>
+    <ownedOperations name="TrackRevisions()" visibility="PUBLIC"/>
+    <ownedOperations name="CreateGraphs()" visibility="PUBLIC"/>
+    <ownedOperations may="true" set="true" name="ModerationTasks()" visibility="PUBLIC"/>
+  </classes>
+  <classes name="Automated Reputation System" dependenciesAsDependee="//@dependencies.4 //@dependencies.6 //@dependencies.7">
+    <ownedOperations name="ProvideReputations()" visibility="PUBLIC"/>
+    <ownedOperations may="true" name="Moderation()" visibility="PUBLIC"/>
+  </classes>
+  <classes set="true" name="Info"/>
+  <classes may="true" name="Authorship"/>
+  <classes name="Graphing"/>
+  <classes name="Moderation"/>
+  <classes name="Reputation Values"/>
+  <dependencies set="true" dependee="//@classes.1" depender="//@classes.0"/>
+  <dependencies may="true" dependee="//@classes.0" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.0" depender="//@classes.3"/>
+  <dependencies may="true" dependee="//@classes.2" depender="//@classes.0"/>
+  <dependencies may="true" dependee="//@classes.4" depender="//@classes.0"/>
+  <dependencies may="true" dependee="//@classes.2" depender="//@classes.3"/>
+  <dependencies may="true" dependee="//@classes.4" depender="//@classes.3"/>
+  <dependencies dependee="//@classes.4" depender="//@classes.2"/>
+</classdiagram_mavo:ClassDiagram>
