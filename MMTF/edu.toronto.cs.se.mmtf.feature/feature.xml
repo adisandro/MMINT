@@ -51,7 +51,7 @@
    </requires>
 
    <plugin
-         id="edu.toronto.cs.se.mmtf.core"
+         id="edu.toronto.cs.se.mmtf"
          download-size="0"
          install-size="0"
          version="0.0.0"
