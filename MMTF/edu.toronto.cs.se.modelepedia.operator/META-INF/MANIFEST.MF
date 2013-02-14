@@ -6,7 +6,7 @@ Bundle-Version: 1.0.1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Require-Bundle: edu.toronto.cs.se.mmtf.core,
+Require-Bundle: edu.toronto.cs.se.mmtf,
  org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  org.eclipse.core.resources

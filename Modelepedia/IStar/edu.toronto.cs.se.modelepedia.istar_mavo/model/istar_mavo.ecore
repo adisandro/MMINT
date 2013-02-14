@@ -7,7 +7,7 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="IStar" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="IStar" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="onlyDependums"/>
     </eAnnotations>
@@ -51,14 +51,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//Intention"/>
   <eClassifiers xsi:type="ecore:EClass" name="SoftGoal" eSuperTypes="#//Goal"/>
   <eClassifiers xsi:type="ecore:EClass" name="DependencyEndpoint" abstract="true"
-      eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
+      eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
         upperBound="-1" eType="#//DependerLink" eOpposite="#//DependerLink/depender"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
         upperBound="-1" eType="#//DependeeLink" eOpposite="#//DependeeLink/dependee"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntentionLink" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="IntentionLink" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -105,7 +105,7 @@
     <eLiterals name="SOMEMINUS" value="5"/>
     <eLiterals name="UNKNOWN" value="6"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DependerLink" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DependerLink" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -117,7 +117,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependum" lowerBound="1"
         eType="#//Intention" eOpposite="#//Intention/dependerLinks"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DependeeLink" eSuperTypes="../../edu.toronto.cs.se.mmtf.core/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DependeeLink" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">

@@ -21,7 +21,7 @@ Famelis, Rick Salay, Vivien Suen. All rights reserved.
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="edu.toronto.cs.se.mmtf.core"/>
+      <import plugin="edu.toronto.cs.se.mmtf"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>

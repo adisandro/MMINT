@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
 public class MMTFActivator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "edu.toronto.cs.se.mmtf.core"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "edu.toronto.cs.se.mmtf"; //$NON-NLS-1$
 
 	// The shared instance
 	private static MMTFActivator plugin;

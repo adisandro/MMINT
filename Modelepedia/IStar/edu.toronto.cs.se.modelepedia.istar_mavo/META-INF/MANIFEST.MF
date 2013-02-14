@@ -12,5 +12,5 @@ Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo,
  edu.toronto.cs.se.modelepedia.istar_mavo.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- edu.toronto.cs.se.mmtf.core;visibility:=reexport
+ edu.toronto.cs.se.mmtf;visibility:=reexport
 Bundle-ActivationPolicy: lazy

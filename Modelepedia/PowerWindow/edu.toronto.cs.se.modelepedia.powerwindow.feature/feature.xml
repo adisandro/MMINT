@@ -45,7 +45,7 @@ Famelis, Rick Salay, Vivien Suen. All rights reserved.
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.gmf.tooling.runtime"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="edu.toronto.cs.se.mmtf.core"/>
+      <import plugin="edu.toronto.cs.se.mmtf"/>
       <import plugin="edu.toronto.cs.se.modelepedia.petrinet"/>
    </requires>
 

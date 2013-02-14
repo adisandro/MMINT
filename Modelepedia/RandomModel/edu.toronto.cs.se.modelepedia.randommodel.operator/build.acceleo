@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../edu.toronto.cs.se.mmtf.core;${target.folder}/../../edu.toronto.cs.se.modelepedia.randommodel;${target.folder}/../../edu.toronto.cs.se.modelepedia.operator;"
+            dependencies="${target.folder}/../../edu.toronto.cs.se.mmtf;${target.folder}/../../edu.toronto.cs.se.modelepedia.randommodel;${target.folder}/../../edu.toronto.cs.se.modelepedia.operator;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

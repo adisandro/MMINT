@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.profiler,
  org.eclipse.acceleo.engine,
  com.google.guava,
- edu.toronto.cs.se.mmtf.core,
+ edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.modelepedia.istar_mavo,
  org.eclipse.core.resources,
  edu.toronto.cs.se.modelepedia.operator

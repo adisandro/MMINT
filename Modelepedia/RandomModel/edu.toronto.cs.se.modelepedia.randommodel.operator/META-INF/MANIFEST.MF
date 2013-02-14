@@ -6,7 +6,7 @@ Bundle-Version: 1.0.1
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmtf.core,
+ edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.modelepedia.randommodel,
  org.eclipse.core.resources,
  org.eclipse.ui,
