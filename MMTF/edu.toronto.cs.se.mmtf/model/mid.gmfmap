@@ -15,16 +15,13 @@
           href="mid.ecore#//Model"/>
       <domainSpecialization
           body="not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::CREATED"/>
-      <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping">
+      <labelMappings>
         <diagramLabel
             href="mid.gmfgraph#ModelLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getElementLabel((ExtendibleElement) self);"
-            language="java"/>
-        <editExpression
-            body="return MultiModelRegistry.editElementLabel((ExtendibleElement) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings>
+        <diagramLabel
+            href="mid.gmfgraph#MAVOModelLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -42,16 +39,13 @@
           href="mid.ecore#//Model"/>
       <domainSpecialization
           body="not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::IMPORTED"/>
-      <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping">
+      <labelMappings>
         <diagramLabel
             href="mid.gmfgraph#ModelLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getElementLabel((ExtendibleElement) self);"
-            language="java"/>
-        <editExpression
-            body="return MultiModelRegistry.editElementLabel((ExtendibleElement) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings>
+        <diagramLabel
+            href="mid.gmfgraph#MAVOModelLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -68,16 +62,13 @@
           href="mid.ecore#//relationship/ModelRel"/>
       <domainSpecialization
           body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::CREATED"/>
-      <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping">
+      <labelMappings>
         <diagramLabel
             href="mid.gmfgraph#ModelRelLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getElementLabel((ExtendibleElement) self);"
-            language="java"/>
-        <editExpression
-            body="return MultiModelRegistry.editElementLabel((ExtendibleElement) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings>
+        <diagramLabel
+            href="mid.gmfgraph#MAVOModelRelLabel"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -96,16 +87,13 @@
           href="mid.ecore#//relationship/ModelRel"/>
       <domainSpecialization
           body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::IMPORTED"/>
-      <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping">
+      <labelMappings>
         <diagramLabel
             href="mid.gmfgraph#ModelRelLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getElementLabel((ExtendibleElement) self);"
-            language="java"/>
-        <editExpression
-            body="return MultiModelRegistry.editElementLabel((ExtendibleElement) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings>
+        <diagramLabel
+            href="mid.gmfgraph#MAVOModelRelLabel"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -147,16 +135,13 @@
     <domainSpecialization
         body="return !(domainElement.eContainer() instanceof BinaryModelRel);"
         language="java"/>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
       <diagramLabel
           href="mid.gmfgraph#ModelEndpointLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointLabel((ExtendibleElementEndpoint) self);"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementLabel((ExtendibleElement) self);"
-          language="java"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="mid.gmfgraph#MAVOModelEndpointLabel"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/ModelRel/modelEndpoints"/>
@@ -178,38 +163,21 @@
   <links>
     <domainMetaElement
         href="mid.ecore#//relationship/BinaryModelRel"/>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
       <diagramLabel
           href="mid.gmfgraph#BinaryModelRelLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getElementLabel((ExtendibleElement) self);"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementLabel((ExtendibleElement) self);"
-          language="java"/>
     </labelMappings>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
+      <diagramLabel
+          href="mid.gmfgraph#MAVOBinaryModelRelLabel"/>
+    </labelMappings>
+    <labelMappings>
       <diagramLabel
           href="mid.gmfgraph#BinaryModelRelSourceModelEndpointLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointLabel(((ModelRel) self).getModelEndpoints().get(0));"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementLabel(((ModelRel) self).getModelEndpoints().get(0));"
-          language="java"/>
     </labelMappings>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
       <diagramLabel
           href="mid.gmfgraph#BinaryModelRelTargetModelEndpointLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointLabel(((ModelRel) self).getModelEndpoints().get(1));"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementLabel(((ModelRel) self).getModelEndpoints().get(1));"
-          language="java"/>
     </labelMappings>
     <relatedDiagrams
         href="relationship.gmfmap#//@diagram"/>

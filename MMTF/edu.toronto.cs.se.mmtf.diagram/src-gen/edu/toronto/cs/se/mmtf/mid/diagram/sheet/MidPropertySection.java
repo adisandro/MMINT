@@ -91,7 +91,7 @@ public class MidPropertySection extends AdvancedPropertySection implements
 		}
 		return selected;
 	}
-	
+
 	/**
 	 * Modify/unwrap selection.
 	 * @generated NOT
@@ -102,12 +102,18 @@ public class MidPropertySection extends AdvancedPropertySection implements
 			Object model = ((EditPart) selected).getModel();
 			if (model instanceof View) {
 				Object element = ((View) model).getElement();
-				if (element instanceof BinaryModelRel && selected instanceof GraphicalEditPart) {
-					IFigure figure = ((GraphicalEditPart)selected).getFigure();
-					if (figure == ((BinaryModelRelFigure)figure.getParent()).getFigureBinaryModelRelSourceModelEndpointLabelFigure()) {
-						element = ((BinaryModelRel)element).getModelEndpoints().get(0);
-					} else if (figure == ((BinaryModelRelFigure)figure.getParent()).getFigureBinaryModelRelTargetModelEndpointLabelFigure()) {
-						element = ((BinaryModelRel)element).getModelEndpoints().get(1);
+				if (element instanceof BinaryModelRel
+						&& selected instanceof GraphicalEditPart) {
+					IFigure figure = ((GraphicalEditPart) selected).getFigure();
+					if (figure == ((BinaryModelRelFigure) figure.getParent())
+							.getFigureBinaryModelRelSourceModelEndpointLabelFigure()) {
+						element = ((BinaryModelRel) element)
+								.getModelEndpoints().get(0);
+					} else if (figure == ((BinaryModelRelFigure) figure
+							.getParent())
+							.getFigureBinaryModelRelTargetModelEndpointLabelFigure()) {
+						element = ((BinaryModelRel) element)
+								.getModelEndpoints().get(1);
 					}
 				}
 				return element;
@@ -125,7 +131,7 @@ public class MidPropertySection extends AdvancedPropertySection implements
 		}
 		return selected;
 	}
-	
+
 	/**
 	 * @generated
 	 */

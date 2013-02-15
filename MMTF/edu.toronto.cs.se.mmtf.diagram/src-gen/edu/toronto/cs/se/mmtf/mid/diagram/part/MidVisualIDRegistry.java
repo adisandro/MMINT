@@ -34,6 +34,12 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel10EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel11EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel12EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel13EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel14EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel15EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel3EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel4EditPart;
@@ -231,9 +237,15 @@ public class MidVisualIDRegistry {
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel10EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Model2EditPart.VISUAL_ID:
 			if (WrappingLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (WrappingLabel11EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -241,9 +253,15 @@ public class MidVisualIDRegistry {
 			if (WrappingLabel3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel12EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ModelRel2EditPart.VISUAL_ID:
 			if (WrappingLabel4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (WrappingLabel13EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -256,6 +274,9 @@ public class MidVisualIDRegistry {
 			if (WrappingLabel6EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel14EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case BinaryModelRelEditPart.VISUAL_ID:
 			if (WrappingLabel7EditPart.VISUAL_ID == nodeVisualID) {
@@ -265,6 +286,9 @@ public class MidVisualIDRegistry {
 				return true;
 			}
 			if (WrappingLabel9EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (WrappingLabel15EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

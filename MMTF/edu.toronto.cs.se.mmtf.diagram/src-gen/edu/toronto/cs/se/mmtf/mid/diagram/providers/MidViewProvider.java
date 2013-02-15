@@ -65,6 +65,12 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Parameter2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel10EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel11EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel12EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel13EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel14EditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel15EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel3EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel4EditPart;
@@ -331,6 +337,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5011 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		Node label5016 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -373,6 +381,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5012 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
+		Node label5017 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -415,6 +425,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5013 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
+		Node label5018 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -457,6 +469,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5014 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
+		Node label5019 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -595,6 +609,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6011 = (Location) label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(40);
+		Node label6017 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
+		label6017.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6017 = (Location) label6017.getLayoutConstraint();
+		location6017.setX(0);
+		location6017.setY(60);
 		return edge;
 	}
 
@@ -683,6 +704,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6014 = (Location) label6014.getLayoutConstraint();
 		location6014.setX(0);
 		location6014.setY(80);
+		Node label6018 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
+		label6018.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6018 = (Location) label6018.getLayoutConstraint();
+		location6018.setX(0);
+		location6018.setY(100);
 		return edge;
 	}
 

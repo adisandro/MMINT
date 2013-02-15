@@ -275,7 +275,7 @@ Contributors:
             <method name="getType()" value="4013,4014,4015,4016,4017"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5011,5012,5013,5014,5015"/>
+            <method name="getType()" value="5011,5016,5012,5017,5013,5018,5014,5019,5015"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>

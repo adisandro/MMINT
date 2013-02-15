@@ -16,13 +16,18 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="243" green="169" blue="25"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="248" green="249" blue="212"/>
+        <minimumSize dy="50"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="ModelLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOModelLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="ModelLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="ModelRelFigure">
@@ -30,13 +35,18 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="226" green="226" blue="231"/>
+        <minimumSize dy="50"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="ModelRelLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOModelRelLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="ModelRelLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="OperatorFigure">
@@ -47,7 +57,7 @@
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="10" left="10" bottom="10" right="10"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="OperatorLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="OperatorLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
@@ -61,32 +71,36 @@
     <descriptors name="ModelEndpointFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ModelEndpointFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.0">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
+        <children xsi:type="gmfgraph:Label" name="MAVOModelEndpointLabelFigure" text=""/>
         <children xsi:type="gmfgraph:Label" name="ModelEndpointLabelFigure" text=""/>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="BinaryModelRelFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BinaryModelRelFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.1">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryModelRelLabelFigure" text="&lt;...>"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryModelRelSourceModelEndpointLabelFigure" text="&lt;...>"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryModelRelTargetModelEndpointLabelFigure" text="&lt;...>"/>
+        <children xsi:type="gmfgraph:Label" name="MAVOBinaryModelRelLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryModelRelLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryModelRelSourceModelEndpointLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryModelRelTargetModelEndpointLabelFigure" text=""/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
       <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.2"/>
+      <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.3"/>
+      <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="OperatorInputsFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorInputsFigure" targetDecoration="//@figures.0/@figures.2">
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-        <children xsi:type="gmfgraph:Label" name="OperatorInputsLabelFigure" text="&lt;...>"/>
+        <children xsi:type="gmfgraph:Label" name="OperatorInputsLabelFigure" text=""/>
       </actualFigure>
       <accessors figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="OperatorOutputsFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorOutputsFigure" targetDecoration="//@figures.0/@figures.3">
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-        <children xsi:type="gmfgraph:Label" name="OperatorOutputsLabelFigure" text="&lt;...>"/>
+        <children xsi:type="gmfgraph:Label" name="OperatorOutputsLabelFigure" text=""/>
       </actualFigure>
       <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
@@ -99,13 +113,13 @@
   <connections name="BinaryModelRel" figure="BinaryModelRelFigure"/>
   <connections name="OperatorInputs" figure="OperatorInputsFigure"/>
   <connections name="OperatorOutputs" figure="OperatorOutputsFigure"/>
-  <labels name="ModelLabel" figure="ModelFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels name="ModelRelLabel" figure="ModelRelFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="ModelLabel" figure="ModelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="ModelRelLabel" figure="ModelRelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels name="OperatorLabel" figure="OperatorFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels name="BinaryModelRelLabel" figure="BinaryModelRelFigure" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+  <labels name="BinaryModelRelLabel" figure="BinaryModelRelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
   <labels name="OperatorInputsLabel" figure="OperatorInputsFigure" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
   <labels name="OperatorOutputsLabel" figure="OperatorOutputsFigure" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
-  <labels name="ModelEndpointLabel" figure="ModelEndpointFigure" accessor="//@figures.0/@descriptors.4/@accessors.0">
+  <labels name="ModelEndpointLabel" figure="ModelEndpointFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
   <labels name="BinaryModelRelSourceModelEndpointLabel" figure="BinaryModelRelFigure" accessor="//@figures.0/@descriptors.5/@accessors.1">
@@ -114,4 +128,10 @@
   <labels name="BinaryModelRelTargetModelEndpointLabel" figure="BinaryModelRelFigure" accessor="//@figures.0/@descriptors.5/@accessors.2">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
+  <labels name="MAVOModelLabel" figure="ModelFigure" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <labels name="MAVOModelRelLabel" figure="ModelRelFigure" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <labels name="MAVOModelEndpointLabel" figure="ModelEndpointFigure" accessor="//@figures.0/@descriptors.4/@accessors.1">
+    <facets xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels name="MAVOBinaryModelRelLabel" figure="BinaryModelRelFigure" accessor="//@figures.0/@descriptors.5/@accessors.3"/>
 </gmfgraph:Canvas>

@@ -22,6 +22,7 @@ import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
@@ -139,6 +140,11 @@ public class Model2EditPart extends ShapeNodeEditPart {
 					.getFigureModelLabelFigure());
 			return true;
 		}
+		if (childEditPart instanceof WrappingLabel11EditPart) {
+			((WrappingLabel11EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureMAVOModelLabelFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -147,6 +153,9 @@ public class Model2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel2EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel11EditPart) {
 			return true;
 		}
 		return false;
@@ -405,6 +414,11 @@ public class Model2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOModelLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public ModelFigure() {
 
 			FlowLayout layoutThis = new FlowLayout();
@@ -421,6 +435,8 @@ public class Model2EditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0),
+					getMapMode().DPtoLP(50)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
@@ -432,9 +448,17 @@ public class Model2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+			fFigureMAVOModelLabelFigure = new WrappingLabel();
+
+			fFigureMAVOModelLabelFigure.setText("");
+			fFigureMAVOModelLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
+
+			this.add(fFigureMAVOModelLabelFigure);
+
 			fFigureModelLabelFigure = new WrappingLabel();
 
-			fFigureModelLabelFigure.setText("<...>");
+			fFigureModelLabelFigure.setText("");
 			fFigureModelLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureModelLabelFigure);
@@ -446,6 +470,13 @@ public class Model2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureModelLabelFigure() {
 			return fFigureModelLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOModelLabelFigure() {
+			return fFigureMAVOModelLabelFigure;
 		}
 
 	}

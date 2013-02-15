@@ -434,7 +434,7 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 
 			fFigureOperatorLabelFigure = new WrappingLabel();
 
-			fFigureOperatorLabelFigure.setText("<...>");
+			fFigureOperatorLabelFigure.setText("");
 			fFigureOperatorLabelFigure
 					.setForegroundColor(ColorConstants.darkGray);
 

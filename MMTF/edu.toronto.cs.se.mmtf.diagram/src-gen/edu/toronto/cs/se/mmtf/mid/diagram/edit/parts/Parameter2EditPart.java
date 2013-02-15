@@ -144,7 +144,7 @@ public class Parameter2EditPart extends ConnectionNodeEditPart implements
 
 			fFigureOperatorOutputsLabelFigure = new WrappingLabel();
 
-			fFigureOperatorOutputsLabelFigure.setText("<...>");
+			fFigureOperatorOutputsLabelFigure.setText("");
 
 			this.add(fFigureOperatorOutputsLabelFigure);
 

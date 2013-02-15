@@ -39,6 +39,7 @@ public class MAVOUtils {
 
 	public static void setMAVOElementLabel(MAVOElement element, String newLabel) {
 
+		//TODO MMTF: do it properly
 		if (newLabel.contains("m") || newLabel.contains("M")) {
 			element.setMay(true);
 		}

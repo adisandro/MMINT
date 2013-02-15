@@ -69,12 +69,18 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 		}
 		if (childEditPart instanceof WrappingLabel8EditPart) {
 			((WrappingLabel8EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureBinaryModelRelSourceModelEndpointLabelFigure());
+					.getFigureMAVOBinaryModelRelLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel9EditPart) {
 			((WrappingLabel9EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureBinaryModelRelTargetModelEndpointLabelFigure());
+					.getFigureBinaryModelRelSourceModelEndpointLabelFigure());
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel15EditPart) {
+			((WrappingLabel15EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureBinaryModelRelTargetModelEndpointLabelFigure());
 			return true;
 		}
 		return false;
@@ -101,6 +107,9 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel9EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel15EditPart) {
 			return true;
 		}
 		return false;
@@ -158,6 +167,11 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOBinaryModelRelLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public BinaryModelRelFigure() {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
@@ -171,23 +185,27 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 		 */
 		private void createContents() {
 
+			fFigureMAVOBinaryModelRelLabelFigure = new WrappingLabel();
+
+			fFigureMAVOBinaryModelRelLabelFigure.setText("");
+
+			this.add(fFigureMAVOBinaryModelRelLabelFigure);
+
 			fFigureBinaryModelRelLabelFigure = new WrappingLabel();
 
-			fFigureBinaryModelRelLabelFigure.setText("<...>");
+			fFigureBinaryModelRelLabelFigure.setText("");
 
 			this.add(fFigureBinaryModelRelLabelFigure);
 
 			fFigureBinaryModelRelSourceModelEndpointLabelFigure = new WrappingLabel();
 
-			fFigureBinaryModelRelSourceModelEndpointLabelFigure
-					.setText("<...>");
+			fFigureBinaryModelRelSourceModelEndpointLabelFigure.setText("");
 
 			this.add(fFigureBinaryModelRelSourceModelEndpointLabelFigure);
 
 			fFigureBinaryModelRelTargetModelEndpointLabelFigure = new WrappingLabel();
 
-			fFigureBinaryModelRelTargetModelEndpointLabelFigure
-					.setText("<...>");
+			fFigureBinaryModelRelTargetModelEndpointLabelFigure.setText("");
 
 			this.add(fFigureBinaryModelRelTargetModelEndpointLabelFigure);
 
@@ -221,6 +239,13 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 		 */
 		public WrappingLabel getFigureBinaryModelRelTargetModelEndpointLabelFigure() {
 			return fFigureBinaryModelRelTargetModelEndpointLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOBinaryModelRelLabelFigure() {
+			return fFigureMAVOBinaryModelRelLabelFigure;
 		}
 
 	}

@@ -42,11 +42,17 @@ public class MidEditPartFactory implements EditPartFactory {
 			case WrappingLabelEditPart.VISUAL_ID:
 				return new WrappingLabelEditPart(view);
 
+			case WrappingLabel10EditPart.VISUAL_ID:
+				return new WrappingLabel10EditPart(view);
+
 			case Model2EditPart.VISUAL_ID:
 				return new Model2EditPart(view);
 
 			case WrappingLabel2EditPart.VISUAL_ID:
 				return new WrappingLabel2EditPart(view);
+
+			case WrappingLabel11EditPart.VISUAL_ID:
+				return new WrappingLabel11EditPart(view);
 
 			case ModelRelEditPart.VISUAL_ID:
 				return new ModelRelEditPart(view);
@@ -54,11 +60,17 @@ public class MidEditPartFactory implements EditPartFactory {
 			case WrappingLabel3EditPart.VISUAL_ID:
 				return new WrappingLabel3EditPart(view);
 
+			case WrappingLabel12EditPart.VISUAL_ID:
+				return new WrappingLabel12EditPart(view);
+
 			case ModelRel2EditPart.VISUAL_ID:
 				return new ModelRel2EditPart(view);
 
 			case WrappingLabel4EditPart.VISUAL_ID:
 				return new WrappingLabel4EditPart(view);
+
+			case WrappingLabel13EditPart.VISUAL_ID:
+				return new WrappingLabel13EditPart(view);
 
 			case OperatorEditPart.VISUAL_ID:
 				return new OperatorEditPart(view);
@@ -75,6 +87,9 @@ public class MidEditPartFactory implements EditPartFactory {
 			case WrappingLabel6EditPart.VISUAL_ID:
 				return new WrappingLabel6EditPart(view);
 
+			case WrappingLabel14EditPart.VISUAL_ID:
+				return new WrappingLabel14EditPart(view);
+
 			case BinaryModelRelEditPart.VISUAL_ID:
 				return new BinaryModelRelEditPart(view);
 
@@ -86,6 +101,9 @@ public class MidEditPartFactory implements EditPartFactory {
 
 			case WrappingLabel9EditPart.VISUAL_ID:
 				return new WrappingLabel9EditPart(view);
+
+			case WrappingLabel15EditPart.VISUAL_ID:
+				return new WrappingLabel15EditPart(view);
 
 			case ParameterEditPart.VISUAL_ID:
 				return new ParameterEditPart(view);

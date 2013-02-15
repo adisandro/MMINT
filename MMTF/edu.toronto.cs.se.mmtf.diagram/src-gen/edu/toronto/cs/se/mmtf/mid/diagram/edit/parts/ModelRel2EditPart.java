@@ -137,6 +137,12 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 					.getFigureModelRelLabelFigure());
 			return true;
 		}
+		if (childEditPart instanceof WrappingLabel13EditPart) {
+			((WrappingLabel13EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMAVOModelRelLabelFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -145,6 +151,9 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel4EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel13EditPart) {
 			return true;
 		}
 		return false;
@@ -425,6 +434,11 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOModelRelLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public ModelRelFigure() {
 
 			FlowLayout layoutThis = new FlowLayout();
@@ -443,6 +457,8 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0),
+					getMapMode().DPtoLP(50)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
@@ -454,9 +470,17 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+			fFigureMAVOModelRelLabelFigure = new WrappingLabel();
+
+			fFigureMAVOModelRelLabelFigure.setText("");
+			fFigureMAVOModelRelLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
+
+			this.add(fFigureMAVOModelRelLabelFigure);
+
 			fFigureModelRelLabelFigure = new WrappingLabel();
 
-			fFigureModelRelLabelFigure.setText("<...>");
+			fFigureModelRelLabelFigure.setText("");
 			fFigureModelRelLabelFigure
 					.setForegroundColor(ColorConstants.darkGray);
 
@@ -469,6 +493,13 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureModelRelLabelFigure() {
 			return fFigureModelRelLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOModelRelLabelFigure() {
+			return fFigureMAVOModelRelLabelFigure;
 		}
 
 	}
