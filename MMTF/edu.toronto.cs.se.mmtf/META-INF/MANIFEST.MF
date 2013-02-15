@@ -35,6 +35,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecoretools.diagram,
  org.eclipse.emf.edit,
  org.eclipse.ocl.examples.pivot,
- org.eclipse.emf.edit.ui
+ org.eclipse.emf.edit.ui,
+ org.eclipse.gmf.runtime.common.ui.services,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.workspace,
+ org.eclipse.gmf.runtime.emf.commands.core
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmtf.MMTFActivator

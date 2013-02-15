@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReferenc
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mavo.trait.MAVOUtils;
 
 public class MultiModelRegistry {
 
@@ -44,7 +43,7 @@ public class MultiModelRegistry {
 
 	public static String getElementLabel(ExtendibleElement element) {
 
-		String label = MAVOUtils.getMAVOLabel(element, element.getName());
+		String label = (element.getName() == null) ? "" : element.getName();
 		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
 			ExtendibleElement type = element.getMetatype();
 			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();

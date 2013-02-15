@@ -160,15 +160,15 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				BinaryLinkReference traceLinkRef = (BinaryLinkReference) traceModelElemEndpointRef.eContainer();
 				BinaryLink traceLink = traceLinkRef.getObject();
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
-				String propModelEObjectUri =
+				String propModelObjUri =
 					newPropModel.getUri() +
 					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
-				EObject propModelEObject = MultiModelTypeIntrospection.getPointer(propModelEObjectUri);
+				EObject propModelObj = MultiModelTypeIntrospection.getPointer(propModelObjUri);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 					propModelEndpointRef_propTraceRel,
 					relatedModelElemRef_traceRel.getObject().getName(),
-					propModelEObject
+					propModelObj
 				);
 				// create new propagated trace links
 				for (ModelElementReference newRefinedModelElemRef_propTraceRel : newRefinedModelElemRefs_propTraceRel) {
@@ -291,7 +291,7 @@ traceLinks:
 			boolean Mb = modelElemB.isMay(), Sb = modelElemB.isSet(), Vb = modelElemB.isVar();
 			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
-			MAVOElement modelEObjectB = (MAVOElement) MultiModelTypeIntrospection.getPointer(
+			MAVOElement modelObjB = (MAVOElement) MultiModelTypeIntrospection.getPointer(
 				modelRootB.eResource(),
 				getModelEObjectUri(modelElemB.getUri())
 			);
@@ -300,7 +300,7 @@ traceLinks:
 			if (Mb && !Mab) {
 				Mb = false;
 				modelElemB.setMay(Mb);
-				modelEObjectB.setMay(Mb);
+				modelObjB.setMay(Mb);
 				again = true;
 			}
 			// rule 2
@@ -329,7 +329,7 @@ traceLinks:
 					if (Sb && !Sa && !Mab) {
 						Sb = false;
 						modelElemB.setSet(Sb);
-						modelEObjectB.setSet(Sb);
+						modelObjB.setSet(Sb);
 						again = true;
 					}
 				}
@@ -409,19 +409,19 @@ traceLinks:
 		ModelElementReference varModelElemRef = varTraceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		// get var object and other object from same resource
-		EObject varModelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(varModelElemRef.getUri()));
-		EObject modelEObject = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(modelElemRef.getUri()));
+		EObject varModelObj = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(varModelElemRef.getUri()));
+		EObject modelObj = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(modelElemRef.getUri()));
 		// unify contents
-		for (EObject varModelEObjectContent : varModelEObject.eContents()) {
-			EStructuralFeature varModelEObjectContainingFeature = varModelEObjectContent.eContainingFeature();
-			Object value = modelEObject.eGet(varModelEObjectContainingFeature);
+		for (EObject varModelObjContent : varModelObj.eContents()) {
+			EStructuralFeature varModelObjContainingFeature = varModelObjContent.eContainingFeature();
+			Object value = modelObj.eGet(varModelObjContainingFeature);
 			if (value instanceof EList) {
-				((EList<EObject>) value).add(varModelEObjectContent);
+				((EList<EObject>) value).add(varModelObjContent);
 			}
 		}
 
 		// remove var object
-		 EcoreUtil.delete(varModelEObject);
+		 EcoreUtil.delete(varModelObj);
 		//TODO MMTF: should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
 		// remove unified links and model elements
 		MultiModelInstanceFactory.removeModelElementAndModelElementReference(varModelElemRef);

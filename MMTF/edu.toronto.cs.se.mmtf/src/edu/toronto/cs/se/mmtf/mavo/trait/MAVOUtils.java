@@ -21,30 +21,42 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
 
-	public static String getMAVOLabel(MAVOElement element, String text) {
+	public static String getMAVOElementLabel(MAVOElement element, boolean withParenthesis) {
 
-		String label = (text == null) ? "" : text;
+		String label = "";
 		boolean mavo = element.isMay() | element.isSet() | element.isVar();
 		if (mavo) {
 			label =
-				"(" +
-				((element.isMay()) ? "M" : "") +
-				((element.isSet()) ? "S" : "") +
-				((element.isVar()) ? "V" : "") +
-				") " +
-				label;
+				(withParenthesis ? "(" : "") +
+				(element.isMay() ? "M" : "") +
+				(element.isSet() ? "S" : "") +
+				(element.isVar() ? "V" : "") +
+				(withParenthesis ? ")" : "");
 		}
 
 		return label;
 	}
 
-	public static void annotateMAVOModel(EObject rootEObject, Model model) {
+	public static void setMAVOElementLabel(MAVOElement element, String newLabel) {
 
-		if (!(rootEObject instanceof MAVOModel)) {
+		if (newLabel.contains("m") || newLabel.contains("M")) {
+			element.setMay(true);
+		}
+		if (newLabel.contains("s") || newLabel.contains("S")) {
+			element.setSet(true);
+		}
+		if (newLabel.contains("v") || newLabel.contains("V")) {
+			element.setVar(true);
+		}
+	}
+
+	public static void annotateMAVOModel(EObject rootModelObj, Model model) {
+
+		if (!(rootModelObj instanceof MAVOModel)) {
 			return;
 		}
 
-		model.setInc(((MAVOModel) rootEObject).isInc());
+		model.setInc(((MAVOModel) rootModelObj).isInc());
 	}
 
 	public static void annotateMAVOModelElement(EObject modelObj, ModelElement modelElem) {
