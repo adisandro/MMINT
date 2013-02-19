@@ -137,6 +137,12 @@ public class ModelElementReference2EditPart extends ShapeNodeEditPart {
 					.getFigureModelElementReferenceLabelFigure());
 			return true;
 		}
+		if (childEditPart instanceof WrappingLabel21EditPart) {
+			((WrappingLabel21EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMAVOModelElementReferenceLabelFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -145,6 +151,9 @@ public class ModelElementReference2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel6EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel21EditPart) {
 			return true;
 		}
 		return false;
@@ -412,6 +421,11 @@ public class ModelElementReference2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOModelElementReferenceLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public ModelElementReferenceFigure() {
 
 			FlowLayout layoutThis = new FlowLayout();
@@ -438,9 +452,17 @@ public class ModelElementReference2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+			fFigureMAVOModelElementReferenceLabelFigure = new WrappingLabel();
+
+			fFigureMAVOModelElementReferenceLabelFigure.setText("");
+			fFigureMAVOModelElementReferenceLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
+
+			this.add(fFigureMAVOModelElementReferenceLabelFigure);
+
 			fFigureModelElementReferenceLabelFigure = new WrappingLabel();
 
-			fFigureModelElementReferenceLabelFigure.setText("<...>");
+			fFigureModelElementReferenceLabelFigure.setText("");
 			fFigureModelElementReferenceLabelFigure
 					.setForegroundColor(ColorConstants.darkGray);
 
@@ -453,6 +475,13 @@ public class ModelElementReference2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureModelElementReferenceLabelFigure() {
 			return fFigureModelElementReferenceLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOModelElementReferenceLabelFigure() {
+			return fFigureMAVOModelElementReferenceLabelFigure;
 		}
 
 	}

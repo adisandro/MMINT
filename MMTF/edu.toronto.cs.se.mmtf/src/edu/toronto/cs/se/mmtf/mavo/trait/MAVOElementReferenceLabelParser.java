@@ -9,42 +9,41 @@
  * Contributors:
  *    Alessio Di Sandro, Vivien Suen - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.diagram.trait;
+package edu.toronto.cs.se.mmtf.mavo.trait;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
+import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 
-import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+public class MAVOElementReferenceLabelParser extends MAVOElementLabelParser {
 
-public class BinaryModelRelTargetModelEndpointLabelParser extends ExtendibleElementEndpointLabelParser {
-
-	protected IAdaptable getTargetModelEndpointAdaptable(IAdaptable element) {
+	protected IAdaptable getMAVOElementAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ModelEndpoint modelEndpoint = ((BinaryModelRel) modelObj).getModelEndpoints().get(0);
+		MAVOElement mavoElement = ((ExtendibleElementReference) modelObj).getObject();
 
-		return new ParserHintAdapter(modelEndpoint, "");
+		return new ParserHintAdapter(mavoElement, "");
 	}
 
 	@Override
 	public String getEditString(IAdaptable element, int flags) {
 
-		return super.getEditString(getTargetModelEndpointAdaptable(element), flags);
+		return super.getEditString(getMAVOElementAdaptable(element), flags);
 	}
 
 	@Override
 	public ICommand getParseCommand(IAdaptable element, final String newLabel, int flags) {
 
-		return super.getParseCommand(getTargetModelEndpointAdaptable(element), newLabel, flags);
+		return super.getParseCommand(getMAVOElementAdaptable(element), newLabel, flags);
 	}
 
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		return super.getPrintString(getTargetModelEndpointAdaptable(element), flags);
+		return super.getPrintString(getMAVOElementAdaptable(element), flags);
 	}
 
 }

@@ -244,7 +244,9 @@ public class MidDiagramEditorUtil {
 	private static ModelRel createInitialModel() {
 
 		try {
-			return MultiModelInstanceFactory.createModelRel(null, null, ModelOrigin.CREATED, RelationshipPackage.eINSTANCE.getModelRel(), null);
+			return MultiModelInstanceFactory.createModelRel(null, null,
+					ModelOrigin.CREATED,
+					RelationshipPackage.eINSTANCE.getModelRel(), null);
 			//TODO MMTF: let the user choose the root type
 		} catch (Exception e) {
 			return createInitialModelGen();

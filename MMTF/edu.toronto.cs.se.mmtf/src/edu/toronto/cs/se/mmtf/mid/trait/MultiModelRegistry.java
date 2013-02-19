@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -51,11 +50,6 @@ public class MultiModelRegistry {
 		}
 
 		return label;
-	}
-
-	public static String getElementReferenceLabel(ExtendibleElementReference elementRef) {
-
-		return getElementLabel(elementRef.getObject());
 	}
 
 	public static String getEndpointLabel(ExtendibleElementEndpoint endpoint) {
@@ -84,11 +78,6 @@ public class MultiModelRegistry {
 		return label;
 	}
 
-	public static String getEndpointReferenceLabel(ExtendibleElementEndpointReference endpointRef) {
-
-		return getEndpointLabel(endpointRef.getObject());
-	}
-
 	public static String editElementLabel(ExtendibleElement element) {
 
 		String name = element.getName();
@@ -97,11 +86,6 @@ public class MultiModelRegistry {
 		}
 
 		return name;
-	}
-
-	public static String editElementReferenceLabel(ExtendibleElementReference elementRef) {
-
-		return editElementLabel(elementRef.getObject());
 	}
 
 	public static void initEndpointCardinalities(String uri, HashMap<String, Integer> cardinalityTable) {

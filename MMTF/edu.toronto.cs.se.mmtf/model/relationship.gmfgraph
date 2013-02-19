@@ -19,11 +19,15 @@
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="ModelEndpointReferenceLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOModelEndpointReferenceLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="ModelEndpointReferenceLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
-      <accessors accessor="getFigureModelEndpointReferenceLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors accessor="getFigureModelEndpointReferenceLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+      <accessors figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="ModelElementReferenceFigure">
       <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelElementReferenceFigure">
@@ -33,10 +37,14 @@
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="ModelElementReferenceLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOModelElementReferenceLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="ModelElementReferenceLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="LinkReferenceFigure">
@@ -44,32 +52,41 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="226" green="226" blue="231"/>
+        <minimumSize dy="50"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="LinkReferenceLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOLinkReferenceLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="LinkReferenceLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="ModelElementEndpointReferenceFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ModelElementEndpointReferenceFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.0">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
+        <children xsi:type="gmfgraph:Label" name="MAVOModelElementEndpointReferenceLabelFigure" text=""/>
         <children xsi:type="gmfgraph:Label" name="ModelElementEndpointReferenceLabelFigure"/>
       </actualFigure>
-      <accessors accessor="getFigureLinkReferenceModelElemEndpointRefsLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors accessor="getFigureLinkReferenceModelElemEndpointRefsLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
+      <accessors figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="BinaryLinkReferenceFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BinaryLinkReferenceFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.1">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceLabelFigure" text="&lt;...>"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure" text="&lt;...>"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure" text="&lt;...>"/>
+        <children xsi:type="gmfgraph:Label" name="MAVOBinaryLinkReferenceLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure" text=""/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
       <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.2"/>
+      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.3"/>
+      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="ExtendibleElementReferenceSupertypeRefFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ExtendibleElementReferenceSupertypeRefFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.2">
@@ -81,31 +98,40 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="226" green="226" blue="231"/>
+        <minimumSize dy="50"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="LinkReferenceSuperLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOLinkReferenceSuperLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="LinkReferenceSuperLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.6/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="BinaryLinkReferenceSuperFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BinaryLinkReferenceSuperFigure" lineWidth="3" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.3">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSuperLabelFigure" text="&lt;...>"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSuperSourceModelElementEndpointReferenceLabelFigure" text="&lt;...>"/>
-        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSuperTargetModelElementEndpointReferenceLabelFigure" text="&lt;...>"/>
+        <children xsi:type="gmfgraph:Label" name="MAVOBinaryLinkReferenceSuperLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSuperLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSuperSourceModelElementEndpointReferenceLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="BinaryLinkReferenceSuperTargetModelElementEndpointReferenceLabelFigure" text=""/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
       <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.2"/>
+      <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.3"/>
+      <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="ModelElementEndpointReferenceSuperFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ModelElementEndpointReferenceSuperFigure" lineWidth="3" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.4">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
+        <children xsi:type="gmfgraph:Label" name="MAVOModelElementEndpointReferenceSuperLabelFigure"/>
         <children xsi:type="gmfgraph:Label" name="ModelElementEndpointReferenceSuperLabelFigure"/>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.8/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="ModelElementReferenceSuperFigure">
@@ -116,10 +142,14 @@
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="ModelElementReferenceSuperLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOModelElementReferenceSuperLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="ModelElementReferenceSuperLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.9/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.9/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="ModelEndpointReferenceSuperFigure">
@@ -130,10 +160,14 @@
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="ModelEndpointReferenceSuperLabelFigure" text="&lt;...>">
+        <children xsi:type="gmfgraph:Label" name="MAVOModelEndpointReferenceSuperLabelFigure" text="">
+          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="ModelEndpointReferenceSuperLabelFigure" text="">
           <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
         </children>
       </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.10/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.10/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
@@ -150,20 +184,20 @@
   <connections name="ModelElementEndpointReferenceSuper" figure="ModelElementEndpointReferenceSuperFigure"/>
   <compartments name="ModelEndpointReferenceCompartment" figure="ModelEndpointReferenceFigure"/>
   <compartments name="ModelEndpointReferenceSuperCompartment" figure="ModelEndpointReferenceSuperFigure"/>
-  <labels name="ModelEndpointReferenceLabel" figure="ModelEndpointReferenceFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels name="ModelElementReferenceLabel" figure="ModelElementReferenceFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels name="LinkReferenceLabel" figure="LinkReferenceFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels name="BinaryLinkReferenceLabel" figure="BinaryLinkReferenceFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
-  <labels name="ModelElementEndpointReferenceLabel" figure="ModelElementEndpointReferenceFigure" accessor="//@figures.0/@descriptors.3/@accessors.0">
+  <labels name="ModelEndpointReferenceLabel" figure="ModelEndpointReferenceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="ModelElementReferenceLabel" figure="ModelElementReferenceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="LinkReferenceLabel" figure="LinkReferenceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="BinaryLinkReferenceLabel" figure="BinaryLinkReferenceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels name="ModelElementEndpointReferenceLabel" figure="ModelElementEndpointReferenceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.3/@accessors.0">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
-  <labels name="LinkReferenceSuperLabel" figure="LinkReferenceSuperFigure" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
-  <labels name="BinaryLinkReferenceSuperLabel" figure="BinaryLinkReferenceSuperFigure" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
-  <labels name="ModelElementEndpointReferenceSuperLabel" figure="ModelElementEndpointReferenceSuperFigure" accessor="//@figures.0/@descriptors.8/@accessors.0">
+  <labels name="LinkReferenceSuperLabel" figure="LinkReferenceSuperFigure" elementIcon="false" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels name="BinaryLinkReferenceSuperLabel" figure="BinaryLinkReferenceSuperFigure" elementIcon="false" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+  <labels name="ModelElementEndpointReferenceSuperLabel" figure="ModelElementEndpointReferenceSuperFigure" elementIcon="false" accessor="//@figures.0/@descriptors.8/@accessors.0">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
-  <labels name="ModelElementReferenceSuperLabel" figure="ModelElementReferenceSuperFigure" accessor="//@figures.0/@descriptors.9/@accessors.0"/>
-  <labels name="ModelEndpointReferenceSuperLabel" figure="ModelEndpointReferenceSuperFigure" accessor="//@figures.0/@descriptors.10/@accessors.0"/>
+  <labels name="ModelElementReferenceSuperLabel" figure="ModelElementReferenceSuperFigure" elementIcon="false" accessor="//@figures.0/@descriptors.9/@accessors.0"/>
+  <labels name="ModelEndpointReferenceSuperLabel" figure="ModelEndpointReferenceSuperFigure" elementIcon="false" accessor="//@figures.0/@descriptors.10/@accessors.0"/>
   <labels name="BinaryLinkReferenceSourceModelElementEndpointReferenceLabel" figure="BinaryLinkReferenceFigure" accessor="//@figures.0/@descriptors.4/@accessors.1">
     <facets xsi:type="gmfgraph:AlignmentFacet" alignment="END"/>
   </labels>
@@ -176,4 +210,18 @@
   <labels name="BinaryLinkReferenceSuperTargetModelElementEndpointReferenceLabel" figure="BinaryLinkReferenceSuperFigure" accessor="//@figures.0/@descriptors.7/@accessors.2">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
+  <labels name="MAVOModelEndpointReferenceLabel" figure="ModelEndpointReferenceFigure" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <labels name="MAVOModelElementReferenceLabel" figure="ModelElementReferenceFigure" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <labels name="MAVOLinkReferenceLabel" figure="LinkReferenceFigure" accessor="//@figures.0/@descriptors.2/@accessors.1"/>
+  <labels name="MAVOModelElementEndpointReferenceLabel" figure="ModelElementEndpointReferenceFigure" accessor="//@figures.0/@descriptors.3/@accessors.1">
+    <facets xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels name="MAVOBinaryLinkReferenceLabel" figure="BinaryLinkReferenceFigure" accessor="//@figures.0/@descriptors.4/@accessors.3"/>
+  <labels name="MAVOLinkReferenceSuperLabel" figure="LinkReferenceSuperFigure" accessor="//@figures.0/@descriptors.6/@accessors.1"/>
+  <labels name="MAVOBinaryLinkReferenceSuperLabel" figure="BinaryLinkReferenceSuperFigure" accessor="//@figures.0/@descriptors.7/@accessors.3"/>
+  <labels name="MAVOModelElementEndpointReferenceSuperLabel" figure="ModelElementEndpointReferenceSuperFigure" accessor="//@figures.0/@descriptors.8/@accessors.1">
+    <facets xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels name="MAVOModelElementReferenceSuperLabel" figure="ModelElementReferenceSuperFigure" accessor="//@figures.0/@descriptors.9/@accessors.1"/>
+  <labels name="MAVOModelEndpointReferenceSuperLabel" figure="ModelEndpointReferenceSuperFigure" accessor="//@figures.0/@descriptors.10/@accessors.1"/>
 </gmfgraph:Canvas>

@@ -64,6 +64,12 @@ public class ModelElementEndpointReferenceEditPart extends
 					.getFigureLinkReferenceModelElemEndpointRefsLabelFigure());
 			return true;
 		}
+		if (childEditPart instanceof WrappingLabel23EditPart) {
+			((WrappingLabel23EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMAVOModelElementEndpointReferenceLabelFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -82,6 +88,9 @@ public class ModelElementEndpointReferenceEditPart extends
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel8EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel23EditPart) {
 			return true;
 		}
 		return false;
@@ -131,6 +140,11 @@ public class ModelElementEndpointReferenceEditPart extends
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOModelElementEndpointReferenceLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public ModelElementEndpointReferenceFigure() {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
@@ -143,6 +157,12 @@ public class ModelElementEndpointReferenceEditPart extends
 		 * @generated
 		 */
 		private void createContents() {
+
+			fFigureMAVOModelElementEndpointReferenceLabelFigure = new WrappingLabel();
+
+			fFigureMAVOModelElementEndpointReferenceLabelFigure.setText("");
+
+			this.add(fFigureMAVOModelElementEndpointReferenceLabelFigure);
 
 			fFigureLinkReferenceModelElemEndpointRefsLabelFigure = new WrappingLabel();
 
@@ -166,6 +186,13 @@ public class ModelElementEndpointReferenceEditPart extends
 		 */
 		public WrappingLabel getFigureLinkReferenceModelElemEndpointRefsLabelFigure() {
 			return fFigureLinkReferenceModelElemEndpointRefsLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOModelElementEndpointReferenceLabelFigure() {
+			return fFigureMAVOModelElementEndpointReferenceLabelFigure;
 		}
 
 	}

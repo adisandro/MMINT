@@ -67,11 +67,17 @@ public class BinaryLinkReferenceEditPart extends ConnectionNodeEditPart
 		if (childEditPart instanceof WrappingLabel10EditPart) {
 			((WrappingLabel10EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
-							.getFigureBinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure());
+							.getFigureMAVOBinaryLinkReferenceLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel11EditPart) {
 			((WrappingLabel11EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureBinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure());
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel24EditPart) {
+			((WrappingLabel24EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureBinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure());
 			return true;
@@ -100,6 +106,9 @@ public class BinaryLinkReferenceEditPart extends ConnectionNodeEditPart
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel11EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel24EditPart) {
 			return true;
 		}
 		return false;
@@ -157,6 +166,11 @@ public class BinaryLinkReferenceEditPart extends ConnectionNodeEditPart
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOBinaryLinkReferenceLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public BinaryLinkReferenceFigure() {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
@@ -170,23 +184,29 @@ public class BinaryLinkReferenceEditPart extends ConnectionNodeEditPart
 		 */
 		private void createContents() {
 
+			fFigureMAVOBinaryLinkReferenceLabelFigure = new WrappingLabel();
+
+			fFigureMAVOBinaryLinkReferenceLabelFigure.setText("");
+
+			this.add(fFigureMAVOBinaryLinkReferenceLabelFigure);
+
 			fFigureBinaryLinkReferenceLabelFigure = new WrappingLabel();
 
-			fFigureBinaryLinkReferenceLabelFigure.setText("<...>");
+			fFigureBinaryLinkReferenceLabelFigure.setText("");
 
 			this.add(fFigureBinaryLinkReferenceLabelFigure);
 
 			fFigureBinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure = new WrappingLabel();
 
 			fFigureBinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure
-					.setText("<...>");
+					.setText("");
 
 			this.add(fFigureBinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure);
 
 			fFigureBinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure = new WrappingLabel();
 
 			fFigureBinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure
-					.setText("<...>");
+					.setText("");
 
 			this.add(fFigureBinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure);
 
@@ -220,6 +240,13 @@ public class BinaryLinkReferenceEditPart extends ConnectionNodeEditPart
 		 */
 		public WrappingLabel getFigureBinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure() {
 			return fFigureBinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOBinaryLinkReferenceLabelFigure() {
+			return fFigureMAVOBinaryLinkReferenceLabelFigure;
 		}
 
 	}

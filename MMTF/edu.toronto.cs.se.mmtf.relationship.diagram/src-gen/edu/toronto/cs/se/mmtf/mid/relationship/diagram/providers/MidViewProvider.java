@@ -73,6 +73,17 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel1
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel13EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel14EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel15EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel16EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel17EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel18EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel19EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel20EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel21EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel22EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel23EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel24EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel25EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel26EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel3EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel4EditPart;
@@ -347,6 +358,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5012 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		Node label5019 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel16EditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				MidVisualIDRegistry
@@ -390,6 +403,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5013 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
+		Node label5020 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel17EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -428,6 +443,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5014 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
+		Node label5021 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel18EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -466,6 +483,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5017 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
+		Node label5024 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel19EditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				MidVisualIDRegistry
@@ -508,6 +527,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5011 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
+		Node label5018 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel20EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -545,6 +566,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5015 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel6EditPart.VISUAL_ID));
+		Node label5022 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel21EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -582,6 +605,8 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		Node label5016 = createLabel(node,
 				MidVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
+		Node label5023 = createLabel(node,
+				MidVisualIDRegistry.getType(WrappingLabel22EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -685,6 +710,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6007 = (Location) label6007.getLayoutConstraint();
 		location6007.setX(0);
 		location6007.setY(40);
+		Node label6015 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
+		label6015.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6015 = (Location) label6015.getLayoutConstraint();
+		location6015.setX(0);
+		location6015.setY(60);
 		return edge;
 	}
 
@@ -754,6 +786,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6010 = (Location) label6010.getLayoutConstraint();
 		location6010.setX(0);
 		location6010.setY(80);
+		Node label6016 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel24EditPart.VISUAL_ID));
+		label6016.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6016 = (Location) label6016.getLayoutConstraint();
+		location6016.setX(0);
+		location6016.setY(100);
 		return edge;
 	}
 
@@ -823,6 +862,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6013 = (Location) label6013.getLayoutConstraint();
 		location6013.setX(0);
 		location6013.setY(80);
+		Node label6017 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel25EditPart.VISUAL_ID));
+		label6017.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6017 = (Location) label6017.getLayoutConstraint();
+		location6017.setX(0);
+		location6017.setY(100);
 		return edge;
 	}
 
@@ -878,6 +924,13 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6014 = (Location) label6014.getLayoutConstraint();
 		location6014.setX(0);
 		location6014.setY(40);
+		Node label6018 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
+		label6018.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6018 = (Location) label6018.getLayoutConstraint();
+		location6018.setX(0);
+		location6018.setY(60);
 		return edge;
 	}
 

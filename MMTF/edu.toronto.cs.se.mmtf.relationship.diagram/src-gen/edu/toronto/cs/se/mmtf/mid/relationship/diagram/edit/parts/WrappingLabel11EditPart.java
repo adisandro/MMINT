@@ -131,7 +131,7 @@ public class WrappingLabel11EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.SOURCE;
+		return ConnectionLocator.TARGET;
 	}
 
 	/**

@@ -9,42 +9,43 @@
  * Contributors:
  *    Alessio Di Sandro, Vivien Suen - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.diagram.trait;
+package edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 
-import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.diagram.trait.ExtendibleElementLabelParser;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 
-public class BinaryModelRelTargetModelEndpointLabelParser extends ExtendibleElementEndpointLabelParser {
+public class ExtendibleElementReferenceLabelParser extends ExtendibleElementLabelParser {
 
-	protected IAdaptable getTargetModelEndpointAdaptable(IAdaptable element) {
+	protected IAdaptable getExtendibleElementAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ModelEndpoint modelEndpoint = ((BinaryModelRel) modelObj).getModelEndpoints().get(0);
+		ExtendibleElement referencedElement = ((ExtendibleElementReference) modelObj).getObject();
 
-		return new ParserHintAdapter(modelEndpoint, "");
+		return new ParserHintAdapter(referencedElement, "");
 	}
 
 	@Override
 	public String getEditString(IAdaptable element, int flags) {
 
-		return super.getEditString(getTargetModelEndpointAdaptable(element), flags);
+		return super.getEditString(getExtendibleElementAdaptable(element), flags);
 	}
 
 	@Override
 	public ICommand getParseCommand(IAdaptable element, final String newLabel, int flags) {
 
-		return super.getParseCommand(getTargetModelEndpointAdaptable(element), newLabel, flags);
+		return super.getParseCommand(getExtendibleElementAdaptable(element), newLabel, flags);
 	}
 
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		return super.getPrintString(getTargetModelEndpointAdaptable(element), flags);
+		return super.getPrintString(getExtendibleElementAdaptable(element), flags);
 	}
 
 }

@@ -137,6 +137,12 @@ public class LinkReferenceEditPart extends ShapeNodeEditPart {
 					.getFigureLinkReferenceLabelFigure());
 			return true;
 		}
+		if (childEditPart instanceof WrappingLabel17EditPart) {
+			((WrappingLabel17EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMAVOLinkReferenceLabelFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -145,6 +151,9 @@ public class LinkReferenceEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel2EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel17EditPart) {
 			return true;
 		}
 		return false;
@@ -407,6 +416,11 @@ public class LinkReferenceEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOLinkReferenceLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public LinkReferenceFigure() {
 
 			FlowLayout layoutThis = new FlowLayout();
@@ -425,6 +439,8 @@ public class LinkReferenceEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0),
+					getMapMode().DPtoLP(50)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
@@ -436,9 +452,17 @@ public class LinkReferenceEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+			fFigureMAVOLinkReferenceLabelFigure = new WrappingLabel();
+
+			fFigureMAVOLinkReferenceLabelFigure.setText("");
+			fFigureMAVOLinkReferenceLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
+
+			this.add(fFigureMAVOLinkReferenceLabelFigure);
+
 			fFigureLinkReferenceLabelFigure = new WrappingLabel();
 
-			fFigureLinkReferenceLabelFigure.setText("<...>");
+			fFigureLinkReferenceLabelFigure.setText("");
 			fFigureLinkReferenceLabelFigure
 					.setForegroundColor(ColorConstants.darkGray);
 
@@ -451,6 +475,13 @@ public class LinkReferenceEditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureLinkReferenceLabelFigure() {
 			return fFigureLinkReferenceLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOLinkReferenceLabelFigure() {
+			return fFigureMAVOLinkReferenceLabelFigure;
 		}
 
 	}

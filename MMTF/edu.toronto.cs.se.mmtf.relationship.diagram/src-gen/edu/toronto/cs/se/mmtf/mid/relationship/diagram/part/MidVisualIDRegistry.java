@@ -46,6 +46,17 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel1
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel13EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel14EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel15EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel16EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel17EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel18EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel19EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel20EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel21EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel22EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel23EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel24EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel25EditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel26EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel3EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel4EditPart;
@@ -250,6 +261,9 @@ public class MidVisualIDRegistry {
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel16EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if (ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -258,14 +272,23 @@ public class MidVisualIDRegistry {
 			if (WrappingLabel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel17EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case LinkReference2EditPart.VISUAL_ID:
 			if (WrappingLabel3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel18EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ModelEndpointReference2EditPart.VISUAL_ID:
 			if (WrappingLabel4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (WrappingLabel19EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (ModelEndpointReferenceModelEndpointReferenceSuperCompartmentEditPart.VISUAL_ID == nodeVisualID) {
@@ -276,14 +299,23 @@ public class MidVisualIDRegistry {
 			if (WrappingLabel5EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel20EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ModelElementReference2EditPart.VISUAL_ID:
 			if (WrappingLabel6EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel21EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ModelElementReference3EditPart.VISUAL_ID:
 			if (WrappingLabel7EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (WrappingLabel22EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -304,6 +336,9 @@ public class MidVisualIDRegistry {
 			if (WrappingLabel8EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel23EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case BinaryLinkReferenceEditPart.VISUAL_ID:
 			if (WrappingLabel9EditPart.VISUAL_ID == nodeVisualID) {
@@ -313,6 +348,9 @@ public class MidVisualIDRegistry {
 				return true;
 			}
 			if (WrappingLabel11EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (WrappingLabel24EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -326,9 +364,15 @@ public class MidVisualIDRegistry {
 			if (WrappingLabel14EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WrappingLabel25EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ModelElementEndpointReference2EditPart.VISUAL_ID:
 			if (WrappingLabel15EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (WrappingLabel26EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -138,6 +138,12 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 					.getFigureLinkReferenceSuperLabelFigure());
 			return true;
 		}
+		if (childEditPart instanceof WrappingLabel18EditPart) {
+			((WrappingLabel18EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMAVOLinkReferenceSuperLabelFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -146,6 +152,9 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel3EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel18EditPart) {
 			return true;
 		}
 		return false;
@@ -408,6 +417,11 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOLinkReferenceSuperLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public LinkReferenceSuperFigure() {
 
 			FlowLayout layoutThis = new FlowLayout();
@@ -427,6 +441,8 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0),
+					getMapMode().DPtoLP(50)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
@@ -438,9 +454,17 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+			fFigureMAVOLinkReferenceSuperLabelFigure = new WrappingLabel();
+
+			fFigureMAVOLinkReferenceSuperLabelFigure.setText("");
+			fFigureMAVOLinkReferenceSuperLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
+
+			this.add(fFigureMAVOLinkReferenceSuperLabelFigure);
+
 			fFigureLinkReferenceSuperLabelFigure = new WrappingLabel();
 
-			fFigureLinkReferenceSuperLabelFigure.setText("<...>");
+			fFigureLinkReferenceSuperLabelFigure.setText("");
 			fFigureLinkReferenceSuperLabelFigure
 					.setForegroundColor(ColorConstants.darkGray);
 
@@ -453,6 +477,13 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureLinkReferenceSuperLabelFigure() {
 			return fFigureLinkReferenceSuperLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOLinkReferenceSuperLabelFigure() {
+			return fFigureMAVOLinkReferenceSuperLabelFigure;
 		}
 
 	}

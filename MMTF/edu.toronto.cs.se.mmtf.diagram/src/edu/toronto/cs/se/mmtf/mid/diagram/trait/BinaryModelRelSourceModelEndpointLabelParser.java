@@ -17,14 +17,14 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 
 public class BinaryModelRelSourceModelEndpointLabelParser extends ExtendibleElementEndpointLabelParser {
 
 	protected IAdaptable getSourceModelEndpointAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ModelEndpoint modelEndpoint = ((ModelRel) modelObj).getModelEndpoints().get(0);
+		ModelEndpoint modelEndpoint = ((BinaryModelRel) modelObj).getModelEndpoints().get(0);
 
 		return new ParserHintAdapter(modelEndpoint, "");
 	}

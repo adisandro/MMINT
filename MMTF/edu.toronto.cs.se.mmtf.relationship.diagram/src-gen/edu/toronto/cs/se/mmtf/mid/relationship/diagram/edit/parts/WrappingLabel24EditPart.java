@@ -64,13 +64,13 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidParserProvid
 /**
  * @generated
  */
-public class WrappingLabel10EditPart extends LabelEditPart implements
+public class WrappingLabel24EditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6009;
+	public static final int VISUAL_ID = 6016;
 
 	/**
 	 * @generated
@@ -103,14 +103,14 @@ public class WrappingLabel10EditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				MidVisualIDRegistry
-						.getType(edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel10EditPart.VISUAL_ID),
-				new Point(0, 60));
+						.getType(edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel24EditPart.VISUAL_ID),
+				new Point(0, 100));
 	}
 
 	/**
 	 * @generated
 	 */
-	public WrappingLabel10EditPart(View view) {
+	public WrappingLabel24EditPart(View view) {
 		super(view);
 	}
 
@@ -131,7 +131,7 @@ public class WrappingLabel10EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.MIDDLE;
+		return ConnectionLocator.SOURCE;
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class WrappingLabel10EditPart extends LabelEditPart implements
 							MidElementTypes.BinaryLinkReference_4012,
 							getParserElement(),
 							MidVisualIDRegistry
-									.getType(edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel10EditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel24EditPart.VISUAL_ID));
 		}
 		return parser;
 	}

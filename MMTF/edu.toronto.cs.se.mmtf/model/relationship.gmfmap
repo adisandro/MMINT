@@ -15,13 +15,14 @@
       <domainSpecialization
           body="self.modifiable = true"/>
       <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping"
           readOnly="true">
         <diagramLabel
             href="relationship.gmfgraph#ModelEndpointReferenceLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getEndpointReferenceLabel((ExtendibleElementEndpointReference) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings
+          readOnly="true">
+        <diagramLabel
+            href="relationship.gmfgraph#MAVOModelEndpointReferenceLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -38,13 +39,14 @@
           <domainSpecialization
               body="self.modifiable = true"/>
           <labelMappings
-              xsi:type="gmfmap:ExpressionLabelMapping"
               readOnly="true">
             <diagramLabel
                 href="relationship.gmfgraph#ModelElementReferenceLabel"/>
-            <viewExpression
-                body="return MultiModelRegistry.getElementReferenceLabel((ExtendibleElementReference) self);"
-                language="java"/>
+          </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="relationship.gmfgraph#MAVOModelElementReferenceLabel"/>
           </labelMappings>
           <diagramNode
               href="relationship.gmfgraph#ModelElementReference"/>
@@ -65,16 +67,13 @@
           href="mid.ecore#//relationship/LinkReference"/>
       <domainSpecialization
           body="not self.oclIsKindOf(relationship::BinaryLinkReference) and self.modifiable = true"/>
-      <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping">
+      <labelMappings>
         <diagramLabel
             href="relationship.gmfgraph#LinkReferenceLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getElementReferenceLabel((ExtendibleElementReference) self);"
-            language="java"/>
-        <editExpression
-            body="return MultiModelRegistry.editElementReferenceLabel((ExtendibleElementReference) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings>
+        <diagramLabel
+            href="relationship.gmfgraph#MAVOLinkReferenceLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -92,13 +91,14 @@
       <domainSpecialization
           body="not self.oclIsKindOf(relationship::BinaryLinkReference) and self.modifiable = false"/>
       <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping"
           readOnly="true">
         <diagramLabel
             href="relationship.gmfgraph#LinkReferenceSuperLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getElementReferenceLabel((ExtendibleElementReference) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings
+          readOnly="true">
+        <diagramLabel
+            href="relationship.gmfgraph#MAVOLinkReferenceSuperLabel"/>
       </labelMappings>
       <diagramNode
           href="relationship.gmfgraph#LinkReferenceSuper"/>
@@ -113,13 +113,14 @@
       <domainSpecialization
           body="self.modifiable = false"/>
       <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping"
           readOnly="true">
         <diagramLabel
             href="relationship.gmfgraph#ModelEndpointReferenceSuperLabel"/>
-        <viewExpression
-            body="return MultiModelRegistry.getEndpointReferenceLabel((ExtendibleElementEndpointReference) self);"
-            language="java"/>
+      </labelMappings>
+      <labelMappings
+          readOnly="true">
+        <diagramLabel
+            href="relationship.gmfgraph#MAVOModelEndpointReferenceSuperLabel"/>
       </labelMappings>
       <diagramNode
           href="relationship.gmfgraph#ModelEndpointReferenceSuper"/>
@@ -133,13 +134,14 @@
           <domainSpecialization
               body="self.modifiable = true"/>
           <labelMappings
-              xsi:type="gmfmap:ExpressionLabelMapping"
               readOnly="true">
             <diagramLabel
                 href="relationship.gmfgraph#ModelElementReferenceLabel"/>
-            <viewExpression
-                body="return MultiModelRegistry.getElementReferenceLabel((ExtendibleElementReference) self);"
-                language="java"/>
+          </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="relationship.gmfgraph#MAVOModelElementReferenceLabel"/>
           </labelMappings>
           <diagramNode
               href="relationship.gmfgraph#ModelElementReference"/>
@@ -155,13 +157,14 @@
           <domainSpecialization
               body="self.modifiable = false"/>
           <labelMappings
-              xsi:type="gmfmap:ExpressionLabelMapping"
               readOnly="true">
             <diagramLabel
                 href="relationship.gmfgraph#ModelElementReferenceSuperLabel"/>
-            <viewExpression
-                body="return MultiModelRegistry.getElementReferenceLabel((ExtendibleElementReference) self);"
-                language="java"/>
+          </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="relationship.gmfgraph#MAVOModelElementReferenceSuperLabel"/>
           </labelMappings>
           <diagramNode
               href="relationship.gmfgraph#ModelElementReferenceSuper"/>
@@ -187,16 +190,13 @@
     <domainSpecialization
         body="return !(domainElement.eContainer() instanceof BinaryLinkReference) &amp;&amp; ((ExtendibleElementEndpointReference) domainElement).isModifiable();"
         language="java"/>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
       <diagramLabel
           href="relationship.gmfgraph#ModelElementEndpointReferenceLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointReferenceLabel((ExtendibleElementEndpointReference) self);"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementReferenceLabel((ExtendibleElementReference) self);"
-          language="java"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="relationship.gmfgraph#MAVOModelElementEndpointReferenceLabel"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/LinkReference/modelElemEndpointRefs"/>
@@ -220,38 +220,21 @@
         href="mid.ecore#//relationship/BinaryLinkReference"/>
     <domainSpecialization
         body="self.modifiable = true"/>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkReferenceLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getElementReferenceLabel((ExtendibleElementReference) self);"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementReferenceLabel((ExtendibleElementReference) self);"
-          language="java"/>
     </labelMappings>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
+      <diagramLabel
+          href="relationship.gmfgraph#MAVOBinaryLinkReferenceLabel"/>
+    </labelMappings>
+    <labelMappings>
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkReferenceSourceModelElementEndpointReferenceLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointReferenceLabel(((LinkReference) self).getModelElemEndpointRefs().get(0));"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementReferenceLabel(((LinkReference) self).getModelElemEndpointRefs().get(0));"
-          language="java"/>
     </labelMappings>
-    <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping">
+    <labelMappings>
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkReferenceTargetModelElementEndpointReferenceLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointReferenceLabel(((LinkReference) self).getModelElemEndpointRefs().get(1));"
-          language="java"/>
-      <editExpression
-          body="return MultiModelRegistry.editElementReferenceLabel(((LinkReference) self).getModelElemEndpointRefs().get(1));"
-          language="java"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/ModelRel/linkRefs"/>
@@ -273,31 +256,24 @@
     <domainSpecialization
         body="self.modifiable = false"/>
     <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping"
         readOnly="true">
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkReferenceSuperLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getElementReferenceLabel((ExtendibleElementReference) self);"
-          language="java"/>
     </labelMappings>
     <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping"
+        readOnly="true">
+      <diagramLabel
+          href="relationship.gmfgraph#MAVOBinaryLinkReferenceSuperLabel"/>
+    </labelMappings>
+    <labelMappings
         readOnly="true">
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkReferenceSuperSourceModelElementEndpointReferenceLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointReferenceLabel(((LinkReference) self).getModelElemEndpointRefs().get(0));"
-          language="java"/>
     </labelMappings>
     <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping"
         readOnly="true">
       <diagramLabel
           href="relationship.gmfgraph#BinaryLinkReferenceSuperTargetModelElementEndpointReferenceLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointReferenceLabel(((LinkReference) self).getModelElemEndpointRefs().get(1));"
-          language="java"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/ModelRel/linkRefs"/>
@@ -317,13 +293,14 @@
         body="return !(domainElement.eContainer() instanceof BinaryLinkReference) &amp;&amp; !((ExtendibleElementEndpointReference) domainElement).isModifiable();"
         language="java"/>
     <labelMappings
-        xsi:type="gmfmap:ExpressionLabelMapping"
         readOnly="true">
       <diagramLabel
           href="relationship.gmfgraph#ModelElementEndpointReferenceSuperLabel"/>
-      <viewExpression
-          body="return MultiModelRegistry.getEndpointReferenceLabel((ExtendibleElementEndpointReference) self);"
-          language="java"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="relationship.gmfgraph#MAVOModelElementEndpointReferenceSuperLabel"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/LinkReference/modelElemEndpointRefs"/>

@@ -148,6 +148,12 @@ public class ModelEndpointReference2EditPart extends ShapeNodeEditPart {
 					.getFigureModelEndpointReferenceSuperLabelFigure());
 			return true;
 		}
+		if (childEditPart instanceof WrappingLabel19EditPart) {
+			((WrappingLabel19EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMAVOModelEndpointReferenceSuperLabelFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -156,6 +162,9 @@ public class ModelEndpointReference2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel4EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WrappingLabel19EditPart) {
 			return true;
 		}
 		return false;
@@ -412,6 +421,11 @@ public class ModelEndpointReference2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureMAVOModelEndpointReferenceSuperLabelFigure;
+
+		/**
+		 * @generated
+		 */
 		public ModelEndpointReferenceSuperFigure() {
 			this.setLineWidth(3);
 			this.setLineStyle(Graphics.LINE_DASH);
@@ -430,9 +444,17 @@ public class ModelEndpointReference2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+			fFigureMAVOModelEndpointReferenceSuperLabelFigure = new WrappingLabel();
+
+			fFigureMAVOModelEndpointReferenceSuperLabelFigure.setText("");
+			fFigureMAVOModelEndpointReferenceSuperLabelFigure
+					.setForegroundColor(ColorConstants.darkGray);
+
+			this.add(fFigureMAVOModelEndpointReferenceSuperLabelFigure);
+
 			fFigureModelEndpointReferenceSuperLabelFigure = new WrappingLabel();
 
-			fFigureModelEndpointReferenceSuperLabelFigure.setText("<...>");
+			fFigureModelEndpointReferenceSuperLabelFigure.setText("");
 			fFigureModelEndpointReferenceSuperLabelFigure
 					.setForegroundColor(ColorConstants.darkGray);
 
@@ -445,6 +467,13 @@ public class ModelEndpointReference2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureModelEndpointReferenceSuperLabelFigure() {
 			return fFigureModelEndpointReferenceSuperLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOModelEndpointReferenceSuperLabelFigure() {
+			return fFigureMAVOModelEndpointReferenceSuperLabelFigure;
 		}
 
 	}
