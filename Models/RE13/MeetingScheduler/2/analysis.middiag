@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_QCsyIGWoEeK6mc14HnXhDg" type="Mid" name="analysis.middiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Node" xmi:id="_Rf1egGWoEeK6mc14HnXhDg" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_Rf2FkGWoEeK6mc14HnXhDg" type="5012"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_Rf1egWWoEeK6mc14HnXhDg"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_Rf1egmWoEeK6mc14HnXhDg" fontName="Ubuntu"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Rf1eg2WoEeK6mc14HnXhDg" hint="Mid"/>
-    <element xmi:type="mid:Model" href="analysis.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Rf1ehGWoEeK6mc14HnXhDg" x="88" y="44"/>
-  </children>
-  <children xmi:type="notation:Node" xmi:id="_SgzMQGWoEeK6mc14HnXhDg" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_SgzMRWWoEeK6mc14HnXhDg" type="5012"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_SgzMQWWoEeK6mc14HnXhDg"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_SgzMQmWoEeK6mc14HnXhDg" fontName="Ubuntu"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_SgzMQ2WoEeK6mc14HnXhDg" hint="Mid"/>
-    <element xmi:type="mid:Model" href="analysis.mid#//@models.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SgzMRGWoEeK6mc14HnXhDg" x="300" y="36"/>
-  </children>
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_QCsyIWWoEeK6mc14HnXhDg"/>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_RHsdoHrYEeKvbK2mG0FePA" type="Mid" measurementUnit="Pixel">
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_RHsdoXrYEeKvbK2mG0FePA"/>
   <element xmi:type="mid:MultiModel" href="analysis.mid#/"/>
 </notation:Diagram>
