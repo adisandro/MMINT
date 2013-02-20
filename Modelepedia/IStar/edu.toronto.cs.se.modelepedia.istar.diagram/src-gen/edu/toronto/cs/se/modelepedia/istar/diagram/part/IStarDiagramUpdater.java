@@ -64,6 +64,14 @@ public class IStarDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static boolean isShortcutOrphaned(View view) {
+		return !view.isSetElement() || view.getElement() == null
+				|| view.getElement().eIsProxy();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<IStarNodeDescriptor> getSemanticChildren(View view) {
 		switch (IStarVisualIDRegistry.getVisualID(view)) {
 		case IStarEditPart.VISUAL_ID:

@@ -98,6 +98,16 @@ Contributors:
          </ViewId>
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="IStarPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="edu.toronto.cs.se.modelepedia.istar.diagram.part.IStarDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
          id="IStarPresentationIDE">
          <Priority name="Lowest"/>
@@ -251,6 +261,10 @@ Contributors:
       <?gmfgen generated="true"?>
       <viewProvider class="edu.toronto.cs.se.modelepedia.istar.diagram.providers.IStarViewProvider">
          <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="istar"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="IStar"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005,3001,3002,3003,3004"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005"/>
@@ -310,6 +324,17 @@ Contributors:
       <ParserProvider class="edu.toronto.cs.se.modelepedia.istar.diagram.providers.IStarParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="edu.toronto.cs.se.modelepedia.istar.diagram.providers.IStarShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2001,2002,2003,2004,2005"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
@@ -501,6 +526,17 @@ Contributors:
        </propertyTester>
    </extension>
 
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="edu.toronto.cs.se.modelepedia.istar.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="edu.toronto.cs.se.modelepedia.istar.diagram"
+           properties="isShortcut"
+           class="edu.toronto.cs.se.modelepedia.istar.diagram.part.IStarShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
 	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
       <?gmfgen generated="true"?>
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
@@ -534,11 +570,17 @@ Contributors:
         	      <test property="org.eclipse.core.resources.extension" value="istar_diagram"/>
                </and>
                <instanceof value="edu.toronto.cs.se.modelepedia.istar.diagram.navigator.IStarAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.modelepedia.istar.diagram.isShortcut"/>
+           	   </adapt>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
          	   <instanceof value="edu.toronto.cs.se.modelepedia.istar.diagram.navigator.IStarAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.modelepedia.istar.diagram.isShortcut"/>
+           	   </adapt>
             </or>
          </possibleChildren>
          <commonSorter 
@@ -582,6 +624,9 @@ Contributors:
          <enablement>
             <or>
                <instanceof value="edu.toronto.cs.se.modelepedia.istar.diagram.navigator.IStarAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="edu.toronto.cs.se.modelepedia.istar.diagram.isShortcut"/>
+           	   </adapt>
             </or>
          </enablement>
       </actionProvider>

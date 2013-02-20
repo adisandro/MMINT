@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar.diagram.navigator;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -112,6 +113,14 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 			return getImage(navigatorItem.getView());
 		}
 
+		// Due to plugin.xml content will be called only for "own" views
+		if (element instanceof IAdaptable) {
+			View view = (View) ((IAdaptable) element).getAdapter(View.class);
+			if (view != null && isOwnView(view)) {
+				return getImage(view);
+			}
+		}
+
 		return super.getImage(element);
 	}
 
@@ -120,51 +129,51 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (IStarVisualIDRegistry.getVisualID(view)) {
-		case Resource2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Resource", IStarElementTypes.Resource_3003); //$NON-NLS-1$
-		case MeansEndEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?MeansEnd", IStarElementTypes.MeansEnd_4001); //$NON-NLS-1$
-		case SoftGoal2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_3001); //$NON-NLS-1$
-		case GoalEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_2004); //$NON-NLS-1$
 		case TaskEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Task", IStarElementTypes.Task_2002); //$NON-NLS-1$
-		case IStarEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/IStar?IStar", IStarElementTypes.IStar_1000); //$NON-NLS-1$
 		case ResourceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Resource", IStarElementTypes.Resource_2003); //$NON-NLS-1$
-		case ContributionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Contribution", IStarElementTypes.Contribution_4003); //$NON-NLS-1$
-		case SoftGoalEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_2001); //$NON-NLS-1$
-		case DecompositionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Decomposition", IStarElementTypes.Decomposition_4002); //$NON-NLS-1$
 		case DependeeLinkEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?DependeeLink", IStarElementTypes.DependeeLink_4005); //$NON-NLS-1$
-		case Goal2EditPart.VISUAL_ID:
+		case MeansEndEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_3004); //$NON-NLS-1$
-		case DependerLinkEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?DependerLink", IStarElementTypes.DependerLink_4004); //$NON-NLS-1$
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?MeansEnd", IStarElementTypes.MeansEnd_4001); //$NON-NLS-1$
 		case ActorEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Actor", IStarElementTypes.Actor_2005); //$NON-NLS-1$
+		case DependerLinkEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?DependerLink", IStarElementTypes.DependerLink_4004); //$NON-NLS-1$
+		case GoalEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_2004); //$NON-NLS-1$
 		case Task2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Task", IStarElementTypes.Task_3002); //$NON-NLS-1$
+		case SoftGoalEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_2001); //$NON-NLS-1$
+		case Goal2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_3004); //$NON-NLS-1$
+		case Resource2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Resource", IStarElementTypes.Resource_3003); //$NON-NLS-1$
+		case DecompositionEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Decomposition", IStarElementTypes.Decomposition_4002); //$NON-NLS-1$
+		case ContributionEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Contribution", IStarElementTypes.Contribution_4003); //$NON-NLS-1$
+		case SoftGoal2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_3001); //$NON-NLS-1$
+		case IStarEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/IStar?IStar", IStarElementTypes.IStar_1000); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -206,6 +215,14 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 			return getText(navigatorItem.getView());
 		}
 
+		// Due to plugin.xml content will be called only for "own" views
+		if (element instanceof IAdaptable) {
+			View view = (View) ((IAdaptable) element).getAdapter(View.class);
+			if (view != null && isOwnView(view)) {
+				return getText(view);
+			}
+		}
+
 		return super.getText(element);
 	}
 
@@ -217,109 +234,38 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (IStarVisualIDRegistry.getVisualID(view)) {
-		case Resource2EditPart.VISUAL_ID:
-			return getResource_3003Text(view);
-		case MeansEndEditPart.VISUAL_ID:
-			return getMeansEnd_4001Text(view);
-		case SoftGoal2EditPart.VISUAL_ID:
-			return getSoftGoal_3001Text(view);
-		case GoalEditPart.VISUAL_ID:
-			return getGoal_2004Text(view);
 		case TaskEditPart.VISUAL_ID:
 			return getTask_2002Text(view);
-		case IStarEditPart.VISUAL_ID:
-			return getIStar_1000Text(view);
 		case ResourceEditPart.VISUAL_ID:
 			return getResource_2003Text(view);
-		case ContributionEditPart.VISUAL_ID:
-			return getContribution_4003Text(view);
-		case SoftGoalEditPart.VISUAL_ID:
-			return getSoftGoal_2001Text(view);
-		case DecompositionEditPart.VISUAL_ID:
-			return getDecomposition_4002Text(view);
 		case DependeeLinkEditPart.VISUAL_ID:
 			return getDependeeLink_4005Text(view);
-		case Goal2EditPart.VISUAL_ID:
-			return getGoal_3004Text(view);
-		case DependerLinkEditPart.VISUAL_ID:
-			return getDependerLink_4004Text(view);
+		case MeansEndEditPart.VISUAL_ID:
+			return getMeansEnd_4001Text(view);
 		case ActorEditPart.VISUAL_ID:
 			return getActor_2005Text(view);
+		case DependerLinkEditPart.VISUAL_ID:
+			return getDependerLink_4004Text(view);
+		case GoalEditPart.VISUAL_ID:
+			return getGoal_2004Text(view);
 		case Task2EditPart.VISUAL_ID:
 			return getTask_3002Text(view);
+		case SoftGoalEditPart.VISUAL_ID:
+			return getSoftGoal_2001Text(view);
+		case Goal2EditPart.VISUAL_ID:
+			return getGoal_3004Text(view);
+		case Resource2EditPart.VISUAL_ID:
+			return getResource_3003Text(view);
+		case DecompositionEditPart.VISUAL_ID:
+			return getDecomposition_4002Text(view);
+		case ContributionEditPart.VISUAL_ID:
+			return getContribution_4003Text(view);
+		case SoftGoal2EditPart.VISUAL_ID:
+			return getSoftGoal_3001Text(view);
+		case IStarEditPart.VISUAL_ID:
+			return getIStar_1000Text(view);
 		}
 		return getUnknownElementText(view);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getResource_3003Text(View view) {
-		IParser parser = IStarParserProvider.getParser(
-				IStarElementTypes.Resource_3003,
-				view.getElement() != null ? view.getElement() : view,
-				IStarVisualIDRegistry.getType(ResourceName2EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5007); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getMeansEnd_4001Text(View view) {
-		MeansEnd domainModelElement = (MeansEnd) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 4001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getSoftGoal_3001Text(View view) {
-		IParser parser = IStarParserProvider.getParser(
-				IStarElementTypes.SoftGoal_3001,
-				view.getElement() != null ? view.getElement() : view,
-				IStarVisualIDRegistry.getType(SoftGoalName2EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5005); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getGoal_2004Text(View view) {
-		IParser parser = IStarParserProvider.getParser(
-				IStarElementTypes.Goal_2004,
-				view.getElement() != null ? view.getElement() : view,
-				IStarVisualIDRegistry.getType(GoalNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5004); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
 	}
 
 	/**
@@ -344,13 +290,6 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getIStar_1000Text(View view) {
-		return ""; //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
 	private String getResource_2003Text(View view) {
 		IParser parser = IStarParserProvider.getParser(
 				IStarElementTypes.Resource_2003,
@@ -363,53 +302,6 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			IStarDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5003); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getContribution_4003Text(View view) {
-		Contribution domainModelElement = (Contribution) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 4003); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getSoftGoal_2001Text(View view) {
-		IParser parser = IStarParserProvider.getParser(
-				IStarElementTypes.SoftGoal_2001,
-				view.getElement() != null ? view.getElement() : view,
-				IStarVisualIDRegistry.getType(SoftGoalNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getDecomposition_4002Text(View view) {
-		Decomposition domainModelElement = (Decomposition) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 4002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -431,32 +323,13 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getGoal_3004Text(View view) {
-		IParser parser = IStarParserProvider.getParser(
-				IStarElementTypes.Goal_3004,
-				view.getElement() != null ? view.getElement() : view,
-				IStarVisualIDRegistry.getType(GoalName2EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			IStarDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5008); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getDependerLink_4004Text(View view) {
-		DependerLink domainModelElement = (DependerLink) view.getElement();
+	private String getMeansEnd_4001Text(View view) {
+		MeansEnd domainModelElement = (MeansEnd) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
 			IStarDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 4004); //$NON-NLS-1$
+					"No domain element for view with visualID = " + 4001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -483,6 +356,39 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
+	private String getDependerLink_4004Text(View view) {
+		DependerLink domainModelElement = (DependerLink) view.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"No domain element for view with visualID = " + 4004); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getGoal_2004Text(View view) {
+		IParser parser = IStarParserProvider.getParser(
+				IStarElementTypes.Goal_2004,
+				view.getElement() != null ? view.getElement() : view,
+				IStarVisualIDRegistry.getType(GoalNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5004); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getTask_3002Text(View view) {
 		IParser parser = IStarParserProvider.getParser(
 				IStarElementTypes.Task_3002,
@@ -497,6 +403,117 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 					"Parser was not found for label " + 5006); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getSoftGoal_2001Text(View view) {
+		IParser parser = IStarParserProvider.getParser(
+				IStarElementTypes.SoftGoal_2001,
+				view.getElement() != null ? view.getElement() : view,
+				IStarVisualIDRegistry.getType(SoftGoalNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getGoal_3004Text(View view) {
+		IParser parser = IStarParserProvider.getParser(
+				IStarElementTypes.Goal_3004,
+				view.getElement() != null ? view.getElement() : view,
+				IStarVisualIDRegistry.getType(GoalName2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5008); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getResource_3003Text(View view) {
+		IParser parser = IStarParserProvider.getParser(
+				IStarElementTypes.Resource_3003,
+				view.getElement() != null ? view.getElement() : view,
+				IStarVisualIDRegistry.getType(ResourceName2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5007); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDecomposition_4002Text(View view) {
+		Decomposition domainModelElement = (Decomposition) view.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"No domain element for view with visualID = " + 4002); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getContribution_4003Text(View view) {
+		Contribution domainModelElement = (Contribution) view.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"No domain element for view with visualID = " + 4003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getSoftGoal_3001Text(View view) {
+		IParser parser = IStarParserProvider.getParser(
+				IStarElementTypes.SoftGoal_3001,
+				view.getElement() != null ? view.getElement() : view,
+				IStarVisualIDRegistry.getType(SoftGoalName2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			IStarDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5005); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getIStar_1000Text(View view) {
+		return ""; //$NON-NLS-1$
 	}
 
 	/**

@@ -28,9 +28,17 @@ public class IStarNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
+	private static final int SHORTCUTS_CATEGORY = 7002;
+
+	/**
+	 * @generated
+	 */
 	public int category(Object element) {
 		if (element instanceof IStarNavigatorItem) {
 			IStarNavigatorItem item = (IStarNavigatorItem) element;
+			if (item.getView().getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+				return SHORTCUTS_CATEGORY;
+			}
 			return IStarVisualIDRegistry.getVisualID(item.getView());
 		}
 		return GROUP_CATEGORY;

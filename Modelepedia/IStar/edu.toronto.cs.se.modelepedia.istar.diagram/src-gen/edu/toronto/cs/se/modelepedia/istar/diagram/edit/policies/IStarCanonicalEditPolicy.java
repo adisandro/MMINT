@@ -119,6 +119,9 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	protected boolean isOrphaned(Collection<EObject> semanticChildren,
 			final View view) {
+		if (isShortcut(view)) {
+			return IStarDiagramUpdater.isShortcutOrphaned(view);
+		}
 		return isMyDiagramElement(view)
 				&& !semanticChildren.contains(view.getElement());
 	}
@@ -142,6 +145,13 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	private boolean isShortcut(View view) {
+		return view.getEAnnotation("Shortcut") != null; //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void refreshSemantic() {
 		if (resolveSemanticElement() == null) {
 			return;
@@ -150,9 +160,15 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 		List<IStarNodeDescriptor> childDescriptors = IStarDiagramUpdater
 				.getIStar_1000SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
-		// we care to check only views we recognize as ours
+		// we care to check only views we recognize as ours and not shortcuts
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
 		for (View v : getViewChildren()) {
+			if (isShortcut(v)) {
+				if (IStarDiagramUpdater.isShortcutOrphaned(v)) {
+					orphaned.add(v);
+				}
+				continue;
+			}
 			if (isMyDiagramElement(v)) {
 				knownViewChildren.add(v);
 			}

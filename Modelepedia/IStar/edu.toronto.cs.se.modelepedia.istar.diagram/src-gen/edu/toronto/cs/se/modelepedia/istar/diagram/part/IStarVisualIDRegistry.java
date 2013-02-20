@@ -138,7 +138,8 @@ public class IStarVisualIDRegistry {
 		}
 		String containerModelID = edu.toronto.cs.se.modelepedia.istar.diagram.part.IStarVisualIDRegistry
 				.getModelID(containerView);
-		if (!IStarEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!IStarEditPart.MODEL_ID.equals(containerModelID)
+				&& !"istar".equals(containerModelID)) { //$NON-NLS-1$
 			return -1;
 		}
 		int containerVisualID;
@@ -203,7 +204,8 @@ public class IStarVisualIDRegistry {
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = edu.toronto.cs.se.modelepedia.istar.diagram.part.IStarVisualIDRegistry
 				.getModelID(containerView);
-		if (!IStarEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!IStarEditPart.MODEL_ID.equals(containerModelID)
+				&& !"istar".equals(containerModelID)) { //$NON-NLS-1$
 			return false;
 		}
 		int containerVisualID;

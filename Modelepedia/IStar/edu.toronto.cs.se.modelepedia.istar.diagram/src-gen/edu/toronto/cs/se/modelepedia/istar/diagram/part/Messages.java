@@ -374,57 +374,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Resource_3003_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Resource_3003_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MeansEnd_4001_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MeansEnd_4001_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_SoftGoal_3001_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_SoftGoal_3001_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Goal_2004_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Goal_2004_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_Task_2002_incominglinks;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Task_2002_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_IStar_1000_links;
 
 	/**
 	 * @generated
@@ -439,36 +394,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Contribution_4003_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Contribution_4003_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_SoftGoal_2001_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_SoftGoal_2001_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Decomposition_4002_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Decomposition_4002_source;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_DependeeLink_4005_target;
 
 	/**
@@ -479,22 +404,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Goal_3004_incominglinks;
+	public static String NavigatorGroupName_MeansEnd_4001_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Goal_3004_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DependerLink_4004_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DependerLink_4004_source;
+	public static String NavigatorGroupName_MeansEnd_4001_source;
 
 	/**
 	 * @generated
@@ -509,12 +424,97 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_DependerLink_4004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DependerLink_4004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Goal_2004_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Goal_2004_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Task_3002_incominglinks;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Task_3002_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SoftGoal_2001_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SoftGoal_2001_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Goal_3004_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Goal_3004_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Resource_3003_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Resource_3003_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Decomposition_4002_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Decomposition_4002_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Contribution_4003_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Contribution_4003_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SoftGoal_3001_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SoftGoal_3001_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_IStar_1000_links;
 
 	/**
 	 * @generated

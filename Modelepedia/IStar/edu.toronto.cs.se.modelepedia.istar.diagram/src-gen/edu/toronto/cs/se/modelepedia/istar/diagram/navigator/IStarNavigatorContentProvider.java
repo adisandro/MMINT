@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -231,6 +233,18 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			return getViewChildren(navigatorItem.getView(), parentElement);
 		}
 
+		/*
+		 * Due to plugin.xml restrictions this code will be called only for views representing
+		 * shortcuts to this diagram elements created on other diagrams. 
+		 */
+		if (parentElement instanceof IAdaptable) {
+			View view = (View) ((IAdaptable) parentElement)
+					.getAdapter(View.class);
+			if (view != null) {
+				return getViewChildren(view, parentElement);
+			}
+		}
+
 		return EMPTY_ARRAY;
 	}
 
@@ -240,14 +254,14 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (IStarVisualIDRegistry.getVisualID(view)) {
 
-		case Resource2EditPart.VISUAL_ID: {
+		case TaskEditPart.VISUAL_ID: {
 			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Resource_3003_incominglinks,
+					Messages.NavigatorGroupName_Task_2002_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Resource_3003_outgoinglinks,
+					Messages.NavigatorGroupName_Task_2002_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
@@ -303,6 +317,160 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			}
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case ResourceEditPart.VISUAL_ID: {
+			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_Resource_2003_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_Resource_2003_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DecompositionEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DecompositionEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(ContributionEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(ContributionEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependerLinkEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependerLinkEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependeeLinkEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependeeLinkEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case DependeeLinkEditPart.VISUAL_ID: {
+			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			IStarNavigatorGroup target = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_DependeeLink_4005_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			IStarNavigatorGroup source = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_DependeeLink_4005_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(ActorEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
 			}
 			return result.toArray();
 		}
@@ -390,49 +558,48 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case SoftGoal2EditPart.VISUAL_ID: {
+		case ActorEditPart.VISUAL_ID: {
 			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
 			Node sv = (Node) view;
-			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_SoftGoal_3001_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_SoftGoal_3001_outgoinglinks,
+					Messages.NavigatorGroupName_Actor_2005_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_Actor_2005_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
 					IStarVisualIDRegistry
-							.getType(DecompositionEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
 					IStarVisualIDRegistry
-							.getType(DecompositionEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
 					IStarVisualIDRegistry
-							.getType(ContributionEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
 					IStarVisualIDRegistry
-							.getType(ContributionEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependerLinkEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
+							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
 			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
 					IStarVisualIDRegistry
 							.getType(DependerLinkEditPart.VISUAL_ID));
@@ -443,16 +610,98 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 							.getType(DependeeLinkEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependeeLinkEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
 			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
+			return result.toArray();
+		}
+
+		case DependerLinkEditPart.VISUAL_ID: {
+			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			IStarNavigatorGroup target = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_DependerLink_4004_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			IStarNavigatorGroup source = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_DependerLink_4004_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(ActorEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
 			}
 			return result.toArray();
 		}
@@ -524,14 +773,14 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case TaskEditPart.VISUAL_ID: {
+		case Task2EditPart.VISUAL_ID: {
 			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Task_2002_incominglinks,
+					Messages.NavigatorGroupName_Task_3002_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Task_2002_outgoinglinks,
+					Messages.NavigatorGroupName_Task_3002_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
@@ -587,208 +836,6 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			}
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case IStarEditPart.VISUAL_ID: {
-			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
-			Diagram sv = (Diagram) view;
-			IStarNavigatorGroup links = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_IStar_1000_links,
-					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(ActorEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DecompositionEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ContributionEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependerLinkEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependeeLinkEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			if (!links.isEmpty()) {
-				result.add(links);
-			}
-			return result.toArray();
-		}
-
-		case ResourceEditPart.VISUAL_ID: {
-			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Resource_2003_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Resource_2003_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DecompositionEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DecompositionEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ContributionEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ContributionEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependerLinkEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependerLinkEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependeeLinkEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependeeLinkEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case ContributionEditPart.VISUAL_ID: {
-			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			IStarNavigatorGroup target = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Contribution_4003_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			IStarNavigatorGroup source = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Contribution_4003_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
 			}
 			return result.toArray();
 		}
@@ -801,6 +848,140 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
 					Messages.NavigatorGroupName_SoftGoal_2001_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DecompositionEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DecompositionEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(ContributionEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(ContributionEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependerLinkEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependerLinkEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependeeLinkEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependeeLinkEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case Goal2EditPart.VISUAL_ID: {
+			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_Goal_3004_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_Goal_3004_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DecompositionEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DecompositionEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(ContributionEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(ContributionEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependerLinkEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependerLinkEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependeeLinkEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					IStarVisualIDRegistry
+							.getType(DependeeLinkEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case Resource2EditPart.VISUAL_ID: {
+			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_Resource_3003_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_Resource_3003_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
@@ -943,14 +1124,14 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case DependeeLinkEditPart.VISUAL_ID: {
+		case ContributionEditPart.VISUAL_ID: {
 			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			IStarNavigatorGroup target = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_DependeeLink_4005_target,
+					Messages.NavigatorGroupName_Contribution_4003_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			IStarNavigatorGroup source = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_DependeeLink_4005_source,
+					Messages.NavigatorGroupName_Contribution_4003_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
@@ -967,10 +1148,6 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(ActorEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
@@ -1030,14 +1207,14 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case Goal2EditPart.VISUAL_ID: {
+		case SoftGoal2EditPart.VISUAL_ID: {
 			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Goal_3004_incominglinks,
+					Messages.NavigatorGroupName_SoftGoal_3001_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Goal_3004_outgoinglinks,
+					Messages.NavigatorGroupName_SoftGoal_3001_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
@@ -1097,217 +1274,55 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case DependerLinkEditPart.VISUAL_ID: {
+		case IStarEditPart.VISUAL_ID: {
 			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			IStarNavigatorGroup target = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_DependerLink_4004_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			IStarNavigatorGroup source = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_DependerLink_4004_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
+			Diagram sv = (Diagram) view;
+			IStarNavigatorGroup links = new IStarNavigatorGroup(
+					Messages.NavigatorGroupName_IStar_1000_links,
+					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+			connectedViews = getChildrenByType(Collections.singleton(sv),
 					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
 					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
 					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
 					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoalEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(TaskEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(ResourceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(GoalEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
 					IStarVisualIDRegistry.getType(ActorEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case ActorEditPart.VISUAL_ID: {
-			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Actor_2005_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Actor_2005_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					IStarVisualIDRegistry.getType(SoftGoal2EditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					IStarVisualIDRegistry.getType(Task2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					IStarVisualIDRegistry.getType(Resource2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					IStarVisualIDRegistry.getType(Goal2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependerLinkEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependeeLinkEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case Task2EditPart.VISUAL_ID: {
-			LinkedList<IStarAbstractNavigatorItem> result = new LinkedList<IStarAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			IStarNavigatorGroup incominglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Task_3002_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			IStarNavigatorGroup outgoinglinks = new IStarNavigatorGroup(
-					Messages.NavigatorGroupName_Task_3002_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry.getType(MeansEndEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					IStarVisualIDRegistry
 							.getType(DecompositionEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DecompositionEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					IStarVisualIDRegistry
 							.getType(ContributionEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(ContributionEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					IStarVisualIDRegistry
 							.getType(DependerLinkEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependerLinkEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					IStarVisualIDRegistry
 							.getType(DependeeLinkEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					IStarVisualIDRegistry
-							.getType(DependeeLinkEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			if (!links.isEmpty()) {
+				result.add(links);
 			}
 			return result.toArray();
 		}
@@ -1429,6 +1444,22 @@ public class IStarNavigatorContentProvider implements ICommonContentProvider {
 			result.add(new IStarNavigatorItem(nextView, parent, isLeafs));
 		}
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection<IStarNavigatorItem> getForeignShortcuts(Diagram diagram,
+			Object parent) {
+		LinkedList<View> result = new LinkedList<View>();
+		for (Iterator<View> it = diagram.getChildren().iterator(); it.hasNext();) {
+			View nextView = it.next();
+			if (!isOwnView(nextView)
+					&& nextView.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+				result.add(nextView);
+			}
+		}
+		return createNavigatorItems(result, parent, false);
 	}
 
 	/**

@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
+import edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts.ActorActorIntentionsCompartmentEditPart;
 import edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts.ActorEditPart;
 import edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts.Goal2EditPart;
 import edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts.GoalEditPart;
@@ -65,7 +66,7 @@ public class IStarModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(IStarElementTypes.Actor_2005);
 			return types;
 		}
-		if (editPart instanceof ActorEditPart) {
+		if (editPart instanceof ActorActorIntentionsCompartmentEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 			types.add(IStarElementTypes.SoftGoal_3001);
 			types.add(IStarElementTypes.Task_3002);

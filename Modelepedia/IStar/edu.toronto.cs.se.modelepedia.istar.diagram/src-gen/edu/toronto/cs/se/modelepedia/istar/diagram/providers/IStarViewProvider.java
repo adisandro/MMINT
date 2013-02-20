@@ -541,7 +541,7 @@ public class IStarViewProvider extends AbstractProvider implements
 				node,
 				IStarVisualIDRegistry
 						.getType(ActorActorIntentionsCompartmentEditPart.VISUAL_ID),
-				true, false, true, true);
+				true, false, false, false);
 		return node;
 	}
 
