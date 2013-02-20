@@ -40,35 +40,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl#getDependenciesAsDependee <em>Dependencies As Dependee</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class DependencyEndpointImpl extends MAVOElementImpl implements DependencyEndpoint {
-	/**
-	 * The cached value of the '{@link #getDependenciesAsDepender() <em>Dependencies As Depender</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDependenciesAsDepender()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DependerLink> dependenciesAsDepender;
-
-	/**
-	 * The cached value of the '{@link #getDependenciesAsDependee() <em>Dependencies As Dependee</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDependenciesAsDependee()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DependeeLink> dependenciesAsDependee;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,6 +68,26 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDependenciesAsDepender() <em>Dependencies As Depender</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependenciesAsDepender()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DependerLink> dependenciesAsDepender;
+
+	/**
+	 * The cached value of the '{@link #getDependenciesAsDependee() <em>Dependencies As Dependee</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDependenciesAsDependee()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DependeeLink> dependenciesAsDependee;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,12 +194,12 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
+				return getName();
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER:
 				return getDependenciesAsDepender();
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE:
 				return getDependenciesAsDependee();
-			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
-				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,6 +213,9 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
+				setName((String)newValue);
+				return;
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER:
 				getDependenciesAsDepender().clear();
 				getDependenciesAsDepender().addAll((Collection<? extends DependerLink>)newValue);
@@ -220,9 +223,6 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE:
 				getDependenciesAsDependee().clear();
 				getDependenciesAsDependee().addAll((Collection<? extends DependeeLink>)newValue);
-				return;
-			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
-				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,14 +236,14 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER:
 				getDependenciesAsDepender().clear();
 				return;
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE:
 				getDependenciesAsDependee().clear();
-				return;
-			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
-				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -257,12 +257,12 @@ public abstract class DependencyEndpointImpl extends MAVOElementImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER:
 				return dependenciesAsDepender != null && !dependenciesAsDepender.isEmpty();
 			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE:
 				return dependenciesAsDependee != null && !dependenciesAsDependee.isEmpty();
-			case IStar_MAVOPackage.DEPENDENCY_ENDPOINT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}

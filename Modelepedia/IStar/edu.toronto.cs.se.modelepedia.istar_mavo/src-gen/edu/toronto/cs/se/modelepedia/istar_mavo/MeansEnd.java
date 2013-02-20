@@ -19,7 +19,8 @@ package edu.toronto.cs.se.modelepedia.istar_mavo;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getMeansEnd()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='srcTask tgtGoal'"
+ * @model annotation="gmf.link target.decoration='closedarrow'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='srcTask tgtGoal'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot srcTask='src.oclIsTypeOf(Task)' tgtGoal='tgt.oclIsTypeOf(Goal)'"
  * @generated
  */

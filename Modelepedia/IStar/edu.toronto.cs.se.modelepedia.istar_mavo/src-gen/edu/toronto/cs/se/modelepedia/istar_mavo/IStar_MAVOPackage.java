@@ -162,13 +162,22 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDENCY_ENDPOINT__VAR = MavoPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY_ENDPOINT__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -177,16 +186,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPENDENCY_ENDPOINT__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Dependency Endpoint</em>' class.
@@ -244,6 +244,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int ACTOR__VAR = DEPENDENCY_ENDPOINT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__NAME = DEPENDENCY_ENDPOINT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,15 +269,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTOR__DEPENDENCIES_AS_DEPENDEE = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Intentions</b></em>' containment reference list.
@@ -335,6 +335,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int INTENTION__VAR = DEPENDENCY_ENDPOINT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION__NAME = DEPENDENCY_ENDPOINT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -351,15 +360,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTENTION__DEPENDENCIES_AS_DEPENDEE = DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTENTION__NAME = DEPENDENCY_ENDPOINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -516,6 +516,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int TASK__VAR = INTENTION__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__NAME = INTENTION__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -532,15 +541,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int TASK__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -697,6 +697,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int RESOURCE__VAR = INTENTION__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__NAME = INTENTION__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -713,15 +722,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESOURCE__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -878,6 +878,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int GOAL__VAR = INTENTION__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__NAME = INTENTION__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -894,15 +903,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int GOAL__DEPENDENCIES_AS_DEPENDEE = INTENTION__DEPENDENCIES_AS_DEPENDEE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__NAME = INTENTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.
@@ -1059,6 +1059,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int SOFT_GOAL__VAR = GOAL__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__NAME = GOAL__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1075,15 +1084,6 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFT_GOAL__DEPENDENCIES_AS_DEPENDEE = GOAL__DEPENDENCIES_AS_DEPENDEE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOFT_GOAL__NAME = GOAL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Fully Satisfied</b></em>' attribute.

@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntentionLink()
  * @model abstract="true"
+ *        annotation="gmf.link source='src' target='tgt'"
  * @generated
  */
 public interface IntentionLink extends MAVOElement {

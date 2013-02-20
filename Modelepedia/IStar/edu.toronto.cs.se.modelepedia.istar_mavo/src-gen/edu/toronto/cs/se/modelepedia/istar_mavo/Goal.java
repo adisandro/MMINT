@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.istar_mavo;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getGoal()
- * @model
+ * @model annotation="gmf.node figure='edu.toronto.cs.se.modelepedia.istar.diagram.figures.GoalFigure'"
  * @generated
  */
 public interface Goal extends Intention {

@@ -25,7 +25,8 @@ package edu.toronto.cs.se.modelepedia.istar_mavo;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getContribution()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtSoftgoal'"
+ * @model annotation="gmf.link target.decoration='arrow'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtSoftgoal'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot tgtSoftgoal='tgt.oclIsTypeOf(SoftGoal)'"
  * @generated
  */

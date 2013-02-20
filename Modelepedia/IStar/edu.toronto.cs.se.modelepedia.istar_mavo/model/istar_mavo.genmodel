@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Vivien Suen.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro, Vivien Suen - Implementation."
     modelDirectory="/edu.toronto.cs.se.modelepedia.istar_mavo/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.istar_mavo.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.istar_mavo.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.istar_mavo"
-    modelName="IStar_MAVO" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0"
+    modelName="IStar_MAVO" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
     copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmtf/model/mid.genmodel#//mavo"
     operationReflection="true">
   <foreignModel>istar_mavo.ecore</foreignModel>
@@ -43,9 +43,9 @@
     <genClasses ecoreClass="istar_mavo.ecore#//Goal"/>
     <genClasses ecoreClass="istar_mavo.ecore#//SoftGoal"/>
     <genClasses image="false" ecoreClass="istar_mavo.ecore#//DependencyEndpoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//DependencyEndpoint/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependencyEndpoint/dependenciesAsDepender"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference istar_mavo.ecore#//DependencyEndpoint/dependenciesAsDependee"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//DependencyEndpoint/name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="istar_mavo.ecore#//IntentionLink">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute istar_mavo.ecore#//IntentionLink/name"/>

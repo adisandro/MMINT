@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.istar_mavo;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getResource()
- * @model
+ * @model annotation="gmf.node figure='rectangle' border.width='5'"
  * @generated
  */
 public interface Resource extends Intention {

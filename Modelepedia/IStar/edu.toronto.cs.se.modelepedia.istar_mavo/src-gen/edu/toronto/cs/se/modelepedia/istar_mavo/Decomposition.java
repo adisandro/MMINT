@@ -19,7 +19,8 @@ package edu.toronto.cs.se.modelepedia.istar_mavo;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDecomposition()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtTask'"
+ * @model annotation="gmf.link target.decoration='filledrhomb'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtTask'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot tgtTask='tgt.oclIsTypeOf(Task)'"
  * @generated
  */

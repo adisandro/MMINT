@@ -70,9 +70,9 @@ public class DependencyEndpointItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addDependenciesAsDependerPropertyDescriptor(object);
 			addDependenciesAsDependeePropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

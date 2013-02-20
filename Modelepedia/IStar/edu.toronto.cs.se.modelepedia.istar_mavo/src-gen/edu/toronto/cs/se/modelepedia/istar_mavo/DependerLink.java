@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDependerLink()
- * @model
+ * @model annotation="gmf.link target.decoration='arrow' source='depender' target='dependum'"
  * @generated
  */
 public interface DependerLink extends MAVOElement {

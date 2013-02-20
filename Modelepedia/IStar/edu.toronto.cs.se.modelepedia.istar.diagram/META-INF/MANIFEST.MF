@@ -7,7 +7,8 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.istar.diagram.part.IStarDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts,
+ edu.toronto.cs.se.modelepedia.istar.diagram.figures,
  edu.toronto.cs.se.modelepedia.istar.diagram.part,
  edu.toronto.cs.se.modelepedia.istar.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,

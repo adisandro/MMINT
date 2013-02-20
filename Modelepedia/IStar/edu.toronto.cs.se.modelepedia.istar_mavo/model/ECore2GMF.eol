@@ -1,0 +1,3 @@
+import 'MAVOECore2GMF.eol';
+
+addMAVOLabels();

@@ -431,15 +431,6 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	public EReference getDependencyEndpoint_DependenciesAsDepender() {
-		return (EReference)dependencyEndpointEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDependencyEndpoint_DependenciesAsDependee() {
 		return (EReference)dependencyEndpointEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -448,8 +439,17 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDependencyEndpoint_DependenciesAsDependee() {
+		return (EReference)dependencyEndpointEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getDependencyEndpoint_Name() {
-		return (EAttribute)dependencyEndpointEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)dependencyEndpointEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -662,9 +662,9 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		softGoalEClass = createEClass(SOFT_GOAL);
 
 		dependencyEndpointEClass = createEClass(DEPENDENCY_ENDPOINT);
+		createEAttribute(dependencyEndpointEClass, DEPENDENCY_ENDPOINT__NAME);
 		createEReference(dependencyEndpointEClass, DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER);
 		createEReference(dependencyEndpointEClass, DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE);
-		createEAttribute(dependencyEndpointEClass, DEPENDENCY_ENDPOINT__NAME);
 
 		intentionLinkEClass = createEClass(INTENTION_LINK);
 		createEAttribute(intentionLinkEClass, INTENTION_LINK__NAME);
@@ -768,9 +768,9 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		initEClass(softGoalEClass, SoftGoal.class, "SoftGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(dependencyEndpointEClass, DependencyEndpoint.class, "DependencyEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDependencyEndpoint_Name(), ecorePackage.getEString(), "name", null, 1, 1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDependencyEndpoint_DependenciesAsDepender(), this.getDependerLink(), this.getDependerLink_Depender(), "dependenciesAsDepender", null, 0, -1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDependencyEndpoint_DependenciesAsDependee(), this.getDependeeLink(), this.getDependeeLink_Dependee(), "dependenciesAsDependee", null, 0, -1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDependencyEndpoint_Name(), ecorePackage.getEString(), "name", null, 1, 1, DependencyEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(intentionLinkEClass, IntentionLink.class, "IntentionLink", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIntentionLink_Name(), ecorePackage.getEString(), "name", null, 1, 1, IntentionLink.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -810,8 +810,16 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+		// gmf.diagram
+		createGmfAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
+		// gmf.node
+		createGmf_1Annotations();
+		// gmf.compartment
+		createGmf_2Annotations();
+		// gmf.link
+		createGmf_3Annotations();
 	}
 
 	/**
@@ -829,37 +837,52 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });		
+		   });			
 		addAnnotation
 		  (iStarEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "onlyDependums"
-		   });			
+		   });				
 		addAnnotation
 		  (actorEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "noDependums"
-		   });				
+		   });												
 		addAnnotation
 		  (meansEndEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "srcTask tgtGoal"
-		   });			
+		   });				
 		addAnnotation
 		  (decompositionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "tgtTask"
-		   });			
+		   });				
 		addAnnotation
 		  (contributionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "tgtSoftgoal"
-		   });			
+		   });					
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.diagram</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmfAnnotations() {
+		String source = "gmf.diagram";			
+		addAnnotation
+		  (iStarEClass, 
+		   source, 
+		   new String[] {
+		   });																										
 	}
 
 	/**
@@ -869,56 +892,173 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";				
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";					
 		addAnnotation
 		  (iStarEClass, 
 		   source, 
 		   new String[] {
 			 "onlyDependums", "dependums->forAll(linksAsSrc->isEmpty() and linksAsTgt->isEmpty())"
-		   });			
+		   });				
 		addAnnotation
 		  (actorEClass, 
 		   source, 
 		   new String[] {
 			 "noDependums", "intentions->forAll(dependerLinks->isEmpty() and dependeeLinks->isEmpty())"
-		   });		
+		   });									
 		addAnnotation
 		  (getIntentionLink_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if src.oclIsUndefined() or tgt.oclIsUndefined() then \'\' else src.name.concat(\' 2 \').concat(tgt.name) endif"
-		   });			
+		   });				
 		addAnnotation
 		  (meansEndEClass, 
 		   source, 
 		   new String[] {
 			 "srcTask", "src.oclIsTypeOf(Task)",
 			 "tgtGoal", "tgt.oclIsTypeOf(Goal)"
-		   });			
+		   });				
 		addAnnotation
 		  (decompositionEClass, 
 		   source, 
 		   new String[] {
 			 "tgtTask", "tgt.oclIsTypeOf(Task)"
-		   });			
+		   });				
 		addAnnotation
 		  (contributionEClass, 
 		   source, 
 		   new String[] {
 			 "tgtSoftgoal", "tgt.oclIsTypeOf(SoftGoal)"
-		   });		
+		   });			
 		addAnnotation
 		  (getDependerLink_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if depender.oclIsUndefined() or dependum.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependum.name) endif"
-		   });		
+		   });			
 		addAnnotation
 		  (getDependeeLink_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if dependum.oclIsUndefined() or dependee.oclIsUndefined() then \'\' else dependum.name.concat(\' 2 \').concat(dependee.name) endif"
 		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.node</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_1Annotations() {
+		String source = "gmf.node";						
+		addAnnotation
+		  (actorEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "ellipse",
+			 "border.style", "dash",
+			 "border.width", "2"
+		   });					
+		addAnnotation
+		  (taskEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.TaskFigure"
+		   });		
+		addAnnotation
+		  (resourceEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "rectangle",
+			 "border.width", "5"
+		   });		
+		addAnnotation
+		  (goalEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.GoalFigure"
+		   });		
+		addAnnotation
+		  (softGoalEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.SoftGoalFigure"
+		   });		
+		addAnnotation
+		  (dependencyEndpointEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name",
+			 "label.icon", "false"
+		   });															
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.compartment</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_2Annotations() {
+		String source = "gmf.compartment";									
+		addAnnotation
+		  (getActor_Intentions(), 
+		   source, 
+		   new String[] {
+			 "layout", "free"
+		   });																				
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.link</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_3Annotations() {
+		String source = "gmf.link";															
+		addAnnotation
+		  (intentionLinkEClass, 
+		   source, 
+		   new String[] {
+			 "source", "src",
+			 "target", "tgt"
+		   });			
+		addAnnotation
+		  (meansEndEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "closedarrow"
+		   });				
+		addAnnotation
+		  (decompositionEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "filledrhomb"
+		   });				
+		addAnnotation
+		  (contributionEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow"
+		   });				
+		addAnnotation
+		  (dependerLinkEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow",
+			 "source", "depender",
+			 "target", "dependum"
+		   });			
+		addAnnotation
+		  (dependeeLinkEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow",
+			 "source", "dependum",
+			 "target", "dependee"
+		   });	
 	}
 
 } //IStar_MAVOPackageImpl
