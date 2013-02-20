@@ -1,0 +1,7 @@
+# Tracing options for the edu.toronto.cs.se.modelepedia.istar.diagram plug-in
+
+# Common issues
+edu.toronto.cs.se.modelepedia.istar.diagram/debug=false
+
+# Visual IDs
+edu.toronto.cs.se.modelepedia.istar.diagram/debug/visualID=false
