@@ -21,6 +21,7 @@ package edu.toronto.cs.se.modelepedia.istar;
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDecomposition()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtTask'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot tgtTask='tgt.oclIsTypeOf(Task)'"
+ *        annotation="gmf.link target.decoration='filledrhomb'"
  * @generated
  */
 public interface Decomposition extends IntentionLink {

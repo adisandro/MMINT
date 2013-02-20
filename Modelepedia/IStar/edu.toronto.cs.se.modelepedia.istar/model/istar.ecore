@@ -13,6 +13,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="onlyDependums" value="dependums->forAll(linksAsSrc->isEmpty() and linksAsTgt->isEmpty())"/>
     </eAnnotations>
+    <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
         eType="#//Actor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependums" upperBound="-1"
@@ -25,8 +26,17 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="noDependums" value="intentions->forAll(dependerLinks->isEmpty() and dependeeLinks->isEmpty())"/>
     </eAnnotations>
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="ellipse"/>
+      <details key="border.style" value="dash"/>
+      <details key="border.width" value="2"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="intentions" upperBound="-1"
-        eType="#//Intention" containment="true"/>
+        eType="#//Intention" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="free"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Intention" abstract="true" eSuperTypes="#//DependencyEndpoint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullySatisfied" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -45,11 +55,32 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependeeLinks" upperBound="-1"
         eType="#//DependeeLink" containment="true" eOpposite="#//DependeeLink/dependum"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//Intention"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Resource" eSuperTypes="#//Intention"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//Intention"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SoftGoal" eSuperTypes="#//Goal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//Intention">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="edu.toronto.cs.se.modelepedia.istar.diagram.figures.TaskFigure"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Resource" eSuperTypes="#//Intention">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="rectangle"/>
+      <details key="border.width" value="5"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//Intention">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="edu.toronto.cs.se.modelepedia.istar.diagram.figures.GoalFigure"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoftGoal" eSuperTypes="#//Goal">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="edu.toronto.cs.se.modelepedia.istar.diagram.figures.SoftGoalFigure"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DependencyEndpoint" abstract="true">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
         upperBound="-1" eType="#//DependerLink" eOpposite="#//DependerLink/depender"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
@@ -57,6 +88,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntentionLink" abstract="true">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="src"/>
+      <details key="target" value="tgt"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -76,6 +111,9 @@
       <details key="srcTask" value="src.oclIsTypeOf(Task)"/>
       <details key="tgtGoal" value="tgt.oclIsTypeOf(Goal)"/>
     </eAnnotations>
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="closedarrow"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Decomposition" eSuperTypes="#//IntentionLink">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -84,6 +122,9 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="tgtTask" value="tgt.oclIsTypeOf(Task)"/>
     </eAnnotations>
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="filledrhomb"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Contribution" eSuperTypes="#//IntentionLink">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -91,6 +132,9 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="tgtSoftgoal" value="tgt.oclIsTypeOf(SoftGoal)"/>
+    </eAnnotations>
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="arrow"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ContributionType"/>
   </eClassifiers>
@@ -104,6 +148,11 @@
     <eLiterals name="UNKNOWN" value="6"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DependerLink">
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="arrow"/>
+      <details key="source" value="depender"/>
+      <details key="target" value="dependum"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -116,6 +165,11 @@
         eType="#//Intention" eOpposite="#//Intention/dependerLinks"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DependeeLink">
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="arrow"/>
+      <details key="source" value="dependum"/>
+      <details key="target" value="dependee"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">

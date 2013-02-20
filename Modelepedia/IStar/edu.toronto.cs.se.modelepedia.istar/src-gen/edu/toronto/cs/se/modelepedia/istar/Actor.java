@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getActor()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='noDependums'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot noDependums='intentions->forAll(dependerLinks->isEmpty() and dependeeLinks->isEmpty())'"
+ *        annotation="gmf.node figure='ellipse' border.style='dash' border.width='2'"
  * @generated
  */
 public interface Actor extends DependencyEndpoint {
@@ -43,6 +44,7 @@ public interface Actor extends DependencyEndpoint {
 	 * @return the value of the '<em>Intentions</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getActor_Intentions()
 	 * @model containment="true"
+	 *        annotation="gmf.compartment layout='free'"
 	 * @generated
 	 */
 	EList<Intention> getIntentions();

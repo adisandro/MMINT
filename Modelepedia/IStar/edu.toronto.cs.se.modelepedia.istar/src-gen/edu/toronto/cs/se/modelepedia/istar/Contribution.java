@@ -27,6 +27,7 @@ package edu.toronto.cs.se.modelepedia.istar;
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getContribution()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='tgtSoftgoal'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot tgtSoftgoal='tgt.oclIsTypeOf(SoftGoal)'"
+ *        annotation="gmf.link target.decoration='arrow'"
  * @generated
  */
 public interface Contribution extends IntentionLink {

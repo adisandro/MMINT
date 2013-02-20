@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDependerLink()
- * @model
+ * @model annotation="gmf.link target.decoration='arrow' source='depender' target='dependum'"
  * @generated
  */
 public interface DependerLink extends EObject {

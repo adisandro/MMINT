@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.istar;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getTask()
- * @model
+ * @model annotation="gmf.node figure='edu.toronto.cs.se.modelepedia.istar.diagram.figures.TaskFigure'"
  * @generated
  */
 public interface Task extends Intention {

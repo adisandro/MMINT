@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getIntentionLink()
  * @model abstract="true"
+ *        annotation="gmf.link source='src' target='tgt'"
  * @generated
  */
 public interface IntentionLink extends EObject {

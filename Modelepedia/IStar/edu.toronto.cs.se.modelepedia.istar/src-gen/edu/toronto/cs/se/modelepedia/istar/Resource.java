@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.istar;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getResource()
- * @model
+ * @model annotation="gmf.node figure='rectangle' border.width='5'"
  * @generated
  */
 public interface Resource extends Intention {

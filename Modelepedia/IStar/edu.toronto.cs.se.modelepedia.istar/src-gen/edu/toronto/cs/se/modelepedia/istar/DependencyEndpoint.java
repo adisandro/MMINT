@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getDependencyEndpoint()
  * @model abstract="true"
+ *        annotation="gmf.node label='name' label.icon='false'"
  * @generated
  */
 public interface DependencyEndpoint extends EObject {

@@ -799,6 +799,14 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		createEcoreAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
+		// gmf.diagram
+		createGmfAnnotations();
+		// gmf.node
+		createGmf_1Annotations();
+		// gmf.compartment
+		createGmf_2Annotations();
+		// gmf.link
+		createGmf_3Annotations();
 	}
 
 	/**
@@ -822,31 +830,31 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "onlyDependums"
-		   });			
+		   });				
 		addAnnotation
 		  (actorEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "noDependums"
-		   });				
+		   });												
 		addAnnotation
 		  (meansEndEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "srcTask tgtGoal"
-		   });			
+		   });				
 		addAnnotation
 		  (decompositionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "tgtTask"
-		   });			
+		   });				
 		addAnnotation
 		  (contributionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "tgtSoftgoal"
-		   });			
+		   });						
 	}
 
 	/**
@@ -862,13 +870,13 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		   source, 
 		   new String[] {
 			 "onlyDependums", "dependums->forAll(linksAsSrc->isEmpty() and linksAsTgt->isEmpty())"
-		   });			
+		   });				
 		addAnnotation
 		  (actorEClass, 
 		   source, 
 		   new String[] {
 			 "noDependums", "intentions->forAll(dependerLinks->isEmpty() and dependeeLinks->isEmpty())"
-		   });		
+		   });										
 		addAnnotation
 		  (getIntentionLink_Name(), 
 		   source, 
@@ -881,31 +889,163 @@ public class IStarPackageImpl extends EPackageImpl implements IStarPackage {
 		   new String[] {
 			 "srcTask", "src.oclIsTypeOf(Task)",
 			 "tgtGoal", "tgt.oclIsTypeOf(Goal)"
-		   });			
+		   });				
 		addAnnotation
 		  (decompositionEClass, 
 		   source, 
 		   new String[] {
 			 "tgtTask", "tgt.oclIsTypeOf(Task)"
-		   });			
+		   });				
 		addAnnotation
 		  (contributionEClass, 
 		   source, 
 		   new String[] {
 			 "tgtSoftgoal", "tgt.oclIsTypeOf(SoftGoal)"
-		   });		
+		   });				
 		addAnnotation
 		  (getDependerLink_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if depender.oclIsUndefined() or dependum.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependum.name) endif"
-		   });		
+		   });			
 		addAnnotation
 		  (getDependeeLink_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if dependum.oclIsUndefined() or dependee.oclIsUndefined() then \'\' else dependum.name.concat(\' 2 \').concat(dependee.name) endif"
 		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.diagram</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmfAnnotations() {
+		String source = "gmf.diagram";					
+		addAnnotation
+		  (iStarEClass, 
+		   source, 
+		   new String[] {
+		   });																								
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.node</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_1Annotations() {
+		String source = "gmf.node";								
+		addAnnotation
+		  (actorEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "ellipse",
+			 "border.style", "dash",
+			 "border.width", "2"
+		   });			
+		addAnnotation
+		  (taskEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.TaskFigure"
+		   });		
+		addAnnotation
+		  (resourceEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "rectangle",
+			 "border.width", "5"
+		   });		
+		addAnnotation
+		  (goalEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.GoalFigure"
+		   });		
+		addAnnotation
+		  (softGoalEClass, 
+		   source, 
+		   new String[] {
+			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.SoftGoalFigure"
+		   });		
+		addAnnotation
+		  (dependencyEndpointEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name",
+			 "label.icon", "false"
+		   });															
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.compartment</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_2Annotations() {
+		String source = "gmf.compartment";									
+		addAnnotation
+		  (getActor_Intentions(), 
+		   source, 
+		   new String[] {
+			 "layout", "free"
+		   });																				
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.link</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_3Annotations() {
+		String source = "gmf.link";															
+		addAnnotation
+		  (intentionLinkEClass, 
+		   source, 
+		   new String[] {
+			 "source", "src",
+			 "target", "tgt"
+		   });					
+		addAnnotation
+		  (meansEndEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "closedarrow"
+		   });				
+		addAnnotation
+		  (decompositionEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "filledrhomb"
+		   });				
+		addAnnotation
+		  (contributionEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow"
+		   });		
+		addAnnotation
+		  (dependerLinkEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow",
+			 "source", "depender",
+			 "target", "dependum"
+		   });			
+		addAnnotation
+		  (dependeeLinkEClass, 
+		   source, 
+		   new String[] {
+			 "target.decoration", "arrow",
+			 "source", "dependum",
+			 "target", "dependee"
+		   });	
 	}
 
 } //IStarPackageImpl

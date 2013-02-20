@@ -21,6 +21,7 @@ package edu.toronto.cs.se.modelepedia.istar;
  * @see edu.toronto.cs.se.modelepedia.istar.IStarPackage#getMeansEnd()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='srcTask tgtGoal'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot srcTask='src.oclIsTypeOf(Task)' tgtGoal='tgt.oclIsTypeOf(Goal)'"
+ *        annotation="gmf.link target.decoration='closedarrow'"
  * @generated
  */
 public interface MeansEnd extends IntentionLink {
