@@ -567,20 +567,26 @@ public class MultiModelTypeFactory {
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) modelElemTypeRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		List<BinaryLinkReference> delLinkTypeRefs = new ArrayList<BinaryLinkReference>();
+		List<ModelElementEndpointReference> delModelElemTypeEndpointRefs = new ArrayList<ModelElementEndpointReference>();
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemTypeRef.getModelElemEndpointRefs()) {
 			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
+			// avoid iterating over the list
 			if (linkTypeRef instanceof BinaryLinkReference) {
-				// avoid iterating over the list
 				if (!delLinkTypeRefs.contains(linkTypeRef)) {
 					delLinkTypeRefs.add((BinaryLinkReference) linkTypeRef);
 				}
 			}
 			else {
-				removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
+				if (!delModelElemTypeEndpointRefs.contains(modelElemTypeEndpointRef)) {
+					delModelElemTypeEndpointRefs.add(modelElemTypeEndpointRef);
+				}
 			}
 		}
 		for (BinaryLinkReference linkTypeRef : delLinkTypeRefs) {
 			removeLinkTypeAndLinkTypeReference(linkTypeRef);
+		}
+		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
+			removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
 		}
 		removeModelElementTypeReference(modelTypeEndpointRef, modelElemTypeRef);
 		// delete references of the "thing" in subtypes of the container

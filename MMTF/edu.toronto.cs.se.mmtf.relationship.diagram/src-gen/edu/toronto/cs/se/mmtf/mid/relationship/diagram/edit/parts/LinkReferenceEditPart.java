@@ -42,7 +42,6 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkReferenceComponentEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkReferenceItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.LinkReferenceSemanticEditPolicy;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
@@ -85,8 +84,6 @@ public class LinkReferenceEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new LinkReferenceSemanticEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new LinkReferenceComponentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

@@ -806,6 +806,7 @@ public class MultiModelInstanceFactory {
 	public static void removeModelElementReference(ModelElementReference modelElemRef) {
 
 		List<LinkReference> delLinkRefs = new ArrayList<LinkReference>();
+		List<ModelElementEndpointReference> delModelElemEndpointRefs = new ArrayList<ModelElementEndpointReference>();
 		for (ModelElementEndpointReference modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
 			LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();
 			if (linkRef instanceof BinaryLinkReference) {
@@ -814,11 +815,16 @@ public class MultiModelInstanceFactory {
 				}
 			}
 			else {
-				removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);
+				if (!delModelElemEndpointRefs.contains(modelElemEndpointRef)) {
+					delModelElemEndpointRefs.add(modelElemEndpointRef);
+				}
 			}
 		}
 		for (LinkReference linkRef : delLinkRefs) {
 			removeLinkAndLinkReference(linkRef);
+		}
+		for (ModelElementEndpointReference modelElemEndpointRef : delModelElemEndpointRefs) {
+			removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);
 		}
 
 		((ModelEndpointReference) modelElemRef.eContainer()).getModelElemRefs().remove(modelElemRef);

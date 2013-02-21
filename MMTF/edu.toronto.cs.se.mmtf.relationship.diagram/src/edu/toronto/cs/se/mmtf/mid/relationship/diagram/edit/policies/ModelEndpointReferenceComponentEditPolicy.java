@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.GroupRequestViaKeyboard;
 import org.eclipse.gmf.runtime.notation.View;
@@ -47,7 +46,7 @@ public class ModelEndpointReferenceComponentEditPolicy extends ComponentEditPoli
 			ModelEndpointReference modelEndpointRef = (ModelEndpointReference) ((View) editPart.getModel()).getElement();
 			if (modelEndpointRef.getContainedObject() == null && modelEndpointRef.eContainer() instanceof BinaryModelRel) {
 				// a binary model relationship which is not standalone can be only modified through the Mid diagram
-				return UnexecutableCommand.INSTANCE;
+				return null;
 			}
 		}
 
