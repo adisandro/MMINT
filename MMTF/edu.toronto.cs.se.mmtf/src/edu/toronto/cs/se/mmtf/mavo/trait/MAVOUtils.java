@@ -39,16 +39,34 @@ public class MAVOUtils {
 
 	public static void setMAVOElementLabel(MAVOElement element, String newLabel) {
 
-		//TODO MMTF: do it properly
-		if (newLabel.contains("m") || newLabel.contains("M")) {
-			element.setMay(true);
+		boolean isMay = false, isSet = false, isVar = false;
+		for (char c : newLabel.replace(" ", "").toUpperCase().toCharArray()) {
+			switch (c) {
+				case 'M':
+					if (isMay) {
+						return;
+					}
+					isMay = true;
+					break;
+				case 'S':
+					if (isSet) {
+						return;
+					}
+					isSet = true;
+					break;
+				case 'V':
+					if (isVar) {
+						return;
+					}
+					isVar = true;
+					break;
+				default:
+					return;
+			}
 		}
-		if (newLabel.contains("s") || newLabel.contains("S")) {
-			element.setSet(true);
-		}
-		if (newLabel.contains("v") || newLabel.contains("V")) {
-			element.setVar(true);
-		}
+		element.setMay(isMay);
+		element.setSet(isSet);
+		element.setVar(isVar);
 	}
 
 	public static void annotateMAVOModel(EObject rootModelObj, Model model) {
