@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 public class EditModelepediaListener extends SelectionAdapter {
 
-	private final static String WIKI_WWW = "http://mango.cs.toronto.edu:4139/w/index.php/Special:FormEdit";
+	private final static String WIKI_WWW = "http://www.cs.toronto.edu:40404/modelepedia_local/index.php/Special:FormEdit";
 	private Model modelType;
 	
 	public EditModelepediaListener(Model modelType) {
@@ -36,9 +36,9 @@ public class EditModelepediaListener extends SelectionAdapter {
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
+
 		String formType = "/Model_Type/";
 		String args = "?";
-		String cardinality = "";
 		int i = 1;
 				
 		if (modelType.getName() != null)
@@ -57,7 +57,7 @@ public class EditModelepediaListener extends SelectionAdapter {
 			for (ModelEndpoint modelEndpoint : modelRelType.getModelEndpoints()) {
 				if (i != 1)
 					args = args + ", ";
-				args = args + modelEndpoint.getTarget().getName() + ";" + modelEndpoint.getName();
+				args = args + modelEndpoint.getName() + ";" + modelEndpoint.getTarget().getName();
 				i++;
 			}
 		}

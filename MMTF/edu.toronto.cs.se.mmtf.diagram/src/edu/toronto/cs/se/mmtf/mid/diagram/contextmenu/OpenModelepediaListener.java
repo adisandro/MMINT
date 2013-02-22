@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 
 public class OpenModelepediaListener extends SelectionAdapter {
 
-	private final static String WIKI_WWW = "http://mango.cs.toronto.edu:4139/w/index.php/";
+	private final static String WIKI_WWW = "http://www.cs.toronto.edu:40404/modelepedia_local/index.php/";
 	private Model modelType;
 
 	public OpenModelepediaListener(Model modelType) {
