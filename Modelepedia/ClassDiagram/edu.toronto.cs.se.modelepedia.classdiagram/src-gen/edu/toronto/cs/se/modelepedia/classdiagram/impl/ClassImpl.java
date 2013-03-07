@@ -18,6 +18,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -25,7 +26,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,6 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getDependenciesAsDependee <em>Dependencies As Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getNestedIn <em>Nested In</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,6 +90,16 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	protected EList<Dependency> dependenciesAsDepender;
 
 	/**
+	 * The cached value of the '{@link #getNestedIn() <em>Nested In</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedIn()
+	 * @generated
+	 * @ordered
+	 */
+	protected edu.toronto.cs.se.modelepedia.classdiagram.Class nestedIn;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +125,7 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 */
 	public EList<Attribute> getOwnedAttributes() {
 		if (ownedAttributes == null) {
-			ownedAttributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, ClassDiagramPackage.CLASS__OWNED_ATTRIBUTES);
+			ownedAttributes = new EObjectContainmentWithInverseEList<Attribute>(Attribute.class, this, ClassDiagramPackage.CLASS__OWNED_ATTRIBUTES, ClassDiagramPackage.ATTRIBUTE__OWNER);
 		}
 		return ownedAttributes;
 	}
@@ -124,7 +137,7 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 */
 	public EList<Operation> getOwnedOperations() {
 		if (ownedOperations == null) {
-			ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, ClassDiagramPackage.CLASS__OWNED_OPERATIONS);
+			ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, ClassDiagramPackage.CLASS__OWNED_OPERATIONS, ClassDiagramPackage.OPERATION__OWNER);
 		}
 		return ownedOperations;
 	}
@@ -158,10 +171,52 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class getNestedIn() {
+		if (nestedIn != null && nestedIn.eIsProxy()) {
+			InternalEObject oldNestedIn = (InternalEObject)nestedIn;
+			nestedIn = (edu.toronto.cs.se.modelepedia.classdiagram.Class)eResolveProxy(oldNestedIn);
+			if (nestedIn != oldNestedIn) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassDiagramPackage.CLASS__NESTED_IN, oldNestedIn, nestedIn));
+			}
+		}
+		return nestedIn;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class basicGetNestedIn() {
+		return nestedIn;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNestedIn(edu.toronto.cs.se.modelepedia.classdiagram.Class newNestedIn) {
+		edu.toronto.cs.se.modelepedia.classdiagram.Class oldNestedIn = nestedIn;
+		nestedIn = newNestedIn;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.CLASS__NESTED_IN, oldNestedIn, nestedIn));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ClassDiagramPackage.CLASS__OWNED_ATTRIBUTES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttributes()).basicAdd(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__OWNED_OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case ClassDiagramPackage.CLASS__DEPENDENCIES_AS_DEPENDEE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependenciesAsDependee()).basicAdd(otherEnd, msgs);
 			case ClassDiagramPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
@@ -206,6 +261,9 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return getDependenciesAsDependee();
 			case ClassDiagramPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				return getDependenciesAsDepender();
+			case ClassDiagramPackage.CLASS__NESTED_IN:
+				if (resolve) return getNestedIn();
+				return basicGetNestedIn();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,6 +293,9 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				getDependenciesAsDepender().clear();
 				getDependenciesAsDepender().addAll((Collection<? extends Dependency>)newValue);
 				return;
+			case ClassDiagramPackage.CLASS__NESTED_IN:
+				setNestedIn((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -259,6 +320,9 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 			case ClassDiagramPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				getDependenciesAsDepender().clear();
 				return;
+			case ClassDiagramPackage.CLASS__NESTED_IN:
+				setNestedIn((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -279,6 +343,8 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return dependenciesAsDependee != null && !dependenciesAsDependee.isEmpty();
 			case ClassDiagramPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				return dependenciesAsDepender != null && !dependenciesAsDepender.isEmpty();
+			case ClassDiagramPackage.CLASS__NESTED_IN:
+				return nestedIn != null;
 		}
 		return super.eIsSet(featureID);
 	}

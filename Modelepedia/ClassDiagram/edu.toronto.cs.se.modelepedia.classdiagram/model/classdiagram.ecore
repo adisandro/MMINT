@@ -3,33 +3,63 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="classdiagram" nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram"
     nsPrefix="classdiagram">
   <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram">
+    <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//Class" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="#//Dependency" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttributes" upperBound="-1"
-        eType="#//Attribute" containment="true"/>
+        eType="#//Attribute" containment="true" eOpposite="#//Attribute/owner">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperations" upperBound="-1"
-        eType="#//Operation" containment="true"/>
+        eType="#//Operation" containment="true" eOpposite="#//Operation/owner">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
         upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/dependee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
         upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/depender"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedIn" eType="#//Class">
+      <eAnnotations source="gmf.link">
+        <details key="target.decoration" value="square"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.node"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
         eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
+        eOpposite="#//Class/ownedAttributes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.node"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
         eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
+        eOpposite="#//Class/ownedOperations"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dependency">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="dependee"/>
+      <details key="target" value="depender"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="style" value="dash"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/dependenciesAsDependee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="depender" lowerBound="1"

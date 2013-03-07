@@ -17,9 +17,12 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Visibility;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,11 +104,98 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class getOwner() {
+		if (eContainerFeatureID() != ClassDiagramPackage.OPERATION__OWNER) return null;
+		return (edu.toronto.cs.se.modelepedia.classdiagram.Class)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(edu.toronto.cs.se.modelepedia.classdiagram.Class newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, ClassDiagramPackage.OPERATION__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(edu.toronto.cs.se.modelepedia.classdiagram.Class newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != ClassDiagramPackage.OPERATION__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, ClassDiagramPackage.CLASS__OWNED_OPERATIONS, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.OPERATION__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ClassDiagramPackage.OPERATION__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((edu.toronto.cs.se.modelepedia.classdiagram.Class)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ClassDiagramPackage.OPERATION__OWNER:
+				return basicSetOwner(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ClassDiagramPackage.OPERATION__OWNER:
+				return eInternalContainer().eInverseRemove(this, ClassDiagramPackage.CLASS__OWNED_OPERATIONS, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ClassDiagramPackage.OPERATION__VISIBILITY:
 				return getVisibility();
+			case ClassDiagramPackage.OPERATION__OWNER:
+				return getOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,6 +210,9 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 		switch (featureID) {
 			case ClassDiagramPackage.OPERATION__VISIBILITY:
 				setVisibility((Visibility)newValue);
+				return;
+			case ClassDiagramPackage.OPERATION__OWNER:
+				setOwner((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,6 +229,9 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 			case ClassDiagramPackage.OPERATION__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
 				return;
+			case ClassDiagramPackage.OPERATION__OWNER:
+				setOwner((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -149,6 +246,8 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 		switch (featureID) {
 			case ClassDiagramPackage.OPERATION__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
+			case ClassDiagramPackage.OPERATION__OWNER:
+				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
 	}

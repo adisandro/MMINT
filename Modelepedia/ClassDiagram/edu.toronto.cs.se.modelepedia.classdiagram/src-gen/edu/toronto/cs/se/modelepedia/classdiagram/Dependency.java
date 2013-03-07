@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getDependency()
- * @model
+ * @model annotation="gmf.link source='dependee' target='depender' target.decoration='arrow' style='dash'"
  * @generated
  */
 public interface Dependency extends EObject {

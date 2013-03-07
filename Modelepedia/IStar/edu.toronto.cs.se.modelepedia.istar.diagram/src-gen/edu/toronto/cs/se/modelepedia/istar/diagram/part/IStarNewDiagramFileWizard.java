@@ -93,7 +93,7 @@ public class IStarNewDiagramFileWizard extends Wizard {
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
 		myFileCreationPage.setFileName(IStarDiagramEditorUtil
-				.getUniqueFileName(filePath, fileName, "istar_diagram")); //$NON-NLS-1$
+				.getUniqueFileName(filePath, fileName, "istardiag")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
 				Messages.IStarNewDiagramFileWizard_RootSelectionPageName);

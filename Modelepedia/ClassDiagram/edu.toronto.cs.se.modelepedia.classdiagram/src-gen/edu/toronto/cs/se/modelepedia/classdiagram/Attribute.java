@@ -21,6 +21,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,5 +58,33 @@ public interface Attribute extends NamedElement {
 	 * @generated
 	 */
 	void setVisibility(Visibility value);
+
+	/**
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getOwnedAttributes <em>Owned Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owner</em>' container reference.
+	 * @see #setOwner(edu.toronto.cs.se.modelepedia.classdiagram.Class)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAttribute_Owner()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getOwnedAttributes
+	 * @model opposite="ownedAttributes" required="true" transient="false"
+	 * @generated
+	 */
+	edu.toronto.cs.se.modelepedia.classdiagram.Class getOwner();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getOwner <em>Owner</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner</em>' container reference.
+	 * @see #getOwner()
+	 * @generated
+	 */
+	void setOwner(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
 
 } // Attribute

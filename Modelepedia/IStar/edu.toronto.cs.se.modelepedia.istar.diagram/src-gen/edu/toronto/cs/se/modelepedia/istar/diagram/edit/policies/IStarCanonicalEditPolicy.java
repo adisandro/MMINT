@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 import edu.toronto.cs.se.modelepedia.istar.IStarPackage;
 import edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts.ActorEditPart;
 import edu.toronto.cs.se.modelepedia.istar.diagram.edit.parts.ContributionEditPart;
@@ -145,7 +146,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private boolean isShortcut(View view) {
+	protected static boolean isShortcut(View view) {
 		return view.getEAnnotation("Shortcut") != null; //$NON-NLS-1$
 	}
 
@@ -250,7 +251,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<IAdaptable> refreshConnections() {
-		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+		Domain2Notation domain2NotationMap = new Domain2Notation();
 		Collection<IStarLinkDescriptor> linkDescriptors = collectAllLinks(
 				getDiagram(), domain2NotationMap);
 		Collection existingLinks = new LinkedList(getDiagram().getEdges());
@@ -293,7 +294,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<IStarLinkDescriptor> collectAllLinks(View view,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		if (!IStarEditPart.MODEL_ID.equals(IStarVisualIDRegistry
 				.getModelID(view))) {
 			return Collections.emptyList();
@@ -305,10 +306,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getIStar_1000ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case SoftGoalEditPart.VISUAL_ID: {
@@ -316,10 +314,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getSoftGoal_2001ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case TaskEditPart.VISUAL_ID: {
@@ -327,10 +322,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getTask_2002ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ResourceEditPart.VISUAL_ID: {
@@ -338,10 +330,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getResource_2003ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case GoalEditPart.VISUAL_ID: {
@@ -349,10 +338,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getGoal_2004ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ActorEditPart.VISUAL_ID: {
@@ -360,10 +346,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getActor_2005ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case SoftGoal2EditPart.VISUAL_ID: {
@@ -371,10 +354,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getSoftGoal_3001ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case Task2EditPart.VISUAL_ID: {
@@ -382,10 +362,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getTask_3002ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case Resource2EditPart.VISUAL_ID: {
@@ -393,10 +370,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getResource_3003ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case Goal2EditPart.VISUAL_ID: {
@@ -404,10 +378,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getGoal_3004ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case MeansEndEditPart.VISUAL_ID: {
@@ -415,10 +386,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getMeansEnd_4001ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case DecompositionEditPart.VISUAL_ID: {
@@ -426,10 +394,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getDecomposition_4002ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ContributionEditPart.VISUAL_ID: {
@@ -437,10 +402,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getContribution_4003ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case DependerLinkEditPart.VISUAL_ID: {
@@ -448,10 +410,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getDependerLink_4004ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case DependeeLinkEditPart.VISUAL_ID: {
@@ -459,10 +418,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(IStarDiagramUpdater
 						.getDependeeLink_4005ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		}
@@ -483,13 +439,13 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Collection<IAdaptable> createConnections(
 			Collection<IStarLinkDescriptor> linkDescriptors,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
 		for (IStarLinkDescriptor nextLinkDescriptor : linkDescriptors) {
-			EditPart sourceEditPart = getEditPart(
-					nextLinkDescriptor.getSource(), domain2NotationMap);
-			EditPart targetEditPart = getEditPart(
-					nextLinkDescriptor.getDestination(), domain2NotationMap);
+			EditPart sourceEditPart = getSourceEditPart(nextLinkDescriptor,
+					domain2NotationMap);
+			EditPart targetEditPart = getTargetEditPart(nextLinkDescriptor,
+					domain2NotationMap);
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
@@ -522,7 +478,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private EditPart getEditPart(EObject domainModelElement,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		View view = (View) domain2NotationMap.get(domainModelElement);
 		if (view != null) {
 			return (EditPart) getHost().getViewer().getEditPartRegistry()
@@ -536,5 +492,65 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Diagram getDiagram() {
 		return ((View) getHost().getModel()).getDiagram();
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getSourceEditPart(UpdaterLinkDescriptor descriptor,
+			Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getSource(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getTargetEditPart(UpdaterLinkDescriptor descriptor,
+			Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getDestination(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected final EditPart getHintedEditPart(EObject domainModelElement,
+			Domain2Notation domain2NotationMap, int hintVisualId) {
+		View view = (View) domain2NotationMap.getHinted(domainModelElement,
+				IStarVisualIDRegistry.getType(hintVisualId));
+		if (view != null) {
+			return (EditPart) getHost().getViewer().getEditPartRegistry()
+					.get(view);
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	@SuppressWarnings("serial")
+	protected static class Domain2Notation extends HashMap<EObject, View> {
+		/**
+		 * @generated
+		 */
+		public boolean containsDomainElement(EObject domainElement) {
+			return this.containsKey(domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public View getHinted(EObject domainEObject, String hint) {
+			return this.get(domainEObject);
+		}
+
+		/**
+		 * @generated
+		 */
+		public void putView(EObject domainElement, View view) {
+			if (!containsKey(view.getElement()) || !isShortcut(view)) {
+				this.put(domainElement, view);
+			}
+		}
+
 	}
 }

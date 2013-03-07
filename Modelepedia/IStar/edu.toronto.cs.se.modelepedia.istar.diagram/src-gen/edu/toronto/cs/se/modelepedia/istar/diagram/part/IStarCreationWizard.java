@@ -113,7 +113,7 @@ public class IStarCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		diagramModelFilePage = new IStarCreationWizardPage(
-				"DiagramModelFile", getSelection(), "istar_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+				"DiagramModelFile", getSelection(), "istardiag"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
 				.setTitle(Messages.IStarCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
@@ -127,7 +127,7 @@ public class IStarCreationWizard extends Wizard implements INewWizard {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length()
-							- ".istar_diagram".length()); //$NON-NLS-1$
+							- ".istardiag".length()); //$NON-NLS-1$
 					setFileName(IStarDiagramEditorUtil.getUniqueFileName(
 							getContainerFullPath(), fileName, "istar")); //$NON-NLS-1$
 				}

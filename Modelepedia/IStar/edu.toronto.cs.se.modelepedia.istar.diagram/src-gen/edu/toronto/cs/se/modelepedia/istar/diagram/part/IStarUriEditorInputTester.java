@@ -28,7 +28,7 @@ public class IStarUriEditorInputTester extends PropertyTester {
 			return false;
 		}
 		URIEditorInput editorInput = (URIEditorInput) receiver;
-		return "istar_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
+		return "istardiag".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
 
 }

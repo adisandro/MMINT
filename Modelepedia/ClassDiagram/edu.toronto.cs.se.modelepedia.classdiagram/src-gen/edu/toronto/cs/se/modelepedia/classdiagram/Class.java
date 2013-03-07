@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDependee <em>Dependencies As Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNestedIn <em>Nested In</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,6 +37,7 @@ public interface Class extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Owned Attributes</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Attributes</em>' containment reference list isn't clear,
@@ -44,7 +46,9 @@ public interface Class extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Attributes</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_OwnedAttributes()
-	 * @model containment="true"
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getOwner
+	 * @model opposite="owner" containment="true"
+	 *        annotation="gmf.compartment layout='list'"
 	 * @generated
 	 */
 	EList<Attribute> getOwnedAttributes();
@@ -52,6 +56,7 @@ public interface Class extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Operation}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Operations</em>' containment reference list isn't clear,
@@ -60,7 +65,9 @@ public interface Class extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Operations</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_OwnedOperations()
-	 * @model containment="true"
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Operation#getOwner
+	 * @model opposite="owner" containment="true"
+	 *        annotation="gmf.compartment layout='list'"
 	 * @generated
 	 */
 	EList<Operation> getOwnedOperations();
@@ -100,5 +107,31 @@ public interface Class extends NamedElement {
 	 * @generated
 	 */
 	EList<Dependency> getDependenciesAsDepender();
+
+	/**
+	 * Returns the value of the '<em><b>Nested In</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nested In</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nested In</em>' reference.
+	 * @see #setNestedIn(Class)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_NestedIn()
+	 * @model annotation="gmf.link target.decoration='square'"
+	 * @generated
+	 */
+	Class getNestedIn();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNestedIn <em>Nested In</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nested In</em>' reference.
+	 * @see #getNestedIn()
+	 * @generated
+	 */
+	void setNestedIn(Class value);
 
 } // Class

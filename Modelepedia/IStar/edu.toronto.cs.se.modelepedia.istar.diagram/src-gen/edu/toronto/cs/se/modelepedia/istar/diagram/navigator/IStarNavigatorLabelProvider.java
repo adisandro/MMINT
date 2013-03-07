@@ -129,51 +129,51 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (IStarVisualIDRegistry.getVisualID(view)) {
-		case TaskEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Task", IStarElementTypes.Task_2002); //$NON-NLS-1$
-		case ResourceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Resource", IStarElementTypes.Resource_2003); //$NON-NLS-1$
-		case DependeeLinkEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?DependeeLink", IStarElementTypes.DependeeLink_4005); //$NON-NLS-1$
-		case MeansEndEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?MeansEnd", IStarElementTypes.MeansEnd_4001); //$NON-NLS-1$
-		case ActorEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Actor", IStarElementTypes.Actor_2005); //$NON-NLS-1$
-		case DependerLinkEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?DependerLink", IStarElementTypes.DependerLink_4004); //$NON-NLS-1$
-		case GoalEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_2004); //$NON-NLS-1$
-		case Task2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Task", IStarElementTypes.Task_3002); //$NON-NLS-1$
-		case SoftGoalEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_2001); //$NON-NLS-1$
-		case Goal2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_3004); //$NON-NLS-1$
 		case Resource2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Resource", IStarElementTypes.Resource_3003); //$NON-NLS-1$
-		case DecompositionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Decomposition", IStarElementTypes.Decomposition_4002); //$NON-NLS-1$
-		case ContributionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Contribution", IStarElementTypes.Contribution_4003); //$NON-NLS-1$
-		case SoftGoal2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_3001); //$NON-NLS-1$
 		case IStarEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/IStar?IStar", IStarElementTypes.IStar_1000); //$NON-NLS-1$
+		case MeansEndEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?MeansEnd", IStarElementTypes.MeansEnd_4001); //$NON-NLS-1$
+		case DependerLinkEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?DependerLink", IStarElementTypes.DependerLink_4004); //$NON-NLS-1$
+		case DependeeLinkEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?DependeeLink", IStarElementTypes.DependeeLink_4005); //$NON-NLS-1$
+		case TaskEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Task", IStarElementTypes.Task_2002); //$NON-NLS-1$
+		case Goal2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_3004); //$NON-NLS-1$
+		case SoftGoal2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_3001); //$NON-NLS-1$
+		case SoftGoalEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?SoftGoal", IStarElementTypes.SoftGoal_2001); //$NON-NLS-1$
+		case ActorEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Actor", IStarElementTypes.Actor_2005); //$NON-NLS-1$
+		case DecompositionEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Decomposition", IStarElementTypes.Decomposition_4002); //$NON-NLS-1$
+		case GoalEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Goal", IStarElementTypes.Goal_2004); //$NON-NLS-1$
+		case ContributionEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar?Contribution", IStarElementTypes.Contribution_4003); //$NON-NLS-1$
+		case ResourceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar?Resource", IStarElementTypes.Resource_2003); //$NON-NLS-1$
+		case Task2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar?Task", IStarElementTypes.Task_3002); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -234,36 +234,36 @@ public class IStarNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (IStarVisualIDRegistry.getVisualID(view)) {
-		case TaskEditPart.VISUAL_ID:
-			return getTask_2002Text(view);
-		case ResourceEditPart.VISUAL_ID:
-			return getResource_2003Text(view);
-		case DependeeLinkEditPart.VISUAL_ID:
-			return getDependeeLink_4005Text(view);
-		case MeansEndEditPart.VISUAL_ID:
-			return getMeansEnd_4001Text(view);
-		case ActorEditPart.VISUAL_ID:
-			return getActor_2005Text(view);
-		case DependerLinkEditPart.VISUAL_ID:
-			return getDependerLink_4004Text(view);
-		case GoalEditPart.VISUAL_ID:
-			return getGoal_2004Text(view);
-		case Task2EditPart.VISUAL_ID:
-			return getTask_3002Text(view);
-		case SoftGoalEditPart.VISUAL_ID:
-			return getSoftGoal_2001Text(view);
-		case Goal2EditPart.VISUAL_ID:
-			return getGoal_3004Text(view);
 		case Resource2EditPart.VISUAL_ID:
 			return getResource_3003Text(view);
-		case DecompositionEditPart.VISUAL_ID:
-			return getDecomposition_4002Text(view);
-		case ContributionEditPart.VISUAL_ID:
-			return getContribution_4003Text(view);
-		case SoftGoal2EditPart.VISUAL_ID:
-			return getSoftGoal_3001Text(view);
 		case IStarEditPart.VISUAL_ID:
 			return getIStar_1000Text(view);
+		case MeansEndEditPart.VISUAL_ID:
+			return getMeansEnd_4001Text(view);
+		case DependerLinkEditPart.VISUAL_ID:
+			return getDependerLink_4004Text(view);
+		case DependeeLinkEditPart.VISUAL_ID:
+			return getDependeeLink_4005Text(view);
+		case TaskEditPart.VISUAL_ID:
+			return getTask_2002Text(view);
+		case Goal2EditPart.VISUAL_ID:
+			return getGoal_3004Text(view);
+		case SoftGoal2EditPart.VISUAL_ID:
+			return getSoftGoal_3001Text(view);
+		case SoftGoalEditPart.VISUAL_ID:
+			return getSoftGoal_2001Text(view);
+		case ActorEditPart.VISUAL_ID:
+			return getActor_2005Text(view);
+		case DecompositionEditPart.VISUAL_ID:
+			return getDecomposition_4002Text(view);
+		case GoalEditPart.VISUAL_ID:
+			return getGoal_2004Text(view);
+		case ContributionEditPart.VISUAL_ID:
+			return getContribution_4003Text(view);
+		case ResourceEditPart.VISUAL_ID:
+			return getResource_2003Text(view);
+		case Task2EditPart.VISUAL_ID:
+			return getTask_3002Text(view);
 		}
 		return getUnknownElementText(view);
 	}
