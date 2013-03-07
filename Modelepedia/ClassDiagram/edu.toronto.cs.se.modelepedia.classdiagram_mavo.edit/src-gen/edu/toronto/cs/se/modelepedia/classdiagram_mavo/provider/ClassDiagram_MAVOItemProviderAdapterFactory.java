@@ -196,6 +196,29 @@ public class ClassDiagram_MAVOItemProviderAdapterFactory extends ClassDiagram_MA
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NestedInReferenceItemProvider nestedInReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNestedInReferenceAdapter() {
+		if (nestedInReferenceItemProvider == null) {
+			nestedInReferenceItemProvider = new NestedInReferenceItemProvider(this);
+		}
+
+		return nestedInReferenceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,6 +322,7 @@ public class ClassDiagram_MAVOItemProviderAdapterFactory extends ClassDiagram_MA
 		if (attributeItemProvider != null) attributeItemProvider.dispose();
 		if (operationItemProvider != null) operationItemProvider.dispose();
 		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
+		if (nestedInReferenceItemProvider != null) nestedInReferenceItemProvider.dispose();
 	}
 
 }

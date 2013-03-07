@@ -270,13 +270,31 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int CLASS__DEPENDENCIES_AS_DEPENDER = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Nested In</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__NESTED_IN = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Nested</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__NESTED = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -286,6 +304,88 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.TypedElementImpl <em>Typed Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.TypedElementImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getTypedElement()
+	 * @generated
+	 */
+	int TYPED_ELEMENT = 6;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__MAY = NAMED_ELEMENT__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__SET = NAMED_ELEMENT__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__VAR = NAMED_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__VISIBILITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Typed Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Typed Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -304,7 +404,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__MAY = NAMED_ELEMENT__MAY;
+	int ATTRIBUTE__MAY = TYPED_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -313,7 +413,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__SET = NAMED_ELEMENT__SET;
+	int ATTRIBUTE__SET = TYPED_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -322,7 +422,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__VAR = NAMED_ELEMENT__VAR;
+	int ATTRIBUTE__VAR = TYPED_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -331,7 +431,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__NAME = NAMED_ELEMENT__NAME;
+	int ATTRIBUTE__NAME = TYPED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -340,7 +440,25 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__VISIBILITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ATTRIBUTE__VISIBILITY = TYPED_ELEMENT__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__TYPE = TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__OWNER = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
@@ -349,7 +467,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ATTRIBUTE_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Attribute</em>' class.
@@ -358,7 +476,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int ATTRIBUTE_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.OperationImpl <em>Operation</em>}' class.
@@ -377,7 +495,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__MAY = NAMED_ELEMENT__MAY;
+	int OPERATION__MAY = TYPED_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -386,7 +504,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__SET = NAMED_ELEMENT__SET;
+	int OPERATION__SET = TYPED_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -395,7 +513,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__VAR = NAMED_ELEMENT__VAR;
+	int OPERATION__VAR = TYPED_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -404,7 +522,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__NAME = NAMED_ELEMENT__NAME;
+	int OPERATION__NAME = TYPED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -413,7 +531,25 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__VISIBILITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATION__VISIBILITY = TYPED_ELEMENT__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__TYPE = TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNER = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
@@ -422,7 +558,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -431,7 +567,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int OPERATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl <em>Dependency</em>}' class.
@@ -507,6 +643,79 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int DEPENDENCY_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NestedInReferenceImpl <em>Nested In Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NestedInReferenceImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getNestedInReference()
+	 * @generated
+	 */
+	int NESTED_IN_REFERENCE = 7;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE__SOURCE = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE__TARGET = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Nested In Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Nested In Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility <em>Visibility</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -514,7 +723,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getVisibility()
 	 * @generated
 	 */
-	int VISIBILITY = 6;
+	int VISIBILITY = 8;
 
 
 	/**
@@ -604,6 +813,28 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	EReference getClass_DependenciesAsDepender();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNestedIn <em>Nested In</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Nested In</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNestedIn()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_NestedIn();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNested <em>Nested</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Nested</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNested()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Nested();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -614,15 +845,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	EClass getAttribute();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute#getVisibility <em>Visibility</em>}'.
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Visibility</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute#getVisibility()
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute#getOwner()
 	 * @see #getAttribute()
 	 * @generated
 	 */
-	EAttribute getAttribute_Visibility();
+	EReference getAttribute_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NamedElement <em>Named Element</em>}'.
@@ -656,15 +887,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	EClass getOperation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getVisibility <em>Visibility</em>}'.
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Visibility</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getVisibility()
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getOwner()
 	 * @see #getOperation()
 	 * @generated
 	 */
-	EAttribute getOperation_Visibility();
+	EReference getOperation_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency <em>Dependency</em>}'.
@@ -697,6 +928,70 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDependency_Depender();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement <em>Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Typed Element</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement
+	 * @generated
+	 */
+	EClass getTypedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getVisibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getVisibility()
+	 * @see #getTypedElement()
+	 * @generated
+	 */
+	EAttribute getTypedElement_Visibility();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getType()
+	 * @see #getTypedElement()
+	 * @generated
+	 */
+	EReference getTypedElement_Type();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference <em>Nested In Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Nested In Reference</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference
+	 * @generated
+	 */
+	EClass getNestedInReference();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getSource()
+	 * @see #getNestedInReference()
+	 * @generated
+	 */
+	EReference getNestedInReference_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getTarget()
+	 * @see #getNestedInReference()
+	 * @generated
+	 */
+	EReference getNestedInReference_Target();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility <em>Visibility</em>}'.
@@ -800,6 +1095,22 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		EReference CLASS__DEPENDENCIES_AS_DEPENDER = eINSTANCE.getClass_DependenciesAsDepender();
 
 		/**
+		 * The meta object literal for the '<em><b>Nested In</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__NESTED_IN = eINSTANCE.getClass_NestedIn();
+
+		/**
+		 * The meta object literal for the '<em><b>Nested</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__NESTED = eINSTANCE.getClass_Nested();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -810,12 +1121,12 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		EClass ATTRIBUTE = eINSTANCE.getAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTRIBUTE__VISIBILITY = eINSTANCE.getAttribute_Visibility();
+		EReference ATTRIBUTE__OWNER = eINSTANCE.getAttribute_Owner();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -846,12 +1157,12 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		EClass OPERATION = eINSTANCE.getOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OPERATION__VISIBILITY = eINSTANCE.getOperation_Visibility();
+		EReference OPERATION__OWNER = eINSTANCE.getOperation_Owner();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl <em>Dependency</em>}' class.
@@ -878,6 +1189,58 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DEPENDENCY__DEPENDER = eINSTANCE.getDependency_Depender();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.TypedElementImpl <em>Typed Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.TypedElementImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getTypedElement()
+		 * @generated
+		 */
+		EClass TYPED_ELEMENT = eINSTANCE.getTypedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT__VISIBILITY = eINSTANCE.getTypedElement_Visibility();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NestedInReferenceImpl <em>Nested In Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NestedInReferenceImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getNestedInReference()
+		 * @generated
+		 */
+		EClass NESTED_IN_REFERENCE = eINSTANCE.getNestedInReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NESTED_IN_REFERENCE__SOURCE = eINSTANCE.getNestedInReference_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NESTED_IN_REFERENCE__TARGET = eINSTANCE.getNestedInReference_Target();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility <em>Visibility</em>}' enum.

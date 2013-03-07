@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation;
 
 import java.util.Collection;
@@ -25,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,6 +41,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassImpl#getDependenciesAsDependee <em>Dependencies As Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassImpl#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassImpl#getNestedIn <em>Nested In</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassImpl#getNested <em>Nested</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,6 +90,26 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	protected EList<Dependency> dependenciesAsDepender;
 
 	/**
+	 * The cached value of the '{@link #getNestedIn() <em>Nested In</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedIn()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<NestedInReference> nestedIn;
+
+	/**
+	 * The cached value of the '{@link #getNested() <em>Nested</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNested()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<NestedInReference> nested;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +135,7 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 */
 	public EList<Attribute> getOwnedAttributes() {
 		if (ownedAttributes == null) {
-			ownedAttributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, ClassDiagram_MAVOPackage.CLASS__OWNED_ATTRIBUTES);
+			ownedAttributes = new EObjectContainmentWithInverseEList<Attribute>(Attribute.class, this, ClassDiagram_MAVOPackage.CLASS__OWNED_ATTRIBUTES, ClassDiagram_MAVOPackage.ATTRIBUTE__OWNER);
 		}
 		return ownedAttributes;
 	}
@@ -124,7 +147,7 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 */
 	public EList<Operation> getOwnedOperations() {
 		if (ownedOperations == null) {
-			ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, ClassDiagram_MAVOPackage.CLASS__OWNED_OPERATIONS);
+			ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, ClassDiagram_MAVOPackage.CLASS__OWNED_OPERATIONS, ClassDiagram_MAVOPackage.OPERATION__OWNER);
 		}
 		return ownedOperations;
 	}
@@ -158,14 +181,46 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<NestedInReference> getNestedIn() {
+		if (nestedIn == null) {
+			nestedIn = new EObjectContainmentWithInverseEList<NestedInReference>(NestedInReference.class, this, ClassDiagram_MAVOPackage.CLASS__NESTED_IN, ClassDiagram_MAVOPackage.NESTED_IN_REFERENCE__SOURCE);
+		}
+		return nestedIn;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NestedInReference> getNested() {
+		if (nested == null) {
+			nested = new EObjectWithInverseResolvingEList<NestedInReference>(NestedInReference.class, this, ClassDiagram_MAVOPackage.CLASS__NESTED, ClassDiagram_MAVOPackage.NESTED_IN_REFERENCE__TARGET);
+		}
+		return nested;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ClassDiagram_MAVOPackage.CLASS__OWNED_ATTRIBUTES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttributes()).basicAdd(otherEnd, msgs);
+			case ClassDiagram_MAVOPackage.CLASS__OWNED_OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case ClassDiagram_MAVOPackage.CLASS__DEPENDENCIES_AS_DEPENDEE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependenciesAsDependee()).basicAdd(otherEnd, msgs);
 			case ClassDiagram_MAVOPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDependenciesAsDepender()).basicAdd(otherEnd, msgs);
+			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedIn()).basicAdd(otherEnd, msgs);
+			case ClassDiagram_MAVOPackage.CLASS__NESTED:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNested()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -186,6 +241,10 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return ((InternalEList<?>)getDependenciesAsDependee()).basicRemove(otherEnd, msgs);
 			case ClassDiagram_MAVOPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				return ((InternalEList<?>)getDependenciesAsDepender()).basicRemove(otherEnd, msgs);
+			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
+				return ((InternalEList<?>)getNestedIn()).basicRemove(otherEnd, msgs);
+			case ClassDiagram_MAVOPackage.CLASS__NESTED:
+				return ((InternalEList<?>)getNested()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -206,6 +265,10 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return getDependenciesAsDependee();
 			case ClassDiagram_MAVOPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				return getDependenciesAsDepender();
+			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
+				return getNestedIn();
+			case ClassDiagram_MAVOPackage.CLASS__NESTED:
+				return getNested();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,6 +298,14 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				getDependenciesAsDepender().clear();
 				getDependenciesAsDepender().addAll((Collection<? extends Dependency>)newValue);
 				return;
+			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
+				getNestedIn().clear();
+				getNestedIn().addAll((Collection<? extends NestedInReference>)newValue);
+				return;
+			case ClassDiagram_MAVOPackage.CLASS__NESTED:
+				getNested().clear();
+				getNested().addAll((Collection<? extends NestedInReference>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -259,6 +330,12 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 			case ClassDiagram_MAVOPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				getDependenciesAsDepender().clear();
 				return;
+			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
+				getNestedIn().clear();
+				return;
+			case ClassDiagram_MAVOPackage.CLASS__NESTED:
+				getNested().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -279,6 +356,10 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return dependenciesAsDependee != null && !dependenciesAsDependee.isEmpty();
 			case ClassDiagram_MAVOPackage.CLASS__DEPENDENCIES_AS_DEPENDER:
 				return dependenciesAsDepender != null && !dependenciesAsDepender.isEmpty();
+			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
+				return nestedIn != null && !nestedIn.isEmpty();
+			case ClassDiagram_MAVOPackage.CLASS__NESTED:
+				return nested != null && !nested.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

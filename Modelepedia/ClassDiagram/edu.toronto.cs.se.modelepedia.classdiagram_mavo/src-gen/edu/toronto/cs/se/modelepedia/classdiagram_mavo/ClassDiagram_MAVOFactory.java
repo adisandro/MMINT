@@ -76,6 +76,15 @@ public interface ClassDiagram_MAVOFactory extends EFactory {
 	Dependency createDependency();
 
 	/**
+	 * Returns a new object of class '<em>Nested In Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Nested In Reference</em>'.
+	 * @generated
+	 */
+	NestedInReference createNestedInReference();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

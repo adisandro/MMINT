@@ -27,11 +27,14 @@
         upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/dependee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
         upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/depender"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedIn" eType="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedIn" eType="#//Class"
+        eOpposite="#//Class/nested">
       <eAnnotations source="gmf.link">
         <details key="target.decoration" value="square"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nested" upperBound="-1"
+        eType="#//Class" eOpposite="#//Class/nestedIn"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//TypedElement">
     <eAnnotations source="gmf.node"/>

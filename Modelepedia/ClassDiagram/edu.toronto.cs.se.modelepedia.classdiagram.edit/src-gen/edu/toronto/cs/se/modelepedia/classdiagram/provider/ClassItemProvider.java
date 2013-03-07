@@ -70,6 +70,7 @@ public class ClassItemProvider
 			addDependenciesAsDependeePropertyDescriptor(object);
 			addDependenciesAsDependerPropertyDescriptor(object);
 			addNestedInPropertyDescriptor(object);
+			addNestedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -132,6 +133,28 @@ public class ClassItemProvider
 				 getString("_UI_Class_nestedIn_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Class_nestedIn_feature", "_UI_Class_type"),
 				 ClassDiagramPackage.Literals.CLASS__NESTED_IN,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Nested feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNestedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_nested_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_nested_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__NESTED,
 				 true,
 				 false,
 				 true,

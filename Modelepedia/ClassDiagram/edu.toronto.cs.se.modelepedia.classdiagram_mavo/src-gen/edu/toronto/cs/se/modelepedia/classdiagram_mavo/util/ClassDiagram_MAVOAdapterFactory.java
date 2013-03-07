@@ -14,13 +14,16 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo.util;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
+import edu.toronto.cs.se.mmtf.mavo.MAVOReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NamedElement;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation;
 
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -109,12 +112,24 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createDependencyAdapter();
 			}
 			@Override
+			public Adapter caseTypedElement(TypedElement object) {
+				return createTypedElementAdapter();
+			}
+			@Override
+			public Adapter caseNestedInReference(NestedInReference object) {
+				return createNestedInReferenceAdapter();
+			}
+			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
 			}
 			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
+			}
+			@Override
+			public Adapter caseMAVOReference(MAVOReference object) {
+				return createMAVOReferenceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -221,6 +236,34 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement <em>Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement
+	 * @generated
+	 */
+	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference <em>Nested In Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference
+	 * @generated
+	 */
+	public Adapter createNestedInReferenceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mavo.MAVOModel <em>MAVO Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -245,6 +288,20 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMAVOElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mavo.MAVOReference <em>MAVO Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mavo.MAVOReference
+	 * @generated
+	 */
+	public Adapter createMAVOReferenceAdapter() {
 		return null;
 	}
 

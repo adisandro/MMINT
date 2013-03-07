@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getDependency()
- * @model
+ * @model annotation="gmf.link source='dependee' target='depender' target.decoration='arrow' style='dash'"
  * @generated
  */
 public interface Dependency extends MAVOElement {

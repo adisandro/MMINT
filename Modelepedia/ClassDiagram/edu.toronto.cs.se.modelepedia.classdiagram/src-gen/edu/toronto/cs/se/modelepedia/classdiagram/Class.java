@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDependee <em>Dependencies As Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNestedIn <em>Nested In</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNested <em>Nested</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,6 +111,7 @@ public interface Class extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Nested In</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNested <em>Nested</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nested In</em>' reference isn't clear,
@@ -119,7 +121,9 @@ public interface Class extends NamedElement {
 	 * @return the value of the '<em>Nested In</em>' reference.
 	 * @see #setNestedIn(Class)
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_NestedIn()
-	 * @model annotation="gmf.link target.decoration='square'"
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getNested
+	 * @model opposite="nested"
+	 *        annotation="gmf.link target.decoration='square'"
 	 * @generated
 	 */
 	Class getNestedIn();
@@ -133,5 +137,23 @@ public interface Class extends NamedElement {
 	 * @generated
 	 */
 	void setNestedIn(Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Nested</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Class}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNestedIn <em>Nested In</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nested</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nested</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_Nested()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getNestedIn
+	 * @model opposite="nestedIn"
+	 * @generated
+	 */
+	EList<Class> getNested();
 
 } // Class

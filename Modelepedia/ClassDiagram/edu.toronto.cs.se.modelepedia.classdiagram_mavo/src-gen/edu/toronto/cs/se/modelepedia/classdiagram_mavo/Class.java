@@ -25,6 +25,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getDependenciesAsDependee <em>Dependencies As Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNestedIn <em>Nested In</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNested <em>Nested</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,6 +38,7 @@ public interface Class extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Owned Attributes</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Attributes</em>' containment reference list isn't clear,
@@ -44,7 +47,9 @@ public interface Class extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Attributes</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_OwnedAttributes()
-	 * @model containment="true"
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute#getOwner
+	 * @model opposite="owner" containment="true"
+	 *        annotation="gmf.compartment layout='list'"
 	 * @generated
 	 */
 	EList<Attribute> getOwnedAttributes();
@@ -52,6 +57,7 @@ public interface Class extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Operations</em>' containment reference list isn't clear,
@@ -60,7 +66,9 @@ public interface Class extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Operations</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_OwnedOperations()
-	 * @model containment="true"
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getOwner
+	 * @model opposite="owner" containment="true"
+	 *        annotation="gmf.compartment layout='list'"
 	 * @generated
 	 */
 	EList<Operation> getOwnedOperations();
@@ -100,5 +108,41 @@ public interface Class extends NamedElement {
 	 * @generated
 	 */
 	EList<Dependency> getDependenciesAsDepender();
+
+	/**
+	 * Returns the value of the '<em><b>Nested In</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nested In</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nested In</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_NestedIn()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getSource
+	 * @model opposite="source" containment="true"
+	 * @generated
+	 */
+	EList<NestedInReference> getNestedIn();
+
+	/**
+	 * Returns the value of the '<em><b>Nested</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nested</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nested</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_Nested()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getTarget
+	 * @model opposite="target"
+	 * @generated
+	 */
+	EList<NestedInReference> getNested();
 
 } // Class

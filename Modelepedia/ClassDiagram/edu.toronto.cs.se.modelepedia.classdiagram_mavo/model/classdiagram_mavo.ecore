@@ -1,39 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="classdiagram_mavo" nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO"
     nsPrefix="classdiagram_mavo">
   <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOModel">
+    <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//Class" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
         eType="#//Dependency" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttributes" upperBound="-1"
-        eType="#//Attribute" containment="true"/>
+        eType="#//Attribute" containment="true" eOpposite="#//Attribute/owner">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperations" upperBound="-1"
-        eType="#//Operation" containment="true"/>
+        eType="#//Operation" containment="true" eOpposite="#//Operation/owner">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
         upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/dependee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDepender"
         upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/depender"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedIn" upperBound="-1"
+        eType="#//NestedInReference" containment="true" eOpposite="#//NestedInReference/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nested" upperBound="-1"
+        eType="#//NestedInReference" eOpposite="#//NestedInReference/target"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
-        eType="#//Visibility"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//TypedElement">
+    <eAnnotations source="gmf.node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
+        eOpposite="#//Class/ownedAttributes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
-        eType="#//Visibility"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedElement">
+    <eAnnotations source="gmf.node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
+        eOpposite="#//Class/ownedOperations"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="dependee"/>
+      <details key="target" value="depender"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="style" value="dash"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/dependenciesAsDependee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="depender" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/dependenciesAsDepender"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
+        eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedInReference" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOReference">
+    <eAnnotations source="gmf.link">
+      <details key="target.decoration" value="square"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/nestedIn"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/nested"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
     <eLiterals name="PRIVATE" literal="PRIVATE"/>

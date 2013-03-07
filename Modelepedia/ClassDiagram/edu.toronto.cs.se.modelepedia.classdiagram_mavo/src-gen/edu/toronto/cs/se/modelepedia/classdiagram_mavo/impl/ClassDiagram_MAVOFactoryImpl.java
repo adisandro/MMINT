@@ -16,6 +16,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility;
 
@@ -77,6 +78,7 @@ public class ClassDiagram_MAVOFactoryImpl extends EFactoryImpl implements ClassD
 			case ClassDiagram_MAVOPackage.ATTRIBUTE: return createAttribute();
 			case ClassDiagram_MAVOPackage.OPERATION: return createOperation();
 			case ClassDiagram_MAVOPackage.DEPENDENCY: return createDependency();
+			case ClassDiagram_MAVOPackage.NESTED_IN_REFERENCE: return createNestedInReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -160,6 +162,16 @@ public class ClassDiagram_MAVOFactoryImpl extends EFactoryImpl implements ClassD
 	public Dependency createDependency() {
 		DependencyImpl dependency = new DependencyImpl();
 		return dependency;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NestedInReference createNestedInReference() {
+		NestedInReferenceImpl nestedInReference = new NestedInReferenceImpl();
+		return nestedInReference;
 	}
 
 	/**

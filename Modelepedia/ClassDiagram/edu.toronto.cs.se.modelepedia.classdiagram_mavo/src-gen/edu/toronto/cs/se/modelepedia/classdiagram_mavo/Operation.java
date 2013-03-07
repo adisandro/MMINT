@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,34 +27,33 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  * @model
  * @generated
  */
-public interface Operation extends NamedElement {
+public interface Operation extends TypedElement {
 	/**
-	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility}.
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getOwnedOperations <em>Owned Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility
-	 * @see #setVisibility(Visibility)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getOperation_Visibility()
-	 * @model required="true"
+	 * @return the value of the '<em>Owner</em>' container reference.
+	 * @see #setOwner(edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getOperation_Owner()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getOwnedOperations
+	 * @model opposite="ownedOperations" required="true" transient="false"
 	 * @generated
 	 */
-	Visibility getVisibility();
+	edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getOwner();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getVisibility <em>Visibility</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getOwner <em>Owner</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility
-	 * @see #getVisibility()
+	 * @param value the new value of the '<em>Owner</em>' container reference.
+	 * @see #getOwner()
 	 * @generated
 	 */
-	void setVisibility(Visibility value);
+	void setOwner(edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class value);
 
 } // Operation

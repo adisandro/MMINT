@@ -33,6 +33,7 @@
         visualID="3001"
         editPartClassName="AttributeEditPart"
         itemSemanticEditPolicyClassName="AttributeItemSemanticEditPolicy"
+        notationViewFactoryClassName="AttributeViewFactory"
         canonicalEditPolicyClassName="AttributeCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="AttributeGraphicalNodeEditPolicy"
         createCommandClassName="AttributeCreateCommand"
@@ -58,6 +59,7 @@
           visualID="5001"
           editPartClassName="AttributeNameEditPart"
           itemSemanticEditPolicyClassName="AttributeNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="AttributeNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -77,6 +79,7 @@
         visualID="3002"
         editPartClassName="OperationEditPart"
         itemSemanticEditPolicyClassName="OperationItemSemanticEditPolicy"
+        notationViewFactoryClassName="OperationViewFactory"
         canonicalEditPolicyClassName="OperationCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="OperationGraphicalNodeEditPolicy"
         createCommandClassName="OperationCreateCommand"
@@ -102,6 +105,7 @@
           visualID="5002"
           editPartClassName="OperationNameEditPart"
           itemSemanticEditPolicyClassName="OperationNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="OperationNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -121,6 +125,7 @@
         visualID="2001"
         editPartClassName="ClassEditPart"
         itemSemanticEditPolicyClassName="ClassItemSemanticEditPolicy"
+        notationViewFactoryClassName="ClassViewFactory"
         canonicalEditPolicyClassName="ClassCanonicalEditPolicy"
         compartments="//@diagram/@compartments.0 //@diagram/@compartments.1"
         graphicalNodeEditPolicyClassName="ClassGraphicalNodeEditPolicy"
@@ -148,6 +153,7 @@
           visualID="5003"
           editPartClassName="ClassNameEditPart"
           itemSemanticEditPolicyClassName="ClassNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ClassNameViewFactory"
           elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -167,6 +173,7 @@
         visualID="4001"
         editPartClassName="DependencyEditPart"
         itemSemanticEditPolicyClassName="DependencyItemSemanticEditPolicy"
+        notationViewFactoryClassName="DependencyViewFactory"
         createCommandClassName="DependencyCreateCommand"
         reorientCommandClassName="DependencyReorientCommand">
       <diagramRunTimeClass
@@ -196,6 +203,7 @@
         visualID="4002"
         editPartClassName="ClassNestedInEditPart"
         itemSemanticEditPolicyClassName="ClassNestedInItemSemanticEditPolicy"
+        notationViewFactoryClassName="ClassNestedInViewFactory"
         createCommandClassName="ClassNestedInCreateCommand"
         reorientCommandClassName="ClassNestedInReorientCommand">
       <diagramRunTimeClass
@@ -215,6 +223,7 @@
           visualID="6001"
           editPartClassName="WrappingLabelEditPart"
           itemSemanticEditPolicyClassName="WrappingLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="ClassNestedInLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -234,6 +243,7 @@
         visualID="7001"
         editPartClassName="ClassClassOwnedAttributesCompartmentEditPart"
         itemSemanticEditPolicyClassName="ClassClassOwnedAttributesCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="ClassClassOwnedAttributesCompartmentViewFactory"
         canonicalEditPolicyClassName="ClassClassOwnedAttributesCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="ClassOwnedAttributesCompartment"
@@ -250,6 +260,7 @@
         visualID="7002"
         editPartClassName="ClassClassOwnedOperationsCompartmentEditPart"
         itemSemanticEditPolicyClassName="ClassClassOwnedOperationsCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="ClassClassOwnedOperationsCompartmentViewFactory"
         canonicalEditPolicyClassName="ClassClassOwnedOperationsCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.1"
         title="ClassOwnedOperationsCompartment"

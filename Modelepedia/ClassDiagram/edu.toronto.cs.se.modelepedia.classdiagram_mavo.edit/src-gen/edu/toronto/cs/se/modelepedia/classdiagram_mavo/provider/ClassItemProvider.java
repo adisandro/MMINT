@@ -69,6 +69,7 @@ public class ClassItemProvider
 
 			addDependenciesAsDependeePropertyDescriptor(object);
 			addDependenciesAsDependerPropertyDescriptor(object);
+			addNestedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -118,6 +119,28 @@ public class ClassItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Nested feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNestedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_nested_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_nested_feature", "_UI_Class_type"),
+				 ClassDiagram_MAVOPackage.Literals.CLASS__NESTED,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -131,6 +154,7 @@ public class ClassItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ClassDiagram_MAVOPackage.Literals.CLASS__OWNED_ATTRIBUTES);
 			childrenFeatures.add(ClassDiagram_MAVOPackage.Literals.CLASS__OWNED_OPERATIONS);
+			childrenFeatures.add(ClassDiagram_MAVOPackage.Literals.CLASS__NESTED_IN);
 		}
 		return childrenFeatures;
 	}
@@ -187,6 +211,7 @@ public class ClassItemProvider
 		switch (notification.getFeatureID(edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class.class)) {
 			case ClassDiagram_MAVOPackage.CLASS__OWNED_ATTRIBUTES:
 			case ClassDiagram_MAVOPackage.CLASS__OWNED_OPERATIONS:
+			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -213,6 +238,11 @@ public class ClassItemProvider
 			(createChildParameter
 				(ClassDiagram_MAVOPackage.Literals.CLASS__OWNED_OPERATIONS,
 				 ClassDiagram_MAVOFactory.eINSTANCE.createOperation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ClassDiagram_MAVOPackage.Literals.CLASS__NESTED_IN,
+				 ClassDiagram_MAVOFactory.eINSTANCE.createNestedInReference()));
 	}
 
 }

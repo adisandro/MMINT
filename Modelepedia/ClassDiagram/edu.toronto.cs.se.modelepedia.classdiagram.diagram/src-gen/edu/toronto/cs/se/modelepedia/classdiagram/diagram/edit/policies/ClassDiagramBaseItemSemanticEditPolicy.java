@@ -342,6 +342,9 @@ public class ClassDiagramBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
+			if (target != null && (target.getNested().contains(target))) {
+				return false;
+			}
 
 			return canExistClassNestedIn_4002(source, target);
 		}
