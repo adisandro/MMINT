@@ -7,13 +7,13 @@
 
    <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
-      <fileTypes type="text" extension="classdiagram_diagram"/>
+      <fileTypes type="text" extension="classdiagramdiag"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
       <?gmfgen generated="true"?>
       <parser
-         type="classdiagram_diagram"
+         type="classdiagramdiag"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
@@ -24,7 +24,7 @@
          id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID"
          name="%editorName"
          icon="icons/obj16/ClassDiagramDiagramFile.gif"
-         extensions="classdiagram_diagram"
+         extensions="classdiagramdiag"
          default="true"
          class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditor"
          matchingStrategy="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramMatchingStrategy"
@@ -457,7 +457,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="classdiagram_diagram"/>
+        	      <test property="org.eclipse.core.resources.extension" value="classdiagramdiag"/>
                </and>
                <instanceof value="edu.toronto.cs.se.modelepedia.classdiagram.diagram.navigator.ClassDiagramAbstractNavigatorItem"/>
            	   <adapt type="org.eclipse.gmf.runtime.notation.View">
@@ -480,7 +480,7 @@
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
-        	         <test property="org.eclipse.core.resources.extension" value="classdiagram_diagram"/>
+        	         <test property="org.eclipse.core.resources.extension" value="classdiagramdiag"/>
                   </and>
                   <instanceof value="edu.toronto.cs.se.modelepedia.classdiagram.diagram.navigator.ClassDiagramAbstractNavigatorItem"/>
                </or>

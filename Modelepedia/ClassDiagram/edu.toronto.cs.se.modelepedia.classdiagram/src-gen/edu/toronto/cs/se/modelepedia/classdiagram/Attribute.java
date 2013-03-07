@@ -20,7 +20,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
@@ -29,36 +28,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * @model
  * @generated
  */
-public interface Attribute extends NamedElement {
-	/**
-	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
-	 * @see #setVisibility(Visibility)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAttribute_Visibility()
-	 * @model required="true"
-	 * @generated
-	 */
-	Visibility getVisibility();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getVisibility <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
-	 * @see #getVisibility()
-	 * @generated
-	 */
-	void setVisibility(Visibility value);
-
+public interface Attribute extends TypedElement {
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getOwnedAttributes <em>Owned Attributes</em>}'.

@@ -20,7 +20,7 @@ public class ClassDiagramUriEditorInputTester extends PropertyTester {
 			return false;
 		}
 		URIEditorInput editorInput = (URIEditorInput) receiver;
-		return "classdiagram_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
+		return "classdiagramdiag".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
 
 }

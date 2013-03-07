@@ -105,7 +105,7 @@ public class ClassDiagramCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		diagramModelFilePage = new ClassDiagramCreationWizardPage(
-				"DiagramModelFile", getSelection(), "classdiagram_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+				"DiagramModelFile", getSelection(), "classdiagramdiag"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
 				.setTitle(Messages.ClassDiagramCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
@@ -119,7 +119,7 @@ public class ClassDiagramCreationWizard extends Wizard implements INewWizard {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length()
-							- ".classdiagram_diagram".length()); //$NON-NLS-1$
+							- ".classdiagramdiag".length()); //$NON-NLS-1$
 					setFileName(ClassDiagramDiagramEditorUtil
 							.getUniqueFileName(getContainerFullPath(),
 									fileName, "classdiagram")); //$NON-NLS-1$

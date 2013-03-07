@@ -13,8 +13,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
-import edu.toronto.cs.se.modelepedia.classdiagram.Visibility;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -31,34 +29,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class OperationImpl extends NamedElementImpl implements Operation {
-	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVisibility()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Visibility VISIBILITY_EDEFAULT = Visibility.PRIVATE;
-
-	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVisibility()
-	 * @generated
-	 * @ordered
-	 */
-	protected Visibility visibility = VISIBILITY_EDEFAULT;
-
+public class OperationImpl extends TypedElementImpl implements Operation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,27 +53,6 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 	@Override
 	protected EClass eStaticClass() {
 		return ClassDiagramPackage.Literals.OPERATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Visibility getVisibility() {
-		return visibility;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setVisibility(Visibility newVisibility) {
-		Visibility oldVisibility = visibility;
-		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.OPERATION__VISIBILITY, oldVisibility, visibility));
 	}
 
 	/**
@@ -192,8 +148,6 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassDiagramPackage.OPERATION__VISIBILITY:
-				return getVisibility();
 			case ClassDiagramPackage.OPERATION__OWNER:
 				return getOwner();
 		}
@@ -208,9 +162,6 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassDiagramPackage.OPERATION__VISIBILITY:
-				setVisibility((Visibility)newValue);
-				return;
 			case ClassDiagramPackage.OPERATION__OWNER:
 				setOwner((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
 				return;
@@ -226,9 +177,6 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassDiagramPackage.OPERATION__VISIBILITY:
-				setVisibility(VISIBILITY_EDEFAULT);
-				return;
 			case ClassDiagramPackage.OPERATION__OWNER:
 				setOwner((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
 				return;
@@ -244,28 +192,10 @@ public class OperationImpl extends NamedElementImpl implements Operation {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassDiagramPackage.OPERATION__VISIBILITY:
-				return visibility != VISIBILITY_EDEFAULT;
 			case ClassDiagramPackage.OPERATION__OWNER:
 				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (visibility: ");
-		result.append(visibility);
-		result.append(')');
-		return result.toString();
 	}
 
 } //OperationImpl
