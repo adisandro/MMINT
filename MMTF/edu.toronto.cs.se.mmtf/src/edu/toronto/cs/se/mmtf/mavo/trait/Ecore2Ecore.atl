@@ -317,7 +317,7 @@ unique lazy rule EReference2EClass {
 			eSuperTypes <- thisModule.getMAVOReference,
 			interface <- false,
 			eAnnotations <- s.eAnnotations->collect(a | if a.source = 'gmf.link' then thisModule.getNewAnnotation(a) else false endif),
-			name <- s.name,
+			name <- s.name.substring(1, 1).toUpper() + s.name.substring(2, s.name.size()) + 'Reference',
 			eReferences <- Sequence{(thisModule.getNewSrcEReference(s)), (thisModule.getNewTgtEReference(s))}
 		)
 }
