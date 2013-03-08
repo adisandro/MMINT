@@ -336,7 +336,7 @@
   </diagram>
   <plugin
       provider="Software Engineering Group, University of Toronto"
-      version="1.0.2"
+      version="1.0.3"
       printingEnabled="true">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
