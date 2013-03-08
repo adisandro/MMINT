@@ -72,4 +72,18 @@ Famelis, Rick Salay, Vivien Suen. All rights reserved.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
