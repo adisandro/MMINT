@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.trait;
 
 import java.util.HashMap;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -205,6 +206,11 @@ public class MultiModelRegistry {
 		String fileExtension = getFileExtensionFromUri(uri);
 
 		return uri.replace(ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
+	}
+
+	public static String prependWorkspaceToUri(String uri) {
+
+		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
 	}
 
 	public static MultiModel getMultiModel(ExtendibleElement element) {

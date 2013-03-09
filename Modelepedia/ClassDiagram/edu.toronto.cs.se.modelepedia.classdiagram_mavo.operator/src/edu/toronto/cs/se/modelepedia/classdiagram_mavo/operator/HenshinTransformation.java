@@ -57,7 +57,7 @@ public class HenshinTransformation extends OperatorExecutableImpl {
 			application.execute(null);
 		}
 
-		resourceSet.saveEObject(graph.getRoots().get(0), "tranformed.classdiagram_mavo");
+		resourceSet.saveEObject(graph.getRoots().get(0), "transformed.classdiagram_mavo");
 		EList<Model> result = new BasicEList<Model>();
 
 		return result;
