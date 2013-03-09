@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin">
+  <imports href="http://se.cs.toronto.edu/mmtf/MAVO#/"/>
+  <imports href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#/"/>
+  <units xsi:type="henshin:Rule" name="addGetter">
+    <parameters name="attributeName">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs name="Lhs">
+      <nodes outgoing="//@units.0/@lhs/@edges.0">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes incoming="//@units.0/@lhs/@edges.0" outgoing="_BXNIQIg9EeKdYL8chVmxYQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
+        <attributes value="attributeName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes incoming="_BXNIQIg9EeKdYL8chVmxYQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <edges source="//@units.0/@lhs/@nodes.0" target="//@units.0/@lhs/@nodes.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
+      </edges>
+      <edges xmi:id="_BXNIQIg9EeKdYL8chVmxYQ" source="//@units.0/@lhs/@nodes.1" target="//@units.0/@lhs/@nodes.2">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
+      </edges>
+      <formula xsi:type="henshin:Not">
+        <child xsi:type="henshin:NestedCondition">
+          <conclusion>
+            <nodes outgoing="//@units.0/@lhs/@formula/@child/@conclusion/@edges.0 //@units.0/@lhs/@formula/@child/@conclusion/@edges.1">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+            </nodes>
+            <nodes incoming="_AtF0QIg9EeKdYL8chVmxYQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+            </nodes>
+            <nodes incoming="//@units.0/@lhs/@formula/@child/@conclusion/@edges.0">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
+              <attributes value="attributeName">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+              </attributes>
+            </nodes>
+            <nodes incoming="//@units.0/@lhs/@formula/@child/@conclusion/@edges.1" outgoing="_AtF0QIg9EeKdYL8chVmxYQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation"/>
+              <attributes value="attributeName">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+              </attributes>
+            </nodes>
+            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.2">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
+            </edges>
+            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.3">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedOperations"/>
+            </edges>
+            <edges xmi:id="_AtF0QIg9EeKdYL8chVmxYQ" source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.3" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.1">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
+            </edges>
+          </conclusion>
+          <mappings origin="//@units.0/@lhs/@nodes.0" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.0"/>
+          <mappings origin="//@units.0/@lhs/@nodes.2" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.1"/>
+          <mappings origin="//@units.0/@lhs/@nodes.1" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.2"/>
+        </child>
+      </formula>
+    </lhs>
+    <rhs name="Rhs">
+      <nodes outgoing="//@units.0/@rhs/@edges.0 //@units.0/@rhs/@edges.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes incoming="//@units.0/@rhs/@edges.0" outgoing="_BXVrIIg9EeKdYL8chVmxYQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
+        <attributes value="attributeName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes incoming="//@units.0/@rhs/@edges.1" outgoing="_CCzC8Ig9EeKdYL8chVmxYQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation"/>
+        <attributes value="attributeName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes incoming="_BXVrIIg9EeKdYL8chVmxYQ _CCzC8Ig9EeKdYL8chVmxYQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <edges source="//@units.0/@rhs/@nodes.0" target="//@units.0/@rhs/@nodes.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
+      </edges>
+      <edges source="//@units.0/@rhs/@nodes.0" target="//@units.0/@rhs/@nodes.2">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedOperations"/>
+      </edges>
+      <edges xmi:id="_BXVrIIg9EeKdYL8chVmxYQ" source="//@units.0/@rhs/@nodes.1" target="//@units.0/@rhs/@nodes.3">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
+      </edges>
+      <edges xmi:id="_CCzC8Ig9EeKdYL8chVmxYQ" source="//@units.0/@rhs/@nodes.2" target="//@units.0/@rhs/@nodes.3">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
+      </edges>
+    </rhs>
+    <mappings origin="//@units.0/@lhs/@nodes.0" image="//@units.0/@rhs/@nodes.0"/>
+    <mappings origin="//@units.0/@lhs/@nodes.1" image="//@units.0/@rhs/@nodes.1"/>
+    <mappings origin="//@units.0/@lhs/@nodes.2" image="//@units.0/@rhs/@nodes.3"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" name="addGetters" subUnit="//@units.0"/>
+</henshin:Module>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+  <classes name="A">
+    <ownedAttributes name="b1" visibility="PUBLIC" type="//@classes.1"/>
+    <ownedAttributes name="b2" visibility="PUBLIC" type="//@classes.1"/>
+    <ownedOperations name="b2" visibility="PUBLIC" type="//@classes.1"/>
+  </classes>
+  <classes name="B">
+    <ownedAttributes name="a" type="//@classes.0"/>
+  </classes>
+</classdiagram_mavo:ClassDiagram>

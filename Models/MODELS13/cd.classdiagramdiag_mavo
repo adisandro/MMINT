@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_EmKI0IhDEeKNJ51e2EhrVQ" type="ClassDiagram_MAVO" name="cd.classdiagramdiag_mavo" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_FK-GEIhDEeKNJ51e2EhrVQ" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_FK_7QIhDEeKNJ51e2EhrVQ" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FK_7QYhDEeKNJ51e2EhrVQ" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_FLAiUIhDEeKNJ51e2EhrVQ" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_ItGwEIhDEeKNJ51e2EhrVQ" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_ItH-MIhDEeKNJ51e2EhrVQ" type="5001"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_ItH-MYhDEeKNJ51e2EhrVQ" type="5002"/>
+        <element xmi:type="classdiagram_mavo:Attribute" href="cd.classdiagram_mavo#//@classes.0/@ownedAttributes.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ItHXIIhDEeKNJ51e2EhrVQ"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_Kyw1AIhDEeKNJ51e2EhrVQ" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_KyyDIIhDEeKNJ51e2EhrVQ" type="5001"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_KyyDIYhDEeKNJ51e2EhrVQ" type="5002"/>
+        <element xmi:type="classdiagram_mavo:Attribute" href="cd.classdiagram_mavo#//@classes.0/@ownedAttributes.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KyxcEIhDEeKNJ51e2EhrVQ"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_FLAiUYhDEeKNJ51e2EhrVQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_FLAiUohDEeKNJ51e2EhrVQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_FLAiU4hDEeKNJ51e2EhrVQ" type="7002">
+      <children xmi:type="notation:Shape" xmi:id="_LpGAEIhDEeKNJ51e2EhrVQ" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_LpGnIIhDEeKNJ51e2EhrVQ" type="5003"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_LpGnIYhDEeKNJ51e2EhrVQ" type="5004"/>
+        <element xmi:type="classdiagram_mavo:Operation" href="cd.classdiagram_mavo#//@classes.0/@ownedOperations.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LpGAEYhDEeKNJ51e2EhrVQ"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_FLAiVIhDEeKNJ51e2EhrVQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_FLAiVYhDEeKNJ51e2EhrVQ"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_FK-tIIhDEeKNJ51e2EhrVQ"/>
+    <element xmi:type="classdiagram_mavo:Class" href="cd.classdiagram_mavo#//@classes.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FK-tIYhDEeKNJ51e2EhrVQ" x="121" y="69"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_GWrrQIhDEeKNJ51e2EhrVQ" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_GWsSUIhDEeKNJ51e2EhrVQ" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_GWsSUYhDEeKNJ51e2EhrVQ" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_GWs5YIhDEeKNJ51e2EhrVQ" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_Jf3pwIhDEeKNJ51e2EhrVQ" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_Jf434IhDEeKNJ51e2EhrVQ" type="5001"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_Jf434YhDEeKNJ51e2EhrVQ" type="5002"/>
+        <element xmi:type="classdiagram_mavo:Attribute" href="cd.classdiagram_mavo#//@classes.1/@ownedAttributes.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Jf3pwYhDEeKNJ51e2EhrVQ"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_GWs5YYhDEeKNJ51e2EhrVQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_GWs5YohDEeKNJ51e2EhrVQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_GWs5Y4hDEeKNJ51e2EhrVQ" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_GWs5ZIhDEeKNJ51e2EhrVQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_GWs5ZYhDEeKNJ51e2EhrVQ"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_GWrrQYhDEeKNJ51e2EhrVQ"/>
+    <element xmi:type="classdiagram_mavo:Class" href="cd.classdiagram_mavo#//@classes.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GWrrQohDEeKNJ51e2EhrVQ" x="374" y="78"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_EmKI0YhDEeKNJ51e2EhrVQ"/>
+  <element xmi:type="classdiagram_mavo:ClassDiagram" href="cd.classdiagram_mavo#/"/>
+</notation:Diagram>
