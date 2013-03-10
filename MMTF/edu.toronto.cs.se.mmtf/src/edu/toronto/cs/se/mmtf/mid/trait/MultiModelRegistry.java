@@ -168,7 +168,7 @@ public class MultiModelRegistry {
 			labelProvider.getText(eObject);
 	}
 
-	private static String getLastSegmentFromUri(String uri) {
+	public static String getLastSegmentFromUri(String uri) {
 
 		return uri.substring(uri.lastIndexOf(MMTF.URI_SEPARATOR) + 1, uri.length());
 	}
