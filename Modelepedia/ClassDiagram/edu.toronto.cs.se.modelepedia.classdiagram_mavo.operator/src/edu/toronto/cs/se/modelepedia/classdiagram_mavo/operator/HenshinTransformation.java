@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -27,15 +26,19 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
-import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
 public class HenshinTransformation extends OperatorExecutableImpl {
 
@@ -98,12 +101,23 @@ public class HenshinTransformation extends OperatorExecutableImpl {
 			}
 		}
 
+		// save transformed model
+		String newCdModelUri = MultiModelRegistry.addFileNameSuffixInUri(cdModel.getUri(), TRANSFORMED_MODEL_SUFFIX);
+		String newCdModelName = MultiModelRegistry.getLastSegmentFromUri(newCdModelUri);
 		resourceSet.saveEObject(
 			graph.getRoots().get(0),
-			MultiModelRegistry.getLastSegmentFromUri(MultiModelRegistry.addFileNameSuffixInUri(cdModel.getUri(), TRANSFORMED_MODEL_SUFFIX))
+			newCdModelName
 		);
-		//TODO MMTF: create model for result, add to mid?
 		EList<Model> result = new BasicEList<Model>();
+		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
+		MultiModel multiModel = (updateMid) ?
+			MultiModelRegistry.getMultiModel(cdModel) :
+			null;
+		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(ClassDiagram_MAVOPackage.eINSTANCE.getNsURI());
+		Model newCdModel = (updateMid) ?
+			MultiModelInstanceFactory.createModelAndEditor(modelType, newCdModelUri, ModelOrigin.CREATED, multiModel) :
+			MultiModelInstanceFactory.createModel(modelType, newCdModelUri, ModelOrigin.CREATED, null);
+		result.add(newCdModel);
 
 		return result;
 	}

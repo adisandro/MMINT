@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.trait;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -611,13 +612,25 @@ public class MultiModelInstanceFactory {
 		EList<Editor> editorTypes = MultiModelTypeRegistry.getModelTypeEditors(model.getMetatypeUri());
 		if (editorTypes.size() != 0) {
 			//TODO MMTF: prioritize editors list instead of running twice?
-			//TODO MMTF: check if editor file really exists in model directory
 			for (Editor editorType : editorTypes) {
-				if (editorType instanceof Diagram) {
-					return createEditor(editorType, model.getUri());
+				if (!(editorType instanceof Diagram)) {
+					continue;
 				}
+				// check if editor file really exists in model directory
+				File editorFile = new File(
+					MultiModelRegistry.prependWorkspaceToUri(
+						MultiModelRegistry.replaceFileExtensionInUri(model.getUri(), editorType.getFileExtensions().get(0))
+					)
+				);
+				if (!editorFile.exists()) {
+					continue;
+				}
+				return createEditor(editorType, model.getUri());
 			}
 			for (Editor editorType : editorTypes) {
+				if (editorType instanceof Diagram) {
+					continue;
+				}
 				return createEditor(editorType, model.getUri());
 			}
 		}
