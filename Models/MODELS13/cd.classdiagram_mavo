@@ -3,7 +3,7 @@
   <classes name="A">
     <ownedAttributes may="true" name="b1" visibility="PUBLIC" type="//@classes.1"/>
     <ownedAttributes name="b2" visibility="PUBLIC" type="//@classes.1"/>
-    <ownedOperations name="b2" visibility="PUBLIC" type="//@classes.1"/>
+    <ownedOperations may="true" name="b2" visibility="PUBLIC" type="//@classes.1"/>
   </classes>
   <classes name="B">
     <ownedAttributes name="a" type="//@classes.0"/>
