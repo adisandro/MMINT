@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_BTznQIhDEeKNJ51e2EhrVQ" type="Mid" name="lifting.middiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Node" xmi:id="_Er6LgIhDEeKNJ51e2EhrVQ" type="2011">
-    <children xmi:type="notation:DecorationNode" xmi:id="_Er6ykIhDEeKNJ51e2EhrVQ" type="5011"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_Er6ykYhDEeKNJ51e2EhrVQ" type="5016"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_Er6LgYhDEeKNJ51e2EhrVQ"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_Er6LgohDEeKNJ51e2EhrVQ" fontName="Cantarell"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Er6Lg4hDEeKNJ51e2EhrVQ" hint="Mid"/>
+  <children xmi:type="notation:Node" xmi:id="_ezP80IstEeK4L6rAdaS4ww" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ezQj4IstEeK4L6rAdaS4ww" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ezQj4YstEeK4L6rAdaS4ww" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_ezP80YstEeK4L6rAdaS4ww"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ezP80ostEeK4L6rAdaS4ww" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_ezP804stEeK4L6rAdaS4ww" hint="Mid"/>
     <element xmi:type="mid:Model" href="lifting.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Er6LhIhDEeKNJ51e2EhrVQ" x="166" y="59"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ezP81IstEeK4L6rAdaS4ww" x="368" y="221"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_h1BrwIstEeK4L6rAdaS4ww" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_h1BrxYstEeK4L6rAdaS4ww" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_h1BrxostEeK4L6rAdaS4ww" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_h1BrwYstEeK4L6rAdaS4ww"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_h1BrwostEeK4L6rAdaS4ww" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_h1Brw4stEeK4L6rAdaS4ww" hint="Mid"/>
+    <element xmi:type="mid:Model" href="lifting.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h1BrxIstEeK4L6rAdaS4ww" x="188" y="30"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_BTznQYhDEeKNJ51e2EhrVQ"/>
   <element xmi:type="mid:MultiModel" href="lifting.mid#/"/>

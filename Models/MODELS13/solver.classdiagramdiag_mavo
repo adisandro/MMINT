@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_jk6KcIssEeK4L6rAdaS4ww" type="ClassDiagram_MAVO" name="solver.classdiagramdiag_mavo" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_1AepcIssEeK4L6rAdaS4ww" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_1AfQgIssEeK4L6rAdaS4ww" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_1AfQgYssEeK4L6rAdaS4ww" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_1AfQgossEeK4L6rAdaS4ww" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_1AfQg4ssEeK4L6rAdaS4ww"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_1AfQhIssEeK4L6rAdaS4ww"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_1Af3kIssEeK4L6rAdaS4ww" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_1Af3kYssEeK4L6rAdaS4ww"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_1Af3kossEeK4L6rAdaS4ww"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_1AepcYssEeK4L6rAdaS4ww"/>
+    <element xmi:type="classdiagram_mavo:Class" href="solver.classdiagram_mavo#//@classes.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1AepcossEeK4L6rAdaS4ww" x="145" y="75"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_4LRKcIssEeK4L6rAdaS4ww" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_4LRKc4ssEeK4L6rAdaS4ww" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_4LRKdIssEeK4L6rAdaS4ww" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_4LRKdYssEeK4L6rAdaS4ww" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_5P4CEIssEeK4L6rAdaS4ww" type="3001" fontName="Ubuntu">
+        <children xmi:type="notation:DecorationNode" xmi:id="_5P4pIIssEeK4L6rAdaS4ww" type="5001"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_5P4pIYssEeK4L6rAdaS4ww" type="5002"/>
+        <element xmi:type="classdiagram_mavo:Attribute" href="solver.classdiagram_mavo#//@classes.1/@ownedAttributes.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5P4CEYssEeK4L6rAdaS4ww"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4LRKdossEeK4L6rAdaS4ww"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4LRKd4ssEeK4L6rAdaS4ww"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_4LRxgIssEeK4L6rAdaS4ww" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4LRxgYssEeK4L6rAdaS4ww"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4LRxgossEeK4L6rAdaS4ww"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4LRKcYssEeK4L6rAdaS4ww"/>
+    <element xmi:type="classdiagram_mavo:Class" href="solver.classdiagram_mavo#//@classes.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4LRKcossEeK4L6rAdaS4ww" x="403" y="74"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_7ZRXgIssEeK4L6rAdaS4ww" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_7ZR-kIssEeK4L6rAdaS4ww" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_7ZR-kYssEeK4L6rAdaS4ww" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_7ZR-kossEeK4L6rAdaS4ww" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_7ZR-k4ssEeK4L6rAdaS4ww"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_7ZR-lIssEeK4L6rAdaS4ww"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_7ZSloIssEeK4L6rAdaS4ww" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_7ZSloYssEeK4L6rAdaS4ww"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_7ZSloossEeK4L6rAdaS4ww"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_7ZRXgYssEeK4L6rAdaS4ww"/>
+    <element xmi:type="classdiagram_mavo:Class" href="solver.classdiagram_mavo#//@classes.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7ZRXgossEeK4L6rAdaS4ww" x="372" y="277"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_jk6KcYssEeK4L6rAdaS4ww"/>
+  <element xmi:type="classdiagram_mavo:ClassDiagram" href="solver.classdiagram_mavo#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_BYThwIstEeK4L6rAdaS4ww" type="4001" source="_4LRKcIssEeK4L6rAdaS4ww" target="_1AepcIssEeK4L6rAdaS4ww">
+    <children xmi:type="notation:DecorationNode" xmi:id="_BYUI0IstEeK4L6rAdaS4ww" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_BYUI0YstEeK4L6rAdaS4ww" y="20"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_BYThwYstEeK4L6rAdaS4ww" fontName="Ubuntu"/>
+    <element xmi:type="classdiagram_mavo:NestedInReference" href="solver.classdiagram_mavo#//@classes.1/@nestedIn.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BYThwostEeK4L6rAdaS4ww" points="[-59, -8, 239, 33]$[-308, -58, -10, -17]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BYcEoIstEeK4L6rAdaS4ww" id="(0.30158730158730157,0.20987654320987653)"/>
+  </edges>
+</notation:Diagram>
