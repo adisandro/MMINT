@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.edit;singleton:=true
+Bundle-Version: 1.0.3
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.provider.RelationalDatabase_MAVOEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.provider
+Require-Bundle: org.eclipse.core.runtime,
+ edu.toronto.cs.se.modelepedia.relationaldatabase_mavo;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
+ edu.toronto.cs.se.mmtf;visibility:=reexport,
+ edu.toronto.cs.se.mmtf.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy
