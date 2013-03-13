@@ -51,6 +51,21 @@
     <element xmi:type="classdiagram_mavo:Class" href="try.classdiagram_mavo#//@classes.2"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RG_QMow1EeKHVvblARgWmg" x="470" y="277"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_7gmEoIw2EeKHVvblARgWmg" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_7gmrsIw2EeKHVvblARgWmg" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_7gmrsYw2EeKHVvblARgWmg" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_7gmrsow2EeKHVvblARgWmg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_7gmrs4w2EeKHVvblARgWmg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_7gmrtIw2EeKHVvblARgWmg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_7gmrtYw2EeKHVvblARgWmg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_7gmrtow2EeKHVvblARgWmg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_7gmrt4w2EeKHVvblARgWmg"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_7gmEoYw2EeKHVvblARgWmg"/>
+    <element xmi:type="classdiagram_mavo:Class" href="try.classdiagram_mavo#//@classes.3"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7gmEoow2EeKHVvblARgWmg" x="461" y="109"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_MoIfQIw1EeKHVvblARgWmg"/>
   <element xmi:type="classdiagram_mavo:ClassDiagram" href="try.classdiagram_mavo#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_VthWcIw1EeKHVvblARgWmg" type="4003" source="_N7F78Iw1EeKHVvblARgWmg" target="_OsHJMIw1EeKHVvblARgWmg">
@@ -61,5 +76,14 @@
     <element xmi:type="classdiagram_mavo:SuperclassReference" href="try.classdiagram_mavo#//@classes.0/@superclass.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_VthWcow1EeKHVvblARgWmg" points="[-3, -24, 16, 120]$[-13, -104, 6, 40]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VtoEIIw1EeKHVvblARgWmg" id="(0.6166666666666667,0.20512820512820512)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_9XLLwIw2EeKHVvblARgWmg" type="4003" source="_RG_QMIw1EeKHVvblARgWmg" target="_7gmEoIw2EeKHVvblARgWmg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9XLLw4w2EeKHVvblARgWmg" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9XLLxIw2EeKHVvblARgWmg" y="40"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9XLLwYw2EeKHVvblARgWmg" fontName="Ubuntu"/>
+    <element xmi:type="classdiagram_mavo:SuperclassReference" href="try.classdiagram_mavo#//@classes.2/@superclass.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9XLLwow2EeKHVvblARgWmg" points="[-9, -17, -3, 128]$[-9, -185, -3, -40]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9XMZ4Iw2EeKHVvblARgWmg" id="(0.55,0.2125)"/>
   </edges>
 </notation:Diagram>

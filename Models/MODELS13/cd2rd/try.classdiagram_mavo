@@ -5,5 +5,8 @@
     <superclass target="//@classes.1"/>
   </classes>
   <classes name="ASuper" subclasses="//@classes.0/@superclass.0"/>
-  <classes name="B"/>
+  <classes name="B">
+    <superclass target="//@classes.3"/>
+  </classes>
+  <classes name="BSuper" subclasses="//@classes.2/@superclass.0"/>
 </classdiagram_mavo:ClassDiagram>
