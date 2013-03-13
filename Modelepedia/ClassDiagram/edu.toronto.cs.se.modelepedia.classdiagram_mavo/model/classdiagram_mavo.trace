@@ -41,16 +41,33 @@
   </childNodeTraces>
   <linkTraces
       visualID="4001"
-      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO' and _eClass_.name = 'NestedInReference')">
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO' and _eClass_.name = 'Association')">
     <linkLabelTraces
         visualID="6001"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6002"
         queryText="true"/>
   </linkTraces>
   <linkTraces
       visualID="4002"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO' and _eClass_.name = 'NestedInReference')">
+    <linkLabelTraces
+        visualID="6003"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4003"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO' and _eClass_.name = 'SuperclassReference')">
+    <linkLabelTraces
+        visualID="6004"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4004"
       queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO' and _eClass_.name = 'Dependency')">
     <linkLabelTraces
-        visualID="6002"
+        visualID="6005"
         queryText="true"/>
   </linkTraces>
 </trace:TraceModel>

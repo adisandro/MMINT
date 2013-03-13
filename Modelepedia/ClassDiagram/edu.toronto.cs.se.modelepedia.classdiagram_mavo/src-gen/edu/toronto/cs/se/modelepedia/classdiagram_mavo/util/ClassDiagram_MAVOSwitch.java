@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mavo.MAVOReference;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NamedElement;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation;
 
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -141,11 +143,27 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ClassDiagram_MAVOPackage.ASSOCIATION: {
+				Association association = (Association)theEObject;
+				T result = caseAssociation(association);
+				if (result == null) result = caseNamedElement(association);
+				if (result == null) result = caseMAVOElement(association);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ClassDiagram_MAVOPackage.NESTED_IN_REFERENCE: {
 				NestedInReference nestedInReference = (NestedInReference)theEObject;
 				T result = caseNestedInReference(nestedInReference);
 				if (result == null) result = caseMAVOReference(nestedInReference);
 				if (result == null) result = caseMAVOElement(nestedInReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClassDiagram_MAVOPackage.SUPERCLASS_REFERENCE: {
+				SuperclassReference superclassReference = (SuperclassReference)theEObject;
+				T result = caseSuperclassReference(superclassReference);
+				if (result == null) result = caseMAVOReference(superclassReference);
+				if (result == null) result = caseMAVOElement(superclassReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -259,6 +277,21 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociation(Association object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Nested In Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -270,6 +303,21 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNestedInReference(NestedInReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Superclass Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Superclass Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSuperclassReference(SuperclassReference object) {
 		return null;
 	}
 

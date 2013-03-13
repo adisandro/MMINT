@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mavo.MAVOReference;
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NamedElement;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation;
 
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -116,8 +118,16 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createTypedElementAdapter();
 			}
 			@Override
+			public Adapter caseAssociation(Association object) {
+				return createAssociationAdapter();
+			}
+			@Override
 			public Adapter caseNestedInReference(NestedInReference object) {
 				return createNestedInReferenceAdapter();
+			}
+			@Override
+			public Adapter caseSuperclassReference(SuperclassReference object) {
+				return createSuperclassReferenceAdapter();
 			}
 			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
@@ -250,6 +260,20 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association
+	 * @generated
+	 */
+	public Adapter createAssociationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference <em>Nested In Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -260,6 +284,20 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNestedInReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference <em>Superclass Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference
+	 * @generated
+	 */
+	public Adapter createSuperclassReferenceAdapter() {
 		return null;
 	}
 

@@ -333,28 +333,60 @@ public class ClassDiagram_MAVOBaseItemSemanticEditPolicy extends
 		/**
 		 * @generated
 		 */
-		public boolean canCreateNestedInReference_4001(
+		public boolean canCreateAssociation_4001(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target) {
+			return canExistAssociation_4001(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateNestedInReference_4002(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target) {
-			return canExistNestedInReference_4001(container, null, source,
+			return canExistNestedInReference_4002(container, null, source,
 					target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateDependency_4002(
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container,
+		public boolean canCreateSuperclassReference_4003(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target) {
-			return canExistDependency_4002(container, null, source, target);
+			return canExistSuperclassReference_4003(container, null, source,
+					target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistNestedInReference_4001(
+		public boolean canCreateDependency_4004(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target) {
+			return canExistDependency_4004(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistAssociation_4001(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association linkInstance,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistNestedInReference_4002(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference linkInstance,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,
@@ -365,7 +397,18 @@ public class ClassDiagram_MAVOBaseItemSemanticEditPolicy extends
 		/**
 		 * @generated
 		 */
-		public boolean canExistDependency_4002(
+		public boolean canExistSuperclassReference_4003(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference linkInstance,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistDependency_4004(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency linkInstance,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source,

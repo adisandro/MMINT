@@ -27,7 +27,7 @@ public class DependencyItemSemanticEditPolicy
 	 */
 	public DependencyItemSemanticEditPolicy() {
 		super(
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4002);
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004);
 	}
 
 	/**

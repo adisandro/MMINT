@@ -80,7 +80,7 @@ public class DependencyReorientCommand extends EditElementCommand {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistDependency_4002(container,
+				.getLinkConstraints().canExistDependency_4004(container,
 						getLink(), getNewSource(), target);
 	}
 
@@ -99,7 +99,7 @@ public class DependencyReorientCommand extends EditElementCommand {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistDependency_4002(container,
+				.getLinkConstraints().canExistDependency_4004(container,
 						getLink(), source, getNewTarget());
 	}
 

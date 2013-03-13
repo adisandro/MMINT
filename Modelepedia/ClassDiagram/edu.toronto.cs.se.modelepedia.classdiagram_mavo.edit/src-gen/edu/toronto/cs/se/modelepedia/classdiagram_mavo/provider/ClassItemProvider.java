@@ -70,6 +70,9 @@ public class ClassItemProvider
 			addDependenciesAsDependeePropertyDescriptor(object);
 			addDependenciesAsDependerPropertyDescriptor(object);
 			addNestedPropertyDescriptor(object);
+			addSubclassesPropertyDescriptor(object);
+			addAssociationsAsSourcePropertyDescriptor(object);
+			addAssociationsAsTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -141,6 +144,72 @@ public class ClassItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Subclasses feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSubclassesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_subclasses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_subclasses_feature", "_UI_Class_type"),
+				 ClassDiagram_MAVOPackage.Literals.CLASS__SUBCLASSES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Associations As Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssociationsAsSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_associationsAsSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_associationsAsSource_feature", "_UI_Class_type"),
+				 ClassDiagram_MAVOPackage.Literals.CLASS__ASSOCIATIONS_AS_SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Associations As Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssociationsAsTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_associationsAsTarget_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_associationsAsTarget_feature", "_UI_Class_type"),
+				 ClassDiagram_MAVOPackage.Literals.CLASS__ASSOCIATIONS_AS_TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -155,6 +224,7 @@ public class ClassItemProvider
 			childrenFeatures.add(ClassDiagram_MAVOPackage.Literals.CLASS__OWNED_ATTRIBUTES);
 			childrenFeatures.add(ClassDiagram_MAVOPackage.Literals.CLASS__OWNED_OPERATIONS);
 			childrenFeatures.add(ClassDiagram_MAVOPackage.Literals.CLASS__NESTED_IN);
+			childrenFeatures.add(ClassDiagram_MAVOPackage.Literals.CLASS__SUPERCLASS);
 		}
 		return childrenFeatures;
 	}
@@ -212,6 +282,7 @@ public class ClassItemProvider
 			case ClassDiagram_MAVOPackage.CLASS__OWNED_ATTRIBUTES:
 			case ClassDiagram_MAVOPackage.CLASS__OWNED_OPERATIONS:
 			case ClassDiagram_MAVOPackage.CLASS__NESTED_IN:
+			case ClassDiagram_MAVOPackage.CLASS__SUPERCLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -243,6 +314,11 @@ public class ClassItemProvider
 			(createChildParameter
 				(ClassDiagram_MAVOPackage.Literals.CLASS__NESTED_IN,
 				 ClassDiagram_MAVOFactory.eINSTANCE.createNestedInReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ClassDiagram_MAVOPackage.Literals.CLASS__SUPERCLASS,
+				 ClassDiagram_MAVOFactory.eINSTANCE.createSuperclassReference()));
 	}
 
 }

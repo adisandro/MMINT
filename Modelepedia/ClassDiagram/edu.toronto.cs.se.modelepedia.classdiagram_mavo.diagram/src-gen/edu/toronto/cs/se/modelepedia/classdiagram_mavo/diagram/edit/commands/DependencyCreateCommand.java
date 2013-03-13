@@ -77,7 +77,7 @@ public class DependencyCreateCommand extends EditElementCommand {
 			return false;
 		}
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canCreateDependency_4002(getContainer(),
+				.getLinkConstraints().canCreateDependency_4004(getContainer(),
 						getSource(), getTarget());
 	}
 

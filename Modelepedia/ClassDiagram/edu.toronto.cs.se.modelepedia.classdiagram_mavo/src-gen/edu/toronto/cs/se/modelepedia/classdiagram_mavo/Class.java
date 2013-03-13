@@ -27,11 +27,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNestedIn <em>Nested In</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getNested <em>Nested</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getSuperclass <em>Superclass</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getSubclasses <em>Subclasses</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsSource <em>Associations As Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsTarget <em>Associations As Target</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface Class extends NamedElement {
@@ -144,5 +148,77 @@ public interface Class extends NamedElement {
 	 * @generated
 	 */
 	EList<NestedInReference> getNested();
+
+	/**
+	 * Returns the value of the '<em><b>Superclass</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Superclass</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Superclass</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_Superclass()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getSource
+	 * @model opposite="source" containment="true"
+	 * @generated
+	 */
+	EList<SuperclassReference> getSuperclass();
+
+	/**
+	 * Returns the value of the '<em><b>Subclasses</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Subclasses</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subclasses</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_Subclasses()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getTarget
+	 * @model opposite="target"
+	 * @generated
+	 */
+	EList<SuperclassReference> getSubclasses();
+
+	/**
+	 * Returns the value of the '<em><b>Associations As Source</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Associations As Source</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Associations As Source</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_AssociationsAsSource()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getSource
+	 * @model opposite="source"
+	 * @generated
+	 */
+	EList<Association> getAssociationsAsSource();
+
+	/**
+	 * Returns the value of the '<em><b>Associations As Target</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Associations As Target</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Associations As Target</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_AssociationsAsTarget()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getTarget
+	 * @model opposite="target"
+	 * @generated
+	 */
+	EList<Association> getAssociationsAsTarget();
 
 } // Class

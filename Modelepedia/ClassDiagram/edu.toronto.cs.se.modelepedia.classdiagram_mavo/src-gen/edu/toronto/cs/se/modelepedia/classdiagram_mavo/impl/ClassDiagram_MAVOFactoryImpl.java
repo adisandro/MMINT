@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
@@ -18,10 +19,8 @@ import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation;
-import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility;
-
+import edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -78,39 +77,11 @@ public class ClassDiagram_MAVOFactoryImpl extends EFactoryImpl implements ClassD
 			case ClassDiagram_MAVOPackage.ATTRIBUTE: return createAttribute();
 			case ClassDiagram_MAVOPackage.OPERATION: return createOperation();
 			case ClassDiagram_MAVOPackage.DEPENDENCY: return createDependency();
+			case ClassDiagram_MAVOPackage.ASSOCIATION: return createAssociation();
 			case ClassDiagram_MAVOPackage.NESTED_IN_REFERENCE: return createNestedInReference();
+			case ClassDiagram_MAVOPackage.SUPERCLASS_REFERENCE: return createSuperclassReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case ClassDiagram_MAVOPackage.VISIBILITY:
-				return createVisibilityFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case ClassDiagram_MAVOPackage.VISIBILITY:
-				return convertVisibilityToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -169,6 +140,16 @@ public class ClassDiagram_MAVOFactoryImpl extends EFactoryImpl implements ClassD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Association createAssociation() {
+		AssociationImpl association = new AssociationImpl();
+		return association;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NestedInReference createNestedInReference() {
 		NestedInReferenceImpl nestedInReference = new NestedInReferenceImpl();
 		return nestedInReference;
@@ -179,19 +160,9 @@ public class ClassDiagram_MAVOFactoryImpl extends EFactoryImpl implements ClassD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Visibility createVisibilityFromString(EDataType eDataType, String initialValue) {
-		Visibility result = Visibility.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertVisibilityToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public SuperclassReference createSuperclassReference() {
+		SuperclassReferenceImpl superclassReference = new SuperclassReferenceImpl();
+		return superclassReference;
 	}
 
 	/**

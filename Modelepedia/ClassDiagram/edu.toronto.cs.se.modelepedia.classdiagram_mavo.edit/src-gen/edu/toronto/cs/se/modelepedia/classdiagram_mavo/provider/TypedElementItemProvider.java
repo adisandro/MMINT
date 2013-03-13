@@ -66,30 +66,30 @@ public class TypedElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addVisibilityPropertyDescriptor(object);
+			addPublicPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Visibility feature.
+	 * This adds a property descriptor for the Public feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVisibilityPropertyDescriptor(Object object) {
+	protected void addPublicPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TypedElement_visibility_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_visibility_feature", "_UI_TypedElement_type"),
-				 ClassDiagram_MAVOPackage.Literals.TYPED_ELEMENT__VISIBILITY,
+				 getString("_UI_TypedElement_public_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_public_feature", "_UI_TypedElement_type"),
+				 ClassDiagram_MAVOPackage.Literals.TYPED_ELEMENT__PUBLIC,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -142,7 +142,7 @@ public class TypedElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TypedElement.class)) {
-			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__VISIBILITY:
+			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__PUBLIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

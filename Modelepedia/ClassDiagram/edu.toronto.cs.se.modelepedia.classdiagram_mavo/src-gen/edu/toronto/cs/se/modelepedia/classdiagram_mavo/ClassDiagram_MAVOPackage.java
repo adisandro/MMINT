@@ -11,13 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
 
-import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +32,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface ClassDiagram_MAVOPackage extends EPackage {
@@ -106,13 +106,22 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int CLASS_DIAGRAM__DEPENDENCIES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM__ASSOCIATIONS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Class Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int CLASS_DIAGRAM_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
@@ -288,13 +297,49 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int CLASS__NESTED = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Superclass</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__SUPERCLASS = NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Subclasses</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__SUBCLASSES = NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Associations As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ASSOCIATIONS_AS_SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Associations As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ASSOCIATIONS_AS_TARGET = NAMED_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -352,13 +397,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int TYPED_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Public</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT__VISIBILITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int TYPED_ELEMENT__PUBLIC = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -434,13 +479,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int ATTRIBUTE__NAME = TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Public</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__VISIBILITY = TYPED_ELEMENT__VISIBILITY;
+	int ATTRIBUTE__PUBLIC = TYPED_ELEMENT__PUBLIC;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -525,13 +570,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int OPERATION__NAME = TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Public</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__VISIBILITY = TYPED_ELEMENT__VISIBILITY;
+	int OPERATION__PUBLIC = TYPED_ELEMENT__PUBLIC;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -607,13 +652,22 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int DEPENDENCY__VAR = MavoPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Dependee</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int DEPENDENCY__DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Depender</b></em>' reference.
@@ -622,7 +676,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int DEPENDENCY__DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Dependency</em>' class.
@@ -631,7 +685,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int DEPENDENCY_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Dependency</em>' class.
@@ -643,6 +697,88 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int DEPENDENCY_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AssociationImpl <em>Association</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AssociationImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getAssociation()
+	 * @generated
+	 */
+	int ASSOCIATION = 7;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__MAY = NAMED_ELEMENT__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__SET = NAMED_ELEMENT__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__VAR = NAMED_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Association</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Association</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NestedInReferenceImpl <em>Nested In Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -650,7 +786,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getNestedInReference()
 	 * @generated
 	 */
-	int NESTED_IN_REFERENCE = 7;
+	int NESTED_IN_REFERENCE = 8;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -716,15 +852,77 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int NESTED_IN_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility <em>Visibility</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.SuperclassReferenceImpl <em>Superclass Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getVisibility()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.SuperclassReferenceImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getSuperclassReference()
 	 * @generated
 	 */
-	int VISIBILITY = 8;
+	int SUPERCLASS_REFERENCE = 9;
 
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE__SOURCE = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE__TARGET = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Superclass Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Superclass Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram <em>Class Diagram</em>}'.
@@ -757,6 +955,17 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClassDiagram_Dependencies();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram#getAssociations <em>Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Associations</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram#getAssociations()
+	 * @see #getClassDiagram()
+	 * @generated
+	 */
+	EReference getClassDiagram_Associations();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class <em>Class</em>}'.
@@ -835,6 +1044,50 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	EReference getClass_Nested();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getSuperclass <em>Superclass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Superclass</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getSuperclass()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Superclass();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getSubclasses <em>Subclasses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Subclasses</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getSubclasses()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Subclasses();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsSource <em>Associations As Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Associations As Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsSource()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AssociationsAsSource();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsTarget <em>Associations As Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Associations As Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsTarget()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AssociationsAsTarget();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -908,6 +1161,17 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	EClass getDependency();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency#getName()
+	 * @see #getDependency()
+	 * @generated
+	 */
+	EAttribute getDependency_Name();
+
+	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency#getDependee <em>Dependee</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -940,15 +1204,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	EClass getTypedElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getVisibility <em>Visibility</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#isPublic <em>Public</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Visibility</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getVisibility()
+	 * @return the meta object for the attribute '<em>Public</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#isPublic()
 	 * @see #getTypedElement()
 	 * @generated
 	 */
-	EAttribute getTypedElement_Visibility();
+	EAttribute getTypedElement_Public();
 
 	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getType <em>Type</em>}'.
@@ -960,6 +1224,38 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTypedElement_Type();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Association</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association
+	 * @generated
+	 */
+	EClass getAssociation();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getSource()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EReference getAssociation_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association#getTarget()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EReference getAssociation_Target();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference <em>Nested In Reference</em>}'.
@@ -994,14 +1290,36 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	EReference getNestedInReference_Target();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility <em>Visibility</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference <em>Superclass Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Visibility</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility
+	 * @return the meta object for class '<em>Superclass Reference</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference
 	 * @generated
 	 */
-	EEnum getVisibility();
+	EClass getSuperclassReference();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getSource()
+	 * @see #getSuperclassReference()
+	 * @generated
+	 */
+	EReference getSuperclassReference_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getTarget()
+	 * @see #getSuperclassReference()
+	 * @generated
+	 */
+	EReference getSuperclassReference_Target();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1051,6 +1369,14 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS_DIAGRAM__DEPENDENCIES = eINSTANCE.getClassDiagram_Dependencies();
+
+		/**
+		 * The meta object literal for the '<em><b>Associations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_DIAGRAM__ASSOCIATIONS = eINSTANCE.getClassDiagram_Associations();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassImpl <em>Class</em>}' class.
@@ -1109,6 +1435,38 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__NESTED = eINSTANCE.getClass_Nested();
+
+		/**
+		 * The meta object literal for the '<em><b>Superclass</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__SUPERCLASS = eINSTANCE.getClass_Superclass();
+
+		/**
+		 * The meta object literal for the '<em><b>Subclasses</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__SUBCLASSES = eINSTANCE.getClass_Subclasses();
+
+		/**
+		 * The meta object literal for the '<em><b>Associations As Source</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ASSOCIATIONS_AS_SOURCE = eINSTANCE.getClass_AssociationsAsSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Associations As Target</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ASSOCIATIONS_AS_TARGET = eINSTANCE.getClass_AssociationsAsTarget();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -1175,6 +1533,14 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		EClass DEPENDENCY = eINSTANCE.getDependency();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPENDENCY__NAME = eINSTANCE.getDependency_Name();
+
+		/**
 		 * The meta object literal for the '<em><b>Dependee</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1201,12 +1567,12 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		EClass TYPED_ELEMENT = eINSTANCE.getTypedElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Public</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_ELEMENT__VISIBILITY = eINSTANCE.getTypedElement_Visibility();
+		EAttribute TYPED_ELEMENT__PUBLIC = eINSTANCE.getTypedElement_Public();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -1215,6 +1581,32 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AssociationImpl <em>Association</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AssociationImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getAssociation()
+		 * @generated
+		 */
+		EClass ASSOCIATION = eINSTANCE.getAssociation();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION__SOURCE = eINSTANCE.getAssociation_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION__TARGET = eINSTANCE.getAssociation_Target();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NestedInReferenceImpl <em>Nested In Reference</em>}' class.
@@ -1243,14 +1635,30 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 		EReference NESTED_IN_REFERENCE__TARGET = eINSTANCE.getNestedInReference_Target();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility <em>Visibility</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.SuperclassReferenceImpl <em>Superclass Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility
-		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getVisibility()
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.SuperclassReferenceImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassDiagram_MAVOPackageImpl#getSuperclassReference()
 		 * @generated
 		 */
-		EEnum VISIBILITY = eINSTANCE.getVisibility();
+		EClass SUPERCLASS_REFERENCE = eINSTANCE.getSuperclassReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUPERCLASS_REFERENCE__SOURCE = eINSTANCE.getSuperclassReference_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUPERCLASS_REFERENCE__TARGET = eINSTANCE.getSuperclassReference_Target();
 
 	}
 

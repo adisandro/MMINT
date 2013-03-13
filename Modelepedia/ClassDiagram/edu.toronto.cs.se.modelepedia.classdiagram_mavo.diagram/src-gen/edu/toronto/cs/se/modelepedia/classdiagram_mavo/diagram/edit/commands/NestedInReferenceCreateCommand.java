@@ -77,7 +77,7 @@ public class NestedInReferenceCreateCommand extends EditElementCommand {
 			return false;
 		}
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canCreateNestedInReference_4001(
+				.getLinkConstraints().canCreateNestedInReference_4002(
 						getContainer(), getSource(), getTarget());
 	}
 

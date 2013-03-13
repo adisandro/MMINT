@@ -267,7 +267,7 @@ Contributors:
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="ClassDiagram_MAVO"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004"/>
       </viewProvider>
    </extension>
 
@@ -282,7 +282,7 @@ Contributors:
             <method name="getType()" value="2001,3001,3002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002"/>
+            <method name="getType()" value="4001,4002,4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5005,5006,5001,5002,5003,5004"/>
@@ -375,22 +375,42 @@ Contributors:
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4001"
-               name="%metatype.name.NestedInReference_4001"
+               id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Association_4001"
+               name="%metatype.name.Association_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="NestedInReference"
-               edithelper="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers.NestedInReferenceEditHelper">
+               eclass="Association"
+               edithelper="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers.AssociationEditHelper">
             <param name="semanticHint" value="4001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4002"
-               name="%metatype.name.Dependency_4002"
+               id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4002"
+               name="%metatype.name.NestedInReference_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="NestedInReference"
+               edithelper="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers.NestedInReferenceEditHelper">
+            <param name="semanticHint" value="4002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.SuperclassReference_4003"
+               name="%metatype.name.SuperclassReference_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SuperclassReference"
+               edithelper="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers.SuperclassReferenceEditHelper">
+            <param name="semanticHint" value="4003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4004"
+               name="%metatype.name.Dependency_4004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Dependency"
                edithelper="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers.DependencyEditHelper">
-            <param name="semanticHint" value="4002"/>
+            <param name="semanticHint" value="4004"/>
          </metamodelType>
       </metamodel>
    </extension>
@@ -409,8 +429,10 @@ Contributors:
          <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Class_2001"/>
          <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Attribute_3001"/>
          <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Operation_3002"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4001"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Association_4001"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.SuperclassReference_4003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4004"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

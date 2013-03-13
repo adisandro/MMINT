@@ -76,6 +76,15 @@ public interface ClassDiagram_MAVOFactory extends EFactory {
 	Dependency createDependency();
 
 	/**
+	 * Returns a new object of class '<em>Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Association</em>'.
+	 * @generated
+	 */
+	Association createAssociation();
+
+	/**
 	 * Returns a new object of class '<em>Nested In Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,6 +92,15 @@ public interface ClassDiagram_MAVOFactory extends EFactory {
 	 * @generated
 	 */
 	NestedInReference createNestedInReference();
+
+	/**
+	 * Returns a new object of class '<em>Superclass Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Superclass Reference</em>'.
+	 * @generated
+	 */
+	SuperclassReference createSuperclassReference();
 
 	/**
 	 * Returns the package supported by this factory.

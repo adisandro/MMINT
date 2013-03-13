@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,

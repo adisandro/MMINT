@@ -155,10 +155,14 @@ public class ClassDiagram_MAVODiagramUpdater {
 			return getAttribute_3001ContainedLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID:
 			return getOperation_3002ContainedLinks(view);
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID:
+			return getAssociation_4001ContainedLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID:
-			return getNestedInReference_4001ContainedLinks(view);
+			return getNestedInReference_4002ContainedLinks(view);
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID:
+			return getSuperclassReference_4003ContainedLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID:
-			return getDependency_4002ContainedLinks(view);
+			return getDependency_4004ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -176,10 +180,14 @@ public class ClassDiagram_MAVODiagramUpdater {
 			return getAttribute_3001IncomingLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID:
 			return getOperation_3002IncomingLinks(view);
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID:
+			return getAssociation_4001IncomingLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID:
-			return getNestedInReference_4001IncomingLinks(view);
+			return getNestedInReference_4002IncomingLinks(view);
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID:
+			return getSuperclassReference_4003IncomingLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID:
-			return getDependency_4002IncomingLinks(view);
+			return getDependency_4004IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -197,10 +205,14 @@ public class ClassDiagram_MAVODiagramUpdater {
 			return getAttribute_3001OutgoingLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID:
 			return getOperation_3002OutgoingLinks(view);
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID:
+			return getAssociation_4001OutgoingLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID:
-			return getNestedInReference_4001OutgoingLinks(view);
+			return getNestedInReference_4002OutgoingLinks(view);
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID:
+			return getSuperclassReference_4003OutgoingLinks(view);
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID:
-			return getDependency_4002OutgoingLinks(view);
+			return getDependency_4004OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -213,7 +225,8 @@ public class ClassDiagram_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram modelElement = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) view
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Association_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4004(modelElement));
 		return result;
 	}
 
@@ -225,7 +238,8 @@ public class ClassDiagram_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class modelElement = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) view
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_NestedInReference_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_NestedInReference_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_SuperclassReference_4003(modelElement));
 		return result;
 	}
 
@@ -248,7 +262,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getNestedInReference_4001ContainedLinks(
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getAssociation_4001ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -256,7 +270,23 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getDependency_4002ContainedLinks(
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getNestedInReference_4002ContainedLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getSuperclassReference_4003ContainedLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getDependency_4004ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -271,9 +301,13 @@ public class ClassDiagram_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_NestedInReference_4001(
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4001(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4002(
+		result.addAll(getIncomingTypeModelFacetLinks_NestedInReference_4002(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_SuperclassReference_4003(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4004(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -297,7 +331,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getNestedInReference_4001IncomingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getAssociation_4001IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -305,7 +339,23 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getDependency_4002IncomingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getNestedInReference_4002IncomingLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getSuperclassReference_4003IncomingLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getDependency_4004IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -318,8 +368,10 @@ public class ClassDiagram_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class modelElement = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) view
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_NestedInReference_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_NestedInReference_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_SuperclassReference_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4004(modelElement));
 		return result;
 	}
 
@@ -342,7 +394,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getNestedInReference_4001OutgoingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getAssociation_4001OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -350,7 +402,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getDependency_4002OutgoingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getNestedInReference_4002OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -358,7 +410,54 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_NestedInReference_4001(
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getSuperclassReference_4003OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getDependency_4004OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_Association_4001(
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container) {
+		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
+		for (Iterator<?> links = container.getAssociations().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association link = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association) linkObject;
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID != edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class dst = link
+					.getTarget();
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class src = link
+					.getSource();
+			result.add(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor(
+					src,
+					dst,
+					link,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_NestedInReference_4002(
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
 		for (Iterator<?> links = container.getNestedIn().iterator(); links
@@ -380,7 +479,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 					src,
 					dst,
 					link,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID));
 		}
 		return result;
@@ -389,7 +488,38 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_4002(
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_SuperclassReference_4003(
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container) {
+		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
+		for (Iterator<?> links = container.getSuperclass().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference link = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference) linkObject;
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID != edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class dst = link
+					.getTarget();
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class src = link
+					.getSource();
+			result.add(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor(
+					src,
+					dst,
+					link,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_4004(
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
 		for (Iterator<?> links = container.getDependencies().iterator(); links
@@ -411,7 +541,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 					src,
 					dst,
 					link,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4002,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID));
 		}
 		return result;
@@ -420,7 +550,40 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getIncomingTypeModelFacetLinks_NestedInReference_4001(
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getIncomingTypeModelFacetLinks_Association_4001(
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+					.getAssociation_Target()
+					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association link = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association) setting
+					.getEObject();
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID != edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class src = link
+					.getSource();
+			result.add(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor(
+					src,
+					target,
+					link,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getIncomingTypeModelFacetLinks_NestedInReference_4002(
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
@@ -444,7 +607,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 					src,
 					target,
 					link,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID));
 		}
 		return result;
@@ -453,7 +616,40 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_4002(
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getIncomingTypeModelFacetLinks_SuperclassReference_4003(
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+					.getSuperclassReference_Target()
+					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference link = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference) setting
+					.getEObject();
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID != edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class src = link
+					.getSource();
+			result.add(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor(
+					src,
+					target,
+					link,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_4004(
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
@@ -477,7 +673,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 					src,
 					target,
 					link,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4002,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID));
 		}
 		return result;
@@ -486,7 +682,54 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_NestedInReference_4001(
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_Association_4001(
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source) {
+		edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null && container == null; element = element
+				.eContainer()) {
+			if (element instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) {
+				container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) element;
+			}
+		}
+		if (container == null) {
+			return Collections.emptyList();
+		}
+		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
+		for (Iterator<?> links = container.getAssociations().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association link = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association) linkObject;
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID != edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class dst = link
+					.getTarget();
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class src = link
+					.getSource();
+			if (src != source) {
+				continue;
+			}
+			result.add(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor(
+					src,
+					dst,
+					link,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_NestedInReference_4002(
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source) {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container = null;
 		// Find container element for the link.
@@ -524,7 +767,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 					src,
 					dst,
 					link,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID));
 		}
 		return result;
@@ -533,7 +776,54 @@ public class ClassDiagram_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_Dependency_4002(
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_SuperclassReference_4003(
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source) {
+		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null && container == null; element = element
+				.eContainer()) {
+			if (element instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) {
+				container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) element;
+			}
+		}
+		if (container == null) {
+			return Collections.emptyList();
+		}
+		LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor>();
+		for (Iterator<?> links = container.getSuperclass().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference link = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference) linkObject;
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID != edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class dst = link
+					.getTarget();
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class src = link
+					.getSource();
+			if (src != source) {
+				continue;
+			}
+			result.add(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor(
+					src,
+					dst,
+					link,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_Dependency_4004(
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source) {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container = null;
 		// Find container element for the link.
@@ -571,7 +861,7 @@ public class ClassDiagram_MAVODiagramUpdater {
 					src,
 					dst,
 					link,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4002,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID));
 		}
 		return result;

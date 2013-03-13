@@ -72,11 +72,22 @@ public class ClassDiagram_MAVOElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType NestedInReference_4001 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4001"); //$NON-NLS-1$
+	public static final IElementType Association_4001 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Association_4001"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_4002 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4002"); //$NON-NLS-1$
+	public static final IElementType NestedInReference_4002 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4002"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType SuperclassReference_4003 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.SuperclassReference_4003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Dependency_4004 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -210,12 +221,22 @@ public class ClassDiagram_MAVOElementTypes {
 							.getOperation());
 
 			elements.put(
-					NestedInReference_4001,
+					Association_4001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+							.getAssociation());
+
+			elements.put(
+					NestedInReference_4002,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
 							.getNestedInReference());
 
 			elements.put(
-					Dependency_4002,
+					SuperclassReference_4003,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+							.getSuperclassReference());
+
+			elements.put(
+					Dependency_4004,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
 							.getDependency());
 		}
@@ -239,8 +260,10 @@ public class ClassDiagram_MAVOElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Class_2001);
 			KNOWN_ELEMENT_TYPES.add(Attribute_3001);
 			KNOWN_ELEMENT_TYPES.add(Operation_3002);
-			KNOWN_ELEMENT_TYPES.add(NestedInReference_4001);
-			KNOWN_ELEMENT_TYPES.add(Dependency_4002);
+			KNOWN_ELEMENT_TYPES.add(Association_4001);
+			KNOWN_ELEMENT_TYPES.add(NestedInReference_4002);
+			KNOWN_ELEMENT_TYPES.add(SuperclassReference_4003);
+			KNOWN_ELEMENT_TYPES.add(Dependency_4004);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -258,10 +281,14 @@ public class ClassDiagram_MAVOElementTypes {
 			return Attribute_3001;
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID:
 			return Operation_3002;
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID:
+			return Association_4001;
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID:
-			return NestedInReference_4001;
+			return NestedInReference_4002;
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID:
+			return SuperclassReference_4003;
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID:
-			return Dependency_4002;
+			return Dependency_4004;
 		}
 		return null;
 	}

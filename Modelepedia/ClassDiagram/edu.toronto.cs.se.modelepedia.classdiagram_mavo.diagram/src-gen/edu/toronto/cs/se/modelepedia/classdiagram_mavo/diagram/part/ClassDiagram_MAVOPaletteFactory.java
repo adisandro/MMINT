@@ -58,8 +58,10 @@ public class ClassDiagram_MAVOPaletteFactory {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Connections2Group_title);
 		paletteContainer.setId("createConnections2Group"); //$NON-NLS-1$
-		paletteContainer.add(createDependency1CreationTool());
-		paletteContainer.add(createNestedInReference2CreationTool());
+		paletteContainer.add(createAssociation1CreationTool());
+		paletteContainer.add(createDependency2CreationTool());
+		paletteContainer.add(createNestedInReference3CreationTool());
+		paletteContainer.add(createSuperclassReference4CreationTool());
 		return paletteContainer;
 	}
 
@@ -114,15 +116,15 @@ public class ClassDiagram_MAVOPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createDependency1CreationTool() {
+	private ToolEntry createAssociation1CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Dependency1CreationTool_title,
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Dependency1CreationTool_desc,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Association1CreationTool_title,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Association1CreationTool_desc,
 				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4002));
-		entry.setId("createDependency1CreationTool"); //$NON-NLS-1$
+						.singletonList(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001));
+		entry.setId("createAssociation1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4002));
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -130,15 +132,47 @@ public class ClassDiagram_MAVOPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createNestedInReference2CreationTool() {
+	private ToolEntry createDependency2CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NestedInReference2CreationTool_title,
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NestedInReference2CreationTool_desc,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Dependency2CreationTool_title,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Dependency2CreationTool_desc,
 				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4001));
-		entry.setId("createNestedInReference2CreationTool"); //$NON-NLS-1$
+						.singletonList(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004));
+		entry.setId("createDependency2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4001));
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createNestedInReference3CreationTool() {
+		LinkToolEntry entry = new LinkToolEntry(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NestedInReference3CreationTool_title,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NestedInReference3CreationTool_desc,
+				Collections
+						.singletonList(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002));
+		entry.setId("createNestedInReference3CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createSuperclassReference4CreationTool() {
+		LinkToolEntry entry = new LinkToolEntry(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.SuperclassReference4CreationTool_title,
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.SuperclassReference4CreationTool_desc,
+				Collections
+						.singletonList(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003));
+		entry.setId("createSuperclassReference4CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

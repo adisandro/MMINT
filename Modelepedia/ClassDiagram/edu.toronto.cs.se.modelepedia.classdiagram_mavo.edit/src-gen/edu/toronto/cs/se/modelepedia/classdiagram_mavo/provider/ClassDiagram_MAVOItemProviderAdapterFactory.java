@@ -196,6 +196,29 @@ public class ClassDiagram_MAVOItemProviderAdapterFactory extends ClassDiagram_MA
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssociationItemProvider associationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAssociationAdapter() {
+		if (associationItemProvider == null) {
+			associationItemProvider = new AssociationItemProvider(this);
+		}
+
+		return associationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -216,6 +239,29 @@ public class ClassDiagram_MAVOItemProviderAdapterFactory extends ClassDiagram_MA
 		}
 
 		return nestedInReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SuperclassReferenceItemProvider superclassReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSuperclassReferenceAdapter() {
+		if (superclassReferenceItemProvider == null) {
+			superclassReferenceItemProvider = new SuperclassReferenceItemProvider(this);
+		}
+
+		return superclassReferenceItemProvider;
 	}
 
 	/**
@@ -322,7 +368,9 @@ public class ClassDiagram_MAVOItemProviderAdapterFactory extends ClassDiagram_MA
 		if (attributeItemProvider != null) attributeItemProvider.dispose();
 		if (operationItemProvider != null) operationItemProvider.dispose();
 		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
+		if (associationItemProvider != null) associationItemProvider.dispose();
 		if (nestedInReferenceItemProvider != null) nestedInReferenceItemProvider.dispose();
+		if (superclassReferenceItemProvider != null) superclassReferenceItemProvider.dispose();
 	}
 
 }

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl#getDependee <em>Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl#getDepender <em>Depender</em>}</li>
  * </ul>
@@ -39,6 +41,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class DependencyImpl extends MAVOElementImpl implements Dependency {
+	/**
+	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)ClassDiagram_MAVOPackage.Literals.DEPENDENCY__NAME).getSettingDelegate();
+
 	/**
 	 * The cached value of the '{@link #getDependee() <em>Dependee</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -76,6 +88,15 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 	@Override
 	protected EClass eStaticClass() {
 		return ClassDiagram_MAVOPackage.Literals.DEPENDENCY;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -242,6 +263,8 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ClassDiagram_MAVOPackage.DEPENDENCY__NAME:
+				return getName();
 			case ClassDiagram_MAVOPackage.DEPENDENCY__DEPENDEE:
 				if (resolve) return getDependee();
 				return basicGetDependee();
@@ -296,6 +319,8 @@ public class DependencyImpl extends MAVOElementImpl implements Dependency {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ClassDiagram_MAVOPackage.DEPENDENCY__NAME:
+				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case ClassDiagram_MAVOPackage.DEPENDENCY__DEPENDEE:
 				return dependee != null;
 			case ClassDiagram_MAVOPackage.DEPENDENCY__DEPENDER:

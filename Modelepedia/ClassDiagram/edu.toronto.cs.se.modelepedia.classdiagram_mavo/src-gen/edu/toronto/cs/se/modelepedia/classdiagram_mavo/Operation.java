@@ -24,7 +24,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getOperation()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface Operation extends TypedElement {

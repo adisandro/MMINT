@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getNamedElement()
  * @model abstract="true"
- *        annotation="gmf.node label='name'"
  * @generated
  */
 public interface NamedElement extends MAVOElement {

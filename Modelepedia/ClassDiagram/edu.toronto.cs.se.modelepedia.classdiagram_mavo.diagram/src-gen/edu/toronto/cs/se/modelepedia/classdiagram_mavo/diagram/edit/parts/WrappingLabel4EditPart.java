@@ -65,7 +65,7 @@ public class WrappingLabel4EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6001;
+	public static final int VISUAL_ID = 6002;
 
 	/**
 	 * @generated
@@ -99,7 +99,7 @@ public class WrappingLabel4EditPart extends LabelEditPart implements
 		registerSnapBackPosition(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 						.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID),
-				new Point(0, 40));
+				new Point(0, 60));
 	}
 
 	/**
@@ -335,7 +335,7 @@ public class WrappingLabel4EditPart extends LabelEditPart implements
 		if (parser == null) {
 			parser = edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOParserProvider
 					.getParser(
-							edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4001,
+							edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001,
 							getParserElement(),
 							edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 									.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID));

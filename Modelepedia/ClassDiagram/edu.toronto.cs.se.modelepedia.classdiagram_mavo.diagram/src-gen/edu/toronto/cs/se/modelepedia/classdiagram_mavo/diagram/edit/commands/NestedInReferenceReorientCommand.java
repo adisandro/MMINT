@@ -80,7 +80,7 @@ public class NestedInReferenceReorientCommand extends EditElementCommand {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistNestedInReference_4001(container,
+				.getLinkConstraints().canExistNestedInReference_4002(container,
 						getLink(), getNewSource(), target);
 	}
 
@@ -99,7 +99,7 @@ public class NestedInReferenceReorientCommand extends EditElementCommand {
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistNestedInReference_4001(container,
+				.getLinkConstraints().canExistNestedInReference_4002(container,
 						getLink(), source, getNewTarget());
 	}
 

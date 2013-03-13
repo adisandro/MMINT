@@ -13,8 +13,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement;
-import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -29,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.TypedElementImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.TypedElementImpl#isPublic <em>Public</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.TypedElementImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -38,24 +36,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class TypedElementImpl extends NamedElementImpl implements TypedElement {
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * The default value of the '{@link #isPublic() <em>Public</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVisibility()
+	 * @see #isPublic()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Visibility VISIBILITY_EDEFAULT = Visibility.PRIVATE;
+	protected static final boolean PUBLIC_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * The cached value of the '{@link #isPublic() <em>Public</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVisibility()
+	 * @see #isPublic()
 	 * @generated
 	 * @ordered
 	 */
-	protected Visibility visibility = VISIBILITY_EDEFAULT;
+	protected boolean public_ = PUBLIC_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -91,8 +89,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Visibility getVisibility() {
-		return visibility;
+	public boolean isPublic() {
+		return public_;
 	}
 
 	/**
@@ -100,11 +98,11 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibility(Visibility newVisibility) {
-		Visibility oldVisibility = visibility;
-		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
+	public void setPublic(boolean newPublic) {
+		boolean oldPublic = public_;
+		public_ = newPublic;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagram_MAVOPackage.TYPED_ELEMENT__VISIBILITY, oldVisibility, visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagram_MAVOPackage.TYPED_ELEMENT__PUBLIC, oldPublic, public_));
 	}
 
 	/**
@@ -153,8 +151,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__VISIBILITY:
-				return getVisibility();
+			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__PUBLIC:
+				return isPublic();
 			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -170,8 +168,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__VISIBILITY:
-				setVisibility((Visibility)newValue);
+			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__PUBLIC:
+				setPublic((Boolean)newValue);
 				return;
 			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__TYPE:
 				setType((edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)newValue);
@@ -188,8 +186,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__VISIBILITY:
-				setVisibility(VISIBILITY_EDEFAULT);
+			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__PUBLIC:
+				setPublic(PUBLIC_EDEFAULT);
 				return;
 			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__TYPE:
 				setType((edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)null);
@@ -206,8 +204,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__VISIBILITY:
-				return visibility != VISIBILITY_EDEFAULT;
+			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__PUBLIC:
+				return public_ != PUBLIC_EDEFAULT;
 			case ClassDiagram_MAVOPackage.TYPED_ELEMENT__TYPE:
 				return type != null;
 		}
@@ -224,8 +222,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (visibility: ");
-		result.append(visibility);
+		result.append(" (public: ");
+		result.append(public_);
 		result.append(')');
 		return result.toString();
 	}

@@ -93,6 +93,34 @@
   </nodes>
   <links>
     <domainMetaElement
+        href="classdiagram_mavo.ecore#//Association"/>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="classdiagram_mavo.gmfgraph#AssociationLabel"/>
+      <features
+          href="classdiagram_mavo.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="classdiagram_mavo.gmfgraph#MAVOAssociationLabel"/>
+    </labelMappings>
+    <containmentFeature
+        href="classdiagram_mavo.ecore#//ClassDiagram/associations"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="classdiagram_mavo.gmftool#//@palette/@tools.1/@tools.0"/>
+    <diagramLink
+        href="classdiagram_mavo.gmfgraph#Association"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="classdiagram_mavo.ecore#//Association/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="classdiagram_mavo.ecore#//Association/target"/>
+  </links>
+  <links>
+    <domainMetaElement
         href="classdiagram_mavo.ecore#//NestedInReference"/>
     <labelMappings>
       <diagramLabel
@@ -102,7 +130,7 @@
         href="classdiagram_mavo.ecore#//Class/nestedIn"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="classdiagram_mavo.gmftool#//@palette/@tools.1/@tools.1"/>
+        href="classdiagram_mavo.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="classdiagram_mavo.gmfgraph#NestedInReference"/>
     <sourceMetaFeature
@@ -111,6 +139,27 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="classdiagram_mavo.ecore#//NestedInReference/target"/>
+  </links>
+  <links>
+    <domainMetaElement
+        href="classdiagram_mavo.ecore#//SuperclassReference"/>
+    <labelMappings>
+      <diagramLabel
+          href="classdiagram_mavo.gmfgraph#MAVOSuperclassReferenceLabel"/>
+    </labelMappings>
+    <containmentFeature
+        href="classdiagram_mavo.ecore#//Class/superclass"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="classdiagram_mavo.gmftool#//@palette/@tools.1/@tools.3"/>
+    <diagramLink
+        href="classdiagram_mavo.gmfgraph#SuperclassReference"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="classdiagram_mavo.ecore#//SuperclassReference/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="classdiagram_mavo.ecore#//SuperclassReference/target"/>
   </links>
   <links>
     <domainMetaElement
@@ -123,7 +172,7 @@
         href="classdiagram_mavo.ecore#//ClassDiagram/dependencies"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="classdiagram_mavo.gmftool#//@palette/@tools.1/@tools.0"/>
+        href="classdiagram_mavo.gmftool#//@palette/@tools.1/@tools.1"/>
     <diagramLink
         href="classdiagram_mavo.gmfgraph#Dependency"/>
     <sourceMetaFeature

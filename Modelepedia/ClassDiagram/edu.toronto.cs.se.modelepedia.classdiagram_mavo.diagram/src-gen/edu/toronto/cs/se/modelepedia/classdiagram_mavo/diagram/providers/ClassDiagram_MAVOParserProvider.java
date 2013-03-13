@@ -137,31 +137,80 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private MAVOElementLabelParser nestedInReferenceLabel_6001Parser;
+	private IParser associationName_6001Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getNestedInReferenceLabel_6001Parser() {
-		if (nestedInReferenceLabel_6001Parser == null) {
-			nestedInReferenceLabel_6001Parser = new MAVOElementLabelParser();
+	private IParser getAssociationName_6001Parser() {
+		if (associationName_6001Parser == null) {
+			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+					.getNamedElement_Name() };
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser(
+					features);
+			associationName_6001Parser = parser;
 		}
-		return nestedInReferenceLabel_6001Parser;
+		return associationName_6001Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MAVOElementLabelParser dependencyLabel_6002Parser;
+	private MAVOElementLabelParser associationLabel_6002Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDependencyLabel_6002Parser() {
-		if (dependencyLabel_6002Parser == null) {
-			dependencyLabel_6002Parser = new MAVOElementLabelParser();
+	private IParser getAssociationLabel_6002Parser() {
+		if (associationLabel_6002Parser == null) {
+			associationLabel_6002Parser = new MAVOElementLabelParser();
 		}
-		return dependencyLabel_6002Parser;
+		return associationLabel_6002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private MAVOElementLabelParser nestedInReferenceLabel_6003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNestedInReferenceLabel_6003Parser() {
+		if (nestedInReferenceLabel_6003Parser == null) {
+			nestedInReferenceLabel_6003Parser = new MAVOElementLabelParser();
+		}
+		return nestedInReferenceLabel_6003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private MAVOElementLabelParser superclassReferenceLabel_6004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSuperclassReferenceLabel_6004Parser() {
+		if (superclassReferenceLabel_6004Parser == null) {
+			superclassReferenceLabel_6004Parser = new MAVOElementLabelParser();
+		}
+		return superclassReferenceLabel_6004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private MAVOElementLabelParser dependencyLabel_6005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependencyLabel_6005Parser() {
+		if (dependencyLabel_6005Parser == null) {
+			dependencyLabel_6005Parser = new MAVOElementLabelParser();
+		}
+		return dependencyLabel_6005Parser;
 	}
 
 	/**
@@ -181,10 +230,16 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 			return getOperationName_5003Parser();
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel3EditPart.VISUAL_ID:
 			return getOperationLabel_5004Parser();
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
+			return getAssociationName_6001Parser();
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID:
-			return getNestedInReferenceLabel_6001Parser();
+			return getAssociationLabel_6002Parser();
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID:
-			return getDependencyLabel_6002Parser();
+			return getNestedInReferenceLabel_6003Parser();
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel6EditPart.VISUAL_ID:
+			return getSuperclassReferenceLabel_6004Parser();
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID:
+			return getDependencyLabel_6005Parser();
 		}
 		return null;
 	}

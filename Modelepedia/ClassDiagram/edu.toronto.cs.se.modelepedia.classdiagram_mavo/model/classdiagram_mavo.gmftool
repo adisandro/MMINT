@@ -44,6 +44,15 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
+          title="Association"
+          description="Create new Association">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
           title="Dependency"
           description="Create new Dependency">
         <smallIcon
@@ -55,6 +64,15 @@
           xsi:type="gmftool:CreationTool"
           title="NestedInReference"
           description="Create new NestedInReference">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="SuperclassReference"
+          description="Create new SuperclassReference">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

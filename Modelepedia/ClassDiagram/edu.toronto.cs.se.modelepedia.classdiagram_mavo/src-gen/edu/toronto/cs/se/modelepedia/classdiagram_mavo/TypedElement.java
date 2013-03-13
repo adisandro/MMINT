@@ -20,7 +20,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#isPublic <em>Public</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -31,33 +31,30 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  */
 public interface TypedElement extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility}.
+	 * Returns the value of the '<em><b>Public</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Public</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility
-	 * @see #setVisibility(Visibility)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getTypedElement_Visibility()
+	 * @return the value of the '<em>Public</em>' attribute.
+	 * @see #setPublic(boolean)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getTypedElement_Public()
 	 * @model required="true"
 	 * @generated
 	 */
-	Visibility getVisibility();
+	boolean isPublic();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getVisibility <em>Visibility</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#isPublic <em>Public</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.Visibility
-	 * @see #getVisibility()
+	 * @param value the new value of the '<em>Public</em>' attribute.
+	 * @see #isPublic()
 	 * @generated
 	 */
-	void setVisibility(Visibility value);
+	void setPublic(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.

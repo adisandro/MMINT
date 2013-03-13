@@ -27,7 +27,7 @@ public class NestedInReferenceItemSemanticEditPolicy
 	 */
 	public NestedInReferenceItemSemanticEditPolicy() {
 		super(
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4001);
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002);
 	}
 
 	/**
