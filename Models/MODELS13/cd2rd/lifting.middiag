@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_FmjS4Iw1EeKHVvblARgWmg" type="Mid" name="lifting.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_MrXZcIw1EeKHVvblARgWmg" type="2011">
+    <children xmi:type="notation:DecorationNode" xmi:id="_MrYAgIw1EeKHVvblARgWmg" type="5011"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_MrYAgYw1EeKHVvblARgWmg" type="5016"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_MrXZcYw1EeKHVvblARgWmg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_MrXZcow1EeKHVvblARgWmg" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_MrXZc4w1EeKHVvblARgWmg" hint="Mid"/>
+    <element xmi:type="mid:Model" href="lifting.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MrXZdIw1EeKHVvblARgWmg" x="90" y="34"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_FmjS4Yw1EeKHVvblARgWmg"/>
+  <element xmi:type="mid:MultiModel" href="lifting.mid#/"/>
+</notation:Diagram>
