@@ -49,7 +49,6 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
 public class HenshinTransformation extends OperatorExecutableImpl {
@@ -98,6 +97,45 @@ public class HenshinTransformation extends OperatorExecutableImpl {
 		}
 	}
 
+	private Set<Node> transformNacToContext(NestedCondition conditionNac, Rule ruleNac) {
+
+		Set<Node> nodesNac = new HashSet<Node>();
+		Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
+		for (Node nodeNac : conditionNac.getConclusion().getNodes()) {
+			if (nodeNac.getAction() != null && nodeNac.getAction().getType() == Action.Type.FORBID) {
+				Node newNodeNac = HenshinFactory.eINSTANCE.createNode();
+				ruleNac.getLhs().getNodes().add(newNodeNac);
+				nodesNac.add(newNodeNac);
+				forbid2preserve.put(nodeNac, newNodeNac);
+				newNodeNac.setType(nodeNac.getType());
+				// Action.Type.PRESERVE has to be set at last
+				newNodeNac.setAction(new Action(Action.Type.PRESERVE));
+			}
+		}
+		for (Edge edgeNac : conditionNac.getConclusion().getEdges()) {
+			if (edgeNac.getAction() != null && edgeNac.getAction().getType() == Action.Type.FORBID) {
+				Edge newEdgeNac = HenshinFactory.eINSTANCE.createEdge();
+				ruleNac.getLhs().getEdges().add(newEdgeNac);
+				newEdgeNac.setType(edgeNac.getType());
+				Node newSrcNodeNac = forbid2preserve.get(edgeNac.getSource());
+				if (newSrcNodeNac == null) {
+					newSrcNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getSource());
+				}
+				newEdgeNac.setSource(newSrcNodeNac);
+				Node newTgtNodeNac = forbid2preserve.get(edgeNac.getTarget());
+				if (newTgtNodeNac == null) {
+					newTgtNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getTarget());
+				}
+				newEdgeNac.setTarget(newTgtNodeNac);
+				// Action.Type.PRESERVE has to be set at last
+				newEdgeNac.setAction(new Action(Action.Type.PRESERVE));
+			}
+		}
+		ruleNac.getLhs().setFormula(null);
+
+		return nodesNac;
+	}
+
 	private void matchNAC(Rule rule, Engine engine, EGraph graph) {
 
 		// firstly, store (AN)ac matches
@@ -107,12 +145,7 @@ public class HenshinTransformation extends OperatorExecutableImpl {
 		List<Match> mayMatchesANac = new ArrayList<Match>();//TODO MMTF: needed?
 		if (conditionANac != null) {
 			// (AN)ac
-			Set<Node> nodesANac = new HashSet<Node>();
-			for (Node nodeANac : conditionANac.getConclusion().getNodes()) {
-				if (nodeANac.getAction() != null && nodeANac.getAction().getType() == Action.Type.FORBID) {
-					nodesANac.add(nodeANac);
-				}
-			}
+			Set<Node> nodesANac = transformNacToContext(conditionANac, ruleCopyANac);
 			// try to match (AN)ac as (C)ontext
 			for (Node nodeANac : nodesANac) {
 				nodeANac.setAction(new Action(Action.Type.PRESERVE));
@@ -140,36 +173,7 @@ public class HenshinTransformation extends OperatorExecutableImpl {
 				continue;
 			}
 			// (N)ac
-			Set<Node> nodesNac = new HashSet<Node>();
-			Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
-			for (Node nodeNac : conditionNac.getConclusion().getNodes()) {
-				if (nodeNac.getAction() != null && nodeNac.getAction().getType() == Action.Type.FORBID) {
-					Node newNodeNac = HenshinFactory.eINSTANCE.createNode();
-					newNodeNac.setAction(new Action(Action.Type.PRESERVE));
-					newNodeNac.setType(nodeNac.getType());
-					ruleCopyNac.getLhs().getNodes().add(newNodeNac);
-					nodesNac.add(newNodeNac);
-					forbid2preserve.put(nodeNac, newNodeNac);System.err.println(nodeNac.toString()+nodeNac.hashCode());
-				}
-			}
-			for (Edge edgeNac : conditionNac.getConclusion().getEdges()) {
-				if (edgeNac.getAction() != null && edgeNac.getAction().getType() == Action.Type.FORBID) {
-					Edge newEdgeNac = HenshinFactory.eINSTANCE.createEdge();
-					newEdgeNac.setAction(new Action(Action.Type.PRESERVE));
-					newEdgeNac.setType(edgeNac.getType());
-					newEdgeNac.setSource(forbid2preserve.get(edgeNac.getSource()));
-					newEdgeNac.setTarget(forbid2preserve.get(edgeNac.getTarget()));
-					//TODO MMTF: if getS or getT is null, use mapping!!
-					ruleCopyNac.getLhs().getEdges().add(newEdgeNac);
-				}
-			}
-			ruleCopyNac.getLhs().setFormula(null);
-			try {
-				MultiModelTypeIntrospection.writeRoot(ruleCopyNac, "/MODELS13/cazzo.henshin", true);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Set<Node> nodesNac = transformNacToContext(conditionNac, ruleCopyNac);
 			// try to match (N)ac as (C)ontext
 matchesNac:
 			for (Match matchNac : engine.findMatches(ruleCopyNac, graph, null)) {
@@ -212,7 +216,6 @@ matchesNac:
 		RuleApplication application = new RuleApplicationImpl(engine);
 		application.setEGraph(graph);
 		for (Map.Entry<Match, Rule> mayMatchNac: mayMatchesNac.entrySet()) {
-			System.err.println(mayMatchNac);
 			application.setRule(mayMatchNac.getValue());
 			applyMatch(application, mayMatchNac.getKey());
 		}
