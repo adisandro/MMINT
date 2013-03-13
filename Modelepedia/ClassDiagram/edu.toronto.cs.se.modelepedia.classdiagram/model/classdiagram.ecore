@@ -99,10 +99,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//NamedElement">
     <eAnnotations source="gmf.link">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="true"/>
       <details key="source" value="source"/>
       <details key="target" value="target"/>
       <details key="target.decoration" value="arrow"/>
-      <details key="label" value="name"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/associationsAsSource"/>

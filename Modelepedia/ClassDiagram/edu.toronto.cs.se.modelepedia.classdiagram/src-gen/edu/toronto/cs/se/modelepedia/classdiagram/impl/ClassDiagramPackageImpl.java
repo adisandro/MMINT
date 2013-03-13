@@ -706,10 +706,11 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		  (associationEClass, 
 		   source, 
 		   new String[] {
+			 "label", "name",
+			 "label.icon", "true",
 			 "source", "source",
 			 "target", "target",
-			 "target.decoration", "arrow",
-			 "label", "name"
+			 "target.decoration", "arrow"
 		   });
 	}
 

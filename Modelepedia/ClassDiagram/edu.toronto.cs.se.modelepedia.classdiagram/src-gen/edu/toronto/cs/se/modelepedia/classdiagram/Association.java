@@ -26,7 +26,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation()
- * @model annotation="gmf.link source='source' target='target' target.decoration='arrow' label='name'"
+ * @model annotation="gmf.link label='name' label.icon='true' source='source' target='target' target.decoration='arrow'"
  * @generated
  */
 public interface Association extends NamedElement {

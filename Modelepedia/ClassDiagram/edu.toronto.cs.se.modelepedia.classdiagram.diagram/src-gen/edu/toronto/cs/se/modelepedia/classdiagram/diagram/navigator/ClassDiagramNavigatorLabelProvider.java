@@ -106,15 +106,21 @@ public class ClassDiagramNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (ClassDiagramVisualIDRegistry.getVisualID(view)) {
+		case AssociationEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Association", ClassDiagramElementTypes.Association_4001); //$NON-NLS-1$
 		case ClassEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class", ClassDiagramElementTypes.Class_2001); //$NON-NLS-1$
-		case DependencyEditPart.VISUAL_ID:
+		case ClassNestedInEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Dependency", ClassDiagramElementTypes.Dependency_4002); //$NON-NLS-1$
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class?nestedIn", ClassDiagramElementTypes.ClassNestedIn_4003); //$NON-NLS-1$
 		case ClassDiagramEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/ClassDiagram?ClassDiagram", ClassDiagramElementTypes.ClassDiagram_1000); //$NON-NLS-1$
+		case DependencyEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Dependency", ClassDiagramElementTypes.Dependency_4002); //$NON-NLS-1$
 		case OperationEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Operation", ClassDiagramElementTypes.Operation_3002); //$NON-NLS-1$
@@ -124,12 +130,6 @@ public class ClassDiagramNavigatorLabelProvider extends LabelProvider implements
 		case ClassSuperclassEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class?superclass", ClassDiagramElementTypes.ClassSuperclass_4004); //$NON-NLS-1$
-		case AssociationEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Association", ClassDiagramElementTypes.Association_4001); //$NON-NLS-1$
-		case ClassNestedInEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class?nestedIn", ClassDiagramElementTypes.ClassNestedIn_4003); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -190,22 +190,22 @@ public class ClassDiagramNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (ClassDiagramVisualIDRegistry.getVisualID(view)) {
+		case AssociationEditPart.VISUAL_ID:
+			return getAssociation_4001Text(view);
 		case ClassEditPart.VISUAL_ID:
 			return getClass_2001Text(view);
-		case DependencyEditPart.VISUAL_ID:
-			return getDependency_4002Text(view);
+		case ClassNestedInEditPart.VISUAL_ID:
+			return getClassNestedIn_4003Text(view);
 		case ClassDiagramEditPart.VISUAL_ID:
 			return getClassDiagram_1000Text(view);
+		case DependencyEditPart.VISUAL_ID:
+			return getDependency_4002Text(view);
 		case OperationEditPart.VISUAL_ID:
 			return getOperation_3002Text(view);
 		case AttributeEditPart.VISUAL_ID:
 			return getAttribute_3001Text(view);
 		case ClassSuperclassEditPart.VISUAL_ID:
 			return getClassSuperclass_4004Text(view);
-		case AssociationEditPart.VISUAL_ID:
-			return getAssociation_4001Text(view);
-		case ClassNestedInEditPart.VISUAL_ID:
-			return getClassNestedIn_4003Text(view);
 		}
 		return getUnknownElementText(view);
 	}

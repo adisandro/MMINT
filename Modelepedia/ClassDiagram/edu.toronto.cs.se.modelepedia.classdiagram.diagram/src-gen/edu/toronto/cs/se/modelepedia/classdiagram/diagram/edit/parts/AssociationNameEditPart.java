@@ -225,7 +225,11 @@ public class AssociationNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
+		return ClassDiagramElementTypes.getImage(parserElement.eClass());
 	}
 
 	/**

@@ -223,8 +223,7 @@
       accessor="//@figures.0/@descriptors.2/@accessors.0"/>
   <labels
       name="AssociationLabel"
-      figure="AssociationLabelFigure"
-      elementIcon="false"/>
+      figure="AssociationLabelFigure"/>
   <labels
       name="ClassNestedInExternalLabel"
       figure="ClassNestedInExternalLabelFigure"
