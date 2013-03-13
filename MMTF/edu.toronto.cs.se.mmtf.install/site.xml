@@ -24,6 +24,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.istar_1.0.3.jar" id="edu.toronto.cs.se.modelepedia.istar" version="1.0.3">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase_1.0.3.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase" version="1.0.3">
+      <category name="Modelepedia"/>
+   </feature>
    <category-def name="Modeling" label="Modeling"/>
    <category-def name="Modelepedia" label="Modelepedia"/>
 </site>
