@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
@@ -328,15 +329,23 @@ public class ClassDiagramBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateDependency_4001(ClassDiagram container,
+		public boolean canCreateAssociation_4001(ClassDiagram container,
 				Class source, Class target) {
-			return canExistDependency_4001(container, null, source, target);
+			return canExistAssociation_4001(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateClassNestedIn_4002(Class source, Class target) {
+		public boolean canCreateDependency_4002(ClassDiagram container,
+				Class source, Class target) {
+			return canExistDependency_4002(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateClassNestedIn_4003(Class source, Class target) {
 			if (source != null) {
 				if (source.getNestedIn() != null) {
 					return false;
@@ -346,13 +355,37 @@ public class ClassDiagramBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				return false;
 			}
 
-			return canExistClassNestedIn_4002(source, target);
+			return canExistClassNestedIn_4003(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistDependency_4001(ClassDiagram container,
+		public boolean canCreateClassSuperclass_4004(Class source, Class target) {
+			if (source != null) {
+				if (source.getSuperclass() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getSubclasses().contains(target))) {
+				return false;
+			}
+
+			return canExistClassSuperclass_4004(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistAssociation_4001(ClassDiagram container,
+				Association linkInstance, Class source, Class target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistDependency_4002(ClassDiagram container,
 				Dependency linkInstance, Class source, Class target) {
 			return true;
 		}
@@ -360,7 +393,14 @@ public class ClassDiagramBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistClassNestedIn_4002(Class source, Class target) {
+		public boolean canExistClassNestedIn_4003(Class source, Class target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistClassSuperclass_4004(Class source, Class target) {
 			return true;
 		}
 	}

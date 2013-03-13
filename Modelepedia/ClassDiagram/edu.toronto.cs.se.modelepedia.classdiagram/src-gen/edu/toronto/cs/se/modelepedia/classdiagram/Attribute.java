@@ -25,7 +25,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAttribute()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface Attribute extends TypedElement {

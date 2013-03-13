@@ -286,22 +286,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Dependency1CreationTool_title;
+	public static String Association1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency1CreationTool_desc;
+	public static String Association1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String NestedIn2CreationTool_title;
+	public static String Dependency2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NestedIn2CreationTool_desc;
+	public static String Dependency2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String NestedIn3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String NestedIn3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Superclass4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Superclass4CreationTool_desc;
 
 	/**
 	 * @generated
@@ -321,26 +341,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Dependency_4001_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Dependency_4001_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ClassNestedIn_4002_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ClassNestedIn_4002_source;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_Class_2001_incominglinks;
 
 	/**
@@ -351,7 +351,47 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Dependency_4002_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Dependency_4002_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ClassDiagram_1000_links;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassSuperclass_4004_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassSuperclass_4004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_4001_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Association_4001_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassNestedIn_4003_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ClassNestedIn_4003_source;
 
 	/**
 	 * @generated

@@ -21,14 +21,20 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.AssociationCreateCommand;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.AssociationReorientCommand;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.ClassNestedInCreateCommand;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.ClassNestedInReorientCommand;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.ClassSuperclassCreateCommand;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.ClassSuperclassReorientCommand;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.DependencyCreateCommand;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands.DependencyReorientCommand;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassClassOwnedAttributesCompartmentEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassClassOwnedOperationsCompartmentEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassNestedInEditPart;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassSuperclassEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.DependencyEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramVisualIDRegistry;
@@ -57,6 +63,13 @@ public class ClassItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
+			if (ClassDiagramVisualIDRegistry.getVisualID(incomingLink) == AssociationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 			if (ClassDiagramVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
@@ -72,9 +85,24 @@ public class ClassItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if (ClassDiagramVisualIDRegistry.getVisualID(incomingLink) == ClassSuperclassEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
+			if (ClassDiagramVisualIDRegistry.getVisualID(outgoingLink) == AssociationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(
+						outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 			if (ClassDiagramVisualIDRegistry.getVisualID(outgoingLink) == DependencyEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
@@ -83,6 +111,14 @@ public class ClassItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ClassDiagramVisualIDRegistry.getVisualID(outgoingLink) == ClassNestedInEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						outgoingLink.getSource().getElement(), null,
+						outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (ClassDiagramVisualIDRegistry.getVisualID(outgoingLink) == ClassSuperclassEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -161,12 +197,21 @@ public class ClassItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ClassDiagramElementTypes.Dependency_4001 == req.getElementType()) {
+		if (ClassDiagramElementTypes.Association_4001 == req.getElementType()) {
+			return getGEFWrapper(new AssociationCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (ClassDiagramElementTypes.Dependency_4002 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (ClassDiagramElementTypes.ClassNestedIn_4002 == req.getElementType()) {
+		if (ClassDiagramElementTypes.ClassNestedIn_4003 == req.getElementType()) {
 			return getGEFWrapper(new ClassNestedInCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (ClassDiagramElementTypes.ClassSuperclass_4004 == req
+				.getElementType()) {
+			return getGEFWrapper(new ClassSuperclassCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -177,12 +222,21 @@ public class ClassItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ClassDiagramElementTypes.Dependency_4001 == req.getElementType()) {
+		if (ClassDiagramElementTypes.Association_4001 == req.getElementType()) {
+			return getGEFWrapper(new AssociationCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (ClassDiagramElementTypes.Dependency_4002 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (ClassDiagramElementTypes.ClassNestedIn_4002 == req.getElementType()) {
+		if (ClassDiagramElementTypes.ClassNestedIn_4003 == req.getElementType()) {
 			return getGEFWrapper(new ClassNestedInCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (ClassDiagramElementTypes.ClassSuperclass_4004 == req
+				.getElementType()) {
+			return getGEFWrapper(new ClassSuperclassCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -197,6 +251,8 @@ public class ClassItemSemanticEditPolicy extends
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
+		case AssociationEditPart.VISUAL_ID:
+			return getGEFWrapper(new AssociationReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
 		}
@@ -214,6 +270,8 @@ public class ClassItemSemanticEditPolicy extends
 		switch (getVisualID(req)) {
 		case ClassNestedInEditPart.VISUAL_ID:
 			return getGEFWrapper(new ClassNestedInReorientCommand(req));
+		case ClassSuperclassEditPart.VISUAL_ID:
+			return getGEFWrapper(new ClassSuperclassReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

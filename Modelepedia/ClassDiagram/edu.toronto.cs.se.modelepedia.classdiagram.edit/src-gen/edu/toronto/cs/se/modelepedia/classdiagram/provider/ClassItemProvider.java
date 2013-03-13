@@ -71,6 +71,10 @@ public class ClassItemProvider
 			addDependenciesAsDependerPropertyDescriptor(object);
 			addNestedInPropertyDescriptor(object);
 			addNestedPropertyDescriptor(object);
+			addSuperclassPropertyDescriptor(object);
+			addSubclassesPropertyDescriptor(object);
+			addAssociationsAsSourcePropertyDescriptor(object);
+			addAssociationsAsTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -155,6 +159,94 @@ public class ClassItemProvider
 				 getString("_UI_Class_nested_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Class_nested_feature", "_UI_Class_type"),
 				 ClassDiagramPackage.Literals.CLASS__NESTED,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Superclass feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuperclassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_superclass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_superclass_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__SUPERCLASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Subclasses feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSubclassesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_subclasses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_subclasses_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__SUBCLASSES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Associations As Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssociationsAsSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_associationsAsSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_associationsAsSource_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__ASSOCIATIONS_AS_SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Associations As Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssociationsAsTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_associationsAsTarget_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_associationsAsTarget_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__ASSOCIATIONS_AS_TARGET,
 				 true,
 				 false,
 				 true,

@@ -12,6 +12,8 @@ import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationEditPart;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassClassOwnedAttributesCompartmentEditPart;
@@ -20,9 +22,11 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassDiagra
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassNestedInEditPart;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassSuperclassEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.DependencyEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationNameEditPart;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.WrappingLabel2EditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.WrappingLabelEditPart;
 
 /**
@@ -213,8 +217,18 @@ public class ClassDiagramVisualIDRegistry {
 				return true;
 			}
 			break;
+		case AssociationEditPart.VISUAL_ID:
+			if (AssociationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ClassNestedInEditPart.VISUAL_ID:
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ClassSuperclassEditPart.VISUAL_ID:
+			if (WrappingLabel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -228,6 +242,10 @@ public class ClassDiagramVisualIDRegistry {
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
+		}
+		if (ClassDiagramPackage.eINSTANCE.getAssociation().isSuperTypeOf(
+				domainElement.eClass())) {
+			return AssociationEditPart.VISUAL_ID;
 		}
 		if (ClassDiagramPackage.eINSTANCE.getDependency().isSuperTypeOf(
 				domainElement.eClass())) {

@@ -1,36 +1,42 @@
 /*
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolygonDecoration;
+import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassNestedInItemSemanticEditPolicy;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.AssociationItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
+public class AssociationEditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4003;
+	public static final int VISUAL_ID = 4001;
 
 	/**
 	 * @generated
 	 */
-	public ClassNestedInEditPart(View view) {
+	public AssociationEditPart(View view) {
 		super(view);
 	}
 
@@ -40,7 +46,7 @@ public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ClassNestedInItemSemanticEditPolicy());
+				new AssociationItemSemanticEditPolicy());
 	}
 
 	/**
@@ -51,26 +57,27 @@ public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
 	 * 
 	 * @generated
 	 */
+
 	protected Connection createConnectionFigure() {
-		return new ClassNestedInFigure();
+		return new AssociationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ClassNestedInFigure getPrimaryShape() {
-		return (ClassNestedInFigure) getFigure();
+	public AssociationFigure getPrimaryShape() {
+		return (AssociationFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class ClassNestedInFigure extends PolylineConnectionEx {
+	public class AssociationFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		public ClassNestedInFigure() {
+		public AssociationFigure() {
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -79,17 +86,7 @@ public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		private RotatableDecoration createTargetDecoration() {
-			PolygonDecoration df = new PolygonDecoration();
-			df.setFill(true);
-			df.setBackgroundColor(ColorConstants.white);
-			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(1));
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(1));
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(-1));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(-1));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(1));
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
+			PolylineDecoration df = new PolylineDecoration();
 			return df;
 		}
 

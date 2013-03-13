@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getAssociations <em>Associations</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,5 +65,21 @@ public interface ClassDiagram extends EObject {
 	 * @generated
 	 */
 	EList<Dependency> getDependencies();
+
+	/**
+	 * Returns the value of the '<em><b>Associations</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Association}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Associations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Associations</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClassDiagram_Associations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Association> getAssociations();
 
 } // ClassDiagram

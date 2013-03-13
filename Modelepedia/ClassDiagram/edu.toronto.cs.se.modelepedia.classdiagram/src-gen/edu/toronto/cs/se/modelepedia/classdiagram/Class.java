@@ -27,11 +27,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNestedIn <em>Nested In</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getNested <em>Nested</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSuperclass <em>Superclass</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSubclasses <em>Subclasses</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsSource <em>Associations As Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsTarget <em>Associations As Target</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface Class extends NamedElement {
@@ -155,5 +159,88 @@ public interface Class extends NamedElement {
 	 * @generated
 	 */
 	EList<Class> getNested();
+
+	/**
+	 * Returns the value of the '<em><b>Superclass</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSubclasses <em>Subclasses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Superclass</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Superclass</em>' reference.
+	 * @see #setSuperclass(Class)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_Superclass()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getSubclasses
+	 * @model opposite="subclasses"
+	 *        annotation="gmf.link target.decoration='closedarrow'"
+	 * @generated
+	 */
+	Class getSuperclass();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSuperclass <em>Superclass</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Superclass</em>' reference.
+	 * @see #getSuperclass()
+	 * @generated
+	 */
+	void setSuperclass(Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Subclasses</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Class}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSuperclass <em>Superclass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Subclasses</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subclasses</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_Subclasses()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getSuperclass
+	 * @model opposite="superclass"
+	 * @generated
+	 */
+	EList<Class> getSubclasses();
+
+	/**
+	 * Returns the value of the '<em><b>Associations As Source</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Association}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Associations As Source</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Associations As Source</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_AssociationsAsSource()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource
+	 * @model opposite="source"
+	 * @generated
+	 */
+	EList<Association> getAssociationsAsSource();
+
+	/**
+	 * Returns the value of the '<em><b>Associations As Target</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Association}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Associations As Target</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Associations As Target</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getClass_AssociationsAsTarget()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget
+	 * @model opposite="target"
+	 * @generated
+	 */
+	EList<Association> getAssociationsAsTarget();
 
 } // Class

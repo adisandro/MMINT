@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands;
 
@@ -18,7 +26,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassDia
 /**
  * @generated
  */
-public class ClassNestedInReorientCommand extends EditElementCommand {
+public class ClassSuperclassReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -43,7 +51,7 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ClassNestedInReorientCommand(
+	public ClassSuperclassReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -76,7 +84,7 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistClassNestedIn_4003(getNewSource(), getOldTarget());
+				.canExistClassSuperclass_4004(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -87,7 +95,7 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistClassNestedIn_4003(getOldSource(), getNewTarget());
+				.canExistClassSuperclass_4004(getOldSource(), getNewTarget());
 	}
 
 	/**
@@ -112,8 +120,8 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setNestedIn(null);
-		getNewSource().setNestedIn(getOldTarget());
+		getOldSource().setSuperclass(null);
+		getNewSource().setSuperclass(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -121,7 +129,7 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setNestedIn(getNewTarget());
+		getOldSource().setSuperclass(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

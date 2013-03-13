@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts;
 
@@ -14,23 +22,23 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassNestedInItemSemanticEditPolicy;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassSuperclassItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
+public class ClassSuperclassEditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4003;
+	public static final int VISUAL_ID = 4004;
 
 	/**
 	 * @generated
 	 */
-	public ClassNestedInEditPart(View view) {
+	public ClassSuperclassEditPart(View view) {
 		super(view);
 	}
 
@@ -40,7 +48,7 @@ public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ClassNestedInItemSemanticEditPolicy());
+				new ClassSuperclassItemSemanticEditPolicy());
 	}
 
 	/**
@@ -51,26 +59,27 @@ public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
 	 * 
 	 * @generated
 	 */
+
 	protected Connection createConnectionFigure() {
-		return new ClassNestedInFigure();
+		return new ClassSuperclassFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ClassNestedInFigure getPrimaryShape() {
-		return (ClassNestedInFigure) getFigure();
+	public ClassSuperclassFigure getPrimaryShape() {
+		return (ClassSuperclassFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class ClassNestedInFigure extends PolylineConnectionEx {
+	public class ClassSuperclassFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		public ClassNestedInFigure() {
+		public ClassSuperclassFigure() {
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -83,11 +92,10 @@ public class ClassNestedInEditPart extends ConnectionNodeEditPart implements
 			df.setFill(true);
 			df.setBackgroundColor(ColorConstants.white);
 			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(1));
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(1));
-			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(-1));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(-1));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(1));
+			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
+			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
+			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
 			df.setTemplate(pl);
 			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 			return df;

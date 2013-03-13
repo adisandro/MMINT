@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.util;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
@@ -129,6 +130,13 @@ public class ClassDiagramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ClassDiagramPackage.ASSOCIATION: {
+				Association association = (Association)theEObject;
+				T result = caseAssociation(association);
+				if (result == null) result = caseNamedElement(association);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -235,6 +243,21 @@ public class ClassDiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociation(Association object) {
 		return null;
 	}
 

@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts;
 
@@ -57,13 +65,13 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.ClassDiagram
 /**
  * @generated
  */
-public class WrappingLabelEditPart extends LabelEditPart implements
+public class WrappingLabel2EditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6002;
+	public static final int VISUAL_ID = 6003;
 
 	/**
 	 * @generated
@@ -96,14 +104,14 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				ClassDiagramVisualIDRegistry
-						.getType(edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID),
+						.getType(edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID),
 				new Point(0, 40));
 	}
 
 	/**
 	 * @generated
 	 */
-	public WrappingLabelEditPart(View view) {
+	public WrappingLabel2EditPart(View view) {
 		super(view);
 	}
 
@@ -325,7 +333,7 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ClassDiagramParserProvider.getParser(
-					ClassDiagramElementTypes.ClassNestedIn_4003,
+					ClassDiagramElementTypes.ClassSuperclass_4004,
 					getParserElement(), CommonParserHint.DESCRIPTION);
 		}
 		return parser;

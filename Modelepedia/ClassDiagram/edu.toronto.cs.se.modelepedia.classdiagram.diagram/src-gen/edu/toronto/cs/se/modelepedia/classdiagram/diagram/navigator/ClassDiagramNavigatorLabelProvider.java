@@ -21,12 +21,16 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationEditPart;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassDiagramEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassNestedInEditPart;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassSuperclassEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.DependencyEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationNameEditPart;
@@ -102,24 +106,30 @@ public class ClassDiagramNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (ClassDiagramVisualIDRegistry.getVisualID(view)) {
-		case DependencyEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Dependency", ClassDiagramElementTypes.Dependency_4001); //$NON-NLS-1$
-		case OperationEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Operation", ClassDiagramElementTypes.Operation_3002); //$NON-NLS-1$
 		case ClassEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class", ClassDiagramElementTypes.Class_2001); //$NON-NLS-1$
-		case ClassNestedInEditPart.VISUAL_ID:
+		case DependencyEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class?nestedIn", ClassDiagramElementTypes.ClassNestedIn_4002); //$NON-NLS-1$
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Dependency", ClassDiagramElementTypes.Dependency_4002); //$NON-NLS-1$
 		case ClassDiagramEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/ClassDiagram?ClassDiagram", ClassDiagramElementTypes.ClassDiagram_1000); //$NON-NLS-1$
+		case OperationEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Operation", ClassDiagramElementTypes.Operation_3002); //$NON-NLS-1$
 		case AttributeEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Attribute", ClassDiagramElementTypes.Attribute_3001); //$NON-NLS-1$
+		case ClassSuperclassEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class?superclass", ClassDiagramElementTypes.ClassSuperclass_4004); //$NON-NLS-1$
+		case AssociationEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Association", ClassDiagramElementTypes.Association_4001); //$NON-NLS-1$
+		case ClassNestedInEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/ClassDiagram?Class?nestedIn", ClassDiagramElementTypes.ClassNestedIn_4003); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -180,46 +190,24 @@ public class ClassDiagramNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (ClassDiagramVisualIDRegistry.getVisualID(view)) {
-		case DependencyEditPart.VISUAL_ID:
-			return getDependency_4001Text(view);
-		case OperationEditPart.VISUAL_ID:
-			return getOperation_3002Text(view);
 		case ClassEditPart.VISUAL_ID:
 			return getClass_2001Text(view);
-		case ClassNestedInEditPart.VISUAL_ID:
-			return getClassNestedIn_4002Text(view);
+		case DependencyEditPart.VISUAL_ID:
+			return getDependency_4002Text(view);
 		case ClassDiagramEditPart.VISUAL_ID:
 			return getClassDiagram_1000Text(view);
+		case OperationEditPart.VISUAL_ID:
+			return getOperation_3002Text(view);
 		case AttributeEditPart.VISUAL_ID:
 			return getAttribute_3001Text(view);
+		case ClassSuperclassEditPart.VISUAL_ID:
+			return getClassSuperclass_4004Text(view);
+		case AssociationEditPart.VISUAL_ID:
+			return getAssociation_4001Text(view);
+		case ClassNestedInEditPart.VISUAL_ID:
+			return getClassNestedIn_4003Text(view);
 		}
 		return getUnknownElementText(view);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getDependency_4001Text(View view) {
-		return ""; //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getClassNestedIn_4002Text(View view) {
-		IParser parser = ClassDiagramParserProvider.getParser(
-				ClassDiagramElementTypes.ClassNestedIn_4002,
-				view.getElement() != null ? view.getElement() : view,
-				CommonParserHint.DESCRIPTION);
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			ClassDiagramDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 6001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
 	}
 
 	/**
@@ -238,6 +226,20 @@ public class ClassDiagramNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			ClassDiagramDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDependency_4002Text(View view) {
+		Dependency domainModelElement = (Dependency) view.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			ClassDiagramDiagramEditorPlugin.getInstance().logError(
+					"No domain element for view with visualID = " + 4002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -285,6 +287,64 @@ public class ClassDiagramNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			ClassDiagramDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getClassSuperclass_4004Text(View view) {
+		IParser parser = ClassDiagramParserProvider.getParser(
+				ClassDiagramElementTypes.ClassSuperclass_4004,
+				view.getElement() != null ? view.getElement() : view,
+				CommonParserHint.DESCRIPTION);
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			ClassDiagramDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 6003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getAssociation_4001Text(View view) {
+		IParser parser = ClassDiagramParserProvider.getParser(
+				ClassDiagramElementTypes.Association_4001,
+				view.getElement() != null ? view.getElement() : view,
+				ClassDiagramVisualIDRegistry
+						.getType(AssociationNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			ClassDiagramDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 6001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getClassNestedIn_4003Text(View view) {
+		IParser parser = ClassDiagramParserProvider.getParser(
+				ClassDiagramElementTypes.ClassNestedIn_4003,
+				view.getElement() != null ? view.getElement() : view,
+				CommonParserHint.DESCRIPTION);
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			ClassDiagramDiagramEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 6002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

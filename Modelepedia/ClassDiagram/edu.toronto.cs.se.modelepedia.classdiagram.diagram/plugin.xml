@@ -259,7 +259,7 @@
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="ClassDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004"/>
       </viewProvider>
    </extension>
 
@@ -274,7 +274,7 @@
             <method name="getType()" value="2001,3001,3002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002"/>
+            <method name="getType()" value="4001,4002,4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5003,5001,5002"/>
@@ -367,21 +367,40 @@
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Dependency_4001"
-               name="%metatype.name.Dependency_4001"
+               id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Association_4001"
+               name="%metatype.name.Association_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Dependency"
-               edithelper="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.helpers.DependencyEditHelper">
+               eclass="Association"
+               edithelper="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.helpers.AssociationEditHelper">
             <param name="semanticHint" value="4001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Dependency_4002"
+               name="%metatype.name.Dependency_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Dependency"
+               edithelper="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.helpers.DependencyEditHelper">
+            <param name="semanticHint" value="4002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
          <specializationType
-               id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassNestedIn_4002"
-               name="%metatype.name.ClassNestedIn_4002"
+               id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassNestedIn_4003"
+               name="%metatype.name.ClassNestedIn_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4002"/>
+            <param name="semanticHint" value="4003"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+         <specializationType
+               id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassSuperclass_4004"
+               name="%metatype.name.ClassSuperclass_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4004"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -400,8 +419,10 @@
          <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Class_2001"/>
          <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Attribute_3001"/>
          <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Operation_3002"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Dependency_4001"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassNestedIn_4002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Association_4001"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.Dependency_4002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassNestedIn_4003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassSuperclass_4004"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

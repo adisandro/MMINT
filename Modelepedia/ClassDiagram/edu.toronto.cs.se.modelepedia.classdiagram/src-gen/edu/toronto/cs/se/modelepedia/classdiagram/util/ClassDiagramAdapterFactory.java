@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.util;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
@@ -109,6 +110,10 @@ public class ClassDiagramAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
+			}
+			@Override
+			public Adapter caseAssociation(Association object) {
+				return createAssociationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -225,6 +230,20 @@ public class ClassDiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Association
+	 * @generated
+	 */
+	public Adapter createAssociationAdapter() {
 		return null;
 	}
 

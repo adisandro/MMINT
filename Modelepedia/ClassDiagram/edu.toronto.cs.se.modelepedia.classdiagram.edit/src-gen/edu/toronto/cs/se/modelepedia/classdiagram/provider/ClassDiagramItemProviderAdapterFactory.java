@@ -196,6 +196,29 @@ public class ClassDiagramItemProviderAdapterFactory extends ClassDiagramAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram.Association} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssociationItemProvider associationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Association}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAssociationAdapter() {
+		if (associationItemProvider == null) {
+			associationItemProvider = new AssociationItemProvider(this);
+		}
+
+		return associationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,6 +322,7 @@ public class ClassDiagramItemProviderAdapterFactory extends ClassDiagramAdapterF
 		if (attributeItemProvider != null) attributeItemProvider.dispose();
 		if (operationItemProvider != null) operationItemProvider.dispose();
 		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
+		if (associationItemProvider != null) associationItemProvider.dispose();
 	}
 
 }

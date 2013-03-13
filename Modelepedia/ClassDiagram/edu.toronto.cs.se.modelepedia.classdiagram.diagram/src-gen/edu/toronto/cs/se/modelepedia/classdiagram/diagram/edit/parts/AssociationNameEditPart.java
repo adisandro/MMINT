@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts;
 
@@ -18,7 +26,6 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
-import org.eclipse.gmf.runtime.common.ui.services.parser.CommonParserHint;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
@@ -57,13 +64,13 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.ClassDiagram
 /**
  * @generated
  */
-public class WrappingLabelEditPart extends LabelEditPart implements
+public class AssociationNameEditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6002;
+	public static final int VISUAL_ID = 6001;
 
 	/**
 	 * @generated
@@ -96,14 +103,14 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				ClassDiagramVisualIDRegistry
-						.getType(edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID),
+						.getType(edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationNameEditPart.VISUAL_ID),
 				new Point(0, 40));
 	}
 
 	/**
 	 * @generated
 	 */
-	public WrappingLabelEditPart(View view) {
+	public AssociationNameEditPart(View view) {
 		super(view);
 	}
 
@@ -211,7 +218,7 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected EObject getParserElement() {
-		return (View) getModel();
+		return resolveSemanticElement();
 	}
 
 	/**
@@ -262,7 +269,7 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return false;
+		return getParser() != null;
 	}
 
 	/**
@@ -324,9 +331,12 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = ClassDiagramParserProvider.getParser(
-					ClassDiagramElementTypes.ClassNestedIn_4003,
-					getParserElement(), CommonParserHint.DESCRIPTION);
+			parser = ClassDiagramParserProvider
+					.getParser(
+							ClassDiagramElementTypes.Association_4001,
+							getParserElement(),
+							ClassDiagramVisualIDRegistry
+									.getType(edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -631,7 +641,21 @@ public class WrappingLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new AssociationLabelFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class AssociationLabelFigure extends WrappingLabel {
+
+		/**
+		 * @generated
+		 */
+		public AssociationLabelFigure() {
+			this.setText("Association");
+		}
+
 	}
 
 }

@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassDiagramEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart;
@@ -295,10 +296,18 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
+		case AssociationEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ClassDiagramDiagramUpdater
+						.getAssociation_4001ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
 		case DependencyEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ClassDiagramDiagramUpdater
-						.getDependency_4001ContainedLinks(view));
+						.getDependency_4002ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

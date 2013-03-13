@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands;
 
@@ -15,16 +23,16 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
-import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassDiagramBaseItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class DependencyCreateCommand extends EditElementCommand {
+public class AssociationCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -44,7 +52,7 @@ public class DependencyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public DependencyCreateCommand(CreateRelationshipRequest request,
+	public AssociationCreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -73,7 +81,7 @@ public class DependencyCreateCommand extends EditElementCommand {
 			return false;
 		}
 		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateDependency_4002(getContainer(), getSource(),
+				.canCreateAssociation_4001(getContainer(), getSource(),
 						getTarget());
 	}
 
@@ -87,11 +95,11 @@ public class DependencyCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		Dependency newElement = ClassDiagramFactory.eINSTANCE
-				.createDependency();
-		getContainer().getDependencies().add(newElement);
-		newElement.setDependee(getSource());
-		newElement.setDepender(getTarget());
+		Association newElement = ClassDiagramFactory.eINSTANCE
+				.createAssociation();
+		getContainer().getAssociations().add(newElement);
+		newElement.setSource(getSource());
+		newElement.setTarget(getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
@@ -101,8 +109,9 @@ public class DependencyCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Dependency newElement, IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Association newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())
 				.getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(

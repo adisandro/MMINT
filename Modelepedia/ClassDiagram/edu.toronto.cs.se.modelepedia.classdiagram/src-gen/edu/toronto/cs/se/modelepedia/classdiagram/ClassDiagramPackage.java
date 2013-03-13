@@ -13,7 +13,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -31,6 +30,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface ClassDiagramPackage extends EPackage {
@@ -95,13 +95,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int CLASS_DIAGRAM__DEPENDENCIES = 1;
 
 	/**
+	 * The feature id for the '<em><b>Associations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM__ASSOCIATIONS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Class Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_FEATURE_COUNT = 2;
+	int CLASS_DIAGRAM_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
@@ -223,13 +232,49 @@ public interface ClassDiagramPackage extends EPackage {
 	int CLASS__NESTED = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Superclass</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__SUPERCLASS = NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Subclasses</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__SUBCLASSES = NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Associations As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ASSOCIATIONS_AS_SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Associations As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ASSOCIATIONS_AS_TARGET = NAMED_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -260,22 +305,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int TYPED_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__VISIBILITY = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Public</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__PUBLIC = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element</em>' class.
@@ -315,15 +360,6 @@ public interface ClassDiagramPackage extends EPackage {
 	int ATTRIBUTE__NAME = TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__VISIBILITY = TYPED_ELEMENT__VISIBILITY;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -331,6 +367,15 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE__TYPE = TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Public</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__PUBLIC = TYPED_ELEMENT__PUBLIC;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -379,15 +424,6 @@ public interface ClassDiagramPackage extends EPackage {
 	int OPERATION__NAME = TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__VISIBILITY = TYPED_ELEMENT__VISIBILITY;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -395,6 +431,15 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATION__TYPE = TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Public</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__PUBLIC = TYPED_ELEMENT__PUBLIC;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -452,13 +497,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int DEPENDENCY__DEPENDER = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__NAME = 2;
+
+	/**
 	 * The number of structural features of the '<em>Dependency</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_FEATURE_COUNT = 2;
+	int DEPENDENCY_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Dependency</em>' class.
@@ -470,15 +524,59 @@ public interface ClassDiagramPackage extends EPackage {
 	int DEPENDENCY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility <em>Visibility</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AssociationImpl <em>Association</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getVisibility()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.AssociationImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getAssociation()
 	 * @generated
 	 */
-	int VISIBILITY = 7;
+	int ASSOCIATION = 7;
 
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Association</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Association</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram <em>Class Diagram</em>}'.
@@ -511,6 +609,17 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClassDiagram_Dependencies();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getAssociations <em>Associations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Associations</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getAssociations()
+	 * @see #getClassDiagram()
+	 * @generated
+	 */
+	EReference getClassDiagram_Associations();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class <em>Class</em>}'.
@@ -587,6 +696,50 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClass_Nested();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSuperclass <em>Superclass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Superclass</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getSuperclass()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Superclass();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getSubclasses <em>Subclasses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Subclasses</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getSubclasses()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Subclasses();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsSource <em>Associations As Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Associations As Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsSource()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AssociationsAsSource();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsTarget <em>Associations As Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Associations As Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsTarget()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AssociationsAsTarget();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute <em>Attribute</em>}'.
@@ -684,6 +837,17 @@ public interface ClassDiagramPackage extends EPackage {
 	EReference getDependency_Depender();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Dependency#getName()
+	 * @see #getDependency()
+	 * @generated
+	 */
+	EAttribute getDependency_Name();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -692,17 +856,6 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTypedElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getVisibility <em>Visibility</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Visibility</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getVisibility()
-	 * @see #getTypedElement()
-	 * @generated
-	 */
-	EAttribute getTypedElement_Visibility();
 
 	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getType <em>Type</em>}'.
@@ -716,14 +869,47 @@ public interface ClassDiagramPackage extends EPackage {
 	EReference getTypedElement_Type();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility <em>Visibility</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#isPublic <em>Public</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Visibility</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
+	 * @return the meta object for the attribute '<em>Public</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#isPublic()
+	 * @see #getTypedElement()
 	 * @generated
 	 */
-	EEnum getVisibility();
+	EAttribute getTypedElement_Public();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Association</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Association
+	 * @generated
+	 */
+	EClass getAssociation();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EReference getAssociation_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EReference getAssociation_Target();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -773,6 +959,14 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS_DIAGRAM__DEPENDENCIES = eINSTANCE.getClassDiagram_Dependencies();
+
+		/**
+		 * The meta object literal for the '<em><b>Associations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_DIAGRAM__ASSOCIATIONS = eINSTANCE.getClassDiagram_Associations();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl <em>Class</em>}' class.
@@ -831,6 +1025,38 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__NESTED = eINSTANCE.getClass_Nested();
+
+		/**
+		 * The meta object literal for the '<em><b>Superclass</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__SUPERCLASS = eINSTANCE.getClass_Superclass();
+
+		/**
+		 * The meta object literal for the '<em><b>Subclasses</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__SUBCLASSES = eINSTANCE.getClass_Subclasses();
+
+		/**
+		 * The meta object literal for the '<em><b>Associations As Source</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ASSOCIATIONS_AS_SOURCE = eINSTANCE.getClass_AssociationsAsSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Associations As Target</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ASSOCIATIONS_AS_TARGET = eINSTANCE.getClass_AssociationsAsTarget();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -913,6 +1139,14 @@ public interface ClassDiagramPackage extends EPackage {
 		EReference DEPENDENCY__DEPENDER = eINSTANCE.getDependency_Depender();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPENDENCY__NAME = eINSTANCE.getDependency_Name();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypedElementImpl <em>Typed Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -923,14 +1157,6 @@ public interface ClassDiagramPackage extends EPackage {
 		EClass TYPED_ELEMENT = eINSTANCE.getTypedElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT__VISIBILITY = eINSTANCE.getTypedElement_Visibility();
-
-		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -939,14 +1165,38 @@ public interface ClassDiagramPackage extends EPackage {
 		EReference TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility <em>Visibility</em>}' enum.
+		 * The meta object literal for the '<em><b>Public</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
-		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getVisibility()
 		 * @generated
 		 */
-		EEnum VISIBILITY = eINSTANCE.getVisibility();
+		EAttribute TYPED_ELEMENT__PUBLIC = eINSTANCE.getTypedElement_Public();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AssociationImpl <em>Association</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.AssociationImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getAssociation()
+		 * @generated
+		 */
+		EClass ASSOCIATION = eINSTANCE.getAssociation();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION__SOURCE = eINSTANCE.getAssociation_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION__TARGET = eINSTANCE.getAssociation_Target();
 
 	}
 

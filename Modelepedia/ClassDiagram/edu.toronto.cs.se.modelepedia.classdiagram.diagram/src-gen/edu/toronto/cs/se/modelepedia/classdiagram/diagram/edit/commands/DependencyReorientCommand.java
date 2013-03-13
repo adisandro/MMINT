@@ -75,7 +75,7 @@ public class DependencyReorientCommand extends EditElementCommand {
 		}
 		ClassDiagram container = (ClassDiagram) getLink().eContainer();
 		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistDependency_4001(container, getLink(), getNewSource(),
+				.canExistDependency_4002(container, getLink(), getNewSource(),
 						target);
 	}
 
@@ -92,7 +92,7 @@ public class DependencyReorientCommand extends EditElementCommand {
 		}
 		ClassDiagram container = (ClassDiagram) getLink().eContainer();
 		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistDependency_4001(container, getLink(), source,
+				.canExistDependency_4002(container, getLink(), source,
 						getNewTarget());
 	}
 

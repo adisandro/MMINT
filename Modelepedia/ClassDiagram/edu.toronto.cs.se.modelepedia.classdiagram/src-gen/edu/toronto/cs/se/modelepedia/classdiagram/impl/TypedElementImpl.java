@@ -13,8 +13,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram.TypedElement;
-import edu.toronto.cs.se.modelepedia.classdiagram.Visibility;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -29,34 +27,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypedElementImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypedElementImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypedElementImpl#isPublic <em>Public</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class TypedElementImpl extends NamedElementImpl implements TypedElement {
-	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVisibility()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Visibility VISIBILITY_EDEFAULT = Visibility.PRIVATE;
-
-	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVisibility()
-	 * @generated
-	 * @ordered
-	 */
-	protected Visibility visibility = VISIBILITY_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -66,6 +44,26 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * @ordered
 	 */
 	protected edu.toronto.cs.se.modelepedia.classdiagram.Class type;
+
+	/**
+	 * The default value of the '{@link #isPublic() <em>Public</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPublic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PUBLIC_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPublic() <em>Public</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPublic()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean public_ = PUBLIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,27 +82,6 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	protected EClass eStaticClass() {
 		return ClassDiagramPackage.Literals.TYPED_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Visibility getVisibility() {
-		return visibility;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setVisibility(Visibility newVisibility) {
-		Visibility oldVisibility = visibility;
-		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.TYPED_ELEMENT__VISIBILITY, oldVisibility, visibility));
 	}
 
 	/**
@@ -150,14 +127,35 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isPublic() {
+		return public_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPublic(boolean newPublic) {
+		boolean oldPublic = public_;
+		public_ = newPublic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.TYPED_ELEMENT__PUBLIC, oldPublic, public_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassDiagramPackage.TYPED_ELEMENT__VISIBILITY:
-				return getVisibility();
 			case ClassDiagramPackage.TYPED_ELEMENT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case ClassDiagramPackage.TYPED_ELEMENT__PUBLIC:
+				return isPublic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,11 +168,11 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassDiagramPackage.TYPED_ELEMENT__VISIBILITY:
-				setVisibility((Visibility)newValue);
-				return;
 			case ClassDiagramPackage.TYPED_ELEMENT__TYPE:
 				setType((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+				return;
+			case ClassDiagramPackage.TYPED_ELEMENT__PUBLIC:
+				setPublic((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,11 +186,11 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassDiagramPackage.TYPED_ELEMENT__VISIBILITY:
-				setVisibility(VISIBILITY_EDEFAULT);
-				return;
 			case ClassDiagramPackage.TYPED_ELEMENT__TYPE:
 				setType((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
+				return;
+			case ClassDiagramPackage.TYPED_ELEMENT__PUBLIC:
+				setPublic(PUBLIC_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -206,10 +204,10 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassDiagramPackage.TYPED_ELEMENT__VISIBILITY:
-				return visibility != VISIBILITY_EDEFAULT;
 			case ClassDiagramPackage.TYPED_ELEMENT__TYPE:
 				return type != null;
+			case ClassDiagramPackage.TYPED_ELEMENT__PUBLIC:
+				return public_ != PUBLIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -224,8 +222,8 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (visibility: ");
-		result.append(visibility);
+		result.append(" (public: ");
+		result.append(public_);
 		result.append(')');
 		return result.toString();
 	}

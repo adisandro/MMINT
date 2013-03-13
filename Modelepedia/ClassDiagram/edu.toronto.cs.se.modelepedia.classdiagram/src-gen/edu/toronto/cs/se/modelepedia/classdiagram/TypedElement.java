@@ -20,8 +20,8 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#isPublic <em>Public</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,35 +30,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * @generated
  */
 public interface TypedElement extends NamedElement {
-	/**
-	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.classdiagram.Visibility}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
-	 * @see #setVisibility(Visibility)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getTypedElement_Visibility()
-	 * @model required="true"
-	 * @generated
-	 */
-	Visibility getVisibility();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getVisibility <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Visibility</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Visibility
-	 * @see #getVisibility()
-	 * @generated
-	 */
-	void setVisibility(Visibility value);
-
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -84,5 +55,31 @@ public interface TypedElement extends NamedElement {
 	 * @generated
 	 */
 	void setType(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Public</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Public</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Public</em>' attribute.
+	 * @see #setPublic(boolean)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getTypedElement_Public()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isPublic();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#isPublic <em>Public</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Public</em>' attribute.
+	 * @see #isPublic()
+	 * @generated
+	 */
+	void setPublic(boolean value);
 
 } // TypedElement

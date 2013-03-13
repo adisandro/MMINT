@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands;
 
@@ -9,26 +17,22 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassDiagramBaseItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ClassNestedInReorientCommand extends EditElementCommand {
+public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
 	private final int reorientDirection;
-
-	/**
-	 * @generated
-	 */
-	private final EObject referenceOwner;
 
 	/**
 	 * @generated
@@ -43,11 +47,9 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ClassNestedInReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
-		super(request.getLabel(), null, request);
+	public AssociationReorientCommand(ReorientRelationshipRequest request) {
+		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
-		referenceOwner = request.getReferenceOwner();
 		oldEnd = request.getOldRelationshipEnd();
 		newEnd = request.getNewRelationshipEnd();
 	}
@@ -56,7 +58,7 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Class) {
+		if (false == getElementToEdit() instanceof Association) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -75,8 +77,14 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
 		}
+		Class target = getLink().getTarget();
+		if (!(getLink().eContainer() instanceof ClassDiagram)) {
+			return false;
+		}
+		ClassDiagram container = (ClassDiagram) getLink().eContainer();
 		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistClassNestedIn_4003(getNewSource(), getOldTarget());
+				.canExistAssociation_4001(container, getLink(), getNewSource(),
+						target);
 	}
 
 	/**
@@ -86,8 +94,14 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
 		}
+		Class source = getLink().getSource();
+		if (!(getLink().eContainer() instanceof ClassDiagram)) {
+			return false;
+		}
+		ClassDiagram container = (ClassDiagram) getLink().eContainer();
 		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistClassNestedIn_4003(getOldSource(), getNewTarget());
+				.canExistAssociation_4001(container, getLink(), source,
+						getNewTarget());
 	}
 
 	/**
@@ -112,24 +126,30 @@ public class ClassNestedInReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setNestedIn(null);
-		getNewSource().setNestedIn(getOldTarget());
-		return CommandResult.newOKCommandResult(referenceOwner);
+		getLink().setSource(getNewSource());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setNestedIn(getNewTarget());
-		return CommandResult.newOKCommandResult(referenceOwner);
+		getLink().setTarget(getNewTarget());
+		return CommandResult.newOKCommandResult(getLink());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Association getLink() {
+		return (Association) getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Class getOldSource() {
-		return (Class) referenceOwner;
+		return (Class) oldEnd;
 	}
 
 	/**

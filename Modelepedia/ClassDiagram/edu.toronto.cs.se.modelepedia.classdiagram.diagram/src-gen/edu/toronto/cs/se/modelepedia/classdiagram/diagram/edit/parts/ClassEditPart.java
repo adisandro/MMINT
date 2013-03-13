@@ -309,9 +309,11 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ClassDiagramElementTypes.Dependency_4001);
-		types.add(ClassDiagramElementTypes.ClassNestedIn_4002);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+		types.add(ClassDiagramElementTypes.Association_4001);
+		types.add(ClassDiagramElementTypes.Dependency_4002);
+		types.add(ClassDiagramElementTypes.ClassNestedIn_4003);
+		types.add(ClassDiagramElementTypes.ClassSuperclass_4004);
 		return types;
 	}
 
@@ -322,10 +324,16 @@ public class ClassEditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart) {
-			types.add(ClassDiagramElementTypes.Dependency_4001);
+			types.add(ClassDiagramElementTypes.Association_4001);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart) {
-			types.add(ClassDiagramElementTypes.ClassNestedIn_4002);
+			types.add(ClassDiagramElementTypes.Dependency_4002);
+		}
+		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart) {
+			types.add(ClassDiagramElementTypes.ClassNestedIn_4003);
+		}
+		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart) {
+			types.add(ClassDiagramElementTypes.ClassSuperclass_4004);
 		}
 		return types;
 	}
@@ -335,9 +343,13 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ClassDiagramElementTypes.Dependency_4001) {
+		if (relationshipType == ClassDiagramElementTypes.Association_4001) {
 			types.add(ClassDiagramElementTypes.Class_2001);
-		} else if (relationshipType == ClassDiagramElementTypes.ClassNestedIn_4002) {
+		} else if (relationshipType == ClassDiagramElementTypes.Dependency_4002) {
+			types.add(ClassDiagramElementTypes.Class_2001);
+		} else if (relationshipType == ClassDiagramElementTypes.ClassNestedIn_4003) {
+			types.add(ClassDiagramElementTypes.Class_2001);
+		} else if (relationshipType == ClassDiagramElementTypes.ClassSuperclass_4004) {
 			types.add(ClassDiagramElementTypes.Class_2001);
 		}
 		return types;
@@ -347,9 +359,11 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ClassDiagramElementTypes.Dependency_4001);
-		types.add(ClassDiagramElementTypes.ClassNestedIn_4002);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+		types.add(ClassDiagramElementTypes.Association_4001);
+		types.add(ClassDiagramElementTypes.Dependency_4002);
+		types.add(ClassDiagramElementTypes.ClassNestedIn_4003);
+		types.add(ClassDiagramElementTypes.ClassSuperclass_4004);
 		return types;
 	}
 
@@ -358,9 +372,13 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ClassDiagramElementTypes.Dependency_4001) {
+		if (relationshipType == ClassDiagramElementTypes.Association_4001) {
 			types.add(ClassDiagramElementTypes.Class_2001);
-		} else if (relationshipType == ClassDiagramElementTypes.ClassNestedIn_4002) {
+		} else if (relationshipType == ClassDiagramElementTypes.Dependency_4002) {
+			types.add(ClassDiagramElementTypes.Class_2001);
+		} else if (relationshipType == ClassDiagramElementTypes.ClassNestedIn_4003) {
+			types.add(ClassDiagramElementTypes.Class_2001);
+		} else if (relationshipType == ClassDiagramElementTypes.ClassSuperclass_4004) {
 			types.add(ClassDiagramElementTypes.Class_2001);
 		}
 		return types;

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getNamedElement()
  * @model abstract="true"
- *        annotation="gmf.node label='name'"
  * @generated
  */
 public interface NamedElement extends EObject {

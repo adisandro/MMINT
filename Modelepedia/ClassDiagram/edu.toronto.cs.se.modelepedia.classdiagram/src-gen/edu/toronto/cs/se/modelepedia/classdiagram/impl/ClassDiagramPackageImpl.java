@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
@@ -19,11 +20,8 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.NamedElement;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 import edu.toronto.cs.se.modelepedia.classdiagram.TypedElement;
-import edu.toronto.cs.se.modelepedia.classdiagram.Visibility;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -90,7 +88,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum visibilityEEnum = null;
+	private EClass associationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -185,6 +183,15 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClassDiagram_Associations() {
+		return (EReference)classDiagramEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -241,6 +248,42 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 */
 	public EReference getClass_Nested() {
 		return (EReference)classEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_Superclass() {
+		return (EReference)classEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_Subclasses() {
+		return (EReference)classEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_AssociationsAsSource() {
+		return (EReference)classEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_AssociationsAsTarget() {
+		return (EReference)classEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -329,6 +372,15 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDependency_Name() {
+		return (EAttribute)dependencyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTypedElement() {
 		return typedElementEClass;
 	}
@@ -338,17 +390,8 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedElement_Visibility() {
-		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTypedElement_Type() {
-		return (EReference)typedElementEClass.getEStructuralFeatures().get(1);
+		return (EReference)typedElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -356,8 +399,35 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getVisibility() {
-		return visibilityEEnum;
+	public EAttribute getTypedElement_Public() {
+		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAssociation() {
+		return associationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssociation_Source() {
+		return (EReference)associationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssociation_Target() {
+		return (EReference)associationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -391,6 +461,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		classDiagramEClass = createEClass(CLASS_DIAGRAM);
 		createEReference(classDiagramEClass, CLASS_DIAGRAM__CLASSES);
 		createEReference(classDiagramEClass, CLASS_DIAGRAM__DEPENDENCIES);
+		createEReference(classDiagramEClass, CLASS_DIAGRAM__ASSOCIATIONS);
 
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__OWNED_ATTRIBUTES);
@@ -399,6 +470,10 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		createEReference(classEClass, CLASS__DEPENDENCIES_AS_DEPENDER);
 		createEReference(classEClass, CLASS__NESTED_IN);
 		createEReference(classEClass, CLASS__NESTED);
+		createEReference(classEClass, CLASS__SUPERCLASS);
+		createEReference(classEClass, CLASS__SUBCLASSES);
+		createEReference(classEClass, CLASS__ASSOCIATIONS_AS_SOURCE);
+		createEReference(classEClass, CLASS__ASSOCIATIONS_AS_TARGET);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__OWNER);
@@ -412,13 +487,15 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		dependencyEClass = createEClass(DEPENDENCY);
 		createEReference(dependencyEClass, DEPENDENCY__DEPENDEE);
 		createEReference(dependencyEClass, DEPENDENCY__DEPENDER);
+		createEAttribute(dependencyEClass, DEPENDENCY__NAME);
 
 		typedElementEClass = createEClass(TYPED_ELEMENT);
-		createEAttribute(typedElementEClass, TYPED_ELEMENT__VISIBILITY);
 		createEReference(typedElementEClass, TYPED_ELEMENT__TYPE);
+		createEAttribute(typedElementEClass, TYPED_ELEMENT__PUBLIC);
 
-		// Create enums
-		visibilityEEnum = createEEnum(VISIBILITY);
+		associationEClass = createEClass(ASSOCIATION);
+		createEReference(associationEClass, ASSOCIATION__SOURCE);
+		createEReference(associationEClass, ASSOCIATION__TARGET);
 	}
 
 	/**
@@ -453,11 +530,13 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		attributeEClass.getESuperTypes().add(this.getTypedElement());
 		operationEClass.getESuperTypes().add(this.getTypedElement());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
+		associationEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassDiagram_Classes(), this.getClass_(), null, "classes", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassDiagram_Dependencies(), this.getDependency(), null, "dependencies", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassDiagram_Associations(), this.getAssociation(), null, "associations", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classEClass, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_OwnedAttributes(), this.getAttribute(), this.getAttribute_Owner(), "ownedAttributes", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -466,6 +545,10 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		initEReference(getClass_DependenciesAsDepender(), this.getDependency(), this.getDependency_Depender(), "dependenciesAsDepender", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_NestedIn(), this.getClass_(), this.getClass_Nested(), "nestedIn", null, 0, 1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_Nested(), this.getClass_(), this.getClass_NestedIn(), "nested", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_Superclass(), this.getClass_(), this.getClass_Subclasses(), "superclass", null, 0, 1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_Subclasses(), this.getClass_(), this.getClass_Superclass(), "subclasses", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_AssociationsAsSource(), this.getAssociation(), this.getAssociation_Source(), "associationsAsSource", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_AssociationsAsTarget(), this.getAssociation(), this.getAssociation_Target(), "associationsAsTarget", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttribute_Owner(), this.getClass_(), this.getClass_OwnedAttributes(), "owner", null, 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -479,20 +562,22 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDependency_Dependee(), this.getClass_(), this.getClass_DependenciesAsDependee(), "dependee", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDependency_Depender(), this.getClass_(), this.getClass_DependenciesAsDepender(), "depender", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDependency_Name(), ecorePackage.getEString(), "name", null, 1, 1, Dependency.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTypedElement_Visibility(), this.getVisibility(), "visibility", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTypedElement_Type(), this.getClass_(), null, "type", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTypedElement_Public(), ecorePackage.getEBoolean(), "public", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		// Initialize enums and add enum literals
-		initEEnum(visibilityEEnum, Visibility.class, "Visibility");
-		addEEnumLiteral(visibilityEEnum, Visibility.PRIVATE);
-		addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);
+		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssociation_Source(), this.getClass_(), this.getClass_AssociationsAsSource(), "source", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_Target(), this.getClass_(), this.getClass_AssociationsAsTarget(), "target", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
 		// gmf.diagram
 		createGmfAnnotations();
 		// gmf.node
@@ -501,6 +586,26 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		createGmf_2Annotations();
 		// gmf.link
 		createGmf_3Annotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+		   });											
 	}
 
 	/**
@@ -510,12 +615,12 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmfAnnotations() {
-		String source = "gmf.diagram";		
+		String source = "gmf.diagram";			
 		addAnnotation
 		  (classDiagramEClass, 
 		   source, 
 		   new String[] {
-		   });								
+		   });										
 	}
 
 	/**
@@ -525,19 +630,15 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmf_1Annotations() {
-		String source = "gmf.node";			
+		String source = "gmf.node";				
 		addAnnotation
 		  (classEClass, 
 		   source, 
 		   new String[] {
-		   });					
+			 "label", "name"
+		   });						
 		addAnnotation
 		  (attributeEClass, 
-		   source, 
-		   new String[] {
-		   });		
-		addAnnotation
-		  (namedElementEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
@@ -546,7 +647,8 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		  (operationEClass, 
 		   source, 
 		   new String[] {
-		   });	
+			 "label", "name"
+		   });			
 	}
 
 	/**
@@ -556,7 +658,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmf_2Annotations() {
-		String source = "gmf.compartment";				
+		String source = "gmf.compartment";					
 		addAnnotation
 		  (getClass_OwnedAttributes(), 
 		   source, 
@@ -568,7 +670,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		   source, 
 		   new String[] {
 			 "layout", "list"
-		   });					
+		   });							
 	}
 
 	/**
@@ -578,13 +680,19 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmf_3Annotations() {
-		String source = "gmf.link";						
+		String source = "gmf.link";							
 		addAnnotation
 		  (getClass_NestedIn(), 
 		   source, 
 		   new String[] {
 			 "target.decoration", "square"
-		   });					
+		   });		
+		addAnnotation
+		  (getClass_Superclass(), 
+		   source, 
+		   new String[] {
+			 "target.decoration", "closedarrow"
+		   });				
 		addAnnotation
 		  (dependencyEClass, 
 		   source, 
@@ -593,7 +701,32 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 			 "target", "depender",
 			 "target.decoration", "arrow",
 			 "style", "dash"
+		   });			
+		addAnnotation
+		  (associationEClass, 
+		   source, 
+		   new String[] {
+			 "source", "source",
+			 "target", "target",
+			 "target.decoration", "arrow",
+			 "label", "name"
 		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";												
+		addAnnotation
+		  (getDependency_Name(), 
+		   source, 
+		   new String[] {
+			 "derivation", "if depender.oclIsUndefined() or dependee.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependee.name) endif"
+		   });	
 	}
 
 } //ClassDiagramPackageImpl

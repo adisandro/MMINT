@@ -52,6 +52,12 @@ public class ClassDiagramEditPartFactory implements EditPartFactory {
 			case ClassClassOwnedOperationsCompartmentEditPart.VISUAL_ID:
 				return new ClassClassOwnedOperationsCompartmentEditPart(view);
 
+			case AssociationEditPart.VISUAL_ID:
+				return new AssociationEditPart(view);
+
+			case AssociationNameEditPart.VISUAL_ID:
+				return new AssociationNameEditPart(view);
+
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
 
@@ -60,6 +66,12 @@ public class ClassDiagramEditPartFactory implements EditPartFactory {
 
 			case WrappingLabelEditPart.VISUAL_ID:
 				return new WrappingLabelEditPart(view);
+
+			case ClassSuperclassEditPart.VISUAL_ID:
+				return new ClassSuperclassEditPart(view);
+
+			case WrappingLabel2EditPart.VISUAL_ID:
+				return new WrappingLabel2EditPart(view);
 
 			}
 		}

@@ -81,12 +81,36 @@
   </nodes>
   <links>
     <domainMetaElement
+        href="classdiagram.ecore#//Association"/>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="classdiagram.gmfgraph#AssociationLabel"/>
+      <features
+          href="classdiagram.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <containmentFeature
+        href="classdiagram.ecore#//ClassDiagram/associations"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="classdiagram.gmftool#//@palette/@tools.1/@tools.0"/>
+    <diagramLink
+        href="classdiagram.gmfgraph#Association"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="classdiagram.ecore#//Association/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="classdiagram.ecore#//Association/target"/>
+  </links>
+  <links>
+    <domainMetaElement
         href="classdiagram.ecore#//Dependency"/>
     <containmentFeature
         href="classdiagram.ecore#//ClassDiagram/dependencies"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="classdiagram.gmftool#//@palette/@tools.1/@tools.0"/>
+        href="classdiagram.gmftool#//@palette/@tools.1/@tools.1"/>
     <diagramLink
         href="classdiagram.gmfgraph#Dependency"/>
     <sourceMetaFeature
@@ -105,12 +129,28 @@
     </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="classdiagram.gmftool#//@palette/@tools.1/@tools.1"/>
+        href="classdiagram.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="classdiagram.gmfgraph#ClassNestedIn"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="classdiagram.ecore#//Class/nestedIn"/>
+  </links>
+  <links>
+    <labelMappings
+        xsi:type="gmfmap:DesignLabelMapping"
+        readOnly="true">
+      <diagramLabel
+          href="classdiagram.gmfgraph#ClassSuperclassExternalLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="classdiagram.gmftool#//@palette/@tools.1/@tools.3"/>
+    <diagramLink
+        href="classdiagram.gmfgraph#ClassSuperclass"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="classdiagram.ecore#//Class/superclass"/>
   </links>
   <diagram>
     <diagramCanvas

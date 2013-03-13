@@ -20,10 +20,12 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassDiagramEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassNestedInEditPart;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassSuperclassEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.DependencyEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorPlugin;
@@ -73,11 +75,22 @@ public class ClassDiagramElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_4001 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram.diagram.Dependency_4001"); //$NON-NLS-1$
+	public static final IElementType Association_4001 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram.diagram.Association_4001"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ClassNestedIn_4002 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassNestedIn_4002"); //$NON-NLS-1$
+	public static final IElementType Dependency_4002 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram.diagram.Dependency_4002"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ClassNestedIn_4003 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassNestedIn_4003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ClassSuperclass_4004 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram.diagram.ClassSuperclass_4004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -201,11 +214,17 @@ public class ClassDiagramElementTypes {
 			elements.put(Operation_3002,
 					ClassDiagramPackage.eINSTANCE.getOperation());
 
-			elements.put(Dependency_4001,
+			elements.put(Association_4001,
+					ClassDiagramPackage.eINSTANCE.getAssociation());
+
+			elements.put(Dependency_4002,
 					ClassDiagramPackage.eINSTANCE.getDependency());
 
-			elements.put(ClassNestedIn_4002,
+			elements.put(ClassNestedIn_4003,
 					ClassDiagramPackage.eINSTANCE.getClass_NestedIn());
+
+			elements.put(ClassSuperclass_4004,
+					ClassDiagramPackage.eINSTANCE.getClass_Superclass());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -227,8 +246,10 @@ public class ClassDiagramElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Class_2001);
 			KNOWN_ELEMENT_TYPES.add(Attribute_3001);
 			KNOWN_ELEMENT_TYPES.add(Operation_3002);
-			KNOWN_ELEMENT_TYPES.add(Dependency_4001);
-			KNOWN_ELEMENT_TYPES.add(ClassNestedIn_4002);
+			KNOWN_ELEMENT_TYPES.add(Association_4001);
+			KNOWN_ELEMENT_TYPES.add(Dependency_4002);
+			KNOWN_ELEMENT_TYPES.add(ClassNestedIn_4003);
+			KNOWN_ELEMENT_TYPES.add(ClassSuperclass_4004);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -246,10 +267,14 @@ public class ClassDiagramElementTypes {
 			return Attribute_3001;
 		case OperationEditPart.VISUAL_ID:
 			return Operation_3002;
+		case AssociationEditPart.VISUAL_ID:
+			return Association_4001;
 		case DependencyEditPart.VISUAL_ID:
-			return Dependency_4001;
+			return Dependency_4002;
 		case ClassNestedInEditPart.VISUAL_ID:
-			return ClassNestedIn_4002;
+			return ClassNestedIn_4003;
+		case ClassSuperclassEditPart.VISUAL_ID:
+			return ClassSuperclass_4004;
 		}
 		return null;
 	}

@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AssociationNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassNameEditPart;
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationNameEditPart;
@@ -86,6 +87,24 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser associationName_6001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_6001Parser() {
+		if (associationName_6001Parser == null) {
+			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			associationName_6001Parser = parser;
+		}
+		return associationName_6001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case ClassNameEditPart.VISUAL_ID:
@@ -94,6 +113,8 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 			return getAttributeName_5001Parser();
 		case OperationNameEditPart.VISUAL_ID:
 			return getOperationName_5002Parser();
+		case AssociationNameEditPart.VISUAL_ID:
+			return getAssociationName_6001Parser();
 		}
 		return null;
 	}

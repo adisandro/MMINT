@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl#getDependee <em>Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl#getDepender <em>Depender</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +59,16 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 	 * @ordered
 	 */
 	protected edu.toronto.cs.se.modelepedia.classdiagram.Class depender;
+
+	/**
+	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)ClassDiagramPackage.Literals.DEPENDENCY__NAME).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,6 +214,15 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -247,6 +268,8 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 			case ClassDiagramPackage.DEPENDENCY__DEPENDER:
 				if (resolve) return getDepender();
 				return basicGetDepender();
+			case ClassDiagramPackage.DEPENDENCY__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -299,6 +322,8 @@ public class DependencyImpl extends EObjectImpl implements Dependency {
 				return dependee != null;
 			case ClassDiagramPackage.DEPENDENCY__DEPENDER:
 				return depender != null;
+			case ClassDiagramPackage.DEPENDENCY__NAME:
+				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -8,13 +8,10 @@
   <foreignModel>classdiagram.ecore</foreignModel>
   <genPackages prefix="ClassDiagram" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       ecorePackage="classdiagram.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="classdiagram.ecore#//Visibility">
-      <genEnumLiterals ecoreEnumLiteral="classdiagram.ecore#//Visibility/PRIVATE"/>
-      <genEnumLiterals ecoreEnumLiteral="classdiagram.ecore#//Visibility/PUBLIC"/>
-    </genEnums>
     <genClasses ecoreClass="classdiagram.ecore#//ClassDiagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//ClassDiagram/classes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//ClassDiagram/dependencies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//ClassDiagram/associations"/>
     </genClasses>
     <genClasses ecoreClass="classdiagram.ecore#//Class">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/ownedAttributes"/>
@@ -23,6 +20,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/dependenciesAsDepender"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/nestedIn"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/nested"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/superclass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/subclasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/associationsAsSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Class/associationsAsTarget"/>
     </genClasses>
     <genClasses ecoreClass="classdiagram.ecore#//Attribute">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference classdiagram.ecore#//Attribute/owner"/>
@@ -36,10 +37,15 @@
     <genClasses ecoreClass="classdiagram.ecore#//Dependency">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Dependency/dependee"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Dependency/depender"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//Dependency/name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="classdiagram.ecore#//TypedElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//TypedElement/visibility"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//TypedElement/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute classdiagram.ecore#//TypedElement/public"/>
+    </genClasses>
+    <genClasses ecoreClass="classdiagram.ecore#//Association">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Association/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference classdiagram.ecore#//Association/target"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

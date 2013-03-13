@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getAssociations <em>Associations</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +65,16 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * @ordered
 	 */
 	protected EList<Dependency> dependencies;
+
+	/**
+	 * The cached value of the '{@link #getAssociations() <em>Associations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> associations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,6 +124,18 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Association> getAssociations() {
+		if (associations == null) {
+			associations = new EObjectContainmentEList<Association>(Association.class, this, ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS);
+		}
+		return associations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -119,6 +143,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
 			case ClassDiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
 				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
+				return ((InternalEList<?>)getAssociations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -135,6 +161,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return getClasses();
 			case ClassDiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
 				return getDependencies();
+			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
+				return getAssociations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,6 +184,10 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				getDependencies().clear();
 				getDependencies().addAll((Collection<? extends Dependency>)newValue);
 				return;
+			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
+				getAssociations().clear();
+				getAssociations().addAll((Collection<? extends Association>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -174,6 +206,9 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 			case ClassDiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
 				getDependencies().clear();
 				return;
+			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
+				getAssociations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,6 +225,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return classes != null && !classes.isEmpty();
 			case ClassDiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
+			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
+				return associations != null && !associations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

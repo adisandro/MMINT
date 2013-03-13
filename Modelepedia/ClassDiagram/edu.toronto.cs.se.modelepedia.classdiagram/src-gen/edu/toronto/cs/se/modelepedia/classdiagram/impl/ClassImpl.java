@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
@@ -44,6 +45,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getNestedIn <em>Nested In</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getNested <em>Nested</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getSuperclass <em>Superclass</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getSubclasses <em>Subclasses</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getAssociationsAsSource <em>Associations As Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getAssociationsAsTarget <em>Associations As Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,6 +114,46 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 * @ordered
 	 */
 	protected EList<edu.toronto.cs.se.modelepedia.classdiagram.Class> nested;
+
+	/**
+	 * The cached value of the '{@link #getSuperclass() <em>Superclass</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuperclass()
+	 * @generated
+	 * @ordered
+	 */
+	protected edu.toronto.cs.se.modelepedia.classdiagram.Class superclass;
+
+	/**
+	 * The cached value of the '{@link #getSubclasses() <em>Subclasses</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubclasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<edu.toronto.cs.se.modelepedia.classdiagram.Class> subclasses;
+
+	/**
+	 * The cached value of the '{@link #getAssociationsAsSource() <em>Associations As Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociationsAsSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> associationsAsSource;
+
+	/**
+	 * The cached value of the '{@link #getAssociationsAsTarget() <em>Associations As Target</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociationsAsTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Association> associationsAsTarget;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -254,6 +299,102 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class getSuperclass() {
+		if (superclass != null && superclass.eIsProxy()) {
+			InternalEObject oldSuperclass = (InternalEObject)superclass;
+			superclass = (edu.toronto.cs.se.modelepedia.classdiagram.Class)eResolveProxy(oldSuperclass);
+			if (superclass != oldSuperclass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassDiagramPackage.CLASS__SUPERCLASS, oldSuperclass, superclass));
+			}
+		}
+		return superclass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class basicGetSuperclass() {
+		return superclass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSuperclass(edu.toronto.cs.se.modelepedia.classdiagram.Class newSuperclass, NotificationChain msgs) {
+		edu.toronto.cs.se.modelepedia.classdiagram.Class oldSuperclass = superclass;
+		superclass = newSuperclass;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.CLASS__SUPERCLASS, oldSuperclass, newSuperclass);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSuperclass(edu.toronto.cs.se.modelepedia.classdiagram.Class newSuperclass) {
+		if (newSuperclass != superclass) {
+			NotificationChain msgs = null;
+			if (superclass != null)
+				msgs = ((InternalEObject)superclass).eInverseRemove(this, ClassDiagramPackage.CLASS__SUBCLASSES, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+			if (newSuperclass != null)
+				msgs = ((InternalEObject)newSuperclass).eInverseAdd(this, ClassDiagramPackage.CLASS__SUBCLASSES, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+			msgs = basicSetSuperclass(newSuperclass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.CLASS__SUPERCLASS, newSuperclass, newSuperclass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<edu.toronto.cs.se.modelepedia.classdiagram.Class> getSubclasses() {
+		if (subclasses == null) {
+			subclasses = new EObjectWithInverseResolvingEList<edu.toronto.cs.se.modelepedia.classdiagram.Class>(edu.toronto.cs.se.modelepedia.classdiagram.Class.class, this, ClassDiagramPackage.CLASS__SUBCLASSES, ClassDiagramPackage.CLASS__SUPERCLASS);
+		}
+		return subclasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Association> getAssociationsAsSource() {
+		if (associationsAsSource == null) {
+			associationsAsSource = new EObjectWithInverseResolvingEList<Association>(Association.class, this, ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_SOURCE, ClassDiagramPackage.ASSOCIATION__SOURCE);
+		}
+		return associationsAsSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Association> getAssociationsAsTarget() {
+		if (associationsAsTarget == null) {
+			associationsAsTarget = new EObjectWithInverseResolvingEList<Association>(Association.class, this, ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET, ClassDiagramPackage.ASSOCIATION__TARGET);
+		}
+		return associationsAsTarget;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -272,6 +413,16 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return basicSetNestedIn((edu.toronto.cs.se.modelepedia.classdiagram.Class)otherEnd, msgs);
 			case ClassDiagramPackage.CLASS__NESTED:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNested()).basicAdd(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__SUPERCLASS:
+				if (superclass != null)
+					msgs = ((InternalEObject)superclass).eInverseRemove(this, ClassDiagramPackage.CLASS__SUBCLASSES, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+				return basicSetSuperclass((edu.toronto.cs.se.modelepedia.classdiagram.Class)otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__SUBCLASSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubclasses()).basicAdd(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_SOURCE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssociationsAsSource()).basicAdd(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssociationsAsTarget()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -296,6 +447,14 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return basicSetNestedIn(null, msgs);
 			case ClassDiagramPackage.CLASS__NESTED:
 				return ((InternalEList<?>)getNested()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__SUPERCLASS:
+				return basicSetSuperclass(null, msgs);
+			case ClassDiagramPackage.CLASS__SUBCLASSES:
+				return ((InternalEList<?>)getSubclasses()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_SOURCE:
+				return ((InternalEList<?>)getAssociationsAsSource()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
+				return ((InternalEList<?>)getAssociationsAsTarget()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -321,6 +480,15 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return basicGetNestedIn();
 			case ClassDiagramPackage.CLASS__NESTED:
 				return getNested();
+			case ClassDiagramPackage.CLASS__SUPERCLASS:
+				if (resolve) return getSuperclass();
+				return basicGetSuperclass();
+			case ClassDiagramPackage.CLASS__SUBCLASSES:
+				return getSubclasses();
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_SOURCE:
+				return getAssociationsAsSource();
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
+				return getAssociationsAsTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -357,6 +525,21 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				getNested().clear();
 				getNested().addAll((Collection<? extends edu.toronto.cs.se.modelepedia.classdiagram.Class>)newValue);
 				return;
+			case ClassDiagramPackage.CLASS__SUPERCLASS:
+				setSuperclass((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+				return;
+			case ClassDiagramPackage.CLASS__SUBCLASSES:
+				getSubclasses().clear();
+				getSubclasses().addAll((Collection<? extends edu.toronto.cs.se.modelepedia.classdiagram.Class>)newValue);
+				return;
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_SOURCE:
+				getAssociationsAsSource().clear();
+				getAssociationsAsSource().addAll((Collection<? extends Association>)newValue);
+				return;
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
+				getAssociationsAsTarget().clear();
+				getAssociationsAsTarget().addAll((Collection<? extends Association>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -387,6 +570,18 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 			case ClassDiagramPackage.CLASS__NESTED:
 				getNested().clear();
 				return;
+			case ClassDiagramPackage.CLASS__SUPERCLASS:
+				setSuperclass((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
+				return;
+			case ClassDiagramPackage.CLASS__SUBCLASSES:
+				getSubclasses().clear();
+				return;
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_SOURCE:
+				getAssociationsAsSource().clear();
+				return;
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
+				getAssociationsAsTarget().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -411,6 +606,14 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				return nestedIn != null;
 			case ClassDiagramPackage.CLASS__NESTED:
 				return nested != null && !nested.isEmpty();
+			case ClassDiagramPackage.CLASS__SUPERCLASS:
+				return superclass != null;
+			case ClassDiagramPackage.CLASS__SUBCLASSES:
+				return subclasses != null && !subclasses.isEmpty();
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_SOURCE:
+				return associationsAsSource != null && !associationsAsSource.isEmpty();
+			case ClassDiagramPackage.CLASS__ASSOCIATIONS_AS_TARGET:
+				return associationsAsTarget != null && !associationsAsTarget.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

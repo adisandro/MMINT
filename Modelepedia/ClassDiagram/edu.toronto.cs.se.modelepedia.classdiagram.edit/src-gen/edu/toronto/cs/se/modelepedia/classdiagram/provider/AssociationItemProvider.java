@@ -1,19 +1,19 @@
 /**
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Vivien Suen.
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro, Vivien Suen - Implementation.
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
-import edu.toronto.cs.se.modelepedia.classdiagram.TypedElement;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,16 +28,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Association} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypedElementItemProvider
+public class AssociationItemProvider
 	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +49,7 @@ public class TypedElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElementItemProvider(AdapterFactory adapterFactory) {
+	public AssociationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,26 +64,26 @@ public class TypedElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
-			addPublicPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
+	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TypedElement_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_type_feature", "_UI_TypedElement_type"),
-				 ClassDiagramPackage.Literals.TYPED_ELEMENT__TYPE,
+				 getString("_UI_Association_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Association_source_feature", "_UI_Association_type"),
+				 ClassDiagramPackage.Literals.ASSOCIATION__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -95,25 +93,36 @@ public class TypedElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Public feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPublicPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TypedElement_public_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_public_feature", "_UI_TypedElement_type"),
-				 ClassDiagramPackage.Literals.TYPED_ELEMENT__PUBLIC,
+				 getString("_UI_Association_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Association_target_feature", "_UI_Association_type"),
+				 ClassDiagramPackage.Literals.ASSOCIATION__TARGET,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
+	}
+
+	/**
+	 * This returns Association.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Association"));
 	}
 
 	/**
@@ -124,10 +133,10 @@ public class TypedElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TypedElement)object).getName();
+		String label = ((Association)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_TypedElement_type") :
-			getString("_UI_TypedElement_type") + " " + label;
+			getString("_UI_Association_type") :
+			getString("_UI_Association_type") + " " + label;
 	}
 
 	/**
@@ -140,12 +149,6 @@ public class TypedElementItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(TypedElement.class)) {
-			case ClassDiagramPackage.TYPED_ELEMENT__PUBLIC:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
