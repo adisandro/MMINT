@@ -1,654 +1,788 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin">
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_aqMuMIxpEeKZK6dfhsaYbQ">
   <imports href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#/"/>
   <imports href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#/"/>
   <imports href="http://www.eclipse.org/emf/2011/Henshin/Trace#/"/>
-  <units xsi:type="henshin:Rule" name="liftAttribute">
-    <parameters name="attributeName">
+  <units xsi:type="henshin:Rule" xmi:id="_aqMuMYxpEeKZK6dfhsaYbQ" name="liftAttribute">
+    <parameters xmi:id="_aqNVQIxpEeKZK6dfhsaYbQ" name="attributeName">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </parameters>
-    <parameters name="isAttributePublic">
+    <parameters xmi:id="_aqNVQYxpEeKZK6dfhsaYbQ" name="isAttributePublic">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </parameters>
-    <lhs name="Lhs">
-      <nodes outgoing="//@units.0/@lhs/@edges.0 //@units.0/@lhs/@edges.2">
+    <lhs xmi:id="_aqNVQoxpEeKZK6dfhsaYbQ" name="Lhs">
+      <nodes xmi:id="_aqNVQ4xpEeKZK6dfhsaYbQ" outgoing="_aqNVSoxpEeKZK6dfhsaYbQ _aqN8UIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.0/@lhs/@edges.0" outgoing="//@units.0/@lhs/@edges.1">
+      <nodes xmi:id="_aqNVRIxpEeKZK6dfhsaYbQ" incoming="_aqNVSoxpEeKZK6dfhsaYbQ" outgoing="_aqNVS4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.0/@lhs/@edges.1">
+      <nodes xmi:id="_aqNVRYxpEeKZK6dfhsaYbQ" incoming="_aqNVS4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.0/@lhs/@edges.2" outgoing="//@units.0/@lhs/@edges.3">
+      <nodes xmi:id="_aqNVRoxpEeKZK6dfhsaYbQ" incoming="_aqN8UIxpEeKZK6dfhsaYbQ" outgoing="_aqN8UYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-        <attributes value="attributeName">
+        <attributes xmi:id="_aqNVR4xpEeKZK6dfhsaYbQ" value="attributeName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
-        <attributes value="isAttributePublic">
+        <attributes xmi:id="_aqNVSIxpEeKZK6dfhsaYbQ" value="isAttributePublic">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
         </attributes>
       </nodes>
-      <nodes incoming="//@units.0/@lhs/@edges.3">
+      <nodes xmi:id="_aqNVSYxpEeKZK6dfhsaYbQ" incoming="_aqN8UYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <edges source="//@units.0/@lhs/@nodes.0" target="//@units.0/@lhs/@nodes.1">
+      <edges xmi:id="_aqNVSoxpEeKZK6dfhsaYbQ" source="_aqNVQ4xpEeKZK6dfhsaYbQ" target="_aqNVRIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.0/@lhs/@nodes.1" target="//@units.0/@lhs/@nodes.2">
+      <edges xmi:id="_aqNVS4xpEeKZK6dfhsaYbQ" source="_aqNVRIxpEeKZK6dfhsaYbQ" target="_aqNVRYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.0/@lhs/@nodes.0" target="//@units.0/@lhs/@nodes.3">
+      <edges xmi:id="_aqN8UIxpEeKZK6dfhsaYbQ" source="_aqNVQ4xpEeKZK6dfhsaYbQ" target="_aqNVRoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
       </edges>
-      <edges source="//@units.0/@lhs/@nodes.3" target="//@units.0/@lhs/@nodes.4">
+      <edges xmi:id="_aqN8UYxpEeKZK6dfhsaYbQ" source="_aqNVRoxpEeKZK6dfhsaYbQ" target="_aqNVSYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
       </edges>
-      <formula xsi:type="henshin:Not">
-        <child xsi:type="henshin:NestedCondition">
-          <conclusion name="A_NAC">
-            <nodes outgoing="//@units.0/@lhs/@formula/@child/@conclusion/@edges.0 //@units.0/@lhs/@formula/@child/@conclusion/@edges.1">
+      <formula xsi:type="henshin:Not" xmi:id="_aqN8UoxpEeKZK6dfhsaYbQ">
+        <child xsi:type="henshin:NestedCondition" xmi:id="_aqN8U4xpEeKZK6dfhsaYbQ">
+          <conclusion xmi:id="_aqN8VIxpEeKZK6dfhsaYbQ" name="A_NAC">
+            <nodes xmi:id="_aqN8VYxpEeKZK6dfhsaYbQ" outgoing="_aqOjYYxpEeKZK6dfhsaYbQ _aqOjYoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.0/@lhs/@formula/@child/@conclusion/@edges.0" outgoing="//@units.0/@lhs/@formula/@child/@conclusion/@edges.2">
+            <nodes xmi:id="_aqN8VoxpEeKZK6dfhsaYbQ" incoming="_aqOjYYxpEeKZK6dfhsaYbQ" outgoing="_aqOjY4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
             </nodes>
-            <nodes incoming="//@units.0/@lhs/@formula/@child/@conclusion/@edges.1" outgoing="//@units.0/@lhs/@formula/@child/@conclusion/@edges.3">
+            <nodes xmi:id="_aqN8V4xpEeKZK6dfhsaYbQ" incoming="_aqOjYoxpEeKZK6dfhsaYbQ" outgoing="_aqOjZIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-              <attributes value="attributeName">
+              <attributes xmi:id="_aqN8WIxpEeKZK6dfhsaYbQ" value="attributeName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
-              <attributes value="isAttributePublic">
+              <attributes xmi:id="_aqN8WYxpEeKZK6dfhsaYbQ" value="isAttributePublic">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
               </attributes>
             </nodes>
-            <nodes incoming="//@units.0/@lhs/@formula/@child/@conclusion/@edges.2" outgoing="//@units.0/@lhs/@formula/@child/@conclusion/@edges.4">
+            <nodes xmi:id="_aqN8WoxpEeKZK6dfhsaYbQ" incoming="_aqOjY4xpEeKZK6dfhsaYbQ" outgoing="_aqOjZYxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.0/@lhs/@formula/@child/@conclusion/@edges.4" outgoing="//@units.0/@lhs/@formula/@child/@conclusion/@edges.5">
+            <nodes xmi:id="_aqN8W4xpEeKZK6dfhsaYbQ" incoming="_aqOjZYxpEeKZK6dfhsaYbQ" outgoing="_aqOjZoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-              <attributes value="attributeName">
+              <attributes xmi:id="_aqN8XIxpEeKZK6dfhsaYbQ" value="attributeName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
-              <attributes value="isAttributePublic">
+              <attributes xmi:id="_aqN8XYxpEeKZK6dfhsaYbQ" value="isAttributePublic">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
               </attributes>
             </nodes>
-            <nodes incoming="//@units.0/@lhs/@formula/@child/@conclusion/@edges.3 //@units.0/@lhs/@formula/@child/@conclusion/@edges.5">
+            <nodes xmi:id="_aqOjYIxpEeKZK6dfhsaYbQ" incoming="_aqOjZIxpEeKZK6dfhsaYbQ _aqOjZoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.1">
+            <edges xmi:id="_aqOjYYxpEeKZK6dfhsaYbQ" source="_aqN8VYxpEeKZK6dfhsaYbQ" target="_aqN8VoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
             </edges>
-            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.2">
+            <edges xmi:id="_aqOjYoxpEeKZK6dfhsaYbQ" source="_aqN8VYxpEeKZK6dfhsaYbQ" target="_aqN8V4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
             </edges>
-            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.3">
+            <edges xmi:id="_aqOjY4xpEeKZK6dfhsaYbQ" source="_aqN8VoxpEeKZK6dfhsaYbQ" target="_aqN8WoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
             </edges>
-            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.2" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.5">
+            <edges xmi:id="_aqOjZIxpEeKZK6dfhsaYbQ" source="_aqN8V4xpEeKZK6dfhsaYbQ" target="_aqOjYIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
             </edges>
-            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.3" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.4">
+            <edges xmi:id="_aqOjZYxpEeKZK6dfhsaYbQ" source="_aqN8WoxpEeKZK6dfhsaYbQ" target="_aqN8W4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
             </edges>
-            <edges source="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.5">
+            <edges xmi:id="_aqOjZoxpEeKZK6dfhsaYbQ" source="_aqN8W4xpEeKZK6dfhsaYbQ" target="_aqOjYIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
             </edges>
           </conclusion>
-          <mappings origin="//@units.0/@lhs/@nodes.0" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.0"/>
-          <mappings origin="//@units.0/@lhs/@nodes.1" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.1"/>
-          <mappings origin="//@units.0/@lhs/@nodes.3" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.2"/>
-          <mappings origin="//@units.0/@lhs/@nodes.2" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.3"/>
-          <mappings origin="//@units.0/@lhs/@nodes.4" image="//@units.0/@lhs/@formula/@child/@conclusion/@nodes.5"/>
+          <mappings xmi:id="_aqOjZ4xpEeKZK6dfhsaYbQ" origin="_aqNVQ4xpEeKZK6dfhsaYbQ" image="_aqN8VYxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqOjaIxpEeKZK6dfhsaYbQ" origin="_aqNVRIxpEeKZK6dfhsaYbQ" image="_aqN8VoxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqOjaYxpEeKZK6dfhsaYbQ" origin="_aqNVRoxpEeKZK6dfhsaYbQ" image="_aqN8V4xpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqOjaoxpEeKZK6dfhsaYbQ" origin="_aqNVRYxpEeKZK6dfhsaYbQ" image="_aqN8WoxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqOja4xpEeKZK6dfhsaYbQ" origin="_aqNVSYxpEeKZK6dfhsaYbQ" image="_aqOjYIxpEeKZK6dfhsaYbQ"/>
         </child>
       </formula>
     </lhs>
-    <rhs name="Rhs">
-      <nodes outgoing="//@units.0/@rhs/@edges.0 //@units.0/@rhs/@edges.2">
+    <rhs xmi:id="_aqOjbIxpEeKZK6dfhsaYbQ" name="Rhs">
+      <nodes xmi:id="_aqOjbYxpEeKZK6dfhsaYbQ" outgoing="_aqPKeIxpEeKZK6dfhsaYbQ _aqPKeoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.0/@rhs/@edges.0" outgoing="//@units.0/@rhs/@edges.1">
+      <nodes xmi:id="_aqOjboxpEeKZK6dfhsaYbQ" incoming="_aqPKeIxpEeKZK6dfhsaYbQ" outgoing="_aqPKeYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.0/@rhs/@edges.1" outgoing="//@units.0/@rhs/@edges.4">
+      <nodes xmi:id="_aqPKcIxpEeKZK6dfhsaYbQ" incoming="_aqPKeYxpEeKZK6dfhsaYbQ" outgoing="_aqPxgYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.0/@rhs/@edges.2" outgoing="//@units.0/@rhs/@edges.3">
+      <nodes xmi:id="_aqPKcYxpEeKZK6dfhsaYbQ" incoming="_aqPKeoxpEeKZK6dfhsaYbQ" outgoing="_aqPxgIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-        <attributes value="attributeName">
+        <attributes xmi:id="_aqPKcoxpEeKZK6dfhsaYbQ" value="attributeName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
-        <attributes value="isAttributePublic">
+        <attributes xmi:id="_aqPKc4xpEeKZK6dfhsaYbQ" value="isAttributePublic">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
         </attributes>
       </nodes>
-      <nodes incoming="//@units.0/@rhs/@edges.3 //@units.0/@rhs/@edges.5">
+      <nodes xmi:id="_aqPKdIxpEeKZK6dfhsaYbQ" incoming="_aqPxgIxpEeKZK6dfhsaYbQ _aqPxgoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.0/@rhs/@edges.4" outgoing="//@units.0/@rhs/@edges.5">
+      <nodes xmi:id="_aqPKdYxpEeKZK6dfhsaYbQ" incoming="_aqPxgYxpEeKZK6dfhsaYbQ" outgoing="_aqPxgoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-        <attributes value="attributeName">
+        <attributes xmi:id="_aqPKdoxpEeKZK6dfhsaYbQ" value="attributeName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
-        <attributes value="isAttributePublic">
+        <attributes xmi:id="_aqPKd4xpEeKZK6dfhsaYbQ" value="isAttributePublic">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
         </attributes>
       </nodes>
-      <edges source="//@units.0/@rhs/@nodes.0" target="//@units.0/@rhs/@nodes.1">
+      <edges xmi:id="_aqPKeIxpEeKZK6dfhsaYbQ" source="_aqOjbYxpEeKZK6dfhsaYbQ" target="_aqOjboxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.0/@rhs/@nodes.1" target="//@units.0/@rhs/@nodes.2">
+      <edges xmi:id="_aqPKeYxpEeKZK6dfhsaYbQ" source="_aqOjboxpEeKZK6dfhsaYbQ" target="_aqPKcIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.0/@rhs/@nodes.0" target="//@units.0/@rhs/@nodes.3">
+      <edges xmi:id="_aqPKeoxpEeKZK6dfhsaYbQ" source="_aqOjbYxpEeKZK6dfhsaYbQ" target="_aqPKcYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
       </edges>
-      <edges source="//@units.0/@rhs/@nodes.3" target="//@units.0/@rhs/@nodes.4">
+      <edges xmi:id="_aqPxgIxpEeKZK6dfhsaYbQ" source="_aqPKcYxpEeKZK6dfhsaYbQ" target="_aqPKdIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
       </edges>
-      <edges source="//@units.0/@rhs/@nodes.2" target="//@units.0/@rhs/@nodes.5">
+      <edges xmi:id="_aqPxgYxpEeKZK6dfhsaYbQ" source="_aqPKcIxpEeKZK6dfhsaYbQ" target="_aqPKdYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
       </edges>
-      <edges source="//@units.0/@rhs/@nodes.5" target="//@units.0/@rhs/@nodes.4">
+      <edges xmi:id="_aqPxgoxpEeKZK6dfhsaYbQ" source="_aqPKdYxpEeKZK6dfhsaYbQ" target="_aqPKdIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
       </edges>
     </rhs>
-    <mappings origin="//@units.0/@lhs/@nodes.0" image="//@units.0/@rhs/@nodes.0"/>
-    <mappings origin="//@units.0/@lhs/@nodes.1" image="//@units.0/@rhs/@nodes.1"/>
-    <mappings origin="//@units.0/@lhs/@nodes.2" image="//@units.0/@rhs/@nodes.2"/>
-    <mappings origin="//@units.0/@lhs/@nodes.3" image="//@units.0/@rhs/@nodes.3"/>
-    <mappings origin="//@units.0/@lhs/@nodes.4" image="//@units.0/@rhs/@nodes.4"/>
+    <mappings xmi:id="_aqPxg4xpEeKZK6dfhsaYbQ" origin="_aqNVQ4xpEeKZK6dfhsaYbQ" image="_aqOjbYxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqPxhIxpEeKZK6dfhsaYbQ" origin="_aqNVRIxpEeKZK6dfhsaYbQ" image="_aqOjboxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqPxhYxpEeKZK6dfhsaYbQ" origin="_aqNVRYxpEeKZK6dfhsaYbQ" image="_aqPKcIxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqPxhoxpEeKZK6dfhsaYbQ" origin="_aqNVRoxpEeKZK6dfhsaYbQ" image="_aqPKcYxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqPxh4xpEeKZK6dfhsaYbQ" origin="_aqNVSYxpEeKZK6dfhsaYbQ" image="_aqPKdIxpEeKZK6dfhsaYbQ"/>
   </units>
-  <units xsi:type="henshin:LoopUnit" name="liftAttributes" subUnit="//@units.0"/>
-  <units xsi:type="henshin:Rule" name="liftAttributeType">
-    <parameters name="attributeName">
+  <units xsi:type="henshin:LoopUnit" xmi:id="_aqPxiIxpEeKZK6dfhsaYbQ" name="liftAttributes" subUnit="_aqMuMYxpEeKZK6dfhsaYbQ"/>
+  <units xsi:type="henshin:Rule" xmi:id="_aqPxiYxpEeKZK6dfhsaYbQ" name="liftAttributeType">
+    <parameters xmi:id="_aqPxioxpEeKZK6dfhsaYbQ" name="attributeName">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </parameters>
-    <parameters name="isAttributePublic">
+    <parameters xmi:id="_aqPxi4xpEeKZK6dfhsaYbQ" name="isAttributePublic">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </parameters>
-    <lhs name="Lhs">
-      <nodes incoming="//@units.2/@lhs/@edges.2" outgoing="//@units.2/@lhs/@edges.0">
+    <lhs xmi:id="_aqPxjIxpEeKZK6dfhsaYbQ" name="Lhs">
+      <nodes xmi:id="_aqPxjYxpEeKZK6dfhsaYbQ" incoming="_aqQYloxpEeKZK6dfhsaYbQ" outgoing="_aqQYlIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.2/@lhs/@edges.0" outgoing="//@units.2/@lhs/@edges.1">
+      <nodes xmi:id="_aqPxjoxpEeKZK6dfhsaYbQ" incoming="_aqQYlIxpEeKZK6dfhsaYbQ" outgoing="_aqQYlYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.2/@lhs/@edges.1">
+      <nodes xmi:id="_aqPxj4xpEeKZK6dfhsaYbQ" incoming="_aqQYlYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.2/@lhs/@edges.3" outgoing="//@units.2/@lhs/@edges.2">
+      <nodes xmi:id="_aqQYkIxpEeKZK6dfhsaYbQ" incoming="_aqQYl4xpEeKZK6dfhsaYbQ" outgoing="_aqQYloxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-        <attributes value="attributeName">
+        <attributes xmi:id="_aqQYkYxpEeKZK6dfhsaYbQ" value="attributeName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
-        <attributes value="isAttributePublic">
+        <attributes xmi:id="_aqQYkoxpEeKZK6dfhsaYbQ" value="isAttributePublic">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
         </attributes>
       </nodes>
-      <nodes outgoing="//@units.2/@lhs/@edges.3">
+      <nodes xmi:id="_aqQYk4xpEeKZK6dfhsaYbQ" outgoing="_aqQYl4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <edges source="//@units.2/@lhs/@nodes.0" target="//@units.2/@lhs/@nodes.1">
+      <edges xmi:id="_aqQYlIxpEeKZK6dfhsaYbQ" source="_aqPxjYxpEeKZK6dfhsaYbQ" target="_aqPxjoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.2/@lhs/@nodes.1" target="//@units.2/@lhs/@nodes.2">
+      <edges xmi:id="_aqQYlYxpEeKZK6dfhsaYbQ" source="_aqPxjoxpEeKZK6dfhsaYbQ" target="_aqPxj4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.2/@lhs/@nodes.3" target="//@units.2/@lhs/@nodes.0">
+      <edges xmi:id="_aqQYloxpEeKZK6dfhsaYbQ" source="_aqQYkIxpEeKZK6dfhsaYbQ" target="_aqPxjYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
       </edges>
-      <edges source="//@units.2/@lhs/@nodes.4" target="//@units.2/@lhs/@nodes.3">
+      <edges xmi:id="_aqQYl4xpEeKZK6dfhsaYbQ" source="_aqQYk4xpEeKZK6dfhsaYbQ" target="_aqQYkIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
       </edges>
-      <formula xsi:type="henshin:Not">
-        <child xsi:type="henshin:NestedCondition">
-          <conclusion name="A_NAC">
-            <nodes incoming="//@units.2/@lhs/@formula/@child/@conclusion/@edges.0" outgoing="//@units.2/@lhs/@formula/@child/@conclusion/@edges.1">
+      <formula xsi:type="henshin:Not" xmi:id="_aqQYmIxpEeKZK6dfhsaYbQ">
+        <child xsi:type="henshin:NestedCondition" xmi:id="_aqQYmYxpEeKZK6dfhsaYbQ">
+          <conclusion xmi:id="_aqQYmoxpEeKZK6dfhsaYbQ" name="A_NAC">
+            <nodes xmi:id="_aqQYm4xpEeKZK6dfhsaYbQ" incoming="_aqQ_poxpEeKZK6dfhsaYbQ" outgoing="_aqQ_p4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.2/@lhs/@formula/@child/@conclusion/@edges.3" outgoing="//@units.2/@lhs/@formula/@child/@conclusion/@edges.0">
+            <nodes xmi:id="_aqQYnIxpEeKZK6dfhsaYbQ" incoming="_aqQ_qYxpEeKZK6dfhsaYbQ" outgoing="_aqQ_poxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-              <attributes value="attributeName">
+              <attributes xmi:id="_aqQYnYxpEeKZK6dfhsaYbQ" value="attributeName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
-              <attributes value="isAttributePublic">
+              <attributes xmi:id="_aqQYnoxpEeKZK6dfhsaYbQ" value="isAttributePublic">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
               </attributes>
             </nodes>
-            <nodes incoming="//@units.2/@lhs/@formula/@child/@conclusion/@edges.1" outgoing="//@units.2/@lhs/@formula/@child/@conclusion/@edges.2">
+            <nodes xmi:id="_aqQ_oIxpEeKZK6dfhsaYbQ" incoming="_aqQ_p4xpEeKZK6dfhsaYbQ" outgoing="_aqQ_qIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
             </nodes>
-            <nodes incoming="//@units.2/@lhs/@formula/@child/@conclusion/@edges.2 //@units.2/@lhs/@formula/@child/@conclusion/@edges.5">
+            <nodes xmi:id="_aqQ_oYxpEeKZK6dfhsaYbQ" incoming="_aqQ_qIxpEeKZK6dfhsaYbQ _aqQ_q4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.2/@lhs/@formula/@child/@conclusion/@edges.4" outgoing="//@units.2/@lhs/@formula/@child/@conclusion/@edges.5">
+            <nodes xmi:id="_aqQ_ooxpEeKZK6dfhsaYbQ" incoming="_aqQ_qoxpEeKZK6dfhsaYbQ" outgoing="_aqQ_q4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-              <attributes value="attributeName">
+              <attributes xmi:id="_aqQ_o4xpEeKZK6dfhsaYbQ" value="attributeName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
-              <attributes value="isAttributePublic">
+              <attributes xmi:id="_aqQ_pIxpEeKZK6dfhsaYbQ" value="isAttributePublic">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
               </attributes>
             </nodes>
-            <nodes outgoing="//@units.2/@lhs/@formula/@child/@conclusion/@edges.3 //@units.2/@lhs/@formula/@child/@conclusion/@edges.4">
+            <nodes xmi:id="_aqQ_pYxpEeKZK6dfhsaYbQ" outgoing="_aqQ_qYxpEeKZK6dfhsaYbQ _aqQ_qoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <edges source="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.0">
+            <edges xmi:id="_aqQ_poxpEeKZK6dfhsaYbQ" source="_aqQYnIxpEeKZK6dfhsaYbQ" target="_aqQYm4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
             </edges>
-            <edges source="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.2">
+            <edges xmi:id="_aqQ_p4xpEeKZK6dfhsaYbQ" source="_aqQYm4xpEeKZK6dfhsaYbQ" target="_aqQ_oIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
             </edges>
-            <edges source="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.2" target="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.3">
+            <edges xmi:id="_aqQ_qIxpEeKZK6dfhsaYbQ" source="_aqQ_oIxpEeKZK6dfhsaYbQ" target="_aqQ_oYxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
             </edges>
-            <edges source="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.1">
+            <edges xmi:id="_aqQ_qYxpEeKZK6dfhsaYbQ" source="_aqQ_pYxpEeKZK6dfhsaYbQ" target="_aqQYnIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
             </edges>
-            <edges source="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.4">
+            <edges xmi:id="_aqQ_qoxpEeKZK6dfhsaYbQ" source="_aqQ_pYxpEeKZK6dfhsaYbQ" target="_aqQ_ooxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
             </edges>
-            <edges source="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.3">
+            <edges xmi:id="_aqQ_q4xpEeKZK6dfhsaYbQ" source="_aqQ_ooxpEeKZK6dfhsaYbQ" target="_aqQ_oYxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
             </edges>
           </conclusion>
-          <mappings origin="//@units.2/@lhs/@nodes.0" image="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.0"/>
-          <mappings origin="//@units.2/@lhs/@nodes.3" image="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.1"/>
-          <mappings origin="//@units.2/@lhs/@nodes.1" image="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.2"/>
-          <mappings origin="//@units.2/@lhs/@nodes.2" image="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.3"/>
-          <mappings origin="//@units.2/@lhs/@nodes.4" image="//@units.2/@lhs/@formula/@child/@conclusion/@nodes.5"/>
+          <mappings xmi:id="_aqQ_rIxpEeKZK6dfhsaYbQ" origin="_aqPxjYxpEeKZK6dfhsaYbQ" image="_aqQYm4xpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqQ_rYxpEeKZK6dfhsaYbQ" origin="_aqQYkIxpEeKZK6dfhsaYbQ" image="_aqQYnIxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqQ_roxpEeKZK6dfhsaYbQ" origin="_aqPxjoxpEeKZK6dfhsaYbQ" image="_aqQ_oIxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqQ_r4xpEeKZK6dfhsaYbQ" origin="_aqPxj4xpEeKZK6dfhsaYbQ" image="_aqQ_oYxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqQ_sIxpEeKZK6dfhsaYbQ" origin="_aqQYk4xpEeKZK6dfhsaYbQ" image="_aqQ_pYxpEeKZK6dfhsaYbQ"/>
         </child>
       </formula>
     </lhs>
-    <rhs name="Rhs">
-      <nodes incoming="//@units.2/@rhs/@edges.2" outgoing="//@units.2/@rhs/@edges.0">
+    <rhs xmi:id="_aqQ_sYxpEeKZK6dfhsaYbQ" name="Rhs">
+      <nodes xmi:id="_aqRmsIxpEeKZK6dfhsaYbQ" incoming="_aqRmvIxpEeKZK6dfhsaYbQ" outgoing="_aqRmuoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.2/@rhs/@edges.0" outgoing="//@units.2/@rhs/@edges.1">
+      <nodes xmi:id="_aqRmsYxpEeKZK6dfhsaYbQ" incoming="_aqRmuoxpEeKZK6dfhsaYbQ" outgoing="_aqRmu4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.2/@rhs/@edges.1 //@units.2/@rhs/@edges.5">
+      <nodes xmi:id="_aqRmsoxpEeKZK6dfhsaYbQ" incoming="_aqRmu4xpEeKZK6dfhsaYbQ _aqRmv4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.2/@rhs/@edges.3" outgoing="//@units.2/@rhs/@edges.2">
+      <nodes xmi:id="_aqRms4xpEeKZK6dfhsaYbQ" incoming="_aqRmvYxpEeKZK6dfhsaYbQ" outgoing="_aqRmvIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-        <attributes value="attributeName">
+        <attributes xmi:id="_aqRmtIxpEeKZK6dfhsaYbQ" value="attributeName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
-        <attributes value="isAttributePublic">
+        <attributes xmi:id="_aqRmtYxpEeKZK6dfhsaYbQ" value="isAttributePublic">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
         </attributes>
       </nodes>
-      <nodes outgoing="//@units.2/@rhs/@edges.3 //@units.2/@rhs/@edges.4">
+      <nodes xmi:id="_aqRmtoxpEeKZK6dfhsaYbQ" outgoing="_aqRmvYxpEeKZK6dfhsaYbQ _aqRmvoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.2/@rhs/@edges.4" outgoing="//@units.2/@rhs/@edges.5">
+      <nodes xmi:id="_aqRmt4xpEeKZK6dfhsaYbQ" incoming="_aqRmvoxpEeKZK6dfhsaYbQ" outgoing="_aqRmv4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Attribute"/>
-        <attributes value="attributeName">
+        <attributes xmi:id="_aqRmuIxpEeKZK6dfhsaYbQ" value="attributeName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
-        <attributes value="isAttributePublic">
+        <attributes xmi:id="_aqRmuYxpEeKZK6dfhsaYbQ" value="isAttributePublic">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/public"/>
         </attributes>
       </nodes>
-      <edges source="//@units.2/@rhs/@nodes.0" target="//@units.2/@rhs/@nodes.1">
+      <edges xmi:id="_aqRmuoxpEeKZK6dfhsaYbQ" source="_aqRmsIxpEeKZK6dfhsaYbQ" target="_aqRmsYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.2/@rhs/@nodes.1" target="//@units.2/@rhs/@nodes.2">
+      <edges xmi:id="_aqRmu4xpEeKZK6dfhsaYbQ" source="_aqRmsYxpEeKZK6dfhsaYbQ" target="_aqRmsoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.2/@rhs/@nodes.3" target="//@units.2/@rhs/@nodes.0">
+      <edges xmi:id="_aqRmvIxpEeKZK6dfhsaYbQ" source="_aqRms4xpEeKZK6dfhsaYbQ" target="_aqRmsIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
       </edges>
-      <edges source="//@units.2/@rhs/@nodes.4" target="//@units.2/@rhs/@nodes.3">
+      <edges xmi:id="_aqRmvYxpEeKZK6dfhsaYbQ" source="_aqRmtoxpEeKZK6dfhsaYbQ" target="_aqRms4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
       </edges>
-      <edges source="//@units.2/@rhs/@nodes.4" target="//@units.2/@rhs/@nodes.5">
+      <edges xmi:id="_aqRmvoxpEeKZK6dfhsaYbQ" source="_aqRmtoxpEeKZK6dfhsaYbQ" target="_aqRmt4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/ownedAttributes"/>
       </edges>
-      <edges source="//@units.2/@rhs/@nodes.5" target="//@units.2/@rhs/@nodes.2">
+      <edges xmi:id="_aqRmv4xpEeKZK6dfhsaYbQ" source="_aqRmt4xpEeKZK6dfhsaYbQ" target="_aqRmsoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//TypedElement/type"/>
       </edges>
     </rhs>
-    <mappings origin="//@units.2/@lhs/@nodes.0" image="//@units.2/@rhs/@nodes.0"/>
-    <mappings origin="//@units.2/@lhs/@nodes.1" image="//@units.2/@rhs/@nodes.1"/>
-    <mappings origin="//@units.2/@lhs/@nodes.2" image="//@units.2/@rhs/@nodes.2"/>
-    <mappings origin="//@units.2/@lhs/@nodes.3" image="//@units.2/@rhs/@nodes.3"/>
-    <mappings origin="//@units.2/@lhs/@nodes.4" image="//@units.2/@rhs/@nodes.4"/>
+    <mappings xmi:id="_aqRmwIxpEeKZK6dfhsaYbQ" origin="_aqPxjYxpEeKZK6dfhsaYbQ" image="_aqRmsIxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqRmwYxpEeKZK6dfhsaYbQ" origin="_aqPxjoxpEeKZK6dfhsaYbQ" image="_aqRmsYxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqRmwoxpEeKZK6dfhsaYbQ" origin="_aqPxj4xpEeKZK6dfhsaYbQ" image="_aqRmsoxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqSNwIxpEeKZK6dfhsaYbQ" origin="_aqQYkIxpEeKZK6dfhsaYbQ" image="_aqRms4xpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqSNwYxpEeKZK6dfhsaYbQ" origin="_aqQYk4xpEeKZK6dfhsaYbQ" image="_aqRmtoxpEeKZK6dfhsaYbQ"/>
   </units>
-  <units xsi:type="henshin:LoopUnit" name="liftAttributeTypes" subUnit="//@units.2"/>
-  <units xsi:type="henshin:Rule" name="liftAssociationSource">
-    <parameters name="associationName">
+  <units xsi:type="henshin:LoopUnit" xmi:id="_aqSNwoxpEeKZK6dfhsaYbQ" name="liftAttributeTypes" subUnit="_aqPxiYxpEeKZK6dfhsaYbQ"/>
+  <units xsi:type="henshin:Rule" xmi:id="_aqSNw4xpEeKZK6dfhsaYbQ" name="liftAssociationSource">
+    <parameters xmi:id="_aqSNxIxpEeKZK6dfhsaYbQ" name="associationName">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </parameters>
-    <lhs name="Lhs">
-      <nodes incoming="//@units.4/@lhs/@edges.2" outgoing="//@units.4/@lhs/@edges.0">
+    <lhs xmi:id="_aqSNxYxpEeKZK6dfhsaYbQ" name="Lhs">
+      <nodes xmi:id="_aqSNxoxpEeKZK6dfhsaYbQ" incoming="_aqSNz4xpEeKZK6dfhsaYbQ" outgoing="_aqSNzYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.4/@lhs/@edges.0" outgoing="//@units.4/@lhs/@edges.1">
+      <nodes xmi:id="_aqSNx4xpEeKZK6dfhsaYbQ" incoming="_aqSNzYxpEeKZK6dfhsaYbQ" outgoing="_aqSNzoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.4/@lhs/@edges.1">
+      <nodes xmi:id="_aqSNyIxpEeKZK6dfhsaYbQ" incoming="_aqSNzoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.4/@lhs/@edges.3" outgoing="//@units.4/@lhs/@edges.2 //@units.4/@lhs/@edges.4">
+      <nodes xmi:id="_aqSNyYxpEeKZK6dfhsaYbQ" incoming="_aqSN0IxpEeKZK6dfhsaYbQ" outgoing="_aqSNz4xpEeKZK6dfhsaYbQ _aqSN0YxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-        <attributes value="associationName">
+        <attributes xmi:id="_aqSNyoxpEeKZK6dfhsaYbQ" value="associationName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
       </nodes>
-      <nodes outgoing="//@units.4/@lhs/@edges.3">
+      <nodes xmi:id="_aqSNy4xpEeKZK6dfhsaYbQ" outgoing="_aqSN0IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
       </nodes>
-      <nodes incoming="//@units.4/@lhs/@edges.4">
+      <nodes xmi:id="_aqSNzIxpEeKZK6dfhsaYbQ" incoming="_aqSN0YxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <edges source="//@units.4/@lhs/@nodes.0" target="//@units.4/@lhs/@nodes.1">
+      <edges xmi:id="_aqSNzYxpEeKZK6dfhsaYbQ" source="_aqSNxoxpEeKZK6dfhsaYbQ" target="_aqSNx4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.4/@lhs/@nodes.1" target="//@units.4/@lhs/@nodes.2">
+      <edges xmi:id="_aqSNzoxpEeKZK6dfhsaYbQ" source="_aqSNx4xpEeKZK6dfhsaYbQ" target="_aqSNyIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.4/@lhs/@nodes.3" target="//@units.4/@lhs/@nodes.0">
+      <edges xmi:id="_aqSNz4xpEeKZK6dfhsaYbQ" source="_aqSNyYxpEeKZK6dfhsaYbQ" target="_aqSNxoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
       </edges>
-      <edges source="//@units.4/@lhs/@nodes.4" target="//@units.4/@lhs/@nodes.3">
+      <edges xmi:id="_aqSN0IxpEeKZK6dfhsaYbQ" source="_aqSNy4xpEeKZK6dfhsaYbQ" target="_aqSNyYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
       </edges>
-      <edges source="//@units.4/@lhs/@nodes.3" target="//@units.4/@lhs/@nodes.5">
+      <edges xmi:id="_aqSN0YxpEeKZK6dfhsaYbQ" source="_aqSNyYxpEeKZK6dfhsaYbQ" target="_aqSNzIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
       </edges>
-      <formula xsi:type="henshin:Not">
-        <child xsi:type="henshin:NestedCondition">
-          <conclusion name="A_NAC">
-            <nodes incoming="//@units.4/@lhs/@formula/@child/@conclusion/@edges.0" outgoing="//@units.4/@lhs/@formula/@child/@conclusion/@edges.1">
+      <formula xsi:type="henshin:Not" xmi:id="_aqSN0oxpEeKZK6dfhsaYbQ">
+        <child xsi:type="henshin:NestedCondition" xmi:id="_aqSN04xpEeKZK6dfhsaYbQ">
+          <conclusion xmi:id="_aqSN1IxpEeKZK6dfhsaYbQ" name="A_NAC">
+            <nodes xmi:id="_aqSN1YxpEeKZK6dfhsaYbQ" incoming="_aqS01oxpEeKZK6dfhsaYbQ" outgoing="_aqS014xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.4/@lhs/@formula/@child/@conclusion/@edges.3" outgoing="//@units.4/@lhs/@formula/@child/@conclusion/@edges.0 //@units.4/@lhs/@formula/@child/@conclusion/@edges.4">
+            <nodes xmi:id="_aqSN1oxpEeKZK6dfhsaYbQ" incoming="_aqS02YxpEeKZK6dfhsaYbQ" outgoing="_aqS01oxpEeKZK6dfhsaYbQ _aqS02oxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-              <attributes value="associationName">
+              <attributes xmi:id="_aqSN14xpEeKZK6dfhsaYbQ" value="associationName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
             </nodes>
-            <nodes incoming="//@units.4/@lhs/@formula/@child/@conclusion/@edges.1" outgoing="//@units.4/@lhs/@formula/@child/@conclusion/@edges.2">
+            <nodes xmi:id="_aqS00IxpEeKZK6dfhsaYbQ" incoming="_aqS014xpEeKZK6dfhsaYbQ" outgoing="_aqS02IxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
             </nodes>
-            <nodes incoming="//@units.4/@lhs/@formula/@child/@conclusion/@edges.2 //@units.4/@lhs/@formula/@child/@conclusion/@edges.6">
+            <nodes xmi:id="_aqS00YxpEeKZK6dfhsaYbQ" incoming="_aqS02IxpEeKZK6dfhsaYbQ _aqS03IxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.4/@lhs/@formula/@child/@conclusion/@edges.5" outgoing="//@units.4/@lhs/@formula/@child/@conclusion/@edges.6 //@units.4/@lhs/@formula/@child/@conclusion/@edges.7">
+            <nodes xmi:id="_aqS00oxpEeKZK6dfhsaYbQ" incoming="_aqS024xpEeKZK6dfhsaYbQ" outgoing="_aqS03IxpEeKZK6dfhsaYbQ _aqS03YxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-              <attributes value="associationName">
+              <attributes xmi:id="_aqS004xpEeKZK6dfhsaYbQ" value="associationName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
             </nodes>
-            <nodes outgoing="//@units.4/@lhs/@formula/@child/@conclusion/@edges.3 //@units.4/@lhs/@formula/@child/@conclusion/@edges.5">
+            <nodes xmi:id="_aqS01IxpEeKZK6dfhsaYbQ" outgoing="_aqS02YxpEeKZK6dfhsaYbQ _aqS024xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
             </nodes>
-            <nodes incoming="//@units.4/@lhs/@formula/@child/@conclusion/@edges.4 //@units.4/@lhs/@formula/@child/@conclusion/@edges.7">
+            <nodes xmi:id="_aqS01YxpEeKZK6dfhsaYbQ" incoming="_aqS02oxpEeKZK6dfhsaYbQ _aqS03YxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.0">
+            <edges xmi:id="_aqS01oxpEeKZK6dfhsaYbQ" source="_aqSN1oxpEeKZK6dfhsaYbQ" target="_aqSN1YxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
             </edges>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.2">
+            <edges xmi:id="_aqS014xpEeKZK6dfhsaYbQ" source="_aqSN1YxpEeKZK6dfhsaYbQ" target="_aqS00IxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
             </edges>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.2" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.3">
+            <edges xmi:id="_aqS02IxpEeKZK6dfhsaYbQ" source="_aqS00IxpEeKZK6dfhsaYbQ" target="_aqS00YxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
             </edges>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.1">
+            <edges xmi:id="_aqS02YxpEeKZK6dfhsaYbQ" source="_aqS01IxpEeKZK6dfhsaYbQ" target="_aqSN1oxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
             </edges>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.6">
+            <edges xmi:id="_aqS02oxpEeKZK6dfhsaYbQ" source="_aqSN1oxpEeKZK6dfhsaYbQ" target="_aqS01YxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
             </edges>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.4">
+            <edges xmi:id="_aqS024xpEeKZK6dfhsaYbQ" source="_aqS01IxpEeKZK6dfhsaYbQ" target="_aqS00oxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
             </edges>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.3">
+            <edges xmi:id="_aqS03IxpEeKZK6dfhsaYbQ" source="_aqS00oxpEeKZK6dfhsaYbQ" target="_aqS00YxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
             </edges>
-            <edges source="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.6">
+            <edges xmi:id="_aqS03YxpEeKZK6dfhsaYbQ" source="_aqS00oxpEeKZK6dfhsaYbQ" target="_aqS01YxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
             </edges>
           </conclusion>
-          <mappings origin="//@units.4/@lhs/@nodes.0" image="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.0"/>
-          <mappings origin="//@units.4/@lhs/@nodes.3" image="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.1"/>
-          <mappings origin="//@units.4/@lhs/@nodes.1" image="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.2"/>
-          <mappings origin="//@units.4/@lhs/@nodes.2" image="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.3"/>
-          <mappings origin="//@units.4/@lhs/@nodes.4" image="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.5"/>
-          <mappings origin="//@units.4/@lhs/@nodes.5" image="//@units.4/@lhs/@formula/@child/@conclusion/@nodes.6"/>
+          <mappings xmi:id="_aqS03oxpEeKZK6dfhsaYbQ" origin="_aqSNxoxpEeKZK6dfhsaYbQ" image="_aqSN1YxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqS034xpEeKZK6dfhsaYbQ" origin="_aqSNyYxpEeKZK6dfhsaYbQ" image="_aqSN1oxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqS04IxpEeKZK6dfhsaYbQ" origin="_aqSNx4xpEeKZK6dfhsaYbQ" image="_aqS00IxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqS04YxpEeKZK6dfhsaYbQ" origin="_aqSNyIxpEeKZK6dfhsaYbQ" image="_aqS00YxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqS04oxpEeKZK6dfhsaYbQ" origin="_aqSNy4xpEeKZK6dfhsaYbQ" image="_aqS01IxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqS044xpEeKZK6dfhsaYbQ" origin="_aqSNzIxpEeKZK6dfhsaYbQ" image="_aqS01YxpEeKZK6dfhsaYbQ"/>
         </child>
       </formula>
     </lhs>
-    <rhs name="Rhs">
-      <nodes incoming="//@units.4/@rhs/@edges.2" outgoing="//@units.4/@rhs/@edges.0">
+    <rhs xmi:id="_aqS05IxpEeKZK6dfhsaYbQ" name="Rhs">
+      <nodes xmi:id="_aqS05YxpEeKZK6dfhsaYbQ" incoming="_aqTb6YxpEeKZK6dfhsaYbQ" outgoing="_aqTb54xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.4/@rhs/@edges.0" outgoing="//@units.4/@rhs/@edges.1">
+      <nodes xmi:id="_aqS05oxpEeKZK6dfhsaYbQ" incoming="_aqTb54xpEeKZK6dfhsaYbQ" outgoing="_aqTb6IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.4/@rhs/@edges.1 //@units.4/@rhs/@edges.6">
+      <nodes xmi:id="_aqTb4IxpEeKZK6dfhsaYbQ" incoming="_aqTb6IxpEeKZK6dfhsaYbQ _aqTb7YxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.4/@rhs/@edges.3" outgoing="//@units.4/@rhs/@edges.2 //@units.4/@rhs/@edges.4">
+      <nodes xmi:id="_aqTb4YxpEeKZK6dfhsaYbQ" incoming="_aqTb6oxpEeKZK6dfhsaYbQ" outgoing="_aqTb6YxpEeKZK6dfhsaYbQ _aqTb64xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-        <attributes value="associationName">
+        <attributes xmi:id="_aqTb4oxpEeKZK6dfhsaYbQ" value="associationName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
       </nodes>
-      <nodes outgoing="//@units.4/@rhs/@edges.3 //@units.4/@rhs/@edges.5">
+      <nodes xmi:id="_aqTb44xpEeKZK6dfhsaYbQ" outgoing="_aqTb6oxpEeKZK6dfhsaYbQ _aqTb7IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
       </nodes>
-      <nodes incoming="//@units.4/@rhs/@edges.4 //@units.4/@rhs/@edges.7">
+      <nodes xmi:id="_aqTb5IxpEeKZK6dfhsaYbQ" incoming="_aqTb64xpEeKZK6dfhsaYbQ _aqTb7oxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.4/@rhs/@edges.5" outgoing="//@units.4/@rhs/@edges.6 //@units.4/@rhs/@edges.7">
+      <nodes xmi:id="_aqTb5YxpEeKZK6dfhsaYbQ" incoming="_aqTb7IxpEeKZK6dfhsaYbQ" outgoing="_aqTb7YxpEeKZK6dfhsaYbQ _aqTb7oxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-        <attributes value="associationName">
+        <attributes xmi:id="_aqTb5oxpEeKZK6dfhsaYbQ" value="associationName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
       </nodes>
-      <edges source="//@units.4/@rhs/@nodes.0" target="//@units.4/@rhs/@nodes.1">
+      <edges xmi:id="_aqTb54xpEeKZK6dfhsaYbQ" source="_aqS05YxpEeKZK6dfhsaYbQ" target="_aqS05oxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.4/@rhs/@nodes.1" target="//@units.4/@rhs/@nodes.2">
+      <edges xmi:id="_aqTb6IxpEeKZK6dfhsaYbQ" source="_aqS05oxpEeKZK6dfhsaYbQ" target="_aqTb4IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.4/@rhs/@nodes.3" target="//@units.4/@rhs/@nodes.0">
+      <edges xmi:id="_aqTb6YxpEeKZK6dfhsaYbQ" source="_aqTb4YxpEeKZK6dfhsaYbQ" target="_aqS05YxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
       </edges>
-      <edges source="//@units.4/@rhs/@nodes.4" target="//@units.4/@rhs/@nodes.3">
+      <edges xmi:id="_aqTb6oxpEeKZK6dfhsaYbQ" source="_aqTb44xpEeKZK6dfhsaYbQ" target="_aqTb4YxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
       </edges>
-      <edges source="//@units.4/@rhs/@nodes.3" target="//@units.4/@rhs/@nodes.5">
+      <edges xmi:id="_aqTb64xpEeKZK6dfhsaYbQ" source="_aqTb4YxpEeKZK6dfhsaYbQ" target="_aqTb5IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
       </edges>
-      <edges source="//@units.4/@rhs/@nodes.4" target="//@units.4/@rhs/@nodes.6">
+      <edges xmi:id="_aqTb7IxpEeKZK6dfhsaYbQ" source="_aqTb44xpEeKZK6dfhsaYbQ" target="_aqTb5YxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
       </edges>
-      <edges source="//@units.4/@rhs/@nodes.6" target="//@units.4/@rhs/@nodes.2">
+      <edges xmi:id="_aqTb7YxpEeKZK6dfhsaYbQ" source="_aqTb5YxpEeKZK6dfhsaYbQ" target="_aqTb4IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
       </edges>
-      <edges source="//@units.4/@rhs/@nodes.6" target="//@units.4/@rhs/@nodes.5">
+      <edges xmi:id="_aqTb7oxpEeKZK6dfhsaYbQ" source="_aqTb5YxpEeKZK6dfhsaYbQ" target="_aqTb5IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
       </edges>
     </rhs>
-    <mappings origin="//@units.4/@lhs/@nodes.0" image="//@units.4/@rhs/@nodes.0"/>
-    <mappings origin="//@units.4/@lhs/@nodes.1" image="//@units.4/@rhs/@nodes.1"/>
-    <mappings origin="//@units.4/@lhs/@nodes.2" image="//@units.4/@rhs/@nodes.2"/>
-    <mappings origin="//@units.4/@lhs/@nodes.3" image="//@units.4/@rhs/@nodes.3"/>
-    <mappings origin="//@units.4/@lhs/@nodes.4" image="//@units.4/@rhs/@nodes.4"/>
-    <mappings origin="//@units.4/@lhs/@nodes.5" image="//@units.4/@rhs/@nodes.5"/>
+    <mappings xmi:id="_aqTb74xpEeKZK6dfhsaYbQ" origin="_aqSNxoxpEeKZK6dfhsaYbQ" image="_aqS05YxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqTb8IxpEeKZK6dfhsaYbQ" origin="_aqSNx4xpEeKZK6dfhsaYbQ" image="_aqS05oxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqTb8YxpEeKZK6dfhsaYbQ" origin="_aqSNyIxpEeKZK6dfhsaYbQ" image="_aqTb4IxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqTb8oxpEeKZK6dfhsaYbQ" origin="_aqSNyYxpEeKZK6dfhsaYbQ" image="_aqTb4YxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqTb84xpEeKZK6dfhsaYbQ" origin="_aqSNy4xpEeKZK6dfhsaYbQ" image="_aqTb44xpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqTb9IxpEeKZK6dfhsaYbQ" origin="_aqSNzIxpEeKZK6dfhsaYbQ" image="_aqTb5IxpEeKZK6dfhsaYbQ"/>
   </units>
-  <units xsi:type="henshin:LoopUnit" name="liftAssociationSources" subUnit="//@units.4"/>
-  <units xsi:type="henshin:Rule" name="liftAssociationTarget">
-    <parameters name="associationName">
+  <units xsi:type="henshin:LoopUnit" xmi:id="_aqTb9YxpEeKZK6dfhsaYbQ" name="liftAssociationSources" subUnit="_aqSNw4xpEeKZK6dfhsaYbQ"/>
+  <units xsi:type="henshin:Rule" xmi:id="_aqTb9oxpEeKZK6dfhsaYbQ" name="liftAssociationTarget">
+    <parameters xmi:id="_aqTb94xpEeKZK6dfhsaYbQ" name="associationName">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </parameters>
-    <lhs name="Lhs">
-      <nodes incoming="//@units.6/@lhs/@edges.2" outgoing="//@units.6/@lhs/@edges.0">
+    <lhs xmi:id="_aqTb-IxpEeKZK6dfhsaYbQ" name="Lhs">
+      <nodes xmi:id="_aqUC8IxpEeKZK6dfhsaYbQ" incoming="_aqUC-YxpEeKZK6dfhsaYbQ" outgoing="_aqUC94xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.6/@lhs/@edges.0" outgoing="//@units.6/@lhs/@edges.1">
+      <nodes xmi:id="_aqUC8YxpEeKZK6dfhsaYbQ" incoming="_aqUC94xpEeKZK6dfhsaYbQ" outgoing="_aqUC-IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.6/@lhs/@edges.1">
+      <nodes xmi:id="_aqUC8oxpEeKZK6dfhsaYbQ" incoming="_aqUC-IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.6/@lhs/@edges.3" outgoing="//@units.6/@lhs/@edges.2 //@units.6/@lhs/@edges.4">
+      <nodes xmi:id="_aqUC84xpEeKZK6dfhsaYbQ" incoming="_aqUC-oxpEeKZK6dfhsaYbQ" outgoing="_aqUC-YxpEeKZK6dfhsaYbQ _aqUC-4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-        <attributes value="associationName">
+        <attributes xmi:id="_aqUC9IxpEeKZK6dfhsaYbQ" value="associationName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
       </nodes>
-      <nodes outgoing="//@units.6/@lhs/@edges.3">
+      <nodes xmi:id="_aqUC9YxpEeKZK6dfhsaYbQ" outgoing="_aqUC-oxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
       </nodes>
-      <nodes incoming="//@units.6/@lhs/@edges.4">
+      <nodes xmi:id="_aqUC9oxpEeKZK6dfhsaYbQ" incoming="_aqUC-4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <edges source="//@units.6/@lhs/@nodes.0" target="//@units.6/@lhs/@nodes.1">
+      <edges xmi:id="_aqUC94xpEeKZK6dfhsaYbQ" source="_aqUC8IxpEeKZK6dfhsaYbQ" target="_aqUC8YxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.6/@lhs/@nodes.1" target="//@units.6/@lhs/@nodes.2">
+      <edges xmi:id="_aqUC-IxpEeKZK6dfhsaYbQ" source="_aqUC8YxpEeKZK6dfhsaYbQ" target="_aqUC8oxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.6/@lhs/@nodes.3" target="//@units.6/@lhs/@nodes.0">
+      <edges xmi:id="_aqUC-YxpEeKZK6dfhsaYbQ" source="_aqUC84xpEeKZK6dfhsaYbQ" target="_aqUC8IxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
       </edges>
-      <edges source="//@units.6/@lhs/@nodes.4" target="//@units.6/@lhs/@nodes.3">
+      <edges xmi:id="_aqUC-oxpEeKZK6dfhsaYbQ" source="_aqUC9YxpEeKZK6dfhsaYbQ" target="_aqUC84xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
       </edges>
-      <edges source="//@units.6/@lhs/@nodes.3" target="//@units.6/@lhs/@nodes.5">
+      <edges xmi:id="_aqUC-4xpEeKZK6dfhsaYbQ" source="_aqUC84xpEeKZK6dfhsaYbQ" target="_aqUC9oxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
       </edges>
-      <formula xsi:type="henshin:Not">
-        <child xsi:type="henshin:NestedCondition">
-          <conclusion name="A_NAC">
-            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.0" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.1">
+      <formula xsi:type="henshin:Not" xmi:id="_aqUC_IxpEeKZK6dfhsaYbQ">
+        <child xsi:type="henshin:NestedCondition" xmi:id="_aqUC_YxpEeKZK6dfhsaYbQ">
+          <conclusion xmi:id="_aqUC_oxpEeKZK6dfhsaYbQ" name="A_NAC">
+            <nodes xmi:id="_aqUC_4xpEeKZK6dfhsaYbQ" incoming="_aqUqAoxpEeKZK6dfhsaYbQ" outgoing="_aqUqA4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.3" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.0 //@units.6/@lhs/@formula/@child/@conclusion/@edges.4">
+            <nodes xmi:id="_aqUDAIxpEeKZK6dfhsaYbQ" incoming="_aqUqBYxpEeKZK6dfhsaYbQ" outgoing="_aqUqAoxpEeKZK6dfhsaYbQ _aqUqBoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-              <attributes value="associationName">
+              <attributes xmi:id="_aqUDAYxpEeKZK6dfhsaYbQ" value="associationName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
             </nodes>
-            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.1" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.2">
+            <nodes xmi:id="_aqUDAoxpEeKZK6dfhsaYbQ" incoming="_aqUqA4xpEeKZK6dfhsaYbQ" outgoing="_aqUqBIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
             </nodes>
-            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.2 //@units.6/@lhs/@formula/@child/@conclusion/@edges.6">
+            <nodes xmi:id="_aqUDA4xpEeKZK6dfhsaYbQ" incoming="_aqUqBIxpEeKZK6dfhsaYbQ _aqUqCIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.5" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.6 //@units.6/@lhs/@formula/@child/@conclusion/@edges.7">
+            <nodes xmi:id="_aqUDBIxpEeKZK6dfhsaYbQ" incoming="_aqUqB4xpEeKZK6dfhsaYbQ" outgoing="_aqUqCIxpEeKZK6dfhsaYbQ _aqUqCYxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-              <attributes value="associationName">
+              <attributes xmi:id="_aqUDBYxpEeKZK6dfhsaYbQ" value="associationName">
                 <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
               </attributes>
             </nodes>
-            <nodes outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.3 //@units.6/@lhs/@formula/@child/@conclusion/@edges.5">
+            <nodes xmi:id="_aqUqAIxpEeKZK6dfhsaYbQ" outgoing="_aqUqBYxpEeKZK6dfhsaYbQ _aqUqB4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
             </nodes>
-            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.4 //@units.6/@lhs/@formula/@child/@conclusion/@edges.7">
+            <nodes xmi:id="_aqUqAYxpEeKZK6dfhsaYbQ" incoming="_aqUqBoxpEeKZK6dfhsaYbQ _aqUqCYxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
             </nodes>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.0">
+            <edges xmi:id="_aqUqAoxpEeKZK6dfhsaYbQ" source="_aqUDAIxpEeKZK6dfhsaYbQ" target="_aqUC_4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
             </edges>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.2">
+            <edges xmi:id="_aqUqA4xpEeKZK6dfhsaYbQ" source="_aqUC_4xpEeKZK6dfhsaYbQ" target="_aqUDAoxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
             </edges>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.2" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.3">
+            <edges xmi:id="_aqUqBIxpEeKZK6dfhsaYbQ" source="_aqUDAoxpEeKZK6dfhsaYbQ" target="_aqUDA4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
             </edges>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1">
+            <edges xmi:id="_aqUqBYxpEeKZK6dfhsaYbQ" source="_aqUqAIxpEeKZK6dfhsaYbQ" target="_aqUDAIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
             </edges>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.6">
+            <edges xmi:id="_aqUqBoxpEeKZK6dfhsaYbQ" source="_aqUDAIxpEeKZK6dfhsaYbQ" target="_aqUqAYxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
             </edges>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.4">
+            <edges xmi:id="_aqUqB4xpEeKZK6dfhsaYbQ" source="_aqUqAIxpEeKZK6dfhsaYbQ" target="_aqUDBIxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
             </edges>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.3">
+            <edges xmi:id="_aqUqCIxpEeKZK6dfhsaYbQ" source="_aqUDBIxpEeKZK6dfhsaYbQ" target="_aqUDA4xpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
             </edges>
-            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.6">
+            <edges xmi:id="_aqUqCYxpEeKZK6dfhsaYbQ" source="_aqUDBIxpEeKZK6dfhsaYbQ" target="_aqUqAYxpEeKZK6dfhsaYbQ">
               <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
             </edges>
           </conclusion>
-          <mappings origin="//@units.6/@lhs/@nodes.0" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.0"/>
-          <mappings origin="//@units.6/@lhs/@nodes.3" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1"/>
-          <mappings origin="//@units.6/@lhs/@nodes.1" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.2"/>
-          <mappings origin="//@units.6/@lhs/@nodes.2" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.3"/>
-          <mappings origin="//@units.6/@lhs/@nodes.4" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.5"/>
-          <mappings origin="//@units.6/@lhs/@nodes.5" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.6"/>
+          <mappings xmi:id="_aqUqCoxpEeKZK6dfhsaYbQ" origin="_aqUC8IxpEeKZK6dfhsaYbQ" image="_aqUC_4xpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqUqC4xpEeKZK6dfhsaYbQ" origin="_aqUC84xpEeKZK6dfhsaYbQ" image="_aqUDAIxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqUqDIxpEeKZK6dfhsaYbQ" origin="_aqUC8YxpEeKZK6dfhsaYbQ" image="_aqUDAoxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqUqDYxpEeKZK6dfhsaYbQ" origin="_aqUC8oxpEeKZK6dfhsaYbQ" image="_aqUDA4xpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqUqDoxpEeKZK6dfhsaYbQ" origin="_aqUC9YxpEeKZK6dfhsaYbQ" image="_aqUqAIxpEeKZK6dfhsaYbQ"/>
+          <mappings xmi:id="_aqUqD4xpEeKZK6dfhsaYbQ" origin="_aqUC9oxpEeKZK6dfhsaYbQ" image="_aqUqAYxpEeKZK6dfhsaYbQ"/>
         </child>
       </formula>
     </lhs>
-    <rhs name="Rhs">
-      <nodes incoming="//@units.6/@rhs/@edges.2" outgoing="//@units.6/@rhs/@edges.0">
+    <rhs xmi:id="_aqUqEIxpEeKZK6dfhsaYbQ" name="Rhs">
+      <nodes xmi:id="_aqUqEYxpEeKZK6dfhsaYbQ" incoming="_aqVRFoxpEeKZK6dfhsaYbQ" outgoing="_aqVRFIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.6/@rhs/@edges.0" outgoing="//@units.6/@rhs/@edges.1">
+      <nodes xmi:id="_aqUqEoxpEeKZK6dfhsaYbQ" incoming="_aqVRFIxpEeKZK6dfhsaYbQ" outgoing="_aqVRFYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
       </nodes>
-      <nodes incoming="//@units.6/@rhs/@edges.1 //@units.6/@rhs/@edges.6">
+      <nodes xmi:id="_aqUqE4xpEeKZK6dfhsaYbQ" incoming="_aqVRFYxpEeKZK6dfhsaYbQ _aqVRGoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <nodes incoming="//@units.6/@rhs/@edges.3" outgoing="//@units.6/@rhs/@edges.2 //@units.6/@rhs/@edges.4">
+      <nodes xmi:id="_aqUqFIxpEeKZK6dfhsaYbQ" incoming="_aqVRF4xpEeKZK6dfhsaYbQ" outgoing="_aqVRFoxpEeKZK6dfhsaYbQ _aqVRGIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-        <attributes value="associationName">
+        <attributes xmi:id="_aqUqFYxpEeKZK6dfhsaYbQ" value="associationName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
       </nodes>
-      <nodes outgoing="//@units.6/@rhs/@edges.3 //@units.6/@rhs/@edges.5">
+      <nodes xmi:id="_aqVREIxpEeKZK6dfhsaYbQ" outgoing="_aqVRF4xpEeKZK6dfhsaYbQ _aqVRGYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
       </nodes>
-      <nodes incoming="//@units.6/@rhs/@edges.5" outgoing="//@units.6/@rhs/@edges.6 //@units.6/@rhs/@edges.7">
+      <nodes xmi:id="_aqVREYxpEeKZK6dfhsaYbQ" incoming="_aqVRGYxpEeKZK6dfhsaYbQ" outgoing="_aqVRGoxpEeKZK6dfhsaYbQ _aqVRG4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
-        <attributes value="associationName">
+        <attributes xmi:id="_aqVREoxpEeKZK6dfhsaYbQ" value="associationName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
         </attributes>
       </nodes>
-      <nodes incoming="//@units.6/@rhs/@edges.4 //@units.6/@rhs/@edges.7">
+      <nodes xmi:id="_aqVRE4xpEeKZK6dfhsaYbQ" incoming="_aqVRGIxpEeKZK6dfhsaYbQ _aqVRG4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
       </nodes>
-      <edges source="//@units.6/@rhs/@nodes.0" target="//@units.6/@rhs/@nodes.1">
+      <edges xmi:id="_aqVRFIxpEeKZK6dfhsaYbQ" source="_aqUqEYxpEeKZK6dfhsaYbQ" target="_aqUqEoxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
       </edges>
-      <edges source="//@units.6/@rhs/@nodes.1" target="//@units.6/@rhs/@nodes.2">
+      <edges xmi:id="_aqVRFYxpEeKZK6dfhsaYbQ" source="_aqUqEoxpEeKZK6dfhsaYbQ" target="_aqUqE4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
       </edges>
-      <edges source="//@units.6/@rhs/@nodes.3" target="//@units.6/@rhs/@nodes.0">
+      <edges xmi:id="_aqVRFoxpEeKZK6dfhsaYbQ" source="_aqUqFIxpEeKZK6dfhsaYbQ" target="_aqUqEYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
       </edges>
-      <edges source="//@units.6/@rhs/@nodes.4" target="//@units.6/@rhs/@nodes.3">
+      <edges xmi:id="_aqVRF4xpEeKZK6dfhsaYbQ" source="_aqVREIxpEeKZK6dfhsaYbQ" target="_aqUqFIxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
       </edges>
-      <edges source="//@units.6/@rhs/@nodes.3" target="//@units.6/@rhs/@nodes.6">
+      <edges xmi:id="_aqVRGIxpEeKZK6dfhsaYbQ" source="_aqUqFIxpEeKZK6dfhsaYbQ" target="_aqVRE4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
       </edges>
-      <edges source="//@units.6/@rhs/@nodes.4" target="//@units.6/@rhs/@nodes.5">
+      <edges xmi:id="_aqVRGYxpEeKZK6dfhsaYbQ" source="_aqVREIxpEeKZK6dfhsaYbQ" target="_aqVREYxpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
       </edges>
-      <edges source="//@units.6/@rhs/@nodes.5" target="//@units.6/@rhs/@nodes.2">
+      <edges xmi:id="_aqVRGoxpEeKZK6dfhsaYbQ" source="_aqVREYxpEeKZK6dfhsaYbQ" target="_aqUqE4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
       </edges>
-      <edges source="//@units.6/@rhs/@nodes.5" target="//@units.6/@rhs/@nodes.6">
+      <edges xmi:id="_aqVRG4xpEeKZK6dfhsaYbQ" source="_aqVREYxpEeKZK6dfhsaYbQ" target="_aqVRE4xpEeKZK6dfhsaYbQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
       </edges>
     </rhs>
-    <mappings origin="//@units.6/@lhs/@nodes.0" image="//@units.6/@rhs/@nodes.0"/>
-    <mappings origin="//@units.6/@lhs/@nodes.1" image="//@units.6/@rhs/@nodes.1"/>
-    <mappings origin="//@units.6/@lhs/@nodes.2" image="//@units.6/@rhs/@nodes.2"/>
-    <mappings origin="//@units.6/@lhs/@nodes.3" image="//@units.6/@rhs/@nodes.3"/>
-    <mappings origin="//@units.6/@lhs/@nodes.4" image="//@units.6/@rhs/@nodes.4"/>
-    <mappings origin="//@units.6/@lhs/@nodes.5" image="//@units.6/@rhs/@nodes.6"/>
+    <mappings xmi:id="_aqVRHIxpEeKZK6dfhsaYbQ" origin="_aqUC8IxpEeKZK6dfhsaYbQ" image="_aqUqEYxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqVRHYxpEeKZK6dfhsaYbQ" origin="_aqUC8YxpEeKZK6dfhsaYbQ" image="_aqUqEoxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqVRHoxpEeKZK6dfhsaYbQ" origin="_aqUC8oxpEeKZK6dfhsaYbQ" image="_aqUqE4xpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqVRH4xpEeKZK6dfhsaYbQ" origin="_aqUC84xpEeKZK6dfhsaYbQ" image="_aqUqFIxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqVRIIxpEeKZK6dfhsaYbQ" origin="_aqUC9YxpEeKZK6dfhsaYbQ" image="_aqVREIxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqVRIYxpEeKZK6dfhsaYbQ" origin="_aqUC9oxpEeKZK6dfhsaYbQ" image="_aqVRE4xpEeKZK6dfhsaYbQ"/>
   </units>
-  <units xsi:type="henshin:LoopUnit" xmi:id="_UBKzcIxjEeKyApjBaajZRA" name="liftAssociationTargets" subUnit="//@units.6"/>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_aqVRIoxpEeKZK6dfhsaYbQ" name="liftAssociationTargets" subUnit="_aqTb9oxpEeKZK6dfhsaYbQ"/>
+  <units xsi:type="henshin:Rule" xmi:id="_aqVRI4xpEeKZK6dfhsaYbQ" name="classToTable">
+    <parameters xmi:id="_aqVRJIxpEeKZK6dfhsaYbQ" name="className">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_aqVRJYxpEeKZK6dfhsaYbQ" name="Lhs">
+      <nodes xmi:id="_aqVRJoxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+        <attributes xmi:id="_aqVRJ4xpEeKZK6dfhsaYbQ" value="className">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_aqVRKIxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//RelationalDatabase"/>
+      </nodes>
+      <formula xsi:type="henshin:And" xmi:id="_aqVRKYxpEeKZK6dfhsaYbQ">
+        <left xsi:type="henshin:Not" xmi:id="_aqVRKoxpEeKZK6dfhsaYbQ">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_aqVRK4xpEeKZK6dfhsaYbQ">
+            <conclusion xmi:id="_aqVRLIxpEeKZK6dfhsaYbQ" name="A_NAC">
+              <nodes xmi:id="_aqVRLYxpEeKZK6dfhsaYbQ" incoming="_aqV4I4xpEeKZK6dfhsaYbQ">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+                <attributes xmi:id="_aqV4IIxpEeKZK6dfhsaYbQ" value="className">
+                  <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+                </attributes>
+              </nodes>
+              <nodes xmi:id="_aqV4IYxpEeKZK6dfhsaYbQ" outgoing="_aqV4I4xpEeKZK6dfhsaYbQ">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_aqV4IoxpEeKZK6dfhsaYbQ">
+                <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//RelationalDatabase"/>
+              </nodes>
+              <edges xmi:id="_aqV4I4xpEeKZK6dfhsaYbQ" source="_aqV4IYxpEeKZK6dfhsaYbQ" target="_aqVRLYxpEeKZK6dfhsaYbQ">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_aqV4JIxpEeKZK6dfhsaYbQ" origin="_aqVRJoxpEeKZK6dfhsaYbQ" image="_aqVRLYxpEeKZK6dfhsaYbQ"/>
+            <mappings xmi:id="_aqV4JYxpEeKZK6dfhsaYbQ" origin="_aqVRKIxpEeKZK6dfhsaYbQ" image="_aqV4IoxpEeKZK6dfhsaYbQ"/>
+          </child>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_aqV4JoxpEeKZK6dfhsaYbQ">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_aqV4J4xpEeKZK6dfhsaYbQ">
+            <conclusion xmi:id="_aqV4KIxpEeKZK6dfhsaYbQ" name="subclass">
+              <nodes xmi:id="_aqV4KYxpEeKZK6dfhsaYbQ" outgoing="_aqV4LYxpEeKZK6dfhsaYbQ">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+                <attributes xmi:id="_aqV4KoxpEeKZK6dfhsaYbQ" value="className">
+                  <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+                </attributes>
+              </nodes>
+              <nodes xmi:id="_aqV4K4xpEeKZK6dfhsaYbQ" incoming="_aqV4LYxpEeKZK6dfhsaYbQ">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
+              </nodes>
+              <nodes xmi:id="_aqV4LIxpEeKZK6dfhsaYbQ">
+                <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//RelationalDatabase"/>
+              </nodes>
+              <edges xmi:id="_aqV4LYxpEeKZK6dfhsaYbQ" source="_aqV4KYxpEeKZK6dfhsaYbQ" target="_aqV4K4xpEeKZK6dfhsaYbQ">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_aqV4LoxpEeKZK6dfhsaYbQ" origin="_aqVRJoxpEeKZK6dfhsaYbQ" image="_aqV4KYxpEeKZK6dfhsaYbQ"/>
+            <mappings xmi:id="_aqV4L4xpEeKZK6dfhsaYbQ" origin="_aqVRKIxpEeKZK6dfhsaYbQ" image="_aqV4LIxpEeKZK6dfhsaYbQ"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_aqV4MIxpEeKZK6dfhsaYbQ" name="Rhs">
+      <nodes xmi:id="_aqV4MYxpEeKZK6dfhsaYbQ" incoming="_aqWfMYxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+        <attributes xmi:id="_aqV4MoxpEeKZK6dfhsaYbQ" value="className">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_aqV4M4xpEeKZK6dfhsaYbQ" outgoing="_aqWfMYxpEeKZK6dfhsaYbQ _aqWfMoxpEeKZK6dfhsaYbQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_aqV4NIxpEeKZK6dfhsaYbQ" incoming="_aqWfMoxpEeKZK6dfhsaYbQ _aqWfNYxpEeKZK6dfhsaYbQ" outgoing="_aqWfM4xpEeKZK6dfhsaYbQ _aqWfNIxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+        <attributes xmi:id="_aqV4NYxpEeKZK6dfhsaYbQ" value="className">
+          <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_aqV4NoxpEeKZK6dfhsaYbQ" incoming="_aqWfM4xpEeKZK6dfhsaYbQ _aqWfNIxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+        <attributes xmi:id="_aqV4N4xpEeKZK6dfhsaYbQ" value="&quot;key&quot;">
+          <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_aqWfMIxpEeKZK6dfhsaYbQ" outgoing="_aqWfNYxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//RelationalDatabase"/>
+      </nodes>
+      <edges xmi:id="_aqWfMYxpEeKZK6dfhsaYbQ" source="_aqV4M4xpEeKZK6dfhsaYbQ" target="_aqV4MYxpEeKZK6dfhsaYbQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_aqWfMoxpEeKZK6dfhsaYbQ" source="_aqV4M4xpEeKZK6dfhsaYbQ" target="_aqV4NIxpEeKZK6dfhsaYbQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_aqWfM4xpEeKZK6dfhsaYbQ" source="_aqV4NIxpEeKZK6dfhsaYbQ" target="_aqV4NoxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/columns"/>
+      </edges>
+      <edges xmi:id="_aqWfNIxpEeKZK6dfhsaYbQ" source="_aqV4NIxpEeKZK6dfhsaYbQ" target="_aqV4NoxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+      </edges>
+      <edges xmi:id="_aqWfNYxpEeKZK6dfhsaYbQ" source="_aqWfMIxpEeKZK6dfhsaYbQ" target="_aqV4NIxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//RelationalDatabase/tables"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_aqWfNoxpEeKZK6dfhsaYbQ" origin="_aqVRJoxpEeKZK6dfhsaYbQ" image="_aqV4MYxpEeKZK6dfhsaYbQ"/>
+    <mappings xmi:id="_aqWfN4xpEeKZK6dfhsaYbQ" origin="_aqVRKIxpEeKZK6dfhsaYbQ" image="_aqWfMIxpEeKZK6dfhsaYbQ"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_aqWfOIxpEeKZK6dfhsaYbQ" name="createRoot">
+    <lhs xmi:id="_aqWfOYxpEeKZK6dfhsaYbQ" name="Lhs">
+      <nodes xmi:id="_aqWfOoxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_aqWfO4xpEeKZK6dfhsaYbQ" name="Rhs">
+      <nodes xmi:id="_aqWfPIxpEeKZK6dfhsaYbQ" incoming="_aqWfP4xpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
+      </nodes>
+      <nodes xmi:id="_aqWfPYxpEeKZK6dfhsaYbQ" outgoing="_aqWfP4xpEeKZK6dfhsaYbQ _aqWfQIxpEeKZK6dfhsaYbQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_aqWfPoxpEeKZK6dfhsaYbQ" incoming="_aqWfQIxpEeKZK6dfhsaYbQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//RelationalDatabase"/>
+      </nodes>
+      <edges xmi:id="_aqWfP4xpEeKZK6dfhsaYbQ" source="_aqWfPYxpEeKZK6dfhsaYbQ" target="_aqWfPIxpEeKZK6dfhsaYbQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_aqWfQIxpEeKZK6dfhsaYbQ" source="_aqWfPYxpEeKZK6dfhsaYbQ" target="_aqWfPoxpEeKZK6dfhsaYbQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_aqWfQYxpEeKZK6dfhsaYbQ" origin="_aqWfOoxpEeKZK6dfhsaYbQ" image="_aqWfPIxpEeKZK6dfhsaYbQ"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_aqWfQoxpEeKZK6dfhsaYbQ" name="classesToTables" subUnit="_aqVRI4xpEeKZK6dfhsaYbQ"/>
+  <units xsi:type="henshin:SequentialUnit" xmi:id="_qOs94IxpEeKZK6dfhsaYbQ" name="classDiagramToRelationalDatabase" subUnits="_aqWfOIxpEeKZK6dfhsaYbQ _aqWfQoxpEeKZK6dfhsaYbQ"/>
 </henshin:Module>
