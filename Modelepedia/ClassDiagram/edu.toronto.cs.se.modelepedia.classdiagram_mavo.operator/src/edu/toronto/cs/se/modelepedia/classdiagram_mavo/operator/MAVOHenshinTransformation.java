@@ -39,6 +39,7 @@ import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Not;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
+import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
@@ -49,22 +50,26 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
-import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
-public class HenshinTransformation extends OperatorExecutableImpl {
+public class MAVOHenshinTransformation extends OperatorExecutableImpl {
 
 	private static final String PROPERTY_IN_TRANSFORMATIONMODULE = "transformationModule";
-	private static final String PROPERTY_IN_TRANSFORMATIONUNIT = "transformationUnit";
+	private static final String PROPERTY_IN_TRANSFORMATIONRULES = "transformationRules";
+	private static final String[] PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT = {};
+	private static final String PROPERTY_IN_TRANSFORMATIONRULESMAVO = "transformationRulesMAVO";
 	private static final String A_NAC_NAME = "A_NAC";
-	private static final String TRANSFORMED_MODEL_SUFFIX = "_transformed";
+	private static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
+	private static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
 
 	private String transformationModule;
-	private String transformationUnit;
+	private String[] transformationRules;
+	private String[] transformationRulesMAVO;
 
 	private void readProperties(Properties properties) throws Exception {
 
 		transformationModule = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_TRANSFORMATIONMODULE);
-		transformationUnit = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_TRANSFORMATIONUNIT);
+		transformationRules = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
+		transformationRulesMAVO = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULESMAVO);
 	}
 
 	private void applyMatch(RuleApplication application, Match match) {
@@ -232,45 +237,87 @@ matchesNac:
 		}
 	}
 
+	private void simpleMatch(Rule rule, Engine engine, EGraph graph) {
+
+		// apply rule once
+		RuleApplication application = new RuleApplicationImpl(engine);
+		application.setRule(rule);
+		application.setEGraph(graph);
+		for (Match match : engine.findMatches(rule, graph, null)) {
+			application.setCompleteMatch(match);
+			application.execute(null);
+			break;
+		}
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		Model cdModel = actualParameters.get(0);
+		Model model = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
-			cdModel,
+			model,
 			null,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
 
 		// do transformation
-		String fullUri = MultiModelRegistry.prependWorkspaceToUri(MultiModelRegistry.replaceLastSegmentInUri(cdModel.getUri(), ""));
+		String fullUri = MultiModelRegistry.prependWorkspaceToUri(MultiModelRegistry.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
 		Module module = resourceSet.getModule(transformationModule, false);
 		Engine engine = new EngineImpl();
-		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelRegistry.getLastSegmentFromUri(cdModel.getUri())));
-		Rule rule = (Rule) module.getUnit(transformationUnit);
-		matchNAC(rule, engine, graph);
-		match(rule, engine, graph);
+		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelRegistry.getLastSegmentFromUri(model.getUri())));
+		for (String transformationRule : transformationRules) {
+			Rule rule = (Rule) module.getUnit(transformationRule);
+			simpleMatch(rule, engine, graph);
+		}
+		for (String transformationRuleMAVO : transformationRulesMAVO) {
+			Rule rule = (Rule) module.getUnit(transformationRuleMAVO);
+			matchNAC(rule, engine, graph);
+			match(rule, engine, graph);
+		}
 
-		// save transformed model
-		String newCdModelUri = MultiModelRegistry.addFileNameSuffixInUri(cdModel.getUri(), TRANSFORMED_MODEL_SUFFIX);
-		String newCdModelName = MultiModelRegistry.getLastSegmentFromUri(newCdModelUri);
-		resourceSet.saveEObject(
-			graph.getRoots().get(0),
-			newCdModelName
-		);
+		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();
 		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
 		MultiModel multiModel = (updateMid) ?
-			MultiModelRegistry.getMultiModel(cdModel) :
+			MultiModelRegistry.getMultiModel(model) :
 			null;
-		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(ClassDiagram_MAVOPackage.eINSTANCE.getNsURI());
-		Model newCdModel = (updateMid) ?
-			MultiModelInstanceFactory.createModelAndEditor(modelType, newCdModelUri, ModelOrigin.CREATED, multiModel) :
-			MultiModelInstanceFactory.createModel(modelType, newCdModelUri, ModelOrigin.CREATED, null);
-		result.add(newCdModel);
+		EObject rootInput = null, rootOutput = null;
+		for (EObject root : graph.getRoots()) {
+			if (root instanceof Trace) {
+				continue;
+			}
+			if (rootInput == null) {
+				rootInput = root;
+				continue;
+			}
+			if (rootOutput == null) {
+				rootOutput = root;
+			}
+		}
+		Model modelInputType = MultiModelTypeRegistry.getExtendibleElementType(rootInput.eClass().getEPackage().getNsURI());
+		String transformedModelInputUri = MultiModelRegistry.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODELINPUT_SUFFIX);
+		String transformedModelInputName = MultiModelRegistry.getLastSegmentFromUri(transformedModelInputUri);
+		resourceSet.saveEObject(rootInput, transformedModelInputName);
+		Model transformedModelInput = (updateMid) ?
+			MultiModelInstanceFactory.createModelAndEditor(modelInputType, transformedModelInputUri, ModelOrigin.CREATED, multiModel) :
+			MultiModelInstanceFactory.createModel(modelInputType, transformedModelInputUri, ModelOrigin.CREATED, null);
+		result.add(transformedModelInput);
+		if (rootOutput != null) {
+			Model modelOutputType = MultiModelTypeRegistry.getExtendibleElementType(rootOutput.eClass().getEPackage().getNsURI());
+			String transformedModelOutputUri = MultiModelRegistry.replaceFileExtensionInUri(
+				MultiModelRegistry.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODELOUTPUT_SUFFIX),
+				modelOutputType.getFileExtension()
+			);
+			String transformedModelOutputName = MultiModelRegistry.getLastSegmentFromUri(transformedModelOutputUri);
+			resourceSet.saveEObject(rootOutput, transformedModelOutputName);
+			Model transformedModelOutput = (updateMid) ?
+				MultiModelInstanceFactory.createModelAndEditor(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, multiModel) :
+				MultiModelInstanceFactory.createModel(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, null);
+			result.add(transformedModelOutput);
+		}
 
 		return result;
 	}
