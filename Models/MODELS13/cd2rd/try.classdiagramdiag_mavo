@@ -86,4 +86,15 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9XLLwow2EeKHVvblARgWmg" points="[-9, -17, -3, 128]$[-9, -185, -3, -40]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9XMZ4Iw2EeKHVvblARgWmg" id="(0.55,0.2125)"/>
   </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_biEY4Iw-EeKHVvblARgWmg" type="4001" source="_N7F78Iw1EeKHVvblARgWmg" target="_RG_QMIw1EeKHVvblARgWmg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_biEY44w-EeKHVvblARgWmg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_biEY5Iw-EeKHVvblARgWmg" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_biE_8Iw-EeKHVvblARgWmg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_biE_8Yw-EeKHVvblARgWmg" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_biEY4Yw-EeKHVvblARgWmg" fontName="Ubuntu"/>
+    <element xmi:type="classdiagram_mavo:Association" href="try.classdiagram_mavo#//@associations.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_biEY4ow-EeKHVvblARgWmg" points="[30, -3, -203, 6]$[224, -49, -9, -40]"/>
+  </edges>
 </notation:Diagram>
