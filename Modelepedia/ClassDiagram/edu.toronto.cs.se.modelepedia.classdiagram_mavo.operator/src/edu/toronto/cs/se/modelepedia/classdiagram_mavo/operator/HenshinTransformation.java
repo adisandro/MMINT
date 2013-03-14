@@ -161,7 +161,7 @@ public class HenshinTransformation extends OperatorExecutableImpl {
 				}
 			}
 		}
-		//TODO MMTF: propagate may to A-D
+		//TODO MMTF: propagate may to A-D, loop through mayMatchesANac, if they don't overlap with matchesNac (which we don't have, doh) set all mavo elements to may
 
 		// secondly, do OR-ed (N)acs
 		Map<Match, Rule> mayMatchesNac = new HashMap<Match, Rule>();
