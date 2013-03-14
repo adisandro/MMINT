@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_xeMo4IwFEeKO5ITjB5A1JA" type="ClassDiagram_MAVO" measurementUnit="Pixel">
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_xeMo4YwFEeKO5ITjB5A1JA"/>
-  <element xmi:type="classdiagram_mavo:ClassDiagram" href="cd.classdiagram_mavo#/"/>
-</notation:Diagram>
