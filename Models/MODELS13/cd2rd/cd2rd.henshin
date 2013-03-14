@@ -485,4 +485,170 @@
     <mappings origin="//@units.4/@lhs/@nodes.5" image="//@units.4/@rhs/@nodes.5"/>
   </units>
   <units xsi:type="henshin:LoopUnit" name="liftAssociationSources" subUnit="//@units.4"/>
+  <units xsi:type="henshin:Rule" name="liftAssociationTarget">
+    <parameters name="associationName">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs name="Lhs">
+      <nodes incoming="//@units.6/@lhs/@edges.2" outgoing="//@units.6/@lhs/@edges.0">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes incoming="//@units.6/@lhs/@edges.0" outgoing="//@units.6/@lhs/@edges.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
+      </nodes>
+      <nodes incoming="//@units.6/@lhs/@edges.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes incoming="//@units.6/@lhs/@edges.3" outgoing="//@units.6/@lhs/@edges.2 //@units.6/@lhs/@edges.4">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+        <attributes value="associationName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes outgoing="//@units.6/@lhs/@edges.3">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
+      </nodes>
+      <nodes incoming="//@units.6/@lhs/@edges.4">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <edges source="//@units.6/@lhs/@nodes.0" target="//@units.6/@lhs/@nodes.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
+      </edges>
+      <edges source="//@units.6/@lhs/@nodes.1" target="//@units.6/@lhs/@nodes.2">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
+      </edges>
+      <edges source="//@units.6/@lhs/@nodes.3" target="//@units.6/@lhs/@nodes.0">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+      </edges>
+      <edges source="//@units.6/@lhs/@nodes.4" target="//@units.6/@lhs/@nodes.3">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
+      </edges>
+      <edges source="//@units.6/@lhs/@nodes.3" target="//@units.6/@lhs/@nodes.5">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+      </edges>
+      <formula xsi:type="henshin:Not">
+        <child xsi:type="henshin:NestedCondition">
+          <conclusion name="A_NAC">
+            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.0" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.1">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+            </nodes>
+            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.3" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.0 //@units.6/@lhs/@formula/@child/@conclusion/@edges.4">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+              <attributes value="associationName">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+              </attributes>
+            </nodes>
+            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.1" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.2">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
+            </nodes>
+            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.2 //@units.6/@lhs/@formula/@child/@conclusion/@edges.6">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+            </nodes>
+            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.5" outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.6 //@units.6/@lhs/@formula/@child/@conclusion/@edges.7">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+              <attributes value="associationName">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+              </attributes>
+            </nodes>
+            <nodes outgoing="//@units.6/@lhs/@formula/@child/@conclusion/@edges.3 //@units.6/@lhs/@formula/@child/@conclusion/@edges.5">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
+            </nodes>
+            <nodes incoming="//@units.6/@lhs/@formula/@child/@conclusion/@edges.4 //@units.6/@lhs/@formula/@child/@conclusion/@edges.7">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+            </nodes>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.0">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+            </edges>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.0" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.2">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
+            </edges>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.2" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.3">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
+            </edges>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
+            </edges>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.6">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+            </edges>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.5" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.4">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
+            </edges>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.3">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+            </edges>
+            <edges source="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.4" target="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.6">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+            </edges>
+          </conclusion>
+          <mappings origin="//@units.6/@lhs/@nodes.0" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.0"/>
+          <mappings origin="//@units.6/@lhs/@nodes.3" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.1"/>
+          <mappings origin="//@units.6/@lhs/@nodes.1" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.2"/>
+          <mappings origin="//@units.6/@lhs/@nodes.2" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.3"/>
+          <mappings origin="//@units.6/@lhs/@nodes.4" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.5"/>
+          <mappings origin="//@units.6/@lhs/@nodes.5" image="//@units.6/@lhs/@formula/@child/@conclusion/@nodes.6"/>
+        </child>
+      </formula>
+    </lhs>
+    <rhs name="Rhs">
+      <nodes incoming="//@units.6/@rhs/@edges.2" outgoing="//@units.6/@rhs/@edges.0">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes incoming="//@units.6/@rhs/@edges.0" outgoing="//@units.6/@rhs/@edges.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference"/>
+      </nodes>
+      <nodes incoming="//@units.6/@rhs/@edges.1 //@units.6/@rhs/@edges.6">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes incoming="//@units.6/@rhs/@edges.3" outgoing="//@units.6/@rhs/@edges.2 //@units.6/@rhs/@edges.4">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+        <attributes value="associationName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes outgoing="//@units.6/@rhs/@edges.3 //@units.6/@rhs/@edges.5">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram"/>
+      </nodes>
+      <nodes incoming="//@units.6/@rhs/@edges.5" outgoing="//@units.6/@rhs/@edges.6 //@units.6/@rhs/@edges.7">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+        <attributes value="associationName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes incoming="//@units.6/@rhs/@edges.4 //@units.6/@rhs/@edges.7">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <edges source="//@units.6/@rhs/@nodes.0" target="//@units.6/@rhs/@nodes.1">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class/superclass"/>
+      </edges>
+      <edges source="//@units.6/@rhs/@nodes.1" target="//@units.6/@rhs/@nodes.2">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//SuperclassReference/target"/>
+      </edges>
+      <edges source="//@units.6/@rhs/@nodes.3" target="//@units.6/@rhs/@nodes.0">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+      </edges>
+      <edges source="//@units.6/@rhs/@nodes.4" target="//@units.6/@rhs/@nodes.3">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
+      </edges>
+      <edges source="//@units.6/@rhs/@nodes.3" target="//@units.6/@rhs/@nodes.6">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+      </edges>
+      <edges source="//@units.6/@rhs/@nodes.4" target="//@units.6/@rhs/@nodes.5">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//ClassDiagram/associations"/>
+      </edges>
+      <edges source="//@units.6/@rhs/@nodes.5" target="//@units.6/@rhs/@nodes.2">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+      </edges>
+      <edges source="//@units.6/@rhs/@nodes.5" target="//@units.6/@rhs/@nodes.6">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+      </edges>
+    </rhs>
+    <mappings origin="//@units.6/@lhs/@nodes.0" image="//@units.6/@rhs/@nodes.0"/>
+    <mappings origin="//@units.6/@lhs/@nodes.1" image="//@units.6/@rhs/@nodes.1"/>
+    <mappings origin="//@units.6/@lhs/@nodes.2" image="//@units.6/@rhs/@nodes.2"/>
+    <mappings origin="//@units.6/@lhs/@nodes.3" image="//@units.6/@rhs/@nodes.3"/>
+    <mappings origin="//@units.6/@lhs/@nodes.4" image="//@units.6/@rhs/@nodes.4"/>
+    <mappings origin="//@units.6/@lhs/@nodes.5" image="//@units.6/@rhs/@nodes.6"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_UBKzcIxjEeKyApjBaajZRA" name="liftAssociationTargets" subUnit="//@units.6"/>
 </henshin:Module>
