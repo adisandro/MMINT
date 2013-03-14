@@ -915,7 +915,7 @@
     <mappings xmi:id="_3jXDJ4xvEeKGp_w-QShYXQ" origin="_3jWcGoxvEeKGp_w-QShYXQ" image="_3jWcKIxvEeKGp_w-QShYXQ"/>
     <mappings xmi:id="_3jXDKIxvEeKGp_w-QShYXQ" origin="_3jWcHIxvEeKGp_w-QShYXQ" image="_3jXDI4xvEeKGp_w-QShYXQ"/>
   </units>
-  <units xsi:type="henshin:LoopUnit" xmi:id="_3jXDKYxvEeKGp_w-QShYXQ" name="associationToTables" subUnit="_3jWcF4xvEeKGp_w-QShYXQ"/>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_3jXDKYxvEeKGp_w-QShYXQ" name="associationsToTables" subUnit="_3jWcF4xvEeKGp_w-QShYXQ"/>
   <units xsi:type="henshin:Rule" xmi:id="_3jXDKoxvEeKGp_w-QShYXQ" name="attributeToColumn">
     <parameters xmi:id="_3jXDK4xvEeKGp_w-QShYXQ" name="attributeName">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
