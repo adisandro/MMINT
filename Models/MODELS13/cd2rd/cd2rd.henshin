@@ -808,7 +808,7 @@
     <mappings xmi:id="_3jWcFIxvEeKGp_w-QShYXQ" origin="_3jV1FIxvEeKGp_w-QShYXQ" image="_3jV1FoxvEeKGp_w-QShYXQ"/>
   </units>
   <units xsi:type="henshin:LoopUnit" xmi:id="_3jWcFYxvEeKGp_w-QShYXQ" name="classesToTables" subUnit="_3jVN9IxvEeKGp_w-QShYXQ"/>
-  <units xsi:type="henshin:SequentialUnit" xmi:id="_3jWcFoxvEeKGp_w-QShYXQ" name="classDiagramToRelationalDatabase" subUnits="_3jPub4xvEeKGp_w-QShYXQ _3jRjm4xvEeKGp_w-QShYXQ _3jTYw4xvEeKGp_w-QShYXQ _3jVN84xvEeKGp_w-QShYXQ _3jV1EoxvEeKGp_w-QShYXQ _3jWcFYxvEeKGp_w-QShYXQ _3jXDKYxvEeKGp_w-QShYXQ _3jYRTIxvEeKGp_w-QShYXQ _3jbUn4xvEeKGp_w-QShYXQ"/>
+  <units xsi:type="henshin:SequentialUnit" xmi:id="_3jWcFoxvEeKGp_w-QShYXQ" name="classDiagramToRelationalDatabase" subUnits="_3jPub4xvEeKGp_w-QShYXQ _3jRjm4xvEeKGp_w-QShYXQ _3jTYw4xvEeKGp_w-QShYXQ _3jVN84xvEeKGp_w-QShYXQ _3jV1EoxvEeKGp_w-QShYXQ _3jWcFYxvEeKGp_w-QShYXQ _3jXDKYxvEeKGp_w-QShYXQ _3jYRTIxvEeKGp_w-QShYXQ _3jbUn4xvEeKGp_w-QShYXQ _O91H4IzQEeK7lcWit3DLcQ"/>
   <units xsi:type="henshin:Rule" xmi:id="_3jWcF4xvEeKGp_w-QShYXQ" name="associationToTable">
     <parameters xmi:id="_3jWcGIxvEeKGp_w-QShYXQ" name="associationName">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1327,4 +1327,12 @@
     <mappings xmi:id="_3jbUnoxvEeKGp_w-QShYXQ" origin="_3jY4VIxvEeKGp_w-QShYXQ" image="_3jathYxvEeKGp_w-QShYXQ"/>
   </units>
   <units xsi:type="henshin:LoopUnit" xmi:id="_3jbUn4xvEeKGp_w-QShYXQ" name="attributesToForeignKeys" subUnit="_3jYRTYxvEeKGp_w-QShYXQ"/>
+  <units xsi:type="henshin:Rule" xmi:id="_LUr28IzQEeK7lcWit3DLcQ" name="associationToForeignKey">
+    <parameters xmi:id="_NqzZwIzQEeK7lcWit3DLcQ" name="associationName">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_LV4JwIzQEeK7lcWit3DLcQ" name="Lhs"/>
+    <rhs xmi:id="_LWUOoIzQEeK7lcWit3DLcQ" name="Rhs"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_O91H4IzQEeK7lcWit3DLcQ" name="associationsToForeignKeys" subUnit="_LUr28IzQEeK7lcWit3DLcQ"/>
 </henshin:Module>
