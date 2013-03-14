@@ -1331,8 +1331,364 @@
     <parameters xmi:id="_NqzZwIzQEeK7lcWit3DLcQ" name="associationName">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </parameters>
-    <lhs xmi:id="_LV4JwIzQEeK7lcWit3DLcQ" name="Lhs"/>
-    <rhs xmi:id="_LWUOoIzQEeK7lcWit3DLcQ" name="Rhs"/>
+    <lhs xmi:id="_LV4JwIzQEeK7lcWit3DLcQ" name="Lhs">
+      <nodes xmi:id="_wQwhIIzQEeK7lcWit3DLcQ" incoming="_5fHHEIzQEeK7lcWit3DLcQ" outgoing="_zOHDEIzQEeK7lcWit3DLcQ _zukr0IzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+        <attributes xmi:id="_w2UFQIzQEeK7lcWit3DLcQ" value="associationName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_xt7CsIzQEeK7lcWit3DLcQ" incoming="_zOHDEIzQEeK7lcWit3DLcQ _5uME4IzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes xmi:id="_yOKB8IzQEeK7lcWit3DLcQ" incoming="_zukr0IzQEeK7lcWit3DLcQ _5_DLYIzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes xmi:id="_3hmRgIzQEeK7lcWit3DLcQ" outgoing="_5uME4IzQEeK7lcWit3DLcQ _9FR8gIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_3yLEIIzQEeK7lcWit3DLcQ" outgoing="_5fHHEIzQEeK7lcWit3DLcQ _9WK4MIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_4A4OgIzQEeK7lcWit3DLcQ" outgoing="_5_DLYIzQEeK7lcWit3DLcQ _9rFYQIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_66eR0IzQEeK7lcWit3DLcQ" incoming="_9FR8gIzQEeK7lcWit3DLcQ" outgoing="_E-OOsIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+      </nodes>
+      <nodes xmi:id="_7P4hIIzQEeK7lcWit3DLcQ" incoming="_9WK4MIzQEeK7lcWit3DLcQ" outgoing="_FSJQQIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+      </nodes>
+      <nodes xmi:id="_7rA98IzQEeK7lcWit3DLcQ" incoming="_9rFYQIzQEeK7lcWit3DLcQ" outgoing="_Fk50MIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+      </nodes>
+      <nodes xmi:id="_CizVIIzREeK7lcWit3DLcQ" incoming="_E-OOsIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+      </nodes>
+      <nodes xmi:id="_CwbhcIzREeK7lcWit3DLcQ" incoming="_FSJQQIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+      </nodes>
+      <nodes xmi:id="_C8wtQIzREeK7lcWit3DLcQ" incoming="_Fk50MIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+      </nodes>
+      <edges xmi:id="_zOHDEIzQEeK7lcWit3DLcQ" source="_wQwhIIzQEeK7lcWit3DLcQ" target="_xt7CsIzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+      </edges>
+      <edges xmi:id="_zukr0IzQEeK7lcWit3DLcQ" source="_wQwhIIzQEeK7lcWit3DLcQ" target="_yOKB8IzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+      </edges>
+      <edges xmi:id="_5fHHEIzQEeK7lcWit3DLcQ" source="_3yLEIIzQEeK7lcWit3DLcQ" target="_wQwhIIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_5uME4IzQEeK7lcWit3DLcQ" source="_3hmRgIzQEeK7lcWit3DLcQ" target="_xt7CsIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_5_DLYIzQEeK7lcWit3DLcQ" source="_4A4OgIzQEeK7lcWit3DLcQ" target="_yOKB8IzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_9FR8gIzQEeK7lcWit3DLcQ" source="_3hmRgIzQEeK7lcWit3DLcQ" target="_66eR0IzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_9WK4MIzQEeK7lcWit3DLcQ" source="_3yLEIIzQEeK7lcWit3DLcQ" target="_7P4hIIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_9rFYQIzQEeK7lcWit3DLcQ" source="_4A4OgIzQEeK7lcWit3DLcQ" target="_7rA98IzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_E-OOsIzREeK7lcWit3DLcQ" source="_66eR0IzQEeK7lcWit3DLcQ" target="_CizVIIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+      </edges>
+      <edges xmi:id="_FSJQQIzREeK7lcWit3DLcQ" source="_7P4hIIzQEeK7lcWit3DLcQ" target="_CwbhcIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+      </edges>
+      <edges xmi:id="_Fk50MIzREeK7lcWit3DLcQ" source="_7rA98IzQEeK7lcWit3DLcQ" target="_C8wtQIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+      </edges>
+      <formula xsi:type="henshin:Not" xmi:id="_oUYOgIzSEeK7lcWit3DLcQ">
+        <child xsi:type="henshin:NestedCondition" xmi:id="_oUYOgYzSEeK7lcWit3DLcQ">
+          <conclusion xmi:id="_oUYOgozSEeK7lcWit3DLcQ" name="A_NAC">
+            <nodes xmi:id="_oUe8MIzSEeK7lcWit3DLcQ" incoming="_oUe8NYzSEeK7lcWit3DLcQ" outgoing="_oUe8OIzSEeK7lcWit3DLcQ _oUfjQIzSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+              <attributes xmi:id="_oUe8MYzSEeK7lcWit3DLcQ" value="associationName">
+                <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_oUe8M4zSEeK7lcWit3DLcQ" outgoing="_oUe8NYzSEeK7lcWit3DLcQ _oUgKUIzSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+            </nodes>
+            <nodes xmi:id="_oUe8NozSEeK7lcWit3DLcQ" incoming="_oUe8OIzSEeK7lcWit3DLcQ _oUfjQ4zSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+            </nodes>
+            <nodes xmi:id="_oUe8OYzSEeK7lcWit3DLcQ" incoming="_oUfjQIzSEeK7lcWit3DLcQ _oUfjRozSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+            </nodes>
+            <nodes xmi:id="_oUfjQYzSEeK7lcWit3DLcQ" outgoing="_oUfjQ4zSEeK7lcWit3DLcQ _oUfjSYzSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+            </nodes>
+            <nodes xmi:id="_oUfjRIzSEeK7lcWit3DLcQ" outgoing="_oUfjRozSEeK7lcWit3DLcQ _oUgKU4zSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+            </nodes>
+            <nodes xmi:id="_oUfjR4zSEeK7lcWit3DLcQ" incoming="_oUfjSYzSEeK7lcWit3DLcQ" outgoing="_oUgKVozSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+            </nodes>
+            <nodes xmi:id="_oUfjSozSEeK7lcWit3DLcQ" incoming="_oUgKUIzSEeK7lcWit3DLcQ" outgoing="_oUgKWYzSEeK7lcWit3DLcQ _ibAc0IzREeK7lcWit3DLcQ _ixV5MIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+            </nodes>
+            <nodes xmi:id="_oUgKUYzSEeK7lcWit3DLcQ" incoming="_oUgKU4zSEeK7lcWit3DLcQ" outgoing="_oUgxZozSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+            </nodes>
+            <nodes xmi:id="_oUgKVIzSEeK7lcWit3DLcQ" incoming="_oUgKVozSEeK7lcWit3DLcQ _lzkUEIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+            </nodes>
+            <nodes xmi:id="_oUgKV4zSEeK7lcWit3DLcQ" incoming="_oUgKWYzSEeK7lcWit3DLcQ _lKm2oIzREeK7lcWit3DLcQ _2f3SQIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+            </nodes>
+            <nodes xmi:id="_MJVxkIzREeK7lcWit3DLcQ" incoming="_ibAc0IzREeK7lcWit3DLcQ" outgoing="_p1vJAIzREeK7lcWit3DLcQ _phuA0IzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey"/>
+              <attributes xmi:id="_OHxNIIzREeK7lcWit3DLcQ" value="associationName">
+                <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//NamedElement/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_MWD-8IzREeK7lcWit3DLcQ" incoming="_ixV5MIzREeK7lcWit3DLcQ" outgoing="_3ZmWoIzREeK7lcWit3DLcQ _2_-8wIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey"/>
+              <attributes xmi:id="_OTSgoIzREeK7lcWit3DLcQ" value="associationName">
+                <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//NamedElement/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_oUgxZIzSEeK7lcWit3DLcQ" incoming="_oUgxZozSEeK7lcWit3DLcQ _mWIOkIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+            </nodes>
+            <nodes xmi:id="_Rw6eEIzREeK7lcWit3DLcQ" incoming="_phuA0IzREeK7lcWit3DLcQ" outgoing="_lzkUEIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference"/>
+            </nodes>
+            <nodes xmi:id="_eVxFwIzREeK7lcWit3DLcQ" incoming="_p1vJAIzREeK7lcWit3DLcQ" outgoing="_lKm2oIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference"/>
+            </nodes>
+            <nodes xmi:id="_0tWLwIzREeK7lcWit3DLcQ" incoming="_2_-8wIzREeK7lcWit3DLcQ" outgoing="_2f3SQIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference"/>
+            </nodes>
+            <nodes xmi:id="_SJUXAIzREeK7lcWit3DLcQ" incoming="_3ZmWoIzREeK7lcWit3DLcQ" outgoing="_mWIOkIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference"/>
+            </nodes>
+            <edges xmi:id="_oUe8NYzSEeK7lcWit3DLcQ" source="_oUe8M4zSEeK7lcWit3DLcQ" target="_oUe8MIzSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+            </edges>
+            <edges xmi:id="_oUe8OIzSEeK7lcWit3DLcQ" source="_oUe8MIzSEeK7lcWit3DLcQ" target="_oUe8NozSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+            </edges>
+            <edges xmi:id="_oUfjQIzSEeK7lcWit3DLcQ" source="_oUe8MIzSEeK7lcWit3DLcQ" target="_oUe8OYzSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+            </edges>
+            <edges xmi:id="_oUfjQ4zSEeK7lcWit3DLcQ" source="_oUfjQYzSEeK7lcWit3DLcQ" target="_oUe8NozSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+            </edges>
+            <edges xmi:id="_oUfjRozSEeK7lcWit3DLcQ" source="_oUfjRIzSEeK7lcWit3DLcQ" target="_oUe8OYzSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+            </edges>
+            <edges xmi:id="_oUfjSYzSEeK7lcWit3DLcQ" source="_oUfjQYzSEeK7lcWit3DLcQ" target="_oUfjR4zSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+            </edges>
+            <edges xmi:id="_oUgKUIzSEeK7lcWit3DLcQ" source="_oUe8M4zSEeK7lcWit3DLcQ" target="_oUfjSozSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+            </edges>
+            <edges xmi:id="_oUgKU4zSEeK7lcWit3DLcQ" source="_oUfjRIzSEeK7lcWit3DLcQ" target="_oUgKUYzSEeK7lcWit3DLcQ">
+              <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+            </edges>
+            <edges xmi:id="_oUgKVozSEeK7lcWit3DLcQ" source="_oUfjR4zSEeK7lcWit3DLcQ" target="_oUgKVIzSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+            </edges>
+            <edges xmi:id="_oUgKWYzSEeK7lcWit3DLcQ" source="_oUfjSozSEeK7lcWit3DLcQ" target="_oUgKV4zSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+            </edges>
+            <edges xmi:id="_oUgxZozSEeK7lcWit3DLcQ" source="_oUgKUYzSEeK7lcWit3DLcQ" target="_oUgxZIzSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+            </edges>
+            <edges xmi:id="_phuA0IzREeK7lcWit3DLcQ" source="_MJVxkIzREeK7lcWit3DLcQ" target="_Rw6eEIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/foreignColumn"/>
+            </edges>
+            <edges xmi:id="_lzkUEIzREeK7lcWit3DLcQ" source="_Rw6eEIzREeK7lcWit3DLcQ" target="_oUgKVIzSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference/target"/>
+            </edges>
+            <edges xmi:id="_ibAc0IzREeK7lcWit3DLcQ" source="_oUfjSozSEeK7lcWit3DLcQ" target="_MJVxkIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/foreignKeys"/>
+            </edges>
+            <edges xmi:id="_p1vJAIzREeK7lcWit3DLcQ" source="_MJVxkIzREeK7lcWit3DLcQ" target="_eVxFwIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/tableColumn"/>
+            </edges>
+            <edges xmi:id="_lKm2oIzREeK7lcWit3DLcQ" source="_eVxFwIzREeK7lcWit3DLcQ" target="_oUgKV4zSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference/target"/>
+            </edges>
+            <edges xmi:id="_2_-8wIzREeK7lcWit3DLcQ" source="_MWD-8IzREeK7lcWit3DLcQ" target="_0tWLwIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/tableColumn"/>
+            </edges>
+            <edges xmi:id="_2f3SQIzREeK7lcWit3DLcQ" source="_0tWLwIzREeK7lcWit3DLcQ" target="_oUgKV4zSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference/target"/>
+            </edges>
+            <edges xmi:id="_ixV5MIzREeK7lcWit3DLcQ" source="_oUfjSozSEeK7lcWit3DLcQ" target="_MWD-8IzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/foreignKeys"/>
+            </edges>
+            <edges xmi:id="_3ZmWoIzREeK7lcWit3DLcQ" source="_MWD-8IzREeK7lcWit3DLcQ" target="_SJUXAIzREeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/foreignColumn"/>
+            </edges>
+            <edges xmi:id="_mWIOkIzREeK7lcWit3DLcQ" source="_SJUXAIzREeK7lcWit3DLcQ" target="_oUgxZIzSEeK7lcWit3DLcQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference/target"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_oUe8MozSEeK7lcWit3DLcQ" origin="_wQwhIIzQEeK7lcWit3DLcQ" image="_oUe8MIzSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUe8NIzSEeK7lcWit3DLcQ" origin="_3yLEIIzQEeK7lcWit3DLcQ" image="_oUe8M4zSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUe8N4zSEeK7lcWit3DLcQ" origin="_xt7CsIzQEeK7lcWit3DLcQ" image="_oUe8NozSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUe8OozSEeK7lcWit3DLcQ" origin="_yOKB8IzQEeK7lcWit3DLcQ" image="_oUe8OYzSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUfjQozSEeK7lcWit3DLcQ" origin="_3hmRgIzQEeK7lcWit3DLcQ" image="_oUfjQYzSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUfjRYzSEeK7lcWit3DLcQ" origin="_4A4OgIzQEeK7lcWit3DLcQ" image="_oUfjRIzSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUfjSIzSEeK7lcWit3DLcQ" origin="_66eR0IzQEeK7lcWit3DLcQ" image="_oUfjR4zSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUfjS4zSEeK7lcWit3DLcQ" origin="_7P4hIIzQEeK7lcWit3DLcQ" image="_oUfjSozSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUgKUozSEeK7lcWit3DLcQ" origin="_7rA98IzQEeK7lcWit3DLcQ" image="_oUgKUYzSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUgKVYzSEeK7lcWit3DLcQ" origin="_CizVIIzREeK7lcWit3DLcQ" image="_oUgKVIzSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUgKWIzSEeK7lcWit3DLcQ" origin="_CwbhcIzREeK7lcWit3DLcQ" image="_oUgKV4zSEeK7lcWit3DLcQ"/>
+          <mappings xmi:id="_oUgxZYzSEeK7lcWit3DLcQ" origin="_C8wtQIzREeK7lcWit3DLcQ" image="_oUgxZIzSEeK7lcWit3DLcQ"/>
+        </child>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_LWUOoIzQEeK7lcWit3DLcQ" name="Rhs">
+      <nodes xmi:id="_wQ6SIIzQEeK7lcWit3DLcQ" incoming="_5fik4IzQEeK7lcWit3DLcQ" outgoing="_zOePcIzQEeK7lcWit3DLcQ _zu9GUIzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association"/>
+        <attributes xmi:id="_w2edUIzQEeK7lcWit3DLcQ" value="associationName">
+          <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_xuC-gIzQEeK7lcWit3DLcQ" incoming="_zOePcIzQEeK7lcWit3DLcQ _5ukfYIzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes xmi:id="_yOR9wIzQEeK7lcWit3DLcQ" incoming="_zu9GUIzQEeK7lcWit3DLcQ _5_dbEIzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class"/>
+      </nodes>
+      <nodes xmi:id="_3hs_MIzQEeK7lcWit3DLcQ" outgoing="_5ukfYIzQEeK7lcWit3DLcQ _9Fpv8IzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_3yRx0IzQEeK7lcWit3DLcQ" outgoing="_5fik4IzQEeK7lcWit3DLcQ _9WhdgIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_4A_jQIzQEeK7lcWit3DLcQ" outgoing="_5_dbEIzQEeK7lcWit3DLcQ _9ravcIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_66mNoIzQEeK7lcWit3DLcQ" incoming="_9Fpv8IzQEeK7lcWit3DLcQ" outgoing="_E-i-0IzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+      </nodes>
+      <nodes xmi:id="_7P_14IzQEeK7lcWit3DLcQ" incoming="_9WhdgIzQEeK7lcWit3DLcQ" outgoing="_FSeAYIzREeK7lcWit3DLcQ _hwybIIzREeK7lcWit3DLcQ _iHZkUIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+      </nodes>
+      <nodes xmi:id="_7rI5wIzQEeK7lcWit3DLcQ" incoming="_9ravcIzQEeK7lcWit3DLcQ" outgoing="_FlPLYIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table"/>
+      </nodes>
+      <nodes xmi:id="_Ci6p4IzREeK7lcWit3DLcQ" incoming="_E-i-0IzREeK7lcWit3DLcQ _llXgAIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+      </nodes>
+      <nodes xmi:id="_Cwi2MIzREeK7lcWit3DLcQ" incoming="_FSeAYIzREeK7lcWit3DLcQ _kyyzkIzREeK7lcWit3DLcQ _2MUrMIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+      </nodes>
+      <nodes xmi:id="_C84CAIzREeK7lcWit3DLcQ" incoming="_FlPLYIzREeK7lcWit3DLcQ _mDgNgIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Column"/>
+      </nodes>
+      <nodes xmi:id="_LMHUUIzREeK7lcWit3DLcQ" incoming="_hwybIIzREeK7lcWit3DLcQ" outgoing="_n2P9gIzREeK7lcWit3DLcQ _pFzg4IzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey"/>
+        <attributes xmi:id="_N5ReIIzREeK7lcWit3DLcQ" value="associationName">
+          <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_LhEQoIzREeK7lcWit3DLcQ" incoming="_iHZkUIzREeK7lcWit3DLcQ" outgoing="_4UB-kIzREeK7lcWit3DLcQ _340pQIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey"/>
+        <attributes xmi:id="_Od-GoIzREeK7lcWit3DLcQ" value="associationName">
+          <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//NamedElement/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_RYbFkIzREeK7lcWit3DLcQ" incoming="_pFzg4IzREeK7lcWit3DLcQ" outgoing="_llXgAIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference"/>
+      </nodes>
+      <nodes xmi:id="_R9Yz0IzREeK7lcWit3DLcQ" incoming="_4UB-kIzREeK7lcWit3DLcQ" outgoing="_mDgNgIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference"/>
+      </nodes>
+      <nodes xmi:id="_eFM6MIzREeK7lcWit3DLcQ" description="" incoming="_n2P9gIzREeK7lcWit3DLcQ" outgoing="_kyyzkIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference"/>
+      </nodes>
+      <nodes xmi:id="_0hL_EIzREeK7lcWit3DLcQ" incoming="_340pQIzREeK7lcWit3DLcQ" outgoing="_2MUrMIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference"/>
+      </nodes>
+      <edges xmi:id="_zOePcIzQEeK7lcWit3DLcQ" source="_wQ6SIIzQEeK7lcWit3DLcQ" target="_xuC-gIzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/source"/>
+      </edges>
+      <edges xmi:id="_zu9GUIzQEeK7lcWit3DLcQ" source="_wQ6SIIzQEeK7lcWit3DLcQ" target="_yOR9wIzQEeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Association/target"/>
+      </edges>
+      <edges xmi:id="_5fik4IzQEeK7lcWit3DLcQ" source="_3yRx0IzQEeK7lcWit3DLcQ" target="_wQ6SIIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_5ukfYIzQEeK7lcWit3DLcQ" source="_3hs_MIzQEeK7lcWit3DLcQ" target="_xuC-gIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_5_dbEIzQEeK7lcWit3DLcQ" source="_4A_jQIzQEeK7lcWit3DLcQ" target="_yOR9wIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_9Fpv8IzQEeK7lcWit3DLcQ" source="_3hs_MIzQEeK7lcWit3DLcQ" target="_66mNoIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_9WhdgIzQEeK7lcWit3DLcQ" source="_3yRx0IzQEeK7lcWit3DLcQ" target="_7P_14IzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_9ravcIzQEeK7lcWit3DLcQ" source="_4A_jQIzQEeK7lcWit3DLcQ" target="_7rI5wIzQEeK7lcWit3DLcQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_E-i-0IzREeK7lcWit3DLcQ" source="_66mNoIzQEeK7lcWit3DLcQ" target="_Ci6p4IzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+      </edges>
+      <edges xmi:id="_FSeAYIzREeK7lcWit3DLcQ" source="_7P_14IzQEeK7lcWit3DLcQ" target="_Cwi2MIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+      </edges>
+      <edges xmi:id="_FlPLYIzREeK7lcWit3DLcQ" source="_7rI5wIzQEeK7lcWit3DLcQ" target="_C84CAIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/primaryKey"/>
+      </edges>
+      <edges xmi:id="_pFzg4IzREeK7lcWit3DLcQ" source="_LMHUUIzREeK7lcWit3DLcQ" target="_RYbFkIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/foreignColumn"/>
+      </edges>
+      <edges xmi:id="_llXgAIzREeK7lcWit3DLcQ" source="_RYbFkIzREeK7lcWit3DLcQ" target="_Ci6p4IzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference/target"/>
+      </edges>
+      <edges xmi:id="_hwybIIzREeK7lcWit3DLcQ" source="_7P_14IzQEeK7lcWit3DLcQ" target="_LMHUUIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/foreignKeys"/>
+      </edges>
+      <edges xmi:id="_n2P9gIzREeK7lcWit3DLcQ" source="_LMHUUIzREeK7lcWit3DLcQ" target="_eFM6MIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/tableColumn"/>
+      </edges>
+      <edges xmi:id="_kyyzkIzREeK7lcWit3DLcQ" source="_eFM6MIzREeK7lcWit3DLcQ" target="_Cwi2MIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference/target"/>
+      </edges>
+      <edges xmi:id="_340pQIzREeK7lcWit3DLcQ" source="_LhEQoIzREeK7lcWit3DLcQ" target="_0hL_EIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/tableColumn"/>
+      </edges>
+      <edges xmi:id="_2MUrMIzREeK7lcWit3DLcQ" source="_0hL_EIzREeK7lcWit3DLcQ" target="_Cwi2MIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//TableColumnReference/target"/>
+      </edges>
+      <edges xmi:id="_iHZkUIzREeK7lcWit3DLcQ" source="_7P_14IzQEeK7lcWit3DLcQ" target="_LhEQoIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//Table/foreignKeys"/>
+      </edges>
+      <edges xmi:id="_4UB-kIzREeK7lcWit3DLcQ" source="_LhEQoIzREeK7lcWit3DLcQ" target="_R9Yz0IzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignKey/foreignColumn"/>
+      </edges>
+      <edges xmi:id="_mDgNgIzREeK7lcWit3DLcQ" source="_R9Yz0IzREeK7lcWit3DLcQ" target="_C84CAIzREeK7lcWit3DLcQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO#//ForeignColumnReference/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_wRA_0IzQEeK7lcWit3DLcQ" origin="_wQwhIIzQEeK7lcWit3DLcQ" image="_wQ6SIIzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_xuJsMIzQEeK7lcWit3DLcQ" origin="_xt7CsIzQEeK7lcWit3DLcQ" image="_xuC-gIzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_yOYEYIzQEeK7lcWit3DLcQ" origin="_yOKB8IzQEeK7lcWit3DLcQ" image="_yOR9wIzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_3hx3sIzQEeK7lcWit3DLcQ" origin="_3hmRgIzQEeK7lcWit3DLcQ" image="_3hs_MIzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_3yXRYIzQEeK7lcWit3DLcQ" origin="_3yLEIIzQEeK7lcWit3DLcQ" image="_3yRx0IzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_4BEbwIzQEeK7lcWit3DLcQ" origin="_4A4OgIzQEeK7lcWit3DLcQ" image="_4A_jQIzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_66rtMIzQEeK7lcWit3DLcQ" origin="_66eR0IzQEeK7lcWit3DLcQ" image="_66mNoIzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_7QF8gIzQEeK7lcWit3DLcQ" origin="_7P4hIIzQEeK7lcWit3DLcQ" image="_7P_14IzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_7rNyQIzQEeK7lcWit3DLcQ" origin="_7rA98IzQEeK7lcWit3DLcQ" image="_7rI5wIzQEeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_Ci_iYIzREeK7lcWit3DLcQ" origin="_CizVIIzREeK7lcWit3DLcQ" image="_Ci6p4IzREeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_CwoVwIzREeK7lcWit3DLcQ" origin="_CwbhcIzREeK7lcWit3DLcQ" image="_Cwi2MIzREeK7lcWit3DLcQ"/>
+    <mappings xmi:id="_C886gIzREeK7lcWit3DLcQ" origin="_C8wtQIzREeK7lcWit3DLcQ" image="_C84CAIzREeK7lcWit3DLcQ"/>
   </units>
   <units xsi:type="henshin:LoopUnit" xmi:id="_O91H4IzQEeK7lcWit3DLcQ" name="associationsToForeignKeys" subUnit="_LUr28IzQEeK7lcWit3DLcQ"/>
 </henshin:Module>
