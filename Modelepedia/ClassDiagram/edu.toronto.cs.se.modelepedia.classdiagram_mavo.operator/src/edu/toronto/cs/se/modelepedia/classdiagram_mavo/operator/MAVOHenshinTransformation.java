@@ -300,11 +300,16 @@ matchesNNac:
 			mayMatchesNNac.remove(mayMatchNNacToRemove);
 			mayMatchesNNacRules.remove(mayMatchNNacToRemove);
 		}
-		// propagate may to (A)dded'
-		//TODO MMTF: need to transform A->C to match (just like N->C)
+		// propagate may to (A)dded' (nodesANac == nodesA)
 		for (Match mayMatchANac : mayMatchesANac) {
+			for (Node nodeANac : nodesANac) {
+				EObject nodeTargetANac = mayMatchANac.getNodeTarget(nodeANac);
+				if (nodeTargetANac instanceof MAVOElement) {
+					((MAVOElement) nodeTargetANac).setMay(true);
+				}
+			}
 		}
-		//TODO MMTF: mavoModelObjsANac and mavoModelObjsNNac can overlap??
+		//TODO MMTF: mavoModelObjsANac and mavoModelObjsNNac can overlap???
 
 		// 5: execute may (NN)ac transformations
 		RuleApplication application = new RuleApplicationImpl(engine);
@@ -417,7 +422,7 @@ matchesNNac:
 				MultiModelInstanceFactory.createModelAndEditor(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, multiModel) :
 				MultiModelInstanceFactory.createModel(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, null);
 			result.add(transformedModelOutput);
-		}System.err.println(mavoModelObjsANac);System.err.println(mavoModelObjsNNac);System.err.println(mavoModelObjsC);System.err.println(mavoModelObjsA);
+		}
 
 		return result;
 	}
