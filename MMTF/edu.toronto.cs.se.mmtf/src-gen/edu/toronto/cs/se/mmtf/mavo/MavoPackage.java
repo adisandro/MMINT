@@ -102,13 +102,22 @@ public interface MavoPackage extends EPackage {
 	int MAVO_ELEMENT__VAR = 2;
 
 	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_ELEMENT__FORMULA_ID = 3;
+
+	/**
 	 * The number of structural features of the '<em>MAVO Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ELEMENT_FEATURE_COUNT = 3;
+	int MAVO_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>MAVO Element</em>' class.
@@ -155,6 +164,15 @@ public interface MavoPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_REFERENCE__VAR = MAVO_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_REFERENCE__FORMULA_ID = MAVO_ELEMENT__FORMULA_ID;
 
 	/**
 	 * The number of structural features of the '<em>MAVO Reference</em>' class.
@@ -257,6 +275,17 @@ public interface MavoPackage extends EPackage {
 	EAttribute getMAVOElement_Var();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mavo.MAVOElement#getFormulaId <em>Formula Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Formula Id</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mavo.MAVOElement#getFormulaId()
+	 * @see #getMAVOElement()
+	 * @generated
+	 */
+	EAttribute getMAVOElement_FormulaId();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mavo.MAVOReference <em>MAVO Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -343,6 +372,14 @@ public interface MavoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MAVO_ELEMENT__VAR = eINSTANCE.getMAVOElement_Var();
+
+		/**
+		 * The meta object literal for the '<em><b>Formula Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MAVO_ELEMENT__FORMULA_ID = eINSTANCE.getMAVOElement_FormulaId();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOReferenceImpl <em>MAVO Reference</em>}' class.

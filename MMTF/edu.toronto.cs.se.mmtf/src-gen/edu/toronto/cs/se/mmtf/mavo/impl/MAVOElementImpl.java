@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl#isMay <em>May</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl#isSet <em>Set</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl#isVar <em>Var</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl#getFormulaId <em>Formula Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,6 +97,26 @@ public abstract class MAVOElementImpl extends EObjectImpl implements MAVOElement
 	 * @ordered
 	 */
 	protected boolean var = VAR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFormulaId() <em>Formula Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormulaId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FORMULA_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFormulaId() <em>Formula Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormulaId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String formulaId = FORMULA_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,6 +205,27 @@ public abstract class MAVOElementImpl extends EObjectImpl implements MAVOElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getFormulaId() {
+		return formulaId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFormulaId(String newFormulaId) {
+		String oldFormulaId = formulaId;
+		formulaId = newFormulaId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MavoPackage.MAVO_ELEMENT__FORMULA_ID, oldFormulaId, formulaId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -193,6 +235,8 @@ public abstract class MAVOElementImpl extends EObjectImpl implements MAVOElement
 				return isSet();
 			case MavoPackage.MAVO_ELEMENT__VAR:
 				return isVar();
+			case MavoPackage.MAVO_ELEMENT__FORMULA_ID:
+				return getFormulaId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,6 +257,9 @@ public abstract class MAVOElementImpl extends EObjectImpl implements MAVOElement
 				return;
 			case MavoPackage.MAVO_ELEMENT__VAR:
 				setVar((Boolean)newValue);
+				return;
+			case MavoPackage.MAVO_ELEMENT__FORMULA_ID:
+				setFormulaId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,6 +282,9 @@ public abstract class MAVOElementImpl extends EObjectImpl implements MAVOElement
 			case MavoPackage.MAVO_ELEMENT__VAR:
 				setVar(VAR_EDEFAULT);
 				return;
+			case MavoPackage.MAVO_ELEMENT__FORMULA_ID:
+				setFormulaId(FORMULA_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -253,6 +303,8 @@ public abstract class MAVOElementImpl extends EObjectImpl implements MAVOElement
 				return set != SET_EDEFAULT;
 			case MavoPackage.MAVO_ELEMENT__VAR:
 				return var != VAR_EDEFAULT;
+			case MavoPackage.MAVO_ELEMENT__FORMULA_ID:
+				return FORMULA_ID_EDEFAULT == null ? formulaId != null : !FORMULA_ID_EDEFAULT.equals(formulaId);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -273,6 +325,8 @@ public abstract class MAVOElementImpl extends EObjectImpl implements MAVOElement
 		result.append(set);
 		result.append(", var: ");
 		result.append(var);
+		result.append(", formulaId: ");
+		result.append(formulaId);
 		result.append(')');
 		return result.toString();
 	}

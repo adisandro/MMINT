@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mavo.MAVOElement#isMay <em>May</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mavo.MAVOElement#isSet <em>Set</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mavo.MAVOElement#isVar <em>Var</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mavo.MAVOElement#getFormulaId <em>Formula Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,5 +111,30 @@ public interface MAVOElement extends EObject {
 	 * @generated
 	 */
 	void setVar(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The identifier to be used in MAVO formulas.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Formula Id</em>' attribute.
+	 * @see #setFormulaId(String)
+	 * @see edu.toronto.cs.se.mmtf.mavo.MavoPackage#getMAVOElement_FormulaId()
+	 * @model
+	 * @generated
+	 */
+	String getFormulaId();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mavo.MAVOElement#getFormulaId <em>Formula Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Formula Id</em>' attribute.
+	 * @see #getFormulaId()
+	 * @generated
+	 */
+	void setFormulaId(String value);
 
 } // MAVOElement

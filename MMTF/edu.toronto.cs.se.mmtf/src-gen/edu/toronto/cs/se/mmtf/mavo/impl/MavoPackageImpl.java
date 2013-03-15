@@ -183,6 +183,15 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMAVOElement_FormulaId() {
+		return (EAttribute)mavoElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMAVOReference() {
 		return mavoReferenceEClass;
 	}
@@ -237,6 +246,7 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__MAY);
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__SET);
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__VAR);
+		createEAttribute(mavoElementEClass, MAVO_ELEMENT__FORMULA_ID);
 
 		mavoReferenceEClass = createEClass(MAVO_REFERENCE);
 
@@ -279,6 +289,7 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 		initEAttribute(getMAVOElement_May(), ecorePackage.getEBoolean(), "may", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMAVOElement_Set(), ecorePackage.getEBoolean(), "set", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMAVOElement_Var(), ecorePackage.getEBoolean(), "var", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMAVOElement_FormulaId(), ecorePackage.getEString(), "formulaId", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mavoReferenceEClass, MAVOReference.class, "MAVOReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

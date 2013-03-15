@@ -209,6 +209,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/may"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/set"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/var"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/formulaId"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mavo.ecore#//MAVOReference"/>
     <genClasses ecoreClass="mavo.ecore#//MAVOModel">
