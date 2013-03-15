@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.henshin.interpreter.EGraph;
@@ -50,6 +51,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 public class MAVOHenshinTransformation extends OperatorExecutableImpl {
 
@@ -64,6 +66,11 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl {
 	private String transformationModule;
 	private String[] transformationRules;
 	private String[] transformationRulesMAVO;
+	private Set<MAVOElement> mavoModelObjsNNac;
+	private Set<MAVOElement> mavoModelObjsANac;
+	private Set<MAVOElement> mavoModelObjsC;
+	private Set<MAVOElement> mavoModelObjsA;
+	private Set<MAVOElement> mavoModelObjsD;
 
 	private void readProperties(Properties properties) throws Exception {
 
@@ -72,32 +79,48 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl {
 		transformationRulesMAVO = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULESMAVO);
 	}
 
+	private void initOutput() {
+
+		mavoModelObjsNNac = new HashSet<MAVOElement>();
+		mavoModelObjsANac = new HashSet<MAVOElement>();
+		mavoModelObjsC = new HashSet<MAVOElement>();
+		mavoModelObjsA = new HashSet<MAVOElement>();
+		mavoModelObjsD = new HashSet<MAVOElement>();
+	}
+
 	private void applyMatch(RuleApplication application, Match match) {
 
 		// inspect if (C)ontext has may elements
-		Set<MAVOElement> mayContext = new HashSet<MAVOElement>();
+		Set<MAVOElement> localMavoModelObjsC = new HashSet<MAVOElement>();
 		boolean propagateMay = false;
-		for (EObject node : match.getNodeTargets()) {
-			if (!(node instanceof MAVOElement)) {
+		for (EObject nodeTarget : match.getNodeTargets()) {
+			if (!(nodeTarget instanceof MAVOElement)) {
 				continue;
 			}
-			mayContext.add((MAVOElement) node);
-			propagateMay |= ((MAVOElement) node).isMay();
+			localMavoModelObjsC.add((MAVOElement) nodeTarget);
+			propagateMay |= ((MAVOElement) nodeTarget).isMay();
 		}
+
+		// apply transformation
 		application.setCompleteMatch(match);
 		application.execute(null);
-		if (!propagateMay) {
-			return;
-		}
+
 		// propagate may to (A)dded elements
 		Match resultMatch = application.getResultMatch();
-		for (EObject resultNode : resultMatch.getNodeTargets()) {
-			if (!(resultNode instanceof MAVOElement)) {
+		for (EObject resultNodeTarget : resultMatch.getNodeTargets()) {
+			if (!(resultNodeTarget instanceof MAVOElement)) {
 				continue;
 			}
+			// (C)ontext elements
+			if (localMavoModelObjsC.contains((MAVOElement) resultNodeTarget)) {
+				if (!mavoModelObjsNNac.contains(resultNodeTarget)) {
+					mavoModelObjsC.add((MAVOElement) resultNodeTarget);
+				}
+			}
 			// (A)dded elements
-			if (!mayContext.contains((MAVOElement) resultNode)) {
-				((MAVOElement) resultNode).setMay(true);
+			else {
+				mavoModelObjsA.add((MAVOElement) resultNodeTarget);
+				((MAVOElement) resultNodeTarget).setMay(propagateMay);
 			}
 		}
 	}
@@ -141,92 +164,158 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl {
 		return nodesNac;
 	}
 
-	private void matchNAC(Rule rule, Engine engine, EGraph graph) {
+	private boolean overlapsWithNodes(Match match1, Set<Node> nodes1, Match match2, Set<Node> nodes2) {
 
-		// firstly, store (AN)ac matches
-		Rule ruleCopyANac = EcoreUtil.copy(rule);
-		NestedCondition conditionANac = ruleCopyANac.getLhs().getNAC(A_NAC_NAME);
-		List<Match> matchesANac = new ArrayList<Match>();
-		List<Match> mayMatchesANac = new ArrayList<Match>();//TODO MMTF: needed?
-		if (conditionANac != null) {
-			// (AN)ac
-			Set<Node> nodesANac = transformNacToContext(conditionANac, ruleCopyANac);
-			// try to match (AN)ac as (C)ontext
-			for (Node nodeANac : nodesANac) {
-				nodeANac.setAction(new Action(Action.Type.PRESERVE));
-			}
-			ruleCopyANac.getLhs().setFormula(null);
-			for (Match matchANac : engine.findMatches(ruleCopyANac, graph, null)) {
-				matchesANac.add(matchANac);
-				for (Node nodeANac : nodesANac) {
-					EObject nodeTargetANac = matchANac.getNodeTarget(nodeANac);
-					if (nodeTargetANac instanceof MAVOElement && ((MAVOElement) nodeTargetANac).isMay()) {
-						mayMatchesANac.add(matchANac);
-					}
-				}
+		// basic check
+		if (!match1.overlapsWith(match2)) {
+			return false;
+		}
+
+		Set<EObject> modelObjs1 = new HashSet<EObject>();
+		for (Node node1 : nodes1) {
+			modelObjs1.add(match1.getNodeTarget(node1));
+		}
+		for (Node node2 : nodes2) {
+			if (modelObjs1.contains(match2.getNodeTarget(node2))) {
+				return true;
 			}
 		}
-		//TODO MMTF: propagate may to A-D, loop through mayMatchesANac, if they don't overlap with matchesNac (which we don't have, doh) set all mavo elements to may
 
-		// secondly, do OR-ed (N)acs
-		Map<Match, Rule> mayMatchesNac = new HashMap<Match, Rule>();
-		// foreach OR-ed (N)ac
+		return false;
+	}
+
+	private void matchNAC(Rule rule, Engine engine, EGraph graph, Set<MAVOElement> mayModelObjs) {
+
+		// 1: do OR-ed (NN)acs
+		Map<Match, Set<Node>> mayMatchesNNac = new HashMap<Match, Set<Node>>();
+		Map<Match, Set<Node>> nonMayMatchesNNac = new HashMap<Match, Set<Node>>();
+		Map<Match, Rule> mayMatchesNNacRules = new HashMap<Match, Rule>();
+		// foreach OR-ed (NN)ac
 		for (int i = 0; i < rule.getLhs().getNestedConditions().size(); i++) {
-			Rule ruleCopyNac = EcoreUtil.copy(rule);
-			NestedCondition conditionNac = ruleCopyNac.getLhs().getNestedConditions().get(i);
-			if (!(conditionNac.eContainer() instanceof Not) || conditionNac.getConclusion().getName().equals(A_NAC_NAME)) {
+			Rule ruleCopyNNac = EcoreUtil.copy(rule);
+			NestedCondition conditionNNac = ruleCopyNNac.getLhs().getNestedConditions().get(i);
+			if (!(conditionNNac.eContainer() instanceof Not) || conditionNNac.getConclusion().getName().equals(A_NAC_NAME)) {
 				continue;
 			}
-			// (N)ac
-			Set<Node> nodesNac = transformNacToContext(conditionNac, ruleCopyNac);
-			// try to match (N)ac as (C)ontext
-matchesNac:
-			for (Match matchNac : engine.findMatches(ruleCopyNac, graph, null)) {
-				boolean isMayMatchNac = false;
-				for (Node nodeNac : nodesNac) {
-					EObject nodeTargetNac = matchNac.getNodeTarget(nodeNac);
-					if (nodeTargetNac instanceof MAVOElement && ((MAVOElement) nodeTargetNac).isMay()) {
-						isMayMatchNac = true;
-						// OR-ed with (AN)ac
-						for (Match matchANac : matchesANac) {
-							if (matchNac.overlapsWith(matchANac)) {
-								continue matchesNac;
-							}
+			// (NN)ac
+			Set<Node> nodesNNac = transformNacToContext(conditionNNac, ruleCopyNNac);
+			// try to match (NN)ac as (C)ontext
+matchesNNac:
+			for (Match matchNNac : engine.findMatches(ruleCopyNNac, graph, null)) {
+				boolean isMayMatchNNac = false;
+				for (Node nodeNNac : nodesNNac) {
+					EObject nodeTargetNNac = matchNNac.getNodeTarget(nodeNNac);
+					if (nodeTargetNNac instanceof MAVOElement) {
+						mavoModelObjsNNac.add((MAVOElement) nodeTargetNNac);
+						if (((MAVOElement) nodeTargetNNac).isMay()) {
+							isMayMatchNNac = true;
 						}
-						// OR-ed with an already matched (N)ac
-						for (Match mayMatchNac : mayMatchesNac.keySet()) {
-							if (matchNac.overlapsWith(mayMatchNac)) {
-								continue matchesNac;
-							}
-						}
-						mayMatchesNac.put(matchNac, ruleCopyNac);
 					}
 				}
-				if (!isMayMatchNac) {
-					List<Match> mayMatchesNacToRemove = new ArrayList<Match>();
-					// here OR-ed with an already matched (N)ac removes it
-					for (Match mayMatchNac : mayMatchesNac.keySet()) {
-						if (matchNac.overlapsWith(mayMatchNac)) {
-							mayMatchesNacToRemove.add(mayMatchNac);
+				if (isMayMatchNNac) {
+					// OR-ed with an already matched (NN)ac, execute just once
+					for (Map.Entry<Match, Set<Node>> mayMatchNNac : mayMatchesNNac.entrySet()) {
+						if (overlapsWithNodes(matchNNac, nodesNNac, mayMatchNNac.getKey(), mayMatchNNac.getValue())) {
+							continue matchesNNac;
 						}
 					}
-					for (Match mayMatchNacToRemove : mayMatchesNacToRemove) {
-						mayMatchesNac.remove(mayMatchNacToRemove);
-					}
+					mayMatchesNNac.put(matchNNac, nodesNNac);
+					mayMatchesNNacRules.put(matchNNac, ruleCopyNNac);
+				}
+				else {
+					nonMayMatchesNNac.put(matchNNac, nodesNNac);
 				}
 			}
 		}
+		// OR-ed with a non-may matched (NN)ac, non-may (NN)ac rule applies
+		List<Match> mayMatchesNNacToRemove = new ArrayList<Match>();
+		for (Map.Entry<Match, Set<Node>> nonMayMatchNNac : nonMayMatchesNNac.entrySet()) {
+			for (Map.Entry<Match, Set<Node>> mayMatchNNac : mayMatchesNNac.entrySet()) {
+				if (overlapsWithNodes(nonMayMatchNNac.getKey(), nonMayMatchNNac.getValue(), mayMatchNNac.getKey(), mayMatchNNac.getValue())) {
+					mayMatchesNNacToRemove.add(mayMatchNNac.getKey());
+				}
+			}
+		}
+		for (Match mayMatchNNacToRemove : mayMatchesNNacToRemove) {
+			mayMatchesNNac.remove(mayMatchNNacToRemove);
+			mayMatchesNNacRules.remove(mayMatchNNacToRemove);
+		}
 
-		// execute transformation
+		// 2: do (AN)ac
+		Rule ruleCopyANac = EcoreUtil.copy(rule);
+		NestedCondition conditionANac = ruleCopyANac.getLhs().getNAC(A_NAC_NAME);
+		List<Match> mayMatchesANac = new ArrayList<Match>();
+		List<Match> nonMayMatchesANac = new ArrayList<Match>();
+		Set<Node> nodesANac = new HashSet<Node>();
+		if (conditionANac != null) {
+			// (AN)ac
+			nodesANac = transformNacToContext(conditionANac, ruleCopyANac);
+			// try to match (AN)ac as (C)ontext
+			for (Match matchANac : engine.findMatches(ruleCopyANac, graph, null)) {
+				boolean isMayMatchANac = false;
+				for (Node nodeANac : nodesANac) {
+					EObject nodeTargetANac = matchANac.getNodeTarget(nodeANac);
+					if (nodeTargetANac instanceof MAVOElement) {
+						mavoModelObjsANac.add((MAVOElement) nodeTargetANac);
+						if (((MAVOElement) nodeTargetANac).isMay()) {
+							isMayMatchANac = true;
+						}
+					}
+				}
+				if (isMayMatchANac) {
+					mayMatchesANac.add(matchANac);
+				}
+				else {
+					nonMayMatchesANac.add(matchANac);
+				}
+			}
+			// (AN)ac is just one (no OR among (AN)acs), so no need to check for overlapping
+		}
+		// check overlapping among (NN)acs and non-may (AN)acs
+		mayMatchesNNacToRemove = new ArrayList<Match>();
+		for (Match nonMayMatchANac : nonMayMatchesANac) {
+			for (Map.Entry<Match, Set<Node>> mayMatchNNac : mayMatchesNNac.entrySet()) {
+				if (overlapsWithNodes(nonMayMatchANac, nodesANac, mayMatchNNac.getKey(), mayMatchNNac.getValue())) {
+					mayMatchesNNacToRemove.add(mayMatchNNac.getKey());
+				}
+			}
+		}
+		for (Match mayMatchNNacToRemove : mayMatchesNNacToRemove) {
+			mayMatchesNNac.remove(mayMatchNNacToRemove);
+			mayMatchesNNacRules.remove(mayMatchNNacToRemove);
+		}
+
+		// 3: this case is independent
+
+		// 4: check overlapping among (NN)acs and may (AN)acs
+		mayMatchesNNacToRemove = new ArrayList<Match>();
+		for (Match mayMatchANac : mayMatchesANac) {
+			for (Map.Entry<Match, Set<Node>> mayMatchNNac : mayMatchesNNac.entrySet()) {
+				if (overlapsWithNodes(mayMatchANac, nodesANac, mayMatchNNac.getKey(), mayMatchNNac.getValue())) {
+					mayMatchesNNacToRemove.add(mayMatchNNac.getKey());
+				}
+			}
+		}
+		for (Match mayMatchNNacToRemove : mayMatchesNNacToRemove) {
+			mayMatchesNNac.remove(mayMatchNNacToRemove);
+			mayMatchesNNacRules.remove(mayMatchNNacToRemove);
+		}
+		// propagate may to (A)dded'
+		//TODO MMTF: need to transform A->C to match (just like N->C)
+		for (Match mayMatchANac : mayMatchesANac) {
+		}
+		//TODO MMTF: mavoModelObjsANac and mavoModelObjsNNac can overlap??
+
+		// 5: execute may (NN)ac transformations
 		RuleApplication application = new RuleApplicationImpl(engine);
 		application.setEGraph(graph);
-		for (Map.Entry<Match, Rule> mayMatchNac: mayMatchesNac.entrySet()) {
-			application.setRule(mayMatchNac.getValue());
-			applyMatch(application, mayMatchNac.getKey());
+		for (Map.Entry<Match, Rule> mayMatchNNac: mayMatchesNNacRules.entrySet()) {
+			application.setRule(mayMatchNNac.getValue());
+			applyMatch(application, mayMatchNNac.getKey());
 		}
 	}
 
-	private void match(Rule rule, Engine engine, EGraph graph) {
+	private void match(Rule rule, Engine engine, EGraph graph, Set<MAVOElement> mayModelObjs) {
 
 		// apply rule
 		RuleApplication application = new RuleApplicationImpl(engine);
@@ -261,6 +350,17 @@ matchesNac:
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
+		initOutput();
+
+		// get MAVO elements
+		Set<MAVOElement> mayModelObjs = new HashSet<MAVOElement>();
+		TreeIterator<EObject> iter = MultiModelTypeIntrospection.getRoot(model).eAllContents();
+		while (iter.hasNext()) {
+			EObject modelObj = iter.next();
+			if (modelObj instanceof MAVOElement) {
+				mayModelObjs.add((MAVOElement) modelObj);
+			}
+		}
 
 		// do transformation
 		String fullUri = MultiModelRegistry.prependWorkspaceToUri(MultiModelRegistry.replaceLastSegmentInUri(model.getUri(), ""));
@@ -274,8 +374,8 @@ matchesNac:
 		}
 		for (String transformationRuleMAVO : transformationRulesMAVO) {
 			Rule rule = (Rule) module.getUnit(transformationRuleMAVO);
-			matchNAC(rule, engine, graph);
-			match(rule, engine, graph);
+			matchNAC(rule, engine, graph, mayModelObjs);
+			match(rule, engine, graph, mayModelObjs);
 		}
 
 		// save transformed model(s) and update mid
@@ -317,7 +417,7 @@ matchesNac:
 				MultiModelInstanceFactory.createModelAndEditor(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, multiModel) :
 				MultiModelInstanceFactory.createModel(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, null);
 			result.add(transformedModelOutput);
-		}
+		}System.err.println(mavoModelObjsANac);System.err.println(mavoModelObjsNNac);System.err.println(mavoModelObjsC);System.err.println(mavoModelObjsA);
 
 		return result;
 	}
