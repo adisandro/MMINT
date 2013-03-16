@@ -38,7 +38,6 @@ import org.eclipse.emf.henshin.model.HenshinFactory;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
-import org.eclipse.emf.henshin.model.Not;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
@@ -55,6 +54,31 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
 
 public class MAVOHenshinTransformation extends OperatorExecutableImpl implements Z3SMTSolver {
+
+	private class TransformationApplicabilityCondition {
+
+		private Rule matchedRule;
+		private Match match;
+		private boolean isMayMatch;
+
+		public TransformationApplicabilityCondition(Rule matchedRule, Match match, boolean isMayMatch) {
+			this.matchedRule = matchedRule;
+			this.match = match;
+			this.isMayMatch = isMayMatch;
+		}
+
+		public Rule getMatchedRule() {
+			return matchedRule;
+		}
+
+		public Match getMatch() {
+			return match;
+		}
+
+		public boolean isMayMatch() {
+			return isMayMatch;
+		}
+	}
 
 	private static final String PROPERTY_IN_MAYFORMULA = "mayFormula";
 	private static final String PROPERTY_IN_MAYFORMULA_DEFAULT = SMTLIB_TRUE;
@@ -104,49 +128,80 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		properties.setProperty(PROPERTY_OUT_TIMEMAVO, String.valueOf(timeMAVO));
 	}
 
-	private void applyMatch(RuleApplication application, Match match) {
-
-		// inspect if (C)ontext has may elements
-		Set<MAVOElement> localMavoModelObjsC = new HashSet<MAVOElement>();
-		boolean propagateMay = false;
-		for (EObject nodeTarget : match.getNodeTargets()) {
-			if (!(nodeTarget instanceof MAVOElement)) {
-				continue;
-			}
-			localMavoModelObjsC.add((MAVOElement) nodeTarget);
-			propagateMay |= ((MAVOElement) nodeTarget).isMay();
-		}
+	private void transformMatch(RuleApplication application, Match match, boolean isMayMatch) {
 
 		// apply transformation
 		application.setCompleteMatch(match);
 		application.execute(null);
 
+		if (!isMayMatch) {
+			return;
+		}
+
 		// propagate may to (A)dded elements
 		Match resultMatch = application.getResultMatch();
+resultNodeTargets:
 		for (EObject resultNodeTarget : resultMatch.getNodeTargets()) {
 			if (!(resultNodeTarget instanceof MAVOElement)) {
 				continue;
 			}
 			// (C)ontext elements
-			if (localMavoModelObjsC.contains((MAVOElement) resultNodeTarget)) {
-				for (Set<MAVOElement> mavoModelObjsN : mavoModelObjsNBar) {
-					if (!mavoModelObjsN.contains(resultNodeTarget)) {
-						mavoModelObjsC.add((MAVOElement) resultNodeTarget);
-					}
+			if (mavoModelObjsC.contains(resultNodeTarget)) {
+				continue;
+			}
+			// (N)ac elements
+			for (Set<MAVOElement> mavoModelObjsN : mavoModelObjsNBar) {
+				if (mavoModelObjsN.contains(resultNodeTarget)) {
+					continue resultNodeTargets;
 				}
 			}
 			// (A)dded elements
-			else {
-				mavoModelObjsA.add((MAVOElement) resultNodeTarget);
-				((MAVOElement) resultNodeTarget).setMay(propagateMay);
-			}
+			mavoModelObjsA.add((MAVOElement) resultNodeTarget);
+			((MAVOElement) resultNodeTarget).setMay(true);
 		}
 	}
 
-	private void transformNacToContext(NestedCondition conditionNac, Rule ruleNac, Set<Node> nodesN, Set<Node> nodesC, Set<Node> nodesD) {
+	private void transformMayFormula() {
 
-		// original rule nodes
-		for (Node node : ruleNac.getLhs().getNodes()) {
+		// update set of may formula elements
+		StringBuilder formula = new StringBuilder();
+		formula.append(SMTLIB_OR);
+			formula.append(SMTLIB_AND);
+				formula.append(SMTLIB_AND);
+					formula.append(mayFormula);
+					formula.append(" ");
+					formula.append(SMTLIB_NOT);
+						createZ3ApplyFormula(formula);
+					formula.append(SMTLIB_PREDICATE_END);
+				formula.append(SMTLIB_PREDICATE_END);
+				formula.append(SMTLIB_NOT);
+					createZ3ApplyFormulaMatchParts(formula, mavoModelObjsA, SMTLIB_OR);
+				formula.append(SMTLIB_PREDICATE_END);
+			formula.append(SMTLIB_PREDICATE_END);
+			formula.append(SMTLIB_AND);
+				formula.append(SMTLIB_AND);
+					formula.append(mayFormula);
+					formula.append(" ");
+					createZ3ApplyFormula(formula);
+				formula.append(SMTLIB_PREDICATE_END);
+				formula.append(SMTLIB_NOT);
+					createZ3ApplyFormulaMatchParts(formula, mavoModelObjsD, SMTLIB_AND);
+				formula.append(SMTLIB_PREDICATE_END);
+				createZ3ApplyFormulaMatchParts(formula, mavoModelObjsA, SMTLIB_AND);
+			formula.append(SMTLIB_PREDICATE_END);
+		formula.append(SMTLIB_PREDICATE_END);
+		mayFormula = formula.toString();
+		for (Set<MAVOElement> mavoModelObjSN : mavoModelObjsNBar) {
+			mayFormulaConstants.addAll(mavoModelObjSN);
+		}
+		mayFormulaConstants.addAll(mavoModelObjsC);
+		mayFormulaConstants.addAll(mavoModelObjsD);
+		mayFormulaConstants.addAll(mavoModelObjsA);
+	}
+
+	private void getCDNodes(Rule rule, Set<Node> nodesC, Set<Node> nodesD) {
+
+		for (Node node : rule.getLhs().getNodes()) {
 			if (node.getAction() != null) {
 				if (node.getAction().getType() == Action.Type.PRESERVE) {
 					nodesC.add(node);
@@ -156,6 +211,9 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 				}
 			}
 		}
+	}
+
+	private void getNNodesAndChangeToC(NestedCondition conditionNac, Rule ruleNac, Set<Node> nodesN) {
 
 		// (N)ac nodes
 		Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
@@ -190,26 +248,6 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 			}
 		}
 		ruleNac.getLhs().setFormula(null);
-	}
-
-	private boolean overlapsWithNodes(Match match1, Set<Node> nodes1, Match match2, Set<Node> nodes2) {
-
-		// basic check
-		if (!match1.overlapsWith(match2)) {
-			return false;
-		}
-
-		Set<EObject> modelObjs1 = new HashSet<EObject>();
-		for (Node node1 : nodes1) {
-			modelObjs1.add(match1.getNodeTarget(node1));
-		}
-		for (Node node2 : nodes2) {
-			if (modelObjs1.contains(match2.getNodeTarget(node2))) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	private void matchAndTransform(Rule rule, Engine engine, EGraph graph) {
@@ -253,13 +291,13 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		createZ3ApplyFormulaConstant(formula, mavoModelObjsD, false);
 	}
 
-	private void createZ3ApplyFormulaMatchParts(StringBuilder formula, Set<MAVOElement> mavoModelObjs) {
+	private void createZ3ApplyFormulaMatchParts(StringBuilder formula, Set<MAVOElement> mavoModelObjs, String smtlibPredicate) {
 
 		if (mavoModelObjs.isEmpty()) {
 			return;
 		}
 
-		formula.append(SMTLIB_AND);
+		formula.append(smtlibPredicate);
 		for (MAVOElement mavoModelObj : mavoModelObjs) {
 			formula.append(mavoModelObj.getFormulaId());
 			formula.append(" ");
@@ -276,7 +314,7 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		formula.append(SMTLIB_NOT);
 		formula.append(SMTLIB_OR);
 		for (Set<MAVOElement> mavoModelObjsN : mavoModelObjsNBar) {
-			createZ3ApplyFormulaMatchParts(formula, mavoModelObjsN);
+			createZ3ApplyFormulaMatchParts(formula, mavoModelObjsN, SMTLIB_AND);
 		}
 		formula.append(SMTLIB_PREDICATE_END);
 		formula.append(SMTLIB_PREDICATE_END);
@@ -288,8 +326,8 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		formula.append(mayFormula);
 		formula.append(SMTLIB_AND);
 		createZ3ApplyFormulaMatchPartN(formula);
-		createZ3ApplyFormulaMatchParts(formula, mavoModelObjsC);
-		createZ3ApplyFormulaMatchParts(formula, mavoModelObjsD);
+		createZ3ApplyFormulaMatchParts(formula, mavoModelObjsC, SMTLIB_AND);
+		createZ3ApplyFormulaMatchParts(formula, mavoModelObjsD, SMTLIB_AND);
 		formula.append(SMTLIB_PREDICATE_END);
 		formula.append(SMTLIB_PREDICATE_END);
 	}
@@ -341,19 +379,17 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		return isMayMatch;
 	}
 
-	private void matchNAC(Rule rule, Engine engine, EGraph graph) {
+	private TransformationApplicabilityCondition checkApplicabilityCondition(Rule rule, Engine engine, EGraph graph) {
 
-		//TODO MMTF: loop through all nacs
-		Rule ruleCopyN = EcoreUtil.copy(rule);
-		NestedCondition conditionN = ruleCopyN.getLhs().getNestedConditions().get(0);
-		if (!(conditionN.eContainer() instanceof Not)) {
-			return;
-		}
-		// (N)ac
 		Set<Node> nodesN = new HashSet<Node>();
 		Set<Node> nodesC = new HashSet<Node>();
 		Set<Node> nodesD = new HashSet<Node>();
-		transformNacToContext(conditionN, ruleCopyN, nodesN, nodesC, nodesD);
+		//TODO MMTF: loop through all nacs
+		Rule ruleCopyN = EcoreUtil.copy(rule);
+		NestedCondition conditionN = ruleCopyN.getLhs().getNestedConditions().get(0);
+		// (N)ac
+		getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
+		getCDNodes(ruleCopyN, nodesC, nodesD);
 		boolean isMayMatchNBar = true;
 		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
 matchesN:
@@ -361,7 +397,6 @@ matchesN:
 			mavoModelObjsNBar = new ArrayList<Set<MAVOElement>>();
 			Set<MAVOElement> mavoModelObjsNi = new HashSet<MAVOElement>();
 			mavoModelObjsC = new HashSet<MAVOElement>();
-			mavoModelObjsA = new HashSet<MAVOElement>();//TODO MMTF: move
 			mavoModelObjsD = new HashSet<MAVOElement>();
 			Match matchNi = matchesN.get(i);
 			isMayMatchNBar &= isMayMatch(matchNi, nodesN, mavoModelObjsNi);
@@ -393,89 +428,52 @@ matchesN:
 			// check apply formula
 			int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(createZ3CheckableApplyFormula());
 			if (z3Result == Z3_SAT) {
-				return; //TODO MMTF:return something
+				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> may match
 			}
 		}
-		//TODO MMTF:return something else
 
+		// no (N)ac matched
+		Rule ruleCopy = EcoreUtil.copy(rule);
+		nodesN = new HashSet<Node>();
+		nodesC = new HashSet<Node>();
+		nodesD = new HashSet<Node>();
+		getCDNodes(ruleCopy, nodesC, nodesD);
+		boolean isMayMatch = false;
+		List<Match> matches = InterpreterUtil.findAllMatches(engine, ruleCopy, graph, null);
+		for (int i = 0; i < matches.size(); i++) {
+			mavoModelObjsNBar = new ArrayList<Set<MAVOElement>>();
+			mavoModelObjsC = new HashSet<MAVOElement>();
+			mavoModelObjsD = new HashSet<MAVOElement>();
+			Match match = matches.get(i);
+			isMayMatch |= isMayMatch(match, nodesC, mavoModelObjsC);
+			isMayMatch |= isMayMatch(match, nodesD, mavoModelObjsD);
+			if (isMayMatch) {
+				// check apply formula
+				int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(createZ3CheckableApplyFormula());
+				if (z3Result == Z3_SAT) {
+					return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> may match
+				}
+			}
+			else {
+				return new TransformationApplicabilityCondition(ruleCopy, match, false); // <C,D> classical match
+			}
+		}
 
-//		Map<Match, Set<Node>> mayMatchesN = new HashMap<Match, Set<Node>>();
-//		Map<Match, Set<Node>> nonMayMatchesN = new HashMap<Match, Set<Node>>();
-//		// foreach OR-ed (N)ac
-//		boolean allMayMatchN = true;
-//		for (int i = 0; i < rule.getLhs().getNestedConditions().size(); i++) {
-//			Rule ruleCopyN = EcoreUtil.copy(rule);
-//			NestedCondition conditionN = ruleCopyN.getLhs().getNestedConditions().get(i);
-//			if (!(conditionN.eContainer() instanceof Not)) {
-//				continue;
-//			}
-//			// (N)ac
-//			Set<Node> nodesN = transformNacToContext(conditionN, ruleCopyN);
-//			Set<MAVOElement> mavoModelObjsN = new HashSet<MAVOElement>();
-//			mavoModelObjsNBar.add(mavoModelObjsN);
-//			// try to match (N)ac as (C)ontext
-//matchesN:
-//			for (Match matchN : engine.findMatches(ruleCopyN, graph, null)) {
-//				boolean isMayMatchN = false;
-//				for (Node nodeN : nodesN) {
-//					EObject nodeTargetN = matchN.getNodeTarget(nodeN);
-//					if (nodeTargetN instanceof MAVOElement) {
-//						mavoModelObjsN.add((MAVOElement) nodeTargetN);
-//						if (((MAVOElement) nodeTargetN).isMay()) {
-//							isMayMatchN = true;
-//						}
-//					}
-//				}
-////				if (isMayMatchN) {
-////					// OR-ed with an already matched (N)ac, execute just once
-////					for (Map.Entry<Match, Set<Node>> mayMatchN : mayMatchesN.entrySet()) {
-////						if (overlapsWithNodes(matchN, nodesN, mayMatchN.getKey(), mayMatchN.getValue())) {
-////							continue matchesN;
-////						}
-////					}
-////					mayMatchesN.put(matchN, nodesN);
-////				}
-////				else {
-////					nonMayMatchesN.put(matchN, nodesN);
-////				}
-//				allMayMatchN &= isMayMatchN;
-//			}
-//		}
-////		// OR-ed with a non-may matched (N)ac, non-may (N)ac rule applies
-////		List<Match> mayMatchesNToRemove = new ArrayList<Match>();
-////		for (Map.Entry<Match, Set<Node>> nonMayMatchN : nonMayMatchesN.entrySet()) {
-////			for (Map.Entry<Match, Set<Node>> mayMatchN : mayMatchesN.entrySet()) {
-////				if (overlapsWithNodes(nonMayMatchN.getKey(), nonMayMatchN.getValue(), mayMatchN.getKey(), mayMatchN.getValue())) {
-////					mayMatchesNToRemove.add(mayMatchN.getKey());
-////				}
-////			}
-////		}
-////		for (Match mayMatchNToRemove : mayMatchesNToRemove) {
-////			mayMatchesN.remove(mayMatchNToRemove);
-////		}
-//
-//		return allMayMatchN;
+		return null; // no matches
 	}
 
 	private void matchMAVOAndTransform(Rule rule, Engine engine, EGraph graph) {
 
-		// evaluate apply formula as first thing
-		int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(createZ3ApplyFormula());
-		if (z3Result != Z3_SAT) {
-			return;
-		}
-		// remove all (N)acs
-		Rule ruleCopy = EcoreUtil.copy(rule);
-		ruleCopy.getLhs().setFormula(null);
-		// match
 		RuleApplication application = new RuleApplicationImpl(engine);
-		application.setRule(ruleCopy);
-		application.setEGraph(graph);
-		for (Match match : engine.findMatches(ruleCopy, graph, null)) {
-			applyMatch(application, match);
-			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(createZ3ApplyFormula());
-			if (z3Result != Z3_SAT) {
-				break;
+		TransformationApplicabilityCondition condition;
+		while ((condition = checkApplicabilityCondition(rule, engine, graph)) != null) {
+			application.setRule(condition.getMatchedRule());
+			application.setEGraph(graph);
+			// transform
+			mavoModelObjsA = new HashSet<MAVOElement>();
+			transformMatch(application, condition.getMatch(), condition.isMayMatch());
+			if (condition.isMayMatch()) {
+				transformMayFormula();
 			}
 		}
 	}
@@ -505,7 +503,6 @@ matchesN:
 		}
 		for (String transformationRuleMAVO : transformationRulesMAVO) {
 			Rule rule = (Rule) module.getUnit(transformationRuleMAVO);
-			matchNAC(rule, engine, graph);
 			matchMAVOAndTransform(rule, engine, graph);
 		}
 		long endTime = System.nanoTime();
@@ -549,11 +546,11 @@ matchesN:
 		Module module = resourceSet.getModule(transformationModule, false);
 		Engine engine = new EngineImpl();
 		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelRegistry.getLastSegmentFromUri(model.getUri())));
-//		doClassicalTransformation(module, engine, graph);
-//		resourceSet = new HenshinResourceSet(fullUri);
-//		module = resourceSet.getModule(transformationModule, false);
-//		engine = new EngineImpl();
-//		graph = new EGraphImpl(resourceSet.getResource(MultiModelRegistry.getLastSegmentFromUri(model.getUri())));
+		doClassicalTransformation(module, engine, graph);
+		resourceSet = new HenshinResourceSet(fullUri);
+		module = resourceSet.getModule(transformationModule, false);
+		engine = new EngineImpl();
+		graph = new EGraphImpl(resourceSet.getResource(MultiModelRegistry.getLastSegmentFromUri(model.getUri())));
 		doMAVOTransformation(module, engine, graph);
 
 		// save transformed model(s) and update mid
