@@ -2,7 +2,7 @@
 <classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
   <classes formulaId="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
   <classes formulaId="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
-    <ownedAttributes formulaId="ekey" name="key" type="//@classes.17"/>
+    <ownedAttributes formulaId="ekey" name="ekey" type="//@classes.17"/>
     <ownedAttributes formulaId="value" name="value" type="//@classes.17"/>
   </classes>
   <classes formulaId="EAnnotation" name="EAnnotation" associationsAsSource="//@associations.0 //@associations.1">
