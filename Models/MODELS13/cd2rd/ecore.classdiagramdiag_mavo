@@ -447,6 +447,51 @@
     <element xmi:type="classdiagram_mavo:Class" href="ecore.classdiagram_mavo#//@classes.16"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pt-x4o6XEeKcEqxxjjZPeA" x="552" y="1368"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_9N7QEI8eEeK5R-LdhpHT8g" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9N7QE48eEeK5R-LdhpHT8g" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_9N7QFI8eEeK5R-LdhpHT8g" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_9N7QFY8eEeK5R-LdhpHT8g" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_9N7QFo8eEeK5R-LdhpHT8g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_9N7QF48eEeK5R-LdhpHT8g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_9N73II8eEeK5R-LdhpHT8g" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_9N73IY8eEeK5R-LdhpHT8g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_9N73Io8eEeK5R-LdhpHT8g"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_9N7QEY8eEeK5R-LdhpHT8g"/>
+    <element xmi:type="classdiagram_mavo:Class" href="ecore.classdiagram_mavo#//@classes.17"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9N7QEo8eEeK5R-LdhpHT8g" x="989" y="42"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Ton7gI8fEeK5R-LdhpHT8g" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Ton7g48fEeK5R-LdhpHT8g" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Ton7hI8fEeK5R-LdhpHT8g" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Ton7hY8fEeK5R-LdhpHT8g" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Ton7ho8fEeK5R-LdhpHT8g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Ton7h48fEeK5R-LdhpHT8g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Ton7iI8fEeK5R-LdhpHT8g" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Ton7iY8fEeK5R-LdhpHT8g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Ton7io8fEeK5R-LdhpHT8g"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Ton7gY8fEeK5R-LdhpHT8g"/>
+    <element xmi:type="classdiagram_mavo:Class" href="ecore.classdiagram_mavo#//@classes.18"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ton7go8fEeK5R-LdhpHT8g" x="1059" y="43"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_YlxK8I8fEeK5R-LdhpHT8g" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_YlxK848fEeK5R-LdhpHT8g" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_YlxyAI8fEeK5R-LdhpHT8g" type="5006"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_YlxyAY8fEeK5R-LdhpHT8g" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_YlxyAo8fEeK5R-LdhpHT8g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_YlxyA48fEeK5R-LdhpHT8g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_YlxyBI8fEeK5R-LdhpHT8g" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_YlxyBY8fEeK5R-LdhpHT8g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_YlxyBo8fEeK5R-LdhpHT8g"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_YlxK8Y8fEeK5R-LdhpHT8g"/>
+    <element xmi:type="classdiagram_mavo:Class" href="ecore.classdiagram_mavo#//@classes.19"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YlxK8o8fEeK5R-LdhpHT8g" x="994" y="141"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_gXUlkI3IEeKiBrZ1oc-joQ"/>
   <element xmi:type="classdiagram_mavo:ClassDiagram" href="ecore.classdiagram_mavo#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_CKH4AI6VEeKcEqxxjjZPeA" type="4001" source="_-jd6YI6UEeKcEqxxjjZPeA" target="_6nvEoI6UEeKcEqxxjjZPeA" routing="Rectilinear">
