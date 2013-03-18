@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+  <classes formulaId="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
+  <classes formulaId="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
+    <ownedAttributes formulaId="g" name="ekey" type="//@classes.14"/>
+    <ownedAttributes formulaId="h" name="value" type="//@classes.14"/>
+  </classes>
+  <classes formulaId="EAnnotation" name="EAnnotation" associationsAsSource="//@associations.0 //@associations.1">
+    <ownedAttributes formulaId="source" name="source" type="//@classes.14"/>
+    <superclass formulaId="supEAnnotation" target="//@classes.0"/>
+  </classes>
+  <classes formulaId="ENamedElement" name="ENamedElement" subclasses="//@classes.5/@superclass.0 //@classes.6/@superclass.0">
+    <ownedAttributes formulaId="name" name="name" type="//@classes.14"/>
+    <superclass formulaId="supENamedElement" target="//@classes.0"/>
+  </classes>
+  <classes formulaId="EFactory" name="EFactory" associationsAsTarget="//@associations.12">
+    <superclass formulaId="supEFactory" target="//@classes.0"/>
+  </classes>
+  <classes formulaId="EPackage" name="EPackage" associationsAsSource="//@associations.2 //@associations.12 //@associations.15" associationsAsTarget="//@associations.2">
+    <ownedAttributes formulaId="j" name="nsURI" type="//@classes.14"/>
+    <ownedAttributes formulaId="nsPrefix" name="nsPrefix" type="//@classes.14"/>
+    <superclass formulaId="supEPackage" target="//@classes.3"/>
+  </classes>
+  <classes formulaId="EEnumLiteral" name="EEnumLiteral" associationsAsTarget="//@associations.7">
+    <ownedAttributes formulaId="d" name="value" type="//@classes.16"/>
+    <ownedAttributes formulaId="c" name="instance" type="//@classes.14"/>
+    <ownedAttributes formulaId="literal" name="literal" type="//@classes.14"/>
+    <superclass formulaId="supEEnumLiteral" target="//@classes.3"/>
+  </classes>
+  <classes formulaId="EOperation" name="EOperation" associationsAsSource="//@associations.3 //@associations.4" associationsAsTarget="//@associations.5">
+    <ownedAttributes formulaId="required_ETypedElement" name="required_ETypedElement" type="//@classes.15"/>
+  </classes>
+  <classes formulaId="b" name="EParameter" associationsAsSource="//@associations.16" associationsAsTarget="//@associations.3">
+    <ownedAttributes formulaId="many_EtypedElement" name="many_EtypedElement" type="//@classes.15"/>
+  </classes>
+  <classes formulaId="EClass" name="EClass" associationsAsSource="//@associations.5 //@associations.6 //@associations.13 //@associations.14" associationsAsTarget="//@associations.4 //@associations.6 //@associations.8 //@associations.15 //@associations.16">
+    <ownedAttributes formulaId="abstract" name="abstract" type="//@classes.15"/>
+    <ownedAttributes formulaId="interface" name="interface" type="//@classes.15"/>
+    <ownedAttributes formulaId="instanceClassName_EClassifier" name="instanceClassName_EClassifier" type="//@classes.14"/>
+  </classes>
+  <classes formulaId="EDataType" name="EDataType" subclasses="//@classes.11/@superclass.0" associationsAsTarget="//@associations.11">
+    <ownedAttributes formulaId="serializable" name="serializable" type="//@classes.15"/>
+  </classes>
+  <classes formulaId="EEnum" name="EEnum" associationsAsSource="//@associations.7">
+    <superclass formulaId="supEEnum" target="//@classes.10"/>
+  </classes>
+  <classes formulaId="EReference" name="EReference" associationsAsSource="//@associations.8 //@associations.9 //@associations.10" associationsAsTarget="//@associations.9 //@associations.13">
+    <ownedAttributes formulaId="m" name="containment" type="//@classes.15"/>
+    <ownedAttributes formulaId="n" name="container" type="//@classes.15"/>
+    <ownedAttributes formulaId="f" name="resolveProxies" type="//@classes.15"/>
+    <ownedAttributes formulaId="lowerBound_ETypedElement" name="lowerBound_ETypedElement" type="//@classes.16"/>
+    <ownedAttributes formulaId="upperBound_ETypedElement" name="upperBound_ETypedElement" type="//@classes.16"/>
+  </classes>
+  <classes formulaId="EAttribute" name="EAttribute" associationsAsSource="//@associations.11" associationsAsTarget="//@associations.10 //@associations.14">
+    <ownedAttributes formulaId="ID" name="ID" type="//@classes.15"/>
+    <ownedAttributes formulaId="changeable_EStructuralFeature" name="changeable_EStructuralFeature" type="//@classes.15"/>
+    <ownedAttributes formulaId="volatile_EStructuralFeature" name="volatile_EStructuralFeature" type="//@classes.15"/>
+    <ownedAttributes formulaId="transient_EStructuralFeature" name="transient_EStructuralFeature" type="//@classes.15"/>
+    <ownedAttributes formulaId="derived_EStructuralFeature" name="derived_EStructuralFeature" type="//@classes.15"/>
+  </classes>
+  <classes formulaId="EString" name="EString"/>
+  <classes formulaId="EBoolean" name="EBoolean"/>
+  <classes formulaId="EInt" name="EInt"/>
+  <associations formulaId="details" name="details" source="//@classes.2" target="//@classes.1"/>
+  <associations name="eModelElement" source="//@classes.2" target="//@classes.0"/>
+  <associations formulaId="l" name="eSuperPackage" source="//@classes.5" target="//@classes.5"/>
+  <associations formulaId="a" name="eParameters" source="//@classes.7" target="//@classes.8"/>
+  <associations formulaId="eContainingClass" name="eContainingClass" source="//@classes.7" target="//@classes.9"/>
+  <associations formulaId="eOperations" name="eOperations" source="//@classes.9" target="//@classes.7"/>
+  <associations formulaId="k" name="eSuperTypes" source="//@classes.9" target="//@classes.9"/>
+  <associations formulaId="eLiterals" name="eLiterals" source="//@classes.11" target="//@classes.6"/>
+  <associations formulaId="eReferenceType" name="eReferenceType" source="//@classes.12" target="//@classes.9"/>
+  <associations formulaId="e" name="eOpposite" source="//@classes.12" target="//@classes.12"/>
+  <associations formulaId="eKeys" name="eKeys" source="//@classes.12" target="//@classes.13"/>
+  <associations formulaId="eAttributeType" name="eAttributeType" source="//@classes.13" target="//@classes.10"/>
+  <associations formulaId="i" name="eFactoryInstance" source="//@classes.5" target="//@classes.4"/>
+  <associations formulaId="eReferences" name="eReferences" source="//@classes.9" target="//@classes.12"/>
+  <associations formulaId="eAttributes" name="eAttributes" source="//@classes.9" target="//@classes.13"/>
+  <associations formulaId="eClassifiers_EClassifier" name="eClassifiers_EClassifier" source="//@classes.5" target="//@classes.9"/>
+  <associations formulaId="eType_EClassifier" name="eType_EClassifier" source="//@classes.8" target="//@classes.9"/>
+</classdiagram_mavo:ClassDiagram>
