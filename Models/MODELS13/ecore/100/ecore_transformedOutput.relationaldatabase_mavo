@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="ASCII"?>
+<relationaldatabase_mavo:RelationalDatabase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:relationaldatabase_mavo="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO">
+  <tables formulaId="a_0" name="EDataType" primaryKey="//@tables.0/@columns.0">
+    <columns formulaId="a_1" name="key" tableAsPrimaryKey="//@tables.0" foreignKeysAsForeignColumn="//@tables.13/@foreignKeys.1/@foreignColumn.0"/>
+    <columns formulaId="a_56" name="serializable" foreignKeysAsColumn="//@tables.0/@foreignKeys.0/@tableColumn.0"/>
+    <foreignKeys formulaId="a_74" name="serializable">
+      <tableColumn formulaId="a_75" target="//@tables.0/@columns.1"/>
+      <foreignColumn formulaId="a_76" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_2" name="EAttribute" primaryKey="//@tables.1/@columns.0">
+    <columns formulaId="a_3" name="key" tableAsPrimaryKey="//@tables.1" foreignKeysAsForeignColumn="//@tables.11/@foreignKeys.1/@foreignColumn.0 //@tables.13/@foreignKeys.0/@foreignColumn.0 //@tables.14/@foreignKeys.1/@foreignColumn.0"/>
+    <columns formulaId="a_57" name="derived_EStructuralFeature" foreignKeysAsColumn="//@tables.1/@foreignKeys.0/@tableColumn.0"/>
+    <columns formulaId="a_58" name="transient_EStructuralFeature" foreignKeysAsColumn="//@tables.1/@foreignKeys.1/@tableColumn.0"/>
+    <columns formulaId="a_59" name="volatile_EStructuralFeature" foreignKeysAsColumn="//@tables.1/@foreignKeys.2/@tableColumn.0"/>
+    <columns formulaId="a_60" name="changeable_EStructuralFeature" foreignKeysAsColumn="//@tables.1/@foreignKeys.3/@tableColumn.0"/>
+    <columns formulaId="a_61" name="ID" foreignKeysAsColumn="//@tables.1/@foreignKeys.4/@tableColumn.0"/>
+    <foreignKeys formulaId="a_77" name="derived_EStructuralFeature">
+      <tableColumn formulaId="a_78" target="//@tables.1/@columns.1"/>
+      <foreignColumn formulaId="a_79" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_80" name="transient_EStructuralFeature">
+      <tableColumn formulaId="a_81" target="//@tables.1/@columns.2"/>
+      <foreignColumn formulaId="a_82" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_83" name="volatile_EStructuralFeature">
+      <tableColumn formulaId="a_84" target="//@tables.1/@columns.3"/>
+      <foreignColumn formulaId="a_85" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_86" name="changeable_EStructuralFeature">
+      <tableColumn formulaId="a_87" target="//@tables.1/@columns.4"/>
+      <foreignColumn formulaId="a_88" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_89" name="ID">
+      <tableColumn formulaId="a_90" target="//@tables.1/@columns.5"/>
+      <foreignColumn formulaId="a_91" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_4" name="EInt" primaryKey="//@tables.2/@columns.0">
+    <columns formulaId="a_5" name="key" tableAsPrimaryKey="//@tables.2" foreignKeysAsForeignColumn="//@tables.3/@foreignKeys.0/@foreignColumn.0 //@tables.3/@foreignKeys.1/@foreignColumn.0"/>
+  </tables>
+  <tables formulaId="a_6" name="EReference" primaryKey="//@tables.3/@columns.0">
+    <columns formulaId="a_7" name="key" tableAsPrimaryKey="//@tables.3" foreignKeysAsForeignColumn="//@tables.14/@foreignKeys.0/@foreignColumn.0 //@tables.16/@foreignKeys.0/@foreignColumn.0 //@tables.17/@foreignKeys.1/@foreignColumn.0"/>
+    <columns formulaId="a_62" name="upperBound_ETypedElement" foreignKeysAsColumn="//@tables.3/@foreignKeys.0/@tableColumn.0"/>
+    <columns formulaId="a_63" name="lowerBound_ETypedElement" foreignKeysAsColumn="//@tables.3/@foreignKeys.1/@tableColumn.0"/>
+    <columns formulaId="a_64" name="resolveProxies" foreignKeysAsColumn="//@tables.3/@foreignKeys.2/@tableColumn.0"/>
+    <columns formulaId="a_65" name="container" foreignKeysAsColumn="//@tables.3/@foreignKeys.3/@tableColumn.0"/>
+    <columns formulaId="a_66" name="containment" foreignKeysAsColumn="//@tables.3/@foreignKeys.4/@tableColumn.0"/>
+    <foreignKeys formulaId="a_92" name="upperBound_ETypedElement">
+      <tableColumn formulaId="a_93" target="//@tables.3/@columns.1"/>
+      <foreignColumn formulaId="a_94" target="//@tables.2/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_95" name="lowerBound_ETypedElement">
+      <tableColumn formulaId="a_96" target="//@tables.3/@columns.2"/>
+      <foreignColumn formulaId="a_97" target="//@tables.2/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_98" name="resolveProxies">
+      <tableColumn formulaId="a_99" target="//@tables.3/@columns.3"/>
+      <foreignColumn formulaId="a_100" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_101" name="container">
+      <tableColumn formulaId="a_102" target="//@tables.3/@columns.4"/>
+      <foreignColumn formulaId="a_103" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_104" name="containment">
+      <tableColumn formulaId="a_105" target="//@tables.3/@columns.5"/>
+      <foreignColumn formulaId="a_106" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables may="true" formulaId="a_8" name="EParameter" primaryKey="//@tables.4/@columns.0">
+    <columns may="true" formulaId="a_9" name="key" tableAsPrimaryKey="//@tables.4" foreignKeysAsForeignColumn="//@tables.20/@foreignKeys.0/@foreignColumn.0 //@tables.21/@foreignKeys.1/@foreignColumn.0"/>
+    <columns may="true" formulaId="a_67" name="many_EtypedElement" foreignKeysAsColumn="//@tables.4/@foreignKeys.0/@tableColumn.0"/>
+    <foreignKeys may="true" formulaId="a_107" name="many_EtypedElement">
+      <tableColumn may="true" formulaId="a_108" target="//@tables.4/@columns.1"/>
+      <foreignColumn may="true" formulaId="a_109" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_10" name="EOperation" primaryKey="//@tables.5/@columns.0">
+    <columns formulaId="a_11" name="key" tableAsPrimaryKey="//@tables.5" foreignKeysAsForeignColumn="//@tables.19/@foreignKeys.0/@foreignColumn.0 //@tables.21/@foreignKeys.0/@foreignColumn.0 //@tables.22/@foreignKeys.1/@foreignColumn.0"/>
+    <columns formulaId="a_68" name="required_ETypedElement" foreignKeysAsColumn="//@tables.5/@foreignKeys.0/@tableColumn.0"/>
+    <foreignKeys formulaId="a_110" name="required_ETypedElement">
+      <tableColumn formulaId="a_111" target="//@tables.5/@columns.1"/>
+      <foreignColumn formulaId="a_112" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_12" name="EBoolean" primaryKey="//@tables.6/@columns.0">
+    <columns formulaId="a_13" name="key" tableAsPrimaryKey="//@tables.6" foreignKeysAsForeignColumn="//@tables.0/@foreignKeys.0/@foreignColumn.0 //@tables.1/@foreignKeys.0/@foreignColumn.0 //@tables.1/@foreignKeys.1/@foreignColumn.0 //@tables.1/@foreignKeys.2/@foreignColumn.0 //@tables.1/@foreignKeys.3/@foreignColumn.0 //@tables.1/@foreignKeys.4/@foreignColumn.0 //@tables.3/@foreignKeys.2/@foreignColumn.0 //@tables.3/@foreignKeys.3/@foreignColumn.0 //@tables.3/@foreignKeys.4/@foreignColumn.0 //@tables.4/@foreignKeys.0/@foreignColumn.0 //@tables.5/@foreignKeys.0/@foreignColumn.0 //@tables.7/@foreignKeys.0/@foreignColumn.0 //@tables.7/@foreignKeys.1/@foreignColumn.0"/>
+  </tables>
+  <tables formulaId="a_14" name="EClass" primaryKey="//@tables.7/@columns.0">
+    <columns formulaId="a_15" name="key" tableAsPrimaryKey="//@tables.7" foreignKeysAsForeignColumn="//@tables.11/@foreignKeys.0/@foreignColumn.0 //@tables.16/@foreignKeys.1/@foreignColumn.0 //@tables.17/@foreignKeys.0/@foreignColumn.0 //@tables.19/@foreignKeys.1/@foreignColumn.0 //@tables.20/@foreignKeys.1/@foreignColumn.0 //@tables.22/@foreignKeys.0/@foreignColumn.0"/>
+    <columns formulaId="a_69" name="instanceClassName_EClassifier" foreignKeysAsColumn="//@tables.7/@foreignKeys.2/@tableColumn.0"/>
+    <columns formulaId="a_70" name="interface" foreignKeysAsColumn="//@tables.7/@foreignKeys.0/@tableColumn.0"/>
+    <columns formulaId="a_71" name="abstract" foreignKeysAsColumn="//@tables.7/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_113" name="interface">
+      <tableColumn formulaId="a_114" target="//@tables.7/@columns.2"/>
+      <foreignColumn formulaId="a_115" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_116" name="abstract">
+      <tableColumn formulaId="a_117" target="//@tables.7/@columns.3"/>
+      <foreignColumn formulaId="a_118" target="//@tables.6/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_119" name="instanceClassName_EClassifier">
+      <tableColumn formulaId="a_120" target="//@tables.7/@columns.1"/>
+      <foreignColumn formulaId="a_121" target="//@tables.9/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_16" name="EStringToStringMapEntry" primaryKey="//@tables.8/@columns.0">
+    <columns formulaId="a_17" name="key" tableAsPrimaryKey="//@tables.8"/>
+    <columns may="true" formulaId="a_72" name="value" foreignKeysAsColumn="//@tables.8/@foreignKeys.0/@tableColumn.0"/>
+    <columns may="true" formulaId="a_73" name="ekey" foreignKeysAsColumn="//@tables.8/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys may="true" formulaId="a_122" name="value">
+      <tableColumn may="true" formulaId="a_123" target="//@tables.8/@columns.1"/>
+      <foreignColumn may="true" formulaId="a_124" target="//@tables.9/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys may="true" formulaId="a_125" name="ekey">
+      <tableColumn may="true" formulaId="a_126" target="//@tables.8/@columns.2"/>
+      <foreignColumn may="true" formulaId="a_127" target="//@tables.9/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_18" name="EString" primaryKey="//@tables.9/@columns.0">
+    <columns formulaId="a_19" name="key" tableAsPrimaryKey="//@tables.9" foreignKeysAsForeignColumn="//@tables.7/@foreignKeys.2/@foreignColumn.0 //@tables.8/@foreignKeys.0/@foreignColumn.0 //@tables.8/@foreignKeys.1/@foreignColumn.0"/>
+  </tables>
+  <tables formulaId="a_20" name="EModelElement" primaryKey="//@tables.10/@columns.0">
+    <columns formulaId="a_21" name="key" tableAsPrimaryKey="//@tables.10"/>
+  </tables>
+  <tables formulaId="a_22" name="eAttributes" primaryKey="//@tables.11/@columns.0">
+    <columns formulaId="a_23" name="key" tableAsPrimaryKey="//@tables.11" foreignKeysAsColumn="//@tables.11/@foreignKeys.0/@tableColumn.0 //@tables.11/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_128" name="eAttributes">
+      <tableColumn formulaId="a_132" target="//@tables.11/@columns.0"/>
+      <foreignColumn formulaId="a_130" target="//@tables.7/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_129" name="eAttributes">
+      <tableColumn formulaId="a_133" target="//@tables.11/@columns.0"/>
+      <foreignColumn formulaId="a_131" target="//@tables.1/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_24" name="eLiterals" primaryKey="//@tables.12/@columns.0">
+    <columns formulaId="a_25" name="key" tableAsPrimaryKey="//@tables.12"/>
+  </tables>
+  <tables formulaId="a_26" name="eAttributeType" primaryKey="//@tables.13/@columns.0">
+    <columns formulaId="a_27" name="key" tableAsPrimaryKey="//@tables.13" foreignKeysAsColumn="//@tables.13/@foreignKeys.0/@tableColumn.0 //@tables.13/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_134" name="eAttributeType">
+      <tableColumn formulaId="a_138" target="//@tables.13/@columns.0"/>
+      <foreignColumn formulaId="a_136" target="//@tables.1/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_135" name="eAttributeType">
+      <tableColumn formulaId="a_139" target="//@tables.13/@columns.0"/>
+      <foreignColumn formulaId="a_137" target="//@tables.0/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_28" name="eKeys" primaryKey="//@tables.14/@columns.0">
+    <columns formulaId="a_29" name="key" tableAsPrimaryKey="//@tables.14" foreignKeysAsColumn="//@tables.14/@foreignKeys.0/@tableColumn.0 //@tables.14/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_140" name="eKeys">
+      <tableColumn formulaId="a_144" target="//@tables.14/@columns.0"/>
+      <foreignColumn formulaId="a_142" target="//@tables.3/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_141" name="eKeys">
+      <tableColumn formulaId="a_145" target="//@tables.14/@columns.0"/>
+      <foreignColumn formulaId="a_143" target="//@tables.1/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables may="true" formulaId="a_30" name="eOpposite" primaryKey="//@tables.15/@columns.0">
+    <columns may="true" formulaId="a_31" name="key" tableAsPrimaryKey="//@tables.15"/>
+  </tables>
+  <tables formulaId="a_32" name="eReferenceType" primaryKey="//@tables.16/@columns.0">
+    <columns formulaId="a_33" name="key" tableAsPrimaryKey="//@tables.16" foreignKeysAsColumn="//@tables.16/@foreignKeys.0/@tableColumn.0 //@tables.16/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_146" name="eReferenceType">
+      <tableColumn formulaId="a_150" target="//@tables.16/@columns.0"/>
+      <foreignColumn formulaId="a_148" target="//@tables.3/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_147" name="eReferenceType">
+      <tableColumn formulaId="a_151" target="//@tables.16/@columns.0"/>
+      <foreignColumn formulaId="a_149" target="//@tables.7/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_34" name="eReferences" primaryKey="//@tables.17/@columns.0">
+    <columns formulaId="a_35" name="key" tableAsPrimaryKey="//@tables.17" foreignKeysAsColumn="//@tables.17/@foreignKeys.0/@tableColumn.0 //@tables.17/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_152" name="eReferences">
+      <tableColumn formulaId="a_156" target="//@tables.17/@columns.0"/>
+      <foreignColumn formulaId="a_154" target="//@tables.7/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_153" name="eReferences">
+      <tableColumn formulaId="a_157" target="//@tables.17/@columns.0"/>
+      <foreignColumn formulaId="a_155" target="//@tables.3/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_36" name="eSuperTypes" primaryKey="//@tables.18/@columns.0">
+    <columns formulaId="a_37" name="key" tableAsPrimaryKey="//@tables.18"/>
+  </tables>
+  <tables formulaId="a_38" name="eContainingClass" primaryKey="//@tables.19/@columns.0">
+    <columns formulaId="a_39" name="key" tableAsPrimaryKey="//@tables.19" foreignKeysAsColumn="//@tables.19/@foreignKeys.0/@tableColumn.0 //@tables.19/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_158" name="eContainingClass">
+      <tableColumn formulaId="a_162" target="//@tables.19/@columns.0"/>
+      <foreignColumn formulaId="a_160" target="//@tables.5/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_159" name="eContainingClass">
+      <tableColumn formulaId="a_163" target="//@tables.19/@columns.0"/>
+      <foreignColumn formulaId="a_161" target="//@tables.7/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_40" name="eType_EClassifier" primaryKey="//@tables.20/@columns.0">
+    <columns formulaId="a_41" name="key" tableAsPrimaryKey="//@tables.20" foreignKeysAsColumn="//@tables.20/@foreignKeys.0/@tableColumn.0 //@tables.20/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys may="true" formulaId="a_164" name="eType_EClassifier">
+      <tableColumn may="true" formulaId="a_168" target="//@tables.20/@columns.0"/>
+      <foreignColumn may="true" formulaId="a_166" target="//@tables.4/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys may="true" formulaId="a_165" name="eType_EClassifier">
+      <tableColumn may="true" formulaId="a_169" target="//@tables.20/@columns.0"/>
+      <foreignColumn may="true" formulaId="a_167" target="//@tables.7/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables may="true" formulaId="a_42" name="eParameters" primaryKey="//@tables.21/@columns.0">
+    <columns may="true" formulaId="a_43" name="key" tableAsPrimaryKey="//@tables.21" foreignKeysAsColumn="//@tables.21/@foreignKeys.0/@tableColumn.0 //@tables.21/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys may="true" formulaId="a_170" name="eParameters">
+      <tableColumn may="true" formulaId="a_174" target="//@tables.21/@columns.0"/>
+      <foreignColumn may="true" formulaId="a_172" target="//@tables.5/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys may="true" formulaId="a_171" name="eParameters">
+      <tableColumn may="true" formulaId="a_175" target="//@tables.21/@columns.0"/>
+      <foreignColumn may="true" formulaId="a_173" target="//@tables.4/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_44" name="eOperations" primaryKey="//@tables.22/@columns.0">
+    <columns formulaId="a_45" name="key" tableAsPrimaryKey="//@tables.22" foreignKeysAsColumn="//@tables.22/@foreignKeys.0/@tableColumn.0 //@tables.22/@foreignKeys.1/@tableColumn.0"/>
+    <foreignKeys formulaId="a_176" name="eOperations">
+      <tableColumn formulaId="a_180" target="//@tables.22/@columns.0"/>
+      <foreignColumn formulaId="a_178" target="//@tables.7/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys formulaId="a_177" name="eOperations">
+      <tableColumn formulaId="a_181" target="//@tables.22/@columns.0"/>
+      <foreignColumn formulaId="a_179" target="//@tables.5/@columns.0"/>
+    </foreignKeys>
+  </tables>
+  <tables formulaId="a_46" name="eClassifiers_EClassifier" primaryKey="//@tables.23/@columns.0">
+    <columns formulaId="a_47" name="key" tableAsPrimaryKey="//@tables.23"/>
+  </tables>
+  <tables may="true" formulaId="a_48" name="eFactoryInstance" primaryKey="//@tables.24/@columns.0">
+    <columns may="true" formulaId="a_49" name="key" tableAsPrimaryKey="//@tables.24"/>
+  </tables>
+  <tables formulaId="a_50" name="eSuperPackage" primaryKey="//@tables.25/@columns.0">
+    <columns formulaId="a_51" name="key" tableAsPrimaryKey="//@tables.25"/>
+  </tables>
+  <tables formulaId="a_52" name="eModelElement" primaryKey="//@tables.26/@columns.0">
+    <columns formulaId="a_53" name="key" tableAsPrimaryKey="//@tables.26"/>
+  </tables>
+  <tables formulaId="a_54" name="details" primaryKey="//@tables.27/@columns.0">
+    <columns formulaId="a_55" name="key" tableAsPrimaryKey="//@tables.27"/>
+  </tables>
+</relationaldatabase_mavo:RelationalDatabase>

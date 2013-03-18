@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ASCII"?>
 <classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
   <classes formulaId="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
   <classes formulaId="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
@@ -30,7 +30,7 @@
   <classes formulaId="EOperation" name="EOperation" associationsAsSource="//@associations.3 //@associations.4" associationsAsTarget="//@associations.5">
     <ownedAttributes formulaId="required_ETypedElement" name="required_ETypedElement" type="//@classes.15"/>
   </classes>
-  <classes formulaId="b" name="EParameter" associationsAsSource="//@associations.16" associationsAsTarget="//@associations.3">
+  <classes may="true" formulaId="b" name="EParameter" associationsAsSource="//@associations.16" associationsAsTarget="//@associations.3">
     <ownedAttributes formulaId="many_EtypedElement" name="many_EtypedElement" type="//@classes.15"/>
   </classes>
   <classes formulaId="EClass" name="EClass" associationsAsSource="//@associations.5 //@associations.6 //@associations.13 //@associations.14" associationsAsTarget="//@associations.4 //@associations.6 //@associations.8 //@associations.15 //@associations.16">
@@ -47,7 +47,7 @@
   <classes formulaId="EReference" name="EReference" associationsAsSource="//@associations.8 //@associations.9 //@associations.10" associationsAsTarget="//@associations.9 //@associations.13">
     <ownedAttributes formulaId="m" name="containment" type="//@classes.15"/>
     <ownedAttributes formulaId="n" name="container" type="//@classes.15"/>
-    <ownedAttributes may="true" formulaId="f" name="resolveProxies" type="//@classes.15"/>
+    <ownedAttributes formulaId="f" name="resolveProxies" type="//@classes.15"/>
     <ownedAttributes formulaId="lowerBound_ETypedElement" name="lowerBound_ETypedElement" type="//@classes.16"/>
     <ownedAttributes formulaId="upperBound_ETypedElement" name="upperBound_ETypedElement" type="//@classes.16"/>
   </classes>
@@ -63,11 +63,11 @@
   <classes formulaId="EInt" name="EInt"/>
   <associations formulaId="details" name="details" source="//@classes.2" target="//@classes.1"/>
   <associations name="eModelElement" source="//@classes.2" target="//@classes.0"/>
-  <associations may="true" formulaId="l" name="eSuperPackage" source="//@classes.5" target="//@classes.5"/>
+  <associations formulaId="l" name="eSuperPackage" source="//@classes.5" target="//@classes.5"/>
   <associations may="true" formulaId="a" name="eParameters" source="//@classes.7" target="//@classes.8"/>
   <associations formulaId="eContainingClass" name="eContainingClass" source="//@classes.7" target="//@classes.9"/>
   <associations formulaId="eOperations" name="eOperations" source="//@classes.9" target="//@classes.7"/>
-  <associations may="true" formulaId="k" name="eSuperTypes" source="//@classes.9" target="//@classes.9"/>
+  <associations formulaId="k" name="eSuperTypes" source="//@classes.9" target="//@classes.9"/>
   <associations formulaId="eLiterals" name="eLiterals" source="//@classes.11" target="//@classes.6"/>
   <associations formulaId="eReferenceType" name="eReferenceType" source="//@classes.12" target="//@classes.9"/>
   <associations may="true" formulaId="e" name="eOpposite" source="//@classes.12" target="//@classes.12"/>

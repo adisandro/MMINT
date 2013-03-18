@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ASCII"?>
 <classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
   <classes formulaId="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
   <classes formulaId="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
@@ -45,8 +45,8 @@
     <superclass formulaId="supEEnum" target="//@classes.10"/>
   </classes>
   <classes formulaId="EReference" name="EReference" associationsAsSource="//@associations.8 //@associations.9 //@associations.10" associationsAsTarget="//@associations.9 //@associations.13">
-    <ownedAttributes formulaId="m" name="containment" type="//@classes.15"/>
-    <ownedAttributes formulaId="n" name="container" type="//@classes.15"/>
+    <ownedAttributes may="true" formulaId="m" name="containment" type="//@classes.15"/>
+    <ownedAttributes may="true" formulaId="n" name="container" type="//@classes.15"/>
     <ownedAttributes may="true" formulaId="f" name="resolveProxies" type="//@classes.15"/>
     <ownedAttributes formulaId="lowerBound_ETypedElement" name="lowerBound_ETypedElement" type="//@classes.16"/>
     <ownedAttributes formulaId="upperBound_ETypedElement" name="upperBound_ETypedElement" type="//@classes.16"/>

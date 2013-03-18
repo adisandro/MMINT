@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ASCII"?>
 <classdiagram_mavo:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram_mavo="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
   <classes formulaId="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
   <classes formulaId="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
@@ -22,7 +22,7 @@
     <superclass formulaId="supEPackage" target="//@classes.3"/>
   </classes>
   <classes formulaId="EEnumLiteral" name="EEnumLiteral" associationsAsTarget="//@associations.7">
-    <ownedAttributes formulaId="d" name="value" type="//@classes.16"/>
+    <ownedAttributes may="true" formulaId="d" name="value" type="//@classes.16"/>
     <ownedAttributes may="true" formulaId="c" name="instance" type="//@classes.14"/>
     <ownedAttributes formulaId="literal" name="literal" type="//@classes.14"/>
     <superclass formulaId="supEEnumLiteral" target="//@classes.3"/>
@@ -30,7 +30,7 @@
   <classes formulaId="EOperation" name="EOperation" associationsAsSource="//@associations.3 //@associations.4" associationsAsTarget="//@associations.5">
     <ownedAttributes formulaId="required_ETypedElement" name="required_ETypedElement" type="//@classes.15"/>
   </classes>
-  <classes formulaId="b" name="EParameter" associationsAsSource="//@associations.16" associationsAsTarget="//@associations.3">
+  <classes may="true" formulaId="b" name="EParameter" associationsAsSource="//@associations.16" associationsAsTarget="//@associations.3">
     <ownedAttributes formulaId="many_EtypedElement" name="many_EtypedElement" type="//@classes.15"/>
   </classes>
   <classes formulaId="EClass" name="EClass" associationsAsSource="//@associations.5 //@associations.6 //@associations.13 //@associations.14" associationsAsTarget="//@associations.4 //@associations.6 //@associations.8 //@associations.15 //@associations.16">
@@ -45,8 +45,8 @@
     <superclass formulaId="supEEnum" target="//@classes.10"/>
   </classes>
   <classes formulaId="EReference" name="EReference" associationsAsSource="//@associations.8 //@associations.9 //@associations.10" associationsAsTarget="//@associations.9 //@associations.13">
-    <ownedAttributes formulaId="m" name="containment" type="//@classes.15"/>
-    <ownedAttributes formulaId="n" name="container" type="//@classes.15"/>
+    <ownedAttributes may="true" formulaId="m" name="containment" type="//@classes.15"/>
+    <ownedAttributes may="true" formulaId="n" name="container" type="//@classes.15"/>
     <ownedAttributes may="true" formulaId="f" name="resolveProxies" type="//@classes.15"/>
     <ownedAttributes formulaId="lowerBound_ETypedElement" name="lowerBound_ETypedElement" type="//@classes.16"/>
     <ownedAttributes formulaId="upperBound_ETypedElement" name="upperBound_ETypedElement" type="//@classes.16"/>

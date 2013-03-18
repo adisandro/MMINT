@@ -30,7 +30,7 @@
   <classes formulaId="EOperation" name="EOperation" associationsAsSource="//@associations.3 //@associations.4" associationsAsTarget="//@associations.5">
     <ownedAttributes formulaId="required_ETypedElement" name="required_ETypedElement" type="//@classes.15"/>
   </classes>
-  <classes may="true" formulaId="b" name="EParameter" associationsAsSource="//@associations.16" associationsAsTarget="//@associations.3">
+  <classes formulaId="b" name="EParameter" associationsAsSource="//@associations.16" associationsAsTarget="//@associations.3">
     <ownedAttributes formulaId="many_EtypedElement" name="many_EtypedElement" type="//@classes.15"/>
   </classes>
   <classes formulaId="EClass" name="EClass" associationsAsSource="//@associations.5 //@associations.6 //@associations.13 //@associations.14" associationsAsTarget="//@associations.4 //@associations.6 //@associations.8 //@associations.15 //@associations.16">
