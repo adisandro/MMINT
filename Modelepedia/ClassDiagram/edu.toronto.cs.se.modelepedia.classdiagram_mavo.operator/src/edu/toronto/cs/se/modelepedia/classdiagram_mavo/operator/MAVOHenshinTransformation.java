@@ -89,6 +89,7 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESMAVO = "transformationRulesMAVO";
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
+	private static final String PROPERTY_OUT_MAYFORMULALENGTH = "mayFormulaLength";
 	private static final String ANAC_NAME = "A_NAC";
 	private static final String A_MAVOELEMENT_FORMULAID_PREFIX = "a_";
 	private static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
@@ -130,6 +131,7 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 
 		properties.setProperty(PROPERTY_OUT_TIMECLASSICAL, String.valueOf(timeClassical));
 		properties.setProperty(PROPERTY_OUT_TIMEMAVO, String.valueOf(timeMAVO));
+		properties.setProperty(PROPERTY_OUT_MAYFORMULALENGTH, String.valueOf(mayFormula.length()));
 	}
 
 	private void transformMatch(RuleApplication application, Match match, boolean isMayMatch) {
@@ -424,7 +426,6 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
 		boolean isMayMatchNBar = true;
 		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
-System.err.println("N matches: " + matchesN.size());
 matchesN:
 		for (int i = 0; i < matchesN.size(); i++) {
 			mayModelObjsNBar.clear();
@@ -459,7 +460,6 @@ matchesN:
 				isMayMatch(matchNj, nodesC, mayModelObjsC, mavoModelObjsCDN);
 				isMayMatch(matchNj, nodesD, mayModelObjsD, mavoModelObjsCDN);
 			}
-System.err.println("NBar elements: " + mayModelObjsNBar.size());
 			// check apply formula
 			int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(createZ3ApplicabilityFormula());
 			if (z3Result == Z3_SAT) {
@@ -503,18 +503,14 @@ System.err.println("NBar elements: " + mayModelObjsNBar.size());
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
 		while ((condition = checkApplicabilityConditions(rule, engine, graph)) != null) {
-System.err.println(rule.getName());
-System.err.println("C elements: " + mayModelObjsC.size());
 			application.setRule(condition.getMatchedRule());
 			application.setEGraph(graph);
 			// transform
 			mayModelObjsA.clear();
 			transformMatch(application, condition.getMatch(), condition.isMayMatch());
 			if (condition.isMayMatch()) {
-System.err.println("May match!");
 				transformMayFormula();
 			}
-System.err.println("MF: " + mayFormula.length());
 		}
 	}
 
