@@ -91,7 +91,7 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
 	private static final String PROPERTY_OUT_MAYFORMULALENGTH = "mayFormulaLength";
 	private static final String ANAC_NAME = "A_NAC";
-	private static final String A_MAVOELEMENT_FORMULAID_PREFIX = "a_";
+	private static final String A_MAVOELEMENT_FORMULAID_PREFIX = "a";
 	private static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
 	private static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
 
@@ -166,12 +166,9 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		StringBuilder formula = new StringBuilder();
 		formula.append(SMTLIB_OR);
 			formula.append(SMTLIB_AND);
-				formula.append(SMTLIB_AND);
-					formula.append(mayFormula);
-					formula.append(" ");
-					formula.append(SMTLIB_NOT);
-						createZ3ApplyFormula(formula);
-					formula.append(SMTLIB_PREDICATE_END);
+				formula.append(mayFormula);
+				formula.append(SMTLIB_NOT);
+					createZ3ApplyFormula(formula);
 				formula.append(SMTLIB_PREDICATE_END);
 				if (!mayModelObjsA.isEmpty()) {
 					formula.append(SMTLIB_NOT);
@@ -182,15 +179,14 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 			formula.append(SMTLIB_AND);
 				formula.append(SMTLIB_AND);
 					formula.append(mayFormula);
-					formula.append(" ");
 					createZ3ApplyFormula(formula);
 				formula.append(SMTLIB_PREDICATE_END);
 				if (!mayModelObjsD.isEmpty()) {
 					formula.append(SMTLIB_NOT);
-						createZ3ApplyFormulaMatchParts(formula, mayModelObjsD, SMTLIB_AND);
+						createZ3ApplyFormulaMatchParts(formula, mayModelObjsD, SMTLIB_OR);
 					formula.append(SMTLIB_PREDICATE_END);
 				}
-				createZ3ApplyFormulaMatchParts(formula, mayModelObjsA, SMTLIB_AND);
+				createZ3ApplyFormulaMatchParts(formula, mayModelObjsA, null);
 			formula.append(SMTLIB_PREDICATE_END);
 		formula.append(SMTLIB_PREDICATE_END);
 		mayFormula = formula.toString();
@@ -323,18 +319,24 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		createZ3ApplyFormulaConstant(formula, mayModelObjsD);
 	}
 
-	private void createZ3ApplyFormulaMatchParts(StringBuilder formula, Set<MAVOElement> mayModelObjs, String smtlibPredicate) {
+	private void createZ3ApplyFormulaMatchParts(StringBuilder formula, Set<MAVOElement> mayModelObjs, String innerPredicate) {
 
 		if (mayModelObjs.isEmpty()) {
 			return;
 		}
 
-		formula.append(smtlibPredicate);
+		boolean simplify = (innerPredicate == null || mayModelObjs.size() == 1) ? true : false;
+		if (!simplify) {
+			formula.append(innerPredicate);
+		}
 		for (MAVOElement mayModelObj : mayModelObjs) {
 			formula.append(mayModelObj.getFormulaId());
 			formula.append(" ");
 		}
-		formula.append(SMTLIB_PREDICATE_END);
+		formula.deleteCharAt(formula.length()-1);
+		if (!simplify) {
+			formula.append(SMTLIB_PREDICATE_END);
+		}
 	}
 
 	private void createZ3ApplyFormulaMatchPartN(StringBuilder formula) {
@@ -344,21 +346,36 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		}
 
 		formula.append(SMTLIB_NOT);
-		formula.append(SMTLIB_OR);
-		for (Set<MAVOElement> mayModelObjsN : mayModelObjsNBar) {
-			createZ3ApplyFormulaMatchParts(formula, mayModelObjsN, SMTLIB_AND);
+		boolean simplify = (mayModelObjsNBar.size() == 1) ? true : false;
+		if (!simplify) {
+			formula.append(SMTLIB_OR);
 		}
-		formula.append(SMTLIB_PREDICATE_END);
+		boolean previousNSimplified = false;
+		for (Set<MAVOElement> mayModelObjsN : mayModelObjsNBar) {
+			if (previousNSimplified & mayModelObjsN.size() == 1) {
+				formula.append(" ");
+			}
+			createZ3ApplyFormulaMatchParts(formula, mayModelObjsN, SMTLIB_AND);
+			previousNSimplified = (mayModelObjsN.size() == 1) ? true : false;
+		}
+		if (!simplify) {
+			formula.append(SMTLIB_PREDICATE_END);
+		}
 		formula.append(SMTLIB_PREDICATE_END);
 	}
 
 	private void createZ3ApplyFormula(StringBuilder formula) {
 
-		formula.append(SMTLIB_AND);
+		boolean simplify = ((mayModelObjsC.size() + mayModelObjsD.size()) <= 1) ? true : false;
+		if (!simplify) {
+			formula.append(SMTLIB_AND);
+		}
 		createZ3ApplyFormulaMatchPartN(formula);
-		createZ3ApplyFormulaMatchParts(formula, mayModelObjsC, SMTLIB_AND);
-		createZ3ApplyFormulaMatchParts(formula, mayModelObjsD, SMTLIB_AND);
-		formula.append(SMTLIB_PREDICATE_END);
+		createZ3ApplyFormulaMatchParts(formula, mayModelObjsC, null);
+		createZ3ApplyFormulaMatchParts(formula, mayModelObjsD, null);
+		if (!simplify) {
+			formula.append(SMTLIB_PREDICATE_END);
+		}
 	}
 
 	private String createZ3ApplicabilityFormula() {
