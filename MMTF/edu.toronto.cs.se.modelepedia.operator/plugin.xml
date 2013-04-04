@@ -221,4 +221,35 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operatorType
+            class="edu.toronto.cs.se.modelepedia.operator.patch.MAVOHenshinTransformation"
+            isConversion="false">
+         <extendibleType
+               name="MAVOHenshinTransformation"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_MAVOHenshinTransformation">
+         </extendibleType>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="mavoModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
+                  name="transformedMavoModelInput"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="transformedMavoModelOutput"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </parameter>
+         </output>
+      </operatorType>
+   </extension>
+
 </plugin>
