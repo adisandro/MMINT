@@ -238,12 +238,12 @@ public abstract class OperatorExecutableImpl extends EObjectImpl implements Oper
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case OperatorPackage.OPERATOR_EXECUTABLE___EXECUTE__ELIST:
-			try {
-				return execute((EList<Model>)arguments.get(0));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				try {
+					return execute((EList<Model>)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}

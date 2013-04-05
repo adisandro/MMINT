@@ -49,7 +49,7 @@ public interface BinaryModelRel extends ModelRel {
 	 * @see #setSourceModel(Model)
 	 * @see edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage#getBinaryModelRel_SourceModel()
 	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 1 then null else modelEndpoints->at(1).target.oclAsType(Model) endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 1 then null else modelEndpoints->at(1).target.oclAsType(mid::Model) endif'"
 	 * @generated
 	 */
 	Model getSourceModel();
@@ -75,7 +75,7 @@ public interface BinaryModelRel extends ModelRel {
 	 * @see #setTargetModel(Model)
 	 * @see edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage#getBinaryModelRel_TargetModel()
 	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 2 then null else modelEndpoints->at(2).target.oclAsType(Model) endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 2 then null else modelEndpoints->at(2).target.oclAsType(mid::Model) endif'"
 	 * @generated
 	 */
 	Model getTargetModel();

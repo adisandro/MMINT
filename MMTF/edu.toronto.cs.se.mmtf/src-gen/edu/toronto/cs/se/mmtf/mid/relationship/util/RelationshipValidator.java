@@ -233,7 +233,7 @@ public class RelationshipValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MODEL_ENDPOINT_REFERENCE__MODEL_ENDPOINT_TYPE__EEXPRESSION = "object.oclIsKindOf(ModelEndpoint)";
+	protected static final String MODEL_ENDPOINT_REFERENCE__MODEL_ENDPOINT_TYPE__EEXPRESSION = "object.oclIsKindOf(mid::ModelEndpoint)";
 
 	/**
 	 * Validates the modelEndpointType constraint of '<em>Model Endpoint Reference</em>'.
@@ -282,7 +282,7 @@ public class RelationshipValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MODEL_ELEMENT_REFERENCE__MODEL_ELEMENT_TYPE__EEXPRESSION = "object.oclIsKindOf(ModelElement)";
+	protected static final String MODEL_ELEMENT_REFERENCE__MODEL_ELEMENT_TYPE__EEXPRESSION = "object.oclIsKindOf(mid::ModelElement)";
 
 	/**
 	 * Validates the modelElementType constraint of '<em>Model Element Reference</em>'.

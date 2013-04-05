@@ -44,7 +44,7 @@ public interface ExtendibleElementEndpointReference extends ExtendibleElementRef
 	 * @return the value of the '<em>Target Uri</em>' attribute.
 	 * @see edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage#getExtendibleElementEndpointReference_TargetUri()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='object.oclAsType(ExtendibleElementEndpoint).targetUri'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='object.oclAsType(mid::ExtendibleElementEndpoint).targetUri'"
 	 * @generated
 	 */
 	String getTargetUri();

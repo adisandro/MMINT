@@ -183,6 +183,15 @@ public interface MidPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT__VAR = MavoPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__FORMULA_ID = MavoPackage.MAVO_ELEMENT__FORMULA_ID;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,6 +298,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT__VAR = EXTENDIBLE_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_ID = EXTENDIBLE_ELEMENT__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -523,6 +541,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__VAR = EXTENDIBLE_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__FORMULA_ID = EXTENDIBLE_ELEMENT__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -770,6 +797,15 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT__VAR = EXTENDIBLE_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__FORMULA_ID = EXTENDIBLE_ELEMENT__FORMULA_ID;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -959,6 +995,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT__VAR = EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT__FORMULA_ID = EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

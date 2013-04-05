@@ -36,7 +36,7 @@ public class EditorFactoryImpl extends EFactoryImpl implements EditorFactory {
 	 */
 	public static EditorFactory init() {
 		try {
-			EditorFactory theEditorFactory = (EditorFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/mmtf/MID/Editor"); 
+			EditorFactory theEditorFactory = (EditorFactory)EPackage.Registry.INSTANCE.getEFactory(EditorPackage.eNS_URI);
 			if (theEditorFactory != null) {
 				return theEditorFactory;
 			}

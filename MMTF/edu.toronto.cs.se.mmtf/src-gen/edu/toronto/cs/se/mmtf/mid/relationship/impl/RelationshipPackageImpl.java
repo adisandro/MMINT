@@ -1005,7 +1005,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		  (getExtendibleElementEndpointReference_TargetUri(), 
 		   source, 
 		   new String[] {
-			 "derivation", "object.oclAsType(ExtendibleElementEndpoint).targetUri"
+			 "derivation", "object.oclAsType(mid::ExtendibleElementEndpoint).targetUri"
 		   });											
 		addAnnotation
 		  (binaryModelRelEClass, 
@@ -1017,25 +1017,25 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		  (getBinaryModelRel_SourceModel(), 
 		   source, 
 		   new String[] {
-			 "derivation", "if modelEndpoints->size() < 1 then null else modelEndpoints->at(1).target.oclAsType(Model) endif"
+			 "derivation", "if modelEndpoints->size() < 1 then null else modelEndpoints->at(1).target.oclAsType(mid::Model) endif"
 		   });			
 		addAnnotation
 		  (getBinaryModelRel_TargetModel(), 
 		   source, 
 		   new String[] {
-			 "derivation", "if modelEndpoints->size() < 2 then null else modelEndpoints->at(2).target.oclAsType(Model) endif"
+			 "derivation", "if modelEndpoints->size() < 2 then null else modelEndpoints->at(2).target.oclAsType(mid::Model) endif"
 		   });					
 		addAnnotation
 		  (modelEndpointReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "modelEndpointType", "object.oclIsKindOf(ModelEndpoint)"
+			 "modelEndpointType", "object.oclIsKindOf(mid::ModelEndpoint)"
 		   });							
 		addAnnotation
 		  (modelElementReferenceEClass, 
 		   source, 
 		   new String[] {
-			 "modelElementType", "object.oclIsKindOf(ModelElement)"
+			 "modelElementType", "object.oclIsKindOf(mid::ModelElement)"
 		   });												
 		addAnnotation
 		  (binaryLinkEClass, 

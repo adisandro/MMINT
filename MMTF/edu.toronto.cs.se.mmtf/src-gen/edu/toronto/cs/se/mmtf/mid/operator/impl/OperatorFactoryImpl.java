@@ -40,7 +40,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 */
 	public static OperatorFactory init() {
 		try {
-			OperatorFactory theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/mmtf/MID/Operator"); 
+			OperatorFactory theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorPackage.eNS_URI);
 			if (theOperatorFactory != null) {
 				return theOperatorFactory;
 			}

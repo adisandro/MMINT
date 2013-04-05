@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage#getModelEndpointReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelEndpointType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelEndpointType='object.oclIsKindOf(ModelEndpoint)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelEndpointType='object.oclIsKindOf(mid::ModelEndpoint)'"
  * @generated
  */
 public interface ModelEndpointReference extends ExtendibleElementEndpointReference {

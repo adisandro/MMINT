@@ -69,13 +69,13 @@ public abstract class ConversionOperatorExecutableImpl extends OperatorExecutabl
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case OperatorPackage.CONVERSION_OPERATOR_EXECUTABLE___CLEANUP:
-			try {
-				cleanup();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				return null;
+				try {
+					cleanup();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}

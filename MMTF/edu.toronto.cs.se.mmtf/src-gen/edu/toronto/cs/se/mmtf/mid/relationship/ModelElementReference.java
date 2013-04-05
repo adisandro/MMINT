@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage#getModelElementReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelElementType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelElementType='object.oclIsKindOf(ModelElement)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelElementType='object.oclIsKindOf(mid::ModelElement)'"
  * @generated
  */
 public interface ModelElementReference extends ExtendibleElementReference {

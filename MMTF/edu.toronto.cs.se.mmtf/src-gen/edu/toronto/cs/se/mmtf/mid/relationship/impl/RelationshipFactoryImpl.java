@@ -36,7 +36,7 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
 	 */
 	public static RelationshipFactory init() {
 		try {
-			RelationshipFactory theRelationshipFactory = (RelationshipFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/mmtf/MID/Relationship"); 
+			RelationshipFactory theRelationshipFactory = (RelationshipFactory)EPackage.Registry.INSTANCE.getEFactory(RelationshipPackage.eNS_URI);
 			if (theRelationshipFactory != null) {
 				return theRelationshipFactory;
 			}

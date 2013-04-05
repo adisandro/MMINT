@@ -427,7 +427,7 @@
           <details key="documentation" value="The uri of the referenced endpoint's target."/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="object.oclAsType(ExtendibleElementEndpoint).targetUri"/>
+          <details key="derivation" value="object.oclAsType(mid::ExtendibleElementEndpoint).targetUri"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -485,7 +485,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModel" lowerBound="1"
           eType="#//Model" volatile="true" transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="if modelEndpoints->size() &lt; 1 then null else modelEndpoints->at(1).target.oclAsType(Model) endif"/>
+          <details key="derivation" value="if modelEndpoints->size() &lt; 1 then null else modelEndpoints->at(1).target.oclAsType(mid::Model) endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The source model endpoint."/>
@@ -494,7 +494,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetModel" lowerBound="1"
           eType="#//Model" volatile="true" transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="if modelEndpoints->size() &lt; 2 then null else modelEndpoints->at(2).target.oclAsType(Model) endif"/>
+          <details key="derivation" value="if modelEndpoints->size() &lt; 2 then null else modelEndpoints->at(2).target.oclAsType(mid::Model) endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The target model endpoint."/>
@@ -509,7 +509,7 @@
         <details key="documentation" value="A reference to a model endpoint."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="modelEndpointType" value="object.oclIsKindOf(ModelEndpoint)"/>
+        <details key="modelEndpointType" value="object.oclIsKindOf(mid::ModelEndpoint)"/>
       </eAnnotations>
       <eOperations name="getObject" lowerBound="1" eType="#//ModelEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -538,7 +538,7 @@
         <details key="documentation" value="A reference to a model element."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="modelElementType" value="object.oclIsKindOf(ModelElement)"/>
+        <details key="modelElementType" value="object.oclIsKindOf(mid::ModelElement)"/>
       </eAnnotations>
       <eOperations name="getObject" lowerBound="1" eType="#//ModelElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

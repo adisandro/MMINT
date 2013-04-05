@@ -39,7 +39,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 */
 	public static MidFactory init() {
 		try {
-			MidFactory theMidFactory = (MidFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/mmtf/MID"); 
+			MidFactory theMidFactory = (MidFactory)EPackage.Registry.INSTANCE.getEFactory(MidPackage.eNS_URI);
 			if (theMidFactory != null) {
 				return theMidFactory;
 			}
