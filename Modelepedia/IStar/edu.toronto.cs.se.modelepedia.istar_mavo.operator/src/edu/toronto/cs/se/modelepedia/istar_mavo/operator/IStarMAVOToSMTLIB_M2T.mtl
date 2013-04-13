@@ -1235,48 +1235,182 @@
 ;	false
 ;)))))
 
-;SoftGoal propagation (only Contribution)
+;SoftGoal propagation (Contribution + Depender + Dependee)
 (assert (forall ((c SoftGoalConcretization)) (=> (not (inited c)) (= (co c) (ite
-	(or (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (co cc1))) (exists ((cc2 ContributionConcretization) (cc3 ContributionConcretization)) (and (= (tgt cc2) c) (and (= (tgt cc3) c) (and (or (fs cc2) (ps cc2)) (or (pd cc3) (fd cc3)))))))
+	(or
+		(and
+			(or
+				(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (co cc1)))
+				(exists ((cc2 ContributionConcretization) (cc3 ContributionConcretization)) (and (= (tgt cc2) c) (= (tgt cc3) c) (or (fs cc2) (ps cc2)) (or (pd cc3) (fd cc3))))
+			)
+			(not (exists ((dc DependerLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (or (fd dc) (pd dc)))))
+		)
+		(and
+			(exists ((dc1 DependerLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (co dc1)))
+			(not (exists ((dc2 DependerLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2)))))
+			;not exists fd|pd
+			(not (and
+				(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (or (fd cc1) (pd cc1))))
+				(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
+			))
+		)
+		(and
+			(exists ((dc1 DependeeLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (co dc1)))
+			(not (exists ((dc2 DependeeLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2)))))
+		)
+	)
 	true
 	false
 )))))
 (assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (co c)) (= (un c) false))))
 (assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c))) (= (un c) (ite
-	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (un cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (co cc2)))) (not (exists ((cc3 ContributionConcretization) (cc4 ContributionConcretization)) (and (= (tgt cc3) c) (and (= (tgt cc4) c) (and (or (fs cc3) (ps cc3)) (or (pd cc4) (fd cc4))))))))
+	(or
+		(and
+			(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (un cc1)))
+			(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (co cc2))))
+			(not (exists ((cc3 ContributionConcretization) (cc4 ContributionConcretization)) (and (= (tgt cc3) c) (= (tgt cc4) c) (or (fs cc3) (ps cc3)) (or (pd cc4) (fd cc4)))))
+			(not (exists ((dc DependerLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (or (fd dc) (pd dc) (co dc)))))
+		)
+		(and
+			(exists ((dc1 DependerLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (un dc1)))
+			(not (exists ((dc2 DependerLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2)))))
+			;not exists fd|pd|co_
+			(not (and
+				(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (or (fd cc1) (pd cc1))))
+				(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (un cc2))))
+			))
+			;not exists co
+			(not (exists ((cc3 ContributionConcretization)) (and (= (tgt cc3) c) (co cc3))))
+		)
+		(and
+			(exists ((dc1 DependeeLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (un dc1)))
+			(not (exists ((dc2 DependeeLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2)))))
+		)
+	)
 	true
 	false
 )))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c))) (= (fs c) false))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c))) (= (fs c) (ite
-	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (fs cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (un cc2) (co cc2) (pd cc2) (fd cc2))))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c))) (= (fd c) false))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c))) (= (fd c) (ite
+	(or
+		(and
+			(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (fd cc1)))
+			(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
+		)
+		(exists ((dc DependerLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (fd dc)))
+		(exists ((dc DependeeLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (fd dc)))
+	)
 	true
 	false
 )))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fs c))) (= (ps c) false))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fs c))) (= (ps c) (ite
-	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (ps cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (fs cc2) (un cc2) (co cc2) (pd cc2) (fd cc2))))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fd c))) (= (pd c) false))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c))) (= (pd c) (ite
+	(or
+		(and
+			(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (pd cc1)))
+			(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (fs cc2) (ps cc2)))))
+			(not (exists ((dc DependerLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (fd dc))))
+		)
+		(and
+			(exists ((dc1 DependerLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (pd dc1)))
+			(not (exists ((dc2 DependerLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (fd dc2))))
+			;not exists fd
+			(not (and
+				(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (fd cc1)))
+				(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
+			))
+		)
+		(and
+			(exists ((dc1 DependeeLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (pd dc1)))
+			(not (exists ((dc2 DependeeLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (fd dc2))))
+		)
+	)
 	true
 	false
 )))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fs c) (ps c))) (= (fd c) false))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fs c)) (not (ps c))) (= (fd c) (ite
-	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (fd cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (fs cc2) (ps cc2) (un cc2) (co cc2))))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fd c) (pd c))) (= (fs c) false))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c))) (= (fs c) (ite
+	(or
+		(and
+			(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (fs cc1)))
+			(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2)))))
+			(not (exists ((dc DependerLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc) (ps dc)))))
+		)
+		(and
+			(exists ((dc1 DependerLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (fs dc1)))
+			(not (exists ((dc2 DependerLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2)))))
+			;not exists fd|pd|co|co_|un
+			(not (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
+			;not exists n
+			(not (and
+				(exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (n cc2)))
+				(not (exists ((cc3 ContributionConcretization)) (and (= (tgt cc3) c) (or (co cc3) (un cc3) (fd cc3) (pd cc3) (fs cc3) (ps cc3)))))
+			))
+			;not exists ps
+			(not (and
+				(exists ((cc4 ContributionConcretization)) (and (= (tgt cc4) c) (ps cc4)))
+				(not (exists ((cc5 ContributionConcretization)) (and (= (tgt cc5) c) (or (co cc5) (un cc5) (fd cc5) (pd cc5) (fs cc5)))))
+			))
+		)
+		(and
+			(exists ((dc1 DependeeLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (fs dc1)))
+			(not (exists ((dc2 DependeeLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2)))))
+		)
+	)
 	true
 	false
 )))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fs c) (ps c) (fd c))) (= (pd c) false))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fs c)) (not (ps c)) (not (fd c))) (= (pd c) (ite
-	(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (pd cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (fs cc2) (ps cc2) (un cc2) (co cc2) (fd cc2))))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fd c) (pd c) (fs c))) (= (ps c) false))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c))) (= (ps c) (ite
+	(or
+		(and
+			(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (ps cc1)))
+			(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2) (fs cc2)))))
+			(not (exists ((dc DependerLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc)))))
+		)
+		(and
+			(exists ((dc1 DependerLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (ps dc1)))
+			(not (exists ((dc2 DependerLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2)))))
+			;not exists fd|pd|co|co_|un
+			(not (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
+			;not exists n
+			(not (and
+				(exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (n cc2)))
+				(not (exists ((cc3 ContributionConcretization)) (and (= (tgt cc3) c) (or (co cc3) (un cc3) (fd cc3) (pd cc3) (fs cc3) (ps cc3)))))
+			))
+		)
+		(and
+			(exists ((dc1 DependeeLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (ps dc1)))
+			(not (exists ((dc2 DependeeLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2)))))
+		)
+	)
 	true
 	false
 )))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fs c) (ps c) (fd c) (pd c))) (= (n c) false))))
-(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fs c)) (not (ps c)) (not (fd c)) (not (pd c))) (= (n c) true))))
-;(assert (forall ((c SoftGoalConcretization)) (=> (not (inited c)) (= (n c) (ite
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (or (co c) (un c) (fd c) (pd c) (fs c) (ps c))) (= (n c) false))))
+(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c))) (= (n c) true))))
+;(assert (forall ((c SoftGoalConcretization)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c))) (= (n c) (ite
 ;	(or
-;		(not (exists ((cc ContributionConcretization)) (= (tgt cc) c)))
-;		(and (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (n cc1))) (not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (fs cc2) (ps cc2) (un cc2) (co cc2) (pd cc2) (fd cc2))))))
+;		(and
+;			(not (exists ((cc ContributionConcretization)) (= (tgt cc) c)))
+;			(not (exists ((dc1 DependerLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c))))
+;			(not (exists ((dc2 DependeeLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c))))
+;		)
+;		(and
+;			(exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (n cc1)))
+;			(not (exists ((cc2 ContributionConcretization)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2) (fs cc2) (ps cc2)))))
+;			(not (exists ((dc DependerLinkConcretization)) (and (= (srcEndpoint dc) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc)))))
+;		)
+;		(and
+;			(exists ((dc1 DependerLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (n dc1)))
+;			(not (exists ((dc2 DependerLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2)))))
+;			;not exists fd|pd|co|co_|un
+;			(not (exists ((cc1 ContributionConcretization)) (and (= (tgt cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
+;		)
+;		(and
+;			(exists ((dc1 DependeeLinkConcretization)) (and (= (srcEndpoint dc1) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc1) c) (n dc1)))
+;			(not (exists ((dc2 DependeeLinkConcretization)) (and (= (srcEndpoint dc2) ENDPOINT_SOFTGOAL) (= ((as src (SoftGoalConcretization)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2)))))
+;		)
 ;	)
 ;	true
 ;	false
