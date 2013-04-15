@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_oR7hMKVtEeKsUqOBJaETmA" type="Mid" name="analysis.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_B2ncYKVuEeKsUqOBJaETmA" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B2ncZaVuEeKsUqOBJaETmA" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_B2ncZqVuEeKsUqOBJaETmA" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_B2ncYaVuEeKsUqOBJaETmA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_B2ncYqVuEeKsUqOBJaETmA" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_B2ncY6VuEeKsUqOBJaETmA" hint="Mid"/>
+    <element xmi:type="mid:Model" href="analysis.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B2ncZKVuEeKsUqOBJaETmA" x="52" y="40"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_DBTG0KVuEeKsUqOBJaETmA" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_DBTG1aVuEeKsUqOBJaETmA" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_DBTt4KVuEeKsUqOBJaETmA" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_DBTG0aVuEeKsUqOBJaETmA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_DBTG0qVuEeKsUqOBJaETmA" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_DBTG06VuEeKsUqOBJaETmA" hint="Mid"/>
+    <element xmi:type="mid:Model" href="analysis.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DBTG1KVuEeKsUqOBJaETmA" x="278" y="42"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_oR7hMaVtEeKsUqOBJaETmA"/>
+  <element xmi:type="mid:MultiModel" href="analysis.mid#/"/>
+</notation:Diagram>
