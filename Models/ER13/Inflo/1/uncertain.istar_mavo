@@ -39,7 +39,7 @@
   <actors name="Inflo Manager Editors">
     <intentions xsi:type="istar_mavo:Task" name="Extensive Moderation" linksAsTgt="//@actors.1/@intentions.1/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" tgt="//@actors.1/@intentions.2"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.1/@intentions.4" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.4" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.5" type="HURT"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" name="Use Automated Reputation System" dependenciesAsDepender="//@dependums.2/@dependerLinks.0">
