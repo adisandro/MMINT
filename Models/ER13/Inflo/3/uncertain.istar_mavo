@@ -58,7 +58,7 @@
   </actors>
   <actors set="true" name="Source" dependenciesAsDependee="//@dependums.3/@dependeeLinks.0"/>
   <actors name="Automated Reputation System">
-    <intentions xsi:type="istar_mavo:Task" name="Provide Reputations" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" fullySatisfied="true"/>
+    <intentions xsi:type="istar_mavo:Task" name="Provide Reputations" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" fullyDenied="true"/>
     <intentions xsi:type="istar_mavo:Task" may="true" name="Moderation ARS" dependenciesAsDependee="//@dependums.0/@dependeeLinks.1" fullyDenied="true"/>
   </actors>
   <actors name="Inflo">

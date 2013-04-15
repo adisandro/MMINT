@@ -2092,12 +2092,12 @@
 (assert (forall ((c TaskConcretization)) (=>
 	(node ProvideReputations c)
 	(and
-		(= (fs c) true)
+		(= (fs c) false)
 		(= (ps c) false)
 		(= (un c) false)
 		(= (co c) false)
 		(= (pd c) false)
-		(= (fd c) false)
+		(= (fd c) true)
 		(= (n c) false)
 		(= (inited c) true)
 	)
