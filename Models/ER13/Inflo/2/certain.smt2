@@ -38,18 +38,14 @@
 	UseDiscussions
 	MakeViews
 	AddSourceInDescription
-	CreateDiscussions
 	ExtensiveModeration
 	UseAutomatedReputationSystem
-	LessExtensiveModeration
 	ProvideReputations
-	ModerationARS
 	TrackAuthorship
 	DisplayGraphs
 	TrackRevisions
 	CreateGraphs
 	BeInflo
-	ModerationTasks
 )))
 (declare-datatypes () ((Goal
 	UseInflo
@@ -71,7 +67,6 @@
 	Graphing
 	ReputationValues
 	Info
-	Authorship
 )))
 (declare-datatypes () ((Intention
 	InfloUser2MakeModelsTrustworthy
@@ -84,39 +79,28 @@
 	InfloUser2InfloBeModerated
 	InfloUser2MakeViews
 	InfloUser2AddSourceInDescription
-	InfloUser2CreateDiscussions
 	InfloUser2IntegrityOfModelsIU
 	InfloManagerEditors2ExtensiveModeration
 	InfloManagerEditors2UseAutomatedReputationSystem
 	InfloManagerEditors2ModerateInflo
-	InfloManagerEditors2LessExtensiveModeration
 	InfloManagerEditors2IntegrityOfModelsIME
 	InfloManagerEditors2MinimizeModeratorEffort
 	AutomatedReputationSystem2ProvideReputations
-	AutomatedReputationSystem2ModerationARS
 	Inflo2AllowModeration
 	Inflo2TrackAuthorship
 	Inflo2DisplayGraphs
 	Inflo2TrackRevisions
 	Inflo2CreateGraphs
 	Inflo2BeInflo
-	Inflo2ModerationTasks
 )))
 (declare-datatypes () ((MeansEnd
 	Browsing2UseInflo
 	CreateGraph2UseInflo
 	UseDiscussions2UseInflo
-	ExtensiveModeration2ModerateInflo
-	UseAutomatedReputationSystem2ModerateInflo
-	LessExtensiveModeration2ModerateInflo
-	ModerationTasks2AllowModeration
 )))
 (declare-datatypes () ((Decomposition
 	MakeViews2Browsing
 	AddSourceInDescription2CreateGraph
-	CreateDiscussions2UseDiscussions
-	UseAutomatedReputationSystem2ExtensiveModeration
-	UseAutomatedReputationSystem2LessExtensiveModeration
 	TrackAuthorship2BeInflo
 	DisplayGraphs2BeInflo
 	TrackRevisions2BeInflo
@@ -126,13 +110,11 @@
 	ValidateModel2MakeModelsTrustworthy
 	GetFeedback2MakeModelsTrustworthy
 	UseDiscussions2ValidateModel
-	UseDiscussions2GetFeedback
 	InfloBeModerated2GetFeedback
 	IntegrityOfModelsIU2MakeModelsTrustworthy
 	ExtensiveModeration2IntegrityOfModelsIME
 	ExtensiveModeration2MinimizeModeratorEffort
 	UseAutomatedReputationSystem2MinimizeModeratorEffort
-	LessExtensiveModeration2MinimizeModeratorEffort
 )))
 (declare-datatypes () ((DependerLink
 	InfloBeModerated2Moderation
@@ -140,16 +122,12 @@
 	UseInflo2Graphing
 	UseAutomatedReputationSystem2ReputationValues
 	AddSourceInDescription2Info
-	TrackAuthorship2Authorship
 	IntegrityOfModelsIU2IntegrityOfModels
 )))
 (declare-datatypes () ((DependeeLink
 	Moderation2ModerateInflo
-	Moderation2ModerationARS
 	Graphing2BeInflo
 	ReputationValues2ProvideReputations
-	Authorship2CreateGraph
-	Authorship2CreateDiscussions
 	IntegrityOfModels2IntegrityOfModelsIME
 )))
 
@@ -763,18 +741,14 @@
 	(node UseDiscussions c)
 	(node MakeViews c)
 	(node AddSourceInDescription c)
-	(node CreateDiscussions c)
 	(node ExtensiveModeration c)
 	(node UseAutomatedReputationSystem c)
-	(node LessExtensiveModeration c)
 	(node ProvideReputations c)
-	(node ModerationARS c)
 	(node TrackAuthorship c)
 	(node DisplayGraphs c)
 	(node TrackRevisions c)
 	(node CreateGraphs c)
 	(node BeInflo c)
-	(node ModerationTasks c)
 )))
 ;Goals are Complete
 (assert (forall ((c GoalConcretization)) (or
@@ -799,7 +773,6 @@
 	(node Graphing c)
 	(node ReputationValues c)
 	(node Info c)
-	(node Authorship c)
 )))
 (assert (forall ((c IntentionConcretization)) (or
 	(edge InfloUser2MakeModelsTrustworthy c)
@@ -812,41 +785,30 @@
 	(edge InfloUser2InfloBeModerated c)
 	(edge InfloUser2MakeViews c)
 	(edge InfloUser2AddSourceInDescription c)
-	(edge InfloUser2CreateDiscussions c)
 	(edge InfloUser2IntegrityOfModelsIU c)
 	(edge InfloManagerEditors2ExtensiveModeration c)
 	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
 	(edge InfloManagerEditors2ModerateInflo c)
-	(edge InfloManagerEditors2LessExtensiveModeration c)
 	(edge InfloManagerEditors2IntegrityOfModelsIME c)
 	(edge InfloManagerEditors2MinimizeModeratorEffort c)
 	(edge AutomatedReputationSystem2ProvideReputations c)
-	(edge AutomatedReputationSystem2ModerationARS c)
 	(edge Inflo2AllowModeration c)
 	(edge Inflo2TrackAuthorship c)
 	(edge Inflo2DisplayGraphs c)
 	(edge Inflo2TrackRevisions c)
 	(edge Inflo2CreateGraphs c)
 	(edge Inflo2BeInflo c)
-	(edge Inflo2ModerationTasks c)
 )))
 ;MeansEnds are Complete
 (assert (forall ((c MeansEndConcretization)) (or
 	(edge Browsing2UseInflo c)
 	(edge CreateGraph2UseInflo c)
 	(edge UseDiscussions2UseInflo c)
-	(edge ExtensiveModeration2ModerateInflo c)
-	(edge UseAutomatedReputationSystem2ModerateInflo c)
-	(edge LessExtensiveModeration2ModerateInflo c)
-	(edge ModerationTasks2AllowModeration c)
 )))
 ;Decompositions are Complete
 (assert (forall ((c DecompositionConcretization)) (or
 	(edge MakeViews2Browsing c)
 	(edge AddSourceInDescription2CreateGraph c)
-	(edge CreateDiscussions2UseDiscussions c)
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
 	(edge TrackAuthorship2BeInflo c)
 	(edge DisplayGraphs2BeInflo c)
 	(edge TrackRevisions2BeInflo c)
@@ -857,13 +819,11 @@
 	(edge ValidateModel2MakeModelsTrustworthy c)
 	(edge GetFeedback2MakeModelsTrustworthy c)
 	(edge UseDiscussions2ValidateModel c)
-	(edge UseDiscussions2GetFeedback c)
 	(edge InfloBeModerated2GetFeedback c)
 	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
 	(edge ExtensiveModeration2IntegrityOfModelsIME c)
 	(edge ExtensiveModeration2MinimizeModeratorEffort c)
 	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
 )))
 (assert (forall ((c DependerLinkConcretization)) (or
 	(edge InfloBeModerated2Moderation c)
@@ -871,16 +831,12 @@
 	(edge UseInflo2Graphing c)
 	(edge UseAutomatedReputationSystem2ReputationValues c)
 	(edge AddSourceInDescription2Info c)
-	(edge TrackAuthorship2Authorship c)
 	(edge IntegrityOfModelsIU2IntegrityOfModels c)
 )))
 (assert (forall ((c DependeeLinkConcretization)) (or
 	(edge Moderation2ModerateInflo c)
-	(edge Moderation2ModerationARS c)
 	(edge Graphing2BeInflo c)
 	(edge ReputationValues2ProvideReputations c)
-	(edge Authorship2CreateGraph c)
-	(edge Authorship2CreateDiscussions c)
 	(edge IntegrityOfModels2IntegrityOfModelsIME c)
 )))
 
@@ -941,6 +897,11 @@
 )))
 ;Source Exists
 (assert	(exists ((c ActorConcretization)) (node Source c)))
+;Source is Unique
+(assert	(forall ((c1 ActorConcretization) (c2 ActorConcretization)) (=>
+	(and (node Source c1) (node Source c2))
+	(= c1 c2)
+)))
 ;Source is Distinct from InfloUser
 (assert	(forall ((c ActorConcretization)) (=>
 	(node Source c)
@@ -1042,6 +1003,16 @@
 	(node MakeModelsTrustworthy c)
 	(not (node MinimizeModeratorEffort c))
 )))
+;MakeModelsTrustworthy is Distinct from ValidateModel
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node MakeModelsTrustworthy c)
+	(not (node ValidateModel c))
+)))
+;MakeModelsTrustworthy is Distinct from GetFeedback
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node MakeModelsTrustworthy c)
+	(not (node GetFeedback c))
+)))
 ;MakeModelsTrustworthy is Distinct from IntegrityOfModelsIU
 (assert	(forall ((c SoftGoalConcretization)) (=>
 	(node MakeModelsTrustworthy c)
@@ -1103,6 +1074,21 @@
 	(node ValidateModel c)
 	(not (node MinimizeModeratorEffort c))
 )))
+;ValidateModel is Distinct from MakeModelsTrustworthy
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node ValidateModel c)
+	(not (node MakeModelsTrustworthy c))
+)))
+;ValidateModel is Distinct from GetFeedback
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node ValidateModel c)
+	(not (node GetFeedback c))
+)))
+;ValidateModel is Distinct from IntegrityOfModelsIU
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node ValidateModel c)
+	(not (node IntegrityOfModelsIU c))
+)))
 
 ;GetFeedback initial analysis tag
 (assert (forall ((c SoftGoalConcretization)) (=>
@@ -1131,6 +1117,21 @@
 	(node GetFeedback c)
 	(not (node MinimizeModeratorEffort c))
 )))
+;GetFeedback is Distinct from MakeModelsTrustworthy
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node GetFeedback c)
+	(not (node MakeModelsTrustworthy c))
+)))
+;GetFeedback is Distinct from ValidateModel
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node GetFeedback c)
+	(not (node ValidateModel c))
+)))
+;GetFeedback is Distinct from IntegrityOfModelsIU
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node GetFeedback c)
+	(not (node IntegrityOfModelsIU c))
+)))
 
 ;Browsing initial analysis tag
 (assert (forall ((c TaskConcretization)) (=>
@@ -1154,20 +1155,10 @@
 	(node Browsing c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;Browsing is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node Browsing c)
-	(not (node LessExtensiveModeration c))
-)))
 ;Browsing is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node Browsing c)
 	(not (node ProvideReputations c))
-)))
-;Browsing is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node Browsing c)
-	(not (node ModerationARS c))
 )))
 ;Browsing is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1193,11 +1184,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node Browsing c)
 	(not (node BeInflo c))
-)))
-;Browsing is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node Browsing c)
-	(not (node ModerationTasks c))
 )))
 ;Browsing is Distinct from CreateGraph
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1242,20 +1228,10 @@
 	(node CreateGraph c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;CreateGraph is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateGraph c)
-	(not (node LessExtensiveModeration c))
-)))
 ;CreateGraph is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node CreateGraph c)
 	(not (node ProvideReputations c))
-)))
-;CreateGraph is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateGraph c)
-	(not (node ModerationARS c))
 )))
 ;CreateGraph is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1282,11 +1258,6 @@
 	(node CreateGraph c)
 	(not (node BeInflo c))
 )))
-;CreateGraph is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateGraph c)
-	(not (node ModerationTasks c))
-)))
 ;CreateGraph is Distinct from Browsing
 (assert	(forall ((c TaskConcretization)) (=>
 	(node CreateGraph c)
@@ -1311,7 +1282,16 @@
 ;UseDiscussions initial analysis tag
 (assert (forall ((c TaskConcretization)) (=>
 	(node UseDiscussions c)
-	(= (inited c) false)
+	(and
+		(= (fs c) true)
+		(= (ps c) false)
+		(= (un c) false)
+		(= (co c) false)
+		(= (pd c) false)
+		(= (fd c) false)
+		(= (n c) false)
+		(= (inited c) true)
+	)
 )))
 ;UseDiscussions Exists
 (assert	(exists ((c TaskConcretization)) (node UseDiscussions c)))
@@ -1330,20 +1310,10 @@
 	(node UseDiscussions c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;UseDiscussions is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node UseDiscussions c)
-	(not (node LessExtensiveModeration c))
-)))
 ;UseDiscussions is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node UseDiscussions c)
 	(not (node ProvideReputations c))
-)))
-;UseDiscussions is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node UseDiscussions c)
-	(not (node ModerationARS c))
 )))
 ;UseDiscussions is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1369,11 +1339,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node UseDiscussions c)
 	(not (node BeInflo c))
-)))
-;UseDiscussions is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node UseDiscussions c)
-	(not (node ModerationTasks c))
 )))
 ;UseDiscussions is Distinct from Browsing
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1455,20 +1420,10 @@
 	(node MakeViews c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;MakeViews is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node MakeViews c)
-	(not (node LessExtensiveModeration c))
-)))
 ;MakeViews is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node MakeViews c)
 	(not (node ProvideReputations c))
-)))
-;MakeViews is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node MakeViews c)
-	(not (node ModerationARS c))
 )))
 ;MakeViews is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1494,11 +1449,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node MakeViews c)
 	(not (node BeInflo c))
-)))
-;MakeViews is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node MakeViews c)
-	(not (node ModerationTasks c))
 )))
 ;MakeViews is Distinct from Browsing
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1543,20 +1493,10 @@
 	(node AddSourceInDescription c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;AddSourceInDescription is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node AddSourceInDescription c)
-	(not (node LessExtensiveModeration c))
-)))
 ;AddSourceInDescription is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node AddSourceInDescription c)
 	(not (node ProvideReputations c))
-)))
-;AddSourceInDescription is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node AddSourceInDescription c)
-	(not (node ModerationARS c))
 )))
 ;AddSourceInDescription is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1583,11 +1523,6 @@
 	(node AddSourceInDescription c)
 	(not (node BeInflo c))
 )))
-;AddSourceInDescription is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node AddSourceInDescription c)
-	(not (node ModerationTasks c))
-)))
 ;AddSourceInDescription is Distinct from Browsing
 (assert	(forall ((c TaskConcretization)) (=>
 	(node AddSourceInDescription c)
@@ -1607,81 +1542,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node AddSourceInDescription c)
 	(not (node MakeViews c))
-)))
-
-;CreateDiscussions initial analysis tag
-(assert (forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(and
-		(= (fs c) true)
-		(= (ps c) false)
-		(= (un c) false)
-		(= (co c) false)
-		(= (pd c) false)
-		(= (fd c) false)
-		(= (n c) false)
-		(= (inited c) true)
-	)
-)))
-;CreateDiscussions is Unique
-(assert	(forall ((c1 TaskConcretization) (c2 TaskConcretization)) (=>
-	(and (node CreateDiscussions c1) (node CreateDiscussions c2))
-	(= c1 c2)
-)))
-;CreateDiscussions is Distinct from ExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node ExtensiveModeration c))
-)))
-;CreateDiscussions is Distinct from UseAutomatedReputationSystem
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node UseAutomatedReputationSystem c))
-)))
-;CreateDiscussions is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node LessExtensiveModeration c))
-)))
-;CreateDiscussions is Distinct from ProvideReputations
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node ProvideReputations c))
-)))
-;CreateDiscussions is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node ModerationARS c))
-)))
-;CreateDiscussions is Distinct from TrackAuthorship
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node TrackAuthorship c))
-)))
-;CreateDiscussions is Distinct from DisplayGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node DisplayGraphs c))
-)))
-;CreateDiscussions is Distinct from TrackRevisions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node TrackRevisions c))
-)))
-;CreateDiscussions is Distinct from CreateGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node CreateGraphs c))
-)))
-;CreateDiscussions is Distinct from BeInflo
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node BeInflo c))
-)))
-;CreateDiscussions is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateDiscussions c)
-	(not (node ModerationTasks c))
 )))
 
 ;IntegrityOfModelsIU initial analysis tag
@@ -1716,11 +1576,30 @@
 	(node IntegrityOfModelsIU c)
 	(not (node MakeModelsTrustworthy c))
 )))
+;IntegrityOfModelsIU is Distinct from ValidateModel
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node IntegrityOfModelsIU c)
+	(not (node ValidateModel c))
+)))
+;IntegrityOfModelsIU is Distinct from GetFeedback
+(assert	(forall ((c SoftGoalConcretization)) (=>
+	(node IntegrityOfModelsIU c)
+	(not (node GetFeedback c))
+)))
 
 ;ExtensiveModeration initial analysis tag
 (assert (forall ((c TaskConcretization)) (=>
 	(node ExtensiveModeration c)
-	(= (inited c) false)
+	(and
+		(= (fs c) false)
+		(= (ps c) false)
+		(= (un c) false)
+		(= (co c) false)
+		(= (pd c) false)
+		(= (fd c) true)
+		(= (n c) false)
+		(= (inited c) true)
+	)
 )))
 ;ExtensiveModeration Exists
 (assert	(exists ((c TaskConcretization)) (node ExtensiveModeration c)))
@@ -1754,20 +1633,10 @@
 	(node ExtensiveModeration c)
 	(not (node AddSourceInDescription c))
 )))
-;ExtensiveModeration is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ExtensiveModeration c)
-	(not (node CreateDiscussions c))
-)))
 ;ExtensiveModeration is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node ExtensiveModeration c)
 	(not (node ProvideReputations c))
-)))
-;ExtensiveModeration is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ExtensiveModeration c)
-	(not (node ModerationARS c))
 )))
 ;ExtensiveModeration is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1793,11 +1662,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node ExtensiveModeration c)
 	(not (node BeInflo c))
-)))
-;ExtensiveModeration is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ExtensiveModeration c)
-	(not (node ModerationTasks c))
 )))
 ;ExtensiveModeration is Distinct from UseAutomatedReputationSystem
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1842,20 +1706,10 @@
 	(node UseAutomatedReputationSystem c)
 	(not (node AddSourceInDescription c))
 )))
-;UseAutomatedReputationSystem is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node UseAutomatedReputationSystem c)
-	(not (node CreateDiscussions c))
-)))
 ;UseAutomatedReputationSystem is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node UseAutomatedReputationSystem c)
 	(not (node ProvideReputations c))
-)))
-;UseAutomatedReputationSystem is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node UseAutomatedReputationSystem c)
-	(not (node ModerationARS c))
 )))
 ;UseAutomatedReputationSystem is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -1882,11 +1736,6 @@
 	(node UseAutomatedReputationSystem c)
 	(not (node BeInflo c))
 )))
-;UseAutomatedReputationSystem is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node UseAutomatedReputationSystem c)
-	(not (node ModerationTasks c))
-)))
 ;UseAutomatedReputationSystem is Distinct from ExtensiveModeration
 (assert	(forall ((c TaskConcretization)) (=>
 	(node UseAutomatedReputationSystem c)
@@ -1896,7 +1745,16 @@
 ;ModerateInflo initial analysis tag
 (assert (forall ((c GoalConcretization)) (=>
 	(node ModerateInflo c)
-	(= (inited c) false)
+	(and
+		(= (fs c) false)
+		(= (ps c) false)
+		(= (un c) false)
+		(= (co c) false)
+		(= (pd c) false)
+		(= (fd c) true)
+		(= (n c) false)
+		(= (inited c) true)
+	)
 )))
 ;ModerateInflo Exists
 (assert	(exists ((c GoalConcretization)) (node ModerateInflo c)))
@@ -1919,87 +1777,6 @@
 (assert	(forall ((c GoalConcretization)) (=>
 	(node ModerateInflo c)
 	(not (node AllowModeration c))
-)))
-
-;LessExtensiveModeration initial analysis tag
-(assert (forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(= (inited c) false)
-)))
-;LessExtensiveModeration is Unique
-(assert	(forall ((c1 TaskConcretization) (c2 TaskConcretization)) (=>
-	(and (node LessExtensiveModeration c1) (node LessExtensiveModeration c2))
-	(= c1 c2)
-)))
-;LessExtensiveModeration is Distinct from Browsing
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node Browsing c))
-)))
-;LessExtensiveModeration is Distinct from CreateGraph
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node CreateGraph c))
-)))
-;LessExtensiveModeration is Distinct from UseDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node UseDiscussions c))
-)))
-;LessExtensiveModeration is Distinct from MakeViews
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node MakeViews c))
-)))
-;LessExtensiveModeration is Distinct from AddSourceInDescription
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node AddSourceInDescription c))
-)))
-;LessExtensiveModeration is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node CreateDiscussions c))
-)))
-;LessExtensiveModeration is Distinct from ProvideReputations
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node ProvideReputations c))
-)))
-;LessExtensiveModeration is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node ModerationARS c))
-)))
-;LessExtensiveModeration is Distinct from TrackAuthorship
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node TrackAuthorship c))
-)))
-;LessExtensiveModeration is Distinct from DisplayGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node DisplayGraphs c))
-)))
-;LessExtensiveModeration is Distinct from TrackRevisions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node TrackRevisions c))
-)))
-;LessExtensiveModeration is Distinct from CreateGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node CreateGraphs c))
-)))
-;LessExtensiveModeration is Distinct from BeInflo
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node BeInflo c))
-)))
-;LessExtensiveModeration is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node LessExtensiveModeration c)
-	(not (node ModerationTasks c))
 )))
 
 ;IntegrityOfModelsIME initial analysis tag
@@ -2134,11 +1911,6 @@
 	(node ProvideReputations c)
 	(not (node AddSourceInDescription c))
 )))
-;ProvideReputations is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ProvideReputations c)
-	(not (node CreateDiscussions c))
-)))
 ;ProvideReputations is Distinct from ExtensiveModeration
 (assert	(forall ((c TaskConcretization)) (=>
 	(node ProvideReputations c)
@@ -2148,11 +1920,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node ProvideReputations c)
 	(not (node UseAutomatedReputationSystem c))
-)))
-;ProvideReputations is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ProvideReputations c)
-	(not (node LessExtensiveModeration c))
 )))
 ;ProvideReputations is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -2178,116 +1945,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node ProvideReputations c)
 	(not (node BeInflo c))
-)))
-;ProvideReputations is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ProvideReputations c)
-	(not (node ModerationTasks c))
-)))
-;ProvideReputations is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ProvideReputations c)
-	(not (node ModerationARS c))
-)))
-
-;ModerationARS initial analysis tag
-(assert (forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(and
-		(= (fs c) false)
-		(= (ps c) false)
-		(= (un c) false)
-		(= (co c) false)
-		(= (pd c) false)
-		(= (fd c) true)
-		(= (n c) false)
-		(= (inited c) true)
-	)
-)))
-;ModerationARS is Unique
-(assert	(forall ((c1 TaskConcretization) (c2 TaskConcretization)) (=>
-	(and (node ModerationARS c1) (node ModerationARS c2))
-	(= c1 c2)
-)))
-;ModerationARS is Distinct from Browsing
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node Browsing c))
-)))
-;ModerationARS is Distinct from CreateGraph
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node CreateGraph c))
-)))
-;ModerationARS is Distinct from UseDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node UseDiscussions c))
-)))
-;ModerationARS is Distinct from MakeViews
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node MakeViews c))
-)))
-;ModerationARS is Distinct from AddSourceInDescription
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node AddSourceInDescription c))
-)))
-;ModerationARS is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node CreateDiscussions c))
-)))
-;ModerationARS is Distinct from ExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node ExtensiveModeration c))
-)))
-;ModerationARS is Distinct from UseAutomatedReputationSystem
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node UseAutomatedReputationSystem c))
-)))
-;ModerationARS is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node LessExtensiveModeration c))
-)))
-;ModerationARS is Distinct from TrackAuthorship
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node TrackAuthorship c))
-)))
-;ModerationARS is Distinct from DisplayGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node DisplayGraphs c))
-)))
-;ModerationARS is Distinct from TrackRevisions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node TrackRevisions c))
-)))
-;ModerationARS is Distinct from CreateGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node CreateGraphs c))
-)))
-;ModerationARS is Distinct from BeInflo
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node BeInflo c))
-)))
-;ModerationARS is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node ModerationTasks c))
-)))
-;ModerationARS is Distinct from ProvideReputations
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationARS c)
-	(not (node ProvideReputations c))
 )))
 
 ;AllowModeration initial analysis tag
@@ -2321,7 +1978,16 @@
 ;TrackAuthorship initial analysis tag
 (assert (forall ((c TaskConcretization)) (=>
 	(node TrackAuthorship c)
-	(= (inited c) false)
+	(and
+		(= (fs c) true)
+		(= (ps c) false)
+		(= (un c) false)
+		(= (co c) false)
+		(= (pd c) false)
+		(= (fd c) false)
+		(= (n c) false)
+		(= (inited c) true)
+	)
 )))
 ;TrackAuthorship Exists
 (assert	(exists ((c TaskConcretization)) (node TrackAuthorship c)))
@@ -2355,11 +2021,6 @@
 	(node TrackAuthorship c)
 	(not (node AddSourceInDescription c))
 )))
-;TrackAuthorship is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackAuthorship c)
-	(not (node CreateDiscussions c))
-)))
 ;TrackAuthorship is Distinct from ExtensiveModeration
 (assert	(forall ((c TaskConcretization)) (=>
 	(node TrackAuthorship c)
@@ -2370,20 +2031,10 @@
 	(node TrackAuthorship c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;TrackAuthorship is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackAuthorship c)
-	(not (node LessExtensiveModeration c))
-)))
 ;TrackAuthorship is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node TrackAuthorship c)
 	(not (node ProvideReputations c))
-)))
-;TrackAuthorship is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackAuthorship c)
-	(not (node ModerationARS c))
 )))
 ;TrackAuthorship is Distinct from DisplayGraphs
 (assert	(forall ((c TaskConcretization)) (=>
@@ -2404,11 +2055,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node TrackAuthorship c)
 	(not (node BeInflo c))
-)))
-;TrackAuthorship is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackAuthorship c)
-	(not (node ModerationTasks c))
 )))
 
 ;DisplayGraphs initial analysis tag
@@ -2457,11 +2103,6 @@
 	(node DisplayGraphs c)
 	(not (node AddSourceInDescription c))
 )))
-;DisplayGraphs is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node DisplayGraphs c)
-	(not (node CreateDiscussions c))
-)))
 ;DisplayGraphs is Distinct from ExtensiveModeration
 (assert	(forall ((c TaskConcretization)) (=>
 	(node DisplayGraphs c)
@@ -2472,20 +2113,10 @@
 	(node DisplayGraphs c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;DisplayGraphs is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node DisplayGraphs c)
-	(not (node LessExtensiveModeration c))
-)))
 ;DisplayGraphs is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node DisplayGraphs c)
 	(not (node ProvideReputations c))
-)))
-;DisplayGraphs is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node DisplayGraphs c)
-	(not (node ModerationARS c))
 )))
 ;DisplayGraphs is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -2506,11 +2137,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node DisplayGraphs c)
 	(not (node BeInflo c))
-)))
-;DisplayGraphs is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node DisplayGraphs c)
-	(not (node ModerationTasks c))
 )))
 
 ;TrackRevisions initial analysis tag
@@ -2559,11 +2185,6 @@
 	(node TrackRevisions c)
 	(not (node AddSourceInDescription c))
 )))
-;TrackRevisions is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackRevisions c)
-	(not (node CreateDiscussions c))
-)))
 ;TrackRevisions is Distinct from ExtensiveModeration
 (assert	(forall ((c TaskConcretization)) (=>
 	(node TrackRevisions c)
@@ -2574,20 +2195,10 @@
 	(node TrackRevisions c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;TrackRevisions is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackRevisions c)
-	(not (node LessExtensiveModeration c))
-)))
 ;TrackRevisions is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node TrackRevisions c)
 	(not (node ProvideReputations c))
-)))
-;TrackRevisions is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackRevisions c)
-	(not (node ModerationARS c))
 )))
 ;TrackRevisions is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -2608,11 +2219,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node TrackRevisions c)
 	(not (node BeInflo c))
-)))
-;TrackRevisions is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node TrackRevisions c)
-	(not (node ModerationTasks c))
 )))
 
 ;CreateGraphs initial analysis tag
@@ -2661,11 +2267,6 @@
 	(node CreateGraphs c)
 	(not (node AddSourceInDescription c))
 )))
-;CreateGraphs is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateGraphs c)
-	(not (node CreateDiscussions c))
-)))
 ;CreateGraphs is Distinct from ExtensiveModeration
 (assert	(forall ((c TaskConcretization)) (=>
 	(node CreateGraphs c)
@@ -2676,20 +2277,10 @@
 	(node CreateGraphs c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;CreateGraphs is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateGraphs c)
-	(not (node LessExtensiveModeration c))
-)))
 ;CreateGraphs is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node CreateGraphs c)
 	(not (node ProvideReputations c))
-)))
-;CreateGraphs is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateGraphs c)
-	(not (node ModerationARS c))
 )))
 ;CreateGraphs is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -2710,11 +2301,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node CreateGraphs c)
 	(not (node BeInflo c))
-)))
-;CreateGraphs is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node CreateGraphs c)
-	(not (node ModerationTasks c))
 )))
 
 ;BeInflo initial analysis tag
@@ -2754,11 +2340,6 @@
 	(node BeInflo c)
 	(not (node AddSourceInDescription c))
 )))
-;BeInflo is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node BeInflo c)
-	(not (node CreateDiscussions c))
-)))
 ;BeInflo is Distinct from ExtensiveModeration
 (assert	(forall ((c TaskConcretization)) (=>
 	(node BeInflo c)
@@ -2769,20 +2350,10 @@
 	(node BeInflo c)
 	(not (node UseAutomatedReputationSystem c))
 )))
-;BeInflo is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node BeInflo c)
-	(not (node LessExtensiveModeration c))
-)))
 ;BeInflo is Distinct from ProvideReputations
 (assert	(forall ((c TaskConcretization)) (=>
 	(node BeInflo c)
 	(not (node ProvideReputations c))
-)))
-;BeInflo is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node BeInflo c)
-	(not (node ModerationARS c))
 )))
 ;BeInflo is Distinct from TrackAuthorship
 (assert	(forall ((c TaskConcretization)) (=>
@@ -2803,106 +2374,6 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node BeInflo c)
 	(not (node CreateGraphs c))
-)))
-;BeInflo is Distinct from ModerationTasks
-(assert	(forall ((c TaskConcretization)) (=>
-	(node BeInflo c)
-	(not (node ModerationTasks c))
-)))
-
-;ModerationTasks initial analysis tag
-(assert (forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(and
-		(= (fs c) false)
-		(= (ps c) false)
-		(= (un c) false)
-		(= (co c) false)
-		(= (pd c) false)
-		(= (fd c) true)
-		(= (n c) false)
-		(= (inited c) true)
-	)
-)))
-;ModerationTasks is Distinct from Browsing
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node Browsing c))
-)))
-;ModerationTasks is Distinct from CreateGraph
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node CreateGraph c))
-)))
-;ModerationTasks is Distinct from UseDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node UseDiscussions c))
-)))
-;ModerationTasks is Distinct from MakeViews
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node MakeViews c))
-)))
-;ModerationTasks is Distinct from AddSourceInDescription
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node AddSourceInDescription c))
-)))
-;ModerationTasks is Distinct from CreateDiscussions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node CreateDiscussions c))
-)))
-;ModerationTasks is Distinct from ExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node ExtensiveModeration c))
-)))
-;ModerationTasks is Distinct from UseAutomatedReputationSystem
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node UseAutomatedReputationSystem c))
-)))
-;ModerationTasks is Distinct from LessExtensiveModeration
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node LessExtensiveModeration c))
-)))
-;ModerationTasks is Distinct from ProvideReputations
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node ProvideReputations c))
-)))
-;ModerationTasks is Distinct from ModerationARS
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node ModerationARS c))
-)))
-;ModerationTasks is Distinct from TrackAuthorship
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node TrackAuthorship c))
-)))
-;ModerationTasks is Distinct from DisplayGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node DisplayGraphs c))
-)))
-;ModerationTasks is Distinct from TrackRevisions
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node TrackRevisions c))
-)))
-;ModerationTasks is Distinct from CreateGraphs
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node CreateGraphs c))
-)))
-;ModerationTasks is Distinct from BeInflo
-(assert	(forall ((c TaskConcretization)) (=>
-	(node ModerationTasks c)
-	(not (node BeInflo c))
 )))
 
 ;Moderation initial analysis tag
@@ -2932,11 +2403,6 @@
 	(node Moderation c)
 	(not (node Info c))
 )))
-;Moderation is Distinct from Authorship
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node Moderation c)
-	(not (node Authorship c))
-)))
 
 ;Graphing initial analysis tag
 (assert (forall ((c ResourceConcretization)) (=>
@@ -2964,11 +2430,6 @@
 (assert	(forall ((c ResourceConcretization)) (=>
 	(node Graphing c)
 	(not (node Info c))
-)))
-;Graphing is Distinct from Authorship
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node Graphing c)
-	(not (node Authorship c))
 )))
 
 ;ReputationValues initial analysis tag
@@ -2998,11 +2459,6 @@
 	(node ReputationValues c)
 	(not (node Info c))
 )))
-;ReputationValues is Distinct from Authorship
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node ReputationValues c)
-	(not (node Authorship c))
-)))
 
 ;Info initial analysis tag
 (assert (forall ((c ResourceConcretization)) (=>
@@ -3020,6 +2476,11 @@
 )))
 ;Info Exists
 (assert	(exists ((c ResourceConcretization)) (node Info c)))
+;Info is Unique
+(assert	(forall ((c1 ResourceConcretization) (c2 ResourceConcretization)) (=>
+	(and (node Info c1) (node Info c2))
+	(= c1 c2)
+)))
 ;Info is Distinct from Moderation
 (assert	(forall ((c ResourceConcretization)) (=>
 	(node Info c)
@@ -3034,42 +2495,6 @@
 (assert	(forall ((c ResourceConcretization)) (=>
 	(node Info c)
 	(not (node ReputationValues c))
-)))
-;Info is Distinct from Authorship
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node Info c)
-	(not (node Authorship c))
-)))
-
-;Authorship initial analysis tag
-(assert (forall ((c ResourceConcretization)) (=>
-	(node Authorship c)
-	(= (inited c) false)
-)))
-;Authorship is Unique
-(assert	(forall ((c1 ResourceConcretization) (c2 ResourceConcretization)) (=>
-	(and (node Authorship c1) (node Authorship c2))
-	(= c1 c2)
-)))
-;Authorship is Distinct from Moderation
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node Authorship c)
-	(not (node Moderation c))
-)))
-;Authorship is Distinct from Graphing
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node Authorship c)
-	(not (node Graphing c))
-)))
-;Authorship is Distinct from ReputationValues
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node Authorship c)
-	(not (node ReputationValues c))
-)))
-;Authorship is Distinct from Info
-(assert	(forall ((c ResourceConcretization)) (=>
-	(node Authorship c)
-	(not (node Info c))
 )))
 
 ;IntegrityOfModels initial analysis tag
@@ -3145,6 +2570,16 @@
 	(edge InfloUser2MakeModelsTrustworthy c)
 	(not (edge InfloManagerEditors2MinimizeModeratorEffort c))
 )))
+;InfloUser2MakeModelsTrustworthy is Distinct from InfloUser2ValidateModel
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2MakeModelsTrustworthy c)
+	(not (edge InfloUser2ValidateModel c))
+)))
+;InfloUser2MakeModelsTrustworthy is Distinct from InfloUser2GetFeedback
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2MakeModelsTrustworthy c)
+	(not (edge InfloUser2GetFeedback c))
+)))
 ;InfloUser2MakeModelsTrustworthy is Distinct from InfloUser2IntegrityOfModelsIU
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2MakeModelsTrustworthy c)
@@ -3215,6 +2650,21 @@
 	(edge InfloUser2ValidateModel c)
 	(not (edge InfloManagerEditors2MinimizeModeratorEffort c))
 )))
+;InfloUser2ValidateModel is Distinct from InfloUser2MakeModelsTrustworthy
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2ValidateModel c)
+	(not (edge InfloUser2MakeModelsTrustworthy c))
+)))
+;InfloUser2ValidateModel is Distinct from InfloUser2GetFeedback
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2ValidateModel c)
+	(not (edge InfloUser2GetFeedback c))
+)))
+;InfloUser2ValidateModel is Distinct from InfloUser2IntegrityOfModelsIU
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2ValidateModel c)
+	(not (edge InfloUser2IntegrityOfModelsIU c))
+)))
 ;InfloUser2GetFeedback tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2GetFeedback c)
@@ -3244,6 +2694,21 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2GetFeedback c)
 	(not (edge InfloManagerEditors2MinimizeModeratorEffort c))
+)))
+;InfloUser2GetFeedback is Distinct from InfloUser2MakeModelsTrustworthy
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2GetFeedback c)
+	(not (edge InfloUser2MakeModelsTrustworthy c))
+)))
+;InfloUser2GetFeedback is Distinct from InfloUser2ValidateModel
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2GetFeedback c)
+	(not (edge InfloUser2ValidateModel c))
+)))
+;InfloUser2GetFeedback is Distinct from InfloUser2IntegrityOfModelsIU
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2GetFeedback c)
+	(not (edge InfloUser2IntegrityOfModelsIU c))
 )))
 ;InfloUser2Browsing tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -3275,20 +2740,10 @@
 	(edge InfloUser2Browsing c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;InfloUser2Browsing is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2Browsing c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;InfloUser2Browsing is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2Browsing c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloUser2Browsing is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2Browsing c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;InfloUser2Browsing is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3314,11 +2769,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2Browsing c)
 	(not (edge Inflo2BeInflo c))
-)))
-;InfloUser2Browsing is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2Browsing c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloUser2Browsing is Distinct from InfloUser2CreateGraph
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3370,20 +2820,10 @@
 	(edge InfloUser2CreateGraph c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;InfloUser2CreateGraph is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateGraph c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;InfloUser2CreateGraph is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2CreateGraph c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloUser2CreateGraph is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateGraph c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;InfloUser2CreateGraph is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3409,11 +2849,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2CreateGraph c)
 	(not (edge Inflo2BeInflo c))
-)))
-;InfloUser2CreateGraph is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateGraph c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloUser2CreateGraph is Distinct from InfloUser2Browsing
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3465,20 +2900,10 @@
 	(edge InfloUser2UseDiscussions c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;InfloUser2UseDiscussions is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2UseDiscussions c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;InfloUser2UseDiscussions is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2UseDiscussions c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloUser2UseDiscussions is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2UseDiscussions c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;InfloUser2UseDiscussions is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3504,11 +2929,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2UseDiscussions c)
 	(not (edge Inflo2BeInflo c))
-)))
-;InfloUser2UseDiscussions is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2UseDiscussions c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloUser2UseDiscussions is Distinct from InfloUser2Browsing
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3595,20 +3015,10 @@
 	(edge InfloUser2MakeViews c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;InfloUser2MakeViews is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2MakeViews c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;InfloUser2MakeViews is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2MakeViews c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloUser2MakeViews is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2MakeViews c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;InfloUser2MakeViews is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3634,11 +3044,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2MakeViews c)
 	(not (edge Inflo2BeInflo c))
-)))
-;InfloUser2MakeViews is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2MakeViews c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloUser2MakeViews is Distinct from InfloUser2Browsing
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3690,20 +3095,10 @@
 	(edge InfloUser2AddSourceInDescription c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;InfloUser2AddSourceInDescription is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2AddSourceInDescription c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;InfloUser2AddSourceInDescription is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2AddSourceInDescription c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloUser2AddSourceInDescription is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2AddSourceInDescription c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;InfloUser2AddSourceInDescription is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3730,11 +3125,6 @@
 	(edge InfloUser2AddSourceInDescription c)
 	(not (edge Inflo2BeInflo c))
 )))
-;InfloUser2AddSourceInDescription is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2AddSourceInDescription c)
-	(not (edge Inflo2ModerationTasks c))
-)))
 ;InfloUser2AddSourceInDescription is Distinct from InfloUser2Browsing
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2AddSourceInDescription c)
@@ -3754,79 +3144,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2AddSourceInDescription c)
 	(not (edge InfloUser2MakeViews c))
-)))
-;InfloUser2CreateDiscussions tgtEndpoint constant
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(= (tgtEndpoint c) ENDPOINT_TASK)
-)))
-;InfloUser2CreateDiscussions endpoints
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(and
-		(node InfloUser (src c))
-		(node CreateDiscussions ((as tgt (TaskConcretization)) c))
-	)
-)))
-;InfloUser2CreateDiscussions is Unique
-(assert	(forall ((c1 IntentionConcretization) (c2 IntentionConcretization)) (=>
-	(and (edge InfloUser2CreateDiscussions c1) (edge InfloUser2CreateDiscussions c2))
-	(= c1 c2)
-)))
-;InfloUser2CreateDiscussions is Distinct from InfloManagerEditors2ExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge InfloManagerEditors2ExtensiveModeration c))
-)))
-;InfloUser2CreateDiscussions is Distinct from InfloManagerEditors2UseAutomatedReputationSystem
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
-)))
-;InfloUser2CreateDiscussions is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
-;InfloUser2CreateDiscussions is Distinct from AutomatedReputationSystem2ProvideReputations
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloUser2CreateDiscussions is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
-)))
-;InfloUser2CreateDiscussions is Distinct from Inflo2TrackAuthorship
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge Inflo2TrackAuthorship c))
-)))
-;InfloUser2CreateDiscussions is Distinct from Inflo2DisplayGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge Inflo2DisplayGraphs c))
-)))
-;InfloUser2CreateDiscussions is Distinct from Inflo2TrackRevisions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge Inflo2TrackRevisions c))
-)))
-;InfloUser2CreateDiscussions is Distinct from Inflo2CreateGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge Inflo2CreateGraphs c))
-)))
-;InfloUser2CreateDiscussions is Distinct from Inflo2BeInflo
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge Inflo2BeInflo c))
-)))
-;InfloUser2CreateDiscussions is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloUser2CreateDiscussions c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloUser2IntegrityOfModelsIU tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -3862,6 +3179,16 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloUser2IntegrityOfModelsIU c)
 	(not (edge InfloUser2MakeModelsTrustworthy c))
+)))
+;InfloUser2IntegrityOfModelsIU is Distinct from InfloUser2ValidateModel
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2IntegrityOfModelsIU c)
+	(not (edge InfloUser2ValidateModel c))
+)))
+;InfloUser2IntegrityOfModelsIU is Distinct from InfloUser2GetFeedback
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloUser2IntegrityOfModelsIU c)
+	(not (edge InfloUser2GetFeedback c))
 )))
 ;InfloManagerEditors2ExtensiveModeration tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -3908,20 +3235,10 @@
 	(edge InfloManagerEditors2ExtensiveModeration c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;InfloManagerEditors2ExtensiveModeration is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2ExtensiveModeration c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;InfloManagerEditors2ExtensiveModeration is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2ExtensiveModeration c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloManagerEditors2ExtensiveModeration is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2ExtensiveModeration c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;InfloManagerEditors2ExtensiveModeration is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -3947,11 +3264,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2ExtensiveModeration c)
 	(not (edge Inflo2BeInflo c))
-)))
-;InfloManagerEditors2ExtensiveModeration is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2ExtensiveModeration c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloManagerEditors2ExtensiveModeration is Distinct from InfloManagerEditors2UseAutomatedReputationSystem
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4003,20 +3315,10 @@
 	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;InfloManagerEditors2UseAutomatedReputationSystem is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;InfloManagerEditors2UseAutomatedReputationSystem is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloManagerEditors2UseAutomatedReputationSystem is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;InfloManagerEditors2UseAutomatedReputationSystem is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4042,11 +3344,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
 	(not (edge Inflo2BeInflo c))
-)))
-;InfloManagerEditors2UseAutomatedReputationSystem is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloManagerEditors2UseAutomatedReputationSystem is Distinct from InfloManagerEditors2ExtensiveModeration
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4087,94 +3384,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2ModerateInflo c)
 	(not (edge Inflo2AllowModeration c))
-)))
-;InfloManagerEditors2LessExtensiveModeration tgtEndpoint constant
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(= (tgtEndpoint c) ENDPOINT_TASK)
-)))
-;InfloManagerEditors2LessExtensiveModeration endpoints
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(and
-		(node InfloManagerEditors (src c))
-		(node LessExtensiveModeration ((as tgt (TaskConcretization)) c))
-	)
-)))
-;InfloManagerEditors2LessExtensiveModeration is Unique
-(assert	(forall ((c1 IntentionConcretization) (c2 IntentionConcretization)) (=>
-	(and (edge InfloManagerEditors2LessExtensiveModeration c1) (edge InfloManagerEditors2LessExtensiveModeration c2))
-	(= c1 c2)
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloUser2Browsing
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge InfloUser2Browsing c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloUser2CreateGraph
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge InfloUser2CreateGraph c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloUser2UseDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge InfloUser2UseDiscussions c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloUser2MakeViews
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge InfloUser2MakeViews c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloUser2AddSourceInDescription
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge InfloUser2AddSourceInDescription c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from AutomatedReputationSystem2ProvideReputations
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from Inflo2TrackAuthorship
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge Inflo2TrackAuthorship c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from Inflo2DisplayGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge Inflo2DisplayGraphs c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from Inflo2TrackRevisions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge Inflo2TrackRevisions c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from Inflo2CreateGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge Inflo2CreateGraphs c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from Inflo2BeInflo
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge Inflo2BeInflo c))
-)))
-;InfloManagerEditors2LessExtensiveModeration is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge InfloManagerEditors2LessExtensiveModeration c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;InfloManagerEditors2IntegrityOfModelsIME tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -4311,11 +3520,6 @@
 	(edge AutomatedReputationSystem2ProvideReputations c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;AutomatedReputationSystem2ProvideReputations is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ProvideReputations c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;AutomatedReputationSystem2ProvideReputations is Distinct from InfloManagerEditors2ExtensiveModeration
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge AutomatedReputationSystem2ProvideReputations c)
@@ -4325,11 +3529,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge AutomatedReputationSystem2ProvideReputations c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
-)))
-;AutomatedReputationSystem2ProvideReputations is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ProvideReputations c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
 )))
 ;AutomatedReputationSystem2ProvideReputations is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4355,114 +3554,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge AutomatedReputationSystem2ProvideReputations c)
 	(not (edge Inflo2BeInflo c))
-)))
-;AutomatedReputationSystem2ProvideReputations is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ProvideReputations c)
-	(not (edge Inflo2ModerationTasks c))
-)))
-;AutomatedReputationSystem2ProvideReputations is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ProvideReputations c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
-)))
-;AutomatedReputationSystem2ModerationARS tgtEndpoint constant
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(= (tgtEndpoint c) ENDPOINT_TASK)
-)))
-;AutomatedReputationSystem2ModerationARS endpoints
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(and
-		(node AutomatedReputationSystem (src c))
-		(node ModerationARS ((as tgt (TaskConcretization)) c))
-	)
-)))
-;AutomatedReputationSystem2ModerationARS is Unique
-(assert	(forall ((c1 IntentionConcretization) (c2 IntentionConcretization)) (=>
-	(and (edge AutomatedReputationSystem2ModerationARS c1) (edge AutomatedReputationSystem2ModerationARS c2))
-	(= c1 c2)
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloUser2Browsing
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloUser2Browsing c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloUser2CreateGraph
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloUser2CreateGraph c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloUser2UseDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloUser2UseDiscussions c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloUser2MakeViews
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloUser2MakeViews c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloUser2AddSourceInDescription
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloUser2AddSourceInDescription c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloManagerEditors2ExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloManagerEditors2ExtensiveModeration c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloManagerEditors2UseAutomatedReputationSystem
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from Inflo2TrackAuthorship
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge Inflo2TrackAuthorship c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from Inflo2DisplayGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge Inflo2DisplayGraphs c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from Inflo2TrackRevisions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge Inflo2TrackRevisions c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from Inflo2CreateGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge Inflo2CreateGraphs c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from Inflo2BeInflo
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge Inflo2BeInflo c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge Inflo2ModerationTasks c))
-)))
-;AutomatedReputationSystem2ModerationARS is Distinct from AutomatedReputationSystem2ProvideReputations
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge AutomatedReputationSystem2ModerationARS c)
-	(not (edge AutomatedReputationSystem2ProvideReputations c))
 )))
 ;Inflo2AllowModeration tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -4544,11 +3635,6 @@
 	(edge Inflo2TrackAuthorship c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;Inflo2TrackAuthorship is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackAuthorship c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;Inflo2TrackAuthorship is Distinct from InfloManagerEditors2ExtensiveModeration
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2TrackAuthorship c)
@@ -4559,20 +3645,10 @@
 	(edge Inflo2TrackAuthorship c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;Inflo2TrackAuthorship is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackAuthorship c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;Inflo2TrackAuthorship is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2TrackAuthorship c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;Inflo2TrackAuthorship is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackAuthorship c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;Inflo2TrackAuthorship is Distinct from Inflo2DisplayGraphs
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4593,11 +3669,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2TrackAuthorship c)
 	(not (edge Inflo2BeInflo c))
-)))
-;Inflo2TrackAuthorship is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackAuthorship c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;Inflo2DisplayGraphs tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -4644,11 +3715,6 @@
 	(edge Inflo2DisplayGraphs c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;Inflo2DisplayGraphs is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2DisplayGraphs c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;Inflo2DisplayGraphs is Distinct from InfloManagerEditors2ExtensiveModeration
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2DisplayGraphs c)
@@ -4659,20 +3725,10 @@
 	(edge Inflo2DisplayGraphs c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;Inflo2DisplayGraphs is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2DisplayGraphs c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;Inflo2DisplayGraphs is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2DisplayGraphs c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;Inflo2DisplayGraphs is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2DisplayGraphs c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;Inflo2DisplayGraphs is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4693,11 +3749,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2DisplayGraphs c)
 	(not (edge Inflo2BeInflo c))
-)))
-;Inflo2DisplayGraphs is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2DisplayGraphs c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;Inflo2TrackRevisions tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -4744,11 +3795,6 @@
 	(edge Inflo2TrackRevisions c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;Inflo2TrackRevisions is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackRevisions c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;Inflo2TrackRevisions is Distinct from InfloManagerEditors2ExtensiveModeration
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2TrackRevisions c)
@@ -4759,20 +3805,10 @@
 	(edge Inflo2TrackRevisions c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;Inflo2TrackRevisions is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackRevisions c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;Inflo2TrackRevisions is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2TrackRevisions c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;Inflo2TrackRevisions is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackRevisions c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;Inflo2TrackRevisions is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4793,11 +3829,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2TrackRevisions c)
 	(not (edge Inflo2BeInflo c))
-)))
-;Inflo2TrackRevisions is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2TrackRevisions c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;Inflo2CreateGraphs tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -4844,11 +3875,6 @@
 	(edge Inflo2CreateGraphs c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;Inflo2CreateGraphs is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2CreateGraphs c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;Inflo2CreateGraphs is Distinct from InfloManagerEditors2ExtensiveModeration
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2CreateGraphs c)
@@ -4859,20 +3885,10 @@
 	(edge Inflo2CreateGraphs c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;Inflo2CreateGraphs is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2CreateGraphs c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;Inflo2CreateGraphs is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2CreateGraphs c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;Inflo2CreateGraphs is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2CreateGraphs c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;Inflo2CreateGraphs is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4893,11 +3909,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2CreateGraphs c)
 	(not (edge Inflo2BeInflo c))
-)))
-;Inflo2CreateGraphs is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2CreateGraphs c)
-	(not (edge Inflo2ModerationTasks c))
 )))
 ;Inflo2BeInflo tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -4944,11 +3955,6 @@
 	(edge Inflo2BeInflo c)
 	(not (edge InfloUser2AddSourceInDescription c))
 )))
-;Inflo2BeInflo is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2BeInflo c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
 ;Inflo2BeInflo is Distinct from InfloManagerEditors2ExtensiveModeration
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2BeInflo c)
@@ -4959,20 +3965,10 @@
 	(edge Inflo2BeInflo c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
-;Inflo2BeInflo is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2BeInflo c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
 ;Inflo2BeInflo is Distinct from AutomatedReputationSystem2ProvideReputations
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2BeInflo c)
 	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;Inflo2BeInflo is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2BeInflo c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
 )))
 ;Inflo2BeInflo is Distinct from Inflo2TrackAuthorship
 (assert	(forall ((c IntentionConcretization)) (=>
@@ -4993,104 +3989,6 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge Inflo2BeInflo c)
 	(not (edge Inflo2CreateGraphs c))
-)))
-;Inflo2BeInflo is Distinct from Inflo2ModerationTasks
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2BeInflo c)
-	(not (edge Inflo2ModerationTasks c))
-)))
-;Inflo2ModerationTasks tgtEndpoint constant
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(= (tgtEndpoint c) ENDPOINT_TASK)
-)))
-;Inflo2ModerationTasks endpoints
-(assert (forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(and
-		(node Inflo (src c))
-		(node ModerationTasks ((as tgt (TaskConcretization)) c))
-	)
-)))
-;Inflo2ModerationTasks is Distinct from InfloUser2Browsing
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloUser2Browsing c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloUser2CreateGraph
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloUser2CreateGraph c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloUser2UseDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloUser2UseDiscussions c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloUser2MakeViews
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloUser2MakeViews c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloUser2AddSourceInDescription
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloUser2AddSourceInDescription c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloUser2CreateDiscussions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloUser2CreateDiscussions c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloManagerEditors2ExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloManagerEditors2ExtensiveModeration c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloManagerEditors2UseAutomatedReputationSystem
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
-)))
-;Inflo2ModerationTasks is Distinct from InfloManagerEditors2LessExtensiveModeration
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge InfloManagerEditors2LessExtensiveModeration c))
-)))
-;Inflo2ModerationTasks is Distinct from AutomatedReputationSystem2ProvideReputations
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge AutomatedReputationSystem2ProvideReputations c))
-)))
-;Inflo2ModerationTasks is Distinct from AutomatedReputationSystem2ModerationARS
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge AutomatedReputationSystem2ModerationARS c))
-)))
-;Inflo2ModerationTasks is Distinct from Inflo2TrackAuthorship
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge Inflo2TrackAuthorship c))
-)))
-;Inflo2ModerationTasks is Distinct from Inflo2DisplayGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge Inflo2DisplayGraphs c))
-)))
-;Inflo2ModerationTasks is Distinct from Inflo2TrackRevisions
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge Inflo2TrackRevisions c))
-)))
-;Inflo2ModerationTasks is Distinct from Inflo2CreateGraphs
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge Inflo2CreateGraphs c))
-)))
-;Inflo2ModerationTasks is Distinct from Inflo2BeInflo
-(assert	(forall ((c IntentionConcretization)) (=>
-	(edge Inflo2ModerationTasks c)
-	(not (edge Inflo2BeInflo c))
 )))
 ;ValidateModel2MakeModelsTrustworthy Exists
 (assert	(exists ((c ContributionConcretization)) (edge ValidateModel2MakeModelsTrustworthy c)))
@@ -5114,10 +4012,25 @@
 	(edge ValidateModel2MakeModelsTrustworthy c)
 	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
 )))
-;ValidateModel2MakeModelsTrustworthy is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
+;ValidateModel2MakeModelsTrustworthy is Distinct from GetFeedback2MakeModelsTrustworthy
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge ValidateModel2MakeModelsTrustworthy c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
+	(not (edge GetFeedback2MakeModelsTrustworthy c))
+)))
+;ValidateModel2MakeModelsTrustworthy is Distinct from UseDiscussions2ValidateModel
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge ValidateModel2MakeModelsTrustworthy c)
+	(not (edge UseDiscussions2ValidateModel c))
+)))
+;ValidateModel2MakeModelsTrustworthy is Distinct from InfloBeModerated2GetFeedback
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge ValidateModel2MakeModelsTrustworthy c)
+	(not (edge InfloBeModerated2GetFeedback c))
+)))
+;ValidateModel2MakeModelsTrustworthy is Distinct from IntegrityOfModelsIU2MakeModelsTrustworthy
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge ValidateModel2MakeModelsTrustworthy c)
+	(not (edge IntegrityOfModelsIU2MakeModelsTrustworthy c))
 )))
 
 ;ValidateModel2MakeModelsTrustworthy endpoints
@@ -5161,10 +4074,25 @@
 	(edge GetFeedback2MakeModelsTrustworthy c)
 	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
 )))
-;GetFeedback2MakeModelsTrustworthy is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
+;GetFeedback2MakeModelsTrustworthy is Distinct from ValidateModel2MakeModelsTrustworthy
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge GetFeedback2MakeModelsTrustworthy c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
+	(not (edge ValidateModel2MakeModelsTrustworthy c))
+)))
+;GetFeedback2MakeModelsTrustworthy is Distinct from UseDiscussions2ValidateModel
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge GetFeedback2MakeModelsTrustworthy c)
+	(not (edge UseDiscussions2ValidateModel c))
+)))
+;GetFeedback2MakeModelsTrustworthy is Distinct from InfloBeModerated2GetFeedback
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge GetFeedback2MakeModelsTrustworthy c)
+	(not (edge InfloBeModerated2GetFeedback c))
+)))
+;GetFeedback2MakeModelsTrustworthy is Distinct from IntegrityOfModelsIU2MakeModelsTrustworthy
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge GetFeedback2MakeModelsTrustworthy c)
+	(not (edge IntegrityOfModelsIU2MakeModelsTrustworthy c))
 )))
 
 ;GetFeedback2MakeModelsTrustworthy endpoints
@@ -5193,26 +4121,6 @@
 	(and (edge Browsing2UseInflo c1) (edge Browsing2UseInflo c2))
 	(= c1 c2)
 )))
-;Browsing2UseInflo is Distinct from ExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge Browsing2UseInflo c)
-	(not (edge ExtensiveModeration2ModerateInflo c))
-)))
-;Browsing2UseInflo is Distinct from UseAutomatedReputationSystem2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge Browsing2UseInflo c)
-	(not (edge UseAutomatedReputationSystem2ModerateInflo c))
-)))
-;Browsing2UseInflo is Distinct from LessExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge Browsing2UseInflo c)
-	(not (edge LessExtensiveModeration2ModerateInflo c))
-)))
-;Browsing2UseInflo is Distinct from ModerationTasks2AllowModeration
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge Browsing2UseInflo c)
-	(not (edge ModerationTasks2AllowModeration c))
-)))
 ;Browsing2UseInflo is Distinct from CreateGraph2UseInflo
 (assert	(forall ((c MeansEndConcretization)) (=>
 	(edge Browsing2UseInflo c)
@@ -5240,26 +4148,6 @@
 	(and (edge CreateGraph2UseInflo c1) (edge CreateGraph2UseInflo c2))
 	(= c1 c2)
 )))
-;CreateGraph2UseInflo is Distinct from ExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge CreateGraph2UseInflo c)
-	(not (edge ExtensiveModeration2ModerateInflo c))
-)))
-;CreateGraph2UseInflo is Distinct from UseAutomatedReputationSystem2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge CreateGraph2UseInflo c)
-	(not (edge UseAutomatedReputationSystem2ModerateInflo c))
-)))
-;CreateGraph2UseInflo is Distinct from LessExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge CreateGraph2UseInflo c)
-	(not (edge LessExtensiveModeration2ModerateInflo c))
-)))
-;CreateGraph2UseInflo is Distinct from ModerationTasks2AllowModeration
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge CreateGraph2UseInflo c)
-	(not (edge ModerationTasks2AllowModeration c))
-)))
 ;CreateGraph2UseInflo is Distinct from Browsing2UseInflo
 (assert	(forall ((c MeansEndConcretization)) (=>
 	(edge CreateGraph2UseInflo c)
@@ -5286,26 +4174,6 @@
 (assert	(forall ((c1 MeansEndConcretization) (c2 MeansEndConcretization)) (=>
 	(and (edge UseDiscussions2UseInflo c1) (edge UseDiscussions2UseInflo c2))
 	(= c1 c2)
-)))
-;UseDiscussions2UseInflo is Distinct from ExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseDiscussions2UseInflo c)
-	(not (edge ExtensiveModeration2ModerateInflo c))
-)))
-;UseDiscussions2UseInflo is Distinct from UseAutomatedReputationSystem2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseDiscussions2UseInflo c)
-	(not (edge UseAutomatedReputationSystem2ModerateInflo c))
-)))
-;UseDiscussions2UseInflo is Distinct from LessExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseDiscussions2UseInflo c)
-	(not (edge LessExtensiveModeration2ModerateInflo c))
-)))
-;UseDiscussions2UseInflo is Distinct from ModerationTasks2AllowModeration
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseDiscussions2UseInflo c)
-	(not (edge ModerationTasks2AllowModeration c))
 )))
 ;UseDiscussions2UseInflo is Distinct from Browsing2UseInflo
 (assert	(forall ((c MeansEndConcretization)) (=>
@@ -5349,15 +4217,15 @@
 	(edge UseDiscussions2ValidateModel c)
 	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
 )))
-;UseDiscussions2ValidateModel is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
+;UseDiscussions2ValidateModel is Distinct from ValidateModel2MakeModelsTrustworthy
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge UseDiscussions2ValidateModel c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
+	(not (edge ValidateModel2MakeModelsTrustworthy c))
 )))
-;UseDiscussions2ValidateModel is Distinct from UseDiscussions2GetFeedback
+;UseDiscussions2ValidateModel is Distinct from GetFeedback2MakeModelsTrustworthy
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge UseDiscussions2ValidateModel c)
-	(not (edge UseDiscussions2GetFeedback c))
+	(not (edge GetFeedback2MakeModelsTrustworthy c))
 )))
 ;UseDiscussions2ValidateModel is Distinct from InfloBeModerated2GetFeedback
 (assert	(forall ((c ContributionConcretization)) (=>
@@ -5389,66 +4257,6 @@
 	(edge UseDiscussions2ValidateModel c)
 	(= (type c) CONTRIBUTION_SOMEPLUS)
 )))
-;UseDiscussions2GetFeedback is Unique
-(assert	(forall ((c1 ContributionConcretization) (c2 ContributionConcretization)) (=>
-	(and (edge UseDiscussions2GetFeedback c1) (edge UseDiscussions2GetFeedback c2))
-	(= c1 c2)
-)))
-;UseDiscussions2GetFeedback is Distinct from ExtensiveModeration2IntegrityOfModelsIME
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(not (edge ExtensiveModeration2IntegrityOfModelsIME c))
-)))
-;UseDiscussions2GetFeedback is Distinct from ExtensiveModeration2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(not (edge ExtensiveModeration2MinimizeModeratorEffort c))
-)))
-;UseDiscussions2GetFeedback is Distinct from UseAutomatedReputationSystem2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
-)))
-;UseDiscussions2GetFeedback is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
-)))
-;UseDiscussions2GetFeedback is Distinct from UseDiscussions2ValidateModel
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(not (edge UseDiscussions2ValidateModel c))
-)))
-;UseDiscussions2GetFeedback is Distinct from InfloBeModerated2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(not (edge InfloBeModerated2GetFeedback c))
-)))
-;UseDiscussions2GetFeedback is Distinct from IntegrityOfModelsIU2MakeModelsTrustworthy
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(not (edge IntegrityOfModelsIU2MakeModelsTrustworthy c))
-)))
-
-;UseDiscussions2GetFeedback endpoints
-(assert (forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(and
-		(node UseDiscussions ((as src (TaskConcretization)) c))
-		(node GetFeedback (tgt c))
-	)
-)))
-;UseDiscussions2GetFeedback srcEndpoint constant
-(assert (forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(= (srcEndpoint c) ENDPOINT_TASK)
-)))
-
-;UseDiscussions2GetFeedback type constant
-(assert (forall ((c ContributionConcretization)) (=>
-	(edge UseDiscussions2GetFeedback c)
-	(= (type c) CONTRIBUTION_HELP)
-)))
 ;InfloBeModerated2GetFeedback Exists
 (assert	(exists ((c ContributionConcretization)) (edge InfloBeModerated2GetFeedback c)))
 ;InfloBeModerated2GetFeedback is Unique
@@ -5471,20 +4279,20 @@
 	(edge InfloBeModerated2GetFeedback c)
 	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
 )))
-;InfloBeModerated2GetFeedback is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
+;InfloBeModerated2GetFeedback is Distinct from ValidateModel2MakeModelsTrustworthy
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge InfloBeModerated2GetFeedback c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
+	(not (edge ValidateModel2MakeModelsTrustworthy c))
+)))
+;InfloBeModerated2GetFeedback is Distinct from GetFeedback2MakeModelsTrustworthy
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge InfloBeModerated2GetFeedback c)
+	(not (edge GetFeedback2MakeModelsTrustworthy c))
 )))
 ;InfloBeModerated2GetFeedback is Distinct from UseDiscussions2ValidateModel
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge InfloBeModerated2GetFeedback c)
 	(not (edge UseDiscussions2ValidateModel c))
-)))
-;InfloBeModerated2GetFeedback is Distinct from UseDiscussions2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge InfloBeModerated2GetFeedback c)
-	(not (edge UseDiscussions2GetFeedback c))
 )))
 ;InfloBeModerated2GetFeedback is Distinct from IntegrityOfModelsIU2MakeModelsTrustworthy
 (assert	(forall ((c ContributionConcretization)) (=>
@@ -5517,16 +4325,6 @@
 (assert	(forall ((c1 DecompositionConcretization) (c2 DecompositionConcretization)) (=>
 	(and (edge MakeViews2Browsing c1) (edge MakeViews2Browsing c2))
 	(= c1 c2)
-)))
-;MakeViews2Browsing is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge MakeViews2Browsing c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-;MakeViews2Browsing is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge MakeViews2Browsing c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
 )))
 ;MakeViews2Browsing is Distinct from TrackAuthorship2BeInflo
 (assert	(forall ((c DecompositionConcretization)) (=>
@@ -5575,16 +4373,6 @@
 	(and (edge AddSourceInDescription2CreateGraph c1) (edge AddSourceInDescription2CreateGraph c2))
 	(= c1 c2)
 )))
-;AddSourceInDescription2CreateGraph is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge AddSourceInDescription2CreateGraph c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-;AddSourceInDescription2CreateGraph is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge AddSourceInDescription2CreateGraph c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
-)))
 ;AddSourceInDescription2CreateGraph is Distinct from TrackAuthorship2BeInflo
 (assert	(forall ((c DecompositionConcretization)) (=>
 	(edge AddSourceInDescription2CreateGraph c)
@@ -5625,56 +4413,6 @@
 	(= (srcEndpoint c) ENDPOINT_TASK)
 )))
 
-;CreateDiscussions2UseDiscussions is Unique
-(assert	(forall ((c1 DecompositionConcretization) (c2 DecompositionConcretization)) (=>
-	(and (edge CreateDiscussions2UseDiscussions c1) (edge CreateDiscussions2UseDiscussions c2))
-	(= c1 c2)
-)))
-;CreateDiscussions2UseDiscussions is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-;CreateDiscussions2UseDiscussions is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
-)))
-;CreateDiscussions2UseDiscussions is Distinct from TrackAuthorship2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(not (edge TrackAuthorship2BeInflo c))
-)))
-;CreateDiscussions2UseDiscussions is Distinct from DisplayGraphs2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(not (edge DisplayGraphs2BeInflo c))
-)))
-;CreateDiscussions2UseDiscussions is Distinct from TrackRevisions2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(not (edge TrackRevisions2BeInflo c))
-)))
-;CreateDiscussions2UseDiscussions is Distinct from CreateGraphs2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(not (edge CreateGraphs2BeInflo c))
-)))
-
-;CreateDiscussions2UseDiscussions endpoints
-(assert (forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(and
-		(node CreateDiscussions ((as src (TaskConcretization)) c))
-		(node UseDiscussions (tgt c))
-	)
-)))
-;CreateDiscussions2UseDiscussions srcEndpoint constant
-(assert (forall ((c DecompositionConcretization)) (=>
-	(edge CreateDiscussions2UseDiscussions c)
-	(= (srcEndpoint c) ENDPOINT_TASK)
-)))
-
 ;IntegrityOfModelsIU2MakeModelsTrustworthy Exists
 (assert	(exists ((c ContributionConcretization)) (edge IntegrityOfModelsIU2MakeModelsTrustworthy c)))
 ;IntegrityOfModelsIU2MakeModelsTrustworthy is Unique
@@ -5697,20 +4435,20 @@
 	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
 	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
 )))
-;IntegrityOfModelsIU2MakeModelsTrustworthy is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
+;IntegrityOfModelsIU2MakeModelsTrustworthy is Distinct from ValidateModel2MakeModelsTrustworthy
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
+	(not (edge ValidateModel2MakeModelsTrustworthy c))
+)))
+;IntegrityOfModelsIU2MakeModelsTrustworthy is Distinct from GetFeedback2MakeModelsTrustworthy
+(assert	(forall ((c ContributionConcretization)) (=>
+	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
+	(not (edge GetFeedback2MakeModelsTrustworthy c))
 )))
 ;IntegrityOfModelsIU2MakeModelsTrustworthy is Distinct from UseDiscussions2ValidateModel
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
 	(not (edge UseDiscussions2ValidateModel c))
-)))
-;IntegrityOfModelsIU2MakeModelsTrustworthy is Distinct from UseDiscussions2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
-	(not (edge UseDiscussions2GetFeedback c))
 )))
 ;IntegrityOfModelsIU2MakeModelsTrustworthy is Distinct from InfloBeModerated2GetFeedback
 (assert	(forall ((c ContributionConcretization)) (=>
@@ -5737,46 +4475,6 @@
 	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
 	(= (type c) CONTRIBUTION_HELP)
 )))
-;ExtensiveModeration2ModerateInflo is Unique
-(assert	(forall ((c1 MeansEndConcretization) (c2 MeansEndConcretization)) (=>
-	(and (edge ExtensiveModeration2ModerateInflo c1) (edge ExtensiveModeration2ModerateInflo c2))
-	(= c1 c2)
-)))
-;ExtensiveModeration2ModerateInflo is Distinct from Browsing2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ExtensiveModeration2ModerateInflo c)
-	(not (edge Browsing2UseInflo c))
-)))
-;ExtensiveModeration2ModerateInflo is Distinct from CreateGraph2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ExtensiveModeration2ModerateInflo c)
-	(not (edge CreateGraph2UseInflo c))
-)))
-;ExtensiveModeration2ModerateInflo is Distinct from UseDiscussions2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ExtensiveModeration2ModerateInflo c)
-	(not (edge UseDiscussions2UseInflo c))
-)))
-;ExtensiveModeration2ModerateInflo is Distinct from ModerationTasks2AllowModeration
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ExtensiveModeration2ModerateInflo c)
-	(not (edge ModerationTasks2AllowModeration c))
-)))
-;ExtensiveModeration2ModerateInflo is Distinct from UseAutomatedReputationSystem2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ExtensiveModeration2ModerateInflo c)
-	(not (edge UseAutomatedReputationSystem2ModerateInflo c))
-)))
-
-;ExtensiveModeration2ModerateInflo endpoints
-(assert (forall ((c MeansEndConcretization)) (=>
-	(edge ExtensiveModeration2ModerateInflo c)
-	(and
-		(node ExtensiveModeration (src c))
-		(node ModerateInflo (tgt c))
-	)
-)))
-
 ;ExtensiveModeration2IntegrityOfModelsIME Exists
 (assert	(exists ((c ContributionConcretization)) (edge ExtensiveModeration2IntegrityOfModelsIME c)))
 ;ExtensiveModeration2IntegrityOfModelsIME is Unique
@@ -5799,11 +4497,6 @@
 	(edge ExtensiveModeration2IntegrityOfModelsIME c)
 	(not (edge UseDiscussions2ValidateModel c))
 )))
-;ExtensiveModeration2IntegrityOfModelsIME is Distinct from UseDiscussions2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge ExtensiveModeration2IntegrityOfModelsIME c)
-	(not (edge UseDiscussions2GetFeedback c))
-)))
 ;ExtensiveModeration2IntegrityOfModelsIME is Distinct from InfloBeModerated2GetFeedback
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge ExtensiveModeration2IntegrityOfModelsIME c)
@@ -5823,11 +4516,6 @@
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge ExtensiveModeration2IntegrityOfModelsIME c)
 	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
-)))
-;ExtensiveModeration2IntegrityOfModelsIME is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge ExtensiveModeration2IntegrityOfModelsIME c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
 )))
 
 ;ExtensiveModeration2IntegrityOfModelsIME endpoints
@@ -5871,11 +4559,6 @@
 	(edge ExtensiveModeration2MinimizeModeratorEffort c)
 	(not (edge UseDiscussions2ValidateModel c))
 )))
-;ExtensiveModeration2MinimizeModeratorEffort is Distinct from UseDiscussions2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge ExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge UseDiscussions2GetFeedback c))
-)))
 ;ExtensiveModeration2MinimizeModeratorEffort is Distinct from InfloBeModerated2GetFeedback
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge ExtensiveModeration2MinimizeModeratorEffort c)
@@ -5895,11 +4578,6 @@
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge ExtensiveModeration2MinimizeModeratorEffort c)
 	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
-)))
-;ExtensiveModeration2MinimizeModeratorEffort is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge ExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
 )))
 
 ;ExtensiveModeration2MinimizeModeratorEffort endpoints
@@ -5921,166 +4599,6 @@
 	(edge ExtensiveModeration2MinimizeModeratorEffort c)
 	(= (type c) CONTRIBUTION_HURT)
 )))
-;UseAutomatedReputationSystem2ExtensiveModeration is Unique
-(assert	(forall ((c1 DecompositionConcretization) (c2 DecompositionConcretization)) (=>
-	(and (edge UseAutomatedReputationSystem2ExtensiveModeration c1) (edge UseAutomatedReputationSystem2ExtensiveModeration c2))
-	(= c1 c2)
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from MakeViews2Browsing
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge MakeViews2Browsing c))
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from AddSourceInDescription2CreateGraph
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge AddSourceInDescription2CreateGraph c))
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from CreateDiscussions2UseDiscussions
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge CreateDiscussions2UseDiscussions c))
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from TrackAuthorship2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge TrackAuthorship2BeInflo c))
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from DisplayGraphs2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge DisplayGraphs2BeInflo c))
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from TrackRevisions2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge TrackRevisions2BeInflo c))
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from CreateGraphs2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge CreateGraphs2BeInflo c))
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
-)))
-
-;UseAutomatedReputationSystem2ExtensiveModeration endpoints
-(assert (forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(and
-		(node UseAutomatedReputationSystem ((as src (TaskConcretization)) c))
-		(node ExtensiveModeration (tgt c))
-	)
-)))
-;UseAutomatedReputationSystem2ExtensiveModeration srcEndpoint constant
-(assert (forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ExtensiveModeration c)
-	(= (srcEndpoint c) ENDPOINT_TASK)
-)))
-
-;UseAutomatedReputationSystem2ModerateInflo is Unique
-(assert	(forall ((c1 MeansEndConcretization) (c2 MeansEndConcretization)) (=>
-	(and (edge UseAutomatedReputationSystem2ModerateInflo c1) (edge UseAutomatedReputationSystem2ModerateInflo c2))
-	(= c1 c2)
-)))
-;UseAutomatedReputationSystem2ModerateInflo is Distinct from Browsing2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ModerateInflo c)
-	(not (edge Browsing2UseInflo c))
-)))
-;UseAutomatedReputationSystem2ModerateInflo is Distinct from CreateGraph2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ModerateInflo c)
-	(not (edge CreateGraph2UseInflo c))
-)))
-;UseAutomatedReputationSystem2ModerateInflo is Distinct from UseDiscussions2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ModerateInflo c)
-	(not (edge UseDiscussions2UseInflo c))
-)))
-;UseAutomatedReputationSystem2ModerateInflo is Distinct from ModerationTasks2AllowModeration
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ModerateInflo c)
-	(not (edge ModerationTasks2AllowModeration c))
-)))
-;UseAutomatedReputationSystem2ModerateInflo is Distinct from ExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ModerateInflo c)
-	(not (edge ExtensiveModeration2ModerateInflo c))
-)))
-
-;UseAutomatedReputationSystem2ModerateInflo endpoints
-(assert (forall ((c MeansEndConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ModerateInflo c)
-	(and
-		(node UseAutomatedReputationSystem (src c))
-		(node ModerateInflo (tgt c))
-	)
-)))
-
-;UseAutomatedReputationSystem2LessExtensiveModeration is Unique
-(assert	(forall ((c1 DecompositionConcretization) (c2 DecompositionConcretization)) (=>
-	(and (edge UseAutomatedReputationSystem2LessExtensiveModeration c1) (edge UseAutomatedReputationSystem2LessExtensiveModeration c2))
-	(= c1 c2)
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from MakeViews2Browsing
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge MakeViews2Browsing c))
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from AddSourceInDescription2CreateGraph
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge AddSourceInDescription2CreateGraph c))
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from CreateDiscussions2UseDiscussions
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge CreateDiscussions2UseDiscussions c))
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from TrackAuthorship2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge TrackAuthorship2BeInflo c))
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from DisplayGraphs2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge DisplayGraphs2BeInflo c))
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from TrackRevisions2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge TrackRevisions2BeInflo c))
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from CreateGraphs2BeInflo
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge CreateGraphs2BeInflo c))
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-
-;UseAutomatedReputationSystem2LessExtensiveModeration endpoints
-(assert (forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(and
-		(node UseAutomatedReputationSystem ((as src (TaskConcretization)) c))
-		(node LessExtensiveModeration (tgt c))
-	)
-)))
-;UseAutomatedReputationSystem2LessExtensiveModeration srcEndpoint constant
-(assert (forall ((c DecompositionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
-	(= (srcEndpoint c) ENDPOINT_TASK)
-)))
-
 ;UseAutomatedReputationSystem2MinimizeModeratorEffort Exists
 (assert	(exists ((c ContributionConcretization)) (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)))
 ;UseAutomatedReputationSystem2MinimizeModeratorEffort is Unique
@@ -6103,11 +4621,6 @@
 	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
 	(not (edge UseDiscussions2ValidateModel c))
 )))
-;UseAutomatedReputationSystem2MinimizeModeratorEffort is Distinct from UseDiscussions2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
-	(not (edge UseDiscussions2GetFeedback c))
-)))
 ;UseAutomatedReputationSystem2MinimizeModeratorEffort is Distinct from InfloBeModerated2GetFeedback
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
@@ -6127,11 +4640,6 @@
 (assert	(forall ((c ContributionConcretization)) (=>
 	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
 	(not (edge ExtensiveModeration2MinimizeModeratorEffort c))
-)))
-;UseAutomatedReputationSystem2MinimizeModeratorEffort is Distinct from LessExtensiveModeration2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
-	(not (edge LessExtensiveModeration2MinimizeModeratorEffort c))
 )))
 
 ;UseAutomatedReputationSystem2MinimizeModeratorEffort endpoints
@@ -6153,111 +4661,6 @@
 	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
 	(= (type c) CONTRIBUTION_HELP)
 )))
-;LessExtensiveModeration2ModerateInflo is Unique
-(assert	(forall ((c1 MeansEndConcretization) (c2 MeansEndConcretization)) (=>
-	(and (edge LessExtensiveModeration2ModerateInflo c1) (edge LessExtensiveModeration2ModerateInflo c2))
-	(= c1 c2)
-)))
-;LessExtensiveModeration2ModerateInflo is Distinct from Browsing2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge LessExtensiveModeration2ModerateInflo c)
-	(not (edge Browsing2UseInflo c))
-)))
-;LessExtensiveModeration2ModerateInflo is Distinct from CreateGraph2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge LessExtensiveModeration2ModerateInflo c)
-	(not (edge CreateGraph2UseInflo c))
-)))
-;LessExtensiveModeration2ModerateInflo is Distinct from UseDiscussions2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge LessExtensiveModeration2ModerateInflo c)
-	(not (edge UseDiscussions2UseInflo c))
-)))
-;LessExtensiveModeration2ModerateInflo is Distinct from ModerationTasks2AllowModeration
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge LessExtensiveModeration2ModerateInflo c)
-	(not (edge ModerationTasks2AllowModeration c))
-)))
-
-;LessExtensiveModeration2ModerateInflo endpoints
-(assert (forall ((c MeansEndConcretization)) (=>
-	(edge LessExtensiveModeration2ModerateInflo c)
-	(and
-		(node LessExtensiveModeration (src c))
-		(node ModerateInflo (tgt c))
-	)
-)))
-
-;LessExtensiveModeration2MinimizeModeratorEffort is Unique
-(assert	(forall ((c1 ContributionConcretization) (c2 ContributionConcretization)) (=>
-	(and (edge LessExtensiveModeration2MinimizeModeratorEffort c1) (edge LessExtensiveModeration2MinimizeModeratorEffort c2))
-	(= c1 c2)
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from ValidateModel2MakeModelsTrustworthy
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge ValidateModel2MakeModelsTrustworthy c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from GetFeedback2MakeModelsTrustworthy
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge GetFeedback2MakeModelsTrustworthy c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from UseDiscussions2ValidateModel
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge UseDiscussions2ValidateModel c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from UseDiscussions2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge UseDiscussions2GetFeedback c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from InfloBeModerated2GetFeedback
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge InfloBeModerated2GetFeedback c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from IntegrityOfModelsIU2MakeModelsTrustworthy
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge IntegrityOfModelsIU2MakeModelsTrustworthy c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from ExtensiveModeration2IntegrityOfModelsIME
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge ExtensiveModeration2IntegrityOfModelsIME c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from ExtensiveModeration2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge ExtensiveModeration2MinimizeModeratorEffort c))
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort is Distinct from UseAutomatedReputationSystem2MinimizeModeratorEffort
-(assert	(forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(not (edge UseAutomatedReputationSystem2MinimizeModeratorEffort c))
-)))
-
-;LessExtensiveModeration2MinimizeModeratorEffort endpoints
-(assert (forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(and
-		(node LessExtensiveModeration ((as src (TaskConcretization)) c))
-		(node MinimizeModeratorEffort (tgt c))
-	)
-)))
-;LessExtensiveModeration2MinimizeModeratorEffort srcEndpoint constant
-(assert (forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(= (srcEndpoint c) ENDPOINT_TASK)
-)))
-
-;LessExtensiveModeration2MinimizeModeratorEffort type constant
-(assert (forall ((c ContributionConcretization)) (=>
-	(edge LessExtensiveModeration2MinimizeModeratorEffort c)
-	(= (type c) CONTRIBUTION_HELP)
-)))
 ;TrackAuthorship2BeInflo Exists
 (assert	(exists ((c DecompositionConcretization)) (edge TrackAuthorship2BeInflo c)))
 ;TrackAuthorship2BeInflo is Unique
@@ -6274,21 +4677,6 @@
 (assert	(forall ((c DecompositionConcretization)) (=>
 	(edge TrackAuthorship2BeInflo c)
 	(not (edge AddSourceInDescription2CreateGraph c))
-)))
-;TrackAuthorship2BeInflo is Distinct from CreateDiscussions2UseDiscussions
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge TrackAuthorship2BeInflo c)
-	(not (edge CreateDiscussions2UseDiscussions c))
-)))
-;TrackAuthorship2BeInflo is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge TrackAuthorship2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-;TrackAuthorship2BeInflo is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge TrackAuthorship2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
 )))
 ;TrackAuthorship2BeInflo is Distinct from DisplayGraphs2BeInflo
 (assert	(forall ((c DecompositionConcretization)) (=>
@@ -6337,21 +4725,6 @@
 	(edge DisplayGraphs2BeInflo c)
 	(not (edge AddSourceInDescription2CreateGraph c))
 )))
-;DisplayGraphs2BeInflo is Distinct from CreateDiscussions2UseDiscussions
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge DisplayGraphs2BeInflo c)
-	(not (edge CreateDiscussions2UseDiscussions c))
-)))
-;DisplayGraphs2BeInflo is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge DisplayGraphs2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-;DisplayGraphs2BeInflo is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge DisplayGraphs2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
-)))
 ;DisplayGraphs2BeInflo is Distinct from TrackAuthorship2BeInflo
 (assert	(forall ((c DecompositionConcretization)) (=>
 	(edge DisplayGraphs2BeInflo c)
@@ -6398,21 +4771,6 @@
 (assert	(forall ((c DecompositionConcretization)) (=>
 	(edge TrackRevisions2BeInflo c)
 	(not (edge AddSourceInDescription2CreateGraph c))
-)))
-;TrackRevisions2BeInflo is Distinct from CreateDiscussions2UseDiscussions
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge TrackRevisions2BeInflo c)
-	(not (edge CreateDiscussions2UseDiscussions c))
-)))
-;TrackRevisions2BeInflo is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge TrackRevisions2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-;TrackRevisions2BeInflo is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge TrackRevisions2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
 )))
 ;TrackRevisions2BeInflo is Distinct from TrackAuthorship2BeInflo
 (assert	(forall ((c DecompositionConcretization)) (=>
@@ -6461,21 +4819,6 @@
 	(edge CreateGraphs2BeInflo c)
 	(not (edge AddSourceInDescription2CreateGraph c))
 )))
-;CreateGraphs2BeInflo is Distinct from CreateDiscussions2UseDiscussions
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateGraphs2BeInflo c)
-	(not (edge CreateDiscussions2UseDiscussions c))
-)))
-;CreateGraphs2BeInflo is Distinct from UseAutomatedReputationSystem2ExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateGraphs2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2ExtensiveModeration c))
-)))
-;CreateGraphs2BeInflo is Distinct from UseAutomatedReputationSystem2LessExtensiveModeration
-(assert	(forall ((c DecompositionConcretization)) (=>
-	(edge CreateGraphs2BeInflo c)
-	(not (edge UseAutomatedReputationSystem2LessExtensiveModeration c))
-)))
 ;CreateGraphs2BeInflo is Distinct from TrackAuthorship2BeInflo
 (assert	(forall ((c DecompositionConcretization)) (=>
 	(edge CreateGraphs2BeInflo c)
@@ -6504,46 +4847,6 @@
 (assert (forall ((c DecompositionConcretization)) (=>
 	(edge CreateGraphs2BeInflo c)
 	(= (srcEndpoint c) ENDPOINT_TASK)
-)))
-
-;ModerationTasks2AllowModeration is Distinct from Browsing2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ModerationTasks2AllowModeration c)
-	(not (edge Browsing2UseInflo c))
-)))
-;ModerationTasks2AllowModeration is Distinct from CreateGraph2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ModerationTasks2AllowModeration c)
-	(not (edge CreateGraph2UseInflo c))
-)))
-;ModerationTasks2AllowModeration is Distinct from UseDiscussions2UseInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ModerationTasks2AllowModeration c)
-	(not (edge UseDiscussions2UseInflo c))
-)))
-;ModerationTasks2AllowModeration is Distinct from ExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ModerationTasks2AllowModeration c)
-	(not (edge ExtensiveModeration2ModerateInflo c))
-)))
-;ModerationTasks2AllowModeration is Distinct from UseAutomatedReputationSystem2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ModerationTasks2AllowModeration c)
-	(not (edge UseAutomatedReputationSystem2ModerateInflo c))
-)))
-;ModerationTasks2AllowModeration is Distinct from LessExtensiveModeration2ModerateInflo
-(assert	(forall ((c MeansEndConcretization)) (=>
-	(edge ModerationTasks2AllowModeration c)
-	(not (edge LessExtensiveModeration2ModerateInflo c))
-)))
-
-;ModerationTasks2AllowModeration endpoints
-(assert (forall ((c MeansEndConcretization)) (=>
-	(edge ModerationTasks2AllowModeration c)
-	(and
-		(node ModerationTasks (src c))
-		(node AllowModeration (tgt c))
-	)
 )))
 
 ;InfloBeModerated2Moderation srcEndpoint constant
@@ -6681,11 +4984,6 @@
 	(edge UseAutomatedReputationSystem2ReputationValues c)
 	(not (edge AddSourceInDescription2Info c))
 )))
-;UseAutomatedReputationSystem2ReputationValues is Distinct from TrackAuthorship2Authorship
-(assert	(forall ((c DependerLinkConcretization)) (=>
-	(edge UseAutomatedReputationSystem2ReputationValues c)
-	(not (edge TrackAuthorship2Authorship c))
-)))
 ;AddSourceInDescription2Info srcEndpoint constant
 (assert (forall ((c DependerLinkConcretization)) (=>
 	(edge AddSourceInDescription2Info c)
@@ -6706,48 +5004,15 @@
 )))
 ;AddSourceInDescription2Info Exists
 (assert	(exists ((c DependerLinkConcretization)) (edge AddSourceInDescription2Info c)))
+;AddSourceInDescription2Info is Unique
+(assert	(forall ((c1 DependerLinkConcretization) (c2 DependerLinkConcretization)) (=>
+	(and (edge AddSourceInDescription2Info c1) (edge AddSourceInDescription2Info c2))
+	(= c1 c2)
+)))
 ;AddSourceInDescription2Info is Distinct from UseAutomatedReputationSystem2ReputationValues
 (assert	(forall ((c DependerLinkConcretization)) (=>
 	(edge AddSourceInDescription2Info c)
 	(not (edge UseAutomatedReputationSystem2ReputationValues c))
-)))
-;AddSourceInDescription2Info is Distinct from TrackAuthorship2Authorship
-(assert	(forall ((c DependerLinkConcretization)) (=>
-	(edge AddSourceInDescription2Info c)
-	(not (edge TrackAuthorship2Authorship c))
-)))
-;TrackAuthorship2Authorship srcEndpoint constant
-(assert (forall ((c DependerLinkConcretization)) (=>
-	(edge TrackAuthorship2Authorship c)
-	(= (srcEndpoint c) ENDPOINT_TASK)
-)))
-;TrackAuthorship2Authorship tgtEndpoint constant
-(assert (forall ((c DependerLinkConcretization)) (=>
-	(edge TrackAuthorship2Authorship c)
-	(= (tgtEndpoint c) ENDPOINT_RESOURCE)
-)))
-;TrackAuthorship2Authorship endpoints
-(assert (forall ((c DependerLinkConcretization)) (=>
-	(edge TrackAuthorship2Authorship c)
-	(and
-		(node TrackAuthorship ((as src (TaskConcretization)) c))
-		(node Authorship ((as tgt (ResourceConcretization)) c))
-	)
-)))
-;TrackAuthorship2Authorship is Unique
-(assert	(forall ((c1 DependerLinkConcretization) (c2 DependerLinkConcretization)) (=>
-	(and (edge TrackAuthorship2Authorship c1) (edge TrackAuthorship2Authorship c2))
-	(= c1 c2)
-)))
-;TrackAuthorship2Authorship is Distinct from UseAutomatedReputationSystem2ReputationValues
-(assert	(forall ((c DependerLinkConcretization)) (=>
-	(edge TrackAuthorship2Authorship c)
-	(not (edge UseAutomatedReputationSystem2ReputationValues c))
-)))
-;TrackAuthorship2Authorship is Distinct from AddSourceInDescription2Info
-(assert	(forall ((c DependerLinkConcretization)) (=>
-	(edge TrackAuthorship2Authorship c)
-	(not (edge AddSourceInDescription2Info c))
 )))
 ;IntegrityOfModelsIU2IntegrityOfModels srcEndpoint constant
 (assert (forall ((c DependerLinkConcretization)) (=>
@@ -6792,53 +5057,12 @@
 		(node ModerateInflo ((as tgt (GoalConcretization)) c))
 	)
 )))
+;Moderation2ModerateInflo Exists
+(assert	(exists ((c DependeeLinkConcretization)) (edge Moderation2ModerateInflo c)))
 ;Moderation2ModerateInflo is Unique
 (assert	(forall ((c1 DependeeLinkConcretization) (c2 DependeeLinkConcretization)) (=>
 	(and (edge Moderation2ModerateInflo c1) (edge Moderation2ModerateInflo c2))
 	(= c1 c2)
-)))
-;Moderation2ModerationARS srcEndpoint constant
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Moderation2ModerationARS c)
-	(= (srcEndpoint c) ENDPOINT_RESOURCE)
-)))
-;Moderation2ModerationARS tgtEndpoint constant
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Moderation2ModerationARS c)
-	(= (tgtEndpoint c) ENDPOINT_TASK)
-)))
-;Moderation2ModerationARS endpoints
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Moderation2ModerationARS c)
-	(and
-		(node Moderation ((as src (ResourceConcretization)) c))
-		(node ModerationARS ((as tgt (TaskConcretization)) c))
-	)
-)))
-;Moderation2ModerationARS is Unique
-(assert	(forall ((c1 DependeeLinkConcretization) (c2 DependeeLinkConcretization)) (=>
-	(and (edge Moderation2ModerationARS c1) (edge Moderation2ModerationARS c2))
-	(= c1 c2)
-)))
-;Moderation2ModerationARS is Distinct from Graphing2BeInflo
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Moderation2ModerationARS c)
-	(not (edge Graphing2BeInflo c))
-)))
-;Moderation2ModerationARS is Distinct from ReputationValues2ProvideReputations
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Moderation2ModerationARS c)
-	(not (edge ReputationValues2ProvideReputations c))
-)))
-;Moderation2ModerationARS is Distinct from Authorship2CreateGraph
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Moderation2ModerationARS c)
-	(not (edge Authorship2CreateGraph c))
-)))
-;Moderation2ModerationARS is Distinct from Authorship2CreateDiscussions
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Moderation2ModerationARS c)
-	(not (edge Authorship2CreateDiscussions c))
 )))
 ;Graphing2BeInflo srcEndpoint constant
 (assert (forall ((c DependeeLinkConcretization)) (=>
@@ -6865,25 +5089,10 @@
 	(and (edge Graphing2BeInflo c1) (edge Graphing2BeInflo c2))
 	(= c1 c2)
 )))
-;Graphing2BeInflo is Distinct from Moderation2ModerationARS
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Graphing2BeInflo c)
-	(not (edge Moderation2ModerationARS c))
-)))
 ;Graphing2BeInflo is Distinct from ReputationValues2ProvideReputations
 (assert	(forall ((c DependeeLinkConcretization)) (=>
 	(edge Graphing2BeInflo c)
 	(not (edge ReputationValues2ProvideReputations c))
-)))
-;Graphing2BeInflo is Distinct from Authorship2CreateGraph
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Graphing2BeInflo c)
-	(not (edge Authorship2CreateGraph c))
-)))
-;Graphing2BeInflo is Distinct from Authorship2CreateDiscussions
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Graphing2BeInflo c)
-	(not (edge Authorship2CreateDiscussions c))
 )))
 ;ReputationValues2ProvideReputations srcEndpoint constant
 (assert (forall ((c DependeeLinkConcretization)) (=>
@@ -6910,111 +5119,10 @@
 	(and (edge ReputationValues2ProvideReputations c1) (edge ReputationValues2ProvideReputations c2))
 	(= c1 c2)
 )))
-;ReputationValues2ProvideReputations is Distinct from Moderation2ModerationARS
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge ReputationValues2ProvideReputations c)
-	(not (edge Moderation2ModerationARS c))
-)))
 ;ReputationValues2ProvideReputations is Distinct from Graphing2BeInflo
 (assert	(forall ((c DependeeLinkConcretization)) (=>
 	(edge ReputationValues2ProvideReputations c)
 	(not (edge Graphing2BeInflo c))
-)))
-;ReputationValues2ProvideReputations is Distinct from Authorship2CreateGraph
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge ReputationValues2ProvideReputations c)
-	(not (edge Authorship2CreateGraph c))
-)))
-;ReputationValues2ProvideReputations is Distinct from Authorship2CreateDiscussions
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge ReputationValues2ProvideReputations c)
-	(not (edge Authorship2CreateDiscussions c))
-)))
-;Authorship2CreateGraph srcEndpoint constant
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateGraph c)
-	(= (srcEndpoint c) ENDPOINT_RESOURCE)
-)))
-;Authorship2CreateGraph tgtEndpoint constant
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateGraph c)
-	(= (tgtEndpoint c) ENDPOINT_TASK)
-)))
-;Authorship2CreateGraph endpoints
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateGraph c)
-	(and
-		(node Authorship ((as src (ResourceConcretization)) c))
-		(node CreateGraph ((as tgt (TaskConcretization)) c))
-	)
-)))
-;Authorship2CreateGraph is Unique
-(assert	(forall ((c1 DependeeLinkConcretization) (c2 DependeeLinkConcretization)) (=>
-	(and (edge Authorship2CreateGraph c1) (edge Authorship2CreateGraph c2))
-	(= c1 c2)
-)))
-;Authorship2CreateGraph is Distinct from Moderation2ModerationARS
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateGraph c)
-	(not (edge Moderation2ModerationARS c))
-)))
-;Authorship2CreateGraph is Distinct from Graphing2BeInflo
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateGraph c)
-	(not (edge Graphing2BeInflo c))
-)))
-;Authorship2CreateGraph is Distinct from ReputationValues2ProvideReputations
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateGraph c)
-	(not (edge ReputationValues2ProvideReputations c))
-)))
-;Authorship2CreateGraph is Distinct from Authorship2CreateDiscussions
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateGraph c)
-	(not (edge Authorship2CreateDiscussions c))
-)))
-;Authorship2CreateDiscussions srcEndpoint constant
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateDiscussions c)
-	(= (srcEndpoint c) ENDPOINT_RESOURCE)
-)))
-;Authorship2CreateDiscussions tgtEndpoint constant
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateDiscussions c)
-	(= (tgtEndpoint c) ENDPOINT_TASK)
-)))
-;Authorship2CreateDiscussions endpoints
-(assert (forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateDiscussions c)
-	(and
-		(node Authorship ((as src (ResourceConcretization)) c))
-		(node CreateDiscussions ((as tgt (TaskConcretization)) c))
-	)
-)))
-;Authorship2CreateDiscussions is Unique
-(assert	(forall ((c1 DependeeLinkConcretization) (c2 DependeeLinkConcretization)) (=>
-	(and (edge Authorship2CreateDiscussions c1) (edge Authorship2CreateDiscussions c2))
-	(= c1 c2)
-)))
-;Authorship2CreateDiscussions is Distinct from Moderation2ModerationARS
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateDiscussions c)
-	(not (edge Moderation2ModerationARS c))
-)))
-;Authorship2CreateDiscussions is Distinct from Graphing2BeInflo
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateDiscussions c)
-	(not (edge Graphing2BeInflo c))
-)))
-;Authorship2CreateDiscussions is Distinct from ReputationValues2ProvideReputations
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateDiscussions c)
-	(not (edge ReputationValues2ProvideReputations c))
-)))
-;Authorship2CreateDiscussions is Distinct from Authorship2CreateGraph
-(assert	(forall ((c DependeeLinkConcretization)) (=>
-	(edge Authorship2CreateDiscussions c)
-	(not (edge Authorship2CreateGraph c))
 )))
 ;IntegrityOfModels2IntegrityOfModelsIME srcEndpoint constant
 (assert (forall ((c DependeeLinkConcretization)) (=>
