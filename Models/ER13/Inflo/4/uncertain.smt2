@@ -2823,12 +2823,12 @@
 (assert (forall ((c TaskConcretization)) (=>
 	(node ModerationTasks c)
 	(and
-		(= (fs c) false)
+		(= (fs c) true)
 		(= (ps c) false)
 		(= (un c) false)
 		(= (co c) false)
 		(= (pd c) false)
-		(= (fd c) true)
+		(= (fd c) false)
 		(= (n c) false)
 		(= (inited c) true)
 	)
