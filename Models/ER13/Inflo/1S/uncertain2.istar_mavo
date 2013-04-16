@@ -18,7 +18,7 @@
     <intentions xsi:type="istar_mavo:Task" name="Use Discussions" linksAsTgt="//@actors.0/@intentions.10/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.0/@intentions.1"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.2" type="SOMEPLUS"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.0/@intentions.3" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.3" type="HELP"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Goal" name="Inflo Be Moderated" dependenciesAsDepender="//@dependums.0/@dependerLinks.0">
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.3" type="HURT"/>
@@ -49,7 +49,7 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.5" type="HELP"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Goal" name="Moderate Inflo" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.0/@linksAsSrc.0 //@actors.1/@intentions.1/@linksAsSrc.1 //@actors.1/@intentions.3/@linksAsSrc.0"/>
-    <intentions xsi:type="istar_mavo:Task" may="true" var="true" name="Less Extensive Moderation" linksAsTgt="//@actors.1/@intentions.1/@linksAsSrc.2">
+    <intentions xsi:type="istar_mavo:Task" name="Less Extensive Moderation" linksAsTgt="//@actors.1/@intentions.1/@linksAsSrc.2">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" var="true" tgt="//@actors.1/@intentions.2"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.1/@intentions.5" type="HELP"/>
     </intentions>
@@ -76,7 +76,7 @@
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.4/@intentions.5"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" name="Be Inflo" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0" linksAsTgt="//@actors.4/@intentions.1/@linksAsSrc.0 //@actors.4/@intentions.2/@linksAsSrc.0 //@actors.4/@intentions.3/@linksAsSrc.0 //@actors.4/@intentions.4/@linksAsSrc.0"/>
-    <intentions xsi:type="istar_mavo:Task" may="true" name="Moderation Tasks" fullySatisfied="true">
+    <intentions xsi:type="istar_mavo:Task" name="Moderation Tasks" fullySatisfied="true">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" tgt="//@actors.4/@intentions.0"/>
     </intentions>
   </actors>

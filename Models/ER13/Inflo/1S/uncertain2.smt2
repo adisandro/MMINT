@@ -1807,6 +1807,11 @@
 	(node ExtensiveModeration c)
 	(not (node UseAutomatedReputationSystem c))
 )))
+;ExtensiveModeration is Distinct from LessExtensiveModeration
+(assert	(forall ((c TaskConcretization)) (=>
+	(node ExtensiveModeration c)
+	(not (node LessExtensiveModeration c))
+)))
 
 ;UseAutomatedReputationSystem initial analysis tag
 (assert (forall ((c TaskConcretization)) (=>
@@ -1895,6 +1900,11 @@
 	(node UseAutomatedReputationSystem c)
 	(not (node ExtensiveModeration c))
 )))
+;UseAutomatedReputationSystem is Distinct from LessExtensiveModeration
+(assert	(forall ((c TaskConcretization)) (=>
+	(node UseAutomatedReputationSystem c)
+	(not (node LessExtensiveModeration c))
+)))
 
 ;ModerateInflo initial analysis tag
 (assert (forall ((c GoalConcretization)) (=>
@@ -1929,6 +1939,8 @@
 	(node LessExtensiveModeration c)
 	(= (inited c) false)
 )))
+;LessExtensiveModeration Exists
+(assert	(exists ((c TaskConcretization)) (node LessExtensiveModeration c)))
 ;LessExtensiveModeration is Unique
 (assert	(forall ((c1 TaskConcretization) (c2 TaskConcretization)) (=>
 	(and (node LessExtensiveModeration c1) (node LessExtensiveModeration c2))
@@ -2003,6 +2015,16 @@
 (assert	(forall ((c TaskConcretization)) (=>
 	(node LessExtensiveModeration c)
 	(not (node ModerationTasks c))
+)))
+;LessExtensiveModeration is Distinct from ExtensiveModeration
+(assert	(forall ((c TaskConcretization)) (=>
+	(node LessExtensiveModeration c)
+	(not (node ExtensiveModeration c))
+)))
+;LessExtensiveModeration is Distinct from UseAutomatedReputationSystem
+(assert	(forall ((c TaskConcretization)) (=>
+	(node LessExtensiveModeration c)
+	(not (node UseAutomatedReputationSystem c))
 )))
 
 ;IntegrityOfModelsIME initial analysis tag
@@ -2827,6 +2849,8 @@
 		(= (inited c) true)
 	)
 )))
+;ModerationTasks Exists
+(assert	(exists ((c TaskConcretization)) (node ModerationTasks c)))
 ;ModerationTasks is Unique
 (assert	(forall ((c1 TaskConcretization) (c2 TaskConcretization)) (=>
 	(and (node ModerationTasks c1) (node ModerationTasks c2))
@@ -3971,6 +3995,11 @@
 	(edge InfloManagerEditors2ExtensiveModeration c)
 	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
+;InfloManagerEditors2ExtensiveModeration is Distinct from InfloManagerEditors2LessExtensiveModeration
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloManagerEditors2ExtensiveModeration c)
+	(not (edge InfloManagerEditors2LessExtensiveModeration c))
+)))
 ;InfloManagerEditors2UseAutomatedReputationSystem tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
@@ -4066,6 +4095,11 @@
 	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
 	(not (edge InfloManagerEditors2ExtensiveModeration c))
 )))
+;InfloManagerEditors2UseAutomatedReputationSystem is Distinct from InfloManagerEditors2LessExtensiveModeration
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloManagerEditors2UseAutomatedReputationSystem c)
+	(not (edge InfloManagerEditors2LessExtensiveModeration c))
+)))
 ;InfloManagerEditors2ModerateInflo tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2ModerateInflo c)
@@ -4114,6 +4148,8 @@
 		(node LessExtensiveModeration ((as tgt (TaskConcretization)) c))
 	)
 )))
+;InfloManagerEditors2LessExtensiveModeration Exists
+(assert	(exists ((c IntentionConcretization)) (edge InfloManagerEditors2LessExtensiveModeration c)))
 ;InfloManagerEditors2LessExtensiveModeration is Unique
 (assert	(forall ((c1 IntentionConcretization) (c2 IntentionConcretization)) (=>
 	(and (edge InfloManagerEditors2LessExtensiveModeration c1) (edge InfloManagerEditors2LessExtensiveModeration c2))
@@ -4188,6 +4224,16 @@
 (assert	(forall ((c IntentionConcretization)) (=>
 	(edge InfloManagerEditors2LessExtensiveModeration c)
 	(not (edge Inflo2ModerationTasks c))
+)))
+;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloManagerEditors2ExtensiveModeration
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloManagerEditors2LessExtensiveModeration c)
+	(not (edge InfloManagerEditors2ExtensiveModeration c))
+)))
+;InfloManagerEditors2LessExtensiveModeration is Distinct from InfloManagerEditors2UseAutomatedReputationSystem
+(assert	(forall ((c IntentionConcretization)) (=>
+	(edge InfloManagerEditors2LessExtensiveModeration c)
+	(not (edge InfloManagerEditors2UseAutomatedReputationSystem c))
 )))
 ;InfloManagerEditors2IntegrityOfModelsIME tgtEndpoint constant
 (assert (forall ((c IntentionConcretization)) (=>
@@ -5025,6 +5071,8 @@
 		(node ModerationTasks ((as tgt (TaskConcretization)) c))
 	)
 )))
+;Inflo2ModerationTasks Exists
+(assert	(exists ((c IntentionConcretization)) (edge Inflo2ModerationTasks c)))
 ;Inflo2ModerationTasks is Unique
 (assert	(forall ((c1 IntentionConcretization) (c2 IntentionConcretization)) (=>
 	(and (edge Inflo2ModerationTasks c1) (edge Inflo2ModerationTasks c2))
@@ -5407,6 +5455,8 @@
 	(edge UseDiscussions2ValidateModel c)
 	(= (type c) CONTRIBUTION_SOMEPLUS)
 )))
+;UseDiscussions2GetFeedback Exists
+(assert	(exists ((c ContributionConcretization)) (edge UseDiscussions2GetFeedback c)))
 ;UseDiscussions2GetFeedback is Unique
 (assert	(forall ((c1 ContributionConcretization) (c2 ContributionConcretization)) (=>
 	(and (edge UseDiscussions2GetFeedback c1) (edge UseDiscussions2GetFeedback c2))
