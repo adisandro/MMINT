@@ -18,6 +18,15 @@
     <element xmi:type="mid:Model" href="analysis.mid#//@models.1"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uOJfZKYaEeKwZONKBvD2FQ" x="242" y="17"/>
   </children>
+  <children xmi:type="notation:Node" xmi:id="_9FnAoKbPEeKrZYccVckTMg" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9FnnsKbPEeKrZYccVckTMg" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_9FnnsabPEeKrZYccVckTMg" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_9FnAoabPEeKrZYccVckTMg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9FnAoqbPEeKrZYccVckTMg" fontName="Ubuntu"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_9FnAo6bPEeKrZYccVckTMg" hint="Mid"/>
+    <element xmi:type="mid:Model" href="analysis.mid#//@models.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9FnApKbPEeKrZYccVckTMg" x="446" y="19"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_sa4K8aYaEeKwZONKBvD2FQ"/>
   <element xmi:type="mid:MultiModel" href="analysis.mid#/"/>
 </notation:Diagram>
