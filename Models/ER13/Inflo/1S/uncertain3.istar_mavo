@@ -38,7 +38,7 @@
   </actors>
   <actors name="Inflo Manager Editors">
     <intentions xsi:type="istar_mavo:Task" name="Extensive Moderation" linksAsTgt="//@actors.1/@intentions.1/@linksAsSrc.0">
-      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" tgt="//@actors.1/@intentions.2"/>
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.2"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.4" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.5" type="HURT"/>
     </intentions>
@@ -50,7 +50,7 @@
     </intentions>
     <intentions xsi:type="istar_mavo:Goal" name="Moderate Inflo" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.0/@linksAsSrc.0 //@actors.1/@intentions.1/@linksAsSrc.1 //@actors.1/@intentions.3/@linksAsSrc.0"/>
     <intentions xsi:type="istar_mavo:Task" name="Less Extensive Moderation" linksAsTgt="//@actors.1/@intentions.1/@linksAsSrc.2">
-      <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" var="true" tgt="//@actors.1/@intentions.2"/>
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.2"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.1/@intentions.5" type="HELP"/>
     </intentions>
     <intentions xsi:type="istar_mavo:SoftGoal" name="Integrity Of Models IME" dependenciesAsDependee="//@dependums.5/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.0/@linksAsSrc.1"/>

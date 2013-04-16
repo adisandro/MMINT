@@ -5807,6 +5807,8 @@
 	(edge IntegrityOfModelsIU2MakeModelsTrustworthy c)
 	(= (type c) CONTRIBUTION_HELP)
 )))
+;ExtensiveModeration2ModerateInflo Exists
+(assert	(exists ((c MeansEndConcretization)) (edge ExtensiveModeration2ModerateInflo c)))
 ;ExtensiveModeration2ModerateInflo is Unique
 (assert	(forall ((c1 MeansEndConcretization) (c2 MeansEndConcretization)) (=>
 	(and (edge ExtensiveModeration2ModerateInflo c1) (edge ExtensiveModeration2ModerateInflo c2))
@@ -5836,6 +5838,11 @@
 (assert	(forall ((c MeansEndConcretization)) (=>
 	(edge ExtensiveModeration2ModerateInflo c)
 	(not (edge UseAutomatedReputationSystem2ModerateInflo c))
+)))
+;ExtensiveModeration2ModerateInflo is Distinct from LessExtensiveModeration2ModerateInflo
+(assert	(forall ((c MeansEndConcretization)) (=>
+	(edge ExtensiveModeration2ModerateInflo c)
+	(not (edge LessExtensiveModeration2ModerateInflo c))
 )))
 
 ;ExtensiveModeration2ModerateInflo endpoints
@@ -6081,6 +6088,11 @@
 	(edge UseAutomatedReputationSystem2ModerateInflo c)
 	(not (edge ExtensiveModeration2ModerateInflo c))
 )))
+;UseAutomatedReputationSystem2ModerateInflo is Distinct from LessExtensiveModeration2ModerateInflo
+(assert	(forall ((c MeansEndConcretization)) (=>
+	(edge UseAutomatedReputationSystem2ModerateInflo c)
+	(not (edge LessExtensiveModeration2ModerateInflo c))
+)))
 
 ;UseAutomatedReputationSystem2ModerateInflo endpoints
 (assert (forall ((c MeansEndConcretization)) (=>
@@ -6223,6 +6235,8 @@
 	(edge UseAutomatedReputationSystem2MinimizeModeratorEffort c)
 	(= (type c) CONTRIBUTION_HELP)
 )))
+;LessExtensiveModeration2ModerateInflo Exists
+(assert	(exists ((c MeansEndConcretization)) (edge LessExtensiveModeration2ModerateInflo c)))
 ;LessExtensiveModeration2ModerateInflo is Unique
 (assert	(forall ((c1 MeansEndConcretization) (c2 MeansEndConcretization)) (=>
 	(and (edge LessExtensiveModeration2ModerateInflo c1) (edge LessExtensiveModeration2ModerateInflo c2))
@@ -6247,6 +6261,16 @@
 (assert	(forall ((c MeansEndConcretization)) (=>
 	(edge LessExtensiveModeration2ModerateInflo c)
 	(not (edge ModerationTasks2AllowModeration c))
+)))
+;LessExtensiveModeration2ModerateInflo is Distinct from ExtensiveModeration2ModerateInflo
+(assert	(forall ((c MeansEndConcretization)) (=>
+	(edge LessExtensiveModeration2ModerateInflo c)
+	(not (edge ExtensiveModeration2ModerateInflo c))
+)))
+;LessExtensiveModeration2ModerateInflo is Distinct from UseAutomatedReputationSystem2ModerateInflo
+(assert	(forall ((c MeansEndConcretization)) (=>
+	(edge LessExtensiveModeration2ModerateInflo c)
+	(not (edge UseAutomatedReputationSystem2ModerateInflo c))
 )))
 
 ;LessExtensiveModeration2ModerateInflo endpoints
@@ -7491,11 +7515,6 @@
 ;)))))
 
 (assert (and (forall ((c GoalConcretization)) (=> (node UseInflo c) (fs c))) (forall ((c SoftGoalConcretization)) (=> (node MakeModelsTrustworthy c) (ps c))) (forall ((c SoftGoalConcretization)) (=> (node MinimizeModeratorEffort c) (ps c)))))
-
-(assert (forall ((c GoalConcretization)) (=>
-	(node ModerateInflo c)
-	(exists ((mec MeansEndConcretization)) (= (tgt mec) c))
-)))
 
 (assert (forall ((c TaskConcretization)) (=>
 	(node UseAutomatedReputationSystem c)
