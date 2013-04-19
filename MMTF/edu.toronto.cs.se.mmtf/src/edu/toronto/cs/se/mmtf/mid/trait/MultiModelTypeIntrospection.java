@@ -90,7 +90,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 			for (T filteredElementSubtype : filteredElementSubtypes) {
 				if (
 					metamodelUri.equals(filteredElementSubtype.getUri()) ||
-					MultiModelTypeHierarchy.isSubtypeOf(metamodelUri, filteredElementSubtype.getUri())
+					MultiModelTypeHierarchy.isSubtypeOf(filteredElementSubtype.getUri(), metamodelUri)
 				) {
 					metamodelSubtypes.add(filteredElementSubtype);
 					break;
