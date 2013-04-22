@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.repository.ui;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -29,7 +28,7 @@ import org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardPage;
 public class ModelCreationWizardDialog extends WizardDialog {
 
 	/** The uri of the created model. */
-	private URI createdModelUri;
+	private String createdModelUri;
 
 	/**
 	 * {@inheritDoc}
@@ -45,12 +44,11 @@ public class ModelCreationWizardDialog extends WizardDialog {
 
 		if (page instanceof EcoreCreationWizardPage) {
 			EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
-			createdModelUri = filePage.getDomainModelURI();
+			createdModelUri = filePage.getDomainModelURI().toPlatformString(true);
 		}
 		else {
 			WizardNewFileCreationPage filePage = (WizardNewFileCreationPage) page;
-			String modelPath = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-			createdModelUri = URI.createPlatformResourceURI(modelPath, true);
+			createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
 		}
 
 		super.finishPressed();
@@ -74,7 +72,7 @@ public class ModelCreationWizardDialog extends WizardDialog {
 	 * 
 	 * @return The uri of the created model.
 	 */
-	public URI getCreatedModelUri() {
+	public String getCreatedModelUri() {
 
 		return createdModelUri;
 	}

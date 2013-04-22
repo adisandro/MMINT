@@ -92,7 +92,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		Editor newEditor = MidDiagramTrait.selectModelTypeToCreate();
+		Editor newEditor = MidDiagramTrait.selectModelTypeToCreate(multiModel);
 		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(newEditor.getMetatype().getModelUri());
 		Model newModel = MultiModelMAVOInstanceFactory.createModel(modelType, newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
 		MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);

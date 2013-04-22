@@ -13,6 +13,9 @@ package edu.toronto.cs.se.mmtf.mid.diagram.trait;
 
 import java.util.List;
 
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -37,6 +40,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
 import edu.toronto.cs.se.mmtf.repository.ui.MultiModelTreeSelectionDialog;
 
@@ -94,13 +98,15 @@ public class MidDiagramTrait {
 
 	/**
 	 * Shows a tree dialog to create a model choosing from the registered model
-	 * types and executes its wizard.
+	 * types, and executes its wizard.
 	 * 
+	 * @param multiModel
+	 *            The multimodel.
 	 * @return The editor for the created model.
 	 * @throws Exception
 	 *             If the model creation was not completed for any reason.
 	 */
-	public static Editor selectModelTypeToCreate() throws Exception {
+	public static Editor selectModelTypeToCreate(MultiModel multiModel) throws Exception {
 
 		ElementTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelCreationDialog();
 		dialog.setTitle("Create new model");
@@ -120,15 +126,18 @@ public class MidDiagramTrait {
 			throw new MMTFException("Wizard " + editorType.getId() + " not found");
 		}
 
+		IFolder multiModelContainer = ResourcesPlugin.getWorkspace().getRoot().getFolder(
+			new Path(MultiModelRegistry.replaceLastSegmentInUri(multiModel.eResource().getURI().toPlatformString(true), ""))
+		);
 		IWorkbenchWizard wizard = descriptor.createWizard();
-		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection());
+		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection(multiModelContainer));
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		ModelCreationWizardDialog wizDialog = new ModelCreationWizardDialog(shell, wizard);
 		wizDialog.setTitle(wizard.getWindowTitle());
 		if (wizDialog.open() == Window.CANCEL) {
 			throw new MMTFException("Wizard dialog cancel button pressed");
 		}
-		Editor editor = MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri().toPlatformString(true));
+		Editor editor = MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri());
 
 		return editor;
 	}
