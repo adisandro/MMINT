@@ -94,7 +94,6 @@ public class MidPropertySection extends AdvancedPropertySection implements
 	}
 
 	/**
-	 * Modify/unwrap selection.
 	 * @generated NOT
 	 */
 	protected Object transformSelection(Object selected) {
@@ -123,16 +122,8 @@ public class MidPropertySection extends AdvancedPropertySection implements
 			}
 			return null;
 		}
-		if (selected instanceof View) {
-			return ((View) selected).getElement();
-		}
-		if (selected instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) selected).getAdapter(View.class);
-			if (view != null) {
-				return view.getElement();
-			}
-		}
-		return selected;
+
+		return transformSelectionGen(selected);
 	}
 
 	/**
