@@ -24,7 +24,7 @@ public class BinaryModelRelTargetModelEndpointLabelParser extends ExtendibleElem
 	protected IAdaptable getTargetModelEndpointAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ModelEndpoint modelEndpoint = ((BinaryModelRel) modelObj).getModelEndpoints().get(0);
+		ModelEndpoint modelEndpoint = ((BinaryModelRel) modelObj).getModelEndpoints().get(1);
 
 		return new ParserHintAdapter(modelEndpoint, "");
 	}

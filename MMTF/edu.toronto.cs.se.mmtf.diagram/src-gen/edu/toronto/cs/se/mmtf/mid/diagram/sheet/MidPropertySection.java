@@ -93,7 +93,6 @@ public class MidPropertySection extends AdvancedPropertySection implements
 	}
 
 	/**
-	 * Modify/unwrap selection.
 	 * @generated NOT
 	 */
 	protected Object transformSelection(Object selected) {
