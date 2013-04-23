@@ -84,13 +84,14 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 			}
 		}
 
-		if (elementType instanceof Model && !(elementType instanceof ModelRel)) { // explore metamodel-compatible subtrees
+		if (elementType instanceof Model && !(elementType instanceof ModelRel)) { // explore metamodel-compatible supertrees and subtrees
 			List<T> metamodelSubtypes = new ArrayList<T>();
 			String metamodelUri = getRoot((Model) element).eClass().getEPackage().getNsURI();
 			for (T filteredElementSubtype : filteredElementSubtypes) {
 				if (
 					metamodelUri.equals(filteredElementSubtype.getUri()) ||
-					MultiModelTypeHierarchy.isSubtypeOf(filteredElementSubtype.getUri(), metamodelUri)
+					MultiModelTypeHierarchy.isSubtypeOf(filteredElementSubtype.getUri(), metamodelUri) ||
+					MultiModelTypeHierarchy.isSubtypeOf(metamodelUri, filteredElementSubtype.getUri())
 				) {
 					metamodelSubtypes.add(filteredElementSubtype);
 					break;
