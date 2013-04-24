@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.powerwindow"
       label="Modelepedia PowerWindow"
-      version="1.0.3"
+      version="1.0.4"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>

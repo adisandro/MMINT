@@ -106,7 +106,7 @@
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="edu.toronto.cs.se.modelepedia.powerwindow.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin name="PowerWindow Diagram" provider="Software Engineering Group, University of Toronto" version="1.0.3">
+  <plugin name="PowerWindow Diagram" provider="Software Engineering Group, University of Toronto" version="1.0.4">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
   </plugin>
