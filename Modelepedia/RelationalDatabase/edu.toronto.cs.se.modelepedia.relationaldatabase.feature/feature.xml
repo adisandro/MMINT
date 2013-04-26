@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.relationaldatabase"
       label="Modelepedia RelationalDatabase"
-      version="1.0.4"
+      version="1.0.5"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
