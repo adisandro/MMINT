@@ -280,7 +280,6 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 
 	private void createZ3ApplyFormulaConstant(StringBuilder formula) {
 
-
 		for (String mayFormulaConstant : mayFormulaConstants) {
 			formula.append(SMTLIB_CONST);
 			formula.append(mayFormulaConstant);

@@ -198,7 +198,7 @@ public class MultiModelRegistry {
 
 		String fileExtension = getFileExtensionFromUri(uri);
 
-		return uri.replace(fileExtension, newFileExtension);
+		return uri.replace(ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension, ECORE_MODEL_FILEEXTENSION_SEPARATOR + newFileExtension);
 	}
 
 	public static String addFileNameSuffixInUri(String uri, String newFileNameSuffix) {

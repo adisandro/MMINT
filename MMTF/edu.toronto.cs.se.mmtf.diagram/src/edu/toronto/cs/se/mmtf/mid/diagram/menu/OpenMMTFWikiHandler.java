@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 
 public class OpenMMTFWikiHandler extends AbstractHandler {
 	
-	private final static String WIKI_WWW = "http://mango.cs.toronto.edu:4139/w/index.php/";
+	private final static String WIKI_WWW = "http://www.cs.toronto.edu:40404/modelepedia_local/index.php";
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
