@@ -35,6 +35,7 @@ public interface Z3SMTSolver {
 	public static final String SMTLIB_AND = SMTLIB_PREDICATE_START + "and ";
 	public static final String SMTLIB_OR = SMTLIB_PREDICATE_START + "or ";
 	public static final String SMTLIB_NOT = SMTLIB_PREDICATE_START + "not ";
+	public static final String SMTLIB_EQUALITY = SMTLIB_PREDICATE_START + "= ";
 	public static final String SMTLIB_IMPLICATION = SMTLIB_PREDICATE_START + "=> ";
 	public static final String SMTLIB_CONST = SMTLIB_PREDICATE_START + "declare-const ";
 	public static final String SMTLIB_TYPE_BOOL = "Bool";
