@@ -95,17 +95,17 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 	private static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
 	private static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
 
-	private static final String x1 = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fP (Int) Bool) (assert (forall ((i Int)) (= (fP i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fM (Int) Bool) (assert (forall ((i Int)) (= (fM i) (ite (= i 0)";
-	private static final String x2 = "(or (and (fM (- i 1)) (not (fP i)) (not (fAo i))) (and (and (fM (- i 1)) (fP i)) (not (fDo i)) (fA i)))))))";
-	private static final String SMT_FUN = "(f";
-	private static final String SMT_FUN_MAY = SMT_FUN + "M ";
-	private static final String SMT_FUN_APPLY = SMT_FUN + "P ";
-	private static final String SMT_FUN_N = SMT_FUN + "N ";
-	private static final String SMT_FUN_C = SMT_FUN + "C ";
-	private static final String SMT_FUN_D = SMT_FUN + "D ";
-	private static final String SMT_FUN_A = SMT_FUN + "A ";
-	private static final String SMT_FUN_D_OR = SMT_FUN + "Do ";
-	private static final String SMT_FUN_A_OR = SMT_FUN + "Ao ";
+	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fP (Int) Bool) (assert (forall ((i Int)) (= (fP i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fM (Int) Bool) (assert (forall ((i Int)) (= (fM i) (ite (= i 0)";
+	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = "(or (and (fM (- i 1)) (not (fP i)) (not (fAo i))) (and (and (fM (- i 1)) (fP i)) (not (fDo i)) (fA i)))))))";
+	private static final String SMTLIB_APPLICABILITY_FUN = "(f";
+	private static final String SMTLIB_APPLICABILITY_FUN_MAY = SMTLIB_APPLICABILITY_FUN + "M ";
+	private static final String SMTLIB_APPLICABILITY_FUN_APPLY = SMTLIB_APPLICABILITY_FUN + "P ";
+	private static final String SMTLIB_APPLICABILITY_FUN_N = SMTLIB_APPLICABILITY_FUN + "N ";
+	private static final String SMTLIB_APPLICABILITY_FUN_C = SMTLIB_APPLICABILITY_FUN + "C ";
+	private static final String SMTLIB_APPLICABILITY_FUN_D = SMTLIB_APPLICABILITY_FUN + "D ";
+	private static final String SMTLIB_APPLICABILITY_FUN_A = SMTLIB_APPLICABILITY_FUN + "A ";
+	private static final String SMTLIB_APPLICABILITY_FUN_D_OR = SMTLIB_APPLICABILITY_FUN + "Do ";
+	private static final String SMTLIB_APPLICABILITY_FUN_A_OR = SMTLIB_APPLICABILITY_FUN + "Ao ";
 
 	private String mayFormula;
 	private String[] mayFormulaIds;
@@ -281,13 +281,13 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		createZ3ApplyFormulaConstant(mayModelObjsD);
 	}
 
-	private void createZ3ApplyFormulaMatchPartsSimple(Set<MAVOElement> mayModelObjs, String innerPredicate, String functionName, String functionDefault) {
+	private void createZ3ApplyFormulaMatchSet(Set<MAVOElement> mayModelObjs, String innerPredicate, String functionEmpty) {
 
 		if (mayModelObjs.isEmpty()) {
-			smtEncoding.append(functionDefault);
+			smtEncoding.append(functionEmpty);
 		}
 		else {
-			boolean simplify = (innerPredicate == null || mayModelObjs.size() == 1) ? true : false;
+			boolean simplify = (mayModelObjs.size() == 1) ? true : false;
 			if (!simplify) {
 				smtEncoding.append(innerPredicate);
 			}
@@ -302,23 +302,23 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 		}
 	}
 
-	private void createZ3ApplyFormulaMatchParts(Set<MAVOElement> mayModelObjs, String innerPredicate, String functionName, String functionDefault) {
+	private void createZ3ApplyFormulaMatchSetIteration(Set<MAVOElement> mayModelObjs, String functionName, String innerPredicate, String functionEmpty) {
 
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(functionName);
 		smtEncoding.append(mayFormulaIterations + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
-		createZ3ApplyFormulaMatchPartsSimple(mayModelObjs, innerPredicate, functionName, functionDefault);
+		createZ3ApplyFormulaMatchSet(mayModelObjs, innerPredicate, functionEmpty);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 	}
 
-	private void createZ3ApplyFormulaMatchPartN() {
+	private void createZ3ApplyFormulaMatchSetNIteration() {
 
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
-		smtEncoding.append(SMT_FUN_N);
+		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_N);
 		smtEncoding.append(mayFormulaIterations + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 
@@ -336,7 +336,7 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 					smtEncoding.append(" ");
 				}
 				//TODO MMTF: review if true or false here when simplifying
-				createZ3ApplyFormulaMatchPartsSimple(mayModelObjsN, SMTLIB_AND, SMT_FUN_N, SMTLIB_FALSE);
+				createZ3ApplyFormulaMatchSet(mayModelObjsN, SMTLIB_AND, SMTLIB_FALSE);
 				previousNSimplified = (mayModelObjsN.size() == 1) ? true : false;
 			}
 			if (!simplify) {
@@ -350,25 +350,25 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 	private void createZ3ApplyFormula() {
 
 		createZ3ApplyFormulaConstants();
-		createZ3ApplyFormulaMatchPartN();
-		createZ3ApplyFormulaMatchParts(mayModelObjsC, SMTLIB_AND, SMT_FUN_C, SMTLIB_TRUE);
-		createZ3ApplyFormulaMatchParts(mayModelObjsD, SMTLIB_AND, SMT_FUN_D, SMTLIB_TRUE);
-		createZ3ApplyFormulaMatchParts(mayModelObjsD, SMTLIB_OR, SMT_FUN_D_OR, SMTLIB_FALSE);
+		createZ3ApplyFormulaMatchSetNIteration();
+		createZ3ApplyFormulaMatchSetIteration(mayModelObjsC, SMTLIB_APPLICABILITY_FUN_C, SMTLIB_AND, SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(mayModelObjsD, SMTLIB_APPLICABILITY_FUN_D, SMTLIB_AND, SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(mayModelObjsD, SMTLIB_APPLICABILITY_FUN_D_OR, SMTLIB_OR, SMTLIB_FALSE);
 	}
 
 	private boolean checkZ3ApplicabilityFormula() {
 
-		int checkpoint1 = smtEncoding.length();
+		int checkpointUnsat = smtEncoding.length();
 		createZ3ApplyFormula();
-		int checkpoint2 = smtEncoding.length();
+		int checkpointSat = smtEncoding.length();
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(SMTLIB_AND);
-		smtEncoding.append(SMT_FUN_MAY);
+		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_MAY);
 		smtEncoding.append(mayFormulaIterations);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMT_FUN_APPLY);
-		smtEncoding.append(mayFormulaIterations+1);
+		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
+		smtEncoding.append(mayFormulaIterations + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_TRUE);
@@ -377,10 +377,10 @@ public class MAVOHenshinTransformation extends OperatorExecutableImpl implements
 
 		int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(smtEncoding.toString());
 		if (z3Result == Z3_SAT) {
-			smtEncoding.delete(checkpoint2, smtEncoding.length());
+			smtEncoding.delete(checkpointSat, smtEncoding.length());
 			return true;
 		}
-		smtEncoding.delete(checkpoint1, smtEncoding.length());
+		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
 		return false;
 	}
 
@@ -518,8 +518,8 @@ matchesN:
 			if (condition.isMayMatch()) {
 				// update encoding
 				createZ3ApplyFormulaConstant(mayModelObjsA);
-				createZ3ApplyFormulaMatchParts(mayModelObjsA, SMTLIB_AND, SMT_FUN_A, SMTLIB_TRUE);
-				createZ3ApplyFormulaMatchParts(mayModelObjsA, SMTLIB_OR, SMT_FUN_A_OR, SMTLIB_FALSE);
+				createZ3ApplyFormulaMatchSetIteration(mayModelObjsA, SMTLIB_APPLICABILITY_FUN_A, SMTLIB_AND, SMTLIB_TRUE);
+				createZ3ApplyFormulaMatchSetIteration(mayModelObjsA, SMTLIB_APPLICABILITY_FUN_A_OR, SMTLIB_OR, SMTLIB_FALSE);
 				mayFormulaIterations++;
 				// update set of may formula elements
 				for (Set<MAVOElement> mayModelObjSN : mayModelObjsNBar) {
@@ -599,9 +599,9 @@ matchesN:
 			mayFormulaConstants.add(mayFormulaId);
 		}
 		createZ3ApplyFormulaConstant();
-		smtEncoding.append(x1);
+		smtEncoding.append(SMTLIB_APPLICABILITY_PREAMBLE);
 		smtEncoding.append(mayFormula);
-		smtEncoding.append(x2);
+		smtEncoding.append(SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
 		//TODO MMTF: implement D support and OR-ed N support
