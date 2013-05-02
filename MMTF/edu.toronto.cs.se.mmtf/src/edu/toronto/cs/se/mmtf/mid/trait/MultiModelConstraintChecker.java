@@ -191,6 +191,7 @@ public class MultiModelConstraintChecker {
 
 	public static boolean isAllowedModelEndpoint(ModelEndpointReference modelTypeEndpointRef, Model newModel, HashMap<String, Integer> cardinalityTable) {
 
+		//TODO MMTF: consider static (like now) or runtime types?
 		String newModelTypeUri = newModel.getMetatypeUri();
 		// check if the type is allowed
 		if (modelTypeEndpointRef.getTargetUri().equals(newModelTypeUri) || MultiModelTypeHierarchy.isSubtypeOf(newModelTypeUri, modelTypeEndpointRef.getTargetUri())) {
@@ -235,7 +236,6 @@ public class MultiModelConstraintChecker {
 			boolean isAllowed = false;
 			//TODO MMTF: order of visit might affect the result, should be from the most specific to the less
 			for (ModelEndpointReference modelTypeEndpointRef : newModelRelType.getModelEndpointRefs()) {
-				//TODO MMTF: consider static (like now) or runtime models?
 				if (isAllowed = isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
 					MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
 					break;
@@ -251,6 +251,7 @@ public class MultiModelConstraintChecker {
 
 	public static boolean isAllowedModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef, HashMap<String, Integer> cardinalityTable) {
 
+		//TODO MMTF: consider static (like now) or runtime types?
 		String newModelElemTypeUri = newModelElemRef.getObject().getMetatypeUri();
 		// check if the type is allowed
 		if (modelElemTypeEndpoint.getTargetUri().equals(newModelElemTypeUri) || MultiModelTypeHierarchy.isSubtypeOf(newModelElemTypeUri, modelElemTypeEndpoint.getTargetUri())) {
@@ -286,6 +287,26 @@ public class MultiModelConstraintChecker {
 		}
 
 		return modelElemTypeEndpointUris;
+	}
+
+	public static boolean areAllowedModelElementEndpointReferences(Link link, Link newLinkType) {
+
+		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+		for (ModelElementEndpointReference modelElemEndpointRef : link.getModelElemEndpointRefs()) {
+			boolean isAllowed = false;
+			//TODO MMTF: order of visit might affect the result, should be from the most specific to the less
+			for (ModelElementEndpointReference modelElemTypeEndpointRef : newLinkType.getModelElemEndpointRefs()) {
+				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
+					MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
+					break;
+				}
+			}
+			if (!isAllowed) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	private static boolean isAllowedModelElement(ModelElement modelElemType, EObject newEObject) {

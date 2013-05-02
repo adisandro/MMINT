@@ -48,6 +48,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 	public static <T extends ExtendibleElement> boolean validateType(T element, T elementType) {
 
+		//TODO MMTF: figure out how to have multiple functions that validate
 		boolean validates = false;
 
 		if (element instanceof ModelRel) {
@@ -55,19 +56,32 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 			if (!validates) {
 				return false;
 			}
+			for (Link link : ((ModelRel) element).getLinks()) {
+				validates = false;
+				for (Link linkType : ((ModelRel) elementType).getLinks()) {
+					validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences(link, linkType);
+					if (validates) {
+						break;
+					}
+				}
+				if (!validates) {
+					return false;
+				}
+			}
 			//TODO MMTF: do additional structure checks
 		}
 
 		if (element instanceof Model) {
-
 			boolean isModelRel = element instanceof ModelRel;
 			if (!isModelRel && elementType instanceof ModelRel) { // checking against root model rel
 				return false;
 			}
-
 			// constraint validation
 			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
-			//TODO MMTF: figure out how to have multiple functions that validate
+		}
+
+		if (element instanceof Link) {
+			validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences((Link) element, (Link) elementType);
 		}
 
 		return validates;
