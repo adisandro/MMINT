@@ -13,7 +13,6 @@ package edu.toronto.cs.se.modelepedia.operator.match;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -24,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -132,9 +130,6 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				}
 			}
 		}
-		//TODO MMTF: this specialization is too rough
-		List<ExtendibleElement> runtimeMetatypes = MultiModelTypeIntrospection.getRuntimeTypesOld(newModelRel);
-		newModelRel.setMetatypeUri(((ModelRel) runtimeMetatypes.get(runtimeMetatypes.size()-1)).getUri());
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newModelRel);

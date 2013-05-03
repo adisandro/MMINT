@@ -104,13 +104,9 @@ public class MultiModelInstanceFactory {
 		newElement.setLevel(MidLevel.INSTANCES);
 		newElement.setDynamic(true);
 		newElement.setSupertype(null);
-		if (elementType == null) { // get runtime metatype
-			//TODO MMTF: which entry to use, the most specific (operators) or the most conservative (import model)?
-			//TODO MMTF: now is the first == the most conservative
-			//TODO MMTF: do I fix everything by just letting the user choose with a dialog?
-			//TODO MMTF: actually it's kind of useless for rels/links, i should just set the root type, because at creation time it's hard to already have all connections
-			List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypesOld(newElement);
-			newElement.setMetatypeUri(runtimeTypes.get(0).getUri());
+		if (elementType == null) { // use root metatype
+			ExtendibleElement rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(newElement));
+			newElement.setMetatypeUri(rootType.getUri());
 		}
 		else { // use static metatype
 			newElement.setMetatypeUri(elementType.getUri());
