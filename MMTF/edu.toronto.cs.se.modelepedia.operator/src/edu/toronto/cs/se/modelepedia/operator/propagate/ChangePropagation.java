@@ -203,7 +203,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		return newPropTraceLinkRefs;
 	}
 
-	private BinaryLinkReference createDanglingTraceLink(ModelElementReference modelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMTFException {
+	private BinaryLinkReference createDanglingTraceLink(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMTFException {
 
 		// rule 4, 1st half
 		if (!traceRel.getModelEndpoints().get(indexB).getTarget().isInc()) {
@@ -211,7 +211,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		}
 		ModelElement traceModelElemTypeA = MultiModelConstraintChecker.getAllowedModelElementType(
 			traceRel.getModelEndpointRefs().get(indexA),
-			MultiModelTypeIntrospection.getPointer(modelElemRefA.getObject())
+			MultiModelTypeIntrospection.getPointer(traceModelElemRefA.getObject())
 		);
 		if (traceModelElemTypeA == null) {
 			return null;
@@ -233,29 +233,23 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			// create new dangling trace link
 			ModelElementReference newTraceModelElemRefA = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 				traceRel.getModelEndpointRefs().get(indexA),
-				modelElemRefA.getObject().getName(),
-				MultiModelTypeIntrospection.getPointer(modelElemRefA.getObject())
+				traceModelElemRefA.getObject().getName(),
+				MultiModelTypeIntrospection.getPointer(traceModelElemRefA.getObject())
 			);
-			newTraceLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(
+			newTraceLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReference(
 				traceLinkTypeRef.getObject(),
+				traceRel,
 				RelationshipPackage.eINSTANCE.getBinaryLink(),
-				RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
-				newTraceModelElemRefA
+				RelationshipPackage.eINSTANCE.getBinaryLinkReference()
 			);
 			newTraceLinkRef.getObject().setVar(true);
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
-//			newTraceLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReference(
-//				traceLinkTypeRef.getObject(),
-//				//TODO,
-//				RelationshipPackage.eINSTANCE.getBinaryLink(),
-//				RelationshipPackage.eINSTANCE.getBinaryLinkReference()
-//			);
-//			MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-//				traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject(),//TODO MMTF: use some sort of introspection here
-//				newTraceLinkRef,
-//				newTraceModelElemRefA,
-//				false
-//			);
+			MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
+				traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject(),//TODO MMTF: use some sort of introspection here
+				newTraceLinkRef,
+				newTraceModelElemRefA,
+				false
+			);
 			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
 			//TODO MMTF: should I also mark them as M, because I want them to be mutually exclusive?
 			//TODO MMTF: (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
