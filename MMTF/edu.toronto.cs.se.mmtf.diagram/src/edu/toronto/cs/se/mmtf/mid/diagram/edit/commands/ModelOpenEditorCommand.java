@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 
-import java.io.File;
 import java.net.URL;
 import java.util.Enumeration;
 
