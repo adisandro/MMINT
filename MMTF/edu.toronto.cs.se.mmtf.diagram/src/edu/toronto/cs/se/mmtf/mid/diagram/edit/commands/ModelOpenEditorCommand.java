@@ -11,7 +11,12 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 
+import java.io.File;
+import java.net.URL;
+import java.util.Enumeration;
+
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -22,11 +27,15 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.ui.PlatformUI;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * The command to open a model editor.
@@ -35,6 +44,9 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
  * 
  */
 public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
+
+	private static final String ECORE_METAMODEL_PATTERN = "*.ecore";
+	private static final String ECORE_EDITORID = "org.eclipse.emf.ecore.presentation.EcoreEditorID";
 
 	/** The hint about the editor to open. */
 	private final HintedDiagramLinkStyle editorFacet;
@@ -49,6 +61,36 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
 		super(DiagramEditingDomainFactory.getInstance().createEditingDomain(), Messages.CommandName_OpenDiagram, null);
 		editorFacet = linkStyle;
+	}
+
+	protected void doExecuteInstancesLevel(Model model) throws Exception {
+
+		Editor editor = model.getEditors().get(0);
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+			new URIEditorInput(
+				URI.createPlatformResourceURI(editor.getUri(), true)
+			),
+			editor.getId()
+		);
+	}
+
+	protected void doExecuteTypesLevel(Model modelType) throws Exception {
+
+		// climb up light types
+		while (modelType.isDynamic() != false) {
+			modelType = modelType.getSupertype();
+		}
+		// get metamodel files from bundle
+		Bundle bundle = FrameworkUtil.getBundle(MultiModelTypeIntrospection.getRoot(modelType).getClass());
+		Enumeration<URL> metamodels = bundle.findEntries("/", ECORE_METAMODEL_PATTERN, true);
+		while (metamodels.hasMoreElements()) {
+			//TODO MMTF: FileLocator here works for sure because it finds my source code directories, don't know what happens in a pure installation
+			URI uri = URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toURI().toString());
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+				new URIEditorInput(uri),
+				ECORE_EDITORID
+			);
+		}
 	}
 
 	/**
@@ -66,16 +108,15 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
-		//TODO MMTF: needs to be fixed with multiple editor support
+		//TODO MMTF: add multiple editor choice support
 		try {
-			Editor editor = model.getEditors().get(0);
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-				new URIEditorInput(
-					URI.createPlatformResourceURI(editor.getUri(), true)
-				),
-				editor.getId()
-			);
+			Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
+			if (MultiModelConstraintChecker.isInstancesLevel(model)) {
+				doExecuteInstancesLevel(model);
+			}
+			else {
+				doExecuteTypesLevel(model);
+			}
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No editor associated", e);
