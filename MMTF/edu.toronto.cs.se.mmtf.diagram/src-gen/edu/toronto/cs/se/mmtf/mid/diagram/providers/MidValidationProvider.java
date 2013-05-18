@@ -11,12 +11,21 @@
  */
 package edu.toronto.cs.se.mmtf.mid.diagram.providers;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.validation.AbstractModelConstraint;
+import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.emf.validation.model.IClientSelector;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * @generated
@@ -76,6 +85,45 @@ public class MidValidationProvider {
 							.getModelID((View) object));
 		}
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class DefaultCtx implements IClientSelector {
+
+		/**
+		 * @generated
+		 */
+		public boolean selects(Object object) {
+			return isInDefaultEditorContext(object);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter1 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			Model context = (Model) ctx.getTarget();
+			boolean success = MultiModelTypeIntrospection.validateType(context,
+					context.getMetatype());
+			String modelRel = (context instanceof ModelRel) ? " relationship" : "";
+			return (success) ? ctx.createSuccessStatus() : ctx
+					.createFailureStatus(modelRel, context.getName(), context
+							.getMetatype().getName());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static String formatElement(EObject object) {
+		return EMFCoreUtil.getQualifiedName(object, true);
 	}
 
 }

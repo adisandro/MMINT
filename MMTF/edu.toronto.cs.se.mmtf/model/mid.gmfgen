@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" diagramFileExtension="middiag" copyrightText="Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Vivien Suen.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro, Vivien Suen - Implementation." pluginDirectory="/edu.toronto.cs.se.mmtf.diagram/src-gen">
+  <audits>
+    <categories id="ModelValidationContainer" name="ModelValidationContainer" description="Model validation container" path="//@audits/@categories.0" audits="//@audits/@rules.0"/>
+    <rules name="ModelValidationRule" description="Model validation rule" id="ModelValidationRule" rule="//@expressionProviders/@providers.1/@expressions.3" message="Model{0} {1} is not of type {2}" category="//@audits/@categories.0">
+      <target xsi:type="gmfgen:GenDomainElementTarget" contextSelector="//@audits/@clientContexts.0">
+        <element href="mid.genmodel#//mid/Model"/>
+      </target>
+    </rules>
+    <clientContexts ruleTargets="//@audits/@rules.0/@target"/>
+  </audits>
   <diagram visualID="1000" editPartClassName="MultiModelEditPart" itemSemanticEditPolicyClassName="MultiModelItemSemanticEditPolicy" canonicalEditPolicyClassName="MultiModelCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low" validationEnabled="true" validationDecorators="true" liveValidationUIFeedback="true">
     <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="MultiModelEditHelper"/>
@@ -30,7 +39,7 @@
         </viewmap>
         <modelFacet parser="//@labelParsers/@implementations.3"/>
       </labels>
-      <labels visualID="5016" editPartClassName="WrappingLabel10EditPart" itemSemanticEditPolicyClassName="WrappingLabel10ItemSemanticEditPolicy" elementIcon="true">
+      <labels visualID="5016" editPartClassName="WrappingLabel10EditPart" itemSemanticEditPolicyClassName="WrappingLabel10ItemSemanticEditPolicy" notationViewFactoryClassName="ModelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
@@ -59,7 +68,7 @@
         </viewmap>
         <modelFacet parser="//@labelParsers/@implementations.3"/>
       </labels>
-      <labels visualID="5017" editPartClassName="WrappingLabel11EditPart" itemSemanticEditPolicyClassName="WrappingLabel11ItemSemanticEditPolicy" elementIcon="true">
+      <labels visualID="5017" editPartClassName="WrappingLabel11EditPart" itemSemanticEditPolicyClassName="WrappingLabel11ItemSemanticEditPolicy" notationViewFactoryClassName="ModelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
@@ -87,7 +96,7 @@
         </viewmap>
         <modelFacet parser="//@labelParsers/@implementations.3"/>
       </labels>
-      <labels visualID="5018" editPartClassName="WrappingLabel12EditPart" itemSemanticEditPolicyClassName="WrappingLabel12ItemSemanticEditPolicy" elementIcon="true">
+      <labels visualID="5018" editPartClassName="WrappingLabel12EditPart" itemSemanticEditPolicyClassName="WrappingLabel12ItemSemanticEditPolicy" notationViewFactoryClassName="ModelRelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
@@ -115,7 +124,7 @@
         </viewmap>
         <modelFacet parser="//@labelParsers/@implementations.3"/>
       </labels>
-      <labels visualID="5019" editPartClassName="WrappingLabel13EditPart" itemSemanticEditPolicyClassName="WrappingLabel13ItemSemanticEditPolicy" elementIcon="true">
+      <labels visualID="5019" editPartClassName="WrappingLabel13EditPart" itemSemanticEditPolicyClassName="WrappingLabel13ItemSemanticEditPolicy" notationViewFactoryClassName="ModelRelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
@@ -174,7 +183,7 @@
         </viewmap>
         <modelFacet parser="//@labelParsers/@implementations.4"/>
       </labels>
-      <labels visualID="6017" editPartClassName="WrappingLabel14EditPart" itemSemanticEditPolicyClassName="WrappingLabel14ItemSemanticEditPolicy" elementIcon="true" alignment="SOURCE">
+      <labels visualID="6017" editPartClassName="WrappingLabel14EditPart" itemSemanticEditPolicyClassName="WrappingLabel14ItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointLabelViewFactory" elementIcon="true" alignment="SOURCE">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="60"/>
@@ -219,7 +228,7 @@
         </viewmap>
         <modelFacet parser="//@labelParsers/@implementations.5"/>
       </labels>
-      <labels visualID="6018" editPartClassName="WrappingLabel15EditPart" itemSemanticEditPolicyClassName="WrappingLabel15ItemSemanticEditPolicy" elementIcon="true" alignment="SOURCE">
+      <labels visualID="6018" editPartClassName="WrappingLabel15EditPart" itemSemanticEditPolicyClassName="WrappingLabel15ItemSemanticEditPolicy" notationViewFactoryClassName="BinaryModelRelLabelViewFactory" elementIcon="true" alignment="SOURCE">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureBinaryModelRelTargetModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="100"/>
@@ -420,6 +429,7 @@
       <expressions xsi:type="gmfgen:GenConstraint" body="return !(domainElement.eContainer() instanceof BinaryModelRel);"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="return domainElement.eContainmentFeature().getName().equals(&quot;inputs&quot;);"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="return domainElement.eContainmentFeature().getName().equals(&quot;outputs&quot;);"/>
+      <expressions xsi:type="gmfgen:GenConstraint" body="boolean success = MultiModelTypeIntrospection.validateType(context, context.getMetatype());&#xA;String modelRel = (context instanceof ModelRel) ? &quot; relationship&quot; : &quot;&quot;;&#xA;return (success) ? ctx.createSuccessStatus() : ctx.createFailureStatus(modelRel, context.getName(), context.getMetatype().getName());"/>
     </providers>
   </expressionProviders>
   <labelParsers extensibleViaService="true">
@@ -427,8 +437,8 @@
       <expressionContext href="mid.genmodel#//mid/operator/Operator"/>
     </implementations>
     <implementations xsi:type="gmfgen:PredefinedParser" uses="//@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.4/@labels.0/@modelFacet"/>
-    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@topLevelNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.2/@labels.1/@modelFacet //@diagram/@topLevelNodes.3/@labels.1/@modelFacet //@diagram/@links.1/@labels.1/@modelFacet //@diagram/@links.2/@labels.1/@modelFacet" qualifiedName="edu.toronto.cs.se.mmtf.mavo.trait.MAVOElementLabelParser"/>
-    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet" qualifiedName="edu.toronto.cs.se.mmtf.mid.diagram.trait.ExtendibleElementLabelParser"/>
+    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@topLevelNodes.3/@labels.1/@modelFacet //@diagram/@topLevelNodes.2/@labels.1/@modelFacet //@diagram/@topLevelNodes.1/@labels.1/@modelFacet //@diagram/@links.2/@labels.1/@modelFacet //@diagram/@links.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.0/@labels.1/@modelFacet" qualifiedName="edu.toronto.cs.se.mmtf.mavo.trait.MAVOElementLabelParser"/>
+    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet" qualifiedName="edu.toronto.cs.se.mmtf.mid.diagram.trait.ExtendibleElementLabelParser"/>
     <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@links.1/@labels.0/@modelFacet" qualifiedName="edu.toronto.cs.se.mmtf.mid.diagram.trait.ExtendibleElementEndpointLabelParser"/>
     <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@links.2/@labels.2/@modelFacet" qualifiedName="edu.toronto.cs.se.mmtf.mid.diagram.trait.BinaryModelRelSourceModelEndpointLabelParser"/>
     <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@links.2/@labels.3/@modelFacet" qualifiedName="edu.toronto.cs.se.mmtf.mid.diagram.trait.BinaryModelRelTargetModelEndpointLabelParser"/>

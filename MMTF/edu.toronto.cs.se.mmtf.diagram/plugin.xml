@@ -714,6 +714,44 @@ Contributors:
             name="Open MMTF Wiki">
       </command>
    </extension>
+<extension point="org.eclipse.emf.validation.constraintProviders">
+      <?gmfgen generated="true"?>
+            <category id="ModelValidationContainer" mandatory="false" name="ModelValidationContainer">
+         <![CDATA[Model validation container]]>
+      </category>
+      <constraintProvider cache="true">
+         <package namespaceUri="http://se.cs.toronto.edu/mmtf/MID"/>
+               <constraints categories="ModelValidationContainer">
+                  <constraint id="ModelValidationRule"
+            lang="Java" class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MidValidationProvider$Adapter1"
+            name="ModelValidationRule"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[Model validation rule]]></description>
+            <message><![CDATA[Model{0} {1} is not of type {2}]]></message>
+            <target class="mid.Model"/>
+         </constraint>
+                  </constraints>
+      </constraintProvider>
+   </extension>
+
+<extension point="org.eclipse.emf.validation.constraintBindings">
+      <?gmfgen generated="true"?>
+      <clientContext default="false" id="edu.toronto.cs.se.mmtf.diagramDefaultCtx">
+         <selector class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MidValidationProvider$DefaultCtx"/>
+      </clientContext>
+      <binding context="edu.toronto.cs.se.mmtf.diagramDefaultCtx">
+                  <constraint ref="edu.toronto.cs.se.mmtf.diagram.ModelValidationRule"/>
+               </binding>
+
+   </extension>
+
+<extension point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
+      <?gmfgen generated="true"?>
+      <clientContext id="edu.toronto.cs.se.mmtf.diagramDefaultCtx"/>
+   </extension>
+
 
    <!-- optionally, specify keybindings -->
 </plugin>

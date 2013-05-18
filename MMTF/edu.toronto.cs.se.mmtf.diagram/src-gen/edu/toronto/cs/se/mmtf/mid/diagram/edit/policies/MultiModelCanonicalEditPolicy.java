@@ -51,6 +51,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
@@ -149,7 +150,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private boolean isShortcut(View view) {
+	protected static boolean isShortcut(View view) {
 		return view.getEAnnotation("Shortcut") != null; //$NON-NLS-1$
 	}
 
@@ -300,7 +301,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<IAdaptable> refreshConnections() {
-		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+		Domain2Notation domain2NotationMap = new Domain2Notation();
 		Collection<MidLinkDescriptor> linkDescriptors = collectAllLinks(
 				getDiagram(), domain2NotationMap);
 		Collection existingLinks = new LinkedList(getDiagram().getEdges());
@@ -343,7 +344,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<MidLinkDescriptor> collectAllLinks(View view,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		if (!MultiModelEditPart.MODEL_ID.equals(MidVisualIDRegistry
 				.getModelID(view))) {
 			return Collections.emptyList();
@@ -355,10 +356,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getMultiModel_1000ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ModelEditPart.VISUAL_ID: {
@@ -366,10 +364,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getModel_2011ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case Model2EditPart.VISUAL_ID: {
@@ -377,10 +372,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getModel_2012ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ModelRelEditPart.VISUAL_ID: {
@@ -388,10 +380,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getModelRel_2013ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ModelRel2EditPart.VISUAL_ID: {
@@ -399,10 +388,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getModelRel_2014ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case OperatorEditPart.VISUAL_ID: {
@@ -410,10 +396,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getOperator_2015ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ModelEndpointEditPart.VISUAL_ID: {
@@ -421,10 +404,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getModelEndpoint_4014ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case BinaryModelRelEditPart.VISUAL_ID: {
@@ -432,10 +412,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getBinaryModelRel_4015ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case ParameterEditPart.VISUAL_ID: {
@@ -443,10 +420,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getParameter_4016ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case Parameter2EditPart.VISUAL_ID: {
@@ -454,10 +428,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(MidDiagramUpdater
 						.getParameter_4017ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		}
@@ -478,13 +449,13 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Collection<IAdaptable> createConnections(
 			Collection<MidLinkDescriptor> linkDescriptors,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
 		for (MidLinkDescriptor nextLinkDescriptor : linkDescriptors) {
-			EditPart sourceEditPart = getEditPart(
-					nextLinkDescriptor.getSource(), domain2NotationMap);
-			EditPart targetEditPart = getEditPart(
-					nextLinkDescriptor.getDestination(), domain2NotationMap);
+			EditPart sourceEditPart = getSourceEditPart(nextLinkDescriptor,
+					domain2NotationMap);
+			EditPart targetEditPart = getTargetEditPart(nextLinkDescriptor,
+					domain2NotationMap);
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
@@ -517,7 +488,7 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private EditPart getEditPart(EObject domainModelElement,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		View view = (View) domain2NotationMap.get(domainModelElement);
 		if (view != null) {
 			return (EditPart) getHost().getViewer().getEditPartRegistry()
@@ -531,5 +502,65 @@ public class MultiModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Diagram getDiagram() {
 		return ((View) getHost().getModel()).getDiagram();
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getSourceEditPart(UpdaterLinkDescriptor descriptor,
+			Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getSource(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getTargetEditPart(UpdaterLinkDescriptor descriptor,
+			Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getDestination(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected final EditPart getHintedEditPart(EObject domainModelElement,
+			Domain2Notation domain2NotationMap, int hintVisualId) {
+		View view = (View) domain2NotationMap.getHinted(domainModelElement,
+				MidVisualIDRegistry.getType(hintVisualId));
+		if (view != null) {
+			return (EditPart) getHost().getViewer().getEditPartRegistry()
+					.get(view);
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	@SuppressWarnings("serial")
+	protected static class Domain2Notation extends HashMap<EObject, View> {
+		/**
+		 * @generated
+		 */
+		public boolean containsDomainElement(EObject domainElement) {
+			return this.containsKey(domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public View getHinted(EObject domainEObject, String hint) {
+			return this.get(domainEObject);
+		}
+
+		/**
+		 * @generated
+		 */
+		public void putView(EObject domainElement, View view) {
+			if (!containsKey(view.getElement()) || !isShortcut(view)) {
+				this.put(domainElement, view);
+			}
+		}
+
 	}
 }
