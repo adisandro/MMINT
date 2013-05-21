@@ -46,6 +46,8 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 		//TODO MMTF: figure out how to have multiple functions that validate
 		boolean validates = false;
 
+		//TODO MMTF: other extendible elements
+
 		if (element instanceof ModelRel) {
 			validates = MultiModelConstraintChecker.areAllowedModelEndpoints((ModelRel) element, (ModelRel) elementType);
 			if (!validates) {

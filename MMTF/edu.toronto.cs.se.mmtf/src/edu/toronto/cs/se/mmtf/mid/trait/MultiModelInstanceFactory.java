@@ -57,6 +57,9 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  */
 public class MultiModelInstanceFactory {
 
+	private final static String DEFAULT_URI = "";
+	private final static String DEFAULT_MODEL_FILE_EXTENSION = "";
+
 	/**
 	 * Adds the basic info to a new extendible element and registers its uri in
 	 * a multimodel.
@@ -99,18 +102,20 @@ public class MultiModelInstanceFactory {
 	 */
 	private static void addBasicExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, String newElementUri, String newElementName) {
 
+		if (newElementUri == null) {
+			newElementUri = DEFAULT_URI;
+		}
 		newElement.setUri(newElementUri);
 		newElement.setName(newElementName);
 		newElement.setLevel(MidLevel.INSTANCES);
 		newElement.setDynamic(true);
 		newElement.setSupertype(null);
-		if (elementType == null) { // use root metatype
-			ExtendibleElement rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(newElement));
-			newElement.setMetatypeUri(rootType.getUri());
+		if (elementType == null) { // use type introspection
+			List<ExtendibleElement> elementTypes = MultiModelTypeIntrospection.getRuntimeTypes(newElement);
+			elementType = elementTypes.get(elementTypes.size()-1);
+			//TODO MMTF: ask the user?
 		}
-		else { // use static metatype
-			newElement.setMetatypeUri(elementType.getUri());
-		}
+		newElement.setMetatypeUri(elementType.getUri());
 	}
 
 	/**
@@ -179,7 +184,7 @@ public class MultiModelInstanceFactory {
 		boolean basicElement = !updateMid || !externalElement;
 
 		String newModelName = null;
-		String fileExtension = null;
+		String fileExtension = DEFAULT_MODEL_FILE_EXTENSION;
 		if (externalElement) {
 			newModelName = MultiModelRegistry.getFileNameFromUri(newModelUri);
 			fileExtension = MultiModelRegistry.getFileExtensionFromUri(newModelUri);
@@ -652,6 +657,7 @@ public class MultiModelInstanceFactory {
 		newEditor.setModelUri(modelUri);
 		newEditor.setId(editorType.getId());
 		newEditor.setWizardId(editorType.getWizardId());
+		newEditor.getFileExtensions().add(editorType.getFileExtensions().get(0));
 
 		return newEditor;
 	}
