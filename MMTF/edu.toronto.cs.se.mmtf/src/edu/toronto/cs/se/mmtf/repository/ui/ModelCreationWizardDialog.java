@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,12 +15,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardPage;
-
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
 /**
  * A wizard dialog to create a new model.
@@ -30,10 +26,14 @@ import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
  */
 public class ModelCreationWizardDialog extends WizardDialog {
 
-	private final static String UML_FILE_EXTENSION = "uml";
-
 	/** The uri of the created model. */
-	private String createdModelUri;
+	protected String createdModelUri;
+
+	protected void storeCreatedModelUri(IWizardPage page) {
+
+		WizardNewFileCreationPage filePage = (WizardNewFileCreationPage) page;
+		createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -46,20 +46,7 @@ public class ModelCreationWizardDialog extends WizardDialog {
 		while (page.getPreviousPage() != null && !(page instanceof WizardNewFileCreationPage)) {
 			page = page.getPreviousPage();
 		}
-
-		if (page instanceof EcoreCreationWizardPage) {
-			EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
-			createdModelUri = filePage.getDomainModelURI().toPlatformString(true);
-		}
-		else if (page instanceof NewModelFilePage) {
-			NewModelFilePage filePage = (NewModelFilePage) page;
-			createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-			createdModelUri = MultiModelRegistry.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);
-		}
-		else {
-			WizardNewFileCreationPage filePage = (WizardNewFileCreationPage) page;
-			createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-		}
+		storeCreatedModelUri(page);
 
 		super.finishPressed();
 	}

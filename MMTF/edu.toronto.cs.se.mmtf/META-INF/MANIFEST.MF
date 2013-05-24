@@ -32,7 +32,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ui.ide,
- org.eclipse.emf.ecoretools.diagram,
  org.eclipse.emf.edit,
  org.eclipse.ocl.examples.pivot,
  org.eclipse.emf.edit.ui,
@@ -40,7 +39,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction,
  org.eclipse.emf.workspace,
  org.eclipse.gmf.runtime.emf.commands.core,
- org.eclipse.gmf.runtime.emf.ui,
- org.eclipse.papyrus.uml.diagram.wizards
+ org.eclipse.gmf.runtime.emf.ui
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmtf.MMTFActivator

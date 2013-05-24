@@ -67,7 +67,7 @@
                   The operator type implementation.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":edu.toronto.cs.se.mmtf.repository.IOperator"/>
+                  <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl:"/>
                </appinfo>
             </annotation>
          </attribute>

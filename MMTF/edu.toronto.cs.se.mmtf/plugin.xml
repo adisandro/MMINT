@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 
 <!--
- Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  Rick Salay, Vivien Suen.
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,7 @@
  http://www.eclipse.org/legal/epl-v10.html
  
  Contributors:
-    Alessio Di Sandro, Vivien Suen - Implementation.
+    Alessio Di Sandro - Implementation.
 -->
 
 <plugin>
@@ -158,44 +158,6 @@
             genModel="model/mid.genmodel"/>
    </extension>
 
-   <extension
-         point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
-         <extendibleType
-               name="Ecore"
-               uri="http://www.eclipse.org/emf/2002/Ecore">
-         </extendibleType>
-      </modelType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.editors">
-      <editorType
-            modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
-            id="org.eclipse.emf.ecore.presentation.EcoreEditorID"
-            isDiagram="false"
-            wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
-         <extendibleType
-               name="Ecore tree"
-               uri="http://www.eclipse.org/emf/2002/Ecore_tree">
-         </extendibleType>
-      </editorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.editors">
-      <editorType
-            modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
-            id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
-            isDiagram="true"
-            wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
-         <extendibleType
-               name="Ecore diagram"
-               uri="http://www.eclipse.org/emf/2002/Ecore_diagram">
-         </extendibleType>
-      </editorType>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/mmtf/MAVO"
@@ -287,44 +249,6 @@
             </modelElemTypeEndpoint>
          </linkType>
       </relationshipType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
-         <extendibleType
-               name="UML"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML">
-         </extendibleType>
-      </modelType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.editors">
-      <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
-            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
-            isDiagram="false"
-            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
-               name="UML tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_tree">
-         </extendibleType>
-      </editorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.editors">
-      <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
-            id="org.eclipse.papyrus.infra.core.papyrusEditor"
-            isDiagram="true"
-            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
-               name="UML diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_diagram">
-         </extendibleType>
-      </editorType>
    </extension>
 
 </plugin>
