@@ -289,4 +289,42 @@
       </relationshipType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType>
+         <extendibleType
+               name="UML"
+               uri="http://www.eclipse.org/uml2/4.0.0/UML">
+         </extendibleType>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UML tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UML_tree">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <extendibleType
+               name="UML diagram"
+               uri="http://www.eclipse.org/uml2/4.0.0/UML_diagram">
+         </extendibleType>
+      </editorType>
+   </extension>
+
 </plugin>

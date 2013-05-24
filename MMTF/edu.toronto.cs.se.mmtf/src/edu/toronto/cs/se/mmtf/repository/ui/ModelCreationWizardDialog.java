@@ -15,9 +15,12 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardPage;
+
+import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
 
 /**
  * A wizard dialog to create a new model.
@@ -26,6 +29,8 @@ import org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardPage;
  * 
  */
 public class ModelCreationWizardDialog extends WizardDialog {
+
+	private final static String UML_FILE_EXTENSION = "uml";
 
 	/** The uri of the created model. */
 	private String createdModelUri;
@@ -45,6 +50,11 @@ public class ModelCreationWizardDialog extends WizardDialog {
 		if (page instanceof EcoreCreationWizardPage) {
 			EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
 			createdModelUri = filePage.getDomainModelURI().toPlatformString(true);
+		}
+		else if (page instanceof NewModelFilePage) {
+			NewModelFilePage filePage = (NewModelFilePage) page;
+			createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
+			createdModelUri = MultiModelRegistry.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);
 		}
 		else {
 			WizardNewFileCreationPage filePage = (WizardNewFileCreationPage) page;
