@@ -182,6 +182,15 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEditor_WizardDialogClass() {
+		return (EAttribute)editorEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getEditor__GetMetatype() {
 		return editorEClass.getEOperations().get(0);
 	}
@@ -237,6 +246,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		createEAttribute(editorEClass, EDITOR__ID);
 		createEAttribute(editorEClass, EDITOR__WIZARD_ID);
 		createEAttribute(editorEClass, EDITOR__FILE_EXTENSIONS);
+		createEAttribute(editorEClass, EDITOR__WIZARD_DIALOG_CLASS);
 		createEOperation(editorEClass, EDITOR___GET_METATYPE);
 		createEOperation(editorEClass, EDITOR___GET_SUPERTYPE);
 
@@ -283,6 +293,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		initEAttribute(getEditor_Id(), ecorePackage.getEString(), "id", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEditor_WizardId(), ecorePackage.getEString(), "wizardId", null, 1, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEditor_FileExtensions(), ecorePackage.getEString(), "fileExtensions", null, 1, -1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEditor_WizardDialogClass(), ecorePackage.getEString(), "wizardDialogClass", null, 0, 1, Editor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEditor__GetMetatype(), this.getEditor(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 

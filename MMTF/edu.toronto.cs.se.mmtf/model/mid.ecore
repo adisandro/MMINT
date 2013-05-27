@@ -224,6 +224,12 @@
         <details key="documentation" value="The conversion operator types that use this model type as input (instances: always null)."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="True if the model type does not have an associated code implementation, false otherwise (instances: always false)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModelOrigin">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -244,25 +250,31 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A constraint for a model type."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The constraint definition, using the engine language."/>
+        <details key="documentation" value="The constraint implementation."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="engine" lowerBound="1"
-        eType="#//ModelConstraintEngine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
+        eType="#//ModelConstraintLanguage">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The engine used to evaluate the constraint."/>
+        <details key="documentation" value="The language used to evaluate the constraint."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ModelConstraintEngine">
+  <eClassifiers xsi:type="ecore:EEnum" name="ModelConstraintLanguage">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The engine used to evaluate a model type constraint."/>
+      <details key="documentation" value="The language used to evaluate a model type constraint."/>
     </eAnnotations>
     <eLiterals name="OCL">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The OCL engine."/>
+        <details key="documentation" value="The OCL language."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="JAVA" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The JAVA language."/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
@@ -757,6 +769,11 @@
           upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The list of file extensions registered for this editor."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardDialogClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The wizard dialog used to create a model instance through this editor."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

@@ -75,6 +75,7 @@ public class EditorItemProvider
 			addIdPropertyDescriptor(object);
 			addWizardIdPropertyDescriptor(object);
 			addFileExtensionsPropertyDescriptor(object);
+			addWizardDialogClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -168,6 +169,28 @@ public class EditorItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Wizard Dialog Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWizardDialogClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Editor_wizardDialogClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Editor_wizardDialogClass_feature", "_UI_Editor_type"),
+				 EditorPackage.Literals.EDITOR__WIZARD_DIALOG_CLASS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Editor.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -208,6 +231,7 @@ public class EditorItemProvider
 			case EditorPackage.EDITOR__ID:
 			case EditorPackage.EDITOR__WIZARD_ID:
 			case EditorPackage.EDITOR__FILE_EXTENSIONS:
+			case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

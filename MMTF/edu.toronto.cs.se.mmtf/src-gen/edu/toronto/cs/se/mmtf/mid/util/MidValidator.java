@@ -118,8 +118,8 @@ public class MidValidator extends EObjectValidator {
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
-			case MidPackage.MODEL_CONSTRAINT_ENGINE:
-				return validateModelConstraintEngine((ModelConstraintEngine)value, diagnostics, context);
+			case MidPackage.MODEL_CONSTRAINT_LANGUAGE:
+				return validateModelConstraintLanguage((ModelConstraintLanguage)value, diagnostics, context);
 			case MidPackage.MODEL_ELEMENT_CATEGORY:
 				return validateModelElementCategory((ModelElementCategory)value, diagnostics, context);
 			default:
@@ -409,7 +409,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelElementCategory(ModelElementCategory modelElementCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelConstraintLanguage(ModelConstraintLanguage modelConstraintLanguage, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -418,7 +418,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConstraintEngine(ModelConstraintEngine modelConstraintEngine, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModelElementCategory(ModelElementCategory modelElementCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

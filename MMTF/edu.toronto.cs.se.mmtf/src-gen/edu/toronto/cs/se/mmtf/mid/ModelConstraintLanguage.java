@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro - Implementation.
+ *    Alessio Di Sandro, Vivien Suen - Implementation.
  */
 package edu.toronto.cs.se.mmtf.mid;
 
@@ -19,17 +19,17 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Model Constraint Engine</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Model Constraint Language</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The engine used to evaluate a model type constraint.
+ * The language used to evaluate a model type constraint.
  * <!-- end-model-doc -->
- * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraintEngine()
+ * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraintLanguage()
  * @model
  * @generated
  */
-public enum ModelConstraintEngine implements Enumerator {
+public enum ModelConstraintLanguage implements Enumerator {
 	/**
 	 * The '<em><b>OCL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -38,14 +38,24 @@ public enum ModelConstraintEngine implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OCL(0, "OCL", "OCL");
+	OCL(0, "OCL", "OCL"),
+
+	/**
+	 * The '<em><b>JAVA</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #JAVA_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	JAVA(1, "JAVA", "JAVA");
 
 	/**
 	 * The '<em><b>OCL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The OCL engine.
+	 * The OCL language.
 	 * <!-- end-model-doc -->
 	 * @see #OCL
 	 * @model
@@ -55,33 +65,48 @@ public enum ModelConstraintEngine implements Enumerator {
 	public static final int OCL_VALUE = 0;
 
 	/**
-	 * An array of all the '<em><b>Model Constraint Engine</b></em>' enumerators.
+	 * The '<em><b>JAVA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The JAVA language.
+	 * <!-- end-model-doc -->
+	 * @see #JAVA
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int JAVA_VALUE = 1;
+
+	/**
+	 * An array of all the '<em><b>Model Constraint Language</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ModelConstraintEngine[] VALUES_ARRAY =
-		new ModelConstraintEngine[] {
+	private static final ModelConstraintLanguage[] VALUES_ARRAY =
+		new ModelConstraintLanguage[] {
 			OCL,
+			JAVA,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Model Constraint Engine</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Model Constraint Language</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ModelConstraintEngine> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ModelConstraintLanguage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Model Constraint Engine</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Model Constraint Language</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelConstraintEngine get(String literal) {
+	public static ModelConstraintLanguage get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ModelConstraintEngine result = VALUES_ARRAY[i];
+			ModelConstraintLanguage result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -90,14 +115,14 @@ public enum ModelConstraintEngine implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Model Constraint Engine</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Model Constraint Language</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelConstraintEngine getByName(String name) {
+	public static ModelConstraintLanguage getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ModelConstraintEngine result = VALUES_ARRAY[i];
+			ModelConstraintLanguage result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -106,14 +131,15 @@ public enum ModelConstraintEngine implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Model Constraint Engine</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Model Constraint Language</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelConstraintEngine get(int value) {
+	public static ModelConstraintLanguage get(int value) {
 		switch (value) {
 			case OCL_VALUE: return OCL;
+			case JAVA_VALUE: return JAVA;
 		}
 		return null;
 	}
@@ -145,7 +171,7 @@ public enum ModelConstraintEngine implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ModelConstraintEngine(int value, String name, String literal) {
+	private ModelConstraintLanguage(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -189,4 +215,4 @@ public enum ModelConstraintEngine implements Enumerator {
 		return literal;
 	}
 	
-} //ModelConstraintEngine
+} //ModelConstraintLanguage

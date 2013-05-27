@@ -59,11 +59,44 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
       <complexType>
          <sequence>
             <element ref="extendibleType"/>
+            <element ref="constraint" minOccurs="0" maxOccurs="1"/>
          </sequence>
-         <attribute name="constraint" type="string">
+         <attribute name="isAbstract" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
-                  The model type constraint.
+                  True if the model type does not have an associated implementation, false otherwise.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="constraint">
+      <annotation>
+         <documentation>
+            A model type constraint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="language" use="required">
+            <annotation>
+               <documentation>
+                  The constraint language (OCL | JAVA).
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="OCL">
+                  </enumeration>
+                  <enumeration value="JAVA">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="implementation" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The constraint implementation (an OCL constraint or the fully qualified name of a JAVA class).
                </documentation>
             </annotation>
          </attribute>

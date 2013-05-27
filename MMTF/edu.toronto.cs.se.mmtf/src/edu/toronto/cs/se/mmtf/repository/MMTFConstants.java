@@ -62,8 +62,14 @@ public interface MMTFConstants {
 	public final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmtf.models";
 	/** The Models extension point's modelType child. */
 	public final static String MODELS_CHILD_MODELTYPE = "modelType";
-	/** The Models extension point's modelType child's constraint attribute. */
-	public final static String MODELS_MODELTYPE_ATTR_CONSTRAINT = "constraint";
+	/** The Models extension point's modelType's abstract attribute. */
+	public final static String MODELS_MODELTYPE_ATTR_ABSTRACT = "isAbstract";
+	/** The Models extension point's modelType's constraint child. */
+	public final static String MODELS_MODELTYPE_CHILD_CONSTRAINT = "constraint";
+	/** The Models extension point's modelType's constraint child's language attribute. */
+	public final static String MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE = "language";
+	/** The Models extension point's modelType's constraint child's implementation attribute. */
+	public final static String MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION = "implementation";
 
 	/** The Editors extension point's id. */
 	public final static String EDITORS_EXT_POINT = "edu.toronto.cs.se.mmtf.editors";
@@ -75,6 +81,8 @@ public interface MMTFConstants {
 	public final static String EDITORS_ATTR_ISDIAGRAM = "isDiagram";
 	/** The Editors extension point's wizardId attribute. */
 	public final static String EDITORS_ATTR_WIZARDID = "wizardId";
+	/** The Editors extension point's wizardDialogClass attribute. */
+	public final static String EDITORS_ATTR_WIZARDDIALOGCLASS = "wizardDialogClass";
 
 	/** The ModelRels extension point's id. */
 	public final static String MODELRELS_EXT_POINT = "edu.toronto.cs.se.mmtf.relationships";

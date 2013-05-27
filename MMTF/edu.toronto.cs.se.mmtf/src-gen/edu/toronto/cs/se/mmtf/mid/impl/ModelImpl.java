@@ -53,6 +53,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getElements <em>Elements</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#isAbstract <em>Abstract</em>}</li>
  * </ul>
  * </p>
  *
@@ -158,6 +159,26 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @ordered
 	 */
 	protected EList<ConversionOperator> conversionOperators;
+
+	/**
+	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ABSTRACT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -325,6 +346,27 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isAbstract() {
+		return abstract_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAbstract(boolean newAbstract) {
+		boolean oldAbstract = abstract_;
+		abstract_ = newAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__ABSTRACT, oldAbstract, abstract_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Model getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Model) metatype;
@@ -378,6 +420,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getConstraint();
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
 				return getConversionOperators();
+			case MidPackage.MODEL__ABSTRACT:
+				return isAbstract();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -415,6 +459,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				getConversionOperators().clear();
 				getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
 				return;
+			case MidPackage.MODEL__ABSTRACT:
+				setAbstract((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -448,6 +495,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
 				getConversionOperators().clear();
 				return;
+			case MidPackage.MODEL__ABSTRACT:
+				setAbstract(ABSTRACT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -474,6 +524,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return constraint != null;
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
 				return conversionOperators != null && !conversionOperators.isEmpty();
+			case MidPackage.MODEL__ABSTRACT:
+				return abstract_ != ABSTRACT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -542,6 +594,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		result.append(origin);
 		result.append(", fileExtension: ");
 		result.append(fileExtension);
+		result.append(", abstract: ");
+		result.append(abstract_);
 		result.append(')');
 		return result.toString();
 	}

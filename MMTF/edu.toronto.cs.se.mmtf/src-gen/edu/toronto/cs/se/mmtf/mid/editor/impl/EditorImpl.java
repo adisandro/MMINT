@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EditorImpl#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EditorImpl#getWizardId <em>Wizard Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EditorImpl#getFileExtensions <em>File Extensions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.impl.EditorImpl#getWizardDialogClass <em>Wizard Dialog Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -116,6 +117,26 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 * @ordered
 	 */
 	protected EList<String> fileExtensions;
+
+	/**
+	 * The default value of the '{@link #getWizardDialogClass() <em>Wizard Dialog Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWizardDialogClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String WIZARD_DIALOG_CLASS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getWizardDialogClass() <em>Wizard Dialog Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWizardDialogClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected String wizardDialogClass = WIZARD_DIALOG_CLASS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -216,6 +237,27 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getWizardDialogClass() {
+		return wizardDialogClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWizardDialogClass(String newWizardDialogClass) {
+		String oldWizardDialogClass = wizardDialogClass;
+		wizardDialogClass = newWizardDialogClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_DIALOG_CLASS, oldWizardDialogClass, wizardDialogClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Editor getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Editor) metatype;
@@ -247,6 +289,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				return getWizardId();
 			case EditorPackage.EDITOR__FILE_EXTENSIONS:
 				return getFileExtensions();
+			case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+				return getWizardDialogClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -273,6 +317,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				getFileExtensions().clear();
 				getFileExtensions().addAll((Collection<? extends String>)newValue);
 				return;
+			case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+				setWizardDialogClass((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -297,6 +344,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 			case EditorPackage.EDITOR__FILE_EXTENSIONS:
 				getFileExtensions().clear();
 				return;
+			case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+				setWizardDialogClass(WIZARD_DIALOG_CLASS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -317,6 +367,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				return WIZARD_ID_EDEFAULT == null ? wizardId != null : !WIZARD_ID_EDEFAULT.equals(wizardId);
 			case EditorPackage.EDITOR__FILE_EXTENSIONS:
 				return fileExtensions != null && !fileExtensions.isEmpty();
+			case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+				return WIZARD_DIALOG_CLASS_EDEFAULT == null ? wizardDialogClass != null : !WIZARD_DIALOG_CLASS_EDEFAULT.equals(wizardDialogClass);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -355,6 +407,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		result.append(wizardId);
 		result.append(", fileExtensions: ");
 		result.append(fileExtensions);
+		result.append(", wizardDialogClass: ");
+		result.append(wizardDialogClass);
 		result.append(')');
 		return result.toString();
 	}

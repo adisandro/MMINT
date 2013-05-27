@@ -132,7 +132,20 @@ public class MidDiagramTrait {
 		IWorkbenchWizard wizard = descriptor.createWizard();
 		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection(multiModelContainer));
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ModelCreationWizardDialog wizDialog = new ModelCreationWizardDialog(shell, wizard);
+		String wizardDialogClassName = editorType.getWizardDialogClass();
+		ModelCreationWizardDialog wizDialog = null;
+		if (wizardDialogClassName == null) {
+			wizDialog = new ModelCreationWizardDialog(shell, wizard);
+		}
+		else {
+			try {
+				wizDialog = (ModelCreationWizardDialog) Class.forName(wizardDialogClassName).getConstructor(Shell.class, IWorkbenchWizard.class).newInstance(shell, wizard);
+			}
+			catch (Exception e) {
+				MMTFException.print(MMTFException.Type.WARNING, "Custom model creation wizard error: " + wizardDialogClassName, e);
+				wizDialog = new ModelCreationWizardDialog(shell, wizard);
+			}
+		}
 		wizDialog.setTitle(wizard.getWindowTitle());
 		if (wizDialog.open() == Window.CANCEL) {
 			throw new MMTFException("Wizard dialog cancel button pressed");

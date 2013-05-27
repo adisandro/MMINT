@@ -17,7 +17,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="false">
          <extendibleType
                name="UML"
                uri="http://www.eclipse.org/uml2/4.0.0/UML">
@@ -42,9 +43,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLModelCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <extendibleType
                name="UML diagram"

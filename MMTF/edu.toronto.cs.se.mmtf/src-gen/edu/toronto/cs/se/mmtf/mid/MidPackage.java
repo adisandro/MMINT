@@ -678,13 +678,22 @@ public interface MidPackage extends EPackage {
 	int MODEL__CONVERSION_OPERATORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__ABSTRACT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
+	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -734,22 +743,22 @@ public interface MidPackage extends EPackage {
 	int MODEL_CONSTRAINT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Body</b></em>' attribute.
+	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONSTRAINT__BODY = 0;
+	int MODEL_CONSTRAINT__IMPLEMENTATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Engine</b></em>' attribute.
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONSTRAINT__ENGINE = 1;
+	int MODEL_CONSTRAINT__LANGUAGE = 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Constraint</em>' class.
@@ -1170,6 +1179,16 @@ public interface MidPackage extends EPackage {
 	int MODEL_ORIGIN = 10;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage <em>Model Constraint Language</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraintLanguage()
+	 * @generated
+	 */
+	int MODEL_CONSTRAINT_LANGUAGE = 11;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1178,16 +1197,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_ELEMENT_CATEGORY = 12;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine <em>Model Constraint Engine</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraintEngine()
-	 * @generated
-	 */
-	int MODEL_CONSTRAINT_ENGINE = 11;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -1492,6 +1501,17 @@ public interface MidPackage extends EPackage {
 	EReference getModel_ConversionOperators();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.Model#isAbstract <em>Abstract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Abstract</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#isAbstract()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EAttribute getModel_Abstract();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#getMetatype() <em>Get Metatype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1608,26 +1628,26 @@ public interface MidPackage extends EPackage {
 	EClass getModelConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getBody <em>Body</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation <em>Implementation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Body</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint#getBody()
+	 * @return the meta object for the attribute '<em>Implementation</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation()
 	 * @see #getModelConstraint()
 	 * @generated
 	 */
-	EAttribute getModelConstraint_Body();
+	EAttribute getModelConstraint_Implementation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getEngine <em>Engine</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage <em>Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Engine</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint#getEngine()
+	 * @return the meta object for the attribute '<em>Language</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage()
 	 * @see #getModelConstraint()
 	 * @generated
 	 */
-	EAttribute getModelConstraint_Engine();
+	EAttribute getModelConstraint_Language();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard <em>Model Element Entity Wildcard</em>}'.
@@ -1711,6 +1731,16 @@ public interface MidPackage extends EPackage {
 	EEnum getModelOrigin();
 
 	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage <em>Model Constraint Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Model Constraint Language</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
+	 * @generated
+	 */
+	EEnum getModelConstraintLanguage();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1719,16 +1749,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getModelElementCategory();
-
-	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine <em>Model Constraint Engine</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Model Constraint Engine</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine
-	 * @generated
-	 */
-	EEnum getModelConstraintEngine();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1986,6 +2006,14 @@ public interface MidPackage extends EPackage {
 		EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
 
 		/**
+		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL__ABSTRACT = eINSTANCE.getModel_Abstract();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2080,20 +2108,20 @@ public interface MidPackage extends EPackage {
 		EClass MODEL_CONSTRAINT = eINSTANCE.getModelConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Body</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_CONSTRAINT__BODY = eINSTANCE.getModelConstraint_Body();
+		EAttribute MODEL_CONSTRAINT__IMPLEMENTATION = eINSTANCE.getModelConstraint_Implementation();
 
 		/**
-		 * The meta object literal for the '<em><b>Engine</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_CONSTRAINT__ENGINE = eINSTANCE.getModelConstraint_Engine();
+		EAttribute MODEL_CONSTRAINT__LANGUAGE = eINSTANCE.getModelConstraint_Language();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementEntityWildcardImpl <em>Model Element Entity Wildcard</em>}' class.
@@ -2168,6 +2196,16 @@ public interface MidPackage extends EPackage {
 		EEnum MODEL_ORIGIN = eINSTANCE.getModelOrigin();
 
 		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage <em>Model Constraint Language</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraintLanguage()
+		 * @generated
+		 */
+		EEnum MODEL_CONSTRAINT_LANGUAGE = eINSTANCE.getModelConstraintLanguage();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2176,16 +2214,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MODEL_ELEMENT_CATEGORY = eINSTANCE.getModelElementCategory();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine <em>Model Constraint Engine</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraintEngine()
-		 * @generated
-		 */
-		EEnum MODEL_CONSTRAINT_ENGINE = eINSTANCE.getModelConstraintEngine();
 
 	}
 

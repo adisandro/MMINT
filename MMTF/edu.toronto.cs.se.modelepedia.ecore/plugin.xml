@@ -17,7 +17,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="false">
          <extendibleType
                name="Ecore"
                uri="http://www.eclipse.org/emf/2002/Ecore">
@@ -42,9 +43,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
             id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
             isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.ecore.ui.EcoreModelCreationWizardDialog"
             wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
          <extendibleType
                name="Ecore diagram"

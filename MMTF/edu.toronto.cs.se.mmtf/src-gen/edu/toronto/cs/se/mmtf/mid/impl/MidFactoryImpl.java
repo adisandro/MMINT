@@ -92,8 +92,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return createMidLevelFromString(eDataType, initialValue);
 			case MidPackage.MODEL_ORIGIN:
 				return createModelOriginFromString(eDataType, initialValue);
-			case MidPackage.MODEL_CONSTRAINT_ENGINE:
-				return createModelConstraintEngineFromString(eDataType, initialValue);
+			case MidPackage.MODEL_CONSTRAINT_LANGUAGE:
+				return createModelConstraintLanguageFromString(eDataType, initialValue);
 			case MidPackage.MODEL_ELEMENT_CATEGORY:
 				return createModelElementCategoryFromString(eDataType, initialValue);
 			default:
@@ -113,8 +113,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return convertMidLevelToString(eDataType, instanceValue);
 			case MidPackage.MODEL_ORIGIN:
 				return convertModelOriginToString(eDataType, instanceValue);
-			case MidPackage.MODEL_CONSTRAINT_ENGINE:
-				return convertModelConstraintEngineToString(eDataType, instanceValue);
+			case MidPackage.MODEL_CONSTRAINT_LANGUAGE:
+				return convertModelConstraintLanguageToString(eDataType, instanceValue);
 			case MidPackage.MODEL_ELEMENT_CATEGORY:
 				return convertModelElementCategoryToString(eDataType, instanceValue);
 			default:
@@ -237,6 +237,26 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ModelConstraintLanguage createModelConstraintLanguageFromString(EDataType eDataType, String initialValue) {
+		ModelConstraintLanguage result = ModelConstraintLanguage.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertModelConstraintLanguageToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelElementCategory createModelElementCategoryFromString(EDataType eDataType, String initialValue) {
 		ModelElementCategory result = ModelElementCategory.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -249,26 +269,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * @generated
 	 */
 	public String convertModelElementCategoryToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelConstraintEngine createModelConstraintEngineFromString(EDataType eDataType, String initialValue) {
-		ModelConstraintEngine result = ModelConstraintEngine.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertModelConstraintEngineToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

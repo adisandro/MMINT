@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getWizardId <em>Wizard Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getFileExtensions <em>File Extensions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getWizardDialogClass <em>Wizard Dialog Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -128,6 +129,31 @@ public interface Editor extends ExtendibleElement {
 	 * @generated
 	 */
 	EList<String> getFileExtensions();
+
+	/**
+	 * Returns the value of the '<em><b>Wizard Dialog Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The wizard dialog used to create a model instance through this editor.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Wizard Dialog Class</em>' attribute.
+	 * @see #setWizardDialogClass(String)
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.EditorPackage#getEditor_WizardDialogClass()
+	 * @model
+	 * @generated
+	 */
+	String getWizardDialogClass();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getWizardDialogClass <em>Wizard Dialog Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Wizard Dialog Class</em>' attribute.
+	 * @see #getWizardDialogClass()
+	 * @generated
+	 */
+	void setWizardDialogClass(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -94,6 +94,16 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="wizardDialogClass" type="string">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java class that handles the creation of a model through this editor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

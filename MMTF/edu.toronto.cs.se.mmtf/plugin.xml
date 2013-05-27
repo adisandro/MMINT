@@ -28,7 +28,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="true">
          <extendibleType
                name="Model"
                uri="http://se.cs.toronto.edu/mmtf/Model">
@@ -45,7 +46,8 @@
    <extension
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
-         <modelType>
+         <modelType
+               isAbstract="true">
             <extendibleType
                   name="ModelRel"
                   uri="http://se.cs.toronto.edu/mmtf/ModelRel"
@@ -119,7 +121,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="false">
          <extendibleType
                name="MID"
                uri="http://se.cs.toronto.edu/mmtf/MID">
@@ -136,7 +139,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="false">
          <extendibleType
                name="Relationship"
                uri="http://se.cs.toronto.edu/mmtf/MID/Relationship">
@@ -167,12 +171,16 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
-            constraint="oclIsKindOf(mavo::MAVOModel)">
+            isAbstract="true">
          <extendibleType
                name="MAVOModel"
                uri="http://se.cs.toronto.edu/mmtf/MAVO"
                supertypeUri="http://se.cs.toronto.edu/mmtf/Model">
          </extendibleType>
+         <constraint
+               implementation="oclIsKindOf(mavo::MAVOModel)"
+               language="OCL">
+         </constraint>
       </modelType>
    </extension>
 
@@ -186,12 +194,16 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType
-               constraint="modelEndpoints-&gt;at(1).target.metatypeUri = modelEndpoints-&gt;at(2).target.metatypeUri and links-&gt;forAll(let origModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.uri), refinedModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(2).target.uri) in ((origModelElemEndpoints-&gt;size() = 1 and ((not origModelElemEndpoints-&gt;at(1).target.may implies refinedModelElemEndpoints-&gt;exists(not target.may)) and (not origModelElemEndpoints-&gt;at(1).target.set implies (refinedModelElemEndpoints-&gt;size() = 1 and refinedModelElemEndpoints-&gt;exists(not target.set))) and (not origModelElemEndpoints-&gt;at(1).target.var implies refinedModelElemEndpoints-&gt;forAll(not target.var)))) or (origModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;at(1).target.may and refinedModelElemEndpoints-&gt;isEmpty())) or (refinedModelElemEndpoints-&gt;size() = 1 and ((origModelElemEndpoints-&gt;exists(not target.may) implies not refinedModelElemEndpoints-&gt;at(1).target.may) and (origModelElemEndpoints-&gt;exists(not target.set) implies not refinedModelElemEndpoints-&gt;at(1).target.set) and (origModelElemEndpoints-&gt;exists(not target.var) implies (origModelElemEndpoints-&gt;one(not target.var) and not refinedModelElemEndpoints-&gt;at(1).target.var)))) or (refinedModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;isEmpty() and oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.oclAsType(mid::Model).inc))))">
+               isAbstract="true">
             <extendibleType
                   name="MAVORefinementRel"
                   uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel"
                   supertypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </extendibleType>
+            <constraint
+                  implementation="modelEndpoints-&gt;at(1).target.metatypeUri = modelEndpoints-&gt;at(2).target.metatypeUri and links-&gt;forAll(let origModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.uri), refinedModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(2).target.uri) in ((origModelElemEndpoints-&gt;size() = 1 and ((not origModelElemEndpoints-&gt;at(1).target.may implies refinedModelElemEndpoints-&gt;exists(not target.may)) and (not origModelElemEndpoints-&gt;at(1).target.set implies (refinedModelElemEndpoints-&gt;size() = 1 and refinedModelElemEndpoints-&gt;exists(not target.set))) and (not origModelElemEndpoints-&gt;at(1).target.var implies refinedModelElemEndpoints-&gt;forAll(not target.var)))) or (origModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;at(1).target.may and refinedModelElemEndpoints-&gt;isEmpty())) or (refinedModelElemEndpoints-&gt;size() = 1 and ((origModelElemEndpoints-&gt;exists(not target.may) implies not refinedModelElemEndpoints-&gt;at(1).target.may) and (origModelElemEndpoints-&gt;exists(not target.set) implies not refinedModelElemEndpoints-&gt;at(1).target.set) and (origModelElemEndpoints-&gt;exists(not target.var) implies (origModelElemEndpoints-&gt;one(not target.var) and not refinedModelElemEndpoints-&gt;at(1).target.var)))) or (refinedModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;isEmpty() and oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.oclAsType(mid::Model).inc))))"
+                  language="OCL">
+            </constraint>
          </modelType>
          <modelTypeEndpoint>
             <extendibleType

@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getBody <em>Body</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getEngine <em>Engine</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation <em>Implementation</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage <em>Language</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,56 +36,56 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ModelConstraint extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Body</b></em>' attribute.
+	 * Returns the value of the '<em><b>Implementation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The constraint definition, using the engine language.
+	 * The constraint implementation.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Body</em>' attribute.
-	 * @see #setBody(String)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraint_Body()
+	 * @return the value of the '<em>Implementation</em>' attribute.
+	 * @see #setImplementation(String)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraint_Implementation()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getBody();
+	String getImplementation();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getBody <em>Body</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Body</em>' attribute.
-	 * @see #getBody()
+	 * @param value the new value of the '<em>Implementation</em>' attribute.
+	 * @see #getImplementation()
 	 * @generated
 	 */
-	void setBody(String value);
+	void setImplementation(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Engine</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine}.
+	 * Returns the value of the '<em><b>Language</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The engine used to evaluate the constraint.
+	 * The language used to evaluate the constraint.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Engine</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine
-	 * @see #setEngine(ModelConstraintEngine)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraint_Engine()
+	 * @return the value of the '<em>Language</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
+	 * @see #setLanguage(ModelConstraintLanguage)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraint_Language()
 	 * @model required="true"
 	 * @generated
 	 */
-	ModelConstraintEngine getEngine();
+	ModelConstraintLanguage getLanguage();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getEngine <em>Engine</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage <em>Language</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Engine</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine
-	 * @see #getEngine()
+	 * @param value the new value of the '<em>Language</em>' attribute.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
+	 * @see #getLanguage()
 	 * @generated
 	 */
-	void setEngine(ModelConstraintEngine value);
+	void setLanguage(ModelConstraintLanguage value);
 
 } // ModelConstraint

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -68,18 +69,18 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		newType.setDynamic(true);
 	}
 
-	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraint) throws MMTFException {
+	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String oclConstraint) throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) modelType.eContainer();
 		addLightExtendibleType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);
-		addModelType(newModelType, constraint, multiModel);
+		addModelType(newModelType, true, ModelConstraintLanguage.OCL.getLiteral(), oclConstraint, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 		newModelType.setFileExtension(modelType.getFileExtension());
 		for (Editor editorType : modelType.getEditors()) {
 			//TODO MMTF: a new editor is created instead of attaching existing ones
 			//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
 			try {
-				Editor newEditorType = createLightEditorType(editorType, newModelType.getName(), editorType.getName(), newModelType.getUri(), editorType.getId(), editorType.getWizardId(), editorType.eClass());
+				Editor newEditorType = createLightEditorType(editorType, newModelType.getName(), editorType.getName(), newModelType.getUri(), editorType.getId(), editorType.getWizardId(), editorType.getWizardDialogClass(), editorType.eClass());
 				addModelTypeEditor(newEditorType, newModelType);
 			}
 			catch (MMTFException e) {
@@ -89,10 +90,10 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
-	public static Model createLightModelType(Model modelType, String newModelTypeName, String constraint) throws MMTFException {
+	public static Model createLightModelType(Model modelType, String newModelTypeName, String oclConstraint) throws MMTFException {
 
 		Model newModelType = MidFactory.eINSTANCE.createModel();
-		addLightModelType(newModelType, modelType, newModelTypeName, constraint);
+		addLightModelType(newModelType, modelType, newModelTypeName, oclConstraint);
 
 		return newModelType;
 	}
@@ -125,10 +126,10 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newModelElemTypeRef;
 	}
 
-	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String constraint, EClass modelRelTypeClass) throws MMTFException {
+	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String oclConstraint, EClass modelRelTypeClass) throws MMTFException {
 
 		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
-		addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraint);
+		addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, oclConstraint);
 		addModelRelType(newModelRelType, modelRelType);
 
 		return newModelRelType;
@@ -258,12 +259,12 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
-	public static Editor createLightEditorType(Editor editorType, String newEditorTypeUriFragment, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, EClass newEditorTypeClass) throws MMTFException {
+	public static Editor createLightEditorType(Editor editorType, String newEditorTypeUriFragment, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, EClass newEditorTypeClass) throws MMTFException {
 
 		Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
 		MultiModel multiModel = (MultiModel) editorType.eContainer();
 		addLightExtendibleType(newEditorType, editorType, editorType, newEditorTypeUriFragment, newEditorTypeName, multiModel);
-		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, multiModel);
+		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, multiModel);
 
 		for (String fileExtension : editorType.getFileExtensions()) {
 			newEditorType.getFileExtensions().add(fileExtension);

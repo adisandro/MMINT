@@ -67,7 +67,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		newType.setDynamic(false);
 	}
 
-	private static void addHeavyModelType(Model newModelType, String newModelTypeUri, String modelTypeUri, String newModelTypeName, String constraint) throws MMTFException {
+	private static void addHeavyModelType(Model newModelType, String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(newModelTypeUri);
 		if (modelPackage == null) {
@@ -75,7 +75,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		}
 		Model modelType = getSupertype(newModelType, newModelTypeUri, modelTypeUri);
 		addHeavyExtendibleType(newModelType, modelType, newModelTypeUri, newModelTypeName);
-		addModelType(newModelType, constraint, MMTF.repository);
+		addModelType(newModelType, newModelTypeAbstract, constraintLanguage, constraintImplementation, MMTF.repository);
 		newModelType.setOrigin(ModelOrigin.IMPORTED);
 
 		String modelPackageName = modelPackage.getName();
@@ -87,10 +87,10 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
-	public static Model createHeavyModelType(String newModelTypeUri, String modelTypeUri, String newModelTypeName, String constraint) throws MMTFException {
+	public static Model createHeavyModelType(String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		Model newModelType = MidFactory.eINSTANCE.createModel();
-		addHeavyModelType(newModelType, newModelTypeUri, modelTypeUri, newModelTypeName, constraint);
+		addHeavyModelType(newModelType, newModelTypeUri, modelTypeUri, newModelTypeName, newModelTypeAbstract, constraintLanguage, constraintImplementation);
 
 		return newModelType;
 	}
@@ -106,15 +106,15 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newModelElemType;
 	}
 
-	public static ModelRel createHeavyModelRelType(String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, String constraint, EClass modelRelTypeClass) throws MMTFException {
+	public static ModelRel createHeavyModelRelType(String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean newModelRelTypeAbstract, String constraintLanguage, String constraintImplementation, EClass modelRelTypeClass) throws MMTFException {
 
 		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
 		if (MMTF.ROOT_MODEL_URI.equals(modelRelTypeUri)) { // root ModelRel's supertype
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, constraint);
+			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, newModelRelTypeAbstract, constraintLanguage, constraintImplementation);
 		}
 		else {
 			ModelRel modelRelType = getSupertype(newModelRelType, newModelRelTypeUri, modelRelTypeUri);
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, constraint);
+			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, newModelRelTypeAbstract, constraintLanguage, constraintImplementation);
 			addModelRelType(newModelRelType, modelRelType);
 		}
 
@@ -169,12 +169,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newModelElemTypeEndpointRef;
 	}
 
-	public static Editor createHeavyEditorType(String newEditorTypeUri, String editorTypeUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, EClass newEditorTypeClass) throws MMTFException {
+	public static Editor createHeavyEditorType(String newEditorTypeUri, String editorTypeUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, EClass newEditorTypeClass) throws MMTFException {
 
 		Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(newEditorTypeClass);
 		Editor editorType = getSupertype(newEditorType, newEditorTypeUri, editorTypeUri);
 		addHeavyExtendibleType(newEditorType, editorType, newEditorTypeUri, newEditorTypeName);
-		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, MMTF.repository);
+		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, MMTF.repository);
 
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {

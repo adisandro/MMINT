@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -93,11 +93,15 @@ public class MultiModelTypeFactory {
 		newElementTypeRef.setSupertypeRef(elementTypeRef);
 	}
 
-	protected static void addModelType(Model newModelType, String constraint, MultiModel multiModel) {
+	protected static void addModelType(Model newModelType, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
 
-		ModelConstraint modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
-		modelConstraint.setBody(constraint);
-		modelConstraint.setEngine(ModelConstraintEngine.OCL);
+		newModelType.setAbstract(newModelTypeAbstract);
+		ModelConstraint modelConstraint = null;
+		if (constraintLanguage != null) {
+			modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
+			modelConstraint.setLanguage(ModelConstraintLanguage.valueOf(constraintLanguage));
+			modelConstraint.setImplementation(constraintImplementation);
+		}
 		newModelType.setConstraint(modelConstraint);
 
 		multiModel.getModels().add(newModelType);
@@ -212,11 +216,12 @@ public class MultiModelTypeFactory {
 		linkType.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
 	}
 
-	protected static void addEditorType(Editor newEditorType, String modelTypeUri, String editorId, String wizardId, MultiModel multiModel) {
+	protected static void addEditorType(Editor newEditorType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, MultiModel multiModel) {
 
 		newEditorType.setModelUri(modelTypeUri);
 		newEditorType.setId(editorId);
 		newEditorType.setWizardId(wizardId);
+		newEditorType.setWizardDialogClass(wizardDialogClassName);
 
 		multiModel.getEditors().add(newEditorType);
 	}

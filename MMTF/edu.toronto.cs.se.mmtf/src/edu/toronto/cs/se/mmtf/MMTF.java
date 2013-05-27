@@ -103,19 +103,25 @@ public class MMTF implements MMTFConstants {
 	public static Model createModelType(IConfigurationElement extensionConfig) {
 
 		try {
-			String constraint = extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_CONSTRAINT);
-			if (constraint == null) {
-				constraint = "";
-			}
+			boolean newModelTypeAbstract = Boolean.parseBoolean(extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
 			IConfigurationElement typeConfig = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String newModelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
 			String modelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
 			String newModelTypeName = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
+			IConfigurationElement[] constraintConfig = extensionConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
+			String constraintLanguage = (constraintConfig.length == 0) ?
+				null :
+				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
+			String constraintImplementation = (constraintConfig.length == 0) ?
+				null :
+				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 			Model newModelType = MultiModelHeavyTypeFactory.createHeavyModelType(
 				newModelTypeUri,
 				modelTypeUri,
 				newModelTypeName,
-				constraint
+				newModelTypeAbstract,
+				constraintLanguage,
+				constraintImplementation
 			);
 
 			return newModelType;
@@ -140,10 +146,7 @@ public class MMTF implements MMTFConstants {
 
 		try {
 			IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
-			String constraint = modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_CONSTRAINT);
-			if (constraint == null) {
-				constraint = "";
-			}
+			boolean newModelRelTypeAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
 			IConfigurationElement typeConfig = modelTypeConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
 			String newModelRelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
 			String modelRelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
@@ -152,11 +155,20 @@ public class MMTF implements MMTFConstants {
 			EClass newModelRelTypeClass = (modelTypeEndpointConfigs.length == 2) ?
 				RelationshipPackage.eINSTANCE.getBinaryModelRel() :
 				RelationshipPackage.eINSTANCE.getModelRel();
+			IConfigurationElement[] constraintConfig = modelTypeConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
+			String constraintLanguage = (constraintConfig.length == 0) ?
+				null :
+				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
+			String constraintImplementation = (constraintConfig.length == 0) ?
+				null :
+				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 			ModelRel newModelRelType = MultiModelHeavyTypeFactory.createHeavyModelRelType(
 				newModelRelTypeUri,
 				modelRelTypeUri,
 				newModelRelTypeName,
-				constraint,
+				newModelRelTypeAbstract,
+				constraintLanguage,
+				constraintImplementation,
 				newModelRelTypeClass
 			);
 			// model type endpoints
@@ -307,10 +319,11 @@ public class MMTF implements MMTFConstants {
 			String modelTypeUri = extensionConfig.getAttribute(EDITORS_ATTR_MODELTYPEURI);
 			String editorId = extensionConfig.getAttribute(EDITORS_ATTR_ID);
 			String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDID);
+			String wizardDialogClassName = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDDIALOGCLASS);
 			EClass newEditorTypeClass = (Boolean.parseBoolean(extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM))) ?
 				EditorPackage.eINSTANCE.getDiagram() :
 				EditorPackage.eINSTANCE.getEditor();
-			Editor newEditorType = MultiModelHeavyTypeFactory.createHeavyEditorType(newEditorTypeUri, editorTypeUri, newEditorTypeName, modelTypeUri, editorId, wizardId, newEditorTypeClass);
+			Editor newEditorType = MultiModelHeavyTypeFactory.createHeavyEditorType(newEditorTypeUri, editorTypeUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName, newEditorTypeClass);
 
 			return newEditorType;
 		}
@@ -510,7 +523,7 @@ public class MMTF implements MMTFConstants {
 				newModelType = MultiModelLightTypeFactory.createLightModelRelType(
 					(ModelRel) modelType,
 					dynamicModelType.getName(),
-					dynamicModelType.getConstraint().getBody(),
+					dynamicModelType.getConstraint().getImplementation(),
 					dynamicModelType.eClass()
 				);
 				MultiModelLightTypeFactory.copyLightModelRelType((ModelRel) dynamicModelType, (ModelRel) newModelType);
@@ -524,7 +537,7 @@ public class MMTF implements MMTFConstants {
 				newModelType = MultiModelLightTypeFactory.createLightModelType(
 					modelType, 
 					dynamicModelType.getName(),
-					dynamicModelType.getConstraint().getBody()
+					dynamicModelType.getConstraint().getImplementation()
 				);
 			}
 			catch (MMTFException e) {

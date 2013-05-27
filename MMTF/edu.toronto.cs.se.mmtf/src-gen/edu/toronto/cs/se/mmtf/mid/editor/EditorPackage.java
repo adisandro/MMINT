@@ -213,13 +213,22 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__FILE_EXTENSIONS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Wizard Dialog Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__WIZARD_DIALOG_CLASS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Editor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int EDITOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -394,6 +403,15 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM__FILE_EXTENSIONS = EDITOR__FILE_EXTENSIONS;
 
 	/**
+	 * The feature id for the '<em><b>Wizard Dialog Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__WIZARD_DIALOG_CLASS = EDITOR__WIZARD_DIALOG_CLASS;
+
+	/**
 	 * The number of structural features of the '<em>Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -483,6 +501,17 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEditor_FileExtensions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getWizardDialogClass <em>Wizard Dialog Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Wizard Dialog Class</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Editor#getWizardDialogClass()
+	 * @see #getEditor()
+	 * @generated
+	 */
+	EAttribute getEditor_WizardDialogClass();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#getMetatype() <em>Get Metatype</em>}' operation.
@@ -578,6 +607,14 @@ public interface EditorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EDITOR__FILE_EXTENSIONS = eINSTANCE.getEditor_FileExtensions();
+
+		/**
+		 * The meta object literal for the '<em><b>Wizard Dialog Class</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EDITOR__WIZARD_DIALOG_CLASS = eINSTANCE.getEditor_WizardDialogClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.

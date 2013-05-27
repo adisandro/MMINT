@@ -20,7 +20,7 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard;
@@ -138,14 +138,14 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum modelElementCategoryEEnum = null;
+	private EEnum modelConstraintLanguageEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum modelConstraintEngineEEnum = null;
+	private EEnum modelElementCategoryEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -488,6 +488,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getModel_Abstract() {
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getModel__GetMetatype() {
 		return modelEClass.getEOperations().get(0);
 	}
@@ -587,7 +596,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModelConstraint_Body() {
+	public EAttribute getModelConstraint_Implementation() {
 		return (EAttribute)modelConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -596,7 +605,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModelConstraint_Engine() {
+	public EAttribute getModelConstraint_Language() {
 		return (EAttribute)modelConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -677,8 +686,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getModelElementCategory() {
-		return modelElementCategoryEEnum;
+	public EEnum getModelConstraintLanguage() {
+		return modelConstraintLanguageEEnum;
 	}
 
 	/**
@@ -686,8 +695,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getModelConstraintEngine() {
-		return modelConstraintEngineEEnum;
+	public EEnum getModelElementCategory() {
+		return modelElementCategoryEEnum;
 	}
 
 	/**
@@ -753,12 +762,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEReference(modelEClass, MODEL__ELEMENTS);
 		createEReference(modelEClass, MODEL__CONSTRAINT);
 		createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
+		createEAttribute(modelEClass, MODEL__ABSTRACT);
 		createEOperation(modelEClass, MODEL___GET_METATYPE);
 		createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
 
 		modelConstraintEClass = createEClass(MODEL_CONSTRAINT);
-		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__BODY);
-		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__ENGINE);
+		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__IMPLEMENTATION);
+		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__LANGUAGE);
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CATEGORY);
@@ -777,7 +787,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
 		modelOriginEEnum = createEEnum(MODEL_ORIGIN);
-		modelConstraintEngineEEnum = createEEnum(MODEL_CONSTRAINT_ENGINE);
+		modelConstraintLanguageEEnum = createEEnum(MODEL_CONSTRAINT_LANGUAGE);
 		modelElementCategoryEEnum = createEEnum(MODEL_ELEMENT_CATEGORY);
 	}
 
@@ -866,14 +876,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getModel_Elements(), this.getModelElement(), null, "elements", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_Constraint(), this.getModelConstraint(), null, "constraint", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_ConversionOperators(), theOperatorPackage.getConversionOperator(), null, "conversionOperators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModel_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModel__GetMetatype(), this.getModel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModel__GetSupertype(), this.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelConstraintEClass, ModelConstraint.class, "ModelConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelConstraint_Body(), ecorePackage.getEString(), "body", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelConstraint_Engine(), this.getModelConstraintEngine(), "engine", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelConstraint_Implementation(), ecorePackage.getEString(), "implementation", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelConstraint_Language(), this.getModelConstraintLanguage(), "language", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelElement_Category(), this.getModelElementCategory(), "category", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -903,8 +914,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEEnumLiteral(modelOriginEEnum, ModelOrigin.IMPORTED);
 		addEEnumLiteral(modelOriginEEnum, ModelOrigin.CREATED);
 
-		initEEnum(modelConstraintEngineEEnum, ModelConstraintEngine.class, "ModelConstraintEngine");
-		addEEnumLiteral(modelConstraintEngineEEnum, ModelConstraintEngine.OCL);
+		initEEnum(modelConstraintLanguageEEnum, ModelConstraintLanguage.class, "ModelConstraintLanguage");
+		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.OCL);
+		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.JAVA);
 
 		initEEnum(modelElementCategoryEEnum, ModelElementCategory.class, "ModelElementCategory");
 		addEEnumLiteral(modelElementCategoryEEnum, ModelElementCategory.ENTITY);
@@ -947,7 +959,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																													
+		   });																																															
 	}
 
 	/**
@@ -977,7 +989,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																					
+		   });																																							
 	}
 
 } //MidPackageImpl

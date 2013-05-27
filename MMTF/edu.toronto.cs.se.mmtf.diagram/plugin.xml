@@ -642,20 +642,6 @@ Contributors:
       <?gmfgen generated="true"?>
    </extension>
 
-   <extension
-         point="edu.toronto.cs.se.mmtf.editors">
-      <editorType
-            modelTypeUri="http://se.cs.toronto.edu/mmtf/MID"
-            id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"
-            isDiagram="true"
-            wizardId="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
-         <extendibleType
-               name="MID diagram"
-               uri="http://se.cs.toronto.edu/mmtf/MID_diagram">
-         </extendibleType>
-      </editorType>
-   </extension>
-
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
@@ -701,19 +687,6 @@ Contributors:
       </menuContribution>
    </extension>
 
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
-            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
-            name="Open Type MID">
-      </command>
-      <command
-            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
-            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
-            name="Open MMTF Wiki">
-      </command>
-   </extension>
 <extension point="org.eclipse.emf.validation.constraintProviders">
       <?gmfgen generated="true"?>
             <category id="ModelValidationContainer" mandatory="false" name="ModelValidationContainer">
@@ -752,6 +725,34 @@ Contributors:
       <clientContext id="edu.toronto.cs.se.mmtf.diagramDefaultCtx"/>
    </extension>
 
-
    <!-- optionally, specify keybindings -->
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
+            name="Open Type MID">
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
+            name="Open MMTF Wiki">
+      </command>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmtf/MID"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"
+            isDiagram="true"
+            wizardId="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
+         <extendibleType
+               name="MID diagram"
+               uri="http://se.cs.toronto.edu/mmtf/MID_diagram">
+         </extendibleType>
+      </editorType>
+   </extension>
+
 </plugin>

@@ -69,26 +69,26 @@ public class ModelConstraintItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addBodyPropertyDescriptor(object);
-			addEnginePropertyDescriptor(object);
+			addImplementationPropertyDescriptor(object);
+			addLanguagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Body feature.
+	 * This adds a property descriptor for the Implementation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyPropertyDescriptor(Object object) {
+	protected void addImplementationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelConstraint_body_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelConstraint_body_feature", "_UI_ModelConstraint_type"),
-				 MidPackage.Literals.MODEL_CONSTRAINT__BODY,
+				 getString("_UI_ModelConstraint_implementation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelConstraint_implementation_feature", "_UI_ModelConstraint_type"),
+				 MidPackage.Literals.MODEL_CONSTRAINT__IMPLEMENTATION,
 				 true,
 				 false,
 				 false,
@@ -98,19 +98,19 @@ public class ModelConstraintItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Engine feature.
+	 * This adds a property descriptor for the Language feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEnginePropertyDescriptor(Object object) {
+	protected void addLanguagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelConstraint_engine_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelConstraint_engine_feature", "_UI_ModelConstraint_type"),
-				 MidPackage.Literals.MODEL_CONSTRAINT__ENGINE,
+				 getString("_UI_ModelConstraint_language_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelConstraint_language_feature", "_UI_ModelConstraint_type"),
+				 MidPackage.Literals.MODEL_CONSTRAINT__LANGUAGE,
 				 true,
 				 false,
 				 false,
@@ -138,7 +138,7 @@ public class ModelConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelConstraint)object).getBody();
+		String label = ((ModelConstraint)object).getImplementation();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ModelConstraint_type") :
 			getString("_UI_ModelConstraint_type") + " " + label;
@@ -156,8 +156,8 @@ public class ModelConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelConstraint.class)) {
-			case MidPackage.MODEL_CONSTRAINT__BODY:
-			case MidPackage.MODEL_CONSTRAINT__ENGINE:
+			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

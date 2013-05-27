@@ -37,7 +37,6 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -52,6 +51,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.repository.JavaModelConstraint;
 
 /**
  * The constraint checker for multimodels.
@@ -390,32 +390,12 @@ linkTypes:
 		return null;
 	}
 
-	/**
-	 * Checks if a constraint is satisfied on an extendible element (only OCL
-	 * constraints and models are currently evaluated).
-	 * 
-	 * @param element
-	 *            The extendible element.
-	 * @param constraint
-	 *            The constraint.
-	 * @return True if the constraint is satisfied, false otherwise.
-	 */
-	public static boolean checkConstraint(ExtendibleElement element, ModelConstraint constraint) {
+	private static boolean checkOCLConstraint(Model model, String oclConstraint) {
 
-		//TODO MMTF: support all extendible elements?
-		if (!(element instanceof Model)) {
-			return true;
-		}
-		//TODO MMTF: support other engines?
-		if (constraint == null || constraint.getEngine() != ModelConstraintEngine.OCL) {
-			return true;
-		}
-		String oclConstraint = constraint.getBody();
 		if (oclConstraint.equals("")) { // empty constraint
 			return true;
 		}
 
-		Model model = (Model) element;
 		EObject root = null;
 		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VAR)) {
 			String modelTypeEndpointName = oclConstraint.substring(OCL_MODELENDPOINT_VAR.length(), oclConstraint.indexOf(OCL_VAR_SEPARATOR));
@@ -450,8 +430,50 @@ linkTypes:
 			return ocl.check(root, expression);
 		}
 		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "Constraint error: " + oclConstraint, e);
+			MMTFException.print(MMTFException.Type.WARNING, "OCL constraint error: " + oclConstraint, e);
 			return false;
+		}
+	}
+
+	private static boolean checkJAVAConstraint(Model model, String javaClassName) {
+
+		try {
+			JavaModelConstraint javaConstraint = (JavaModelConstraint) Class.forName(javaClassName).getConstructor(Model.class).newInstance(model);
+			return javaConstraint.validate();
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Java constraint error: " + javaClassName, e);
+			return false;
+		}
+	}
+
+	/**
+	 * Checks if a constraint is satisfied on an extendible element (only OCL
+	 * constraints and models are currently evaluated).
+	 * 
+	 * @param element
+	 *            The extendible element.
+	 * @param constraint
+	 *            The constraint.
+	 * @return True if the constraint is satisfied, false otherwise.
+	 */
+	public static boolean checkConstraint(ExtendibleElement element, ModelConstraint constraint) {
+
+		//TODO MMTF: support all extendible elements?
+		if (!(element instanceof Model)) {
+			return true;
+		}
+		if (constraint == null) {
+			return true;
+		}
+
+		switch (constraint.getLanguage()) {
+			case OCL:
+				return checkOCLConstraint((Model) element, constraint.getImplementation());
+			case JAVA:
+				return checkJAVAConstraint((Model) element, constraint.getImplementation());
+			default:
+				return false;
 		}
 	}
 

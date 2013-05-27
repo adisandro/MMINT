@@ -13,8 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintEngine;
-
+import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -29,8 +28,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl#getBody <em>Body</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl#getEngine <em>Engine</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl#getImplementation <em>Implementation</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl#getLanguage <em>Language</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,44 +37,44 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint {
 	/**
-	 * The default value of the '{@link #getBody() <em>Body</em>}' attribute.
+	 * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBody()
+	 * @see #getImplementation()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BODY_EDEFAULT = null;
+	protected static final String IMPLEMENTATION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute.
+	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBody()
+	 * @see #getImplementation()
 	 * @generated
 	 * @ordered
 	 */
-	protected String body = BODY_EDEFAULT;
+	protected String implementation = IMPLEMENTATION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEngine() <em>Engine</em>}' attribute.
+	 * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEngine()
+	 * @see #getLanguage()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ModelConstraintEngine ENGINE_EDEFAULT = ModelConstraintEngine.OCL;
+	protected static final ModelConstraintLanguage LANGUAGE_EDEFAULT = ModelConstraintLanguage.OCL;
 
 	/**
-	 * The cached value of the '{@link #getEngine() <em>Engine</em>}' attribute.
+	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEngine()
+	 * @see #getLanguage()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelConstraintEngine engine = ENGINE_EDEFAULT;
+	protected ModelConstraintLanguage language = LANGUAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,8 +100,8 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBody() {
-		return body;
+	public String getImplementation() {
+		return implementation;
 	}
 
 	/**
@@ -110,11 +109,11 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBody(String newBody) {
-		String oldBody = body;
-		body = newBody;
+	public void setImplementation(String newImplementation) {
+		String oldImplementation = implementation;
+		implementation = newImplementation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_CONSTRAINT__BODY, oldBody, body));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
 	/**
@@ -122,8 +121,8 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConstraintEngine getEngine() {
-		return engine;
+	public ModelConstraintLanguage getLanguage() {
+		return language;
 	}
 
 	/**
@@ -131,11 +130,11 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEngine(ModelConstraintEngine newEngine) {
-		ModelConstraintEngine oldEngine = engine;
-		engine = newEngine == null ? ENGINE_EDEFAULT : newEngine;
+	public void setLanguage(ModelConstraintLanguage newLanguage) {
+		ModelConstraintLanguage oldLanguage = language;
+		language = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_CONSTRAINT__ENGINE, oldEngine, engine));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_CONSTRAINT__LANGUAGE, oldLanguage, language));
 	}
 
 	/**
@@ -146,10 +145,10 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__BODY:
-				return getBody();
-			case MidPackage.MODEL_CONSTRAINT__ENGINE:
-				return getEngine();
+			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+				return getImplementation();
+			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+				return getLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,11 +161,11 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__BODY:
-				setBody((String)newValue);
+			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+				setImplementation((String)newValue);
 				return;
-			case MidPackage.MODEL_CONSTRAINT__ENGINE:
-				setEngine((ModelConstraintEngine)newValue);
+			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+				setLanguage((ModelConstraintLanguage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,11 +179,11 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__BODY:
-				setBody(BODY_EDEFAULT);
+			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
-			case MidPackage.MODEL_CONSTRAINT__ENGINE:
-				setEngine(ENGINE_EDEFAULT);
+			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+				setLanguage(LANGUAGE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -198,10 +197,10 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__BODY:
-				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
-			case MidPackage.MODEL_CONSTRAINT__ENGINE:
-				return engine != ENGINE_EDEFAULT;
+			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
+			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+				return language != LANGUAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -216,10 +215,10 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (body: ");
-		result.append(body);
-		result.append(", engine: ");
-		result.append(engine);
+		result.append(" (implementation: ");
+		result.append(implementation);
+		result.append(", language: ");
+		result.append(language);
 		result.append(')');
 		return result.toString();
 	}
