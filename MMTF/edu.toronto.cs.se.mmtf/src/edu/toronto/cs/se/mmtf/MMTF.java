@@ -88,6 +88,9 @@ public class MMTF implements MMTFConstants {
 	/**	The table for model type conversion in the type MID. */
 	static Map<String, Map<String, List<String>>> conversionTableMID;
 
+	/** The table to map element type uris to their bundle name. */
+	static Map<String, String> bundleTable;
+
 	public static final String TYPE_MID_FILENAME = "types.mid";
 
 	/**
@@ -591,34 +594,43 @@ public class MMTF implements MMTFConstants {
 
 		repository = MidFactory.eINSTANCE.createMultiModel();
 		repository.setLevel(MidLevel.TYPES);
-		IConfigurationElement[] config;
+		bundleTable = new HashMap<String, String>();
+		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
+		IConfigurationElement config;
+		ExtendibleElement type;
 
 		// model types
-		config = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, null, ROOT_MODEL_URI);
+		configs = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_MODEL_URI);
 		while (extensionsIter.hasNext()) {
-			createModelType(extensionsIter.next());
+			config = extensionsIter.next();
+			type = createModelType(config);
+			bundleTable.put(type.getUri(), config.getContributor().getName());
 		}
 
 		// model relationship types
-		config = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
+		configs = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
 		while (extensionsIter.hasNext()) {
-			createModelRelType(extensionsIter.next());
+			config = extensionsIter.next();
+			type = createModelRelType(config);
+			bundleTable.put(type.getUri(), config.getContributor().getName());
 		}
 
 		// editor types
-		config = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, null, null);
+		configs = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
 		while (extensionsIter.hasNext()) {
-			Editor editorType = createEditorType(extensionsIter.next());
+			config = extensionsIter.next();
+			Editor editorType = createEditorType(config);
+			bundleTable.put(editorType.getUri(), config.getContributor().getName());
 			MultiModelHeavyTypeFactory.createHeavyModelTypeEditor(editorType, editorType.getModelUri());
 		}
 
 		// operator types
-		config = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(config, null, null);
+		configs = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
 		while (extensionsIter.hasNext()) {
 			IConfigurationElement extensionConfig = extensionsIter.next();
 			Operator newOperatorType = createOperatorType(extensionConfig);

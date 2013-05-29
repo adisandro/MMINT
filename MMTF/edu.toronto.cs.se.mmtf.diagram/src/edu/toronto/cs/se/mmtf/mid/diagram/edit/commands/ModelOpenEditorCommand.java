@@ -27,14 +27,12 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
 
 /**
  * The command to open a model editor.
@@ -80,7 +78,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 			modelType = modelType.getSupertype();
 		}
 		// get metamodel files from bundle
-		Bundle bundle = FrameworkUtil.getBundle(MultiModelTypeIntrospection.getRoot(modelType).getClass());
+		Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
 		Enumeration<URL> metamodels = bundle.findEntries("/", ECORE_METAMODEL_PATTERN, true);
 		while (metamodels.hasMoreElements()) {
 			//TODO MMTF: FileLocator here works for sure because it finds my source code directories, don't know what happens in a pure installation

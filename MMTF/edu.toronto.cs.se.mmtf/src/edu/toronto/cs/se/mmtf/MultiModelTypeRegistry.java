@@ -16,12 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.osgi.framework.Bundle;
+
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -121,14 +124,14 @@ public class MultiModelTypeRegistry {
 	/**
 	 * Gets an extendible element type from the repository.
 	 * 
-	 * @param elementTypeUri
+	 * @param typeUri
 	 *            The uri of the extendible element type.
 	 * @return The extendible element type, or null if the uri is not found or
 	 *         found not to be of the desired class.
 	 */
-	public static <T extends ExtendibleElement> T getExtendibleElementType(String elementTypeUri) {
+	public static <T extends ExtendibleElement> T getExtendibleElementType(String typeUri) {
 
-		return MultiModelRegistry.getExtendibleElement(MMTF.repository, elementTypeUri);
+		return MultiModelRegistry.getExtendibleElement(MMTF.repository, typeUri);
 	}
 
 	/**
@@ -584,6 +587,17 @@ public class MultiModelTypeRegistry {
 		signature += ")";
 
 		return signature;
+	}
+
+	public static Bundle getTypeBundle(String typeUri) {
+
+		Bundle bundle = null;
+		String bundleName = MMTF.bundleTable.get(typeUri);
+		if (bundleName != null) {
+			return Platform.getBundle(bundleName);
+		}
+
+		return bundle;
 	}
 
 }

@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -284,7 +283,8 @@ public class MultiModelConstraintChecker {
 				}
 				modelElemTypeEndpointUris.add(modelElemTypeEndpoint.getUri());
 			}
-		}
+		}			//TODO MMTF: need to store bundle names to properly use their class loaders
+
 
 		return modelElemTypeEndpointUris;
 	}
@@ -435,12 +435,14 @@ linkTypes:
 		}
 	}
 
-	private static boolean checkJAVAConstraint(Model model, String javaClassName) {
+	private static boolean checkJAVAConstraint(Model model, String modelTypeUri, String javaClassName) {
 
 		try {
-			//TODO MMTF: need to store bundle names to properly use their class loaders
-			JavaModelConstraint javaConstraint = (JavaModelConstraint) Platform.getBundle("edu.toronto.cs.se.modelepedia.uml").loadClass(javaClassName).getConstructor(Model.class).newInstance(model);
-			//JavaModelConstraint javaConstraint = (JavaModelConstraint) Class.forName(javaClassName).getConstructor(Model.class).newInstance(model);
+			JavaModelConstraint javaConstraint = (JavaModelConstraint)
+				MultiModelTypeRegistry.getTypeBundle(modelTypeUri).
+				loadClass(javaClassName).
+				getConstructor(Model.class).
+				newInstance(model);
 			return javaConstraint.validate();
 		}
 		catch (Exception e) {
@@ -473,7 +475,8 @@ linkTypes:
 			case OCL:
 				return checkOCLConstraint((Model) element, constraint.getImplementation());
 			case JAVA:
-				return checkJAVAConstraint((Model) element, constraint.getImplementation());
+				String modelTypeUri = ((Model) constraint.eContainer()).getUri();
+				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
 			default:
 				return false;
 		}
