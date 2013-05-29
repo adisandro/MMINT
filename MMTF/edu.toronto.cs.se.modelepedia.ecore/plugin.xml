@@ -17,8 +17,7 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType
-            isAbstract="false">
+      <modelType>
          <extendibleType
                name="Ecore"
                uri="http://www.eclipse.org/emf/2002/Ecore">

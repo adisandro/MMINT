@@ -57,8 +57,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  */
 public class MultiModelInstanceFactory {
 
-	private final static String DEFAULT_URI = "";
-	private final static String DEFAULT_MODEL_FILE_EXTENSION = "";
+	private final static String EMPTY_URI = "";
+	private final static String EMPTY_MODEL_FILE_EXTENSION = "";
 
 	/**
 	 * Adds the basic info to a new extendible element and registers its uri in
@@ -103,7 +103,7 @@ public class MultiModelInstanceFactory {
 	private static void addBasicExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, String newElementUri, String newElementName) {
 
 		if (newElementUri == null) {
-			newElementUri = DEFAULT_URI;
+			newElementUri = EMPTY_URI;
 		}
 		newElement.setUri(newElementUri);
 		newElement.setName(newElementName);
@@ -184,7 +184,7 @@ public class MultiModelInstanceFactory {
 		boolean basicElement = !updateMid || !externalElement;
 
 		String newModelName = null;
-		String fileExtension = DEFAULT_MODEL_FILE_EXTENSION;
+		String fileExtension = EMPTY_MODEL_FILE_EXTENSION;
 		if (externalElement) {
 			newModelName = MultiModelRegistry.getFileNameFromUri(newModelUri);
 			fileExtension = MultiModelRegistry.getFileExtensionFromUri(newModelUri);

@@ -46,8 +46,7 @@
    <extension
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
-         <modelType
-               isAbstract="true">
+         <modelType>
             <extendibleType
                   name="ModelRel"
                   uri="http://se.cs.toronto.edu/mmtf/ModelRel"
@@ -121,8 +120,7 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType
-            isAbstract="false">
+      <modelType>
          <extendibleType
                name="MID"
                uri="http://se.cs.toronto.edu/mmtf/MID">
@@ -139,8 +137,7 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType
-            isAbstract="false">
+      <modelType>
          <extendibleType
                name="Relationship"
                uri="http://se.cs.toronto.edu/mmtf/MID/Relationship">
@@ -193,8 +190,7 @@
    <extension
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
-         <modelType
-               isAbstract="true">
+         <modelType>
             <extendibleType
                   name="MAVORefinementRel"
                   uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel"

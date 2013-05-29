@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -29,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
@@ -438,7 +438,9 @@ linkTypes:
 	private static boolean checkJAVAConstraint(Model model, String javaClassName) {
 
 		try {
-			JavaModelConstraint javaConstraint = (JavaModelConstraint) Class.forName(javaClassName).getConstructor(Model.class).newInstance(model);
+			//TODO MMTF: need to store bundle names to properly use their class loaders
+			JavaModelConstraint javaConstraint = (JavaModelConstraint) Platform.getBundle("edu.toronto.cs.se.modelepedia.uml").loadClass(javaClassName).getConstructor(Model.class).newInstance(model);
+			//JavaModelConstraint javaConstraint = (JavaModelConstraint) Class.forName(javaClassName).getConstructor(Model.class).newInstance(model);
 			return javaConstraint.validate();
 		}
 		catch (Exception e) {

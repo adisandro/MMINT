@@ -16,11 +16,13 @@ import java.util.List;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -139,7 +141,9 @@ public class MidDiagramTrait {
 		}
 		else {
 			try {
-				wizDialog = (ModelCreationWizardDialog) Class.forName(wizardDialogClassName).getConstructor(Shell.class, IWorkbenchWizard.class).newInstance(shell, wizard);
+				//TODO MMTF: need to store bundle names to properly use their class loaders
+				wizDialog = (ModelCreationWizardDialog) Platform.getBundle("edu.toronto.cs.se.modelepedia.uml").loadClass(wizardDialogClassName).getConstructor(Shell.class, IWizard.class).newInstance(shell, wizard);
+				//wizDialog = (ModelCreationWizardDialog) Class.forName(wizardDialogClassName).getConstructor(Shell.class, IWizard.class).newInstance(shell, wizard);
 			}
 			catch (Exception e) {
 				MMTFException.print(MMTFException.Type.WARNING, "Custom model creation wizard error: " + wizardDialogClassName, e);

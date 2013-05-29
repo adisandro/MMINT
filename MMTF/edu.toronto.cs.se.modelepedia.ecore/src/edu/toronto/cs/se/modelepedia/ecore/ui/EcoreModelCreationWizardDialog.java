@@ -23,7 +23,6 @@ public class EcoreModelCreationWizardDialog extends ModelCreationWizardDialog {
 	@Override
 	protected void storeCreatedModelUri(IWizardPage page) {
 
-		//TODO MMTF: test if this works
 		EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
 		createdModelUri = filePage.getDomainModelURI().toPlatformString(true);
 	}

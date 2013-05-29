@@ -27,7 +27,6 @@ public class UMLModelCreationWizardDialog extends ModelCreationWizardDialog {
 	@Override
 	protected void storeCreatedModelUri(IWizardPage page) {
 
-		//TODO MMTF: test if this works
 		NewModelFilePage filePage = (NewModelFilePage) page;
 		createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
 		createdModelUri = MultiModelRegistry.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);

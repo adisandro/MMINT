@@ -67,7 +67,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="True if this element has been dinamically created through MMTF (types: true for light types, false for heavy types from extensions; instances: always true)."/>
+        <details key="documentation" value="True if this element has been dinamically created at runtime through MMTF (types: true for light types, false for heavy types from extensions; instances: always true)."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
