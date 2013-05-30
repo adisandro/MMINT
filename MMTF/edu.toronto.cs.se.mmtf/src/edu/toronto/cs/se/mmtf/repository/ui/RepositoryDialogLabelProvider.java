@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
  * @author Alessio Di Sandro
  * 
  */
-public class RepositoryTypesDialogLabelProvider implements ILabelProvider {
+public class RepositoryDialogLabelProvider implements ILabelProvider {
 
 	/**
 	 * {@inheritDoc}
