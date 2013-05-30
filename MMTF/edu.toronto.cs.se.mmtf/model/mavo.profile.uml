@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_H_nKEMlAEeKrhsRgWa0Oxg" name="MAVOProfile" metaclassReference="_PEBA8MlAEeKrhsRgWa0Oxg _4-_OEMlAEeKrhsRgWa0Oxg" metamodelReference="_H_nKEclAEeKrhsRgWa0Oxg">
+  <eAnnotations xmi:id="_jqRd0MlBEeKrhsRgWa0Oxg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_6ShOUclHEeKrhsRgWa0Oxg" name="MAVOProfile" nsURI="http:///schemas/MAVOProfile/_6ShOUMlHEeKrhsRgWa0Oxg/1" nsPrefix="MAVOProfile">
+      <eAnnotations xmi:id="_AOCxkMlIEeKrhsRgWa0Oxg" source="PapyrusVersion">
+        <details xmi:id="_AOCxkclIEeKrhsRgWa0Oxg" key="Version" value="1.0.6"/>
+        <details xmi:id="_AOCxkslIEeKrhsRgWa0Oxg" key="Comment" value=""/>
+        <details xmi:id="_AOCxk8lIEeKrhsRgWa0Oxg" key="Copyright" value="Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Vivien Suen.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."/>
+        <details xmi:id="_AOCxlMlIEeKrhsRgWa0Oxg" key="Date" value="2013-05-30"/>
+        <details xmi:id="_AOCxlclIEeKrhsRgWa0Oxg" key="Author" value="Alessio Di Sandro"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6ShOUslHEeKrhsRgWa0Oxg" name="MAVOElement">
+        <eAnnotations xmi:id="_6ShOU8lHEeKrhsRgWa0Oxg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_J2B5IMlAEeKrhsRgWa0Oxg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_6ShOVMlHEeKrhsRgWa0Oxg" name="base_Classifier" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6ShOVslHEeKrhsRgWa0Oxg" name="may" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6ShOWMlHEeKrhsRgWa0Oxg" name="set" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6ShOWslHEeKrhsRgWa0Oxg" name="var" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6ShOXMlHEeKrhsRgWa0Oxg" name="formulaId" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6ShOXslHEeKrhsRgWa0Oxg" name="MAVOModel">
+        <eAnnotations xmi:id="_6ShOX8lHEeKrhsRgWa0Oxg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_yMowgMlAEeKrhsRgWa0Oxg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_6ShOYMlHEeKrhsRgWa0Oxg" name="inc" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_6ShOYslHEeKrhsRgWa0Oxg" name="base_Model" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_PEBA8MlAEeKrhsRgWa0Oxg" alias="Classifier">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+  </elementImport>
+  <elementImport xmi:id="_4-_OEMlAEeKrhsRgWa0Oxg" alias="Model">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
+  </elementImport>
+  <packageImport xmi:id="_H_nKEclAEeKrhsRgWa0Oxg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_H_nKEslAEeKrhsRgWa0Oxg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_J2B5IMlAEeKrhsRgWa0Oxg" name="MAVOElement">
+    <ownedAttribute xmi:id="_PnZa0MlAEeKrhsRgWa0Oxg" name="base_Classifier" association="_Pne6YMlAEeKrhsRgWa0Oxg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_QzlhIMlAEeKrhsRgWa0Oxg" name="may">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_SeinEMlAEeKrhsRgWa0Oxg" name="set">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_S48EEMlAEeKrhsRgWa0Oxg" name="var">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_THSCEMlAEeKrhsRgWa0Oxg" name="formulaId">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Pne6YMlAEeKrhsRgWa0Oxg" name="E_MAVOElement_Classifier1" memberEnd="_Pne6YclAEeKrhsRgWa0Oxg _PnZa0MlAEeKrhsRgWa0Oxg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Pne6YclAEeKrhsRgWa0Oxg" name="extension_MAVOElement" type="_J2B5IMlAEeKrhsRgWa0Oxg" aggregation="composite" association="_Pne6YMlAEeKrhsRgWa0Oxg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_yMowgMlAEeKrhsRgWa0Oxg" name="MAVOModel">
+    <ownedAttribute xmi:id="_z9xW8MlAEeKrhsRgWa0Oxg" name="inc">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_5dM0EMlAEeKrhsRgWa0Oxg" name="base_Model" association="_5dRskMlAEeKrhsRgWa0Oxg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_5dRskMlAEeKrhsRgWa0Oxg" name="E_MAVOModel_Model1" memberEnd="_5dRskclAEeKrhsRgWa0Oxg _5dM0EMlAEeKrhsRgWa0Oxg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_5dRskclAEeKrhsRgWa0Oxg" name="extension_MAVOModel" type="_yMowgMlAEeKrhsRgWa0Oxg" aggregation="composite" association="_5dRskMlAEeKrhsRgWa0Oxg"/>
+  </packagedElement>
+</uml:Profile>

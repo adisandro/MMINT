@@ -15,6 +15,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -66,7 +67,7 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 
 		for (Iterator<?> it = dropRequest.getObjects().iterator(); it.hasNext();) {
 			Object nextObject = it.next();
-			if (!(nextObject instanceof EObject)) {
+			if (!(nextObject instanceof EObject) || nextObject instanceof DynamicEObjectImpl) {
 				continue;
 			}
 			EObject droppedEObject = (EObject) nextObject;
