@@ -22,14 +22,14 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
+import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 
 /**
  * The command to create a model.
@@ -92,7 +92,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		Editor newEditor = MidDiagramTrait.selectModelTypeToCreate(multiModel);
+		Editor newEditor = MidDiagramUtils.selectModelTypeToCreate(multiModel);
 		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(newEditor.getMetatype().getModelUri());
 		Model newModel = MultiModelMAVOInstanceFactory.createModel(modelType, newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
 		MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
@@ -103,9 +103,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteTypesLevel() throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		Model modelType = MidDiagramTrait.selectModelTypeToExtend(multiModel);
-		String newModelTypeName = MidDiagramTrait.getStringInput("Create new light model type", "Insert new model type name");
-		String constraint = MidDiagramTrait.getBigStringInput("Create new light model type", "Insert new model type constraint");
+		Model modelType = MidDiagramUtils.selectModelTypeToExtend(multiModel);
+		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name");
+		String constraint = MidDiagramUtils.getBigStringInput("Create new light model type", "Insert new model type constraint");
 		Model newModelType = MultiModelLightTypeFactory.createLightModelType(modelType, newModelTypeName, constraint);
 		MMTF.initTypeHierarchy(multiModel);
 

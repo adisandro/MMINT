@@ -45,9 +45,9 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 
 public class ValidateTypeListener extends SelectionAdapter {
 

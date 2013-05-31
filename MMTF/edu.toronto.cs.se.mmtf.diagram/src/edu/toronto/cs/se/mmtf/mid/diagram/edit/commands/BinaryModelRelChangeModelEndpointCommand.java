@@ -22,11 +22,11 @@ import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to change a model of a binary model relationship.
@@ -111,7 +111,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			modelRel.getModelEndpoints().get(0) :
 			modelRel.getModelEndpoints().get(1);
 		MultiModelInstanceFactory.removeModelEndpointAndModelEndpointReference(oldModelEndpoint, false);
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
 		MultiModelInstanceFactory.replaceModelEndpointAndModelEndpointReference(
 			oldModelEndpoint,
 			modelTypeEndpointRef.getObject(),

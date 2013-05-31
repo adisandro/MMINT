@@ -25,10 +25,10 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to add a model to a model relationship.
@@ -79,7 +79,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 
 	protected ModelEndpoint doExecuteInstancesLevel() throws Exception {
 
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
 			getSource(),
@@ -92,7 +92,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 
 	protected ModelEndpoint doExecuteTypesLevel() throws MMTFException {
 
-		String newModelTypeEndpointName = MidDiagramTrait.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role");
+		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role");
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		ModelEndpointReference modelTypeEndpointRef = null;
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();

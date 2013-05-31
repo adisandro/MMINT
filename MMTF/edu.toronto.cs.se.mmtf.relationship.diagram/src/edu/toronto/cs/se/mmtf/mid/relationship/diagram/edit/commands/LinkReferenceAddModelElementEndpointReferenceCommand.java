@@ -23,11 +23,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
 /**
  * The command to add a model element reference to a link.
@@ -78,7 +78,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 
 	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMTFException {
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramTrait.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
 		ModelElementEndpointReference newModelElemEndpointRef = MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 			modelElemTypeEndpointRef.getObject(),
 			getSource(),
@@ -91,7 +91,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 
 	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMTFException {
 
-		String newModelElemTypeEndpointName = RelationshipDiagramTrait.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role");
+		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role");
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();

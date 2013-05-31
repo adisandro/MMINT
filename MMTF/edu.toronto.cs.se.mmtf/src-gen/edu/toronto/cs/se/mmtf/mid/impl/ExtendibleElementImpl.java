@@ -15,13 +15,11 @@ import edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

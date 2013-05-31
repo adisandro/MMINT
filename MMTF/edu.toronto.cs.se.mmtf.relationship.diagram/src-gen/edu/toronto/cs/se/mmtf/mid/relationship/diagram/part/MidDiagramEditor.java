@@ -78,9 +78,9 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.navigator.MidNavigatorItem;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
 
 /**
  * @generated

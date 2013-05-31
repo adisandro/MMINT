@@ -14,9 +14,9 @@ package edu.toronto.cs.se.modelepedia.uml.constraint;
 import org.eclipse.gmf.runtime.notation.Diagram;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmtf.repository.JavaModelConstraint;
+import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 
 public abstract class UMLModelConstraint extends JavaModelConstraint {
 

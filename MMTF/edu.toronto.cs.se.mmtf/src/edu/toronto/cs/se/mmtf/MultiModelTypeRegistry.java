@@ -31,7 +31,10 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
@@ -44,18 +47,15 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmtf.repository.ui.MultiModelTreeSelectionDialog;
-import edu.toronto.cs.se.mmtf.repository.ui.NewModelDialogContentProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.NewModelEndpointDialogContentProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.NewModelRelDialogContentProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.NewModelRelTypeDialogContentProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.NewModelTypeDialogContentProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.RelationshipTypesDialogContentProvider;
-import edu.toronto.cs.se.mmtf.repository.ui.NewModelDialogSelectionValidator;
-import edu.toronto.cs.se.mmtf.repository.ui.RepositoryDialogLabelProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.MultiModelTreeSelectionDialog;
+import edu.toronto.cs.se.mmtf.mid.ui.NewModelDialogContentProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.NewModelDialogSelectionValidator;
+import edu.toronto.cs.se.mmtf.mid.ui.NewModelEndpointDialogContentProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.NewModelRelDialogContentProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.NewModelRelTypeDialogContentProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.NewModelTypeDialogContentProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.RelationshipTypesDialogContentProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.MultiModelDialogLabelProvider;
 
 /**
  * The MMTF registry, to be queried by extensions to get info about the
@@ -291,7 +291,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new NewModelDialogContentProvider(MMTF.repository),
 			MMTF.repository
 		);
@@ -346,7 +346,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new NewModelRelDialogContentProvider(modelRelTypeUris),
 			MMTF.repository
 		);
@@ -359,7 +359,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
 			modelRel.getMetatype()
 		);
@@ -377,7 +377,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new NewModelTypeDialogContentProvider(),
 			multiModel
 		);
@@ -426,7 +426,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
 			multiModel
 		);
@@ -482,7 +482,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new RelationshipTypesDialogContentProvider(modelRelType, linkTypeUris, false),
 			modelRelType
 		);
@@ -496,7 +496,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new RelationshipTypesDialogContentProvider((ModelRel) linkType.eContainer(), modelElemTypeEndpointUris, false),
 			linkType
 		);
@@ -537,7 +537,7 @@ public class MultiModelTypeRegistry {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
-			new RepositoryDialogLabelProvider(),
+			new MultiModelDialogLabelProvider(),
 			new RelationshipTypesDialogContentProvider(modelRelType, linkTypeUris, true),
 			modelRelType
 		);

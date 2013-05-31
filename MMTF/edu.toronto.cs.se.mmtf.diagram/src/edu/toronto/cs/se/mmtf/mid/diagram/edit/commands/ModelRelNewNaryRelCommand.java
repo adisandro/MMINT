@@ -23,11 +23,11 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to create a model relationship.
@@ -90,7 +90,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected ModelRel doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(null, null);
+		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(null, null);
 		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
 			modelRelType,
 			null,
@@ -105,9 +105,9 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected ModelRel doExecuteTypesLevel() throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(multiModel, null, null);
-		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
-		String constraint = MidDiagramTrait.getBigStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
+		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, null, null);
+		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
+		String constraint = MidDiagramUtils.getBigStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
 		ModelRel newModelRelType = MultiModelLightTypeFactory.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,

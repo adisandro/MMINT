@@ -16,7 +16,7 @@ import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.widgets.Shell;
 
-import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
 
 public class EcoreModelCreationWizardDialog extends ModelCreationWizardDialog {
 

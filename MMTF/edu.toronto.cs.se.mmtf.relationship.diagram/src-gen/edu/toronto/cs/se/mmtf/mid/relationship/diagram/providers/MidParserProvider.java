@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mavo.trait.MAVOElementReferenceLabelParser;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOElementReferenceLabelParser;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel10EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel11EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel12EditPart;
@@ -50,11 +50,11 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel7
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel8EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabelEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.BinaryLinkReferenceSourceModelElementEndpointReferenceLabelParser;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.BinaryLinkReferenceTargetModelElementEndpointReferenceLabelParser;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.ExtendibleElementEndpointReferenceLabelParser;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.ExtendibleElementReferenceLabelParser;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.BinaryLinkReferenceSourceModelElementEndpointReferenceLabelParser;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.BinaryLinkReferenceTargetModelElementEndpointReferenceLabelParser;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.ExtendibleElementEndpointReferenceLabelParser;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.ExtendibleElementReferenceLabelParser;
 
 /**
  * @generated

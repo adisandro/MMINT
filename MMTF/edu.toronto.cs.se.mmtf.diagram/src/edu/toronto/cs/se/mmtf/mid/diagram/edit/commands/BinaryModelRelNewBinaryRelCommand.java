@@ -28,13 +28,13 @@ import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to create a binary model relationship.
@@ -107,7 +107,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = getContainer();
-		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToCreate(getSource(), getTarget());
+		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(getSource(), getTarget());
 		BinaryModelRel newModelRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			modelRelType,
 			null,
@@ -117,7 +117,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		);
 
 		List<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
 			newModelRel,
@@ -126,7 +126,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		);
 		newModelEndpointRef.getObject().setName(getSource().getName());
 		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getTarget());
-		modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
+		modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
 		newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
 			newModelRel,
@@ -141,9 +141,9 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteTypesLevel() throws MMTFException {
 
 		MultiModel multiModel = getContainer();
-		ModelRel modelRelType = MidDiagramTrait.selectModelRelTypeToExtend(multiModel, getSource(), getTarget());
-		String newModelRelTypeName = MidDiagramTrait.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name");
-		String constraint = MidDiagramTrait.getBigStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint");
+		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, getSource(), getTarget());
+		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name");
+		String constraint = MidDiagramUtils.getBigStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint");
 		BinaryModelRel newModelRelType = (BinaryModelRel) MultiModelLightTypeFactory.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,
@@ -152,7 +152,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		);
 		MMTF.initTypeHierarchy(multiModel);
 
-		String newModelTypeEndpointName = MidDiagramTrait.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role");
+		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role");
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		ModelEndpointReference modelTypeEndpointRef = null;
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
@@ -164,7 +164,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			newModelTypeEndpointName,
 			false
 		);
-		newModelTypeEndpointName = MidDiagramTrait.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role");
+		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role");
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		modelTypeEndpointRef = null;
 		modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();

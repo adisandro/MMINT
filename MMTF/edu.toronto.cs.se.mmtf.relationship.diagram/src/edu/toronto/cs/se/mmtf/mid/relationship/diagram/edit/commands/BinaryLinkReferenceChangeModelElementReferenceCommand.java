@@ -20,13 +20,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
 /**
  * The command to change a model element reference of a binary mapping link.
@@ -114,7 +114,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 			linkRef.getModelElemEndpointRefs().get(0) :
 			linkRef.getModelElemEndpointRefs().get(1);
 		MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference(oldModelElemEndpointRef, false);
-		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramTrait.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
 		MultiModelInstanceFactory.replaceModelElementEndpointAndModelElementEndpointReference(
 			oldModelElemEndpointRef,
 			modelElemTypeEndpointRef.getObject(),

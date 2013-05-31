@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mavo.trait.MAVOElementLabelParser;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOElementLabelParser;
 
 /**
  * @generated

@@ -175,7 +175,7 @@
                supertypeUri="http://se.cs.toronto.edu/mmtf/Model">
          </extendibleType>
          <constraint
-               implementation="edu.toronto.cs.se.mmtf.mavo.trait.MAVOModelConstraint"
+               implementation="edu.toronto.cs.se.mmtf.mavo.constraint.MAVOModelConstraint"
                language="JAVA">
          </constraint>
       </modelType>

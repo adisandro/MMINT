@@ -18,12 +18,12 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mavo.trait.MultiModelMAVOInstanceFactory;
+import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 
 /**
  * The command to import an existing model.
@@ -60,7 +60,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected Model doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		String newModelUri = MidDiagramTrait.selectModelToImport(false);
+		String newModelUri = MidDiagramUtils.selectModelToImport(false);
 		Model newModel = MultiModelMAVOInstanceFactory.createModelAndEditor(null, newModelUri, ModelOrigin.IMPORTED, multiModel);
 
 		return newModel;

@@ -41,12 +41,14 @@ import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
 import edu.mit.csail.sdg.alloy4viz.VizGUI;
 import edu.mit.csail.sdg.alloy4.SafeList;
 import edu.mit.csail.sdg.alloy4.Pos;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
 
 /**
  * This class will take a MAVO model and run the RNF algorithm on it to produce

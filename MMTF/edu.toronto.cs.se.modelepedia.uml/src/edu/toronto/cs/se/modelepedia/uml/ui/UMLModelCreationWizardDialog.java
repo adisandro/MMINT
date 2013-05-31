@@ -17,8 +17,8 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.swt.widgets.Shell;
 
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.repository.ui.ModelCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
 
 public class UMLModelCreationWizardDialog extends ModelCreationWizardDialog {
 

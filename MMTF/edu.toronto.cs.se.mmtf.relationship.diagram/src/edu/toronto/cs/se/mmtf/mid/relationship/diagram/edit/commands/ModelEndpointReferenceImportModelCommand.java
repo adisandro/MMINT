@@ -24,15 +24,15 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditor;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to create a model reference by importing an existing model.
@@ -82,7 +82,7 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 	protected ModelEndpointReference doExecuteInstancesLevel() throws Exception{
 
 		//TODO MMTF: completely review this whole class, now we don't just import a model, we can also add an endpoint to the same model
-//		String modelUri = MidDiagramTrait.selectModelToImport(false);
+//		String modelUri = MidDiagramUtils.selectModelToImport(false);
 //		ModelRel owner = (ModelRel) getElementToEdit();
 //		Model newModel;
 //
@@ -101,7 +101,7 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 //			}
 //		}
 //		EList<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(owner, (Model) newModel);
-//		ModelEndpointReference modelTypeEndpointRef = RelationshipDiagramTrait.selectModelTypeEndpointToCreate(owner, modelTypeEndpointUris, "");
+//		ModelEndpointReference modelTypeEndpointRef = RelationshipDiagramUtils.selectModelTypeEndpointToCreate(owner, modelTypeEndpointUris, "");
 //		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 //			modelTypeEndpointRef.getObject(),
 //			owner,

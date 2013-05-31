@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmtf.mavo.trait.MAVOElementLabelParser;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOElementLabelParser;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterName2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ParameterNameEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel10EditPart;
@@ -42,13 +42,13 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel7EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel8EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.WrappingLabelEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.BinaryModelRelSourceModelEndpointLabelParser;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.BinaryModelRelTargetModelEndpointLabelParser;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.ExtendibleElementEndpointLabelParser;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.ExtendibleElementLabelParser;
 import edu.toronto.cs.se.mmtf.mid.diagram.parsers.MessageFormatParser;
 import edu.toronto.cs.se.mmtf.mid.diagram.parsers.OperatorLabelExpressionLabelParser;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.BinaryModelRelSourceModelEndpointLabelParser;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.BinaryModelRelTargetModelEndpointLabelParser;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.ExtendibleElementEndpointLabelParser;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.ExtendibleElementLabelParser;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
 /**

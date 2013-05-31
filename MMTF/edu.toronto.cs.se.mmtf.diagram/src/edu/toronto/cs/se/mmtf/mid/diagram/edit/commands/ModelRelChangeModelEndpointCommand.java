@@ -22,11 +22,11 @@ import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmtf.mid.diagram.trait.MidDiagramTrait;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
 
 /**
  * The command to change a model of a mapping reference.
@@ -99,7 +99,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model) throws Exception {
 
 		MultiModelInstanceFactory.removeModelEndpointAndModelEndpointReference(getLink(), false);
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramTrait.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		MultiModelInstanceFactory.replaceModelEndpointAndModelEndpointReference(
 			getLink(),
 			modelTypeEndpointRef.getObject(),

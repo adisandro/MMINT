@@ -23,13 +23,13 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.trait.RelationshipDiagramTrait;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
 /**
  * The command to create a link.
@@ -98,7 +98,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 	protected LinkReference doExecuteInstancesLevel() throws MMTFException {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
-		LinkReference linkTypeRef = RelationshipDiagramTrait.selectLinkTypeReferenceToCreate(modelRel, null, null);
+		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, null, null);
 		LinkReference newLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
 			linkTypeRef.getObject(),
 			modelRel,
@@ -112,12 +112,12 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 	protected LinkReference doExecuteTypesLevel() throws MMTFException {
 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
-		LinkReference linkTypeRef = RelationshipDiagramTrait.selectLinkTypeReferenceToExtend(modelRelType, null, null);
+		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, null, null);
 		Link linkType = linkTypeRef.getObject();
 		if (MultiModelTypeRegistry.getRootTypeUri(linkType).equals(linkType.getUri())) {
 			linkTypeRef = null; // the link reference to the root is never shown
 		}
-		String newLinkTypeName = RelationshipDiagramTrait.getStringInput("Create new light link type", "Insert new link type name");
+		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name");
 		LinkReference newLinkTypeRef = MultiModelLightTypeFactory.createLightLinkTypeAndLinkTypeReference(
 			modelRelType,
 			linkType,
