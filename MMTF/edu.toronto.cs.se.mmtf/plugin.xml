@@ -170,13 +170,13 @@
       <modelType
             isAbstract="true">
          <extendibleType
-               name="MAVOModel"
+               name="Model_MAVO"
                uri="http://se.cs.toronto.edu/mmtf/MAVO"
                supertypeUri="http://se.cs.toronto.edu/mmtf/Model">
          </extendibleType>
          <constraint
-               implementation="oclIsKindOf(mavo::MAVOModel)"
-               language="OCL">
+               implementation="edu.toronto.cs.se.mmtf.mavo.trait.MAVOModelConstraint"
+               language="JAVA">
          </constraint>
       </modelType>
    </extension>

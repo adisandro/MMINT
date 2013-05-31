@@ -86,6 +86,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 	private static <T extends ExtendibleElement> List<T> filterSubtypes(T element, T elementType, List<T> elementSubtypes) {
 
+		//TODO MMTF: a case like UML_MAVO won't work here
 		List<T> filteredElementSubtypes = new ArrayList<T>();
 
 		// only direct subtypes

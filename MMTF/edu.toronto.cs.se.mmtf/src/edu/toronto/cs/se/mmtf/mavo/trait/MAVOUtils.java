@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,11 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro, Vivien Suen - Implementation.
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmtf.mavo.trait;
-
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
@@ -24,7 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
 
-	private static final String UML_MAVOMODEL_STEREOTYPE = "MAVOModel";
+	public static final String UML_MAVOMODEL_STEREOTYPE = "MAVOModel";
 	private static final String UML_MAVOMODEL_STEREOTYPE_PROPERTY_INC = "inc";
 	private static final String UML_MAVOELEMENT_STEREOTYPE = "MAVOElement";
 	private static final String UML_MAVOELEMENT_STEREOTYPE_PROPERTY_MAY = "may";
@@ -96,13 +94,9 @@ public class MAVOUtils {
 
 	private static void annotateMAVOModel(org.eclipse.uml2.uml.Model rootUmlModelObj, Model model) {
 
-		List<Stereotype> stereotypes = rootUmlModelObj.getAppliedStereotypes();
-		for (Stereotype stereotype : stereotypes) {
-			if (!stereotype.getName().equals(UML_MAVOMODEL_STEREOTYPE)) {
-				continue;
-			}
+		Stereotype stereotype = rootUmlModelObj.getAppliedStereotype(UML_MAVOMODEL_STEREOTYPE);
+		if (stereotype != null) {
 			model.setInc((boolean) rootUmlModelObj.getValue(stereotype, UML_MAVOMODEL_STEREOTYPE_PROPERTY_INC));
-			break;
 		}
 	}
 
@@ -126,19 +120,16 @@ public class MAVOUtils {
 
 	private static void annotateMAVOModelElement(Element umlModelObj, ModelElement modelElem) {
 
-		List<Stereotype> stereotypes = umlModelObj.getAppliedStereotypes();
-		for (Stereotype stereotype : stereotypes) {
-			if (!stereotype.getName().equals(UML_MAVOELEMENT_STEREOTYPE)) {
-				continue;
-			}
+		Stereotype stereotype = umlModelObj.getAppliedStereotype(UML_MAVOELEMENT_STEREOTYPE);
+		if (stereotype != null) {
 			modelElem.setMay((boolean) umlModelObj.getValue(stereotype, UML_MAVOELEMENT_STEREOTYPE_PROPERTY_MAY));
 			modelElem.setSet((boolean) umlModelObj.getValue(stereotype, UML_MAVOELEMENT_STEREOTYPE_PROPERTY_SET));
 			modelElem.setVar((boolean) umlModelObj.getValue(stereotype, UML_MAVOELEMENT_STEREOTYPE_PROPERTY_VAR));
 			modelElem.setFormulaId((String) umlModelObj.getValue(stereotype, UML_MAVOELEMENT_STEREOTYPE_PROPERTY_FORMULAID));
-			break;
 		}
 	}
 
+	//TODO MMTF: make uml and ecore code look symmetric
 	public static void annotateMAVOModelElementReference(EObject modelObj, ModelElementReference modelElemRef) {
 
 		// UML

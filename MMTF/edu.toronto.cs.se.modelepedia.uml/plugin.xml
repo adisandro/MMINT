@@ -62,7 +62,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="true">
          <extendibleType
                name="UMLClassDiagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
@@ -98,7 +99,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="true">
          <extendibleType
                name="UMLComponentDiagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
@@ -134,7 +136,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="true">
          <extendibleType
                name="UMLDeploymentDiagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
@@ -158,6 +161,165 @@
          <extendibleType
                name="UML diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <!-- MAVO versions-->
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+            class="org.eclipse.uml2.uml.UMLPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType>
+         <extendibleType
+               name="UML_MAVO"
+               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+               supertypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+         </extendibleType>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UML_MAVO tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO_tree">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLModelCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <extendibleType
+               name="UML_MAVO diagram"
+               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO_diagram">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+            class="org.eclipse.uml2.uml.UMLPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            isAbstract="true">
+         <extendibleType
+               name="UMLClassDiagram_MAVO"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+         </extendibleType>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLClassDiagramModelConstraint"
+               language="JAVA">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLModelCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <extendibleType
+               name="UMLClassDiagram_MAVO diagram"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO_diagram">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+            class="org.eclipse.uml2.uml.UMLPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            isAbstract="true">
+         <extendibleType
+               name="UMLComponentDiagram_MAVO"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+         </extendibleType>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLComponentDiagramModelConstraint"
+               language="JAVA">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLModelCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <extendibleType
+               name="UMLComponentDiagram_MAVO diagram"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO_diagram">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+            class="org.eclipse.uml2.uml.UMLPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            isAbstract="true">
+         <extendibleType
+               name="UMLDeploymentDiagram_MAVO"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+         </extendibleType>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLDeploymentDiagramModelConstraint"
+               language="JAVA">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            id="org.eclipse.papyrus.infra.core.papyrusEditor"
+            isDiagram="true"
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLModelCreationWizardDialog"
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+         <extendibleType
+               name="UMLDeploymentDiagram_MAVO diagram"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_diagram">
          </extendibleType>
       </editorType>
    </extension>
