@@ -68,7 +68,7 @@ public class NewModelRelTypeDialogContentProvider implements ITreeContentProvide
 			for (Model modelType : ((MultiModel) parentElement).getModels()) {
 				if (!(modelType instanceof ModelRel)) {
 					continue;
-				}//TODO MMTF: fix and add all here, no filter
+				}
 				if (allowedModelRelTypeUris == null || allowedModelRelTypeUris.contains(modelType.getUri())) {
 					modelRelTypes.add((ModelRel) modelType);
 				}

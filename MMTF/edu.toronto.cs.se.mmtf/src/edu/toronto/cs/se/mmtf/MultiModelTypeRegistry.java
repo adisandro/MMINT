@@ -401,7 +401,11 @@ public class MultiModelTypeRegistry {
 			modelRelTypeUris = new ArrayList<String>();
 
 			for (ModelRel modelRelType : getModelRelTypes(multiModel)) {
-				// binary can only inherit from binary
+				// binary can only inherit from root or binary
+				if (isRootType(modelRelType)) {
+					modelRelTypeUris.add(modelRelType.getUri());
+					continue;
+				}
 				if (!(modelRelType instanceof BinaryModelRel)) {
 					continue;
 				}
