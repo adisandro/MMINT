@@ -47,9 +47,9 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.trait.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
 
 public class MAVOHenshinTransformation extends OperatorExecutableImpl implements Z3SMTSolver {
