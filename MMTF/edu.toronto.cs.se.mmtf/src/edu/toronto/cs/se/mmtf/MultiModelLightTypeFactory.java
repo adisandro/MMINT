@@ -73,7 +73,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
 		MultiModel multiModel = (MultiModel) modelType.eContainer();
 		addLightExtendibleType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);
-		addModelType(newModelType, true, ModelConstraintLanguage.OCL.getLiteral(), oclConstraint, multiModel);
+		addModelType(newModelType, false, ModelConstraintLanguage.OCL.getLiteral(), oclConstraint, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 		newModelType.setFileExtension(modelType.getFileExtension());
 		for (Editor editorType : modelType.getEditors()) {

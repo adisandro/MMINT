@@ -48,13 +48,15 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.ui.MultiModelTreeSelectionDialog;
+import edu.toronto.cs.se.mmtf.mid.ui.NewLinkReferenceDialogContentProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.NewLinkTypeReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.NewModelDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.NewModelDialogSelectionValidator;
+import edu.toronto.cs.se.mmtf.mid.ui.NewModelElementEndpointReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.NewModelEndpointDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.NewModelRelDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.NewModelRelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.NewModelTypeDialogContentProvider;
-import edu.toronto.cs.se.mmtf.mid.ui.RelationshipTypesDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.MultiModelDialogLabelProvider;
 
 /**
@@ -483,7 +485,7 @@ public class MultiModelTypeRegistry {
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new RelationshipTypesDialogContentProvider(modelRelType, linkTypeUris, false),
+			new NewLinkReferenceDialogContentProvider(linkTypeUris),
 			modelRelType
 		);
 
@@ -497,7 +499,7 @@ public class MultiModelTypeRegistry {
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new RelationshipTypesDialogContentProvider((ModelRel) linkType.eContainer(), modelElemTypeEndpointUris, false),
+			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
 			linkType
 		);
 
@@ -515,7 +517,7 @@ public class MultiModelTypeRegistry {
 			linkTypeUris = new ArrayList<String>();
 
 			for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
-				// binary can only inherit from binary
+				// binary can only inherit from root or binary
 				if (!(linkTypeRef instanceof BinaryLinkReference)) {
 					continue;
 				}
@@ -538,7 +540,7 @@ public class MultiModelTypeRegistry {
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new RelationshipTypesDialogContentProvider(modelRelType, linkTypeUris, true),
+			new NewLinkTypeReferenceDialogContentProvider(modelRelType, linkTypeUris),
 			modelRelType
 		);
 
