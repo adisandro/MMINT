@@ -13,12 +13,12 @@ package edu.toronto.cs.se.mmtf.mid.diagram.library;
 
 import java.util.List;
 
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizard;
@@ -127,11 +127,22 @@ public class MidDiagramUtils {
 			throw new MMTFException("Wizard " + editorType.getId() + " not found");
 		}
 
-		IFolder multiModelContainer = ResourcesPlugin.getWorkspace().getRoot().getFolder(
-			new Path(MultiModelRegistry.replaceLastSegmentInUri(multiModel.eResource().getURI().toPlatformString(true), ""))
-		);
+		IStructuredSelection multiModelContainer;
+		String multiModelContainerUri = MultiModelRegistry.replaceLastSegmentInUri(multiModel.eResource().getURI().toPlatformString(true), "");
+		try {
+			multiModelContainer = new StructuredSelection(
+				ResourcesPlugin.getWorkspace().getRoot().getFolder(
+					new Path(multiModelContainerUri)
+				)
+			);
+		}
+		catch (Exception e) {
+			multiModelContainer = new StructuredSelection(
+				ResourcesPlugin.getWorkspace().getRoot().getProject(multiModelContainerUri)
+			);
+		}
 		IWorkbenchWizard wizard = descriptor.createWizard();
-		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection(multiModelContainer));
+		wizard.init(PlatformUI.getWorkbench(), multiModelContainer);
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		String wizardDialogClassName = editorType.getWizardDialogClass();
 		ModelCreationWizardDialog wizDialog = null;

@@ -181,7 +181,8 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
+      <modelType
+            isAbstract="true">
          <extendibleType
                name="UML_MAVO"
                uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
