@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_a8eqcM4nEeK1AuhmU80SXg" type="PapyrusUMLComponentDiagram" name="components" measurementUnit="Pixel">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uf2uAM4oEeK1AuhmU80SXg" source="Stereotype_Annotation">
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uf2uAc4oEeK1AuhmU80SXg" key="StereotypeWithQualifiedNameList" value=""/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uf2uAs4oEeK1AuhmU80SXg" key="StereotypeList" value="MAVOProfile::MAVOModel"/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uf2uA84oEeK1AuhmU80SXg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uf2uBM4oEeK1AuhmU80SXg" key="PropStereoDisplay" value=""/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uf2uBc4oEeK1AuhmU80SXg" key="StereotypePropertyLocation" value="Compartment"/>
+  </eAnnotations>
+  <children xmi:type="notation:Shape" xmi:id="_fBil4M4oEeK1AuhmU80SXg" type="2002" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_fBj0AM4oEeK1AuhmU80SXg" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_fBkbEM4oEeK1AuhmU80SXg" visible="false" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_fBkbEc4oEeK1AuhmU80SXg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fBkbEs4oEeK1AuhmU80SXg"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_fBil4c4oEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_fBil4s4oEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Component" href="components.uml#_fBFS4M4oEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fBil484oEeK1AuhmU80SXg" x="72" y="60"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_2pxbcM4oEeK1AuhmU80SXg" type="2002" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_2pyCgM4oEeK1AuhmU80SXg" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2pyCgc4oEeK1AuhmU80SXg" visible="false" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_2pyCgs4oEeK1AuhmU80SXg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2pyCg84oEeK1AuhmU80SXg"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_2pxbcc4oEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_2pxbcs4oEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Component" href="components.uml#_2po4kM4oEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2pxbc84oEeK1AuhmU80SXg" x="420" y="60"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_6qhUEM4oEeK1AuhmU80SXg" type="2003" fontName="Ubuntu" fontHeight="11">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6qh7IM4oEeK1AuhmU80SXg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6qh7Ic4oEeK1AuhmU80SXg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6qh7Is4oEeK1AuhmU80SXg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6qh7I84oEeK1AuhmU80SXg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6qiiMM4oEeK1AuhmU80SXg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6qiiMc4oEeK1AuhmU80SXg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_6qiiMs4oEeK1AuhmU80SXg" type="5005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6qiiM84oEeK1AuhmU80SXg" x="-60" y="-24"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_6qhUEc4oEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_6qhUEs4oEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_6qhUE84oEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Interface" href="components.uml#_6qHrcM4oEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6qhUFM4oEeK1AuhmU80SXg" x="312" y="84"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_GzScsM4pEeK1AuhmU80SXg" type="2002" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_GzSctM4pEeK1AuhmU80SXg" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_GzSctc4pEeK1AuhmU80SXg" visible="false" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_GzScts4pEeK1AuhmU80SXg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GzSct84pEeK1AuhmU80SXg"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_GzScsc4pEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_GzScss4pEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Component" href="components.uml#_GzHdkM4pEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GzScs84pEeK1AuhmU80SXg" x="447" y="256"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_IUIkYM4pEeK1AuhmU80SXg" type="2002" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_IUJLcM4pEeK1AuhmU80SXg" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_IUJLcc4pEeK1AuhmU80SXg" visible="false" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_IUJLcs4pEeK1AuhmU80SXg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IUJLc84pEeK1AuhmU80SXg"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_IUIkYc4pEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_IUIkYs4pEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Component" href="components.uml#_IUAokM4pEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IUIkY84pEeK1AuhmU80SXg" x="133" y="254"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_JB4bMM4pEeK1AuhmU80SXg" type="2002" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_JB4bNM4pEeK1AuhmU80SXg" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_JB4bNc4pEeK1AuhmU80SXg" visible="false" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_JB4bNs4pEeK1AuhmU80SXg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JB4bN84pEeK1AuhmU80SXg"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_JB4bMc4pEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_JB4bMs4pEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Component" href="components.uml#_JBtcEM4pEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JB4bM84pEeK1AuhmU80SXg" x="296" y="424"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_KmWeoM4pEeK1AuhmU80SXg" type="2002" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_KmWepM4pEeK1AuhmU80SXg" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_KmWepc4pEeK1AuhmU80SXg" visible="false" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_KmWeps4pEeK1AuhmU80SXg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KmWep84pEeK1AuhmU80SXg"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_KmWeoc4pEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_KmWeos4pEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Component" href="components.uml#_KmLfgM4pEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KmWeo84pEeK1AuhmU80SXg" x="189" y="359"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_MBdKsM4pEeK1AuhmU80SXg" type="2002" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_MBdxwM4pEeK1AuhmU80SXg" type="5004"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_MBdxwc4pEeK1AuhmU80SXg" visible="false" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_MBdxws4pEeK1AuhmU80SXg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MBdxw84pEeK1AuhmU80SXg"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_MBdKsc4pEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_MBdKss4pEeK1AuhmU80SXg"/>
+    <element xmi:type="uml:Component" href="components.uml#_MBRkgM4pEeK1AuhmU80SXg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MBdKs84pEeK1AuhmU80SXg" x="515" y="370"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_a8eqcc4nEeK1AuhmU80SXg"/>
+  <element xmi:type="uml:Model" href="components.uml#_a8cOMM4nEeK1AuhmU80SXg"/>
+  <edges xmi:type="notation:Edge" xmi:id="__Vue8M4oEeK1AuhmU80SXg" type="4006" source="_fBil4M4oEeK1AuhmU80SXg" target="_6qhUEM4oEeK1AuhmU80SXg">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="__Vue8c4oEeK1AuhmU80SXg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="__Vue8s4oEeK1AuhmU80SXg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:InterfaceRealization" href="components.uml#__VOvsM4oEeK1AuhmU80SXg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__Vue884oEeK1AuhmU80SXg" points="[75, -2, -100, -1]$[173, -11, -2, -10]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Ah7MUM4pEeK1AuhmU80SXg" type="4001" source="_2pxbcM4oEeK1AuhmU80SXg" target="_6qhUEM4oEeK1AuhmU80SXg" lineColor="0">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Ah7MUc4pEeK1AuhmU80SXg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Usage" href="components.uml#_AhfugM4pEeK1AuhmU80SXg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ah7MUs4pEeK1AuhmU80SXg" points="[-75, -4, 98, -3]$[-177, -11, -4, -10]"/>
+  </edges>
+</notation:Diagram>

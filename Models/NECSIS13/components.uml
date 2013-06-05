@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MAVOProfile="http:///schemas/MAVOProfile/_6ShOUMlHEeKrhsRgWa0Oxg/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/MAVOProfile/_6ShOUMlHEeKrhsRgWa0Oxg/1 platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_6ShOUclHEeKrhsRgWa0Oxg">
+  <uml:Model xmi:id="_a8cOMM4nEeK1AuhmU80SXg" name="model">
+    <packagedElement xmi:type="uml:Component" xmi:id="_fBFS4M4oEeK1AuhmU80SXg" clientDependency="__VOvsM4oEeK1AuhmU80SXg" name="InputProcessing"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_2po4kM4oEeK1AuhmU80SXg" clientDependency="_AhfugM4pEeK1AuhmU80SXg" name="TempControlChart"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_6qHrcM4oEeK1AuhmU80SXg" name="InputProcessingData"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="__VOvsM4oEeK1AuhmU80SXg" name="Realization0" client="_fBFS4M4oEeK1AuhmU80SXg" supplier="_6qHrcM4oEeK1AuhmU80SXg" contract="_6qHrcM4oEeK1AuhmU80SXg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_AhfugM4pEeK1AuhmU80SXg" name="Usage0" client="_2po4kM4oEeK1AuhmU80SXg" supplier="_6qHrcM4oEeK1AuhmU80SXg"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_GzHdkM4pEeK1AuhmU80SXg" name="TempMonitoring"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_IUAokM4pEeK1AuhmU80SXg" name="ACControl"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_JBtcEM4pEeK1AuhmU80SXg" name="HeaterControl"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_KmLfgM4pEeK1AuhmU80SXg" name="EngineControl"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_MBRkgM4pEeK1AuhmU80SXg" name="Output"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_tUSSwM4oEeK1AuhmU80SXg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tUoRAM4oEeK1AuhmU80SXg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_6ShOUclHEeKrhsRgWa0Oxg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_H_nKEMlAEeKrhsRgWa0Oxg"/>
+    </profileApplication>
+  </uml:Model>
+  <MAVOProfile:MAVOModel xmi:id="_ufs9AM4oEeK1AuhmU80SXg" base_Model="_a8cOMM4nEeK1AuhmU80SXg"/>
+</xmi:XMI>

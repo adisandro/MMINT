@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_U-Up8M4nEeK1AuhmU80SXg" type="PapyrusUMLDeploymentDiagram" name="architecture" measurementUnit="Pixel">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ETUIYM4rEeKTiJl_Fw5tWA" source="Stereotype_Annotation">
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ETUvcM4rEeKTiJl_Fw5tWA" key="StereotypeWithQualifiedNameList" value=""/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ETUvcc4rEeKTiJl_Fw5tWA" key="StereotypeList" value="MAVOProfile::MAVOModel"/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ETUvcs4rEeKTiJl_Fw5tWA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ETUvc84rEeKTiJl_Fw5tWA" key="PropStereoDisplay" value=""/>
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ETUvdM4rEeKTiJl_Fw5tWA" key="StereotypePropertyLocation" value="Compartment"/>
+  </eAnnotations>
+  <children xmi:type="notation:Shape" xmi:id="_BUHMUM4rEeKTiJl_Fw5tWA" type="2008" fontName="Ubuntu" fontHeight="11">
+    <children xmi:type="notation:DecorationNode" xmi:id="_BUIacM4rEeKTiJl_Fw5tWA" type="9"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_BUIacc4rEeKTiJl_Fw5tWA" type="19">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_BUIacs4rEeKTiJl_Fw5tWA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BUIac84rEeKTiJl_Fw5tWA"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_BUHMUc4rEeKTiJl_Fw5tWA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_BUHMUs4rEeKTiJl_Fw5tWA"/>
+    <element xmi:type="uml:Node" href="architecture.uml#_BT2GkM4rEeKTiJl_Fw5tWA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BUHMU84rEeKTiJl_Fw5tWA" x="152" y="62"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_U-Up8c4nEeK1AuhmU80SXg"/>
+  <element xmi:type="uml:Model" href="architecture.uml#_U-SNsM4nEeK1AuhmU80SXg"/>
+</notation:Diagram>

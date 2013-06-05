@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmtf/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
+  <models uri="/NECSIS13/architecture.uml" name="architecture" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.0"/>
+  <models uri="/NECSIS13/components.uml" name="components" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.1"/>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/architecture.di" name="UML diagram for model /NECSIS13/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_diagram" dynamic="true" modelUri="/NECSIS13/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/components.di" name="UML diagram for model /NECSIS13/components.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_diagram" dynamic="true" modelUri="/NECSIS13/components.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <extendibleTable key="/NECSIS13/architecture.uml" value="//@models.0"/>
+  <extendibleTable key="/NECSIS13/components.uml" value="//@models.1"/>
+</mid:MultiModel>
