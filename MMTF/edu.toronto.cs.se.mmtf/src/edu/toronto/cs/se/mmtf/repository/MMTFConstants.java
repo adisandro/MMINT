@@ -46,8 +46,10 @@ public interface MMTFConstants {
 	public final static String EXTENDIBLETYPE_ATTR_NAME = "name";
 	/** An extension point's extendibleType child's uri attribute. */
 	public final static String EXTENDIBLETYPE_ATTR_URI = "uri";
-	/** An extension point's extendibleType child's supertypeUri attribute. */
-	public final static String EXTENDIBLETYPE_ATTR_SUPERTYPEURI = "supertypeUri";
+	/** An extension point's extendibleType superType child. */
+	public final static String EXTENDIBLETYPE_CHILD_SUPERTYPE = "superType";
+	/** An extension point's extendibleType superType child's uri attribute. */
+	public final static String EXTENDIBLETYPE_SUPERTYPE_ATTR_URI = "uri";
 
 	/** An extension point's typeEndpoint child. */
 	public final static String CHILD_TYPEENDPOINT = "typeEndpoint";

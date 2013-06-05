@@ -27,8 +27,10 @@
       <modelType>
          <extendibleType
                name="RelationalDatabase_MAVO"
-               uri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO"
-               supertypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+               uri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </superType>
          </extendibleType>
       </modelType>
    </extension>

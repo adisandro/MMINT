@@ -66,8 +66,10 @@
             isAbstract="true">
          <extendibleType
                name="UMLClassDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
-               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram">
+            <superType
+                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+            </superType>
          </extendibleType>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLClassDiagramModelConstraint"
@@ -103,8 +105,10 @@
             isAbstract="true">
          <extendibleType
                name="UMLComponentDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
-               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram">
+            <superType
+                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+            </superType>
          </extendibleType>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLComponentDiagramModelConstraint"
@@ -140,8 +144,10 @@
             isAbstract="true">
          <extendibleType
                name="UMLDeploymentDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
-               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
+            <superType
+                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+            </superType>
          </extendibleType>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLDeploymentDiagramModelConstraint"
@@ -178,8 +184,13 @@
       <modelType>
          <extendibleType
                name="UML_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
-               supertypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </superType>
+            <superType
+                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+            </superType>
          </extendibleType>
       </modelType>
    </extension>
@@ -225,8 +236,10 @@
             isAbstract="true">
          <extendibleType
                name="UMLClassDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
-               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO">
+            <superType
+                  uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+            </superType>
          </extendibleType>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLClassDiagramModelConstraint"
@@ -262,8 +275,10 @@
             isAbstract="true">
          <extendibleType
                name="UMLComponentDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
-               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO">
+            <superType
+                  uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+            </superType>
          </extendibleType>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLComponentDiagramModelConstraint"
@@ -299,8 +314,10 @@
             isAbstract="true">
          <extendibleType
                name="UMLDeploymentDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
-               supertypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
+            <superType
+                  uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+            </superType>
          </extendibleType>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLDeploymentDiagramModelConstraint"

@@ -54,6 +54,9 @@
          </documentation>
       </annotation>
       <complexType>
+         <sequence>
+            <element ref="superType" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
@@ -68,7 +71,17 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="supertypeUri" type="string">
+      </complexType>
+   </element>
+
+   <element name="superType">
+      <annotation>
+         <documentation>
+            An extendible element supertype (although allowed here, multiple inheritance is not supported yet for user defined types).
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="uri" type="string" use="required">
             <annotation>
                <documentation>
                   The extendible element supertype URI.

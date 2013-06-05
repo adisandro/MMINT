@@ -88,7 +88,6 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 	private static <T extends ExtendibleElement> List<T> filterSubtypes(T element, T elementType, List<T> elementSubtypes) {
 
-		//TODO MMTF: a case like UML_MAVO won't work here
 		List<T> filteredElementSubtypes = new ArrayList<T>();
 
 		// only direct subtypes
@@ -108,6 +107,18 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 					MultiModelTypeHierarchy.isSubtypeOf(metamodelUri, filteredElementSubtype.getUri())
 				) {
 					metamodelSubtypes.add(filteredElementSubtype);
+				}
+				else { // try multiple inheritance
+					//TODO MMTF: this is too tailored for UML_MAVO
+					for (String multipleInheritanceUri : MultiModelTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
+						if (
+							multipleInheritanceUri.equals(filteredElementSubtype.getUri()) ||
+							MultiModelTypeHierarchy.isSubtypeOf(filteredElementSubtype.getUri(), multipleInheritanceUri) ||
+							MultiModelTypeHierarchy.isSubtypeOf(multipleInheritanceUri, filteredElementSubtype.getUri())
+						) {
+							metamodelSubtypes.add(filteredElementSubtype);
+						}
+					}
 				}
 			}
 			return metamodelSubtypes;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -52,6 +52,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.repository.EditorsExtensionListener;
+import edu.toronto.cs.se.mmtf.repository.ExtensionType;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 import edu.toronto.cs.se.mmtf.repository.ModelsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.OperatorsExtensionListener;
@@ -88,8 +89,15 @@ public class MMTF implements MMTFConstants {
 	/**	The table for model type conversion in the type MID. */
 	static Map<String, Map<String, List<String>>> conversionTableMID;
 
-	/** The table to map element type uris to their bundle name. */
+	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
+
+	/**
+	 * The table to have some very poor sort of multiple inheritance,
+	 * i.e. to have UML_MAVO properly recognized.
+	 * TODO MMTF: redo when needed!
+	 */
+	static Map<String, Set<String>> multipleInheritanceTable;
 
 	public static final String TYPE_MID_FILENAME = "types.mid";
 
@@ -107,10 +115,7 @@ public class MMTF implements MMTFConstants {
 
 		try {
 			boolean newModelTypeAbstract = Boolean.parseBoolean(extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
-			IConfigurationElement typeConfig = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-			String newModelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			String modelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-			String newModelTypeName = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
+			ExtensionType newType = new ExtensionType(extensionConfig, multipleInheritanceTable);
 			IConfigurationElement[] constraintConfig = extensionConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
 			String constraintLanguage = (constraintConfig.length == 0) ?
 				null :
@@ -119,9 +124,9 @@ public class MMTF implements MMTFConstants {
 				null :
 				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 			Model newModelType = MultiModelHeavyTypeFactory.createHeavyModelType(
-				newModelTypeUri,
-				modelTypeUri,
-				newModelTypeName,
+				newType.getUri(),
+				newType.getSupertypeUri(),
+				newType.getName(),
 				newModelTypeAbstract,
 				constraintLanguage,
 				constraintImplementation
@@ -150,10 +155,7 @@ public class MMTF implements MMTFConstants {
 		try {
 			IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
 			boolean newModelRelTypeAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
-			IConfigurationElement typeConfig = modelTypeConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-			String newModelRelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			String modelRelTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-			String newModelRelTypeName = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
+			ExtensionType newType = new ExtensionType(modelTypeConfig);
 			IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
 			EClass newModelRelTypeClass = (modelTypeEndpointConfigs.length == 2) ?
 				RelationshipPackage.eINSTANCE.getBinaryModelRel() :
@@ -166,9 +168,9 @@ public class MMTF implements MMTFConstants {
 				null :
 				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 			ModelRel newModelRelType = MultiModelHeavyTypeFactory.createHeavyModelRelType(
-				newModelRelTypeUri,
-				modelRelTypeUri,
-				newModelRelTypeName,
+				newType.getUri(),
+				newType.getSupertypeUri(),
+				newType.getName(),
 				newModelRelTypeAbstract,
 				constraintLanguage,
 				constraintImplementation,
@@ -176,11 +178,8 @@ public class MMTF implements MMTFConstants {
 			);
 			// model type endpoints
 			for (IConfigurationElement modelTypeEndpointConfig : modelTypeEndpointConfigs) {
-				IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-				String newModelTypeEndpointUri = modelTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-				String modelTypeEndpointUri = modelTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-				String newModelTypeEndpointName = modelTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
-				modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+				newType = new ExtensionType(modelTypeEndpointConfig);
+				IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 				String newModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 				Model newModelType = MultiModelTypeRegistry.getExtendibleElementType(newModelTypeUri);
 				if (newModelType == null) {
@@ -188,10 +187,10 @@ public class MMTF implements MMTFConstants {
 				}
 				ModelEndpointReference newModelTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelTypeEndpointAndModelTypeEndpointReference(
 					newModelRelType,
-					newModelTypeEndpointUri,
-					modelTypeEndpointUri,
+					newType.getUri(),
+					newType.getSupertypeUri(),
 					newModelType,
-					newModelTypeEndpointName
+					newType.getName()
 				);
 				int lowerBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
 				int upperBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
@@ -203,20 +202,17 @@ public class MMTF implements MMTFConstants {
 				// model element types
 				IConfigurationElement[] modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
 				for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
-					IConfigurationElement modelElemTypeSubconfig = modelElemTypeConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-					String newModelElemTypeUri = modelElemTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-					String modelElemTypeUri = modelElemTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-					String newModelElemTypeName = modelElemTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
-					ModelElement newModelElemType = MultiModelTypeRegistry.getExtendibleElementType(newModelElemTypeUri);
+					newType = new ExtensionType(modelElemTypeConfig);
+					ModelElement newModelElemType = MultiModelTypeRegistry.getExtendibleElementType(newType.getUri());
 					if (newModelElemType == null) { // create new model element type
 						ModelElementCategory category = ModelElementCategory.get(modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CATEGORY));
 						String classLiteral = modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CLASSLITERAL);
 						try {
 							newModelElemType = MultiModelHeavyTypeFactory.createHeavyModelElementType(
 								newModelType,
-								newModelElemTypeUri,
-								modelElemTypeUri,
-								newModelElemTypeName,
+								newType.getUri(),
+								newType.getSupertypeUri(),
+								newType.getName(),
 								category,
 								classLiteral
 							);
@@ -226,9 +222,9 @@ public class MMTF implements MMTFConstants {
 							continue;
 						}
 					}
-					ModelElementReference modelElemTypeRef = (modelElemTypeUri == null) ?
+					ModelElementReference modelElemTypeRef = (newType.getSupertypeUri() == null) ?
 						null :
-						MultiModelTypeHierarchy.getReference(modelElemTypeUri, newModelTypeEndpointRef.getModelElemRefs());
+						MultiModelTypeHierarchy.getReference(newType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
 					MultiModelTypeFactory.createModelElementTypeReference(
 						newModelTypeEndpointRef,
 						modelElemTypeRef,
@@ -247,17 +243,14 @@ public class MMTF implements MMTFConstants {
 				EClass newLinkTypeRefClass = (modelElemTypeEndpointConfigs.length == 2) ?
 					RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
 					RelationshipPackage.eINSTANCE.getLinkReference();
-				IConfigurationElement linkTypeSubconfig = linkTypeConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-				String newLinkTypeUri = linkTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-				String linkTypeUri = linkTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-				String newLinkTypeName = linkTypeSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
+				newType = new ExtensionType(linkTypeConfig);
 				LinkReference newLinkTypeRef;
 				try {
 					newLinkTypeRef = MultiModelHeavyTypeFactory.createHeavyLinkTypeAndLinkTypeReference(
 						newModelRelType,
-						newLinkTypeUri,
-						linkTypeUri,
-						newLinkTypeName,
+						newType.getUri(),
+						newType.getSupertypeUri(),
+						newType.getName(),
 						newLinkTypeClass,
 						newLinkTypeRefClass
 					);
@@ -267,11 +260,8 @@ public class MMTF implements MMTFConstants {
 					continue;
 				}
 				for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
-					IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-					String newModelElemTypeEndpointUri = modelElemTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-					String modelElemTypeEndpointUri = modelElemTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-					String newModelElemTypeEndpointName = modelElemTypeEndpointSubconfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
-					modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+					newType = new ExtensionType(modelElemTypeEndpointConfig);
+					IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 					String newModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 					ModelElement modelElemType = MultiModelTypeRegistry.getExtendibleElementType(newModelElemTypeUri);
 					if (modelElemType == null) {
@@ -282,10 +272,10 @@ public class MMTF implements MMTFConstants {
 					ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(newModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 					ModelElementEndpointReference newModelElemTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 						newLinkTypeRef,
-						newModelElemTypeEndpointUri,
-						modelElemTypeEndpointUri,
+						newType.getUri(),
+						newType.getSupertypeUri(),
 						newModelElemTypeRef,
-						newModelElemTypeEndpointName
+						newType.getName()
 					);
 					int lowerBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
 					int upperBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
@@ -315,10 +305,7 @@ public class MMTF implements MMTFConstants {
 	public static Editor createEditorType(IConfigurationElement extensionConfig) {
 
 		try {
-			IConfigurationElement typeConfig = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-			String newEditorTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			String editorTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-			String newEditorTypeName = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
+			ExtensionType newType = new ExtensionType(extensionConfig);
 			String modelTypeUri = extensionConfig.getAttribute(EDITORS_ATTR_MODELTYPEURI);
 			String editorId = extensionConfig.getAttribute(EDITORS_ATTR_ID);
 			String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDID);
@@ -326,7 +313,16 @@ public class MMTF implements MMTFConstants {
 			EClass newEditorTypeClass = (Boolean.parseBoolean(extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM))) ?
 				EditorPackage.eINSTANCE.getDiagram() :
 				EditorPackage.eINSTANCE.getEditor();
-			Editor newEditorType = MultiModelHeavyTypeFactory.createHeavyEditorType(newEditorTypeUri, editorTypeUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName, newEditorTypeClass);
+			Editor newEditorType = MultiModelHeavyTypeFactory.createHeavyEditorType(
+				newType.getUri(),
+				newType.getSupertypeUri(),
+				newType.getName(),
+				modelTypeUri,
+				editorId,
+				wizardId,
+				wizardDialogClassName,
+				newEditorTypeClass
+			);
 
 			return newEditorType;
 		}
@@ -385,10 +381,7 @@ public class MMTF implements MMTFConstants {
 	public static Operator createOperatorType(IConfigurationElement extensionConfig) {
 
 		try {
-			IConfigurationElement typeConfig = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-			String newOperatorTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			String operatorTypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-			String newOperatorTypeName = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
+			ExtensionType newType = new ExtensionType(extensionConfig);
 			EClass newOperatorTypeClass = (Boolean.parseBoolean(extensionConfig.getAttribute(OPERATORS_ATTR_ISCONVERSION))) ?
 				OperatorPackage.eINSTANCE.getConversionOperator() :
 				OperatorPackage.eINSTANCE.getOperator();
@@ -396,7 +389,13 @@ public class MMTF implements MMTFConstants {
 			if (executable instanceof RandomOperatorExecutableImpl) {
 				((RandomOperatorExecutableImpl) executable).setState(new Random());
 			}
-			Operator newOperatorType = MultiModelHeavyTypeFactory.createHeavyOperatorType(newOperatorTypeUri, operatorTypeUri, newOperatorTypeName, executable, newOperatorTypeClass);
+			Operator newOperatorType = MultiModelHeavyTypeFactory.createHeavyOperatorType(
+				newType.getUri(),
+				newType.getSupertypeUri(),
+				newType.getName(),
+				executable,
+				newOperatorTypeClass
+			);
 
 			return newOperatorType;
 		}
@@ -595,6 +594,7 @@ public class MMTF implements MMTFConstants {
 		repository = MidFactory.eINSTANCE.createMultiModel();
 		repository.setLevel(MidLevel.TYPES);
 		bundleTable = new HashMap<String, String>();
+		multipleInheritanceTable = new HashMap<String, Set<String>>();
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;

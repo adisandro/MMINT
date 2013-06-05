@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mavo.library;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
+
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -22,9 +23,10 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
 
-	public static final String UML_MAVOMODEL_STEREOTYPE = "MAVOModel";
+	private static final String UML_MAVO_PROFILE = "MAVOProfile";
+	public static final String UML_MAVOMODEL_STEREOTYPE = UML_MAVO_PROFILE + "::" + "MAVOModel";
 	private static final String UML_MAVOMODEL_STEREOTYPE_PROPERTY_INC = "inc";
-	private static final String UML_MAVOELEMENT_STEREOTYPE = "MAVOElement";
+	private static final String UML_MAVOELEMENT_STEREOTYPE = UML_MAVO_PROFILE + "::" + "MAVOElement";
 	private static final String UML_MAVOELEMENT_STEREOTYPE_PROPERTY_MAY = "may";
 	private static final String UML_MAVOELEMENT_STEREOTYPE_PROPERTY_SET = "set";
 	private static final String UML_MAVOELEMENT_STEREOTYPE_PROPERTY_VAR = "var";

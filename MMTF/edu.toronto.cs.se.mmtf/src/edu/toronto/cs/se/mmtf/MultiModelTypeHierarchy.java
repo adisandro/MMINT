@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmtf.repository.ExtensionType;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class MultiModelTypeHierarchy implements MMTFConstants {
@@ -57,8 +58,8 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 				extension1 = extension1.getChildren(childName)[0];
 				extension2 = extension2.getChildren(childName)[0];
 			}
-			IConfigurationElement typeConfig1 = extension1.getChildren(CHILD_EXTENDIBLETYPE)[0];
-			String uri1 = typeConfig1.getAttribute(EXTENDIBLETYPE_ATTR_URI);
+			ExtensionType type1 = new ExtensionType(extension1);
+			String uri1 = type1.getUri();
 			String tempUri1 = uri1;
 			String tempSupertypeUri1 = extensionUris.get(uri1);
 			int supertypes1 = (rootUri != null && uri1.equals(rootUri)) ? -1 : 0;
@@ -67,8 +68,8 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 				tempUri1 = tempSupertypeUri1;
 				tempSupertypeUri1 = extensionUris.get(tempUri1);
 			}
-			IConfigurationElement typeConfig2 = extension2.getChildren(CHILD_EXTENDIBLETYPE)[0];
-			String uri2 = typeConfig2.getAttribute(EXTENDIBLETYPE_ATTR_URI);
+			ExtensionType type2 = new ExtensionType(extension2);
+			String uri2 = type2.getUri();
 			String tempUri2 = uri2;
 			String tempSupertypeUri2 = extensionUris.get(uri2);
 			int supertypes2 = (rootUri != null && uri2.equals(rootUri)) ? -1 : 0;
@@ -146,10 +147,8 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 			if (childName != null) {
 				extension = extension.getChildren(childName)[0];
 			}
-			IConfigurationElement typeConfig = extension.getChildren(CHILD_EXTENDIBLETYPE)[0];
-			String uri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-			String supertypeUri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_SUPERTYPEURI);
-			extensionUris.put(uri, supertypeUri);
+			ExtensionType type = new ExtensionType(extension);
+			extensionUris.put(type.getUri(), type.getSupertypeUri());
 		}
 		TreeSet<IConfigurationElement> hierarchy = new TreeSet<IConfigurationElement>(
 			new ExtensionHierarchyComparator(extensionUris, childName, rootUri)
@@ -294,14 +293,14 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 	}
 
 	private static Map<String, Set<String>> getSubtypeTable(MultiModel multiModel) {
-	
+
 		return (multiModel == MMTF.repository) ?
 			MMTF.subtypeTable :
 			MMTF.subtypeTableMID;
 	}
 
 	private static Map<String, Map<String, List<String>>> getConversionTable(MultiModel multiModel) {
-	
+
 		return (multiModel == MMTF.repository) ?
 			MMTF.conversionTable :
 			MMTF.conversionTableMID;
@@ -339,6 +338,11 @@ public class MultiModelTypeHierarchy implements MMTFConstants {
 	public static <T extends ExtendibleElement> List<T> getSubtypes(T supertype) {
 
 		return getSubtypes(MMTF.repository, supertype);
+	}
+
+	public static Set<String> getMultipleInheritanceUris(String supertypeUri) {
+
+		return MMTF.multipleInheritanceTable.get(supertypeUri);
 	}
 
 	private static List<ConversionOperator> isEligibleParameter(Model actualModel, List<Model> actualModelTypes, Model formalModelType) {
