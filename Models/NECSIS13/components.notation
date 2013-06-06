@@ -291,6 +291,13 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sDV28M7mEeKKq4cKovaOgw" id="(0.5266666666666666,0.12857142857142856)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_s0cjwM7mEeKKq4cKovaOgw" type="4001" source="_JB4bMM4pEeK1AuhmU80SXg" target="_qMzMEM7mEeKKq4cKovaOgw" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0DW18M7wEeKUyfcb2q0JFg" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0DW18c7wEeKUyfcb2q0JFg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0DW18s7wEeKUyfcb2q0JFg" key="StereotypeList" value="MAVOProfile::MAVOElement"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0DW1887wEeKUyfcb2q0JFg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0DW19M7wEeKUyfcb2q0JFg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0DW19c7wEeKUyfcb2q0JFg" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
     <styles xmi:type="notation:FontStyle" xmi:id="_s0cjwc7mEeKKq4cKovaOgw" fontName="Ubuntu" fontHeight="11"/>
     <element xmi:type="uml:Usage" href="components.uml#_s0N6QM7mEeKKq4cKovaOgw"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_s0cjws7mEeKKq4cKovaOgw" points="[-44, 35, 104, -87]$[-149, 112, -1, -10]"/>
@@ -303,6 +310,13 @@
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tXveEc7mEeKKq4cKovaOgw" id="(0.2,0.3)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_NGoRsM7nEeKKq4cKovaOgw" type="4006" source="_JB4bMM4pEeK1AuhmU80SXg" target="_LVwJ8M7nEeKKq4cKovaOgw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xkHMUM7wEeKUyfcb2q0JFg" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xkHMUc7wEeKUyfcb2q0JFg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xkHMUs7wEeKUyfcb2q0JFg" key="StereotypeList" value="MAVOProfile::MAVOElement"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xkHMU87wEeKUyfcb2q0JFg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xkHMVM7wEeKUyfcb2q0JFg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xkHMVc7wEeKUyfcb2q0JFg" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
     <styles xmi:type="notation:RoutingStyle" xmi:id="_NGoRsc7nEeKKq4cKovaOgw"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_NGoRss7nEeKKq4cKovaOgw" fontName="Ubuntu" fontHeight="11"/>
     <element xmi:type="uml:InterfaceRealization" href="components.uml#_NGXL8M7nEeKKq4cKovaOgw"/>
@@ -336,6 +350,13 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RrztEM7nEeKKq4cKovaOgw" id="(0.5066666666666667,0.8285714285714286)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_SGalcM7nEeKKq4cKovaOgw" type="4001" source="_2pxbcM4oEeK1AuhmU80SXg" target="_LVwJ8M7nEeKKq4cKovaOgw" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_v787sM7wEeKUyfcb2q0JFg" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v787sc7wEeKUyfcb2q0JFg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v79iwM7wEeKUyfcb2q0JFg" key="StereotypeList" value="MAVOProfile::MAVOElement"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v79iwc7wEeKUyfcb2q0JFg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v79iws7wEeKUyfcb2q0JFg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v79iw87wEeKUyfcb2q0JFg" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
     <styles xmi:type="notation:FontStyle" xmi:id="_SGalcc7nEeKKq4cKovaOgw" fontName="Ubuntu" fontHeight="11"/>
     <element xmi:type="uml:Usage" href="components.uml#_SGEnMM7nEeKKq4cKovaOgw"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SGalcs7nEeKKq4cKovaOgw" points="[13, 8, -105, -60]$[114, 58, -4, -10]"/>
