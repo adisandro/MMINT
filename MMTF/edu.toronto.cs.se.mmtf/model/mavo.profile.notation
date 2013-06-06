@@ -114,6 +114,27 @@
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4_CRZ8lAEeKrhsRgWa0Oxg" x="488" y="299"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_YlnucM7wEeKsUIrUddA5XA" type="1031" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YloVgM7wEeKsUIrUddA5XA" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YloVgc7wEeKsUIrUddA5XA" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YloVgs7wEeKsUIrUddA5XA" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YloVg87wEeKsUIrUddA5XA" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YloVhM7wEeKsUIrUddA5XA" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YloVhc7wEeKsUIrUddA5XA" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ylo8kM7wEeKsUIrUddA5XA" source="Stereotype_Annotation">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ylo8kc7wEeKsUIrUddA5XA" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ylo8ks7wEeKsUIrUddA5XA" key="StereotypeList" value="StandardProfileL2::Metaclass"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ylo8k87wEeKsUIrUddA5XA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ylo8lM7wEeKsUIrUddA5XA" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ylo8lc7wEeKsUIrUddA5XA" key="StereotypePropertyLocation" value="Compartment"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_YloVhs7wEeKsUIrUddA5XA" type="1084"/>
+    <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Relationship"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YloVh87wEeKsUIrUddA5XA" x="480" y="192"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_IBYEoclAEeKrhsRgWa0Oxg"/>
   <element xmi:type="uml:Profile" href="mavo.profile.uml#_H_nKEMlAEeKrhsRgWa0Oxg"/>
   <edges xmi:type="notation:Connector" xmi:id="_PnpScMlAEeKrhsRgWa0Oxg" type="1013" source="_J2rZYMlAEeKrhsRgWa0Oxg" target="_PEEEQMlAEeKrhsRgWa0Oxg" lineColor="0">
@@ -127,5 +148,11 @@
     <element xmi:type="uml:Extension" href="mavo.profile.uml#_5dRskMlAEeKrhsRgWa0Oxg"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5dXMIslAEeKrhsRgWa0Oxg" points="[46, 0, -156, -5]$[194, -20, -8, -25]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5dZoYMlAEeKrhsRgWa0Oxg" id="(0.6349206349206349,0.2079207920792079)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZM_3gM7wEeKsUIrUddA5XA" type="1013" source="_J2rZYMlAEeKrhsRgWa0Oxg" target="_YlnucM7wEeKsUIrUddA5XA" lineColor="0">
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZM_3gc7wEeKsUIrUddA5XA" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Extension" href="mavo.profile.uml#_ZM6_AM7wEeKsUIrUddA5XA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZM_3gs7wEeKsUIrUddA5XA" points="[29, 5, -138, 2]$[117, 5, -50, 2]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZNC60M7wEeKsUIrUddA5XA" id="(0.8176100628930818,0.6447368421052632)"/>
   </edges>
 </notation:Diagram>
