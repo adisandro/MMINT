@@ -237,8 +237,8 @@
             class="edu.toronto.cs.se.modelepedia.operator.patch.BinaryModelRelInversion"
             isConversion="false">
          <extendibleType
-               name="BinaryModelRelInvertion"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_BinaryModelRelInvertion">
+               name="BinaryModelRelInversion"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_BinaryModelRelInversion">
          </extendibleType>
          <input>
             <parameter
