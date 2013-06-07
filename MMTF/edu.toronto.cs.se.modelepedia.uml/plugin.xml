@@ -375,6 +375,14 @@
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component">
                 </extendibleType>
             </modelElemType>
+            <modelElemType
+                  category="ENTITY"
+                  classLiteral="Usage">
+                <extendibleType
+                     name="Usage"
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage">
+                </extendibleType>
+            </modelElemType>
          </modelTypeEndpoint>
          <modelTypeEndpoint>
             <extendibleType
@@ -394,6 +402,14 @@
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device">
                 </extendibleType>
             </modelElemType>
+            <modelElemType
+                  category="ENTITY"
+                  classLiteral="Node">
+                <extendibleType
+                     name="Node"
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
+                </extendibleType>
+            </modelElemType>
          </modelTypeEndpoint>
          <linkType>
             <extendibleType
@@ -406,7 +422,7 @@
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint">
                </extendibleType>
                <typeEndpoint
-                     lowerBound="1"
+                     lowerBound="0"
                      upperBound="-1"
                      targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component">
                </typeEndpoint>
@@ -420,6 +436,34 @@
                      lowerBound="1"
                      upperBound="1"
                      targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+         </linkType>
+         <linkType>
+            <extendibleType
+                  name="UsageNodeLink"
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
+            </extendibleType>
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="UsageEndpoint"
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="NodeEndpoint"
+                     uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="1"
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>

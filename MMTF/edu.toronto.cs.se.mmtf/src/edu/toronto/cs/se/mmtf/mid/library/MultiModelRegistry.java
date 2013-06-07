@@ -38,8 +38,9 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 public class MultiModelRegistry {
 
 	public final static String EXTELEM_NULLTYPE = "NOTYPE";
-	public final static String ECORE_METAMODEL_URI_SEPARATOR = "#//";
-	public final static String ECORE_MODEL_FILEEXTENSION_SEPARATOR = ".";
+	public final static String MODEL_URI_SEPARATOR = "#";
+	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + "//";
+	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
 
 	public static String getElementLabel(ExtendibleElement element) {
@@ -133,7 +134,7 @@ public class MultiModelRegistry {
 			}
 		}
 		else {
-			String[] pieces = uri.toString().split(ECORE_METAMODEL_URI_SEPARATOR);
+			String[] pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
 			modelUri = pieces[0];
 			modelElemUri = pieces[1];
 		}
@@ -178,14 +179,14 @@ public class MultiModelRegistry {
 
 		String lastSegmentUri = getLastSegmentFromUri(uri);
 
-		return lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(ECORE_MODEL_FILEEXTENSION_SEPARATOR));
+		return lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(MODEL_FILEEXTENSION_SEPARATOR));
 	}
 
 	public static String getFileExtensionFromUri(String uri) {
 
 		String lastSegmentUri = getLastSegmentFromUri(uri);
 
-		return lastSegmentUri.substring(lastSegmentUri.lastIndexOf(ECORE_MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
+		return lastSegmentUri.substring(lastSegmentUri.lastIndexOf(MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
 	}
 
 	public static String replaceLastSegmentInUri(String uri, String newLastSegmentUri) {
@@ -199,14 +200,14 @@ public class MultiModelRegistry {
 
 		String fileExtension = getFileExtensionFromUri(uri);
 
-		return uri.replace(ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension, ECORE_MODEL_FILEEXTENSION_SEPARATOR + newFileExtension);
+		return uri.replace(MODEL_FILEEXTENSION_SEPARATOR + fileExtension, MODEL_FILEEXTENSION_SEPARATOR + newFileExtension);
 	}
 
 	public static String addFileNameSuffixInUri(String uri, String newFileNameSuffix) {
 
 		String fileExtension = getFileExtensionFromUri(uri);
 
-		return uri.replace(ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + ECORE_MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
+		return uri.replace(MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
 	}
 
 	public static String prependWorkspaceToUri(String uri) {

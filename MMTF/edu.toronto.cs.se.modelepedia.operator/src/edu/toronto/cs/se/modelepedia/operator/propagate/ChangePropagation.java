@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,10 +7,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro, Vivien Suen - Implementation.
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +36,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -91,13 +97,21 @@ public class ChangePropagation extends OperatorExecutableImpl {
 	}
 
 	//TODO MMTF: make this a library function, accessible with ctrl+c/ctrl+v
+	//TODO MMTF: copy associated diagrams too
 	private Model createRelatedModelCopy(Model relatedModel) throws Exception {
 
-		// copy and serialize new model
-		EObject relatedRoot = MultiModelTypeIntrospection.getRoot(relatedModel);
-		EObject copyRoot = EcoreUtil.copy(relatedRoot);
+		File original = new File(MultiModelRegistry.prependWorkspaceToUri(relatedModel.getUri()));
 		String newCopyUri = MultiModelRegistry.addFileNameSuffixInUri(relatedModel.getUri(), PROP_MODEL_SUFFIX);
-		MultiModelTypeIntrospection.writeRoot(copyRoot, newCopyUri, true);
+		File copy = new File(MultiModelRegistry.prependWorkspaceToUri(newCopyUri));
+		BufferedReader in = new BufferedReader(new FileReader(original));
+		BufferedWriter out = new BufferedWriter(new FileWriter(copy));
+		String line;
+		while ((line = in.readLine()) != null) {
+			out.write(line.replaceAll(relatedModel.getName(), relatedModel.getName() + PROP_MODEL_SUFFIX));
+			out.newLine();
+		}
+		in.close();
+		out.close();
 
 		// create model in multimodel
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(relatedModel);
@@ -162,7 +176,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
 				String propModelObjUri =
 					newPropModel.getUri() +
-					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MultiModelRegistry.ECORE_METAMODEL_URI_SEPARATOR));
+					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MultiModelRegistry.MODEL_URI_SEPARATOR));
 				EObject propModelObj = MultiModelTypeIntrospection.getPointer(propModelObjUri);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
@@ -297,7 +311,7 @@ traceLinks:
 			boolean Mb = modelElemB.isMay(), Sb = modelElemB.isSet(), Vb = modelElemB.isVar();
 			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
-			MAVOElement modelObjB = (MAVOElement) MultiModelTypeIntrospection.getPointer(
+			EObject modelObjB = MultiModelTypeIntrospection.getPointer(
 				modelRootB.eResource(),
 				getModelEObjectUri(modelElemB.getUri())
 			);
@@ -306,7 +320,7 @@ traceLinks:
 			if (Mb && !Mab) {
 				Mb = false;
 				modelElemB.setMay(Mb);
-				modelObjB.setMay(Mb);
+				MAVOUtils.setMay(modelObjB, Mb);
 				again = true;
 			}
 			// rule 2
@@ -335,7 +349,7 @@ traceLinks:
 					if (Sb && !Sa && !Mab) {
 						Sb = false;
 						modelElemB.setSet(Sb);
-						modelObjB.setSet(Sb);
+						MAVOUtils.setSet(modelObjB, Sb);
 						again = true;
 					}
 				}
