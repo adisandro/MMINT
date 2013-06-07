@@ -5,6 +5,13 @@
     <elements uri="/NECSIS13/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device" name="&lt;Device> ECU1" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device" dynamic="true" classLiteral="Device"/>
     <elements uri="/NECSIS13/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device" name="&lt;Device> ECU2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device" dynamic="true" classLiteral="Device"/>
     <elements uri="/NECSIS13/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device" name="&lt;Device> ECU3" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device" dynamic="true" classLiteral="Device"/>
+    <elements may="true" uri="/NECSIS13/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;&lt;MAVOElement>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Node"/>
+    <elements may="true" uri="/NECSIS13/architecture.uml#_Iub3gM7pEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;&lt;MAVOElement>> &lt;Dependency> UI_Bus2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Dependency"/>
+    <elements may="true" uri="/NECSIS13/architecture.uml#_JeDWkM7pEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;&lt;MAVOElement>> &lt;Dependency> ECU2_Bus2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Dependency"/>
+    <elements uri="/NECSIS13/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
+    <elements uri="/NECSIS13/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
+    <elements uri="/NECSIS13/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
+    <elements uri="/NECSIS13/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
   </models>
   <models uri="/NECSIS13/components.uml" name="components" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.1">
     <elements uri="/NECSIS13/components.uml#_fBFS4M4oEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> InputControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
@@ -98,12 +105,80 @@
       <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
     </linkRefs>
   </models>
-  <models uri="/NECSIS13/architecture_ref1.uml" name="architecture_ref1" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" fileExtension="uml" editors="//@editors.2"/>
+  <models uri="/NECSIS13/architecture_ref1.uml" name="architecture_ref1" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" fileExtension="uml" editors="//@editors.2">
+    <elements uri="/NECSIS13/architecture_ref1.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
+    <elements uri="/NECSIS13/architecture_ref1.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
+    <elements uri="/NECSIS13/architecture_ref1.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
+    <elements uri="/NECSIS13/architecture_ref1.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="Device"/>
+  </models>
   <models xsi:type="relationship:BinaryModelRel" uri="" name="ref1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints uri="" name="architecture_ref1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true"/>
-    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.1" modifiable="true"/>
+    <links uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="&lt;&lt;MAVOElement>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+    </links>
+    <links uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="&lt;&lt;MAVOElement>> &lt;Dependency> UI_Bus2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.5"/>
+    </links>
+    <links uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="&lt;&lt;MAVOElement>> &lt;Dependency> ECU2_Bus2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.6"/>
+    </links>
+    <links uri="" name="match1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.0 //@models.4/@linkRefs.3/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.7"/>
+      <modelElemEndpoints uri="" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@elements.0"/>
+    </links>
+    <links uri="" name="match2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.0 //@models.4/@linkRefs.4/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.8"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@elements.1"/>
+    </links>
+    <links uri="" name="match3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.0 //@models.4/@linkRefs.5/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.9"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@elements.2"/>
+    </links>
+    <links uri="" name="match4" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.6/@modelElemEndpointRefs.0 //@models.4/@linkRefs.6/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.10"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@elements.3"/>
+    </links>
+    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@elements.4" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.5" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.6" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.7" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.8" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.9" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.10" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.6/@modelElemEndpointRefs.0"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.3/@elements.0" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@elements.1" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@elements.2" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@elements.3" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.6/@modelElemEndpointRefs.1"/>
+    </modelEndpointRefs>
+    <linkRefs referencedObject="//@models.4/@links.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.0"/>
+    </linkRefs>
+    <linkRefs referencedObject="//@models.4/@links.1" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.1"/>
+    </linkRefs>
+    <linkRefs referencedObject="//@models.4/@links.2" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.2"/>
+    </linkRefs>
+    <linkRefs referencedObject="//@models.4/@links.3" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </linkRefs>
+    <linkRefs referencedObject="//@models.4/@links.4" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </linkRefs>
+    <linkRefs referencedObject="//@models.4/@links.5" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.5"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </linkRefs>
+    <linkRefs referencedObject="//@models.4/@links.6" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@links.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.3"/>
+    </linkRefs>
   </models>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/architecture.di" name="UML diagram for model /NECSIS13/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_diagram" dynamic="true" modelUri="/NECSIS13/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
@@ -128,4 +203,15 @@
   <extendibleTable key="/NECSIS13/components.uml#_JBtcEM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.5"/>
   <extendibleTable key="/NECSIS13/components.uml#_KmLfgM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.6"/>
   <extendibleTable key="/NECSIS13/architecture_ref1.uml" value="//@models.3"/>
+  <extendibleTable key="/NECSIS13/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.0/@elements.4"/>
+  <extendibleTable key="/NECSIS13/architecture.uml#_Iub3gM7pEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.0/@elements.5"/>
+  <extendibleTable key="/NECSIS13/architecture.uml#_JeDWkM7pEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.0/@elements.6"/>
+  <extendibleTable key="/NECSIS13/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.0/@elements.7"/>
+  <extendibleTable key="/NECSIS13/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.0/@elements.8"/>
+  <extendibleTable key="/NECSIS13/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.0/@elements.9"/>
+  <extendibleTable key="/NECSIS13/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.0/@elements.10"/>
+  <extendibleTable key="/NECSIS13/architecture_ref1.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.3/@elements.0"/>
+  <extendibleTable key="/NECSIS13/architecture_ref1.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.3/@elements.1"/>
+  <extendibleTable key="/NECSIS13/architecture_ref1.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.3/@elements.2"/>
+  <extendibleTable key="/NECSIS13/architecture_ref1.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" value="//@models.3/@elements.3"/>
 </mid:MultiModel>
