@@ -680,55 +680,6 @@ public class MultiModelInstanceFactory {
 		}
 	}
 
-//	public static ModelRel copyModelRel(MultiModel multiModel, URI modelRelUri) throws Exception {
-//
-//		// this is needed to infer the model relationship class
-//		ResourceSet set = new ResourceSetImpl();
-//		Resource resource = set.getResource(modelRelUri, true);
-//		EObject root = resource.getContents().get(0);
-//		ModelRel modelRel = createModelRel(
-//			((ModelRel) root).getMetatype(),
-//			ModelOrigin.IMPORTED,
-//			multiModel,
-//			modelRelUri,
-//			root.eClass()
-//		);
-//
-//		// copy mapping structure
-//		ModelRel origModelRel = (ModelRel) modelRel.getRoot();
-//		modelRel.setName(origModelRel.getName());
-//		HashMap<EObject, ModelElementReference> elementRefs = new HashMap<EObject, ModelElementReference>();
-//		for (ModelReference origModelRef : origModelRel.getModelRefs()) {
-//			Model origModel = (Model) origModelRef.getContainedObject();
-//			URI modelUri = URI.createPlatformResourceURI(origModel.getUri(), true);
-//			Model model = getModelUnique(multiModel, modelUri); // the model can already be in the MID
-//			if (model == null) {
-//				model = createModel(origModel.getMetatype(), ModelOrigin.IMPORTED, multiModel, modelUri);
-//				model.setName(origModel.getName());
-//				Editor editor = createEditor(model);
-//				if (editor != null) {
-//					addModelEditor(editor, multiModel);
-//				}
-//			}
-//			modelRel.getModels().add(model);
-//			ModelReference modelRef = createModelReference(modelRel, model);
-//			for (ModelElementReference origElementRef : origModelRef.getElementRefs()) {
-//				//TODO MMTF: fix and use something different than pointer as index
-//				//ModelElementReference elementRef = createModelElementReference(modelRef, (origElementRef.getObject().getPointer());
-//				//elementRefs.put(elementRef.getObject().getPointer(), elementRef);
-//			}
-//		}
-//		for (Link origLink : origModelRel.getLinks()) {
-//			Link link = createLink((Link) origLink.getMetatype(), modelRel, origLink.eClass());
-//			link.setName(origLink.getName());
-//			for (ModelElementReference origElementRef : origLink.getElementRefs()) {
-//				link.getElementRefs().add(elementRefs.get(origElementRef.getObject().getPointer()));
-//			}
-//		}
-//
-//		return modelRel;
-//	}
-
 	private static ExtendibleElement removeExtendibleElement(MultiModel multiModel, String elementUri) {
 
 		return multiModel.getExtendibleTable().removeKey(elementUri);

@@ -275,7 +275,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
 	public static void copyLightModelRelType(ModelRel oldModelRelType, ModelRel newModelRelType) throws MMTFException {
 
-		// models
+		// model types
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
 		Iterator<ModelEndpoint> oldModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(oldModelRelType.getModelEndpoints());
 		while (oldModelTypeEndpointIter.hasNext()) {
