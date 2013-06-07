@@ -230,14 +230,15 @@ public class MidDiagramUtils {
 	 *            The dialog title.
 	 * @param dialogMessage
 	 *            The dialog message.
+	 * @param dialogInitial TODO
 	 * @return The text input from the user.
 	 * @throws MMTFException
 	 *             If the text input was not completed for any reason.
 	 */
-	public static String getStringInput(String dialogTitle, String dialogMessage) throws MMTFException {
+	public static String getStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MMTFException {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, null, null);
+		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null);
 
 		if (dialog.open() == Window.CANCEL) {
 			throw new MMTFException("Dialog cancel button pressed");
@@ -250,10 +251,10 @@ public class MidDiagramUtils {
 		return text;
 	}
 
-	public static String getBigStringInput(String dialogTitle, String dialogMessage) throws MMTFException {
+	public static String getBigStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MMTFException {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, null, null) {
+		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null) {
 			@Override
 			protected int getInputTextStyle() {
 				return SWT.MULTI | SWT.BORDER;

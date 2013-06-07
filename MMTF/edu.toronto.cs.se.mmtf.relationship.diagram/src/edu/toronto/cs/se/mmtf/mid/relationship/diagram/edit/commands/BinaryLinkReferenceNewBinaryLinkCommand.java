@@ -140,7 +140,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 
 		ModelRel modelRelType = getContainer();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, getSource(), getTarget());
-		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name");
+		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
 		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) MultiModelLightTypeFactory.createLightLinkTypeAndLinkTypeReference(
 			modelRelType,
 			linkTypeRef.getObject(),
@@ -151,7 +151,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		);
 		MMTF.initTypeHierarchy((MultiModel) modelRelType.eContainer());
 
-		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role");
+		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
@@ -163,7 +163,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			newModelElemTypeEndpointName,
 			false
 		);
-		newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role");
+		newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		modelElemTypeEndpointRef = null;
 		modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();

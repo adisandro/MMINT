@@ -91,7 +91,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 
 	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMTFException {
 
-		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role");
+		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();

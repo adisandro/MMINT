@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -23,13 +23,10 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 
-public class ModelepediaAction extends ContributionItem {
+public class CopyModelAction extends ContributionItem {
 
 	@Override
 	public boolean isDynamic() {
@@ -49,43 +46,22 @@ public class ModelepediaAction extends ContributionItem {
 		if (objects.length > 1) {
 			return;
 		}
-		Model modelType = null;
+		Model model = null;
 		if (
 			objects[0] instanceof ModelEditPart ||
-			objects[0] instanceof Model2EditPart ||
-			objects[0] instanceof ModelRelEditPart ||
-			objects[0] instanceof ModelRel2EditPart ||
-			objects[0] instanceof BinaryModelRelEditPart
+			objects[0] instanceof Model2EditPart
 		) {
-			modelType = (Model) ((View) ((GraphicalEditPart) objects[0]).getModel()).getElement();
+			model = (Model) ((View) ((GraphicalEditPart) objects[0]).getModel()).getElement();
 		}
-		if (modelType == null) {
+		if (model == null || !MultiModelConstraintChecker.isInstancesLevel(model)) { // copy doesn't work on types
 			return;
 		}
 
-		// get model type if instance
-		if (MultiModelConstraintChecker.isInstancesLevel(modelType)) {
-			modelType = modelType.getMetatype();
-			if (modelType == null) {
-				return;
-			}
-		}
-
 		// create dynamic menu
-		MenuItem cascadeItem = new MenuItem(menu, SWT.CASCADE, index);
-		cascadeItem.setText("MMTF Wiki");
-		// just one sub item for now
-		Menu modelepediaMenu = new Menu(menu);
-		cascadeItem.setMenu(modelepediaMenu);
-		MenuItem openModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
-		openModelepediaItem.setText("Open wiki page");
-		openModelepediaItem.addSelectionListener(
-			new OpenModelepediaListener(modelType)
-		);
-		MenuItem editModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
-		editModelepediaItem.setText("Edit wiki page");
-		editModelepediaItem.addSelectionListener(
-			new EditModelepediaListener(modelType)
+		MenuItem copyItem = new MenuItem(menu, SWT.NONE, index);
+		copyItem.setText("Copy Model");
+		copyItem.addSelectionListener(
+			new CopyModelListener(model)
 		);
 	}
 

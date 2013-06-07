@@ -11,6 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf.mavo.library;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,11 +60,41 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		return newModelElemRef;
 	}
 
-	public static void copyModelRel(ModelRel oldModelRel, ModelRel newModelRel) throws Exception {
+	public static Model copyModel(Model oldModel, String newModelName, MultiModel multiModel) throws Exception {
 
-		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
+		//TODO MMTF: make this a library function, accessible with ctrl+c/ctrl+v
+		//TODO MMTF: copy associated diagrams too
+		File oldFile = new File(MultiModelRegistry.prependWorkspaceToUri(oldModel.getUri()));
+		String newModelUri = MultiModelRegistry.replaceFileNameInUri(oldModel.getUri(), newModelName);
+		File newFile = new File(MultiModelRegistry.prependWorkspaceToUri(newModelUri));
+		BufferedReader oldBuffer = new BufferedReader(new FileReader(oldFile));
+		BufferedWriter newBuffer = new BufferedWriter(new FileWriter(newFile));
+		String oldLine;
+		while ((oldLine = oldBuffer.readLine()) != null) {
+			newBuffer.write(oldLine.replaceAll(oldModel.getName(), newModelName));
+			newBuffer.newLine();
+		}
+		oldBuffer.close();
+		newBuffer.close();
+		Model newModel = createModelAndEditor(oldModel.getMetatype(), newModelUri, ModelOrigin.CREATED, multiModel);
+
+		return newModel;
+	}
+
+	public static ModelRel copyModelRel(ModelRel oldModelRel, String newModelRelName, MultiModel multiModel) throws Exception {
+
+		// create initial empty copy
+		ModelRel newModelRel = createModelRel(
+			oldModelRel.getMetatype(),
+			null,
+			ModelOrigin.CREATED,
+			oldModelRel.eClass(),
+			multiModel
+		);
+		newModelRel.setName(newModelRelName);
+
 		// models
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRel);
+		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference oldModelEndpointRef : oldModelRel.getModelEndpointRefs()) {
 			Model newModel = MultiModelRegistry.getExtendibleElement(multiModel, oldModelEndpointRef.getTargetUri());
 			ModelEndpointReference newModelEndpointRef = createModelEndpointAndModelEndpointReference(oldModelEndpointRef.getObject().getMetatype(), newModelRel, newModel, false);
@@ -79,6 +114,8 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 				createModelElementEndpointAndModelElementEndpointReference(oldModelElemEndpointRef.getObject().getMetatype(), newLinkRef, newModelElemRef, false);
 			}
 		}
+
+		return newModelRel;
 	}
 
 }

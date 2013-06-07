@@ -140,8 +140,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		MultiModel multiModel = getContainer();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, getSource(), getTarget());
-		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name");
-		String constraint = MidDiagramUtils.getBigStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint");
+		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", null);
+		String constraint = MidDiagramUtils.getBigStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint", null);
 		BinaryModelRel newModelRelType = (BinaryModelRel) MultiModelLightTypeFactory.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,
@@ -150,7 +150,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		);
 		MMTF.initTypeHierarchy(multiModel);
 
-		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role");
+		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		ModelEndpointReference modelTypeEndpointRef = null;
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
@@ -162,7 +162,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			newModelTypeEndpointName,
 			false
 		);
-		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role");
+		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		modelTypeEndpointRef = null;
 		modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();

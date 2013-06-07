@@ -11,11 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -94,30 +89,6 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		}
 
 		return getModelElementReference(correspondingModelElemRef.getUri(), modelElemRefs);
-	}
-
-	//TODO MMTF: make this a library function, accessible with ctrl+c/ctrl+v
-	//TODO MMTF: copy associated diagrams too
-	private Model createRelatedModelCopy(Model relatedModel) throws Exception {
-
-		File original = new File(MultiModelRegistry.prependWorkspaceToUri(relatedModel.getUri()));
-		String newCopyUri = MultiModelRegistry.addFileNameSuffixInUri(relatedModel.getUri(), PROP_MODEL_SUFFIX);
-		File copy = new File(MultiModelRegistry.prependWorkspaceToUri(newCopyUri));
-		BufferedReader in = new BufferedReader(new FileReader(original));
-		BufferedWriter out = new BufferedWriter(new FileWriter(copy));
-		String line;
-		while ((line = in.readLine()) != null) {
-			out.write(line.replaceAll(relatedModel.getName(), relatedModel.getName() + PROP_MODEL_SUFFIX));
-			out.newLine();
-		}
-		in.close();
-		out.close();
-
-		// create model in multimodel
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(relatedModel);
-		Model newCopyModel = MultiModelMAVOInstanceFactory.createModelAndEditor(relatedModel.getMetatype(), newCopyUri, ModelOrigin.IMPORTED, multiModel);
-
-		return newCopyModel;
 	}
 
 	private List<BinaryLinkReference> propagateTraceLinksFromRefinements(LinkReference refinementLinkRef, BinaryModelRel traceRel, Model newPropModel, BinaryModelRel newPropTraceRel) throws Exception {
@@ -624,10 +595,10 @@ traceLinks:
 		Model refinedModel = actualParameters.get(2);
 		BinaryModelRel traceRel = (BinaryModelRel) actualParameters.get(3);
 		Model relatedModel = actualParameters.get(4);
-		MultiModel multiModel = (MultiModel) origModel.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(origModel);
 
 		// create output model and model relationships
-		Model newPropModel = createRelatedModelCopy(relatedModel);
+		Model newPropModel = MultiModelMAVOInstanceFactory.copyModel(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, multiModel);
 		BinaryModelRel newPropRefinementRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			refinementRel.getMetatype(),
 			null,

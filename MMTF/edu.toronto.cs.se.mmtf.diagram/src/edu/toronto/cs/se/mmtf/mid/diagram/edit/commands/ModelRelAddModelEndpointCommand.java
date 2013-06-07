@@ -92,7 +92,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 
 	protected ModelEndpoint doExecuteTypesLevel() throws MMTFException {
 
-		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role");
+		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		ModelEndpointReference modelTypeEndpointRef = null;
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();

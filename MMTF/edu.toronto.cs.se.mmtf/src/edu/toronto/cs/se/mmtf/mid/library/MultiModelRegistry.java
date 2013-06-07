@@ -196,6 +196,13 @@ public class MultiModelRegistry {
 		return uri.replace(lastSegmentUri, newLastSegmentUri);
 	}
 
+	public static String replaceFileNameInUri(String uri, String newFileName) {
+
+		String fileName = getFileNameFromUri(uri);
+
+		return uri.replace(fileName, newFileName);
+	}
+
 	public static String replaceFileExtensionInUri(String uri, String newFileExtension) {
 
 		String fileExtension = getFileExtensionFromUri(uri);

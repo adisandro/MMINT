@@ -117,7 +117,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		if (MultiModelTypeRegistry.getRootTypeUri(linkType).equals(linkType.getUri())) {
 			linkTypeRef = null; // the link reference to the root is never shown
 		}
-		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name");
+		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
 		LinkReference newLinkTypeRef = MultiModelLightTypeFactory.createLightLinkTypeAndLinkTypeReference(
 			modelRelType,
 			linkType,

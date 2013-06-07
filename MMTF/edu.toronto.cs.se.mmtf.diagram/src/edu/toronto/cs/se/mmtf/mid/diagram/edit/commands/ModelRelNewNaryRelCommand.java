@@ -106,8 +106,8 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, null, null);
-		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name");
-		String constraint = MidDiagramUtils.getBigStringInput("Create new light model relationship type", "Insert new model relationship type constraint");
+		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
+		String constraint = MidDiagramUtils.getBigStringInput("Create new light model relationship type", "Insert new model relationship type constraint", null);
 		ModelRel newModelRelType = MultiModelLightTypeFactory.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,
