@@ -22,14 +22,18 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
-public class BinaryModelRelInvertion extends OperatorExecutableImpl {
+public class BinaryModelRelInversion extends OperatorExecutableImpl {
+
+	private static final String MODELREL_SUFFIX = "_inv";
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		BinaryModelRel modelRel = (BinaryModelRel) actualParameters.get(1);
+		BinaryModelRel modelRel = (BinaryModelRel) actualParameters.get(0);
 
 		// create inverted model relationship
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRel);
@@ -40,7 +44,19 @@ public class BinaryModelRelInvertion extends OperatorExecutableImpl {
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
 			multiModel
 		);
+		invertedModelRel.setName(modelRel.getName() + MODELREL_SUFFIX);
 		MultiModelMAVOInstanceFactory.copyModelRel(modelRel, invertedModelRel);
+
+		// invert all indexes
+		invertedModelRel.getModelEndpoints().move(1, 0);
+		invertedModelRel.getModelEndpointRefs().move(1, 0);
+		for (Link link : invertedModelRel.getLinks()) {
+			link.getModelElemEndpoints().move(1, 0);
+			link.getModelElemEndpointRefs().move(1, 0);
+		}
+		for (LinkReference linkRef : invertedModelRel.getLinkRefs()) {
+			linkRef.getModelElemEndpointRefs().move(1, 0);
+		}
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(invertedModelRel);

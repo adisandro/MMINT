@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 public class ModelDifference extends OperatorExecutableImpl {
 
-	private final static String MODEL_REL_NAME = "diff";
+	private final static String MODELREL_NAME = "diff";
 	private final static String DELETED_ELEMENT_LINK_NAME = "del";
 	private final static String ADDED_ELEMENT_LINK_NAME = "add";
 
@@ -123,7 +123,7 @@ public class ModelDifference extends OperatorExecutableImpl {
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
 			multiModel
 		);
-		newModelRel.setName(MODEL_REL_NAME);
+		newModelRel.setName(MODELREL_NAME);
 
 		// add src model endpoint with deleted elements
 		ModelEndpointReference newSrcModelEndpointRef = createModelEndpointReference(newModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);

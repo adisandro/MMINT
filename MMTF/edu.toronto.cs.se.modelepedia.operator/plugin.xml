@@ -234,7 +234,7 @@
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
-            class="edu.toronto.cs.se.modelepedia.operator.patch.BinaryModelRelInvertion"
+            class="edu.toronto.cs.se.modelepedia.operator.patch.BinaryModelRelInversion"
             isConversion="false">
          <extendibleType
                name="BinaryModelRelInvertion"
