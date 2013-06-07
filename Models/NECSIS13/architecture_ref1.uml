@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MAVOProfile="http:///schemas/MAVOProfile/_adkHgM7wEeKsUIrUddA5XA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/MAVOProfile/_adkHgM7wEeKsUIrUddA5XA/2 platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_adkHgc7wEeKsUIrUddA5XA">
+  <uml:Model xmi:id="_U-SNsM4nEeK1AuhmU80SXg" name="model">
+    <packagedElement xmi:type="uml:Device" xmi:id="_sILowM7oEeKKq4cKovaOgw" clientDependency="_GcwIwM7pEeKKq4cKovaOgw" name="UI"/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_uXq_IM7oEeKKq4cKovaOgw" clientDependency="_IMV3EM7pEeKKq4cKovaOgw _KciYEM7pEeKKq4cKovaOgw" name="ECU1"/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_vFIiEM7oEeKKq4cKovaOgw" clientDependency="_KCxNMM7pEeKKq4cKovaOgw" name="ECU2"/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_v2zPkM7oEeKKq4cKovaOgw" clientDependency="_K0dv4M7pEeKKq4cKovaOgw" name="ECU3"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_w4QskM7oEeKKq4cKovaOgw" name="Bus1"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_1CsssM7oEeKKq4cKovaOgw" name="Bus3"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_GcwIwM7pEeKKq4cKovaOgw" name="UI_Bus1" client="_sILowM7oEeKKq4cKovaOgw" supplier="_w4QskM7oEeKKq4cKovaOgw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_IMV3EM7pEeKKq4cKovaOgw" name="ECU1_Bus1" client="_uXq_IM7oEeKKq4cKovaOgw" supplier="_w4QskM7oEeKKq4cKovaOgw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_KCxNMM7pEeKKq4cKovaOgw" name="ECU2_Bus3" client="_vFIiEM7oEeKKq4cKovaOgw" supplier="_1CsssM7oEeKKq4cKovaOgw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_KciYEM7pEeKKq4cKovaOgw" name="ECU1_Bus3" client="_uXq_IM7oEeKKq4cKovaOgw" supplier="_1CsssM7oEeKKq4cKovaOgw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_K0dv4M7pEeKKq4cKovaOgw" name="ECU3_Bus3" client="_v2zPkM7oEeKKq4cKovaOgw" supplier="_1CsssM7oEeKKq4cKovaOgw"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_DdZNAM4rEeKTiJl_Fw5tWA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ddn2gM4rEeKTiJl_Fw5tWA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_adkHgc7wEeKsUIrUddA5XA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_H_nKEMlAEeKrhsRgWa0Oxg"/>
+    </profileApplication>
+  </uml:Model>
+  <MAVOProfile:MAVOModel xmi:id="_ETJwUM4rEeKTiJl_Fw5tWA" base_Model="_U-SNsM4nEeK1AuhmU80SXg"/>
+  <MAVOProfile:MAVOElement xmi:id="_l5O9wM7pEeKKq4cKovaOgw" base_Classifier="_w4QskM7oEeKKq4cKovaOgw"/>
+  <MAVOProfile:MAVOElement xmi:id="_7CjcsM7wEeKUyfcb2q0JFg" base_Relationship="_IMV3EM7pEeKKq4cKovaOgw"/>
+  <MAVOProfile:MAVOElement xmi:id="_8N0V8M7wEeKUyfcb2q0JFg" base_Relationship="_GcwIwM7pEeKKq4cKovaOgw"/>
+  <MAVOProfile:MAVOElement xmi:id="_9T-swM7wEeKUyfcb2q0JFg" may="true"/>
+  <MAVOProfile:MAVOElement xmi:id="_-TELMM7wEeKUyfcb2q0JFg" may="true"/>
+</xmi:XMI>
