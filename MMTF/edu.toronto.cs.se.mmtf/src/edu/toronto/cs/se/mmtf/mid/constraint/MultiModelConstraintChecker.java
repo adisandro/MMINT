@@ -29,6 +29,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
@@ -342,13 +344,21 @@ public class MultiModelConstraintChecker {
 			return true;
 		}
 		// look for metamodel supertypes
-		//TODO MMTF: looks like there is no way to drop an EReference instance
 		for (EClass newEObjectSuper : newEObject.eClass().getEAllSuperTypes()) {
 			newEObjectClassLiteral = MultiModelRegistry.getEObjectClassLiteral(newEObjectSuper, false);
 			if (modelElemType.getClassLiteral().equals(newEObjectClassLiteral)) {
 				return true;
 			}
 		}
+		// look for UML stereotypes
+		if (newEObject instanceof Element) {
+			for (Stereotype stereotype : ((Element) newEObject).getApplicableStereotypes()) {
+				if (modelElemType.getClassLiteral().equals(stereotype.getName())) {
+					return true;
+				}
+			}
+		}
+		//TODO MMTF: looks like there is no way to drop an EReference instance
 
 		return false;
 	}
