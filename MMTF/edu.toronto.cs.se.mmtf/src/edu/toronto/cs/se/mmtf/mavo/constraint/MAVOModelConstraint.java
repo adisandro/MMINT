@@ -33,7 +33,7 @@ public class MAVOModelConstraint extends JavaModelConstraint {
 		if (
 			rootModelObj instanceof MAVOModel || (
 				rootModelObj instanceof org.eclipse.uml2.uml.Model &&
-				((org.eclipse.uml2.uml.Model) rootModelObj).getAppliedStereotype(MAVOUtils.UML_MAVOMODEL_STEREOTYPE) != null
+				((org.eclipse.uml2.uml.Model) rootModelObj).getAppliedProfile(MAVOUtils.UML_MAVO_PROFILE) != null
 			)
 		) {
 			return true;

@@ -29,12 +29,13 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -351,9 +352,12 @@ public class MultiModelConstraintChecker {
 			}
 		}
 		// look for UML stereotypes
-		if (newEObject instanceof Element) {
-			for (Stereotype stereotype : ((Element) newEObject).getApplicableStereotypes()) {
-				if (modelElemType.getClassLiteral().equals(stereotype.getName())) {
+		if (newEObject instanceof NamedElement) {
+			for (Stereotype stereotype : ((NamedElement) newEObject).getApplicableStereotypes()) {
+				if (
+					modelElemType.getClassLiteral().equals(stereotype.getName()) ||
+					stereotype.getName().equals(MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.get(modelElemType.getClassLiteral()))
+				) {
 					return true;
 				}
 			}

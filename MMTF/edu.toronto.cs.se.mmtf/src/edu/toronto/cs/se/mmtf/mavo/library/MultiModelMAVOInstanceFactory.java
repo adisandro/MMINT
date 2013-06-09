@@ -39,7 +39,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
 		Model newModel = MultiModelInstanceFactory.createModel(modelType, newModelUri, origin, multiModel);
-		MAVOUtils.annotateMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
+		MAVOUtils.initializeMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
 
 		return newModel;
 	}
@@ -47,7 +47,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
 		Model newModel = MultiModelInstanceFactory.createModelAndEditor(modelType, newModelUri, origin, multiModel);
-		MAVOUtils.annotateMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
+		MAVOUtils.initializeMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
 
 		return newModel;
 	}
@@ -55,14 +55,13 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelEObject) throws MMTFException {
 
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(modelEndpointRef, newModelElemName, modelEObject);
-		MAVOUtils.annotateMAVOModelElementReference(modelEObject, newModelElemRef);
+		MAVOUtils.initializeMAVOModelElementReference(modelEObject, newModelElemRef);
 
 		return newModelElemRef;
 	}
 
 	public static Model copyModel(Model oldModel, String newModelName, MultiModel multiModel) throws Exception {
 
-		//TODO MMTF: make this a library function, accessible with ctrl+c/ctrl+v
 		//TODO MMTF: copy associated diagrams too
 		File oldFile = new File(MultiModelRegistry.prependWorkspaceToUri(oldModel.getUri()));
 		String newModelUri = MultiModelRegistry.replaceFileNameInUri(oldModel.getUri(), newModelName);
