@@ -226,6 +226,11 @@
       <modelElemEndpointRefs referencedObject="//@models.2/@links.20/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
     </linkRefs>
   </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="property_2buses" metatypeUri="http://se.cs.toronto.edu/mmtf/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <constraint implementation="$ENDPOINT_architecture.packagedElement->select(oclIsTypeOf(Node))->size() = 2"/>
+    <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/mmtf/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.0" modifiable="true"/>
+  </models>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture.di" name="UML diagram for model /NECSIS13/uncertainty/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
   </editors>

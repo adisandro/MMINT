@@ -19,6 +19,15 @@
       <element xmi:type="mid:Model" href="uncertainty.mid#//@models.1"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2gNTpNH1EeKkl5nuMDz74w" x="60" y="312"/>
     </children>
+    <children xmi:type="notation:Node" xmi:id="_8JHjQNH9EeKKm7pKmafeLQ" type="2013">
+      <children xmi:type="notation:DecorationNode" xmi:id="_8JHjRdH9EeKKm7pKmafeLQ" type="5013"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_8JHjRtH9EeKKm7pKmafeLQ" type="5018"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_8JHjQdH9EeKKm7pKmafeLQ"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_8JHjQtH9EeKKm7pKmafeLQ" fontName="Ubuntu"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_8JHjQ9H9EeKKm7pKmafeLQ" hint="Relationship"/>
+      <element xmi:type="relationship:ModelRel" href="uncertainty.mid#//@models.3"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8JHjRNH9EeKKm7pKmafeLQ" x="-84" y="-36"/>
+    </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_VrgugdH1EeKkl5nuMDz74w"/>
     <element xmi:type="mid:MultiModel" href="uncertainty.mid#/"/>
     <edges xmi:type="notation:Edge" xmi:id="_6OaqwNH1EeKkl5nuMDz74w" type="4015" source="_2gNToNH1EeKkl5nuMDz74w" target="_v3rgcNH1EeKkl5nuMDz74w">
@@ -39,6 +48,20 @@
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_6ObR2NH1EeKkl5nuMDz74w" diagramLink="_FDjBQNH2EeKkl5nuMDz74w" hint="Relationship"/>
       <element xmi:type="relationship:BinaryModelRel" href="uncertainty.mid#//@models.2"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6Oaqw9H1EeKkl5nuMDz74w" points="[-1, -25, -3, 237]$[-145, -265, -147, -3]"/>
+    </edges>
+    <edges xmi:type="notation:Edge" xmi:id="_AuuccNH-EeKKm7pKmafeLQ" type="4014" source="_8JHjQNH9EeKKm7pKmafeLQ" target="_v3rgcNH1EeKkl5nuMDz74w">
+      <children xmi:type="notation:DecorationNode" xmi:id="_AuucdNH-EeKKm7pKmafeLQ" visible="false" type="6011">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_AuucddH-EeKKm7pKmafeLQ" y="40"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_AuucdtH-EeKKm7pKmafeLQ" visible="false" type="6017">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Auucd9H-EeKKm7pKmafeLQ" y="60"/>
+      </children>
+      <styles xmi:type="notation:RoutingStyle" xmi:id="_AuuccdH-EeKKm7pKmafeLQ"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_AuucctH-EeKKm7pKmafeLQ" fontName="Ubuntu"/>
+      <element xmi:type="mid:ModelEndpoint" href="uncertainty.mid#//@models.3/@modelEndpoints.0"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Auucc9H-EeKKm7pKmafeLQ" points="[16, 22, -39, -53]$[-2, 69, -57, -6]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AuwRoNH-EeKKm7pKmafeLQ" id="(0.7806451612903226,0.56)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AuwRodH-EeKKm7pKmafeLQ" id="(0.19387755102040816,0.34)"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_FDjBQNH2EeKkl5nuMDz74w" type="Relationship" measurementUnit="Pixel">
