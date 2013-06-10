@@ -11,6 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf.mid.library;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.HashMap;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -220,6 +225,21 @@ public class MultiModelRegistry {
 	public static String prependWorkspaceToUri(String uri) {
 
 		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
+	}
+
+	public static void copyFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
+	
+		File oldFile = new File(oldFileUri);
+		File newFile = new File(newFileUri);
+		BufferedReader oldBuffer = new BufferedReader(new FileReader(oldFile));
+		BufferedWriter newBuffer = new BufferedWriter(new FileWriter(newFile));
+		String oldLine;
+		while ((oldLine = oldBuffer.readLine()) != null) {
+			newBuffer.write(oldLine.replaceAll(oldText, newText));
+			newBuffer.newLine();
+		}
+		oldBuffer.close();
+		newBuffer.close();
 	}
 
 	public static MultiModel getMultiModel(ExtendibleElement element) {
