@@ -231,10 +231,14 @@
     <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/mmtf/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.0" modifiable="true"/>
   </models>
+  <models uri="/NECSIS13/uncertainty/architecture2.uml" name="architecture2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.2"/>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture.di" name="UML diagram for model /NECSIS13/uncertainty/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/components.di" name="UML diagram for model /NECSIS13/uncertainty/components.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/components.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture2.di" name="UMLDeploymentDiagram_MAVO diagram for model /NECSIS13/uncertainty/architecture2.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture2.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
   </editors>
   <extendibleTable key="/NECSIS13/uncertainty/architecture.uml" value="//@models.0"/>
@@ -262,4 +266,5 @@
   <extendibleTable key="/NECSIS13/uncertainty/components.uml#_SGEnMM7nEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.13"/>
   <extendibleTable key="/NECSIS13/uncertainty/components.uml#_tXdxQM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.14"/>
   <extendibleTable key="/NECSIS13/uncertainty/components.uml#_s0N6QM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.15"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml" value="//@models.4"/>
 </mid:MultiModel>

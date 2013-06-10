@@ -28,6 +28,15 @@
       <element xmi:type="relationship:ModelRel" href="uncertainty.mid#//@models.3"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8JHjRNH9EeKKm7pKmafeLQ" x="-84" y="-36"/>
     </children>
+    <children xmi:type="notation:Node" xmi:id="_oSJF4NIKEeKPILxlZaqiVQ" type="2011">
+      <children xmi:type="notation:DecorationNode" xmi:id="_oSJF5dIKEeKPILxlZaqiVQ" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_oSJF5tIKEeKPILxlZaqiVQ" type="5016"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_oSJF4dIKEeKPILxlZaqiVQ"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_oSJF4tIKEeKPILxlZaqiVQ" fontName="Ubuntu"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_oSJF49IKEeKPILxlZaqiVQ" hint="Mid"/>
+      <element xmi:type="mid:Model" href="uncertainty.mid#//@models.4"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oSJF5NIKEeKPILxlZaqiVQ" x="408" y="48"/>
+    </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_VrgugdH1EeKkl5nuMDz74w"/>
     <element xmi:type="mid:MultiModel" href="uncertainty.mid#/"/>
     <edges xmi:type="notation:Edge" xmi:id="_6OaqwNH1EeKkl5nuMDz74w" type="4015" source="_2gNToNH1EeKkl5nuMDz74w" target="_v3rgcNH1EeKkl5nuMDz74w">
