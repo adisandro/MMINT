@@ -369,18 +369,18 @@
             </typeEndpoint>
             <modelElemType
                   category="ENTITY"
-                  classLiteral="Component">
-                <extendibleType
-                     name="Component"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component">
-                </extendibleType>
-            </modelElemType>
-            <modelElemType
-                  category="ENTITY"
                   classLiteral="Usage">
                 <extendibleType
                      name="Usage"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage">
+                </extendibleType>
+            </modelElemType>
+            <modelElemType
+                  category="ENTITY"
+                  classLiteral="Component">
+                <extendibleType
+                     name="Component"
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component">
                 </extendibleType>
             </modelElemType>
          </modelTypeEndpoint>
@@ -396,18 +396,21 @@
             </typeEndpoint>
             <modelElemType
                   category="ENTITY"
-                  classLiteral="Device">
-                <extendibleType
-                     name="Device"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device">
-                </extendibleType>
-            </modelElemType>
-            <modelElemType
-                  category="ENTITY"
                   classLiteral="Node">
                 <extendibleType
                      name="Node"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
+                </extendibleType>
+            </modelElemType>
+            <modelElemType
+                  category="ENTITY"
+                  classLiteral="Device">
+                <extendibleType
+                     name="Device"
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device">
+                   <superType
+                         uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
+                   </superType>
                 </extendibleType>
             </modelElemType>
          </modelTypeEndpoint>
