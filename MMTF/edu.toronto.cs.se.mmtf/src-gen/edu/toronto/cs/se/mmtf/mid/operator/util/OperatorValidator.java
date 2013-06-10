@@ -155,9 +155,7 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(operator, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(operator, diagnostics, context);
 		return result;
 	}
 
@@ -185,9 +183,7 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conversionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(conversionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConversionOperator_conversion(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConversionOperator_executable(conversionOperator, diagnostics, context);
 		return result;

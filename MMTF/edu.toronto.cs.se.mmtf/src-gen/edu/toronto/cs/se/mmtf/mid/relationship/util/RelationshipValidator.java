@@ -150,9 +150,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(modelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(modelRel, diagnostics, context);
 		return result;
 	}
 
@@ -171,9 +169,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(binaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryModelRel_isBinaryModelRel(binaryModelRel, diagnostics, context);
 		return result;
 	}
@@ -320,9 +316,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(link, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(link, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(link, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(link, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(link, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(link, diagnostics, context);
 		return result;
 	}
 
@@ -341,9 +335,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(binaryLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(binaryLink, diagnostics, context);
 		return result;
 	}
@@ -392,9 +384,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(modelElementEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElementEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElementEndpoint, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_supertypeType(modelElementEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(modelElementEndpoint, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_metatypeType(modelElementEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElementEndpoint_unboundedLevel(modelElementEndpoint, diagnostics, context);
 		return result;
 	}

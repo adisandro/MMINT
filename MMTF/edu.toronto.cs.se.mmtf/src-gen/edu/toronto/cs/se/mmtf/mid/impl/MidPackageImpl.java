@@ -952,7 +952,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (extendibleElementEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "supertypeType typeLevel metatypeType"
+			 "constraints", "typeLevel"
 		   });															
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
@@ -974,9 +974,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		  (extendibleElementEClass, 
 		   source, 
 		   new String[] {
-			 "supertypeType", "not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())",
-			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES",
-			 "metatypeType", "not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())"
+			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"
 		   });														
 		addAnnotation
 		  (extendibleElementEndpointEClass, 

@@ -126,6 +126,9 @@
          <extendibleType
                name="MID"
                uri="http://se.cs.toronto.edu/mmtf/MID">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </superType>
          </extendibleType>
       </modelType>
    </extension>

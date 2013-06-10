@@ -37,8 +37,8 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
  *
  * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='supertypeType typeLevel metatypeType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot supertypeType='not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())' typeLevel='level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES' metatypeType='not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES'"
  * @generated
  */
 public interface ExtendibleElement extends MAVOElement {
@@ -189,7 +189,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * True if this element has been dinamically created through MMTF (types: true for light types, false for heavy types from extensions; instances: always true).
+	 * True if this element has been dinamically created at runtime through MMTF (types: true for light types, false for heavy types from extensions; instances: always true).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Dynamic</em>' attribute.
 	 * @see #setDynamic(boolean)

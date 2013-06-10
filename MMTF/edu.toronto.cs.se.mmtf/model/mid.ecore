@@ -23,15 +23,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true" eSuperTypes="mavo.ecore#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="supertypeType typeLevel metatypeType"/>
+      <details key="constraints" value="typeLevel"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The abstract basic element. It represents a unique typed element, able to extend or be extended by other elements."/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="supertypeType" value="not supertype.oclIsUndefined() implies self.oclIsKindOf(supertype.oclType())"/>
       <details key="typeLevel" value="level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"/>
-      <details key="metatypeType" value="not metatype.oclIsUndefined() implies self.oclIsTypeOf(metatype.oclType())"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
