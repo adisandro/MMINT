@@ -1,2 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID"/>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmtf/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:relationship="http://se.cs.toronto.edu/mmtf/MID/Relationship">
+  <models uri="/NECSIS13/uncertainty/architecture.uml" name="architecture" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" fileExtension="uml" editors="//@editors.0">
+    <elements formulaId="ui" uri="/NECSIS13/uncertainty/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" name="&lt;Device> UI" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" dynamic="true" classLiteral="Device"/>
+    <elements formulaId="ecu1" uri="/NECSIS13/uncertainty/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" name="&lt;Device> ECU1" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" dynamic="true" classLiteral="Device"/>
+    <elements formulaId="ecu2" uri="/NECSIS13/uncertainty/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" name="&lt;Device> ECU2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" dynamic="true" classLiteral="Device"/>
+    <elements formulaId="ecu3" uri="/NECSIS13/uncertainty/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" name="&lt;Device> ECU3" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" dynamic="true" classLiteral="Device"/>
+    <elements formulaId="bus1" uri="/NECSIS13/uncertainty/architecture.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" name="&lt;Node> Bus1" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" dynamic="true" classLiteral="Node"/>
+    <elements may="true" formulaId="bus2" uri="/NECSIS13/uncertainty/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" dynamic="true" classLiteral="Node"/>
+    <elements formulaId="bus3" uri="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" name="&lt;Node> Bus3" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" dynamic="true" classLiteral="Node"/>
+  </models>
+  <models uri="/NECSIS13/uncertainty/components.uml" name="components" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO" dynamic="true" fileExtension="uml" editors="//@editors.1">
+    <elements formulaId="inputcontrol" uri="/NECSIS13/uncertainty/components.uml#_fBFS4M4oEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> InputControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+    <elements formulaId="outputcontrol" uri="/NECSIS13/uncertainty/components.uml#_MBRkgM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> OutputControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+    <elements formulaId="climatecontrol" uri="/NECSIS13/uncertainty/components.uml#_2po4kM4oEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> ClimateControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+    <elements formulaId="climatemonitoring" uri="/NECSIS13/uncertainty/components.uml#_GzHdkM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> ClimateMonitoring" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+    <elements formulaId="accontrol" uri="/NECSIS13/uncertainty/components.uml#_IUAokM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> ACControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+    <elements var="true" formulaId="heatercontrol" uri="/NECSIS13/uncertainty/components.uml#_JBtcEM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;&lt;var>> &lt;Component> HeaterControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+    <elements formulaId="enginecontrol" uri="/NECSIS13/uncertainty/components.uml#_KmLfgM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> EngineControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="deployment" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="components" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLComponentDiagram_MAVO/UMLComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLDeploymentDiagram_MAVO/UMLDeploymentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs referencedObject="//@models.1/@elements.0" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.1" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.2" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.3" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.4" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.5" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.6" modifiable="true"/>
+    </modelEndpointRefs>
+    <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.1" modifiable="true">
+      <modelElemRefs referencedObject="//@models.0/@elements.0" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.1" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.2" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.3" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.4" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.5" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.6" modifiable="true"/>
+    </modelEndpointRefs>
+  </models>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture.di" name="UML diagram for model /NECSIS13/uncertainty/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/components.di" name="UML diagram for model /NECSIS13/uncertainty/components.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/components.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml" value="//@models.0"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml" value="//@models.1"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_fBFS4M4oEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.0"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_MBRkgM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.1"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_2po4kM4oEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.2"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_GzHdkM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.3"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_IUAokM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.4"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_JBtcEM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.5"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_KmLfgM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" value="//@models.1/@elements.6"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.0"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.1"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.2"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.3"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.4"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.5"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.6"/>
+</mid:MultiModel>
