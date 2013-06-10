@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Ee848NFSEeKgVPFJhzAu7w" type="PapyrusUMLDeploymentDiagram" name="architecture2" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Ee848NFSEeKgVPFJhzAu7w" type="PapyrusUMLDeploymentDiagram" name="architecture2" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_Fu0lYNFSEeKgVPFJhzAu7w" type="2003" fontName="Ubuntu" fontHeight="11">
     <children xmi:type="notation:DecorationNode" xmi:id="_Fu0lZNFSEeKgVPFJhzAu7w" type="6"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_Fu0lZdFSEeKgVPFJhzAu7w" type="17">
@@ -55,24 +55,6 @@
     <element xmi:type="uml:Node" href="architecture2.uml#_w4QskM7oEeKKq4cKovaOgw"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JHkp49FSEeKgVPFJhzAu7w" x="180" y="60" width="73" height="61"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_KkabUNFSEeKgVPFJhzAu7w" type="2008" fontName="Ubuntu" fontHeight="11">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lgLeMNFSEeKgVPFJhzAu7w" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lgLeMdFSEeKgVPFJhzAu7w" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lgLeMtFSEeKgVPFJhzAu7w" key="StereotypeList" value="MAVOProfile::may"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lgLeM9FSEeKgVPFJhzAu7w" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lgLeNNFSEeKgVPFJhzAu7w" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lgLeNdFSEeKgVPFJhzAu7w" key="StereotypePropertyLocation" value="Compartment"/>
-    </eAnnotations>
-    <children xmi:type="notation:DecorationNode" xmi:id="_KkbCYNFSEeKgVPFJhzAu7w" type="9"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_KkbCYdFSEeKgVPFJhzAu7w" type="19">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_KkbCYtFSEeKgVPFJhzAu7w"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KkbCY9FSEeKgVPFJhzAu7w"/>
-    </children>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_KkabUdFSEeKgVPFJhzAu7w"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_KkabUtFSEeKgVPFJhzAu7w"/>
-    <element xmi:type="uml:Node" href="architecture2.uml#_0RX9cM7oEeKKq4cKovaOgw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KkabU9FSEeKgVPFJhzAu7w" x="180" y="312" width="73" height="85"/>
-  </children>
   <children xmi:type="notation:Shape" xmi:id="_NVVq0NFSEeKgVPFJhzAu7w" type="2008" fontName="Ubuntu" fontHeight="11">
     <children xmi:type="notation:DecorationNode" xmi:id="_NVVq1NFSEeKgVPFJhzAu7w" type="9"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_NVWR4NFSEeKgVPFJhzAu7w" type="19">
@@ -107,42 +89,6 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_TwP4wdFSEeKgVPFJhzAu7w" fontName="Ubuntu" fontHeight="11"/>
     <element xmi:type="uml:Dependency" href="architecture2.uml#_IMV3EM7pEeKKq4cKovaOgw"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TwP4wtFSEeKgVPFJhzAu7w" points="[-75, -8, 156, 0]$[-194, 0, 37, 8]"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_VZyCYNFSEeKgVPFJhzAu7w" type="4004" source="_Fu0lYNFSEeKgVPFJhzAu7w" target="_KkabUNFSEeKgVPFJhzAu7w" lineColor="0">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mtzu8NFSEeKgVPFJhzAu7w" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mtzu8dFSEeKgVPFJhzAu7w" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mtzu8tFSEeKgVPFJhzAu7w" key="StereotypeList" value="MAVOProfile::may"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mtzu89FSEeKgVPFJhzAu7w" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mtzu9NFSEeKgVPFJhzAu7w" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mtzu9dFSEeKgVPFJhzAu7w" key="StereotypePropertyLocation" value="Compartment"/>
-    </eAnnotations>
-    <children xmi:type="notation:DecorationNode" xmi:id="_VZyCY9FSEeKgVPFJhzAu7w" type="12">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_VZyCZNFSEeKgVPFJhzAu7w" x="-32" y="34"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_VZyCZdFSEeKgVPFJhzAu7w" type="15">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_VZyCZtFSEeKgVPFJhzAu7w" y="60"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_VZyCYdFSEeKgVPFJhzAu7w" fontName="Ubuntu" fontHeight="11"/>
-    <element xmi:type="uml:Dependency" href="architecture2.uml#_Iub3gM7pEeKKq4cKovaOgw"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_VZyCYtFSEeKgVPFJhzAu7w" points="[25, 50, -56, -110]$[66, 130, -15, -30]"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_V4JZYNFSEeKgVPFJhzAu7w" type="4004" source="_GOeV0NFSEeKgVPFJhzAu7w" target="_KkabUNFSEeKgVPFJhzAu7w" lineColor="0">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mE0cUNFSEeKgVPFJhzAu7w" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mE0cUdFSEeKgVPFJhzAu7w" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mE0cUtFSEeKgVPFJhzAu7w" key="StereotypeList" value="MAVOProfile::may"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mE0cU9FSEeKgVPFJhzAu7w" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mE0cVNFSEeKgVPFJhzAu7w" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mE0cVdFSEeKgVPFJhzAu7w" key="StereotypePropertyLocation" value="Compartment"/>
-    </eAnnotations>
-    <children xmi:type="notation:DecorationNode" xmi:id="_V4JZY9FSEeKgVPFJhzAu7w" type="12">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_V4JZZNFSEeKgVPFJhzAu7w" x="-9" y="-17"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_V4JZZdFSEeKgVPFJhzAu7w" type="15">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_V4KAcNFSEeKgVPFJhzAu7w" y="60"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_V4JZYdFSEeKgVPFJhzAu7w" fontName="Ubuntu" fontHeight="11"/>
-    <element xmi:type="uml:Dependency" href="architecture2.uml#_JeDWkM7pEeKKq4cKovaOgw"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_V4JZYtFSEeKgVPFJhzAu7w" points="[-75, -7, 144, 13]$[-182, -17, 37, 3]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_WuEUwNFSEeKgVPFJhzAu7w" type="4004" source="_GOeV0NFSEeKgVPFJhzAu7w" target="_NVVq0NFSEeKgVPFJhzAu7w" lineColor="0">
     <children xmi:type="notation:DecorationNode" xmi:id="_WuE70NFSEeKgVPFJhzAu7w" type="12">
