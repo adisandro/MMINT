@@ -232,6 +232,12 @@
     <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.0" modifiable="true"/>
   </models>
   <models uri="/NECSIS13/uncertainty/architecture2.uml" name="architecture2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.2"/>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="architecture2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+    <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.1" modifiable="true"/>
+  </models>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture.di" name="UML diagram for model /NECSIS13/uncertainty/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
   </editors>
