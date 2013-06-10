@@ -17,28 +17,214 @@
     <elements formulaId="accontrol" uri="/NECSIS13/uncertainty/components.uml#_IUAokM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> ACControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
     <elements var="true" formulaId="heatercontrol" uri="/NECSIS13/uncertainty/components.uml#_JBtcEM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;&lt;var>> &lt;Component> HeaterControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
     <elements formulaId="enginecontrol" uri="/NECSIS13/uncertainty/components.uml#_KmLfgM4pEeK1AuhmU80SXg_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" name="&lt;Component> EngineControl" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component" dynamic="true" classLiteral="Component"/>
+    <elements formulaId="climatecontrol_uses_temperaturetarget1" uri="/NECSIS13/uncertainty/components.uml#_RL76MM7nEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;Usage> ClimateControl_uses_TemperatureTarget1" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements formulaId="climatecontrol_uses_humiditytarget" uri="/NECSIS13/uncertainty/components.uml#_RrhZMM7nEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;Usage> ClimateControl_uses_HumidityTarget" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements formulaId="outputcontrol_uses_temperaturedata" uri="/NECSIS13/uncertainty/components.uml#_BDtkUM7lEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;Usage> OutputControl_uses_TemperatureData" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements formulaId="outputcontrol_uses_humiditydata" uri="/NECSIS13/uncertainty/components.uml#_AdB-0M7lEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;Usage> OutputControl_uses_HumidityData" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements formulaId="climatecontrol_uses_temperaturedata" uri="/NECSIS13/uncertainty/components.uml#__YIzUM7kEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;Usage> ClimateControl_uses_TemperatureData" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements formulaId="climatecontrol_uses_humiditydata" uri="/NECSIS13/uncertainty/components.uml#__5aUYM7kEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;Usage> ClimateControl_uses_HumidityData" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements var="true" formulaId="climatecontrol_uses_temperaturetarget2" uri="/NECSIS13/uncertainty/components.uml#_SGEnMM7nEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;&lt;var>> &lt;Usage> ClimateControl_uses_TemperatureTarget2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements formulaId="accontrol_uses_enginedata" uri="/NECSIS13/uncertainty/components.uml#_tXdxQM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;Usage> ACControl_uses_EngineData" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
+    <elements var="true" formulaId="heatercontrol_uses_enginedata" uri="/NECSIS13/uncertainty/components.uml#_s0N6QM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" name="&lt;&lt;var>> &lt;Usage> HeaterControl_uses_EngineData" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" dynamic="true" classLiteral="Usage"/>
   </models>
   <models xsi:type="relationship:BinaryModelRel" uri="" name="deployment" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="components" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLComponentDiagram_MAVO/UMLComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLDeploymentDiagram_MAVO/UMLDeploymentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0 //@models.2/@linkRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Component> InputControl" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.0"/>
+      <modelElemEndpoints uri="" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.0"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0 //@models.2/@linkRefs.1/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Component> OutputControl" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.1"/>
+      <modelElemEndpoints uri="" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.0"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl3" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0 //@models.2/@linkRefs.2/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Component> ClimateControl" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.2"/>
+      <modelElemEndpoints uri="" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.0"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl4" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.0 //@models.2/@linkRefs.3/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Component> ACControl" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.4"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.1"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl5" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0 //@models.2/@linkRefs.4/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Component> ClimateMonitoring" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.3"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.1"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl6" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.0 //@models.2/@linkRefs.5/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Component> ClimateMonitoring" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.3"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.2"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" var="true" uri="" name="depl7" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.0 //@models.2/@linkRefs.6/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;&lt;var>> &lt;Component> HeaterControl" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.5"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.2"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl8" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.0 //@models.2/@linkRefs.7/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Component> EngineControl" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.6"/>
+      <modelElemEndpoints uri="" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.3"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl9" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.0 //@models.2/@linkRefs.8/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> ClimateControl_uses_TemperatureTarget1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.7"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl10" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.0 //@models.2/@linkRefs.9/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> ClimateControl_uses_HumidityTarget" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.8"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl11" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.10/@modelElemEndpointRefs.0 //@models.2/@linkRefs.10/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> OutputControl_uses_TemperatureData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.9"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl12" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.11/@modelElemEndpointRefs.0 //@models.2/@linkRefs.11/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> OutputControl_uses_TemperatureData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.9"/>
+      <modelElemEndpoints uri="" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.5"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl13" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.12/@modelElemEndpointRefs.0 //@models.2/@linkRefs.12/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> OutputControl_uses_HumidityData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.10"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl14" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.13/@modelElemEndpointRefs.0 //@models.2/@linkRefs.13/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> OutputControl_uses_HumidityData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.10"/>
+      <modelElemEndpoints uri="" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.5"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl15" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.14/@modelElemEndpointRefs.0 //@models.2/@linkRefs.14/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> ClimateControl_uses_TemperatureData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.11"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl16" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.15/@modelElemEndpointRefs.0 //@models.2/@linkRefs.15/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> ClimateControl_uses_TemperatureData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.11"/>
+      <modelElemEndpoints uri="" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.5"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl17" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.16/@modelElemEndpointRefs.0 //@models.2/@linkRefs.16/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> ClimateControl_uses_HumidityData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.12"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.4"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="depl18" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.17/@modelElemEndpointRefs.0 //@models.2/@linkRefs.17/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> ClimateControl_uses_HumidityData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.12"/>
+      <modelElemEndpoints uri="" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.5"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" var="true" uri="" name="depl19" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.18/@modelElemEndpointRefs.0 //@models.2/@linkRefs.18/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;&lt;var>> &lt;Usage> ClimateControl_uses_TemperatureTarget2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.13"/>
+      <modelElemEndpoints uri="" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.5"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" uri="" name="depl20" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.19/@modelElemEndpointRefs.0 //@models.2/@linkRefs.19/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;Usage> ACControl_uses_EngineData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.14"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus3" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.6"/>
+    </links>
+    <links xsi:type="relationship:BinaryLink" var="true" uri="" name="depl21" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.20/@modelElemEndpointRefs.0 //@models.2/@linkRefs.20/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="&lt;&lt;var>> &lt;Usage> HeaterControl_uses_EngineData" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@elements.15"/>
+      <modelElemEndpoints uri="" name="&lt;Node> Bus3" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@elements.6"/>
+    </links>
     <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
-      <modelElemRefs referencedObject="//@models.1/@elements.0" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.1/@elements.1" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.1/@elements.2" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.1/@elements.3" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.1/@elements.4" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.1/@elements.5" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.1/@elements.6" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.0" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.1" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.2" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.4" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.3" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0 //@models.2/@linkRefs.5/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.5" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.6" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.7" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.8" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.9" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.10/@modelElemEndpointRefs.0 //@models.2/@linkRefs.11/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.10" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.12/@modelElemEndpointRefs.0 //@models.2/@linkRefs.13/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.11" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.14/@modelElemEndpointRefs.0 //@models.2/@linkRefs.15/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.12" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.16/@modelElemEndpointRefs.0 //@models.2/@linkRefs.17/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.13" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.18/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.14" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.19/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@elements.15" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.20/@modelElemEndpointRefs.0"/>
     </modelEndpointRefs>
     <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.1" modifiable="true">
-      <modelElemRefs referencedObject="//@models.0/@elements.0" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.0/@elements.1" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.0/@elements.2" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.0/@elements.3" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.0/@elements.4" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.0/@elements.5" modifiable="true"/>
-      <modelElemRefs referencedObject="//@models.0/@elements.6" modifiable="true"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.0" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.1 //@models.2/@linkRefs.1/@modelElemEndpointRefs.1 //@models.2/@linkRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.1" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.1 //@models.2/@linkRefs.4/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.2" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.1 //@models.2/@linkRefs.6/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.3" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.4" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.1 //@models.2/@linkRefs.9/@modelElemEndpointRefs.1 //@models.2/@linkRefs.10/@modelElemEndpointRefs.1 //@models.2/@linkRefs.12/@modelElemEndpointRefs.1 //@models.2/@linkRefs.14/@modelElemEndpointRefs.1 //@models.2/@linkRefs.16/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.5" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.11/@modelElemEndpointRefs.1 //@models.2/@linkRefs.13/@modelElemEndpointRefs.1 //@models.2/@linkRefs.15/@modelElemEndpointRefs.1 //@models.2/@linkRefs.17/@modelElemEndpointRefs.1 //@models.2/@linkRefs.18/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@elements.6" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.19/@modelElemEndpointRefs.1 //@models.2/@linkRefs.20/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.1" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.2" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.3" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.4" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.5" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.6" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.7" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.8" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.9" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.10" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.11" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.11/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.12" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.13" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.14" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.15" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.16" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.17" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.17/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.17/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.18" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.18/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.18/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.19" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.19/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.14"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.19/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
+    </linkRefs>
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.20" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.20/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@links.20/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
+    </linkRefs>
   </models>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture.di" name="UML diagram for model /NECSIS13/uncertainty/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
@@ -62,4 +248,13 @@
   <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.4"/>
   <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.5"/>
   <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node" value="//@models.0/@elements.6"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_RL76MM7nEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.7"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_RrhZMM7nEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.8"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_BDtkUM7lEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.9"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_AdB-0M7lEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.10"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#__YIzUM7kEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.11"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#__5aUYM7kEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.12"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_SGEnMM7nEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.13"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_tXdxQM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.14"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml#_s0N6QM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage" value="//@models.1/@elements.15"/>
 </mid:MultiModel>
