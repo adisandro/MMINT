@@ -43,7 +43,7 @@ import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
  */
 public class MultiModelTypeIntrospection implements MMTFConstants {
 
-	public static <T extends ExtendibleElement> boolean validateType(T element, T elementType) {
+	public static <T extends ExtendibleElement> boolean validateType(T element, T elementType, boolean validateInstance) {
 
 		//TODO MMTF: figure out how to have multiple functions that validate
 		boolean validates = false;
@@ -77,6 +77,12 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 			}
 			// constraint validation
 			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
+			if (!validates) {
+				return false;
+			}
+			if (validateInstance && ((Model) element).getConstraint() != null) {
+				validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) element).getConstraint());
+			}
 		}
 
 		if (element instanceof Link) {
@@ -130,7 +136,7 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 	private static <T extends ExtendibleElement> void getRuntimeTypes(T element, T elementType, List<T> elementTypes) {
 
 		// stop condition: validation
-		if (!validateType(element, elementType)) {
+		if (!validateType(element, elementType, false)) {
 			return;
 		}
 

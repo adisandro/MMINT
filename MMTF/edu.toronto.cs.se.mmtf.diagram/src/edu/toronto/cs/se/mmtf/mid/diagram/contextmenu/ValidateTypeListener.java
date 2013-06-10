@@ -110,7 +110,7 @@ public class ValidateTypeListener extends SelectionAdapter {
 				Model model = models.get(i);
 				boolean result = false;
 				if (runtimeModelTypes == null) {
-					result = MultiModelTypeIntrospection.validateType(model, model.getMetatype());
+					result = MultiModelTypeIntrospection.validateType(model, model.getMetatype(), true);
 				}
 				else {
 					for (Model runtimeModelType : runtimeModelTypes.get(i)) {

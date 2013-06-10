@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -406,7 +406,7 @@ linkTypes:
 		return null;
 	}
 
-	private static boolean checkOCLConstraint(Model model, String oclConstraint) {
+	private static boolean checkOCLConstraint(Model model, String oclConstraint, boolean isInstanceConstraint) {
 
 		if (oclConstraint.equals("")) { // empty constraint
 			return true;
@@ -414,9 +414,12 @@ linkTypes:
 
 		EObject root = null;
 		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VAR)) {
-			String modelTypeEndpointName = oclConstraint.substring(OCL_MODELENDPOINT_VAR.length(), oclConstraint.indexOf(OCL_VAR_SEPARATOR));
+			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VAR.length(), oclConstraint.indexOf(OCL_VAR_SEPARATOR));
 			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
-				if (modelTypeEndpointName.equals(modelEndpointRef.getObject().getMetatype().getName())) {
+				String modelEndpointName = (isInstanceConstraint) ?
+					modelEndpointRef.getObject().getName() :
+					modelEndpointRef.getObject().getMetatype().getName();
+				if (modelEndpointConstraintName.equals(modelEndpointName)) {
 					root = MultiModelTypeIntrospection.getRoot(modelEndpointRef.getObject().getTarget());
 					break;
 				}
@@ -483,13 +486,14 @@ linkTypes:
 		if (!(element instanceof Model)) {
 			return true;
 		}
-		if (constraint == null) {
+		if (constraint == null || constraint.getImplementation() == null) {
 			return true;
 		}
 
 		switch (constraint.getLanguage()) {
 			case OCL:
-				return checkOCLConstraint((Model) element, constraint.getImplementation());
+				boolean isInstanceConstraint = element.getUri().equals(((Model) constraint.eContainer()).getUri());
+				return checkOCLConstraint((Model) element, constraint.getImplementation(), isInstanceConstraint);
 			case JAVA:
 				String modelTypeUri = ((Model) constraint.eContainer()).getUri();
 				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
