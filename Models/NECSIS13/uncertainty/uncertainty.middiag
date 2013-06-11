@@ -17,7 +17,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_2gNTotH1EeKkl5nuMDz74w" fontName="Ubuntu"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_2gNTo9H1EeKkl5nuMDz74w" hint="Mid"/>
       <element xmi:type="mid:Model" href="uncertainty.mid#//@models.1"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2gNTpNH1EeKkl5nuMDz74w" x="24" y="312"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2gNTpNH1EeKkl5nuMDz74w" x="16" y="312"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_8JHjQNH9EeKKm7pKmafeLQ" type="2013">
       <children xmi:type="notation:DecorationNode" xmi:id="_8JHjRdH9EeKKm7pKmafeLQ" type="5013"/>
