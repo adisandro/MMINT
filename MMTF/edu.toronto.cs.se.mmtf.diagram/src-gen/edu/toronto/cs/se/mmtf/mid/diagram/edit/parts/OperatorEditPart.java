@@ -419,7 +419,7 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setLineWidth(3);
-			this.setForegroundColor(ColorConstants.darkGray);
+			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(10),
 					getMapMode().DPtoLP(10), getMapMode().DPtoLP(10),
@@ -454,6 +454,11 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 67, 179, 154);
+	static final Color THIS_FORE = new Color(null, 48, 150, 127);
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 165, 237, 216);
 
 }

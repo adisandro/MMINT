@@ -121,39 +121,39 @@ public class MidNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (MidVisualIDRegistry.getVisualID(view)) {
+		case MultiModelEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Diagram?http://se.cs.toronto.edu/mmtf/MID?MultiModel", MidElementTypes.MultiModel_1000); //$NON-NLS-1$
+		case ModelEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID?Model", MidElementTypes.Model_2011); //$NON-NLS-1$
 		case Model2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID?Model", MidElementTypes.Model_2012); //$NON-NLS-1$
-		case ModelRel2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelRel", MidElementTypes.ModelRel_2014); //$NON-NLS-1$
 		case ModelRelEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelRel", MidElementTypes.ModelRel_2013); //$NON-NLS-1$
+		case ModelRel2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelRel", MidElementTypes.ModelRel_2014); //$NON-NLS-1$
+		case OperatorEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Operator?Operator", MidElementTypes.Operator_2015); //$NON-NLS-1$
 		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID?ExtendibleElement?supertype", MidElementTypes.ExtendibleElementSupertype_4013); //$NON-NLS-1$
 		case ModelEndpointEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID?ModelEndpoint", MidElementTypes.ModelEndpoint_4014); //$NON-NLS-1$
-		case Parameter2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Operator?Parameter", MidElementTypes.Parameter_4017); //$NON-NLS-1$
-		case ModelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID?Model", MidElementTypes.Model_2011); //$NON-NLS-1$
-		case OperatorEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Operator?Operator", MidElementTypes.Operator_2015); //$NON-NLS-1$
-		case MultiModelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http://se.cs.toronto.edu/mmtf/MID?MultiModel", MidElementTypes.MultiModel_1000); //$NON-NLS-1$
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?BinaryModelRel", MidElementTypes.BinaryModelRel_4015); //$NON-NLS-1$
 		case ParameterEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Operator?Parameter", MidElementTypes.Parameter_4016); //$NON-NLS-1$
+		case Parameter2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Operator?Parameter", MidElementTypes.Parameter_4017); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -214,28 +214,28 @@ public class MidNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (MidVisualIDRegistry.getVisualID(view)) {
+		case MultiModelEditPart.VISUAL_ID:
+			return getMultiModel_1000Text(view);
+		case ModelEditPart.VISUAL_ID:
+			return getModel_2011Text(view);
 		case Model2EditPart.VISUAL_ID:
 			return getModel_2012Text(view);
-		case ModelRel2EditPart.VISUAL_ID:
-			return getModelRel_2014Text(view);
 		case ModelRelEditPart.VISUAL_ID:
 			return getModelRel_2013Text(view);
+		case ModelRel2EditPart.VISUAL_ID:
+			return getModelRel_2014Text(view);
+		case OperatorEditPart.VISUAL_ID:
+			return getOperator_2015Text(view);
 		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
 			return getExtendibleElementSupertype_4013Text(view);
 		case ModelEndpointEditPart.VISUAL_ID:
 			return getModelEndpoint_4014Text(view);
-		case Parameter2EditPart.VISUAL_ID:
-			return getParameter_4017Text(view);
-		case ModelEditPart.VISUAL_ID:
-			return getModel_2011Text(view);
-		case OperatorEditPart.VISUAL_ID:
-			return getOperator_2015Text(view);
-		case MultiModelEditPart.VISUAL_ID:
-			return getMultiModel_1000Text(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4015Text(view);
 		case ParameterEditPart.VISUAL_ID:
 			return getParameter_4016Text(view);
+		case Parameter2EditPart.VISUAL_ID:
+			return getParameter_4017Text(view);
 		}
 		return getUnknownElementText(view);
 	}

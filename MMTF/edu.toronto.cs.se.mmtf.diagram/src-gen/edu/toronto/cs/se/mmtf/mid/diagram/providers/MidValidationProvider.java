@@ -112,7 +112,8 @@ public class MidValidationProvider {
 			Model context = (Model) ctx.getTarget();
 			boolean success = MultiModelTypeIntrospection.validateType(context,
 					context.getMetatype(), true);
-			String modelRel = (context instanceof ModelRel) ? " relationship" : "";
+			String modelRel = (context instanceof ModelRel) ? " relationship"
+					: "";
 			return (success) ? ctx.createSuccessStatus() : ctx
 					.createFailureStatus(modelRel, context.getName(), context
 							.getMetatype().getName());

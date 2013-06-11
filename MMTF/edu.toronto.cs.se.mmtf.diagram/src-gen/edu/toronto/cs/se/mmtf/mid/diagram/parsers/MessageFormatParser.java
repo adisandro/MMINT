@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
+import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
 
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
@@ -29,7 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 /**
  * @generated
  */
-public class MessageFormatParser extends AbstractParser {
+public class MessageFormatParser extends AbstractAttributeParser {
 
 	/**
 	 * @generated
