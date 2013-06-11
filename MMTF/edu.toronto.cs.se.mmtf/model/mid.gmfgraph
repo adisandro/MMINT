@@ -16,7 +16,7 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="243" green="169" blue="25"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="248" green="249" blue="212"/>
-        <minimumSize dy="50"/>
+        <minimumSize dy="60"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
@@ -35,7 +35,7 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="226" green="226" blue="231"/>
-        <minimumSize dy="50"/>
+        <minimumSize dy="60"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
@@ -52,8 +52,8 @@
     <descriptors name="OperatorFigure">
       <actualFigure xsi:type="gmfgraph:Ellipse" name="OperatorFigure" lineWidth="3">
         <layout xsi:type="gmfgraph:FlowLayout"/>
-        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="darkGray"/>
-        <backgroundColor xsi:type="gmfgraph:RGBColor" red="67" green="179" blue="154"/>
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="48" green="150" blue="127"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="165" green="237" blue="216"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="10" left="10" bottom="10" right="10"/>
         </border>
