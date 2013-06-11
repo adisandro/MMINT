@@ -52,7 +52,7 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="226" green="226" blue="231"/>
-        <minimumSize dy="50"/>
+        <minimumSize dy="60"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
@@ -98,7 +98,7 @@
         <layout xsi:type="gmfgraph:FlowLayout"/>
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="226" green="226" blue="231"/>
-        <minimumSize dy="50"/>
+        <minimumSize dy="60"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
