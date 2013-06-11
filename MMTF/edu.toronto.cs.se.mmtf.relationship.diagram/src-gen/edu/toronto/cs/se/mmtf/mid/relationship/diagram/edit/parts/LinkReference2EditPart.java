@@ -442,7 +442,7 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0),
-					getMapMode().DPtoLP(50)));
+					getMapMode().DPtoLP(60)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));

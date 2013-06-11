@@ -216,6 +216,9 @@ public class MidNavigatorContentProvider implements ICommonContentProvider {
 					topViews.add((View) o);
 				}
 			}
+			result.addAll(createNavigatorItems(
+					selectViewsByType(topViews, ModelRelEditPart.MODEL_ID),
+					file, false));
 			return result.toArray();
 		}
 
@@ -252,6 +255,103 @@ public class MidNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (MidVisualIDRegistry.getVisualID(view)) {
+
+		case ModelRelEditPart.VISUAL_ID: {
+			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
+			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
+			Diagram sv = (Diagram) view;
+			MidNavigatorGroup links = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelRel_1000_links,
+					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReferenceEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReference2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReference2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementEndpointReferenceEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(BinaryLinkReferenceEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(BinaryLinkReference2EditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementEndpointReference2EditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			if (!links.isEmpty()) {
+				result.add(links);
+			}
+			return result.toArray();
+		}
+
+		case ModelEndpointReferenceEditPart.VISUAL_ID: {
+			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelEndpointReference_2007_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelEndpointReference_2007_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					MidVisualIDRegistry
+							.getType(ModelElementReferenceEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
 
 		case LinkReferenceEditPart.VISUAL_ID: {
 			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
@@ -296,14 +396,106 @@ public class MidNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case ModelElementReference2EditPart.VISUAL_ID: {
+		case LinkReference2EditPart.VISUAL_ID: {
 			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementReference_3006_incominglinks,
+					Messages.NavigatorGroupName_LinkReference_2009_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementReference_3006_outgoinglinks,
+					Messages.NavigatorGroupName_LinkReference_2009_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementEndpointReferenceEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementEndpointReference2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case ModelEndpointReference2EditPart.VISUAL_ID: {
+			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelEndpointReference_2010_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelEndpointReference_2010_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReferenceModelEndpointReferenceSuperCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					MidVisualIDRegistry
+							.getType(ModelElementReference2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReferenceModelEndpointReferenceSuperCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					MidVisualIDRegistry
+							.getType(ModelElementReference3EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case ModelElementReferenceEditPart.VISUAL_ID: {
+			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelElementReference_3005_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelElementReference_3005_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(
@@ -359,14 +551,14 @@ public class MidNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case ModelElementReferenceEditPart.VISUAL_ID: {
+		case ModelElementReference2EditPart.VISUAL_ID: {
 			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementReference_3005_incominglinks,
+					Messages.NavigatorGroupName_ModelElementReference_3006_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementReference_3005_outgoinglinks,
+					Messages.NavigatorGroupName_ModelElementReference_3006_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(
@@ -485,14 +677,103 @@ public class MidNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case ModelElementEndpointReference2EditPart.VISUAL_ID: {
+		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID: {
 			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			MidNavigatorGroup target = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementEndpointReference_4014_target,
+					Messages.NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4010_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			MidNavigatorGroup source = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementEndpointReference_4014_source,
+					Messages.NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4010_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReferenceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReference2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReference2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReferenceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReference2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReference3EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReferenceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReference2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelEndpointReference2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReferenceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReference2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReference3EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case ModelElementEndpointReferenceEditPart.VISUAL_ID: {
+			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			MidNavigatorGroup target = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelElementEndpointReference_4011_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			MidNavigatorGroup source = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelElementEndpointReference_4011_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
@@ -584,328 +865,6 @@ public class MidNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case ModelEndpointReference2EditPart.VISUAL_ID: {
-			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpointReference_2010_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpointReference_2010_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReferenceModelEndpointReferenceSuperCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					MidVisualIDRegistry
-							.getType(ModelElementReference2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReferenceModelEndpointReferenceSuperCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					MidVisualIDRegistry
-							.getType(ModelElementReference3EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case ModelElementEndpointReferenceEditPart.VISUAL_ID: {
-			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			MidNavigatorGroup target = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementEndpointReference_4011_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			MidNavigatorGroup source = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelElementEndpointReference_4011_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReferenceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReference2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReference3EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReferenceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReference2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case ModelEndpointReferenceEditPart.VISUAL_ID: {
-			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpointReference_2007_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpointReference_2007_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					MidVisualIDRegistry
-							.getType(ModelElementReferenceEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case LinkReference2EditPart.VISUAL_ID: {
-			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			MidNavigatorGroup incominglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_LinkReference_2009_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			MidNavigatorGroup outgoinglinks = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_LinkReference_2009_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementEndpointReferenceEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementEndpointReference2EditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID: {
-			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			MidNavigatorGroup target = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4010_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			MidNavigatorGroup source = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4010_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReferenceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReference2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReference2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReferenceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReference2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReference3EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReferenceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReference2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReference2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReferenceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReference2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementReference3EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case ModelRelEditPart.VISUAL_ID: {
-			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
-			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
-			Diagram sv = (Diagram) view;
-			MidNavigatorGroup links = new MidNavigatorGroup(
-					Messages.NavigatorGroupName_ModelRel_1000_links,
-					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReferenceEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(LinkReference2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelEndpointReference2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementEndpointReferenceEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(BinaryLinkReferenceEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(BinaryLinkReference2EditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
-					MidVisualIDRegistry
-							.getType(ModelElementEndpointReference2EditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			if (!links.isEmpty()) {
-				result.add(links);
-			}
-			return result.toArray();
-		}
-
 		case BinaryLinkReference2EditPart.VISUAL_ID: {
 			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
@@ -957,6 +916,50 @@ public class MidNavigatorContentProvider implements ICommonContentProvider {
 			}
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case ModelElementEndpointReference2EditPart.VISUAL_ID: {
+			LinkedList<MidAbstractNavigatorItem> result = new LinkedList<MidAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			MidNavigatorGroup target = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelElementEndpointReference_4014_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			MidNavigatorGroup source = new MidNavigatorGroup(
+					Messages.NavigatorGroupName_ModelElementEndpointReference_4014_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReferenceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReference2EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(ModelElementReference3EditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReferenceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					MidVisualIDRegistry
+							.getType(LinkReference2EditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
 			}
 			return result.toArray();
 		}

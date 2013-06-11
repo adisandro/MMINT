@@ -125,45 +125,45 @@ public class MidNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (MidVisualIDRegistry.getVisualID(view)) {
-		case LinkReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?LinkReference", MidElementTypes.LinkReference_2008); //$NON-NLS-1$
-		case ModelElementReference2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementReference", MidElementTypes.ModelElementReference_3006); //$NON-NLS-1$
-		case ModelElementReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementReference", MidElementTypes.ModelElementReference_3005); //$NON-NLS-1$
-		case ModelElementReference3EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementReference", MidElementTypes.ModelElementReference_3007); //$NON-NLS-1$
-		case ModelElementEndpointReference2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementEndpointReference", MidElementTypes.ModelElementEndpointReference_4014); //$NON-NLS-1$
-		case BinaryLinkReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?BinaryLinkReference", MidElementTypes.BinaryLinkReference_4012); //$NON-NLS-1$
-		case ModelEndpointReference2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelEndpointReference", MidElementTypes.ModelEndpointReference_2010); //$NON-NLS-1$
-		case ModelElementEndpointReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementEndpointReference", MidElementTypes.ModelElementEndpointReference_4011); //$NON-NLS-1$
-		case ModelEndpointReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelEndpointReference", MidElementTypes.ModelEndpointReference_2007); //$NON-NLS-1$
-		case LinkReference2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?LinkReference", MidElementTypes.LinkReference_2009); //$NON-NLS-1$
-		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?ExtendibleElementReference?supertypeRef", MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010); //$NON-NLS-1$
 		case ModelRelEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelRel", MidElementTypes.ModelRel_1000); //$NON-NLS-1$
+		case ModelEndpointReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelEndpointReference", MidElementTypes.ModelEndpointReference_2007); //$NON-NLS-1$
+		case LinkReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?LinkReference", MidElementTypes.LinkReference_2008); //$NON-NLS-1$
+		case LinkReference2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?LinkReference", MidElementTypes.LinkReference_2009); //$NON-NLS-1$
+		case ModelEndpointReference2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelEndpointReference", MidElementTypes.ModelEndpointReference_2010); //$NON-NLS-1$
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementReference", MidElementTypes.ModelElementReference_3005); //$NON-NLS-1$
+		case ModelElementReference2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementReference", MidElementTypes.ModelElementReference_3006); //$NON-NLS-1$
+		case ModelElementReference3EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementReference", MidElementTypes.ModelElementReference_3007); //$NON-NLS-1$
+		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?ExtendibleElementReference?supertypeRef", MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010); //$NON-NLS-1$
+		case ModelElementEndpointReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementEndpointReference", MidElementTypes.ModelElementEndpointReference_4011); //$NON-NLS-1$
+		case BinaryLinkReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?BinaryLinkReference", MidElementTypes.BinaryLinkReference_4012); //$NON-NLS-1$
 		case BinaryLinkReference2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?BinaryLinkReference", MidElementTypes.BinaryLinkReference_4013); //$NON-NLS-1$
+		case ModelElementEndpointReference2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/mmtf/MID/Relationship?ModelElementEndpointReference", MidElementTypes.ModelElementEndpointReference_4014); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -224,32 +224,32 @@ public class MidNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (MidVisualIDRegistry.getVisualID(view)) {
-		case LinkReferenceEditPart.VISUAL_ID:
-			return getLinkReference_2008Text(view);
-		case ModelElementReference2EditPart.VISUAL_ID:
-			return getModelElementReference_3006Text(view);
-		case ModelElementReferenceEditPart.VISUAL_ID:
-			return getModelElementReference_3005Text(view);
-		case ModelElementReference3EditPart.VISUAL_ID:
-			return getModelElementReference_3007Text(view);
-		case ModelElementEndpointReference2EditPart.VISUAL_ID:
-			return getModelElementEndpointReference_4014Text(view);
-		case BinaryLinkReferenceEditPart.VISUAL_ID:
-			return getBinaryLinkReference_4012Text(view);
-		case ModelEndpointReference2EditPart.VISUAL_ID:
-			return getModelEndpointReference_2010Text(view);
-		case ModelElementEndpointReferenceEditPart.VISUAL_ID:
-			return getModelElementEndpointReference_4011Text(view);
-		case ModelEndpointReferenceEditPart.VISUAL_ID:
-			return getModelEndpointReference_2007Text(view);
-		case LinkReference2EditPart.VISUAL_ID:
-			return getLinkReference_2009Text(view);
-		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID:
-			return getExtendibleElementReferenceSupertypeRef_4010Text(view);
 		case ModelRelEditPart.VISUAL_ID:
 			return getModelRel_1000Text(view);
+		case ModelEndpointReferenceEditPart.VISUAL_ID:
+			return getModelEndpointReference_2007Text(view);
+		case LinkReferenceEditPart.VISUAL_ID:
+			return getLinkReference_2008Text(view);
+		case LinkReference2EditPart.VISUAL_ID:
+			return getLinkReference_2009Text(view);
+		case ModelEndpointReference2EditPart.VISUAL_ID:
+			return getModelEndpointReference_2010Text(view);
+		case ModelElementReferenceEditPart.VISUAL_ID:
+			return getModelElementReference_3005Text(view);
+		case ModelElementReference2EditPart.VISUAL_ID:
+			return getModelElementReference_3006Text(view);
+		case ModelElementReference3EditPart.VISUAL_ID:
+			return getModelElementReference_3007Text(view);
+		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID:
+			return getExtendibleElementReferenceSupertypeRef_4010Text(view);
+		case ModelElementEndpointReferenceEditPart.VISUAL_ID:
+			return getModelElementEndpointReference_4011Text(view);
+		case BinaryLinkReferenceEditPart.VISUAL_ID:
+			return getBinaryLinkReference_4012Text(view);
 		case BinaryLinkReference2EditPart.VISUAL_ID:
 			return getBinaryLinkReference_4013Text(view);
+		case ModelElementEndpointReference2EditPart.VISUAL_ID:
+			return getModelElementEndpointReference_4014Text(view);
 		}
 		return getUnknownElementText(view);
 	}
