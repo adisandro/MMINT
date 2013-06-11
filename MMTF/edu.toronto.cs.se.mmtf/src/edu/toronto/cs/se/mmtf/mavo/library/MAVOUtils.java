@@ -239,4 +239,12 @@ public class MAVOUtils {
 		}
 	}
 
+	public static void copyMAVOElement(MAVOElement oldElement, MAVOElement newElement) {
+
+		newElement.setMay(oldElement.isMay());
+		newElement.setSet(oldElement.isSet());
+		newElement.setVar(oldElement.isVar());
+		newElement.setFormulaId(oldElement.getFormulaId());
+	}
+
 }
