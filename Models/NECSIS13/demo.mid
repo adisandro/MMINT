@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmtf/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
   <models uri="/NECSIS13/uncertainty/uncertainty.mid" name="uncertainty" metatypeUri="http://se.cs.toronto.edu/mmtf/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
+  <models uri="/NECSIS13/intent/intent.mid" name="intent" metatypeUri="http://se.cs.toronto.edu/mmtf/MID" dynamic="true" fileExtension="mid" editors="//@editors.1"/>
+  <models uri="/NECSIS13/modelmanagement/modelmanagement.mid" name="modelmanagement" metatypeUri="http://se.cs.toronto.edu/mmtf/MID" dynamic="true" fileExtension="mid" editors="//@editors.2"/>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/uncertainty.middiag" name="MID diagram for model /NECSIS13/uncertainty/uncertainty.mid" metatypeUri="http://se.cs.toronto.edu/mmtf/MID_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/uncertainty.mid" id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID" wizardId="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
     <fileExtensions>middiag</fileExtensions>
   </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/intent/intent.middiag" name="MID diagram for model /NECSIS13/intent/intent.mid" metatypeUri="http://se.cs.toronto.edu/mmtf/MID_diagram" dynamic="true" modelUri="/NECSIS13/intent/intent.mid" id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID" wizardId="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/modelmanagement/modelmanagement.middiag" name="MID diagram for model /NECSIS13/modelmanagement/modelmanagement.mid" metatypeUri="http://se.cs.toronto.edu/mmtf/MID_diagram" dynamic="true" modelUri="/NECSIS13/modelmanagement/modelmanagement.mid" id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID" wizardId="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
   <extendibleTable key="/NECSIS13/uncertainty/uncertainty.mid" value="//@models.0"/>
+  <extendibleTable key="/NECSIS13/intent/intent.mid" value="//@models.1"/>
+  <extendibleTable key="/NECSIS13/modelmanagement/modelmanagement.mid" value="//@models.2"/>
 </mid:MultiModel>

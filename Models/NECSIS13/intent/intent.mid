@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmtf/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:relationship="http://se.cs.toronto.edu/mmtf/MID/Relationship">
+  <models uri="/NECSIS13/uncertainty/architecture.uml" name="architecture" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" fileExtension="uml" editors="//@editors.0"/>
+  <models uri="/NECSIS13/uncertainty/architecture2.uml" name="architecture2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" fileExtension="uml" editors="//@editors.1"/>
+  <models uri="/NECSIS13/uncertainty/components.uml" name="components" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO" dynamic="true" fileExtension="uml" editors="//@editors.2"/>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="deployment" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="components" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLComponentDiagram_MAVO/UMLComponentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLDeploymentDiagram_MAVO/UMLDeploymentEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="architecture2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture.di" name="UMLDeploymentDiagram_MAVO diagram for model /NECSIS13/uncertainty/architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/architecture2.di" name="UMLDeploymentDiagram_MAVO diagram for model /NECSIS13/uncertainty/architecture2.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/architecture2.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/components.di" name="UMLComponentDiagram_MAVO diagram for model /NECSIS13/uncertainty/components.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/components.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+    <fileExtensions>di</fileExtensions>
+  </editors>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml" value="//@models.0"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml" value="//@models.1"/>
+  <extendibleTable key="/NECSIS13/uncertainty/components.uml" value="//@models.2"/>
+</mid:MultiModel>
