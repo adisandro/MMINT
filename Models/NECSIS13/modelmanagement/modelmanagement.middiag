@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_Qek4gNJWEeK_hrLf4Op2GQ" type="Mid" name="modelmanagement.middiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Node" xmi:id="_SDH0cNJWEeK_hrLf4Op2GQ" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_SDH0ddJWEeK_hrLf4Op2GQ" type="5012"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_SDH0dtJWEeK_hrLf4Op2GQ" type="5017"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_SDH0cdJWEeK_hrLf4Op2GQ"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_SDH0ctJWEeK_hrLf4Op2GQ" fontName="Cantarell" fontHeight="10"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_SDH0c9JWEeK_hrLf4Op2GQ" hint="Mid"/>
+  <children xmi:type="notation:Node" xmi:id="_ysbI8NO2EeKGVcUQAf90_g" type="2011">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ysbwANO2EeKGVcUQAf90_g" type="5011"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ysbwAdO2EeKGVcUQAf90_g" type="5016"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_ysbI8dO2EeKGVcUQAf90_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ysbI8tO2EeKGVcUQAf90_g" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_ysbI89O2EeKGVcUQAf90_g" hint="Mid"/>
     <element xmi:type="mid:Model" href="modelmanagement.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SDH0dNJWEeK_hrLf4Op2GQ" x="55" y="44" height="65"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ysbI9NO2EeKGVcUQAf90_g" x="72" y="49"/>
   </children>
-  <children xmi:type="notation:Node" xmi:id="_TqUbwNJWEeK_hrLf4Op2GQ" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_TqUbxdJWEeK_hrLf4Op2GQ" type="5012"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_TqVC0NJWEeK_hrLf4Op2GQ" type="5017"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_TqUbwdJWEeK_hrLf4Op2GQ"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_TqUbwtJWEeK_hrLf4Op2GQ" fontName="Cantarell" fontHeight="10"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_TqUbw9JWEeK_hrLf4Op2GQ" hint="Mid"/>
+  <children xmi:type="notation:Node" xmi:id="_4R0EINO2EeKGVcUQAf90_g" type="2011">
+    <children xmi:type="notation:DecorationNode" xmi:id="_4R0EJdO2EeKGVcUQAf90_g" type="5011"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_4R0rMNO2EeKGVcUQAf90_g" type="5016"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_4R0EIdO2EeKGVcUQAf90_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_4R0EItO2EeKGVcUQAf90_g" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4R0EI9O2EeKGVcUQAf90_g" hint="Mid"/>
     <element xmi:type="mid:Model" href="modelmanagement.mid#//@models.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TqUbxNJWEeK_hrLf4Op2GQ" x="70" y="248" height="65"/>
-  </children>
-  <children xmi:type="notation:Node" xmi:id="_VY9u4NJWEeK_hrLf4Op2GQ" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_VY9u5dJWEeK_hrLf4Op2GQ" type="5012"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_VY9u5tJWEeK_hrLf4Op2GQ" type="5017"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_VY9u4dJWEeK_hrLf4Op2GQ"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_VY9u4tJWEeK_hrLf4Op2GQ" fontName="Cantarell" fontHeight="10"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_VY9u49JWEeK_hrLf4Op2GQ" hint="Mid"/>
-    <element xmi:type="mid:Model" href="modelmanagement.mid#//@models.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VY9u5NJWEeK_hrLf4Op2GQ" x="496" y="46" height="63"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4R0EJNO2EeKGVcUQAf90_g" x="456" y="49"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_Qek4gdJWEeK_hrLf4Op2GQ"/>
   <element xmi:type="mid:MultiModel" href="modelmanagement.mid#/"/>
