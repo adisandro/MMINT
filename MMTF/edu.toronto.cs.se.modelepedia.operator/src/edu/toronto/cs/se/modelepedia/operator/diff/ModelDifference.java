@@ -11,74 +11,100 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.diff;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.compare.Comparison;
-import org.eclipse.emf.compare.Diff;
-import org.eclipse.emf.compare.ReferenceChange;
-import org.eclipse.emf.compare.scope.IComparisonScope;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.modelepedia.operator.match.ModelNameMatch;
 
 public class ModelDifference extends OperatorExecutableImpl {
 
-	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelNameMatch";
 	private final static String MODELREL_NAME = "diff";
 	private final static String DELETED_ELEMENT_LINK_NAME = "del";
 	private final static String ADDED_ELEMENT_LINK_NAME = "add";
 
-	private IComparisonScope scope;
-	private Comparison comparison;
+	private HashMap<String, ModelElementReference> createModelElementReferenceTable(ModelEndpointReference modelEndpointRef) {
 
-	private void createLinkReference(ModelRel diffModelRel, ModelEndpointReference diffModelEndpointRef, EObject modelObj, String linksName) throws MMTFException {
+		HashMap<String, ModelElementReference> modelElemRefTable = new HashMap<String, ModelElementReference>();
+		for (ModelElementReference modelElemRef : modelEndpointRef.getModelElemRefs()) {
+			String modelElemUri = modelElemRef.getUri().substring(0, modelElemRef.getUri().indexOf(MMTF.ROLE_SEPARATOR));
+			modelElemRefTable.put(modelElemUri, modelElemRef);
+		}
 
-		// create unary link
-		LinkReference diffLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
+		return modelElemRefTable;
+	}
+
+	private List<EObject> getDiffModelObjects(Model model, HashMap<String, ModelElementReference> modelElemRefTable) {
+
+		List<EObject> diffModelEObjects = new ArrayList<EObject>();
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(MultiModelTypeIntrospection.getRoot(model), true);
+		while (iterator.hasNext()) {
+			EObject modelObj = iterator.next();
+			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
+			if (modelElemRefTable.get(modelElemUri) == null) {
+				diffModelEObjects.add(modelObj);
+			}
+		}
+
+		return diffModelEObjects;
+	}
+
+	private ModelEndpointReference createModelEndpointReference(ModelRel diffModelRel, ModelEndpointReference modelEndpointRef, String linksName) throws MMTFException {
+
+		Model model = modelEndpointRef.getObject().getTarget();
+		HashMap<String, ModelElementReference> modelElemRefTable = createModelElementReferenceTable(modelEndpointRef);
+		List<EObject> diffModelObjs = getDiffModelObjects(model, modelElemRefTable);
+		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			null,
 			diffModelRel,
-			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference()
-		);
-		diffLinkRef.getObject().setName(linksName);
-		// create model element
-		ModelElementReference diffModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-			diffModelEndpointRef,
-			null,
-			modelObj
-		);
-		// create model element endpoint
-		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-			null,
-			diffLinkRef,
-			diffModelElemRef,
+			model,
 			false
 		);
-	}
+		for (EObject modelObj : diffModelObjs) {
+			// create unary link
+			LinkReference diffLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
+				null,
+				diffModelRel,
+				RelationshipPackage.eINSTANCE.getLink(),
+				RelationshipPackage.eINSTANCE.getLinkReference()
+			);
+			diffLinkRef.getObject().setName(linksName);
+			// create model element
+			ModelElementReference diffModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
+				newModelEndpointRef,
+				null,
+				modelObj
+			);
+			// create model element endpoint
+			MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
+				null,
+				diffLinkRef,
+				diffModelElemRef,
+				false
+			);
+		}
 
-	public IComparisonScope getScope() {
-
-		return scope;
-	}
-
-	public Comparison getComparison() {
-
-		return comparison;
+		return newModelEndpointRef;
 	}
 
 	@Override
@@ -97,41 +123,10 @@ public class ModelDifference extends OperatorExecutableImpl {
 		);
 		diffModelRel.setName(MODELREL_NAME);
 
-		// create model endpoints
-		ModelEndpointReference srcModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			diffModelRel,
-			matchRel.getModelEndpoints().get(0).getTarget(),
-			false
-		);
-		ModelEndpointReference tgtModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			diffModelRel,
-			matchRel.getModelEndpoints().get(1).getTarget(),
-			false
-		);
-
-		// get output from previous operator
-		ModelNameMatch previousOperator = (previousExecutable == null) ?
-			(ModelNameMatch) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
-			(ModelNameMatch) previousExecutable;
-		scope = previousOperator.getScope();
-		comparison = previousOperator.getComparison();
-		for (Diff diff : comparison.getDifferences()) {
-			if (!(diff instanceof ReferenceChange)) {
-				continue;
-			}
-			switch (diff.getKind()) {
-				case ADD:
-					createLinkReference(diffModelRel, srcModelEndpointRef, ((ReferenceChange) diff).getValue(), DELETED_ELEMENT_LINK_NAME);
-					break;
-				case DELETE:
-					createLinkReference(diffModelRel, tgtModelEndpointRef, ((ReferenceChange) diff).getValue(), ADDED_ELEMENT_LINK_NAME);
-					break;
-				default:
-					break;
-			}
-		}
+		// create src model endpoint with deleted elements
+		createModelEndpointReference(diffModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);
+		// create tgt model endpoint with added elements
+		createModelEndpointReference(diffModelRel, matchRel.getModelEndpointRefs().get(1), ADDED_ELEMENT_LINK_NAME);
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(diffModelRel);

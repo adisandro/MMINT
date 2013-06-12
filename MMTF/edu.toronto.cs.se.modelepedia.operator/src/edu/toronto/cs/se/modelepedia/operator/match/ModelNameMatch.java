@@ -11,19 +11,16 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.match;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.Comparison;
-import org.eclipse.emf.compare.Diff;
-import org.eclipse.emf.compare.EMFCompare;
-import org.eclipse.emf.compare.Match;
-import org.eclipse.emf.compare.ReferenceChange;
-import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -31,6 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -43,110 +41,91 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 	private final static String NAME_FEATURE = "name";
 	private final static String MODELREL_NAME = "nameMatch";
 
-	private IComparisonScope scope;
-	private Comparison comparison;
+	private void checkModelObjNames(EObject container, ModelEndpointReference modelEndpointRef, HashMap<String, ArrayList<EObject>> modelObjNames, HashMap<EObject, ModelEndpointReference> modelObjTable) {
 
-	private void match(Model srcModel, Model tgtModel) {
-
-		ResourceSet srcResourceSet = new ResourceSetImpl();
-		srcResourceSet.getResource(URI.createPlatformResourceURI(srcModel.getUri(), true), true);
-		ResourceSet tgtResourceSet = new ResourceSetImpl();
-		tgtResourceSet.getResource(URI.createPlatformResourceURI(tgtModel.getUri(), true), true);
-		scope = EMFCompare.createDefaultScope(srcResourceSet, tgtResourceSet);
-		comparison = EMFCompare.builder().build().compare(scope);
-	}
-
-	public IComparisonScope getScope() {
-
-		return scope;
-	}
-
-	public Comparison getComparison() {
-
-		return comparison;
+		EStructuralFeature feature = container.eClass().getEStructuralFeature(NAME_FEATURE);
+		if (feature != null && feature instanceof EAttribute && container.eGet(feature) instanceof String) {
+			String modelObjName = (String) container.eGet(feature);
+			ArrayList<EObject> modelObjs = modelObjNames.get(modelObjName);
+			if (modelObjs == null) {
+				modelObjs = new ArrayList<EObject>();
+				modelObjNames.put(modelObjName, modelObjs);
+			}
+			modelObjs.add(container);
+			modelObjTable.put(container, modelEndpointRef);
+		}
+		for (EObject contained : container.eContents()) {
+			checkModelObjNames(contained, modelEndpointRef, modelObjNames, modelObjTable);
+		}
 	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		Model srcModel = actualParameters.get(0);
-		Model tgtModel = actualParameters.get(1);
-
-		// create match model relationship
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
+		// create model relationship among models
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(actualParameters.get(0));
+		EClass modelRelClass = (actualParameters.size() == 2) ?
+			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
+			RelationshipPackage.eINSTANCE.getModelRel();
 		ModelRel matchRel = MultiModelInstanceFactory.createModelRel(
 			null,
 			null,
 			ModelOrigin.CREATED,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			modelRelClass,
 			multiModel
 		);
 		matchRel.setName(MODELREL_NAME);
-		// create model endpoints
-		ModelEndpointReference srcModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			matchRel,
-			srcModel,
-			false
-		);
-		ModelEndpointReference tgtModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			matchRel,
-			tgtModel,
-			false
-		);
+
+		// loop through selected models
+		HashMap<String, ArrayList<EObject>> modelObjNames = new HashMap<String, ArrayList<EObject>>();
+		HashMap<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
+		for (Model model : actualParameters) {
+			// create model endpoint
+			ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
+				null,
+				matchRel,
+				model,
+				false
+			);
+			// look for identical names in the models
+			checkModelObjNames(MultiModelTypeIntrospection.getRoot(model), newModelEndpointRef, modelObjNames, modelObjTable);
+		}
 
 		// create model relationship structure
-		match(srcModel, tgtModel);
-		for (Match rootMatch : comparison.getMatches()) {
-nextMatch:
-			for (Match match : rootMatch.getAllSubmatches()) {
-				if (match.getLeft() == null || match.getRight() == null) {
-					continue;
-				}
-				if (match.getDifferences().size() > 0) {
-					for (Diff diff : match.getDifferences()) {
-						if (!(diff instanceof ReferenceChange)) {
-							continue nextMatch;
-						}
-					}
-				}
-				EStructuralFeature feature = match.getLeft().eClass().getEStructuralFeature(NAME_FEATURE);
-				if (feature == null || !(feature instanceof EAttribute) || !(match.getLeft().eGet(feature) instanceof String)) {
-					continue;
-				}
+		for (Entry<String, ArrayList<EObject>> entry : modelObjNames.entrySet()) {
+			String modelObjName = entry.getKey();
+			ArrayList<EObject> modelObjs = entry.getValue();
+			if (modelObjs.size() > 1) {
+				EClass linkClass = (modelObjs.size() == 2) ?
+					RelationshipPackage.eINSTANCE.getBinaryLink() :
+					RelationshipPackage.eINSTANCE.getLink();
+				EClass linkRefClass = (modelObjs.size() == 2) ?
+					RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
+					RelationshipPackage.eINSTANCE.getLinkReference();
 				// create link
 				LinkReference matchLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
 					null,
 					matchRel,
-					RelationshipPackage.eINSTANCE.getBinaryLink(),
-					RelationshipPackage.eINSTANCE.getBinaryLinkReference()
+					linkClass,
+					linkRefClass
 				);
-				matchLinkRef.getObject().setName((String) match.getLeft().eGet(feature));
-				// create model elements
-				ModelElementReference srcModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-					srcModelEndpointRef,
-					null,
-					match.getLeft()
-				);
-				ModelElementReference tgtModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-					tgtModelEndpointRef,
-					null,
-					match.getRight()
-				);
-				// create model element endpoints
-				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-					null,
-					matchLinkRef,
-					srcModelElemRef,
-					false
-				);
-				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-					null,
-					matchLinkRef,
-					tgtModelElemRef,
-					false
-				);
+				matchLinkRef.getObject().setName(modelObjName);
+				for (EObject modelObj : modelObjs) {
+					ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
+					// create model element
+					ModelElementReference matchModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
+						modelEndpointRef,
+						null,
+						modelObj
+					);
+					// create model element endpoints
+					MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
+						null,
+						matchLinkRef,
+						matchModelElemRef,
+						false
+					);
+				}
 			}
 		}
 

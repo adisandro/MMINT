@@ -39,11 +39,11 @@
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
-            class="edu.toronto.cs.se.modelepedia.operator.match.ModelNameMatchBasic"
+            class="edu.toronto.cs.se.modelepedia.operator.match.ModelNameMatch"
             isConversion="false">
          <extendibleType
-               name="ModelNameMatchBasic"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelNameMatchBasic">
+               name="ModelNameMatch"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelNameMatch">
          </extendibleType>
          <input>
             <parameter
@@ -65,11 +65,11 @@
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
-            class="edu.toronto.cs.se.modelepedia.operator.match.ModelNameMatch"
+            class="edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch"
             isConversion="false">
          <extendibleType
-               name="ModelNameMatch"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelNameMatch">
+               name="EMFModelNameMatch"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelNameMatch">
          </extendibleType>
          <input>
             <parameter
@@ -87,42 +87,6 @@
             <parameter
                   isVararg="false"
                   name="nameMatchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
-            </parameter>
-         </output>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.operator.diff.ModelDifferenceBasic"
-            isConversion="false">
-         <extendibleType
-               name="ModelDifferenceBasic"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelDifferenceBasic">
-         </extendibleType>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
-            </parameter>
-            <parameter
-                  isVararg="false"
-                  name="matchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
-            </parameter>
-            <parameter
-                  isVararg="false"
-                  name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
-            </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="diffRel"
                   modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </parameter>
          </output>
@@ -168,11 +132,11 @@
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
-            class="edu.toronto.cs.se.modelepedia.operator.merge.ModelMerge"
+            class="edu.toronto.cs.se.modelepedia.operator.diff.EMFModelDifference"
             isConversion="false">
          <extendibleType
-               name="ModelMerge"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMerge">
+               name="EMFModelDifference"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelDifference">
          </extendibleType>
          <input>
             <parameter
@@ -187,7 +151,38 @@
             </parameter>
             <parameter
                   isVararg="false"
+                  name="tgtModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
                   name="diffRel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+            </parameter>
+         </output>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operatorType
+            class="edu.toronto.cs.se.modelepedia.operator.merge.EMFModelMerge"
+            isConversion="false">
+         <extendibleType
+               name="EMFModelMerge"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMerge">
+         </extendibleType>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="srcModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="matchRel"
                   modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </parameter>
             <parameter
@@ -201,6 +196,16 @@
                   isVararg="false"
                   name="mergedModel"
                   modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="srcMatchRel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="tgtMatchRel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </parameter>
          </output>
       </operatorType>
