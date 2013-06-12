@@ -30,8 +30,10 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
@@ -135,14 +137,32 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 	private static <T extends ExtendibleElement> void getRuntimeTypes(T element, T elementType, List<T> elementTypes) {
 
-		// stop condition: validation
-		if (!validateType(element, elementType, false)) {
-			return;
+		// no need to validate root type
+		if (MultiModelTypeRegistry.isRootType(elementType)) {
+			elementTypes.add(elementType);
+			// first stop condition: model relationship or link without endpoints
+			if (element instanceof ModelRel && ((ModelRel) element).getModelEndpoints().isEmpty()) {
+				return;
+			}
+			if (element instanceof Link && ((Link) element).getModelElemEndpoints().isEmpty()) {
+				return;
+			}
+			// second stop condition: endpoints
+			//TODO MMTF: needs container type + to be refined with override semantics
+			if (element instanceof ModelEndpoint || element instanceof ModelElementEndpoint) {
+				return;
+			}
+		}
+		else {
+			// third stop condition: validation
+			if (!validateType(element, elementType, false)) {
+				return;
+			}
+			elementTypes.add(elementType);
 		}
 
-		elementTypes.add(elementType);
-		List<T> elementSubtypes = filterSubtypes(element, elementType, MultiModelTypeHierarchy.getSubtypes(elementType));
 		// recurse for each subtype
+		List<T> elementSubtypes = filterSubtypes(element, elementType, MultiModelTypeHierarchy.getSubtypes(elementType));
 		for (T elementSubtype : elementSubtypes) {
 			getRuntimeTypes(element, elementSubtype, elementTypes);
 		}
