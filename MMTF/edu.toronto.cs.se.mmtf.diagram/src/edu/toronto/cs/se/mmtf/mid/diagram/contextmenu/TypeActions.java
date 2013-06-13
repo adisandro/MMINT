@@ -185,7 +185,7 @@ public class TypeActions extends ContributionItem {
 			String text = (actualParameters.size() > 1) ? "Validate Types" : "ValidateType";
 			validateItem.setText(text);
 			validateItem.addSelectionListener(
-				new ValidateTypeListener(actualParameters, runtimeModelTypes, editParts)
+				new ValidateTypeListener(actualParameters, editParts)
 			);
 		}
 	}

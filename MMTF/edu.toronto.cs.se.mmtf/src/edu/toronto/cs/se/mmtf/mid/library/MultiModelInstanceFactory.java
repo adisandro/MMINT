@@ -302,7 +302,6 @@ public class MultiModelInstanceFactory {
 		ModelRel modelRel = (ModelRel) modelEndpointRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
 
-		//TODO MMTF: MODELELEM refine when introducing additional model element level
 		newModelElemUri += MMTF.ROLE_SEPARATOR + modelElemType.getUri();
 		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(multiModel, newModelElemUri);
 		if (newModelElem == null) {

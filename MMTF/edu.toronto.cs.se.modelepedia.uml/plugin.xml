@@ -81,6 +81,20 @@
    <extension
          point="edu.toronto.cs.se.mmtf.editors">
       <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UMLClassDiagram tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_tree">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
@@ -120,6 +134,20 @@
    <extension
          point="edu.toronto.cs.se.mmtf.editors">
       <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UMLComponentDiagram tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_tree">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
@@ -154,6 +182,20 @@
                language="JAVA">
          </constraint>
       </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UMLDeploymentDiagram tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_tree">
+         </extendibleType>
+      </editorType>
    </extension>
 
    <extension
@@ -383,6 +425,20 @@
    <extension
          point="edu.toronto.cs.se.mmtf.editors">
       <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UMLClassDiagram_MAVO tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO_tree">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
@@ -422,6 +478,20 @@
    <extension
          point="edu.toronto.cs.se.mmtf.editors">
       <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UMLComponentDiagram_MAVO tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO_tree">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
@@ -456,6 +526,20 @@
                language="JAVA">
          </constraint>
       </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
+            isDiagram="false"
+            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+         <extendibleType
+               name="UMLDeploymentDiagram_MAVO tree"
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_tree">
+         </extendibleType>
+      </editorType>
    </extension>
 
    <extension

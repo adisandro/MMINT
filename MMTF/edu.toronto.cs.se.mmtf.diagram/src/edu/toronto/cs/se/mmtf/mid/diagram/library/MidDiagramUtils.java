@@ -53,6 +53,8 @@ import edu.toronto.cs.se.mmtf.mid.ui.MultiModelTreeSelectionDialog;
  */
 public class MidDiagramUtils {
 
+	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
+
 	protected static Object openSelectDialog(MultiModelTreeSelectionDialog dialog, String title, String message) throws MMTFException {
 
 		dialog.setTitle(title);
@@ -276,6 +278,13 @@ public class MidDiagramUtils {
 		}
 
 		return text;
+	}
+
+	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MMTFException {
+
+		String text = getBigStringInput(dialogTitle, "Insert new constraint", dialogInitial);
+
+		return text.split(CONSTRAINT_LANGUAGE_SEPARATOR);
 	}
 
 }

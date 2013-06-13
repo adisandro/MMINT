@@ -141,11 +141,12 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		MultiModel multiModel = getContainer();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, getSource(), getTarget());
 		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", null);
-		String constraint = MidDiagramUtils.getBigStringInput("Create new light binary model relationship type", "Insert new binary model relationship type constraint", null);
+		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light binary model relationship type", null);
 		BinaryModelRel newModelRelType = (BinaryModelRel) MultiModelLightTypeFactory.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,
-			constraint,
+			constraint[0],
+			constraint[1],
 			RelationshipPackage.eINSTANCE.getBinaryModelRel()
 		);
 		MMTF.initTypeHierarchy(multiModel);

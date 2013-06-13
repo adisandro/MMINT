@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -69,11 +68,11 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		newType.setDynamic(true);
 	}
 
-	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String oclConstraint) throws MMTFException {
+	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) modelType.eContainer();
 		addLightExtendibleType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);
-		addModelType(newModelType, false, ModelConstraintLanguage.OCL.getLiteral(), oclConstraint, multiModel);
+		addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 		newModelType.setFileExtension(modelType.getFileExtension());
 		for (Editor editorType : modelType.getEditors()) {
@@ -90,10 +89,10 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
-	public static Model createLightModelType(Model modelType, String newModelTypeName, String oclConstraint) throws MMTFException {
+	public static Model createLightModelType(Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		Model newModelType = MidFactory.eINSTANCE.createModel();
-		addLightModelType(newModelType, modelType, newModelTypeName, oclConstraint);
+		addLightModelType(newModelType, modelType, newModelTypeName, constraintLanguage, constraintImplementation);
 
 		return newModelType;
 	}
@@ -126,10 +125,10 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newModelElemTypeRef;
 	}
 
-	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String oclConstraint, EClass modelRelTypeClass) throws MMTFException {
+	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation, EClass modelRelTypeClass) throws MMTFException {
 
 		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
-		addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, oclConstraint);
+		addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 		addModelRelType(newModelRelType, modelRelType);
 
 		return newModelRelType;

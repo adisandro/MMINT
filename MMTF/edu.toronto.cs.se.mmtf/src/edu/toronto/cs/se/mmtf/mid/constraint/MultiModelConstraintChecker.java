@@ -67,8 +67,8 @@ public class MultiModelConstraintChecker {
 
 	private final static String ENTITY_WILDCARD_CLASSIFIER_NAME = "ModelElementEntityWildcard";
 	private final static String RELATIONSHIP_WILDCARD_FEATURE_NAME = "modelElementRelationshipWildcard";
-	private final static String OCL_MODELENDPOINT_VAR = "$ENDPOINT_";
-	private final static char OCL_VAR_SEPARATOR = '.';
+	private final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
+	private final static char OCL_VARIABLE_SEPARATOR = '.';
 
 	/**
 	 * Checks if an extendible element is a TYPES element or an INSTANCES
@@ -413,8 +413,8 @@ linkTypes:
 		}
 
 		EObject root = null;
-		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VAR)) {
-			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VAR.length(), oclConstraint.indexOf(OCL_VAR_SEPARATOR));
+		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
+			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
 			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
 				String modelEndpointName = (isInstanceConstraint) ?
 					modelEndpointRef.getObject().getName() :
@@ -424,7 +424,7 @@ linkTypes:
 					break;
 				}
 			}
-			oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VAR_SEPARATOR) + 1, oclConstraint.length());
+			oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
 		}
 		else {
 			root = MultiModelTypeIntrospection.getRoot(model);
@@ -471,8 +471,8 @@ linkTypes:
 	}
 
 	/**
-	 * Checks if a constraint is satisfied on an extendible element (only OCL
-	 * constraints and models are currently evaluated).
+	 * Checks if a constraint is satisfied on an extendible element (only models
+	 * are currently evaluated).
 	 * 
 	 * @param element
 	 *            The extendible element.
@@ -490,12 +490,14 @@ linkTypes:
 			return true;
 		}
 
+		boolean isInstanceConstraint = element.getUri().equals(((Model) constraint.eContainer()).getUri());
 		switch (constraint.getLanguage()) {
 			case OCL:
-				boolean isInstanceConstraint = element.getUri().equals(((Model) constraint.eContainer()).getUri());
 				return checkOCLConstraint((Model) element, constraint.getImplementation(), isInstanceConstraint);
 			case JAVA:
-				String modelTypeUri = ((Model) constraint.eContainer()).getUri();
+				String modelTypeUri = (isInstanceConstraint) ?
+					((Model) constraint.eContainer()).getMetatypeUri() :
+					((Model) constraint.eContainer()).getUri();
 				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
 			default:
 				return false;

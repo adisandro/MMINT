@@ -23,10 +23,10 @@ import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -63,7 +63,7 @@ public class EMFModelMerge extends OperatorExecutableImpl {
 		}
 		String mergedModelUri = MultiModelRegistry.replaceFileNameInUri(srcModel.getUri(), srcModel.getName() + MERGED_MODEL_NAME_SEPARATOR + tgtModel.getName());
 		MultiModelTypeIntrospection.writeRoot(((ResourceSet) scope.getRight()).getResources().get(0).getContents().get(0), mergedModelUri, true);
-		Model mergedModel = MultiModelInstanceFactory.createModelAndEditor(
+		Model mergedModel = MultiModelMAVOInstanceFactory.createModelAndEditor(
 			srcModel.getMetatype(),
 			mergedModelUri,
 			ModelOrigin.CREATED,

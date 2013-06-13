@@ -45,20 +45,17 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 
 public class ValidateTypeListener extends SelectionAdapter {
 
 	List<Model> models;
-	List<List<Model>> runtimeModelTypes;
 	List<GraphicalEditPart> editParts;
 
-	public ValidateTypeListener(List<Model> models, List<List<Model>> runtimeModelTypes, List<GraphicalEditPart> editParts) {
+	public ValidateTypeListener(List<Model> models, List<GraphicalEditPart> editParts) {
 
 		this.models = models;
-		this.runtimeModelTypes = runtimeModelTypes;
 		this.editParts = editParts;
 	}
 
@@ -108,18 +105,7 @@ public class ValidateTypeListener extends SelectionAdapter {
 	
 				// check constraint
 				Model model = models.get(i);
-				boolean result = false;
-				if (runtimeModelTypes == null) {
-					result = MultiModelTypeIntrospection.validateType(model, model.getMetatype(), true);
-				}
-				else {
-					for (Model runtimeModelType : runtimeModelTypes.get(i)) {
-						if (model.getMetatypeUri().equals(runtimeModelType.getUri())) {
-							result = true;
-							break;
-						}
-					}
-				}
+				boolean result = MultiModelTypeIntrospection.validateType(model, model.getMetatype(), true);
 
 	            // add error decoration
 				if (result == false) {

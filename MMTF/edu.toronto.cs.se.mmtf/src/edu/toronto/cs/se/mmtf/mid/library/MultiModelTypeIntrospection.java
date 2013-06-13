@@ -300,7 +300,6 @@ public class MultiModelTypeIntrospection implements MMTFConstants {
 
 		try {
 			if (MultiModelConstraintChecker.isInstancesLevel(modelElem)) {
-				//TODO MMTF: MODELELEM->refine when introducing additional model element level
 				pointer = getPointer(modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMTF.ROLE_SEPARATOR)));
 			}
 			else {
