@@ -39,6 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -47,7 +48,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
  * @author Alessio Di Sandro
  * 
  */
-public class TypeActions extends ContributionItem {
+public class MMTFActions extends ContributionItem {
 
 	private static final int INVALID_MENU_ITEM_LIMIT = 20;
 	private static final String DOWNCAST_LABEL = " (downcast)";
@@ -72,13 +73,16 @@ public class TypeActions extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doValidate = true;
-		if (objects.length > 1) { // cast doesn't work on multiple objects
+		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doConstraint = true, doModelepedia = true;
+		if (objects.length > 1) { // actions that don't work on multiple objects
 			doCast = false;
+			doCopy = false;
+			doConstraint = false;
+			doModelepedia = false;
 		}
 
 		// get selection
-		EList<Model> actualParameters = new BasicEList<Model>();
+		EList<Model> models = new BasicEList<Model>();
 		ITextAwareEditPart label = null;
 		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
 		for (Object object : objects) {
@@ -91,8 +95,17 @@ public class TypeActions extends ContributionItem {
 			) {
 				GraphicalEditPart editPart = (GraphicalEditPart) object;
 				Model model = (Model) ((View) editPart.getModel()).getElement();
-				if (doOperator) {
-					actualParameters.add(model);
+				if (!MultiModelConstraintChecker.isInstancesLevel(model)) { // actions that don't work on types
+					doOperator = false;
+					doCast = false;
+					doValidate = false;
+					doCopy = false;
+				}
+				if (model instanceof ModelRel) { // actions that don't work on model relationships
+					doCopy = false;
+				}
+				if (doOperator || doCast || doValidate || doCopy || doConstraint || doModelepedia) {
+					models.add(model);
 				}
 				if (doCast) {
 					for (Object child : editPart.getChildren()) {
@@ -105,17 +118,12 @@ public class TypeActions extends ContributionItem {
 				if (doValidate) {
 					editParts.add(editPart);
 				}
-				if (!MultiModelConstraintChecker.isInstancesLevel(model)) { // actions don't work on types
-					doOperator = false;
-					doCast = false;
-					doValidate = false;
-				}
 			}
-			if (!doOperator && !doCast && !doValidate) { // no action available
+			if (!doOperator && !doCast && !doValidate && !doCopy && !doConstraint && !doModelepedia) { // no action available
 				return;
 			}
 		}
-		if (actualParameters.isEmpty()) { // no relevant edit parts selected
+		if (models.isEmpty()) { // no relevant edit parts selected
 			return;
 		}
 
@@ -123,17 +131,21 @@ public class TypeActions extends ContributionItem {
 		List<List<Model>> runtimeModelTypes = null;
 		if (doOperator || doCast) {
 			runtimeModelTypes = new ArrayList<List<Model>>();
-			for (Model actualParameter : actualParameters) {
-				runtimeModelTypes.add(MultiModelTypeIntrospection.getRuntimeTypes(actualParameter));
+			for (Model model : models) {
+				runtimeModelTypes.add(MultiModelTypeIntrospection.getRuntimeTypes(model));
 			}
 		}
 		// create dynamic menus
-		// run operator
+		MenuItem mmtfItem = new MenuItem(menu, SWT.CASCADE, index);
+		mmtfItem.setText("MMTF");
+		Menu mmtfMenu = new Menu(menu);
+		mmtfItem.setMenu(mmtfMenu);
+		// operator
 		if (doOperator) {
 			List<Map<Integer, List<ConversionOperator>>> conversions = new ArrayList<Map<Integer, List<ConversionOperator>>>();
-			List<Operator> operators = MultiModelTypeHierarchy.getExecutableOperators(actualParameters, runtimeModelTypes, conversions);
+			List<Operator> operators = MultiModelTypeHierarchy.getExecutableOperators(models, runtimeModelTypes, conversions);
 			if (!operators.isEmpty()) {
-				MenuItem operatorItem = new MenuItem(menu, SWT.CASCADE, index);
+				MenuItem operatorItem = new MenuItem(mmtfMenu, SWT.CASCADE);
 				operatorItem.setText("Run Operator");
 				Menu operatorMenu = new Menu(menu);
 				operatorItem.setMenu(operatorMenu);
@@ -150,23 +162,23 @@ public class TypeActions extends ContributionItem {
 					}
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
-						new RunOperatorListener(operator, actualParameters, conversionMap)
+						new RunOperatorListener(operator, models, conversionMap)
 					);
 					//TODO MMTF: nice to show label of operator invocation with actual parameters
 					//TODO MMTF: traceability, could be nice to create an instance of operator, with name = actual parameters
 				}
 			}
 		}
-		// cast type
+		// cast
 		if (doCast) {
 			if (runtimeModelTypes.get(0).size() > 1) {
-				MenuItem castItem = new MenuItem(menu, SWT.CASCADE, index);
+				MenuItem castItem = new MenuItem(mmtfMenu, SWT.CASCADE);
 				castItem.setText("Cast Type");
 				Menu castMenu = new Menu(menu);
 				castItem.setMenu(castMenu);
 				boolean isDowncast = true;
 				for (Model runtimeModelType : runtimeModelTypes.get(0)) {
-					if (runtimeModelType.getUri().equals(actualParameters.get(0).getMetatypeUri())) {
+					if (runtimeModelType.getUri().equals(models.get(0).getMetatypeUri())) {
 						isDowncast = false;
 						continue;
 					}
@@ -174,18 +186,55 @@ public class TypeActions extends ContributionItem {
 					String text = (isDowncast) ? runtimeModelType.getName() + DOWNCAST_LABEL : runtimeModelType.getName();
 					castSubitem.setText(text);
 					castSubitem.addSelectionListener(
-						new CastTypeListener(actualParameters.get(0), runtimeModelType, label)
+						new CastTypeListener(models.get(0), runtimeModelType, label)
 					);
 				}
 			}
 		}
-		// validate type
+		// validate
 		if (doValidate) {
-			MenuItem validateItem = new MenuItem(menu, SWT.NONE, index);
-			String text = (actualParameters.size() > 1) ? "Validate Types" : "ValidateType";
+			MenuItem validateItem = new MenuItem(mmtfMenu, SWT.NONE);
+			String text = (models.size() > 1) ? "Validate Types" : "Validate Type";
 			validateItem.setText(text);
 			validateItem.addSelectionListener(
-				new ValidateTypeListener(actualParameters, editParts)
+				new ValidateTypeListener(models, editParts)
+			);
+		}
+		// copy
+		if (doCopy) {
+			MenuItem copyItem = new MenuItem(mmtfMenu, SWT.NONE);
+			copyItem.setText("Copy Model");
+			copyItem.addSelectionListener(
+				new CopyModelListener(models.get(0))
+			);
+		}
+		// constraint
+		if (doConstraint) {
+			MenuItem constraintItem = new MenuItem(mmtfMenu, SWT.NONE);
+			constraintItem.setText("Add/Modify Constraint");
+			constraintItem.addSelectionListener(
+				new AddModifyConstraintListener(models.get(0))
+			);
+		}
+		// modelepedia
+		if (doModelepedia) {
+			Model model = models.get(0);
+			if (MultiModelConstraintChecker.isInstancesLevel(model)) {
+				model = model.getMetatype();
+			}
+			MenuItem modelepediaItem = new MenuItem(mmtfMenu, SWT.CASCADE);
+			modelepediaItem.setText("Wiki");
+			Menu modelepediaMenu = new Menu(menu);
+			modelepediaItem.setMenu(modelepediaMenu);
+			MenuItem openModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
+			openModelepediaItem.setText("Open Wiki Page");
+			openModelepediaItem.addSelectionListener(
+				new OpenModelepediaListener(model)
+			);
+			MenuItem editModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
+			editModelepediaItem.setText("Edit Wiki Page");
+			editModelepediaItem.addSelectionListener(
+				new EditModelepediaListener(model)
 			);
 		}
 	}
