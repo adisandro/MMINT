@@ -58,7 +58,7 @@ public class CastTypeListener extends SelectionAdapter {
 		List<IFile> files = new ArrayList<IFile>();
 		files.add((IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class));
 		//TODO MMTF: need domain file too?
-		AbstractTransactionalCommand operatorCommand = new SpecializeTypeCommand(
+		AbstractTransactionalCommand operatorCommand = new CastTypeCommand(
 			TransactionUtil.getEditingDomain(model),
 			"Type Cast",
 			files
@@ -71,9 +71,9 @@ public class CastTypeListener extends SelectionAdapter {
 		}
 	}
 
-	protected class SpecializeTypeCommand extends AbstractTransactionalCommand {
+	protected class CastTypeCommand extends AbstractTransactionalCommand {
 
-		public SpecializeTypeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public CastTypeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

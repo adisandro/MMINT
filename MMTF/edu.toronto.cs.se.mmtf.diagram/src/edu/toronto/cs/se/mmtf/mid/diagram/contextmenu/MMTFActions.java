@@ -73,11 +73,12 @@ public class MMTFActions extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doConstraint = true, doModelepedia = true;
+		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true;
 		if (objects.length > 1) { // actions that don't work on multiple objects
 			doCast = false;
+			doValidate = false;
 			doCopy = false;
-			doConstraint = false;
+			doProperty = false;
 			doModelepedia = false;
 		}
 
@@ -104,7 +105,7 @@ public class MMTFActions extends ContributionItem {
 				if (model instanceof ModelRel) { // actions that don't work on model relationships
 					doCopy = false;
 				}
-				if (doOperator || doCast || doValidate || doCopy || doConstraint || doModelepedia) {
+				if (doOperator || doCast || doValidate || doCopy || doProperty || doModelepedia) {
 					models.add(model);
 				}
 				if (doCast) {
@@ -119,7 +120,7 @@ public class MMTFActions extends ContributionItem {
 					editParts.add(editPart);
 				}
 			}
-			if (!doOperator && !doCast && !doValidate && !doCopy && !doConstraint && !doModelepedia) { // no action available
+			if (!doOperator && !doCast && !doValidate && !doCopy && !doProperty && !doModelepedia) { // no action available
 				return;
 			}
 		}
@@ -194,10 +195,9 @@ public class MMTFActions extends ContributionItem {
 		// validate
 		if (doValidate) {
 			MenuItem validateItem = new MenuItem(mmtfMenu, SWT.NONE);
-			String text = (models.size() > 1) ? "Validate Types" : "Validate Type";
-			validateItem.setText(text);
+			validateItem.setText("Validate Type");
 			validateItem.addSelectionListener(
-				new ValidateTypeListener(models, editParts)
+				new ValidateTypeListener(models.get(0), editParts.get(0))
 			);
 		}
 		// copy
@@ -209,11 +209,11 @@ public class MMTFActions extends ContributionItem {
 			);
 		}
 		// constraint
-		if (doConstraint) {
-			MenuItem constraintItem = new MenuItem(mmtfMenu, SWT.NONE);
-			constraintItem.setText("Add/Modify Constraint");
-			constraintItem.addSelectionListener(
-				new AddModifyConstraintListener(models.get(0))
+		if (doProperty) {
+			MenuItem propertyItem = new MenuItem(mmtfMenu, SWT.NONE);
+			propertyItem.setText("Add/Modify Property");
+			propertyItem.addSelectionListener(
+				new AddModifyPropertyListener(models.get(0))
 			);
 		}
 		// modelepedia

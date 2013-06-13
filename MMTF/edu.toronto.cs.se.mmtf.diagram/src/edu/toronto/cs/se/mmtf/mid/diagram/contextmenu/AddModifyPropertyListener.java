@@ -35,11 +35,11 @@ import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 
-public class AddModifyConstraintListener extends SelectionAdapter {
+public class AddModifyPropertyListener extends SelectionAdapter {
 
 	Model model;
 
-	public AddModifyConstraintListener(Model model) {
+	public AddModifyPropertyListener(Model model) {
 
 		this.model = model;
 	}
@@ -50,7 +50,7 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 		List<IFile> files = new ArrayList<IFile>();
 		files.add((IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class));
 		//TODO MMTF: need domain file too?
-		AbstractTransactionalCommand copyCommand = new CopyCommand(
+		AbstractTransactionalCommand copyCommand = new AddModifyPropertyCommand(
 			TransactionUtil.getEditingDomain(model),
 			"Copy",
 			files
@@ -59,13 +59,13 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(copyCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMTFException.print(Type.WARNING, "Copy model history execution error", ex);
+			MMTFException.print(Type.WARNING, "Add/modify property history execution error", ex);
 		}
 	}
 
-	protected class CopyCommand extends AbstractTransactionalCommand {
+	protected class AddModifyPropertyCommand extends AbstractTransactionalCommand {
 
-		public CopyCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public AddModifyPropertyCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
