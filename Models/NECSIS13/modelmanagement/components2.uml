@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_4MamwNO2EeKGVcUQAf90_g" name="model">
-  <packagedElement xmi:type="uml:Component" xmi:id="_jVEH8NO3EeKGVcUQAf90_g" clientDependency="_sfPYgNO3EeKGVcUQAf90_g _xrMgANO3EeKGVcUQAf90_g" name="ClimateControl"/>
-  <packagedElement xmi:type="uml:Component" xmi:id="_nVG18NO3EeKGVcUQAf90_g" clientDependency="_r-mJkNO3EeKGVcUQAf90_g _ykzBgNO3EeKGVcUQAf90_g" name="HeaterControl"/>
-  <packagedElement xmi:type="uml:Interface" xmi:id="_pu6l8NO3EeKGVcUQAf90_g" name="TemperatureTarget2"/>
-  <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_r-mJkNO3EeKGVcUQAf90_g" name="HeaterControl_provides_TemperatureTarget2" client="_nVG18NO3EeKGVcUQAf90_g" supplier="_pu6l8NO3EeKGVcUQAf90_g" contract="_pu6l8NO3EeKGVcUQAf90_g"/>
-  <packagedElement xmi:type="uml:Usage" xmi:id="_sfPYgNO3EeKGVcUQAf90_g" name="ClimateControl_uses_TemperatureTarget2" client="_jVEH8NO3EeKGVcUQAf90_g" supplier="_pu6l8NO3EeKGVcUQAf90_g"/>
-  <packagedElement xmi:type="uml:Interface" xmi:id="_tLBgcNO3EeKGVcUQAf90_g" name="HumidityTarget2"/>
-  <packagedElement xmi:type="uml:Usage" xmi:id="_xrMgANO3EeKGVcUQAf90_g" name="ClimateControl_uses_HumidityTarget2" client="_jVEH8NO3EeKGVcUQAf90_g" supplier="_tLBgcNO3EeKGVcUQAf90_g"/>
-  <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_ykzBgNO3EeKGVcUQAf90_g" name="HeaterControl_provides_HumidityTarget2" client="_nVG18NO3EeKGVcUQAf90_g" supplier="_tLBgcNO3EeKGVcUQAf90_g" contract="_tLBgcNO3EeKGVcUQAf90_g"/>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_yFC_4NO2EeKGVcUQAf90_g" name="model">
+  <packagedElement xmi:type="uml:Component" xmi:id="_G9XSkNO3EeKGVcUQAf90_g" clientDependency="_2Dr6gNPIEeKBc90PnlIEnA _2lx68NPIEeKBc90PnlIEnA" name="ClimateControl"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_ueSPYNPIEeKBc90PnlIEnA" clientDependency="_3FmDcNPIEeKBc90PnlIEnA _3g1N8NPIEeKBc90PnlIEnA" name="HeaterControl"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_wOC80NPIEeKBc90PnlIEnA" name="TemperatureTarget2"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_xd2X0NPIEeKBc90PnlIEnA" name="HumidityTarget2"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_2Dr6gNPIEeKBc90PnlIEnA" name="ClimateControl_uses_HumidityTarget2" client="_G9XSkNO3EeKGVcUQAf90_g" supplier="_xd2X0NPIEeKBc90PnlIEnA"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_2lx68NPIEeKBc90PnlIEnA" name="ClimateControl_uses_TemperatureTarget2" client="_G9XSkNO3EeKGVcUQAf90_g" supplier="_wOC80NPIEeKBc90PnlIEnA"/>
+  <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_3FmDcNPIEeKBc90PnlIEnA" name="ACControl_provides_HumidityTarget2" client="_ueSPYNPIEeKBc90PnlIEnA" supplier="_xd2X0NPIEeKBc90PnlIEnA" contract="_xd2X0NPIEeKBc90PnlIEnA"/>
+  <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_3g1N8NPIEeKBc90PnlIEnA" name="ACControl_provides_TemperatureTarget2" client="_ueSPYNPIEeKBc90PnlIEnA" supplier="_wOC80NPIEeKBc90PnlIEnA" contract="_wOC80NPIEeKBc90PnlIEnA"/>
 </uml:Model>

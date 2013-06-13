@@ -5,7 +5,7 @@
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/modelmanagement/components1.di" name="UML diagram for model /NECSIS13/modelmanagement/components1.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_diagram" dynamic="true" modelUri="/NECSIS13/modelmanagement/components1.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/NECSIS13/modelmanagement/components2.di" name="UML diagram for model /NECSIS13/modelmanagement/components2.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_diagram" dynamic="true" modelUri="/NECSIS13/modelmanagement/components2.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+  <editors xsi:type="editor:Diagram" uri="/NECSIS13/modelmanagement/components2.di" name="UML diagram for model /NECSIS13/modelmanagement/components2.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_diagram" dynamic="true" modelUri="/NECSIS13/modelmanagement/components2.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
   </editors>
   <extendibleTable key="/NECSIS13/modelmanagement/components1.uml" value="//@models.0"/>
