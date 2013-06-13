@@ -244,7 +244,7 @@
     </linkRefs>
   </models>
   <models xsi:type="relationship:ModelRel" uri="" name="property_2buses" metatypeUri="http://se.cs.toronto.edu/mmtf/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
-    <constraint implementation="$ENDPOINT_architecture.packagedElement->select(oclIsTypeOf(Node))->size() = 2"/>
+    <constraint implementation="$ENDPOINT_architecture.packagedElement->select(oclIsTypeOf(Node))->size() &lt; 3" language="SMT"/>
     <modelEndpoints uri="" name="architecture" metatypeUri="http://se.cs.toronto.edu/mmtf/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.0" modifiable="true"/>
   </models>
@@ -332,7 +332,7 @@
     </linkRefs>
   </models>
   <models xsi:type="relationship:ModelRel" uri="" name="property_2buses" metatypeUri="http://se.cs.toronto.edu/mmtf/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
-    <constraint implementation="$ENDPOINT_architecture2.packagedElement->select(oclIsTypeOf(Node))->size() = 2"/>
+    <constraint implementation="$ENDPOINT_architecture2.packagedElement->select(oclIsTypeOf(Node))->size() &lt; 3" language="SMT"/>
     <modelEndpoints uri="" name="architecture2" metatypeUri="http://se.cs.toronto.edu/mmtf/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
     <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.0" modifiable="true"/>
   </models>
