@@ -917,6 +917,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEEnum(modelConstraintLanguageEEnum, ModelConstraintLanguage.class, "ModelConstraintLanguage");
 		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.OCL);
 		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.JAVA);
+		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.SMT);
 
 		initEEnum(modelElementCategoryEEnum, ModelElementCategory.class, "ModelElementCategory");
 		addEEnumLiteral(modelElementCategoryEEnum, ModelElementCategory.ENTITY);
@@ -959,7 +960,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																															
+		   });																																																
 	}
 
 	/**
@@ -987,7 +988,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																							
+		   });																																								
 	}
 
 } //MidPackageImpl

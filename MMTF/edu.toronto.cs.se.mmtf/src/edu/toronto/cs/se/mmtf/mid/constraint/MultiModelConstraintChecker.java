@@ -499,6 +499,9 @@ linkTypes:
 					((Model) constraint.eContainer()).getMetatypeUri() :
 					((Model) constraint.eContainer()).getUri();
 				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
+			case SMT:
+				//TODO MMTF: fake it
+				return true;
 			default:
 				return false;
 		}

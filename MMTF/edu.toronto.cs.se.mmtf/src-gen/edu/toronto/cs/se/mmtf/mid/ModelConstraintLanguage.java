@@ -48,7 +48,15 @@ public enum ModelConstraintLanguage implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	JAVA(1, "JAVA", "JAVA");
+	JAVA(1, "JAVA", "JAVA"), /**
+	 * The '<em><b>SMT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SMT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SMT(2, "SMT", "SMT");
 
 	/**
 	 * The '<em><b>OCL</b></em>' literal value.
@@ -79,6 +87,20 @@ public enum ModelConstraintLanguage implements Enumerator {
 	public static final int JAVA_VALUE = 1;
 
 	/**
+	 * The '<em><b>SMT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The SMT language.
+	 * <!-- end-model-doc -->
+	 * @see #SMT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SMT_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Model Constraint Language</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,6 +110,7 @@ public enum ModelConstraintLanguage implements Enumerator {
 		new ModelConstraintLanguage[] {
 			OCL,
 			JAVA,
+			SMT,
 		};
 
 	/**
@@ -140,6 +163,7 @@ public enum ModelConstraintLanguage implements Enumerator {
 		switch (value) {
 			case OCL_VALUE: return OCL;
 			case JAVA_VALUE: return JAVA;
+			case SMT_VALUE: return SMT;
 		}
 		return null;
 	}

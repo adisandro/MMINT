@@ -90,6 +90,8 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
                   </enumeration>
                   <enumeration value="JAVA">
                   </enumeration>
+                  <enumeration value="SMT">
+                  </enumeration>
                </restriction>
             </simpleType>
          </attribute>
