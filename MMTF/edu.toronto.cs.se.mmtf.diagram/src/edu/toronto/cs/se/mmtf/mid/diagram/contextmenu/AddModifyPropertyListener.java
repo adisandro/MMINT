@@ -79,7 +79,11 @@ public class AddModifyPropertyListener extends SelectionAdapter {
 					constraint = MidFactory.eINSTANCE.createModelConstraint();
 					model.setConstraint(constraint);
 				}
-				String[] newConstraint = MidDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MidDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + constraint.getImplementation());
+				String implementation = constraint.getImplementation();
+				if (implementation == null) {
+					implementation = "";
+				}
+				String[] newConstraint = MidDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MidDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
 				constraint.setLanguage(ModelConstraintLanguage.get(newConstraint[0]));
 				constraint.setImplementation(newConstraint[1]);
 

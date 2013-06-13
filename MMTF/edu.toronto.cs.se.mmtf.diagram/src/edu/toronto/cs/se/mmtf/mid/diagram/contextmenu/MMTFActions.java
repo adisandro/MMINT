@@ -195,7 +195,7 @@ public class MMTFActions extends ContributionItem {
 		// validate
 		if (doValidate) {
 			MenuItem validateItem = new MenuItem(mmtfMenu, SWT.NONE);
-			validateItem.setText("Validate Type");
+			validateItem.setText("Validate");
 			validateItem.addSelectionListener(
 				new ValidateTypeListener(models.get(0), editParts.get(0))
 			);

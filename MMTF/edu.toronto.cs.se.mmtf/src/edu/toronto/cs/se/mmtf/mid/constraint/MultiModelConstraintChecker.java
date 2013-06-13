@@ -501,7 +501,7 @@ linkTypes:
 				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
 			case SMT:
 				//TODO MMTF: fake it
-				return true;
+				return checkOCLConstraint((Model) element, constraint.getImplementation(), isInstanceConstraint);
 			default:
 				return false;
 		}

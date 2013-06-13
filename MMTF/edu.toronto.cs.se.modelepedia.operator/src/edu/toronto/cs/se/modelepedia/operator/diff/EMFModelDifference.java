@@ -18,6 +18,7 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
@@ -102,16 +103,27 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(EMFModelNameMatch) previousExecutable;
 		Comparison comparison = previousOperator.getComparison();
+nextDiff:
 		for (Diff diff : comparison.getDifferences()) {
 			if (!(diff instanceof ReferenceChange)) {
 				continue;
 			}
+			EObject modelObj = ((ReferenceChange) diff).getValue();
+			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
+			for (ModelElementReference matchModelElemRef : matchRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
+				if (
+					modelElemUri.equals(matchModelElemRef.getUri().substring(0, matchModelElemRef.getUri().indexOf(MMTF.ROLE_SEPARATOR))) &&
+					!matchModelElemRef.getModelElemEndpointRefs().isEmpty()
+				) {
+					continue nextDiff;
+				}
+			}
 			switch (diff.getKind()) {
 				case ADD:
-					createLinkReference(diffModelRel, srcModelEndpointRef, ((ReferenceChange) diff).getValue(), DELETED_ELEMENT_LINK_NAME);
+					createLinkReference(diffModelRel, srcModelEndpointRef, modelObj, DELETED_ELEMENT_LINK_NAME);
 					break;
 				case DELETE:
-					createLinkReference(diffModelRel, tgtModelEndpointRef, ((ReferenceChange) diff).getValue(), ADDED_ELEMENT_LINK_NAME);
+					createLinkReference(diffModelRel, tgtModelEndpointRef, modelObj, ADDED_ELEMENT_LINK_NAME);
 					break;
 				default:
 					break;
