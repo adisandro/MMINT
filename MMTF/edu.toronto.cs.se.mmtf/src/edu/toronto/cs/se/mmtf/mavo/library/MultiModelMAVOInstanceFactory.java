@@ -56,28 +56,25 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		return newModelElemRef;
 	}
 
-	public static Model copyModel(Model oldModel, String newModelName, MultiModel multiModel) throws Exception {
-
-		String newModelUri = MultiModelInstanceFactory.copyModelFile(oldModel, newModelName);
-		Model newModel = createModel(oldModel.getMetatype(), newModelUri, ModelOrigin.CREATED, multiModel);
-
-		return newModel;
-	}
-
-	public static Model copyModelAndEditors(Model oldModel, String newModelName, MultiModel multiModel) throws Exception {
+	public static Model copyModelAndEditor(Model oldModel, String newModelName, MultiModel multiModel, boolean copyDiagramEditor) throws Exception {
 
 		// copy model
-		String newModelUri = MultiModelInstanceFactory.copyModelFile(oldModel, newModelName);
+		String oldUri = MultiModelRegistry.prependWorkspaceToUri(oldModel.getUri());
+		String newModelUri = MultiModelRegistry.replaceFileNameInUri(oldModel.getUri(), newModelName);
+		String newUri = MultiModelRegistry.prependWorkspaceToUri(newModelUri);
+		MultiModelRegistry.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
 
-		// copy editors
-		for (Editor oldEditor : oldModel.getEditors()) {
-			if (oldEditor.getUri().equals(oldModel.getUri())) {
-				continue;
+		// copy diagram editors
+		if (copyDiagramEditor) {
+			for (Editor oldEditor : oldModel.getEditors()) {
+				if (oldEditor.getUri().equals(oldModel.getUri())) {
+					continue;
+				}
+				oldUri = MultiModelRegistry.prependWorkspaceToUri(oldEditor.getUri());
+				newUri = MultiModelRegistry.prependWorkspaceToUri(MultiModelRegistry.replaceFileNameInUri(oldEditor.getUri(), newModelName));
+				MultiModelRegistry.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
+				//TODO MMTF: add support for notation extra file (e.g. in UML)
 			}
-			String oldUri = MultiModelRegistry.prependWorkspaceToUri(oldEditor.getUri());
-			String newUri = MultiModelRegistry.prependWorkspaceToUri(MultiModelRegistry.replaceFileNameInUri(oldEditor.getUri(), newModelName));
-			MultiModelRegistry.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
-			//TODO MMTF: add support for notation extra file (e.g. in UML)
 		}
 		Model newModel = createModelAndEditor(oldModel.getMetatype(), newModelUri, ModelOrigin.CREATED, multiModel);
 

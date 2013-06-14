@@ -76,7 +76,7 @@ public class CopyModelListener extends SelectionAdapter {
 			try {
 				String newModelName = MidDiagramUtils.getStringInput("Copy Model", "Insert new model name", oldModel.getName());
 				MultiModel multiModel = MultiModelRegistry.getMultiModel(oldModel);
-				Model newModel = MultiModelMAVOInstanceFactory.copyModelAndEditors(oldModel, newModelName, multiModel);
+				Model newModel = MultiModelMAVOInstanceFactory.copyModelAndEditor(oldModel, newModelName, multiModel, true);
 	
 				return CommandResult.newOKCommandResult(newModel);
 			}

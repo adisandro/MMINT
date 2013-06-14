@@ -679,16 +679,6 @@ public class MultiModelInstanceFactory {
 		}
 	}
 
-	public static String copyModelFile(Model oldModel, String newModelName) throws Exception {
-	
-		String oldUri = MultiModelRegistry.prependWorkspaceToUri(oldModel.getUri());
-		String newModelUri = MultiModelRegistry.replaceFileNameInUri(oldModel.getUri(), newModelName);
-		String newUri = MultiModelRegistry.prependWorkspaceToUri(newModelUri);
-		MultiModelRegistry.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
-	
-		return newModelUri;
-	}
-
 	private static ExtendibleElement removeExtendibleElement(MultiModel multiModel, String elementUri) {
 
 		return multiModel.getExtendibleTable().removeKey(elementUri);
