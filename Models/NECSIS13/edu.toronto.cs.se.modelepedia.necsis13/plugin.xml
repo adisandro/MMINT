@@ -60,30 +60,44 @@
       </relationshipType>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces"
+            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+   </extension>
+
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.necsis13.operator.Dummy"
-            isConversion="false">
-         <extendibleType
-               name="UMLMerge"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_UMLMerge">
-         </extendibleType>
-         <input>
-            <parameter
-                  isVararg="true"
-                  name="models"
-                  modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
-            </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="mergedModel"
-                  modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
-            </parameter>
-         </output>
-      </operatorType>
+         point="edu.toronto.cs.se.mmtf.relationships">
+      <relationshipType>
+         <modelType>
+            <extendibleType
+                  name="PreserveComponentInterfaces"
+                  uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces">
+            </extendibleType>
+         </modelType>
+         <modelTypeEndpoint>
+            <extendibleType
+                  name="UMLEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces-UML/UMLEndpoint">
+            </extendibleType>
+            <typeEndpoint
+                  lowerBound="1"
+                  upperBound="1"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/UML">
+            </typeEndpoint>
+         </modelTypeEndpoint>
+         <modelTypeEndpoint>
+            <extendibleType
+                  name="JavaEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces-Java/JavaEndpoint">
+            </extendibleType>
+            <typeEndpoint
+                  lowerBound="1"
+                  upperBound="1"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+            </typeEndpoint>
+         </modelTypeEndpoint>
+      </relationshipType>
    </extension>
 
    <extension
@@ -118,8 +132,8 @@
             class="edu.toronto.cs.se.modelepedia.necsis13.operator.Dummy"
             isConversion="false">
          <extendibleType
-               name="JavaOptCont"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_JavaOptCont">
+               name="JavaOpt"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_JavaOpt">
          </extendibleType>
          <input>
             <parameter

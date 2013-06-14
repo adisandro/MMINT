@@ -70,8 +70,8 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 			if (!(nextObject instanceof EObject) || nextObject instanceof DynamicEObjectImpl) {
 				continue;
 			}
-			EObject droppedEObject = (EObject) nextObject;
-			String[] uris = MultiModelRegistry.getModelAndModelElementUris(droppedEObject, isInstancesLevel);
+			EObject modelObj = (EObject) nextObject;
+			String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, isInstancesLevel);
 			String modelUri = uris[0], modelElemUri = uris[1];
 
 modelEndpointRef:
@@ -82,15 +82,10 @@ modelEndpointRef:
 						MultiModelTypeHierarchy.isSubtypeOf(multiModel, modelEndpointRef.getTargetUri(), modelUri) // for light types
 					)
 				) {
-					for (ModelElementReference elementRef : modelEndpointRef.getModelElemRefs()) { // avoid duplicates
-						if (isInstancesLevel) {
-							if (elementRef.getUri().equals(modelElemUri)) {
-								continue modelEndpointRef;
-							}
-						}
-						else {
+					if (!isInstancesLevel) {
+						for (ModelElementReference elementRef : modelEndpointRef.getModelElemRefs()) { // avoid duplicates
 							//TODO MMTF: why? check this, looks wrong
-							if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(elementRef.getObject()), droppedEObject)) {
+							if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(elementRef.getObject()), modelObj)) {
 								continue modelEndpointRef;
 							}
 						}
@@ -99,7 +94,7 @@ modelEndpointRef:
 					CreateElementRequest createReq = new CreateElementRequest(modelRelEditPart.getEditingDomain(), modelEndpointRef, elementType, containment);
 					command.add(
 						new ICommandProxy( // convert GMF command to GEF command
-							new ModelElementReferenceDropCommand(createReq, modelUri, modelElemUri, droppedEObject)
+							new ModelElementReferenceDropCommand(createReq, modelUri, modelElemUri, modelObj)
 						)
 					);
 				}

@@ -48,7 +48,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 	String newModelUri;
 	String newModelElemUri;
-	EObject newDroppedEObject;
+	EObject newModelObj;
 	ModelElement modelElemType;
 
 	/**
@@ -56,15 +56,15 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	 * 
 	 * @param req
 	 *            The request.
-	 * @param newDroppedEObject
+	 * @param newModelObj
 	 *            The dropped element.
 	 */
-	public ModelElementReferenceDropCommand(CreateElementRequest req, String newModelUri, String newModelElemUri, EObject newDroppedEObject) {
+	public ModelElementReferenceDropCommand(CreateElementRequest req, String newModelUri, String newModelElemUri, EObject newModelObj) {
 
 		super(req);
 		this.newModelUri = newModelUri;
 		this.newModelElemUri = newModelElemUri;
-		this.newDroppedEObject = newDroppedEObject;
+		this.newModelObj = newModelObj;
 		this.modelElemType = null;
 	}
 
@@ -75,7 +75,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer().eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
 			MMTF.initTypeHierarchy(multiModel);
 		}
@@ -90,7 +90,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer().eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
 			MMTF.initTypeHierarchy(multiModel);
 		}
@@ -109,17 +109,19 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		return
 			super.canExecute() && (
-				!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer()) ||
-				(modelElemType = MultiModelConstraintChecker.getAllowedModelElementType((ModelEndpointReference) getElementToEdit(), newDroppedEObject)) != null
+				!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer()) || (
+					(modelElemType = MultiModelConstraintChecker.getAllowedModelElementType((ModelEndpointReference) getElementToEdit(), newModelObj)) != null &&
+					MultiModelRegistry.getModelElementReference((ModelEndpointReference) getElementToEdit(), modelElemType, newModelObj) == null
+				)
 			);
 	}
 
 	protected ModelElementReference doExecuteInstancesLevel() throws MMTFException {
 
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
-		String classLiteral = MultiModelRegistry.getEObjectClassLiteral(newDroppedEObject, true); // class literal == type name
-		String newModelElemName = MultiModelRegistry.getEObjectLabel(newDroppedEObject, true);
-		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(newDroppedEObject);
+		String classLiteral = MultiModelRegistry.getEObjectClassLiteral(newModelObj, true); // class literal == type name
+		String newModelElemName = MultiModelRegistry.getEObjectLabel(newModelObj, true);
+		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(newModelObj);
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
 			modelEndpointRef,
 			modelElemType,
@@ -128,7 +130,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 			category,
 			classLiteral
 		);
-		MAVOUtils.initializeMAVOModelElementReference(newDroppedEObject, newModelElemRef);
+		MAVOUtils.initializeMAVOModelElementReference(newModelObj, newModelElemRef);
 
 		return newModelElemRef;
 	}
@@ -137,14 +139,14 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) getElementToEdit();
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 
 		// navigate metamodel hierarchy
 		ModelElement modelElemType = null;
 		ModelElementReference modelElemTypeRef = null;
-		if (newDroppedEObject instanceof EClass) {
+		if (newModelObj instanceof EClass) {
 supertypes:
-			for (EClass droppedEObject : ((EClass) newDroppedEObject).getEAllSuperTypes()) {
+			for (EClass droppedEObject : ((EClass) newModelObj).getEAllSuperTypes()) {
 				String[] uris = MultiModelRegistry.getModelAndModelElementUris(droppedEObject, false);
 				String modelTypeUri = uris[0];
 				String modelElemTypeUri = uris[1];
@@ -164,7 +166,7 @@ supertypes:
 			}
 		}
 		if (modelElemType == null) {
-			String modelElemTypeUri = (newDroppedEObject instanceof EReference) ?
+			String modelElemTypeUri = (newModelObj instanceof EReference) ?
 				MMTF.ROOT_MODELELEMENT_RELATIONSHIP_URI :
 				MMTF.ROOT_MODELELEMENT_ENTITY_URI;
 			modelElemType = MultiModelRegistry.getExtendibleElement(multiModel, modelElemTypeUri);
@@ -173,7 +175,7 @@ supertypes:
 			//TODO MMTF: write a todo somewhere to remember to handle the import of a model rel instance
 		}
 
-		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(newDroppedEObject);
+		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(newModelObj);
 		String classLiteral = newModelElemUri; // class literal == name
 		ModelElementReference newModelElemTypeRef = MultiModelLightTypeFactory.createLightModelElementTypeAndModelElementTypeReference(
 			modelTypeEndpointRef,
@@ -183,7 +185,7 @@ supertypes:
 			category,
 			classLiteral
 		);
-		MAVOUtils.initializeMAVOModelElementReference(newDroppedEObject, newModelElemTypeRef);
+		MAVOUtils.initializeMAVOModelElementReference(newModelObj, newModelElemTypeRef);
 		MMTF.initTypeHierarchy(multiModel);
 
 		return newModelElemTypeRef;

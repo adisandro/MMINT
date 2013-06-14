@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.uml.constraint;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.PackageableElement;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
@@ -38,18 +37,8 @@ public class ComponentsDeployedConstraint extends JavaModelConstraint {
 			if (!(umlModelObj instanceof Component)) {
 				continue;
 			}
-			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(umlModelObj, true)[1];
-			boolean deployed = false;
-			for (ModelElementReference modelElemRef : deplRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
-				if (
-					modelElemUri.equals(modelElemRef.getUri().substring(0, modelElemRef.getUri().indexOf(MMTF.ROLE_SEPARATOR))) &&
-					!modelElemRef.getModelElemEndpointRefs().isEmpty()
-				) {
-					deployed = true;
-					break;
-				}
-			}
-			if (!deployed) {
+			ModelElementReference modelElemRef = MultiModelRegistry.getModelElementReference(deplRel.getModelEndpointRefs().get(0), umlModelObj);
+			if (modelElemRef == null || modelElemRef.getModelElemEndpointRefs().isEmpty()) {
 				return false;
 			}
 		}

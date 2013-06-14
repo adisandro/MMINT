@@ -18,7 +18,6 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
@@ -109,25 +108,29 @@ nextDiff:
 				continue;
 			}
 			EObject modelObj = ((ReferenceChange) diff).getValue();
-			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
-			for (ModelElementReference matchModelElemRef : matchRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
-				if (
-					modelElemUri.equals(matchModelElemRef.getUri().substring(0, matchModelElemRef.getUri().indexOf(MMTF.ROLE_SEPARATOR))) &&
-					!matchModelElemRef.getModelElemEndpointRefs().isEmpty()
-				) {
-					continue nextDiff;
-				}
-			}
+			ModelEndpointReference modelEndpointRef = null;
+			String linkName = null; 
 			switch (diff.getKind()) {
 				case ADD:
-					createLinkReference(diffModelRel, srcModelEndpointRef, modelObj, DELETED_ELEMENT_LINK_NAME);
+					modelEndpointRef = srcModelEndpointRef;
+					linkName = DELETED_ELEMENT_LINK_NAME;
 					break;
 				case DELETE:
-					createLinkReference(diffModelRel, tgtModelEndpointRef, modelObj, ADDED_ELEMENT_LINK_NAME);
+					modelEndpointRef = tgtModelEndpointRef;
+					linkName = ADDED_ELEMENT_LINK_NAME;
 					break;
 				default:
-					break;
+					continue nextDiff;
 			}
+			ModelElementReference modelElemRef = MultiModelRegistry.getModelElementReference(matchRel.getModelEndpointRefs().get(0), modelObj);
+			if (modelElemRef != null && !modelElemRef.getModelElemEndpointRefs().isEmpty()) { // is matched
+				continue;
+			}
+			modelElemRef = MultiModelRegistry.getModelElementReference(modelEndpointRef, modelObj);
+			if (modelElemRef != null && !modelElemRef.getModelElemEndpointRefs().isEmpty()) { // is already in diff
+				continue;
+			}
+			createLinkReference(diffModelRel, modelEndpointRef, modelObj, linkName);
 		}
 
 		EList<Model> result = new BasicEList<Model>();
