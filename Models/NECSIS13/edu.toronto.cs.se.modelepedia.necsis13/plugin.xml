@@ -83,7 +83,7 @@
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
-                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/UML">
+                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
             </typeEndpoint>
          </modelTypeEndpoint>
          <modelTypeEndpoint>
