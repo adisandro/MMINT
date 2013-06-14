@@ -34,12 +34,12 @@ import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.ValidateAction;
 
-public class ValidateTypeListener extends SelectionAdapter {
+public class ValidateListener extends SelectionAdapter {
 
 	Model model;
 	GraphicalEditPart editPart;
 
-	public ValidateTypeListener(Model model, GraphicalEditPart editPart) {
+	public ValidateListener(Model model, GraphicalEditPart editPart) {
 
 		this.model = model;
 		this.editPart = editPart;

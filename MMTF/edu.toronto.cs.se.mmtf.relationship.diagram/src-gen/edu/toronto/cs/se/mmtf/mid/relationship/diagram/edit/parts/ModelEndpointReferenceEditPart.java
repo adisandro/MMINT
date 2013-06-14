@@ -425,8 +425,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(200),
-					getMapMode().DPtoLP(200)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(300),
+					getMapMode().DPtoLP(400)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));

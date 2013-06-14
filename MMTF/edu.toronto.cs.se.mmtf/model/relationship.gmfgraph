@@ -15,7 +15,7 @@
       <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelEndpointReferenceFigure" lineWidth="3">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="243" green="169" blue="25"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="248" green="249" blue="212"/>
-        <minimumSize dx="200" dy="200"/>
+        <minimumSize dx="300" dy="400"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
@@ -156,7 +156,7 @@
       <actualFigure xsi:type="gmfgraph:Rectangle" name="ModelEndpointReferenceSuperFigure" lineWidth="3" lineKind="LINE_DASH">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="243" green="169" blue="25"/>
         <backgroundColor xsi:type="gmfgraph:RGBColor" red="248" green="249" blue="212"/>
-        <minimumSize dx="200" dy="200"/>
+        <minimumSize dx="300" dy="400"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="7" left="7" bottom="7" right="7"/>
         </border>
