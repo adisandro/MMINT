@@ -112,17 +112,22 @@ public class MidValidationProvider {
 		 */
 		public IStatus validate(IValidationContext ctx) {
 			Model context = (Model) ctx.getTarget();
-			boolean success = MultiModelTypeIntrospection.validateType(context, context.getMetatype(), true);
-			String modelRel = (context instanceof ModelRel) ? " relationship" : "";
+			boolean success = MultiModelTypeIntrospection.validateType(context,
+					context.getMetatype(), true);
+			String modelRel = (context instanceof ModelRel) ? " relationship"
+					: "";
 			IStatus status;
 			if (success) {
 				status = ctx.createSuccessStatus();
-			}
-			else {
-				ConstraintStatus failureStatus = (ConstraintStatus) ctx.createFailureStatus(modelRel, context.getName(), context.getMetatype().getName());
-				status = (context.getConstraint() != null && context.getConstraint().getLanguage() == ModelConstraintLanguage.SMT) ?
-					new ConstraintStatus(failureStatus.getConstraint(), context, IStatus.WARNING, 200, "Maybe", failureStatus.getResultLocus()) :
-					failureStatus;
+			} else {
+				ConstraintStatus failureStatus = (ConstraintStatus) ctx
+						.createFailureStatus(modelRel, context.getName(),
+								context.getMetatype().getName());
+				status = (context.getConstraint() != null && context
+						.getConstraint().getLanguage() == ModelConstraintLanguage.SMT) ? new ConstraintStatus(
+						failureStatus.getConstraint(), context,
+						IStatus.WARNING, 200, "Maybe",
+						failureStatus.getResultLocus()) : failureStatus;
 			}
 			return status;
 		}
