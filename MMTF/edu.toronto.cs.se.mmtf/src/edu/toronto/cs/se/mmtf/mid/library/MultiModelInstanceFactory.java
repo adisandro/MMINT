@@ -70,6 +70,7 @@ import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
 public class MultiModelInstanceFactory {
 
 	private final static String EMPTY_URI = "";
+	private final static String EMPTY_NAME = "";
 	private final static String EMPTY_MODEL_FILE_EXTENSION = "";
 
 	/**
@@ -118,6 +119,9 @@ public class MultiModelInstanceFactory {
 			newElementUri = EMPTY_URI;
 		}
 		newElement.setUri(newElementUri);
+		if (newElementName == null) {
+			newElementName = EMPTY_NAME;
+		}
 		newElement.setName(newElementName);
 		newElement.setLevel(MidLevel.INSTANCES);
 		newElement.setDynamic(true);
