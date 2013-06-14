@@ -620,28 +620,9 @@ public class MidViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * Adds missing diagram hint for binary model relationships.
-	 * 
-	 * @generated NOT
-	 */
-	public Edge createBinaryModelRel_4015(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-
-		Edge edge = createBinaryModelRel_4015Gen(domainElement, containerView,
-				index, persisted, preferencesHint);
-		HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE
-				.createHintedDiagramLinkStyle();
-		diagramFacet.setHint("Relationship"); //$NON-NLS-1$
-		edge.getStyles().add(diagramFacet);
-
-		return edge;
-	}
-
-	/**
 	 * @generated
 	 */
-	public Edge createBinaryModelRel_4015Gen(EObject domainElement,
+	public Edge createBinaryModelRel_4015(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();

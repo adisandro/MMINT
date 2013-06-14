@@ -249,7 +249,7 @@ Contributors:
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
-      <viewProvider class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MidViewProvider">
+      <viewProvider class="edu.toronto.cs.se.mmtf.mid.diagram.providers.MidDiagramViewProvider">
          <Priority name="Lowest"/>
          <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
             <method name="getType()" value="mid"/>
