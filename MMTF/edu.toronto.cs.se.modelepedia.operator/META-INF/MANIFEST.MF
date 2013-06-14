@@ -12,7 +12,9 @@ Require-Bundle: edu.toronto.cs.se.mmtf,
  org.eclipse.core.resources,
  org.eclipse.emf.henshin.model,
  org.eclipse.emf.henshin.interpreter,
- org.eclipse.emf.henshin.trace
+ org.eclipse.emf.henshin.trace,
+ org.eclipse.emf.compare,
+ org.eclipse.emf.compare.rcp
 Bundle-ClassPath: lib/jna.jar,
  lib/alloy4.2-rc.jar,
  .
