@@ -50,10 +50,10 @@
     <element xmi:type="mid:MultiModel" href="uncertainty.mid#/"/>
     <edges xmi:type="notation:Edge" xmi:id="_6OaqwNH1EeKkl5nuMDz74w" type="4015" source="_2gNToNH1EeKkl5nuMDz74w" target="_v3rgcNH1EeKkl5nuMDz74w">
       <children xmi:type="notation:DecorationNode" xmi:id="_6ObR0NH1EeKkl5nuMDz74w" type="6012">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_6ObR0dH1EeKkl5nuMDz74w" x="19" y="-46"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_6ObR0dH1EeKkl5nuMDz74w" x="15" y="-27"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_6ObR0tH1EeKkl5nuMDz74w" type="6013">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_6ObR09H1EeKkl5nuMDz74w" x="18" y="-185"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_6ObR09H1EeKkl5nuMDz74w" x="15" y="-191"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_6ObR1NH1EeKkl5nuMDz74w" visible="false" type="6014">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_6ObR1dH1EeKkl5nuMDz74w" y="80"/>
