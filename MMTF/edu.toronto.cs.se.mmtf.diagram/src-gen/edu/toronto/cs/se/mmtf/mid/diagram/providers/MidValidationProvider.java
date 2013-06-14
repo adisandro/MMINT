@@ -19,8 +19,10 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.emf.validation.model.ConstraintStatus;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
@@ -110,13 +112,19 @@ public class MidValidationProvider {
 		 */
 		public IStatus validate(IValidationContext ctx) {
 			Model context = (Model) ctx.getTarget();
-			boolean success = MultiModelTypeIntrospection.validateType(context,
-					context.getMetatype(), true);
-			String modelRel = (context instanceof ModelRel) ? " relationship"
-					: "";
-			return (success) ? ctx.createSuccessStatus() : ctx
-					.createFailureStatus(modelRel, context.getName(), context
-							.getMetatype().getName());
+			boolean success = MultiModelTypeIntrospection.validateType(context, context.getMetatype(), true);
+			String modelRel = (context instanceof ModelRel) ? " relationship" : "";
+			IStatus status;
+			if (success) {
+				status = ctx.createSuccessStatus();
+			}
+			else {
+				ConstraintStatus failureStatus = (ConstraintStatus) ctx.createFailureStatus(modelRel, context.getName(), context.getMetatype().getName());
+				status = (context.getConstraint() != null && context.getConstraint().getLanguage() == ModelConstraintLanguage.SMT) ?
+					new ConstraintStatus(failureStatus.getConstraint(), context, IStatus.WARNING, 200, "Maybe", failureStatus.getResultLocus()) :
+					failureStatus;
+			}
+			return status;
 		}
 	}
 
