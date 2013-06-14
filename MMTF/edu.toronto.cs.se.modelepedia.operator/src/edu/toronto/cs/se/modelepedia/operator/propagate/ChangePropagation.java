@@ -598,7 +598,7 @@ traceLinks:
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(origModel);
 
 		// create output model and model relationships
-		Model newPropModel = MultiModelMAVOInstanceFactory.copyModelAndEditors(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, multiModel);
+		Model newPropModel = MultiModelMAVOInstanceFactory.copyModelAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, multiModel, false);
 		BinaryModelRel newPropRefinementRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			refinementRel.getMetatype(),
 			null,

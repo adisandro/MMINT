@@ -15,10 +15,20 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
@@ -48,6 +58,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
 
 /**
  * The factory to create/modify/remove elements inside an instance multimodel.
@@ -623,9 +634,50 @@ public class MultiModelInstanceFactory {
 						MultiModelRegistry.replaceFileExtensionInUri(model.getUri(), editorType.getFileExtensions().get(0))
 					)
 				);
+				//TODO MMTF: refactor from here
 				if (!editorFile.exists()) {
-					continue;
+					IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
+					if (descriptor == null) {
+						continue;
+					}
+					IStructuredSelection modelFile;
+					IWorkbenchWizard wizard;
+					try {
+						modelFile = new StructuredSelection(
+							ResourcesPlugin.getWorkspace().getRoot().getFile(
+								new Path(model.getUri())
+							)
+						);
+						wizard = descriptor.createWizard();
+					}
+					catch (Exception e) {
+						continue;
+					}
+					wizard.init(PlatformUI.getWorkbench(), modelFile);
+					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+					String wizardDialogClassName = editorType.getWizardDialogClass();
+					ModelCreationWizardDialog wizDialog = null;
+					if (wizardDialogClassName == null) {
+						wizDialog = new ModelCreationWizardDialog(shell, wizard);
+					}
+					else {
+						try {
+							wizDialog = (ModelCreationWizardDialog)
+								MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).
+								loadClass(wizardDialogClassName).
+								getConstructor(Shell.class, IWizard.class).
+								newInstance(shell, wizard);
+						}
+						catch (Exception e) {
+							wizDialog = new ModelCreationWizardDialog(shell, wizard);
+						}
+					}
+					wizDialog.setTitle(wizard.getWindowTitle());
+					if (wizDialog.open() == Window.CANCEL) {
+						continue;
+					}
 				}
+				//TODO MMTF: refactor to here
 				return createEditor(editorType, model.getUri());
 			}
 			for (Editor editorType : editorTypes) {
