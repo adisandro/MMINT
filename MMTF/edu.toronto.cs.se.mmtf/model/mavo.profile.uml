@@ -3,7 +3,7 @@
   <eAnnotations xmi:id="_jqRd0MlBEeKrhsRgWa0Oxg" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <contents xmi:type="ecore:EPackage" xmi:id="_lRSGYNEtEeKoJbXh4vbX1A" name="MAVOProfile" nsURI="http:///schemas/MAVOProfile/_lRQRMNEtEeKoJbXh4vbX1A/3" nsPrefix="MAVOProfile">
       <eAnnotations xmi:id="_vulywNEtEeKoJbXh4vbX1A" source="PapyrusVersion">
-        <details xmi:id="_vulywdEtEeKoJbXh4vbX1A" key="Version" value="1.0.6"/>
+        <details xmi:id="_vulywdEtEeKoJbXh4vbX1A" key="Version" value="1.1.0"/>
         <details xmi:id="_vulywtEtEeKoJbXh4vbX1A" key="Comment" value=""/>
         <details xmi:id="_vulyw9EtEeKoJbXh4vbX1A" key="Copyright" value="Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay, Vivien Suen.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."/>
         <details xmi:id="_vulyxNEtEeKoJbXh4vbX1A" key="Date" value="2013-06-09"/>

@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.mmtf"
       label="MMTF"
-      version="1.0.6"
+      version="1.1.0"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
@@ -23,11 +23,14 @@
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.emf.ecoretools.diagram"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.ocl.examples.pivot"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.gmf.runtime.common.ui.services"/>
+      <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.emf.workspace"/>
       <import plugin="org.eclipse.gmf.runtime.emf.commands.core"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.ui"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
@@ -43,19 +46,22 @@
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
-      <import plugin="org.eclipse.draw2d"/>
-      <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.gmf.runtime.common.ui.services"/>
-      <import plugin="org.eclipse.emf.transaction"/>
-      <import plugin="org.eclipse.emf.workspace"/>
-      <import plugin="org.eclipse.gmf.runtime.emf.ui"/>
       <import plugin="org.eclipse.gmf.tooling.runtime"/>
+      <import plugin="org.eclipse.draw2d"/>
+      <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
+      <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.henshin.model"/>
       <import plugin="org.eclipse.emf.henshin.interpreter"/>
       <import plugin="org.eclipse.emf.henshin.trace"/>
+      <import plugin="org.eclipse.emf.ecoretools.diagram"/>
+      <import plugin="org.eclipse.papyrus.uml.extensionpoints"/>
+      <import plugin="org.eclipse.emf.compare"/>
+      <import plugin="org.eclipse.emf.compare.rcp"/>
+      <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="org.eclipse.gmf.runtime.notation"/>
    </requires>
 
    <plugin

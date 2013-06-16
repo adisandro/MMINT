@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.petrinet"
       label="Modelepedia PetriNet"
-      version="1.0.6"
+      version="1.1.0"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
