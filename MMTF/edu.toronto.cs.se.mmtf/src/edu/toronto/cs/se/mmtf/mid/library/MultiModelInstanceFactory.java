@@ -15,6 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
@@ -58,7 +59,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 
 /**
  * The factory to create/modify/remove elements inside an instance multimodel.
@@ -202,8 +203,8 @@ public class MultiModelInstanceFactory {
 		String newModelName = null;
 		String fileExtension = EMPTY_MODEL_FILE_EXTENSION;
 		if (externalElement) {
-			newModelName = MultiModelRegistry.getFileNameFromUri(newModelUri);
-			fileExtension = MultiModelRegistry.getFileExtensionFromUri(newModelUri);
+			newModelName = MultiModelUtils.getFileNameFromUri(newModelUri);
+			fileExtension = MultiModelUtils.getFileExtensionFromUri(newModelUri);
 		}
 		if (basicElement) {
 			addBasicExtendibleElement(newModel, modelType, newModelUri, newModelName);
@@ -351,11 +352,11 @@ public class MultiModelInstanceFactory {
 	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelObj) throws MMTFException {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(modelObj);
+		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(modelObj);
 		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
-		String classLiteral = MultiModelRegistry.getEObjectClassLiteral(modelObj, true);
+		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true);
 		if (newModelElemName == null) {
-			newModelElemName = MultiModelRegistry.getEObjectLabel(modelObj, true);
+			newModelElemName = MultiModelRegistry.getModelElementName(modelObj, true);
 		}
 		ModelElementReference newModelElemRef = createModelElementAndModelElementReference(
 			modelEndpointRef,
@@ -621,75 +622,32 @@ public class MultiModelInstanceFactory {
 	 * 
 	 * @param model
 	 *            The model.
-	 * @return The new editor.
+	 * @return The new editor, or null if the editor could not be created.
 	 */
 	public static Editor createEditor(Model model) {
 
 		EList<Editor> editorTypes = MultiModelTypeRegistry.getModelTypeEditors(model.getMetatypeUri());
-		if (editorTypes.size() != 0) {
-			//TODO MMTF: prioritize editors list instead of running twice?
-			for (Editor editorType : editorTypes) {
-				if (!(editorType instanceof Diagram)) {
-					continue;
-				}
-				// check if editor file really exists in model directory
-				File editorFile = new File(
-					MultiModelRegistry.prependWorkspaceToUri(
-						MultiModelRegistry.replaceFileExtensionInUri(model.getUri(), editorType.getFileExtensions().get(0))
-					)
-				);
-				//TODO MMTF: refactor from here
-				if (!editorFile.exists()) {
-					IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
-					if (descriptor == null) {
-						continue;
-					}
-					IStructuredSelection modelFile;
-					IWorkbenchWizard wizard;
-					try {
-						modelFile = new StructuredSelection(
-							ResourcesPlugin.getWorkspace().getRoot().getFile(
-								new Path(model.getUri())
-							)
-						);
-						wizard = descriptor.createWizard();
-					}
-					catch (Exception e) {
-						continue;
-					}
-					wizard.init(PlatformUI.getWorkbench(), modelFile);
-					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-					String wizardDialogClassName = editorType.getWizardDialogClass();
-					ModelCreationWizardDialog wizDialog = null;
-					if (wizardDialogClassName == null) {
-						wizDialog = new ModelCreationWizardDialog(shell, wizard);
-					}
-					else {
-						try {
-							wizDialog = (ModelCreationWizardDialog)
-								MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).
-								loadClass(wizardDialogClassName).
-								getConstructor(Shell.class, IWizard.class).
-								newInstance(shell, wizard);
-						}
-						catch (Exception e) {
-							wizDialog = new ModelCreationWizardDialog(shell, wizard);
-						}
-					}
-					wizDialog.setTitle(wizard.getWindowTitle());
-					if (wizDialog.open() == Window.CANCEL) {
-						continue;
-					}
-				}
-				//TODO MMTF: refactor to here
-				return createEditor(editorType, model.getUri());
+		if (editorTypes.size() == 0) {
+			return null;
+		}
+
+		//TODO MMTF: prioritize editors list instead of running twice?
+		// all diagrams are tried..
+		for (Editor editorType : editorTypes) {
+			if (!(editorType instanceof Diagram)) {
+				continue;
 			}
-			for (Editor editorType : editorTypes) {
-				if (editorType instanceof Diagram) {
-					continue;
-				}
-				return createEditor(editorType, model.getUri());
+			Diagram newDiagram = createDiagram((Diagram) editorType, model.getUri());
+			if (newDiagram != null) {
+				return newDiagram;
 			}
+		}
+		// ..or first editor is used
+		for (Editor editorType : editorTypes) {
+			if (editorType instanceof Diagram) {
+				continue;
+			}
+			return createEditor(editorType, model.getUri());
 		}
 
 		return null;
@@ -708,7 +666,7 @@ public class MultiModelInstanceFactory {
 
 		Editor newEditor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
 		String newEditorName = editorType.getName() + " for model " + modelUri;
-		String newEditorUri = MultiModelRegistry.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
+		String newEditorUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
 		addBasicExtendibleElement(newEditor, editorType, newEditorUri, newEditorName);
 		newEditor.setModelUri(modelUri);
 		newEditor.setId(editorType.getId());
@@ -716,6 +674,45 @@ public class MultiModelInstanceFactory {
 		newEditor.getFileExtensions().add(editorType.getFileExtensions().get(0));
 
 		return newEditor;
+	}
+
+	/**
+	 * Creates a new diagram for a model.
+	 * 
+	 * @param diagramType
+	 *            The diagram type.
+	 * @param modelUri
+	 *            The uri of the model.
+	 * @return The new diagram, or null if the diagram could not be created.
+	 */
+	public static Diagram createDiagram(Diagram diagramType, String modelUri) {
+
+		// check if editor file already exists in model directory
+		File editorFile = new File(
+			MultiModelUtils.prependWorkspaceToUri(
+				MultiModelUtils.replaceFileExtensionInUri(modelUri, diagramType.getFileExtensions().get(0))
+			)
+		);
+		// try to build a new diagram through its wizard, inited with the existing model file
+		if (!editorFile.exists()) {
+			IStructuredSelection modelFile = new StructuredSelection(
+				ResourcesPlugin.getWorkspace().getRoot().getFile(
+					new Path(modelUri)
+				)
+			);
+			EditorCreationWizardDialog wizDialog;
+			try {
+				wizDialog = invokeEditorWizard(diagramType, modelFile);
+			}
+			catch (Exception e) {
+				return null;
+			}
+			if (wizDialog == null) {
+				return null;
+			}
+		}
+
+		return (Diagram) createEditor(diagramType, modelUri);
 	}
 
 	/**
@@ -733,6 +730,85 @@ public class MultiModelInstanceFactory {
 			model.getEditors().add(editor);
 			multiModel.getEditors().add(editor);
 		}
+	}
+
+	/**
+	 * Invokes an editor creation wizard. The wizard can be initialized with an
+	 * existing model, or create the underlying model as a side effect.
+	 * 
+	 * @param editorType
+	 *            The editor type.
+	 * @param initialSelection
+	 *            The selection used to initialize the wizard. It can be an
+	 *            existing model file, or its container when the underlying
+	 *            model file has to be c//	public static void createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId) {
+//
+//		try {
+//			ResourceSet domainResourceSet = new ResourceSetImpl();
+//			Resource modelResource = domainResourceSet.getResource(URI.createFileURI(modelUri), true);
+//			ResourceSet diagramResourceSet = new ResourceSetImpl();
+//			Resource diagramResource =	diagramResourceSet.createResource(URI.createFileURI(diagramUri));
+//			EObject rootModelObj = (EObject) modelResource.getContents().get(0);
+//			Diagram diagram = ViewService.createDiagram(
+//				rootModelObj,
+//				diagramKind,
+//				new PreferencesHint(diagramPluginId)
+//			);
+//			diagramResource.getContents().add(diagram);
+//			HashMap<String, Object> saveOptions = new HashMap<String, Object>();
+//			saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
+//			saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+//			diagramResource.save(saveOptions);
+//		}
+//		catch (Exception e) {
+//			MMTFException.print(MMTFException.Type.WARNING, "Error creating type MID diagram", e);
+//		}
+//	}
+reated.
+	 * @return The editor creation wizard dialog, or null if the user canceled
+	 *         the operation.
+	 * @throws Exception
+	 *             If the editor creation wizard could not be invoked.
+	 */
+	public static EditorCreationWizardDialog invokeEditorWizard(Editor editorType, IStructuredSelection initialSelection) throws Exception {
+
+		IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
+		if (descriptor == null) {
+			throw new MMTFException("Wizard " + editorType.getId() + " not found");
+		}
+		IWorkbenchWizard wizard = descriptor.createWizard();
+		wizard.init(PlatformUI.getWorkbench(), initialSelection);
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		String wizardDialogClassName = editorType.getWizardDialogClass();
+		EditorCreationWizardDialog wizDialog = null;
+		if (wizardDialogClassName == null) {
+			if (editorType instanceof Diagram && initialSelection.getFirstElement() instanceof IFile) {
+				//TODO add creation of plain gmf diagram (just like the type mid), but where really here?
+				//TODO open editor afterwards
+			}
+			else {
+				wizDialog = new EditorCreationWizardDialog(shell, wizard);
+			}
+		}
+		else {
+			try {
+				wizDialog = (EditorCreationWizardDialog)
+					MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).
+					loadClass(wizardDialogClassName).
+					getConstructor(Shell.class, IWizard.class).
+					newInstance(shell, wizard);
+			}
+			catch (Exception e) {
+				MMTFException.print(MMTFException.Type.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
+				wizDialog = new EditorCreationWizardDialog(shell, wizard);
+			}
+		}
+		wizDialog.setTitle(wizard.getWindowTitle());
+		if (wizDialog.open() == Window.CANCEL) {
+			return null;
+		}
+
+		return wizDialog;
 	}
 
 	private static ExtendibleElement removeExtendibleElement(MultiModel multiModel, String elementUri) {

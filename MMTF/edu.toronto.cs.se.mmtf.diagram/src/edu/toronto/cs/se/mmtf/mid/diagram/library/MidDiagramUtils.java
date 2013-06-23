@@ -21,16 +21,13 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
-import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
@@ -39,10 +36,10 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmtf.mid.ui.MultiModelTreeSelectionDialog;
 
 /**
@@ -117,20 +114,16 @@ public class MidDiagramUtils {
 		dialog.setAllowMultiple(false);
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MMTFException("Dialog cancel button pressed");
+			throw new MMTFException("Model creation cancelled");
 		}
 		Object selection = dialog.getFirstResult();
 		if (selection == null) {
-			throw new MMTFException("Dialog ok button pressed with no selection");
+			throw new MMTFException("Model creation dialog ok button pressed with no selection");
 		}
 		Editor editorType = (Editor) selection;
-		IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
-		if (descriptor == null) {
-			throw new MMTFException("Wizard " + editorType.getId() + " not found");
-		}
 
 		IStructuredSelection multiModelContainer;
-		String multiModelContainerUri = MultiModelRegistry.replaceLastSegmentInUri(multiModel.eResource().getURI().toPlatformString(true), "");
+		String multiModelContainerUri = MultiModelUtils.replaceLastSegmentInUri(multiModel.eResource().getURI().toPlatformString(true), "");
 		try {
 			multiModelContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(
@@ -143,34 +136,12 @@ public class MidDiagramUtils {
 				ResourcesPlugin.getWorkspace().getRoot().getProject(multiModelContainerUri)
 			);
 		}
-		IWorkbenchWizard wizard = descriptor.createWizard();
-		wizard.init(PlatformUI.getWorkbench(), multiModelContainer);
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		String wizardDialogClassName = editorType.getWizardDialogClass();
-		ModelCreationWizardDialog wizDialog = null;
-		if (wizardDialogClassName == null) {
-			wizDialog = new ModelCreationWizardDialog(shell, wizard);
+		EditorCreationWizardDialog wizDialog = MultiModelInstanceFactory.invokeEditorWizard(editorType, multiModelContainer);
+		if (wizDialog == null) {
+			throw new MMTFException("Model creation cancelled");
 		}
-		else {
-			try {
-				wizDialog = (ModelCreationWizardDialog)
-					MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).
-					loadClass(wizardDialogClassName).
-					getConstructor(Shell.class, IWizard.class).
-					newInstance(shell, wizard);
-			}
-			catch (Exception e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Custom model creation wizard error: " + wizardDialogClassName, e);
-				wizDialog = new ModelCreationWizardDialog(shell, wizard);
-			}
-		}
-		wizDialog.setTitle(wizard.getWindowTitle());
-		if (wizDialog.open() == Window.CANCEL) {
-			throw new MMTFException("Wizard dialog cancel button pressed");
-		}
-		Editor editor = MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri());
 
-		return editor;
+		return MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri());
 	}
 
 	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws Exception {
@@ -243,7 +214,7 @@ public class MidDiagramUtils {
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null);
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MMTFException("Dialog cancel button pressed");
+			throw new MMTFException("Operation cancelled");
 		}
 		String text = dialog.getValue();
 		if (text == null) {
@@ -270,7 +241,7 @@ public class MidDiagramUtils {
 		};
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MMTFException("Dialog cancel button pressed");
+			throw new MMTFException("Operation cancelled");
 		}
 		String text = dialog.getValue();
 		if (text == null) {

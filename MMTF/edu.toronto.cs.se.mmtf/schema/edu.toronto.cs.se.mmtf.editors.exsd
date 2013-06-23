@@ -100,7 +100,7 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
                   The fully qualified name of a Java class that handles the creation of a model through this editor.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog:"/>
+                  <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog:"/>
                </appinfo>
             </annotation>
          </attribute>

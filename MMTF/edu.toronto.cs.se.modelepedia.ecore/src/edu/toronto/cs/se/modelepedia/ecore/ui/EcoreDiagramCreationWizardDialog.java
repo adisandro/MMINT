@@ -16,9 +16,9 @@ import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.widgets.Shell;
 
-import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 
-public class EcoreModelCreationWizardDialog extends ModelCreationWizardDialog {
+public class EcoreDiagramCreationWizardDialog extends EditorCreationWizardDialog {
 
 	@Override
 	protected void storeCreatedModelUri(IWizardPage page) {
@@ -35,7 +35,7 @@ public class EcoreModelCreationWizardDialog extends ModelCreationWizardDialog {
 	 * @param newWizard
 	 *            The wizard.
 	 */
-	public EcoreModelCreationWizardDialog(Shell parentShell, IWizard newWizard) {
+	public EcoreDiagramCreationWizardDialog(Shell parentShell, IWizard newWizard) {
 
 		super(parentShell, newWizard);
 	}

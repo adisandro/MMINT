@@ -340,13 +340,13 @@ public class MultiModelConstraintChecker {
 		}
 
 		// check model element compliance
-		String newEObjectClassLiteral = MultiModelRegistry.getEObjectClassLiteral(newEObject, true);
+		String newEObjectClassLiteral = MultiModelRegistry.getModelElementClassLiteral(newEObject, true);
 		if (modelElemType.getClassLiteral().equals(newEObjectClassLiteral)) {
 			return true;
 		}
 		// look for metamodel supertypes
 		for (EClass newEObjectSuper : newEObject.eClass().getEAllSuperTypes()) {
-			newEObjectClassLiteral = MultiModelRegistry.getEObjectClassLiteral(newEObjectSuper, false);
+			newEObjectClassLiteral = MultiModelRegistry.getModelElementClassLiteral(newEObjectSuper, false);
 			if (modelElemType.getClassLiteral().equals(newEObjectClassLiteral)) {
 				return true;
 			}

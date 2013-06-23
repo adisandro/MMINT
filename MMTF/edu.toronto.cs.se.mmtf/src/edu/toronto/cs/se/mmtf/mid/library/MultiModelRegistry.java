@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,14 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.library;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.HashMap;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -124,16 +118,16 @@ public class MultiModelRegistry {
 		return false;
 	}
 
-	public static ModelElementCategory getEObjectCategory(EObject eObject) {
+	public static ModelElementCategory getModelElementCategory(EObject modelObj) {
 
-		return (eObject instanceof EReference) ?
+		return (modelObj instanceof EReference) ?
 			ModelElementCategory.RELATIONSHIP :
 			ModelElementCategory.ENTITY;
 	}
 
-	public static String[] getModelAndModelElementUris(EObject eObject, boolean isInstancesLevel) {
+	public static String[] getModelAndModelElementUris(EObject modelObj, boolean isInstancesLevel) {
 
-		URI uri = EcoreUtil.getURI(eObject);
+		URI uri = EcoreUtil.getURI(modelObj);
 		String modelUri, modelElemUri;
 		if (isInstancesLevel) {
 			modelUri = uri.toPlatformString(true);
@@ -151,99 +145,32 @@ public class MultiModelRegistry {
 		return new String[] {modelUri, modelElemUri};
 	}
 
-	public static String getEObjectClassLiteral(EObject eObject, boolean isInstancesLevel) {
+	public static String getModelElementClassLiteral(EObject modelObj, boolean isInstancesLevel) {
 
 		String classLiteral = null;
 		if (isInstancesLevel) {
 			//TODO MMTF: EReference is probably wrong here, since we can't even drop it
-			classLiteral = (eObject instanceof EReference) ?
-				((EReference) eObject).getEContainingClass().getName() + MMTF.URI_SEPARATOR + ((EReference) eObject).getName() :
-				eObject.eClass().getName();
+			classLiteral = (modelObj instanceof EReference) ?
+				((EReference) modelObj).getEContainingClass().getName() + MMTF.URI_SEPARATOR + ((EReference) modelObj).getName() :
+				modelObj.eClass().getName();
 		}
 		else {
-			classLiteral = (eObject instanceof EReference) ?
-				((EClass) eObject.eContainer()).getName() + MMTF.URI_SEPARATOR + ((EReference) eObject).getName() :
-				((EClass) eObject).getName();
+			classLiteral = (modelObj instanceof EReference) ?
+				((EClass) modelObj.eContainer()).getName() + MMTF.URI_SEPARATOR + ((EReference) modelObj).getName() :
+				((EClass) modelObj).getName();
 		}
 
 		return classLiteral;
 	}
 
-	public static String getEObjectLabel(EObject eObject, boolean isInstancesLevel) {
+	public static String getModelElementName(EObject modelObj, boolean isInstancesLevel) {
 
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 
 		return (labelProvider == null) ?
-			getEObjectClassLiteral(eObject, isInstancesLevel) :
-			labelProvider.getText(eObject);
-	}
-
-	public static String getLastSegmentFromUri(String uri) {
-
-		return uri.substring(uri.lastIndexOf(MMTF.URI_SEPARATOR) + 1, uri.length());
-	}
-
-	public static String getFileNameFromUri(String uri) {
-
-		String lastSegmentUri = getLastSegmentFromUri(uri);
-
-		return lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(MODEL_FILEEXTENSION_SEPARATOR));
-	}
-
-	public static String getFileExtensionFromUri(String uri) {
-
-		String lastSegmentUri = getLastSegmentFromUri(uri);
-
-		return lastSegmentUri.substring(lastSegmentUri.lastIndexOf(MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
-	}
-
-	public static String replaceLastSegmentInUri(String uri, String newLastSegmentUri) {
-
-		String lastSegmentUri = getLastSegmentFromUri(uri);
-
-		return uri.replace(lastSegmentUri, newLastSegmentUri);
-	}
-
-	public static String replaceFileNameInUri(String uri, String newFileName) {
-
-		String fileName = getFileNameFromUri(uri);
-
-		return uri.replace(fileName, newFileName);
-	}
-
-	public static String replaceFileExtensionInUri(String uri, String newFileExtension) {
-
-		String fileExtension = getFileExtensionFromUri(uri);
-
-		return uri.replace(MODEL_FILEEXTENSION_SEPARATOR + fileExtension, MODEL_FILEEXTENSION_SEPARATOR + newFileExtension);
-	}
-
-	public static String addFileNameSuffixInUri(String uri, String newFileNameSuffix) {
-
-		String fileExtension = getFileExtensionFromUri(uri);
-
-		return uri.replace(MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
-	}
-
-	public static String prependWorkspaceToUri(String uri) {
-
-		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
-	}
-
-	public static void copyFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
-	
-		File oldFile = new File(oldFileUri);
-		File newFile = new File(newFileUri);
-		BufferedReader oldBuffer = new BufferedReader(new FileReader(oldFile));
-		BufferedWriter newBuffer = new BufferedWriter(new FileWriter(newFile));
-		String oldLine;
-		while ((oldLine = oldBuffer.readLine()) != null) {
-			newBuffer.write(oldLine.replaceAll(oldText, newText));
-			newBuffer.newLine();
-		}
-		oldBuffer.close();
-		newBuffer.close();
+			getModelElementClassLiteral(modelObj, isInstancesLevel) :
+			labelProvider.getText(modelObj);
 	}
 
 	public static MultiModel getMultiModel(ExtendibleElement element) {

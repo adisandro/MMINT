@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
@@ -66,7 +66,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 			try {
 				// create experiment folder
 				Model initialModel = actualParameters.get(0);
-				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
+				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
 				if (!folder.exists(null)) {
 					folder.create(true, true, null);
 				}
@@ -98,7 +98,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 				int j;
 				for (j = 0; j < maxSamples; j++) {
 					// create sample folder
-					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelRegistry.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
 					if (!folder.exists(null)) {
 						folder.create(true, true, null);
 					}

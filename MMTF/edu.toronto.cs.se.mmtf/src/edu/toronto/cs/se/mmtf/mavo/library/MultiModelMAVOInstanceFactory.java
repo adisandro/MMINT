@@ -24,6 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -59,10 +60,10 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static Model copyModelAndEditor(Model oldModel, String newModelName, MultiModel multiModel, boolean copyDiagramEditor) throws Exception {
 
 		// copy model
-		String oldUri = MultiModelRegistry.prependWorkspaceToUri(oldModel.getUri());
-		String newModelUri = MultiModelRegistry.replaceFileNameInUri(oldModel.getUri(), newModelName);
-		String newUri = MultiModelRegistry.prependWorkspaceToUri(newModelUri);
-		MultiModelRegistry.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
+		String oldUri = MultiModelUtils.prependWorkspaceToUri(oldModel.getUri());
+		String newModelUri = MultiModelUtils.replaceFileNameInUri(oldModel.getUri(), newModelName);
+		String newUri = MultiModelUtils.prependWorkspaceToUri(newModelUri);
+		MultiModelUtils.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
 
 		// copy diagram editors
 		if (copyDiagramEditor) {
@@ -70,9 +71,9 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 				if (oldEditor.getUri().equals(oldModel.getUri())) {
 					continue;
 				}
-				oldUri = MultiModelRegistry.prependWorkspaceToUri(oldEditor.getUri());
-				newUri = MultiModelRegistry.prependWorkspaceToUri(MultiModelRegistry.replaceFileNameInUri(oldEditor.getUri(), newModelName));
-				MultiModelRegistry.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
+				oldUri = MultiModelUtils.prependWorkspaceToUri(oldEditor.getUri());
+				newUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName));
+				MultiModelUtils.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
 				//TODO MMTF: add support for notation extra file (e.g. in UML)
 			}
 		}

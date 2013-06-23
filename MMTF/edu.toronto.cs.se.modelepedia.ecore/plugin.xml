@@ -45,7 +45,7 @@
             id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
             isDiagram="true"
             modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
-            wizardDialogClass="edu.toronto.cs.se.modelepedia.ecore.ui.EcoreModelCreationWizardDialog"
+            wizardDialogClass="edu.toronto.cs.se.modelepedia.ecore.ui.EcoreDiagramCreationWizardDialog"
             wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
          <extendibleType
                name="Ecore diagram"

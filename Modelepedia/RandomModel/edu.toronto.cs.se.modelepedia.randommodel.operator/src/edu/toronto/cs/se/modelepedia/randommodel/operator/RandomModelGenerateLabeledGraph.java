@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
@@ -210,7 +211,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		if (subdir != null) {
 			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;
 		}
-		String newRandommodelModelUri = MultiModelRegistry.replaceLastSegmentInUri(labeledGraphModel.getUri(), newLastSegmentUri);
+		String newRandommodelModelUri = MultiModelUtils.replaceLastSegmentInUri(labeledGraphModel.getUri(), newLastSegmentUri);
 		EList<Model> result = new BasicEList<Model>();
 		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
 		MultiModel multiModel = (updateMid) ?
@@ -224,7 +225,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 
 		// create random instance
 		RandomModel randomRoot = generateRandomMAVOModel(labeledGraphModel, newRandommodelModel);
-		randomRoot.setName(MultiModelRegistry.getFileNameFromUri(newRandommodelModelUri));
+		randomRoot.setName(MultiModelUtils.getFileNameFromUri(newRandommodelModelUri));
 		randomRoot.setType(modelTypeName);
 		MultiModelTypeIntrospection.writeRoot(randomRoot, newRandommodelModelUri, true);
 

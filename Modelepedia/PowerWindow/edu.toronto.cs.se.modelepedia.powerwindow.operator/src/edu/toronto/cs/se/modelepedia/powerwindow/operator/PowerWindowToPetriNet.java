@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNetFactory;
@@ -53,8 +54,8 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 		}
 
 		// serialize
-		String newPetrinetModelUri = MultiModelRegistry.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
-		newPetrinetModelUri = MultiModelRegistry.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
+		String newPetrinetModelUri = MultiModelUtils.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
+		newPetrinetModelUri = MultiModelUtils.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
 		MultiModelTypeIntrospection.writeRoot(newPetrinet, newPetrinetModelUri, true);
 
 		// create model

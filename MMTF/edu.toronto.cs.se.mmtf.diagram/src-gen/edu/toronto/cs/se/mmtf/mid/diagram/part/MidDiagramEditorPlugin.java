@@ -99,7 +99,7 @@ public class MidDiagramEditorPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 
 		startGen(context);
-		OpenTypeMidHandler.generateDiagram();
+		OpenTypeMidHandler.createTypeMIDDiagram();
 	}
 
 	/**

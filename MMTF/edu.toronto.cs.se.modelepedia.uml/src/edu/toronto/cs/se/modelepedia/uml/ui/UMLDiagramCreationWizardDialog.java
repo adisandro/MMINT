@@ -17,10 +17,10 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.swt.widgets.Shell;
 
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.ui.ModelCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 
-public class UMLModelCreationWizardDialog extends ModelCreationWizardDialog {
+public class UMLDiagramCreationWizardDialog extends EditorCreationWizardDialog {
 
 	private final static String UML_FILE_EXTENSION = "uml";
 
@@ -29,7 +29,7 @@ public class UMLModelCreationWizardDialog extends ModelCreationWizardDialog {
 
 		NewModelFilePage filePage = (NewModelFilePage) page;
 		createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-		createdModelUri = MultiModelRegistry.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);
+		createdModelUri = MultiModelUtils.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class UMLModelCreationWizardDialog extends ModelCreationWizardDialog {
 	 * @param newWizard
 	 *            The wizard.
 	 */
-	public UMLModelCreationWizardDialog(Shell parentShell, IWizard newWizard) {
+	public UMLDiagramCreationWizardDialog(Shell parentShell, IWizard newWizard) {
 
 		super(parentShell, newWizard);
 	}

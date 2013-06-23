@@ -119,9 +119,9 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected ModelElementReference doExecuteInstancesLevel() throws MMTFException {
 
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
-		String classLiteral = MultiModelRegistry.getEObjectClassLiteral(newModelObj, true); // class literal == type name
-		String newModelElemName = MultiModelRegistry.getEObjectLabel(newModelObj, true);
-		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(newModelObj);
+		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(newModelObj, true); // class literal == type name
+		String newModelElemName = MultiModelRegistry.getModelElementName(newModelObj, true);
+		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(newModelObj);
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
 			modelEndpointRef,
 			modelElemType,
@@ -175,7 +175,7 @@ supertypes:
 			//TODO MMTF: write a todo somewhere to remember to handle the import of a model rel instance
 		}
 
-		ModelElementCategory category = MultiModelRegistry.getEObjectCategory(newModelObj);
+		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(newModelObj);
 		String classLiteral = newModelElemUri; // class literal == name
 		ModelElementReference newModelElemTypeRef = MultiModelLightTypeFactory.createLightModelElementTypeAndModelElementTypeReference(
 			modelTypeEndpointRef,

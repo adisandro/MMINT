@@ -19,12 +19,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 /**
- * A wizard dialog to create a new model.
+ * A wizard dialog to create a new editor.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class ModelCreationWizardDialog extends WizardDialog {
+public class EditorCreationWizardDialog extends WizardDialog {
 
 	/** The uri of the created model. */
 	protected String createdModelUri;
@@ -59,7 +59,7 @@ public class ModelCreationWizardDialog extends WizardDialog {
 	 * @param newWizard
 	 *            The wizard.
 	 */
-	public ModelCreationWizardDialog(Shell parentShell, IWizard newWizard) {
+	public EditorCreationWizardDialog(Shell parentShell, IWizard newWizard) {
 
 		super(parentShell, newWizard);
 	}

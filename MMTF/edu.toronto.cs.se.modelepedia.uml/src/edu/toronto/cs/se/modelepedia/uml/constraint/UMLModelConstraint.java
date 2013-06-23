@@ -15,8 +15,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 
 public abstract class UMLModelConstraint extends JavaModelConstraint {
 
@@ -27,7 +27,7 @@ public abstract class UMLModelConstraint extends JavaModelConstraint {
 
 	protected boolean validate(String modelTypeName) {
 
-		String notationFileUri = MultiModelRegistry.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
+		String notationFileUri = MultiModelUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
 			Diagram diagram = (Diagram) MultiModelTypeIntrospection.getRoot(notationFileUri);
 			return diagram.getType().equals(modelTypeName);

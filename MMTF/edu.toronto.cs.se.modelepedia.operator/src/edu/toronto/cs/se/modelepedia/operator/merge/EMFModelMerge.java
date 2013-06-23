@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch;
@@ -61,7 +62,7 @@ public class EMFModelMerge extends OperatorExecutableImpl {
 				registry.getHighestRankingMerger(diff).copyLeftToRight(diff, new BasicMonitor());
 			}
 		}
-		String mergedModelUri = MultiModelRegistry.replaceFileNameInUri(srcModel.getUri(), srcModel.getName() + MERGED_MODEL_NAME_SEPARATOR + tgtModel.getName());
+		String mergedModelUri = MultiModelUtils.replaceFileNameInUri(srcModel.getUri(), srcModel.getName() + MERGED_MODEL_NAME_SEPARATOR + tgtModel.getName());
 		MultiModelTypeIntrospection.writeRoot(((ResourceSet) scope.getRight()).getResources().get(0).getContents().get(0), mergedModelUri, true);
 		Model mergedModel = MultiModelMAVOInstanceFactory.createModelAndEditor(
 			srcModel.getMetatype(),
