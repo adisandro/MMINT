@@ -62,7 +62,7 @@
     <elements uri="/REJ12/MeetingScheduler/related.classdiagram_mavo#//@dependencies.2_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Dependency" name="Dependency false" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Dependency" dynamic="true" classLiteral="Dependency"/>
     <elements set="true" uri="/REJ12/MeetingScheduler/related.classdiagram_mavo#//@classes.6_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" name="Class Details" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class" dynamic="true" classLiteral="Class"/>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" name="trace" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel" dynamic="true" origin="CREATED">
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="trace" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints name="orig" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-IStar_MAVO/IStarEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints name="related" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-ClassDiagram_MAVO/ClassDiagramEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <links xsi:type="relationship:BinaryLink" name="trace1" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0 //@models.2/@linkRefs.0/@modelElemEndpointRefs.1">
@@ -273,7 +273,7 @@
     <elements may="true" set="true" uri="/REJ12/MeetingScheduler/refined.istar_mavo#//@dependums.0/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="Depender Link Organize Meeting 2 Dependencies" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="DependerLink"/>
     <elements may="true" set="true" uri="/REJ12/MeetingScheduler/refined.istar_mavo#//@dependums.0/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="Dependee Link Dependencies 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="DependeeLink"/>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED">
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints name="orig" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints name="refined" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <links name="refine1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0 //@models.4/@linkRefs.0/@modelElemEndpointRefs.1 //@models.4/@linkRefs.0/@modelElemEndpointRefs.2">
@@ -538,7 +538,7 @@
     <elements uri="/REJ12/MeetingScheduler/refined2.istar_mavo#//@dependums.0/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="Depender Link Organize Meeting 2 Dependencies" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="DependerLink"/>
     <elements uri="/REJ12/MeetingScheduler/refined2.istar_mavo#//@dependums.0/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" name="Dependee Link Dependencies 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement" dynamic="true" classLiteral="DependeeLink"/>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" name="refinement2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED">
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints name="refined" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <modelEndpoints name="refined2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
     <links name="refine1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0 //@models.6/@linkRefs.0/@modelElemEndpointRefs.1">
