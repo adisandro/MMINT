@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.ui;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -23,8 +24,63 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.ui.PlatformUI;
+
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 
 public class GMFDiagramUtils {
+
+	private final static String EXTELEM_NULLTYPE = "NOTYPE";
+
+	public static String getElementLabel(ExtendibleElement element) {
+	
+		String label = (element.getName() == null) ? "" : element.getName();
+		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
+			ExtendibleElement type = element.getMetatype();
+			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();
+			label += " : " + typeLabel;
+		}
+	
+		return label;
+	}
+
+	public static String getEndpointLabel(ExtendibleElementEndpoint endpoint) {
+	
+		String label = getElementLabel(endpoint);
+	
+		int low = endpoint.getLowerBound();
+		int up = endpoint.getUpperBound();
+		if (low == 0 && up == 1) {
+			label += " [?]";
+		}
+		else if (low == 1 && up == 1) {
+			// default
+		}
+		else if (low == 0 && up == -1) {
+			label += " [*]";
+		}
+		else if (low == 1 && up == -1) {
+			label += " [+]";
+		}
+		else {
+			String up2 = (up == -1) ? "*" : Integer.toString(up);
+			label += " [" + low + "," + up2 + "]";
+		}
+	
+		return label;
+	}
+
+	public static String editElementLabel(ExtendibleElement element) {
+	
+		String name = element.getName();
+		if (name == null) {
+			name = "";
+		}
+	
+		return name;
+	}
 
 	public static void createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId) throws Exception {
 
@@ -35,14 +91,22 @@ public class GMFDiagramUtils {
 		EObject rootModelObj = (EObject) modelResource.getContents().get(0);
 		Diagram diagram = ViewService.createDiagram(
 			rootModelObj,
-			diagramKind,//XDiagramEditor.getDiagramEditPart.MODEL_ID (getPartProperties?)
-			new PreferencesHint(diagramPluginId)//can get it from XDiagramEditor.getContributorId
+			diagramKind,
+			new PreferencesHint(diagramPluginId)
 		);
 		diagramResource.getContents().add(diagram);
 		Map<String, Object> saveOptions = new HashMap<String, Object>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		diagramResource.save(saveOptions);
+	}
+
+	public static void openGMFDiagram(String diagramUri, String diagramId) throws Exception {
+
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+			new URIEditorInput(URI.createFileURI(diagramUri)),
+			diagramId
+		);
 	}
 
 }

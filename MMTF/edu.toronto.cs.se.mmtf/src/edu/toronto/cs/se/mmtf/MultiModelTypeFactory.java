@@ -343,7 +343,7 @@ public class MultiModelTypeFactory {
 		// remove model relationship types and endpoints that use this model type
 		List<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
 		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {
+		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(modelType.getUri())) {
 					if (modelRelType instanceof BinaryModelRel) {

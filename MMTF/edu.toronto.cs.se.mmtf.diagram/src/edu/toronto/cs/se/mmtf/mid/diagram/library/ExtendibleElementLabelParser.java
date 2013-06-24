@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 public class ExtendibleElementLabelParser implements IParser {
 
@@ -49,7 +49,7 @@ public class ExtendibleElementLabelParser implements IParser {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
 
-		return MultiModelRegistry.editElementLabel((ExtendibleElement) modelObj);
+		return GMFDiagramUtils.editElementLabel((ExtendibleElement) modelObj);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class ExtendibleElementLabelParser implements IParser {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
 
-		return MultiModelRegistry.getElementLabel((ExtendibleElement) modelObj);
+		return GMFDiagramUtils.getElementLabel((ExtendibleElement) modelObj);
 	}
 
 	@Override

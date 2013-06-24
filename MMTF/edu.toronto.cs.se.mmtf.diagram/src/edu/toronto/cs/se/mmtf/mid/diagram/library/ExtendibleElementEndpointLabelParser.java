@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 public class ExtendibleElementEndpointLabelParser extends ExtendibleElementLabelParser {
 
@@ -24,7 +24,7 @@ public class ExtendibleElementEndpointLabelParser extends ExtendibleElementLabel
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
 
-		return MultiModelRegistry.getEndpointLabel((ExtendibleElementEndpoint) modelObj);
+		return GMFDiagramUtils.getEndpointLabel((ExtendibleElementEndpoint) modelObj);
 	}
 
 }

@@ -17,9 +17,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFActivator;
@@ -32,7 +29,7 @@ import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 public class OpenTypeMidHandler extends AbstractHandler {
 
 	private static final String TYPE_MID_DIAGRAM_SUFFIX = "diag";
-	
+
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
@@ -41,24 +38,13 @@ public class OpenTypeMidHandler extends AbstractHandler {
 		String midDiagramUri = midModelUri + TYPE_MID_DIAGRAM_SUFFIX;
 		File middiag = new File(midDiagramUri);
 		if (!middiag.exists()) {
-			try {
-				GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MultiModelEditPart.MODEL_ID, MidDiagramEditorPlugin.ID);
-			}
-			catch (Exception e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Error creating Type MID diagram", e);
-			}
+			createTypeMIDDiagram();
 		}
-
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-				new URIEditorInput(
-					URI.createFileURI(midDiagramUri)
-				),
-				MidDiagramEditor.ID
-			);
+			GMFDiagramUtils.openGMFDiagram(midDiagramUri, MidDiagramEditor.ID);
 		}
 		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "No Type MID editor associated", e);
+			MMTFException.print(MMTFException.Type.WARNING, "Error opening Type MID diagram", e);
 		}
 
 		return null;

@@ -38,6 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -491,7 +492,7 @@ public class MMTF implements MMTFConstants {
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
 			addTypeHierarchy(type, type, subtypeTable);
 		}
-		for (Model modelType : MultiModelTypeRegistry.getModelTypes(multiModel)) {
+		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
 			addConversionHierarchy(modelType, conversionTable.get(modelType.getUri()));
 			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelType)) {
 				addConversionHierarchy(modelType, conversionTable.get(modelSubtype.getUri()));
@@ -568,7 +569,7 @@ public class MMTF implements MMTFConstants {
 
 		// do model types first
 		//TODO MMTF: this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
-		for (Model modelType : MultiModelTypeRegistry.getModelTypes(multiModel)) {
+		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
 			if (!(modelType instanceof ModelRel) &&
 				modelType.isDynamic() &&
 				MultiModelTypeRegistry.getExtendibleElementType(modelType.getUri()) == null
@@ -576,7 +577,7 @@ public class MMTF implements MMTFConstants {
 				addDynamicType(modelType);
 			}
 		}
-		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {
+		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
 			if (modelRelType.isDynamic() &&
 				MultiModelTypeRegistry.getExtendibleElementType(modelRelType.getUri()) == null
 			) {

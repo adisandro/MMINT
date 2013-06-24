@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -167,17 +166,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Model> getModelTypes() {
 
-		return getModelTypes(MMTF.repository);
-	}
-
-	/**
-	 * Gets the list of registered model types in the multimodel.
-	 * 
-	 * @return The list of registered model types in the multimodel.
-	 */
-	public static EList<Model> getModelTypes(MultiModel multiModel) {
-
-		return multiModel.getModels();
+		return MultiModelRegistry.getModels(MMTF.repository);
 	}
 
 	/**
@@ -187,24 +176,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<ModelRel> getModelRelTypes() {
 
-		return getModelRelTypes(MMTF.repository);
-	}
-
-	/**
-	 * Gets the list of registered model relationship types in multimodel.
-	 * 
-	 * @return The list of registered model relationship types in multimodel.
-	 */
-	public static EList<ModelRel> getModelRelTypes(MultiModel multiModel) {
-
-		EList<ModelRel> modelRels = new BasicEList<ModelRel>();
-		for (Model model : getModelTypes(multiModel)) {
-			if (model instanceof ModelRel) {
-				modelRels.add((ModelRel) model);
-			}
-		}
-
-		return modelRels;
+		return MultiModelRegistry.getModelRels(MMTF.repository);
 	}
 
 	/**
@@ -402,7 +374,7 @@ public class MultiModelTypeRegistry {
 			String newTgtUri = newTgtModelType.getUri();
 			modelRelTypeUris = new ArrayList<String>();
 
-			for (ModelRel modelRelType : getModelRelTypes(multiModel)) {
+			for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
 				// binary can only inherit from root or binary
 				if (isRootType(modelRelType)) {
 					modelRelTypeUris.add(modelRelType.getUri());

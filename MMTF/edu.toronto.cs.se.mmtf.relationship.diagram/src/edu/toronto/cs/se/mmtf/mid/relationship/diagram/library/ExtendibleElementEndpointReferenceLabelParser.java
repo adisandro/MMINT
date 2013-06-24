@@ -14,8 +14,8 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.library;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 public class ExtendibleElementEndpointReferenceLabelParser extends ExtendibleElementReferenceLabelParser {
 
@@ -24,7 +24,7 @@ public class ExtendibleElementEndpointReferenceLabelParser extends ExtendibleEle
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
 
-		return MultiModelRegistry.getEndpointLabel(((ExtendibleElementEndpointReference) modelObj).getObject());
+		return GMFDiagramUtils.getEndpointLabel(((ExtendibleElementEndpointReference) modelObj).getObject());
 	}
 
 }

@@ -60,6 +60,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 /**
  * The factory to create/modify/remove elements inside an instance multimodel.
@@ -741,30 +742,7 @@ public class MultiModelInstanceFactory {
 	 * @param initialSelection
 	 *            The selection used to initialize the wizard. It can be an
 	 *            existing model file, or its container when the underlying
-	 *            model file has to be c//	public static void createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId) {
-//
-//		try {
-//			ResourceSet domainResourceSet = new ResourceSetImpl();
-//			Resource modelResource = domainResourceSet.getResource(URI.createFileURI(modelUri), true);
-//			ResourceSet diagramResourceSet = new ResourceSetImpl();
-//			Resource diagramResource =	diagramResourceSet.createResource(URI.createFileURI(diagramUri));
-//			EObject rootModelObj = (EObject) modelResource.getContents().get(0);
-//			Diagram diagram = ViewService.createDiagram(
-//				rootModelObj,
-//				diagramKind,
-//				new PreferencesHint(diagramPluginId)
-//			);
-//			diagramResource.getContents().add(diagram);
-//			HashMap<String, Object> saveOptions = new HashMap<String, Object>();
-//			saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
-//			saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-//			diagramResource.save(saveOptions);
-//		}
-//		catch (Exception e) {
-//			MMTFException.print(MMTFException.Type.WARNING, "Error creating type MID diagram", e);
-//		}
-//	}
-reated.
+	 *            model file has to be created.
 	 * @return The editor creation wizard dialog, or null if the user canceled
 	 *         the operation.
 	 * @throws Exception
@@ -783,8 +761,17 @@ reated.
 		EditorCreationWizardDialog wizDialog = null;
 		if (wizardDialogClassName == null) {
 			if (editorType instanceof Diagram && initialSelection.getFirstElement() instanceof IFile) {
-				//TODO add creation of plain gmf diagram (just like the type mid), but where really here?
 				//TODO open editor afterwards
+				String modelUri = MultiModelUtils.prependWorkspaceToUri(
+					((IFile) initialSelection.getFirstElement()).getFullPath().toOSString()
+				);
+				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
+				String diagramKind = "ClassDiagram_MAVO";//TODO MMTF: how to get this?
+				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).getSymbolicName();
+				// create the diagram directly and do not open the wizard
+				GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId);
+				GMFDiagramUtils.openGMFDiagram(diagramUri, editorType.getId());
+				return new EditorCreationWizardDialog(shell, wizard);
 			}
 			else {
 				wizDialog = new EditorCreationWizardDialog(shell, wizard);
@@ -833,7 +820,7 @@ reated.
 		// remove model relationships and endpoints that use this model
 		List<ModelRel> delModelRels = new ArrayList<ModelRel>();
 		List<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRel : MultiModelTypeRegistry.getModelRelTypes(multiModel)) {//TODO MMTF: put this function into the generic registry
+		for (ModelRel modelRel : MultiModelRegistry.getModelRels(multiModel)) {
 			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 				if (modelEndpoint.getTargetUri().equals(model.getUri())) {
 					if (modelRel instanceof BinaryModelRel) {

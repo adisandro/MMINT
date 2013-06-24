@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmtf.mid.library;
 
 import java.util.HashMap;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -40,59 +42,10 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 public class MultiModelRegistry {
 
-	public final static String EXTELEM_NULLTYPE = "NOTYPE";
 	public final static String MODEL_URI_SEPARATOR = "#";
 	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + "//";
 	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
-
-	public static String getElementLabel(ExtendibleElement element) {
-
-		String label = (element.getName() == null) ? "" : element.getName();
-		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
-			ExtendibleElement type = element.getMetatype();
-			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();
-			label += " : " + typeLabel;
-		}
-
-		return label;
-	}
-
-	public static String getEndpointLabel(ExtendibleElementEndpoint endpoint) {
-
-		String label = getElementLabel(endpoint);
-
-		int low = endpoint.getLowerBound();
-		int up = endpoint.getUpperBound();
-		if (low == 0 && up == 1) {
-			label += " [?]";
-		}
-		else if (low == 1 && up == 1) {
-			// default
-		}
-		else if (low == 0 && up == -1) {
-			label += " [*]";
-		}
-		else if (low == 1 && up == -1) {
-			label += " [+]";
-		}
-		else {
-			String up2 = (up == -1) ? "*" : Integer.toString(up);
-			label += " [" + low + "," + up2 + "]";
-		}
-
-		return label;
-	}
-
-	public static String editElementLabel(ExtendibleElement element) {
-
-		String name = element.getName();
-		if (name == null) {
-			name = "";
-		}
-
-		return name;
-	}
 
 	public static void initEndpointCardinalities(String uri, HashMap<String, Integer> cardinalityTable) {
 
@@ -230,6 +183,39 @@ public class MultiModelRegistry {
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
 
 		return getModelElementReference(modelEndpointRef, modelElemType, modelObj);
+	}
+
+	/**
+	 * Gets the list of registered models in a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * 
+	 * @return The list of registered models.
+	 */
+	public static EList<Model> getModels(MultiModel multiModel) {
+
+		return multiModel.getModels();
+	}
+
+	/**
+	 * Gets the list of registered model relationships in a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * 
+	 * @return The list of registered model relationships.
+	 */
+	public static EList<ModelRel> getModelRels(MultiModel multiModel) {
+
+		EList<ModelRel> modelRels = new BasicEList<ModelRel>();
+		for (Model model : getModels(multiModel)) {
+			if (model instanceof ModelRel) {
+				modelRels.add((ModelRel) model);
+			}
+		}
+
+		return modelRels;
 	}
 
 }
