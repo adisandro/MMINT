@@ -11,7 +11,7 @@
   </audits>
   <diagram visualID="1000" editPartClassName="MultiModelEditPart" itemSemanticEditPolicyClassName="MultiModelItemSemanticEditPolicy" canonicalEditPolicyClassName="MultiModelCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low" validationEnabled="true" validationDecorators="true" liveValidationUIFeedback="true">
     <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
-    <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="MultiModelEditHelper"/>
+    <elementType xsi:type="gmfgen:MetamodelType" displayName="MultiModel" editHelperClassName="MultiModelEditHelper"/>
     <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <behaviour xsi:type="gmfgen:CustomBehaviour" key="EditPolicyRoles.SEMANTIC_ROLE" editPolicyQualifiedClassName="edu.toronto.cs.se.mmtf.mid.diagram.edit.policies.MidDiagramSemanticEditPolicy"/>
     <behaviour xsi:type="gmfgen:CustomBehaviour" key="EditPolicyRoles.POPUPBAR_ROLE" editPolicyQualifiedClassName=""/>
