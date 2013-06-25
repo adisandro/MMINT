@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -146,17 +146,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static List<Operator> getOperatorTypes() {
 
-		return getOperatorTypes(MMTF.repository);
-	}
-
-	/**
-	 * Gets the list of registered operator types in the multimodel.
-	 * 
-	 * @return The list of registered operator types in the multimodel.
-	 */
-	public static List<Operator> getOperatorTypes(MultiModel multiModel) {
-
-		return multiModel.getOperators();
+		return MultiModelRegistry.getOperators(MMTF.repository);
 	}
 
 	/**
@@ -186,7 +176,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Editor> getEditorTypes() {
 
-		return MMTF.repository.getEditors();
+		return MultiModelRegistry.getEditors(MMTF.repository);
 	}
 
 	/**

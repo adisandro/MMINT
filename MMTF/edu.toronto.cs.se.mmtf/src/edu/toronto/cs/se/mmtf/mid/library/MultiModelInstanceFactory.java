@@ -761,12 +761,11 @@ public class MultiModelInstanceFactory {
 		EditorCreationWizardDialog wizDialog = null;
 		if (wizardDialogClassName == null) {
 			if (editorType instanceof Diagram && initialSelection.getFirstElement() instanceof IFile) {
-				//TODO open editor afterwards
 				String modelUri = MultiModelUtils.prependWorkspaceToUri(
 					((IFile) initialSelection.getFirstElement()).getFullPath().toOSString()
 				);
 				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
-				String diagramKind = "ClassDiagram_MAVO";//TODO MMTF: how to get this?
+				String diagramKind = MultiModelTypeRegistry.getExtendibleElementType(editorType.getModelUri()).getName();
 				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId);

@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.library;
 
 import java.util.HashMap;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -34,6 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -216,6 +216,32 @@ public class MultiModelRegistry {
 		}
 
 		return modelRels;
+	}
+
+	/**
+	 * Gets the list of registered operators in a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * 
+	 * @return The list of registered operators.
+	 */
+	public static EList<Operator> getOperators(MultiModel multiModel) {
+	
+		return multiModel.getOperators();
+	}
+
+	/**
+	 * Gets the list of registered editors in a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel.
+	 * 
+	 * @return The list of registered editors.
+	 */
+	public static EList<Editor> getEditors(MultiModel multiModel) {
+	
+		return multiModel.getEditors();
 	}
 
 }
