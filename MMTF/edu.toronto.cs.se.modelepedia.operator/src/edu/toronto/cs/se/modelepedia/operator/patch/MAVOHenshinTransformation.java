@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.patch;
+/*package edu.toronto.cs.se.modelepedia.operator.patch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -675,4 +675,4 @@ matchesN:
 		return result;
 	}
 
-}
+}*/

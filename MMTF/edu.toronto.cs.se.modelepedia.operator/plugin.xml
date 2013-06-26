@@ -312,7 +312,7 @@
          </output>
       </operatorType>
    </extension>
-
+<!--
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
@@ -343,7 +343,7 @@
          </output>
       </operatorType>
    </extension>
-
+-->
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
       <operatorType
