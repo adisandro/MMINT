@@ -22,7 +22,7 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 
-public class OpenMMTFWikiHandler extends AbstractHandler {
+public class OpenWikiHandler extends AbstractHandler {
 	
 	private final static String WIKI_WWW = "http://www.cs.toronto.edu:40404/modelepedia_local/index.php";
 	

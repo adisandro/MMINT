@@ -699,7 +699,7 @@ Contributors:
             allPopups="false"
             locationURI="menu:org.eclipse.ui.main.menu">
          <menu
-               id="edu.toronto.cs.se.mmtf.mid.diagram.menu.MMTF"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.menu"
                label="MMTF">
             <command
                   commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenTypeMidHandler"
@@ -708,10 +708,16 @@ Contributors:
                   tooltip="Opens the Type MID showing all MMTF registered types">
             </command>
             <command
-                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
-                  label="Open MMTF Wiki"
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenWikiHandler"
+                  label="Open Wiki"
                   style="push"
                   tooltip="Opens the MMTF Wiki">
+            </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+                  label="Icons Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables icons in MID diagrams">
             </command>
          </menu>
       </menuContribution>
@@ -725,9 +731,14 @@ Contributors:
             name="Open Type MID">
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
-            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenMMTFWikiHandler"
-            name="Open MMTF Wiki">
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenWikiHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.OpenWikiHandler"
+            name="Open Wiki">
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+            name="Icons Enabled">
       </command>
    </extension>
 
