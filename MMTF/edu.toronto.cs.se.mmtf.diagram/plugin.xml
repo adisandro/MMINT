@@ -713,11 +713,33 @@ Contributors:
                   style="push"
                   tooltip="Opens the MMTF Wiki">
             </command>
+            <separator
+                  name="edu.toronto.cs.se.mmtf.mid.diagram.menu.separator"
+                  visible="true">
+            </separator>
             <command
-                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.IconsEnabled"
                   label="Icons Enabled"
                   style="toggle"
                   tooltip="Enables/disables icons in MID diagrams">
+            </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.EndpointsEnabled"
+                  label="Endpoints Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables endpoint labels in MID diagrams">
+            </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.ModelRelsEnabled"
+                  label="ModelRels Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables model relationship labels in MID diagrams">
+            </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.LinksEnabled"
+                  label="Links Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables link labels in MID diagrams">
             </command>
          </menu>
       </menuContribution>
@@ -737,8 +759,39 @@ Contributors:
       </command>
       <command
             defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
-            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.IconsEnabled"
             name="Icons Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.EndpointsEnabled"
+            name="Endpoints Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.ModelRelsEnabled"
+            name="ModelRels Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.LinksEnabled"
+            name="Links Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
       </command>
    </extension>
 

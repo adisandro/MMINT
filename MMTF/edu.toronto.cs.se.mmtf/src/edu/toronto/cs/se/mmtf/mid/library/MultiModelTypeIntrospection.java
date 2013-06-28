@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 /**
  * The type introspection engine for multimodels.
@@ -43,7 +42,7 @@ import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelTypeIntrospection implements MMTFConstants {
+public class MultiModelTypeIntrospection {
 
 	public static <T extends ExtendibleElement> boolean validateType(T element, T elementType, boolean validateInstance) {
 

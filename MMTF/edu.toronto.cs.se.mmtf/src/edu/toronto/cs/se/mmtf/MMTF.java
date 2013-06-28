@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IPath;
@@ -27,6 +28,9 @@ import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.handlers.RegistryToggleState;
 
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -92,6 +96,9 @@ public class MMTF implements MMTFConstants {
 
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
+
+	/** The settings table. */
+	static Map<String, Object> settings;
 
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
@@ -703,12 +710,46 @@ public class MMTF implements MMTFConstants {
 		copyConversionTable(conversionTableMID, conversionTable);
 	}
 
+	private void initSettings() {
+
+		settings = new HashMap<String, Object>();
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+		Command command = commandService.getCommand(SETTING_MENU_ICONS_ENABLED);
+		boolean isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
+		settings.put(SETTING_MENU_ICONS_ENABLED, new Boolean(isEnabled));
+		command = commandService.getCommand(SETTING_MENU_ENDPOINTS_ENABLED);
+		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
+		settings.put(SETTING_MENU_ENDPOINTS_ENABLED, new Boolean(isEnabled));
+		command = commandService.getCommand(SETTING_MENU_MODELRELS_ENABLED);
+		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
+		settings.put(SETTING_MENU_MODELRELS_ENABLED, new Boolean(isEnabled));
+		command = commandService.getCommand(SETTING_MENU_LINKS_ENABLED);
+		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
+		settings.put(SETTING_MENU_LINKS_ENABLED, new Boolean(isEnabled));
+	}
+
+	public static Object getSetting(String settingName) {
+
+		return settings.get(settingName);
+	}
+
+	public static boolean setSetting(String settingName, Object setting) {
+
+		if (!settings.containsKey(settingName)) {
+			return false;
+		}
+		settings.put(settingName, setting);
+
+		return true;
+	}
+
 	/**
 	 * Constructor: initialises the repository and registers listeners for
 	 * dynamic installation/unistallation of extensions.
 	 */
 	private MMTF() {
 
+		initSettings();
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
 			initRepository(registry);

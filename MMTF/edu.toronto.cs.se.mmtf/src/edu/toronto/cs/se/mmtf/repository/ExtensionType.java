@@ -17,7 +17,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
-public class ExtensionType implements MMTFConstants {
+public class ExtensionType {
 
 	private String uri;
 	private String name;
@@ -25,22 +25,22 @@ public class ExtensionType implements MMTFConstants {
 
 	public ExtensionType(IConfigurationElement extensionConfig) {
 
-		IConfigurationElement typeConfig = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0];
-		uri = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_URI);
-		name = typeConfig.getAttribute(EXTENDIBLETYPE_ATTR_NAME);
-		IConfigurationElement[] supertypeConfigs = typeConfig.getChildren(EXTENDIBLETYPE_CHILD_SUPERTYPE);
+		IConfigurationElement typeConfig = extensionConfig.getChildren(MMTFConstants.CHILD_EXTENDIBLETYPE)[0];
+		uri = typeConfig.getAttribute(MMTFConstants.EXTENDIBLETYPE_ATTR_URI);
+		name = typeConfig.getAttribute(MMTFConstants.EXTENDIBLETYPE_ATTR_NAME);
+		IConfigurationElement[] supertypeConfigs = typeConfig.getChildren(MMTFConstants.EXTENDIBLETYPE_CHILD_SUPERTYPE);
 		supertypeUri = (supertypeConfigs.length == 0) ?
 			null :
-			supertypeConfigs[0].getAttribute(EXTENDIBLETYPE_SUPERTYPE_ATTR_URI);
+			supertypeConfigs[0].getAttribute(MMTFConstants.EXTENDIBLETYPE_SUPERTYPE_ATTR_URI);
 	}
 
 	public ExtensionType(IConfigurationElement extensionConfig, Map<String, Set<String>> multipleInheritanceTable) {
 
 		this(extensionConfig);
-		IConfigurationElement[] supertypeConfigs = extensionConfig.getChildren(CHILD_EXTENDIBLETYPE)[0].getChildren(EXTENDIBLETYPE_CHILD_SUPERTYPE);
+		IConfigurationElement[] supertypeConfigs = extensionConfig.getChildren(MMTFConstants.CHILD_EXTENDIBLETYPE)[0].getChildren(MMTFConstants.EXTENDIBLETYPE_CHILD_SUPERTYPE);
 		if (supertypeConfigs.length > 1) {
 			for (int i = 1; i < supertypeConfigs.length; i++) {
-				String multipleSupertypeUri = supertypeConfigs[i].getAttribute(EXTENDIBLETYPE_SUPERTYPE_ATTR_URI);
+				String multipleSupertypeUri = supertypeConfigs[i].getAttribute(MMTFConstants.EXTENDIBLETYPE_SUPERTYPE_ATTR_URI);
 				Set<String> supertypes = multipleInheritanceTable.get(multipleSupertypeUri);
 				if (supertypes == null) {
 					supertypes = new HashSet<String>();

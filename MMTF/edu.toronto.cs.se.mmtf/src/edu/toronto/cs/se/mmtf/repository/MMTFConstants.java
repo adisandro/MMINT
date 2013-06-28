@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -127,5 +127,11 @@ public interface MMTFConstants {
 	public final static String ECLIPSE_EDITORS_ATTR_ID = "id";
 	/** The Eclipse's Editors extension's extensions attribute. */
 	public final static String ECLIPSE_EDITORS_ATTR_EXTENSIONS = "extensions";
+
+	public final static String SETTING_MENU_ID = "edu.toronto.cs.se.mmtf.mid.diagram.menu";
+	public final static String SETTING_MENU_ICONS_ENABLED = SETTING_MENU_ID + ".IconsEnabled";
+	public final static String SETTING_MENU_ENDPOINTS_ENABLED = SETTING_MENU_ID + ".EndpointsEnabled";
+	public final static String SETTING_MENU_MODELRELS_ENABLED = SETTING_MENU_ID + ".ModelRelsEnabled";
+	public final static String SETTING_MENU_LINKS_ENABLED = SETTING_MENU_ID + ".LinksEnabled";
 
 }

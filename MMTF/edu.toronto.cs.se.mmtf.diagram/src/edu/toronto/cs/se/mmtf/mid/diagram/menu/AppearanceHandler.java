@@ -12,13 +12,21 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.menu;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.ui.handlers.HandlerUtil;
+
+import edu.toronto.cs.se.mmtf.MMTF;
 
 public class AppearanceHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+
+		Command command = event.getCommand();
+		boolean isEnabled = !HandlerUtil.toggleCommandState(command);
+		MMTF.setSetting(command.getId(), new Boolean(isEnabled));
 
 		return null;
 	}

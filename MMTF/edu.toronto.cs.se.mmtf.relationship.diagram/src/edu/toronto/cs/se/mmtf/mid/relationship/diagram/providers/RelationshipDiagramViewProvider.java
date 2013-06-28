@@ -34,6 +34,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.BinaryLinkReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementEndpointReference2EditPart;
@@ -51,12 +52,9 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel2
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel8EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidVisualIDRegistry;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class RelationshipDiagramViewProvider extends MidViewProvider {
-
-	private boolean disableLinks = true;
-	private boolean disableEndpoints = true;
-	private boolean disableIcons = false;
 
 	private Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
@@ -111,25 +109,25 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (disableEndpoints) {
+		if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
 			return edge;
 		}
-		if (!disableIcons) {
-			Node label6007 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
-			label6007.setLayoutConstraint(NotationFactory.eINSTANCE
-					.createLocation());
-			Location location6007 = (Location) label6007.getLayoutConstraint();
-			location6007.setX(0);
-			location6007.setY(40);
-		}
-		Node label6015 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
-		label6015.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6007 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
+		label6007.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6015 = (Location) label6015.getLayoutConstraint();
-		location6015.setX(0);
-		location6015.setY(60);
+		Location location6007 = (Location) label6007.getLayoutConstraint();
+		location6007.setX(0);
+		location6007.setY(40);
+		if ((boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ICONS_ENABLED)) {
+			Node label6015 = createLabel(edge,
+					MidVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
+			label6015.setLayoutConstraint(NotationFactory.eINSTANCE
+					.createLocation());
+			Location location6015 = (Location) label6015.getLayoutConstraint();
+			location6015.setX(0);
+			location6015.setY(60);
+		}
 		return edge;
 	}
 
@@ -179,26 +177,26 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (disableLinks) {
+		if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_LINKS_ENABLED)) {
 			return edge;
 		}
-		if (!disableIcons) {
-			Node label6008 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
-			label6008.setLayoutConstraint(NotationFactory.eINSTANCE
-					.createLocation());
-			Location location6008 = (Location) label6008.getLayoutConstraint();
-			location6008.setX(0);
-			location6008.setY(40);
-		}
-		Node label6009 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
-		label6009.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6008 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
+		label6008.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6009 = (Location) label6009.getLayoutConstraint();
-		location6009.setX(0);
-		location6009.setY(60);
-		if (disableEndpoints) {
+		Location location6008 = (Location) label6008.getLayoutConstraint();
+		location6008.setX(0);
+		location6008.setY(40);
+		if ((boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ICONS_ENABLED)) {
+			Node label6009 = createLabel(edge,
+					MidVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
+			label6009.setLayoutConstraint(NotationFactory.eINSTANCE
+					.createLocation());
+			Location location6009 = (Location) label6009.getLayoutConstraint();
+			location6009.setX(0);
+			location6009.setY(60);
+		}
+		if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
 			return edge;
 		}
 		Node label6010 = createLabel(edge,
@@ -264,26 +262,26 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (disableLinks) {
+		if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_LINKS_ENABLED)) {
 			return edge;
 		}
-		if (!disableIcons) {
-			Node label6011 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
-			label6011.setLayoutConstraint(NotationFactory.eINSTANCE
-					.createLocation());
-			Location location6011 = (Location) label6011.getLayoutConstraint();
-			location6011.setX(0);
-			location6011.setY(40);
-		}
-		Node label6012 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
-		label6012.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6011 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
+		label6011.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6012 = (Location) label6012.getLayoutConstraint();
-		location6012.setX(0);
-		location6012.setY(60);
-		if (disableEndpoints) {
+		Location location6011 = (Location) label6011.getLayoutConstraint();
+		location6011.setX(0);
+		location6011.setY(40);
+		if ((boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ICONS_ENABLED)) {
+			Node label6012 = createLabel(edge,
+					MidVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
+			label6012.setLayoutConstraint(NotationFactory.eINSTANCE
+					.createLocation());
+			Location location6012 = (Location) label6012.getLayoutConstraint();
+			location6012.setX(0);
+			location6012.setY(60);
+		}
+		if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
 			return edge;
 		}
 		Node label6013 = createLabel(edge,
@@ -349,25 +347,25 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (disableEndpoints) {
+		if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
 			return edge;
 		}
-		if (!disableIcons) {
-			Node label6014 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
-			label6014.setLayoutConstraint(NotationFactory.eINSTANCE
-					.createLocation());
-			Location location6014 = (Location) label6014.getLayoutConstraint();
-			location6014.setX(0);
-			location6014.setY(40);
-		}
-		Node label6018 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
-		label6018.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6014 = createLabel(edge,
+				MidVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
+		label6014.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6018 = (Location) label6018.getLayoutConstraint();
-		location6018.setX(0);
-		location6018.setY(60);
+		Location location6014 = (Location) label6014.getLayoutConstraint();
+		location6014.setX(0);
+		location6014.setY(40);
+		if ((boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ICONS_ENABLED)) {
+			Node label6018 = createLabel(edge,
+					MidVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
+			label6018.setLayoutConstraint(NotationFactory.eINSTANCE
+					.createLocation());
+			Location location6018 = (Location) label6018.getLayoutConstraint();
+			location6018.setX(0);
+			location6018.setY(60);
+		}
 		return edge;
 	}
 
