@@ -17,12 +17,29 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
+/**
+ * An extendible type created from an edu.toronto.cs.se.mmtf.extendibles
+ * extension.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class ExtensionType {
 
+	/** The uri of the extendible type. */
 	private String uri;
+	/** The name of the extendible type. */
 	private String name;
+	/** The uri of the supertype of the extendible type. */
 	private String supertypeUri;
 
+	/**
+	 * Constructor: reads the extension and gets the info for the extendible
+	 * type.
+	 * 
+	 * @param extensionConfig
+	 *            The extension configuration.
+	 */
 	public ExtensionType(IConfigurationElement extensionConfig) {
 
 		IConfigurationElement typeConfig = extensionConfig.getChildren(MMTFConstants.CHILD_EXTENDIBLETYPE)[0];
@@ -34,6 +51,15 @@ public class ExtensionType {
 			supertypeConfigs[0].getAttribute(MMTFConstants.EXTENDIBLETYPE_SUPERTYPE_ATTR_URI);
 	}
 
+	/**
+	 * Constructor: reads the extension and gets the info for the extendible
+	 * type, allowing for multiple inheritance.
+	 * 
+	 * @param extensionConfig
+	 *            The extension configuration.
+	 * @param multipleInheritanceTable
+	 *            The table for multiple inheritance support.
+	 */
 	public ExtensionType(IConfigurationElement extensionConfig, Map<String, Set<String>> multipleInheritanceTable) {
 
 		this(extensionConfig);
@@ -51,16 +77,31 @@ public class ExtensionType {
 		}
 	}
 
+	/**
+	 * Gets the uri of the extendible type.
+	 * 
+	 * @return The uri of the extendible type.
+	 */
 	public String getUri() {
 
 		return uri;
 	}
 
+	/**
+	 * Gets the name of the extendible type.
+	 * 
+	 * @return The name of the extendible type.
+	 */
 	public String getName() {
 
 		return name;
 	}
 
+	/**
+	 * Gets the uri of the supertype of the extendible type.
+	 * 
+	 * @return The uri of the supertype of the extendible type.
+	 */
 	public String getSupertypeUri() {
 
 		return supertypeUri;

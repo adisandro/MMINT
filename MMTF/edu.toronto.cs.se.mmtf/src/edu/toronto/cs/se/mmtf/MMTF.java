@@ -64,60 +64,63 @@ import edu.toronto.cs.se.mmtf.repository.OperatorsExtensionListener;
 import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
 
 /**
- * The Model Management Tool Framework adds the ability to create and manage
- * Model Interconnection Diagrams (MIDs). A MID is a diagram to represent a
- * collection of models (a multimodel) and the relationships among them at a
- * high level of abstraction. Multimodels can be used to support the
- * development, comprehension, consistency management and evolution of sets of
- * related models.
+ * Model Management is the management of collections of related models. It
+ * provides tools and techniques for dealing with large collections of models
+ * (mega-modeling), defining relationships among models, automatically
+ * manipulating models and relationships using operators (i.e.,
+ * transformations).
+ * 
+ * The Model Management Tool Framework (MMTF) is an Eclipse-based framework for
+ * rapidly developing model management tools emphasizing graphical, interactive
+ * model management with strong typing.
+ * 
+ * MMTF facilitates interactive model management both at the type and instance
+ * levels. It provides a graphical form of mega-model called a Model
+ * Interconnection Diagram (MID) as the interface through which to perform
+ * actions. The type MID allows the user to view and modify the
+ * model/relationship/operator type hierarchy at runtime, while an instance MID
+ * is used to interactively create instances of model/relationship types and to
+ * apply operators to them.
  * 
  * @author Alessio Di Sandro
  * 
  */
 public class MMTF implements MMTFConstants {
 
-	/** The singleton instance. */
+	/** The singleton instance of MMTF. */
 	static final MMTF INSTANCE = new MMTF();
-
-	/** The repository of registered extensions. */
+	/** The repository of types. */
 	static MultiModel repository;
-
 	/**	The table for model type hierarchy. */
 	static Map<String, Set<String>> subtypeTable;
-
 	/**	The table for model type conversion. */
 	static Map<String, Map<String, List<String>>> conversionTable;
-
 	/**	The table for model type hierarchy in the type MID. */
 	static Map<String, Set<String>> subtypeTableMID;
-
 	/**	The table for model type conversion in the type MID. */
 	static Map<String, Map<String, List<String>>> conversionTableMID;
-
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
-
 	/** The settings table. */
 	static Map<String, Object> settings;
-
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
 	 * i.e. to have UML_MAVO properly recognized.
 	 * TODO MMTF: redo when needed!
 	 */
 	static Map<String, Set<String>> multipleInheritanceTable;
-
+	/** The type MID filename. */
 	public static final String TYPE_MID_FILENAME = "types.mid";
 
 	/**
-	 * Creates and adds a model type to the repository. Requires the model
-	 * package to be registered too through the
-	 * org.eclipse.emf.ecore.generated_package extension point.
+	 * Creates and adds a model type to the repository from a registered
+	 * edu.toronto.cs.se.mmtf.models extension. Requires the model type package
+	 * to be registered through a org.eclipse.emf.ecore.generated_package
+	 * extension.
 	 * 
 	 * @param extensionConfig
-	 *            The extension configuration.
-	 * @return The created model type, null if the model type can't be
-	 *         registered.
+	 *            The edu.toronto.cs.se.mmtf.models extension configuration.
+	 * @return The created model type, null if the model type can't be created.
 	 */
 	public static Model createModelType(IConfigurationElement extensionConfig) {
 
@@ -143,20 +146,22 @@ public class MMTF implements MMTFConstants {
 			return newModelType;
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Model type can't be registered", e);
+			MMTFException.print(Type.WARNING, "Model type can't be created", e);
 			return null;
 		}
 	}
 
 	/**
-	 * Creates and adds a model relationship type to the repository. Requires
-	 * the model package to be registered too through the
-	 * org.eclipse.emf.ecore.generated_package extension point.
+	 * Creates and adds a model relationship type to the repository from a
+	 * registered edu.toronto.cs.se.mmtf.relationships extension. Requires the
+	 * model relationship type package to be registered through a
+	 * org.eclipse.emf.ecore.generated_package extension.
 	 * 
 	 * @param extensionConfig
-	 *            The extension configuration.
-	 * @return The created model type relationship, null if the relationship
-	 *         can't be registered.
+	 *            The edu.toronto.cs.se.mmtf.relationships extension
+	 *            configuration.
+	 * @return The created model relationship type, null if the model
+	 *         relationship type can't be created.
 	 */
 	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) {
 
@@ -180,9 +185,9 @@ public class MMTF implements MMTFConstants {
 				newType.getSupertypeUri(),
 				newType.getName(),
 				newModelRelTypeAbstract,
+				newModelRelTypeClass,
 				constraintLanguage,
-				constraintImplementation,
-				newModelRelTypeClass
+				constraintImplementation
 			);
 			// model type endpoints
 			for (IConfigurationElement modelTypeEndpointConfig : modelTypeEndpointConfigs) {
@@ -226,7 +231,7 @@ public class MMTF implements MMTFConstants {
 							);
 						}
 						catch (Exception e) {
-							MMTFException.print(Type.WARNING, "Model element type can't be registered", e);
+							MMTFException.print(Type.WARNING, "Model element type can't be created", e);
 							continue;
 						}
 					}
@@ -264,7 +269,7 @@ public class MMTF implements MMTFConstants {
 					);
 				}
 				catch (Exception e) {
-					MMTFException.print(Type.WARNING, "Link type can't be registered", e);
+					MMTFException.print(Type.WARNING, "Link type can't be created", e);
 					continue;
 				}
 				for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
@@ -298,7 +303,7 @@ public class MMTF implements MMTFConstants {
 			return newModelRelType;
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Model relationship type can't be registered", e);
+			MMTFException.print(Type.WARNING, "Model relationship type can't be created", e);
 			return null;
 		}
 	}
@@ -594,7 +599,9 @@ public class MMTF implements MMTFConstants {
 	}
 
 	/**
-	 * Creates the repository from the registered extensions.
+	 * Initializes the repository from the registered extensions and the dynamic
+	 * types created at runtime before the last shutdown, then stores it in the
+	 * type MID file.
 	 * 
 	 * @param registry
 	 *            The Eclipse extension registry.
@@ -618,7 +625,6 @@ public class MMTF implements MMTFConstants {
 			type = createModelType(config);
 			bundleTable.put(type.getUri(), config.getContributor().getName());
 		}
-
 		// model relationship types
 		configs = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
@@ -627,7 +633,6 @@ public class MMTF implements MMTFConstants {
 			type = createModelRelType(config);
 			bundleTable.put(type.getUri(), config.getContributor().getName());
 		}
-
 		// editor types
 		configs = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
@@ -637,7 +642,6 @@ public class MMTF implements MMTFConstants {
 			bundleTable.put(editorType.getUri(), config.getContributor().getName());
 			MultiModelHeavyTypeFactory.createHeavyModelTypeEditor(editorType, editorType.getModelUri());
 		}
-
 		// operator types
 		configs = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
@@ -710,6 +714,9 @@ public class MMTF implements MMTFConstants {
 		copyConversionTable(conversionTableMID, conversionTable);
 	}
 
+	/**
+	 * Initializes the settings.
+	 */
 	private void initSettings() {
 
 		settings = new HashMap<String, Object>();
@@ -728,11 +735,28 @@ public class MMTF implements MMTFConstants {
 		settings.put(SETTING_MENU_LINKS_ENABLED, new Boolean(isEnabled));
 	}
 
+	/**
+	 * Gets a setting.
+	 * 
+	 * @param settingName
+	 *            The setting name.
+	 * @return The setting, null if the setting name could not be found.
+	 */
 	public static Object getSetting(String settingName) {
 
 		return settings.get(settingName);
 	}
 
+	/**
+	 * Sets a setting.
+	 * 
+	 * @param settingName
+	 *            The setting name.
+	 * @param setting
+	 *            The new setting.
+	 * @return True if the setting was set, false if the setting name could not
+	 *         be found.
+	 */
 	public static boolean setSetting(String settingName, Object setting) {
 
 		if (!settings.containsKey(settingName)) {
@@ -744,8 +768,8 @@ public class MMTF implements MMTFConstants {
 	}
 
 	/**
-	 * Constructor: initialises the repository and registers listeners for
-	 * dynamic installation/unistallation of extensions.
+	 * Constructor: initializes the settings, initializes the repository and
+	 * registers listeners for dynamic installation/unistallation of extensions.
 	 */
 	private MMTF() {
 

@@ -83,6 +83,14 @@ public class MultiModelTypeRegistry {
 		return root;
 	}
 
+	/**
+	 * Gets the root type uri for a certain class of types.
+	 * 
+	 * @param type
+	 *            The type from which to understand the class of types to be
+	 *            searched.
+	 * @return The root type uri.
+	 */
 	public static String getRootTypeUri(ExtendibleElement type) {
 
 		String rootUri = "";

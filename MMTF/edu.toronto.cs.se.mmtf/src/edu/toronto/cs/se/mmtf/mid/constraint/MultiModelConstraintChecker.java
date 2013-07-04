@@ -107,6 +107,13 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
+	/**
+	 * Checks whether a type is actually the root type for its class.
+	 * 
+	 * @param type
+	 *            The type to be checked.
+	 * @return True if the type is the root type, false otherwise.
+	 */
 	public static boolean isRootType(ExtendibleElement type) {
 
 		if (type == null) {

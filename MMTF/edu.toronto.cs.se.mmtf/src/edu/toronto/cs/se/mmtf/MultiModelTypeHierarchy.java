@@ -140,6 +140,17 @@ public class MultiModelTypeHierarchy {
 		}
 	}
 
+	/**
+	 * Creates an iterator to loop an array of extensions sorted based on their
+	 * hierarchy. Specifically, the iterator will start from the extension that
+	 * does not depend on others as per the supertype specification.
+	 * 
+	 * @param extensions
+	 *            The array of extensions to be looped.
+	 * @param childName
+	 * @param rootUri
+	 * @return The extension iterator.
+	 */
 	public static Iterator<IConfigurationElement> getExtensionHierarchyIterator(IConfigurationElement[] extensions, String childName, String rootUri) {
 
 		HashMap<String, String> extensionUris = new HashMap<String, String>();

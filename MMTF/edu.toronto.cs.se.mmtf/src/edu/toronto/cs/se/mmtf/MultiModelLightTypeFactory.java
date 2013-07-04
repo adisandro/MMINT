@@ -64,7 +64,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	private static void addLightExtendibleType(ExtendibleElement newType, ExtendibleElement type, ExtendibleElement rootUriType, String newTypeUriFragment, String newTypeName, MultiModel multiModel) throws MMTFException {
 
 		String newTypeUri = getNewExtendibleTypeUri(rootUriType, newTypeUriFragment, newTypeName);
-		addExtendibileElementType(newType, type, newTypeUri, newTypeName, multiModel);
+		addType(newType, type, newTypeUri, newTypeName, multiModel);
 		newType.setDynamic(true);
 	}
 
@@ -141,13 +141,13 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		addLightExtendibleType(newModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
 		addModelTypeEndpoint(modelRelType, newModelTypeEndpoint, newModelType, isBinarySrc);
-		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(modelRelType, modelTypeEndpointRef, newModelTypeEndpoint, true, isBinarySrc);
+		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, isBinarySrc, modelRelType);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
 			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
 				null :
 				MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			createModelTypeEndpointReference(modelRelSubtype, modelSubtypeEndpointRef, newModelTypeEndpoint, false, isBinarySrc);
+			createModelTypeEndpointReference(newModelTypeEndpoint, modelSubtypeEndpointRef, false, isBinarySrc, modelRelSubtype);
 		}
 
 		return newModelTypeEndpointRef;
