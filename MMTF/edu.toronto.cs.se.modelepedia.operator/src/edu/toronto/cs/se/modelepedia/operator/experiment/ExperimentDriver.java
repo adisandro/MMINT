@@ -391,7 +391,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 
 		// get operator
-		Operator operatorType = MultiModelTypeRegistry.getExtendibleElementType(operatorUri);
+		Operator operatorType = MultiModelTypeRegistry.getType(operatorUri);
 		if (operatorType == null) {
 			throw new MMTFException("Operator uri " + operatorUri + " is not registered");
 		}
@@ -467,7 +467,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private double getOutput(Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
 
 		// get output operator
-		Operator operator = MultiModelTypeRegistry.getExtendibleElementType(outputOperators[outputIndex]);
+		Operator operator = MultiModelTypeRegistry.getType(outputOperators[outputIndex]);
 		if (operator == null) {
 			throw new MMTFException("Operator uri " + outputOperators[outputIndex] + " is not registered");
 		}

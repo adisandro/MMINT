@@ -493,7 +493,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 
 		// get output from previous operator
 		RandomModelGenerateLabeledGraph previousOperator = (previousExecutable == null) ?
-			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(RandomModelGenerateLabeledGraph) previousExecutable;
 		mayModelObjs = previousOperator.getMAVOModelObjects();
 		if (mayModelObjs == null) {

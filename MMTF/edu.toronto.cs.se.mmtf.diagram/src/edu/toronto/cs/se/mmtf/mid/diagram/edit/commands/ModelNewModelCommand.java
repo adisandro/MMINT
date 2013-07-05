@@ -93,7 +93,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		Editor newEditor = MidDiagramUtils.selectModelTypeToCreate(multiModel);
-		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(newEditor.getMetatype().getModelUri());
+		Model modelType = MultiModelTypeRegistry.getType(newEditor.getMetatype().getModelUri());
 		Model newModel = MultiModelMAVOInstanceFactory.createModel(modelType, newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
 		MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
 

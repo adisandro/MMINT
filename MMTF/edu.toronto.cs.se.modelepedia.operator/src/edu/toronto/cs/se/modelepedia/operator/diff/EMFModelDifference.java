@@ -99,7 +99,7 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 
 		// get output from previous operator
 		EMFModelNameMatch previousOperator = (previousExecutable == null) ?
-			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(EMFModelNameMatch) previousExecutable;
 		Comparison comparison = previousOperator.getComparison();
 nextDiff:

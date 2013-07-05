@@ -62,7 +62,7 @@ public class MultiModelTypeFactory {
 	 * @param newType
 	 *            The new type to be added.
 	 * @param type
-	 *            The supertype of the new type.
+	 *            The supertype of the new type, null only for root types.
 	 * @param newTypeUri
 	 *            The uri of the new type.
 	 * @param newTypeName
@@ -86,27 +86,46 @@ public class MultiModelTypeFactory {
 		multiModel.getExtendibleTable().put(newTypeUri, newType);
 	}
 
-	public static void addExtendibleElementTypeEndpointCardinality(ExtendibleElementEndpoint elementTypeEndpoint, int lowerBound, int upperBound) {
+	/**
+	 * Adds the cardinality to a type endpoint.
+	 * 
+	 * @param typeEndpoint
+	 *            The type endpoint.
+	 * @param lowerBound
+	 *            The lower cardinality.
+	 * @param upperBound
+	 *            The upper cardinality, -1 for infinite.
+	 */
+	public static void addTypeEndpointCardinality(ExtendibleElementEndpoint typeEndpoint, int lowerBound, int upperBound) {
 
-		elementTypeEndpoint.setLowerBound(lowerBound);
-		elementTypeEndpoint.setUpperBound(upperBound);
-	}
-
-	protected static void addExtendibleElementTypeEndpoint(ExtendibleElementEndpoint newElementTypeEndpoint, ExtendibleElement newElementType) {
-
-		newElementTypeEndpoint.setTarget(newElementType);
-		addExtendibleElementTypeEndpointCardinality(newElementTypeEndpoint, 1, 1);
+		typeEndpoint.setLowerBound(lowerBound);
+		typeEndpoint.setUpperBound(upperBound);
 	}
 
 	/**
-	 * Adds additional info for a reference to a type.
+	 * Adds the target to a type endpoint.
+	 * 
+	 * @param newTypeEndpoint
+	 *            The new type endpoint.
+	 * @param newType
+	 *            The new type that is the target of the new type endpoint.
+	 */
+	protected static void addTypeEndpoint(ExtendibleElementEndpoint newTypeEndpoint, ExtendibleElement newType) {
+
+		newTypeEndpoint.setTarget(newType);
+		addTypeEndpointCardinality(newTypeEndpoint, 1, 1);
+	}
+
+	/**
+	 * Adds additional info for a type reference.
 	 * 
 	 * @param newTypeRef
 	 *            The new reference being added.
 	 * @param newType
 	 *            The new type for which the reference was created.
 	 * @param typeRef
-	 *            The reference to the supertype of the new type.
+	 *            The reference to the supertype of the new type, null if such
+	 *            reference doesn't exist.
 	 * @param isModifiable
 	 *            True if the new reference will allow modifications of the
 	 *            referenced type, false otherwise.
@@ -196,10 +215,10 @@ public class MultiModelTypeFactory {
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeRefIter.next();
 				ModelElementReference modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
 				createModelElementTypeReference(
-					newModelTypeEndpointRef,
-					modelElemTypeRef,
 					modelElemTypeRefSuper.getObject(),
-					false
+					modelElemTypeRef,
+					false,
+					newModelTypeEndpointRef
 				);
 			}
 		}
@@ -209,11 +228,11 @@ public class MultiModelTypeFactory {
 			LinkReference linkTypeRefSuper = linkTypeRefIter.next();
 			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeRefSuper.getSupertypeRef(), newModelRelType.getLinkRefs());
 			LinkReference newLinkTypeRef = createLinkTypeReference(
-				newModelRelType,
-				linkTypeRef,
 				linkTypeRefSuper.getObject(),
+				linkTypeRef,
 				linkTypeRefSuper.eClass(),
-				false
+				false,
+				newModelRelType
 			);
 			// connect it to model element type references (takes care of binary too)
 			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(linkTypeRefSuper.getModelElemEndpointRefs());
@@ -229,14 +248,29 @@ public class MultiModelTypeFactory {
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeEndpointRefSuper.getModelElemRef();
 				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
-				createModelElementTypeEndpointReference(newLinkTypeRef, modelElemTypeEndpointRef, modelElemTypeEndpointRefSuper.getObject(), newModelElemTypeRef, false, false);
+				createModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper.getObject(), modelElemTypeEndpointRef, newModelElemTypeRef, false, false, newLinkTypeRef);
 			}
 		}
 	}
 
-	protected static void addModelTypeEndpoint(ModelRel modelRelType, ModelEndpoint newModelTypeEndpoint, Model newModelType, boolean isBinarySrc) {
+	/**
+	 * Adds a model type endpoint to a model relationship type.
+	 * 
+	 * @param newModelTypeEndpoint
+	 *            The new model type endpoint to be added.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param isBinarySrc
+	 *            True if the model type endpoint is the source in the binary
+	 *            model relationship container, false otherwise.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 */
+	protected static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model newModelType, boolean isBinarySrc, ModelRel modelRelType) {
 
-		addExtendibleElementTypeEndpoint(newModelTypeEndpoint, newModelType);
+		addTypeEndpoint(newModelTypeEndpoint, newModelType);
 		if (isBinarySrc) {
 			modelRelType.getModelEndpoints().add(0, newModelTypeEndpoint);
 		}
@@ -259,7 +293,7 @@ public class MultiModelTypeFactory {
 
 	protected static void addModelElementTypeEndpoint(Link linkType, ModelElementEndpoint newModelElemTypeEndpoint, ModelElement newModelElemType, boolean isBinarySrc) {
 
-		addExtendibleElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemType);
+		addTypeEndpoint(newModelElemTypeEndpoint, newModelElemType);
 		if (isBinarySrc) {
 			linkType.getModelElemEndpoints().add(0, newModelElemTypeEndpoint);
 		}
@@ -304,14 +338,16 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a reference to a model type endpoint to a model
-	 * relationship type.
+	 * Creates and adds a model type endpoint reference to a model relationship
+	 * type.
 	 * 
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint for which the reference has to be
 	 *            created.
 	 * @param modelTypeEndpointRef
-	 *            The reference to the supertype of the new model type endpoint.
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
 	 * @param isModifiable
 	 *            True if the new reference will allow modifications of the
 	 *            referenced model type endpoint, false otherwise.
@@ -319,9 +355,9 @@ public class MultiModelTypeFactory {
 	 *            True if the referenced model type endpoint is the source in
 	 *            the binary model relationship container, false otherwise.
 	 * @param modelRelType
-	 *            The model relationship type that wil contain the new reference
-	 *            to the model type endpoint.
-	 * @return The created reference to the model type endpoint.
+	 *            The model relationship type that will contain the new
+	 *            reference to the model type endpoint.
+	 * @return The created reference to the new model type endpoint.
 	 */
 	public static ModelEndpointReference createModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel modelRelType) {
 
@@ -338,7 +374,26 @@ public class MultiModelTypeFactory {
 		return newModelTypeEndpointRef;
 	}
 
-	public static LinkReference createLinkTypeReference(ModelRel modelRelType, LinkReference linkTypeRef, Link newLinkType, EClass newLinkTypeRefClass, boolean isModifiable) {
+	/**
+	 * Creates and adds a link type reference to a model relationship type.
+	 * 
+	 * @param newLinkType
+	 *            The new link type for which the reference has to be created.
+	 * @param linkTypeRef
+	 *            The reference to the supertype of the new link type, null if
+	 *            such reference doesn't exist in the model relationship type
+	 *            container.
+	 * @param newLinkTypeRefClass
+	 *            The class of the new reference to the link type.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the
+	 *            referenced link type, false otherwise.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new
+	 *            reference to the link type.
+	 * @return The created reference to the new link type.
+	 */
+	public static LinkReference createLinkTypeReference(Link newLinkType, LinkReference linkTypeRef, EClass newLinkTypeRefClass, boolean isModifiable, ModelRel modelRelType) {
 
 		LinkReference newLinkTypeRef = (LinkReference) RelationshipFactory.eINSTANCE.create(newLinkTypeRefClass);
 		addTypeReference(newLinkTypeRef, newLinkType, linkTypeRef, isModifiable, false);
@@ -347,7 +402,33 @@ public class MultiModelTypeFactory {
 		return newLinkTypeRef;
 	}
 
-	public static ModelElementEndpointReference createModelElementTypeEndpointReference(LinkReference linkTypeRef, ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementEndpoint newModelElemTypeEndpoint, ModelElementReference newModelElemTypeRef, boolean isModifiable, boolean isBinarySrc) {
+	/**
+	 * Creates and adds a model element type endpoint reference to a link type
+	 * reference.
+	 * 
+	 * @param newModelElemTypeEndpoint
+	 *            The new model element type endpoint for which the reference
+	 *            has to be created.
+	 * @param modelElemTypeEndpointRef
+	 *            The reference to the supertype of the new model element type
+	 *            endpoint, null if such reference doesn't exist in the link
+	 *            type reference container.
+	 * @param newModelElemTypeRef
+	 *            The new reference to the model element type that is the target
+	 *            of the new model element type endpoint.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the
+	 *            referenced model element type endpoint, false otherwise.
+	 * @param isBinarySrc
+	 *            True if the referenced model element type endpoint is the
+	 *            source in the binary link type reference container, false
+	 *            otherwise.
+	 * @param linkTypeRef
+	 *            The reference to the link type that will contain the new
+	 *            reference to the model element type endpoint.
+	 * @return The created reference to the new model element type endpoint.
+	 */
+	public static ModelElementEndpointReference createModelElementTypeEndpointReference(ModelElementEndpoint newModelElemTypeEndpoint, ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference newModelElemTypeRef, boolean isModifiable, boolean isBinarySrc, LinkReference linkTypeRef) {
 
 		ModelElementEndpointReference newModelElemTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
 		addTypeReference(newModelElemTypeEndpointRef, newModelElemTypeEndpoint, modelElemTypeEndpointRef, isModifiable, false);
@@ -363,7 +444,26 @@ public class MultiModelTypeFactory {
 		return newModelElemTypeEndpointRef;
 	}
 
-	public static ModelElementReference createModelElementTypeReference(ModelEndpointReference modelTypeEndpointRef, ModelElementReference modelElemTypeRef, ModelElement newModelElemType, boolean isModifiable) {
+	/**
+	 * Creates and adds a model element type reference to a model type endpoint
+	 * reference.
+	 * 
+	 * @param newModelElemType
+	 *            The new model element type for which the reference has to be
+	 *            created.
+	 * @param modelElemTypeRef
+	 *            The reference to the supertype of the new model element type,
+	 *            null if such reference doesn't exist in the model type
+	 *            endpoint reference container.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the
+	 *            referenced model element type, false otherwise.
+	 * @param modelTypeEndpointRef
+	 *            The reference to the model type endpoint that will contain the
+	 *            new reference to the model element type.
+	 * @return The created reference to the new model element type.
+	 */
+	public static ModelElementReference createModelElementTypeReference(ModelElement newModelElemType, ModelElementReference modelElemTypeRef, boolean isModifiable, ModelEndpointReference modelTypeEndpointRef) {
 
 		ModelElementReference newModelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 		addTypeReference(newModelElemTypeRef, newModelElemType, modelElemTypeRef, isModifiable, false);
@@ -414,7 +514,7 @@ public class MultiModelTypeFactory {
 			}
 		}
 		for (String operatorTypeUri : delOperatorTypeUris) {
-			Operator operatorType = MultiModelRegistry.getExtendibleElement(multiModel, operatorTypeUri);
+			Operator operatorType = MultiModelRegistry.getExtendibleElement(operatorTypeUri, multiModel);
 			removeOperatorType(operatorType);
 		}
 		// remove model relationship types and endpoints that use this model type
@@ -500,7 +600,7 @@ public class MultiModelTypeFactory {
 
 		removeExtendibleElementType(multiModel, editorType.getUri());
 		multiModel.getEditors().remove(editorType);
-		Model modelType = MultiModelRegistry.getExtendibleElement(multiModel, editorType.getModelUri());
+		Model modelType = MultiModelRegistry.getExtendibleElement(editorType.getModelUri(), multiModel);
 		if (modelType != null) {
 			modelType.getEditors().remove(editorType);
 		}

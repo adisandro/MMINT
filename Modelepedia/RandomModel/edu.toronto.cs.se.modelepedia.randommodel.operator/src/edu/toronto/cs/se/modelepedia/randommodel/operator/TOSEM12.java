@@ -336,7 +336,7 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 		// get output from previous operator
 		RandomModelToSMTLIB previousOperator = (previousExecutable == null) ?
-			(RandomModelToSMTLIB) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(RandomModelToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(RandomModelToSMTLIB) previousExecutable;
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 		final String smtlibMavoEncoding = previousOperator.getSMTLIBMAVOEncoding();

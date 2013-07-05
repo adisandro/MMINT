@@ -320,7 +320,7 @@ public class MultiModelInstanceFactory {
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
 
 		newModelElemUri += MMTF.ROLE_SEPARATOR + modelElemType.getUri();
-		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(multiModel, newModelElemUri);
+		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
 			addExtendibleElement(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
@@ -726,7 +726,7 @@ public class MultiModelInstanceFactory {
 	 */
 	public static void addModelEditor(Editor editor, MultiModel multiModel) {
 
-		Model model = MultiModelRegistry.getExtendibleElement(multiModel, editor.getModelUri());
+		Model model = MultiModelRegistry.getExtendibleElement(editor.getModelUri(), multiModel);
 		if (model != null) {
 			model.getEditors().add(editor);
 			multiModel.getEditors().add(editor);
@@ -765,7 +765,7 @@ public class MultiModelInstanceFactory {
 					((IFile) initialSelection.getFirstElement()).getFullPath().toOSString()
 				);
 				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
-				String diagramKind = MultiModelTypeRegistry.getExtendibleElementType(editorType.getModelUri()).getName();
+				String diagramKind = MultiModelTypeRegistry.getType(editorType.getModelUri()).getName();
 				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId);

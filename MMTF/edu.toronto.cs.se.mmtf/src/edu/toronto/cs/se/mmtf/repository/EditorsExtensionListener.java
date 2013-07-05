@@ -66,7 +66,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLETYPE_ATTR_URI);
-				Editor editorType = MultiModelTypeRegistry.getExtendibleElementType(uri);
+				Editor editorType = MultiModelTypeRegistry.getType(uri);
 				if (editorType != null) {
 					MultiModelTypeFactory.removeEditorType(editorType);
 				}

@@ -189,7 +189,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 		// get output from previous operator
 		IStarMAVOToSMTLIB previousOperator = (previousExecutable == null) ?
-			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getExtendibleElementType(PREVIOUS_OPERATOR_URI).getExecutable() :
+			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(IStarMAVOToSMTLIB) previousExecutable;
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 

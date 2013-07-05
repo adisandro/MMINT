@@ -72,7 +72,7 @@ public class NewLinkTypeReferenceDialogContentProvider implements ITreeContentPr
 			// add root link ref first
 			//TODO MMTF: this won't work for standalone model relationship types (will it ever be a usecase?)
 			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(multiModel, MultiModelTypeRegistry.getRootTypeUri(modelRelType));
+			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(MultiModelTypeRegistry.getRootTypeUri(modelRelType), multiModel);
 			LinkReference rootLinkTypeRef = rootModelRelType.getLinkRefs().get(0);
 			linkTypeRefs.add(rootLinkTypeRef);
 			for (LinkReference linkTypeRef : ((ModelRel) parentElement).getLinkRefs()) {

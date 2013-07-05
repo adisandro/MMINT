@@ -97,7 +97,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference oldModelEndpointRef : oldModelRel.getModelEndpointRefs()) {
-			Model newModel = MultiModelRegistry.getExtendibleElement(multiModel, oldModelEndpointRef.getTargetUri());
+			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), multiModel);
 			ModelEndpointReference newModelEndpointRef = createModelEndpointAndModelEndpointReference(oldModelEndpointRef.getObject().getMetatype(), newModelRel, newModel, false);
 			// model elements
 			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {

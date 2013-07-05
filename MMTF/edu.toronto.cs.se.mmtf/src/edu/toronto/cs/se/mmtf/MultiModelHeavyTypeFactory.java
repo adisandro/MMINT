@@ -74,7 +74,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 			typeUri = rootUri;
 		}
 		if (typeUri != null) {
-			type = MultiModelTypeRegistry.getExtendibleElementType(typeUri);
+			type = MultiModelTypeRegistry.getType(typeUri);
 		}
 
 		return type;
@@ -237,12 +237,34 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newModelRelType;
 	}
 
-	public static ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ModelRel modelRelType, String newModelTypeEndpointUri, String modelTypeEndpointUri, Model newModelType, String newModelTypeEndpointName) throws MMTFException {
+	/**
+	 * Creates and adds a "heavy" model type endpoint and a reference to it to a
+	 * model relationship type.
+	 * 
+	 * @param newModelTypeEndpointUri
+	 *            The uri of the new model type endpoint.
+	 * @param modelTypeEndpointUri
+	 *            The uri of the supertype of the new model type endpoint, null
+	 *            if the root model type endpoint should be used as supertype.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @return The created reference to the new model type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the repository.
+	 */
+	public static ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
 		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
-		addModelTypeEndpoint(modelRelType, newModelTypeEndpoint, newModelType, false);
+		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, false, modelRelType);
 		//TODO MMTF: review when functions to detect overriding endpoints are ready
 		ModelEndpointReference modelTypeEndpointRef = null;
 		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, false, modelRelType);
@@ -257,7 +279,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addHeavyType(newLinkType, linkType, newLinkTypeUri, newLinkTypeName);
 		addLinkType(modelRelType, newLinkType, linkType);
 		LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeUri, modelRelType.getLinkRefs());
-		LinkReference newLinkTypeRef = createLinkTypeReference(modelRelType, linkTypeRef, newLinkType, newLinkTypeRefClass, true);
+		LinkReference newLinkTypeRef = createLinkTypeReference(newLinkType, linkTypeRef, newLinkTypeRefClass, true, modelRelType);
 
 		return newLinkTypeRef;
 	}
@@ -272,7 +294,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addModelElementTypeEndpoint(linkType, newModelElemTypeEndpoint, newModelElemTypeRef.getObject(), false);
 		//TODO MMTF: review when functions to detect overriding endpoints are ready
 		ModelElementEndpointReference modelTypeEndpointRef = null;
-		ModelElementEndpointReference newModelElemTypeEndpointRef = createModelElementTypeEndpointReference(linkTypeRef, modelTypeEndpointRef, newModelElemTypeEndpoint, newModelElemTypeRef, true, false);
+		ModelElementEndpointReference newModelElemTypeEndpointRef = createModelElementTypeEndpointReference(newModelElemTypeEndpoint, modelTypeEndpointRef, newModelElemTypeRef, true, false, linkTypeRef);
 		addModelElementTypeEndpointReference(linkType, newModelElemTypeEndpointRef);
 		// copy from supertype
 		Link linkTypeSuper = linkType.getSupertype();
@@ -313,7 +335,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 
 	public static void createHeavyModelTypeEditor(Editor editorType, String modelTypeUri) {
 
-		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(modelTypeUri);
+		Model modelType = MultiModelTypeRegistry.getType(modelTypeUri);
 		if (modelType != null) {
 			addModelTypeEditor(editorType, modelType);
 			editorType.getFileExtensions().add(modelType.getFileExtension());
@@ -343,7 +365,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	public static void createHeavyOperatorTypeParameter(Operator operatorType, String modelTypeUri, EList<Parameter> paramTypes, String newParamTypeName, boolean isVararg) throws MMTFException {
 
 		Parameter newParamType = OperatorFactory.eINSTANCE.createParameter();
-		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(modelTypeUri);
+		Model modelType = MultiModelTypeRegistry.getType(modelTypeUri);
 		if (modelType == null) {
 			throw new MMTFException("Model type " + modelTypeUri + " is not registered");
 		}

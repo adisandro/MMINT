@@ -135,16 +135,16 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets an extendible element type from the repository.
+	 * Gets a type from the repository.
 	 * 
 	 * @param typeUri
-	 *            The uri of the extendible element type.
-	 * @return The extendible element type, or null if the uri is not found or
-	 *         found not to be of the desired class.
+	 *            The uri of the type.
+	 * @return The type, null if the uri is not found or found not to be of the
+	 *         desired class of types.
 	 */
-	public static <T extends ExtendibleElement> T getExtendibleElementType(String typeUri) {
+	public static <T extends ExtendibleElement> T getType(String typeUri) {
 
-		return MultiModelRegistry.getExtendibleElement(MMTF.repository, typeUri);
+		return MultiModelRegistry.getExtendibleElement(typeUri, MMTF.repository);
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Editor> getModelTypeEditors(String modelTypeUri) {
 
-		Model model = getExtendibleElementType(modelTypeUri);
+		Model model = getType(modelTypeUri);
 		if (model != null) {
 			return model.getEditors();
 		}

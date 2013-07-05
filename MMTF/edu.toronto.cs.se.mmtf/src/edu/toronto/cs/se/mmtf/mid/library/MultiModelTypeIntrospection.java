@@ -175,7 +175,7 @@ public class MultiModelTypeIntrospection {
 
 		// start from root
 		List<T> elementTypes = new ArrayList<T>();
-		T rootType = MultiModelTypeRegistry.getExtendibleElementType(MultiModelTypeRegistry.getRootTypeUri(element));
+		T rootType = MultiModelTypeRegistry.getType(MultiModelTypeRegistry.getRootTypeUri(element));
 		getRuntimeTypes(element, rootType, elementTypes);
 
 		return elementTypes;
@@ -187,7 +187,7 @@ public class MultiModelTypeIntrospection {
 			return null;
 		}
 
-		ExtendibleElement type = MultiModelTypeRegistry.getExtendibleElementType(element.getMetatypeUri());
+		ExtendibleElement type = MultiModelTypeRegistry.getType(element.getMetatypeUri());
 		if (type == null) { // this can happen when a type is uninstalled
 			//TODO MMTF: find a way to try with runtime type in this read transaction?
 			//element.setMetatypeUri(null);

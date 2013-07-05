@@ -146,19 +146,19 @@ public class MultiModelRegistry {
 	}
 
 	/**
-	 * Gets an extendible element (type or instance) from a multimodel.
+	 * Gets an extendible element from a multimodel.
 	 * 
+	 * @param uri
+	 *            The uri of the element.
 	 * @param multiModel
-	 *            The multimodel.
-	 * @param elementUri
-	 *            The uri of the extendible element.
-	 * @return The extendible element, or null if the uri is not found or found
-	 *         not to be of the desired class.
+	 *            The multimodel that contains the element.
+	 * @return The element, null if the uri is not found or found not to be of
+	 *         the desired class of elements.
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends ExtendibleElement> T getExtendibleElement(MultiModel multiModel, String elementUri) {
+	public static <T extends ExtendibleElement> T getExtendibleElement(String uri, MultiModel multiModel) {
 
-		ExtendibleElement element = multiModel.getExtendibleTable().get(elementUri);
+		ExtendibleElement element = multiModel.getExtendibleTable().get(uri);
 		if (element == null) {
 			return null;
 		}

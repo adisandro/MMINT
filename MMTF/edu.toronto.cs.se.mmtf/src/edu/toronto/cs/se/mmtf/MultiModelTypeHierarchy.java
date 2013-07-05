@@ -338,7 +338,7 @@ public class MultiModelTypeHierarchy {
 		}
 
 		for (String subtypeUri : subtypeTable.get(supertype.getUri())) {
-			T subtype = MultiModelRegistry.getExtendibleElement(multiModel, subtypeUri);
+			T subtype = MultiModelRegistry.getExtendibleElement(subtypeUri, multiModel);
 			if (subtype != null) {
 				subtypes.add(subtype);
 			}
@@ -384,7 +384,7 @@ public class MultiModelTypeHierarchy {
 				if (formalModelTypeUri.equals(convertedActualModelTypeUri) || isSubtypeOf(convertedActualModelTypeUri, formalModelTypeUri)) {
 					List<ConversionOperator> conversionOperatorTypes = new ArrayList<ConversionOperator>();
 					for (String conversionOperatorTypeUri : conversion.getValue()) {
-						ConversionOperator conversionOperatorType = MultiModelTypeRegistry.getExtendibleElementType(conversionOperatorTypeUri);
+						ConversionOperator conversionOperatorType = MultiModelTypeRegistry.getType(conversionOperatorTypeUri);
 						conversionOperatorTypes.add(conversionOperatorType);
 					}
 					return conversionOperatorTypes;

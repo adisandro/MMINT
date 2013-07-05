@@ -57,7 +57,7 @@ public class RelationshipsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLETYPE_ATTR_URI);
-				ModelRel modelRelType = MultiModelTypeRegistry.getExtendibleElementType(uri);
+				ModelRel modelRelType = MultiModelTypeRegistry.getType(uri);
 				if (modelRelType != null) {
 					MultiModelTypeFactory.removeModelRelType(modelRelType);
 				}

@@ -194,20 +194,20 @@ public class MMTF implements MMTFConstants {
 				newType = new ExtensionType(modelTypeEndpointConfig);
 				IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 				String newModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-				Model newModelType = MultiModelTypeRegistry.getExtendibleElementType(newModelTypeUri);
+				Model newModelType = MultiModelTypeRegistry.getType(newModelTypeUri);
 				if (newModelType == null) {
 					continue;
 				}
 				ModelEndpointReference newModelTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelTypeEndpointAndModelTypeEndpointReference(
-					newModelRelType,
 					newType.getUri(),
 					newType.getSupertypeUri(),
+					newType.getName(),
 					newModelType,
-					newType.getName()
+					newModelRelType
 				);
 				int lowerBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
 				int upperBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
-				MultiModelTypeFactory.addExtendibleElementTypeEndpointCardinality(
+				MultiModelTypeFactory.addTypeEndpointCardinality(
 					newModelTypeEndpointRef.getObject(),
 					lowerBound,
 					upperBound
@@ -216,7 +216,7 @@ public class MMTF implements MMTFConstants {
 				IConfigurationElement[] modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
 				for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
 					newType = new ExtensionType(modelElemTypeConfig);
-					ModelElement newModelElemType = MultiModelTypeRegistry.getExtendibleElementType(newType.getUri());
+					ModelElement newModelElemType = MultiModelTypeRegistry.getType(newType.getUri());
 					if (newModelElemType == null) { // create new model element type
 						ModelElementCategory category = ModelElementCategory.get(modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CATEGORY));
 						String classLiteral = modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CLASSLITERAL);
@@ -239,10 +239,10 @@ public class MMTF implements MMTFConstants {
 						null :
 						MultiModelTypeHierarchy.getReference(newType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
 					MultiModelTypeFactory.createModelElementTypeReference(
-						newModelTypeEndpointRef,
-						modelElemTypeRef,
 						newModelElemType,
-						true
+						modelElemTypeRef,
+						true,
+						newModelTypeEndpointRef
 					);
 				}
 			}
@@ -276,7 +276,7 @@ public class MMTF implements MMTFConstants {
 					newType = new ExtensionType(modelElemTypeEndpointConfig);
 					IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 					String newModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-					ModelElement modelElemType = MultiModelTypeRegistry.getExtendibleElementType(newModelElemTypeUri);
+					ModelElement modelElemType = MultiModelTypeRegistry.getType(newModelElemTypeUri);
 					if (modelElemType == null) {
 						continue;
 					}
@@ -292,7 +292,7 @@ public class MMTF implements MMTFConstants {
 					);
 					int lowerBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
 					int upperBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
-					MultiModelTypeFactory.addExtendibleElementTypeEndpointCardinality(
+					MultiModelTypeFactory.addTypeEndpointCardinality(
 						newModelElemTypeEndpointRef.getObject(),
 						lowerBound,
 						upperBound
@@ -524,7 +524,7 @@ public class MMTF implements MMTFConstants {
 	
 	private Model addDynamicType(Model dynamicModelType) {
 
-		Model modelType = MultiModelTypeRegistry.getExtendibleElementType(dynamicModelType.getSupertype().getUri());
+		Model modelType = MultiModelTypeRegistry.getType(dynamicModelType.getSupertype().getUri());
 		if (modelType == null && dynamicModelType.getSupertype().isDynamic()) {
 			modelType = addDynamicType(dynamicModelType.getSupertype());
 		}
@@ -584,14 +584,14 @@ public class MMTF implements MMTFConstants {
 		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
 			if (!(modelType instanceof ModelRel) &&
 				modelType.isDynamic() &&
-				MultiModelTypeRegistry.getExtendibleElementType(modelType.getUri()) == null
+				MultiModelTypeRegistry.getType(modelType.getUri()) == null
 			) {
 				addDynamicType(modelType);
 			}
 		}
 		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
 			if (modelRelType.isDynamic() &&
-				MultiModelTypeRegistry.getExtendibleElementType(modelRelType.getUri()) == null
+				MultiModelTypeRegistry.getType(modelRelType.getUri()) == null
 			) {
 				addDynamicType(modelRelType);
 			}

@@ -102,7 +102,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		String newTypeUri = getNewExtendibleTypeUri(modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
-		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(multiModel, newTypeUri);
+		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newTypeUri, multiModel);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = MidFactory.eINSTANCE.createModelElement();
@@ -110,7 +110,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			addModelElementType(modelTypeEndpointRef.getObject().getTarget(), newModelElemType, category, classLiteral);
 		}
 		// create the reference of the "thing"
-		ModelElementReference newModelElemTypeRef = createModelElementTypeReference(modelTypeEndpointRef, modelElemTypeRef, newModelElemType, true);
+		ModelElementReference newModelElemTypeRef = createModelElementTypeReference(newModelElemType, modelElemTypeRef, true, modelTypeEndpointRef);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
 			ModelEndpointReference modelSubtypeRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
@@ -119,7 +119,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 				ModelEndpointReference modelSubtypeRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
 				modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
 			}
-			createModelElementTypeReference(modelSubtypeRef, modelElemSubtypeRef, newModelElemType, false);
+			createModelElementTypeReference(newModelElemType, modelElemSubtypeRef, false, modelSubtypeRef);
 		}
 
 		return newModelElemTypeRef;
@@ -140,7 +140,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		// create the "thing" and the corresponding reference
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		addLightExtendibleType(newModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
-		addModelTypeEndpoint(modelRelType, newModelTypeEndpoint, newModelType, isBinarySrc);
+		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, isBinarySrc, modelRelType);
 		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, isBinarySrc, modelRelType);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
@@ -180,13 +180,13 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		addLightExtendibleType(newLinkType, linkType, modelRelType, modelRelType.getName(), newLinkTypeName, multiModel);
 		addLinkType(modelRelType, newLinkType, linkType);
-		LinkReference newLinkTypeRef = createLinkTypeReference(modelRelType, linkTypeRef, newLinkType, newLinkTypeRefClass, true);
+		LinkReference newLinkTypeRef = createLinkTypeReference(newLinkType, linkTypeRef, newLinkTypeRefClass, true, modelRelType);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
 			LinkReference linkSubtypeRef = (linkTypeRef == null) ?
 				null :
 				MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
-			createLinkTypeReference(modelRelSubtype, linkSubtypeRef, newLinkType, newLinkTypeRefClass, false);
+			createLinkTypeReference(newLinkType, linkSubtypeRef, newLinkTypeRefClass, false, modelRelSubtype);
 		}
 
 		return newLinkTypeRef;
@@ -203,7 +203,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		addLightExtendibleType(newModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName, multiModel);
 		addModelElementTypeEndpoint(linkType, newModelElemTypeEndpoint, newModelElemType, isBinarySrc);
-		ModelElementEndpointReference newModelElemTypeEndpointRef = createModelElementTypeEndpointReference(linkTypeRef, modelElemTypeEndpointRef, newModelElemTypeEndpoint, newModelElemTypeRef, true, isBinarySrc);
+		ModelElementEndpointReference newModelElemTypeEndpointRef = createModelElementTypeEndpointReference(newModelElemTypeEndpoint, modelElemTypeEndpointRef, newModelElemTypeRef, true, isBinarySrc, linkTypeRef);
 		addModelElementTypeEndpointReference(linkType, newModelElemTypeEndpointRef);
 		// create references of the "thing" in subtypes of the container's container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
@@ -216,7 +216,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			}
 			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
 			ModelElementReference newModelElemSubtypeRef = MultiModelTypeHierarchy.getReference(newModelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
-			createModelElementTypeEndpointReference(linkSubtypeRef, modelElemSubtypeEndpointRef, newModelElemTypeEndpoint, newModelElemSubtypeRef, false, isBinarySrc);
+			createModelElementTypeEndpointReference(newModelElemTypeEndpoint, modelElemSubtypeEndpointRef, newModelElemSubtypeRef, false, isBinarySrc, linkSubtypeRef);
 		}
 		// create references of the "thing" in subtypes of the container
 		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, linkType)) {
@@ -279,11 +279,11 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		Iterator<ModelEndpoint> oldModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(oldModelRelType.getModelEndpoints());
 		while (oldModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint oldModelTypeEndpoint = oldModelTypeEndpointIter.next();
-			Model newModelType = MultiModelRegistry.getExtendibleElement(multiModel, oldModelTypeEndpoint.getTargetUri());
+			Model newModelType = MultiModelRegistry.getExtendibleElement(oldModelTypeEndpoint.getTargetUri(), multiModel);
 			ModelEndpoint modelTypeEndpoint = null;
 			ModelEndpointReference modelTypeEndpointRef = null;
 			if (oldModelTypeEndpoint.getSupertype() != null) { //TODO MMTF: remove all such checks from endpoints when they have root supertype
-				modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(multiModel, oldModelTypeEndpoint.getSupertype().getUri());
+				modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(oldModelTypeEndpoint.getSupertype().getUri(), multiModel);
 				modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getSupertype().getUri(), newModelRelType.getModelEndpointRefs());
 			}
 			createLightModelTypeEndpointAndModelTypeEndpointReference(newModelRelType, modelTypeEndpoint, modelTypeEndpointRef, newModelType, oldModelTypeEndpoint.getName(), false);
@@ -296,7 +296,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			Iterator<ModelElementReference> oldModelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(oldModelTypeEndpointRef.getModelElemRefs());
 			while (oldModelElemTypeRefIter.hasNext()) {
 				ModelElementReference oldModelElemTypeRef = oldModelElemTypeRefIter.next();
-				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(multiModel, oldModelElemTypeRef.getObject().getSupertype().getUri());
+				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(oldModelElemTypeRef.getObject().getSupertype().getUri(), multiModel);
 				ModelEndpointReference newModelTypeEndpointRefSuper = null;
 				ModelElementReference modelElemTypeRef = null;
 				if (oldModelElemTypeRef.getSupertypeRef() != null) {
@@ -317,7 +317,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		Iterator<Link> oldLinkTypeIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(oldModelRelType.getLinks());
 		while (oldLinkTypeIter.hasNext()) {
 			Link oldLinkType = oldLinkTypeIter.next();
-			Link linkType = MultiModelRegistry.getExtendibleElement(multiModel, oldLinkType.getSupertype().getUri());
+			Link linkType = MultiModelRegistry.getExtendibleElement(oldLinkType.getSupertype().getUri(), multiModel);
 			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(oldLinkType.getSupertype().getUri(), newModelRelType.getLinkRefs());
 			EClass newLinkTypeRefClass = (oldLinkType instanceof BinaryLink) ?
 				RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
@@ -341,7 +341,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 				ModelElementEndpoint modelElemTypeEndpoint = null;
 				ModelElementEndpointReference modelElemTypeEndpointRef = null;
 				if (oldModelElemTypeEndpointRef.getObject().getSupertype() != null) {
-					modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(multiModel, oldModelElemTypeEndpointRef.getObject().getSupertype().getUri());
+					modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(oldModelElemTypeEndpointRef.getObject().getSupertype().getUri(), multiModel);
 					LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference((LinkReference) oldModelElemTypeEndpointRef.getObject().getSupertype().eContainer(), newModelRelType.getLinkRefs());
 					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelElemTypeEndpointRef.getSupertypeRef(), newLinkTypeRefSuper.getModelElemEndpointRefs());
 				}
