@@ -107,7 +107,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			// create the "thing"
 			newModelElemType = MidFactory.eINSTANCE.createModelElement();
 			addLightExtendibleType(newModelElemType, modelElemType, modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName, multiModel);
-			addModelElementType(modelTypeEndpointRef.getObject().getTarget(), newModelElemType, category, classLiteral);
+			addModelElementType(newModelElemType, category, classLiteral, modelTypeEndpointRef.getObject().getTarget());
 		}
 		// create the reference of the "thing"
 		ModelElementReference newModelElemTypeRef = createModelElementTypeReference(newModelElemType, modelElemTypeRef, true, modelTypeEndpointRef);
@@ -179,7 +179,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		addLightExtendibleType(newLinkType, linkType, modelRelType, modelRelType.getName(), newLinkTypeName, multiModel);
-		addLinkType(modelRelType, newLinkType, linkType);
+		addLinkType(newLinkType, linkType, modelRelType);
 		LinkReference newLinkTypeRef = createLinkTypeReference(newLinkType, linkTypeRef, newLinkTypeRefClass, true, modelRelType);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
@@ -202,9 +202,9 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		// create the "thing" and the corresponding reference
 		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		addLightExtendibleType(newModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName, multiModel);
-		addModelElementTypeEndpoint(linkType, newModelElemTypeEndpoint, newModelElemType, isBinarySrc);
+		addModelElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemType, isBinarySrc, linkType);
 		ModelElementEndpointReference newModelElemTypeEndpointRef = createModelElementTypeEndpointReference(newModelElemTypeEndpoint, modelElemTypeEndpointRef, newModelElemTypeRef, true, isBinarySrc, linkTypeRef);
-		addModelElementTypeEndpointReference(linkType, newModelElemTypeEndpointRef);
+		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, linkType);
 		// create references of the "thing" in subtypes of the container's container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType)) {
 			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
@@ -220,7 +220,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 		// create references of the "thing" in subtypes of the container
 		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, linkType)) {
-			addModelElementTypeEndpointReference(linkSubtype, newModelElemTypeEndpointRef);
+			addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, linkSubtype);
 		}
 
 		return newModelElemTypeEndpointRef;

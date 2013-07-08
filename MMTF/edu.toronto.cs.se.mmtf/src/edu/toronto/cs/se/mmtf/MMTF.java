@@ -222,12 +222,12 @@ public class MMTF implements MMTFConstants {
 						String classLiteral = modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CLASSLITERAL);
 						try {
 							newModelElemType = MultiModelHeavyTypeFactory.createHeavyModelElementType(
-								newModelType,
 								newType.getUri(),
 								newType.getSupertypeUri(),
 								newType.getName(),
 								category,
-								classLiteral
+								classLiteral,
+								newModelType
 							);
 						}
 						catch (Exception e) {
@@ -260,12 +260,12 @@ public class MMTF implements MMTFConstants {
 				LinkReference newLinkTypeRef;
 				try {
 					newLinkTypeRef = MultiModelHeavyTypeFactory.createHeavyLinkTypeAndLinkTypeReference(
-						newModelRelType,
 						newType.getUri(),
 						newType.getSupertypeUri(),
 						newType.getName(),
 						newLinkTypeClass,
-						newLinkTypeRefClass
+						newLinkTypeRefClass,
+						newModelRelType
 					);
 				}
 				catch (Exception e) {
@@ -284,11 +284,11 @@ public class MMTF implements MMTFConstants {
 					ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
 					ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(newModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 					ModelElementEndpointReference newModelElemTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
-						newLinkTypeRef,
 						newType.getUri(),
 						newType.getSupertypeUri(),
+						newType.getName(),
 						newModelElemTypeRef,
-						newType.getName()
+						newLinkTypeRef
 					);
 					int lowerBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
 					int upperBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
@@ -309,11 +309,15 @@ public class MMTF implements MMTFConstants {
 	}
 
 	/**
-	 * Creates and adds an editor type to the repository.
+	 * Creates and adds an editor type to the repository from a registered
+	 * edu.toronto.cs.se.mmtf.editors extension. Requires the corresponding
+	 * Eclipse editor to be registered through a org.eclipse.ui.editors
+	 * extension.
 	 * 
 	 * @param extensionConfig
-	 *            The extension configuration.
-	 * @return The created editor type.
+	 *            The edu.toronto.cs.se.mmtf.editors extension configuration.
+	 * @return The created editor type, null if the editor type can't be
+	 *         created.
 	 */
 	public static Editor createEditorType(IConfigurationElement extensionConfig) {
 
@@ -340,7 +344,7 @@ public class MMTF implements MMTFConstants {
 			return newEditorType;
 		}
 		catch (MMTFException e) {
-			MMTFException.print(Type.WARNING, "Editor type can't be registered", e);
+			MMTFException.print(Type.WARNING, "Editor type can't be created", e);
 			return null;
 		}
 	}
@@ -371,6 +375,11 @@ public class MMTF implements MMTFConstants {
 		}
 	}
 
+	/**
+	 * Creates..
+	 * @param operatorType
+	 * @param extensionConfig
+	 */
 	public static void createOperatorTypeParameters(Operator operatorType, IConfigurationElement extensionConfig) {
 
 		try {
@@ -380,16 +389,18 @@ public class MMTF implements MMTFConstants {
 			createOperatorParameters(operatorType, operatorType.getOutputs(), outputParamTypeConfig);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Operator type parameters can't be registered", e);
+			MMTFException.print(Type.WARNING, "Operator type parameters can't be created", e);
 		}
 	}
 
 	/**
-	 * Creates and adds an operator to the repository.
+	 * Creates and adds an editor type to the repository from a registered
+	 * edu.toronto.cs.se.mmtf.operators extension.
 	 * 
 	 * @param extensionConfig
-	 *            The extension configuration.
-	 * @return The created operator.
+	 *            The edu.toronto.cs.se.mmtf.operators extension configuration.
+	 * @return The created operator type, null if the operator type can't be
+	 *         created.
 	 */
 	public static Operator createOperatorType(IConfigurationElement extensionConfig) {
 
@@ -413,47 +424,10 @@ public class MMTF implements MMTFConstants {
 			return newOperatorType;
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Operator type can't be registered", e);
+			MMTFException.print(Type.WARNING, "Operator type can't be created", e);
 			return null;
 		}
 	}
-
-	//TODO MMTF: evaluate if this optimization was really needed
-//	/**
-//	 * Adds file extensions to all initial editor types at once. Requires the
-//	 * editor types to be registered too through the org.eclipse.ui.editors
-//	 * extension point.
-//	 * 
-//	 * @param registry
-//	 *            The Eclipse extension registry.
-//	 */
-//	private void addEditorTypesFileExtensions(IExtensionRegistry registry) {
-//
-//		// create temp editor table using ids
-//		HashMap<String, Editor> tempEditorTable = new HashMap<String, Editor>();
-//		for (Editor editorType : repository.getEditors()) {
-//			tempEditorTable.put(editorType.getId(), editorType);
-//		}
-//
-//		// loop through eclipse editors
-//		IConfigurationElement[] config = registry.getConfigurationElementsFor(ECLIPSE_EDITORS_EXT_POINT);
-//		Editor editorType;
-//		for (IConfigurationElement elem : config) {
-//			editorType = tempEditorTable.get(elem.getAttribute(ECLIPSE_EDITORS_ATTR_ID));
-//			if (editorType != null) {
-//				String extensions = elem.getAttribute(ECLIPSE_EDITORS_ATTR_EXTENSIONS);
-//				if (extensions == null) {
-//					Model modelType = MultiModelTypeRegistry.getModelType(editorType.getModelUri());
-//					extensions = (modelType != null) ?
-//						modelType.getFileExtension() :
-//						"";
-//				}
-//				for (String fileExtension : extensions.split(",")) {
-//					editorType.getFileExtensions().add(fileExtension);
-//				}
-//			}
-//		}
-//	}
 
 	private static void addTypeHierarchy(ExtendibleElement currentType, ExtendibleElement subtype, Map<String, Set<String>> subtypeTable) {
 

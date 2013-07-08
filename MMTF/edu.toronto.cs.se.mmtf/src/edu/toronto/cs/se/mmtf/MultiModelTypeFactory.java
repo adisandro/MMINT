@@ -117,7 +117,7 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds additional info for a type reference.
+	 * Adds additional info for a reference to a type.
 	 * 
 	 * @param newTypeRef
 	 *            The new reference being added.
@@ -175,7 +175,19 @@ public class MultiModelTypeFactory {
 		multiModel.getModels().add(newModelType);
 	}
 
-	protected static void addModelElementType(Model modelType, ModelElement newModelElemType, ModelElementCategory category, String classLiteral) {
+	/**
+	 * Adds a model element type to a model type.
+	 * 
+	 * @param newModelElemType
+	 *            The new model element type being added.
+	 * @param category
+	 *            The category of the new model element type.
+	 * @param classLiteral
+	 *            The class name of the new model element type.
+	 * @param modelType
+	 *            The model type that will contain the new model element type.
+	 */
+	protected static void addModelElementType(ModelElement newModelElemType, ModelElementCategory category, String classLiteral, Model modelType) {
 
 		newModelElemType.setCategory(category);
 		newModelElemType.setClassLiteral(classLiteral);
@@ -263,7 +275,7 @@ public class MultiModelTypeFactory {
 	 *            endpoint.
 	 * @param isBinarySrc
 	 *            True if the model type endpoint is the source in the binary
-	 *            model relationship container, false otherwise.
+	 *            model relationship type container, false otherwise.
 	 * @param modelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
@@ -279,7 +291,18 @@ public class MultiModelTypeFactory {
 		}
 	}
 
-	protected static void addLinkType(ModelRel modelRelType, Link newLinkType, Link linkType) {
+	/**
+	 * Adds a link type to a model relationship type.
+	 * 
+	 * @param newLinkType
+	 *            The new link type to be added.
+	 * @param linkType
+	 *            The supertype of the new link type.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new link
+	 *            type.
+	 */
+	protected static void addLinkType(Link newLinkType, Link linkType, ModelRel modelRelType) {
 
 		// keep track of inherited model elements, but not root ones
 		if (linkType != null && !linkType.getUri().equals(MMTF.ROOT_MODELREL_LINK_URI)) {
@@ -287,11 +310,25 @@ public class MultiModelTypeFactory {
 				newLinkType.getModelElemEndpointRefs().add(modelElemTypeEndpointRef);
 			}
 		}
-
 		modelRelType.getLinks().add(newLinkType);
 	}
 
-	protected static void addModelElementTypeEndpoint(Link linkType, ModelElementEndpoint newModelElemTypeEndpoint, ModelElement newModelElemType, boolean isBinarySrc) {
+	/**
+	 * Adds a model element type endpoint to a link type.
+	 * 
+	 * @param newModelElemTypeEndpoint
+	 *            The new model element type endpoint to be added.
+	 * @param newModelElemType
+	 *            The new model element type that is the target of the new model
+	 *            element type endpoint.
+	 * @param isBinarySrc
+	 *            True if the model element type endpoint is the source in the
+	 *            binary link type container, false otherwise.
+	 * @param linkType
+	 *            The link type that will contain the new model element type
+	 *            endpoint.
+	 */
+	protected static void addModelElementTypeEndpoint(ModelElementEndpoint newModelElemTypeEndpoint, ModelElement newModelElemType, boolean isBinarySrc, Link linkType) {
 
 		addTypeEndpoint(newModelElemTypeEndpoint, newModelElemType);
 		if (isBinarySrc) {
@@ -302,11 +339,38 @@ public class MultiModelTypeFactory {
 		}
 	}
 
-	protected static void addModelElementTypeEndpointReference(Link linkType, ModelElementEndpointReference newModelElemTypeEndpointRef) {
+	/**
+	 * Adds additional info for a reference to a model element type endpoint.
+	 * 
+	 * @param newModelElemTypeEndpointRef
+	 *            The new reference to the new model element type endpoint being
+	 *            added.
+	 * @param linkType
+	 *            The link type that contains the referenced model element type
+	 *            endpoint.
+	 */
+	protected static void addModelElementTypeEndpointReference(ModelElementEndpointReference newModelElemTypeEndpointRef, Link linkType) {
 
 		linkType.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
 	}
 
+	/**
+	 * Adds an editor type to a multimodel.
+	 * 
+	 * @param newEditorType
+	 *            The new editor type to be added.
+	 * @param modelTypeUri
+	 *            The uri of the model type handled by the new editor type.
+	 * @param editorId
+	 *            The id of the corresponding Eclipse editor.
+	 * @param wizardId
+	 *            The wizard id of the corresponding Eclipse editor.
+	 * @param wizardDialogClassName
+	 *            The fully qualified name of a Java class that handles the
+	 *            creation of the model type through the new editor type.
+	 * @param multiModel
+	 *            The multimodel that will contain the new editor type.
+	 */
 	protected static void addEditorType(Editor newEditorType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, MultiModel multiModel) {
 
 		newEditorType.setModelUri(modelTypeUri);
@@ -322,6 +386,16 @@ public class MultiModelTypeFactory {
 		modelType.getEditors().add(editorType);
 	}
 
+	/**
+	 * Adds an operator type to a multimodel.
+	 * 
+	 * @param newOperatorType
+	 *            The new operator type to be added.
+	 * @param executable
+	 *            The implementation of the new operator type.
+	 * @param multiModel
+	 *            The multimodel that will contain the new operator type.
+	 */
 	protected static void addOperatorType(Operator newOperatorType, OperatorExecutable executable, MultiModel multiModel) {
 
 		newOperatorType.setExecutable(executable);
