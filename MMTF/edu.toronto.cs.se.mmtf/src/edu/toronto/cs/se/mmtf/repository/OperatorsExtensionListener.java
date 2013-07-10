@@ -41,7 +41,7 @@ public class OperatorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				Operator newOperatorType = MMTF.createOperatorType(elem);
-				MMTF.createOperatorTypeParameters(newOperatorType, elem);
+				MMTF.createOperatorTypeParameters(elem, newOperatorType);
 				if (newOperatorType instanceof ConversionOperator) {
 					MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
 				}

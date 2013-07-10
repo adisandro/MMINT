@@ -402,7 +402,25 @@ public class MultiModelTypeFactory {
 		multiModel.getOperators().add(newOperatorType);
 	}
 
-	protected static void addOperatorTypeParameter(Parameter newParamType, Operator operatorType, EList<Parameter> paramTypes, Model modelType, String newParamTypeName, boolean isVararg) {
+	/**
+	 * Adds a parameter type (i.e. a formal parameter) to an operator type.
+	 * 
+	 * @param newParamType
+	 *            The new parameter type to be added.
+	 * @param newParamTypeName
+	 *            The name of the new parameter type.
+	 * @param modelType
+	 *            The model type that is the target of the new parameter type.
+	 * @param isVararg
+	 *            True if the new parameter type represents a variable number of
+	 *            parameter types of the same kind, false otherwise.
+	 * @param paramTypes
+	 *            The list of parameter types that will contain the new
+	 *            parameter type.
+	 * @param operatorType
+	 *            The operator type that will contain the new parameter type.
+	 */
+	protected static void addOperatorTypeParameter(Parameter newParamType, String newParamTypeName, Model modelType, boolean isVararg, EList<Parameter> paramTypes, Operator operatorType) {
 
 		newParamType.setModel(modelType);
 		newParamType.setName(newParamTypeName);

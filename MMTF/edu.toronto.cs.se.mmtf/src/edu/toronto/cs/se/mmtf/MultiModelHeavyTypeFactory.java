@@ -475,14 +475,34 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newOperatorType;
 	}
 
-	public static void createHeavyOperatorTypeParameter(Operator operatorType, String modelTypeUri, EList<Parameter> paramTypes, String newParamTypeName, boolean isVararg) throws MMTFException {
+	/**
+	 * Creates and adds a "heavy" parameter type (i.e. a formal parameter) to an
+	 * operator type.
+	 * 
+	 * @param newParamTypeName
+	 *            The name of the new parameter type.
+	 * @param modelTypeUri
+	 *            The uri of the model type that is the target of the new
+	 *            parameter type.
+	 * @param isVararg
+	 *            True if the new parameter type represents a variable number of
+	 *            parameter types of the same kind, false otherwise.
+	 * @param paramTypes
+	 *            The list of parameter types that will contain the new
+	 *            parameter type.
+	 * @param operatorType
+	 *            The operator type that will contain the new parameter type.
+	 * @throws MMTFException
+	 *             If the target model type is not registered in the repository.
+	 */
+	public static void createHeavyOperatorTypeParameter(String newParamTypeName, String modelTypeUri, boolean isVararg, EList<Parameter> paramTypes, Operator operatorType) throws MMTFException {
 
 		Parameter newParamType = OperatorFactory.eINSTANCE.createParameter();
 		Model modelType = MultiModelTypeRegistry.getType(modelTypeUri);
 		if (modelType == null) {
 			throw new MMTFException("Model type " + modelTypeUri + " is not registered");
 		}
-		addOperatorTypeParameter(newParamType, operatorType, paramTypes, modelType, newParamTypeName, isVararg);
+		addOperatorTypeParameter(newParamType, newParamTypeName, modelType, isVararg, paramTypes, operatorType);
 	}
 
 }

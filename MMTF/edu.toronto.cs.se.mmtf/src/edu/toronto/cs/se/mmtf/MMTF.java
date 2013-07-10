@@ -350,16 +350,21 @@ public class MMTF implements MMTFConstants {
 	}
 
 	/**
-	 * Creates and adds an operator to the repository.
+	 * Creates and adds a class of parameter types to an operator type.
 	 * 
-	 * @param extensionConfig
-	 *            The extension configuration.
-	 * @return The created operator.
+	 * @param paramTypeConfig
+	 *            The edu.toronto.cs.se.mmtf.operators extension
+	 *            subconfiguration for the class of parameter types.
+	 * @param paramTypes
+	 *            The list of parameter types that will contain the new
+	 *            parameter types.
+	 * @param operatorType
+	 *            The operator type that will contain the new parameter types.
 	 * @throws MMTFException
-	 *             If there exists a vararg parameter which is not the last
-	 *             parameter.
+	 *             If there exists a vararg parameter type which is not the last
+	 *             parameter type.
 	 */
-	private static void createOperatorParameters(Operator operatorType, EList<Parameter> paramTypes, IConfigurationElement paramTypeConfig) throws MMTFException {
+	private static void createOperatorParameters(IConfigurationElement paramTypeConfig, EList<Parameter> paramTypes, Operator operatorType) throws MMTFException {
 
 		int i = 0;
 		IConfigurationElement[] paramTypeConfigElems = paramTypeConfig.getChildren(OPERATORS_INPUTOUTPUT_CHILD_PARAMETER);
@@ -367,26 +372,29 @@ public class MMTF implements MMTFConstants {
 			String newParamTypeName = paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME);
 			boolean isVararg = Boolean.parseBoolean(paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG));
 			if (isVararg && i != (paramTypeConfigElems.length-1)) {
-				throw new MMTFException("Only last parameter can be a vararg parameter");
+				throw new MMTFException("Only the last parameter can be vararg");
 			}
 			String modelTypeUri = paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
-			MultiModelHeavyTypeFactory.createHeavyOperatorTypeParameter(operatorType, modelTypeUri, paramTypes, newParamTypeName, isVararg);
+			MultiModelHeavyTypeFactory.createHeavyOperatorTypeParameter(newParamTypeName, modelTypeUri, isVararg, paramTypes, operatorType);
 			i++;
 		}
 	}
 
 	/**
-	 * Creates..
-	 * @param operatorType
+	 * Creates and adds input/output parameter types to an operator type.
+	 * 
 	 * @param extensionConfig
+	 *            The edu.toronto.cs.se.mmtf.operators extension configuration.
+	 * @param operatorType
+	 *            The operator type that will contain the new parameter types.
 	 */
-	public static void createOperatorTypeParameters(Operator operatorType, IConfigurationElement extensionConfig) {
+	public static void createOperatorTypeParameters(IConfigurationElement extensionConfig, Operator operatorType) {
 
 		try {
 			IConfigurationElement inputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
-			createOperatorParameters(operatorType, operatorType.getInputs(), inputParamTypeConfig);
+			createOperatorParameters(inputParamTypeConfig, operatorType.getInputs(), operatorType);
 			IConfigurationElement outputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
-			createOperatorParameters(operatorType, operatorType.getOutputs(), outputParamTypeConfig);
+			createOperatorParameters(outputParamTypeConfig, operatorType.getOutputs(), operatorType);
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.WARNING, "Operator type parameters can't be created", e);
@@ -622,7 +630,7 @@ public class MMTF implements MMTFConstants {
 		while (extensionsIter.hasNext()) {
 			IConfigurationElement extensionConfig = extensionsIter.next();
 			Operator newOperatorType = createOperatorType(extensionConfig);
-			createOperatorTypeParameters(newOperatorType, extensionConfig);
+			createOperatorTypeParameters(extensionConfig, newOperatorType);
 			if (newOperatorType instanceof ConversionOperator) {
 				MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
 			}
