@@ -503,12 +503,20 @@ public class MMTF implements MMTFConstants {
 
 		initTypeHierarchy(multiModel, subtypeTableMID, conversionTableMID);
 	}
-	
-	private Model addDynamicType(Model dynamicModelType) {
+
+	/**
+	 * Creates and adds a model type to the repository from a dynamic ("light")
+	 * model type created at runtime before the last shutdown.
+	 * 
+	 * @param dynamicModelType
+	 *            The dynamic model type from the last shutdown.
+	 * @return The created model type, null if the model type can't be created.
+	 */
+	private Model createDynamicModelType(Model dynamicModelType) {
 
 		Model modelType = MultiModelTypeRegistry.getType(dynamicModelType.getSupertype().getUri());
 		if (modelType == null && dynamicModelType.getSupertype().isDynamic()) {
-			modelType = addDynamicType(dynamicModelType.getSupertype());
+			modelType = createDynamicModelType(dynamicModelType.getSupertype());
 		}
 		if (modelType == null) {
 			return null;
@@ -527,7 +535,7 @@ public class MMTF implements MMTFConstants {
 				MultiModelLightTypeFactory.copyLightModelRelType((ModelRel) dynamicModelType, (ModelRel) newModelType);
 			}
 			catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model rel type " + dynamicModelType.getName() + " could not be recreated", e);
+				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model rel type " + dynamicModelType.getName() + " can't be recreated", e);
 			}
 		}
 		else {
@@ -540,7 +548,7 @@ public class MMTF implements MMTFConstants {
 				);
 			}
 			catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model type " + dynamicModelType.getName() + " could not be recreated", e);
+				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model type " + dynamicModelType.getName() + " can't be recreated", e);
 			}
 		}
 
@@ -548,9 +556,10 @@ public class MMTF implements MMTFConstants {
 	}
 
 	/**
-	 * Initializes dynamic types.
+	 * Creates and adds model types to the repository from all the dynamic
+	 * ("light") model types created at runtime before the last shutdown.
 	 */
-	private void initDynamicTypes() {
+	private void createDynamicModelTypes() {
 
 		MultiModel multiModel;
 		try {
@@ -563,19 +572,19 @@ public class MMTF implements MMTFConstants {
 
 		// do model types first
 		//TODO MMTF: this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
-		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
-			if (!(modelType instanceof ModelRel) &&
-				modelType.isDynamic() &&
-				MultiModelTypeRegistry.getType(modelType.getUri()) == null
+		for (Model dynamicModelType : MultiModelRegistry.getModels(multiModel)) {
+			if (!(dynamicModelType instanceof ModelRel) &&
+				dynamicModelType.isDynamic() &&
+				MultiModelTypeRegistry.getType(dynamicModelType.getUri()) == null
 			) {
-				addDynamicType(modelType);
+				createDynamicModelType(dynamicModelType);
 			}
 		}
-		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
-			if (modelRelType.isDynamic() &&
-				MultiModelTypeRegistry.getType(modelRelType.getUri()) == null
+		for (ModelRel dynamicModelRelType : MultiModelRegistry.getModelRels(multiModel)) {
+			if (dynamicModelRelType.isDynamic() &&
+				MultiModelTypeRegistry.getType(dynamicModelRelType.getUri()) == null
 			) {
-				addDynamicType(modelRelType);
+				createDynamicModelType(dynamicModelRelType);
 			}
 		}
 	}
@@ -636,7 +645,7 @@ public class MMTF implements MMTFConstants {
 			}
 		}
 		// dynamic types from last shutdown
-		initDynamicTypes();
+		createDynamicModelTypes();
 
 		// type hierarchy
 		subtypeTable = new HashMap<String, Set<String>>();

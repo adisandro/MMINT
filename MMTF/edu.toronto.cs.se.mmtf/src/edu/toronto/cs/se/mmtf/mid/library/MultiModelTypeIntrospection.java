@@ -197,6 +197,15 @@ public class MultiModelTypeIntrospection {
 		return type;
 	}
 
+	/**
+	 * Gets the root of an ECore file.
+	 * 
+	 * @param uri
+	 *            The uri to the ECore file.
+	 * @return The root of the ECore file.
+	 * @throws Exception
+	 *             If the uri is invalid or not corresponding to an ECore file.
+	 */
 	public static EObject getRoot(URI uri) throws Exception {
 
 		ResourceSet set = new ResourceSetImpl();

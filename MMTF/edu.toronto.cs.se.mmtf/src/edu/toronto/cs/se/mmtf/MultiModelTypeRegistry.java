@@ -59,20 +59,20 @@ import edu.toronto.cs.se.mmtf.mid.ui.NewModelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.MultiModelDialogLabelProvider;
 
 /**
- * The MMTF registry, to be queried by extensions to get info about the
- * repository.
- * 
- * @author Alessio Di Sandro
- * 
- */
-/**
- * The registry for queries to the type multimodel.
+ * The registry for querying the types in a multimodel.
  * 
  * @author Alessio Di Sandro
  * 
  */
 public class MultiModelTypeRegistry {
 
+	/**
+	 * Gets the multimodel from the Type MID file.
+	 * 
+	 * @return The multimodel from the Type MID file.
+	 * @throws Exception
+	 *             If the Type MID file doesn't exist.
+	 */
 	public static MultiModel getTypeMidRepository() throws Exception {
 
 		String path = MMTFActivator.getDefault().getStateLocation().toOSString();

@@ -49,7 +49,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 
 /**
- * The factory for all types.
+ * The factory for creating all types.
  * 
  * @author Alessio Di Sandro
  * 
@@ -564,6 +564,12 @@ public class MultiModelTypeFactory {
 		return newModelElemTypeRef;
 	}
 
+	/**
+	 * Adds additional info for a conversion operator type.
+	 * 
+	 * @param operatorType
+	 *            The conversion operator type being added.
+	 */
 	public static void createOperatorTypeConversion(ConversionOperator operatorType) {
 
 		operatorType.getInputs().get(0).getModel().getConversionOperators().add(operatorType);

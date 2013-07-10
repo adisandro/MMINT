@@ -40,6 +40,12 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
+/**
+ * The registry for querying a multimodel.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class MultiModelRegistry {
 
 	public final static String MODEL_URI_SEPARATOR = "#";
@@ -186,12 +192,11 @@ public class MultiModelRegistry {
 	}
 
 	/**
-	 * Gets the list of registered models in a multimodel.
+	 * Gets the models in a multimodel.
 	 * 
 	 * @param multiModel
-	 *            The multimodel.
-	 * 
-	 * @return The list of registered models.
+	 *            The multimodel that contains the models.
+	 * @return The list of models.
 	 */
 	public static EList<Model> getModels(MultiModel multiModel) {
 
@@ -199,12 +204,11 @@ public class MultiModelRegistry {
 	}
 
 	/**
-	 * Gets the list of registered model relationships in a multimodel.
+	 * Gets the model relationships in a multimodel.
 	 * 
 	 * @param multiModel
-	 *            The multimodel.
-	 * 
-	 * @return The list of registered model relationships.
+	 *            The multimodel that contains the model relationships.
+	 * @return The list of model relationships.
 	 */
 	public static EList<ModelRel> getModelRels(MultiModel multiModel) {
 

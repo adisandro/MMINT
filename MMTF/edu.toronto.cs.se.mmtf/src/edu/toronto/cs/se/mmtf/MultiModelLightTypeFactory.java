@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -37,6 +37,13 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
+/**
+ * The factory for creating "light" types, i.e. dynamic types created at
+ * runtime.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
 	private static String getExtendibleTypeRootUri(ExtendibleElement type) {
