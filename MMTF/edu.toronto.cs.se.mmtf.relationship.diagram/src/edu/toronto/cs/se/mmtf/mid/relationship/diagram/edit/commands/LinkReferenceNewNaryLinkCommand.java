@@ -59,7 +59,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -74,7 +74,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -126,7 +126,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 			RelationshipPackage.eINSTANCE.getLink(),
 			RelationshipPackage.eINSTANCE.getLinkReference()
 		);
-		MMTF.initTypeHierarchy((MultiModel) modelRelType.eContainer());
+		MMTF.createTypeHierarchy((MultiModel) modelRelType.eContainer());
 
 		return newLinkTypeRef;
 	}

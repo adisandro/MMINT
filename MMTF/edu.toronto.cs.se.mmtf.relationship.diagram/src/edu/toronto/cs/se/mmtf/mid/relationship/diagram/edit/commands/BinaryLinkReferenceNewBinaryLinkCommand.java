@@ -69,7 +69,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = (MultiModel) getContainer().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -84,7 +84,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = (MultiModel) getContainer().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -149,7 +149,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			RelationshipPackage.eINSTANCE.getBinaryLink(),
 			RelationshipPackage.eINSTANCE.getBinaryLinkReference()
 		);
-		MMTF.initTypeHierarchy((MultiModel) modelRelType.eContainer());
+		MMTF.createTypeHierarchy((MultiModel) modelRelType.eContainer());
 
 		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)

@@ -53,7 +53,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -68,7 +68,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -90,7 +90,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		Operator operatorType = (Operator) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		MultiModelTypeFactory.removeOperatorType(operatorType);
-		MMTF.initTypeHierarchy(multiModel);
+		MMTF.createTypeHierarchy(multiModel);
 	}
 
 	/**

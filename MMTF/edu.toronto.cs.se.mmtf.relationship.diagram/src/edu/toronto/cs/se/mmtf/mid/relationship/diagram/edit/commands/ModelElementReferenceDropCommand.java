@@ -77,7 +77,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -92,7 +92,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -186,7 +186,7 @@ supertypes:
 			classLiteral
 		);
 		MAVOUtils.initializeMAVOModelElementReference(newModelObj, newModelElemTypeRef);
-		MMTF.initTypeHierarchy(multiModel);
+		MMTF.createTypeHierarchy(multiModel);
 
 		return newModelElemTypeRef;
 	}

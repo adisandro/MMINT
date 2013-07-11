@@ -54,7 +54,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -68,7 +68,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -99,7 +99,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 		ModelRel modelRelType = (ModelRel) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		MultiModelTypeFactory.removeModelRelType(modelRelType);
-		MMTF.initTypeHierarchy(multiModel);
+		MMTF.createTypeHierarchy(multiModel);
 	}
 
 	/**

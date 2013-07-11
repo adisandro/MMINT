@@ -67,7 +67,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = getContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -81,7 +81,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = getContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -149,7 +149,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			constraint[1],
 			RelationshipPackage.eINSTANCE.getBinaryModelRel()
 		);
-		MMTF.initTypeHierarchy(multiModel);
+		MMTF.createTypeHierarchy(multiModel);
 
 		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)

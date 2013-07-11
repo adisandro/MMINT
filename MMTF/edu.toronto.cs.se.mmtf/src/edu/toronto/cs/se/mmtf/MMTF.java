@@ -91,13 +91,13 @@ public class MMTF implements MMTFConstants {
 	static final MMTF INSTANCE = new MMTF();
 	/** The repository of types. */
 	static MultiModel repository;
-	/**	The table for model type hierarchy. */
+	/**	The table for subtyping in the repository. */
 	static Map<String, Set<String>> subtypeTable;
-	/**	The table for model type conversion. */
+	/**	The table for model type conversion in the repository. */
 	static Map<String, Map<String, List<String>>> conversionTable;
-	/**	The table for model type hierarchy in the type MID. */
+	/**	The table for subtyping in the Type MID. */
 	static Map<String, Set<String>> subtypeTableMID;
-	/**	The table for model type conversion in the type MID. */
+	/**	The table for model type conversion in the Type MID. */
 	static Map<String, Map<String, List<String>>> conversionTableMID;
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
@@ -437,29 +437,48 @@ public class MMTF implements MMTFConstants {
 		}
 	}
 
-	private static void addTypeHierarchy(ExtendibleElement currentType, ExtendibleElement subtype, Map<String, Set<String>> subtypeTable) {
+	/**
+	 * Creates the necessary structures to support subtyping for a type.
+	 * 
+	 * @param type
+	 *            The type being evaluated.
+	 * @param subtype
+	 *            The subtype that is being added in the subtyping table for the
+	 *            supertypes of the type.
+	 * @param subtypeTable
+	 *            The table for subtyping.
+	 */
+	private static void createSubtypeHierarchy(ExtendibleElement type, ExtendibleElement subtype, Map<String, Set<String>> subtypeTable) {
 
 		// add subtype to supertypes
 		String subtypeUri = subtype.getUri();
-		ExtendibleElement supertype = currentType.getSupertype();
+		ExtendibleElement supertype = type.getSupertype();
 		if (supertype != null) {
 			String supertypeUri = supertype.getUri();
 			Set<String> subtypes = subtypeTable.get(supertypeUri);
 			if (!subtypes.contains(subtypeUri)) {
 				subtypes.add(subtypeUri);
 				// recursion
-				addTypeHierarchy(supertype, subtype, subtypeTable);
+				createSubtypeHierarchy(supertype, subtype, subtypeTable);
 			}
 		}
 	}
 
-	private static void addConversionHierarchy(ExtendibleElement currentType, Map<String, List<String>> conversionTypes) {
+	/**
+	 * Creates the necessary structures to support type conversion for a type.
+	 * 
+	 * @param type
+	 *            The type being evaluated.
+	 * @param conversionTypes
+	 *            The subtable for type conversion.
+	 */
+	private static void createConversionHierarchy(ExtendibleElement type, Map<String, List<String>> conversionTypes) {
 
 		// previous conversions
-		List<String> previousConversions = conversionTypes.get(currentType.getUri());
+		List<String> previousConversions = conversionTypes.get(type.getUri());
 
-		// add convertions
-		for (ConversionOperator operatorType : ((Model) currentType).getConversionOperators()) {
+		// add conversions
+		for (ConversionOperator operatorType : ((Model) type).getConversionOperators()) {
 			Model conversionType = operatorType.getOutputs().get(0).getModel();
 			String conversionTypeUri = conversionType.getUri();
 			if (!conversionTypes.containsKey(conversionTypeUri)) { // coherence of multiple paths is assumed
@@ -470,12 +489,23 @@ public class MMTF implements MMTFConstants {
 				conversions.add(operatorType.getUri()); // add new operator to be used
 				conversionTypes.put(conversionTypeUri, conversions);
 				// recursion
-				addConversionHierarchy(conversionType, conversionTypes);
+				createConversionHierarchy(conversionType, conversionTypes);
 			}
 		}
 	}
 
-	private static void initTypeHierarchy(MultiModel multiModel, Map<String, Set<String>> subtypeTable, Map<String, Map<String, List<String>>> conversionTable) {
+	/**
+	 * Creates the necessary structures to support the type hierarchy for a
+	 * multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel from which to extract the type hierarchy.
+	 * @param subtypeTable
+	 *            The table for subtyping in the multimodel.
+	 * @param conversionTable
+	 *            The table for model type conversion in the multimodel.
+	 */
+	private static void createTypeHierarchy(MultiModel multiModel, Map<String, Set<String>> subtypeTable, Map<String, Map<String, List<String>>> conversionTable) {
 
 		subtypeTable.clear();
 		conversionTable.clear();
@@ -484,24 +514,35 @@ public class MMTF implements MMTFConstants {
 			conversionTable.put(type.getUri(), new HashMap<String, List<String>>());
 		}
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
-			addTypeHierarchy(type, type, subtypeTable);
+			createSubtypeHierarchy(type, type, subtypeTable);
 		}
 		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
-			addConversionHierarchy(modelType, conversionTable.get(modelType.getUri()));
+			createConversionHierarchy(modelType, conversionTable.get(modelType.getUri()));
 			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelType)) {
-				addConversionHierarchy(modelType, conversionTable.get(modelSubtype.getUri()));
+				createConversionHierarchy(modelType, conversionTable.get(modelSubtype.getUri()));
 			}
 		}
 	}
 
-	public static void initTypeHierarchy() {
+	/**
+	 * Creates the necessary structures to support the type hierarchy for the
+	 * repository.
+	 */
+	public static void createTypeHierarchy() {
 
-		initTypeHierarchy(repository, subtypeTable, conversionTable);
+		createTypeHierarchy(repository, subtypeTable, conversionTable);
 	}
 
-	public static void initTypeHierarchy(MultiModel multiModel) {
+	/**
+	 * Creates the necessary structures to support the type hierarchy for the
+	 * Type MID.
+	 * 
+	 * @param multiModel
+	 *            The multimodel root of the Type MID.
+	 */
+	public static void createTypeHierarchy(MultiModel multiModel) {
 
-		initTypeHierarchy(multiModel, subtypeTableMID, conversionTableMID);
+		createTypeHierarchy(multiModel, subtypeTableMID, conversionTableMID);
 	}
 
 	/**
@@ -655,6 +696,14 @@ public class MMTF implements MMTFConstants {
 		storeRepository();
 	}
 
+	/**
+	 * Copies one subtype table into another (src -> tgt).
+	 * 
+	 * @param srcTable
+	 *            The source subtype table.
+	 * @param tgtTable
+	 *            The target subtype table.
+	 */
 	private static void copySubtypeTable(Map<String, Set<String>> srcTable, Map<String, Set<String>> tgtTable) {
 
 		for (Map.Entry<String, Set<String>> entry : srcTable.entrySet()) {
@@ -663,6 +712,14 @@ public class MMTF implements MMTFConstants {
 		}
 	}
 
+	/**
+	 * Copies one conversion table into another (src -> tgt).
+	 * 
+	 * @param srcTable
+	 *            The source conversion table.
+	 * @param tgtTable
+	 *            The target conversion table.
+	 */
 	private static void copyConversionTable(Map<String, Map<String, List<String>>> srcTable, Map<String, Map<String, List<String>>> tgtTable) {
 
 		for (Map.Entry<String, Map<String, List<String>>> entry : srcTable.entrySet()) {
@@ -675,9 +732,12 @@ public class MMTF implements MMTFConstants {
 		}
 	}
 
+	/**
+	 * Stores the repository into the Type MID file (repository -> Type MID).
+	 */
 	public static void storeRepository() {
 
-		initTypeHierarchy();
+		createTypeHierarchy();
 		copySubtypeTable(subtypeTable, subtypeTableMID);
 		copyConversionTable(conversionTable, conversionTableMID);
 		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
@@ -686,10 +746,16 @@ public class MMTF implements MMTFConstants {
 			MultiModelTypeIntrospection.writeRoot(repository, uri, false);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.ERROR, "Error creating type MID", e);
+			MMTFException.print(Type.ERROR, "Error creating Type MID file", e);
 		}
 	}
 
+	/**
+	 * Syncs the Type MID with the repository (TypeMID -> Repository).
+	 * 
+	 * @param multiModel
+	 *            The multimodel root of the Type MID.
+	 */
 	public static void syncRepository(MultiModel multiModel) {
 
 		List<OperatorExecutable> executables = new ArrayList<OperatorExecutable>();

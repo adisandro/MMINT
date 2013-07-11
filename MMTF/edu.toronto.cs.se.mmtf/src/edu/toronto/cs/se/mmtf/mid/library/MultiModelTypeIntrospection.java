@@ -198,13 +198,14 @@ public class MultiModelTypeIntrospection {
 	}
 
 	/**
-	 * Gets the root of an ECore file.
+	 * Gets the root of an ECore model file.
 	 * 
 	 * @param uri
-	 *            The uri to the ECore file.
-	 * @return The root of the ECore file.
+	 *            The uri of the ECore model file.
+	 * @return The root of the ECore model file.
 	 * @throws Exception
-	 *             If the uri is invalid or not corresponding to an ECore file.
+	 *             If the uri is invalid or not corresponding to an ECore model
+	 *             file.
 	 */
 	public static EObject getRoot(URI uri) throws Exception {
 
@@ -255,6 +256,16 @@ public class MultiModelTypeIntrospection {
 		}
 	}
 
+	/**
+	 * Writes the root of an ECore model into an ECore model file.
+	 * 
+	 * @param root
+	 *            The ECore model root.
+	 * @param uri
+	 *            The uri of the ECore model file.
+	 * @throws Exception
+	 *             If the ECore model file could not be created or overwritten.
+	 */
 	public static void writeRoot(EObject root, URI uri) throws Exception {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -263,6 +274,19 @@ public class MultiModelTypeIntrospection {
 		resource.save(Collections.EMPTY_MAP);
 	}
 
+	/**
+	 * Writes the root of an ECore model into an ECore model file.
+	 * 
+	 * @param root
+	 *            The ECore model root.
+	 * @param uri
+	 *            The uri of the ECore model file.
+	 * @param isWorkspace
+	 *            True if the uri is relative to the Eclipse workspace, false if
+	 *            it's absolute.
+	 * @throws Exception
+	 *             If the ECore model file could not be created or overwritten.
+	 */
 	public static void writeRoot(EObject root, String uri, boolean isWorkspace) throws Exception {
 
 		URI emfUri = (isWorkspace) ?

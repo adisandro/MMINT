@@ -58,7 +58,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -72,7 +72,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -107,7 +107,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
 		Model newModelType = MultiModelLightTypeFactory.createLightModelType(modelType, newModelTypeName, constraint[0], constraint[1]);
-		MMTF.initTypeHierarchy(multiModel);
+		MMTF.createTypeHierarchy(multiModel);
 
 		return newModelType;
 	}

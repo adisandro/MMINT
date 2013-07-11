@@ -55,7 +55,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -70,7 +70,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -90,7 +90,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 	protected void doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		MultiModelTypeFactory.removeModelElementTypeReference((ModelElementReference) getElementToDestroy());
-		MMTF.initTypeHierarchy((MultiModel) getElementToEdit().eContainer().eContainer());
+		MMTF.createTypeHierarchy((MultiModel) getElementToEdit().eContainer().eContainer());
 	}
 
 	@Override

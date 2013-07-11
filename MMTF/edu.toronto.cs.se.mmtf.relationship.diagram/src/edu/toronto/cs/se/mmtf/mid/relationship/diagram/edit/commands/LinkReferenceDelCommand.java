@@ -55,7 +55,7 @@ public class LinkReferenceDelCommand extends DestroyElementCommand {
 		IStatus status = super.doUndo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -70,7 +70,7 @@ public class LinkReferenceDelCommand extends DestroyElementCommand {
 		IStatus status = super.doRedo(monitor, info);
 		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer();
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMTF.initTypeHierarchy(multiModel);
+			MMTF.createTypeHierarchy(multiModel);
 		}
 
 		return status;
@@ -94,7 +94,7 @@ public class LinkReferenceDelCommand extends DestroyElementCommand {
 	protected void doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		MultiModelTypeFactory.removeLinkTypeAndLinkTypeReference((LinkReference) getElementToDestroy());
-		MMTF.initTypeHierarchy((MultiModel) getElementToEdit().eContainer());
+		MMTF.createTypeHierarchy((MultiModel) getElementToEdit().eContainer());
 	}
 
 	@Override
