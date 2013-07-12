@@ -672,7 +672,7 @@ public class MMTF implements MMTFConstants {
 			config = extensionsIter.next();
 			Editor editorType = createEditorType(config);
 			bundleTable.put(editorType.getUri(), config.getContributor().getName());
-			MultiModelHeavyTypeFactory.createHeavyModelTypeEditor(editorType, editorType.getModelUri());
+			MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 		}
 		// operator types
 		configs = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);

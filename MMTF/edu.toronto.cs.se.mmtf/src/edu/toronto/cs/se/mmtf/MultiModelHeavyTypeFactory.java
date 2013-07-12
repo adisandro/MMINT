@@ -181,7 +181,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" model element type to a model type.
+	 * Creates and adds a "heavy" model element type to the repository.
 	 * 
 	 * @param newModelElemTypeUri
 	 *            The uri of the new model element type.
@@ -198,7 +198,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            The model type that will contain the new model element type.
 	 * @return The created model element type.
 	 * @throws MMTFException
-	 *             if the uri of the new model element type is already
+	 *             If the uri of the new model element type is already
 	 *             registered in the repository.
 	 */
 	public static ModelElement createHeavyModelElementType(String newModelElemTypeUri, String modelElemTypeUri, String newModelElemTypeName, ModelElementCategory category, String classLiteral, Model modelType) throws MMTFException {
@@ -259,8 +259,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" model type endpoint and a reference to it to a
-	 * model relationship type.
+	 * Creates and adds a "heavy" model type endpoint and a reference to it to
+	 * the repository.
 	 * 
 	 * @param newModelTypeEndpointUri
 	 *            The uri of the new model type endpoint.
@@ -294,8 +294,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" link type and a reference to it to a model
-	 * relationship type.
+	 * Creates and adds a "heavy" link type and a reference to it to the
+	 * repository.
 	 * 
 	 * @param newLinkTypeUri
 	 *            The uri of the new link type.
@@ -330,7 +330,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 
 	/**
 	 * Creates and adds a "heavy" model element type endpoint and a reference to
-	 * it to a link type and its reference.
+	 * it to the repository.
 	 * 
 	 * @param newModelElemTypeEndpointUri
 	 *            The uri of the new model element type endpoint.
@@ -427,7 +427,15 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newEditorType;
 	}
 
-	public static void createHeavyModelTypeEditor(Editor editorType, String modelTypeUri) {
+	/**
+	 * Adds a "heavy" editor type for a model type.
+	 * 
+	 * @param editorType
+	 *            The editor type.
+	 * @param modelTypeUri
+	 *            The uri of the model type handled by the editor type.
+	 */
+	public static void addHeavyModelTypeEditor(Editor editorType, String modelTypeUri) {
 
 		Model modelType = MultiModelTypeRegistry.getType(modelTypeUri);
 		if (modelType != null) {
@@ -476,8 +484,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" parameter type (i.e. a formal parameter) to an
-	 * operator type.
+	 * Creates and adds a "heavy" parameter type (i.e. a formal parameter) to
+	 * the repository.
 	 * 
 	 * @param newParamTypeName
 	 *            The name of the new parameter type.

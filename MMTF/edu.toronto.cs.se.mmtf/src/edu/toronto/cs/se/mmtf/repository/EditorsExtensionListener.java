@@ -48,7 +48,7 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 			config = extension.getConfigurationElements();
 			for (IConfigurationElement elem : config) {
 				Editor editorType = MMTF.createEditorType(elem);
-				MultiModelHeavyTypeFactory.createHeavyModelTypeEditor(editorType, editorType.getModelUri());
+				MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 			}
 		}
 		MMTF.storeRepository();

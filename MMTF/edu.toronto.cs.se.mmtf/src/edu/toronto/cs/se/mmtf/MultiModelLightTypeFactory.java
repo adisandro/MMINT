@@ -46,39 +46,101 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
  */
 public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
-	private static String getExtendibleTypeRootUri(ExtendibleElement type) {
+	/**
+	 * Gets the base uri of a "light" type by cutting its last fragment.
+	 * 
+	 * @param type
+	 *            The type.
+	 * @return The base uri of the type.
+	 */
+	private static String getLightTypeBaseUri(ExtendibleElement type) {
 
-		String rootUri = type.getUri();
-		int cut = rootUri.lastIndexOf(MMTF.URI_SEPARATOR);
+		String baseUri = type.getUri();
+		int cut = baseUri.lastIndexOf(MMTF.URI_SEPARATOR);
 		if (cut == -1) {
 			cut = type.getUri().length();
 		}
-		rootUri = type.getUri().substring(0, cut);
+		baseUri = type.getUri().substring(0, cut);
 
-		return rootUri;
+		return baseUri;
 	}
 
-	public static String getNewExtendibleTypeUri(ExtendibleElement type, String newTypeUriFragment, String newTypeName) {
+	/**
+	 * Creates a uri for a new "light" type (the base uri + the eventual uri
+	 * fragment + the name of the new type).
+	 * 
+	 * @param baseType
+	 *            The base type from which the uri of the new type will be
+	 *            constructed.
+	 * @param newTypeFragmentUri
+	 *            The uri fragment to be appended as part of the uri of the new
+	 *            type, can be null.
+	 * @param newTypeName
+	 *            The name of the new type.
+	 * @return The uri of the new type.
+	 */
+	public static String createNewLightTypeUri(ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName) {
 
-		String rootUri = getExtendibleTypeRootUri(type);
-		String newTypeUri = (newTypeUriFragment == null) ?
-			rootUri + MMTF.URI_SEPARATOR + newTypeName :
-			rootUri + MMTF.URI_SEPARATOR + newTypeUriFragment + MMTF.URI_SEPARATOR + newTypeName;
+		String baseUri = getLightTypeBaseUri(baseType);
+		String newTypeUri = (newTypeFragmentUri == null) ?
+			baseUri + MMTF.URI_SEPARATOR + newTypeName :
+			baseUri + MMTF.URI_SEPARATOR + newTypeFragmentUri + MMTF.URI_SEPARATOR + newTypeName;
 
 		return newTypeUri;
 	}
 
-	private static void addLightExtendibleType(ExtendibleElement newType, ExtendibleElement type, ExtendibleElement rootUriType, String newTypeUriFragment, String newTypeName, MultiModel multiModel) throws MMTFException {
+	/**
+	 * Adds a "light" type to a multimodel.
+	 * 
+	 * @param newType
+	 *            The new type to be added.
+	 * @param type
+	 *            The supertype of the new type.
+	 * @param baseType
+	 *            The base type from which the uri of the new type will be
+	 *            constructed.
+	 * @param newTypeFragmentUri
+	 *            The uri fragment to be appended as part of the uri of the new
+	 *            type, can be null.
+	 * @param newTypeName
+	 *            The name of the new type.
+	 * @param multiModel
+	 *            The multimodel that will contain the new type.
+	 * @throws MMTFException
+	 *             If the uri of the new type is already registered in the Type
+	 *             MID.
+	 */
+	private static void addLightType(ExtendibleElement newType, ExtendibleElement type, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName, MultiModel multiModel) throws MMTFException {
 
-		String newTypeUri = getNewExtendibleTypeUri(rootUriType, newTypeUriFragment, newTypeName);
+		String newTypeUri = createNewLightTypeUri(baseType, newTypeFragmentUri, newTypeName);
 		addType(newType, type, newTypeUri, newTypeName, multiModel);
 		newType.setDynamic(true);
 	}
 
+	/**
+	 * Adds a "light" model type to the Type MID, together with an editor type
+	 * for it.
+	 * 
+	 * @param newModelType
+	 *            The new model type to be added.
+	 * @param modelType
+	 *            The supertype of the new model type.
+	 * @param newModelTypeName
+	 *            The name of the new model type.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the
+	 *            new model type, null if no constraint is associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated
+	 *            with the new model type, null if no constraint is associated.
+	 * @throws MMTFException
+	 *             If the uri of the new model type is already registered in the
+	 *             Type MID.
+	 */
 	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) modelType.eContainer();
-		addLightExtendibleType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);
+		addLightType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);
 		addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 		newModelType.setFileExtension(modelType.getFileExtension());
@@ -96,6 +158,24 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
+	/**
+	 * Creates and adds a "light" model type to the Type MID.
+	 * 
+	 * @param modelType
+	 *            The supertype of the new model type.
+	 * @param newModelTypeName
+	 *            The name of the new model type.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the
+	 *            new model type, null if no constraint is associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated
+	 *            with the new model type, null if no constraint is associated.
+	 * @return The created model type.
+	 * @throws MMTFException
+	 *             If the uri of the new model type is already registered in the
+	 *             Type MID.
+	 */
 	public static Model createLightModelType(Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		Model newModelType = MidFactory.eINSTANCE.createModel();
@@ -104,16 +184,40 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newModelType;
 	}
 
-	public static ModelElementReference createLightModelElementTypeAndModelElementTypeReference(ModelEndpointReference modelTypeEndpointRef, ModelElement modelElemType, ModelElementReference modelElemTypeRef, String newModelElemTypeName, ModelElementCategory category, String classLiteral) throws MMTFException {
+	/**
+	 * Creates and adds a "light" model element type and a reference to it to
+	 * the Type MID.
+	 * 
+	 * @param modelElemType
+	 *            The supertype of the new model element type.
+	 * @param modelElemTypeRef
+	 *            The reference to the supertype of the new model element type,
+	 *            null if such reference doesn't exist in the model type
+	 *            endpoint reference container.
+	 * @param newModelElemTypeName
+	 *            The name of the new model element type.
+	 * @param category
+	 *            The category of the new model element type.
+	 * @param classLiteral
+	 *            The class name of the new model element type.
+	 * @param modelTypeEndpointRef
+	 *            The reference to the model type endpoint that will contain the
+	 *            new reference to the model element type.
+	 * @return The created reference to the new model element type.
+	 * @throws MMTFException
+	 *             If the uri of the new model element type is already
+	 *             registered in the Type MID.
+	 */
+	public static ModelElementReference createLightModelElementTypeAndModelElementTypeReference(ModelElement modelElemType, ModelElementReference modelElemTypeRef, String newModelElemTypeName, ModelElementCategory category, String classLiteral, ModelEndpointReference modelTypeEndpointRef) throws MMTFException {
 
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-		String newTypeUri = getNewExtendibleTypeUri(modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
+		String newTypeUri = createNewLightTypeUri(modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
 		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newTypeUri, multiModel);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = MidFactory.eINSTANCE.createModelElement();
-			addLightExtendibleType(newModelElemType, modelElemType, modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName, multiModel);
+			addLightType(newModelElemType, modelElemType, modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName, multiModel);
 			addModelElementType(newModelElemType, category, classLiteral, modelTypeEndpointRef.getObject().getTarget());
 		}
 		// create the reference of the "thing"
@@ -132,6 +236,27 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newModelElemTypeRef;
 	}
 
+	/**
+	 * Creates and adds a "light" model relationship type to the Type MID.
+	 * 
+	 * @param modelRelType
+	 *            The supertype of the new model relationship type.
+	 * @param newModelRelTypeName
+	 *            The name of the new model relationship type.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the
+	 *            new model relationship type, null if no constraint is
+	 *            associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated
+	 *            with the new model relationship type, null if no constraint is
+	 *            associated.
+	 * @param modelRelTypeClass
+	 * @return The created model relationship type.
+	 * @throws MMTFException
+	 *             If the uri of the new model relationship type is already
+	 *             registered in the Type MID.
+	 */
 	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation, EClass modelRelTypeClass) throws MMTFException {
 
 		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
@@ -146,7 +271,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		// create the "thing" and the corresponding reference
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		addLightExtendibleType(newModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
+		addLightType(newModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
 		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, isBinarySrc, modelRelType);
 		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, isBinarySrc, modelRelType);
 		// create references of the "thing" in subtypes of the container
@@ -164,7 +289,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
 		// modify the "thing" and the corresponding reference
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-		addLightExtendibleType(oldModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
+		addLightType(oldModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
 		oldModelTypeEndpoint.setTarget(newModelType);
 		if (modelTypeEndpointRef != null) {
 			ModelEndpointReference oldModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
@@ -185,7 +310,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		// create the "thing" and the corresponding reference
 		Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
-		addLightExtendibleType(newLinkType, linkType, modelRelType, modelRelType.getName(), newLinkTypeName, multiModel);
+		addLightType(newLinkType, linkType, modelRelType, modelRelType.getName(), newLinkTypeName, multiModel);
 		addLinkType(newLinkType, linkType, modelRelType);
 		LinkReference newLinkTypeRef = createLinkTypeReference(newLinkType, linkTypeRef, newLinkTypeRefClass, true, modelRelType);
 		// create references of the "thing" in subtypes of the container
@@ -208,7 +333,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		// create the "thing" and the corresponding reference
 		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
-		addLightExtendibleType(newModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName, multiModel);
+		addLightType(newModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName, multiModel);
 		addModelElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemType, isBinarySrc, linkType);
 		ModelElementEndpointReference newModelElemTypeEndpointRef = createModelElementTypeEndpointReference(newModelElemTypeEndpoint, modelElemTypeEndpointRef, newModelElemTypeRef, true, isBinarySrc, linkTypeRef);
 		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, linkType);
@@ -242,7 +367,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) newModelElemTypeRef.eContainer();
 		MultiModel multiModel = (MultiModel) linkTypeRef.eContainer().eContainer();
 		// modify the "thing" and the corresponding reference
-		addLightExtendibleType(oldModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemType.getName(), newModelElemTypeEndpointName, multiModel);
+		addLightType(oldModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemType.getName(), newModelElemTypeEndpointName, multiModel);
 		oldModelElemTypeEndpoint.setTarget(newModelElemType);
 		oldModelElemTypeEndpointRef.setModelElemRef(newModelElemTypeRef);
 		if (modelElemTypeEndpointRef != null) {
@@ -265,11 +390,37 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
-	public static Editor createLightEditorType(Editor editorType, String newEditorTypeUriFragment, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, EClass newEditorTypeClass) throws MMTFException {
+	/**
+	 * Creates and adds a "light" editor type to the Type MID.
+	 * 
+	 * @param editorType
+	 *            The supertype of the new editor type.
+	 * @param newEditorTypeFragmentUri
+	 *            The uri fragment to be appended as part of the uri of the new
+	 *            editor type.
+	 * @param newEditorTypeName
+	 *            The name of the new editor type.
+	 * @param modelTypeUri
+	 *            The uri of the model type handled by the new editor type.
+	 * @param editorId
+	 *            The id of the corresponding Eclipse editor.
+	 * @param wizardId
+	 *            The wizard id of the corresponding Eclipse editor.
+	 * @param wizardDialogClassName
+	 *            The fully qualified name of a Java class that handles the
+	 *            creation of the model type through the new editor type.
+	 * @param newEditorTypeClass
+	 *            The class of the new editor type.
+	 * @return The created editor type.
+	 * @throws MMTFException
+	 *             If the uri of the new editor type is already registered in
+	 *             the multimodel.
+	 */
+	public static Editor createLightEditorType(Editor editorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, EClass newEditorTypeClass) throws MMTFException {
 
 		Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
 		MultiModel multiModel = (MultiModel) editorType.eContainer();
-		addLightExtendibleType(newEditorType, editorType, editorType, newEditorTypeUriFragment, newEditorTypeName, multiModel);
+		addLightType(newEditorType, editorType, editorType, newEditorTypeFragmentUri, newEditorTypeName, multiModel);
 		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, multiModel);
 
 		for (String fileExtension : editorType.getFileExtensions()) {
@@ -311,12 +462,12 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemType.getUri(), newModelTypeEndpointRefSuper.getModelElemRefs());
 				}
 				createLightModelElementTypeAndModelElementTypeReference(
-					newModelTypeEndpointRef,
 					modelElemType,
 					modelElemTypeRef,
 					oldModelElemTypeRef.getObject().getName(),
 					oldModelElemTypeRef.getObject().getCategory(),
-					oldModelElemTypeRef.getObject().getClassLiteral()
+					oldModelElemTypeRef.getObject().getClassLiteral(),
+					newModelTypeEndpointRef
 				);
 			}
 		}

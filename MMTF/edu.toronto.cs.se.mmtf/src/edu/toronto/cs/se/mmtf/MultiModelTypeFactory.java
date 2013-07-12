@@ -381,6 +381,14 @@ public class MultiModelTypeFactory {
 		multiModel.getEditors().add(newEditorType);
 	}
 
+	/**
+	 * Adds a editor type to a model type.
+	 * 
+	 * @param editorType
+	 *            The editor type.
+	 * @param modelType
+	 *            The model type handled by the editor type.
+	 */
 	protected static void addModelTypeEditor(Editor editorType, Model modelType) {
 
 		modelType.getEditors().add(editorType);

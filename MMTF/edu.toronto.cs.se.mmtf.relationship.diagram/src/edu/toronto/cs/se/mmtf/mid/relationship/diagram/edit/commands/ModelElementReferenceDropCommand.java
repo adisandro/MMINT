@@ -155,7 +155,7 @@ supertypes:
 					continue;
 				}
 				for (ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper : modelTypeEndpointRefsOrModelTypeEndpointRefsSuper) {
-					modelElemTypeUri = MultiModelLightTypeFactory.getNewExtendibleTypeUri(modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject(), null, modelElemTypeUri);
+					modelElemTypeUri = MultiModelLightTypeFactory.createNewLightTypeUri(modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject(), null, modelElemTypeUri);
 					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
 					if (modelElemTypeRef != null) {
 						modelElemType = modelElemTypeRef.getObject();
@@ -178,12 +178,12 @@ supertypes:
 		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(newModelObj);
 		String classLiteral = newModelElemUri; // class literal == name
 		ModelElementReference newModelElemTypeRef = MultiModelLightTypeFactory.createLightModelElementTypeAndModelElementTypeReference(
-			modelTypeEndpointRef,
 			modelElemType,
 			modelElemTypeRef,
 			newModelElemUri,
 			category,
-			classLiteral
+			classLiteral,
+			modelTypeEndpointRef
 		);
 		MAVOUtils.initializeMAVOModelElementReference(newModelObj, newModelElemTypeRef);
 		MMTF.createTypeHierarchy(multiModel);
