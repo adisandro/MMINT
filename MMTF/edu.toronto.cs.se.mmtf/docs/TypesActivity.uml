@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ftB-0O4lEeK0qO9Xg62bGw" name="model">
-  <packagedElement xmi:type="uml:Activity" xmi:id="_ftIFcO4lEeK0qO9Xg62bGw" name="TypesActivity"/>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_ftIFcO4lEeK0qO9Xg62bGw" name="TypesActivity" node="_w8_DsO4lEeK0qO9Xg62bGw _xsEXQO4lEeK0qO9Xg62bGw _04OKMO4lEeK0qO9Xg62bGw _10pWMO4lEeK0qO9Xg62bGw _kMcT8O4mEeK0qO9Xg62bGw _2q-EwO4mEeK0qO9Xg62bGw">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_Ti_1cO4mEeK0qO9Xg62bGw">
+      <body>The Type MID consists of two files named types.mid and types.middiag
+The repository is the Type MID in memory</body>
+    </ownedComment>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_l41kUO4mEeK0qO9Xg62bGw" name="createTypeHieararchy"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_A_zAEe4mEeK0qO9Xg62bGw" name="ControlFlow1" source="_w8_DsO4lEeK0qO9Xg62bGw" target="_xsEXQO4lEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ED-isO4mEeK0qO9Xg62bGw" name="ControlFlow2" source="_58wbEO4lEeK0qO9Xg62bGw" target="_04OKMO4lEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Env-IO4mEeK0qO9Xg62bGw" name="ControlFlow3" source="_04OKMO4lEeK0qO9Xg62bGw" target="_8j6DgO4lEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_KxotgO4mEeK0qO9Xg62bGw" name="ControlFlow4" source="_HM40YO4mEeK0qO9Xg62bGw" target="_2q-EwO4mEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_LaIQ4O4mEeK0qO9Xg62bGw" name="ControlFlow5" source="_04OKMO4lEeK0qO9Xg62bGw" target="_2q-EwO4mEeK0qO9Xg62bGw">
+      <guard xmi:type="uml:LiteralString" xmi:id="_RXuQsO4mEeK0qO9Xg62bGw" name="no" value="no previous Type MID"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ycXWUO4mEeK0qO9Xg62bGw" name="ControlFlow6" source="_2q-EwO4mEeK0qO9Xg62bGw" target="_l5SQQO4mEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_w8_DsO4lEeK0qO9Xg62bGw" name="InitialNode1" outgoing="_A_zAEe4mEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_xsEXQO4lEeK0qO9Xg62bGw" name="Read extensions" incoming="_A_zAEe4mEeK0qO9Xg62bGw">
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_58wbEO4lEeK0qO9Xg62bGw" name="repository" outgoing="_ED-isO4mEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_58zeYO4lEeK0qO9Xg62bGw" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:DecisionNode" xmi:id="_04OKMO4lEeK0qO9Xg62bGw" name="DecisionNode1" outgoing="_Env-IO4mEeK0qO9Xg62bGw _LaIQ4O4mEeK0qO9Xg62bGw" incoming="_ED-isO4mEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_10pWMO4lEeK0qO9Xg62bGw" name="Read previous Type MID's light types">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_8j6DgO4lEeK0qO9Xg62bGw" name="repository" incoming="_Env-IO4mEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_8j9G0O4lEeK0qO9Xg62bGw" value="1"/>
+      </inputValue>
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_HM40YO4mEeK0qO9Xg62bGw" name="repository" outgoing="_KxotgO4mEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_HM7QoO4mEeK0qO9Xg62bGw" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:CallOperationAction" xmi:id="_kMcT8O4mEeK0qO9Xg62bGw" name="createTypeHierarchy()" operation="_l41kUO4mEeK0qO9Xg62bGw">
+      <target xmi:type="uml:InputPin" xmi:id="_l5SQQO4mEeK0qO9Xg62bGw" name="repository" incoming="_ycXWUO4mEeK0qO9Xg62bGw" type="_ftIFcO4lEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_l5SQQe4mEeK0qO9Xg62bGw" value="1"/>
+      </target>
+    </node>
+    <node xmi:type="uml:MergeNode" xmi:id="_2q-EwO4mEeK0qO9Xg62bGw" name="MergeNode1" outgoing="_ycXWUO4mEeK0qO9Xg62bGw" incoming="_KxotgO4mEeK0qO9Xg62bGw _LaIQ4O4mEeK0qO9Xg62bGw"/>
+  </packagedElement>
 </uml:Model>
