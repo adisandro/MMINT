@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ftLv0O4lEeK0qO9Xg62bGw" type="PapyrusUMLActivityDiagram" name="TypesActivity" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_ftLv0e4lEeK0qO9Xg62bGw" type="2001" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ftLv0u4lEeK0qO9Xg62bGw" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ftLv1O4lEeK0qO9Xg62bGw" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ftLv1e4lEeK0qO9Xg62bGw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ftLv1u4lEeK0qO9Xg62bGw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ftLv1-4lEeK0qO9Xg62bGw"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ftLv2O4lEeK0qO9Xg62bGw" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ftLv2e4lEeK0qO9Xg62bGw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ftLv2u4lEeK0qO9Xg62bGw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ftLv2-4lEeK0qO9Xg62bGw"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ftLv3O4lEeK0qO9Xg62bGw" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ftLv3e4lEeK0qO9Xg62bGw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ftLv3u4lEeK0qO9Xg62bGw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ftLv3-4lEeK0qO9Xg62bGw"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ftLv4O4lEeK0qO9Xg62bGw" type="7004">
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ftLv4e4lEeK0qO9Xg62bGw"/>
+    </children>
+    <element xmi:type="uml:Activity" href="TypesActivity.uml#_ftIFcO4lEeK0qO9Xg62bGw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ftLv4u4lEeK0qO9Xg62bGw"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_ftLv4-4lEeK0qO9Xg62bGw"/>
+  <element xmi:type="uml:Activity" href="TypesActivity.uml#_ftIFcO4lEeK0qO9Xg62bGw"/>
+</notation:Diagram>
