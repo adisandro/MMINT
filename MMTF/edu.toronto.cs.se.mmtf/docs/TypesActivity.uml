@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ftB-0O4lEeK0qO9Xg62bGw" name="model">
-  <packagedElement xmi:type="uml:Activity" xmi:id="_ftIFcO4lEeK0qO9Xg62bGw" name="TypesActivity" node="_w8_DsO4lEeK0qO9Xg62bGw _xsEXQO4lEeK0qO9Xg62bGw _04OKMO4lEeK0qO9Xg62bGw _10pWMO4lEeK0qO9Xg62bGw _2q-EwO4mEeK0qO9Xg62bGw _Z-SfEO5AEeK0qO9Xg62bGw _sqSEIO5AEeK0qO9Xg62bGw _7O4WAO5AEeK0qO9Xg62bGw __fP_AO5AEeK0qO9Xg62bGw _tGwIQO5BEeK0qO9Xg62bGw _u7nYIO5BEeK0qO9Xg62bGw _wdWQoO5BEeK0qO9Xg62bGw">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_ftIFcO4lEeK0qO9Xg62bGw" name="TypesActivity" node="_w8_DsO4lEeK0qO9Xg62bGw _xsEXQO4lEeK0qO9Xg62bGw _04OKMO4lEeK0qO9Xg62bGw _10pWMO4lEeK0qO9Xg62bGw _2q-EwO4mEeK0qO9Xg62bGw _Z-SfEO5AEeK0qO9Xg62bGw _sqSEIO5AEeK0qO9Xg62bGw _7O4WAO5AEeK0qO9Xg62bGw __fP_AO5AEeK0qO9Xg62bGw _tGwIQO5BEeK0qO9Xg62bGw _u7nYIO5BEeK0qO9Xg62bGw _wdWQoO5BEeK0qO9Xg62bGw _ZTsYAO5CEeK0qO9Xg62bGw _elb-cO5CEeK0qO9Xg62bGw _srAyAO5CEeK0qO9Xg62bGw _3P4e8O5CEeK0qO9Xg62bGw _AvZtYO5DEeK0qO9Xg62bGw _BvPZwO5DEeK0qO9Xg62bGw _ZfY1MO5DEeK0qO9Xg62bGw _qOhsAO5DEeK0qO9Xg62bGw _GcKmcO5EEeK0qO9Xg62bGw _XF3joO5EEeK0qO9Xg62bGw">
     <ownedComment xmi:type="uml:Comment" xmi:id="_Ti_1cO4mEeK0qO9Xg62bGw" annotatedElement="_sqSEIO5AEeK0qO9Xg62bGw">
       <body>The Type MID consists of two files named &quot;types.mid&quot; and &quot;types.middiag&quot;.
 The &quot;repository&quot; is the Type MID in memory.
@@ -36,6 +36,29 @@ The &quot;multimodel&quot; is another temporary Type MID in memory; it will beco
       <weight xmi:type="uml:LiteralInteger" xmi:id="_BTo4UO5CEeK0qO9Xg62bGw" value="1"/>
     </edge>
     <edge xmi:type="uml:ControlFlow" xmi:id="_IV-5sO5CEeK0qO9Xg62bGw" name="ControlFlow12" source="_EGKqUO5CEeK0qO9Xg62bGw" target="_2q-EwO4mEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_pGKyQO5CEeK0qO9Xg62bGw" name="ControlFlow13" source="_aSDdsO5CEeK0qO9Xg62bGw" target="_ZTsYAO5CEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_pxZgkO5CEeK0qO9Xg62bGw" name="ControlFlow14" source="_ZTsYAO5CEeK0qO9Xg62bGw" target="_kXVroO5CEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_1dxBEO5CEeK0qO9Xg62bGw" name="ControlFlow15" source="_ijS7IO5CEeK0qO9Xg62bGw" target="_xpooIO5CEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_4iD4gO5CEeK0qO9Xg62bGw" name="ControlFlow16" source="_vhhFEO5CEeK0qO9Xg62bGw" target="_3P4e8O5CEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5T4-EO5CEeK0qO9Xg62bGw" name="ControlFlow17" source="_3P4e8O5CEeK0qO9Xg62bGw" target="_ZTsYAO5CEeK0qO9Xg62bGw">
+      <guard xmi:type="uml:LiteralString" xmi:id="__T28cO5CEeK0qO9Xg62bGw" name="more" value="more"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_PdQo8O5DEeK0qO9Xg62bGw" name="ControlFlow18" source="_3P4e8O5CEeK0qO9Xg62bGw" target="_F95ykO5DEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_QdYCIO5DEeK0qO9Xg62bGw" name="ControlFlow19" source="_LhpH8O5DEeK0qO9Xg62bGw" target="_HaEOkO5DEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ObjectFlow" xmi:id="_VQlScO5DEeK0qO9Xg62bGw" name="ObjectFlow4" source="_STUQEO5DEeK0qO9Xg62bGw" target="_sqSEIO5AEeK0qO9Xg62bGw">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_VQxfsO5DEeK0qO9Xg62bGw" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_VQz78O5DEeK0qO9Xg62bGw" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_bJjQ8O5DEeK0qO9Xg62bGw" name="ControlFlow20" source="_BvPZwO5DEeK0qO9Xg62bGw" target="_ZfY1MO5DEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_bt7wYO5DEeK0qO9Xg62bGw" name="ControlFlow21" source="_ZfY1MO5DEeK0qO9Xg62bGw" target="_ZTsYAO5CEeK0qO9Xg62bGw">
+      <guard xmi:type="uml:LiteralString" xmi:id="_fUdLIO5DEeK0qO9Xg62bGw" name="more" value="more"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_sUQCYO5DEeK0qO9Xg62bGw" name="ControlFlow22" source="_ZfY1MO5DEeK0qO9Xg62bGw" target="_qOhsAO5DEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_H08-UO5EEeK0qO9Xg62bGw" name="ControlFlow23" source="_qOhsAO5DEeK0qO9Xg62bGw" target="_GcKmcO5EEeK0qO9Xg62bGw"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_JDPWYO5EEeK0qO9Xg62bGw" name="ControlFlow24" source="_GcKmcO5EEeK0qO9Xg62bGw" target="_7O4WAO5AEeK0qO9Xg62bGw">
+      <guard xmi:type="uml:LiteralString" xmi:id="_P7TaYO5EEeK0qO9Xg62bGw" name="more" value="more"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_X2jZsO5EEeK0qO9Xg62bGw" name="ControlFlow25" source="_GcKmcO5EEeK0qO9Xg62bGw" target="_XF3joO5EEeK0qO9Xg62bGw"/>
     <node xmi:type="uml:InitialNode" xmi:id="_w8_DsO4lEeK0qO9Xg62bGw" name="InitialNode1" outgoing="_A_zAEe4mEeK0qO9Xg62bGw"/>
     <node xmi:type="uml:OpaqueAction" xmi:id="_xsEXQO4lEeK0qO9Xg62bGw" name="Read extensions" incoming="_A_zAEe4mEeK0qO9Xg62bGw">
       <outputValue xmi:type="uml:OutputPin" xmi:id="_58wbEO4lEeK0qO9Xg62bGw" name="repository" outgoing="_ED-isO4mEeK0qO9Xg62bGw" isControlType="true">
@@ -63,10 +86,10 @@ The &quot;multimodel&quot; is another temporary Type MID in memory; it will beco
         <upperBound xmi:type="uml:LiteralInteger" xmi:id="_gwTlcO5AEeK0qO9Xg62bGw" value="1"/>
       </outputValue>
     </node>
-    <node xmi:type="uml:DataStoreNode" xmi:id="_sqSEIO5AEeK0qO9Xg62bGw" name="Type MID" outgoing="_zlEE8O5AEeK0qO9Xg62bGw _BTa14O5CEeK0qO9Xg62bGw" incoming="_1IYR0O5AEeK0qO9Xg62bGw">
+    <node xmi:type="uml:DataStoreNode" xmi:id="_sqSEIO5AEeK0qO9Xg62bGw" name="Type MID" outgoing="_zlEE8O5AEeK0qO9Xg62bGw _BTa14O5CEeK0qO9Xg62bGw" incoming="_1IYR0O5AEeK0qO9Xg62bGw _VQlScO5DEeK0qO9Xg62bGw">
       <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sqUgYO5AEeK0qO9Xg62bGw" value="1"/>
     </node>
-    <node xmi:type="uml:MergeNode" xmi:id="_7O4WAO5AEeK0qO9Xg62bGw" name="MergeNode2" outgoing="_uCkQQO5BEeK0qO9Xg62bGw" incoming="_RSPfgO5BEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_7O4WAO5AEeK0qO9Xg62bGw" name="MergeNode2" outgoing="_uCkQQO5BEeK0qO9Xg62bGw" incoming="_RSPfgO5BEeK0qO9Xg62bGw _JDPWYO5EEeK0qO9Xg62bGw"/>
     <node xmi:type="uml:OpaqueAction" xmi:id="__fP_AO5AEeK0qO9Xg62bGw" name="storeRepository()" outgoing="_RSPfgO5BEeK0qO9Xg62bGw">
       <inputValue xmi:type="uml:InputPin" xmi:id="_DC99YO5BEeK0qO9Xg62bGw" name="repository" incoming="_-A7m4O5AEeK0qO9Xg62bGw" isControlType="true">
         <upperBound xmi:type="uml:LiteralInteger" xmi:id="_DDAZoO5BEeK0qO9Xg62bGw" value="1"/>
@@ -80,11 +103,52 @@ The &quot;multimodel&quot; is another temporary Type MID in memory; it will beco
       <inputValue xmi:type="uml:InputPin" xmi:id="_-644QO5BEeK0qO9Xg62bGw" name="types.middiag" incoming="_BTa14O5CEeK0qO9Xg62bGw">
         <upperBound xmi:type="uml:LiteralInteger" xmi:id="_-67UgO5BEeK0qO9Xg62bGw" value="1"/>
       </inputValue>
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_aSDdsO5CEeK0qO9Xg62bGw" name="multimodel" outgoing="_pGKyQO5CEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_aSF58O5CEeK0qO9Xg62bGw" value="1"/>
+      </outputValue>
     </node>
     <node xmi:type="uml:OpaqueAction" xmi:id="_wdWQoO5BEeK0qO9Xg62bGw" name="Install/uninstall extension" incoming="_22x34O5BEeK0qO9Xg62bGw">
       <outputValue xmi:type="uml:OutputPin" xmi:id="_EGKqUO5CEeK0qO9Xg62bGw" name="repository" outgoing="_IV-5sO5CEeK0qO9Xg62bGw" isControlType="true">
         <upperBound xmi:type="uml:LiteralInteger" xmi:id="_EGO7wO5CEeK0qO9Xg62bGw" value="1"/>
       </outputValue>
     </node>
+    <node xmi:type="uml:MergeNode" xmi:id="_ZTsYAO5CEeK0qO9Xg62bGw" name="MergeNode3" outgoing="_pxZgkO5CEeK0qO9Xg62bGw" incoming="_pGKyQO5CEeK0qO9Xg62bGw _5T4-EO5CEeK0qO9Xg62bGw _bt7wYO5DEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_elb-cO5CEeK0qO9Xg62bGw" name="Create/modify/delete light type">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_kXVroO5CEeK0qO9Xg62bGw" name="multimodel" incoming="_pxZgkO5CEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_kXYu8O5CEeK0qO9Xg62bGw" value="1"/>
+      </inputValue>
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_ijS7IO5CEeK0qO9Xg62bGw" name="multimodel" outgoing="_1dxBEO5CEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_ijWlgO5CEeK0qO9Xg62bGw" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_srAyAO5CEeK0qO9Xg62bGw" name="createTypeHierarchy()">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_xpooIO5CEeK0qO9Xg62bGw" name="multimodel" incoming="_1dxBEO5CEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_xprrcO5CEeK0qO9Xg62bGw" value="1"/>
+      </inputValue>
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_vhhFEO5CEeK0qO9Xg62bGw" name="multimodel" outgoing="_4iD4gO5CEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_vhjhUO5CEeK0qO9Xg62bGw" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:DecisionNode" xmi:id="_3P4e8O5CEeK0qO9Xg62bGw" name="DecisionNode3" outgoing="_5T4-EO5CEeK0qO9Xg62bGw _PdQo8O5DEeK0qO9Xg62bGw" incoming="_4iD4gO5CEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_AvZtYO5DEeK0qO9Xg62bGw" name="syncRepository()">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_F95ykO5DEeK0qO9Xg62bGw" name="multimodel" incoming="_PdQo8O5DEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_F99c8O5DEeK0qO9Xg62bGw" value="1"/>
+      </inputValue>
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_LhpH8O5DEeK0qO9Xg62bGw" name="repository" outgoing="_QdYCIO5DEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_LhrkMO5DEeK0qO9Xg62bGw" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_BvPZwO5DEeK0qO9Xg62bGw" name="Save Type MID" outgoing="_bJjQ8O5DEeK0qO9Xg62bGw">
+      <inputValue xmi:type="uml:InputPin" xmi:id="_HaEOkO5DEeK0qO9Xg62bGw" name="repository" incoming="_QdYCIO5DEeK0qO9Xg62bGw" isControlType="true">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_HaHR4O5DEeK0qO9Xg62bGw" value="1"/>
+      </inputValue>
+      <outputValue xmi:type="uml:OutputPin" xmi:id="_STUQEO5DEeK0qO9Xg62bGw" name="repository" outgoing="_VQlScO5DEeK0qO9Xg62bGw">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_STX6cO5DEeK0qO9Xg62bGw" value="1"/>
+      </outputValue>
+    </node>
+    <node xmi:type="uml:DecisionNode" xmi:id="_ZfY1MO5DEeK0qO9Xg62bGw" name="DecisionNode4" outgoing="_bt7wYO5DEeK0qO9Xg62bGw _sUQCYO5DEeK0qO9Xg62bGw" incoming="_bJjQ8O5DEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_qOhsAO5DEeK0qO9Xg62bGw" name="Close Type MID" outgoing="_H08-UO5EEeK0qO9Xg62bGw" incoming="_sUQCYO5DEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_GcKmcO5EEeK0qO9Xg62bGw" name="DecisionNode5" outgoing="_JDPWYO5EEeK0qO9Xg62bGw _X2jZsO5EEeK0qO9Xg62bGw" incoming="_H08-UO5EEeK0qO9Xg62bGw"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_XF3joO5EEeK0qO9Xg62bGw" name="ActivityFinalNode1" incoming="_X2jZsO5EEeK0qO9Xg62bGw"/>
   </packagedElement>
 </uml:Model>
