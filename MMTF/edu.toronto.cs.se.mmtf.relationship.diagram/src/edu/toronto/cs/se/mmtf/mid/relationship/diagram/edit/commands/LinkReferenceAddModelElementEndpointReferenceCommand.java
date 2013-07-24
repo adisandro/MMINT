@@ -96,12 +96,12 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
 		ModelElementEndpointReference newModelElemTypeEndpointRef = MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			getSource(),
 			modelElemTypeEndpoint,
 			modelElemTypeEndpointRef,
-			getTarget(),
 			newModelElemTypeEndpointName,
-			false
+			getTarget(),
+			false,
+			getSource()
 		);
 		// no need to init type hierarchy, no need for undo/redo
 

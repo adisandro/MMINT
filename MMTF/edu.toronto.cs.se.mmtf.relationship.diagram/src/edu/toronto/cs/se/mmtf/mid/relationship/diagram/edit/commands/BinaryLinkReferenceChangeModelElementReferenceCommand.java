@@ -135,11 +135,11 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.replaceLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
 			oldModelElemTypeEndpointRef,
-			linkTypeRef,
 			modelElemTypeEndpoint,
 			modelElemTypeEndpointRef,
+			newModelElemTypeEndpointName,
 			modelElemTypeRef,
-			newModelElemTypeEndpointName
+			linkTypeRef
 		);
 		// no need to init type hierarchy, no need for undo/redo
 	}

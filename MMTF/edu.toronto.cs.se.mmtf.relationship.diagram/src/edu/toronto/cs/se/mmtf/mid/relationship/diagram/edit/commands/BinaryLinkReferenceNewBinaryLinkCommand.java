@@ -142,12 +142,12 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, getSource(), getTarget());
 		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
 		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) MultiModelLightTypeFactory.createLightLinkTypeAndLinkTypeReference(
-			modelRelType,
 			linkTypeRef.getObject(),
 			linkTypeRef,
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getBinaryLink(),
-			RelationshipPackage.eINSTANCE.getBinaryLinkReference()
+			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
+			modelRelType
 		);
 		MMTF.createTypeHierarchy((MultiModel) modelRelType.eContainer());
 
@@ -156,24 +156,24 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			newLinkTypeRef,
 			modelElemTypeEndpoint,
 			modelElemTypeEndpointRef,
-			getSource(),
 			newModelElemTypeEndpointName,
-			false
+			getSource(),
+			false,
+			newLinkTypeRef
 		);
 		newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		modelElemTypeEndpointRef = null;
 		modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			newLinkTypeRef,
 			modelElemTypeEndpoint,
 			modelElemTypeEndpointRef,
-			getTarget(),
 			newModelElemTypeEndpointName,
-			false
+			getTarget(),
+			false,
+			newLinkTypeRef
 		);
 
 		return newLinkTypeRef;

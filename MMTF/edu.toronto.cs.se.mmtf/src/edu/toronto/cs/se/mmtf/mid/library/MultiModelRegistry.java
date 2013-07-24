@@ -132,6 +132,13 @@ public class MultiModelRegistry {
 			labelProvider.getText(modelObj);
 	}
 
+	/**
+	 * Gets the multimodel that contains an extendible element.
+	 * 
+	 * @param element
+	 *            The element contained in the multimodel.
+	 * @return The multimodel that contains the element.
+	 */
 	public static MultiModel getMultiModel(ExtendibleElement element) {
 
 		MultiModel multiModel = null;

@@ -118,11 +118,11 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.replaceLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
 			getLink(),
-			linkTypeRef,
 			modelElemTypeEndpoint,
 			modelElemTypeEndpointRef,
+			newModelElemTypeEndpointName,
 			modelElemTypeRef,
-			newModelElemTypeEndpointName
+			linkTypeRef
 		);
 		// no need to init type hierarchy, no need for undo/redo
 	}

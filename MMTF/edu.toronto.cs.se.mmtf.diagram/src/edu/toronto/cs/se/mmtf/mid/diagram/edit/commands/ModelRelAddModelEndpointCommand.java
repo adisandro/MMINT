@@ -97,12 +97,12 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		ModelEndpointReference modelTypeEndpointRef = null;
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
 		ModelEndpointReference newModelTypeEndpointRef = MultiModelLightTypeFactory.createLightModelTypeEndpointAndModelTypeEndpointReference(
-			getSource(),
 			modelTypeEndpoint,
 			modelTypeEndpointRef,
-			(Model) getTarget(),
 			newModelTypeEndpointName,
-			false
+			(Model) getTarget(),
+			false,
+			getSource()
 		);
 		// no need to init type hierarchy, no need for undo/redo
 

@@ -243,6 +243,8 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 *            The supertype of the new model relationship type.
 	 * @param newModelRelTypeName
 	 *            The name of the new model relationship type.
+	 * @param newModelRelTypeClass
+	 *            The class of the new model relationship type.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
 	 *            new model relationship type, null if no constraint is
@@ -251,22 +253,47 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 *            The constraint implementation of the constraint associated
 	 *            with the new model relationship type, null if no constraint is
 	 *            associated.
-	 * @param modelRelTypeClass
 	 * @return The created model relationship type.
 	 * @throws MMTFException
 	 *             If the uri of the new model relationship type is already
 	 *             registered in the Type MID.
 	 */
-	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation, EClass modelRelTypeClass) throws MMTFException {
+	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, EClass newModelRelTypeClass, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
-		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelTypeClass);
+		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(newModelRelTypeClass);
 		addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 		addModelRelType(newModelRelType, modelRelType);
 
 		return newModelRelType;
 	}
 
-	public static ModelEndpointReference createLightModelTypeEndpointAndModelTypeEndpointReference(ModelRel modelRelType, ModelEndpoint modelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, Model newModelType, String newModelTypeEndpointName, boolean isBinarySrc) throws MMTFException {
+	/**
+	 * Creates and adds a "light" model type endpoint and a reference to it to
+	 * the Type MID.
+	 * 
+	 * @param modelTypeEndpoint
+	 *            The supertype of the new model type endpoint.
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param isBinarySrc
+	 *            True if the model type endpoint is the source in the binary
+	 *            model relationship type container, false otherwise.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @return The created reference to the model type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the Type MID.
+	 */
+	public static ModelEndpointReference createLightModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint modelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel modelRelType) throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
 		// create the "thing" and the corresponding reference
@@ -285,7 +312,31 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newModelTypeEndpointRef;
 	}
 
-	public static void replaceLightModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint oldModelTypeEndpoint, ModelRel modelRelType, ModelEndpoint modelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, Model newModelType, String newModelTypeEndpointName) throws MMTFException {
+	/**
+	 * Replaces an old "light" model type endpoint and a reference to it with
+	 * new ones in the Type MID.
+	 * 
+	 * @param oldModelTypeEndpoint
+	 *            The old model type endpoint to be replaced.
+	 * @param modelTypeEndpoint
+	 *            The supertype of the new model type endpoint.
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the Type MID.
+	 */
+	public static void replaceLightModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpoint modelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
 
 		// modify the "thing" and the corresponding reference
 		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
@@ -305,7 +356,31 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
-	public static LinkReference createLightLinkTypeAndLinkTypeReference(ModelRel modelRelType, Link linkType, LinkReference linkTypeRef, String newLinkTypeName, EClass newLinkTypeClass, EClass newLinkTypeRefClass) throws MMTFException {
+	/**
+	 * Creates and adds a "light" link type and a reference to it to the Type
+	 * MID.
+	 * 
+	 * @param linkType
+	 *            The supertype of the new link type.
+	 * @param linkTypeRef
+	 *            The reference to the supertype of the new link type, null if
+	 *            such reference doesn't exist in the model relationship type
+	 *            container.
+	 * @param newLinkTypeName
+	 *            The name of the new link type.
+	 * @param newLinkTypeClass
+	 *            The class of the new link type.
+	 * @param newLinkTypeRefClass
+	 *            The class of the new reference to the new link type.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new link
+	 *            type.
+	 * @return The created reference to the link type.
+	 * @throws MMTFException
+	 *             If the uri of the new link type is already registered in the
+	 *             Type MID.
+	 */
+	public static LinkReference createLightLinkTypeAndLinkTypeReference(Link linkType, LinkReference linkTypeRef, String newLinkTypeName, EClass newLinkTypeClass, EClass newLinkTypeRefClass, ModelRel modelRelType) throws MMTFException {
 
 		// create the "thing" and the corresponding reference
 		Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
@@ -324,7 +399,33 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newLinkTypeRef;
 	}
 
-	public static ModelElementEndpointReference createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(LinkReference linkTypeRef, ModelElementEndpoint modelElemTypeEndpoint, ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference newModelElemTypeRef, String newModelElemTypeEndpointName, boolean isBinarySrc) throws MMTFException {
+	/**
+	 * Creates and adds a "light" model element type endpoint and a reference to
+	 * it to the Type MID.
+	 * 
+	 * @param modelElemTypeEndpoint
+	 *            The supertype of the new model element type endpoint.
+	 * @param modelElemTypeEndpointRef
+	 *            The reference to the supertype of the new model element type
+	 *            endpoint, null if such reference doesn't exist in the link
+	 *            type container.
+	 * @param newModelElemTypeEndpointName
+	 *            The name of the new model element type endpoint.
+	 * @param newModelElemTypeRef
+	 *            The reference to the new model element type that is the target
+	 *            of the new model element type endpoint.
+	 * @param isBinarySrc
+	 *            True if the model element type endpoint is the source in the
+	 *            binary link type container, false otherwise.
+	 * @param linkTypeRef
+	 *            The reference to the link type that will contain the new model
+	 *            element type endpoint.
+	 * @return The created reference to the model element type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model element type endpoint is already
+	 *             registered in the Type MID.
+	 */
+	public static ModelElementEndpointReference createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference newModelElemTypeRef, boolean isBinarySrc, LinkReference linkTypeRef) throws MMTFException {
 
 		Link linkType = linkTypeRef.getObject();
 		ModelElement newModelElemType = newModelElemTypeRef.getObject();
@@ -358,7 +459,32 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newModelElemTypeEndpointRef;
 	}
 
-	public static void replaceLightModelElementTypeEndpointAndModelElementTypeEndpointReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, LinkReference linkTypeRef, ModelElementEndpoint modelElemTypeEndpoint, ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference newModelElemTypeRef, String newModelElemTypeEndpointName) throws MMTFException {
+	/**
+	 * Replaces an old "light" model element type endpoint and a reference to it
+	 * with new ones in the Type MID.
+	 * 
+	 * @param oldModelElemTypeEndpointRef
+	 *            The reference to the old model element type endpoint to be
+	 *            replaced.
+	 * @param modelElemTypeEndpoint
+	 *            The supertype of the new model element type endpoint.
+	 * @param modelElemTypeEndpointRef
+	 *            The reference to the supertype of the new model element type
+	 *            endpoint, null if such reference doesn't exist in the link
+	 *            type container.
+	 * @param newModelElemTypeEndpointName
+	 *            The name of the new model element type endpoint.
+	 * @param newModelElemTypeRef
+	 *            The reference to the new model element type that is the target
+	 *            of the new model element type endpoint.
+	 * @param linkTypeRef
+	 *            The reference to the link type that will contain the new model
+	 *            element type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model element type endpoint is already
+	 *             registered in the Type MID.
+	 */
+	public static void replaceLightModelElementTypeEndpointAndModelElementTypeEndpointReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference newModelElemTypeRef, LinkReference linkTypeRef) throws MMTFException {
 
 		ModelElementEndpoint oldModelElemTypeEndpoint = oldModelElemTypeEndpointRef.getObject();
 		Link linkType = linkTypeRef.getObject();
@@ -414,7 +540,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 * @return The created editor type.
 	 * @throws MMTFException
 	 *             If the uri of the new editor type is already registered in
-	 *             the multimodel.
+	 *             the Type MID.
 	 */
 	public static Editor createLightEditorType(Editor editorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, EClass newEditorTypeClass) throws MMTFException {
 
@@ -430,6 +556,18 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		return newEditorType;
 	}
 
+	/**
+	 * Copies the components of an old "light" model relationship type into a
+	 * new one in the Type MID.
+	 * 
+	 * @param oldModelRelType
+	 *            The old model relationship type.
+	 * @param newModelRelType
+	 *            The new model relationship type.
+	 * @throws MMTFException
+	 *             If any uri of the components of the new model relationship
+	 *             type is already registered in the Type MID.
+	 */
 	public static void copyLightModelRelType(ModelRel oldModelRelType, ModelRel newModelRelType) throws MMTFException {
 
 		// model types
@@ -444,7 +582,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 				modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(oldModelTypeEndpoint.getSupertype().getUri(), multiModel);
 				modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getSupertype().getUri(), newModelRelType.getModelEndpointRefs());
 			}
-			createLightModelTypeEndpointAndModelTypeEndpointReference(newModelRelType, modelTypeEndpoint, modelTypeEndpointRef, newModelType, oldModelTypeEndpoint.getName(), false);
+			createLightModelTypeEndpointAndModelTypeEndpointReference(modelTypeEndpoint, modelTypeEndpointRef, oldModelTypeEndpoint.getName(), newModelType, false, newModelRelType);
 		}
 		// model element types
 		Iterator<ModelEndpointReference> oldModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(oldModelRelType.getModelEndpointRefs());
@@ -481,12 +619,12 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 				RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
 				RelationshipPackage.eINSTANCE.getLinkReference();
 			LinkReference newLinkTypeRef = createLightLinkTypeAndLinkTypeReference(
-				newModelRelType,
 				linkType,
 				linkTypeRef,
 				oldLinkType.getName(),
 				oldLinkType.eClass(),
-				newLinkTypeRefClass
+				newLinkTypeRefClass,
+				newModelRelType
 			);
 			// connect it to model element type references (takes care of binary too)
 			LinkReference oldLinkTypeRef = MultiModelTypeHierarchy.getReference(newLinkTypeRef, oldModelRelType.getLinkRefs());
@@ -504,12 +642,12 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelElemTypeEndpointRef.getSupertypeRef(), newLinkTypeRefSuper.getModelElemEndpointRefs());
 				}
 				createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-					newLinkTypeRef,
 					modelElemTypeEndpoint,
 					modelElemTypeEndpointRef,
-					newModelElemTypeRef,
 					oldModelElemTypeEndpointRef.getObject().getName(),
-					false
+					newModelElemTypeRef,
+					false,
+					newLinkTypeRef
 				);
 			}
 		}

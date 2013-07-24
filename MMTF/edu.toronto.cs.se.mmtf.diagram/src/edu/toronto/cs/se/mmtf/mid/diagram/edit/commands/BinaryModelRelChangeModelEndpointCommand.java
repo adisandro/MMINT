@@ -131,11 +131,11 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.replaceLightModelTypeEndpointAndModelTypeEndpointReference(
 			oldModelTypeEndpoint,
-			modelRelType,
 			modelTypeEndpoint,
 			modelTypeEndpointRef,
+			newModelTypeEndpointName,
 			modelType,
-			newModelTypeEndpointName
+			modelRelType
 		);
 		// no need to init type hierarchy, no need for undo/redo
 	}

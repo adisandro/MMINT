@@ -569,9 +569,9 @@ public class MMTF implements MMTFConstants {
 				newModelType = MultiModelLightTypeFactory.createLightModelRelType(
 					(ModelRel) modelType,
 					dynamicModelType.getName(),
+					dynamicModelType.eClass(),
 					dynamicModelType.getConstraint().getLanguage().getLiteral(),
-					dynamicModelType.getConstraint().getImplementation(),
-					dynamicModelType.eClass()
+					dynamicModelType.getConstraint().getImplementation()
 				);
 				MultiModelLightTypeFactory.copyLightModelRelType((ModelRel) dynamicModelType, (ModelRel) newModelType);
 			}

@@ -116,11 +116,11 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.replaceLightModelTypeEndpointAndModelTypeEndpointReference(
 			getLink(),
-			modelRelType,
 			modelTypeEndpoint,
 			modelTypeEndpointRef,
+			newModelTypeEndpointName,
 			modelType,
-			newModelTypeEndpointName
+			modelRelType
 		);
 		// no need to init type hierarchy, no need for undo/redo
 	}

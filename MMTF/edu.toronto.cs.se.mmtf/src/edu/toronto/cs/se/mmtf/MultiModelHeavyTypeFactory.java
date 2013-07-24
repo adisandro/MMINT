@@ -444,6 +444,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		}
 	}
 
+	/**
+	 * Adds all registered "heavy" editor types for a model type.
+	 * 
+	 * @param modelType
+	 *            The model type handled by the editor types.
+	 */
 	public static void createHeavyModelTypeEditors(Model modelType) {
 
 		for (Editor editorType : MultiModelTypeRegistry.getEditorTypes()) {

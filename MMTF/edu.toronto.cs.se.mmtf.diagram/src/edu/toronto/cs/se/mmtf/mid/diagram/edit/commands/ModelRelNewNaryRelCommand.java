@@ -111,9 +111,9 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		ModelRel newModelRelType = MultiModelLightTypeFactory.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,
+			RelationshipPackage.eINSTANCE.getModelRel(),
 			constraint[0],
-			constraint[1],
-			RelationshipPackage.eINSTANCE.getModelRel()
+			constraint[1]
 		);
 		MMTF.createTypeHierarchy(multiModel);
 

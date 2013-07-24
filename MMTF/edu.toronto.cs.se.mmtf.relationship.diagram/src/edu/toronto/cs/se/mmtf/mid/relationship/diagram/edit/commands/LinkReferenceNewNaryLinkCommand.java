@@ -119,12 +119,12 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		}
 		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
 		LinkReference newLinkTypeRef = MultiModelLightTypeFactory.createLightLinkTypeAndLinkTypeReference(
-			modelRelType,
 			linkType,
 			linkTypeRef,
 			newLinkTypeName,
 			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference()
+			RelationshipPackage.eINSTANCE.getLinkReference(),
+			modelRelType
 		);
 		MMTF.createTypeHierarchy((MultiModel) modelRelType.eContainer());
 

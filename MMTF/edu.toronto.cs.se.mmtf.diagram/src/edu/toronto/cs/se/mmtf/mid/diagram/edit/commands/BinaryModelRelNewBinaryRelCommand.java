@@ -145,9 +145,9 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		BinaryModelRel newModelRelType = (BinaryModelRel) MultiModelLightTypeFactory.createLightModelRelType(
 			modelRelType,
 			newModelRelTypeName,
+			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
 			constraint[0],
-			constraint[1],
-			RelationshipPackage.eINSTANCE.getBinaryModelRel()
+			constraint[1]
 		);
 		MMTF.createTypeHierarchy(multiModel);
 
@@ -156,24 +156,24 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelEndpointReference modelTypeEndpointRef = null;
 		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.createLightModelTypeEndpointAndModelTypeEndpointReference(
-			newModelRelType,
 			modelTypeEndpoint,
 			modelTypeEndpointRef,
-			getSource(),
 			newModelTypeEndpointName,
-			false
+			getSource(),
+			false,
+			newModelRelType
 		);
 		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)
 		modelTypeEndpointRef = null;
 		modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
 		MultiModelLightTypeFactory.createLightModelTypeEndpointAndModelTypeEndpointReference(
-			newModelRelType,
 			modelTypeEndpoint,
 			modelTypeEndpointRef,
-			getTarget(),
 			newModelTypeEndpointName,
-			false
+			getTarget(),
+			false,
+			newModelRelType
 		);
 
 		return newModelRelType;
