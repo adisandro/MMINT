@@ -142,7 +142,7 @@ public class MultiModelRegistry {
 	public static MultiModel getMultiModel(ExtendibleElement element) {
 
 		MultiModel multiModel = null;
-		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor) {
+		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor || element instanceof Operator) {
 			multiModel = (MultiModel) element.eContainer();
 		}
 		else if (element instanceof ModelElement || element instanceof Link || element instanceof ModelEndpoint) {
@@ -153,6 +153,13 @@ public class MultiModelRegistry {
 		return multiModel;
 	}
 
+	/**
+	 * Gets the multimodel that contains a reference to an extendible element.
+	 * 
+	 * @param elementRef
+	 *            The reference to the element contained in the multimodel.
+	 * @return The multimodel that contains the reference to the element.
+	 */
 	public static MultiModel getMultiModel(ExtendibleElementReference elementRef) {
 
 		return getMultiModel(elementRef.getObject());
