@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.library;
 
 import java.util.HashMap;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -36,6 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -148,7 +150,9 @@ public class MultiModelRegistry {
 		else if (element instanceof ModelElement || element instanceof Link || element instanceof ModelEndpoint) {
 			multiModel = (MultiModel) element.eContainer().eContainer();
 		}
-		//TODO MMTF: to be continued..
+		else if (element instanceof ModelElementEndpoint) {
+			multiModel = (MultiModel) element.eContainer().eContainer().eContainer();
+		}
 
 		return multiModel;
 	}
