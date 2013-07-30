@@ -189,7 +189,7 @@ public class MidDiagramUtils {
 	 */
 	public static ModelRel selectModelRelTypeToExtend(MultiModel multiModel, Model srcModelType, Model tgtModelType) throws MMTFException {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelRelTypeCreationDialog(multiModel, srcModelType, tgtModelType);
+		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, multiModel);
 		String title = "Create new light model relationship type";
 		String message = "Choose model relationship supertype";
 

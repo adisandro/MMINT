@@ -59,7 +59,7 @@ import edu.toronto.cs.se.mmtf.mid.ui.NewModelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmtf.mid.ui.MultiModelDialogLabelProvider;
 
 /**
- * The registry for querying the types in a multimodel.
+ * The registry for querying the types.
  * 
  * @author Alessio Di Sandro
  * 
@@ -84,12 +84,11 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the root type uri for a certain class of types.
+	 * Gets the uri of the root type for a certain class of types.
 	 * 
 	 * @param type
-	 *            The type from which to understand the class of types to be
-	 *            searched.
-	 * @return The root type uri.
+	 *            The type from which to understand the class of types.
+	 * @return The uri of the root type.
 	 */
 	public static String getRootTypeUri(ExtendibleElement type) {
 
@@ -129,6 +128,13 @@ public class MultiModelTypeRegistry {
 		return rootUri;
 	}
 
+	/**
+	 * Checks if the given type is the root type for its class.
+	 * 
+	 * @param type
+	 *            The type to be checked.
+	 * @return True if the given type is the root type, false otherwise.
+	 */
 	public static boolean isRootType(ExtendibleElement type) {
 
 		return type.getUri().equals(getRootTypeUri(type));
@@ -148,9 +154,9 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of registered operator types.
+	 * Gets the list of operator types in the repository.
 	 * 
-	 * @return The list of registered operator types.
+	 * @return The list of operator types in the repository.
 	 */
 	public static List<Operator> getOperatorTypes() {
 
@@ -158,9 +164,9 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of registered model types.
+	 * Gets the list of model types in the repository.
 	 * 
-	 * @return The list of registered model types.
+	 * @return The list of model types in the repository.
 	 */
 	public static EList<Model> getModelTypes() {
 
@@ -168,9 +174,9 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of registered model relationship types.
+	 * Gets the list of model relationship types in the repository.
 	 * 
-	 * @return The list of registered model relationship types.
+	 * @return The list of model relationship types in the repository.
 	 */
 	public static EList<ModelRel> getModelRelTypes() {
 
@@ -178,9 +184,9 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of registered editor types.
+	 * Gets the list of editor types in the repository.
 	 * 
-	 * @return The list of registered editor types.
+	 * @return The list of editor types in the repository.
 	 */
 	public static EList<Editor> getEditorTypes() {
 
@@ -188,31 +194,38 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of registered link types for a model relationship type.
+	 * Gets the list of link types in a model relationship type.
 	 * 
 	 * @param modelRelType
-	 *            The model relationship type.
-	 * 
-	 * @return The list of registered link types for a model relationship
-	 *         type.
+	 *            The model relationship type that contains the link types.
+	 * @return The list of link types in the model relationship type.
 	 */
 	public static EList<Link> getLinkTypes(ModelRel modelRelType) {
 
 		return modelRelType.getLinks();
 	}
 
+	/**
+	 * Gets the list of references to link types in a model relationship type.
+	 * 
+	 * @param modelRelType
+	 *            The model relationship type that contains the references to
+	 *            link types.
+	 * @return The list of references to link types in the model relationship
+	 *         type.
+	 */
 	public static EList<LinkReference> getLinkTypeReferences(ModelRel modelRelType) {
 
 		return modelRelType.getLinkRefs();
 	}
 
 	/**
-	 * Gets the list of registered model element types for a model type.
+	 * Gets the list of model element types in a model type.
 	 * 
 	 * @param modelType
-	 *            The model type.
+	 *            The model type that contains the model element types.
 	 * 
-	 * @return The list of registered model element types for a model type.
+	 * @return The list of model element types in the model type.
 	 */
 	public static EList<ModelElement> getModelElementTypes(Model modelType) {
 
@@ -220,9 +233,9 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of registered file extensions for all model types.
+	 * Gets the list of file extensions for all model types in the repository.
 	 * 
-	 * @return The list of registered file extensions.
+	 * @return The list of file extensions for model types.
 	 */
 	public static ArrayList<String> getModelTypeFileExtensions() {
 
@@ -235,12 +248,11 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of registered editors for a model type (identified by
-	 * its uri).
+	 * Gets the list of editor types in the repository for a model type.
 	 * 
 	 * @param modelTypeUri
-	 *            The model type uri.
-	 * @return The list of registered editors.
+	 *            The uri of the model type.
+	 * @return The list of editor types in the repository for the model type.
 	 */
 	public static EList<Editor> getModelTypeEditors(String modelTypeUri) {
 
@@ -254,9 +266,10 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog to select among registered model types' editors.
+	 * Gets a tree dialog that shows all model types in the repository and their
+	 * editor types, in order to create a new model.
 	 * 
-	 * @return The tree dialog.
+	 * @return The tree dialog to create a new model.
 	 */
 	public static MultiModelTreeSelectionDialog getModelCreationDialog() {
 
@@ -273,11 +286,18 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog to select among registered model relationship
-	 * types that can fit model source and target (are both null in case of
-	 * nary model relationship).
+	 * Gets a tree dialog that shows all model relationship types in the
+	 * repository, in order to create a new model relationship.
 	 * 
-	 * @return The tree dialog.
+	 * @param newSrcModel
+	 *            The model that is going to be the target of the source model
+	 *            endpoint, null if the model relationship to be created is not
+	 *            binary.
+	 * @param newTgtModel
+	 *            The model that is going to be the target of the target model
+	 *            endpoint, null if the model relationship to be created is not
+	 *            binary.
+	 * @return The tree dialog to create a new model relationship.
 	 */
 	public static MultiModelTreeSelectionDialog getModelRelCreationDialog(Model newSrcModel, Model newTgtModel) {
 
@@ -326,6 +346,18 @@ public class MultiModelTypeRegistry {
 		return dialog;
 	}
 
+	/**
+	 * Gets a tree dialog that shows all model type endpoints in a model
+	 * relationship type, in order to create a new model endpoint.
+	 * 
+	 * @param modelRel
+	 *            The model relationship that will contain the model endpoint to
+	 *            be created.
+	 * @param modelTypeEndpointUris
+	 *            The list of allowed uris of the model type endpoints, can be
+	 *            null if all are allowed.
+	 * @return The tree dialog to create a new model endpoint.
+	 */
 	public static MultiModelTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -340,9 +372,12 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog to select among registered model types.
+	 * Gets a tree dialog that shows all model types in a multimodel, in order
+	 * to create a new "light" model type.
 	 * 
-	 * @return The tree dialog.
+	 * @param multiModel
+	 *            The multimodel that contains the model types.
+	 * @return The tree dialog to create a new "light" model type.
 	 */
 	public static MultiModelTreeSelectionDialog getModelTypeCreationDialog(MultiModel multiModel) {
 
@@ -358,12 +393,23 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog to select among registered model relationship
-	 * types.
+	 * Gets a tree dialog that shows all model relationship types in a
+	 * multimodel, in order to create a new "light" model relationship type.
 	 * 
-	 * @return The tree dialog.
+	 * @param newSrcModelType
+	 *            The model type that is going to be the target of the source
+	 *            model type endpoint, null if the model relationship type to be
+	 *            created is not binary.
+	 * @param newTgtModelType
+	 *            The model type that is going to be the target of the target
+	 *            model type endpoint, null if the model relationship type to be
+	 *            created is not binary.
+	 * @param multiModel
+	 *            The multimodel that contains the model relationship types.
+	 * 
+	 * @return The tree dialog to create a new "light" model relationship type.
 	 */
-	public static MultiModelTreeSelectionDialog getModelRelTypeCreationDialog(MultiModel multiModel, Model newSrcModelType, Model newTgtModelType) {
+	public static MultiModelTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MultiModel multiModel) {
 
 		List<String> modelRelTypeUris = null;
 
