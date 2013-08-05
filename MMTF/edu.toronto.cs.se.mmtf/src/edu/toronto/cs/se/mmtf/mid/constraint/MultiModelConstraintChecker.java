@@ -137,7 +137,7 @@ public class MultiModelConstraintChecker {
 	public static boolean isAllowedModelType(ModelRel modelRelType) {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		List<ModelRel> modelRelSubtypes = MultiModelTypeHierarchy.getSubtypes(multiModel, modelRelType);
+		List<ModelRel> modelRelSubtypes = MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel);
 
 		return (modelRelSubtypes.isEmpty()) ? true : false;
 	}	
@@ -155,14 +155,14 @@ public class MultiModelConstraintChecker {
 			if (newSrcModelType != null) {
 				String srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelType.getUri();
-				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri)) {
+				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel)) {
 					return false;
 				}
 			}
 			if (newTgtModelType != null) {
 				String tgtUri = modelRelTypeSuper.getModelEndpoints().get(1).getTargetUri();
 				String newTgtUri = newTgtModelType.getUri();
-				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) {
+				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) {
 					return false;
 				}
 			}
@@ -184,14 +184,14 @@ public class MultiModelConstraintChecker {
 			if (newSrcModelElemTypeRef != null) {
 				String srcUri = linkTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelElemTypeRef.getUri();
-				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri)) {
+				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel)) {
 					return false;
 				}
 			}
 			if (newTgtModelElemTypeRef != null) {
 				String tgtUri = linkTypeSuper.getModelElemEndpoints().get(1).getTargetUri();
 				String newTgtUri = newTgtModelElemTypeRef.getUri();
-				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) {
+				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) {
 					return false;
 				}
 			}

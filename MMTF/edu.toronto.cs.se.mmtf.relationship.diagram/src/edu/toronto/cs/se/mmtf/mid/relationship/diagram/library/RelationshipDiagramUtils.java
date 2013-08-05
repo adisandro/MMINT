@@ -32,7 +32,7 @@ public class RelationshipDiagramUtils extends MidDiagramUtils {
 
 	public static LinkReference selectLinkTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MMTFException {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkReferenceCreationDialog(modelRel, srcModelElemRef, tgtModelElemRef);
+		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkReferenceCreationDialog(srcModelElemRef, tgtModelElemRef, modelRel);
 		String title = "Create new link";
 		String message = "Choose link type";
 
@@ -41,7 +41,7 @@ public class RelationshipDiagramUtils extends MidDiagramUtils {
 
 	public static LinkReference selectLinkTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MMTFException {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkTypeReferenceCreationDialog(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
+		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
 		String title = "Create new light link type";
 		String message = "Choose link supertype";
 

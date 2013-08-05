@@ -79,7 +79,7 @@ modelEndpointRef:
 				if (
 					modelUri.equals(modelEndpointRef.getTargetUri()) || (
 						!isInstancesLevel &&
-						MultiModelTypeHierarchy.isSubtypeOf(multiModel, modelEndpointRef.getTargetUri(), modelUri) // for light types
+						MultiModelTypeHierarchy.isSubtypeOf(modelEndpointRef.getTargetUri(), modelUri, multiModel) // for light types
 					)
 				) {
 					if (!isInstancesLevel) {

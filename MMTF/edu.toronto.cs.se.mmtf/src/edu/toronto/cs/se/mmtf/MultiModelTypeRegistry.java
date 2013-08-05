@@ -432,9 +432,9 @@ public class MultiModelTypeRegistry {
 				// new model rel type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri))
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) ||
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel))
 				) {
 					modelRelTypeUris.add(modelRelType.getUri());
 				}
@@ -453,13 +453,23 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog to select among registered link types that can fit
-	 * model element reference source and target (are both null in case of
-	 * nary link).
+	 * Gets a tree dialog that shows all link types in a model relationship
+	 * type, in order to create a new link and a reference to it.
 	 * 
-	 * @return The tree dialog.
+	 * @param newSrcModelElemRef
+	 *            The reference to the model element that is going to be the
+	 *            target of the source model element endpoint, null if the link
+	 *            to be created is not binary.
+	 * @param newTgtModelElemRef
+	 *            The reference to the model element that is going to be the
+	 *            target of the target model element endpoint, null if the link
+	 *            to be created is not binary.
+	 * @param modelRel
+	 *            The model relationship that will contain the link to be
+	 *            created.
+	 * @return The tree dialog to create a new link.
 	 */
-	public static MultiModelTreeSelectionDialog getLinkReferenceCreationDialog(ModelRel modelRel, ModelElementReference newSrcModelElemRef, ModelElementReference newTgtModelElemRef) {
+	public static MultiModelTreeSelectionDialog getLinkReferenceCreationDialog(ModelElementReference newSrcModelElemRef, ModelElementReference newTgtModelElemRef, ModelRel modelRel) {
 
 		List<String> linkTypeUris = null;
 		ModelRel modelRelType = modelRel.getMetatype();
@@ -508,6 +518,18 @@ public class MultiModelTypeRegistry {
 		return dialog;
 	}
 
+	/**
+	 * Gets a tree dialog that shows all model element type endpoints in a link
+	 * type, in order to create a new model element endpoint.
+	 * 
+	 * @param linkRef
+	 *            The reference to the link that will contain the model element
+	 *            endpoint to be created.
+	 * @param modelElemTypeEndpointUris
+	 *            The list of allowed uris of the model element type endpoints,
+	 *            can be null if all are allowed.
+	 * @return The tree dialog to create a new model element endpoint.
+	 */
 	public static MultiModelTreeSelectionDialog getModelElementEndpointCreationDialog(LinkReference linkRef, List<String> modelElemTypeEndpointUris) {
 
 		Link linkType = linkRef.getObject().getMetatype();
@@ -522,7 +544,23 @@ public class MultiModelTypeRegistry {
 		return dialog;
 	}
 
-	public static MultiModelTreeSelectionDialog getLinkTypeReferenceCreationDialog(ModelRel modelRelType, ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef) {
+	/**
+	 * Gets a tree dialog that shows all link types in a model relationship
+	 * type, in order to create a new "light" link type and a reference to it.
+	 * 
+	 * @param newSrcModelElemTypeRef
+	 *            The reference to the model element type that is going to be
+	 *            the target of the source model element type endpoint, null if
+	 *            the link type to be created is not binary.
+	 * @param newTgtModelElemTypeRef
+	 *            The reference to the model element type that is going to be
+	 *            the target of the target model element type endpoint, null if
+	 *            the link type to be created is not binary.
+	 * @param modelRelType
+	 *            The model relationship type that contains the link types.
+	 * @return The tree dialog to create a new "light" link type.
+	 */
+	public static MultiModelTreeSelectionDialog getLinkTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
 
 		List<String> linkTypeUris = null;
 
@@ -543,9 +581,9 @@ public class MultiModelTypeRegistry {
 				// new link type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(multiModel, newSrcUri, srcUri) && MultiModelTypeHierarchy.isSubtypeOf(multiModel, newTgtUri, tgtUri))
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) ||
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel))
 				) {
 					linkTypeUris.add(linkTypeRef.getUri());
 				}
@@ -564,11 +602,11 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a parameter's signature.
+	 * Gets the signature of an operator type's parameter.
 	 * 
 	 * @param parameter
-	 *            The parameter.
-	 * @return The parameter's signature.
+	 *            The parameter of an operator type.
+	 * @return The signature of the parameter.
 	 */
 	private static String getParameterSignature(Parameter parameter) {
 
@@ -582,32 +620,32 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets an operator's signature.
+	 * Gets the signature of an operator type.
 	 * 
-	 * @param operator
-	 *            The operator.
-	 * @return The operator's signature.
+	 * @param operatorType
+	 *            The operator type.
+	 * @return The signature of the operator type.
 	 */
-	public static String getOperatorSignature(Operator operator) {
+	public static String getOperatorSignature(Operator operatorType) {
 
 		// output parameters
 		String signature = "[";
-		for (Parameter parameter : operator.getOutputs()) {
+		for (Parameter parameter : operatorType.getOutputs()) {
 			signature += getParameterSignature(parameter) + ", ";
 		}
-		if (operator.getOutputs().size() > 0) {
+		if (operatorType.getOutputs().size() > 0) {
 			signature = signature.substring(0, signature.length() - 2);
 		}
 		signature += "] ";
 
 		// operator name
-		signature += operator.getName() + "(";
+		signature += operatorType.getName() + "(";
 
 		// input parameters
-		for (Parameter parameter : operator.getInputs()) {
+		for (Parameter parameter : operatorType.getInputs()) {
 			signature += getParameterSignature(parameter) + ", ";
 		}
-		if (operator.getInputs().size() > 0) {
+		if (operatorType.getInputs().size() > 0) {
 			signature = signature.substring(0, signature.length() - 2);
 		}
 		signature += ")";
@@ -615,6 +653,13 @@ public class MultiModelTypeRegistry {
 		return signature;
 	}
 
+	/**
+	 * Gets the bundle (Eclipse plugin) that declares a type.
+	 * 
+	 * @param typeUri
+	 *            The uri of the type.
+	 * @return The bundle that declares a type, null if it can't be found.
+	 */
 	public static Bundle getTypeBundle(String typeUri) {
 
 		Bundle bundle = null;

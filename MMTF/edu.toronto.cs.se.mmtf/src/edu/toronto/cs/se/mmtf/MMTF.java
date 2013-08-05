@@ -518,7 +518,7 @@ public class MMTF implements MMTFConstants {
 		}
 		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
 			createConversionHierarchy(modelType, conversionTable.get(modelType.getUri()));
-			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(multiModel, modelType)) {
+			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(modelType, multiModel)) {
 				createConversionHierarchy(modelType, conversionTable.get(modelSubtype.getUri()));
 			}
 		}

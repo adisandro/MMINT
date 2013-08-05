@@ -36,14 +36,41 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReferenc
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.repository.ExtensionType;
 
+/**
+ * Utilities to deal with the hierarchy of types.
+ * 
+ * @author Alessio Di Sandro
+ * 
+ */
 public class MultiModelTypeHierarchy {
+	//TODO MMTF: are type and type ref iterators really needed, or are the lists already ordered by construction?
 
+	/**
+	 * The comparator for a hierarchy of types from registered extensions.
+	 * 
+	 * @author Alessio Di Sandro
+	 *
+	 */
 	private static class ExtensionHierarchyComparator implements Comparator<IConfigurationElement> {
 
+		/** The map from a uri to its supertype uri within the hierarchy of extensions. */
 		private HashMap<String, String> extensionUris;
+		/** The name of the xml child to be used in the extensions. */
 		private String childName;
+		/** The root uri in the hierarchy. */
 		private String rootUri;
 
+		/**
+		 * Constructor: initializes the comparator.
+		 * 
+		 * @param extensionUris
+		 *            The map from a uri to its supertype uri within the
+		 *            hierarchy of extensions.
+		 * @param childName
+		 *            The name of the xml child to be used in the extensions.
+		 * @param rootUri
+		 *            The root uri in the hierarchy.
+		 */
 		public ExtensionHierarchyComparator(HashMap<String, String> extensionUris, String childName, String rootUri) {
 
 			this.extensionUris = extensionUris;
@@ -51,6 +78,11 @@ public class MultiModelTypeHierarchy {
 			this.rootUri = rootUri;
 		}
 
+		/**
+		 * Compares two extensions based on their position in the type
+		 * hierarchy, i.e. by counting the number of supertypes of the type
+		 * declared in the extension. {@inheritDoc}
+		 */
 		@Override
 		public int compare(IConfigurationElement extension1, IConfigurationElement extension2) {
 
@@ -89,51 +121,35 @@ public class MultiModelTypeHierarchy {
 
 	}
 
+	/**
+	 * The comparator for a hierarchy of types.
+	 * 
+	 * @author Alessio Di Sandro
+	 *
+	 */
 	private static class TypeHierarchyComparator implements Comparator<ExtendibleElement> {
 
+		/**
+		 * Compares two types based on their position in the type hierarchy,
+		 * i.e. by counting the number of their supertypes. {@inheritDoc}
+		 */
 		@Override
-		public int compare(ExtendibleElement elementType1, ExtendibleElement elementType2) {
+		public int compare(ExtendibleElement type1, ExtendibleElement type2) {
 
 			int supertypes1 = 0;
-			while (elementType1.getSupertype() != null) {
+			while (type1.getSupertype() != null) {
 				supertypes1++;
-				elementType1 = elementType1.getSupertype();
+				type1 = type1.getSupertype();
 			}
 			int supertypes2 = 0;
-			while (elementType2.getSupertype() != null) {
+			while (type2.getSupertype() != null) {
 				supertypes2++;
-				elementType2 = elementType2.getSupertype();
+				type2 = type2.getSupertype();
 			}
 
 			int relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
-				relativeOrder = elementType1.getUri().compareTo(elementType2.getUri());
-			}
-
-			return relativeOrder;
-		}
-	}
-
-	private static class TypeRefHierarchyComparator implements Comparator<ExtendibleElementReference> {
-
-		@Override
-		public int compare(ExtendibleElementReference elementTypeRef1, ExtendibleElementReference elementTypeRef2) {
-
-			int supertypes1 = 0;
-			while (elementTypeRef1.getSupertypeRef() != null) {
-				supertypes1++;
-				elementTypeRef1 = elementTypeRef1.getSupertypeRef();
-			}
-			int supertypes2 = 0;
-			while (elementTypeRef2.getSupertypeRef() != null) {
-				supertypes2++;
-				elementTypeRef2 = elementTypeRef2.getSupertypeRef();
-			}
-
-
-			int relativeOrder = supertypes1 - supertypes2;
-			if (relativeOrder == 0) {
-				relativeOrder = elementTypeRef1.getUri().compareTo(elementTypeRef2.getUri());
+				relativeOrder = type1.getUri().compareTo(type2.getUri());
 			}
 
 			return relativeOrder;
@@ -141,15 +157,54 @@ public class MultiModelTypeHierarchy {
 	}
 
 	/**
-	 * Creates an iterator to loop an array of extensions sorted based on their
-	 * hierarchy. Specifically, the iterator will start from the extension that
-	 * does not depend on others as per the supertype specification.
+	 * The comparator for a hierarchy of references to types.
+	 * 
+	 * @author Alessio Di Sandro
+	 *
+	 */
+	private static class TypeRefHierarchyComparator implements Comparator<ExtendibleElementReference> {
+
+		/**
+		 * Compares two references to types based on their position in the type
+		 * hierarchy, i.e. by counting the number of references to their
+		 * supertypes. {@inheritDoc}
+		 */
+		@Override
+		public int compare(ExtendibleElementReference typeRef1, ExtendibleElementReference typeRef2) {
+
+			int supertypes1 = 0;
+			while (typeRef1.getSupertypeRef() != null) {
+				supertypes1++;
+				typeRef1 = typeRef1.getSupertypeRef();
+			}
+			int supertypes2 = 0;
+			while (typeRef2.getSupertypeRef() != null) {
+				supertypes2++;
+				typeRef2 = typeRef2.getSupertypeRef();
+			}
+
+
+			int relativeOrder = supertypes1 - supertypes2;
+			if (relativeOrder == 0) {
+				relativeOrder = typeRef1.getUri().compareTo(typeRef2.getUri());
+			}
+
+			return relativeOrder;
+		}
+	}
+
+	/**
+	 * Gets an iterator to loop an array of extensions sorted according to their
+	 * type hierarchy, starting from the one that declares a type with the least
+	 * number of supertypes.
 	 * 
 	 * @param extensions
 	 *            The array of extensions to be looped.
 	 * @param childName
+	 *            The name of the xml child to be used in the extensions.
 	 * @param rootUri
-	 * @return The extension iterator.
+	 *            The root uri in the hierarchy.
+	 * @return The iterator.
 	 */
 	public static Iterator<IConfigurationElement> getExtensionHierarchyIterator(IConfigurationElement[] extensions, String childName, String rootUri) {
 
@@ -171,59 +226,116 @@ public class MultiModelTypeHierarchy {
 		return hierarchy.iterator();
 	}
 
-	//TODO MMTF: are type and type ref iterators really needed, or are the lists already ordered by construction?
-	private static <T extends ExtendibleElement> TreeSet<T> getTypeHierarchy(EList<T> elementTypes) {
+	/**
+	 * Gets a tree set representing the type hierarchy of an array of types.
+	 * 
+	 * @param types
+	 *            The list of types.
+	 * @return The tree set.
+	 */
+	private static <T extends ExtendibleElement> TreeSet<T> getTypeHierarchy(EList<T> types) {
 
 		TreeSet<T> hierarchy = new TreeSet<T>(
 			new TypeHierarchyComparator()
 		);
-		for (T elementType : elementTypes) {
-			hierarchy.add(elementType);
+		for (T type : types) {
+			hierarchy.add(type);
 		}
 
 		return hierarchy;
 	}
 
-	public static <T extends ExtendibleElement> Iterator<T> getTypeHierarchyIterator(EList<T> elementTypes) {
+	/**
+	 * Gets an iterator to loop an array of types according to their type
+	 * hierarchy, starting from the one with the least number of supertypes.
+	 * 
+	 * @param types
+	 *            The list of types to be looped.
+	 * @return The iterator.
+	 */
+	public static <T extends ExtendibleElement> Iterator<T> getTypeHierarchyIterator(EList<T> types) {
 
-		TreeSet<T> hierarchy = getTypeHierarchy(elementTypes);
+		TreeSet<T> hierarchy = getTypeHierarchy(types);
 
 		return hierarchy.iterator();
 	}
 
-	public static <T extends ExtendibleElement> Iterator<T> getInverseTypeHierarchyIterator(EList<T> elementTypes) {
+	/**
+	 * Gets an iterator to loop an array of types according to their type
+	 * hierarchy, starting from the one with the most number of supertypes.
+	 * 
+	 * @param types
+	 *            The list of types to be looped.
+	 * @return The iterator.
+	 */
+	public static <T extends ExtendibleElement> Iterator<T> getInverseTypeHierarchyIterator(EList<T> types) {
 
-		TreeSet<T> hierarchy = getTypeHierarchy(elementTypes);
+		TreeSet<T> hierarchy = getTypeHierarchy(types);
 
 		return hierarchy.descendingIterator();
 	}
 
-	private static <T extends ExtendibleElementReference> TreeSet<T> getTypeRefHierarchy(EList<T> elementTypeRefs) {
+	/**
+	 * Gets a tree set representing the type hierarchy of an array of references
+	 * to types.
+	 * 
+	 * @param types
+	 *            The list of references to types.
+	 * @return The tree set.
+	 */
+	private static <T extends ExtendibleElementReference> TreeSet<T> getTypeRefHierarchy(EList<T> typeRefs) {
 
 		TreeSet<T> hierarchy = new TreeSet<T>(
 			new TypeRefHierarchyComparator()
 		);
-		for (T elementTypeRef : elementTypeRefs) {
-			hierarchy.add(elementTypeRef);
+		for (T typeRef : typeRefs) {
+			hierarchy.add(typeRef);
 		}
 
 		return hierarchy;
 	}
 
-	public static <T extends ExtendibleElementReference> Iterator<T> getTypeRefHierarchyIterator(EList<T> elementTypeRefs) {
+	/**
+	 * Gets an iterator to loop an array of references to types according to
+	 * their type hierarchy, starting from the one with the least number of
+	 * references to supertypes.
+	 * 
+	 * @param types
+	 *            The list of references to types to be looped.
+	 * @return The iterator.
+	 */
+	public static <T extends ExtendibleElementReference> Iterator<T> getTypeRefHierarchyIterator(EList<T> typeRefs) {
 
-		TreeSet<T> hierarchy = getTypeRefHierarchy(elementTypeRefs);
+		TreeSet<T> hierarchy = getTypeRefHierarchy(typeRefs);
 
 		return hierarchy.iterator();
 	}
 
-	public static <T extends ExtendibleElementReference> Iterator<T> getInverseTypeRefHierarchyIterator(EList<T> elementTypeRefs) {
+	/**
+	 * Gets an iterator to loop an array of references to types according to
+	 * their type hierarchy, starting from the one with the most number of
+	 * references to supertypes.
+	 * 
+	 * @param types
+	 *            The list of references to types to be looped.
+	 * @return The iterator.
+	 */
+	public static <T extends ExtendibleElementReference> Iterator<T> getInverseTypeRefHierarchyIterator(EList<T> typeRefs) {
 
-		TreeSet<T> hierarchy = getTypeRefHierarchy(elementTypeRefs);
+		TreeSet<T> hierarchy = getTypeRefHierarchy(typeRefs);
 
 		return hierarchy.descendingIterator();
 	}
 
+	/**
+	 * Gets an extendible element in a list of extendible elements.
+	 * 
+	 * @param elementUri
+	 *            The uri of the extendible element.
+	 * @param elements
+	 *            The list of extendible elements.
+	 * @return The extendible element, null if it can't be found.
+	 */
 	public static <T extends ExtendibleElement> T get(String elementUri, EList<T> elements) {
 
 		if (elementUri == null) {
@@ -239,6 +351,16 @@ public class MultiModelTypeHierarchy {
 		return null;
 	}
 
+	/**
+	 * Gets an extendible element in a list of extendible elements.
+	 * 
+	 * @param correspondingElement
+	 *            The corresponding extendible element, i.e. an extendible
+	 *            element with the same uri of the one to get.
+	 * @param elements
+	 *            The list of extendible elements.
+	 * @return The extendible element, null if it can't be found.
+	 */
 	public static <T extends ExtendibleElement> T get(T correspondingElement, EList<T> elements) {
 
 		if (correspondingElement == null) {
@@ -248,14 +370,25 @@ public class MultiModelTypeHierarchy {
 		return get(correspondingElement.getUri(), elements);
 	}
 
-	public static <T extends ExtendibleElementReference> T getReference(String elementRefUri, EList<T> elementRefs) {
+	/**
+	 * Gets a reference to an extendible element in a list of references to
+	 * extendible elements.
+	 * 
+	 * @param elementUri
+	 *            The uri of the extendible element.
+	 * @param elementRefs
+	 *            The list of references to extendible elements.
+	 * @return The reference to the extendible element, null if it can't be
+	 *         found.
+	 */
+	public static <T extends ExtendibleElementReference> T getReference(String elementUri, EList<T> elementRefs) {
 
-		if (elementRefUri == null) {
+		if (elementUri == null) {
 			return null;
 		}
 
 		for (T elementRef : elementRefs) {
-			if (elementRefUri.equals(elementRef.getUri())) {
+			if (elementUri.equals(elementRef.getUri())) {
 				return elementRef;
 			}
 		}
@@ -263,6 +396,19 @@ public class MultiModelTypeHierarchy {
 		return null;
 	}
 
+	/**
+	 * Gets a reference to an extendible element in a list of references to
+	 * extendible elements.
+	 * 
+	 * @param correspondingElementRef
+	 *            The corresponding reference to extendible element, i.e. a
+	 *            reference to an extendible element with the same uri of the
+	 *            one to get.
+	 * @param elementRefs
+	 *            The list of references to extendible elements.
+	 * @return The reference to the extendible element, null if it can't be
+	 *         found.
+	 */
 	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementRef, EList<T> elementRefs) {
 
 		if (correspondingElementRef == null) {
@@ -272,6 +418,44 @@ public class MultiModelTypeHierarchy {
 		return getReference(correspondingElementRef.getUri(), elementRefs);
 	}
 
+	/**
+	 * Gets an extendible element endpoint in a list of extendible element
+	 * endpoints.
+	 * 
+	 * @param targetUri
+	 *            The uri of the extendible element which is the target of the
+	 *            endpoint.
+	 * @param endpoints
+	 *            The list of extendible element endpoints.
+	 * @return The extendible element endpoint, null if it can't be found.
+	 */
+	public static <T extends ExtendibleElementEndpoint> T getEndpoint(String targetUri, EList<T> endpoints) {
+
+		if (targetUri == null) {
+			return null;
+		}
+
+		for (T endpoint : endpoints) {
+			if (targetUri.equals(endpoint.getTargetUri())) {
+				return endpoint;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Gets the references to an extendible element endpoint in a list of
+	 * references to extendible element endpoints.
+	 * 
+	 * @param targetUri
+	 *            The uri of the extendible element which is the target of the
+	 *            endpoint.
+	 * @param endpointRefs
+	 *            The list of references to extendible element endpoints.
+	 * @return The references to the extendible element endpoint, null if it
+	 *         can't be found.
+	 */
 	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetUri, EList<T> endpointRefs) {
 
 		if (targetUri == null) {
@@ -288,21 +472,13 @@ public class MultiModelTypeHierarchy {
 		return targetEndpointRefs;
 	}
 
-	public static <T extends ExtendibleElementEndpoint> T getEndpoint(String targetUri, EList<T> endpoints) {
-
-		if (targetUri == null) {
-			return null;
-		}
-
-		for (T endpoint : endpoints) {
-			if (targetUri.equals(endpoint.getTargetUri())) {
-				return endpoint;
-			}
-		}
-
-		return null;
-	}
-
+	/**
+	 * Gets the table for subtyping in the repository or the Type MID.
+	 * 
+	 * @param multiModel
+	 *            The repository, or the Type MID.
+	 * @return The table for subtyping.
+	 */
 	private static Map<String, Set<String>> getSubtypeTable(MultiModel multiModel) {
 
 		return (multiModel == MMTF.repository) ?
@@ -310,6 +486,14 @@ public class MultiModelTypeHierarchy {
 			MMTF.subtypeTableMID;
 	}
 
+	/**
+	 * Gets the table for model type conversion in the repository or the Type
+	 * MID.
+	 * 
+	 * @param multiModel
+	 *            The repository, or the Type MID.
+	 * @return The table for model type conversion.
+	 */
 	private static Map<String, Map<String, List<String>>> getConversionTable(MultiModel multiModel) {
 
 		return (multiModel == MMTF.repository) ?
@@ -317,19 +501,51 @@ public class MultiModelTypeHierarchy {
 			MMTF.conversionTableMID;
 	}
 
-	public static boolean isSubtypeOf(MultiModel multiModel, String subtypeUri, String supertypeUri) {
+	/**
+	 * Determines if a subtype-supertype relationship holds for two types.
+	 * 
+	 * @param subtypeUri
+	 *            The uri of the subtype.
+	 * @param supertypeUri
+	 *            The uri of the supertype.
+	 * @param multiModel
+	 *            The repository, or the Type MID.
+	 * @return True if the subtype-supertype relationship holds, false
+	 *         otherwise.
+	 */
+	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri, MultiModel multiModel) {
 
 		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
 
 		return (subtypeTable == null) ? false : subtypeTable.get(supertypeUri).contains(subtypeUri);
 	}
 
+	/**
+	 * Determines if a subtype-supertype relationship holds for two types in the
+	 * repository.
+	 * 
+	 * @param subtypeUri
+	 *            The uri of the subtype.
+	 * @param supertypeUri
+	 *            The uri of the supertype.
+	 * @return True if the subtype-supertype relationship holds, false
+	 *         otherwise.
+	 */
 	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
 
-		return isSubtypeOf(MMTF.repository, subtypeUri, supertypeUri);
+		return isSubtypeOf(subtypeUri, supertypeUri, MMTF.repository);
 	}
 
-	public static <T extends ExtendibleElement> List<T> getSubtypes(MultiModel multiModel, T supertype) {
+	/**
+	 * Gets all the subtypes of a type.
+	 * 
+	 * @param type
+	 *            The type.
+	 * @param multiModel
+	 *            The repository, or the Type MID.
+	 * @return The list of subtypes of the type.
+	 */
+	public static <T extends ExtendibleElement> List<T> getSubtypes(T type, MultiModel multiModel) {
 
 		List<T> subtypes = new ArrayList<T>();
 		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
@@ -337,7 +553,7 @@ public class MultiModelTypeHierarchy {
 			return subtypes;
 		}
 
-		for (String subtypeUri : subtypeTable.get(supertype.getUri())) {
+		for (String subtypeUri : subtypeTable.get(type.getUri())) {
 			T subtype = MultiModelRegistry.getExtendibleElement(subtypeUri, multiModel);
 			if (subtype != null) {
 				subtypes.add(subtype);
@@ -346,14 +562,29 @@ public class MultiModelTypeHierarchy {
 		return subtypes;
 	}
 
-	public static <T extends ExtendibleElement> List<T> getSubtypes(T supertype) {
+	/**
+	 * Gets all the subtypes of a type in the repository.
+	 * 
+	 * @param type
+	 *            The type.
+	 * @return The list of subtypes of the type.
+	 */
+	public static <T extends ExtendibleElement> List<T> getSubtypes(T type) {
 
-		return getSubtypes(MMTF.repository, supertype);
+		return getSubtypes(type, MMTF.repository);
 	}
 
-	public static Set<String> getMultipleInheritanceUris(String supertypeUri) {
+	/**
+	 * Gets something hacky related to the multiple inheritance of a type in the
+	 * repository.
+	 * 
+	 * @param typeUri
+	 *            The uri of the type.
+	 * @return That something hacky.
+	 */
+	public static Set<String> getMultipleInheritanceUris(String typeUri) {
 
-		Set<String> uris = MMTF.multipleInheritanceTable.get(supertypeUri);
+		Set<String> uris = MMTF.multipleInheritanceTable.get(typeUri);
 		if (uris == null) {
 			uris = new HashSet<String>();
 		}
@@ -361,7 +592,21 @@ public class MultiModelTypeHierarchy {
 		return uris;
 	}
 
-	private static List<ConversionOperator> isEligibleParameter(Model actualModel, List<Model> actualModelTypes, Model formalModelType) {
+	/**
+	 * Determines if an actual parameter is eligible for the invocation of an
+	 * operator.
+	 * 
+	 * @param actualModelTypes
+	 *            The list of model types obtained through polymorphism from the
+	 *            single actual model parameter.
+	 * @param formalModelType
+	 *            The formal model type parameter in the operator signature.
+	 * @return If the actual parameter is eligible, a list of conversion
+	 *         operators that need to be run to convert the actual parameter
+	 *         into an equivalent one, or an empty list to use the actual
+	 *         parameter as is; null if the actual parameter is not eligible.
+	 */
+	private static List<ConversionOperator> isEligibleParameter(List<Model> actualModelTypes, Model formalModelType) {
 
 		// polymorphism
 		List<String> actualModelTypeUris = new ArrayList<String>();
@@ -369,10 +614,8 @@ public class MultiModelTypeHierarchy {
 			actualModelTypeUris.add(actualModelType.getUri());
 		}
 		String formalModelTypeUri = formalModelType.getUri();
-		for (String actualModelTypeUri : actualModelTypeUris) {
-			if (actualModelTypeUri.equals(formalModelTypeUri)) {
-				return new ArrayList<ConversionOperator>();
-			}
+		if (actualModelTypeUris.contains(formalModelTypeUri)) {
+			return new ArrayList<ConversionOperator>();
 		}
 
 		// convertible type
@@ -395,7 +638,24 @@ public class MultiModelTypeHierarchy {
 		return null;
 	}
 
-	public static List<Operator> getExecutableOperators(EList<Model> actualParameters, List<List<Model>> runtimeModelTypes, List<Map<Integer, List<ConversionOperator>>> conversions) {
+	/**
+	 * Gets the list of executable operators given a list of actual parameters
+	 * to be used for their invocation.
+	 * 
+	 * @param actualModels
+	 *            The list of actual model parameters.
+	 * @param actualModelTypes
+	 *            A list of model types obtained through polymorphism for each
+	 *            actual model parameter.
+	 * @param conversions
+	 *            Used as output, a list of conversion operators for each
+	 *            executable operator and for each actual model parameter to be
+	 *            converted into an equivalent one. The actual model parameter
+	 *            to be converted is given by the integer index of the map, to
+	 *            avoid the creation of many empty lists.
+	 * @return The list of executable operators.
+	 */
+	public static List<Operator> getExecutableOperators(EList<Model> actualModels, List<List<Model>> actualModelTypes, List<Map<Integer, List<ConversionOperator>>> conversions) {
 
 		List<Operator> executableOperatorTypes = new ArrayList<Operator>();
 
@@ -405,16 +665,16 @@ nextOperatorType:
 			Map<Integer, List<ConversionOperator>> conversionMap = new HashMap<Integer, List<ConversionOperator>>();
 			for (Parameter parameter : operatorType.getInputs()) {
 				// check 1: not enough actual parameters
-				if (i >= actualParameters.size()) {
+				if (i >= actualModels.size()) {
 					continue nextOperatorType;
 				}
 				// check 2: type or substitutable types
-				while (i < actualParameters.size()) {
-					Model actualParameter = actualParameters.get(i);
+				while (i < actualModels.size()) {
+					Model actualParameter = actualModels.get(i);
 					Model formalParameter = parameter.getModel();
 					// easy if formal parameter is root type for actual parameter
 					if (!MultiModelTypeRegistry.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
-						List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualParameter, runtimeModelTypes.get(i), formalParameter);
+						List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualModelTypes.get(i), formalParameter);
 						if (conversionOperatorTypes == null) {
 							continue nextOperatorType;
 						}
@@ -430,7 +690,7 @@ nextOperatorType:
 				}
 			}
 			// check 3: too many actual parameters
-			if (i < actualParameters.size()) {
+			if (i < actualModels.size()) {
 				continue nextOperatorType;
 			}
 			// checks passed
