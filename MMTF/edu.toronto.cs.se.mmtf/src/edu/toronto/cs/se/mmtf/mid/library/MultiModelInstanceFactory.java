@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro, Vivien Suen - Implementation.
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmtf.mid.library;
 
@@ -19,7 +19,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -63,137 +62,140 @@ import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 /**
- * The factory to create/modify/remove elements inside an instance multimodel.
+ * The factory to create/modify/remove instances.
  * 
  * @author Alessio Di Sandro
- * @author Vivien Suen
  * 
  */
 public class MultiModelInstanceFactory {
 
+	/** The empty uri. */
 	private final static String EMPTY_URI = "";
+	/** The empty name. */
 	private final static String EMPTY_NAME = "";
+	/** The empty file extension for a model. */
 	private final static String EMPTY_MODEL_FILE_EXTENSION = "";
 
 	/**
-	 * Adds the basic info to a new extendible element and registers its uri in
-	 * a multimodel.
+	 * Adds an instance to an Instance MID.
 	 * 
-	 * @param newElement
-	 *            The new element.
-	 * @param elementType
-	 *            The element type.
-	 * @param newElementUri
-	 *            The uri of the new element.
-	 * @param newElementName
-	 *            The name of the new element.
+	 * @param newInstance
+	 *            The new instance to be added.
+	 * @param type
+	 *            The type of the new instance.
+	 * @param newInstanceUri
+	 *            The uri of the new instance.
+	 * @param newInstanceName
+	 *            The name of the new instance.
 	 * @param multiModel
-	 *            The multimodel.
+	 *            An Instance MID.
 	 * @throws MMTFException
-	 *             If the uri of the element is already registered.
+	 *             If the uri of the new instance is already registered in the
+	 *             Instance MID.
 	 */
-	private static void addExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, String newElementUri, String newElementName, MultiModel multiModel) throws MMTFException {
+	private static void addInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName, MultiModel multiModel) throws MMTFException {
 
-		if (multiModel.getExtendibleTable().containsKey(newElementUri)) {
-			throw new MMTFException("Extendible element with uri " + newElementUri + " is already in this instance MID");
+		if (multiModel.getExtendibleTable().containsKey(newInstanceUri)) {
+			throw new MMTFException("Instance with uri " + newInstanceUri + " is already registered");
 		}
-		multiModel.getExtendibleTable().put(newElementUri, newElement);
+		multiModel.getExtendibleTable().put(newInstanceUri, newInstance);
 
-		addBasicExtendibleElement(newElement, elementType, newElementUri, newElementName);
+		addBasicInstance(newInstance, type, newInstanceUri, newInstanceName);
 	}
 
 	/**
-	 * Adds the basic info to a new extendible element without registering its
-	 * uri.
+	 * Adds an instance to an Instance MID without registering its uri.
 	 * 
-	 * @param newElement
-	 *            The new element.
-	 * @param elementType
-	 *            The element type.
-	 * @param newElementUri
-	 *            The uri of the new element.
-	 * @param newElementName
-	 *            The name of the new element.
+	 * @param newInstance
+	 *            The new instance to be added.
+	 * @param type
+	 *            The type of the new instance.
+	 * @param newInstanceUri
+	 *            The uri of the new instance.
+	 * @param newInstanceName
+	 *            The name of the new instance.
 	 */
-	private static void addBasicExtendibleElement(ExtendibleElement newElement, ExtendibleElement elementType, String newElementUri, String newElementName) {
+	private static void addBasicInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName) {
 
-		if (newElementUri == null) {
-			newElementUri = EMPTY_URI;
+		if (newInstanceUri == null) {
+			newInstanceUri = EMPTY_URI;
 		}
-		newElement.setUri(newElementUri);
-		if (newElementName == null) {
-			newElementName = EMPTY_NAME;
+		newInstance.setUri(newInstanceUri);
+		if (newInstanceName == null) {
+			newInstanceName = EMPTY_NAME;
 		}
-		newElement.setName(newElementName);
-		newElement.setLevel(MidLevel.INSTANCES);
-		newElement.setDynamic(true);
-		newElement.setSupertype(null);
-		if (elementType == null) { // use type introspection
-			List<ExtendibleElement> elementTypes = MultiModelTypeIntrospection.getRuntimeTypes(newElement);
-			elementType = elementTypes.get(elementTypes.size()-1);
+		newInstance.setName(newInstanceName);
+		newInstance.setLevel(MidLevel.INSTANCES);
+		newInstance.setDynamic(true);
+		newInstance.setSupertype(null);
+		if (type == null) { // use type introspection
+			List<ExtendibleElement> elementTypes = MultiModelTypeIntrospection.getRuntimeTypes(newInstance);
+			type = elementTypes.get(elementTypes.size()-1);
 			//TODO MMTF: ask the user?
 		}
-		newElement.setMetatypeUri(elementType.getUri());
+		newInstance.setMetatypeUri(type.getUri());
 	}
 
 	/**
-	 * Adds the target info to a new extendible element endpoint.
+	 * Adds the target to a new instance endpoint.
 	 * 
-	 * @param newElementEndpoint
-	 *            The new endpoint.
-	 * @param element
-	 *            The target of the endpoint.
+	 * @param newInstanceEndpoint
+	 *            The new instance endpoint.
+	 * @param newInstance
+	 *            The new instance that is the target of the new instance
+	 *            endpoint.
 	 */
-	private static void addExtendibleElementEndpoint(ExtendibleElementEndpoint newElementEndpoint, ExtendibleElement element) {
+	private static void addInstanceEndpoint(ExtendibleElementEndpoint newInstanceEndpoint, ExtendibleElement newInstance) {
 
-		newElementEndpoint.setTarget(element);
-		newElementEndpoint.setLowerBound(1);
-		newElementEndpoint.setUpperBound(1);
+		newInstanceEndpoint.setTarget(newInstance);
+		newInstanceEndpoint.setLowerBound(1);
+		newInstanceEndpoint.setUpperBound(1);
 	}
 
 	/**
-	 * Adds the referenced element info to an extendible element reference.
+	 * Adds additional info for a reference to an instance.
 	 * 
-	 * @param elementRef
-	 *            The element reference.
-	 * @param element
-	 *            The referenced element.
+	 * @param newInstanceRef
+	 *            The new reference being added.
+	 * @param newInstance
+	 *            The new instance for which the reference was created.
 	 * @param isContainer
-	 *            True if the referenced element is contained by the reference,
-	 *            false if it is contained by something else.
+	 *            True if the new reference is also the actual container of the
+	 *            new instance and not just a pointer to it, false otherwise.
 	 */
-	private static void addExtendibleElementReference(ExtendibleElementReference elementRef, ExtendibleElement element, boolean isContainer) {
+	private static void addInstanceReference(ExtendibleElementReference newInstanceRef, ExtendibleElement newInstance, boolean isContainer) {
 
 		if (isContainer) {
-			elementRef.setContainedObject(element);
+			newInstanceRef.setContainedObject(newInstance);
 		}
 		else {
-			elementRef.setReferencedObject(element);
+			newInstanceRef.setReferencedObject(newInstance);
 		}
-		elementRef.setModifiable(true);
-		elementRef.setSupertypeRef(null);
+		newInstanceRef.setModifiable(true);
+		newInstanceRef.setSupertypeRef(null);
 	}
 
 	/**
-	 * Adds info to a new model and possibly adds it to a multimodel.
+	 * Adds a model to an Instance MID or just adds additional info to the
+	 * model.
 	 * 
 	 * @param newModel
 	 *            The new model.
 	 * @param modelType
-	 *            The model type.
+	 *            The type of the new model.
 	 * @param newModelUri
-	 *            The uri of the new model (can be null if the new model is not
-	 *            an external entity with respect to the multimodel; e.g. a
-	 *            model and a standalone model relationship are external, a
-	 *            plain model relationship is not).
+	 *            The uri of the new model, null if the new model is not in a
+	 *            separate file; e.g. a model and a standalone model
+	 *            relationship are in their own files, a plain model
+	 *            relationship is not.
 	 * @param origin
 	 *            The origin of the new model.
 	 * @param multiModel
-	 *            The multimodel (can be null if the model does not have to be
-	 *            added to a multimodel).
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
 	 * @throws MMTFException
-	 *             If the uri of the model is already registered in the
-	 *             multimodel.
+	 *             If the uri of the new model is already registered in the
+	 *             Instance MID.
 	 */
 	private static void addModel(Model newModel, Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
@@ -208,10 +210,10 @@ public class MultiModelInstanceFactory {
 			fileExtension = MultiModelUtils.getFileExtensionFromUri(newModelUri);
 		}
 		if (basicElement) {
-			addBasicExtendibleElement(newModel, modelType, newModelUri, newModelName);
+			addBasicInstance(newModel, modelType, newModelUri, newModelName);
 		}
 		else {
-			addExtendibleElement(newModel, modelType, newModelUri, newModelName, multiModel);
+			addInstance(newModel, modelType, newModelUri, newModelName, multiModel);
 		}
 		if (updateMid) {
 			multiModel.getModels().add(newModel);
@@ -221,21 +223,21 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates a new model and possibly adds it to a multimodel.
+	 * Creates and possibly adds a model to an Instance MID.
 	 * 
 	 * @param modelType
-	 *            The model type.
+	 *            The type of the new model.
 	 * @param newModelUri
 	 *            The uri of the new model.
 	 * @param origin
 	 *            The origin of the new model.
 	 * @param multiModel
-	 *            The multimodel (can be null if the model does not have to be
-	 *            added to a multimodel).
-	 * @return The new model.
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
+	 * @return The created model.
 	 * @throws MMTFException
-	 *             If the uri of the model is already registered in the
-	 *             multimodel.
+	 *             If the uri of the new model is already registered in the
+	 *             Instance MID.
 	 */
 	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
@@ -246,21 +248,20 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates a new model together with an editor for it, and adds them to a
-	 * multimodel.
+	 * Creates and adds a model and an editor for it to an Instance MID.
 	 * 
 	 * @param modelType
-	 *            The model type.
+	 *            The type of the new model.
 	 * @param newModelUri
 	 *            The uri of the new model.
 	 * @param origin
 	 *            The origin of the new model.
 	 * @param multiModel
-	 *            The multimodel.
-	 * @return The new model.
+	 *            An Instance MID.
+	 * @return The created model.
 	 * @throws MMTFException
-	 *             If the uri of the model is already registered in the
-	 *             multimodel.
+	 *             If the uri of the new model is already registered in the
+	 *             Instance MID.
 	 */
 	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
@@ -274,33 +275,30 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates a new reference to a model element and adds it to a model
-	 * endpoint reference.
+	 * Creates and adds a reference to a model element to an Instance MID.
 	 * 
+	 * @param newModelElem
+	 *            The model element for which the reference is being created.
 	 * @param modelEndpointRef
-	 *            The reference to a model endpoint.
-	 * @param modelElem
-	 *            The model element.
-	 * @return The new reference to the model element.
+	 *            The reference to the model endpoint that will contain the new
+	 *            reference to the model element.
+	 * @return The created reference to the model element.
 	 */
-	private static ModelElementReference createModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElem) {
+	private static ModelElementReference createModelElementReference(ModelElement newModelElem, ModelEndpointReference modelEndpointRef) {
 
 		ModelElementReference newModelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-		addExtendibleElementReference(newModelElemRef, modelElem, false);
+		addInstanceReference(newModelElemRef, newModelElem, false);
 		modelEndpointRef.getModelElemRefs().add(newModelElemRef);
 
 		return newModelElemRef;
 	}
 
 	/**
-	 * Creates a new model element together with a reference to it, and adds
-	 * them to their respective containers.
+	 * Creates and adds a model element and a reference to it to an Instance
+	 * MID.
 	 * 
-	 * @param modelEndpointRef
-	 *            The reference to the model endpoint that will contain the
-	 *            model element.
 	 * @param modelElemType
-	 *            The model element type.
+	 *            The type of the new model element.
 	 * @param newModelElemUri
 	 *            The uri of the new model element.
 	 * @param newModelElemName
@@ -308,13 +306,16 @@ public class MultiModelInstanceFactory {
 	 * @param category
 	 *            The category of the new model element.
 	 * @param classLiteral
-	 *            The class literal of the new model element.
-	 * @return The reference to the new model element.
+	 *            The class name of the new model element type.
+	 * @param modelEndpointRef
+	 *            The reference to the model endpoint that will contain the new
+	 *            reference to the model element.
+	 * @return The created reference to the new model element.
 	 * @throws MMTFException
-	 *             If the uri of the model element is already registered in the
-	 *             multimodel.
+	 *             If the uri of the new model element is already registered in
+	 *             the Instance MID.
 	 */
-	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, String newModelElemUri, String newModelElemName, ModelElementCategory category, String classLiteral) throws MMTFException {
+	public static ModelElementReference createModelElementAndModelElementReference(ModelElement modelElemType, String newModelElemUri, String newModelElemName, ModelElementCategory category, String classLiteral, ModelEndpointReference modelEndpointRef) throws MMTFException {
 
 		ModelRel modelRel = (ModelRel) modelEndpointRef.eContainer();
 		MultiModel multiModel = (MultiModel) modelRel.eContainer();
@@ -323,34 +324,34 @@ public class MultiModelInstanceFactory {
 		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
-			addExtendibleElement(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
+			addInstance(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
 			newModelElem.setCategory(category);
 			newModelElem.setClassLiteral(classLiteral);
 			modelEndpointRef.getObject().getTarget().getElements().add(newModelElem);
 		}
-		ModelElementReference newModelElemRef = createModelElementReference(modelEndpointRef, newModelElem);
+		ModelElementReference newModelElemRef = createModelElementReference(newModelElem, modelEndpointRef);
 
 		return newModelElemRef;
 	}
 
 	/**
-	 * Creates a new model element together with a reference to it, and adds
-	 * them to their respective containers.
+	 * Creates and adds a model element and a reference to it to an Instance
+	 * MID.
 	 * 
-	 * @param modelEndpointRef
-	 *            The reference to the model endpoint that will contain the
-	 *            model element.
 	 * @param newModelElemName
 	 *            The name of the new model element.
 	 * @param modelObj
-	 *            The EMF model element, which will be wrapped by MMTF model
+	 *            The EMF model element, that will be wrapped by the MMTF model
 	 *            element.
+	 * @param modelEndpointRef
+	 *            The reference to the model endpoint that will contain the new
+	 *            reference to the model element.
 	 * @return The reference to the new model element.
 	 * @throws MMTFException
-	 *             If the uri of the model element is already registered in the
-	 *             multimodel.
+	 *             If the uri of the new model element is already registered in
+	 *             the Instance MID.
 	 */
-	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelObj) throws MMTFException {
+	public static ModelElementReference createModelElementAndModelElementReference(String newModelElemName, EObject modelObj, ModelEndpointReference modelEndpointRef) throws MMTFException {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
 		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(modelObj);
@@ -360,65 +361,65 @@ public class MultiModelInstanceFactory {
 			newModelElemName = MultiModelRegistry.getModelElementName(modelObj, true);
 		}
 		ModelElementReference newModelElemRef = createModelElementAndModelElementReference(
-			modelEndpointRef,
 			modelElemType,
 			newModelElemUri,
 			newModelElemName,
 			category,
-			classLiteral
+			classLiteral,
+			modelEndpointRef
 		);
 
 		return newModelElemRef;
 	}
 
 	/**
-	 * Creates a new model relationship and possibly adds it to a multimodel.
+	 * Creates and possibly adds a model relationship to an Instance MID.
 	 * 
 	 * @param modelRelType
-	 *            The model relationship type.
+	 *            The type of the new model relationship.
 	 * @param newModelRelUri
-	 *            The uri of the new model relationship (can be null if the new
-	 *            model relationship is not an external entity with respect to
-	 *            the multimodel; e.g. a standalone model relationship is
-	 *            external, a plain model relationship is not).
+	 *            The uri of the new model relationship, null if the new model
+	 *            relationship is not in a separate file; e.g. a standalone
+	 *            model relationship is in its own files, a plain model
+	 *            relationship is not.
+	 * @param newModelRelClass
+	 *            The class of the new model relationship.
 	 * @param origin
 	 *            The origin of the new model relationship.
-	 * @param modelRelClass
-	 *            The class of the new model relationship (binary or nary).
 	 * @param multiModel
-	 *            The multimodel (can be null if the model relationship does not
-	 *            have to be added to a multimodel).
-	 * @return The new model relationship.
+	 *            An Instance MID, null if the model relationship isn't going to
+	 *            be added to it.
+	 * @return The created model relationship.
 	 * @throws MMTFException
-	 *             If the uri of the model relationship is already registered in
-	 *             the multimodel.
+	 *             If the uri of the new model relationship is already
+	 *             registered in the Instance MID.
 	 */
-	public static ModelRel createModelRel(ModelRel modelRelType, String newModelRelUri, ModelOrigin origin, EClass modelRelClass, MultiModel multiModel) throws MMTFException {
+	public static ModelRel createModelRel(ModelRel modelRelType, String newModelRelUri, EClass newModelRelClass, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
-		ModelRel newModelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(modelRelClass);
+		ModelRel newModelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(newModelRelClass);
 		addModel(newModelRel, modelRelType, newModelRelUri, origin, multiModel);
 
 		return newModelRel;
 	}
 
 	/**
-	 * Creates a new reference to a model endpoint and adds it to a model
-	 * relationship.
+	 * Creates and adds a reference to a model endpoint to an Instance MID.
 	 * 
-	 * @param modelRel
-	 *            The model relationship.
-	 * @param modelEndpoint
-	 *            The model endpoint.
+	 * @param newModelEndpoint
+	 *            The model endpoint for which the reference is being created.
 	 * @param isBinarySrc
-	 *            True if the model endpoint is the source endpoint of a binary
-	 *            model relationship, false otherwise.
-	 * @return The new reference to the model endpoint.
+	 *            True if the model endpoint is the source in the binary model
+	 *            relationship container, false otherwise.
+	 * @param modelRel
+	 *            The model relationship that will contain the new reference to
+	 *            the model endpoint.
+	 * @return The created reference to the model endpoint.
 	 */
-	public static ModelEndpointReference createModelEndpointReference(ModelRel modelRel, ModelEndpoint modelEndpoint, boolean isBinarySrc) {
+	public static ModelEndpointReference createModelEndpointReference(ModelEndpoint newModelEndpoint, boolean isBinarySrc, ModelRel modelRel) {
 
 		ModelEndpointReference newModelEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
 		boolean isContainer = modelRel.eContainer() == null;
-		addExtendibleElementReference(newModelEndpointRef, modelEndpoint, isContainer);
+		addInstanceReference(newModelEndpointRef, newModelEndpoint, isContainer);
 
 		if (isBinarySrc) {
 			modelRel.getModelEndpointRefs().add(0, newModelEndpointRef);
@@ -431,82 +432,82 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates a new model endpoint together with a reference to it, and adds
-	 * them to their respective containers.
+	 * Creates and adds a model endpoint and a reference to it to an Instance
+	 * MID.
 	 * 
 	 * @param modelTypeEndpoint
-	 *            The model type endpoint.
+	 *            The type of the new model endpoint.
+	 * @param newModel
+	 *            The new model that is the target of the new model endpoint.
+	 * @param isBinarySrc
+	 *            True if the model endpoint is the source in the binary model
+	 *            relationship container, false otherwise.
 	 * @param modelRel
 	 *            The model relationship that will contain the new model
 	 *            endpoint.
-	 * @param newModel
-	 *            The model to be targeted by the new model endpoint.
-	 * @param isBinarySrc
-	 *            True if the new model endpoint is the source endpoint of a
-	 *            binary model relationship, false otherwise.
-	 * @return The reference to the new model endpoint.
+	 * @return The created reference to the model endpoint.
 	 */
-	public static ModelEndpointReference createModelEndpointAndModelEndpointReference(ModelEndpoint modelTypeEndpoint, ModelRel modelRel, Model newModel, boolean isBinarySrc) {
+	public static ModelEndpointReference createModelEndpointAndModelEndpointReference(ModelEndpoint modelTypeEndpoint, Model newModel, boolean isBinarySrc, ModelRel modelRel) {
 
 		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		addBasicExtendibleElement(newModelEndpoint, modelTypeEndpoint, null, newModel.getName());
-		addExtendibleElementEndpoint(newModelEndpoint, newModel);
+		addBasicInstance(newModelEndpoint, modelTypeEndpoint, null, newModel.getName());
+		addInstanceEndpoint(newModelEndpoint, newModel);
 		if (isBinarySrc) {
 			modelRel.getModelEndpoints().add(0, newModelEndpoint);
 		}
 		else {
 			modelRel.getModelEndpoints().add(newModelEndpoint);
 		}
-		ModelEndpointReference modelEndpointRef = createModelEndpointReference(modelRel, newModelEndpoint, isBinarySrc);
+		ModelEndpointReference modelEndpointRef = createModelEndpointReference(newModelEndpoint, isBinarySrc, modelRel);
 
 		return modelEndpointRef;
 	}
 
 	/**
-	 * Creates a new model relationship together with its model endpoints, and
-	 * adds it to a multimodel.
+	 * Creates and adds a model relationship and its model endpoints to an
+	 * Instance MID.
 	 * 
 	 * @param modelRelType
-	 *            The model relationship type.
+	 *            The type of the new model relationship.
 	 * @param newModelRelUri
-	 *            The uri of the new model relationship (can be null if the new
-	 *            model relationship is not an external entity with respect to
-	 *            the multimodel; e.g. a standalone model relationship is
-	 *            external, a plain model relationship is not).
+	 *            The uri of the new model relationship, null if the new model
+	 *            relationship is not in a separate file; e.g. a standalone
+	 *            model relationship is in its own files, a plain model
+	 *            relationship is not.
+	 * @param newModelRelClass
+	 *            The class of the new model relationship.
 	 * @param origin
 	 *            The origin of the new model relationship.
-	 * @param modelRelClass
-	 *            The class of the new model relationship (binary or nary).
-	 * @param models
-	 *            The models to be targeted by the endpoints of the new model
-	 *            relationship.
-	 * @return The new model relationship.
+	 * @param newModels
+	 *            The new models that are the targets of the new model
+	 *            endpoints.
+	 * @return The created model relationship.
 	 * @throws MMTFException
-	 *             If the uri of the model relationship is already registered in
-	 *             the multimodel.
+	 *             If the uri of the new model relationship is already
+	 *             registered in the Instance MID.
 	 */
-	public static ModelRel createModelRelAndModelEndpointsAndModelEndpointReferences(ModelRel modelRelType, String newModelRelUri, ModelOrigin origin, EClass modelRelClass, Model... models) throws MMTFException {
+	public static ModelRel createModelRelAndModelEndpointsAndModelEndpointReferences(ModelRel modelRelType, String newModelRelUri, EClass newModelRelClass, ModelOrigin origin, Model... newModels) throws MMTFException {
 
-		if (models.length == 0) {
+		if (newModels.length == 0) {
 			return null;
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(models[0]);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModels[0]);
 		// create model rel
 		ModelRel newModelRel = createModelRel(
 			modelRelType,
 			newModelRelUri,
+			newModelRelClass,
 			origin,
-			modelRelClass,
 			multiModel
 		);
 		// create model rel endpoints
-		for (Model model : models) {
+		for (Model model : newModels) {
 			createModelEndpointAndModelEndpointReference(
 				null,
-				newModelRel,
 				model,
-				false
+				false,
+				newModelRel
 			);
 		}
 
@@ -514,61 +515,102 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Replaces the target model of an existing model endpoint.
+	 * Replaces an old model endpoint and a reference to it with new ones in an
+	 * Instance MID.
 	 * 
 	 * @param oldModelEndpoint
-	 *            The existing model endpoint.
+	 *            The old model endpoint to be replaced.
 	 * @param modelTypeEndpoint
-	 *            The model type endpoint.
+	 *            The type of the new model endpoint.
 	 * @param newModel
-	 *            The model to be targeted by the existing model endpoint.
+	 *            The new model that is the target of the new model endpoint.
 	 */
 	public static void replaceModelEndpointAndModelEndpointReference(ModelEndpoint oldModelEndpoint, ModelEndpoint modelTypeEndpoint, Model newModel) {
 
-		addBasicExtendibleElement(oldModelEndpoint, modelTypeEndpoint, null, null);
+		addBasicInstance(oldModelEndpoint, modelTypeEndpoint, null, null);
 		oldModelEndpoint.setTarget(newModel);
 	}
 
-	public static LinkReference createLinkAndLinkReference(Link linkType, ModelRel modelRel, EClass linkClass, EClass linkRefClass) {
+	/**
+	 * Creates and adds a new link and a reference to it to an Instance MID.
+	 * 
+	 * @param linkType
+	 *            The type of the new link.
+	 * @param newLinkClass
+	 *            The class of the new link.
+	 * @param newLinkRefClass
+	 *            The class of the new reference to the new link.
+	 * @param modelRel
+	 *            The model relationship that will contain the new link.
+	 * @return The created reference to the new link.
+	 */
+	public static LinkReference createLinkAndLinkReference(Link linkType, EClass newLinkClass, EClass newLinkRefClass, ModelRel modelRel) {
 
-		Link newLink = (Link) RelationshipFactory.eINSTANCE.create(linkClass);
+		Link newLink = (Link) RelationshipFactory.eINSTANCE.create(newLinkClass);
 		modelRel.getLinks().add(newLink);
-		addBasicExtendibleElement(newLink, linkType, null, null);
-		LinkReference newLinkRef = createLinkReference(modelRel, newLink, linkRefClass);
+		addBasicInstance(newLink, linkType, null, null);
+		LinkReference newLinkRef = createLinkReference(newLink, newLinkRefClass, modelRel);
 
 		return newLinkRef;
 	}
 
-	public static LinkReference createLinkReference(ModelRel modelRel, Link link, EClass linkRefClass) {
+	/**
+	 * Creates and adds a reference to a link to an Instance MID.
+	 * 
+	 * @param newLink
+	 *            The link for which the reference is being created.
+	 * @param newLinkRefClass
+	 *            The class of the new reference to the link.
+	 * @param modelRel
+	 *            The model relationship that will contain the new reference to
+	 *            the link.
+	 * @return The created reference to the link.
+	 */
+	public static LinkReference createLinkReference(Link newLink, EClass newLinkRefClass, ModelRel modelRel) {
 
-		LinkReference linkRef = (LinkReference) RelationshipFactory.eINSTANCE.create(linkRefClass);
-		addExtendibleElementReference(linkRef, link, false);
+		LinkReference linkRef = (LinkReference) RelationshipFactory.eINSTANCE.create(newLinkRefClass);
+		addInstanceReference(linkRef, newLink, false);
 		modelRel.getLinkRefs().add(linkRef);
 
 		return linkRef;
 	}
 
-	public static LinkReference createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(Link linkType, EClass linkClass, EClass linkRefClass, ModelElementReference... modelElemRefs) throws MMTFException {
+	/**
+	 * Creates and adds a link, a reference to it, its model endpoints and
+	 * references to them to an Instance MID.
+	 * 
+	 * @param linkType
+	 *            The type of the new link.
+	 * @param newLinkClass
+	 *            The class of the new link.
+	 * @param newLinkRefClass
+	 *            The class of the new reference to the new link.
+	 * @param newModelElemRefs
+	 *            The new references to the model elements that are the targets
+	 *            of the new model element endpoints.
+	 * @return The created reference to the new link.
+	 */
+	public static LinkReference createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(Link linkType, EClass newLinkClass, EClass newLinkRefClass, ModelElementReference... newModelElemRefs) {
 
-		if (modelElemRefs.length == 0) {
+		if (newModelElemRefs.length == 0) {
 			return null;
 		}
 
-		ModelRel modelRel = (ModelRel) modelElemRefs[0].eContainer().eContainer();
+		ModelRel modelRel = (ModelRel) newModelElemRefs[0].eContainer().eContainer();
 		// create link
 		LinkReference newLinkRef = createLinkAndLinkReference(
 			linkType,
-			modelRel,
-			linkClass,
-			linkRefClass
+			newLinkClass,
+			newLinkRefClass,
+			modelRel
 		);
 		// create model element endpoints
-		for (ModelElementReference modelElemRef : modelElemRefs) {
+		for (ModelElementReference modelElemRef : newModelElemRefs) {
 			ModelElementEndpointReference newModelElemEndpointRef = createModelElementEndpointAndModelElementEndpointReference(
 				null,
-				newLinkRef,
 				modelElemRef,
-				false
+				false,
+				newLinkRef
 			);
 			newModelElemEndpointRef.getObject().setName(modelElemRef.getObject().getName());
 		}
@@ -576,28 +618,64 @@ public class MultiModelInstanceFactory {
 		return newLinkRef;
 	}
 
-	public static ModelElementEndpointReference createModelElementEndpointAndModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef, boolean isBinarySrc) throws MMTFException {
+	/**
+	 * Creates and adds a model element endpoint and a reference to it to an
+	 * Instance MID.
+	 * 
+	 * @param modelElemTypeEndpoint
+	 *            The type of the new model element endpoint.
+	 * @param newModelElemRef
+	 *            The reference to the new model element that is the target of
+	 *            the new model element endpoint.
+	 * @param isBinarySrc
+	 *            True if the model element endpoint is the source in the binary
+	 *            link container, false otherwise.
+	 * @param linkRef
+	 *            The reference to the link that will contain the new model
+	 *            element endpoint.
+	 * @return The created reference to the new model element endpoint.
+	 */
+	public static ModelElementEndpointReference createModelElementEndpointAndModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef, boolean isBinarySrc, LinkReference linkRef) {
 
 		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
-		addBasicExtendibleElement(newModelElemEndpoint, modelElemTypeEndpoint, null, newModelElemRef.getObject().getName());
-		addExtendibleElementEndpoint(newModelElemEndpoint, newModelElemRef.getObject());
+		addBasicInstance(newModelElemEndpoint, modelElemTypeEndpoint, null, newModelElemRef.getObject().getName());
+		addInstanceEndpoint(newModelElemEndpoint, newModelElemRef.getObject());
 		if (isBinarySrc) {
 			linkRef.getObject().getModelElemEndpoints().add(0, newModelElemEndpoint);
 		}
 		else {
 			linkRef.getObject().getModelElemEndpoints().add(newModelElemEndpoint);
 		}
-		ModelElementEndpointReference modelElemEndpointRef = createModelElementEndpointReference(linkRef, newModelElemEndpoint, newModelElemRef, isBinarySrc);
+		ModelElementEndpointReference modelElemEndpointRef = createModelElementEndpointReference(newModelElemEndpoint, newModelElemRef, isBinarySrc, linkRef);
 		linkRef.getObject().getModelElemEndpointRefs().add(modelElemEndpointRef);
 
 		return modelElemEndpointRef;
 	}
 
-	public static ModelElementEndpointReference createModelElementEndpointReference(LinkReference linkRef, ModelElementEndpoint newModelElemEndpoint, ModelElementReference newModelElemRef, boolean isBinarySrc) {
+	/**
+	 * Creates and adds a reference to a model element endpoint to an Instance
+	 * MID.
+	 * 
+	 * @param newModelElemEndpoint
+	 *            The model element endpoint for which the reference is being
+	 *            created.
+	 * @param newModelElemRef
+	 *            The reference to the new model element that is the target of
+	 *            the new model element endpoint.
+	 * @param isBinarySrc
+	 *            True if the reference to the model element endpoint is the
+	 *            source in the binary link reference container, false
+	 *            otherwise.
+	 * @param linkRef
+	 *            The reference to the link that will contain the new model
+	 *            element endpoint.
+	 * @return The created reference to the model element endpoint.
+	 */
+	public static ModelElementEndpointReference createModelElementEndpointReference(ModelElementEndpoint newModelElemEndpoint, ModelElementReference newModelElemRef, boolean isBinarySrc, LinkReference linkRef) {
 
 		ModelElementEndpointReference newModelElemEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
 		boolean isContainer = linkRef.eContainer().eContainer() == null;
-		addExtendibleElementReference(newModelElemEndpointRef, newModelElemEndpoint, isContainer);
+		addInstanceReference(newModelElemEndpointRef, newModelElemEndpoint, isContainer);
 		newModelElemEndpointRef.setModelElemRef(newModelElemRef);
 
 		if (isBinarySrc) {
@@ -613,17 +691,17 @@ public class MultiModelInstanceFactory {
 	public static void replaceModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef) throws MMTFException {
 
 		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
-		addBasicExtendibleElement(oldModelElemEndpoint, modelElemTypeEndpoint, null, null);
+		addBasicInstance(oldModelElemEndpoint, modelElemTypeEndpoint, null, null);
 		oldModelElemEndpoint.setTarget(newModelElemRef.getObject());
 		oldModelElemEndpointRef.setModelElemRef(newModelElemRef);
 	}
 
 	/**
-	 * Creates a new editor for a model.
+	 * Creates and adds an editor to an Instance MID.
 	 * 
 	 * @param model
-	 *            The model.
-	 * @return The new editor, or null if the editor could not be created.
+	 *            The model handled by the new editor.
+	 * @return The created editor, null if the editor couldn't be created.
 	 */
 	public static Editor createEditor(Model model) {
 
@@ -655,20 +733,20 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates a new editor for a model.
+	 * Creates and adds an editor to an Instance MID.
 	 * 
 	 * @param editorType
-	 *            The editor type.
+	 *            The type of the new editor.
 	 * @param modelUri
-	 *            The uri of the model.
-	 * @return The new editor.
+	 *            The uri of the model handled by the new editor.
+	 * @return The created editor.
 	 */
 	public static Editor createEditor(Editor editorType, String modelUri) {
 
 		Editor newEditor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
 		String newEditorName = editorType.getName() + " for model " + modelUri;
 		String newEditorUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
-		addBasicExtendibleElement(newEditor, editorType, newEditorUri, newEditorName);
+		addBasicInstance(newEditor, editorType, newEditorUri, newEditorName);
 		newEditor.setModelUri(modelUri);
 		newEditor.setId(editorType.getId());
 		newEditor.setWizardId(editorType.getWizardId());
@@ -678,13 +756,13 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates a new diagram for a model.
+	 * Creates and adds a diagram to an Instance MID.
 	 * 
 	 * @param diagramType
-	 *            The diagram type.
+	 *            The type of the new diagram.
 	 * @param modelUri
-	 *            The uri of the model.
-	 * @return The new diagram, or null if the diagram could not be created.
+	 *            The uri of the model handled by the new diagram.
+	 * @return The created diagram, null if the diagram couldn't be created.
 	 */
 	public static Diagram createDiagram(Diagram diagramType, String modelUri) {
 
@@ -717,12 +795,12 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Adds an editor to its model and to a multimodel.
+	 * Adds an editor to its model and to an Instance MID.
 	 * 
 	 * @param editor
 	 *            The editor.
 	 * @param multiModel
-	 *            The multimodel.
+	 *            The Instance MID.
 	 */
 	public static void addModelEditor(Editor editor, MultiModel multiModel) {
 
@@ -743,8 +821,8 @@ public class MultiModelInstanceFactory {
 	 *            The selection used to initialize the wizard. It can be an
 	 *            existing model file, or its container when the underlying
 	 *            model file has to be created.
-	 * @return The editor creation wizard dialog, or null if the user canceled
-	 *         the operation.
+	 * @return The editor creation wizard dialog, null if the user canceled the
+	 *         operation.
 	 * @throws Exception
 	 *             If the editor creation wizard could not be invoked.
 	 */
@@ -797,20 +875,36 @@ public class MultiModelInstanceFactory {
 		return wizDialog;
 	}
 
-	private static ExtendibleElement removeExtendibleElement(MultiModel multiModel, String elementUri) {
+	/**
+	 * Removes an instance from an Instance MID.
+	 * 
+	 * @param instanceUri
+	 *            The uri of the instance to be removed.
+	 * @param multiModel
+	 *            The Instance MID that contains the instance.
+	 * @return The removed instance, null if the uri was not registered in the
+	 *         Instance MID.
+	 */
+	private static ExtendibleElement removeInstance(String instanceUri, MultiModel multiModel) {
 
-		return multiModel.getExtendibleTable().removeKey(elementUri);
+		return multiModel.getExtendibleTable().removeKey(instanceUri);
 	}
 
+	/**
+	 * Removes a model from the Instance MID that contains it.
+	 * 
+	 * @param model
+	 *            The model to be removed.
+	 */
 	public static void removeModel(Model model) {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(model);
-		removeExtendibleElement(multiModel, model.getUri());
+		removeInstance(model.getUri(), multiModel);
 		multiModel.getModels().remove(model);
 
 		//remove model elements
 		for (ModelElement modelElem : model.getElements()) {
-			removeExtendibleElement(multiModel, modelElem.getUri());
+			removeInstance(modelElem.getUri(), multiModel);
 		}
 		// remove editors
 		for (Editor editor : model.getEditors()) {
@@ -841,11 +935,27 @@ public class MultiModelInstanceFactory {
 		}
 	}
 
+	/**
+	 * Removes a model relationship from the Instance MID that contains it.
+	 * 
+	 * @param modelRel
+	 *            The model relationship to be removed.
+	 */
 	public static void removeModelRel(ModelRel modelRel) {
 
 		removeModel(modelRel);
 	}
 
+	/**
+	 * Removes a model endpoint and the reference to it from the Instance MID
+	 * that contains them.
+	 * 
+	 * @param modelEndpoint
+	 *            The model endpoint to be removed.
+	 * @param isFullRemove
+	 *            True if the model endpoint is going to be fully removed, false
+	 *            if it is going to be replaced later.
+	 */
 	public static void removeModelEndpointAndModelEndpointReference(ModelEndpoint modelEndpoint, boolean isFullRemove) {
 
 		ModelRel modelRel = (ModelRel) modelEndpoint.eContainer();
@@ -865,6 +975,13 @@ public class MultiModelInstanceFactory {
 		}
 	}
 
+	/**
+	 * Removes a link and the reference to it from the Instance MID that
+	 * contains them.
+	 * 
+	 * @param linkRef
+	 *            The reference to be removed to the link to be removed.
+	 */
 	public static void removeLinkAndLinkReference(LinkReference linkRef) {
 
 		ModelRel modelRel = (ModelRel) linkRef.eContainer();
@@ -875,6 +992,17 @@ public class MultiModelInstanceFactory {
 		modelRel.getLinks().remove(linkRef.getObject());
 	}
 
+	/**
+	 * Removes a model element endpoint and the reference to it from the
+	 * Instance MID that contains them.
+	 * 
+	 * @param modelElemEndpointRef
+	 *            The reference to be removed to the model element endpoint to
+	 *            be removed.
+	 * @param isFullRemove
+	 *            True if the model element endpoint is going to be fully
+	 *            removed, false if it is going to be replaced later.
+	 */
 	public static void removeModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference modelElemEndpointRef, boolean isFullRemove) {
 
 		LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();
@@ -887,6 +1015,13 @@ public class MultiModelInstanceFactory {
 		}
 	}
 
+	/**
+	 * Removes a reference to a model element from the Instance MID that
+	 * contains it.
+	 * 
+	 * @param modelElemRef
+	 *            The reference to be removed to the modle element.
+	 */
 	public static void removeModelElementReference(ModelElementReference modelElemRef) {
 
 		List<LinkReference> delLinkRefs = new ArrayList<LinkReference>();
@@ -914,43 +1049,35 @@ public class MultiModelInstanceFactory {
 		((ModelEndpointReference) modelElemRef.eContainer()).getModelElemRefs().remove(modelElemRef);
 	}
 
+	/**
+	 * Removes a model element and the reference to it from the Instance MID
+	 * that contains them.
+	 * 
+	 * @param modelElemRef
+	 *            The reference to be removed to the model element to be
+	 *            removed.
+	 */
 	public static void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) {
 
 		MultiModel multiModel = (MultiModel) modelElemRef.eContainer().eContainer().eContainer();
-		removeExtendibleElement(multiModel, modelElemRef.getUri());
+		removeInstance(modelElemRef.getUri(), multiModel);
 		removeModelElementReference(modelElemRef);
 		ModelElement modelElem = modelElemRef.getObject();
 		((Model) modelElem.eContainer()).getElements().remove(modelElem);
 		//TODO MMTF: should remove from all model rels too?
 	}
 
+	/**
+	 * Removes an editor from the Instance MID that contains it.
+	 * 
+	 * @param editor
+	 *            The editor to be removed.
+	 */
 	public static void removeEditor(Editor editor) {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(editor);
 		multiModel.getEditors().remove(editor);
 		// no need to removeExtendibleElement
-	}
-
-	public static ModelElement getModelElementUnique(MultiModel multiModel, URI modelElemUri) {
-
-		ExtendibleElement modelElem = multiModel.getExtendibleTable().get(modelElemUri.toString().substring(18)); // strip "platform:/resource"
-		if (modelElem != null && modelElem instanceof ModelElement) {
-			return (ModelElement) modelElem;
-		}
-
-		return null;
-	}
-
-	public static ModelElement getModelElementUnique(Model model, URI modelElemUri) {
-
-		String uri = modelElemUri.toString().substring(18); // strip "platform:/resource"
-		for (ModelElement modelElem : model.getElements()) {
-			if (uri.equals(modelElem.getUri())) {
-				return modelElem;
-			}
-		}
-
-		return null;
 	}
 
 }

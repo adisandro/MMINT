@@ -47,9 +47,9 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		// create unary link
 		LinkReference diffLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
 			null,
-			diffModelRel,
 			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference()
+			RelationshipPackage.eINSTANCE.getLinkReference(),
+			diffModelRel
 		);
 		diffLinkRef.getObject().setName(linksName);
 		// create model element
@@ -61,9 +61,9 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		// create model element endpoint
 		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 			null,
-			diffLinkRef,
 			diffModelElemRef,
-			false
+			false,
+			diffLinkRef
 		);
 	}
 
@@ -77,8 +77,8 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		ModelRel diffModelRel = MultiModelInstanceFactory.createModelRel(
 			null,
 			null,
-			ModelOrigin.CREATED,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			ModelOrigin.CREATED,
 			multiModel
 		);
 		diffModelRel.setName(MODELREL_NAME);
@@ -86,15 +86,15 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		// create model endpoints
 		ModelEndpointReference srcModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			null,
-			diffModelRel,
 			matchRel.getModelEndpoints().get(0).getTarget(),
-			false
+			false,
+			diffModelRel
 		);
 		ModelEndpointReference tgtModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			null,
-			diffModelRel,
 			matchRel.getModelEndpoints().get(1).getTarget(),
-			false
+			false,
+			diffModelRel
 		);
 
 		// get output from previous operator

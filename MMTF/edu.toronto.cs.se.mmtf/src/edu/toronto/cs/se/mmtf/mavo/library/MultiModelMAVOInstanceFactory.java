@@ -51,7 +51,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 
 	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelEObject) throws MMTFException {
 
-		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(modelEndpointRef, newModelElemName, modelEObject);
+		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(newModelElemName, modelEObject, modelEndpointRef);
 		MAVOUtils.initializeMAVOModelElementReference(modelEObject, newModelElemRef);
 
 		return newModelElemRef;
@@ -88,8 +88,8 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		ModelRel newModelRel = createModelRel(
 			oldModelRel.getMetatype(),
 			null,
-			ModelOrigin.CREATED,
 			oldModelRel.eClass(),
+			ModelOrigin.CREATED,
 			multiModel
 		);
 		newModelRel.setName(newModelRelName);
@@ -98,7 +98,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference oldModelEndpointRef : oldModelRel.getModelEndpointRefs()) {
 			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), multiModel);
-			ModelEndpointReference newModelEndpointRef = createModelEndpointAndModelEndpointReference(oldModelEndpointRef.getObject().getMetatype(), newModelRel, newModel, false);
+			ModelEndpointReference newModelEndpointRef = createModelEndpointAndModelEndpointReference(oldModelEndpointRef.getObject().getMetatype(), newModel, false, newModelRel);
 			// model elements
 			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
 				EObject newModelObj = MultiModelTypeIntrospection.getPointer(oldModelElemRef.getObject());
@@ -108,12 +108,12 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		}
 		// links
 		for (LinkReference oldLinkRef : oldModelRel.getLinkRefs()) {
-			LinkReference newLinkRef = createLinkAndLinkReference(oldLinkRef.getObject().getMetatype(), newModelRel, oldLinkRef.getObject().eClass(), oldLinkRef.eClass());
+			LinkReference newLinkRef = createLinkAndLinkReference(oldLinkRef.getObject().getMetatype(), oldLinkRef.getObject().eClass(), oldLinkRef.eClass(), newModelRel);
 			MAVOUtils.copyMAVOElement(oldLinkRef.getObject(), newLinkRef.getObject());
 			newLinkRef.getObject().setName(oldLinkRef.getObject().getName());
 			for (ModelElementEndpointReference oldModelElemEndpointRef : oldLinkRef.getModelElemEndpointRefs()) {
 				ModelElementReference newModelElemRef = newModelElemRefs.get(oldModelElemEndpointRef.getTargetUri());
-				createModelElementEndpointAndModelElementEndpointReference(oldModelElemEndpointRef.getObject().getMetatype(), newLinkRef, newModelElemRef, false);
+				createModelElementEndpointAndModelElementEndpointReference(oldModelElemEndpointRef.getObject().getMetatype(), newModelElemRef, false, newLinkRef);
 			}
 		}
 

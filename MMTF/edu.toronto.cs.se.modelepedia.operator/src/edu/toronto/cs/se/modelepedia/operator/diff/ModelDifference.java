@@ -76,17 +76,17 @@ public class ModelDifference extends OperatorExecutableImpl {
 		List<EObject> diffModelObjs = getDiffModelObjects(model, modelElemRefTable);
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			null,
-			diffModelRel,
 			model,
-			false
+			false,
+			diffModelRel
 		);
 		for (EObject modelObj : diffModelObjs) {
 			// create unary link
 			LinkReference diffLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
 				null,
-				diffModelRel,
 				RelationshipPackage.eINSTANCE.getLink(),
-				RelationshipPackage.eINSTANCE.getLinkReference()
+				RelationshipPackage.eINSTANCE.getLinkReference(),
+				diffModelRel
 			);
 			diffLinkRef.getObject().setName(linksName);
 			// create model element
@@ -98,9 +98,9 @@ public class ModelDifference extends OperatorExecutableImpl {
 			// create model element endpoint
 			MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 				null,
-				diffLinkRef,
 				diffModelElemRef,
-				false
+				false,
+				diffLinkRef
 			);
 		}
 
@@ -117,8 +117,8 @@ public class ModelDifference extends OperatorExecutableImpl {
 		ModelRel diffModelRel = MultiModelInstanceFactory.createModelRel(
 			null,
 			null,
-			ModelOrigin.CREATED,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			ModelOrigin.CREATED,
 			multiModel
 		);
 		diffModelRel.setName(MODELREL_NAME);

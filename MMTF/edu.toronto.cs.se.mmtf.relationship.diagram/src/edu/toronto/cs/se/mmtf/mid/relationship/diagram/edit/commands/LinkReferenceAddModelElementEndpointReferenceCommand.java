@@ -81,9 +81,9 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
 		ModelElementEndpointReference newModelElemEndpointRef = MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 			modelElemTypeEndpointRef.getObject(),
-			getSource(),
 			getTarget(),
-			false
+			false,
+			getSource()
 		);
 
 		return newModelElemEndpointRef;

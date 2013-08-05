@@ -46,7 +46,8 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 
 /**
- * The factory for creating "heavy" types, i.e. types created from extensions.
+ * The factory to create/modify/remove "heavy" types, i.e. types from
+ * extensions.
  * 
  * @author Alessio Di Sandro
  * 

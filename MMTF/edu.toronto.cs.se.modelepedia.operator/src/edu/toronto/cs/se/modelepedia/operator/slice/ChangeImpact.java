@@ -162,9 +162,9 @@ public class ChangeImpact extends OperatorExecutableImpl {
 					// add impacted model element endpoint to impact link
 					ModelElementEndpointReference newImpactModelElemEndpointRef = MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 						null,
-						impactLinkRef,
 						newImpactedModelElemRef,
-						false
+						false,
+						impactLinkRef
 					);
 					newImpactModelElemEndpointRef.getObject().setName(TGT_MODELELEMENDPOINT_NAME);
 				}
@@ -193,8 +193,8 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		ModelRel newImpactModelRel = MultiModelInstanceFactory.createModelRelAndModelEndpointsAndModelEndpointReferences(
 			null,
 			null,
-			ModelOrigin.CREATED,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			ModelOrigin.CREATED,
 			diffRel,
 			impactedModel
 		);

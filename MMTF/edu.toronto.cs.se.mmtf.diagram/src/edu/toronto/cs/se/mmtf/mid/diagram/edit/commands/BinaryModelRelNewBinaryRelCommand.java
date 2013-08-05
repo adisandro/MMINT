@@ -111,8 +111,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		BinaryModelRel newModelRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
 			modelRelType,
 			null,
-			ModelOrigin.CREATED,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			ModelOrigin.CREATED,
 			multiModel
 		);
 
@@ -120,17 +120,17 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
 		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
-			newModelRel,
 			getSource(),
-			false
+			false,
+			newModelRel
 		);
 		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getTarget());
 		modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
 		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
-			newModelRel,
 			getTarget(),
-			false
+			false,
+			newModelRel
 		);
 
 		return newModelRel;

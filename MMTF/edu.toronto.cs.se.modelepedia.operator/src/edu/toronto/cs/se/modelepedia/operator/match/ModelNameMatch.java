@@ -70,8 +70,8 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		ModelRel matchRel = MultiModelInstanceFactory.createModelRel(
 			null,
 			null,
-			ModelOrigin.CREATED,
 			modelRelClass,
+			ModelOrigin.CREATED,
 			multiModel
 		);
 		matchRel.setName(MODELREL_NAME);
@@ -83,9 +83,9 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			// create model endpoint
 			ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 				null,
-				matchRel,
 				model,
-				false
+				false,
+				matchRel
 			);
 			// look for identical names in the models
 			checkModelObjNames(MultiModelTypeIntrospection.getRoot(model), newModelEndpointRef, modelObjNames, modelObjTable);
@@ -105,9 +105,9 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				// create link
 				LinkReference matchLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
 					null,
-					matchRel,
 					linkClass,
-					linkRefClass
+					linkRefClass,
+					matchRel
 				);
 				matchLinkRef.getObject().setName(modelObjName);
 				for (EObject modelObj : modelObjs) {
@@ -121,9 +121,9 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 					// create model element endpoints
 					MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 						null,
-						matchLinkRef,
 						matchModelElemRef,
-						false
+						false,
+						matchLinkRef
 					);
 				}
 			}

@@ -82,9 +82,9 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			modelTypeEndpointRef.getObject(),
-			getSource(),
 			(Model) getTarget(),
-			false
+			false,
+			getSource()
 		);
 
 		return newModelEndpointRef.getObject();

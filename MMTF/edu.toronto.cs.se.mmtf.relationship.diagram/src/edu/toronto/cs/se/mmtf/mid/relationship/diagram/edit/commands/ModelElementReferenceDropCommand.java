@@ -123,12 +123,12 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		String newModelElemName = MultiModelRegistry.getModelElementName(newModelObj, true);
 		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(newModelObj);
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
-			modelEndpointRef,
 			modelElemType,
 			newModelElemUri,
 			newModelElemName,
 			category,
-			classLiteral
+			classLiteral,
+			modelEndpointRef
 		);
 		MAVOUtils.initializeMAVOModelElementReference(newModelObj, newModelElemRef);
 

@@ -38,7 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 /**
- * The factory for creating "light" types, i.e. dynamic types created at
+ * The factory to create/modify/remove "light" types, i.e. dynamic types at
  * runtime.
  * 
  * @author Alessio Di Sandro

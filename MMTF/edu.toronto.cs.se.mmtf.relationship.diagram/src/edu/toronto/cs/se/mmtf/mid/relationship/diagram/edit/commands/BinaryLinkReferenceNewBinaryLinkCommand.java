@@ -111,26 +111,26 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, getSource(), getTarget());
 		BinaryLinkReference newLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReference(
 			linkTypeRef.getObject(),
-			modelRel,
 			RelationshipPackage.eINSTANCE.getBinaryLink(),
-			RelationshipPackage.eINSTANCE.getBinaryLinkReference()
+			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
+			modelRel
 		);
 
 		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getSource());
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
 		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 			modelElemTypeEndpointRef.getObject(),
-			newLinkRef,
 			getSource(),
-			false
+			false,
+			newLinkRef
 		);
 		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getTarget());
 		modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
 		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 			modelElemTypeEndpointRef.getObject(),
-			newLinkRef,
 			getTarget(),
-			false
+			false,
+			newLinkRef
 		);
 
 		return newLinkRef;

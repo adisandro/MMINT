@@ -101,9 +101,9 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, null, null);
 		LinkReference newLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
 			linkTypeRef.getObject(),
-			modelRel,
 			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference()
+			RelationshipPackage.eINSTANCE.getLinkReference(),
+			modelRel
 		);
 
 		return newLinkRef;

@@ -77,23 +77,23 @@ public class EMFModelNameMatch extends OperatorExecutableImpl {
 		ModelRel matchRel = MultiModelInstanceFactory.createModelRel(
 			null,
 			null,
-			ModelOrigin.CREATED,
 			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			ModelOrigin.CREATED,
 			multiModel
 		);
 		matchRel.setName(MODELREL_NAME);
 		// create model endpoints
 		ModelEndpointReference srcModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			null,
-			matchRel,
 			srcModel,
-			false
+			false,
+			matchRel
 		);
 		ModelEndpointReference tgtModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
 			null,
-			matchRel,
 			tgtModel,
-			false
+			false,
+			matchRel
 		);
 
 		// create model relationship structure
@@ -118,9 +118,9 @@ nextMatch:
 				// create link
 				LinkReference matchLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
 					null,
-					matchRel,
 					RelationshipPackage.eINSTANCE.getBinaryLink(),
-					RelationshipPackage.eINSTANCE.getBinaryLinkReference()
+					RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
+					matchRel
 				);
 				matchLinkRef.getObject().setName((String) match.getLeft().eGet(feature));
 				// create model elements
@@ -137,15 +137,15 @@ nextMatch:
 				// create model element endpoints
 				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 					null,
-					matchLinkRef,
 					srcModelElemRef,
-					false
+					false,
+					matchLinkRef
 				);
 				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
 					null,
-					matchLinkRef,
 					tgtModelElemRef,
-					false
+					false,
+					matchLinkRef
 				);
 			}
 		}

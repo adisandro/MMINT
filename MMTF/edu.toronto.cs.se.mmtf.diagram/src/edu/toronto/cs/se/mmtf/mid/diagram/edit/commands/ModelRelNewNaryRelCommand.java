@@ -94,8 +94,8 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
 			modelRelType,
 			null,
-			ModelOrigin.CREATED,
 			RelationshipPackage.eINSTANCE.getModelRel(),
+			ModelOrigin.CREATED,
 			multiModel
 		);
 

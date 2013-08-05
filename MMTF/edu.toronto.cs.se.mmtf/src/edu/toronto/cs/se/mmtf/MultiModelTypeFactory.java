@@ -49,7 +49,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 
 /**
- * The factory for creating all types.
+ * The factory to create/modify/remove all types.
  * 
  * @author Alessio Di Sandro
  * 
@@ -103,7 +103,7 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds the target to a type endpoint.
+	 * Adds the target to a new type endpoint.
 	 * 
 	 * @param newTypeEndpoint
 	 *            The new type endpoint.
