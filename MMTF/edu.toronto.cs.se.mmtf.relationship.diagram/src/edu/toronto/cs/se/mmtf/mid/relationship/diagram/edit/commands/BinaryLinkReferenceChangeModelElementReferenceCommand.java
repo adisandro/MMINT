@@ -118,7 +118,6 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 		MultiModelInstanceFactory.replaceModelElementEndpointAndModelElementEndpointReference(
 			oldModelElemEndpointRef,
 			modelElemTypeEndpointRef.getObject(),
-			linkRef,
 			modelElemRef
 		);
 	}

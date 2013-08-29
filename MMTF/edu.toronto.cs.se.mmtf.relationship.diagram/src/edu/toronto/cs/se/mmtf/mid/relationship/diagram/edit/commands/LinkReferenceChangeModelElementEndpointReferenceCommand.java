@@ -104,7 +104,6 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		MultiModelInstanceFactory.replaceModelElementEndpointAndModelElementEndpointReference(
 			getLink(),
 			modelElemTypeEndpointRef.getObject(),
-			linkRef,
 			modelElemRef
 		);
 	}

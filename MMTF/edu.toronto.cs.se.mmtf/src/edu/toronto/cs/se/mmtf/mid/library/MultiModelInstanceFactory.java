@@ -688,7 +688,20 @@ public class MultiModelInstanceFactory {
 		return newModelElemEndpointRef;
 	}
 
-	public static void replaceModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, LinkReference linkRef, ModelElementReference newModelElemRef) throws MMTFException {
+	/**
+	 * Replaces an old model element endpoint and a reference to it with new
+	 * ones in an Instance MID.
+	 * 
+	 * @param oldModelElemEndpointRef
+	 *            The reference to the old model element endpoint to be
+	 *            replaced.
+	 * @param modelElemTypeEndpoint
+	 *            The type of the new model element endpoint.
+	 * @param newModelElemRef
+	 *            The reference to the new model element that is the target of
+	 *            the new model element endpoint.
+	 */
+	public static void replaceModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef) {
 
 		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
 		addBasicInstance(oldModelElemEndpoint, modelElemTypeEndpoint, null, null);
