@@ -14,7 +14,7 @@
         <attributes xmi:id="_v3eDEBZnEeOlMo0upM3VYw" value="attributeName">
           <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_3XHrgBZnEeOlMo0upM3VYw" value="Public">
+        <attributes xmi:id="_3XHrgBZnEeOlMo0upM3VYw" value="public">
           <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
         </attributes>
       </nodes>
@@ -38,7 +38,7 @@
               <attributes xmi:id="_MxxPMRZoEeOlMo0upM3VYw" value="attributeName">
                 <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
               </attributes>
-              <attributes xmi:id="_MxxPMhZoEeOlMo0upM3VYw" value="Public">
+              <attributes xmi:id="_MxxPMhZoEeOlMo0upM3VYw" value="public">
                 <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
               </attributes>
             </nodes>
@@ -47,7 +47,7 @@
               <attributes xmi:id="_O94hcBZoEeOlMo0upM3VYw" value="attributeName">
                 <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
               </attributes>
-              <attributes xmi:id="_PRey4BZoEeOlMo0upM3VYw" value="Public">
+              <attributes xmi:id="_PRey4BZoEeOlMo0upM3VYw" value="public">
                 <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
               </attributes>
             </nodes>
@@ -82,7 +82,7 @@
         <attributes xmi:id="_v3fRMBZnEeOlMo0upM3VYw" value="attributeName">
           <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_3XHrgRZnEeOlMo0upM3VYw" value="Private">
+        <attributes xmi:id="_3XHrgRZnEeOlMo0upM3VYw" value="private">
           <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
         </attributes>
       </nodes>
@@ -91,7 +91,7 @@
         <attributes xmi:id="_EIS38BZoEeOlMo0upM3VYw" value="attributeName">
           <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_FL97cBZoEeOlMo0upM3VYw" value="Public">
+        <attributes xmi:id="_FL97cBZoEeOlMo0upM3VYw" value="public">
           <type href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
         </attributes>
       </nodes>
