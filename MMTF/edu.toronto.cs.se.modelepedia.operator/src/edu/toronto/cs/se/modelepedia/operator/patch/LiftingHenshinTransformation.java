@@ -11,8 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.patch;
 
+import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.Match;
@@ -50,11 +53,19 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		}
 	}
 
+	private static final String PROPERTY_IN_CONSTRAINT = "constraint";
+	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = SMTLIB_TRUE;
+	protected static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
+	protected static final String[] PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONMODULE = "transformationModule";
 	private static final String PROPERTY_IN_TRANSFORMATIONRULES = "transformationRules";
 	private static final String[] PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESLIFTING = "transformationRulesLifting";
 
+	protected static final String ANAC_NAME = "A_NAC";
+	protected static final String A_MODELOBJECT_SMTENCODING_PREFIX = "a";
+	protected static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
+	protected static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
 	protected static final String SMTLIB_APPLICABILITY_FUN = "(f";
 	protected static final String SMTLIB_APPLICABILITY_FUN_CONSTRAINTS = SMTLIB_APPLICABILITY_FUN + "X ";
 	protected static final String SMTLIB_APPLICABILITY_FUN_APPLY = SMTLIB_APPLICABILITY_FUN + "Y ";
@@ -63,13 +74,26 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 	protected static final String SMTLIB_APPLICABILITY_FUN_D = SMTLIB_APPLICABILITY_FUN + "D ";
 	protected static final String SMTLIB_APPLICABILITY_FUN_A = SMTLIB_APPLICABILITY_FUN + "A ";
 
+	protected String constraint;
+	protected String[] constraintVariables;
 	protected String transformationModule;
 	protected String[] transformationRules;
 	protected String[] transformationRulesLifting;
 	protected int liftingIterations;
 
+	protected List<Set<EObject>> modelObjsNBar;
+	protected Set<EObject> modelObjsC;
+	protected Set<EObject> modelObjsD;
+	protected Set<EObject> modelObjsA;
+	protected Set<EObject> modelObjsCDN;
+	protected int modelObjACounter;
+	protected StringBuilder smtEncoding;
+	protected Set<String> smtEncodingConstants;
+
 	protected void readProperties(Properties properties) throws Exception {
 
+		constraint = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_CONSTRAINT, PROPERTY_IN_CONSTRAINT_DEFAULT);
+		constraintVariables = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_CONSTRAINTVARIABLES, PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
 		transformationModule = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_TRANSFORMATIONMODULE);
 		transformationRules = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
 		transformationRulesLifting = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);

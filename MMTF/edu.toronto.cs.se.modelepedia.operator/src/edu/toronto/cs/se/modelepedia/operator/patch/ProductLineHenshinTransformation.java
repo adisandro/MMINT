@@ -43,7 +43,6 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -51,35 +50,16 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.operator.patch.LiftingHenshinTransformation.TransformationApplicabilityCondition;
 
 public class ProductLineHenshinTransformation extends LiftingHenshinTransformation {
 
-	private static final String PROPERTY_IN_MAYFORMULA = "mayFormula";
-	private static final String PROPERTY_IN_MAYFORMULA_DEFAULT = SMTLIB_TRUE;
-	private static final String PROPERTY_IN_MAYFORMULAIDS = "mayFormulaIds";
-	private static final String[] PROPERTY_IN_MAYFORMULAIDS_DEFAULT = {};
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
 	private static final String PROPERTY_OUT_MAYFORMULALENGTH = "mayFormulaLength";
-	private static final String ANAC_NAME = "A_NAC";
-	private static final String A_MAVOELEMENT_FORMULAID_PREFIX = "a";
-	private static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
-	private static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
 
-	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i) (ite (= i 0)";
-	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = "(or (and (fX (- i 1)) (not (fY i)) (not (fAo i))) (and (and (fX (- i 1)) (fY i)) (not (fDo i)) (fA i)))))))";
+	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i)";
+	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = ")))";
 
-	private String mayFormula;
-	private String[] mayFormulaIds;
-	private Set<String> mayFormulaConstants;
-	private List<Set<EObject>> modelObjsNBar;
-	private Set<EObject> modelObjsC;
-	private Set<EObject> modelObjsD;
-	private Set<EObject> modelObjsA;
-	private Set<EObject> modelObjsCDN;
-	private int mavoModelObjACounter;
-	private StringBuilder smtEncoding;
 	private Map<EObject, String> modelObjEncodings;
 	private boolean timeClassicalEnabled;
 	private long timeClassical;
@@ -88,8 +68,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	protected void readProperties(Properties properties) throws Exception {
 
 		super.readProperties(properties);
-		mayFormula = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_MAYFORMULA, PROPERTY_IN_MAYFORMULA_DEFAULT);
-		mayFormulaIds = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_MAYFORMULAIDS, PROPERTY_IN_MAYFORMULAIDS_DEFAULT);
 		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
@@ -106,7 +84,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		properties.setProperty(PROPERTY_OUT_MAYFORMULALENGTH, String.valueOf(smtEncoding.length()));
 	}
 
-	private void transformMatch(RuleApplication application, Match match, boolean isMayMatch) {
+	private void transformMatch(RuleApplication application, Match match, boolean isLiftedMatch) {
 
 		// apply transformation
 		application.setCompleteMatch(match);
@@ -115,20 +93,16 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		// possibly propagate may to (A)dded elements
 		Match resultMatch = application.getResultMatch();
 		for (EObject resultNodeTarget : resultMatch.getNodeTargets()) {
-			if (!(resultNodeTarget instanceof MAVOElement)) {
-				continue;
-			}
-			// (C)ontext/(D)eleted/(A)dded elements
+			// (C)ontext/(D)eleted/(N)ac elements
 			if (modelObjsCDN.contains(resultNodeTarget)) {
 				continue;
 			}
 			// (A)dded elements
-			if (isMayMatch) {
-				modelObjsA.add((MAVOElement) resultNodeTarget);
-				((MAVOElement) resultNodeTarget).setMay(true);
+			if (isLiftedMatch) {
+				modelObjsA.add(resultNodeTarget);
+				modelObjEncodings.put(resultNodeTarget, SMTLIB_APPLICABILITY_FUN_APPLY + (liftingIterations+1) + SMTLIB_PREDICATE_END);
 			}
-			((MAVOElement) resultNodeTarget).setFormulaId(A_MAVOELEMENT_FORMULAID_PREFIX + mavoModelObjACounter);
-			mavoModelObjACounter++;
+			modelObjACounter++;
 		}
 	}
 
@@ -205,38 +179,13 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 	private void createZ3ApplyFormulaConstant() {
 
-		for (String mayFormulaConstant : mayFormulaConstants) {
+		for (String smtEncodingConstant : smtEncodingConstants) {
 			smtEncoding.append(SMTLIB_CONST);
-			smtEncoding.append(mayFormulaConstant);
+			smtEncoding.append(smtEncodingConstant);
 			smtEncoding.append(" ");
 			smtEncoding.append(SMTLIB_TYPE_BOOL);
 			smtEncoding.append(SMTLIB_PREDICATE_END);
 		}
-	}
-
-	private void createZ3ApplyFormulaConstant(Set<MAVOElement> mavoModelObjs) {
-
-		for (MAVOElement mavoModelObj : mavoModelObjs) {
-			if (mayFormulaConstants.contains(mavoModelObj.getFormulaId())) {
-				continue;
-			}
-			smtEncoding.append(SMTLIB_CONST);
-			smtEncoding.append(mavoModelObj.getFormulaId());
-			smtEncoding.append(" ");
-			smtEncoding.append(SMTLIB_TYPE_BOOL);
-			smtEncoding.append(SMTLIB_PREDICATE_END);
-		}
-	}
-
-	private void createZ3ApplyFormulaConstants() {
-
-		Set<MAVOElement> uniqueMayModelObjsN = new HashSet<MAVOElement>();
-		for (Set<MAVOElement> mayModelObjsN : modelObjsNBar) {
-			uniqueMayModelObjsN.addAll(mayModelObjsN);
-		}
-		createZ3ApplyFormulaConstant(uniqueMayModelObjsN);
-		createZ3ApplyFormulaConstant(modelObjsC);
-		createZ3ApplyFormulaConstant(modelObjsD);
 	}
 
 	private void createZ3ApplyFormulaMatchSet(Set<EObject> modelObjs, String innerPredicate, String functionEmpty) {
@@ -307,11 +256,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 	private void createZ3ApplyFormula() {
 
-		createZ3ApplyFormulaConstants();
 		createZ3ApplyFormulaMatchSetNIteration();
 		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, SMTLIB_AND, SMTLIB_TRUE);
 		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, SMTLIB_AND, SMTLIB_TRUE);
-		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D_OR, SMTLIB_OR, SMTLIB_FALSE);
 	}
 
 	private boolean checkZ3ApplicabilityFormula() {
@@ -411,7 +358,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			}
 			// check apply formula
 			if (checkZ3ApplicabilityFormula()) {
-				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> may match
+				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> lifted match
 			}
 		}
 
@@ -421,31 +368,21 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		nodesC = new HashSet<Node>();
 		nodesD = new HashSet<Node>();
 		getCDNodes(ruleCopy, nodesC, nodesD);
-		boolean isMayMatch = false;
 		List<Match> matches = InterpreterUtil.findAllMatches(engine, ruleCopy, graph, null);
-		for (int i = 0; i < matches.size(); i++) {
-			modelObjsNBar.clear();
-			modelObjsC.clear();
-			modelObjsD.clear();
-			modelObjsCDN.clear();
-			Match match = matches.get(i);
-			getMatchedModelObjs(match, nodesC, modelObjsC, modelObjsCDN);
-			getMatchedModelObjs(match, nodesD, modelObjsD, modelObjsCDN);
-			if (isMayMatch) {
-				// check apply formula
-				if (checkZ3ApplicabilityFormula()) {
-					return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> may match
-				}
-			}
-			else {
-				return new TransformationApplicabilityCondition(ruleCopy, match, false); // <C,D> classical match
-			}
+		if (matches.isEmpty()) {
+			return null; // no matches
 		}
-
-		return null; // no matches
+		modelObjsNBar.clear();
+		modelObjsC.clear();
+		modelObjsD.clear();
+		modelObjsCDN.clear();
+		Match match = matches.get(0);
+		getMatchedModelObjs(match, nodesC, modelObjsC, modelObjsCDN);
+		getMatchedModelObjs(match, nodesD, modelObjsD, modelObjsCDN);
+		return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> lifted match
 	}
 
-	private void matchLiftedAndTransform(Rule rule, Engine engine, EGraph graph) {
+	private void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
@@ -456,26 +393,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			modelObjsA.clear();
 			transformMatch(application, condition.getMatch(), condition.isLiftedMatch());
 			if (condition.isLiftedMatch()) {
-				// update encoding
-				createZ3ApplyFormulaConstant(modelObjsA);
-				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A, SMTLIB_AND, SMTLIB_TRUE);
-				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A_OR, SMTLIB_OR, SMTLIB_FALSE);
 				liftingIterations++;
-				// update set of may formula elements
-				for (Set<MAVOElement> mayModelObjSN : modelObjsNBar) {
-					for (MAVOElement mayModelObjN : mayModelObjSN) {
-						mayFormulaConstants.add(mayModelObjN.getFormulaId());
-					}
-				}
-				for (MAVOElement mayModelObjC : modelObjsC) {
-					mayFormulaConstants.add(mayModelObjC.getFormulaId());
-				}
-				for (MAVOElement mayModelObjD : modelObjsD) {
-					mayFormulaConstants.add(mayModelObjD.getFormulaId());
-				}
-				for (MAVOElement mayModelObjA : modelObjsA) {
-					mayFormulaConstants.add(mayModelObjA.getFormulaId());
-				}
 			}
 		}
 	}
@@ -505,7 +423,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
-			matchLiftedAndTransform(rule, engine, graph);
+			matchAndTransformLifting(rule, engine, graph);
 		}
 		long endTime = System.nanoTime();
 
@@ -529,18 +447,18 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		modelObjsD = new HashSet<EObject>();
 		modelObjsA = new HashSet<EObject>();
 		modelObjsCDN = new HashSet<EObject>();
-		mavoModelObjACounter = 0;
-		mayFormulaConstants = new HashSet<String>();
+		modelObjACounter = 0;
+		smtEncodingConstants = new HashSet<String>();
 		smtEncoding = new StringBuilder();
 		liftingIterations = 0;
 
 		// init SMT encoding
-		for (String mayFormulaId : mayFormulaIds) {
-			mayFormulaConstants.add(mayFormulaId);
+		for (String constraintVariable : constraintVariables) {
+			smtEncodingConstants.add(constraintVariable);
 		}
 		createZ3ApplyFormulaConstant();
 		smtEncoding.append(SMTLIB_APPLICABILITY_PREAMBLE);
-		smtEncoding.append(mayFormula);
+		smtEncoding.append(constraint);
 		smtEncoding.append(SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
@@ -553,12 +471,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		if (timeClassicalEnabled) {
 			doClassicalTransformation(module, engine, graph);
-			resourceSet = new HenshinResourceSet(fullUri);
-			module = resourceSet.getModule(transformationModule, false);
-			engine = new EngineImpl();
-			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
+//			resourceSet = new HenshinResourceSet(fullUri);
+//			module = resourceSet.getModule(transformationModule, false);
+//			engine = new EngineImpl();
+//			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		}
-		doLiftingTransformation(module, engine, graph);
+//		doLiftingTransformation(module, engine, graph);
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();

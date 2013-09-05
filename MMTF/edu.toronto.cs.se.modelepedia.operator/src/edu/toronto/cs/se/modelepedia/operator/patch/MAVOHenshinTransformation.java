@@ -54,33 +54,20 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 
 public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
-	private static final String PROPERTY_IN_MAYFORMULA = "mayFormula";
-	private static final String PROPERTY_IN_MAYFORMULA_DEFAULT = SMTLIB_TRUE;
-	private static final String PROPERTY_IN_MAYFORMULAIDS = "mayFormulaIds";
-	private static final String[] PROPERTY_IN_MAYFORMULAIDS_DEFAULT = {};
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
 	private static final String PROPERTY_OUT_MAYFORMULALENGTH = "mayFormulaLength";
-	private static final String ANAC_NAME = "A_NAC";
-	private static final String A_MAVOELEMENT_FORMULAID_PREFIX = "a";
-	private static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
-	private static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
 
 	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i) (ite (= i 0)";
 	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = "(or (and (fX (- i 1)) (not (fY i)) (not (fAo i))) (and (and (fX (- i 1)) (fY i)) (not (fDo i)) (fA i)))))))";
 	private static final String SMTLIB_APPLICABILITY_FUN_D_OR = SMTLIB_APPLICABILITY_FUN + "Do ";
 	private static final String SMTLIB_APPLICABILITY_FUN_A_OR = SMTLIB_APPLICABILITY_FUN + "Ao ";
 
-	private String mayFormula;
-	private String[] mayFormulaIds;
-	private Set<String> mayFormulaConstants;
 	private List<Set<MAVOElement>> mayModelObjsNBar;
 	private Set<MAVOElement> mayModelObjsC;
 	private Set<MAVOElement> mayModelObjsD;
 	private Set<MAVOElement> mayModelObjsA;
 	private Set<MAVOElement> mavoModelObjsCDN;
-	private int mavoModelObjACounter;
-	private StringBuilder smtEncoding;
 	private boolean timeClassicalEnabled;
 	private long timeClassical;
 	private long timeMAVO;
@@ -88,8 +75,6 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 	protected void readProperties(Properties properties) throws Exception {
 
 		super.readProperties(properties);
-		mayFormula = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_MAYFORMULA, PROPERTY_IN_MAYFORMULA_DEFAULT);
-		mayFormulaIds = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_MAYFORMULAIDS, PROPERTY_IN_MAYFORMULAIDS_DEFAULT);
 		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
@@ -118,7 +103,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 			if (!(resultNodeTarget instanceof MAVOElement)) {
 				continue;
 			}
-			// (C)ontext/(D)eleted/(A)dded elements
+			// (C)ontext/(D)eleted/(N)ac elements
 			if (mavoModelObjsCDN.contains(resultNodeTarget)) {
 				continue;
 			}
@@ -127,8 +112,8 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 				mayModelObjsA.add((MAVOElement) resultNodeTarget);
 				((MAVOElement) resultNodeTarget).setMay(true);
 			}
-			((MAVOElement) resultNodeTarget).setFormulaId(A_MAVOELEMENT_FORMULAID_PREFIX + mavoModelObjACounter);
-			mavoModelObjACounter++;
+			((MAVOElement) resultNodeTarget).setFormulaId(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
+			modelObjACounter++;
 		}
 	}
 
@@ -205,7 +190,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
 	private void createZ3ApplyFormulaConstant() {
 
-		for (String mayFormulaConstant : mayFormulaConstants) {
+		for (String mayFormulaConstant : smtEncodingConstants) {
 			smtEncoding.append(SMTLIB_CONST);
 			smtEncoding.append(mayFormulaConstant);
 			smtEncoding.append(" ");
@@ -217,7 +202,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 	private void createZ3ApplyFormulaConstant(Set<MAVOElement> mavoModelObjs) {
 
 		for (MAVOElement mavoModelObj : mavoModelObjs) {
-			if (mayFormulaConstants.contains(mavoModelObj.getFormulaId())) {
+			if (smtEncodingConstants.contains(mavoModelObj.getFormulaId())) {
 				continue;
 			}
 			smtEncoding.append(SMTLIB_CONST);
@@ -463,7 +448,7 @@ matchesN:
 		return null; // no matches
 	}
 
-	private void matchMAVOAndTransform(Rule rule, Engine engine, EGraph graph) {
+	private void matchAndTransformMAVO(Rule rule, Engine engine, EGraph graph) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
@@ -479,20 +464,20 @@ matchesN:
 				createZ3ApplyFormulaMatchSetIteration(mayModelObjsA, SMTLIB_APPLICABILITY_FUN_A, SMTLIB_AND, SMTLIB_TRUE);
 				createZ3ApplyFormulaMatchSetIteration(mayModelObjsA, SMTLIB_APPLICABILITY_FUN_A_OR, SMTLIB_OR, SMTLIB_FALSE);
 				liftingIterations++;
-				// update set of may formula elements
-				for (Set<MAVOElement> mayModelObjSN : mayModelObjsNBar) {
-					for (MAVOElement mayModelObjN : mayModelObjSN) {
-						mayFormulaConstants.add(mayModelObjN.getFormulaId());
+				// update set of constants
+				for (Set<MAVOElement> mayModelObjsN : mayModelObjsNBar) {
+					for (MAVOElement mayModelObjN : mayModelObjsN) {
+						smtEncodingConstants.add(mayModelObjN.getFormulaId());
 					}
 				}
 				for (MAVOElement mayModelObjC : mayModelObjsC) {
-					mayFormulaConstants.add(mayModelObjC.getFormulaId());
+					smtEncodingConstants.add(mayModelObjC.getFormulaId());
 				}
 				for (MAVOElement mayModelObjD : mayModelObjsD) {
-					mayFormulaConstants.add(mayModelObjD.getFormulaId());
+					smtEncodingConstants.add(mayModelObjD.getFormulaId());
 				}
 				for (MAVOElement mayModelObjA : mayModelObjsA) {
-					mayFormulaConstants.add(mayModelObjA.getFormulaId());
+					smtEncodingConstants.add(mayModelObjA.getFormulaId());
 				}
 			}
 		}
@@ -523,7 +508,7 @@ matchesN:
 		}
 		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
-			matchMAVOAndTransform(rule, engine, graph);
+			matchAndTransformMAVO(rule, engine, graph);
 		}
 		long endTime = System.nanoTime();
 
@@ -547,18 +532,18 @@ matchesN:
 		mayModelObjsD = new HashSet<MAVOElement>();
 		mayModelObjsA = new HashSet<MAVOElement>();
 		mavoModelObjsCDN = new HashSet<MAVOElement>();
-		mavoModelObjACounter = 0;
-		mayFormulaConstants = new HashSet<String>();
+		modelObjACounter = 0;
+		smtEncodingConstants = new HashSet<String>();
 		smtEncoding = new StringBuilder();
 		liftingIterations = 0;
 
 		// init SMT encoding
-		for (String mayFormulaId : mayFormulaIds) {
-			mayFormulaConstants.add(mayFormulaId);
+		for (String constraintVariable : constraintVariables) {
+			smtEncodingConstants.add(constraintVariable);
 		}
 		createZ3ApplyFormulaConstant();
 		smtEncoding.append(SMTLIB_APPLICABILITY_PREAMBLE);
-		smtEncoding.append(mayFormula);
+		smtEncoding.append(constraint);
 		smtEncoding.append(SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
