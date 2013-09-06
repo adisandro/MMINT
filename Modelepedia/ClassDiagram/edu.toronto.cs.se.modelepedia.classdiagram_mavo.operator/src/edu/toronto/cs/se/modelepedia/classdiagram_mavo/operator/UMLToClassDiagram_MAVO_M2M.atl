@@ -1,0 +1,102 @@
+-- @nsURI UML=http://www.eclipse.org/uml2/4.0.0/UML
+-- @nsURI ClassDiagram_MAVO=http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO
+
+module UMLToClassDiagram_MAVO_M2M;
+create OUT : ClassDiagram_MAVO from IN : UML;
+
+helper def : isPublic(visibility : UML!VisibilityKind) : Boolean =
+	if visibility = 'public' then
+		true
+	else
+		false
+	endif;
+
+helper def : getPropertyName(property : UML!Property) : String =
+	if property.oclIsUndefined() or property.name = '' then
+		property.type.name
+	else
+		property.name
+	endif;
+
+rule Model2ClassDiagram {
+	from
+		model : UML!Model
+	to
+		cd : ClassDiagram_MAVO!ClassDiagram (
+			classes <- UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class))->union(UML!DataType.allInstances->collect(datatype | thisModule.DataType2Class(datatype))),
+			associations <- UML!Association.allInstancesFrom('IN')->reject(association | association.memberEnd->at(1).type.oclIsUndefined() or association.memberEnd->at(2).type.oclIsUndefined())->collect(association | thisModule.Association2Association(association))
+		)
+}
+
+unique lazy rule DataType2Class {
+	from
+		datatype : UML!DataType
+	to
+		class : ClassDiagram_MAVO!Class (
+			name <- datatype.name
+		)
+}
+
+unique lazy rule Class2Class {
+	from
+		umlClass : UML!Class
+	to
+		cdClass : ClassDiagram_MAVO!Class (
+			name <- umlClass.name,
+			superclass <- umlClass.generalization->collect(generalization | thisModule.Class2SuperclassReference(generalization.general)),
+			ownedAttributes <- umlClass.ownedAttribute->reject(property | property.type.oclIsUndefined())->collect(property | thisModule.Property2Attribute(property)),
+			ownedOperations <- umlClass.ownedOperation->reject(operation | operation.type.oclIsUndefined())->collect(operation | thisModule.Operation2Operation(operation))
+		)
+}
+
+lazy rule Class2SuperclassReference {
+	from
+		class : UML!Class
+	to
+		superclassRef : ClassDiagram_MAVO!SuperclassReference (
+			target <- thisModule.Class2Class(class)
+		)
+}
+
+lazy rule Property2Attribute {
+	from
+		property : UML!Property
+	to
+		attribute : ClassDiagram_MAVO!Attribute (
+			name <- thisModule.getPropertyName(property),
+			type <-
+				if property.type.oclIsKindOf(UML!DataType) then
+					thisModule.DataType2Class(property.type)
+				else
+					thisModule.Class2Class(property.type)
+				endif,
+			public <- thisModule.isPublic(property.visibility)
+		)
+}
+
+lazy rule Operation2Operation {
+	from
+		umlOperation : UML!Property
+	to
+		cdOperation : ClassDiagram_MAVO!Attribute (
+			name <- umlOperation.name,
+			type <-
+				if umlOperation.type.oclIsKindOf(UML!DataType) then
+					thisModule.DataType2Class(umlOperation.type)
+				else
+					thisModule.Class2Class(umlOperation.type)
+				endif,
+			public <- thisModule.isPublic(umlOperation)
+		)
+}
+
+lazy rule Association2Association {
+	from
+		umlAssociation : UML!Association
+	to
+		cdAssociation : ClassDiagram_MAVO!Association (
+			name <- umlAssociation.name,
+			source <- thisModule.Class2Class(umlAssociation.memberEnd->at(1).type),
+			target <- thisModule.Class2Class(umlAssociation.memberEnd->at(2).type)
+		)
+}
