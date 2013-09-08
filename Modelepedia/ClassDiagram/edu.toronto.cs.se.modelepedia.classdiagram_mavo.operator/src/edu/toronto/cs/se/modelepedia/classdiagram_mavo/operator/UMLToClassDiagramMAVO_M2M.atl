@@ -1,29 +1,15 @@
 -- @nsURI UML=http://www.eclipse.org/uml2/4.0.0/UML
 -- @nsURI ClassDiagram_MAVO=http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO
 
-module UMLToClassDiagram_MAVO_M2M;
+module UMLToClassDiagramMAVO_M2M;
 create OUT : ClassDiagram_MAVO from IN : UML;
-
-helper def : isPublic(visibility : UML!VisibilityKind) : Boolean =
-	if visibility = 'public' then
-		true
-	else
-		false
-	endif;
-
-helper def : getPropertyName(property : UML!Property) : String =
-	if property.oclIsUndefined() or property.name = '' then
-		property.type.name
-	else
-		property.name
-	endif;
 
 rule Model2ClassDiagram {
 	from
 		model : UML!Model
 	to
 		cd : ClassDiagram_MAVO!ClassDiagram (
-			classes <- UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class))->union(UML!DataType.allInstances->collect(datatype | thisModule.DataType2Class(datatype))),
+			classes <- UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class))->union(UML!DataType.allInstancesFrom('IN')->collect(datatype | thisModule.DataType2Class(datatype))),
 			associations <- UML!Association.allInstancesFrom('IN')->reject(association | association.memberEnd->at(1).type.oclIsUndefined() or association.memberEnd->at(2).type.oclIsUndefined())->collect(association | thisModule.Association2Association(association))
 		)
 }
@@ -100,3 +86,17 @@ lazy rule Association2Association {
 			target <- thisModule.Class2Class(umlAssociation.memberEnd->at(2).type)
 		)
 }
+
+helper def : isPublic(visibility : UML!VisibilityKind) : Boolean =
+	if visibility = 'public' then
+		true
+	else
+		false
+	endif;
+
+helper def : getPropertyName(property : UML!Property) : String =
+	if property.oclIsUndefined() or property.name = '' then
+		property.type.name
+	else
+		property.name
+	endif;

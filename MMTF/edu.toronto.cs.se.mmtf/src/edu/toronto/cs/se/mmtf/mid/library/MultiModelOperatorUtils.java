@@ -1,6 +1,6 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Vivien Suen.
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,8 +19,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -205,6 +207,14 @@ public class MultiModelOperatorUtils {
 		catch (MMTFException e) {
 			return null;
 		}
+	}
+
+	public static void cleanupTemporaryModel(Model model) throws Exception {
+
+		MultiModelInstanceFactory.removeModel(model);
+		IPath path = new Path(model.getUri());
+		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+		file.delete(true, null);
 	}
 
 }

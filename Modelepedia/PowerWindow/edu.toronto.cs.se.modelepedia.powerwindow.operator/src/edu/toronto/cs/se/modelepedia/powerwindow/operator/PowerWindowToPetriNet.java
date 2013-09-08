@@ -1,6 +1,6 @@
-/*
- * Copyright (c) 2012 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Vivien Suen.
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,10 +13,6 @@ package edu.toronto.cs.se.modelepedia.powerwindow.operator;
 
 import java.util.Date;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
@@ -24,7 +20,7 @@ import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
@@ -72,10 +68,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 	public void cleanup() throws Exception {
 
 		if (newPetrinetModel != null) {
-			MultiModelInstanceFactory.removeModel(newPetrinetModel);
-			IPath path = new Path(newPetrinetModel.getUri());
-			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-			file.delete(true, null);
+			MultiModelOperatorUtils.cleanupTemporaryModel(newPetrinetModel);
 			newPetrinetModel = null;
 		}
 	}

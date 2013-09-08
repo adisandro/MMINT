@@ -40,9 +40,9 @@ import org.eclipse.m2m.atl.core.launch.ILauncher;
 import org.eclipse.m2m.atl.engine.emfvm.launch.EMFVMLauncher;
 
 /**
- * Entry point of the 'UMLToClassDiagram_MAVO_M2M' transformation module.
+ * Entry point of the 'UMLToClassDiagramMAVO_M2M' transformation module.
  */
-public class UMLToClassDiagram_MAVO_M2M {
+public class UMLToClassDiagramMAVO_M2M {
 
 	/**
 	 * The property file. Stores module list, the metamodel and library locations.
@@ -74,9 +74,9 @@ public class UMLToClassDiagram_MAVO_M2M {
 			if (args.length < 2) {
 				System.out.println("Arguments not valid : {IN_model_path, OUT_model_path}.");
 			} else {
-				UMLToClassDiagram_MAVO_M2M runner = new UMLToClassDiagram_MAVO_M2M();
+				UMLToClassDiagramMAVO_M2M runner = new UMLToClassDiagramMAVO_M2M();
 				runner.loadModels(args[0]);
-				runner.doUMLToClassDiagram_MAVO_M2M(new NullProgressMonitor());
+				runner.doUMLToClassDiagramMAVO_M2M(new NullProgressMonitor());
 				runner.saveModels(args[1]);
 			}
 		} catch (ATLCoreException e) {
@@ -93,9 +93,9 @@ public class UMLToClassDiagram_MAVO_M2M {
 	 *
 	 * @generated
 	 */
-	public UMLToClassDiagram_MAVO_M2M() throws IOException {
+	public UMLToClassDiagramMAVO_M2M() throws IOException {
 		properties = new Properties();
-		properties.load(getFileURL("UMLToClassDiagram_MAVO_M2M.properties").openStream());
+		properties.load(getFileURL("UMLToClassDiagramMAVO_M2M.properties").openStream());
 		EPackage.Registry.INSTANCE.put(getMetamodelUri("UML"), org.eclipse.uml2.uml.UMLPackage.eINSTANCE);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
@@ -151,7 +151,7 @@ public class UMLToClassDiagram_MAVO_M2M {
 	 *
 	 * @generated
 	 */
-	public Object doUMLToClassDiagram_MAVO_M2M(IProgressMonitor monitor) throws ATLCoreException, IOException, ATLExecutionException {
+	public Object doUMLToClassDiagramMAVO_M2M(IProgressMonitor monitor) throws ATLCoreException, IOException, ATLExecutionException {
 		ILauncher launcher = new EMFVMLauncher();
 		Map<String, Object> launcherOptions = getOptions();
 		launcher.initialize(launcherOptions);
@@ -172,7 +172,7 @@ public class UMLToClassDiagram_MAVO_M2M {
 	 */
 	protected InputStream[] getModulesList() throws IOException {
 		InputStream[] modules = null;
-		String modulesList = properties.getProperty("UMLToClassDiagram_MAVO_M2M.modules");
+		String modulesList = properties.getProperty("UMLToClassDiagramMAVO_M2M.modules");
 		if (modulesList != null) {
 			String[] moduleNames = modulesList.split(",");
 			modules = new InputStream[moduleNames.length];
@@ -194,7 +194,7 @@ public class UMLToClassDiagram_MAVO_M2M {
 	 * @generated
 	 */
 	protected String getMetamodelUri(String metamodelName) {
-		return properties.getProperty("UMLToClassDiagram_MAVO_M2M.metamodels." + metamodelName);
+		return properties.getProperty("UMLToClassDiagramMAVO_M2M.metamodels." + metamodelName);
 	}
 	
 	/**
@@ -207,7 +207,7 @@ public class UMLToClassDiagram_MAVO_M2M {
 	 * @generated
 	 */
 	protected InputStream getLibraryAsStream(String libraryName) throws IOException {
-		return getFileURL(properties.getProperty("UMLToClassDiagram_MAVO_M2M.libraries." + libraryName)).openStream();
+		return getFileURL(properties.getProperty("UMLToClassDiagramMAVO_M2M.libraries." + libraryName)).openStream();
 	}
 	
 	/**
@@ -220,8 +220,8 @@ public class UMLToClassDiagram_MAVO_M2M {
 	protected Map<String, Object> getOptions() {
 		Map<String, Object> options = new HashMap<String, Object>();
 		for (Entry<Object, Object> entry : properties.entrySet()) {
-			if (entry.getKey().toString().startsWith("UMLToClassDiagram_MAVO_M2M.options.")) {
-				options.put(entry.getKey().toString().replaceFirst("UMLToClassDiagram_MAVO_M2M.options.", ""), 
+			if (entry.getKey().toString().startsWith("UMLToClassDiagramMAVO_M2M.options.")) {
+				options.put(entry.getKey().toString().replaceFirst("UMLToClassDiagramMAVO_M2M.options.", ""), 
 				entry.getValue().toString());
 			}
 		}
@@ -242,14 +242,14 @@ public class UMLToClassDiagram_MAVO_M2M {
 	protected static URL getFileURL(String fileName) throws IOException {
 		final URL fileURL;
 		if (isEclipseRunning()) {
-			URL resourceURL = UMLToClassDiagram_MAVO_M2M.class.getResource(fileName);
+			URL resourceURL = UMLToClassDiagramMAVO_M2M.class.getResource(fileName);
 			if (resourceURL != null) {
 				fileURL = FileLocator.toFileURL(resourceURL);
 			} else {
 				fileURL = null;
 			}
 		} else {
-			fileURL = UMLToClassDiagram_MAVO_M2M.class.getResource(fileName);
+			fileURL = UMLToClassDiagramMAVO_M2M.class.getResource(fileName);
 		}
 		if (fileURL == null) {
 			throw new IOException("'" + fileName + "' not found");
