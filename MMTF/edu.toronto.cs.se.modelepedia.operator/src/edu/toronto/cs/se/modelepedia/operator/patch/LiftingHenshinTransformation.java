@@ -11,17 +11,19 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.patch;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.Match;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Rule;
 
+import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
@@ -81,11 +83,11 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 	protected String[] transformationRulesLifting;
 	protected int liftingIterations;
 
-	protected List<Set<EObject>> modelObjsNBar;
-	protected Set<EObject> modelObjsC;
-	protected Set<EObject> modelObjsD;
-	protected Set<EObject> modelObjsA;
-	protected Set<EObject> modelObjsCDN;
+	protected List<Set<MAVOElement>> modelObjsNBar;
+	protected Set<MAVOElement> modelObjsC;
+	protected Set<MAVOElement> modelObjsD;
+	protected Set<MAVOElement> modelObjsA;
+	protected Set<MAVOElement> modelObjsCDN;
 	protected int modelObjACounter;
 	protected StringBuilder smtEncoding;
 	protected Set<String> smtEncodingConstants;
@@ -97,6 +99,20 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		transformationModule = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_TRANSFORMATIONMODULE);
 		transformationRules = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
 		transformationRulesLifting = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
+	}
+
+	protected void init() {
+
+		modelObjsNBar = new ArrayList<Set<MAVOElement>>();
+		modelObjsC = new HashSet<MAVOElement>();
+		modelObjsD = new HashSet<MAVOElement>();
+		modelObjsA = new HashSet<MAVOElement>();
+		modelObjsCDN = new HashSet<MAVOElement>();
+		modelObjACounter = 0;
+		modelObjACounter = 0;
+		smtEncodingConstants = new HashSet<String>();
+		smtEncoding = new StringBuilder();
+		liftingIterations = 0;
 	}
 
 	protected abstract void doLiftingTransformation(Module module, Engine engine, EGraph graph);

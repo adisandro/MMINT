@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.patch;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -43,6 +42,7 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -60,7 +60,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i)";
 	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = ")))";
 
-	private Map<EObject, String> modelObjEncodings;
 	private boolean timeClassicalEnabled;
 	private long timeClassical;
 	private long timeMAVO;
@@ -99,8 +98,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			}
 			// (A)dded elements
 			if (isLiftedMatch) {
-				modelObjsA.add(resultNodeTarget);
-				modelObjEncodings.put(resultNodeTarget, SMTLIB_APPLICABILITY_FUN_APPLY + (liftingIterations+1) + SMTLIB_PREDICATE_END);
+				modelObjsA.add((MAVOElement) resultNodeTarget);
+				((MAVOElement) resultNodeTarget).setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (liftingIterations+1) + SMTLIB_PREDICATE_END);
 			}
 			modelObjACounter++;
 		}
@@ -188,7 +187,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 	}
 
-	private void createZ3ApplyFormulaMatchSet(Set<EObject> modelObjs, String innerPredicate, String functionEmpty) {
+	private void createZ3ApplyFormulaMatchSet(Set<MAVOElement> modelObjs, String innerPredicate, String functionEmpty) {
 
 		if (modelObjs.isEmpty()) {
 			smtEncoding.append(functionEmpty);
@@ -198,8 +197,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			if (!simplify) {
 				smtEncoding.append(innerPredicate);
 			}
-			for (EObject modelObj : modelObjs) {
-				smtEncoding.append(modelObjEncodings.get(modelObj));
+			for (MAVOElement modelObj : modelObjs) {
+				smtEncoding.append(modelObj.getFormulaId());
 				smtEncoding.append(" ");
 			}
 			smtEncoding.deleteCharAt(smtEncoding.length()-1);
@@ -209,7 +208,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 	}
 
-	private void createZ3ApplyFormulaMatchSetIteration(Set<EObject> modelObjs, String functionName, String innerPredicate, String functionEmpty) {
+	private void createZ3ApplyFormulaMatchSetIteration(Set<MAVOElement> modelObjs, String functionName, String innerPredicate, String functionEmpty) {
 
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
@@ -238,7 +237,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				smtEncoding.append(SMTLIB_OR);
 			}
 			boolean previousNSimplified = false;
-			for (Set<EObject> modelObjsN : modelObjsNBar) {
+			for (Set<MAVOElement> modelObjsN : modelObjsNBar) {
 				if (previousNSimplified & modelObjsN.size() == 1) {
 					smtEncoding.append(" ");
 				}
@@ -309,12 +308,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		return true;
 	}
 
-	private void getMatchedModelObjs(Match match, Set<Node> nodes, Set<EObject> modelObjs, Set<EObject> allModelObjs) {
+	private void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs) {
 
 		for (Node node : nodes) {
 			EObject nodeTarget = match.getNodeTarget(node);
-			modelObjs.add(nodeTarget);
-			allModelObjs.add(nodeTarget);
+			modelObjs.add((MAVOElement) nodeTarget);
+			allModelObjs.add((MAVOElement) nodeTarget);
 		}
 	}
 
@@ -333,7 +332,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
 		for (int i = 0; i < matchesN.size(); i++) {
 			modelObjsNBar.clear();
-			Set<EObject> mayModelObjsNi = new HashSet<EObject>();
+			Set<MAVOElement> mayModelObjsNi = new HashSet<MAVOElement>();
 			modelObjsC.clear();
 			modelObjsD.clear();
 			modelObjsCDN.clear();
@@ -350,7 +349,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				if (!overlapCD(matchNi, matchNj, nodesC, nodesD)) {
 					continue;
 				}
-				Set<EObject> mayModelObjsNj = new HashSet<EObject>();
+				Set<MAVOElement> mayModelObjsNj = new HashSet<MAVOElement>();
 				getMatchedModelObjs(matchNj, nodesN, mayModelObjsNj, modelObjsCDN);
 				modelObjsNBar.add(mayModelObjsNj);
 				getMatchedModelObjs(matchNj, nodesC, modelObjsC, modelObjsCDN);
@@ -442,15 +441,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		);
 		readProperties(inputProperties);
 		initOutput();
-		modelObjsNBar = new ArrayList<Set<EObject>>();
-		modelObjsC = new HashSet<EObject>();
-		modelObjsD = new HashSet<EObject>();
-		modelObjsA = new HashSet<EObject>();
-		modelObjsCDN = new HashSet<EObject>();
-		modelObjACounter = 0;
-		smtEncodingConstants = new HashSet<String>();
-		smtEncoding = new StringBuilder();
-		liftingIterations = 0;
+		super.init();
 
 		// init SMT encoding
 		for (String constraintVariable : constraintVariables) {
