@@ -948,7 +948,7 @@ Comment:.
       <ownedOperation xmi:id="_16_8_2870140_1310710735984_92623_1602" name="&lt;&lt;optional>> SSLreceiveCitizenVehicleData" visibility="public"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310635638671_2471_2099" name="&lt;&lt;optional: _r_2_9_10_12>>call" memberEnd="_16_8_2870140_1310635638671_335213_2100 _16_8_2870140_1310635638671_725157_2101"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660628625_169689_3603" name="&lt;&lt;optional:_r_2_17_18 or _r_1_65_66_68_70>>PSC system SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660628625_169689_3603" name="&lt;&lt;optional:_r_2_17_18>>PSC system SOAP">
       <generalization xmi:id="_16_8_2870140_1310660641156_524468_3623" general="_16_8_2870140_1310658582328_9824_3020"/>
       <ownedOperation xmi:id="_16_8_2870140_1310660710718_151118_3647" name="&lt;optional>> SOAPrequestPoliceCarData" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310660789750_642392_3649" name="&lt;&lt;optional>> SOAPreceivePcarData" visibility="public"/>
@@ -1066,7 +1066,7 @@ Comment:.
       <ownedOperation xmi:id="_J25P0BVzEeOTfotNwHha9Q" name="&lt;&lt;optional:_r_2_9_10_12_13>>forwardDispatchOrderPoliceCar"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303309277719_717155_2556" name="interact" memberEnd="_17_0_1_b6202de_1303309277720_462330_2557 _17_0_1_b6202de_1303309277720_700521_2558"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660294609_316067_3419" name="&lt;&lt;optional:_r_2_17_18 or _r_1_65_66_68_70>>Fire truck SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660294609_316067_3419" name="&lt;&lt;optional:_r_2_17_18>>Fire truck SOAP">
       <generalization xmi:id="_16_8_2870140_1310660329593_734892_3459" general="_16_8_2870140_1310659047234_729125_3216"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710901937_291310_1612" name="&lt;&lt;optional>> SOAPreceiveFSCReques" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710959843_578287_1616" name="&lt;&lt;optional>> SOAPreporttoFSC" visibility="public"/>
@@ -1085,7 +1085,7 @@ Comment:.
       <ownedOperation xmi:id="_16_8_2870140_1310711623062_96235_1654" name="&lt;&lt;optional>> SSLforwardFireTruckReport" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711671437_212535_1658" name="&lt;&lt;optional>>SSLforwardCitVehicleReport" visibility="public"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660198578_598841_3373" name="&lt;&lt;optional:_r_2_17_18 or _r_1_65_66_68_70>>Citizen vehicle SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660198578_598841_3373" name="&lt;&lt;optional:_r_2_17_18>>Citizen vehicle SOAP">
       <generalization xmi:id="_16_8_2870140_1310660288765_826553_3416" general="_16_8_2870140_1310659476812_299386_3256"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711041078_909494_1622" name="&lt;&lt;optional>> SSLreceivePSCRequest" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711083328_640983_1626" name="&lt;&lt;optional>> SSLreportData" visibility="public"/>
@@ -1316,7 +1316,7 @@ Comment:.
       <ownedOperation xmi:id="_16_8_2870140_1310637893250_421015_2129" name="&lt;&lt;optional>> receiveFSCRequest" visibility="private"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310659682734_618601_3359" name="call" memberEnd="_16_8_2870140_1310659682734_894136_3360 _16_8_2870140_1310659682734_700790_3361"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660374093_623129_3465" name="&lt;&lt;optional:_r_2_17_18 or _r_1_65_66_68_70>>Police car SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660374093_623129_3465" name="&lt;&lt;optional:_r_2_17_18>>Police car SOAP">
       <generalization xmi:id="_16_8_2870140_1310660396468_1774_3505" general="_16_8_2870140_1310659012281_814418_3176"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711113406_137629_1628" name="&lt;&lt;optional>> SOAPreporttoPSC" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711166953_109992_1632" name="&lt;&lt;optional>> SOAPreceivePSCRequest" visibility="public"/>
@@ -1526,7 +1526,7 @@ Comment:.
       <ownedLiteral xmi:id="_17_0_1_b6202de_1303327408136_379303_1846" name="enRouteFromLocation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303309870214_239569_2653" name="regulate" memberEnd="_17_0_1_b6202de_1303309870214_190286_2654 _17_0_1_b6202de_1303309870215_549032_2655"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660574234_563815_3557" name="&lt;&lt;optional:_r_2_17_18 or _r_1_65_66_68_70>>FSC system SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660574234_563815_3557" name="&lt;&lt;optional:_r_2_17_18>>FSC system SOAP">
       <generalization xmi:id="_16_8_2870140_1310660621515_374984_3600" general="_16_8_2870140_1310658617609_400372_3060"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710773515_802980_1604" name="&lt;&lt;optional>> SOAPrequestFireTruckData" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710850031_367491_1608" name="&lt;&lt;optional>> SOAPreceiveFireTruckData" visibility="public"/>
