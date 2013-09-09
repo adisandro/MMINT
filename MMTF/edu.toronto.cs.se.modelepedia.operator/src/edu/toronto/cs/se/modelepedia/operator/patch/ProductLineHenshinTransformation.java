@@ -92,6 +92,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		// possibly propagate may to (A)dded elements
 		Match resultMatch = application.getResultMatch();
 		for (EObject resultNodeTarget : resultMatch.getNodeTargets()) {
+			if (!(resultNodeTarget instanceof MAVOElement)) {
+				continue;
+			}
 			// (C)ontext/(D)eleted/(N)ac elements
 			if (modelObjsCDN.contains(resultNodeTarget)) {
 				continue;
@@ -169,8 +172,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		// apply rule
 		RuleApplication application = new RuleApplicationImpl(engine);
 		application.setRule(rule);
-		application.setEGraph(graph);
-		for (Match match : engine.findMatches(rule, graph, null)) {
+		application.setEGraph(graph);int i=0;
+		for (Match match : engine.findMatches(rule, graph, null)) {System.err.println(i);i++;
 			application.setCompleteMatch(match);
 			application.execute(null);
 		}
@@ -312,8 +315,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		for (Node node : nodes) {
 			EObject nodeTarget = match.getNodeTarget(node);
-			modelObjs.add((MAVOElement) nodeTarget);
-			allModelObjs.add((MAVOElement) nodeTarget);
+			if (nodeTarget instanceof MAVOElement) {
+				allModelObjs.add((MAVOElement) nodeTarget);
+				if (((MAVOElement) nodeTarget).getFormulaId() != null) {
+					modelObjs.add((MAVOElement) nodeTarget);
+				}
+			}
 		}
 	}
 
@@ -384,8 +391,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	private void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
-		TransformationApplicabilityCondition condition;
-		while ((condition = checkApplicabilityConditions(rule, engine, graph)) != null) {
+		TransformationApplicabilityCondition condition;int i=0;
+		while ((condition = checkApplicabilityConditions(rule, engine, graph)) != null) {System.err.println(i);i++;
 			application.setRule(condition.getMatchedRule());
 			application.setEGraph(graph);
 			// transform
@@ -397,14 +404,14 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 	}
 
-	private void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
+	protected void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
-		for (String transformationRule : transformationRules) {
+		for (String transformationRule : transformationRules) {System.err.println(transformationRule);
 			Rule rule = (Rule) module.getUnit(transformationRule);
 			matchAndTransform(rule, engine, graph);
 		}
-		for (String transformationRuleLifted : transformationRulesLifting) {
+		for (String transformationRuleLifted : transformationRulesLifting) {System.err.println(transformationRuleLifted);
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransform(rule, engine, graph);
 		}
@@ -416,11 +423,11 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	protected void doLiftingTransformation(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
-		for (String transformationRule : transformationRules) {
+		for (String transformationRule : transformationRules) {System.err.println(transformationRule);
 			Rule rule = (Rule) module.getUnit(transformationRule);
 			matchAndTransform(rule, engine, graph);
 		}
-		for (String transformationRuleLifted : transformationRulesLifting) {
+		for (String transformationRuleLifted : transformationRulesLifting) {System.err.println(transformationRuleLifted);
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransformLifting(rule, engine, graph);
 		}
@@ -460,14 +467,14 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		Module module = resourceSet.getModule(transformationModule, false);
 		Engine engine = new EngineImpl();
 		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
-		if (timeClassicalEnabled) {
-			doClassicalTransformation(module, engine, graph);
+//		if (timeClassicalEnabled) {
+//			doClassicalTransformation(module, engine, graph);
 //			resourceSet = new HenshinResourceSet(fullUri);
 //			module = resourceSet.getModule(transformationModule, false);
 //			engine = new EngineImpl();
 //			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
-		}
-//		doLiftingTransformation(module, engine, graph);
+//		}
+		doLiftingTransformation(module, engine, graph);
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();

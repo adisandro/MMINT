@@ -383,19 +383,19 @@
             <parameter
                   isVararg="false"
                   name="model"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="transformedModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="transformedModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
             </parameter>
          </output>
       </operatorType>

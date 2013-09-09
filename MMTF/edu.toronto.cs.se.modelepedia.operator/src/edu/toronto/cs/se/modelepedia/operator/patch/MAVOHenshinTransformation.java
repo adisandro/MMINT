@@ -477,7 +477,7 @@ matchesN:
 		}
 	}
 
-	private void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
+	protected void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
 		for (String transformationRule : transformationRules) {

@@ -115,6 +115,7 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		liftingIterations = 0;
 	}
 
+	protected abstract void doClassicalTransformation(Module module, Engine engine, EGraph graph);
 	protected abstract void doLiftingTransformation(Module module, Engine engine, EGraph graph);
 
 }
