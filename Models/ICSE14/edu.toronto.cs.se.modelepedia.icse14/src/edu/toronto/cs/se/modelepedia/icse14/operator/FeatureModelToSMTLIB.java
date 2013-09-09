@@ -34,18 +34,27 @@ public class FeatureModelToSMTLIB {
 
 		StringBuilder cnfFormula = new StringBuilder("(and ");
 		StringBuilder cnfVariables = new StringBuilder();
+		boolean needSpace = false;
 		for (CNFClause cnfClause : cnf.getClauses()) {
 			if (cnfClause.countLiterals() > 1) {
 				cnfFormula.append("(or ");
+				needSpace = false;
 			}
 			for (CNFLiteral cnfLiteral : cnfClause.getLiterals()) {
 				if (!cnfLiteral.isPositive()) {
 					cnfFormula.append("(not ");
+					needSpace = false;
+				}
+				if (needSpace) {
+					cnfFormula.append(" ");
 				}
 				cnfFormula.append(cnfLiteral.getVariable().getID());
 				cnfVariables.append(cnfLiteral.getVariable().getID());
 				cnfVariables.append(",");
-				if (!cnfLiteral.isPositive()) {
+				if (cnfLiteral.isPositive()) {
+					needSpace = true;
+				}
+				else {
 					cnfFormula.append(")");
 				}
 			}
