@@ -5,14 +5,24 @@ module UMLToClassDiagramMAVO_M2M;
 create OUT : ClassDiagram_MAVO from IN : UML;
 
 helper def : voidClass : ClassDiagram_MAVO!Class = OclUndefined;
+helper def : stringClass : ClassDiagram_MAVO!Class = OclUndefined;
+helper def : booleanClass : ClassDiagram_MAVO!Class = OclUndefined;
 
-entrypoint rule VoidClass() {
+entrypoint rule PrimitiveTypes() {
 	to
 		void : ClassDiagram_MAVO!Class (
 			name <- 'Void'
+		),
+		string : ClassDiagram_MAVO!Class (
+			name <- 'String'
+		),
+		boolean : ClassDiagram_MAVO!Class (
+			name <- 'Boolean'
 		)
 	do {
 		thisModule.voidClass <- void;
+		thisModule.stringClass <- string;
+		thisModule.booleanClass <- boolean;
 	}
 }
 
@@ -21,7 +31,7 @@ rule Model2ClassDiagram {
 		model : UML!Model
 	to
 		cd : ClassDiagram_MAVO!ClassDiagram (
-			classes <- Sequence{thisModule.voidClass}->union(UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class)))->union(UML!DataType.allInstancesFrom('IN')->collect(datatype | thisModule.DataType2Class(datatype))),
+			classes <- Sequence{thisModule.voidClass, thisModule.stringClass, thisModule.booleanClass}->union(UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class)))->union(UML!DataType.allInstancesFrom('IN')->collect(datatype | thisModule.DataType2Class(datatype))),
 			associations <- UML!Association.allInstancesFrom('IN')->collect(association | thisModule.Association2Association(association))
 		)
 }
@@ -112,7 +122,13 @@ helper def : getType(type : UML!Type) : ClassDiagram_MAVO!Class =
 		thisModule.voidClass
 	else
 		if type.oclIsKindOf(UML!DataType) then
-			thisModule.DataType2Class(type)
+			if type.name = 'String' then
+				thisModule.stringClass
+			else if type.name = 'Boolean' then
+				thisModule.booleanClass
+			else
+				thisModule.DataType2Class(type)
+			endif endif
 		else
 			thisModule.Class2Class(type)
 		endif
