@@ -4,15 +4,11 @@
 module UMLToClassDiagramMAVO_M2M;
 create OUT : ClassDiagram_MAVO from IN : UML;
 
-helper def : voidClass : ClassDiagram_MAVO!Class = OclUndefined;
 helper def : stringClass : ClassDiagram_MAVO!Class = OclUndefined;
 helper def : booleanClass : ClassDiagram_MAVO!Class = OclUndefined;
 
 entrypoint rule PrimitiveTypes() {
 	to
-		void : ClassDiagram_MAVO!Class (
-			name <- 'Void'
-		),
 		string : ClassDiagram_MAVO!Class (
 			name <- 'String'
 		),
@@ -20,7 +16,6 @@ entrypoint rule PrimitiveTypes() {
 			name <- 'Boolean'
 		)
 	do {
-		thisModule.voidClass <- void;
 		thisModule.stringClass <- string;
 		thisModule.booleanClass <- boolean;
 	}
@@ -31,7 +26,7 @@ rule Model2ClassDiagram {
 		model : UML!Model
 	to
 		cd : ClassDiagram_MAVO!ClassDiagram (
-			classes <- Sequence{thisModule.voidClass, thisModule.stringClass, thisModule.booleanClass}->union(UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class)))->union(UML!DataType.allInstancesFrom('IN')->collect(datatype | thisModule.DataType2Class(datatype))),
+			classes <- Sequence{thisModule.stringClass, thisModule.booleanClass}->union(UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class)))->union(UML!DataType.allInstancesFrom('IN')->collect(datatype | thisModule.DataType2Class(datatype))),
 			associations <- UML!Association.allInstancesFrom('IN')->collect(association | thisModule.Association2Association(association))
 		)
 }
@@ -96,7 +91,7 @@ lazy rule Association2Association {
 		umlAssociation : UML!Association
 	to
 		cdAssociation : ClassDiagram_MAVO!Association (
-			name <- umlAssociation.name,
+			name <- thisModule.getAssociationName(umlAssociation),
 			formulaId <- thisModule.getFormulaId(umlAssociation.name),
 			source <- thisModule.getType(umlAssociation.memberEnd->at(1).type),
 			target <- thisModule.getType(umlAssociation.memberEnd->at(2).type)
@@ -111,17 +106,17 @@ helper def : isPublic(visibility : UML!VisibilityKind) : Boolean =
 	endif;
 
 helper def : getFormulaId(name : String) : String =
-	if (not name.oclIsUndefined() and name.startsWith('<<optional:')) then
-		name.substring(name.indexOf('<<optional:')+12, name.indexOf('>>')).trim()
+	if (not name->oclIsUndefined() and name->startsWith('<<optional:')) then
+		name.substring(name->indexOf('<<optional:')+12, name->indexOf('>>'))->trim()
 	else
 		OclUndefined
 	endif;
 
 helper def : getType(type : UML!Type) : ClassDiagram_MAVO!Class =
-	if type.oclIsUndefined() then
-		thisModule.voidClass
+	if type->oclIsUndefined() then
+		OclUndefined
 	else
-		if type.oclIsKindOf(UML!DataType) then
+		if type->oclIsKindOf(UML!DataType) then
 			if type.name = 'String' then
 				thisModule.stringClass
 			else if type.name = 'Boolean' then
@@ -135,12 +130,19 @@ helper def : getType(type : UML!Type) : ClassDiagram_MAVO!Class =
 	endif;
 
 helper def : getPropertyName(property : UML!Property) : String =
-	if property.name.oclIsUndefined() or property.name = '' then
-		if property.type.oclIsUndefined() then
-			'Void'
+	if property.name->oclIsUndefined() or property.name = '' then
+		if property.type->oclIsUndefined() then
+			''
 		else
 			property.type.name
 		endif
 	else
 		property.name
+	endif;
+
+helper def : getAssociationName(association : UML!Association) : String =
+	if association.name->oclIsUndefined() or association.name = '' then
+		'A_'->concat(thisModule.getPropertyName(association.memberEnd->at(1)))->concat('_')->concat(thisModule.getPropertyName(association.memberEnd->at(2)))
+	else
+		association.name
 	endif;
