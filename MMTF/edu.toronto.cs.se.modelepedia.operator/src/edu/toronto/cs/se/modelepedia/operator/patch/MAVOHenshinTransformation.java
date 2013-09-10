@@ -477,12 +477,14 @@ matchesN:
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
 		Module module = resourceSet.getModule(transformationModule, false);
 		Engine engine = new EngineImpl();
+		engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		if (timeClassicalEnabled) {
 			doClassicalTransformation(module, engine, graph);
 			resourceSet = new HenshinResourceSet(fullUri);
 			module = resourceSet.getModule(transformationModule, false);
 			engine = new EngineImpl();
+			engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		}
 		doLiftingTransformation(module, engine, graph);
