@@ -17,9 +17,9 @@ typedef struct {
 int checkSat(char *smtEncoding);
 Z3Result *checkSatAndGetModel(char *smtEncoding);
 void freeResult(Z3Result *result);
-static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion);
+static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int isTempAssertion);
 Z3IncResult *firstCheckSatAndGetModelIncremental(char *smtEncoding);
-void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion);
+void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int isTempAssertion, int isTempIfUnsatAssertion);
 void freeResultIncremental(Z3IncResult *incResult);
 
 #endif  // Z3SMTSOLVER_H__

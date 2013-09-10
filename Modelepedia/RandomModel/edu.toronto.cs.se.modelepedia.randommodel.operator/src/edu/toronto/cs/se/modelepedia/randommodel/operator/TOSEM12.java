@@ -254,7 +254,7 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 				continue;
 			}
 			encoding = SMTLIB_ASSERT + z3MayModelElem + SMTLIB_PREDICATE_END;
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
+			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1, 0);
 			flags.append(z3IncResult.flag);
 			flags.append(',');
 			if (z3IncResult.flag != 1) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
@@ -267,7 +267,7 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 				continue;
 			}
 			encoding = SMTLIB_ASSERT + SMTLIB_NOT + z3MayModelElem + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1);
+			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1, 0);
 			flags.append(z3IncResult.flag);
 			flags.append(',');
 			if (z3IncResult.flag != 1) { // UNSAT
@@ -311,7 +311,7 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 			}
 			encodingBuilder.append(SMTLIB_PREDICATE_END);
 			encodingBuilder.append(SMTLIB_PREDICATE_END);
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encodingBuilder.toString(), 0);
+			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encodingBuilder.toString(), 0, 0);
 			flags.append(z3IncResult.flag);
 			flags.append(',');
 		}

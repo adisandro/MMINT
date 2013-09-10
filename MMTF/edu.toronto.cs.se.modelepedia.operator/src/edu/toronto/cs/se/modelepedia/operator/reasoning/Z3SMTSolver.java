@@ -88,7 +88,7 @@ public interface Z3SMTSolver {
 		public Z3Result checkSatAndGetModel(String smtEncoding);
 		public void freeResult(Z3Result result);
 		public Z3IncResult firstCheckSatAndGetModelIncremental(String smtEncoding);
-		public void checkSatAndGetModelIncremental(Z3IncResult incResult, String smtEncoding, int removeLastAssertion);
+		public void checkSatAndGetModelIncremental(Z3IncResult incResult, String smtEncoding, int isTempAssertion, int isTempIfUnsatAssertion);
 		public void freeResultIncremental(Z3IncResult incResult);
 	}
 

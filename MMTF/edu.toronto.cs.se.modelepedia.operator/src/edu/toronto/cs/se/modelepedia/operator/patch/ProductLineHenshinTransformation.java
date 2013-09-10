@@ -50,11 +50,14 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 
 public class ProductLineHenshinTransformation extends LiftingHenshinTransformation {
 
 	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i)";
 	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = ")))";
+
+	private Z3IncResult z3IncResult;
 
 	private void transformMatch(RuleApplication application, Match match, boolean isLiftedMatch) {
 
@@ -224,11 +227,38 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, SMTLIB_AND, SMTLIB_TRUE);
 	}
 
+//	private boolean checkZ3ApplicabilityFormula2() {
+//
+//		int checkpointUnsat = smtEncoding.length();
+//		createZ3ApplyFormula();
+//		int checkpointSat = smtEncoding.length();
+//		smtEncoding.append(SMTLIB_ASSERT);
+//		smtEncoding.append(SMTLIB_EQUALITY);
+//		smtEncoding.append(SMTLIB_AND);
+//		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
+//		smtEncoding.append(iterationsLifting);
+//		smtEncoding.append(SMTLIB_PREDICATE_END);
+//		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
+//		smtEncoding.append(iterationsLifting + 1);
+//		smtEncoding.append(SMTLIB_PREDICATE_END);
+//		smtEncoding.append(SMTLIB_PREDICATE_END);
+//		smtEncoding.append(SMTLIB_TRUE);
+//		smtEncoding.append(SMTLIB_PREDICATE_END);
+//		smtEncoding.append(SMTLIB_PREDICATE_END);
+//
+//		int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(smtEncoding.toString());
+//		if (z3Result == Z3_SAT) {
+//			smtEncoding.delete(checkpointSat, smtEncoding.length());
+//			return true;
+//		}
+//		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
+//		return false;
+//	}
+
 	private boolean checkZ3ApplicabilityFormula() {
 
 		int checkpointUnsat = smtEncoding.length();
 		createZ3ApplyFormula();
-		int checkpointSat = smtEncoding.length();
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(SMTLIB_AND);
@@ -243,9 +273,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 
-		int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(smtEncoding.toString());
-		if (z3Result == Z3_SAT) {
-			smtEncoding.delete(checkpointSat, smtEncoding.length());
+		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtEncoding.substring(checkpointUnsat), 0, 1);
+		if (z3IncResult.flag == Z3_SAT) {
 			return true;
 		}
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
@@ -429,7 +458,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		}
+		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding.toString());
 		doLiftingTransformation(module, engine, graph);
+		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();

@@ -16,7 +16,6 @@ Require-Bundle: edu.toronto.cs.se.mmtf,
  org.eclipse.emf.henshin.model,
  org.eclipse.emf.henshin.trace
 Bundle-ClassPath: lib/jna.jar,
- lib/alloy4.2-rc.jar,
  .
 Export-Package: com.sun.jna,
  edu.toronto.cs.se.modelepedia.operator.reasoning

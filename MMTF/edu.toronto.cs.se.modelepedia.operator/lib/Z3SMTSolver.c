@@ -70,7 +70,7 @@ void freeResult(Z3Result *result) {
 	free(result);
 }
 
-static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion) {
+static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int isTempAssertion) {
 
 	Z3_context context = incResult->contextPointer;
 	Z3_solver solver = incResult->solverPointer;
@@ -115,7 +115,7 @@ static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtE
 	incResult->flag = Z3_solver_check(context, solver);
 	if (incResult->flag == 1) {
 		// get rid of previous model if assertions are piling up
-		if (removeLastAssertion == 0 && incResult->modelPointer != NULL) {
+		if (isTempAssertion == 0 && incResult->modelPointer != NULL) {
 			Z3_model_dec_ref(context, model);
 			incResult->modelPointer = NULL;
 		}
@@ -136,7 +136,7 @@ static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtE
 		else {
 			strncpy(incResult->model, modelString, modelLen);
 			// store current model if assertions are piling up
-			if (removeLastAssertion == 0) {
+			if (isTempAssertion == 0) {
 				incResult->modelPointer = model;
 			}
 			// keep the previous model if assertions are not piling up, throw the current one
@@ -169,16 +169,16 @@ Z3IncResult *firstCheckSatAndGetModelIncremental(char *smtEncoding) {
 	return incResult;
 }
 
-void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int removeLastAssertion) {
+void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, int isTempAssertion, int isTempIfUnsatAssertion) {
 
 	// incremental check sat and get model
 	Z3_context context = incResult->contextPointer;
 	Z3_solver solver = incResult->solverPointer;
-	if (removeLastAssertion == 1) {
+	if (isTempAssertion == 1 || isTempIfUnsatAssertion == 1) {
 		Z3_solver_push(context, solver);
 	}
-	runCheckSatAndGetModelIncremental(incResult, smtEncoding, removeLastAssertion);
-	if (removeLastAssertion == 1) {
+	runCheckSatAndGetModelIncremental(incResult, smtEncoding, isTempAssertion);
+	if (isTempAssertion == 1 || (isTempIfUnsatAssertion == 1 && incResult->flag == -1)) {
 		Z3_solver_pop(context, solver, 1);
 	}
 }
