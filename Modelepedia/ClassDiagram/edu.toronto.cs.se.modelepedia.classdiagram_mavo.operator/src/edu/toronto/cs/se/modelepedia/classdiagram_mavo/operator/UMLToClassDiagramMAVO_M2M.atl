@@ -28,8 +28,18 @@ rule Model2ClassDiagram {
 		model : UML!Model
 	to
 		cd : ClassDiagram_MAVO!ClassDiagram (
-			classes <- Sequence{thisModule.stringClass, thisModule.booleanClass}->union(UML!Class.allInstancesFrom('IN')->collect(class | thisModule.Class2Class(class)))->union(UML!DataType.allInstancesFrom('IN')->collect(datatype | thisModule.DataType2Class(datatype))),
-			associations <- UML!Association.allInstancesFrom('IN')->collect(association | thisModule.Association2Association(association))
+			classes <-
+				Sequence{thisModule.stringClass, thisModule.booleanClass}->
+				union(UML!Class.allInstancesFrom('IN')->
+					reject(behavior | behavior.oclIsKindOf(UML!Behavior))->
+					collect(class | thisModule.Class2Class(class))
+				)->
+				union(UML!DataType.allInstancesFrom('IN')->
+					collect(datatype | thisModule.DataType2Class(datatype))
+				),
+			associations <-
+				UML!Association.allInstancesFrom('IN')->
+					collect(association | thisModule.Association2Association(association))
 		)
 }
 
@@ -45,7 +55,9 @@ unique lazy rule DataType2Class {
 
 unique lazy rule Class2Class {
 	from
-		umlClass : UML!Class
+		umlClass : UML!Class (
+			not umlClass.oclIsKindOf(UML!Behavior)
+		)
 	to
 		cdClass : ClassDiagram_MAVO!Class (
 			name <- umlClass.name,
