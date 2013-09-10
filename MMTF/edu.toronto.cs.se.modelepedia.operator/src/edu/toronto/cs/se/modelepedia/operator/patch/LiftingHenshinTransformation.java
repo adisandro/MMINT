@@ -12,14 +12,18 @@
 package edu.toronto.cs.se.modelepedia.operator.patch;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.Match;
+import org.eclipse.emf.henshin.interpreter.RuleApplication;
+import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Rule;
 
@@ -57,12 +61,23 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 
 	private static final String PROPERTY_IN_CONSTRAINT = "constraint";
 	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = SMTLIB_TRUE;
-	protected static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
-	protected static final String[] PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT = {};
+	private static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
+	private static final String[] PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONMODULE = "transformationModule";
 	private static final String PROPERTY_IN_TRANSFORMATIONRULES = "transformationRules";
 	private static final String[] PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESLIFTING = "transformationRulesLifting";
+
+	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
+	private static final String PROPERTY_OUT_TIMELIFTING = "timeLifting";
+	private static final String PROPERTY_OUT_ITERATIONSCLASSICAL = "iterationsClassical";
+	private static final String PROPERTY_OUT_ITERATIONSLIFTING = "iterationsLifting";
+	private static final String PROPERTY_OUT_ITERATIONSNOTLIFTING = "iterationsNotLifting";
+	private static final String PROPERTY_OUT_SMTENCODINGLENGTH = "smtEncodingLength";
+	private static final String PROPERTY_OUT_CHAINS = "chains";
+	private static final int PROPERTY_OUT_CHAINS_MAX = 10;
+	private static final String PROPERTY_OUT_LITERALS = "literals";
+	private static final int PROPERTY_OUT_LITERALS_MAX = 10;
 
 	protected static final String ANAC_NAME = "A_NAC";
 	protected static final String A_MODELOBJECT_SMTENCODING_PREFIX = "a";
@@ -81,7 +96,6 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 	protected String transformationModule;
 	protected String[] transformationRules;
 	protected String[] transformationRulesLifting;
-	protected int liftingIterations;
 
 	protected List<Set<MAVOElement>> modelObjsNBar;
 	protected Set<MAVOElement> modelObjsC;
@@ -92,6 +106,15 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 	protected StringBuilder smtEncoding;
 	protected Set<String> smtEncodingConstants;
 
+	protected boolean timeClassicalEnabled;
+	protected long timeClassical;
+	protected long timeLifting;
+	protected int iterationsClassical;
+	protected int iterationsLifting;
+	protected int iterationsNotLifting;
+	protected Map<MAVOElement, Integer> modelObjsChains;
+	protected Map<MAVOElement, Integer> modelObjsLiterals;
+
 	protected void readProperties(Properties properties) throws Exception {
 
 		constraint = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_CONSTRAINT, PROPERTY_IN_CONSTRAINT_DEFAULT);
@@ -99,6 +122,56 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		transformationModule = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_TRANSFORMATIONMODULE);
 		transformationRules = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
 		transformationRulesLifting = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
+		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+	}
+
+	protected void writeProperties(Properties properties) {
+
+		properties.setProperty(PROPERTY_OUT_TIMECLASSICAL, String.valueOf(timeClassical));
+		properties.setProperty(PROPERTY_OUT_TIMELIFTING, String.valueOf(timeLifting));
+		properties.setProperty(PROPERTY_OUT_ITERATIONSCLASSICAL, String.valueOf(iterationsClassical));
+		properties.setProperty(PROPERTY_OUT_ITERATIONSLIFTING, String.valueOf(iterationsLifting));
+		properties.setProperty(PROPERTY_OUT_ITERATIONSNOTLIFTING, String.valueOf(iterationsNotLifting));
+		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
+		int[] chains = new int[PROPERTY_OUT_CHAINS_MAX];
+		for (int chain : modelObjsChains.values()) {
+			if (chain >= PROPERTY_OUT_CHAINS_MAX) {
+				chains[PROPERTY_OUT_CHAINS_MAX-1]++;
+			}
+			else {
+				chains[chain]++;
+			}
+		}
+		for (int i = 0; i < chains.length; i++) {
+			if (chains[i] > 0) {
+				properties.setProperty(PROPERTY_OUT_CHAINS+i, String.valueOf(chains[i]));
+			}
+		}
+		int[] literals = new int[PROPERTY_OUT_LITERALS_MAX];
+		for (int literal : modelObjsLiterals.values()) {
+			if (literal >= PROPERTY_OUT_LITERALS_MAX) {
+				literals[PROPERTY_OUT_LITERALS_MAX-1]++;
+			}
+			else {
+				literals[literal]++;
+			}
+		}
+		for (int i = 0; i < literals.length; i++) {
+			if (literals[i] > 0) {
+				properties.setProperty(PROPERTY_OUT_LITERALS+i, String.valueOf(literals[i]));
+			}
+		}
+	}
+
+	private void initOutput() {
+
+		timeClassical = -1;
+		timeLifting = -1;
+		iterationsClassical = 0;
+		iterationsLifting = 0;
+		iterationsNotLifting = 0;
+		modelObjsChains = new HashMap<MAVOElement, Integer>();
+		modelObjsLiterals = new HashMap<MAVOElement, Integer>();
 	}
 
 	protected void init() {
@@ -109,13 +182,80 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		modelObjsA = new HashSet<MAVOElement>();
 		modelObjsCDN = new HashSet<MAVOElement>();
 		modelObjACounter = 0;
-		modelObjACounter = 0;
 		smtEncodingConstants = new HashSet<String>();
 		smtEncoding = new StringBuilder();
-		liftingIterations = 0;
+		initOutput();
 	}
 
-	protected abstract void doClassicalTransformation(Module module, Engine engine, EGraph graph);
-	protected abstract void doLiftingTransformation(Module module, Engine engine, EGraph graph);
+	protected void updateChains() {
+
+		int maxChain = 0;
+		for (MAVOElement modelObjCDN : modelObjsCDN) {
+			Integer modelObjCDNChain = modelObjsChains.get(modelObjCDN);
+			if (modelObjCDNChain == null) {
+				modelObjsChains.put(modelObjCDN, new Integer(0));
+			}
+			else if (modelObjCDNChain > maxChain) {
+				maxChain = modelObjCDNChain;
+			}
+		}
+		maxChain++;
+		for (MAVOElement modelObjA : modelObjsA) {
+			modelObjsChains.put(modelObjA, new Integer(maxChain));
+		}
+	}
+
+	protected abstract void updateLiterals();
+
+	protected void matchAndTransform(Rule rule, Engine engine, EGraph graph, boolean isLifting) {
+
+		RuleApplication application = new RuleApplicationImpl(engine);
+		application.setRule(rule);
+		application.setEGraph(graph);int i=0;
+		for (Match match : engine.findMatches(rule, graph, null)) {System.err.println(i);i++;
+			application.setCompleteMatch(match);
+			application.execute(null);
+			if (isLifting) {
+				iterationsNotLifting++;
+			}
+			else {
+				iterationsClassical++;
+			}
+		}
+	}
+
+	protected abstract void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph);
+
+	protected void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
+
+		long startTime = System.nanoTime();
+		for (String transformationRule : transformationRules) {System.err.println(transformationRule);
+			Rule rule = (Rule) module.getUnit(transformationRule);
+			matchAndTransform(rule, engine, graph, false);
+		}
+		for (String transformationRuleLifted : transformationRulesLifting) {System.err.println(transformationRuleLifted);
+			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
+			matchAndTransform(rule, engine, graph, false);
+		}
+		long endTime = System.nanoTime();
+
+		timeClassical = endTime - startTime;
+	}
+
+	protected void doLiftingTransformation(Module module, Engine engine, EGraph graph) {
+
+		long startTime = System.nanoTime();
+		for (String transformationRule : transformationRules) {System.err.println(transformationRule);
+			Rule rule = (Rule) module.getUnit(transformationRule);
+			matchAndTransform(rule, engine, graph, true);
+		}
+		for (String transformationRuleLifted : transformationRulesLifting) {System.err.println(transformationRuleLifted);
+			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
+			matchAndTransformLifting(rule, engine, graph);
+		}
+		long endTime = System.nanoTime();
+
+		timeLifting = endTime - startTime;
+	}
 
 }

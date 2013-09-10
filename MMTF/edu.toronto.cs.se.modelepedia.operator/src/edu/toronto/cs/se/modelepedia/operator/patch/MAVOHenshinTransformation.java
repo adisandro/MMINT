@@ -53,37 +53,10 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 
 public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
-	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
-	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
-	private static final String PROPERTY_OUT_MAYFORMULALENGTH = "mayFormulaLength";
-
 	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i) (ite (= i 0)";
 	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = "(or (and (fX (- i 1)) (not (fY i)) (not (fAo i))) (and (and (fX (- i 1)) (fY i)) (not (fDo i)) (fA i)))))))";
 	private static final String SMTLIB_APPLICABILITY_FUN_D_OR = SMTLIB_APPLICABILITY_FUN + "Do ";
 	private static final String SMTLIB_APPLICABILITY_FUN_A_OR = SMTLIB_APPLICABILITY_FUN + "Ao ";
-
-	private boolean timeClassicalEnabled;
-	private long timeClassical;
-	private long timeMAVO;
-
-	protected void readProperties(Properties properties) throws Exception {
-
-		super.readProperties(properties);
-		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-	}
-
-	private void initOutput() {
-
-		timeClassical = -1;
-		timeMAVO = -1;
-	}
-
-	private void writeProperties(Properties properties) {
-
-		properties.setProperty(PROPERTY_OUT_TIMECLASSICAL, String.valueOf(timeClassical));
-		properties.setProperty(PROPERTY_OUT_TIMEMAVO, String.valueOf(timeMAVO));
-		properties.setProperty(PROPERTY_OUT_MAYFORMULALENGTH, String.valueOf(smtEncoding.length()));
-	}
 
 	private void transformMatch(RuleApplication application, Match match, boolean isMayMatch) {
 
@@ -170,18 +143,6 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		ruleNac.getLhs().setFormula(null);
 	}
 
-	private void matchAndTransform(Rule rule, Engine engine, EGraph graph) {
-
-		// apply rule
-		RuleApplication application = new RuleApplicationImpl(engine);
-		application.setRule(rule);
-		application.setEGraph(graph);
-		for (Match match : engine.findMatches(rule, graph, null)) {
-			application.setCompleteMatch(match);
-			application.execute(null);
-		}
-	}
-
 	private void createZ3ApplyFormulaConstant() {
 
 		for (String mayFormulaConstant : smtEncodingConstants) {
@@ -244,7 +205,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(functionName);
-		smtEncoding.append(liftingIterations + 1);
+		smtEncoding.append(iterationsLifting + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		createZ3ApplyFormulaMatchSet(mayModelObjs, innerPredicate, functionEmpty);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
@@ -256,7 +217,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_N);
-		smtEncoding.append(liftingIterations + 1);
+		smtEncoding.append(iterationsLifting + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 
 		if (modelObjsNBar.isEmpty()) {
@@ -302,10 +263,10 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(SMTLIB_AND);
 		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
-		smtEncoding.append(liftingIterations);
+		smtEncoding.append(iterationsLifting);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
-		smtEncoding.append(liftingIterations + 1);
+		smtEncoding.append(iterationsLifting + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_TRUE);
@@ -319,6 +280,11 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		}
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
 		return false;
+	}
+
+	@Override
+	protected void updateLiterals() {
+		// TODO Auto-generated method stub
 	}
 
 	private boolean overlapCD(Match match1, Match match2, Set<Node> nodesC, Set<Node> nodesD) {
@@ -442,7 +408,8 @@ matchesN:
 		return null; // no matches
 	}
 
-	private void matchAndTransformMAVO(Rule rule, Engine engine, EGraph graph) {
+	@Override
+	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
@@ -457,7 +424,8 @@ matchesN:
 				createZ3ApplyFormulaConstant(modelObjsA);
 				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A, SMTLIB_AND, SMTLIB_TRUE);
 				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A_OR, SMTLIB_OR, SMTLIB_FALSE);
-				liftingIterations++;
+				iterationsLifting++;
+				updateChains();
 				// update set of constants
 				for (Set<MAVOElement> mayModelObjsN : modelObjsNBar) {
 					for (MAVOElement mayModelObjN : mayModelObjsN) {
@@ -474,39 +442,10 @@ matchesN:
 					smtEncodingConstants.add(mayModelObjA.getFormulaId());
 				}
 			}
+			else {
+				iterationsNotLifting++;
+			}
 		}
-	}
-
-	protected void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
-
-		long startTime = System.nanoTime();
-		for (String transformationRule : transformationRules) {
-			Rule rule = (Rule) module.getUnit(transformationRule);
-			matchAndTransform(rule, engine, graph);
-		}
-		for (String transformationRuleLifted : transformationRulesLifting) {
-			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
-			matchAndTransform(rule, engine, graph);
-		}
-		long endTime = System.nanoTime();
-
-		timeClassical = endTime - startTime;
-	}
-
-	protected void doLiftingTransformation(Module module, Engine engine, EGraph graph) {
-
-		long startTime = System.nanoTime();
-		for (String transformationRule : transformationRules) {
-			Rule rule = (Rule) module.getUnit(transformationRule);
-			matchAndTransform(rule, engine, graph);
-		}
-		for (String transformationRuleLifted : transformationRulesLifting) {
-			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
-			matchAndTransformMAVO(rule, engine, graph);
-		}
-		long endTime = System.nanoTime();
-
-		timeMAVO = endTime - startTime;
 	}
 
 	@Override
@@ -520,8 +459,7 @@ matchesN:
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
-		initOutput();
-		super.init();
+		init();
 
 		// init SMT encoding
 		for (String constraintVariable : constraintVariables) {

@@ -10,10 +10,12 @@ helper def : booleanClass : ClassDiagram_MAVO!Class = OclUndefined;
 entrypoint rule PrimitiveTypes() {
 	to
 		string : ClassDiagram_MAVO!Class (
-			name <- 'String'
+			name <- 'String',
+			formulaId <- ' true '
 		),
 		boolean : ClassDiagram_MAVO!Class (
-			name <- 'Boolean'
+			name <- 'Boolean',
+			formulaId <- ' true '
 		)
 	do {
 		thisModule.stringClass <- string;
@@ -36,7 +38,8 @@ unique lazy rule DataType2Class {
 		datatype : UML!DataType
 	to
 		class : ClassDiagram_MAVO!Class (
-			name <- datatype.name
+			name <- datatype.name,
+			formulaId <- ' true '
 		)
 }
 
@@ -47,18 +50,19 @@ unique lazy rule Class2Class {
 		cdClass : ClassDiagram_MAVO!Class (
 			name <- umlClass.name,
 			formulaId <- thisModule.getFormulaId(umlClass.name),
-			superclass <- umlClass.generalization->collect(generalization | thisModule.Class2SuperclassReference(generalization.general)),
+			superclass <- umlClass.generalization->collect(generalization | thisModule.Generalization2SuperclassReference(generalization)),
 			ownedAttributes <- umlClass.ownedAttribute->collect(property | thisModule.Property2Attribute(property)),
 			ownedOperations <- umlClass.ownedOperation->collect(operation | thisModule.Operation2Operation(operation))
 		)
 }
 
-lazy rule Class2SuperclassReference {
+lazy rule Generalization2SuperclassReference {
 	from
-		class : UML!Class
+		generalization : UML!Generalization
 	to
 		superclassRef : ClassDiagram_MAVO!SuperclassReference (
-			target <- thisModule.Class2Class(class)
+			formulaId <- ' true ',
+			target <- thisModule.Class2Class(generalization.general)
 		)
 }
 
@@ -109,7 +113,7 @@ helper def : getFormulaId(name : String) : String =
 	if (not name->oclIsUndefined() and name->startsWith('<<optional:')) then
 		name.substring(name->indexOf('<<optional:')+12, name->indexOf('>>'))->trim()
 	else
-		OclUndefined
+		' true '
 	endif;
 
 helper def : getType(type : UML!Type) : ClassDiagram_MAVO!Class =
