@@ -37,81 +37,65 @@ Comment:.
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1306508444669_336928_2281" name="" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_17_0_1_b6202de_1306508444669_48837_2282" name="" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310635611265_354496_2085" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" association="_16_8_2870140_1310635611265_165095_2083">
+      <ownedAttribute xmi:id="_16_8_2870140_1310635611265_354496_2085" name="" visibility="private">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_8_2870140_1310638734843_910553_2176" name=""/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310638734843_629156_2177" name="" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_16_8_2870140_1310648247171_150969_2619" name="" visibility="private" type="_17_0_1_b6202de_1303308574761_224242_2293" association="_16_8_2870140_1310648247171_718658_2617"/>
-      <ownedAttribute xmi:id="_bOCdoBV6EeOzdJm6j02yAQ" name="&lt;&lt;optional:_r_1_50_51_52>>encryptionMethod"/>
-      <ownedOperation xmi:id="_17_0_1_b6202de_1303319945682_145410_3500" name="&lt;&lt;optional:_r_2_9_10_12_15>>fireTrucksRoute" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649407093_887188_2678" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
-      </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303324286514_404331_1685" name="policeCarDispatched" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649427656_199519_2682" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649427656_199519_2682" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303326064442_546495_1572" name="policeCarArrived" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649448328_472258_2685" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649448328_472258_2685" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303331601735_89925_3909" name="fireTruckObjectiveCompleteFScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649465953_580019_2688" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649465953_580019_2688" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303332241953_52427_3937" name="crisisCompletePSC" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649492718_550646_2691" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649492718_550646_2691" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306505043366_431710_2073" name="reqComPSC" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306505089724_345169_2075" name="authPSC" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306505515967_325152_2150" name="callPScoordinator" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507257363_957247_1634" name="sendFScoordinatorCredentials" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507525929_72253_1678" name="sendFSCrisisDetails" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649551546_241169_2693" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649551546_241169_2693" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507677868_202017_1703" name="crisisDetailsPSC" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649576953_437000_2695" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649576953_437000_2695" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306509649176_977139_2396" name="deployFireTrucks" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650348765_847366_2914" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650348765_847366_2914" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306510233928_436240_2482" name="agreeFireTrucksRoute" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650375765_528690_2916" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650375765_528690_2916" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306699664025_984598_1610" name="disagreeFireTrucksRoute" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650399015_792190_2918" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650399015_792190_2918" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306701948732_764392_2268" name="fireTruckDispatchedFScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650427390_581501_2920" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650427390_581501_2920" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306703192905_207517_2391" name="fireTruckArrivedFScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650452062_666715_2922" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650452062_666715_2922" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306704793428_680527_2559" name="policeCarObjectiveCompleted" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650473515_749048_2924" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650473515_749048_2924" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306705751789_531830_2706" name="fireTruckBackFScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650501750_324649_2926" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650501750_324649_2926" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306705779434_248872_2708" name="policeCarBack" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650526531_628640_2928" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650526531_628640_2928" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306706663525_127957_2816" name="closeCrisisFScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650556453_888768_2930" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650556453_888768_2930" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306706704746_313173_2818" name="closeCrisisPS" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650577890_857957_2932" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650577890_857957_2932" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_16_8_2870140_1310637730312_272821_2117" name="&lt;&lt;optional:_r_2_9_10_12_14>> requestFireTruckData" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638281203_278348_2148" name="&lt;&lt;optional:_r_2_9_10_12_14>> receiveFireTruckData" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310651388703_125200_2948" name="&lt;&lt;optional:_r_2_9_10_12_14 or _r_2_9_10_12_15>> reRootFireTrucksFScoordinator" visibility="private">
-        <ownedParameter xmi:id="_16_8_2870140_1310651417921_906151_2951" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
-        <ownedParameter xmi:id="_16_8_2870140_1310651436812_846120_2952" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_ldR9ABVzEeOTfotNwHha9Q" name="&lt;&lt;optional:_r_2_9_10_12_14>>forwardDispatchOrderReceivedFireTruck"/>
-      <ownedOperation xmi:id="_A5f6MBV3EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_56>>passwordBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_I2TYsBV3EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_57>>certBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_ObgGoBV3EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_58>>bioBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_T8PyYBV3EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_59>>pwdBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_aZ1g4BV3EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_62>>symBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_iIqNwBV3EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_63>>mutBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_nsOkABV3EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_64>>kerbBasedAuthenticatePSC"/>
+      <ownedOperation xmi:id="_I2TYsBV3EeOTfotNwHha9Q" name="&lt;&lt;optional:**_r_1_54_55_57>>certBasedAuthenticatePSC"/>
+      <ownedOperation xmi:id="_iIqNwBV3EeOTfotNwHha9Q" name="&lt;&lt;optional:**_r_1_54_55_63>>mutBasedAuthenticatePSC"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303309446266_108367_2608" name="interact" memberEnd="_17_0_1_b6202de_1303309446266_995635_2609 _17_0_1_b6202de_1303309446266_55514_2610"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_17_0_1_b6202de_1303305340910_219498_1954" name="PoliceOfficer1">
@@ -154,18 +138,16 @@ Comment:.
       <ownedAttribute xmi:id="_16_8_2870140_1310648247171_176746_2618" name="" visibility="private" type="_17_0_1_b6202de_1303305372211_584536_1994" aggregation="shared" association="_16_8_2870140_1310648247171_718658_2617"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310650024921_228080_2826" name="" visibility="private" type="_16_8_2870140_1310649823765_3558_2739" aggregation="shared" association="_16_8_2870140_1310650024921_595180_2825"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310650042796_460136_2839" name="" visibility="private" type="_16_8_2870140_1310649827015_423125_2759" aggregation="shared" association="_16_8_2870140_1310650042796_830126_2838"/>
-      <ownedAttribute xmi:id="_16_8_2870140_1310650242406_601835_2874" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" aggregation="shared" association="_16_8_2870140_1310650242406_516275_2873"/>
+      <ownedAttribute xmi:id="_16_8_2870140_1310650242406_601835_2874" name="" visibility="private" aggregation="shared"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310658646984_437595_3103" name="" visibility="private" type="_16_8_2870140_1310658582328_9824_3020" aggregation="shared" association="_16_8_2870140_1310658646984_731439_3102"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310658654625_660270_3116" name="" visibility="private" type="_16_8_2870140_1310658617609_400372_3060" aggregation="shared" association="_16_8_2870140_1310658654625_437655_3115"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310659653890_991990_3331" name="" visibility="private" type="_16_8_2870140_1310659033609_644384_3196" aggregation="shared" association="_16_8_2870140_1310659653890_533570_3330"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310648241156_280395_2604" name="" memberEnd="_16_8_2870140_1310648241156_327786_2605 _16_8_2870140_1310648241156_295890_2606"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310633525578_748405_1926" name="&lt;&lt;optional: _r_2_9_10_12>>communicate" memberEnd="_16_8_2870140_1310633525578_604366_1927 _16_8_2870140_1310633525578_765175_1928"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_17_0_1_b6202de_1303311644357_644686_2876" name="Route&#xD;&#xA;PoliceCar1">
       <generalization xmi:id="_17_0_1_b6202de_1303312568428_189281_2974" general="_17_0_1_b6202de_1303310278740_115253_2759"/>
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303312565284_240408_2971" name="" visibility="private" type="_17_0_1_b6202de_1303308804772_78579_2391" association="_17_0_1_b6202de_1303312565283_511030_2969"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310633491875_72961_1902" name="&lt;&lt;optional: _r_2_9_10_12>>communicate" memberEnd="_16_8_2870140_1310633491875_244922_1903 _16_8_2870140_1310633491875_11326_1904"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310649830421_13975_2779" name="FS coordinator&#xD;&#xA;1">
       <ownedAttribute xmi:id="_16_8_2870140_1310650122406_367827_2856" name="" visibility="private" type="_16_8_2870140_1310649827015_423125_2759" association="_16_8_2870140_1310650122406_788242_2855"/>
       <ownedOperation xmi:id="_16_8_2870140_1310650187406_198847_2867" name="-&lt;&lt;optional>> callFireTruck" visibility="private"/>
@@ -174,7 +156,7 @@ Comment:.
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310649827015_423125_2759" name="FSC system2">
       <ownedAttribute xmi:id="_16_8_2870140_1310650042796_169257_2840" name="" visibility="private" type="_17_0_1_b6202de_1303308574761_224242_2293" association="_16_8_2870140_1310650042796_830126_2838"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310650122406_660379_2857" name="" visibility="private" type="_16_8_2870140_1310649830421_13975_2779" association="_16_8_2870140_1310650122406_788242_2855"/>
-      <ownedAttribute xmi:id="_16_8_2870140_1310650287828_754374_2903" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" association="_16_8_2870140_1310650287828_137732_2902"/>
+      <ownedAttribute xmi:id="_16_8_2870140_1310650287828_754374_2903" name="" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310650067843_906494_2847" name="-&lt;&lt;optional>>sendMsgFireTruck" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310650108437_909771_2849" name="-&lt;&lt;optional>> receiveFireTruckData" visibility="private"/>
     </packagedElement>
@@ -193,17 +175,7 @@ Comment:.
       <ownedOperation xmi:id="_16_8_2870140_1310659427312_810657_3252" name="&lt;&lt;optional>> forwardCitVehicleReport" visibility="public" isAbstract="true"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303312812460_624699_2982" name="handle" memberEnd="_17_0_1_b6202de_1303312812461_163455_2983 _17_0_1_b6202de_1303312812461_615844_2984"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660308328_230704_3439" name="&lt;&lt;optional:_r_2_17_19>>Fire ruck SSL1">
-      <generalization xmi:id="_16_8_2870140_1310660334546_942384_3462" general="_16_8_2870140_1310659047234_729125_3216"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310710929812_161488_1614" name="&lt;&lt;optional>> SSLreceiveFSCReques" visibility="public"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310710992968_936130_1618" name="&lt;&lt;optional>> SSLreporttoFSC" visibility="public"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1306504265144_973350_1869" name="report" memberEnd="_17_0_1_b6202de_1306504265145_742522_1870 _17_0_1_b6202de_1306504265145_595826_1871"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660383687_796369_3485" name="&lt;&lt;optional:_r_2_17_19>>Police car SSL1">
-      <generalization xmi:id="_16_8_2870140_1310660401375_281201_3508" general="_16_8_2870140_1310659012281_814418_3176"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310711136718_303827_1630" name="&lt;&lt;optional>> SSLreporttoPSC" visibility="public"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310711276218_850536_1634" name="&lt;&lt;optional>> SSLreceivePSCRequest" visibility="public"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_17_0_1_b6202de_1303305526324_668215_2094" name="Communication&#xD;&#xA;Compromiser1">
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303309651395_659013_2625" name="" visibility="private" type="_17_0_1_b6202de_1303308932569_818938_2469" association="_17_0_1_b6202de_1303309651395_880665_2624">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1303313728308_659755_3128" name="" value="1"/>
@@ -214,7 +186,7 @@ Comment:.
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1306508424294_832923_2264" name="" memberEnd="_17_0_1_b6202de_1306508424294_883328_2265 _17_0_1_b6202de_1306508424294_763420_2266"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310650122406_788242_2855" name="interact" memberEnd="_16_8_2870140_1310650122406_367827_2856 _16_8_2870140_1310650122406_660379_2857"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_17_0_1_b6202de_1306334811107_995046_1664" name="XXX_PS coordinator">
-      <ownedAttribute xmi:id="_17_0_1_b6202de_1306503864489_237500_1794" name="" visibility="private" type="_17_0_1_b6202de_1303308804772_78579_2391" association="_17_0_1_b6202de_1306503864480_121441_1793">
+      <ownedAttribute xmi:id="_17_0_1_b6202de_1306503864489_237500_1794" name="" visibility="private" type="_17_0_1_b6202de_1303308804772_78579_2391">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1306503864490_731720_1797" name="" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_17_0_1_b6202de_1306503864490_532437_1796" name="" value="*"/>
       </ownedAttribute>
@@ -230,49 +202,49 @@ Comment:.
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1306504451818_778706_1926" name="" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_17_0_1_b6202de_1306504451818_449577_1927" name="" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310635638671_725157_2101" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" association="_16_8_2870140_1310635638671_2471_2099">
+      <ownedAttribute xmi:id="_16_8_2870140_1310635638671_725157_2101" name="" visibility="private">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_8_2870140_1310638746890_147985_2184" name=""/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310638746890_331683_2185" name="" value="1"/>
       </ownedAttribute>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306505768067_465202_2165" name="receiveFScoordinatorCall" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507360696_831710_1644" name="receiveFScoordinatorCredentials" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507854487_368752_1742" name="receiveFScrisisDetails" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648512578_71810_2626" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648512578_71810_2626" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306509719004_133890_2409" name="receiveDeployFireTrucks" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648643484_936908_2628" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648643484_936908_2628" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306699566071_441389_1599" name="receiveFScoordinatorRouteAgreement" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648709468_760079_2630" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648709468_760079_2630" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306699834297_839020_1633" name="receiveFScoordinatorRouteDisagreement" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648733687_134271_2632" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648733687_134271_2632" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306700666177_979849_2158" name="receiveTruckDeliveredToCrisis" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648771796_304525_2634" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648771796_304525_2634" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306701996931_285826_2274" name="receiveFireTruckDispatched" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648798125_527638_2635" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648798125_527638_2635" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306703159125_22144_2389" name="receiveFireTruckArrived" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648823484_208206_2637" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648823484_208206_2637" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306704893603_847463_2573" name="receiveFireTruckObjectiveCompleted" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648850140_644273_2639" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648850140_644273_2639" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306705808037_348053_2712" name="receiveFireTruckBack" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648887171_111101_2641" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648887171_111101_2641" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306706744858_423549_2824" name="receiveCloseCrisisFS" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648913609_858086_2643" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648913609_858086_2643" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_16_8_2870140_1310635698593_806839_2111" name="&lt;&lt;optional>> callPoliceCar" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310637625718_418929_2114" name="&lt;&lt;optional>> callCitizenVehicle" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310651655468_627884_2958" name="&lt;&lt;optional>> receivereRootFireTrucks" visibility="private">
-        <ownedParameter xmi:id="_16_8_2870140_1310651689125_319922_2961" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
-        <ownedParameter xmi:id="_16_8_2870140_1310651703578_58114_2962" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310651689125_319922_2961" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310651703578_58114_2962" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_YUM40BVxEeOTfotNwHha9Q" name="&lt;&lt;optional:_r_2_9_10_12_13>>receivePCDispatchConfirmation"/>
+      <ownedOperation xmi:id="_YUM40BVxEeOTfotNwHha9Q" name="&lt;&lt;optional:**_r_2_9_10_12_13>>receivePCDispatchConfirmation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310659660750_743897_3343" name="call" memberEnd="_16_8_2870140_1310659660750_897183_3344 _16_8_2870140_1310659660750_253561_3345"/>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_17_0_1_b6202de_1303329135489_709331_2175" name="Scenario6" classifierBehavior="_17_0_1_b6202de_1303329135488_186516_2174">
@@ -416,8 +388,6 @@ Comment:.
         <message xmi:id="_17_0_1_b6202de_1303329177497_676729_2208" name="passAgreeClose" visibility="public" messageSort="asynchSignal" receiveEvent="_17_0_1_b6202de_1303329177500_879907_2229" sendEvent="_17_0_1_b6202de_1303329177500_871412_2228"/>
       </ownedBehavior>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310635611265_165095_2083" name="&lt;&lt;optional: _r_2_9_10_12>>call" memberEnd="_16_8_2870140_1310635611265_478947_2084 _16_8_2870140_1310635611265_354496_2085"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310650287828_137732_2902" name="&lt;&lt;optional: _r_2_9_10_12>>call" memberEnd="_16_8_2870140_1310650287828_754374_2903 _16_8_2870140_1310650287843_990001_2904"/>
     <packagedElement xmi:type="uml:Collaboration" xmi:id="_17_0_1_b6202de_1303304954822_192756_1907" name="Scenario3" classifierBehavior="_17_0_1_b6202de_1303304954821_538232_1906">
       <ownedBehavior xmi:type="uml:Interaction" xmi:id="_17_0_1_b6202de_1303304954821_538232_1906" name="Scenario3" isReentrant="true">
         <ownedAttribute xmi:id="_17_0_1_b6202de_1303316826254_924953_3289" name="" visibility="private" type="_17_0_1_b6202de_1303305362364_574653_1974"/>
@@ -520,7 +490,7 @@ Comment:.
         <message xmi:id="_17_0_1_b6202de_1306509929778_846600_2422" name="" visibility="public" receiveEvent="_17_0_1_b6202de_1306509929779_770458_2424" sendEvent="_17_0_1_b6202de_1306509929779_681067_2423" signature="_17_0_1_b6202de_1306510062096_396023_2431">
           <argument xmi:type="uml:LiteralString" xmi:id="_16_8_2870140_1310649122062_729388_2661" name="" value=""/>
         </message>
-        <message xmi:id="_17_0_1_b6202de_1306509231840_734112_2333" name="" visibility="public" receiveEvent="_17_0_1_b6202de_1306509231842_253828_2335" sendEvent="_17_0_1_b6202de_1306509231841_862224_2334" signature="_17_0_1_b6202de_1303319945682_145410_3500">
+        <message xmi:id="_17_0_1_b6202de_1306509231840_734112_2333" name="" visibility="public" receiveEvent="_17_0_1_b6202de_1306509231842_253828_2335" sendEvent="_17_0_1_b6202de_1306509231841_862224_2334">
           <argument xmi:type="uml:LiteralString" xmi:id="_16_8_2870140_1310649407109_439516_2679" name="" value=""/>
         </message>
         <message xmi:id="_17_0_1_b6202de_1306510090290_17889_2438" name="" visibility="public" receiveEvent="_17_0_1_b6202de_1306510090291_847763_2440" sendEvent="_17_0_1_b6202de_1306510090291_730598_2439" signature="_17_0_1_b6202de_1306510095562_265964_2443">
@@ -546,7 +516,7 @@ Comment:.
         <message xmi:id="_17_0_1_b6202de_1303319821403_879650_3460" name="passDeployTrucks" visibility="public" receiveEvent="_17_0_1_b6202de_1303319821405_538144_3462" sendEvent="_17_0_1_b6202de_1303319821404_207251_3461"/>
         <message xmi:id="_17_0_1_b6202de_1303319884466_523409_3472" name="" visibility="public" receiveEvent="_17_0_1_b6202de_1303319884468_853173_3474" sendEvent="_17_0_1_b6202de_1303319884467_296374_3473"/>
         <message xmi:id="_17_0_1_b6202de_1303319906076_98802_3492" name="" visibility="public" receiveEvent="_17_0_1_b6202de_1303319906077_738766_3494" sendEvent="_17_0_1_b6202de_1303319906077_988989_3493"/>
-        <message xmi:id="_17_0_1_b6202de_1303319965693_522511_3503" name="passProposalFireTrucksRoute" visibility="public" receiveEvent="_17_0_1_b6202de_1303319965695_226368_3505" sendEvent="_17_0_1_b6202de_1303319965694_329130_3504" signature="_17_0_1_b6202de_1303319945682_145410_3500">
+        <message xmi:id="_17_0_1_b6202de_1303319965693_522511_3503" name="passProposalFireTrucksRoute" visibility="public" receiveEvent="_17_0_1_b6202de_1303319965695_226368_3505" sendEvent="_17_0_1_b6202de_1303319965694_329130_3504">
           <argument xmi:type="uml:LiteralString" xmi:id="_16_8_2870140_1310649407109_688299_2680" name="" value=""/>
         </message>
         <message xmi:id="_17_0_1_b6202de_1303320007309_322570_3513" name="" visibility="public" receiveEvent="_17_0_1_b6202de_1303320007310_906580_3515" sendEvent="_17_0_1_b6202de_1303320007310_292348_3514"/>
@@ -730,7 +700,7 @@ Comment:.
         </message>
         <message xmi:id="_17_0_1_b6202de_1303324722451_366431_2029" name="" visibility="public" messageSort="asynchCall" receiveEvent="_17_0_1_b6202de_1303324722455_768498_2054" sendEvent="_17_0_1_b6202de_1303324722455_623300_2053"/>
         <message xmi:id="_17_0_1_b6202de_1303324722452_778685_2032" name="replySetComPSC" visibility="public" messageSort="reply" receiveEvent="_17_0_1_b6202de_1303324722456_39805_2060" sendEvent="_17_0_1_b6202de_1303324722456_720112_2059"/>
-        <message xmi:id="_17_0_1_b6202de_1303324722452_612537_2035" name="passProposalFireTrucksRoute" visibility="public" receiveEvent="_17_0_1_b6202de_1303324722457_418825_2066" sendEvent="_17_0_1_b6202de_1303324722457_970781_2065" signature="_17_0_1_b6202de_1303319945682_145410_3500">
+        <message xmi:id="_17_0_1_b6202de_1303324722452_612537_2035" name="passProposalFireTrucksRoute" visibility="public" receiveEvent="_17_0_1_b6202de_1303324722457_418825_2066" sendEvent="_17_0_1_b6202de_1303324722457_970781_2065">
           <argument xmi:type="uml:LiteralString" xmi:id="_16_8_2870140_1310649407109_541807_2681" name="" value=""/>
         </message>
         <message xmi:id="_17_0_1_b6202de_1303324722452_582565_2037" name="" visibility="public" messageSort="asynchCall" receiveEvent="_17_0_1_b6202de_1303324722457_237725_2070" sendEvent="_17_0_1_b6202de_1303324722457_900648_2069"/>
@@ -853,12 +823,10 @@ Comment:.
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310647502000_150146_2010" name="" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310633431312_172370_1878" name="&lt;&lt;optional: _r_2_9_10_12>>communicate" memberEnd="_16_8_2870140_1310633431312_800717_1879 _16_8_2870140_1310633431312_993361_1880"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1306504050031_314520_1848" name="&lt;&lt;optional:_r_2_9_10_11>>manage" memberEnd="_17_0_1_b6202de_1306504050032_80938_1849 _17_0_1_b6202de_1306504050033_339083_1850"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310649823765_3558_2739" name="PSC system1">
       <ownedAttribute xmi:id="_16_8_2870140_1310650009500_919291_2811" name="" visibility="private" type="_16_8_2870140_1310649682265_273440_2699" association="_16_8_2870140_1310650009500_621282_2809"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310650024921_506185_2827" name="" visibility="private" type="_17_0_1_b6202de_1303308574761_224242_2293" association="_16_8_2870140_1310650024921_595180_2825"/>
-      <ownedAttribute xmi:id="_16_8_2870140_1310650269687_827248_2887" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" association="_16_8_2870140_1310650269687_34323_2886"/>
+      <ownedAttribute xmi:id="_16_8_2870140_1310650269687_827248_2887" name="" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310649876281_632219_2797" name="&lt;&lt;optional>> sendMsgPoliceCar" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310649907187_459971_2799" name="-&lt;&lt;optional>> receivePcarData()" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310649948796_21916_2801" name="-&lt;&lt;optional>> sendMsgCitizenVehicle" visibility="private"/>
@@ -885,7 +853,6 @@ Comment:.
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303309436225_229666_2592" name="interact" memberEnd="_17_0_1_b6202de_1303309436226_798965_2593 _17_0_1_b6202de_1303309436226_960237_2594"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303327150312_402836_1793" name="allocate" memberEnd="_17_0_1_b6202de_1303327150312_349831_1794 _17_0_1_b6202de_1303327150313_890768_1795"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1306503864480_121441_1793" name="&lt;&lt;optional:_r_2_9_10_11>>manage" memberEnd="_17_0_1_b6202de_1306503864489_237500_1794 _17_0_1_b6202de_1306503864490_302423_1795"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310649787437_182250_2725" name="interact" memberEnd="_16_8_2870140_1310649787437_55423_2726 _16_8_2870140_1310649787437_495743_2727"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310647520468_408896_2019" name="Fire Truck&#xD;&#xA;2">
       <ownedAttribute xmi:id="_16_8_2870140_1310647534093_951298_2042" name="" visibility="private" type="_16_8_2870140_1310647093609_877090_1557" association="_16_8_2870140_1310647534093_221713_2041">
@@ -940,15 +907,7 @@ Comment:.
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303309651395_880665_2624" name="access" memberEnd="_17_0_1_b6202de_1303309651395_659013_2625 _17_0_1_b6202de_1303309651395_250274_2626"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310647467531_856068_1997" name="allocate" memberEnd="_16_8_2870140_1310647467531_353829_1998 _16_8_2870140_1310647467531_427145_1999"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1306504478486_434832_1937" name="interact" memberEnd="_17_0_1_b6202de_1306504478486_489382_1938 _17_0_1_b6202de_1306504478486_962979_1939"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660644750_283952_3626" name="&lt;&lt;optional:_r_2_17_19>>PSC system SSL">
-      <generalization xmi:id="_16_8_2870140_1310660655796_514507_3646" general="_16_8_2870140_1310658582328_9824_3020"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310660915875_145924_3655" name="&lt;&lt;optional>> SSLrequestPoliceCarData" visibility="public"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310660972718_773438_3657" name="&lt;&lt;optional>> SSLreceivePcarData" visibility="public"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310710698671_379686_1600" name="&lt;&lt;optional>> SSLrequestCitizenVehicleData" visibility="public"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310710735984_92623_1602" name="&lt;&lt;optional>> SSLreceiveCitizenVehicleData" visibility="public"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310635638671_2471_2099" name="&lt;&lt;optional: _r_2_9_10_12>>call" memberEnd="_16_8_2870140_1310635638671_335213_2100 _16_8_2870140_1310635638671_725157_2101"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660628625_169689_3603" name="&lt;&lt;optional:_r_2_17_18>>PSC system SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660628625_169689_3603" name="&lt;&lt;optional:**_r_2_17_18>>PSC system SOAP">
       <generalization xmi:id="_16_8_2870140_1310660641156_524468_3623" general="_16_8_2870140_1310658582328_9824_3020"/>
       <ownedOperation xmi:id="_16_8_2870140_1310660710718_151118_3647" name="&lt;optional>> SOAPrequestPoliceCarData" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310660789750_642392_3649" name="&lt;&lt;optional>> SOAPreceivePcarData" visibility="public"/>
@@ -1053,28 +1012,23 @@ Comment:.
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303311362271_281168_2870" name="position" visibility="private" type="_17_0_1_b6202de_1303327222558_174686_1823"/>
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303312565283_602933_2970" name="" visibility="private" type="_17_0_1_b6202de_1303311644357_644686_2876" association="_17_0_1_b6202de_1303312565283_511030_2969"/>
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303327150312_349831_1794" name="" visibility="private" type="_17_0_1_b6202de_1303310255332_938945_2739" association="_17_0_1_b6202de_1303327150312_402836_1793"/>
-      <ownedAttribute xmi:id="_17_0_1_b6202de_1306503864490_302423_1795" name="" visibility="private" type="_17_0_1_b6202de_1306334811107_995046_1664" association="_17_0_1_b6202de_1306503864480_121441_1793">
+      <ownedAttribute xmi:id="_17_0_1_b6202de_1306503864490_302423_1795" name="" visibility="private" type="_17_0_1_b6202de_1306334811107_995046_1664">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1306503864491_18755_1799" name="" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_17_0_1_b6202de_1306503864490_31300_1798" name="" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310633431312_800717_1879" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" association="_16_8_2870140_1310633431312_172370_1878">
+      <ownedAttribute xmi:id="_16_8_2870140_1310633431312_800717_1879" name="" visibility="private">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_8_2870140_1310638756125_264732_2188" name=""/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310638756125_45350_2189" name="" value="1"/>
       </ownedAttribute>
       <ownedOperation xmi:id="_16_8_2870140_1310637780796_978873_2120" name="&lt;&lt;optional>> reporttoPSC" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310637818171_420452_2123" name="&lt;&lt;optional>> receivePSCRequest" visibility="private"/>
-      <ownedOperation xmi:id="_J25P0BVzEeOTfotNwHha9Q" name="&lt;&lt;optional:_r_2_9_10_12_13>>forwardDispatchOrderPoliceCar"/>
+      <ownedOperation xmi:id="_J25P0BVzEeOTfotNwHha9Q" name="&lt;&lt;optional:**_r_2_9_10_12_13>>forwardDispatchOrderPoliceCar"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303309277719_717155_2556" name="interact" memberEnd="_17_0_1_b6202de_1303309277720_462330_2557 _17_0_1_b6202de_1303309277720_700521_2558"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660294609_316067_3419" name="&lt;&lt;optional:_r_2_17_18>>Fire truck SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660294609_316067_3419" name="&lt;&lt;optional:**_r_2_17_18>>Fire truck SOAP">
       <generalization xmi:id="_16_8_2870140_1310660329593_734892_3459" general="_16_8_2870140_1310659047234_729125_3216"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710901937_291310_1612" name="&lt;&lt;optional>> SOAPreceiveFSCReques" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710959843_578287_1616" name="&lt;&lt;optional>> SOAPreporttoFSC" visibility="public"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660601234_823167_3577" name="&lt;&lt;optional:_r_2_17_19>>FSC system SSL">
-      <generalization xmi:id="_16_8_2870140_1310660616500_897063_3597" general="_16_8_2870140_1310658617609_400372_3060"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310710816750_6956_1606" name="&lt;&lt;optional>> SSLrequestFireTruckData" visibility="public"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310710867203_87971_1610" name="&lt;&lt;optional>> SSLreceiveFireTruckData" visibility="public"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660508359_390342_3531" name="&lt;&lt;optional>> Dispatch service&#xD;&#xA;SSL">
       <generalization xmi:id="_16_8_2870140_1310660561656_931329_3554" general="_16_8_2870140_1310659033609_644384_3196"/>
@@ -1085,7 +1039,7 @@ Comment:.
       <ownedOperation xmi:id="_16_8_2870140_1310711623062_96235_1654" name="&lt;&lt;optional>> SSLforwardFireTruckReport" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711671437_212535_1658" name="&lt;&lt;optional>>SSLforwardCitVehicleReport" visibility="public"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660198578_598841_3373" name="&lt;&lt;optional:_r_2_17_18>>Citizen vehicle SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660198578_598841_3373" name="&lt;&lt;optional:**_r_2_17_18>>Citizen vehicle SOAP">
       <generalization xmi:id="_16_8_2870140_1310660288765_826553_3416" general="_16_8_2870140_1310659476812_299386_3256"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711041078_909494_1622" name="&lt;&lt;optional>> SSLreceivePSCRequest" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711083328_640983_1626" name="&lt;&lt;optional>> SSLreportData" visibility="public"/>
@@ -1276,13 +1230,13 @@ Comment:.
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310647093609_877090_1557" name="Crisis&#xA;">
-      <ownedAttribute xmi:id="_16_8_2870140_1310647117484_755347_1575" name="&lt;&lt;optional: _r_2_20_21_23>> ID" visibility="private"/>
-      <ownedAttribute xmi:id="_16_8_2870140_1310647196750_382038_1577" name="&lt;&lt;optional: _r_2_20_21_23>>type" visibility="public"/>
+      <ownedAttribute xmi:id="_16_8_2870140_1310647117484_755347_1575" name="&lt;&lt;optional: **_r_2_20_21_23>> ID" visibility="private"/>
+      <ownedAttribute xmi:id="_16_8_2870140_1310647196750_382038_1577" name="&lt;&lt;optional: **_r_2_20_21_23>>type" visibility="public"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310647207406_716032_1579" name="location" visibility="private"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310647218281_863254_1581" name="startTime" visibility="public"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310647252046_472936_1583" name="endTime" visibility="public"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310647270531_481308_1585" name="description" visibility="private"/>
-      <ownedAttribute xmi:id="_16_8_2870140_1310647298437_540071_1587" name="&lt;&lt;optional: _r_2_20_21_23>>isActive" visibility="private">
+      <ownedAttribute xmi:id="_16_8_2870140_1310647298437_540071_1587" name="&lt;&lt;optional: **_r_2_20_21_23>>isActive" visibility="private">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_16_8_2870140_1310647336656_73641_1595" name="" visibility="private" type="_17_0_1_b6202de_1303308574761_224242_2293" association="_16_8_2870140_1310647336656_66229_1593">
@@ -1304,19 +1258,18 @@ Comment:.
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303311826373_182545_2896" name="position" visibility="private" type="_17_0_1_b6202de_1303327222558_174686_1823"/>
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303312559152_845491_2968" name="" visibility="private" type="_17_0_1_b6202de_1303312533614_118031_2948" association="_17_0_1_b6202de_1303312559151_117274_2966"/>
       <ownedAttribute xmi:id="_17_0_1_b6202de_1303327194073_87921_1810" name="" visibility="private" type="_17_0_1_b6202de_1303310255332_938945_2739" association="_17_0_1_b6202de_1303327194073_808929_1809"/>
-      <ownedAttribute xmi:id="_17_0_1_b6202de_1306504050033_339083_1850" name="" visibility="private" type="_17_0_1_b6202de_1306504000433_828805_1830" association="_17_0_1_b6202de_1306504050031_314520_1848">
+      <ownedAttribute xmi:id="_17_0_1_b6202de_1306504050033_339083_1850" name="" visibility="private" type="_17_0_1_b6202de_1306504000433_828805_1830">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1306504050034_516933_1854" name="" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_17_0_1_b6202de_1306504050034_658472_1853" name="" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310633491875_11326_1904" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" association="_16_8_2870140_1310633491875_72961_1902">
+      <ownedAttribute xmi:id="_16_8_2870140_1310633491875_11326_1904" name="" visibility="private">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_8_2870140_1310638764281_545793_2190" name=""/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310638764281_826155_2191" name="" value="1"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="_16_8_2870140_1310637858718_784540_2126" name="&lt;&lt;optional:_r_2_9_10_12_14>> reporttoFSC" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310637893250_421015_2129" name="&lt;&lt;optional>> receiveFSCRequest" visibility="private"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310659682734_618601_3359" name="call" memberEnd="_16_8_2870140_1310659682734_894136_3360 _16_8_2870140_1310659682734_700790_3361"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660374093_623129_3465" name="&lt;&lt;optional:_r_2_17_18>>Police car SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660374093_623129_3465" name="&lt;&lt;optional:**_r_2_17_18>>Police car SOAP">
       <generalization xmi:id="_16_8_2870140_1310660396468_1774_3505" general="_16_8_2870140_1310659012281_814418_3176"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711113406_137629_1628" name="&lt;&lt;optional>> SOAPreporttoPSC" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310711166953_109992_1632" name="&lt;&lt;optional>> SOAPreceivePSCRequest" visibility="public"/>
@@ -1471,7 +1424,7 @@ Comment:.
       </ownedBehavior>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_17_0_1_b6202de_1306504000433_828805_1830" name="XXX_FS coordinator2">
-      <ownedAttribute xmi:id="_17_0_1_b6202de_1306504050032_80938_1849" name="" visibility="private" type="_17_0_1_b6202de_1303308795195_191238_2371" association="_17_0_1_b6202de_1306504050031_314520_1848">
+      <ownedAttribute xmi:id="_17_0_1_b6202de_1306504050032_80938_1849" name="" visibility="private" type="_17_0_1_b6202de_1303308795195_191238_2371">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1306504050033_910471_1852" name="" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_17_0_1_b6202de_1306504050033_180630_1851" name="" value="*"/>
       </ownedAttribute>
@@ -1490,32 +1443,31 @@ Comment:.
       <ownedOperation xmi:id="_17_0_1_b6202de_1306505183457_622236_2080" name="receivePScoordinatorCall" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507304956_129538_1639" name="receivePScoordinatorCredentials" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507738067_57161_1714" name="receivePScrisisDetails" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650612156_101928_2934" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650612156_101928_2934" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306510095562_265964_2443" name="receiveFireTrucksRouteProposal" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650631000_1633_2936" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650631000_1633_2936" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306701778961_495822_2249" name="receivePoliceCarDispatched" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650657406_977796_2938" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650657406_977796_2938" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306703120048_411878_2387" name="receivePoliceCarArrived" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650679437_566771_2940" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650679437_566771_2940" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306704871807_281654_2571" name="receivePoliceCarObjectiveCompleted" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650700015_974933_2942" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650700015_974933_2942" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306705824042_257031_2714" name="receivePoliceCarBack" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650720609_867706_2944" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650720609_867706_2944" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306706730865_510005_2822" name="receiveCloseCrisisPS" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310650737468_890407_2946" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310650737468_890407_2946" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_16_8_2870140_1310638316281_922889_2151" name="&lt;&lt;optional>> callFireTruck" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310651985156_995979_2973" name="&lt;&lt;optional>> receivereRootPloceCars" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310652013109_433845_2976" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
-        <ownedParameter xmi:id="_16_8_2870140_1310652023046_836899_2977" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310652013109_433845_2976" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310652023046_836899_2977" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_llfoYBV0EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_2_9_10_12_14>>receiveFireTruckDispatchConfirmation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310659569609_234661_3298" name="communicate" memberEnd="_16_8_2870140_1310659569609_962869_3299 _16_8_2870140_1310659569609_85435_3300"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310658654625_437655_3115" name="" memberEnd="_16_8_2870140_1310658654625_660270_3116 _16_8_2870140_1310658654625_447086_3117"/>
@@ -1526,15 +1478,10 @@ Comment:.
       <ownedLiteral xmi:id="_17_0_1_b6202de_1303327408136_379303_1846" name="enRouteFromLocation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303309870214_239569_2653" name="regulate" memberEnd="_17_0_1_b6202de_1303309870214_190286_2654 _17_0_1_b6202de_1303309870215_549032_2655"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660574234_563815_3557" name="&lt;&lt;optional:_r_2_17_18>>FSC system SOAP">
+    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660574234_563815_3557" name="&lt;&lt;optional:**_r_2_17_18>>FSC system SOAP">
       <generalization xmi:id="_16_8_2870140_1310660621515_374984_3600" general="_16_8_2870140_1310658617609_400372_3060"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710773515_802980_1604" name="&lt;&lt;optional>> SOAPrequestFireTruckData" visibility="public"/>
       <ownedOperation xmi:id="_16_8_2870140_1310710850031_367491_1608" name="&lt;&lt;optional>> SOAPreceiveFireTruckData" visibility="public"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310660250734_645903_3393" name="&lt;&lt;optional:_r_2_17_19>>Citizen vehicle SSL">
-      <generalization xmi:id="_16_8_2870140_1310660282921_88708_3413" general="_16_8_2870140_1310659476812_299386_3256"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310711021265_24007_1620" name="&lt;&lt;optional>> SOAPreceivePSCRequest" visibility="public"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310711066281_152916_1624" name="&lt;&lt;optional>> SOAPreportData" visibility="public"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1303312565283_511030_2969" name="follow" memberEnd="_17_0_1_b6202de_1303312565283_602933_2970 _17_0_1_b6202de_1303312565284_240408_2971"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310650009500_621282_2809" name="interact" memberEnd="_16_8_2870140_1310650009500_128512_2810 _16_8_2870140_1310650009500_919291_2811"/>
@@ -1560,38 +1507,6 @@ Comment:.
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_17_0_1_b6202de_1306504274894_524801_1876" name="register" memberEnd="_17_0_1_b6202de_1306504274894_736023_1877 _17_0_1_b6202de_1306504274895_457366_1878"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310658673890_256126_3128" name="interact" memberEnd="_16_8_2870140_1310658673890_860323_3129 _16_8_2870140_1310658673906_45899_3130"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310633339515_205694_1836" name="&lt;&lt;optional: _r_2_9_10_12>> XXX_Dispatch service2">
-      <ownedAttribute xmi:id="_16_8_2870140_1310633431312_993361_1880" name="" visibility="private" type="_17_0_1_b6202de_1303308804772_78579_2391" association="_16_8_2870140_1310633431312_172370_1878">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310633484281_734767_1894" name=""/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310633484281_314790_1895" name="" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310633491875_244922_1903" name="" visibility="private" type="_17_0_1_b6202de_1303308795195_191238_2371" association="_16_8_2870140_1310633491875_72961_1902">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310633510250_829085_1914" name=""/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310633510250_741393_1915" name="" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310633525578_765175_1928" name="" visibility="private" type="_16_8_2870140_1310633402140_278271_1856" association="_16_8_2870140_1310633525578_748405_1926">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310633547062_692717_1942" name=""/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310633547062_626911_1943" name="" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310635611265_478947_2084" name="" visibility="private" type="_17_0_1_b6202de_1303305372211_584536_1994" association="_16_8_2870140_1310635611265_165095_2083">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_8_2870140_1310638728578_385808_2174" name="" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310638728578_833260_2175" name="" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310635638671_335213_2100" name="" visibility="private" type="_17_0_1_b6202de_1306334811107_995046_1664" association="_16_8_2870140_1310635638671_2471_2099">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_8_2870140_1310638740890_443517_2180" name="" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310638740890_513011_2181" name="" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_16_8_2870140_1310650242406_628740_2875" name="" visibility="private" type="_17_0_1_b6202de_1303308574761_224242_2293" association="_16_8_2870140_1310650242406_516275_2873"/>
-      <ownedAttribute xmi:id="_16_8_2870140_1310650269687_801255_2888" name="" visibility="private" type="_16_8_2870140_1310649823765_3558_2739" association="_16_8_2870140_1310650269687_34323_2886"/>
-      <ownedAttribute xmi:id="_16_8_2870140_1310650287843_990001_2904" name="" visibility="private" type="_16_8_2870140_1310649827015_423125_2759" association="_16_8_2870140_1310650287828_137732_2902"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638363234_795815_2154" name="&lt;&lt;optional: _r_2_9_10_12 and _r_2_9_10_12_13>> dispatchPSCRequesttoPoliceCar" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638427859_805134_2156" name="&lt;&lt;optional: _r_2_9_10_12 and _r_2_9_10_12_14>> dispatchFSCRequest" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638457046_715703_2158" name="&lt;&lt;optional: _r_2_9_10_12 and _r_2_9_10_12_13>> dispatchPSCRequesttoCitVehicle" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638574312_187535_2160" name="&lt;&lt;optional: _r_2_9_10_12>> ForwardPoliceCarReport" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638596468_67359_2162" name="&lt;&lt;optional: _r_2_9_10_12>> forwardFireTruckReport" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638617265_868060_2164" name="&lt;&lt;optional: _r_2_9_10_12>> forwardCitVehicleReport" visibility="private"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310650242406_516275_2873" name="&lt;&lt;optional: _r_2_9_10_12>>Assoc" memberEnd="_16_8_2870140_1310650242406_601835_2874 _16_8_2870140_1310650242406_628740_2875"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310658599671_130589_3040" name="PS coordinator&#xA;&#xA;">
       <ownedAttribute xmi:id="_16_8_2870140_1310658673890_860323_3129" name="" visibility="private" type="_16_8_2870140_1310658582328_9824_3020" association="_16_8_2870140_1310658673890_256126_3128"/>
       <ownedOperation xmi:id="_16_8_2870140_1310658726500_741648_3156" name="-&lt;&lt;optional>> callPoliceCa" visibility="private"/>
@@ -1607,7 +1522,6 @@ Comment:.
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_17_0_1_b6202de_1303310163709_614287_2724" name="" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_16_8_2870140_1310650269687_34323_2886" name="&lt;&lt;optional: _r_2_9_10_12>>call" memberEnd="_16_8_2870140_1310650269687_827248_2887 _16_8_2870140_1310650269687_801255_2888"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_17_0_1_b6202de_1303305362364_574653_1974" name="XXX_PSC System3">
       <ownedAttribute xmi:id="_17_0_1_b6202de_1306504321176_507984_1890" name="" visibility="private" type="_17_0_1_b6202de_1303310295803_171107_2779" aggregation="shared" association="_17_0_1_b6202de_1306504321176_480190_1889">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_17_0_1_b6202de_1306504344564_712393_1901" name=""/>
@@ -1633,80 +1547,73 @@ Comment:.
       </ownedAttribute>
       <ownedAttribute xmi:id="_16_8_2870140_1310648241156_295890_2606" name="" visibility="private" type="_17_0_1_b6202de_1303308574761_224242_2293" association="_16_8_2870140_1310648241156_280395_2604"/>
       <ownedAttribute xmi:id="_16_8_2870140_1310649787437_495743_2727" name="" visibility="private" type="_16_8_2870140_1310649682265_273440_2699" association="_16_8_2870140_1310649787437_182250_2725"/>
-      <ownedAttribute xmi:id="_qKzX4BV6EeOzdJm6j02yAQ" name="&lt;&lt;optional:_r_1_50_51_52>>encryptionMethod"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303324262432_829373_1683" name="fireTruckDispatched" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648952078_307404_2645" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648952078_307404_2645" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303326005192_979533_1570" name="fireTruckArrived" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648974250_736150_2648" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648974250_736150_2648" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303331572047_43625_3907" name="policeCarObjectiveCompletedPScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310648997500_600725_2651" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310648997500_600725_2651" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1303331815116_357772_3919" name="crisisCompleteFSC" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649022343_228684_2654" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649022343_228684_2654" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306504768098_685980_2014" name="reqComFSC" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306504802967_813111_2017" name="callFScoordinator" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306505105161_707640_2077" name="authFSC" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507218834_139834_1633" name="sendPScoordinatorCredentials" visibility="public"/>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507510285_164727_1677" name="sendPSCrisisDetails" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649061218_709798_2656" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649061218_709798_2656" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306507662410_722251_1702" name="crisisDetailsFSC" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649090984_472808_2658" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649090984_472808_2658" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306510062096_396023_2431" name="proposeFireTrucksRoute" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649122046_64821_2660" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649122046_64821_2660" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306699735806_751869_1628" name="disagreementFSC" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649155890_313979_2662" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649155890_313979_2662" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306701646263_634870_2243" name="policeCarDispatchedPScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649194953_151649_2664" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649194953_151649_2664" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306703213655_117858_2393" name="policeCarArrivedPScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649222671_997352_2666" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649222671_997352_2666" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306704833525_329186_2565" name="fireTruckObjectiveCompleted" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649250609_400329_2668" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649250609_400329_2668" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306705727543_387727_2704" name="policeCarBackPScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649277859_848524_2670" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649277859_848524_2670" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306705792331_390406_2710" name="fireTruckBack" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649305171_706545_2672" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649305171_706545_2672" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306706643441_847494_2814" name="closeCrisisPScoordinator" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649342515_41491_2674" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649342515_41491_2674" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_17_0_1_b6202de_1306706718490_126418_2820" name="closeCrisisFS" visibility="public">
-        <ownedParameter xmi:id="_16_8_2870140_1310649371515_643902_2676" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310649371515_643902_2676" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_16_8_2870140_1310638073656_690305_2136" name="&lt;&lt;optional>> requestPoliceCarData" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310638116515_953044_2139" name="&lt;&lt;optional>> receivePcarData" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638168703_131227_2142" name="&lt;&lt;optional:_r_2_9_10_12_16>> requestCitizenVehicleData" visibility="private"/>
-      <ownedOperation xmi:id="_16_8_2870140_1310638195359_477664_2145" name="&lt;&lt;optional:_r_2_9_10_12_16>> receiveCitizenVehicleData" visibility="private"/>
+      <ownedOperation xmi:id="_16_8_2870140_1310638168703_131227_2142" name="&lt;&lt;optional:**_r_2_9_10_12_16>> requestCitizenVehicleData" visibility="private"/>
+      <ownedOperation xmi:id="_16_8_2870140_1310638195359_477664_2145" name="&lt;&lt;optional:**_r_2_9_10_12_16>> receiveCitizenVehicleData" visibility="private"/>
       <ownedOperation xmi:id="_16_8_2870140_1310651596765_85575_2953" name="&lt;&lt;optional>> reRootFireTrucks" visibility="private">
-        <ownedParameter xmi:id="_16_8_2870140_1310651616171_952008_2956" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
-        <ownedParameter xmi:id="_16_8_2870140_1310651630484_478066_2957" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310651616171_952008_2956" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310651630484_478066_2957" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
       <ownedOperation xmi:id="_16_8_2870140_1310651800812_44190_2963" name="&lt;&lt;optional>> reRootPoliceCarsPScoordinator" visibility="private">
-        <ownedParameter xmi:id="_16_8_2870140_1310651829359_235991_2966" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
-        <ownedParameter xmi:id="_16_8_2870140_1310651849359_980746_2967" name="&lt;&lt;optional:_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310651829359_235991_2966" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID1" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
+        <ownedParameter xmi:id="_16_8_2870140_1310651849359_980746_2967" name="&lt;&lt;optional:**_r_2_20_21_23>>CrisisID2" visibility="public" type="_17_0_1_b6202de_1303310255332_938945_2739"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_4rdekBVyEeOTfotNwHha9Q" name="&lt;&lt;optional:_r_2_9_10_12_13>>forwardDispatchOrderReceivedPoliceCar"/>
-      <ownedOperation xmi:id="_HlKL0BV1EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_2_9_10_12_15>>policeCarRoute"/>
-      <ownedOperation xmi:id="_uMI4oBV1EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_56>>passwordBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_8Y_Y4BV1EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_57>>certBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_LzqXIBV2EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_58>>bioBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_UvseABV2EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_59>>pwdBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_loFXcBV2EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_62>>symBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_sEVpMBV2EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_63>>mutBasedAuthenticatePSC"/>
-      <ownedOperation xmi:id="_0RNkABV2EeOTfotNwHha9Q" name="&lt;&lt;optional:_r_1_54_55_64>>kerbBasedAuthenticatePSC"/>
+      <ownedOperation xmi:id="_4rdekBVyEeOTfotNwHha9Q" name="&lt;&lt;optional:**_r_2_9_10_12_13>>forwardDispatchOrderReceivedPoliceCar"/>
+      <ownedOperation xmi:id="_8Y_Y4BV1EeOTfotNwHha9Q" name="&lt;&lt;optional:**_r_1_54_55_57>>certBasedAuthenticatePSC"/>
+      <ownedOperation xmi:id="_sEVpMBV2EeOTfotNwHha9Q" name="&lt;&lt;optional:**_r_1_54_55_63>>mutBasedAuthenticatePSC"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_16_8_2870140_1310633402140_278271_1856" name="Citizen vehicle">
-      <ownedAttribute xmi:id="_16_8_2870140_1310633525578_604366_1927" name="" visibility="private" type="_16_8_2870140_1310633339515_205694_1836" association="_16_8_2870140_1310633525578_748405_1926">
+      <ownedAttribute xmi:id="_16_8_2870140_1310633525578_604366_1927" name="" visibility="private">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_8_2870140_1310633540343_519025_1938" name="" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_8_2870140_1310633540343_630252_1939" name="" value="1"/>
       </ownedAttribute>
@@ -1778,7 +1685,7 @@ Profile also includes validation suites for UML model correctness and completene
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303328584436_308241_2016event"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306702810779_106466_2368event" operation="_17_0_1_b6202de_1303326005192_979533_1570"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306703270179_543645_2411event" operation="_17_0_1_b6202de_1306703213655_117858_2393"/>
-    <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306509231842_253828_2335event" operation="_17_0_1_b6202de_1303319945682_145410_3500"/>
+    <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306509231842_253828_2335event"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303321469358_484191_3623event"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303328584438_616217_2041event"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306705597896_676903_2701event" operation="_17_0_1_b6202de_1306705792331_390406_2710"/>
@@ -1804,12 +1711,12 @@ Profile also includes validation suites for UML model correctness and completene
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306510218691_668795_2478event" operation="_17_0_1_b6202de_1306510233928_436240_2482"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306706429767_824227_2784event" operation="_17_0_1_b6202de_1306706663525_127957_2816"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306704632980_60573_2542event" operation="_17_0_1_b6202de_1306704833525_329186_2565"/>
-    <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303319965695_226368_3505event" operation="_17_0_1_b6202de_1303319945682_145410_3500"/>
+    <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303319965695_226368_3505event"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306701877701_322554_2258event" operation="_17_0_1_b6202de_1306701948732_764392_2268"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306704643799_80945_2555event" operation="_17_0_1_b6202de_1306704871807_281654_2571"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306703277098_241877_2418event" operation="_17_0_1_b6202de_1306703120048_411878_2387"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303329177500_894842_2225event"/>
-    <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303324722457_418825_2066event" operation="_17_0_1_b6202de_1303319945682_145410_3500"/>
+    <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303324722457_418825_2066event"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306505211930_417441_2085event" operation="_17_0_1_b6202de_1306505183457_622236_2080"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1303323817502_174396_1585event"/>
     <packagedElement xmi:type="uml:CallEvent" xmi:id="_17_0_1_b6202de_1306509264072_801813_2346event"/>
