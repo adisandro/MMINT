@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,6 +42,7 @@ import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -141,83 +143,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			}
 		}
 		ruleNac.getLhs().setFormula(null);
-	}
-
-	private void createZ3ApplyFormulaConstant() {
-
-		for (String smtEncodingConstant : smtEncodingConstants) {
-			smtEncoding.append(SMTLIB_CONST);
-			smtEncoding.append(smtEncodingConstant);
-			smtEncoding.append(" ");
-			smtEncoding.append(SMTLIB_TYPE_BOOL);
-			smtEncoding.append(SMTLIB_PREDICATE_END);
-		}
-	}
-
-	private void createZ3ApplyFormulaMatchSet(Set<MAVOElement> modelObjs, String innerPredicate, String functionEmpty) {
-
-		if (modelObjs.isEmpty()) {
-			smtEncoding.append(functionEmpty);
-		}
-		else {
-			boolean simplify = (modelObjs.size() == 1) ? true : false;
-			if (!simplify) {
-				smtEncoding.append(innerPredicate);
-			}
-			for (MAVOElement modelObj : modelObjs) {
-				smtEncoding.append(modelObj.getFormulaId());
-				smtEncoding.append(" ");
-			}
-			smtEncoding.deleteCharAt(smtEncoding.length()-1);
-			if (!simplify) {
-				smtEncoding.append(SMTLIB_PREDICATE_END);
-			}
-		}
-	}
-
-	private void createZ3ApplyFormulaMatchSetIteration(Set<MAVOElement> modelObjs, String functionName, String innerPredicate, String functionEmpty) {
-
-		smtEncoding.append(SMTLIB_ASSERT);
-		smtEncoding.append(SMTLIB_EQUALITY);
-		smtEncoding.append(functionName);
-		smtEncoding.append(iterationsLifting + 1);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		createZ3ApplyFormulaMatchSet(modelObjs, innerPredicate, functionEmpty);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-	}
-
-	private void createZ3ApplyFormulaMatchSetNIteration() {
-
-		smtEncoding.append(SMTLIB_ASSERT);
-		smtEncoding.append(SMTLIB_EQUALITY);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_N);
-		smtEncoding.append(iterationsLifting + 1);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-
-		if (modelObjsNBar.isEmpty()) {
-			smtEncoding.append(SMTLIB_FALSE);
-		}
-		else {
-			boolean simplify = (modelObjsNBar.size() == 1) ? true : false;
-			if (!simplify) {
-				smtEncoding.append(SMTLIB_OR);
-			}
-			boolean previousNSimplified = false;
-			for (Set<MAVOElement> modelObjsN : modelObjsNBar) {
-				if (previousNSimplified & modelObjsN.size() == 1) {
-					smtEncoding.append(" ");
-				}
-				//TODO MMTF: review if true or false here when simplifying
-				createZ3ApplyFormulaMatchSet(modelObjsN, SMTLIB_AND, SMTLIB_FALSE);
-				previousNSimplified = (modelObjsN.size() == 1) ? true : false;
-			}
-			if (!simplify) {
-				smtEncoding.append(SMTLIB_PREDICATE_END);
-			}
-		}
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
 	}
 
 	private void createZ3ApplyFormula() {
@@ -422,6 +347,10 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
+		// Using MAVO elements in this operator is a "trick" to reuse the
+		// formulaId field as the container of presence conditions. It works as
+		// long as all elements in the Henshin rules are MAVO elements, the only
+		// exception being the root which is always present.
 		Model model = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
@@ -431,15 +360,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		);
 		readProperties(inputProperties);
 		init();
-
-		// init SMT encoding
-		for (String constraintVariable : constraintVariables) {
-			smtEncodingConstants.add(constraintVariable);
-		}
-		createZ3ApplyFormulaConstant();
-		smtEncoding.append(SMTLIB_APPLICABILITY_PREAMBLE);
-		smtEncoding.append(constraint);
-		smtEncoding.append(SMTLIB_APPLICABILITY_POSTAMBLE);
+		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
 		//TODO MMTF: implement D support and OR-ed N support
@@ -515,6 +436,60 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		);
 
 		return result;
+	}
+
+	public long doSimulateLifting(Properties properties, Random state) throws MMTFException {
+
+		final String PROPERTY_IN_NUMRULEELEMENTS = "numRuleElements";
+
+		//TODO read in a better way
+		constraint = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_CONSTRAINT);
+		constraintVariables = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_CONSTRAINTVARIABLES);
+		int numRuleElements = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_NUMRULEELEMENTS);
+		init();
+		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
+		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding.toString());
+		long startTime = System.nanoTime();
+		for (int i = 0; i < numRuleElements; i++) {
+			MAVOElement modelObj = null;//TODO create
+			String formulaId;
+			if (state.nextBoolean()) {
+				formulaId = SMTLIB_TRUE;
+			}
+			else {
+				formulaId = constraintVariables[state.nextInt(constraintVariables.length)];
+			}
+			modelObj.setFormulaId(formulaId);
+			modelObjsC.add(modelObj);
+		}
+		while (checkZ3ApplicabilityFormula()) {
+			double r = 1 - (1 / (2 * (iterationsLifting + 1)));
+			for (MAVOElement modelObj : modelObjsC) {
+				if (modelObj.getFormulaId().equals(SMTLIB_TRUE)) {
+					continue;
+				}
+				StringBuilder formulaId = new StringBuilder(SMTLIB_AND);
+				for (int i = 0; i < Math.round(Math.pow(numRuleElements, r)); i++) {
+					boolean not = state.nextBoolean();
+					if (not) {
+						formulaId.append(SMTLIB_NOT);
+					}
+					formulaId.append(constraintVariables[state.nextInt(constraintVariables.length)]);
+					if (not) {
+						formulaId.append(SMTLIB_PREDICATE_END);
+					}
+					formulaId.append(" ");//TODO optimize needSpace
+				}
+				formulaId.deleteCharAt(formulaId.length()-1);
+				formulaId.append(SMTLIB_PREDICATE_END);
+				modelObj.setFormulaId(formulaId.toString());
+			}
+			iterationsLifting++;
+		}
+		long endTime = System.nanoTime();
+		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
+
+		return endTime - startTime;
 	}
 
 }

@@ -59,9 +59,9 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		}
 	}
 
-	private static final String PROPERTY_IN_CONSTRAINT = "constraint";
+	public static final String PROPERTY_IN_CONSTRAINT = "constraint";
 	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = SMTLIB_TRUE;
-	private static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
+	public static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
 	private static final String[] PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONMODULE = "transformationModule";
 	private static final String PROPERTY_IN_TRANSFORMATIONRULES = "transformationRules";
@@ -185,6 +185,94 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		smtEncodingConstants = new HashSet<String>();
 		smtEncoding = new StringBuilder();
 		initOutput();
+	}
+
+	protected void initSMTEncoding(String preamble, String postamble) {
+
+		for (String constraintVariable : constraintVariables) {
+			smtEncodingConstants.add(constraintVariable);
+		}
+		createZ3ApplyFormulaConstant();
+		smtEncoding.append(preamble);
+		smtEncoding.append(constraint);
+		smtEncoding.append(postamble);
+	}
+
+	protected void createZ3ApplyFormulaConstant() {
+
+		for (String smtEncodingConstant : smtEncodingConstants) {
+			smtEncoding.append(SMTLIB_CONST);
+			smtEncoding.append(smtEncodingConstant);
+			smtEncoding.append(" ");
+			smtEncoding.append(SMTLIB_TYPE_BOOL);
+			smtEncoding.append(SMTLIB_PREDICATE_END);
+		}
+	}
+
+	protected void createZ3ApplyFormulaMatchSet(Set<MAVOElement> modelObjs, String innerPredicate, String functionEmpty) {
+
+		if (modelObjs.isEmpty()) {
+			smtEncoding.append(functionEmpty);
+		}
+		else {
+			boolean simplify = (modelObjs.size() == 1) ? true : false;
+			if (!simplify) {
+				smtEncoding.append(innerPredicate);
+			}
+			for (MAVOElement modelObj : modelObjs) {
+				smtEncoding.append(modelObj.getFormulaId());
+				smtEncoding.append(" ");
+			}
+			smtEncoding.deleteCharAt(smtEncoding.length()-1);
+			if (!simplify) {
+				smtEncoding.append(SMTLIB_PREDICATE_END);
+			}
+		}
+	}
+
+	protected void createZ3ApplyFormulaMatchSetIteration(Set<MAVOElement> modelObjs, String functionName, String innerPredicate, String functionEmpty) {
+
+		smtEncoding.append(SMTLIB_ASSERT);
+		smtEncoding.append(SMTLIB_EQUALITY);
+		smtEncoding.append(functionName);
+		smtEncoding.append(iterationsLifting + 1);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+		createZ3ApplyFormulaMatchSet(modelObjs, innerPredicate, functionEmpty);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+	}
+
+	protected void createZ3ApplyFormulaMatchSetNIteration() {
+
+		smtEncoding.append(SMTLIB_ASSERT);
+		smtEncoding.append(SMTLIB_EQUALITY);
+		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_N);
+		smtEncoding.append(iterationsLifting + 1);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+
+		if (modelObjsNBar.isEmpty()) {
+			smtEncoding.append(SMTLIB_FALSE);
+		}
+		else {
+			boolean simplify = (modelObjsNBar.size() == 1) ? true : false;
+			if (!simplify) {
+				smtEncoding.append(SMTLIB_OR);
+			}
+			boolean previousNSimplified = false;
+			for (Set<MAVOElement> modelObjsN : modelObjsNBar) {
+				if (previousNSimplified && modelObjsN.size() == 1) {
+					smtEncoding.append(" ");
+				}
+				//TODO MMTF: review if true or false here when simplifying
+				createZ3ApplyFormulaMatchSet(modelObjsN, SMTLIB_AND, SMTLIB_FALSE);
+				previousNSimplified = (modelObjsN.size() == 1) ? true : false;
+			}
+			if (!simplify) {
+				smtEncoding.append(SMTLIB_PREDICATE_END);
+			}
+		}
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
 	}
 
 	protected void updateChains() {

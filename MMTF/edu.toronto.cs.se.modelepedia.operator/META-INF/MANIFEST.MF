@@ -18,4 +18,5 @@ Require-Bundle: edu.toronto.cs.se.mmtf,
 Bundle-ClassPath: lib/jna.jar,
  .
 Export-Package: com.sun.jna,
+ edu.toronto.cs.se.modelepedia.operator.patch,
  edu.toronto.cs.se.modelepedia.operator.reasoning

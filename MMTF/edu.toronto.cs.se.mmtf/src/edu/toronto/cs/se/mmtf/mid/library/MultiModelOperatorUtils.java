@@ -33,7 +33,7 @@ public class MultiModelOperatorUtils {
 
 	public static final String INPUT_PROPERTIES_SUFFIX = "In";
 	public static final String OUTPUT_PROPERTIES_SUFFIX = "Out";
-	private static final String PROPERTIES_SUFFIX = ".properties";
+	public static final String PROPERTIES_SUFFIX = ".properties";
 	/** The separator for multiple properties with the same key. */
 	private static final String PROPERTY_SEPARATOR = ",";
 	public static final String PROPERTY_IN_UPDATEMID = "updateMid";
