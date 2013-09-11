@@ -1,0 +1,99 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Nov 18, 2010 - 6:06 AM  -->
+<feature_model name="Reuso - UFRJ - Eclipse1">
+<meta>
+<data name="description">Pontos de extensão do Eclipse. Perspective, Intro, Splash, Builder, Nature, Help, Trim e Category.</data>
+<data name="creator">Andre, Igor, Victor</data>
+<data name="address"></data>
+<data name="email">igorcamp@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFRJ</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Eclipse1-Reuso(_r)
+	:o splashHandlers(_r_1)
+		:o splashHandler(_r_1_4)
+			:m id(_r_1_4_6)
+			:m class(_r_1_4_7)
+		:o splashHandlerProductBinding(_r_1_5)
+			:m splashId(_r_1_5_8)
+			:m productId(_r_1_5_9)
+		:o ID(_r_1_40)
+		:o Name(_r_1_41)
+	:o intro(_r_10)
+		:o configExtension(_r_10_11)
+			:m configId(_r_10_11_12)
+			:m content(_r_10_11_13)
+		:o ID(_r_10_42)
+		:o Name(_r_10_43)
+	:o perspectives(_r_14)
+		:o perspective(_r_14_15)
+			:m id(_r_14_15_16)
+			:m name(_r_14_15_17)
+			:m class(_r_14_15_18)
+			:o icon(_r_14_15_19)
+			:o fixed(_r_14_15_20)
+				:g (_r_14_15_20_21) [1,1] 
+					: true(_r_14_15_20_21_22)
+					: false(_r_14_15_20_21_23)
+		:o ID(_r_14_44)
+		:o Name(_r_14_45)
+	:o builders(_r_24)
+		:m ID(_r_24_25)
+		:o Name(_r_24_26)
+		:o builder(_r_24_27)
+			:o hasNature(_r_24_27_28)
+				:g (_r_24_27_28_30) [1,1] 
+					: true(_r_24_27_28_30_31)
+					: false(_r_24_27_28_30_32)
+			:o isConfigurable(_r_24_27_29)
+				:g (_r_24_27_29_33) [1,1] 
+					: true(_r_24_27_29_33_34)
+					: false(_r_24_27_29_33_35)
+			:o callOnEmptyDelta(_r_24_27_36)
+				:g (_r_24_27_36_37) [1,1] 
+					: true(_r_24_27_36_37_38)
+					: false(_r_24_27_36_37_39)
+			:o run(_r_24_27_46)
+				:m class(_r_24_27_46_47)
+	:o natures(_r_48)
+		:m ID(_r_48_49)
+		:o Name(_r_48_50)
+		:o runtime(_r_48_51)
+			:o run(_r_48_51_52)
+				:m class(_r_48_51_52_54)
+		:o builder(_r_48_55)
+			:m id(_r_48_55_56)
+		:g (_r_48_68) [1,1] 
+			: one-of-nature(_r_48_68_69)
+			: requires-natures(_r_48_68_70)
+		:o allowLinking(_r_48_73)
+			:g (_r_48_73_74) [1,1] 
+				: true(_r_48_73_74_75)
+				: false(_r_48_73_74_76)
+		:o content-type(_r_48_77)
+	:o help(_r_57)
+		:o toc(_r_57_58)
+			:m file(_r_57_58_61)
+			:o primary(_r_57_58_62)
+				:g (_r_57_58_62_63) [1,1] 
+					: true(_r_57_58_62_63_64)
+					: false(_r_57_58_62_63_65)
+			:o extradir(_r_57_58_66)
+			:o category(_r_57_58_67)
+		:o ID(_r_57_59)
+		:o Name(_r_57_60)
+	:o categories(_r_68)
+		:o category(_r_68_69)
+			:m ID(_r_68_69_70)
+			:m Name(_r_68_69_71)
+			:o Description(_r_68_69_72)
+			:o features(_r_68_69_66)
+</feature_tree>
+<constraints>
+constraint_2:_r_48_68_69 or _r_48_68_70
+</constraints>
+</feature_model>

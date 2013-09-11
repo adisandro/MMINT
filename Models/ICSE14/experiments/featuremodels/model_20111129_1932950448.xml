@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Nov 29, 2011 - 2:36 AM  -->
+<feature_model name="RE">
+<meta>
+<data name="description">afgbsdkjfgksdfg lkwesdj</data>
+<data name="creator">wee</data>
+<data name="address"></data>
+<data name="email">golpayegani.f@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">sharif</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r eee(_r)
+	:o ew(_r_1)
+	:m rtqewr(_r_2)
+	:g (_r_3) [1,*] 
+		: 3rqw3r(_r_3_4)
+		: 32qr(_r_3_5)
+	:o szfgawer(_r_6)
+	:o 3r2e(_r_7)
+	:o werqwr(_r_8)
+	:m erwerf(_r_9)
+	:m werwerf(_r_10)
+	:m  3erqw3er(_r_11)
+	:o 3r(_r_12)
+	:m r5ydrt(_r_13)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

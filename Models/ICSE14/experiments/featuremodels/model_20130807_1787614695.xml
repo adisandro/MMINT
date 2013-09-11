@@ -1,0 +1,32 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 7, 2013 - 2:41 PM  -->
+<feature_model name="Wewq">
+<meta>
+<data name="description">fesfde</data>
+<data name="creator">Jack Reacher</data>
+<data name="address"></data>
+<data name="email">sasas@jfakd.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ABCD</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Test 1(_r)
+	:m Feature-73(_r_73)
+	:m Feature-74(_r_74)
+	:m Feature-75(_r_75)
+	:m Feature-76(_r_76)
+	:m Feature-77(_r_77)
+	:m Feature-78(_r_78)
+	:m Feature-79(_r_79)
+	:m Feature-80(_r_80)
+	:m Feature-81(_r_81)
+	:m Feature-82(_r_82)
+	:m Feature-83(_r_83)
+	:m Feature-84(_r_84)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

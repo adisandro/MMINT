@@ -1,0 +1,48 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Apr 23, 2013 - 1:03 PM  -->
+<feature_model name="WebKit overview">
+<meta>
+<data name="description">a quick overview of features in webkit</data>
+<data name="creator">Rafael B.</data>
+<data name="address"></data>
+<data name="email">rbl@cin.ufpe.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r WebKit(_r)
+	:m Rendering(_r_1)
+		:m Software Mode(_r_1_4)
+			:g (_r_1_4_5) [1,1] 
+				: Skia(_r_1_4_5_6)
+				: CoreGraphics(_r_1_4_5_11)
+				: QtGui(_r_1_4_5_12)
+				: Cairo(_r_1_4_5_13)
+		:o Hardware Mode(_r_1_15)
+			:g (_r_1_15_17) [1,1] 
+				: GLX(_r_1_15_17_18)
+				: EGL(_r_1_15_17_19)
+				: OpenGLES2(_r_1_15_17_20)
+	:m Network(_r_2)
+		:g (_r_2_21) [1,1] 
+			: Soup(_r_2_21_22)
+			: QtNetwork(_r_2_21_23)
+			: CFNetwork(_r_2_21_24)
+			: Chromium Stack(_r_2_21_19)
+	:m JavaScript(_r_3)
+		:g (_r_3_25) [1,1] 
+			: V8(_r_3_25_26)
+			: JavaScriptCore(_r_3_25_27)
+</feature_tree>
+<constraints>
+constraint_8:_r_1_4 or ~_r_1_15
+constraint_9:_r_2_21_22 or _r_2_21_23 or _r_2_21_24 or _r_2_21_19
+constraint_6:~_r_1_4_5_6 or ~_r_3_25_26 or _r_2_21_19
+constraint_7:~_r_1 or ~_r_2 or ~_r_3 or _r
+constraint_4:_r_1_15_17_18 or _r_1_15_17_19 or _r_1_15_17_20
+constraint_5:_r_3_25_26 or _r_3_25_27
+</constraints>
+</feature_model>

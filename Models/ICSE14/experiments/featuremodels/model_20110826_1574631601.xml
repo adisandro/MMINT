@@ -1,0 +1,79 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Oct 5, 2011 - 12:13 PM  -->
+<feature_model name="Linea de Experimentos">
+<meta>
+<data name="description">Generear linea de productos en experimentacion</data>
+<data name="creator">Edison Espinosa</data>
+<data name="address"></data>
+<data name="email">edisonespinosag@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ESPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Experimento(_r)
+	:m Planteamineto(_r_1)
+		:m Factores(_r_1_3)
+			:m Tecnicas(_r_1_3_4)
+				:m TecnicaEstatica(_r_1_3_4_5)
+					:m LecturaCodigo(_r_1_3_4_5_7)
+						:m AbstraccionesSucesivas(_r_1_3_4_5_7_14)
+				:m TecnicaDinamica(_r_1_3_4_6)
+					:m PruebasFuncionales(_r_1_3_4_6_8)
+						:m ParticionesClasesEquivalencia(_r_1_3_4_6_8_9)
+						:o AnalisisValoresLimite(_r_1_3_4_6_8_10)
+				:m PruebasEstructurales(_r_1_3_4_11)
+					:m CoberturaDecision(_r_1_3_4_11_12)
+					:o CoberturaSentencia(_r_1_3_4_11_13)
+			:m Programas(_r_1_3_15)
+				:m ntree(_r_1_3_15_16)
+				:m cmdline(_r_1_3_15_17)
+				:m namtbl(_r_1_3_15_18)
+				:o Trade(_r_1_3_15_19)
+			:m Falta(_r_1_3_20)
+				:o 9 Faltas(_r_1_3_20_21)
+				:o 7 Faltas(_r_1_3_20_22)
+				:o 6 Faltas(_r_1_3_20_23)
+		:m Parametros(_r_1_24)
+			:m Lenguaje de Programacion(_r_1_24_25)
+				:m Lenguaje C(_r_1_24_25_26)
+				:o Lenguaje Java(_r_1_24_25_28)
+			:m Nivel de Experincia(_r_1_24_29)
+				:m Experiencia en Lenguaje(_r_1_24_29_30)
+					:m Junior(_r_1_24_29_30_31)
+					:o Medio(_r_1_24_29_30_32)
+					:o Senior(_r_1_24_29_30_33)
+				:m Experiencia en Tecnicas(_r_1_24_29_34)
+					:m Junior(_r_1_24_29_34_35)
+					:o Medio(_r_1_24_29_34_37)
+					:o Senior(_r_1_24_29_34_38)
+				:m Longitud de Programa(_r_1_24_29_39)
+					:m Mayor a 200 LOC(_r_1_24_29_39_40)
+	:m Disenio(_r_2)
+		:g (_r_2_41) [1,1] 
+			: Tipo(_r_2_41_42)
+				:o Factorial Fraccionario Aleatorio(_r_2_41_42_43)
+				:o Factorial Completo(_r_2_41_42_45)
+		:g (_r_2_47) [1,1] 
+			: Combinacion(_r_2_47_48)
+				:o Cada sujeto aplica una tecnica en un programa(_r_2_47_48_49)
+				:o Cada sujeto aplica las tres tecnicas en tres programa(_r_2_47_48_50)
+		:g (_r_2_52) [1,1] 
+			: Training(_r_2_52_53)
+				:o Clases y ejercicios menor a 20 horas(_r_2_52_53_55)
+				:o Clases y ejercicios mayor a 20 horas(_r_2_52_53_57)
+		:g (_r_2_58) [1,1] 
+			: Sesiones(_r_2_58_59)
+				:o 4 Sesiones(_r_2_58_59_60)
+				:o 3 Sesiones(_r_2_58_59_61)
+				:o 1 Sesion(_r_2_58_59_62)
+</feature_tree>
+<constraints>
+constraint_1:~_r_1_3_15_16 or _r_1_24_25_26
+constraint_4:~_r_2 or _r_2_41_42 or _r_2_47_48 or _r_2_52_53 or _r_2_58_59
+constraint_2:~_r_1_3_15_17 or _r_1_24_25_26
+constraint_3:~_r_1_3_15_18 or _r_1_24_25_26
+</constraints>
+</feature_model>

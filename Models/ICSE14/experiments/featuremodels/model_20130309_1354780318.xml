@@ -1,0 +1,31 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Mar 9, 2013 - 12:23 PM  -->
+<feature_model name="Imolementacion II">
+<meta>
+<data name="description">Implementacion</data>
+<data name="creator">phruiz</data>
+<data name="address"></data>
+<data name="email">phruiz@unimayor.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">unimayor</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Implementacion II(_r)
+	:m Implementacion(_r_1)
+		:g (_r_1_2) [1,1] 
+			: Implementacion de la Arquitectura(_r_1_2_5)
+			: Implementacion de Componentes(_r_1_2_6)
+			: TDD(_r_1_2_7)
+	:m Integrar Sistemas(_r_8)
+	:m Implementar una Clase(_r_9)
+	:m Implementar un Subsistema(_r_10)
+	:m Realizar Pruebas de Unidad(_r_11)
+	:m final(_r_12)
+	:m final 11(_r_13)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

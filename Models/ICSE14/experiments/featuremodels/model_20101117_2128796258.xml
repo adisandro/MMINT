@@ -1,0 +1,131 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Nov 17, 2010 - 8:40 AM  -->
+<feature_model name="Car Selection">
+<meta>
+<data name="description">A feature model for selecting the various configurations of a car</data>
+<data name="creator">Raja Rajesh Sattiraju</data>
+<data name="address"></data>
+<data name="email">rajesh370@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TU Kaiserslautern</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Car(_r)
+	:m Engine Fuel(_r_1)
+		:g (_r_1_4) [1,1] 
+			: Petrol(_r_1_4_5)
+			: Diesel(_r_1_4_6)
+	:m Engine Configurations(_r_7)
+		:g (_r_7_13) [1,1] 
+			: 1-4 Petrol(_r_7_13_14)
+			: 1-6 Petrol(_r_7_13_15)
+			: 1-8 Diesel(_r_7_13_16)
+			: 2-0 Diesel(_r_7_13_17)
+	:o Aspiration(_r_18)
+		:g (_r_18_21) [1,1] 
+			: Supercharger(_r_18_21_22)
+			: Turbocharger(_r_18_21_23)
+	:m Transmission(_r_24)
+		:g (_r_24_25) [1,1] 
+			: 5 Speed Manual(_r_24_25_26)
+			: 6 Speed Automatic(_r_24_25_27)
+	:m Configuration(_r_28)
+		:g (_r_28_29) [1,1] 
+			: Front Wheel Drive(_r_28_29_30)
+			: Rear Wheel Drive(_r_28_29_31)
+			: All Wheel Drive(_r_28_29_32)
+	:o Differential(_r_33)
+		:g (_r_33_34) [1,1] 
+			: Type P(_r_33_34_35)
+			: Type Q(_r_33_34_36)
+	:m Body(_r_37)
+		:g (_r_37_38) [1,1] 
+			: Hatch Back(_r_37_38_39)
+			: Notch Back(_r_37_38_40)
+			: Coupe(_r_37_38_41)
+	:m Side Mirrors(_r_42)
+		:g (_r_42_43) [1,1] 
+			: Manual(_r_42_43_44)
+			: Electric(_r_42_43_45)
+	:m Front and Rear Bumpers(_r_46)
+		:g (_r_46_47) [1,1] 
+			: Black(_r_46_47_48)
+			: Body Coloured(_r_46_47_49)
+	:m Head and Tail Lamps(_r_50)
+		:g (_r_50_51) [1,1] 
+			: Halogen(_r_50_51_52)
+			: Xenon(_r_50_51_53)
+	:m Windshield Wipers(_r_54)
+		:m Front(_r_54_57)
+		:g (_r_54_58) [1,*] 
+			: Rear(_r_54_58_59)
+			: Automated Front and Rear(_r_54_58_60)
+	:m Seats(_r_61)
+		:g (_r_61_62) [1,1] 
+			: Cushion(_r_61_62_63)
+			: Cushion with Seat Covers(_r_61_62_64)
+			: Leather(_r_61_62_65)
+	:m Dashboard(_r_66)
+		:g (_r_66_67) [1,1] 
+			: Type A(_r_66_67_68)
+			: Type B(_r_66_67_69)
+			: Type C(_r_66_67_70)
+			: Type D(_r_66_67_71)
+	:o Music(_r_72)
+		:g (_r_72_73) [1,1] 
+			: 2 DIN MP3 Player(_r_72_73_74)
+			: 6 CD Changer(_r_72_73_75)
+	:m Gear Knob(_r_76)
+		:g (_r_76_77) [1,1] 
+			: Normal(_r_76_77_78)
+			: Leather Wrapped(_r_76_77_79)
+			: Wood Finished(_r_76_77_80)
+	:o Climate Control(_r_81)
+		:g (_r_81_82) [1,1] 
+			: Manual(_r_81_82_83)
+			: Automatic(_r_81_82_84)
+	:o Rear Spoiler(_r_85)
+	:o Electric Sunroof(_r_86)
+	:o Arm Rest(_r_90)
+		:g (_r_90_91) [1,*] 
+			: Front Driver Side(_r_90_91_92)
+			: Front Passenger Side(_r_90_91_93)
+			: Rear(_r_90_91_94)
+	:o Glass Holder(_r_95)
+		:g (_r_95_98) [1,*] 
+			: Front(_r_95_98_99)
+			: Rear(_r_95_98_100)
+	:m Vehicle Locking and Unlocking(_r_101)
+		:g (_r_101_102) [1,1] 
+			: Central(_r_101_102_103)
+			: Central with Remote Keyless Entry(_r_101_102_104)
+	:o Engine Immobilizer(_r_105)
+	:o Rain Sensors(_r_106)
+</feature_tree>
+<constraints>
+constraint_30:~_r_28_29_32 or ~_r_33_34_35
+constraint_32:~_r_37_38_39 or ~_r_85
+constraint_31:_r_37_38_40 or ~_r_90_91_94
+constraint_17:~_r_28_29_32 or ~_r_33_34_35
+constraint_18:_r_54_58_60 or ~_r_106
+constraint_28:~_r_7_13_14 or ~_r_18_21_22
+constraint_19:_r_37_38_41 or ~_r_66_67_71
+constraint_29:~_r_28_29_31 or ~_r_33_34_36
+constraint_8:_r_1_4_6 or ~_r_18_21_23
+constraint_22:~_r_28_29_30 or ~_r_33_34_36
+constraint_9:_r_7_13_15 or ~_r_18_21_22
+constraint_20:_r_101_102_104 or ~_r_105
+constraint_21:~_r_37_38_39 or ~_r_85
+constraint_12:~_r_28_29_30 or ~_r_33_34_35
+constraint_13:~_r_28_29_31 or _r_33_34_35
+constraint_26:~_r_1_4_6 or ~_r_7_13_14
+constraint_14:~_r_28_29_32 or _r_33_34_36
+constraint_27:~_r_1_4_6 or ~_r_7_13_15
+constraint_24:~_r_1_4_5 or ~_r_7_13_16
+constraint_16:~_r_28_29_31 or ~_r_33_34_36
+constraint_25:~_r_1_4_5 or ~_r_7_13_17
+</constraints>
+</feature_model>

@@ -1,0 +1,49 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Mar 10, 2011 - 2:42 PM  -->
+<feature_model name="VOTE4ME Serveur">
+<meta>
+<data name="description">côté serveur</data>
+<data name="creator">Guillaume </data>
+<data name="address"></data>
+<data name="email">guillaume.benats@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">FUNDP</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r VOTE4ME Serveur(_r)
+	:m Entree_Audio(_r_1)
+	:m Sortie_Video(_r_2)
+	:m Presentation(_r_3)
+		:g (_r_3_8) [1,*] 
+			: Import(_r_3_8_9)
+			: Controle(_r_3_8_10)
+			: Parsing(_r_3_8_11)
+			: Affichage(_r_3_8_12)
+	:m Vote(_r_4)
+		:g (_r_4_13) [1,1] 
+			: Question(_r_4_13_14)
+				:g (_r_4_13_14_38) [1,*] 
+					: Repondre(_r_4_13_14_38_39)
+					: Afficher(_r_4_13_14_38_40)
+			: Sondage(_r_4_13_15)
+				:g (_r_4_13_15_34) [1,*] 
+					: Repondre(_r_4_13_15_34_35)
+					: Afficher(_r_4_13_15_34_37)
+	:m User(_r_6)
+		:g (_r_6_19) [1,1] 
+			: User Distant(_r_6_19_20)
+			: Direct User(_r_6_19_21)
+				:g (_r_6_19_21_26) [1,1] 
+					: Handicap(_r_6_19_21_26_27)
+						:g (_r_6_19_21_26_27_29) [1,*] 
+							: Malvoyant(_r_6_19_21_26_27_29_30)
+							: Malentendant(_r_6_19_21_26_27_29_31)
+							: Handicap Physique(_r_6_19_21_26_27_29_32)
+					: Valide(_r_6_19_21_26_28)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

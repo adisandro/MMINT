@@ -1,0 +1,67 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jan 16, 2013 - 10:35 AM  -->
+<feature_model name="Automotive system">
+<meta>
+<data name="description">ad'hoc automotive feature model</data>
+<data name="creator">Jean-Vivien Millo</data>
+<data name="address"></data>
+<data name="email">jean-vivien.millo@inria.fr</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">INRIA</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r automotive system(_r)
+	:o AC(_r_2)
+		:g (_r_2_3) [1,1] 
+			: Climate Control(_r_2_3_4)
+			: Manual Control(_r_2_3_5)
+	:m Chassis(_r_7)
+		:m wiper(_r_7_8)
+			:o Rear Wiper(_r_7_8_23)
+			:m Front Wiper(_r_7_8_24)
+				:g (_r_7_8_24_25) [1,1] 
+					: Front Interval Wipe(_r_7_8_24_25_26)
+					: Front Rain Sensor Wipe(_r_7_8_24_25_27)
+						:m Rain Sensor(_r_7_8_24_25_27_28)
+		:g (_r_7_20) [1,1] 
+			: Station Wagon Chassis(_r_7_20_21)
+			: Cabrio Chassis(_r_7_20_22)
+				:m Roof Control(_r_7_20_22_29)
+					:g (_r_7_20_22_29_30) [1,1] 
+						: Manual Roof Control(_r_7_20_22_29_30_31)
+						: Roof Control with Rain Sensor(_r_7_20_22_29_30_32)
+	:m Energy Reservoir(_r_33)
+		:g (_r_33_52) [1,*] 
+			: Accumulator(_r_33_52_53)
+			: Gasoline Tank(_r_33_52_54)
+	:m GearBox(_r_37)
+		:g (_r_37_38) [1,1] 
+			: Manual Gearbox(_r_37_38_39)
+			: Automatic GearBox(_r_37_38_40)
+		:o 4x4 Drive GearBox(_r_37_41)
+	:m Engine(_r_42)
+		:g (_r_42_43) [1,1] 
+			: 4-Cylinder Engine(_r_42_43_44)
+			: 6-Cylinder Engine(_r_42_43_45)
+			: 8-Cylinder Engine(_r_42_43_46)
+		:g (_r_42_47) [1,1] 
+			: Gasoline Engine(_r_42_47_48)
+			: Diesel Engine(_r_42_47_49)
+			: Electiric Engine(_r_42_47_50)
+			: Hybrid Engine(_r_42_47_51)
+</feature_tree>
+<constraints>
+constraint_1:~_r_7_20_21 or _r_7_8_23
+constraint_11:~_r_42_47_48 or _r_33_52_54
+constraint_12:~_r_42_47_49 or _r_33_52_54
+constraint_13:~_r_42_47_51 or _r_33_52_54
+constraint_4:~_r_37_38_40 or ~_r_42_43_44
+constraint_14:~_r_42_47_50 or _r_33_52_53
+constraint_15:~_r_42_47_51 or _r_33_52_53
+constraint_2:_r_7_8_24_25_27_28 or ~_r_7_20_22_29_30_32
+constraint_3:_r_37_38_40 or ~_r_42_43_46
+</constraints>
+</feature_model>

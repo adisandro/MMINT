@@ -1,0 +1,51 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Jan 5, 2013 - 4:41 PM  -->
+<feature_model name="Invio">
+<meta>
+<data name="description">Features de dominio de uma familia cadastro de curriculos</data>
+<data name="creator">Rogério Souza</data>
+<data name="address"></data>
+<data name="email">rogerio.rs110@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidade Federal Rural da Amazônia</data>
+<data name="department">Instituto Ciberespacial - ICIBE</data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Submissao(_r)
+	:m Curriculo(_r_1)
+		:m FCO(_r_1_14)
+			:m Producao(_r_1_14_19)
+				:g (_r_1_14_19_22) [1,*] 
+					: Livro(_r_1_14_19_22_23)
+					: Periodico(_r_1_14_19_22_24)
+					: Conferencia(_r_1_14_19_22_25)
+					: Patente(_r_1_14_19_22_26)
+			:o Projeto(_r_1_14_20)
+				:g (_r_1_14_20_27) [1,*] 
+					: Extensao(_r_1_14_20_27_28)
+					: Pesquisa(_r_1_14_20_27_29)
+					: Ensino(_r_1_14_20_27_30)
+			:o Orientacao(_r_1_14_21)
+				:g (_r_1_14_21_31) [1,*] 
+					: Graduacao(_r_1_14_21_31_32)
+					: PosGraduacao(_r_1_14_21_31_33)
+		:o FCA(_r_1_15)
+		:m Dados Pessoais(_r_1_16)
+		:o Grupo de Pesquisa(_r_1_17)
+		:o Programa de Pos(_r_1_18)
+	:o Plano de Trabalho(_r_5)
+		:g (_r_5_9) [1,1] 
+			: Upload(_r_5_9_10)
+			: Cadastro(_r_5_9_13)
+	:o Upload de Documentos(_r_34)
+	:o Linha de Pesquisa(_r_35)
+</feature_tree>
+<constraints>
+constraint_6:~_r_1_18 or _r_35
+constraint_7:~_r_5 or _r_1_14_20
+constraint_4:~_r_1_17 or _r_35
+constraint_5:~_r_1_14_20_27_29 or _r_35
+</constraints>
+</feature_model>

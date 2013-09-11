@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 9:03 AM  -->
+<feature_model name="Modelo de Celulares">
+<meta>
+<data name="description">Modelo de Celulares</data>
+<data name="creator">Ronny</data>
+<data name="address"></data>
+<data name="email">new_rpan27@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFJF</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:o Mobile Media(_r_1)
+		:m Media Selection(_r_1_2)
+			:m Music(_r_1_2_19)
+			:m Photo(_r_1_2_20)
+			:o Video(_r_1_2_21)
+	:m Media Management(_r_5)
+		:m Favorites(_r_5_13)
+			:m Set Favorites(_r_5_13_16)
+			:m View Favorites(_r_5_13_17)
+		:o Copy Media(_r_5_14)
+		:o SMS Transfer(_r_5_15)
+			:m Receive Photo(_r_5_15_19)
+			:m Send Photo(_r_5_15_20)
+	:m Screen Size(_r_10)
+		:g (_r_10_21) [1,1] 
+			: Screen 1(_r_10_21_22)
+			: Screen 2(_r_10_21_23)
+</feature_tree>
+<constraints>
+constraint_1:_r_5_14 or _r_5_15
+constraint_2:_r_10_21_22 or _r_1_2_20
+</constraints>
+</feature_model>

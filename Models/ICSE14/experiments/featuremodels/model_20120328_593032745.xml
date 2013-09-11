@@ -1,0 +1,42 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 28, 2012 - 9:36 AM  -->
+<feature_model name="Construtora">
+<meta>
+<data name="description">modelo de site para construtora</data>
+<data name="creator">thompson</data>
+<data name="address"></data>
+<data name="email">thom@cc.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">tabajara</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Contrutora(_r)
+	:m Cliente(_r_1)
+	:m Fornecedor(_r_2)
+		:m Dados(_r_2_34)
+		:o Endereco(_r_2_35)
+	:m Obras(_r_3)
+		:m Status(_r_3_12)
+		:m Exibicao(_r_3_27)
+			:g (_r_3_27_29) [1,1] 
+				: Pessoa Fisica(_r_3_27_29_30)
+				: Pessoa Juridica(_r_3_27_29_33)
+		:m Tipo de Contrato(_r_3_42)
+			:g (_r_3_42_43) [1,*] 
+				: Juridico(_r_3_42_43_44)
+				: Assistido(_r_3_42_43_46)
+	:o Contato(_r_4)
+		:m Mensagem(_r_4_16)
+		:o Gerenciar(_r_4_18)
+			:m Assuntos(_r_4_18_19)
+			:m Setores(_r_4_18_20)
+	:o Novidades(_r_15)
+</feature_tree>
+<constraints>
+constraint_1:_r_1 or _r_3
+constraint_2:_r_3 or _r_15
+</constraints>
+</feature_model>

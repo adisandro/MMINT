@@ -1,0 +1,31 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Jan 30, 2011 - 9:02 AM  -->
+<feature_model name="Doorlopende reisverzekering">
+<meta>
+<data name="description">feature model reisverzekering</data>
+<data name="creator">caroline</data>
+<data name="address"></data>
+<data name="email">camicaro30@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">OU</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Doorlopende reisverzekering(_r)
+	:m Aantal(_r_1)
+	:m Gebied(_r_2)
+	:m Bagage(_r_3)
+		:o Eigen risico bagage(_r_3_12)
+	:m Dagen(_r_6)
+	:o Ongevallen(_r_7)
+	:o Geneeskundige kosten(_r_8)
+	:o Wintersport(_r_9)
+	:o Automobilistenhulp(_r_10)
+	:m Geld en cheques(_r_11)
+	:o Annuleringsverzekering(_r_13)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

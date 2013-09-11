@@ -1,0 +1,30 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Jul 1, 2012 - 7:36 PM  -->
+<feature_model name="ordem">
+<meta>
+<data name="description">ordem</data>
+<data name="creator">ordem</data>
+<data name="address"></data>
+<data name="email">ordem</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ordem inc</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r R(_r)
+	:o A(_r_1)
+		:o A1(_r_1_2)
+			:o A2(_r_1_2_3)
+	:o B(_r_13)
+		:o B1(_r_13_14)
+			:o B2(_r_13_14_15)
+				:o B3(_r_13_14_15_16)
+					:o B4(_r_13_14_15_16_17)
+						:o B5(_r_13_14_15_16_17_18)
+	:o C(__r_12)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

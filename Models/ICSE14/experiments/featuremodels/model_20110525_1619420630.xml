@@ -1,0 +1,78 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, May 25, 2011 - 8:34 AM  -->
+<feature_model name="AndroidSPL">
+<meta>
+<data name="description">SPL for Android-OS with Stopwatch, Calculator, Alarm, Countdown and Clock Features</data>
+<data name="creator">Sebastian Oster</data>
+<data name="address"></data>
+<data name="email">oster@es.tu-darmstadt.de</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TU Darmstadt</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r AndroidSPL(_r)
+	:m calculator(_r_14)
+		:m operations(_r_14_15)
+			:m simple(_r_14_15_16)
+				:m simple operations(_r_14_15_16_17)
+					:m parentheses(_r_14_15_16_17_18)
+		:m accuracy(_r_14_19)
+			:g (_r_14_19_20) [1,1] 
+				: accuracy 12(_r_14_19_20_21)
+				: accuracy 24(_r_14_19_20_22)
+		:m display(_r_14_23)
+			:m text display(_r_14_23_24)
+				:g (_r_14_23_24_25) [1,1] 
+					: single-row(_r_14_23_24_25_26)
+					: double-row(_r_14_23_24_25_27)
+	:m user interface(_r_28)
+		:m layout(_r_28_29)
+			:g (_r_28_29_30) [1,1] 
+				: std layout(_r_28_29_30_31)
+				: blue layout(_r_28_29_30_32)
+				: dark layout(_r_28_29_30_33)
+				: light layout(_r_28_29_30_34)
+	:m chronotools(_r_35)
+		:m alarm(_r_35_36)
+			:g (_r_35_36_37) [1,*] 
+				: vibration(_r_35_36_37_38)
+				: sound(_r_35_36_37_39)
+					:g (_r_35_36_37_39_40) [1,*] 
+						: sound_1(_r_35_36_37_39_40_41)
+						: sound_2(_r_35_36_37_39_40_42)
+						: sound_3(_r_35_36_37_39_40_43)
+		:m countdown(_r_35_44)
+			:g (_r_35_44_45) [1,1] 
+				: minute precision(_r_35_44_45_46)
+				: second precision(_r_35_44_45_47)
+		:m stopwatch(_r_35_48)
+			:o laps(_r_35_48_49)
+				:o show multiple laps(_r_35_48_49_50)
+					:o show_date_and_time(_r_35_48_49_50_51)
+		:o alarm_clock(_r_35_53)
+			:o day setting(_r_35_53_54)
+				:g (_r_35_53_54_58) [1,1] 
+					: weekdays or weekend(_r_35_53_54_58_59)
+					: seven days(_r_35_53_54_58_60)
+			:g (_r_35_53_55) [1,1] 
+				: one_alarm_time(_r_35_53_55_56)
+				: four_alarm_times(_r_35_53_55_57)
+		:o clock(_r_35_61)
+			:m time(_r_35_61_62)
+				:g (_r_35_61_62_63) [1,1] 
+					: 12h mode(_r_35_61_62_63_64)
+					: 24h mode(_r_35_61_62_63_65)
+			:o time_zones(_r_35_61_66)
+			:o date(_r_35_61_67)
+</feature_tree>
+<constraints>
+constraint_1:_r_14_19_20_21 or ~_r_14_23_24_25_26
+constraint_4:~_r_35_48_49_50_51 or _r_35_61_67
+constraint_5:~_r_35_53_54 or _r_35_61_67
+constraint_2:~_r_14_19_20_21 or ~_r_14_23_24_25_27
+constraint_3:~_r_35_53 or _r_35_61
+</constraints>
+</feature_model>

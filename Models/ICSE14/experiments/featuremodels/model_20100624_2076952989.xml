@@ -1,0 +1,44 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jul 23, 2010 - 9:25 PM  -->
+<feature_model name="Small Graph Product Line">
+<meta>
+<data name="description">A model of a graph product line</data>
+<data name="creator">Ebrahim Bagheri</data>
+<data name="address"></data>
+<data name="email">ebagheri@athabascau.ca</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Athabasca University</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r GPL(_r)
+	:m Graph Type(_r_1)
+		:g (_r_1_2) [1,1] 
+			: directed(_r_1_2_3)
+			: undirected(_r_1_2_19)
+		:g (_r_1_5) [1,1] 
+			: weighted(_r_1_5_6)
+			: unweighted(_r_1_5_18)
+	:o search(_r_8)
+		:g (_r_8_9) [1,1] 
+			: DFS(_r_8_9_10)
+			: BFS(_r_8_9_20)
+	:m Algorithms(_r_12)
+		:g (_r_12_13) [1,*] 
+			: Shortest Path(_r_12_13_14)
+			: Coloring(_r_12_13_16)
+				:g (_r_12_13_16_20) [1,*] 
+					: Approximation(_r_12_13_16_20_21)
+					: Brute Force(_r_12_13_16_20_22)
+			: Cycle Detection(_r_12_13_17)
+			: MST(_r_12_13_18)
+			: Strongly Connected(_r_12_13_19)
+</feature_tree>
+<constraints>
+constraint_6:_r_1_2_3 or ~_r_12_13_19
+constraint_4:_r_8_9_10 or ~_r_12_13_17
+constraint_5:_r_8_9_10 or ~_r_12_13_19
+</constraints>
+</feature_model>

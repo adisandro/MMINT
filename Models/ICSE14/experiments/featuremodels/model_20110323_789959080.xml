@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 23, 2011 - 12:34 PM  -->
+<feature_model name="SD Voter pattern feature model">
+<meta>
+<data name="description">safety pattern</data>
+<data name="creator">Salva Trujillo</data>
+<data name="address"></data>
+<data name="email">struji@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">IKERLAN</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r SDVoter(_r)
+	:g (_r_1) [1,1] 
+		: Redundancy(_r_1_2)
+			:m Double(_r_1_2_3)
+			:m Triple(_r_1_2_4)
+	:o Verification(_r_5)
+	:o SafeComms(_r_6)
+	:o SecureComms(_r_7)
+	:g (_r_9) [1,*] 
+		: Data1(_r_9_10)
+			:g (_r_9_10_12) [1,1] 
+				: int(_r_9_10_12_13)
+				: float(_r_9_10_12_14)
+				: bool(_r_9_10_12_15)
+		: Data2(_r_9_11)
+			:g (_r_9_11_16) [1,1] 
+				: int(_r_9_11_16_17)
+				: float(_r_9_11_16_18)
+				: bool(_r_9_11_16_19)
+</feature_tree>
+<constraints>
+constraint_1:_r_1_2_3 or _r_5
+</constraints>
+</feature_model>

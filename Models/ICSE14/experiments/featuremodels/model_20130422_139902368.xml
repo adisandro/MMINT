@@ -1,0 +1,64 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Apr 22, 2013 - 1:22 PM  -->
+<feature_model name="Assess4me">
+<meta>
+<data name="description">A DSL for assessment configuration file</data>
+<data name="creator">Yaelle Chaudy</data>
+<data name="address"></data>
+<data name="email">yaelle.chaudy@uws.ac.uk</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of the West of Scotland</data>
+<data name="department">Computing</data>
+<data name="date">2013</data>
+<data name="reference">ECGBL 2013</data>
+</meta>
+<feature_tree>
+:r Configuration File(_r)
+	:m Learning Goals(_r_1)
+		:m Goal(_r_1_7)
+			:m name(_r_1_7_9)
+			:o description(_r_1_7_10)
+			:o starting value(_r_1_7_17)
+		:o Score Calculation(_r_1_12)
+			:g (_r_1_12_13) [1,1] 
+				: meanOfGoals(_r_1_12_13_14)
+				: sumOfGoals(_r_1_12_13_15)
+				: mathFormula(_r_1_12_13_16)
+	:m Feedbacks(_r_3)
+		:m Feedback(_r_3_18)
+			:m name(_r_3_18_19)
+			:m text(_r_3_18_20)
+			:o final feedback(_r_3_18_21)
+			:o type(_r_3_18_22)
+				:g (_r_3_18_22_23) [1,1] 
+					: POSITIVE(_r_3_18_22_23_24)
+					: NEGATIVE(_r_3_18_22_23_25)
+					: NEUTRAL(_r_3_18_22_23_26)
+	:m Actions(_r_27)
+		:m Action(_r_27_28)
+			:m name(_r_27_28_29)
+			:o parameters(_r_27_28_30)
+			:m Evidence(_r_27_28_31)
+				:m Points(_r_27_28_31_36)
+					:m goal(_r_27_28_31_36_37)
+					:m points(_r_27_28_31_36_38)
+				:m Value of parameters(_r_27_28_31_40)
+					:g (_r_27_28_31_40_41) [1,1] 
+						: parameter value(_r_27_28_31_40_41_42)
+						: _others_(_r_27_28_31_40_41_43)
+			:o Reactions(_r_27_28_44)
+				:m If(_r_27_28_44_45)
+					:g (_r_27_28_44_45_47) [1,1] 
+						: according to parameters(_r_27_28_44_45_47_48)
+						: according to points(_r_27_28_44_45_47_49)
+				:m feedback to send(_r_27_28_44_50)
+	:o Feedback Model(_r_51)
+		:m Condition(_r_51_52)
+			:g (_r_51_52_54) [1,*] 
+				: goal value limit(_r_51_52_54_55)
+				: inactivity limit(_r_51_52_54_56)
+		:m feedback to send(_r_51_53)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

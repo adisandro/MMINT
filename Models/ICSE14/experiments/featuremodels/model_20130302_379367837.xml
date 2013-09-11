@@ -1,0 +1,32 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Mar 17, 2013 - 11:49 PM  -->
+<feature_model name="disenio II">
+<meta>
+<data name="description">disenio II</data>
+<data name="creator">phruiz</data>
+<data name="address"></data>
+<data name="email">pruiz@unimayor.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">unimayor</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Disenio II(_r)
+	:o Disenio de la Arquitectura(_r_1)
+	:o Disenio de Componentes(_r_2)
+		:g (_r_2_9) [1,*] 
+			: Disenio de Componentes(_r_2_9_10)
+			: Disenio de Bases de Datos(_r_2_9_13)
+		:g (_r_2_14) [1,*] 
+			: Diseniar un Casos de Uso(_r_2_14_15)
+			: Diseniar una Clase(_r_2_14_16)
+			: Diseniar un Subsistema(_r_2_14_17)
+	:m fina(_r_18)
+	:m Final 2(_r_19)
+</feature_tree>
+<constraints>
+constraint_1:_r_2_9_10 or ~_r_2_9_13
+</constraints>
+</feature_model>

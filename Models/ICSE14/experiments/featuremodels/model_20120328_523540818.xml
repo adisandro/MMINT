@@ -1,0 +1,29 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 28, 2012 - 10:06 AM  -->
+<feature_model name="Simnumero">
+<meta>
+<data name="description">aparelho telefonico</data>
+<data name="creator">dcc</data>
+<data name="address">icex</data>
+<data name="email">dcc@uf.com</data>
+<data name="phone">3100989999</data>
+<data name="website">www.simnumero.com.br</data>
+<data name="organization">departdcc</data>
+<data name="department">ligdcc</data>
+<data name="date">28/03/2012</data>
+<data name="reference">Sala dcc</data>
+</meta>
+<feature_tree>
+:r sim(_r)
+	:o salvar(_r_1)
+		:o ajuda(_r_1_2)
+			:o editar(_r_1_2_3)
+				:o apagar(_r_1_2_3_4)
+					:o selecionar(_r_1_2_3_4_5)
+						:m renomear(_r_1_2_3_4_5_6)
+							:o recuperar numero(_r_1_2_3_4_5_6_7)
+								:o identificar numero(_r_1_2_3_4_5_6_7_8)
+	:m exibir numero(_r_10)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

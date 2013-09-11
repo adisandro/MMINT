@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Jun 27, 2013 - 7:58 PM  -->
+<feature_model name="Gsist">
+<meta>
+<data name="description">Catalogo para gerenciamento de aplicacoes</data>
+<data name="creator">Willian Oizumi</data>
+<data name="address"></data>
+<data name="email">oizumi.willian@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PUC-RIO</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Gsist(_r)
+	:m Agrupamento(_r_2)
+	:m Catalogo de Aplicacoes(_r_3)
+	:m Cadastro de Versoes(_r_4)
+	:m Autenticacao e Autorizacao(_r_7)
+		:g (_r_7_8) [1,1] 
+			: BuiltIn(_r_7_8_9)
+			: LDAP(_r_7_8_10)
+	:m Log(_r_11)
+		:g (_r_11_12) [1,*] 
+			: Banco de Dados(_r_11_12_13)
+			: Arquivo(_r_11_12_14)
+		:m Relatorio(_r_11_15)
+	:m Notificacao de Tarefas(_r_17)
+		:g (_r_17_18) [1,*] 
+			: Email(_r_17_18_19)
+			: Desktop(_r_17_18_20)
+			: Tela Sistema(_r_17_18_21)
+	:m Tarefas de Validacao(_r_22)
+	:o Cadastro de Componentes(_r_23)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

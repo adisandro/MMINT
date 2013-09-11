@@ -1,0 +1,173 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Feb 14, 2011 - 12:07 PM  -->
+<feature_model name="PFTest1">
+<meta>
+<data name="description">ProductFamilyTest</data>
+<data name="creator">Chittimalli</data>
+<data name="address"></data>
+<data name="email">Chantabbai@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TRDDC</data>
+<data name="department"></data>
+<data name="date">Feb 14th 2011</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MFP(_r)
+	:m Paper Input Capability(_r_1)
+		:m Tray 1(_r_1_39)
+			:g (_r_1_39_43) [1,1] 
+				: Multipurpose(_r_1_39_43_44)
+				: Paper(_r_1_39_43_45)
+		:m Tray 2(_r_1_40)
+		:o Tray 3(_r_1_41)
+		:o Tray 4(_r_1_42)
+		:m Feed(_r_1_46)
+			:g (_r_1_46_47) [1,1] 
+				: Document Glass(_r_1_46_47_48)
+				: Automatic Duplex(_r_1_46_47_49)
+				: Manual(_r_1_46_47_50)
+	:m Network Connectivity(_r_2)
+		:m Ethernet(_r_2_24)
+		:m USB(_r_2_25)
+		:o Wireless Adapter(_r_2_26)
+	:m Standard Functions(_r_3)
+		:m Print(_r_3_7)
+			:m Print Speed(_r_3_7_18)
+				:g (_r_3_7_18_20) [1,1] 
+					: upto 12 ppm(_r_3_7_18_20_21)
+					: upto 30 ppm(_r_3_7_18_20_22)
+			:m Memory(_r_3_7_19)
+				:g (_r_3_7_19_35) [1,1] 
+					: 384 MB(_r_3_7_19_35_36)
+					: 512 MB(_r_3_7_19_35_37)
+					: 1 GB(_r_3_7_19_35_38)
+		:m Scan(_r_3_8)
+			:o Scanning Software(_r_3_8_46)
+		:m Fax(_r_3_9)
+		:m Copy(_r_3_10)
+		:o E-mail(_r_3_11)
+	:m Ink Technology(_r_4)
+		:g (_r_4_51) [1,1] 
+			: Solid Ink(_r_4_51_52)
+			: Standard(_r_4_51_53)
+	:m Media Handling(_r_5)
+		:m Paper Size(_r_5_12)
+		:m Paper Capacity(_r_5_13)
+			:m Max(_r_5_13_14)
+				:g (_r_5_13_14_15) [1,1] 
+					: 251 sheets(_r_5_13_14_15_16)
+					: 1675 sheets(_r_5_13_14_15_17)
+	:m Models(_r_6)
+		:g (_r_6_46) [1,1] 
+			: P 1(_r_6_46_47)
+			: P 2(_r_6_46_48)
+			: P 3(_r_6_46_49)
+			: P 4(_r_6_46_50)
+			: P 5(_r_6_46_51)
+	:m Test Pool(_r_46)
+		:g (_r_46_47) [1,*] 
+			: TC 1(_r_46_47_48)
+			: TC 2(_r_46_47_49)
+			: TC 3(_r_46_47_50)
+			: TC 4(_r_46_47_51)
+			: TC 5(_r_46_47_52)
+			: TC 6(_r_46_47_53)
+			: TC 7(_r_46_47_54)
+			: TC 8(_r_46_47_55)
+			: TC 9(_r_46_47_56)
+			: TC 10(_r_46_47_57)
+</feature_tree>
+<constraints>
+constraint_87:~_r_6_46_49 or ~_r_46_47_51
+constraint_88:~_r_6_46_49 or ~_r_46_47_52
+constraint_89:~_r_6_46_49 or ~_r_46_47_53
+constraint_109:~_r_6_46_47 or ~_r_46_47_54
+constraint_108:~_r_6_46_47 or ~_r_46_47_53
+constraint_43:_r_5_13_14_15_17 or ~_r_6_46_49
+constraint_107:~_r_6_46_47 or ~_r_46_47_52
+constraint_42:_r_5_13_14_15_17 or ~_r_6_46_48
+constraint_106:~_r_6_46_47 or ~_r_46_47_51
+constraint_45:_r_5_13_14_15_16 or ~_r_6_46_51
+constraint_105:~_r_6_46_47 or ~_r_46_47_48
+constraint_44:_r_5_13_14_15_17 or ~_r_6_46_50
+constraint_47:_r_3_7_19_35_37 or _r_3_7_19_35_38 or ~_r_6_46_48
+constraint_103:~_r_6_46_48 or ~_r_46_47_57
+constraint_46:_r_3_7_19_35_37 or _r_3_7_19_35_38 or ~_r_6_46_47
+constraint_102:~_r_6_46_48 or ~_r_46_47_56
+constraint_49:~_r_3_7_19_35_36 or ~_r_3_7_19_35_37
+constraint_101:~_r_6_46_48 or ~_r_46_47_55
+constraint_48:_r_3_7_19_35_37 or _r_3_7_19_35_38 or ~_r_6_46_49
+constraint_17:_r_3_7_18_20_22 or ~_r_6_46_47
+constraint_100:~_r_6_46_48 or ~_r_46_47_54
+constraint_18:_r_3_7_18_20_22 or ~_r_6_46_48
+constraint_19:_r_3_7_18_20_22 or ~_r_6_46_49
+constraint_51:~_r_3_7_19_35_38 or _r_6_46_47 or _r_6_46_48 or _r_6_46_49 or _r_6_46_50
+constraint_90:~_r_6_46_49 or ~_r_46_47_54
+constraint_10:_r_3_7_19_35_38 or ~_r_6_46_50
+constraint_92:~_r_6_46_49 or ~_r_46_47_56
+constraint_11:~_r_3_7_19_35_36 or _r_6_46_51
+constraint_91:~_r_6_46_49 or ~_r_46_47_55
+constraint_12:_r_3_7_19_35_36 or ~_r_6_46_51
+constraint_14:~_r_3_7_18_20_22 or _r_6_46_47 or _r_6_46_48 or _r_6_46_49 or _r_6_46_50
+constraint_96:~_r_6_46_48 or ~_r_46_47_48
+constraint_15:~_r_3_7_18_20_21 or _r_6_46_51
+constraint_95:~_r_6_46_49 or ~_r_46_47_57
+constraint_16:_r_3_7_18_20_21 or ~_r_6_46_51
+constraint_77:~_r_1_39 or ~_r_3_7_18_20_21 or ~_r_46_47_51
+constraint_78:~_r_1_39 or ~_r_3_7_18_20_21 or ~_r_46_47_52
+constraint_75:~_r_6_46_50 or ~_r_46_47_50
+constraint_39:~_r_5_13_14_15_17 or _r_6_46_47 or _r_6_46_48 or _r_6_46_49 or _r_6_46_50
+constraint_76:~_r_1_39 or ~_r_3_7_18_20_21 or ~_r_46_47_50
+constraint_30:_r_4_51_52 or ~_r_6_46_48
+constraint_79:~_r_1_39 or ~_r_3_7_18_20_21 or ~_r_46_47_54
+constraint_34:~_r_1_39_43_45 or _r_6_46_51
+constraint_33:~_r_1_39_43_44 or _r_6_46_47 or _r_6_46_48 or _r_6_46_49 or _r_6_46_50
+constraint_32:_r_4_51_52 or ~_r_6_46_50
+constraint_31:_r_4_51_52 or ~_r_6_46_49
+constraint_38:_r_1_39_43_44 or ~_r_6_46_50
+constraint_112:~_r_6_46_47 or ~_r_46_47_57
+constraint_37:_r_1_39_43_44 or ~_r_6_46_49
+constraint_36:_r_1_39_43_44 or ~_r_6_46_48
+constraint_35:_r_1_39_43_44 or ~_r_6_46_47
+constraint_110:~_r_6_46_47 or ~_r_46_47_55
+constraint_28:~_r_4_51_52 or _r_6_46_47 or _r_6_46_48 or _r_6_46_49 or _r_6_46_50
+constraint_111:~_r_6_46_47 or ~_r_46_47_56
+constraint_29:_r_4_51_52 or ~_r_6_46_47
+constraint_40:~_r_5_13_14_15_16 or _r_6_46_51
+constraint_41:_r_5_13_14_15_17 or ~_r_6_46_47
+constraint_22:~_r_1_46_47_49 or _r_6_46_48 or _r_6_46_49 or _r_6_46_50
+constraint_80:~_r_1_39 or ~_r_3_7_18_20_21 or ~_r_46_47_57
+constraint_23:_r_1_42 or ~_r_6_46_50
+constraint_20:_r_3_7_18_20_22 or ~_r_6_46_50
+constraint_21:_r_3_8_46 or ~_r_6_46_50
+constraint_85:~_r_6_46_49 or ~_r_46_47_48
+constraint_26:_r_4_51_53 or ~_r_6_46_51
+constraint_84:~_r_6_46_50 or ~_r_46_47_56
+constraint_27:~_r_4_51_53 or _r_6_46_51
+constraint_83:~_r_6_46_50 or ~_r_46_47_55
+constraint_24:~_r_1_46_47_48 or _r_6_46_47
+constraint_82:~_r_6_46_50 or ~_r_46_47_53
+constraint_25:~_r_3_8_46 or _r_6_46_50
+constraint_1:_r_1_41 or ~_r_1_42
+constraint_69:~_r_1_42 or ~_r_1_46_47_49 or _r_46_47_54
+constraint_65:~_r_1_42 or ~_r_2_25 or _r_46_47_52
+constraint_64:~_r_3_7_18_20_22 or ~_r_3_7_19_35_38 or _r_46_47_51
+constraint_66:~_r_1_39 or ~_r_4_51_53 or _r_46_47_53
+constraint_71:~_r_1_39_43_45 or _r_46_47_56
+constraint_72:~_r_1_42 or ~_r_2_24 or _r_46_47_57
+constraint_73:~_r_6_46_50 or ~_r_46_47_48
+constraint_74:~_r_1_39 or ~_r_3_7_18_20_21 or ~_r_46_47_49
+constraint_70:~_r_1_46_47_50 or _r_46_47_55
+constraint_8:_r_1_41 or ~_r_6_46_49
+constraint_7:~_r_1_46_47_50 or _r_6_46_51
+constraint_99:~_r_6_46_48 or ~_r_46_47_53
+constraint_97:~_r_6_46_48 or ~_r_46_47_51
+constraint_98:~_r_6_46_48 or ~_r_46_47_52
+constraint_59:~_r_1_39 or ~_r_3_7_18_20_21 or _r_46_47_48
+constraint_55:~_r_3_11 or ~_r_6_46_47
+constraint_53:~_r_3_11 or _r_6_46_51
+constraint_62:~_r_3_7_18_20_22 or ~_r_3_7_19_35_37 or _r_46_47_50
+constraint_61:~_r_1_40 or ~_r_4_51_52 or _r_46_47_49
+</constraints>
+</feature_model>

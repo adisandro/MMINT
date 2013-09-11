@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Apr 6, 2011 - 3:20 PM  -->
+<feature_model name="AudioPlayer">
+<meta>
+<data name="description">http://en.wikipedia.org/wiki/Comparison_of_audio_player_software</data>
+<data name="creator">Sabrina / Airton</data>
+<data name="address"></data>
+<data name="email">sfs@cin.ufpe.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r AudioPlayer(_r)
+	:m OperatinsSystem(_r_1)
+		:o Windows(_r_1_17)
+		:o MacOS(_r_1_18)
+		:o Linux(_r_1_19)
+	:o BasicFeatures(_r_2)
+		:m Feature-8(_r_2_8)
+	:m AudioFormatCapability(_r_3)
+		:m MP3(_r_3_9)
+		:m WMA(_r_3_10)
+		:m RealAudio(_r_3_11)
+		:m Vorbis(_r_3_12)
+		:m AAC(_r_3_15)
+		:m LossyCompression(_r_3_20)
+			:g (_r_3_20_23) [1,*] 
+				: MP3(_r_3_20_23_24)
+				: WMA(_r_3_20_23_25)
+		:o LosslessCompression(_r_3_21)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

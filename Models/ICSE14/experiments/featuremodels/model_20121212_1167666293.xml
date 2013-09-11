@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Dec 12, 2012 - 7:17 PM  -->
+<feature_model name="Estudo Experimental 2">
+<meta>
+<data name="description">Estudo Experimental 2</data>
+<data name="creator">Juliana Pereira Arriel</data>
+<data name="address"></data>
+<data name="email">jualvespereira@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_1)
+		:m Photo(_r_1_23)
+		:m Music(_r_1_24)
+		:o Video(_r_1_25)
+	:m Media Management(_r_8)
+		:m Favourites(_r_8_9)
+			:m Set Faurites(_r_8_9_11)
+			:m View Favourites(_r_8_9_12)
+		:o Copy Media(_r_8_13)
+		:o SMS Transfer(_r_8_14)
+			:m Receive Photo(_r_8_14_15)
+			:m Send Photo(_r_8_14_16)
+	:m Screen Size(_r_18)
+		:g (_r_18_19) [1,1] 
+			: Screen 1(_r_18_19_20)
+</feature_tree>
+<constraints>
+constraint_1:_r_8_13 or ~_r_8_14
+constraint_2:_r_18_19_20 or ~_r_1_23
+</constraints>
+</feature_model>

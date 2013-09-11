@@ -1,0 +1,43 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 8:16 AM  -->
+<feature_model name="celular">
+<meta>
+<data name="description">p celular</data>
+<data name="creator">eu</data>
+<data name="address"></data>
+<data name="email">alessandra_cgm@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">vfdgdsz</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media selection(_r_1)
+		:g (_r_1_2) [1,*] 
+			: photo(_r_1_2_3)
+		:g (_r_1_4) [1,*] 
+			: music(_r_1_4_5)
+		:g (_r_1_6) [1,*] 
+			: video(_r_1_6_7)
+	:m screen size(_r_8)
+		:g (_r_8_9) [1,1] 
+			: screen1(_r_8_9_10)
+		:g (_r_8_11) [1,1] 
+			: screen2(_r_8_11_12)
+		:g (_r_8_13) [1,1] 
+			: screen3(_r_8_13_14)
+	:m media management(_r_15)
+		:o favourites(_r_15_16)
+			:m set favourites(_r_15_16_17)
+			:m view favourites(_r_15_16_18)
+		:o copy media(_r_15_19)
+		:o SMS transfer(_r_15_20)
+			:m recieve photo(_r_15_20_21)
+			:m send photo(_r_15_20_22)
+</feature_tree>
+<constraints>
+constraint_1:_r_15_19 or ~_r_15_20
+</constraints>
+</feature_model>

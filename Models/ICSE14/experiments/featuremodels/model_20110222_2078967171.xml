@@ -1,0 +1,79 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Feb 22, 2011 - 5:52 AM  -->
+<feature_model name="Smart Home">
+<meta>
+<data name="description">Feature Model of a Smart Home</data>
+<data name="creator">Alejandro Pérez Ruiz</data>
+<data name="address"></data>
+<data name="email">alejandro.perezr@alumnos.unican.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UNICAN</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Smart Home(_r)
+	:m Floor(_r_1)
+		:m Room(_r_1_2)
+			:o External Door(_r_1_2_5)
+			:o FireSensor(_r_1_2_6)
+			:o Heater(_r_1_2_7)
+				:m Thermostat(_r_1_2_7_8)
+					:m MeasurementUnits(_r_1_2_7_8_9)
+			:o Ligth(_r_1_2_10)
+				:o LigthSwitch(_r_1_2_10_11)
+				:o Dimmer(_r_1_2_10_12)
+			:o Window(_r_1_2_13)
+				:o WindowSensor(_r_1_2_13_14)
+				:o WindowActuator(_r_1_2_13_15)
+				:o Blind(_r_1_2_13_16)
+					:m BlindActuator(_r_1_2_13_16_17)
+			:o Alarm(_r_1_2_18)
+			:o RoomGUI(_r_1_2_19)
+			:o WaterSprinkler(_r_1_2_20)
+			:o RoomDevice(_r_1_2_21)
+			:o BasicFacilities_room(_r_1_2_22)
+			:o ComplexFacilities_room(_r_1_2_35)
+		:o Door(_r_1_3)
+			:o DoorSensor(_r_1_3_23)
+			:o DoorOpener(_r_1_3_24)
+		:o FloorGUI(_r_1_4)
+	:o Staircase(_r_29)
+		:m upperRoom(_r_29_30)
+		:m lowerRoom(_r_29_31)
+	:m CentralGUI(_r_32)
+	:o PresenceSimulation(_r_33)
+	:o BasicFacilities(_r_36)
+		:o DoorManagement(_r_36_37)
+			:o AutomaticOpen(_r_36_37_43)
+			:o Authentication(_r_36_37_44)
+				:g (_r_36_37_44_45) [1,1] 
+					: Keypad(_r_36_37_44_45_46)
+					: EyeRecognition(_r_36_37_44_45_47)
+					: FingerPrint(_r_36_37_44_45_48)
+		:o HeatingManagement(_r_36_38)
+		:o LigthManagement(_r_36_39)
+			:g (_r_36_39_49) [1,*] 
+				: SimpleControl(_r_36_39_49_50)
+				: PredefinedValues(_r_36_39_49_51)
+					:g (_r_36_39_49_51_52) [1,*] 
+						: TVWatching(_r_36_39_49_51_52_53)
+						: Reading(_r_36_39_49_51_52_54)
+						: Normal(_r_36_39_49_51_52_55)
+						: Ambient(_r_36_39_49_51_52_56)
+		:o WindowManagement(_r_36_40)
+			:o BlindManagement(_r_36_40_57)
+		:o FireDetection(_r_36_41)
+			:o SprinklingWater(_r_36_41_58)
+	:o ComplexFacilities(_r_59)
+		:o SmartHeatingManagement(_r_59_60)
+		:o SmartLigthManagement(_r_59_61)
+		:o PresenceSimulation(_r_59_62)
+			:g (_r_59_62_63) [1,*] 
+				: LigthSimulation(_r_59_62_63_64)
+				: BlindSimulation(_r_59_62_63_65)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

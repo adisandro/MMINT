@@ -1,0 +1,77 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Jun 13, 2013 - 5:12 PM  -->
+<feature_model name="Tree Stem Deformation Simulator">
+<meta>
+<data name="description">Allows developing a variety of surface meshing tools for tree stem deformation simulation</data>
+<data name="creator">Pedro O. Rossel</data>
+<data name="address"></data>
+<data name="email">prossel@ucsc.cl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidad Católica de la Santísima Concepción</data>
+<data name="department"></data>
+<data name="date">20-Feb-2013</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Tree Stem Deformation Simulator(_r)
+	:m Mesh(_r_1)
+		:m Edge(_r_1_9)
+		:m Triangle(_r_1_10)
+		:m Node(_r_1_11)
+	:m Visualize mesh(_r_2)
+	:m Display mesh information(_r_3)
+	:o Generate mesh(_r_4)
+		:g (_r_4_13) [1,*] 
+			: From medulla(_r_4_13_14)
+			: From cylinder(_r_4_13_15)
+	:m Load mesh(_r_5)
+		:g (_r_5_16) [1,*] 
+			: XYZU(_r_5_16_17)
+			: Off(_r_5_16_18)
+			: Matlab(_r_5_16_19)
+	:m Save mesh(_r_6)
+		:g (_r_6_20) [1,*] 
+			: XYZU(_r_6_20_21)
+			: Off(_r_6_20_22)
+	:m Process mesh(_r_7)
+		:g (_r_7_38) [1,*] 
+			: Refine mesh(_r_7_38_39)
+				:g (_r_7_38_39_44) [1,*] 
+					: Lepp-Delaunay(_r_7_38_39_44_45)
+					: Delaunay longest edge bisection(_r_7_38_39_44_46)
+			: Derefine mesh(_r_7_38_40)
+				:m Edge collapse(_r_7_38_40_49)
+			: Improve mesh(_r_7_38_41)
+				:m Delaunay algorithm(_r_7_38_41_50)
+			: Deform mesh(_r_7_38_42)
+				:g (_r_7_38_42_51) [1,*] 
+					: Local consistency(_r_7_38_42_51_52)
+					: Neighbor nodes(_r_7_38_42_51_53)
+			: Distribute mesh(_r_7_38_43)
+				:m Randomized algorithm(_r_7_38_43_54)
+	:o Criterion(_r_8)
+		:g (_r_8_55) [1,*] 
+			: Refinement criterion(_r_8_55_56)
+				:g (_r_8_55_56_58) [1,*] 
+					: Minimum angle(_r_8_55_56_58_59)
+					: Maximum face area(_r_8_55_56_58_60)
+					: Maximum longest edge(_r_8_55_56_58_61)
+			: Derefinement criterion(_r_8_55_57)
+				:g (_r_8_55_57_62) [1,*] 
+					: Minumum face area(_r_8_55_57_62_63)
+					: Minimum longest edge(_r_8_55_57_62_64)
+	:m User Interface(_r_39)
+		:g (_r_39_40) [1,*] 
+			: Command language(_r_39_40_41)
+			: Menu selection(_r_39_40_42)
+			: Direct manipulation(_r_39_40_43)
+			: Form fill-in(_r_39_40_44)
+</feature_tree>
+<constraints>
+constraint_1:~_r_7_38_39 or _r_8_55_56
+constraint_4:_r_7_38_40 or ~_r_8_55_57
+constraint_5:~_r_4 or _r_5_16_19
+constraint_2:_r_7_38_39 or ~_r_8_55_56
+constraint_3:~_r_7_38_40 or _r_8_55_57
+</constraints>
+</feature_model>

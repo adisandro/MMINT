@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jan 23, 2013 - 5:26 PM  -->
+<feature_model name="Pruebas">
+<meta>
+<data name="description">Pruebas</data>
+<data name="creator">Pablo</data>
+<data name="address"></data>
+<data name="email">phruiz@unimayor.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">unimayor</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Prueba(_r)
+	:g (_r_1) [1,1] 
+		: Planificar Prueba(_r_1_2)
+		: Definir Mision de Evaluacion(_r_1_3)
+	:o Diseniar Prueba(_r_7)
+		:g (_r_7_11) [1,1] 
+			: Implementar prueba(_r_7_11_12)
+				:m Probar y Evaluar(_r_7_11_12_14)
+				:m Alcanzar la aceptacion de la Mision(_r_7_11_12_15)
+				:m Mejorar los activos de Prueba(_r_7_11_12_16)
+			: Implementar prueba II(_r_7_11_13)
+				:m Ejecutar Pruebas de Integracion(_r_7_11_13_17)
+				:m Ejecutar Pruebas de Sistema(_r_7_11_13_18)
+	:o Evaluar la Prueba(_r_19)
+</feature_tree>
+<constraints>
+constraint_1:_r_1_2 or ~_r_7
+constraint_6:_r_7 or ~_r_7_11_13_17
+constraint_7:_r_7 or ~_r_7_11_13_18
+constraint_4:_r_7 or ~_r_7_11_12
+constraint_5:_r_7 or ~_r_7_11_12_14
+constraint_2:_r_1_2 or ~_r_7_11_12_15
+constraint_3:_r_1_2 or ~_r_19
+</constraints>
+</feature_model>

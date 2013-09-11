@@ -1,0 +1,58 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Sep 1, 2010 - 12:22 AM  -->
+<feature_model name="ELEC5619 - Tootawl's Model">
+<meta>
+<data name="description">A model of the features from the Tootawl's view.</data>
+<data name="creator">Bran X</data>
+<data name="address"></data>
+<data name="email">jing2148@uni.sydney.edu.au</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Sydney</data>
+<data name="department">School of Electrical and Information Engineering</data>
+<data name="date">31st August 2010</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r ECS(_r)
+	:m Modules(_r_6)
+		:m AECS(_r_6_10)
+			:m Scheduler(_r_6_10_14)
+				:m Scheduling Algorithm(_r_6_10_14_15)
+					:g (_r_6_10_14_15_16) [1,1] 
+						: First Come First Serve(_r_6_10_14_15_16_17)
+						: Shortest Distance(_r_6_10_14_15_16_18)
+						: Energy Conservative(_r_6_10_14_15_16_19)
+						: Round Robin(_r_6_10_14_15_16_20)
+			:m Request Queuer(_r_6_10_40)
+		:o MECS(_r_6_11)
+		:o EE(_r_6_12)
+	:m Core Functionality(_r_7)
+		:m Safety Management(_r_7_13)
+			:m Obstruction Detector(_r_7_13_15)
+			:m Alert Notifier(_r_7_13_16)
+			:o Overload Notifier(_r_7_13_17)
+				:g (_r_7_13_17_18) [1,*] 
+					: Audible Beep-Tone(_r_7_13_17_18_19)
+					: Audible Voice Recording(_r_7_13_17_18_20)
+					: Visual Notification(_r_7_13_17_18_41)
+		:m Elevator Controller(_r_7_30)
+			:m Door Controller(_r_7_30_31)
+			:m Cab Controller(_r_7_30_32)
+				:m Direction Controller(_r_7_30_32_33)
+				:m Operation Mode Controller(_r_7_30_32_34)
+				:m Display Controller(_r_7_30_32_35)
+		:m Level Controller(_r_7_36)
+			:m Door Controller(_r_7_36_37)
+			:m Display Controller(_r_7_36_39)
+	:m Harware Platform(_r_14)
+		:g (_r_14_23) [1,*] 
+			: Existing Hardware(_r_14_23_24)
+			: New Hardware(_r_14_23_25)
+	:m Software Platform(_r_21)
+		:g (_r_21_26) [1,*] 
+			: Existing Software(_r_21_26_27)
+			: New Software(_r_21_26_29)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 10, 2012 - 11:33 AM  -->
+<feature_model name="testISA2012">
+<meta>
+<data name="description">modelo de prueba para la asignatura ISA 2012</data>
+<data name="creator">PGR</data>
+<data name="address"></data>
+<data name="email">alu0100689983@ull.edu.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PGR Org</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile phone(_r)
+	:m calls(_r_1)
+	:o GPS(_r_4)
+	:m screen(_r_5)
+		:g (_r_5_15) [1,1] 
+			: basic(_r_5_15_16)
+			: colour(_r_5_15_17)
+			: high resolution(_r_5_15_18)
+	:o media(_r_6)
+		:g (_r_6_19) [1,*] 
+			: camera(_r_6_19_20)
+			: mp3(_r_6_19_21)
+</feature_tree>
+<constraints>
+constraint_1:~_r_4 or ~_r_5_15_16
+constraint_3:_r_5_15_18 or ~_r_6_19_20
+</constraints>
+</feature_model>

@@ -1,0 +1,55 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, May 23, 2013 - 8:26 AM  -->
+<feature_model name="DeReTiYo">
+<meta>
+<data name="description">rumah sakit</data>
+<data name="creator">DeReTiYo</data>
+<data name="address">STMIK MDP</data>
+<data name="email">tinaliahmdp@yahoo.com</data>
+<data name="phone">08994468971</data>
+<data name="website"></data>
+<data name="organization">Mahasiswi</data>
+<data name="department"></data>
+<data name="date">5.22.2013</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r RSMIK(_r)
+	:m Office(_r_1)
+		:o Maintenance(_r_1_29)
+			:g (_r_1_29_30) [1,1] 
+				: Backup(_r_1_29_30_31)
+				: Recovery(_r_1_29_30_34)
+	:m Klinik(_r_2)
+	:m UGD(_r_3)
+	:m Lab(_r_4)
+	:m Rawat Inap(_r_5)
+		:m Pemesanan Kamar(_r_5_10)
+			:g (_r_5_10_32) [1,1] 
+				: Umum(_r_5_10_32_33)
+				: Khusus(_r_5_10_32_34)
+		:m Penyediaan Kamar(_r_5_19)
+			:g (_r_5_19_35) [1,1] 
+				: Unit Lain(_r_5_19_35_36)
+				: Rumah Sakit Klinik Lain(_r_5_19_35_37)
+				: Dokter Praktek Umum(_r_5_19_35_38)
+				: Kasus Khusus(_r_5_19_35_39)
+		:m Cek Ketersediaan Kamar(_r_5_21)
+		:m Payment(_r_5_22)
+			:g (_r_5_22_27) [1,*] 
+				: Tunai(_r_5_22_27_28)
+				: Asuransi(_r_5_22_27_29)
+				: Credit Card(_r_5_22_27_30)
+				: Transfer(_r_5_22_27_31)
+		:m Biaya Pengeluaran Pasien(_r_5_23)
+		:o Penambahan Jumlah Kamar(_r_5_24)
+		:m Pencatatan Data Pasien(_r_5_26)
+	:o Unit Baru(_r_6)
+	:o Kerjasama Regional(_r_8)
+	:o Koneksi Internet(_r_9)
+		:g (_r_9_27) [1,*] 
+			: LAN(_r_9_27_28)
+			: WiFi(_r_9_27_29)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

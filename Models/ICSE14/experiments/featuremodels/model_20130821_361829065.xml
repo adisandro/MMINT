@@ -1,0 +1,49 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 21, 2013 - 1:21 AM  -->
+<feature_model name="SAP Business Suite">
+<meta>
+<data name="description">Descripcion del ERP de SAP</data>
+<data name="creator">PARS</data>
+<data name="address"></data>
+<data name="email">pa.restrepo50@uniandes.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PARS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r SAP Business Suite(_r)
+	:m Capacidades Funcionales(_r_1)
+		:m Contabilidad financiera y de gestion(_r_1_13)
+			:m Elaboracion de informes(_r_1_13_14)
+		:m Gestion de la cadena de suministro financiera(_r_1_15)
+			:m Control del flujo de caja y capital circulante y ROI(_r_1_15_16)
+		:m Control sobre el dinero en efectivo-liquidez y el riesgo financiero(_r_1_17)
+		:m Control cuentas de los deudores y los cobros(_r_1_18)
+		:m Prestacion de servicios al usuario final(_r_1_19)
+		:m Analisis de personal(_r_1_20)
+		:m Gestion de talento(_r_1_22)
+			:m Gestion de contratos-formacion-desarrollo y retencion(_r_1_22_23)
+		:m Asignacion de personal(_r_1_24)
+		:m Aprovisonamiento y ejecucion logistica(_r_1_26)
+		:m Desarrollo y fabricacion de productos(_r_1_27)
+		:m Ventas y servicio(_r_1_28)
+			:m Calculo de incentivos y comisiones(_r_1_28_30)
+		:m Manejo de stock(_r_1_31)
+		:m Manejo de activos(_r_1_32)
+	:m Capacidades No Funcionales(_r_2)
+		:m Eficiencia(_r_2_4)
+		:m Escalabilidad(_r_2_5)
+		:m Adaptabilidad(_r_2_11)
+		:m Interoperabilidad(_r_2_12)
+		:m Portabilidad(_r_2_33)
+	:m Modulos(_r_3)
+		:o Finanzas(_r_3_6)
+		:o Gestion de capital humano(_r_3_7)
+		:o Operaciones(_r_3_8)
+		:o Servicios corporativos(_r_3_9)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

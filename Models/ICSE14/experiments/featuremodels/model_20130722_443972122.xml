@@ -1,0 +1,31 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Jul 22, 2013 - 3:09 AM  -->
+<feature_model name="Address Book">
+<meta>
+<data name="description">Address Book</data>
+<data name="creator">Jihyun</data>
+<data name="address"></data>
+<data name="email">jihyun@etri.re.kr</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ETRI</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Address Book(_r)
+	:m Authentification(_r_3)
+	:o Contact Management(_r_4)
+		:o Add Contact(_r_4_8)
+		:o Edict Contact(_r_4_9)
+		:o Delete contact(_r_4_10)
+	:m Contact Access(_r_5)
+	:m Contact Characteristics(_r_6)
+		:m Name(_r_6_11)
+		:o E-mail address(_r_6_12)
+		:o Telephone number(_r_6_13)
+	:o Interoperability(_r_7)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

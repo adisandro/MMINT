@@ -1,0 +1,142 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 1, 2012 - 6:51 PM  -->
+<feature_model name="UP estructural">
+<meta>
+<data name="description">UPSTR</data>
+<data name="creator">Pablo</data>
+<data name="address"></data>
+<data name="email">phruiz@unicauca.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Unicacua</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r UP-RootFeature(_r)
+	:m Fases(_r_2)
+		:m Inicio(_r_2_41)
+		:m Elaboracion(_r_2_42)
+		:m Construccion(_r_2_46)
+		:m Transicion(_r_2_47)
+		:o Produccion(_r_2_48)
+		:o Retiro(_r_2_49)
+	:m Disciplinas(_r_3)
+		:o Modelado del Negocio(_r_3_6)
+		:m Requisitos(_r_3_7)
+			:o Analizar el Problema(_r_3_7_37)
+				:g (_r_3_7_37_47) [1,1] 
+					: Definir la Vision BUP(_r_3_7_37_47_48)
+					: Analizar el Problema RUP(_r_3_7_37_47_49)
+			:o Encontrar Actores y Casos de Uso(_r_3_7_38)
+				:g (_r_3_7_38_56) [1,1] 
+					: Encontrar Actores y Casos de Uso UP BUP(_r_3_7_38_56_57)
+					: Entender las necesidades de los Stakeholders RUP(_r_3_7_38_56_58)
+						:g (_r_3_7_38_56_58_62) [1,*] 
+							: Entender las Necesidades de los Stakeholders(_r_3_7_38_56_58_62_63)
+							: Definir el Sistema(_r_3_7_38_56_58_62_64)
+			:o Priorizar Casos de Uso(_r_3_7_40)
+				:g (_r_3_7_40_65) [1,1] 
+					: Priorizar Casos de Uso UP(_r_3_7_40_65_66)
+					: Gestionar el Alcance del Sistema RUP(_r_3_7_40_65_67)
+			:o Detallar Casos de Uso(_r_3_7_41)
+				:g (_r_3_7_41_68) [1,1] 
+					: Detallar un Caso de Uso UP BUP(_r_3_7_41_68_69)
+					: Refiniar la defincion del sistema(_r_3_7_41_68_70)
+			:o Detallar Escenarios de Casos de Uso(_r_3_7_71)
+				:g (_r_3_7_71_74) [1,1] 
+					: Detallar Escenarios de Casos de Uso OUP(_r_3_7_71_74_75)
+					: Detallar los requisitos del Sistema  OUP(_r_3_7_71_74_76)
+		:o Analisis y Disenio(_r_3_13)
+			:g (_r_3_13_14) [1,1] 
+				: Analisis y Disenio UP(_r_3_13_14_15)
+					:g (_r_3_13_14_15_54) [1,*] 
+						: Analisis(_r_3_13_14_15_54_55)
+							:o Realizar un Esquema de la Arquitectura(_r_3_13_14_15_54_55_57)
+							:o Definir una Arquitectura Candidata(_r_3_13_14_15_54_55_59)
+								:g (_r_3_13_14_15_54_55_59_60) [1,1] 
+									: Analizar la Arquitectura BUP(_r_3_13_14_15_54_55_59_60_61)
+									: Analisis de la Arquitectura de UP(_r_3_13_14_15_54_55_59_60_62)
+									: Definir una arquitectura Candidata RUP(_r_3_13_14_15_54_55_59_60_63)
+										:g (_r_3_13_14_15_54_55_59_60_63_64) [1,*] 
+											: Refinar la Arquitectura(_r_3_13_14_15_54_55_59_60_63_64_65)
+												:g (_r_3_13_14_15_54_55_59_60_63_64_65_67) [1,1] 
+													: Refinar Arquitectura de RUP(_r_3_13_14_15_54_55_59_60_63_64_65_67_68)
+													: Refinar la Artquitectura de BUP(_r_3_13_14_15_54_55_59_60_63_64_65_67_69)
+											: Analisis de comportamiento(_r_3_13_14_15_54_55_59_60_63_64_66)
+							:m Analizar un Caso de Uso(_r_3_13_14_15_54_55_71)
+							:m Analizar una Clase(_r_3_13_14_15_54_55_72)
+							:m Analizar un Paquete(_r_3_13_14_15_54_55_73)
+						: Disenio(_r_3_13_14_15_54_56)
+							:m Disenio de la Arquitectura(_r_3_13_14_15_54_56_64)
+							:o Disenio de Componentes(_r_3_13_14_15_54_56_65)
+								:g (_r_3_13_14_15_54_56_65_70) [1,1] 
+									: Disenio Componentes RUP(_r_3_13_14_15_54_56_65_70_71)
+										:g (_r_3_13_14_15_54_56_65_70_71_73) [1,*] 
+											: Disenio de Componentes(_r_3_13_14_15_54_56_65_70_71_73_74)
+											: Disenio de Bases de Datos(_r_3_13_14_15_54_56_65_70_71_73_75)
+									: Disenio Componentes UP(_r_3_13_14_15_54_56_65_70_72)
+										:g (_r_3_13_14_15_54_56_65_70_72_76) [1,*] 
+											: Disenio de Casos de Uso(_r_3_13_14_15_54_56_65_70_72_76_77)
+											: Disenio de Clases(_r_3_13_14_15_54_56_65_70_72_76_78)
+											: Disenio de Subsistemas(_r_3_13_14_15_54_56_65_70_72_76_81)
+				: Arquitectura BUP OUP(_r_3_13_14_18)
+		:m Implementacion(_r_3_19)
+			:o Implementacion de la Artquitectura(_r_3_19_82)
+				:g (_r_3_19_82_86) [1,1] 
+					: Implementacion de Arquitectura de UP(_r_3_19_82_86_87)
+					: Estructurar el Modelo de Implementacion RUP(_r_3_19_82_86_88)
+			:o Plan de Integracion(_r_3_19_84)
+				:g (_r_3_19_84_89) [1,1] 
+					: Integrar Sistemas UP(_r_3_19_84_89_90)
+					: Plan de Integracion RUP(_r_3_19_84_89_91)
+			:o Implementacion de Componentes(_r_3_19_85)
+				:g (_r_3_19_85_92) [1,1] 
+					: TDD BUP OUP(_r_3_19_85_92_93)
+					: Implementacion UP(_r_3_19_85_92_94)
+					: Impelmentacion de Componentes RUP(_r_3_19_85_92_95)
+						:g (_r_3_19_85_92_95_96) [1,*] 
+							: Integrar cada Subsistema(_r_3_19_85_92_95_96_97)
+							: Integrar el Sistema(_r_3_19_85_92_95_96_98)
+		:m Pruebas(_r_3_20)
+			:o Planificar Prueba(_r_3_20_99)
+				:g (_r_3_20_99_107) [1,*] 
+					: Planificacion de RUP(_r_3_20_99_107_108)
+						:g (_r_3_20_99_107_108_109) [1,*] 
+							: Definir Mision de la Evaluacion(_r_3_20_99_107_108_109_110)
+							: Validar Estabilidad de la Construccion(_r_3_20_99_107_108_109_111)
+					: Planificar Pruebas de UP(_r_3_20_99_107_112)
+					: Crear Casos de Prueba OUP BUP(_r_3_20_99_107_113)
+			:m Diseniar Pruebas(_r_3_20_101)
+			:o Implementar Prueba(_r_3_20_102)
+				:g (_r_3_20_102_114) [1,*] 
+					: Probar y Evaluar RUP(_r_3_20_102_114_115)
+					: Alcanzar la aceptacion de la Mision RUP(_r_3_20_102_114_116)
+					: Mejorar los Activos de Prueba  RUP(_r_3_20_102_114_117)
+			:m Ejecutar Pruebas de Integracion UP BUP OUP(_r_3_20_103)
+			:m Ejecutar Pruebas de Sistema UP BUP OUP(_r_3_20_104)
+			:o Evaluar la Prueba UP(_r_3_20_106)
+		:o Despliegue(_r_3_21)
+			:g (_r_3_21_24) [1,1] 
+				: Despliegue OUP BUP(_r_3_21_24_25)
+				: Despliegue RUP(_r_3_21_24_26)
+		:o Configuracion y Gestion de Cambio(_r_3_27)
+		:o Gestion del Proyecto(_r_3_31)
+			:g (_r_3_31_77) [1,1] 
+				: Gestion del Proyecto RUP EUP(_r_3_31_77_78)
+				: Gestion del Proyecto OUP(_r_3_31_77_79)
+		:o Entorno(_r_3_32)
+			:g (_r_3_32_80) [1,1] 
+				: Entorno RUP(_r_3_32_80_81)
+				: Entorno OUP(_r_3_32_80_82)
+		:o Gestion de Portafolio(_r_3_34)
+		:o Arquitectura Empresarial(_r_3_35)
+		:o Gestion de Personal(_r_3_37)
+		:o Gestion Empresarial(_r_3_39)
+		:o Mejora de Procesos(_r_3_40)
+</feature_tree>
+<constraints>
+constraint_1:_r_2
+constraint_2:_r_3_7_37 or ~_r_3_7_38_56_57
+</constraints>
+</feature_model>

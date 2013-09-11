@@ -1,0 +1,35 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Aug 10, 2012 - 9:23 PM  -->
+<feature_model name="Simple Drawing Tools">
+<meta>
+<data name="description">this feature model for drawing tools systems in java language support the end user with some features </data>
+<data name="creator">Ra'Fat A. Al-msie'deen</data>
+<data name="address">montpellier-france</data>
+<data name="email">rafatals3ode@yahoo.com</data>
+<data name="phone"></data>
+<data name="website">http://www.lirmm.fr/~seriai/encadrements/theses/rafat/</data>
+<data name="organization">LIRMM</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Drawing Tools(_r)
+	:m Shapes(_r_1)
+		:g (_r_1_3) [1,*] 
+			: Arc(_r_1_3_4)
+			: Rectangle(_r_1_3_9)
+			: Triangle(_r_1_3_11)
+			: Line(_r_1_3_12)
+			: Clip Rectangle(_r_1_3_13)
+			: Oval(_r_1_3_14)
+			: Polygone(_r_1_3_16)
+	:m Color(_r_2)
+		:g (_r_2_17) [1,*] 
+			: Red(_r_2_17_18)
+			: Blue(_r_2_17_19)
+			: Green(_r_2_17_20)
+			: Black(_r_2_17_21)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

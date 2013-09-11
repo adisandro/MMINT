@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Apr 12, 2012 - 11:26 AM  -->
+<feature_model name="mon model">
+<meta>
+<data name="description">mon desc</data>
+<data name="creator">prenom nom</data>
+<data name="address"></data>
+<data name="email">mon@yahoo.fr</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">mon mon</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r FMS(_r)
+	:m F1(_r_1)
+	:o F2(_r_2)
+	:g (_r_3) [1,*] 
+		: F3(_r_3_4)
+		: F4(_r_3_5)
+	:g (_r_6) [1,1] 
+		: F5(_r_6_7)
+		: F6(_r_6_8)
+	:m F7(_r_10)
+		:m F8(_r_10_11)
+		:o F9(_r_10_12)
+			:m F10(_r_10_12_13)
+			:m F11(_r_10_12_14)
+</feature_tree>
+<constraints>
+constraint_2:_r_1 or _r_6_7
+</constraints>
+</feature_model>

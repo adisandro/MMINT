@@ -1,0 +1,61 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Apr 23, 2013 - 9:56 AM  -->
+<feature_model name="Health Plan Diogo">
+<meta>
+<data name="description">Health Plan System from Diogo</data>
+<data name="creator">Diogo Vinícius de Sousa Silva</data>
+<data name="address"></data>
+<data name="email">dvss@cin.ufpe.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Cin-UFPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Health Plan Diogo(_r)
+	:m Atendimento(_r_2)
+		:g (_r_2_32) [1,*] 
+			: Medico(_r_2_32_33)
+				:g (_r_2_32_33_35) [1,*] 
+					: Ambulatorio(_r_2_32_33_35_36)
+						:g (_r_2_32_33_35_36_38) [1,*] 
+							: Ambulatorio Eletiva(_r_2_32_33_35_36_38_39)
+							: Ambulatorio Urgencia(_r_2_32_33_35_36_38_40)
+					: Internacao(_r_2_32_33_35_37)
+						:g (_r_2_32_33_35_37_41) [1,*] 
+							: Internacao Eletiva(_r_2_32_33_35_37_41_42)
+							: Internacao Urgencia(_r_2_32_33_35_37_41_43)
+			: Odontologico(_r_2_32_34)
+	:m Cobrancas(_r_6)
+		:g (_r_6_17) [1,*] 
+			: Boletos(_r_6_17_18)
+			: Cartao de credito(_r_6_17_19)
+			: Debito em conta(_r_6_17_20)
+				:g (_r_6_17_20_22) [1,*] 
+					: Banco do Brasil(_r_6_17_20_22_23)
+					: Caixa(_r_6_17_20_22_24)
+					: Bradesco(_r_6_17_20_22_25)
+			: Consignacao(_r_6_17_21)
+	:o Portal Web Benefciario(_r_7)
+		:g (_r_7_13) [1,*] 
+			: Pagamentos(_r_7_13_14)
+			: Imposto de Renda(_r_7_13_15)
+			: Historico Atendimentos(_r_7_13_16)
+	:m Repasse(_r_9)
+		:g (_r_9_62) [1,1] 
+			: Geracao arquivos bancarios(_r_9_62_63)
+			: Exportacao PDF(_r_9_62_64)
+	:o Prestador(_r_45)
+		:g (_r_45_29) [1,*] 
+			: Envio TISS(_r_45_29_30)
+			: Solicitacao de Atendimentos(_r_45_29_34)
+			: Consulta Repasse(_r_45_29_35)
+</feature_tree>
+<constraints>
+constraint_8:_r_2_32_33_35_36_38_40 or ~_r_2_32_33_35_37_41_43
+constraint_9:~_r_9_62_64 or ~_r_45_29_35
+constraint_6:~_r_2_32_34 or _r_6_17_18
+constraint_7:~_r_2_32_33_35_37 or _r_45
+</constraints>
+</feature_model>

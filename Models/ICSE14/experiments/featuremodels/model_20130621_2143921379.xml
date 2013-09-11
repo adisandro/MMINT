@@ -1,0 +1,58 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jun 26, 2013 - 5:26 AM  -->
+<feature_model name="Bikesharing">
+<meta>
+<data name="description">Bikesharing system</data>
+<data name="creator">S. Gnesi</data>
+<data name="address"></data>
+<data name="email">gnesi@isti.cnr.it</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ISTI-CNR, Italy</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Bikesharing(_r)
+	:o Status(_r_1)
+		:g (_r_1_7) [1,*] 
+			: RTInfoWeb(_r_1_7_8)
+			: AllBikesNow(_r_1_7_9)
+	:m Bici(_r_2)
+		:o Localization(_r_2_10)
+			:g (_r_2_10_11) [1,*] 
+				: GPS(_r_2_10_11_12)
+				: RFID(_r_2_10_11_13)
+		:o Antithieves(_r_2_14)
+	:m DockingStation(_r_3)
+		:g (_r_3_15) [1,1] 
+			: Fixed(_r_3_15_16)
+			: FixedPortable(_r_3_15_17)
+			: Flexible(_r_3_15_18)
+	:o Maintenance(_r_4)
+	:o Redistribution(_r_5)
+		:o Reward(_r_5_19)
+	:m Users(_r_6)
+		:m AccessMgmtSys(_r_6_20)
+			:g (_r_6_20_21) [1,*] 
+				: Smartcard(_r_6_20_21_22)
+				: Smartphone(_r_6_20_21_23)
+				: KeyCard(_r_6_20_21_24)
+		:m UserRegistration(_r_6_28)
+			:g (_r_6_28_29) [1,*] 
+				: KioskReg(_r_6_28_29_30)
+					:o Touchscreen(_r_6_28_29_30_33)
+					:o CreditCard(_r_6_28_29_30_35)
+					:o KeyCardDispenser(_r_6_28_29_30_36)
+					:o KeyCardReader(_r_6_28_29_30_30)
+				: DockStatReg(_r_6_28_29_31)
+				: WebReg(_r_6_28_29_32)
+</feature_tree>
+<constraints>
+constraint_1:~_r_1_7_9 or _r_2_10_11_12
+constraint_8:_r_2_10_11_12 or ~_r_2_14
+constraint_6:_r_6_20_21_24 or ~_r_6_28_29_30_36
+constraint_7:~_r_6_20_21_24 or _r_6_28_29_30_30
+constraint_5:~_r_6_20_21_24 or _r_6_28_29_30_36
+</constraints>
+</feature_model>

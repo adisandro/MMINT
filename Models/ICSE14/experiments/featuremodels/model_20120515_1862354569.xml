@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, May 21, 2012 - 11:59 AM  -->
+<feature_model name="Agile Simules">
+<meta>
+<data name="description">Agile Simules</data>
+<data name="creator">Carlos Souza</data>
+<data name="address"></data>
+<data name="email">carlosgsouza@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Agile Simules(_r)
+	:m Regras(_r_1)
+		:m Selecao de Projetos(_r_1_2)
+		:m Selecao de Desenvolvedores(_r_1_3)
+		:m Geracao de Codigo(_r_1_4)
+		:m Geracao de Bugs(_r_1_5)
+		:m Conserto de Bugs(_r_1_6)
+		:o Modo Caos(_r_1_7)
+	:m i18n(_r_10)
+		:g (_r_10_11) [1,1] 
+			: English(_r_10_11_12)
+			: Portugues(_r_10_11_13)
+	:o Propaganda(_r_14)
+	:o Compartilhamento(_r_13)
+		:g (_r_13_14) [1,*] 
+			: Twitter(_r_13_14_15)
+			: Facebook(_r_13_14_16)
+</feature_tree>
+<constraints>
+constraint_4:_r_10_11_12 or ~_r_14
+</constraints>
+</feature_model>

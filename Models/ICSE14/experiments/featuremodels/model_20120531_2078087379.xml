@@ -1,0 +1,41 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, May 31, 2012 - 5:19 AM  -->
+<feature_model name="GuideAgent">
+<meta>
+<data name="description">Feature Model of the GuideAgent in the intelligent museum case study</data>
+<data name="creator">Inmaculada Ayala</data>
+<data name="address"></data>
+<data name="email">ayala@lcc.uma.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidad de Málaga</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Agent(_r)
+	:m Coordination(_r_1)
+		:m Forward(_r_1_5)
+		:m RoutePlanning(_r_1_6)
+		:m Content Sharing(_r_1_7)
+		:m SecurityNotification(_r_1_8)
+	:m Monitoring(_r_2)
+		:m LocationMonitor(_r_2_9)
+		:m PowerMonitor(_r_2_10)
+		:m CPUMonitor(_r_2_11)
+	:m Distribution(_r_3)
+		:g (_r_3_12) [1,*] 
+			: SolPlugin(_r_3_12_13)
+			: JadePlugin(_r_3_12_14)
+			: BluePlugin(_r_3_12_15)
+	:m Representation(_r_4)
+		:g (_r_4_16) [1,*] 
+			: StringBased(_r_4_16_17)
+			: ACLBased(_r_4_16_18)
+</feature_tree>
+<constraints>
+constraint_4:~_r_3_12_14 or _r_4_16_18
+constraint_2:~_r_3_12_13 or _r_4_16_17
+constraint_3:~_r_3_12_15 or _r_4_16_17
+</constraints>
+</feature_model>

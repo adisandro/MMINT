@@ -1,0 +1,95 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jul 12, 2011 - 10:49 AM  -->
+<feature_model name="bCMS system">
+<meta>
+<data name="description">describes a small distributed car crisis management system</data>
+<data name="creator">Istoan Paul</data>
+<data name="address"></data>
+<data name="email">istoanp@yahoo.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Luxembourg</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r bCMS system(_r)
+	:m Non-functional(_r_1)
+		:m Data communication confidentiality(_r_1_50)
+			:g (_r_1_50_51) [1,1] 
+				: Encrypted(_r_1_50_51_52)
+				: Not encrypted(_r_1_50_51_53)
+		:o Authentication(_r_1_54)
+			:g (_r_1_54_55) [1,*] 
+				: Password based(_r_1_54_55_56)
+				: Certificate based(_r_1_54_55_57)
+				: Biometric based(_r_1_54_55_58)
+				: One time password(_r_1_54_55_59)
+				: Challenge-response(_r_1_54_55_60)
+					:g (_r_1_54_55_60_61) [1,1] 
+						: Symmetric encryption(_r_1_54_55_60_61_62)
+						: Mutual authorization(_r_1_54_55_60_61_63)
+						: Kerberos(_r_1_54_55_60_61_64)
+		:o Communication layer(_r_1_65)
+			:g (_r_1_65_66) [1,1] 
+				: Proprietary(_r_1_65_66_67)
+				: Other(_r_1_65_66_68)
+					:o HTTP(_r_1_65_66_68_69)
+					:o SOAP(_r_1_65_66_68_70)
+		:m Integrity(_r_1_71)
+			:m Integrity of crisis location vehicle no and location(_r_1_71_72)
+			:m Integrity of other data(_r_1_71_73)
+		:m Availability(_r_1_74)
+		:m Performance(_r_1_75)
+	:m Functional(_r_2)
+		:m P and F station multiplicity(_r_2_3)
+			:g (_r_2_3_4) [1,1] 
+				: One PS and FS(_r_2_3_4_5)
+				: Many PS and FS(_r_2_3_4_8)
+		:o Vehicles management(_r_2_9)
+			:g (_r_2_9_10) [1,1] 
+				: No send and receive messages(_r_2_9_10_11)
+				: Other(_r_2_9_10_12)
+					:o PSC send and receive messages(_r_2_9_10_12_13)
+					:o FSC send and receive  messages(_r_2_9_10_12_14)
+					:o PSC and FSC send messages(_r_2_9_10_12_15)
+					:o PSC receive messages(_r_2_9_10_12_16)
+		:o Vehicle management communication protocol(_r_2_17)
+			:o SOAP(_r_2_17_18)
+			:o SSL(_r_2_17_19)
+		:m Crisis multplicity(_r_2_20)
+			:g (_r_2_20_21) [1,1] 
+				: Single(_r_2_20_21_22)
+				: Multiple(_r_2_20_21_23)
+		:m Establish communication(_r_2_24)
+			:g (_r_2_24_25) [1,*] 
+				: PSC communicates(_r_2_24_25_26)
+				: FSC communicates(_r_2_24_25_27)
+		:m Coordinate identification(_r_2_28)
+			:m PSC credentials(_r_2_28_29)
+			:m FSC credentials(_r_2_28_30)
+		:m Crisis details exchange(_r_2_31)
+			:m PSC crisis details(_r_2_31_32)
+			:m FSC crisis details(_r_2_31_33)
+		:m Create coordinated roue plan(_r_2_34)
+		:m Vehicle dispatch coordination(_r_2_35)
+			:m Police care dispatch(_r_2_35_36)
+			:m Fire truck dispatch(_r_2_35_37)
+		:m Vehicle target arrival coordination(_r_2_38)
+			:m Police car arrival(_r_2_38_39)
+			:m Fire truck arrival(_r_2_38_40)
+		:m Objective completion coordination(_r_2_41)
+			:m Police car objective complete(_r_2_41_42)
+			:m Fire truck objective complete(_r_2_41_43)
+		:m Vehicle return coordination(_r_2_44)
+			:m Plice car back(_r_2_44_45)
+			:m Fire truck back(_r_2_44_46)
+		:m Close crisis(_r_2_47)
+			:m FSC close(_r_2_47_48)
+			:m PSC close(_r_2_47_49)
+</feature_tree>
+<constraints>
+constraint_2:_r_2_9_10_12_13 or ~_r_2_9_10_12_15
+constraint_3:_r_2_9_10_12_14 or ~_r_2_9_10_12_15
+</constraints>
+</feature_model>

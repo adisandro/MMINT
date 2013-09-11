@@ -1,0 +1,44 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Aug 22, 2010 - 6:04 AM  -->
+<feature_model name="Web Content Delivery">
+<meta>
+<data name="description">An attempt to apply FODA principles to the concept of caching in web applications</data>
+<data name="creator">Paul Hudspith</data>
+<data name="address"></data>
+<data name="email">paul.hudspith@new.ox.ac.uk</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Oxford</data>
+<data name="department">Software Engineering Programme</data>
+<data name="date">Aug 2010</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Web Content Delivery(_r)
+	:m Check for content updates(_r_1)
+		:g (_r_1_2) [1,1] 
+			: Check after defined wait(_r_1_2_3)
+			: Check after heuristic wait(_r_1_2_4)
+			: Always check for updates(_r_1_2_5)
+	:o Authorise access to content(_r_6)
+	:o Store in cache(_r_7)
+		:g (_r_7_8) [1,*] 
+			: Store in browser cache(_r_7_8_9)
+				:g (_r_7_8_9_15) [1,1] 
+					: Short-term cache(_r_7_8_9_15_16)
+					: Long-term cache(_r_7_8_9_15_20)
+			: Store in proxy cache(_r_7_8_10)
+	:o Encrypt content(_r_21)
+	:o Serve from cache(_r_22)
+		:g (_r_22_23) [1,1] 
+			: Serve from browser cache(_r_22_23_24)
+			: Serve from proxy cache(_r_22_23_25)
+</feature_tree>
+<constraints>
+constraint_6:~_r_1_2_4 or _r_7
+constraint_7:~_r_1_2_5 or _r_6
+constraint_4:_r_7_8_10 or _r_21
+constraint_5:~_r_1_2_3 or _r_7
+constraint_2:~_r_7_8_9 or _r_22_23_24
+constraint_3:~_r_7_8_10 or _r_22_23_25
+</constraints>
+</feature_model>

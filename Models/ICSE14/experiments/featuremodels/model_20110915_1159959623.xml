@@ -1,0 +1,33 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Oct 24, 2011 - 6:35 PM  -->
+<feature_model name="MyFM">
+<meta>
+<data name="description">testFMsplot</data>
+<data name="creator">sc</data>
+<data name="address"></data>
+<data name="email">scolige@info.fundp.ac.be</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">FUNDP</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MyRoot(_r)
+	:m MyFeature(_r_1)
+		:g (_r_1_3) [1,1] 
+			: Blue(_r_1_3_4)
+			: Red(_r_1_3_7)
+			: Green(_r_1_3_19)
+	:o MyFeature2(_r_2)
+		:g (_r_2_11) [1,1] 
+			: Light(_r_2_11_15)
+			: Dark(_r_2_11_16)
+			: None(_r_2_11_17)
+	:o opt(_r_20)
+</feature_tree>
+<constraints>
+constraint_2:~_r_1_3_4 or ~_r_2_11_17 or _r_20
+constraint_3:~_r_2_11_16 or _r_1_3_19
+</constraints>
+</feature_model>

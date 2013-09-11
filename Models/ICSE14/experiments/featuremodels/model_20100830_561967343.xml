@@ -1,0 +1,52 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Aug 31, 2010 - 6:20 AM  -->
+<feature_model name="ELEC5619 - End User Model">
+<meta>
+<data name="description">A model of the features from the end user's view.</data>
+<data name="creator">Bran X</data>
+<data name="address"></data>
+<data name="email">jing2148@uni.sydney.edu.au</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Sydney</data>
+<data name="department">School of Electrical and Information Engineering</data>
+<data name="date">31st August 2010</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Building(_r)
+	:m Elevators(_r_4)
+		:m Control Panel(_r_4_9)
+			:m Level Selector(_r_4_9_11)
+			:o Cancel Mechanism(_r_4_9_12)
+			:m Open Door Mechanism(_r_4_9_14)
+			:m Close Door Mechanism(_r_4_9_15)
+			:m Alarm Mechanism(_r_4_9_16)
+			:m Operation Mode Selector(_r_4_9_28)
+			:m Manual Stop Mechanism(_r_4_9_29)
+		:m Display(_r_4_10)
+		:m Doors(_r_4_17)
+			:m Front Door(_r_4_17_18)
+			:o Back Door(_r_4_17_19)
+		:o After-Hours Security Access Panel(_r_4_20)
+			:g (_r_4_20_21) [1,1] 
+				: Access Card Scanner(_r_4_20_21_22)
+				: Fingerprint Scanner(_r_4_20_21_23)
+		:m Maintenance Hatch(_r_4_32)
+	:m Levels(_r_5)
+		:m Display(_r_5_6)
+			:m Elevator Direction(_r_5_6_26)
+			:m Elevator Level(_r_5_6_27)
+		:m Control Panel(_r_5_7)
+			:m Up-Down Selector(_r_5_7_22)
+			:o Cancel Mechanism(_r_5_7_23)
+		:m Doors(_r_5_8)
+			:m Front Door(_r_5_8_31)
+			:o Back Door(_r_5_8_32)
+	:m Elevator Safety System(_r_13)
+		:m Obstruction Detector(_r_13_30)
+		:m Overload Detector(_r_13_31)
+		:m Emergency(__r_13_30)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 28, 2012 - 9:38 AM  -->
+<feature_model name="SMS a Cobrar / Resposta paga">
+<meta>
+<data name="description">Aplicaçao de envio e recebimento de SMS a Cobrar / Resposta Paga</data>
+<data name="creator">João Paulo Souza Reis</data>
+<data name="address"></data>
+<data name="email">joaoreis@dcc.ufmg.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r SMS_ACB_RP(_r)
+	:g (_r_35) [1,*] 
+		: Envio de mensagem(_r_35_36)
+			:o Nao tarifado(_r_35_36_39)
+			:o Tarifado(_r_35_36_43)
+	:m Recebimento de mensagem(_r_44)
+	:o Alerta de nova mensagem(_r_45)
+	:o Alerta de mensagem pendente(_r_46)
+	:o Alerta de entregas(_r_47)
+	:m Agenda(_r_48)
+		:m Adicionar contato(_r_48_49)
+		:m Remover contato(_r_48_51)
+	:o White list(_r_52)
+		:m Adicionar(_r_52_54)
+		:m Remover(_r_52_55)
+	:o Black List(_r_56)
+		:m Adicionar(_r_56_57)
+		:m Remover(_r_56_58)
+</feature_tree>
+<constraints>
+constraint_6:_r_48 or ~_r_56
+constraint_5:_r_48 or ~_r_52
+constraint_2:_r_35_36_39 or ~_r_45
+</constraints>
+</feature_model>

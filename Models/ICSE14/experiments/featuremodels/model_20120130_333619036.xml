@@ -1,0 +1,58 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Jul 14, 2012 - 6:25 AM  -->
+<feature_model name="tool analysis">
+<meta>
+<data name="description">tool analysis</data>
+<data name="creator">Marcelo Fantinato</data>
+<data name="address"></data>
+<data name="email">m.fantinato@usp.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">USP</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r home_bankinng(_r)
+	:m balance(_r_20)
+		:g (_r_20_22) [1,*] 
+			: export_to_excel(_r_20_22_23)
+			: export_to_pdf(_r_20_22_24)
+	:o statement(_r_21)
+		:g (_r_21_25) [1,*] 
+			: export_to_excel(_r_21_25_26)
+			: export_to_pdf(_r_21_25_27)
+	:o investments(_r_28)
+		:o stocks(_r_28_17)
+			:o charts(_r_28_17_18)
+				:g (_r_28_17_18_19) [1,1] 
+					: simple_chart(_r_28_17_18_19_20)
+					: professional_chart(_r_28_17_18_19_21)
+					: expert_chart(_r_28_17_18_19_22)
+	:o transfer(_r_29)
+		:g (_r_29_30) [1,*] 
+			: checking_account_to_savings_account(_r_29_30_31)
+			: savings_account_to_checking_account(_r_29_30_33)
+			: checking_account_to_another_account(_r_29_30_35)
+	:o payments(_r_13)
+		:g (_r_13_14) [1,*] 
+			: by_credit_card(_r_13_14_15)
+			: by_bank_slip(_r_13_14_16)
+	:o statement(__r_21)
+		:g (__r_21_25) [1,*] 
+			: export_to_excel(__r_21_25_26)
+			: export_to_pdf(__r_21_25_27)
+	:o investments(__r_28)
+		:o stocks(__r_28_17)
+			:o charts(__r_28_17_18)
+				:g (__r_28_17_18_19) [1,1] 
+					: simple_chart(__r_28_17_18_19_20)
+					: professional_chart(__r_28_17_18_19_21)
+	:o dependencia_unidireciona_b(_r_34)
+	:g (_r_35) [1,1] 
+		: Feature-36(_r_35_36)
+		: Feature-37(_r_35_37)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

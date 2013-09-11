@@ -1,0 +1,29 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Dec 19, 2012 - 7:46 PM  -->
+<feature_model name="WebApp">
+<meta>
+<data name="description">WebApp</data>
+<data name="creator">Andrey</data>
+<data name="address"></data>
+<data name="email">kornienko.andrey@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">BrightFly</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r WEB1(_r)
+	:m Communication(_r_1)
+		:o Chat(_r_1_2)
+			:o Public(_r_1_2_8)
+			:o Private(_r_1_2_9)
+		:o Audio(_r_1_3)
+		:o Video(_r_1_4)
+	:o Presentation(_r_6)
+	:o Whiteboard(_r_7)
+	:o Participants List(_r_10)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

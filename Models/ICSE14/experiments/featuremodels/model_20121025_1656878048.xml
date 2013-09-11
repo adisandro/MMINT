@@ -1,0 +1,45 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 25, 2012 - 4:18 PM  -->
+<feature_model name="MODELO HISTORIA CLINICA">
+<meta>
+<data name="description">Diferentes consultas medicas</data>
+<data name="creator">Adriana Vasquez</data>
+<data name="address"></data>
+<data name="email">advasquez78@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UNICOLMAYOR</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r HISTORIA CLINICA(_r)
+	:m DATOS PERSONALES(_r_1)
+	:m ANAMNESIS(_r_2)
+		:m MOTIVO DE LA CONSULTA(_r_2_4)
+		:o ENFERMEDAD ACTUAL(_r_2_5)
+	:o EVOLUCION(_r_6)
+		:o EVOL ODONTOLOGICA(_r_6_23)
+	:m SIGNOS VITALES(_r_8)
+		:m SIGNOS(_r_8_13)
+		:o DATOS ANTROPOMETRICOS(_r_8_15)
+	:o REVISION POR SISTEMAS(_r_9)
+	:o EXAMEN FISICO(_r_10)
+	:m DIAGNOSTICOS(_r_11)
+		:m DIAGNOSTICO PRINCIPAL(_r_11_16)
+		:o DIAGNOSTICO RELACIONADO(_r_11_17)
+	:m ORDENES MEDICAS(_r_12)
+		:m ESTUDIOS(_r_12_18)
+		:m FARMACOLOGICOS(_r_12_21)
+		:o RECOMENDACIONES MEDICAS(_r_12_22)
+	:o EXAMEN ODONTOLOGICO(_r_24)
+	:o ODONTOGRAMA(_r_25)
+	:o PLAN DE TRATAMIENTO(_r_26)
+	:o INDICE DE PLACA BACTERIANA(_r_27)
+	:m ANTECEDENTES(_r_28)
+		:o ANTECEDENTES PERINATALES(_r_28_29)
+		:o ANTECEDENTES SOCIOECONOMICOS(_r_28_30)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

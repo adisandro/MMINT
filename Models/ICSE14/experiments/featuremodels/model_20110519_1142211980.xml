@@ -1,0 +1,29 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Feb 27, 2012 - 7:19 AM  -->
+<feature_model name="CTOS MODEL">
+<meta>
+<data name="description">container terminal system</data>
+<data name="creator">M.Westbroek</data>
+<data name="address"></data>
+<data name="email">westbroek@zonnet.nl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">OUNL</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r CTOS(_r)
+	:m Ship-to-Shore SubSystem(_r_1)
+		:m Berth Planning Module(_r_1_5)
+		:m Stowage Planning Module(_r_1_6)
+	:m Transfer System(_r_2)
+	:m Storage System(_r_3)
+		:m Yard Control Module(_r_3_7)
+		:m Yard Handler Module(_r_3_8)
+	:m Delivery and Receipt SubSystem(_r_4)
+		:m Gate Inspection Module(_r_4_9)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

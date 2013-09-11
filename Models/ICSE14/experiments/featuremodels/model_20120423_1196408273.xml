@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Apr 23, 2012 - 8:06 AM  -->
+<feature_model name="Simaldores de Engenharia de Software">
+<meta>
+<data name="description">Features extraídas dos jogos PnP e Simules.</data>
+<data name="creator">Leandro Peracio</data>
+<data name="address"></data>
+<data name="email">leandroperacio@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r JogosES(_r)
+	:m Idioma(_r_4)
+		:g (_r_4_17) [1,1] 
+			: Ingles-1(_r_4_17_18)
+			: Portugues-2(_r_4_17_19)
+	:m Modelo_de_desenvolvimento(_r_20)
+		:g (_r_20_21) [1,1] 
+			: Cascata-1(_r_20_21_22)
+			: Espiral-2(_r_20_21_23)
+			: XP-3(_r_20_21_24)
+	:m Cartas(_r_25)
+		:g (_r_25_26) [1,1] 
+			: Informativas-1(_r_25_26_27)
+			: Abstratas-2(_r_25_26_28)
+	:m Jogadores(_r_29)
+		:g (_r_29_32) [1,1] 
+			: Entre_quatro_e_oito-1(_r_29_32_33)
+			: Quantidade_aleatoria(_r_29_32_34)
+	:o Tabuleiro(_r_35)
+	:o Dado(_r_36)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

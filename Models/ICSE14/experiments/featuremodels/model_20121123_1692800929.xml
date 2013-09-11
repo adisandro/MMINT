@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 8:34 AM  -->
+<feature_model name="Mobile  Model">
+<meta>
+<data name="description">descreve s funções de um aparelho celular </data>
+<data name="creator">Camila Saporetti</data>
+<data name="address"></data>
+<data name="email">saporetticamila@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">I don't know</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMedia(_r)
+	:o Media Selection(_r_1)
+		:m Photo(_r_1_19)
+		:m Music(_r_1_20)
+		:o Video(_r_1_21)
+	:m Media Management(_r_2)
+		:m Favourites(_r_2_10)
+			:m Set Favourities(_r_2_10_22)
+			:m View Favourities(_r_2_10_23)
+		:o Copy Media(_r_2_12)
+		:o SMS Transfer(_r_2_13)
+			:m Receive Photo(_r_2_13_24)
+			:m Send Photo(_r_2_13_25)
+	:m Screen Size(_r_3)
+		:g (_r_3_18) [1,1] 
+			: Screen1(_r_3_18_19)
+			: Screen2(_r_3_18_20)
+</feature_tree>
+<constraints>
+constraint_1:_r_2_12 or ~_r_2_13
+constraint_2:_r_3_18_19 or _r_1_19
+</constraints>
+</feature_model>

@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, May 29, 2013 - 5:25 PM  -->
+<feature_model name="teste puc">
+<meta>
+<data name="description">teste de interface</data>
+<data name="creator">Marcio R. Rosemberg</data>
+<data name="address"></data>
+<data name="email">mrrosemberg@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PUC-Rio</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_3)
+		:m Photo(_r_3_21)
+		:o Music(_r_3_22)
+		:o Video(_r_3_23)
+	:m Media Management(_r_8)
+		:m Favourites(_r_8_9)
+			:m Set Favourites(_r_8_9_19)
+			:m View Favorites(_r_8_9_20)
+		:o Copy Media(_r_8_10)
+		:o SMS Transfer(_r_8_11)
+			:o Receive Photo(_r_8_11_17)
+			:o Send Photo(_r_8_11_18)
+	:m Screen Size(_r_12)
+		:g (_r_12_13) [1,1] 
+			: Screen 1(_r_12_13_14)
+			: Screen 2(_r_12_13_15)
+</feature_tree>
+<constraints>
+constraint_1:~_r_8_10 or _r_8_11
+</constraints>
+</feature_model>

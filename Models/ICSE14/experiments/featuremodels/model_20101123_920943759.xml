@@ -1,0 +1,40 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Nov 23, 2010 - 12:43 AM  -->
+<feature_model name="VMS">
+<meta>
+<data name="description">IT CONTAINS INFO ABOUT VENDOR DETAILS, TECHNICAL APPROVAL, AND COMMERCIAL APPROVAL.</data>
+<data name="creator">SJ</data>
+<data name="address"></data>
+<data name="email">hereissarwat@hotmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">KIET</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Vendor Management System(_r)
+	:m Vendor details(_r_3)
+		:g (_r_3_10) [1,1] 
+			: Feature-11(_r_3_10_11)
+	:m Technical approval(_r_4)
+	:m Commercial approval(_r_5)
+	:g (_r_6) [1,1] 
+		: Feature-7(_r_6_7)
+	:g (_r_8) [1,*] 
+		: Feature-9(_r_8_9)
+	:g (_r_12) [1,*] 
+		: Feature-13(_r_12_13)
+	:g (_r_14) [1,*] 
+		: Feature-15(_r_14_15)
+			:o Feature-17(_r_14_15_17)
+			:g (_r_14_15_19) [1,*] 
+				: Feature-20(_r_14_15_19_20)
+		: Feature-16(_r_14_16)
+		: Feature-18(_r_14_18)
+	:o Feature-21(_r_21)
+	:o Feature-22(_r_22)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

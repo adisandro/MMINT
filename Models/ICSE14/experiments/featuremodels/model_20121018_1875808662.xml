@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 18, 2012 - 9:38 AM  -->
+<feature_model name="Mobile Media">
+<meta>
+<data name="description">Modelo para aplicativos móveis</data>
+<data name="creator">Erica Oliveira</data>
+<data name="address"></data>
+<data name="email">erica@dcc.ufmg.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department">DCC </data>
+<data name="date">18/10/2012</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobileMediaEricaOliveira(_r)
+	:m Media Selection(_r_1)
+		:g (_r_1_26) [1,*] 
+			: Photo(_r_1_26_27)
+			: Music(_r_1_26_28)
+			: Video(_r_1_26_29)
+	:m Media Management(_r_6)
+		:o Favourites(_r_6_7)
+			:m Set Favourites(_r_6_7_12)
+			:m View Favourites(_r_6_7_13)
+		:o SMS Transfer(_r_6_11)
+			:o Receive Photo(_r_6_11_14)
+			:o Send Photo(_r_6_11_15)
+		:m Copy Media(_r_6_30)
+	:m Screen Size(_r_17)
+		:g (_r_17_18) [1,1] 
+			: Screen 1(_r_17_18_19)
+			: Screen 2(_r_17_18_24)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

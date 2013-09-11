@@ -1,0 +1,37 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 18, 2012 - 9:32 AM  -->
+<feature_model name="MobileMedia_Pedro_Pires">
+<meta>
+<data name="description">Feature Model do Mobile Media</data>
+<data name="creator">Pedro Pires</data>
+<data name="address"></data>
+<data name="email">ppires@dcc.ufmg.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_1)
+		:g (_r_1_2) [1,*] 
+			: Photo(_r_1_2_3)
+			: Music(_r_1_2_4)
+			: Video(_r_1_2_5)
+	:m Screen Size(_r_6)
+		:g (_r_6_7) [1,1] 
+			: Screen1(_r_6_7_8)
+			: Screen2(_r_6_7_9)
+	:m Media Management(_r_11)
+		:o Favourites(_r_11_12)
+			:m Set Favourites(_r_11_12_13)
+			:m View Favourites(_r_11_12_14)
+		:m Copy Media(_r_11_15)
+		:o SMS Transfer(_r_11_16)
+			:o Receive Photo(_r_11_16_17)
+			:o Send Photo(_r_11_16_18)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

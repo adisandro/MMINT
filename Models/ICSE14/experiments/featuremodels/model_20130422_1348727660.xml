@@ -1,0 +1,43 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Apr 22, 2013 - 11:38 PM  -->
+<feature_model name="RST Game">
+<meta>
+<data name="description">A product line to build RTS games</data>
+<data name="creator">Waldemar Pires</data>
+<data name="address"></data>
+<data name="email">waldemar.neto@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Real Time Strategy Game(_r)
+	:m Maps(_r_1)
+		:g (_r_1_2) [1,*] 
+			: Rio de Janeiro(_r_1_2_3)
+			: Paris(_r_1_2_4)
+			: New York(_r_1_2_5)
+			: Toquio(_r_1_2_6)
+	:m Game Play(_r_7)
+		:g (_r_7_8) [1,1] 
+			: Multiplayer(_r_7_8_9)
+			: Solo(_r_7_8_10)
+	:m Strategy(_r_11)
+		:g (_r_11_12) [1,1] 
+			: Tower Defense(_r_11_12_13)
+			: GQ based(_r_11_12_14)
+	:o Configuration(_r_15)
+		:g (_r_15_16) [1,*] 
+			: Internet Connection(_r_15_16_17)
+			: AI(_r_15_16_19)
+			: Authentication(_r_15_16_21)
+	:o Openning(_r_22)
+		:g (_r_22_23) [1,1] 
+			: CG(_r_22_23_24)
+			: MP4(_r_22_23_25)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

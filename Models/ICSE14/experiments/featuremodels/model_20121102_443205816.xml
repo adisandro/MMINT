@@ -1,0 +1,53 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Nov 3, 2012 - 4:08 AM  -->
+<feature_model name="DMS">
+<meta>
+<data name="description">Sample configuration for a DMS</data>
+<data name="creator">Martin</data>
+<data name="address"></data>
+<data name="email">martin.ebner@porscheinformatik.at</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">POI</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r CROSS2(_r)
+	:m KASSABUCH(_r_1)
+		:m Kassabuchhardware(_r_1_2)
+			:o Display(_r_1_2_3)
+				:g (_r_1_2_3_4) [1,1] 
+					: WN_BA63_ND77(_r_1_2_3_4_5)
+					: WN_BA63_USB(_r_1_2_3_4_6)
+			:o Printer(_r_1_2_7)
+				:g (_r_1_2_7_8) [1,1] 
+					: WN_ND77_COM(_r_1_2_7_8_9)
+					: WN_TH230_USB(_r_1_2_7_8_10)
+			:o CashDrawer(_r_1_2_11)
+				:g (_r_1_2_11_12) [1,1] 
+					: WN_KA_ND77(_r_1_2_11_12_13)
+					: WN_KA_TH230_USB(_r_1_2_11_12_14)
+		:g (_r_1_15) [1,1] 
+			: YES(_r_1_15_16)
+				:m Hardware(_r_1_15_16_18)
+					:g (_r_1_15_16_18_19) [1,1] 
+						: Yes(_r_1_15_16_18_19_20)
+							:o Display(_r_1_15_16_18_19_20_22)
+								:g (_r_1_15_16_18_19_20_22_23) [1,1] 
+									: WN_BA63_ND77(_r_1_15_16_18_19_20_22_23_24)
+									: WN_BA63_USB(_r_1_15_16_18_19_20_22_23_25)
+						: NO(_r_1_15_16_18_19_21)
+			: NO(_r_1_15_17)
+	:m Cost Center required(_r_15)
+		:g (_r_15_23) [1,1] 
+			: Yes(_r_15_23_24)
+			: No(_r_15_23_25)
+	:m ModifyOnNextDayEnabled(_r_16)
+		:g (_r_16_26) [1,1] 
+			: Yes(_r_16_26_27)
+			: No(_r_16_26_28)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

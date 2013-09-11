@@ -1,0 +1,81 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Mar 31, 2012 - 5:55 PM  -->
+<feature_model name="Hotel Product Line">
+<meta>
+<data name="description">Hotel Product Line</data>
+<data name="creator">Marcilio Mendonca</data>
+<data name="address"></data>
+<data name="email">marcilio.mendonca@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Independent Researcher</data>
+<data name="department"></data>
+<data name="date">March 2012</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Hotel Product Line(_r)
+	:o Swimming Pool(_r_1)
+		:m Type(_r_1_16)
+			:g (_r_1_16_17) [1,*] 
+				: Indoor pool(_r_1_16_17_18)
+				: Outdoor pool(_r_1_16_17_19)
+	:m Room(_r_4)
+		:m Bed Type(_r_4_7)
+			:g (_r_4_7_8) [1,1] 
+				: 1 King bed(_r_4_7_8_9)
+				: 2 Queen beds(_r_4_7_8_10)
+				: 2 Double beds(_r_4_7_8_11)
+		:o Air conditioning(_r_4_14)
+		:o Heater(_r_4_15)
+		:o TV(_r_4_20)
+			:o Paperview Movies(_r_4_20_27)
+			:o Games(_r_4_20_42)
+		:o Internet Access(_r_4_21)
+			:g (_r_4_21_22) [1,*] 
+				: Wifi(_r_4_21_22_23)
+				: Wired(_r_4_21_22_24)
+		:o Refrigerator(_r_4_25)
+		:m Bathroom(_r_4_26)
+		:o Safe(_r_4_28)
+		:o Hair Dryer(_r_4_40)
+		:o Telephone(_r_4_41)
+		:o Hot Tub(_r_4_45)
+		:o Fireplace(_r_4_48)
+		:o Microwave(_r_4_52)
+		:o Coffee Machine(_r_4_53)
+		:m Smoking Preference(_r_4_58)
+			:g (_r_4_58_59) [1,1] 
+				: Smoking room(_r_4_58_59_60)
+				: Non-smoking room(_r_4_58_59_61)
+		:o Sofa bed(_r_4_62)
+		:o Clock and Alarm(_r_4_63)
+	:m Parking(_r_29)
+		:g (_r_29_30) [1,1] 
+			: Paid parking(_r_29_30_31)
+			: Free parking(_r_29_30_32)
+		:o Vallet(_r_29_55)
+	:o Fast Check-In Check-Out(_r_34)
+	:o Restaurant(_r_35)
+	:o Breakfest(_r_36)
+		:g (_r_36_37) [1,1] 
+			: Paid breakfest(_r_36_37_38)
+			: Complimentary breakfest(_r_36_37_39)
+	:o Guest Laundry(_r_43)
+	:o Room Service(_r_44)
+		:o 24-hour room service(_r_44_49)
+	:o Lounge Internet Access(_r_46)
+	:o Bar(_r_47)
+	:o Massage services(_r_50)
+	:o Spa services(_r_51)
+	:o Concierge(_r_54)
+	:o Childcare(_r_56)
+	:o Conference Facility(_r_57)
+	:m Story(_r_64)
+		:g (_r_64_65) [1,1] 
+			: Multiple Floors(_r_64_65_66)
+				:o Elevator(_r_64_65_66_67)
+			: Ground Level(_r_64_65_68)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

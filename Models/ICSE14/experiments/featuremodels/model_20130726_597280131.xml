@@ -1,0 +1,81 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jul 26, 2013 - 7:42 AM  -->
+<feature_model name="Seguros">
+<meta>
+<data name="description">Seguros</data>
+<data name="creator">LucaDiegoJose</data>
+<data name="address"></data>
+<data name="email">jv.quiroz@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">eafit</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Seguros(_r)
+	:m Tomador(_r_1)
+		:g (_r_1_2) [1,1] 
+			: Empresa(_r_1_2_3)
+				:g (_r_1_2_3_5) [1,1] 
+					: Pymes(_r_1_2_3_5_6)
+					: Grandes Grupos(_r_1_2_3_5_7)
+			: Persona(_r_1_2_4)
+	:g (_r_8) [1,1] 
+		: Riesgo Persona(_r_8_9)
+			:m Riesgo 1(_r_8_9_13)
+			:o Riesgo 2(_r_8_9_14)
+			:o Riesgo 3(_r_8_9_15)
+			:o Riesgo 4(_r_8_9_16)
+		: Riesgo Cosa(_r_8_12)
+			:m Riesgo 1(_r_8_12_17)
+			:o Riesgo 2(_r_8_12_18)
+			:o Riesgo 3(_r_8_12_19)
+			:o Riesgo 4(_r_8_12_20)
+	:m Cobertura por Segmento(_r_21)
+		:g (_r_21_22) [1,*] 
+			: Salud(_r_21_22_23)
+				:g (_r_21_22_23_24) [1,1] 
+					: Clasica(_r_21_22_23_24_25)
+					: Feature(_r_21_22_23_24_26)
+			: Vida(_r_21_22_29)
+				:g (_r_21_22_29_30) [1,1] 
+					: Individual(_r_21_22_29_30_31)
+						:m Vida(_r_21_22_29_30_31_35)
+						:o Incapacidad Total Permanente(_r_21_22_29_30_31_36)
+						:o Enfermedad grave(_r_21_22_29_30_31_38)
+						:o Exequiales(_r_21_22_29_30_31_39)
+					: Grupal(_r_21_22_29_30_32)
+						:m Vida(_r_21_22_29_30_32_40)
+						:o Enfermedad Grave(_r_21_22_29_30_32_42)
+						:o Gastos de Entierro(_r_21_22_29_30_32_43)
+						:o Incapacidad Parcial(_r_21_22_29_30_32_44)
+					: Accidentes Personales(_r_21_22_29_30_33)
+						:m Muerte Accidental(_r_21_22_29_30_33_45)
+						:o Muerte Accidental con Arma(_r_21_22_29_30_33_47)
+						:o Invalidez Accidental(_r_21_22_29_30_33_48)
+						:o Invalidez Accidental con Arma(_r_21_22_29_30_33_49)
+					: Exequias(_r_21_22_29_30_34)
+						:m Gastos Exequiales 1(_r_21_22_29_30_34_50)
+						:o Gastos Exequiales 2(_r_21_22_29_30_34_51)
+						:o Gasto Exequiales 3(_r_21_22_29_30_34_53)
+			: Generales(_r_21_22_54)
+				:g (_r_21_22_54_56) [1,1] 
+					: Incendio(_r_21_22_54_56_57)
+					: Sustraccion(_r_21_22_54_56_58)
+					: Transporte(_r_21_22_54_56_59)
+			: Autos(_r_21_22_55)
+				:g (_r_21_22_55_60) [1,1] 
+					: Clasico(_r_21_22_55_60_61)
+					: Global(_r_21_22_55_60_62)
+</feature_tree>
+<constraints>
+constraint_1:_r_21_22_29_30_32_42 or ~_r_21_22_29_30_32_43
+constraint_8:~_r_8_12 or ~_r_21_22_29
+constraint_6:~_r_8_9 or ~_r_21_22_54
+constraint_7:~_r_8_12 or ~_r_21_22_23
+constraint_4:_r_21_22_29_30_33_48 or ~_r_21_22_29_30_33_49
+constraint_5:~_r_8_9 or ~_r_21_22_55
+constraint_3:_r_21_22_29_30_33_45 or ~_r_21_22_29_30_33_47
+</constraints>
+</feature_model>

@@ -1,0 +1,95 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Apr 25, 2012 - 11:47 AM  -->
+<feature_model name="Video Player">
+<meta>
+<data name="description">FM of a Video Player's SPL</data>
+<data name="creator">Jean Melo</data>
+<data name="address"></data>
+<data name="email">jccm@cin.ufpe.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFPE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Video Player(_r)
+	:m View(_r_1)
+		:o Subtitle(_r_1_7)
+			:m Font(_r_1_7_8)
+				:g (_r_1_7_8_9) [1,*] 
+					: Arial(_r_1_7_8_9_10)
+					: Times New Roman(_r_1_7_8_9_11)
+					: Courier(_r_1_7_8_9_12)
+			:m Format(_r_1_7_13)
+				:g (_r_1_7_13_14) [1,*] 
+					: Closed Caption(_r_1_7_13_14_15)
+					: USF(_r_1_7_13_14_16)
+					: SUBRip(_r_1_7_13_14_17)
+					: SUBViewer(_r_1_7_13_14_18)
+					: VPlayer(_r_1_7_13_14_19)
+					: Sami(_r_1_7_13_14_20)
+		:m Image Control(_r_1_21)
+			:m Color(_r_1_21_22)
+			:o Lighting(_r_1_21_23)
+		:o Skin(_r_1_24)
+			:o Download(_r_1_24_26)
+			:m Apply(_r_1_24_27)
+	:m Video Format(_r_28)
+		:g (_r_28_29) [1,*] 
+			: MPEG(_r_28_29_30)
+			: DivX(_r_28_29_31)
+			: XViD(_r_28_29_32)
+			: H264(_r_28_29_33)
+			: CinePak(_r_28_29_34)
+			: MJPEG(_r_28_29_35)
+			: WMV(_r_28_29_36)
+			: DV(_r_28_29_37)
+	:m Input(_r_38)
+		:m Input Media(_r_38_39)
+			:g (_r_38_39_40) [1,*] 
+				: UDP Unicast(_r_38_39_40_41)
+				: UDP Multicast(_r_38_39_40_42)
+				: HTTP(_r_38_39_40_43)
+				: File(_r_38_39_40_44)
+				: TCP(_r_38_39_40_45)
+				: MMS(_r_38_39_40_46)
+				: DVD Video(_r_38_39_40_47)
+				: SVCD(_r_38_39_40_48)
+				: DVB(_r_38_39_40_49)
+				: MPEG encoder(_r_38_39_40_50)
+				: VCD(_r_38_39_40_52)
+		:m Input Format(_r_38_53)
+			:g (_r_38_53_54) [1,*] 
+				: MPEG(_r_38_53_54_55)
+				: AVI(_r_38_53_54_56)
+				: ASF-WMV-WMA(_r_38_53_54_57)
+				: MP4(_r_38_53_54_58)
+				: OGG(_r_38_53_54_59)
+				: WAV(_r_38_53_54_60)
+				: FLV(_r_38_53_54_61)
+	:m Control(_r_63)
+		:m Time(_r_63_64)
+			:m Next(_r_63_64_65)
+			:m Seek(_r_63_64_66)
+			:o Slow(_r_63_64_67)
+			:o Fast(_r_63_64_68)
+		:m Execution(_r_63_69)
+			:m Play(_r_63_69_70)
+			:m Pause(_r_63_69_71)
+			:m Stop(_r_63_69_73)
+		:o Remote Control(_r_63_74)
+		:o Playlist(_r_63_75)
+			:m Select Chapter(_r_63_75_76)
+	:m Media Database(_r_77)
+		:o Search(_r_77_78)
+		:o Classify(_r_77_79)
+	:m Settings(_r_80)
+		:o Edit Preferences(_r_80_81)
+		:o Plugins(_r_80_82)
+			:m Add(_r_80_82_83)
+			:m Remove(_r_80_82_84)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

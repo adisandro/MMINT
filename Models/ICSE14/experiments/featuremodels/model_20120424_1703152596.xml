@@ -1,0 +1,92 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Apr 24, 2012 - 12:11 AM  -->
+<feature_model name="SPL SimulES, PnP">
+<meta>
+<data name="description">Descreve as características da LP de jogos do SimulES e do PnP</data>
+<data name="creator">Vinícius Veloso de Mello Garcia</data>
+<data name="address"></data>
+<data name="email">vingarcia00@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Jogo(_r)
+	:m Cartas(_r_1)
+		:o Conceito(_r_1_2)
+		:o Problema(_r_1_3)
+		:m Funcionarios(_r_1_6)
+			:m Custo(_r_1_6_15)
+				:g (_r_1_6_15_16) [1,1] 
+					: Padrao(_r_1_6_15_16_17)
+					: Custo Especifico do Funcionario(_r_1_6_15_16_18)
+			:m Habilidade(_r_1_6_59)
+				:g (_r_1_6_59_60) [1,1] 
+					: Padrao fixo para todos(_r_1_6_59_60_61)
+					: Especifico por Funcionario(_r_1_6_59_60_62)
+			:o Maturidade(_r_1_6_63)
+		:m Projeto(_r_1_19)
+			:m Tamanho(_r_1_19_37)
+				:g (_r_1_19_37_51) [1,1] 
+					: Tamanho Fixo Padrao(_r_1_19_37_51_52)
+					: Tamanho Especifico por Projeto(_r_1_19_37_51_53)
+			:m Tipo das Cartas(_r_1_19_38)
+				:g (_r_1_19_38_39) [1,1] 
+					: Cartas com Descricoes Realistas(_r_1_19_38_39_40)
+					: Cartas Simples(_r_1_19_38_39_41)
+			:m Complexidade(_r_1_19_42)
+				:g (_r_1_19_42_43) [1,1] 
+					: Complexidade Fixa Padrao(_r_1_19_42_43_44)
+					: Complexidade Especifica por Projeto(_r_1_19_42_43_45)
+			:m Qualidade(_r_1_19_46)
+				:g (_r_1_19_46_47) [1,1] 
+					: Qualidade Fixa com valor arbitrario(_r_1_19_46_47_48)
+					: Qualidade Especifica por Projeto(_r_1_19_46_47_49)
+					: Nao Aceitacao de Bugs - Qualidade igual ao tamanho do Projeto(_r_1_19_46_47_50)
+			:m Modulos(_r_1_19_54)
+				:g (_r_1_19_54_55) [1,1] 
+					: Simples - Apenas Codigo(_r_1_19_54_55_56)
+					: Com requesitos variados(_r_1_19_54_55_57)
+		:m Tarefas(_r_1_39)
+			:g (_r_1_39_65) [1,*] 
+				: Requerimentos(_r_1_39_65_66)
+				: Design(_r_1_39_65_67)
+				: Codigo(_r_1_39_65_68)
+				: Rastreamento(_r_1_39_65_69)
+				: Ajuda(_r_1_39_65_70)
+	:m Jogabilidade(_r_71)
+		:m Ordem de realizacao de tarefas(_r_71_72)
+			:g (_r_71_72_75) [1,1] 
+				: Waterfall(_r_71_72_75_76)
+				: Livre(_r_71_72_75_77)
+		:m Tarefas(_r_71_78)
+			:m Ordem de realizacao(_r_71_78_80)
+				:g (_r_71_78_80_81) [1,1] 
+					: Waterfall(_r_71_78_80_81_82)
+					: Livre(_r_71_78_80_81_83)
+			:m Funcionarios(_r_71_78_84)
+				:g (_r_71_78_84_88) [1,1] 
+					: Cumprem qualquer tarefa(_r_71_78_84_88_89)
+					: Cumprem apenas tarefas de codigo(_r_71_78_84_88_90)
+		:o Bugs(_r_71_91)
+			:g (_r_71_91_92) [1,1] 
+				: De complexidade fixa(_r_71_91_92_93)
+				: De complexidades variadas(_r_71_91_92_94)
+		:m Turnos(_r_71_96)
+			:g (_r_71_96_97) [1,1] 
+				: Sequenciais(_r_71_96_97_98)
+				: Paralelos(_r_71_96_97_99)
+		:m Compra de Cartas(_r_71_100)
+			:g (_r_71_100_101) [1,1] 
+				: Valor Fixo(_r_71_100_101_102)
+				: Por dado(_r_71_100_101_103)
+	:o Extras(_r_104)
+		:o Historias nas cartas(_r_104_105)
+		:o Ilustracoes(_r_104_106)
+		:o Tabuleiro(_r_104_107)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

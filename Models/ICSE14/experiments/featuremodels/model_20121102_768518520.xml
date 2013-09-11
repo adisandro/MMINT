@@ -1,0 +1,35 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 2, 2012 - 1:12 PM  -->
+<feature_model name="JhotDrawn">
+<meta>
+<data name="description">A few features extracted in JhotDrwan</data>
+<data name="creator">Vitor</data>
+<data name="address"></data>
+<data name="email">vitormsales@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r JhotDrawn(_r)
+	:o Figure(_r_1)
+		:o Geometric(_r_1_3)
+			:g (_r_1_3_6) [1,*] 
+				: DiamondFigure(_r_1_3_6_7)
+				: ElipseFigure(_r_1_3_6_8)
+				: RoundedRectanlgeFigure(_r_1_3_6_9)
+				: RectangleFigure(_r_1_3_6_10)
+				: TriangleFigure(_r_1_3_6_11)
+		:o TextFigure(_r_1_4)
+		:o ImageFigure(_r_1_5)
+		:o TextAreaFigure(_r_1_15)
+	:o Lines(_r_2)
+		:g (_r_2_12) [1,*] 
+			: CurvedLine(_r_2_12_13)
+			: ElbowLine(_r_2_12_14)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,35 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Sep 4, 2012 - 5:48 AM  -->
+<feature_model name="i18n">
+<meta>
+<data name="description">internationalized website</data>
+<data name="creator">sachin</data>
+<data name="address">India</data>
+<data name="email">sachin.patel@tcs.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TCS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Internationalized Website(_r)
+	:m Weather Update(_r_1)
+		:g (_r_1_8) [1,1] 
+			: Celcius(_r_1_8_9)
+			: Farenheit(_r_1_8_10)
+	:m Stock Quote(_r_2)
+		:g (_r_2_11) [1,1] 
+			: Indian Rupee(_r_2_11_12)
+			: US Dollar(_r_2_11_13)
+			: UK Pound(_r_2_11_14)
+	:m Search(_r_15)
+	:m Gold Rate Charts(_r_16)
+		:g (_r_16_17) [1,1] 
+			: Indian Rupee(_r_16_17_18)
+			: US Dollar(_r_16_17_19)
+			: UK Pound(_r_16_17_20)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

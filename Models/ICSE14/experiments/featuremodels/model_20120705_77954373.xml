@@ -1,0 +1,42 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Jul 5, 2012 - 5:10 PM  -->
+<feature_model name="Mobile Applications Contents">
+<meta>
+<data name="description">Family for contents management application in mobile devices</data>
+<data name="creator">Samuel Sepúlveda</data>
+<data name="address"></data>
+<data name="email">ssepulve@ufro.cl</data>
+<data name="phone"></data>
+<data name="website">http://ceisufro.cl</data>
+<data name="organization">Universidad de La Frontera</data>
+<data name="department">Systems Engineering Dpt.</data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r MobAppsContents(_r)
+	:m plataforma(_r_2)
+		:g (_r_2_6) [1,1] 
+			: android(_r_2_6_7)
+			: iOS(_r_2_6_8)
+			: symbian(_r_2_6_9)
+			: windowsPhone(_r_2_6_10)
+			: blackBerry(_r_2_6_11)
+	:m servicios(_r_3)
+		:m internet(_r_3_12)
+		:o googleAnalytics(_r_3_14)
+		:o controlAcceso(_r_3_15)
+	:m contenidos(_r_4)
+		:m texto(_r_4_16)
+		:o imagen(_r_4_17)
+		:o video(_r_4_18)
+		:o mapas(_r_4_19)
+	:o API(_r_5)
+		:o eventos(_r_5_20)
+		:o camara(_r_5_21)
+		:o controlMedios(_r_5_22)
+		:o geoLocalizacion(_r_5_23)
+		:o infoDispositivo(_r_5_24)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

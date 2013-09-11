@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Apr 14, 2013 - 11:12 PM  -->
+<feature_model name="Flight Reservations">
+<meta>
+<data name="description">Simplified example model</data>
+<data name="creator">JH</data>
+<data name="address"></data>
+<data name="email">aztechaidan@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Aztech Labs</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Flight Reservation Model(_r)
+	:m Class(_r_1)
+	:g (_r_2) [1,*] 
+		: Business(_r_2_3)
+		: Economy(_r_2_6)
+	:m Destination(_r_7)
+		:g (_r_7_8) [1,*] 
+			: USA(_r_7_8_9)
+			: China(_r_7_8_10)
+			: Italy(_r_7_8_11)
+	:m Payment Method(_r_12)
+		:g (_r_12_13) [1,*] 
+			: DomesticCreditCard(_r_12_13_14)
+				:g (_r_12_13_14_16) [1,*] 
+					: Visa(_r_12_13_14_16_17)
+					: MC(_r_12_13_14_16_18)
+			: ForeignCreditCard(_r_12_13_15)
+				:m Visa(_r_12_13_15_19)
+				:m MC(_r_12_13_15_20)
+</feature_tree>
+<constraints>
+constraint_1:_r_2_3 or _r_7_8_9
+</constraints>
+</feature_model>

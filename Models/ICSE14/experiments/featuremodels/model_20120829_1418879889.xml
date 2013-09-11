@@ -1,0 +1,30 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 29, 2012 - 12:39 PM  -->
+<feature_model name="isolation">
+<meta>
+<data name="description">featuremodel</data>
+<data name="creator">undral</data>
+<data name="address"></data>
+<data name="email">undral.ganbat@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">fhhn</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Isolation(_r)
+	:m QoS(_r_1)
+	:m Integral(_r_2)
+		:m range problem(_r_2_3)
+			:g (_r_2_3_8) [1,*] 
+				: always take lower value(_r_2_3_8_9)
+				: take closer one(_r_2_3_8_10)
+		:m termination integral(_r_2_4)
+		:m general termination(_r_2_5)
+		:m reference workload(_r_2_6)
+		:m increment and decrement(_r_2_7)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

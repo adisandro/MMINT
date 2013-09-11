@@ -1,0 +1,34 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jan 15, 2013 - 4:48 AM  -->
+<feature_model name="Ubuntu">
+<meta>
+<data name="description">asdf</data>
+<data name="creator">asdf</data>
+<data name="address"></data>
+<data name="email">asdf</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">asdf</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Ubuntu(_r)
+	:m Texteditor(_r_1)
+		:g (_r_1_13) [1,1] 
+			: vi(_r_1_13_14)
+			: gedit(_r_1_13_15)
+	:m Bourne(_r_2)
+	:m GUI(_r_3)
+		:g (_r_3_10) [1,1] 
+			: KDE(_r_3_10_11)
+			: Gnome(_r_3_10_12)
+	:o Chess(_r_4)
+		:g (_r_4_5) [1,1] 
+			: gnuchess(_r_4_5_6)
+			: glchess(_r_4_5_9)
+</feature_tree>
+<constraints>
+constraint_1:_r_3 or ~_r_4
+</constraints>
+</feature_model>

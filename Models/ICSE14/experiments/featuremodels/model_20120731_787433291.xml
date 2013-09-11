@@ -1,0 +1,72 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Aug 28, 2012 - 9:47 PM  -->
+<feature_model name="Mobile Media 2">
+<meta>
+<data name="description">System for Mobile Media</data>
+<data name="creator">Juliana Pereira</data>
+<data name="address"></data>
+<data name="email">jualvespereira@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_1)
+	:g (_r_2) [1,*] 
+		: Photo(_r_2_3)
+		: Music(_r_2_4)
+			:m Music Player(_r_2_4_53)
+		: Video(_r_2_5)
+	:m Media Management(_r_6)
+		:o Favourites(_r_6_7)
+			:m Set Favourites(_r_6_7_8)
+			:m View Favourites(_r_6_7_9)
+		:o Copy Media(_r_6_10)
+		:o SMS Transfer(_r_6_11)
+			:o Receive Photo(_r_6_11_12)
+			:o Send Photo(_r_6_11_13)
+	:m Screen Size(_r_14)
+		:g (_r_14_15) [1,1] 
+			: Screen 1(_r_14_15_16)
+			: Screen 2(_r_14_15_17)
+			: Screen 3(_r_14_15_20)
+	:m Speakerphone(_r_18)
+	:m Calendar(_r_19)
+	:m Radio(_r_20)
+	:m Call Manager(_r_21)
+	:o TV Digital(_r_23)
+	:m OS(_r_24)
+		:g (_r_24_25) [1,1] 
+			: Androide(_r_24_25_26)
+			: Windows Mobile(_r_24_25_27)
+			: Symbia(_r_24_25_29)
+			: iOS(_r_24_25_30)
+	:o Touch Screen(_r_31)
+	:o Connectivity(_r_33)
+		:g (_r_33_34) [1,*] 
+			: Bluetooth(_r_33_34_35)
+			: Wi-Fi(_r_33_34_36)
+				:g (_r_33_34_36_54) [1,*] 
+					: Gmail(_r_33_34_36_54_55)
+					: Google Maps(_r_33_34_36_54_56)
+					: Youtube(_r_33_34_36_54_57)
+	:o GPS(_r_37)
+	:o Resolution Camera(_r_38)
+		:g (_r_38_40) [1,1] 
+			: 3 MP(_r_38_40_41)
+			: 8 MP(_r_38_40_42)
+	:m Language(_r_46)
+		:g (_r_46_49) [1,*] 
+			: Portuguese(_r_46_49_50)
+			: English(_r_46_49_51)
+			: Spanish(_r_46_49_52)
+</feature_tree>
+<constraints>
+constraint_4:_r_2_5 or ~_r_38
+constraint_5:_r_2_3 or ~_r_38
+constraint_3:~_r_6_10 or _r_6_11
+</constraints>
+</feature_model>

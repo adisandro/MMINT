@@ -1,0 +1,70 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Apr 16, 2012 - 6:39 AM  -->
+<feature_model name="CD OD Semantic Variability">
+<meta>
+<data name="description">Semantic variability for CD OD consistency</data>
+<data name="creator">Shahar Maoz, Jan O. Ringert</data>
+<data name="address"></data>
+<data name="email">--</data>
+<data name="phone"></data>
+<data name="website">http://www.se-rwth.de/materials/semvar/</data>
+<data name="organization">RWTH Aachen</data>
+<data name="department">Software Engineering</data>
+<data name="date">April 2011, updated April 2012</data>
+<data name="reference">http://www.se-rwth.de/materials/semvar/</data>
+</meta>
+<feature_tree>
+:r CDODConsistency(CDODConsistency)
+	:m ODSemantics(ODSemantics)
+		:m EmptyOMOD(EmptyOMOD)
+			:g (_id_0) [1,1] 
+				: EmptyOMValidInstanceOD(EmptyOMValidInstanceOD)
+				: EmptyOMInvalidOD(EmptyOMInvalidOD)
+		:m CompletenessOD(CompletenessOD)
+			:m ObjectsOD(ObjectsOD)
+				:g (_id_1) [1,1] 
+					: AllObjectsShownOD(AllObjectsShownOD)
+					: AllowObjectsOmittedOD(AllowObjectsOmittedOD)
+			:m LinksOD(LinksOD)
+				:g (_id_2) [1,1] 
+					: AllLinksShownOD(AllLinksShownOD)
+					: AllowLinksOmittedOD(AllowLinksOmittedOD)
+			:m AttributesOD(AttributesOD)
+				:g (_id_3) [1,1] 
+					: AllAttributesShownOD(AllAttributesShownOD)
+					: AllowAttributesOmittedOD(AllowAttributesOmittedOD)
+			:m TypesOD(TypesOD)
+				:g (_id_4) [1,1] 
+					: AllTypesShownOD(AllTypesShownOD)
+					: AllowTypesOmittedOD(AllowTypesOmittedOD)
+		:m ObjectTypingOD(ObjectTypingOD)
+			:g (_id_5) [1,1] 
+				: StrictOD(StrictOD)
+				: NonStrictOD(NonStrictOD)
+	:m CDSemantics(CDSemantics)
+		:m EmptyOMCD(EmptyOMCD)
+			:g (_id_6) [1,1] 
+				: EmptyOMValidInstanceCD(EmptyOMValidInstanceCD)
+				: EmptyOMInvalidCD(EmptyOMInvalidCD)
+		:m CompletenessCD(CompletenessCD)
+			:m AttributesCD(AttributesCD)
+				:g (_id_7) [1,1] 
+					: AllAttributesShownCD(AllAttributesShownCD)
+					: AllowAttributesOmittedCD(AllowAttributesOmittedCD)
+			:m ClassesCD(ClassesCD)
+				:g (_id_8) [1,1] 
+					: AllClassesShownCD(AllClassesShownCD)
+					: AllowClassesOmittedCD(AllowClassesOmittedCD)
+		:m DefaultMultiplicity(CDSemantics_33)
+			:g (CDSemantics_33_34) [1,1] 
+				: DefMultStar(CDSemantics_33_34_35)
+				: DefMultOne(CDSemantics_33_34_36)
+				: DefMultOpt(CDSemantics_33_34_37)
+				: DefMultSome(CDSemantics_33_34_39)
+</feature_tree>
+<constraints>
+C4:~AllowObjectsOmittedOD or AllowLinksOmittedOD
+C3:~AllowClassesOmittedCD or ~AllowTypesOmittedOD
+C1:EmptyOMValidInstanceOD or ~EmptyOMValidInstanceCD
+C2:EmptyOMValidInstanceCD or ~EmptyOMValidInstanceOD
+</constraints>
+</feature_model>

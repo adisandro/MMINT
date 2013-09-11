@@ -1,0 +1,81 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Aug 22, 2011 - 6:01 AM  -->
+<feature_model name="SmartHome_vConejero">
+<meta>
+<data name="description">Adaptation of the original feature models for the SmartHome system used by AMPLE project as case study</data>
+<data name="creator">Conejero</data>
+<data name="address"></data>
+<data name="email">chemacm@unex.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Extremadura</data>
+<data name="department"></data>
+<data name="date">July 2011</data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Smart Home(_id_0)
+	:m Environment Control(_id_1)
+		:m Heating Management(_id_5)
+			:m Heating Management(_id_6)
+			:o Smart Heating Management(_id_7)
+		:m Windows Management(_id_8)
+			:m Manual Windows(_id_9)
+			:o Automatic Windows(_id_10)
+		:o Air Conditioning Management(_id_1_49)
+			:m Air Conditioning Control(_id_1_49_50)
+			:o Smart Air Conditioning Control(_id_1_49_51)
+	:m Light Management(_id_11)
+		:o Smart Light Management(_id_12)
+		:o Dimming Values(_id_13)
+		:m Simple Control(_id_14)
+	:m Presence Simulator(_id_19)
+		:o Light Simulation(_id_20)
+		:o Music Simulation(_id_22)
+		:o Blinds Simulation(_id_19_57)
+	:m Fire Control(_id_23)
+		:m First Aid Group(_id_24)
+			:o Fire Department(_id_25)
+			:o Other Group(_id_26)
+		:m Fire Alarm(_id_27)
+			:o Siren(_id_28)
+			:o Light(_id_30)
+			:m SMS(_id_27_39)
+	:o Door Lock(_id_31)
+		:o Keypad Reader(_id_32)
+		:o Card Reader(_id_33)
+		:o Fingerprint Reader(_id_34)
+	:m Authentication(_id_0_41)
+		:o Fingerprint Reader(_id_0_41_42)
+		:m Password(_id_0_41_43)
+		:o Card Reader(_id_0_41_59)
+	:o Security(_id_0_44)
+		:o Alarms(_id_0_44_45)
+			:o Siren(_id_0_44_45_46)
+			:o Lights(_id_0_44_45_47)
+			:m SMS(_id_0_44_45_49)
+		:o Intruse Detection(_id_0_44_51)
+			:m Movement Detection(_id_0_44_51_52)
+			:o Glass Brake Detection(_id_0_44_51_53)
+	:m User Notifications(_id_0_50)
+		:o Mail(_id_0_50_51)
+		:m SMS(_id_0_50_52)
+		:o Phone Call(_id_0_50_58)
+	:o Blinds Management(_id_0_39)
+		:m Manual Blinds(_id_0_39_40)
+		:o Automatic Blinds(_id_0_39_41)
+	:o Floods Detection(_id_0_42)
+		:m Flood Alarm(_id_0_42_43)
+			:m SMS(_id_0_42_43_45)
+	:o Gas Detection(_id_0_46)
+		:m Gas Alarm(_id_0_46_47)
+			:m SMS(_id_0_46_47_48)
+	:o Audio Control(_id_0_54)
+		:m Control Audio Manually(_id_0_54_55)
+		:o Automatic Audio by Hours(_id_0_54_56)
+</feature_tree>
+<constraints>
+constraint_7:_id_0_44_45 or ~_id_0_46_47
+constraint_5:_id_0_44_45 or ~_id_0_42_43
+constraint_3:~_id_27 or _id_0_44_45
+</constraints>
+</feature_model>

@@ -1,0 +1,59 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Sep 28, 2011 - 4:19 PM  -->
+<feature_model name="Rhiscom Process Model">
+<meta>
+<data name="description">Rhiscom Process Model</data>
+<data name="creator">Luis Silvestre</data>
+<data name="address"></data>
+<data name="email">lsilvest@dcc.uchile.cl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Adapte Project</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Rhiscom Process(_r)
+	:m Comercial(_r_1)
+		:m Levantar deseos del cliente(_r_1_11)
+		:m Analisis de factibilidad(_r_1_12)
+		:m Generar propuesta(_r_1_13)
+		:m Revisar propuesta con cliente(_r_1_15)
+			:o Elaborar orden de trabajo(_r_1_15_16)
+				:m Asignacion de recursos(_r_1_15_16_17)
+	:o PuntoVariacionReqDis(_r_2)
+		:g (_r_2_6) [1,*] 
+			: Requisitos(_r_2_6_7)
+				:m Realizar reunion inicial(_r_2_6_7_18)
+				:m Analisis de requisitos(_r_2_6_7_19)
+				:m PuntoVariacionLevReq(_r_2_6_7_20)
+					:g (_r_2_6_7_20_21) [1,1] 
+						: Levantar requisitos en prosa(_r_2_6_7_20_21_22)
+						: Levantar requisitos con casos de uso(_r_2_6_7_20_21_23)
+				:m Verificacion por desarrolladores(_r_2_6_7_24)
+				:m Generacion final de requisitos funcionales(_r_2_6_7_25)
+				:m Revision y envio de requisitos(_r_2_6_7_26)
+				:m Aprobacion del documento de requisitos(_r_2_6_7_27)
+				:m Establecer linea base de requisitos(_r_2_6_7_28)
+			: Disenio(_r_2_6_8)
+				:m Disenio de la arquitectura(_r_2_6_8_29)
+				:m Validar SAD(_r_2_6_8_30)
+				:o Reunion acuerdos de integracion(_r_2_6_8_31)
+	:m Implementacion(_r_9)
+		:m Definir hitos(_r_9_32)
+		:m Implementacion(_r_9_31)
+		:m Definir hitos(__r_9_32)
+		:m Seguimiento de hitos(_r_9_33)
+		:m Reuniones con cliente(_r_9_34)
+		:m Realizar manuales de usuario(_r_9_35)
+		:m Elaborar casos de prueba(_r_9_36)
+	:m Transicion(_r_10)
+		:m Capacitacion usuario(_r_10_33)
+		:m Instalacion piloto en produccion(_r_10_34)
+		:m Finalizar el proyecto(_r_10_35)
+</feature_tree>
+<constraints>
+constraint_1:_r_2_6_7 or _r_2_6_8
+constraint_3:~_r_2_6_7_20_21_22 or ~_r_2_6_7_20_21_23
+</constraints>
+</feature_model>

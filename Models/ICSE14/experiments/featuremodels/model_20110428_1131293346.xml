@@ -1,0 +1,32 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Apr 28, 2011 - 10:49 PM  -->
+<feature_model name="KIModel">
+<meta>
+<data name="description">KI Model Variability</data>
+<data name="creator">Luis Silvestre</data>
+<data name="address"></data>
+<data name="email">lsilvest@dcc.uchile.cl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Chile -  DCC</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r KIModel(_r)
+	:m RD(_r_1)
+		:o Problem Analysis(_r_1_2)
+			:o Problem and project scope definition(_r_1_2_3)
+			:m Preliminar analysis(_r_1_2_5)
+		:o Environment specification(_r_1_4)
+		:m Requirements specification(_r_1_6)
+			:m Product and product component constraints definition(_r_1_6_9)
+			:m Product and product component requirements definition(_r_1_6_11)
+			:m Interface requirements identification(_r_1_6_12)
+			:m Traceability to user requirements generation(_r_1_6_13)
+		:m Requirements analysis and validation(_r_1_7)
+		:o Early change management(_r_1_8)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

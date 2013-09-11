@@ -1,0 +1,96 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jul 12, 2013 - 2:20 AM  -->
+<feature_model name="USECASE_Test">
+<meta>
+<data name="description">a test mdoel</data>
+<data name="creator">Aymeric Hervieu</data>
+<data name="address"></data>
+<data name="email">aymeric.hervieu@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">inria</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r root(_r)
+	:o Mail(_r_1)
+		:g (_r_1_19) [1,*] 
+			: LiveMail(_r_1_19_20)
+			: Outlook(_r_1_19_21)
+			: Outlook_Express(_r_1_19_22)
+	:o Mobile(_r_2)
+		:g (_r_2_59) [1,1] 
+			: XU870(_r_2_59_60)
+			: fusion(_r_2_59_61)
+			: Option_Icon_2(_r_2_59_45)
+			: GTMAX(_r_2_59_46)
+			: GTFull(_r_2_59_47)
+			: Icon3GPlus(_r_2_59_48)
+			: GC85(_r_2_59_49)
+			: FusionPlus(_r_2_59_50)
+			: GC79(_r_2_59_51)
+			: AirCard850(_r_2_59_52)
+			: MF330(_r_2_59_53)
+			: U530(_r_2_59_54)
+			: HSUPA(_r_2_59_55)
+			: Option3GPlus(_r_2_59_56)
+			: GTMAXGX0301(_r_2_59_57)
+			: Fusion3Gplus(_r_2_59_58)
+			: E870(_r_2_59_59)
+			: XU870(__r_2_59_60)
+			: E220(_r_2_59_62)
+			: GC89(_r_2_59_63)
+			: Icon225(_r_2_59_64)
+			: U740(_r_2_59_65)
+	:o Browser(_r_3)
+		:g (_r_3_15) [1,*] 
+			: Firefox15(_r_3_15_16)
+			: firefox2(_r_3_15_17)
+			: IE(_r_3_15_18)
+	:o VPN(_r_4)
+		:g (_r_4_11) [1,*] 
+			: Cisco(_r_4_11_12)
+			: ASAVIE(_r_4_11_13)
+			: SAFENET(_r_4_11_14)
+	:m Wifi(_r_5)
+		:g (_r_5_37) [1,1] 
+			: USB(_r_5_37_38)
+				:g (_r_5_37_38_45) [1,1] 
+					: INEXS(_r_5_37_38_45_46)
+					: COCHIBA(_r_5_37_38_45_47)
+					: SAGEM703(_r_5_37_38_45_48)
+					: SAGEM760A(_r_5_37_38_45_49)
+					: CAMEO(_r_5_37_38_45_50)
+					: Broadcom(_r_5_37_38_45_51)
+			: Intern(_r_5_37_39)
+				:g (_r_5_37_39_40) [1,1] 
+					: Centrino2100(_r_5_37_39_40_41)
+					: Centrino2200(_r_5_37_39_40_42)
+					: Centrino2915(_r_5_37_39_40_43)
+					: Centrino3945(_r_5_37_39_40_44)
+	:m OS(_r_6)
+		:g (_r_6_25) [1,1] 
+			: 32(_r_6_25_26)
+				:g (_r_6_25_26_28) [1,1] 
+					: XP_Pro(_r_6_25_26_28_29)
+					: VistaPro(_r_6_25_26_28_30)
+					: 2000(_r_6_25_26_28_31)
+			: 64(_r_6_25_27)
+				:g (_r_6_25_27_32) [1,1] 
+					: XP(_r_6_25_27_32_33)
+					: Vista(_r_6_25_27_32_34)
+	:m Modem(_r_8)
+		:g (_r_8_52) [1,1] 
+			: FAST800(_r_8_52_53)
+			: XDSL(_r_8_52_54)
+			: T330(_r_8_52_55)
+			: RHOS(_r_8_52_56)
+			: SA100(_r_8_52_57)
+			: DSL2(_r_8_52_58)
+</feature_tree>
+<constraints>
+constraint_1:~_r_3_15_16 or ~_r_6_25_27
+constraint_3:~_r_2_59_53 or ~_r_6_25_26_28_31
+</constraints>
+</feature_model>

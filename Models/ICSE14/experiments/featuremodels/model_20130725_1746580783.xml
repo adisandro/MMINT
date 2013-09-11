@@ -1,0 +1,38 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Jul 25, 2013 - 11:33 PM  -->
+<feature_model name="Sisgeo">
+<meta>
+<data name="description">Modelo de linea de producto de Georeferencia</data>
+<data name="creator">Eafit </data>
+<data name="address"></data>
+<data name="email">daacosta2@@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Eafit</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r sisgeo(_r)
+	:m Ubicacion(_r_1)
+	:o Mapa(_r_3)
+		:m Capas(_r_3_4)
+			:g (_r_3_4_15) [1,*] 
+				: Relieve(_r_3_4_15_16)
+				: Satelite(_r_3_4_15_18)
+				: Ruta(_r_3_4_15_19)
+				: Mallavial(_r_3_4_15_20)
+				: Aplicaciones(_r_3_4_15_21)
+				: Puntosinteres(_r_3_4_15_22)
+				: Trafico(_r_3_4_15_23)
+		:o Zonas(_r_3_5)
+	:m Indicaciones(_r_24)
+		:g (_r_24_25) [1,*] 
+			: Visual(_r_24_25_26)
+			: Auditivo(_r_24_25_27)
+			: Vibratorio(_r_24_25_28)
+</feature_tree>
+<constraints>
+constraint_2:~_r_3_4_15_16 or ~_r_3_4_15_18
+</constraints>
+</feature_model>

@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Oct 25, 2012 - 2:43 PM  -->
+<feature_model name="historioa clinica">
+<meta>
+<data name="description">respresenta una historia clinica</data>
+<data name="creator">datos cinsulta</data>
+<data name="address">datos</data>
+<data name="email">dyeigo007@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">diego</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r historiaclinica(_r)
+	:m Datos Consulta(_r_3)
+		:m anamnesis(_r_3_4)
+			:m Motivo Consulta(_r_3_4_5)
+			:o Evoluvion(_r_3_4_6)
+			:m Enfermedad Actual(_r_3_4_7)
+		:m Antesedentes(_r_3_8)
+			:m Antecedentes Personales(_r_3_8_9)
+			:m Antecedentes familiares(_r_3_8_10)
+			:m Antecedentes Odontologicos(_r_3_8_11)
+			:o Antecedentes Perinatales(_r_3_8_12)
+				:o Antecedentes Patologicos(_r_3_8_12_13)
+		:m Signos Vitales(_r_3_14)
+			:m Datos Antropometricos(_r_3_14_15)
+			:m Signos(_r_3_14_16)
+			:o Datos Adiciales(_r_3_14_17)
+		:m Patologia Recien Nacido(_r_3_18)
+			:o Aspecto Alimentario(_r_3_18_19)
+			:o Aspecto Familiar(_r_3_18_20)
+		:m Diagnostico(_r_3_21)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

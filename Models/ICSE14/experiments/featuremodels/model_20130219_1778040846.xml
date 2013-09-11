@@ -1,0 +1,61 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Feb 19, 2013 - 9:57 PM  -->
+<feature_model name="WebCollaborativeApplication">
+<meta>
+<data name="description">feature model for web collaborative applications</data>
+<data name="creator">Andrey Kornienko</data>
+<data name="address"></data>
+<data name="email">kornienko.andrey@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Carleton university</data>
+<data name="department">SCE</data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r WebCollaborativeApplication(_r)
+	:o Room Management(_r_1)
+	:m Session Management(_r_2)
+	:o User Management(_r_3)
+	:m Participants List(_r_4)
+		:m View Participants(_r_4_19)
+		:m Add Participants(_r_4_20)
+		:o Evict Participants(_r_4_21)
+	:o Audio_VOIP(_r_5)
+		:o Configurable Quality(_r_5_23)
+		:o Mute_Unmute Participants(_r_5_24)
+	:o Video(_r_6)
+		:o Configurable Quality(_r_6_25)
+		:o Camera Resolutions(_r_6_26)
+			:g (_r_6_26_27) [1,1] 
+				: 4-3(_r_6_26_27_28)
+				: 16-9(_r_6_26_27_29)
+				: 3-2(_r_6_26_27_30)
+		:o All or Selected Participants(_r_6_31)
+	:o Public Chat(_r_7)
+		:o Search(_r_7_32)
+	:o Whiteboard(_r_8)
+		:m View uploaded files(_r_8_33)
+		:m Drawing tools(_r_8_39)
+		:m Typing tools(_r_8_40)
+		:m Multiple pages(_r_8_41)
+		:o Multiple instances(_r_8_42)
+		:o Annotation capabilities(_r_8_43)
+		:o Export as image(_r_8_44)
+	:o Screen Sharing(_r_9)
+		:g (_r_9_34) [1,*] 
+			: Full Screen(_r_9_34_35)
+			: Area(_r_9_34_36)
+			: Application(_r_9_34_37)
+		:o Remote Control(_r_9_38)
+	:o File Depot(_r_10)
+	:o Archive(_r_12)
+	:o Polls and Votes(_r_14)
+	:o Raise Hand(_r_15)
+	:o Meeting Notes(_r_16)
+	:o Customizable Layout(_r_17)
+	:o Encryption(_r_18)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

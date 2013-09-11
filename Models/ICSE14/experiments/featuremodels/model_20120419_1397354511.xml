@@ -1,0 +1,44 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Apr 19, 2012 - 7:47 PM  -->
+<feature_model name="Jogo de Engenharia de Software">
+<meta>
+<data name="description">Um jogo de cartas</data>
+<data name="creator">Carlos Souza</data>
+<data name="address"></data>
+<data name="email">carlos.garcia@dcc.ufmg.br</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Jogo(_r)
+	:m Engine de sorteio de dado(_r_1)
+	:m Engine de jogadores(_r_2)
+	:m Engine de maquina de estados(_r_3)
+	:g (_r_4) [1,1] 
+		: Interface modo texto(_r_4_5)
+		: Interface grafica(_r_4_6)
+			:g (_r_4_6_7) [1,1] 
+				: Flash(_r_4_6_7_8)
+				: HTML 5(_r_4_6_7_10)
+	:o Anuncios promocionais(_r_12)
+	:m Regras(_r_13)
+		:o Bugs(_r_13_16)
+			:g (_r_13_16_17) [1,*] 
+				: Simple(_r_13_16_17_18)
+				: Normal(_r_13_16_17_19)
+				: Nasty(_r_13_16_17_20)
+		:m Desenvolvimento de codigo(_r_13_21)
+		:o Integracao(_r_13_22)
+		:o Design(_r_13_23)
+		:o Requisitos(_r_13_24)
+		:o Conceitos(_r_13_25)
+		:o Carta problema(_r_13_26)
+</feature_tree>
+<constraints>
+constraint_4:~_r_13_22 or ~_r_13_23 or _r_13_26
+constraint_3:~_r_4_6 or _r_12
+</constraints>
+</feature_model>

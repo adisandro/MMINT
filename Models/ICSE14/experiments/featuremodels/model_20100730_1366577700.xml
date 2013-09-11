@@ -1,0 +1,56 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Jul 31, 2010 - 10:14 AM  -->
+<feature_model name="Composicao_LO">
+<meta>
+<data name="description">Teste de composicao de Objetos de Aprendizagem</data>
+<data name="creator">Herli Menezes</data>
+<data name="address"></data>
+<data name="email">herlimenezes@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidade Federal do Rio de Janeiro</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Forca_Resultante_LO(_r)
+	:m Ganhar_Atencao(_r_1)
+		:o AVT(_r_1_14)
+		:o VT(_r_1_15)
+		:o T(_r_1_16)
+	:m Elicitar_Conh_Ant(_r_2)
+		:o ApTV(_r_2_18)
+		:o ApITV(_r_2_19)
+		:o IT(_r_2_20)
+		:o TV(_r_2_22)
+		:o T(_r_2_23)
+		:o ApT(_r_2_24)
+	:m Estimular(_r_3)
+		:o ApTV(_r_3_21)
+		:o TV(_r_3_25)
+		:o T(_r_3_26)
+		:o ApT(_r_3_27)
+	:m FeedBack(_r_4)
+		:o IT(_r_4_28)
+		:o T(_r_4_29)
+	:m AvaliarDesempenho(_r_5)
+		:o ApIT(_r_5_30)
+		:o T(_r_5_31)
+		:o ApT(_r_5_32)
+	:m Reforco_Transf(_r_6)
+		:o ATV(_r_6_33)
+		:o ApITV(_r_6_34)
+		:o ApTV(_r_6_35)
+		:o ApAITV(_r_6_36)
+		:o TV(_r_6_37)
+		:o ApT(_r_6_38)
+	:o T(_r_39)
+</feature_tree>
+<constraints>
+constraint_8:~_r_5 or _r_6
+constraint_7:_r_4 or ~_r_5
+constraint_4:~_r_2 or _r_3
+constraint_5:~_r_3 or _r_5
+constraint_3:~_r_1 or _r_2
+</constraints>
+</feature_model>

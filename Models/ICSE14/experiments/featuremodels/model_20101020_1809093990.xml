@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Oct 20, 2010 - 4:05 PM  -->
+<feature_model name="Respaldo de base de datos (Poda)">
+<meta>
+<data name="description">Servicio respaldo base de datos (Poda)</data>
+<data name="creator">Ronald Alarcon</data>
+<data name="address"></data>
+<data name="email">ralarconbazan@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UNMSM</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r ServicioRespaldo(_r)
+	:m 4gl(_r_2)
+		:m Nombre archivo(_r_2_5)
+		:m Usuario(_r_2_6)
+		:m Fecha(_r_2_7)
+		:o Variable ruta respaldo(_r_2_8)
+			:m Valor ruta respaldo(_r_2_8_9)
+			:m Actualizacion post respaldo(_r_2_8_11)
+			:m SQL count(_r_2_8_12)
+			:m SQL update(_r_2_8_13)
+			:m SQL unload(_r_2_8_14)
+			:m Funcion respaldo(_r_2_8_15)
+		:m Valor ruta log(_r_2_10)
+	:m com(_r_3)
+		:m Nombre archivo(_r_3_16)
+		:m Usuario(_r_3_17)
+		:m Ruta ejecutable(_r_3_19)
+	:m Makefile(_r_4)
+		:m Nombre archivo fuente(_r_4_20)
+		:m Nombre archivo ejecutable(_r_4_21)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

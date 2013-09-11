@@ -1,0 +1,43 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jul 10, 2012 - 7:27 AM  -->
+<feature_model name="Test Env">
+<meta>
+<data name="description">Test Model</data>
+<data name="creator">Priyatcs</data>
+<data name="address"></data>
+<data name="email">priya1.g@tcs.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">TCS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r testing(_r)
+	:m Browser(_r_1)
+		:g (_r_1_3) [1,1] 
+			: InternetExplorer(_r_1_3_4)
+				:g (_r_1_3_4_7) [1,1] 
+					: IE6(_r_1_3_4_7_8)
+					: IE7(_r_1_3_4_7_9)
+					: IE8(_r_1_3_4_7_10)
+					: IE9(_r_1_3_4_7_11)
+			: Mozilla(_r_1_3_5)
+				:g (_r_1_3_5_12) [1,1] 
+					: 3(_r_1_3_5_12_13)
+					: 4(_r_1_3_5_12_14)
+					: 5(_r_1_3_5_12_15)
+			: Chrome(_r_1_3_6)
+				:g (_r_1_3_6_16) [1,1] 
+					: 4(_r_1_3_6_16_17)
+					: 5(_r_1_3_6_16_18)
+					: 6(_r_1_3_6_16_19)
+	:m OperatingSystem(_r_2)
+		:g (_r_2_20) [1,1] 
+			: Mac(_r_2_20_21)
+			: Windows(_r_2_20_22)
+			: Apple(_r_2_20_23)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

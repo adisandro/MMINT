@@ -1,0 +1,54 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Jul 25, 2011 - 10:38 PM  -->
+<feature_model name="Agenda">
+<meta>
+<data name="description">Agenda de entretenimento</data>
+<data name="creator">Talita</data>
+<data name="address"></data>
+<data name="email">talitalopes@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFRJ</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Agenda(_r)
+	:o Evento(_r_1)
+		:m Local(_r_1_2)
+			:m Tipo(_r_1_2_3)
+			:o Contato(_r_1_2_4)
+				:o Telefone(_r_1_2_4_5)
+				:o Email(_r_1_2_4_6)
+				:o Website(_r_1_2_4_7)
+			:m Logradouro(_r_1_2_8)
+			:m Numero(_r_1_2_9)
+			:o Complemento(_r_1_2_10)
+		:o Custo(_r_1_11)
+		:m Categoria(_r_1_12)
+			:g (_r_1_12_13) [1,1] 
+				: Filme(_r_1_12_13_14)
+					:m Nome(_r_1_12_13_14_15)
+					:m Horario_inicio(_r_1_12_13_14_16)
+					:m Duracao(_r_1_12_13_14_17)
+					:m Genero(_r_1_12_13_14_36)
+				: Peca_de_teatro(_r_1_12_13_18)
+					:m Nome(_r_1_12_13_18_19)
+					:m Horario_inicio(_r_1_12_13_18_20)
+					:m Duracao(_r_1_12_13_18_21)
+				: Show(_r_1_12_13_22)
+					:m Nome(_r_1_12_13_22_23)
+					:m Horario_inicio(_r_1_12_13_22_24)
+					:m Duracao(_r_1_12_13_22_25)
+				: Restaurante(_r_1_12_13_26)
+					:m Nome(_r_1_12_13_26_27)
+					:m Horario_abertura(_r_1_12_13_26_29)
+					:m Horario_fechamento(_r_1_12_13_26_30)
+				: Museu(_r_1_12_13_31)
+					:m Nome(_r_1_12_13_31_32)
+					:m Horario_abertura(_r_1_12_13_31_34)
+					:m Horario_fechamento(_r_1_12_13_31_35)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

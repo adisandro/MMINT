@@ -1,0 +1,68 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Aug 20, 2013 - 11:05 PM  -->
+<feature_model name="OPEN ERP">
+<meta>
+<data name="description">Descripcion SE</data>
+<data name="creator">PARS</data>
+<data name="address"></data>
+<data name="email">pa.restrepo50@uniandes.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PARS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r OPEN ERP(_r)
+	:m Capacidad Funcional(_r_6)
+		:m Registro de la empresa-clientes-proveedores(_r_6_47)
+		:m Generar reclamaciones de pago en el idioma del Cliente(_r_6_49)
+		:m Permite enviar mensajes a los proveedores selecionado(_r_6_50)
+		:m Configurar formas de pago de clientes o cobro de proveedore(_r_6_51)
+		:m Facturas automaticas desde pedido(_r_6_52)
+		:m Generacion automatica de efectos de cobro y pago(_r_6_53)
+		:m Definicion de la estructura del plan contable(_r_6_54)
+		:m Definiciones de impuestos(_r_6_56)
+		:m Plazos de pago(_r_6_59)
+		:m Liquidaciones(_r_6_60)
+		:m Procesos automaticos de cierre de anio(_r_6_61)
+		:m Informes anuales(_r_6_62)
+		:m Definicion de multiples descuentos-reduccion de precios-ofertas en un rango de productos y precios de ventas basados en los de compra(_r_6_63)
+		:m Gestion de empleados y calendario de vacaciones(_r_6_64)
+		:m Gestion de contratos de empleados(_r_6_65)
+		:m Gestion de beneficios(_r_6_66)
+		:m Gestion de ausencias(_r_6_67)
+		:m Proceso de reclamacion(_r_6_68)
+		:m Gestion de rendimiento de empleados(_r_6_69)
+		:m Gestion de perfiles y responsabilidades de los empleados(_r_6_70)
+		:m Gestion de almacenes de distintas ubicaciones(_r_6_72)
+		:m Gestion de la rotacion de inventario y niveles de stock(_r_6_73)
+		:m Definicion de reglas de reabastecimiento de stock(_r_6_74)
+		:m Movimiento de almacen tiene un origen y un destino(_r_6_75)
+		:m Seguimiento de los proveedores y convertirlas en ordenes de compra(_r_6_76)
+		:m Gestionar entregas parciales del proveedor y mercancias faltantes(_r_6_77)
+		:m Gestion de reclamacion a proveedores por retrasos en la entrega(_r_6_78)
+		:m Configurar las necesidad de compra por el area de fabricacion(_r_6_81)
+		:m Creacion y planificacion de ordenes de fabricacion(_r_6_87)
+		:m Control de costos de fabricacion(_r_6_88)
+		:m Creacion de pedidos de venta(_r_6_89)
+		:m Confirmacion de envio(_r_6_90)
+		:m Informes predifinidos adaptables a las necesidades del usuario(_r_6_91)
+	:m Modulos(_r_8)
+		:o Empresas o Partners(_r_8_24)
+		:o Facturacion y CxP - CxC(_r_8_26)
+		:o Contabilidad y Finanzas(_r_8_29)
+		:o Estadisticas(_r_8_30)
+		:o Productos(_r_8_32)
+		:o Recursos Humanos(_r_8_34)
+		:o Control de inventario(_r_8_35)
+		:o Gestion de Compras(_r_8_36)
+		:o Workflow de documentos(_r_8_37)
+		:o Gestion y Planificacion de proyectos(_r_8_38)
+		:o Gestion de Produccion-Fabricacion(_r_8_39)
+		:o Gestion de Ventas(_r_8_41)
+		:o Gestor Documental(_r_8_42)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,56 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Feb 2, 2012 - 1:05 PM  -->
+<feature_model name="RhiscomProcessModel">
+<meta>
+<data name="description">Rhiscom process model</data>
+<data name="creator">Luis Silvestre</data>
+<data name="address"></data>
+<data name="email">lsilvest@dcc.uchile.cl</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ADAPTE Project</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r RhiscomProcessModel(_r)
+	:m Activities(_r_22)
+		:m Commercial(_r_22_26)
+		:o Requirements(_r_22_27)
+			:m Hold first meeting(_r_22_27_32)
+			:m Analyze requirements(_r_22_27_33)
+			:m Specify requirements(_r_22_27_34)
+				:g (_r_22_27_34_39) [1,1] 
+					: Specify requirements in plain text(_r_22_27_34_39_40)
+					: Specify requirements in uses cases(_r_22_27_34_39_42)
+						:m Specify SRS(_r_22_27_34_39_42_43)
+			:m Verify requirements(_r_22_27_35)
+			:m Validate requirements(_r_22_27_36)
+			:m Approve requirements(_r_22_27_37)
+			:m Establish requirements baseline(_r_22_27_38)
+				:g (_r_22_27_38_44) [1,1] 
+					: Establish requirements baseline without test cases(_r_22_27_38_44_45)
+					: Establish requirements baseline and test cases(_r_22_27_38_44_46)
+		:o Design(_r_22_29)
+			:o Meet for integration agreements(_r_22_29_47)
+		:m Implementation(_r_22_30)
+			:o Execute test cases(_r_22_30_48)
+		:m Deployment(_r_22_31)
+	:m Work Products(_r_24)
+		:m SRS baseline(_r_24_49)
+			:g (_r_24_49_53) [1,1] 
+				: Final SRS(_r_24_49_53_54)
+				: SRS and test cases(_r_24_49_53_55)
+	:m Roles(_r_25)
+		:m Analyst(_r_25_56)
+			:g (_r_25_56_59) [1,1] 
+				: Analyst tester(_r_25_56_59_60)
+				: Analyst with use case skills(_r_25_56_59_61)
+</feature_tree>
+<constraints>
+constraint_1:~_r_22_27_34_39_40 or _r_25_56_59_60
+constraint_4:~_r_22_27_38_44_46 or _r_24_49_53_55
+constraint_2:~_r_22_27_34_39_42 or _r_25_56_59_61
+constraint_3:~_r_22_27_38_44_45 or _r_24_49_53_54
+</constraints>
+</feature_model>

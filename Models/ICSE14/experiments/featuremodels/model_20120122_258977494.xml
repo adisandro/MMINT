@@ -1,0 +1,47 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Jan 22, 2012 - 8:33 AM  -->
+<feature_model name="ISA11/12_pgr">
+<meta>
+<data name="description">Linea de SO</data>
+<data name="creator">PGR</data>
+<data name="address"></data>
+<data name="email">  alu0100689983@ull.edu.es </data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">ULL</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Sistema Operativo(_r)
+	:m Kernel(_r_1)
+	:m Interfaz(_r_2)
+		:m Modo consola(_r_2_31)
+		:o Modo grafico(_r_2_32)
+	:o Aplicaciones(_r_3)
+		:g (_r_3_17) [1,1] 
+			: Basica(_r_3_17_18)
+			: Todas las aplicaciones(_r_3_17_19)
+	:o Servidores(_r_4)
+		:g (_r_4_20) [1,*] 
+			: Gama alta(_r_4_20_21)
+			: Gama baja(_r_4_20_22)
+	:m Herramientas de Config(_r_6)
+		:g (_r_6_13) [1,1] 
+			: Herramientas basicas(_r_6_13_14)
+			: Herramientas avanzadas(_r_6_13_15)
+			: Todas las herramientas(_r_6_13_16)
+	:m Seguridad(_r_10)
+		:g (_r_10_27) [1,1] 
+			: Home(_r_10_27_28)
+			: Advanced(_r_10_27_29)
+			: Server(_r_10_27_30)
+</feature_tree>
+<constraints>
+constraint_6:~_r_6_13_14 or ~_r_10_27_30
+constraint_7:~_r_6_13_14 or ~_r_10_27_29
+constraint_4:~_r_4_20_21 or ~_r_10_27_28
+constraint_2:_r_3_17_19 or ~_r_2_32
+constraint_3:_r_6_13_16 or ~_r_4_20_21
+</constraints>
+</feature_model>

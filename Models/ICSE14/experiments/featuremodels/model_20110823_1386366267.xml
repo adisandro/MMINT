@@ -1,0 +1,36 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 24, 2011 - 3:57 AM  -->
+<feature_model name="Technical Solution Process">
+<meta>
+<data name="description">Feature model for a software process line</data>
+<data name="creator">Julio Ariel Hurtado</data>
+<data name="address"></data>
+<data name="email">julioarielhurtado@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Universidad de Chile</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Technical Solution(_r)
+	:o Architecture Design(_r_11)
+	:o Analysis and Design(_r_12)
+		:o Analysis and Design Realization(_r_12_17)
+			:g (_r_12_17_29) [1,1] 
+				: Analysis Document(_r_12_17_29_30)
+				: Design Document(_r_12_17_29_31)
+				: Analysis and Design Document(_r_12_17_29_32)
+		:m Component Design(_r_12_19)
+		:o Interfaces and Communications Design(_r_12_20)
+		:m Database Design(_r_12_22)
+		:o Reuse Analysis(_r_12_33)
+	:m Implementation(_r_13)
+		:m Component Implementation(_r_13_14)
+		:o Interfaces and Comunications Implementation(_r_13_15)
+		:m Database Implementation(_r_13_16)
+</feature_tree>
+<constraints>
+constraint_1:_r_13_15 or ~_r_12_20
+</constraints>
+</feature_model>

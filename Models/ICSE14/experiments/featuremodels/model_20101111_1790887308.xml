@@ -1,0 +1,32 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 13, 2013 - 2:16 PM  -->
+<feature_model name="Phone">
+<meta>
+<data name="description">Phone</data>
+<data name="creator">m</data>
+<data name="address"></data>
+<data name="email">m.noorian@unb.ca</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">unb</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Phone(_r)
+	:o GPS(_r_1)
+	:m Call(_r_2)
+	:m Screen(_r_14)
+		:o Basic(_r_14_16)
+		:o Color(_r_14_17)
+		:o High Resolution(_r_14_18)
+	:o Media(_r_15)
+		:o Camera(_r_15_19)
+		:o MP3(_r_15_20)
+</feature_tree>
+<constraints>
+constraint_8:~_r_14_18 or ~_r_15_19
+constraint_5:~_r_1 or ~_r_14_16
+constraint_3:~_r_1 or ~_r_15_19 or ~_r_15_20
+</constraints>
+</feature_model>

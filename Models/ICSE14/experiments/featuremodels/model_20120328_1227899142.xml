@@ -1,0 +1,50 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Mar 28, 2012 - 9:49 AM  -->
+<feature_model name="Modelo de Características de um Carro">
+<meta>
+<data name="description">Exercicio aula de Reuso de Software</data>
+<data name="creator">Elizabeth Luíza Maynarte de Oliveira</data>
+<data name="address"></data>
+<data name="email">elizabethmaynarte@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFMG</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Carro(_r)
+	:m Volante(_r_2)
+	:m Roda(_r_3)
+		:g (_r_3_8) [1,1] 
+			: Normal(_r_3_8_9)
+			: Esportiva(_r_3_8_10)
+	:m Cambio(_r_11)
+		:g (_r_11_12) [1,1] 
+			: Manual(_r_11_12_13)
+			: Automatico(_r_11_12_16)
+	:o Ar Condicionado(_r_17)
+	:o Tocador de Media(_r_18)
+		:g (_r_18_19) [1,*] 
+			: MP3(_r_18_19_20)
+			: DVD(_r_18_19_21)
+			: Bluray(_r_18_19_22)
+	:m Banco(_r_23)
+		:g (_r_23_24) [1,*] 
+			: Normal(_r_23_24_25)
+			: Capa(_r_23_24_26)
+				:g (_r_23_24_26_27) [1,1] 
+					: Couro Preto(_r_23_24_26_27_28)
+					: Couro Branco(_r_23_24_26_27_29)
+	:o Air-Bag(_r_30)
+	:o Freios ABS(_r_31)
+	:o Kit Seguranca(_r_32)
+</feature_tree>
+<constraints>
+constraint_10:_r_30 or ~_r_32
+constraint_9:_r_31 or ~_r_32
+constraint_6:_r_3_8_9 or _r_3_8_10
+constraint_7:_r_23_24_26_27_28 or _r_23_24_26_27_29
+constraint_5:_r_11_12_13 or _r_11_12_16
+</constraints>
+</feature_model>

@@ -1,0 +1,29 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, May 29, 2013 - 5:17 PM  -->
+<feature_model name="AA">
+<meta>
+<data name="description">BB</data>
+<data name="creator">CC</data>
+<data name="address"></data>
+<data name="email">aa</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">bb</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r AA(_r)
+	:m BB(_r_1)
+		:m FF(_r_1_4)
+			:m AA(_r_1_4_9)
+	:o CC(_r_2)
+		:o CCd(_r_2_5)
+			:o BB(_r_2_5_8)
+	:o XX(_r_3)
+		:o VV(_r_3_6)
+			:o CC(_r_3_6_7)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

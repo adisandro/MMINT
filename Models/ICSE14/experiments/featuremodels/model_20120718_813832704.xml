@@ -1,0 +1,31 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Jul 18, 2012 - 12:37 PM  -->
+<feature_model name="Mauricio Alférez">
+<meta>
+<data name="description">small toy example</data>
+<data name="creator">Mauricio Alférez</data>
+<data name="address"></data>
+<data name="email">alferez.mauricio@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">di.fct.unl.pt</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Type name fp1or root feature(_r)
+	:m wc(_r_1)
+		:m mw(_r_1_4)
+		:o aw(_r_1_5)
+	:m hc(_r_2)
+		:m mh(_r_2_6)
+		:o ah(_r_2_7)
+			:o rhc(_r_2_7_8)
+	:m ui(_r_3)
+		:m is(_r_3_9)
+		:o i(_r_3_10)
+</feature_tree>
+<constraints>
+constraint_1:~_r_2_7_8 or _r_3_10
+</constraints>
+</feature_model>

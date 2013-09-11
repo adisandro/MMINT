@@ -1,0 +1,45 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Sep 25, 2011 - 1:43 PM  -->
+<feature_model name="Ejercicio">
+<meta>
+<data name="description">Linea de producto</data>
+<data name="creator">Guillermo Rodriguez</data>
+<data name="address"></data>
+<data name="email">eg1822m@mixmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Investigación</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Compras(_r)
+	:m Comprador(_r_1)
+	:m Forma de pago(_r_2)
+		:o IngresoCuenta(_r_2_6)
+		:o Tarjeta(_r_2_7)
+			:m PasarelaPago(_r_2_7_8)
+				:m AmericanExpres(_r_2_7_8_13)
+				:m Visa(_r_2_7_8_14)
+				:m MasterCard(_r_2_7_8_15)
+		:m PayPal(_r_2_17)
+		:m Contrarembolso(_r_2_18)
+	:g (_r_4) [1,*] 
+		: Carrito(_r_4_5)
+	:o Registro(_r_19)
+	:m Entrega(_r_20)
+		:o RecogidaTienda(_r_20_21)
+		:m Envio(_r_20_22)
+			:m Correos(_r_20_22_23)
+			:g (_r_20_22_25) [1,*] 
+				: Fedex(_r_20_22_25_26)
+				: MRW(_r_20_22_25_28)
+				: UPS(_r_20_22_25_29)
+	:m Descuento(_r_31)
+		:g (_r_31_32) [1,*] 
+			: Codigo(_r_31_32_33)
+			: Promocion(_r_31_32_30)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,35 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Jun 25, 2010 - 8:36 AM  -->
+<feature_model name="GoPhone Inc">
+<meta>
+<data name="description">Describes a set of different cell phones</data>
+<data name="creator">Adeline Silva</data>
+<data name="address"></data>
+<data name="email">adelinerd@msn.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">Fraunhofer IESE</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r GoPhone(_r)
+	:o Calendar(_r_1)
+		:o MS Outlook Sync(_r_1_7)
+		:o Alarm(_r_1_16)
+	:o Messaging(_r_2)
+		:o Email(_r_2_3)
+			:o Attachment(_r_2_3_6)
+		:o SMS(_r_2_4)
+	:o MMS(_r_5)
+	:o CallManagement(_r_9)
+		:o Voice Dial(_r_9_10)
+		:o Call Filter(_r_9_11)
+	:o DataTransfer(_r_12)
+		:o IrDA(_r_12_13)
+		:o Bluetooth(_r_12_14)
+		:o GPRS(_r_12_15)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

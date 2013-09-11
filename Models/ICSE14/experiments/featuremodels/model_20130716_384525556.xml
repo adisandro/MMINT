@@ -1,0 +1,42 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Jul 16, 2013 - 10:24 PM  -->
+<feature_model name="SmartPhone Device">
+<meta>
+<data name="description">SmartPhone</data>
+<data name="creator">C.Y Lee</data>
+<data name="address"></data>
+<data name="email">yulee_99@daum.net</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">SK</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r SamrtPhone(_r)
+	:o DMB(_r_5)
+	:o Motion Sensor(_r_9)
+	:o GPS(_r_12)
+	:m Screen(_r_34)
+		:g (_r_34_37) [1,1] 
+			: LCD(_r_34_37_38)
+			: OLED(_r_34_37_41)
+	:m Body Frame(_r_42)
+		:g (_r_42_43) [1,1] 
+			: Alloy Frame(_r_42_43_44)
+			: PDPP(_r_42_43_47)
+	:m OS(_r_48)
+		:g (_r_48_49) [1,1] 
+			: iOS(_r_48_49_50)
+			: Android(_r_48_49_51)
+	:m Network(_r_52)
+		:g (_r_52_53) [1,1] 
+			: LTE(_r_52_53_54)
+			: LET-A(_r_52_53_55)
+			: 3G(_r_52_53_56)
+</feature_tree>
+<constraints>
+constraint_1:_r
+constraint_2:_r_48 or _r_48_49_50 or _r_48_49_51 or _r_52_53_54 or _r_52_53_55 or _r_52_53_56
+</constraints>
+</feature_model>

@@ -1,0 +1,76 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Tue, Mar 29, 2011 - 5:22 PM  -->
+<feature_model name="Consolas de Videojuegos">
+<meta>
+<data name="description">modelo inicial que muestra los componentes basicos de una consola de videojugos</data>
+<data name="creator">Johan Manuel Grisales</data>
+<data name="address"></data>
+<data name="email">johanmga@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">icesi</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r ConsolasVideojuegos(_r)
+	:m Procesador(_r_1)
+		:g (_r_1_2) [1,1] 
+			: 1 nucleo(_r_1_2_3)
+			: 2 nucleos(_r_1_2_6)
+			: 3 nucleos(_r_1_2_7)
+	:m placaDeVideo(_r_8)
+		:g (_r_8_9) [1,*] 
+			: aceleracionHw(_r_8_9_10)
+			: aceleracion3d(_r_8_9_11)
+			: PixelShader(_r_8_9_12)
+	:o SoporteRed(_r_13)
+		:g (_r_13_14) [1,*] 
+			: Ethernet(_r_13_14_15)
+			: Wifi(_r_13_14_16)
+			: Bluetooth(_r_13_14_17)
+	:m ControlesDeMando(_r_18)
+		:g (_r_18_19) [1,*] 
+			: botones(_r_18_19_20)
+				:g (_r_18_19_20_24) [1,1] 
+					: 1 Boton(_r_18_19_20_24_25)
+					: 2 botones(_r_18_19_20_24_26)
+					: 3 Botones(_r_18_19_20_24_27)
+					: 4 botones(_r_18_19_20_24_28)
+			: cruceta(_r_18_19_21)
+			: analogos(_r_18_19_22)
+				:g (_r_18_19_22_29) [1,1] 
+					: 1 stick analogo(_r_18_19_22_29_30)
+					: 2 sticks analogos(_r_18_19_22_29_31)
+			: gatillos(_r_18_19_23)
+				:g (_r_18_19_23_32) [1,1] 
+					: 1 gatillo(_r_18_19_23_32_33)
+					: 2 gatillos(_r_18_19_23_32_34)
+	:m Medios Magneticos-Almacenamiento(_r_27)
+		:g (_r_27_28) [1,*] 
+			: Blu ray(_r_27_28_29)
+			: dvd-rom(_r_27_28_30)
+			: Disco Duro(_r_27_28_31)
+				:g (_r_27_28_31_32) [1,1] 
+					: 120 gb(_r_27_28_31_32_33)
+					: 60 gb(_r_27_28_31_32_34)
+					: 250 gb(_r_27_28_31_32_35)
+	:o add-Ons(_r_36)
+		:g (_r_36_37) [1,*] 
+			: lector de memorias(_r_36_37_38)
+			: puertos usb(_r_36_37_39)
+				:g (_r_36_37_39_42) [1,1] 
+					: 1 puerto usb(_r_36_37_39_42_43)
+					: 2 puertos usb(_r_36_37_39_42_44)
+					: 3 puertos usb(_r_36_37_39_42_45)
+			: microfono(_r_36_37_40)
+			: deteccion movimiento(_r_36_37_41)
+</feature_tree>
+<constraints>
+constraint_6:_r_1_2_7 or ~_r_36_37_41
+constraint_4:~_r_36_37_38 or ~_r_36_37_39
+constraint_5:_r_8_9_10 or ~_r_36_37_41
+constraint_2:~_r_18_19_21 or ~_r_18_19_22_29_31
+constraint_3:~_r_27_28_29 or ~_r_27_28_30
+</constraints>
+</feature_model>

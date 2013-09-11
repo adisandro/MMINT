@@ -1,0 +1,51 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Apr 12, 2012 - 12:27 PM  -->
+<feature_model name="prueba">
+<meta>
+<data name="description">prueba</data>
+<data name="creator">Cristian</data>
+<data name="address"></data>
+<data name="email">cristian@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">universidad</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Phone(_r)
+	:m Utility Functions(_r_5)
+		:m Calls(_r_5_6)
+		:m Messaging(_r_5_7)
+			:g (_r_5_7_11) [1,1] 
+				: SMS(_r_5_7_11_12)
+				: MMS(_r_5_7_11_13)
+				: EMS(_r_5_7_11_14)
+				: AUX(_r_5_7_11_26)
+		:m Ringing Tones(_r_5_8)
+		:m Alarm(_r_5_9)
+		:o Games(_r_5_10)
+	:m Settings(_r_15)
+		:o Java Support(_r_15_16)
+		:m OS(_r_15_17)
+			:g (_r_15_17_18) [1,1] 
+				: Symbian(_r_15_17_18_19)
+				: WinCE(_r_15_17_18_20)
+	:o Media(_r_21)
+		:o MP3(_r_21_22)
+		:o Camera(_r_21_23)
+	:m Screen(_r_24)
+		:g (_r_24_25) [1,1] 
+			: Basic(_r_24_25_26)
+			: Colour(_r_24_25_27)
+			: High Resolution(_r_24_25_28)
+	:o Connectivity(_r_23)
+		:m USB(_r_23_24)
+		:o Bluetooth(_r_23_25)
+</feature_tree>
+<constraints>
+constraint_1:~_r_5_10 or ~_r_24_25_26
+constraint_2:~_r_5_10 or _r_15_16
+constraint_3:~_r_21_23 or _r_24_25_28
+</constraints>
+</feature_model>

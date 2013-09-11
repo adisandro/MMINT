@@ -1,0 +1,82 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Apr 18, 2012 - 5:59 PM  -->
+<feature_model name="Electronic Drum">
+<meta>
+<data name="description">Yamaha electronic drums</data>
+<data name="creator">Francisco Lopez</data>
+<data name="address"></data>
+<data name="email">francisco.lopsan@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Seville</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Electronic Drum(_r)
+	:m Modulo Activador(_r_1)
+		:g (_r_1_10) [1,1] 
+			: DTX700(_r_1_10_11)
+			: DTX500(_r_1_10_12)
+			: DTX900(_r_1_10_13)
+	:m Pads(_r_2)
+		:m Caja(_r_2_6)
+			:g (_r_2_6_14) [1,1] 
+				: XP80(_r_2_6_14_15)
+				: XP70(_r_2_6_14_16)
+				: TP65S(_r_2_6_14_17)
+				: TP65(_r_2_6_14_18)
+		:m Platos(_r_2_7)
+			:m Hit-Hat(_r_2_7_19)
+				:g (_r_2_7_19_22) [1,1] 
+					: PCY100(_r_2_7_19_22_23)
+					: RHH135(_r_2_7_19_22_27)
+			:m Ride(_r_2_7_20)
+				:g (_r_2_7_20_28) [1,1] 
+					: PCY65(_r_2_7_20_28_29)
+					: PCY135(_r_2_7_20_28_30)
+					: PCY155(_r_2_7_20_28_31)
+			:m Crash(_r_2_7_21)
+				:g (_r_2_7_21_32) [1,1] 
+					: PCY65(_r_2_7_21_32_33)
+					: PCY135(_r_2_7_21_32_34)
+					: PCY155(_r_2_7_21_32_35)
+		:m Bombo(_r_2_8)
+			:g (_r_2_8_36) [1,1] 
+				: KP65(_r_2_8_36_37)
+				: KP125(_r_2_8_36_38)
+		:m Tom1(_r_2_39)
+			:g (_r_2_39_42) [1,1] 
+				: XP70(_r_2_39_42_43)
+				: XP80(_r_2_39_42_44)
+				: TP65(_r_2_39_42_45)
+				: TP65S(_r_2_39_42_46)
+		:m Tom2(_r_2_40)
+			:g (_r_2_40_47) [1,1] 
+				: XP70(_r_2_40_47_48)
+				: XP80(_r_2_40_47_49)
+				: TP65(_r_2_40_47_50)
+				: TP65S(_r_2_40_47_51)
+		:m Tom de piso(_r_2_41)
+			:g (_r_2_41_52) [1,1] 
+				: XP70(_r_2_41_52_53)
+				: XP80(_r_2_41_52_54)
+				: TP65(_r_2_41_52_55)
+				: TP65S(_r_2_41_52_56)
+	:m Controladores(_r_3)
+		:m Hit-Hat(_r_3_57)
+			:m HH65(_r_3_57_58)
+	:m Rack(_r_4)
+		:g (_r_4_59) [1,1] 
+			: RS500(_r_4_59_60)
+			: RS700(_r_4_59_61)
+			: RS85A(_r_4_59_62)
+	:o SistemasDeAmplificacion(_r_5)
+		:g (_r_5_63) [1,1] 
+			: MS40DR(_r_5_63_64)
+			: MS50DR(_r_5_63_65)
+			: MS100DR(_r_5_63_66)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,32 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sun, Feb 24, 2013 - 11:47 AM  -->
+<feature_model name="sasgd">
+<meta>
+<data name="description">agsag</data>
+<data name="creator">agfsdg</data>
+<data name="address"></data>
+<data name="email">aggga</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">aggag</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Type rootname for root feature(_r)
+	:g (_r_1) [1,*] 
+		: Feature-2(_r_1_2)
+			:g (_r_1_2_3) [1,*] 
+				: Feature-4(_r_1_2_3_4)
+					:m Feature-5(_r_1_2_3_4_5)
+					:o Feature-10(_r_1_2_3_4_10)
+			:g (_r_1_2_8) [1,1] 
+				: Feature-9(_r_1_2_8_9)
+		: Feature-12(_r_1_12)
+	:m Feature-6(_r_6)
+	:o Feature-7(_r_7)
+	:o Feature-11(_r_11)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,39 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Jan 28, 2013 - 10:13 AM  -->
+<feature_model name="OnlineExamPL">
+<meta>
+<data name="description">OnlineExam</data>
+<data name="creator">FDSE</data>
+<data name="address"></data>
+<data name="email">pilgrimageyy@126.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">FUDAN UNIVERSITY</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Online Exam PL(_r)
+	:m GeneralFunction(_r_1)
+	:m QuestionAndAnswer(_r_2)
+		:m QuestionType(_r_2_9)
+			:m ShortAnswer(_r_2_9_11)
+			:m Choice(_r_2_9_12)
+		:m Mode(_r_2_10)
+			:m ExerciseMode(_r_2_10_22)
+			:o TestMode(_r_2_10_23)
+				:g (_r_2_10_23_17) [1,*] 
+					: RandomizedQuestion(_r_2_10_23_17_18)
+					: SelectedQuestion(_r_2_10_23_17_19)
+	:m Language(_r_3)
+		:m Chinese(_r_3_20)
+		:m English(_r_3_21)
+	:o TestPaperGeneration(_r_4)
+		:m Customized(_r_4_17)
+		:o SelectedFromRepository(_r_4_19)
+	:m EmailFunction(_r_7)
+</feature_tree>
+<constraints>
+constraint_1:_r_2_10_23 or ~_r_4
+</constraints>
+</feature_model>

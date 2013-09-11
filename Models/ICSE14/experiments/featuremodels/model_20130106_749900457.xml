@@ -1,0 +1,44 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Thu, Jan 10, 2013 - 5:41 AM  -->
+<feature_model name="Monitor">
+<meta>
+<data name="description">Model of a Monitor</data>
+<data name="creator">none</data>
+<data name="address"></data>
+<data name="email">none</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">none</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Monitor(_r)
+	:m Port(_r_11)
+		:g (_r_11_12) [1,*] 
+			: DVI(_r_11_12_13)
+			: HDMI(_r_11_12_14)
+			: USB(_r_11_12_15)
+			: S-Video(_r_11_12_16)
+			: VGA(_r_11_12_23)
+	:o EmbeddedDevice(_r_17)
+		:g (_r_17_18) [1,*] 
+			: Microphone(_r_17_18_19)
+			: Webcam(_r_17_18_20)
+			: Speaker(_r_17_18_21)
+	:m Screen Aspect Ratio(_r_22)
+		:g (_r_22_34) [1,1] 
+			: 4 to 3(_r_22_34_35)
+			: 16 to 9(_r_22_34_36)
+	:m Type(_r_24)
+		:g (_r_24_27) [1,1] 
+			: Touchscreen(_r_24_27_28)
+			: Full HD(_r_24_27_29)
+			: LED(_r_24_27_30)
+			: 3D(_r_24_27_31)
+			: Dual(_r_24_27_32)
+			: TV(_r_24_27_33)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

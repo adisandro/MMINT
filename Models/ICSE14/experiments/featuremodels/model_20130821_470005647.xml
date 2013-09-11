@@ -1,0 +1,62 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Wed, Aug 21, 2013 - 12:23 AM  -->
+<feature_model name="Adempiere">
+<meta>
+<data name="description">Descripcion SE Adempiere</data>
+<data name="creator">PARS</data>
+<data name="address"></data>
+<data name="email">pa.restrepo50@uniandes.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">PARS</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r ADempiere(_r)
+	:m Capacidades Funcionales(_r_1)
+		:m Cotizacion a ingresos(_r_1_20)
+			:m Creacion de cotizaciones(_r_1_20_27)
+			:m Administracion de ordenes de venta(_r_1_20_28)
+			:m Facturacion(_r_1_20_29)
+			:m Cobranzas en efectivo(_r_1_20_31)
+		:m Requisicion a pago(_r_1_21)
+			:m Creacion de ordenes de compra(_r_1_21_32)
+			:m Procesamiento de facturas de proveedores y pagos efectuados(_r_1_21_34)
+			:m Conciliacion bancaria(_r_1_21_35)
+		:m Administracion de Clientes(_r_1_23)
+			:m Creacion-distribucion y seguimiento de los cliente(_r_1_23_39)
+			:m Administrar los proveedores y pedidos generados(_r_1_23_40)
+		:m Administracion de Socios(_r_1_24)
+			:m Manejo de pedidos de servicio(_r_1_24_37)
+			:m Gastos de marketing(_r_1_24_38)
+		:m Abastecimiento(_r_1_25)
+			:m Recepcion de productos(_r_1_25_42)
+			:m Entrega de Productos(_r_1_25_43)
+			:m Movimientos y administracion de los productos(_r_1_25_45)
+			:m Procesamientos de tomas de stock(_r_1_25_46)
+			:m Catalogo de productos(_r_1_25_47)
+				:m Definir productos y servicios con precios de materiales y sustitutos(_r_1_25_47_48)
+				:m Actualizar o importar las lista de precios del proveedor(_r_1_25_47_49)
+			:m Controlas descuentos y creditos de los proveedores(_r_1_25_50)
+			:m Manejo de inventario en transito(_r_1_25_51)
+		:m Analisis de Resultados(_r_1_26)
+			:m Costeo y dimensiones contables(_r_1_26_52)
+	:m Capacidades No Funcionales(_r_2)
+		:m Interoperabilidad(_r_2_5)
+		:m Seguridad(_r_2_6)
+		:m Disponibilidad(_r_2_8)
+		:m Flexibilidad(_r_2_9)
+		:m Mantenibilidad(_r_2_10)
+		:m Modificabilidad(_r_2_11)
+	:m Modulos(_r_4)
+		:o Contabilidad General(_r_4_13)
+		:o Cuentas a Pagar(_r_4_14)
+		:o Cuentas a Cobrar(_r_4_15)
+		:o Orden de Compra(_r_4_16)
+		:o Orden de Ventas(_r_4_17)
+		:o Activo Fijo(_r_4_18)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

@@ -1,0 +1,44 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Sat, Apr 6, 2013 - 11:08 AM  -->
+<feature_model name="Requisitos II">
+<meta>
+<data name="description">requisitos II</data>
+<data name="creator">Phruiz</data>
+<data name="address"></data>
+<data name="email">phruiz@unimayor.edu.co</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">IUCMC</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Requisitos II(_r)
+	:o Definir la Vision(_r_1)
+	:m Requisitos(_r_5)
+		:g (_r_5_6) [1,1] 
+			: Encontrar Actores y Casos de Uso(_r_5_6_7)
+			: Analizar el Problema(_r_5_6_8)
+			: Identificar y Esbozar Requisitos(_r_5_6_9)
+	:m Gestionar el Alcance del Sistema(_r_10)
+		:g (_r_10_11) [1,1] 
+			: Priorizar Casos de Uso(_r_10_11_12)
+			: Gestionar el alcance del Sistema(_r_10_11_13)
+	:m Refinar la definicion del Sistema(_r_14)
+		:g (_r_14_15) [1,1] 
+			: Refinar la Definicion del Sistema(_r_14_15_21)
+			: Detallar Casos de Uso(_r_14_15_16)
+				:g (_r_14_15_16_17) [1,1] 
+					: Detallar Escenarios de Casos de Uso(_r_14_15_16_17_18)
+					: Detallar un Caso de Uso(_r_14_15_16_17_19)
+	:m Prototipar la Interfaz de Usuario(_r_27)
+	:m Estructurar el Modelo de Casos de Uso(_r_28)
+</feature_tree>
+<constraints>
+constraint_22:_r_5_6_9 or ~_r_14_15_16
+constraint_23:_r_10_11_12 or ~_r_14_15_16
+constraint_26:~_r_10_11_12 or ~_r_10_11_13
+constraint_24:~_r_5_6_8 or ~_r_5_6_9
+constraint_25:~_r_5_6_7 or ~_r_5_6_9
+</constraints>
+</feature_model>

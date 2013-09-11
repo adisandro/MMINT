@@ -1,0 +1,30 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Mon, Jul 4, 2011 - 3:15 PM  -->
+<feature_model name="SmartHome_vConejero_r1">
+<meta>
+<data name="description">Adaptation of the original feature models for the SmartHome system used by AMPLE project as case study</data>
+<data name="creator">José M. Conejero</data>
+<data name="address">Escuela Politécnica, Avda. de la Universidad, s/n</data>
+<data name="email">chemacm@unex.es</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">University of Extremadura</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r SmartHome(_r)
+	:m Feature-1(_r_1)
+	:m Feature-2(_r_2)
+	:m Feature-3(_r_3)
+	:m Feature-4(_r_4)
+	:m Feature-5(_r_5)
+	:m Feature-6(_r_6)
+	:m Feature-7(_r_7)
+	:o Feature-8(_r_8)
+	:m Feature-9(_r_9)
+	:m Feature-10(_r_10)
+</feature_tree>
+<constraints>
+</constraints>
+</feature_model>

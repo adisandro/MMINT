@@ -1,0 +1,36 @@
+<!-- This model was created online using SPLOT's Feature Model Editor (http://www.splot-research.org) on Fri, Nov 23, 2012 - 8:39 AM  -->
+<feature_model name="Mobile Media">
+<meta>
+<data name="description">modelo para aplicativo de midia de dispositivo movel</data>
+<data name="creator">Eduardo</data>
+<data name="address"></data>
+<data name="email">eduardodonda@gmail.com</data>
+<data name="phone"></data>
+<data name="website"></data>
+<data name="organization">UFJF</data>
+<data name="department"></data>
+<data name="date"></data>
+<data name="reference"></data>
+</meta>
+<feature_tree>
+:r Mobile Media(_r)
+	:m Media Selection(_r_1)
+		:g (_r_1_8) [1,1] 
+			: Photo(_r_1_8_9)
+			: Music(_r_1_8_10)
+			: Video(_r_1_8_11)
+	:m Screen Size(_r_2)
+		:g (_r_2_12) [1,*] 
+			: Screen 1(_r_2_12_13)
+			: Screen 2(_r_2_12_14)
+	:m Media Management(_r_3)
+		:o Copy Media(_r_3_20)
+		:o SMS Transfer(_r_3_21)
+			:m Receive Photo(_r_3_21_24)
+			:m Send Photo(_r_3_21_25)
+</feature_tree>
+<constraints>
+constraint_6:~_r_3_20 or _r_3_21
+constraint_5:~_r_1_8_9 or _r_2_12_13
+</constraints>
+</feature_model>
