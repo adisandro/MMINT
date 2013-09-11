@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmtf/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
+  <models uri="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.uml" name="bCMS-SPL-PC-Conf4" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML" dynamic="true" fileExtension="uml" editors="//@editors.0"/>
+  <models uri="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.classdiagram_mavo" name="bCMS-SPL-PC-Conf4" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="classdiagram_mavo" editors="//@editors.1"/>
+  <editors uri="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.uml" name="UML tree for model /ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_tree" dynamic="true" modelUri="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.uml" id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID" wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
+    <fileExtensions>uml</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.classdiagramdiag_mavo" name="ClassDiagram_MAVO diagram for model /ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.classdiagram_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram_MAVO" dynamic="true" modelUri="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.classdiagram_mavo" id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOCreationWizardID">
+    <fileExtensions>classdiagramdiag_mavo</fileExtensions>
+  </editors>
+  <extendibleTable key="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.uml" value="//@models.0"/>
+  <extendibleTable key="/ICSE14/casestudy/baseline/conf4/bCMS-SPL-PC-Conf4.classdiagram_mavo" value="//@models.1"/>
+</mid:MultiModel>
