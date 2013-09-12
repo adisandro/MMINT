@@ -8,7 +8,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml,
  org.eclipse.m2m.atl.engine.emfvm,
  edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.modelepedia.classdiagram_mavo
+ edu.toronto.cs.se.modelepedia.classdiagram_mavo,
+ edu.toronto.cs.se.modelepedia.operator,
+ org.eclipse.emf.henshin.interpreter,
+ org.eclipse.emf.henshin.model,
+ org.eclipse.emf.henshin.trace
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

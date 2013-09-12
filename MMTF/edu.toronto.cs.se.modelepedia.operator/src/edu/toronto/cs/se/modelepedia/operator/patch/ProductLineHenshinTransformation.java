@@ -16,7 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Random;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -42,7 +41,6 @@ import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -56,10 +54,10 @@ import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3I
 
 public class ProductLineHenshinTransformation extends LiftingHenshinTransformation {
 
-	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i)";
-	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = ")))";
+	protected static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i)";
+	protected static final String SMTLIB_APPLICABILITY_POSTAMBLE = ")))";
 
-	private Z3IncResult z3IncResult;
+	protected Z3IncResult z3IncResult;
 
 	private void transformMatch(RuleApplication application, Match match, boolean isLiftedMatch) {
 
@@ -152,35 +150,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, SMTLIB_AND, SMTLIB_TRUE);
 	}
 
-//	private boolean checkZ3ApplicabilityFormula2() {
-//
-//		int checkpointUnsat = smtEncoding.length();
-//		createZ3ApplyFormula();
-//		int checkpointSat = smtEncoding.length();
-//		smtEncoding.append(SMTLIB_ASSERT);
-//		smtEncoding.append(SMTLIB_EQUALITY);
-//		smtEncoding.append(SMTLIB_AND);
-//		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
-//		smtEncoding.append(iterationsLifting);
-//		smtEncoding.append(SMTLIB_PREDICATE_END);
-//		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
-//		smtEncoding.append(iterationsLifting + 1);
-//		smtEncoding.append(SMTLIB_PREDICATE_END);
-//		smtEncoding.append(SMTLIB_PREDICATE_END);
-//		smtEncoding.append(SMTLIB_TRUE);
-//		smtEncoding.append(SMTLIB_PREDICATE_END);
-//		smtEncoding.append(SMTLIB_PREDICATE_END);
-//
-//		int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(smtEncoding.toString());
-//		if (z3Result == Z3_SAT) {
-//			smtEncoding.delete(checkpointSat, smtEncoding.length());
-//			return true;
-//		}
-//		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
-//		return false;
-//	}
-
-	private boolean checkZ3ApplicabilityFormula() {
+	protected boolean checkZ3ApplicabilityFormula() {
 
 		int checkpointUnsat = smtEncoding.length();
 		createZ3ApplyFormula();
@@ -326,8 +296,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
-		TransformationApplicabilityCondition condition;int i=0;
-		while ((condition = checkApplicabilityConditions(rule, engine, graph)) != null) {System.err.println(i);i++;
+		TransformationApplicabilityCondition condition;
+		while ((condition = checkApplicabilityConditions(rule, engine, graph)) != null) {
 			application.setRule(condition.getMatchedRule());
 			application.setEGraph(graph);
 			// transform
@@ -364,7 +334,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		// do transformations
 		//TODO MMTF: implement D support and OR-ed N support
-		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
 		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
 		Module module = resourceSet.getModule(transformationModule, false);
@@ -436,60 +405,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		);
 
 		return result;
-	}
-
-	public long doSimulateLifting(Properties properties, Random state) throws MMTFException {
-
-		final String PROPERTY_IN_NUMRULEELEMENTS = "numRuleElements";
-
-		//TODO read in a better way
-		constraint = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_CONSTRAINT);
-		constraintVariables = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_CONSTRAINTVARIABLES);
-		int numRuleElements = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_NUMRULEELEMENTS);
-		init();
-		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
-		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding.toString());
-		long startTime = System.nanoTime();
-		for (int i = 0; i < numRuleElements; i++) {
-			MAVOElement modelObj = null;//TODO create
-			String formulaId;
-			if (state.nextBoolean()) {
-				formulaId = SMTLIB_TRUE;
-			}
-			else {
-				formulaId = constraintVariables[state.nextInt(constraintVariables.length)];
-			}
-			modelObj.setFormulaId(formulaId);
-			modelObjsC.add(modelObj);
-		}
-		while (checkZ3ApplicabilityFormula()) {
-			double r = 1 - (1 / (2 * (iterationsLifting + 1)));
-			for (MAVOElement modelObj : modelObjsC) {
-				if (modelObj.getFormulaId().equals(SMTLIB_TRUE)) {
-					continue;
-				}
-				StringBuilder formulaId = new StringBuilder(SMTLIB_AND);
-				for (int i = 0; i < Math.round(Math.pow(numRuleElements, r)); i++) {
-					boolean not = state.nextBoolean();
-					if (not) {
-						formulaId.append(SMTLIB_NOT);
-					}
-					formulaId.append(constraintVariables[state.nextInt(constraintVariables.length)]);
-					if (not) {
-						formulaId.append(SMTLIB_PREDICATE_END);
-					}
-					formulaId.append(" ");//TODO optimize needSpace
-				}
-				formulaId.deleteCharAt(formulaId.length()-1);
-				formulaId.append(SMTLIB_PREDICATE_END);
-				modelObj.setFormulaId(formulaId.toString());
-			}
-			iterationsLifting++;
-		}
-		long endTime = System.nanoTime();
-		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
-
-		return endTime - startTime;
 	}
 
 }

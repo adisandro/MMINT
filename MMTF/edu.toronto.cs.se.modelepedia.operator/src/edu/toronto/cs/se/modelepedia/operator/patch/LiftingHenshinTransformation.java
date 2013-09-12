@@ -29,10 +29,10 @@ import org.eclipse.emf.henshin.model.Rule;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
 
-public abstract class LiftingHenshinTransformation extends OperatorExecutableImpl implements Z3SMTSolver {
+public abstract class LiftingHenshinTransformation extends RandomOperatorExecutableImpl implements Z3SMTSolver {
 
 	protected class TransformationApplicabilityCondition {
 
@@ -69,11 +69,11 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESLIFTING = "transformationRulesLifting";
 
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
-	private static final String PROPERTY_OUT_TIMELIFTING = "timeLifting";
+	protected static final String PROPERTY_OUT_TIMELIFTING = "timeLifting";
 	private static final String PROPERTY_OUT_ITERATIONSCLASSICAL = "iterationsClassical";
-	private static final String PROPERTY_OUT_ITERATIONSLIFTING = "iterationsLifting";
+	protected static final String PROPERTY_OUT_ITERATIONSLIFTING = "iterationsLifting";
 	private static final String PROPERTY_OUT_ITERATIONSNOTLIFTING = "iterationsNotLifting";
-	private static final String PROPERTY_OUT_SMTENCODINGLENGTH = "smtEncodingLength";
+	protected static final String PROPERTY_OUT_SMTENCODINGLENGTH = "smtEncodingLength";
 	private static final String PROPERTY_OUT_CHAINS = "chains";
 	private static final int PROPERTY_OUT_CHAINS_MAX = 10;
 	private static final String PROPERTY_OUT_LITERALS = "literals";
@@ -185,6 +185,7 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 		smtEncodingConstants = new HashSet<String>();
 		smtEncoding = new StringBuilder();
 		initOutput();
+		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
 	}
 
 	protected void initSMTEncoding(String preamble, String postamble) {
@@ -299,8 +300,8 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		application.setRule(rule);
-		application.setEGraph(graph);int i=0;
-		for (Match match : engine.findMatches(rule, graph, null)) {System.err.println(i);i++;
+		application.setEGraph(graph);
+		for (Match match : engine.findMatches(rule, graph, null)) {
 			application.setCompleteMatch(match);
 			application.execute(null);
 			if (isLifting) {
@@ -317,11 +318,11 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 	protected void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
-		for (String transformationRule : transformationRules) {System.err.println(transformationRule);
+		for (String transformationRule : transformationRules) {
 			Rule rule = (Rule) module.getUnit(transformationRule);
 			matchAndTransform(rule, engine, graph, false);
 		}
-		for (String transformationRuleLifted : transformationRulesLifting) {System.err.println(transformationRuleLifted);
+		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransform(rule, engine, graph, false);
 		}
@@ -333,11 +334,11 @@ public abstract class LiftingHenshinTransformation extends OperatorExecutableImp
 	protected void doLiftingTransformation(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
-		for (String transformationRule : transformationRules) {System.err.println(transformationRule);
+		for (String transformationRule : transformationRules) {
 			Rule rule = (Rule) module.getUnit(transformationRule);
 			matchAndTransform(rule, engine, graph, true);
 		}
-		for (String transformationRuleLifted : transformationRulesLifting) {System.err.println(transformationRuleLifted);
+		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransformLifting(rule, engine, graph);
 		}

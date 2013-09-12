@@ -387,7 +387,6 @@ matchesN:
 
 		// do transformations
 		//TODO MMTF: implement D support and OR-ed N support
-		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
 		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
 		Module module = resourceSet.getModule(transformationModule, false);
