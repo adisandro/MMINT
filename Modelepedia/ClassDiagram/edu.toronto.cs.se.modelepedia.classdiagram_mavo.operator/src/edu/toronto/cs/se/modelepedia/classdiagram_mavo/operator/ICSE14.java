@@ -39,10 +39,10 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private static final String PROPERTY_IN_MODELSIZE = "modelSize";
 	private static final String PROPERTY_IN_MAXCHAINS = "maxChains";
 	private static final String PROPERTY_IN_NUMITERATIONS = "numIterations";
-	private static final String PROPERTY_IN_NACMATCHPROBABILITY = "nacMatchProbability";
-	private static final double PROPERTY_IN_NACMATCHPROBABILITY_DEFAULT = 0.5;
-	private static final String PROPERTY_IN_ALWAYSPRESENTPROBABILITY = "alwaysPresentProbability";
-	private static final double PROPERTY_IN_ALWAYSPRESENTPROBABILITY_DEFAULT = 0.5;
+	private static final String PROPERTY_IN_NACMATCHPERC = "nacMatchPerc";
+	private static final double PROPERTY_IN_NACMATCHPERC_DEFAULT = 0.5;
+	private static final String PROPERTY_IN_ALWAYSPRESENTPERC = "alwaysPresentPerc";
+	private static final double PROPERTY_IN_ALWAYSPRESENTPERC_DEFAULT = 0.5;
 
 	private String featureModelName;
 	private int numRuleElementsN;
@@ -51,8 +51,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private int modelSize;
 	private int maxChains;
 	private int numIterations;
-	private double nacMatchProbability;
-	private double alwaysPresentProbability;
+	private double nacMatchPerc;
+	private double alwaysPresentPerc;
 
 	private Model inputModel;
 	private List<MAVOElement> modelObjsBucketA;
@@ -78,14 +78,13 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		modelSize = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MODELSIZE);
 		maxChains = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXCHAINS);
 		numIterations = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_NUMITERATIONS);
-		nacMatchProbability = MultiModelOperatorUtils.getOptionalDoubleProperty(properties, PROPERTY_IN_NACMATCHPROBABILITY, PROPERTY_IN_NACMATCHPROBABILITY_DEFAULT);
-		alwaysPresentProbability = MultiModelOperatorUtils.getOptionalDoubleProperty(properties, PROPERTY_IN_ALWAYSPRESENTPROBABILITY, PROPERTY_IN_ALWAYSPRESENTPROBABILITY_DEFAULT);
+		nacMatchPerc = MultiModelOperatorUtils.getOptionalDoubleProperty(properties, PROPERTY_IN_NACMATCHPERC, PROPERTY_IN_NACMATCHPERC_DEFAULT);
+		alwaysPresentPerc = MultiModelOperatorUtils.getOptionalDoubleProperty(properties, PROPERTY_IN_ALWAYSPRESENTPERC, PROPERTY_IN_ALWAYSPRESENTPERC_DEFAULT);
 	}
 
 	protected void writeProperties(Properties properties) {
 
 		properties.setProperty(PROPERTY_OUT_TIMELIFTING, String.valueOf(timeLifting));
-		properties.setProperty(PROPERTY_OUT_ITERATIONSLIFTING, String.valueOf(iterationsLifting));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
 	}
 
@@ -114,23 +113,29 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		modelObjsD.clear();
 		Set<MAVOElement> modelObjsN = new HashSet<MAVOElement>();
 		modelObjsNBar.add(modelObjsN);
-		double modelObjAMatchProbability = modelObjsChainsA.size() / modelSize;
-		boolean nacMatched = (state.nextDouble() < nacMatchProbability);
+		double modelObjAMatchPerc = modelObjsChainsA.size() / modelSize;
+		boolean nacMatched = (state.nextDouble() < nacMatchPerc);
 		for (int i = 0; i < (numRuleElementsN+numRuleElementsC); i++) {
 			MAVOElement modelObj = null;
-			boolean modelObjAMatched = (state.nextDouble() < modelObjAMatchProbability);
+			boolean modelObjAMatched = (state.nextDouble() < modelObjAMatchPerc);
 			if (modelObjAMatched) { // previously (A)dded element matched
 				int indexA = state.nextInt(modelObjsChainsA.size());
 				int chains = modelObjsChainsA.get(indexA);
 				if (chains > 0) { // still able to chain
 					chains--;
-					modelObj = modelObjsBucketA.get(indexA);
-					modelObjsChainsA.add(indexA, new Integer(chains));
+					if (chains == 0) {
+						modelObj = modelObjsBucketA.remove(indexA);
+						modelObjsChainsA.remove(indexA);
+					}
+					else {
+						modelObj = modelObjsBucketA.get(indexA);
+						modelObjsChainsA.add(indexA, new Integer(chains));
+					}
 				}
 			}
-			if (!modelObjAMatched || (modelObjAMatched && modelObj == null)) { // no longer able to chain
+			else {
 				modelObj = ClassDiagram_MAVOFactory.eINSTANCE.createClass();
-				String formulaId = (state.nextDouble() < alwaysPresentProbability) ?
+				String formulaId = (state.nextDouble() < alwaysPresentPerc) ?
 					SMTLIB_TRUE :
 					constraintVariables[state.nextInt(constraintVariables.length)];
 				modelObj.setFormulaId(formulaId);
@@ -173,7 +178,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
 			inputModel,
-			null,
+			inputSubdir,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
