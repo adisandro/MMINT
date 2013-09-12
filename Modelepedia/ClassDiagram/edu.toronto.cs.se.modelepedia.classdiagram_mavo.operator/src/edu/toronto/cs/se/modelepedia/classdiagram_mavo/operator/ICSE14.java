@@ -85,7 +85,10 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	protected void writeProperties(Properties properties) {
 
 		properties.setProperty(PROPERTY_OUT_TIMELIFTING, String.valueOf(timeLifting));
+		properties.setProperty(PROPERTY_OUT_SATCOUNT, String.valueOf(satCount));
+		properties.setProperty(PROPERTY_OUT_UNSATCOUNT, String.valueOf(unsatCount));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
+		properties.setProperty(PROPERTY_OUT_SMTENCODINGVARIABLES, String.valueOf(smtEncodingVariables.size()));
 	}
 
 	protected void init() {
@@ -100,7 +103,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		modelSize += numRuleElementsA;
 		for (int i = 0; i < numRuleElementsA; i++) {
 			MAVOElement modelObjA = ClassDiagram_MAVOFactory.eINSTANCE.createClass();
-			modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (iterationsLifting+1) + SMTLIB_PREDICATE_END);
+			modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + SMTLIB_PREDICATE_END);
 			modelObjsBucketA.add(modelObjA);
 			modelObjsChainsA.add(new Integer(maxChains));
 		}
@@ -159,11 +162,11 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private void doSimulatedLifting() throws MMTFException {
 
 		long startTime = System.nanoTime();
-		while (iterationsLifting < numIterations) {
+		while (ruleApplicationsLifting < numIterations) {
 			checkApplicabilityConditions();
 			modelObjsA.clear();
 			transformMatch();
-			iterationsLifting++;
+			ruleApplicationsLifting++;
 		}
 		
 		long endTime = System.nanoTime();

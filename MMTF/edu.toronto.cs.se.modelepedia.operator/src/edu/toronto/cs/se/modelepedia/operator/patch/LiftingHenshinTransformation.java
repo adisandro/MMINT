@@ -70,10 +70,13 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	protected static final String PROPERTY_OUT_TIMELIFTING = "timeLifting";
-	private static final String PROPERTY_OUT_ITERATIONSCLASSICAL = "iterationsClassical";
-	protected static final String PROPERTY_OUT_ITERATIONSLIFTING = "iterationsLifting";
-	private static final String PROPERTY_OUT_ITERATIONSNOTLIFTING = "iterationsNotLifting";
+	private static final String PROPERTY_OUT_RULEAPPLICATIONSCLASSICAL = "ruleApplicationsClassical";
+	protected static final String PROPERTY_OUT_RULEAPPLICATIONSLIFTING = "ruleApplicationsLifting";
+	private static final String PROPERTY_OUT_RULEAPPLICATIONSNOTLIFTING = "ruleApplicationsNotLifting";
+	protected static final String PROPERTY_OUT_SATCOUNT = "satCount";
+	protected static final String PROPERTY_OUT_UNSATCOUNT = "unsatCount";
 	protected static final String PROPERTY_OUT_SMTENCODINGLENGTH = "smtEncodingLength";
+	protected static final String PROPERTY_OUT_SMTENCODINGVARIABLES = "smtEncodingVariables";
 	private static final String PROPERTY_OUT_CHAINS = "chains";
 	private static final int PROPERTY_OUT_CHAINS_MAX = 10;
 	private static final String PROPERTY_OUT_LITERALS = "literals";
@@ -104,14 +107,16 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 	protected Set<MAVOElement> modelObjsCDN;
 	protected int modelObjACounter;
 	protected StringBuilder smtEncoding;
-	protected Set<String> smtEncodingConstants;
+	protected Set<String> smtEncodingVariables;
 
 	protected boolean timeClassicalEnabled;
 	protected long timeClassical;
 	protected long timeLifting;
-	protected int iterationsClassical;
-	protected int iterationsLifting;
-	protected int iterationsNotLifting;
+	protected int ruleApplicationsClassical;
+	protected int ruleApplicationsLifting;
+	protected int ruleApplicationsNotLifting;
+	protected int satCount;
+	protected int unsatCount;
 	protected Map<MAVOElement, Integer> modelObjsChains;
 	protected Map<MAVOElement, Integer> modelObjsLiterals;
 
@@ -129,10 +134,13 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 
 		properties.setProperty(PROPERTY_OUT_TIMECLASSICAL, String.valueOf(timeClassical));
 		properties.setProperty(PROPERTY_OUT_TIMELIFTING, String.valueOf(timeLifting));
-		properties.setProperty(PROPERTY_OUT_ITERATIONSCLASSICAL, String.valueOf(iterationsClassical));
-		properties.setProperty(PROPERTY_OUT_ITERATIONSLIFTING, String.valueOf(iterationsLifting));
-		properties.setProperty(PROPERTY_OUT_ITERATIONSNOTLIFTING, String.valueOf(iterationsNotLifting));
+		properties.setProperty(PROPERTY_OUT_RULEAPPLICATIONSCLASSICAL, String.valueOf(ruleApplicationsClassical));
+		properties.setProperty(PROPERTY_OUT_RULEAPPLICATIONSLIFTING, String.valueOf(ruleApplicationsLifting));
+		properties.setProperty(PROPERTY_OUT_RULEAPPLICATIONSNOTLIFTING, String.valueOf(ruleApplicationsNotLifting));
+		properties.setProperty(PROPERTY_OUT_SATCOUNT, String.valueOf(satCount));
+		properties.setProperty(PROPERTY_OUT_UNSATCOUNT, String.valueOf(unsatCount));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
+		properties.setProperty(PROPERTY_OUT_SMTENCODINGVARIABLES, String.valueOf(smtEncodingVariables.size()));
 		int[] chains = new int[PROPERTY_OUT_CHAINS_MAX];
 		for (int chain : modelObjsChains.values()) {
 			if (chain >= PROPERTY_OUT_CHAINS_MAX) {
@@ -167,9 +175,11 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 
 		timeClassical = -1;
 		timeLifting = -1;
-		iterationsClassical = 0;
-		iterationsLifting = 0;
-		iterationsNotLifting = 0;
+		ruleApplicationsClassical = 0;
+		ruleApplicationsLifting = 0;
+		ruleApplicationsNotLifting = 0;
+		satCount = 0;
+		unsatCount = 0;
 		modelObjsChains = new HashMap<MAVOElement, Integer>();
 		modelObjsLiterals = new HashMap<MAVOElement, Integer>();
 	}
@@ -182,7 +192,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		modelObjsA = new HashSet<MAVOElement>();
 		modelObjsCDN = new HashSet<MAVOElement>();
 		modelObjACounter = 0;
-		smtEncodingConstants = new HashSet<String>();
+		smtEncodingVariables = new HashSet<String>();
 		smtEncoding = new StringBuilder();
 		initOutput();
 		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
@@ -191,7 +201,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 	protected void initSMTEncoding(String preamble, String postamble) {
 
 		for (String constraintVariable : constraintVariables) {
-			smtEncodingConstants.add(constraintVariable);
+			smtEncodingVariables.add(constraintVariable);
 		}
 		createZ3ApplyFormulaConstant();
 		smtEncoding.append(preamble);
@@ -201,7 +211,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 
 	protected void createZ3ApplyFormulaConstant() {
 
-		for (String smtEncodingConstant : smtEncodingConstants) {
+		for (String smtEncodingConstant : smtEncodingVariables) {
 			smtEncoding.append(SMTLIB_CONST);
 			smtEncoding.append(smtEncodingConstant);
 			smtEncoding.append(" ");
@@ -236,7 +246,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(functionName);
-		smtEncoding.append(iterationsLifting + 1);
+		smtEncoding.append(ruleApplicationsLifting + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		createZ3ApplyFormulaMatchSet(modelObjs, innerPredicate, functionEmpty);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
@@ -248,7 +258,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		smtEncoding.append(SMTLIB_ASSERT);
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_N);
-		smtEncoding.append(iterationsLifting + 1);
+		smtEncoding.append(ruleApplicationsLifting + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 
 		if (modelObjsNBar.isEmpty()) {
@@ -305,10 +315,10 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 			application.setCompleteMatch(match);
 			application.execute(null);
 			if (isLifting) {
-				iterationsNotLifting++;
+				ruleApplicationsNotLifting++;
 			}
 			else {
-				iterationsClassical++;
+				ruleApplicationsClassical++;
 			}
 		}
 	}

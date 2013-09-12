@@ -78,7 +78,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			// (A)dded elements
 			if (isLiftedMatch) {
 				modelObjsA.add((MAVOElement) resultNodeTarget);
-				((MAVOElement) resultNodeTarget).setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (iterationsLifting+1) + SMTLIB_PREDICATE_END);
+				((MAVOElement) resultNodeTarget).setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + SMTLIB_PREDICATE_END);
 			}
 			modelObjACounter++;
 		}
@@ -158,10 +158,10 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		smtEncoding.append(SMTLIB_EQUALITY);
 		smtEncoding.append(SMTLIB_AND);
 		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
-		smtEncoding.append(iterationsLifting);
+		smtEncoding.append(ruleApplicationsLifting);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
-		smtEncoding.append(iterationsLifting + 1);
+		smtEncoding.append(ruleApplicationsLifting + 1);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 		smtEncoding.append(SMTLIB_TRUE);
@@ -170,9 +170,11 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtEncoding.substring(checkpointUnsat), 0, 1);
 		if (z3IncResult.flag == Z3_SAT) {
+			satCount++;
 			return true;
 		}
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
+		unsatCount++;
 		return false;
 	}
 
@@ -304,12 +306,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			modelObjsA.clear();
 			transformMatch(application, condition.getMatch(), condition.isLiftedMatch());
 			if (condition.isLiftedMatch()) {
-				iterationsLifting++;
+				ruleApplicationsLifting++;
 				updateChains();
 				updateLiterals();
 			}
 			else {
-				iterationsNotLifting++;
+				ruleApplicationsNotLifting++;
 			}
 		}
 	}
