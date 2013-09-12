@@ -36,6 +36,13 @@ import splar.core.fm.XMLFeatureModel;
 
 public class FeatureModelToSMTLIB implements Z3SMTSolver {
 
+	private static final Set<String> Z3_KEYWORDS = new HashSet<String>();
+	static {
+		Z3_KEYWORDS.add("select");
+		Z3_KEYWORDS.add("min");
+	}
+	private static final String Z3_KEYWORD_SUFFIX = "_KEYWORD";
+
 	private static void getConstraint(String featureModelPath) throws Exception {
 
 		FeatureModel featureModel = new XMLFeatureModel(featureModelPath, XMLFeatureModel.USE_VARIABLE_NAME_AS_ID);
@@ -44,6 +51,7 @@ public class FeatureModelToSMTLIB implements Z3SMTSolver {
 		StringBuilder cnfFormula = new StringBuilder(SMTLIB_AND);
 		Set<String> cnfVars = new HashSet<String>();
 		boolean needSpace = false;
+		String variable;
 		for (CNFClause cnfClause : cnf.getClauses()) {
 			if (cnfClause.countLiterals() > 1) {
 				cnfFormula.append(SMTLIB_OR);
@@ -57,8 +65,12 @@ public class FeatureModelToSMTLIB implements Z3SMTSolver {
 				if (needSpace) {
 					cnfFormula.append(" ");
 				}
-				cnfFormula.append(cnfLiteral.getVariable().getID());
-				cnfVars.add(cnfLiteral.getVariable().getID());
+				variable = cnfLiteral.getVariable().getID();
+				if (Z3_KEYWORDS.contains(variable)) {
+					variable += Z3_KEYWORD_SUFFIX;
+				}
+				cnfFormula.append(variable);
+				cnfVars.add(variable);
 				if (cnfLiteral.isPositive()) {
 					needSpace = true;
 				}
