@@ -259,7 +259,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		double smtEncodingVariables = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		String numRuleElements = MultiModelOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
 		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
-//		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, "unsatCountLifting"+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+//		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_UNSATCOUNTLIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		DatLine datLine = datLinesMap.get(featureModelName);
 		if (datLine == null) {
 			datLine = new DatLine();
