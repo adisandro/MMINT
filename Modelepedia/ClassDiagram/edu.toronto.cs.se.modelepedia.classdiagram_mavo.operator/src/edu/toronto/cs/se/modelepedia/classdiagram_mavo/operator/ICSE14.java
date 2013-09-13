@@ -183,10 +183,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			transformMatch();
 			ruleApplicationsLifting++;
 		}
-		
-		long endTime = System.nanoTime();
 
-		timeLifting = endTime - startTime;
+		timeLifting = System.nanoTime() - startTime;
 	}
 
 	@Override
@@ -261,6 +259,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		double smtEncodingVariables = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		String numRuleElements = MultiModelOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
 		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+//		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, "unsatCountLifting"+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		DatLine datLine = datLinesMap.get(featureModelName);
 		if (datLine == null) {
 			datLine = new DatLine();
@@ -292,6 +291,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 					writer.write(" ");
 					for (int i = 0; i < prevTotals.length; i++) {
 						writer.write(Double.toString(prevTotals[i]/prevCount/1000000000));
+//						writer.write(Double.toString(prevTotals[i]/prevCount));
 						writer.write(" ");
 						prevTotals[i] = datLine.timeLifting_numRuleElements[i];
 					}
@@ -304,6 +304,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			writer.write(" ");
 			for (int i = 0; i < prevTotals.length; i++) {
 				writer.write(Double.toString(prevTotals[i]/prevCount/1000000000));
+//				writer.write(Double.toString(prevTotals[i]/prevCount));
 				writer.write(" ");
 			}
 			writer.newLine();

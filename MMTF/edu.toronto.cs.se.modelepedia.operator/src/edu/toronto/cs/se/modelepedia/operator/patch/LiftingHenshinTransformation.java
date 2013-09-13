@@ -336,9 +336,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransform(rule, engine, graph, false);
 		}
-		long endTime = System.nanoTime();
 
-		timeClassical = endTime - startTime;
+		timeClassical = System.nanoTime() - startTime;
 	}
 
 	protected void doLiftingTransformation(Module module, Engine engine, EGraph graph) {
@@ -352,9 +351,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransformLifting(rule, engine, graph);
 		}
-		long endTime = System.nanoTime();
 
-		timeLifting = endTime - startTime;
+		timeLifting = System.nanoTime() - startTime;
 	}
 
 }
