@@ -233,11 +233,11 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 	private static final String PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
 	/** Max processing time to generate the outputs. */
 	private static final String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
-	private static final String PROPERTY_OUT_RESULTLOW_SUFFIX = ".resultLow";
-	private static final String PROPERTY_OUT_RESULTAVG_SUFFIX = ".resultAvg";
-	private static final String PROPERTY_OUT_RESULTUP_SUFFIX = ".resultUp";
+	public static final String PROPERTY_OUT_RESULTLOW_SUFFIX = ".resultLow";
+	public static final String PROPERTY_OUT_RESULTAVG_SUFFIX = ".resultAvg";
+	public static final String PROPERTY_OUT_RESULTUP_SUFFIX = ".resultUp";
 	private static final String PROPERTY_OUT_NUMSAMPLES_SUFFIX = ".numSamples";
-	private static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
+	public static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
 	private static final String EXPERIMENT_SUBDIR = "experiment";
 	private static final String SAMPLE_SUBDIR = "sample";
 	private static final String GNUPLOT_SUFFIX = MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX + ".dat";

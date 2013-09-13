@@ -73,8 +73,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 	private static final String PROPERTY_OUT_RULEAPPLICATIONSCLASSICAL = "ruleApplicationsClassical";
 	protected static final String PROPERTY_OUT_RULEAPPLICATIONSLIFTING = "ruleApplicationsLifting";
 	private static final String PROPERTY_OUT_RULEAPPLICATIONSNOTLIFTING = "ruleApplicationsNotLifting";
-	protected static final String PROPERTY_OUT_SATCOUNT = "satCount";
-	protected static final String PROPERTY_OUT_UNSATCOUNT = "unsatCount";
+	protected static final String PROPERTY_OUT_SATCOUNTLIFTING = "satCountLifting";
+	protected static final String PROPERTY_OUT_UNSATCOUNTLIFTING = "unsatCountLifting";
 	protected static final String PROPERTY_OUT_SMTENCODINGLENGTH = "smtEncodingLength";
 	protected static final String PROPERTY_OUT_SMTENCODINGVARIABLES = "smtEncodingVariables";
 	private static final String PROPERTY_OUT_CHAINS = "chains";
@@ -115,8 +115,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 	protected int ruleApplicationsClassical;
 	protected int ruleApplicationsLifting;
 	protected int ruleApplicationsNotLifting;
-	protected int satCount;
-	protected int unsatCount;
+	protected int satCountLifting;
+	protected int unsatCountLifting;
 	protected Map<MAVOElement, Integer> modelObjsChains;
 	protected Map<MAVOElement, Integer> modelObjsLiterals;
 
@@ -137,8 +137,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		properties.setProperty(PROPERTY_OUT_RULEAPPLICATIONSCLASSICAL, String.valueOf(ruleApplicationsClassical));
 		properties.setProperty(PROPERTY_OUT_RULEAPPLICATIONSLIFTING, String.valueOf(ruleApplicationsLifting));
 		properties.setProperty(PROPERTY_OUT_RULEAPPLICATIONSNOTLIFTING, String.valueOf(ruleApplicationsNotLifting));
-		properties.setProperty(PROPERTY_OUT_SATCOUNT, String.valueOf(satCount));
-		properties.setProperty(PROPERTY_OUT_UNSATCOUNT, String.valueOf(unsatCount));
+		properties.setProperty(PROPERTY_OUT_SATCOUNTLIFTING, String.valueOf(satCountLifting));
+		properties.setProperty(PROPERTY_OUT_UNSATCOUNTLIFTING, String.valueOf(unsatCountLifting));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGVARIABLES, String.valueOf(smtEncodingVariables.size()));
 		int[] chains = new int[PROPERTY_OUT_CHAINS_MAX];
@@ -178,8 +178,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		ruleApplicationsClassical = 0;
 		ruleApplicationsLifting = 0;
 		ruleApplicationsNotLifting = 0;
-		satCount = 0;
-		unsatCount = 0;
+		satCountLifting = 0;
+		unsatCountLifting = 0;
 		modelObjsChains = new HashMap<MAVOElement, Integer>();
 		modelObjsLiterals = new HashMap<MAVOElement, Integer>();
 	}

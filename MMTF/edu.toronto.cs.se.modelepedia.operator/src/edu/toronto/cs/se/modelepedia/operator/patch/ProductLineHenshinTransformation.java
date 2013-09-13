@@ -170,11 +170,11 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtEncoding.substring(checkpointUnsat), 0, 1);
 		if (z3IncResult.flag == Z3_SAT) {
-			satCount++;
+			satCountLifting++;
 			return true;
 		}
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
-		unsatCount++;
+		unsatCountLifting++;
 		return false;
 	}
 

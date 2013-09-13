@@ -198,11 +198,11 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
 		int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(smtEncoding.toString());
 		if (z3Result == Z3_SAT) {
-			satCount++;
+			satCountLifting++;
 			smtEncoding.delete(checkpointSat, smtEncoding.length());
 			return true;
 		}
-		unsatCount++;
+		unsatCountLifting++;
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
 		return false;
 	}

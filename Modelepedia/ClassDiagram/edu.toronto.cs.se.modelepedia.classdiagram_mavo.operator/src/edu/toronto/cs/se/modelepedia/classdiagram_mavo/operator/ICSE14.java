@@ -11,10 +11,24 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator;
 
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -27,6 +41,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
+import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver;
 import edu.toronto.cs.se.modelepedia.operator.patch.ProductLineHenshinTransformation;
 
 public class ICSE14 extends ProductLineHenshinTransformation {
@@ -85,8 +100,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	protected void writeProperties(Properties properties) {
 
 		properties.setProperty(PROPERTY_OUT_TIMELIFTING, String.valueOf(timeLifting));
-		properties.setProperty(PROPERTY_OUT_SATCOUNT, String.valueOf(satCount));
-		properties.setProperty(PROPERTY_OUT_UNSATCOUNT, String.valueOf(unsatCount));
+		properties.setProperty(PROPERTY_OUT_SATCOUNTLIFTING, String.valueOf(satCountLifting));
+		properties.setProperty(PROPERTY_OUT_UNSATCOUNTLIFTING, String.valueOf(unsatCountLifting));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGVARIABLES, String.valueOf(smtEncodingVariables.size()));
 	}
@@ -162,7 +177,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private void doSimulatedLifting() throws MMTFException {
 
 		long startTime = System.nanoTime();
-		while (ruleApplicationsLifting < numIterations) {
+		while (satCountLifting < numIterations) {
 			checkApplicabilityConditions();
 			modelObjsA.clear();
 			transformMatch();
@@ -204,6 +219,133 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		);
 
 		return null;
+	}
+
+	private static class DatLine implements Comparable<DatLine> {
+		public static final Map<String, Integer> TIMELIFTING_NUMRULEELEMENTS_INDEXES = new HashMap<String, Integer>();
+		static {
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("1-2-1", new Integer(0));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("7-2-7", new Integer(1));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("3-2-3", new Integer(2));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("30-9-24", new Integer(3));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("1-12-1", new Integer(4));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("6-19-6", new Integer(5));
+			TIMELIFTING_NUMRULEELEMENTS_INDEXES.put("16-21-16", new Integer(6));
+		}
+		public double smtEncodingVariables;
+		public double[] timeLifting_numRuleElements;
+		public DatLine() {
+			this.timeLifting_numRuleElements = new double[TIMELIFTING_NUMRULEELEMENTS_INDEXES.size()];
+		}
+		@Override
+		public int compareTo(DatLine other) {
+			if (smtEncodingVariables < other.smtEncodingVariables) {
+				return -1;
+			}
+			else if (smtEncodingVariables > other.smtEncodingVariables) {
+				return 1;
+			}
+			return 0;
+		}
+	}
+
+	private static final String EXPERIMENT_OUTPUT_FILE = "ExperimentDriverOut.properties";
+	private static final String GNUPLOT_OUTPUT_FILE = "gnuplot.dat";
+
+	private static Map<String, DatLine> datLinesMap;
+
+	private static void getOutput(Path outputPath) throws Exception {
+		Properties outputProperties = new Properties();
+		outputProperties.load(new FileInputStream(outputPath.toString()));
+		String featureModelName = MultiModelOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_FEATUREMODELNAME+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
+Properties xProperties = new Properties();
+xProperties.load(new FileInputStream(outputPath.getParent().getParent().resolve("featuremodels").resolve(featureModelName+".properties").toString()));
+double smtEncodingVariables = MultiModelOperatorUtils.getStringProperties(xProperties, "constraintVariables").length;
+//		double smtEncodingVariables = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+		String numRuleElements = MultiModelOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
+		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+		DatLine datLine = datLinesMap.get(featureModelName);
+		if (datLine == null) {
+			datLine = new DatLine();
+			datLinesMap.put(featureModelName, datLine);
+		}
+		datLine.smtEncodingVariables = smtEncodingVariables;
+		datLine.timeLifting_numRuleElements[DatLine.TIMELIFTING_NUMRULEELEMENTS_INDEXES.get(numRuleElements)] = timeLifting;
+	}
+
+	private static void createGnuplotFile(Path outputDirectory, List<DatLine> datLines) {
+
+		Path outputFile = outputDirectory.resolve(GNUPLOT_OUTPUT_FILE);
+		try (BufferedWriter writer = Files.newBufferedWriter(outputFile, Charset.forName("UTF-8"), StandardOpenOption.CREATE)) {
+			double prevSmtEncodingVariables = datLines.get(0).smtEncodingVariables;
+			double[] prevTotals = new double[DatLine.TIMELIFTING_NUMRULEELEMENTS_INDEXES.size()];
+			for (int i = 0; i < prevTotals.length; i++) {
+				prevTotals[i] = 0;
+			}
+			int prevCount = 0;
+			for (DatLine datLine : datLines) {
+				if (prevSmtEncodingVariables == datLine.smtEncodingVariables) {
+					for (int i = 0; i < prevTotals.length; i++) {
+						prevTotals[i] += datLine.timeLifting_numRuleElements[i];
+					}
+					prevCount++;
+				}
+				else {
+					writer.write(Double.toString(prevSmtEncodingVariables));
+					writer.write(" ");
+					for (int i = 0; i < prevTotals.length; i++) {
+						writer.write(Double.toString(prevTotals[i]/prevCount/1000000000));
+						writer.write(" ");
+						prevTotals[i] = datLine.timeLifting_numRuleElements[i];
+					}
+					writer.newLine();
+					prevSmtEncodingVariables = datLine.smtEncodingVariables;
+					prevCount = 1;
+				}
+			}
+			writer.write(Double.toString(prevSmtEncodingVariables));
+			writer.write(" ");
+			for (int i = 0; i < prevTotals.length; i++) {
+				writer.write(Double.toString(prevTotals[i]/prevCount/1000000000));
+				writer.write(" ");
+			}
+			writer.newLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+
+		String inputPath = args[0];
+		Path path = Paths.get(inputPath);
+		if (!Files.isDirectory(path)) {
+			return;
+		}
+		datLinesMap = new HashMap<String, DatLine>();
+		FileVisitor<Path> visitor = new SimpleFileVisitor<Path>() {
+			@Override
+			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+				if (!file.getFileName().toString().equals(EXPERIMENT_OUTPUT_FILE)) {
+					return FileVisitResult.CONTINUE;
+				}
+				try {
+					getOutput(file);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				return FileVisitResult.CONTINUE;
+			}
+		};
+		try {
+			Files.walkFileTree(path, visitor);
+			List<DatLine> datLines = new ArrayList<DatLine>(datLinesMap.values());
+			Collections.sort(datLines);
+			createGnuplotFile(path, datLines);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
