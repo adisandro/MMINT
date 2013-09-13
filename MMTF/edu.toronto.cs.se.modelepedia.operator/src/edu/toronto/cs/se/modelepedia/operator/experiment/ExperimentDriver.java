@@ -183,6 +183,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		@Override
 		public void run() {
 
+			System.err.println("Running experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex);
 			for (int op = 0; op < statisticsOperators.length; op++) {
 				try {
 					parameters = executeOperator(experimentIndex, statisticsIndex, op, statisticsOperators[op], parameters, operatorChain, outputConfidences);

@@ -177,7 +177,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private void doSimulatedLifting() throws MMTFException {
 
 		long startTime = System.nanoTime();
-		while (satCountLifting < numIterations) {
+		while (ruleApplicationsLifting < numIterations) {
 			checkApplicabilityConditions();
 			modelObjsA.clear();
 			transformMatch();
@@ -258,10 +258,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		Properties outputProperties = new Properties();
 		outputProperties.load(new FileInputStream(outputPath.toString()));
 		String featureModelName = MultiModelOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_FEATUREMODELNAME+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
-Properties xProperties = new Properties();
-xProperties.load(new FileInputStream(outputPath.getParent().getParent().resolve("featuremodels").resolve(featureModelName+".properties").toString()));
-double smtEncodingVariables = MultiModelOperatorUtils.getStringProperties(xProperties, "constraintVariables").length;
-//		double smtEncodingVariables = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+		double smtEncodingVariables = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		String numRuleElements = MultiModelOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
 		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		DatLine datLine = datLinesMap.get(featureModelName);
