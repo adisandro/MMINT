@@ -293,7 +293,7 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 
 		initEClass(mavoReferenceEClass, MAVOReference.class, "MAVOReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMAVOModel_Inc(), ecorePackage.getEBoolean(), "inc", null, 0, 1, MAVOModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

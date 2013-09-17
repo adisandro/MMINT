@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class MAVOModelImpl extends EObjectImpl implements MAVOModel {
+public abstract class MAVOModelImpl extends EObjectImpl implements MAVOModel {
 	/**
 	 * The default value of the '{@link #isInc() <em>Inc</em>}' attribute.
 	 * <!-- begin-user-doc -->

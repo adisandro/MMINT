@@ -31,15 +31,6 @@ public interface MavoFactory extends EFactory {
 	MavoFactory eINSTANCE = edu.toronto.cs.se.mmtf.mavo.impl.MavoFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>MAVO Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>MAVO Model</em>'.
-	 * @generated
-	 */
-	MAVOModel createMAVOModel();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

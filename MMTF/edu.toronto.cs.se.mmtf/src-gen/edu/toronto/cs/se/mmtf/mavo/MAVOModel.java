@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see edu.toronto.cs.se.mmtf.mavo.MavoPackage#getMAVOModel()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface MAVOModel extends EObject {

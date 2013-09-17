@@ -36,7 +36,7 @@ public class MavoFactoryImpl extends EFactoryImpl implements MavoFactory {
 	 */
 	public static MavoFactory init() {
 		try {
-			MavoFactory theMavoFactory = (MavoFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/mmtf/MAVO"); 
+			MavoFactory theMavoFactory = (MavoFactory)EPackage.Registry.INSTANCE.getEFactory(MavoPackage.eNS_URI);
 			if (theMavoFactory != null) {
 				return theMavoFactory;
 			}
@@ -65,20 +65,9 @@ public class MavoFactoryImpl extends EFactoryImpl implements MavoFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MavoPackage.MAVO_MODEL: return createMAVOModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MAVOModel createMAVOModel() {
-		MAVOModelImpl mavoModel = new MAVOModelImpl();
-		return mavoModel;
 	}
 
 	/**
