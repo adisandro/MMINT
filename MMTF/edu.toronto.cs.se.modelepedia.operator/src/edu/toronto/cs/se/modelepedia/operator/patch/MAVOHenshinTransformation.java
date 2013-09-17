@@ -11,10 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.patch;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -31,9 +29,6 @@ import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
 import org.eclipse.emf.henshin.model.Action;
-import org.eclipse.emf.henshin.model.Attribute;
-import org.eclipse.emf.henshin.model.Edge;
-import org.eclipse.emf.henshin.model.HenshinFactory;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
@@ -53,35 +48,22 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 
 public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
+	private static final String A_MODELOBJECT_SMTENCODING_PREFIX = "a";
 	private static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fA (Int) Bool) (declare-fun fDo (Int) Bool) (declare-fun fAo (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i) (ite (= i 0)";
 	private static final String SMTLIB_APPLICABILITY_POSTAMBLE = "(or (and (fX (- i 1)) (not (fY i)) (not (fAo i))) (and (and (fX (- i 1)) (fY i)) (not (fDo i)) (fA i)))))))";
 	private static final String SMTLIB_APPLICABILITY_FUN_D_OR = SMTLIB_APPLICABILITY_FUN + "Do ";
 	private static final String SMTLIB_APPLICABILITY_FUN_A_OR = SMTLIB_APPLICABILITY_FUN + "Ao ";
 
-	private void transformMatch(RuleApplication application, Match match, boolean isMayMatch) {
+	@Override
+	protected void transformWhenLifted(MAVOElement modelObjA) {
 
-		// apply transformation
-		application.setCompleteMatch(match);
-		application.execute(null);
+		modelObjA.setMay(true);
+	}
 
-		// possibly propagate may to (A)dded elements
-		Match resultMatch = application.getResultMatch();
-		for (EObject resultNodeTarget : resultMatch.getNodeTargets()) {
-			if (!(resultNodeTarget instanceof MAVOElement)) {
-				continue;
-			}
-			// (C)ontext/(D)eleted/(N)ac elements
-			if (modelObjsCDN.contains(resultNodeTarget)) {
-				continue;
-			}
-			// (A)dded elements
-			if (isMayMatch) {
-				modelObjsA.add((MAVOElement) resultNodeTarget);
-				((MAVOElement) resultNodeTarget).setMay(true);
-			}
-			((MAVOElement) resultNodeTarget).setFormulaId(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
-			modelObjACounter++;
-		}
+	@Override
+	protected void transformWhenNotLifted(MAVOElement modelObjA) {
+
+		modelObjA.setFormulaId(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
 	}
 
 	private void getCDNodes(Rule rule, Set<Node> nodesC, Set<Node> nodesD) {
@@ -96,51 +78,6 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 				}
 			}
 		}
-	}
-
-	private void getNNodesAndChangeToC(NestedCondition conditionNac, Rule ruleNac, Set<Node> nodesN) {
-
-		// (N)ac nodes
-		Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
-		for (Node nodeNac : conditionNac.getConclusion().getNodes()) {
-			if (nodeNac.getAction() != null && nodeNac.getAction().getType() == Action.Type.FORBID) {
-				Node newNodeNac = HenshinFactory.eINSTANCE.createNode();
-				ruleNac.getLhs().getNodes().add(newNodeNac);
-				nodesN.add(newNodeNac);
-				forbid2preserve.put(nodeNac, newNodeNac);
-				newNodeNac.setType(nodeNac.getType());
-				// Action.Type.PRESERVE has to be set at last
-				newNodeNac.setAction(new Action(Action.Type.PRESERVE));
-				// copy attributes
-				for (Attribute attributeNac : nodeNac.getAttributes()) {
-					Attribute newAttributeNac = HenshinFactory.eINSTANCE.createAttribute();
-					newNodeNac.getAttributes().add(newAttributeNac);
-					newAttributeNac.setType(attributeNac.getType());
-					newAttributeNac.setValue(attributeNac.getValue());
-					newAttributeNac.setAction(new Action(Action.Type.PRESERVE));
-				}
-			}
-		}
-		for (Edge edgeNac : conditionNac.getConclusion().getEdges()) {
-			if (edgeNac.getAction() != null && edgeNac.getAction().getType() == Action.Type.FORBID) {
-				Edge newEdgeNac = HenshinFactory.eINSTANCE.createEdge();
-				ruleNac.getLhs().getEdges().add(newEdgeNac);
-				newEdgeNac.setType(edgeNac.getType());
-				Node newSrcNodeNac = forbid2preserve.get(edgeNac.getSource());
-				if (newSrcNodeNac == null) {
-					newSrcNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getSource());
-				}
-				newEdgeNac.setSource(newSrcNodeNac);
-				Node newTgtNodeNac = forbid2preserve.get(edgeNac.getTarget());
-				if (newTgtNodeNac == null) {
-					newTgtNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getTarget());
-				}
-				newEdgeNac.setTarget(newTgtNodeNac);
-				// Action.Type.PRESERVE has to be set at last
-				newEdgeNac.setAction(new Action(Action.Type.PRESERVE));
-			}
-		}
-		ruleNac.getLhs().setFormula(null);
 	}
 
 	private void createZ3ApplyFormulaConstant(Set<MAVOElement> mavoModelObjs) {
@@ -168,7 +105,8 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		createZ3ApplyFormulaConstant(modelObjsD);
 	}
 
-	private void createZ3ApplyFormula() {
+	@Override
+	protected void createZ3ApplyFormula() {
 
 		createZ3ApplyFormulaConstants();
 		createZ3ApplyFormulaMatchSetNIteration();
@@ -177,59 +115,9 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D_OR, SMTLIB_OR, SMTLIB_FALSE);
 	}
 
-	private boolean checkZ3ApplicabilityFormula() {
-
-		int checkpointUnsat = smtEncoding.length();
-		createZ3ApplyFormula();
-		int checkpointSat = smtEncoding.length();
-		smtEncoding.append(SMTLIB_ASSERT);
-		smtEncoding.append(SMTLIB_EQUALITY);
-		smtEncoding.append(SMTLIB_AND);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
-		smtEncoding.append(ruleApplicationsLifting);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
-		smtEncoding.append(ruleApplicationsLifting + 1);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_TRUE);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-
-		int z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(smtEncoding.toString());
-		if (z3Result == Z3_SAT) {
-			satCountLifting++;
-			smtEncoding.delete(checkpointSat, smtEncoding.length());
-			return true;
-		}
-		unsatCountLifting++;
-		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
-		return false;
-	}
-
 	@Override
 	protected void updateLiterals() {
 		// TODO Auto-generated method stub
-	}
-
-	private boolean overlapCD(Match match1, Match match2, Set<Node> nodesC, Set<Node> nodesD) {
-
-		for (Node nodeC : nodesC) {
-			EObject nodeTargetC1 = match1.getNodeTarget(nodeC);
-			EObject nodeTargetC2 = match2.getNodeTarget(nodeC);
-			if (nodeTargetC1 != nodeTargetC2) {
-				return false;
-			}
-		}
-		for (Node nodeD : nodesD) {
-			EObject nodeTargetD1 = match1.getNodeTarget(nodeD);
-			EObject nodeTargetD2 = match2.getNodeTarget(nodeD);
-			if (nodeTargetD1 != nodeTargetD2) {
-				return false;
-			}
-		}
-
-		return true;
 	}
 
 	private boolean isMayMatch(Match match, Set<Node> nodes, Set<MAVOElement> mayModelObjs, Set<MAVOElement> mavoModelObjs) {
@@ -343,7 +231,7 @@ matchesN:
 			application.setEGraph(graph);
 			// transform
 			modelObjsA.clear();
-			transformMatch(application, condition.getMatch(), condition.isLiftedMatch());
+			transformLifting(application, condition.getMatch(), condition.isLiftedMatch());
 			if (condition.isLiftedMatch()) {
 				// update encoding
 				createZ3ApplyFormulaConstant(modelObjsA);
@@ -396,14 +284,14 @@ matchesN:
 		engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		if (timeClassicalEnabled) {
-			doClassicalTransformation(module, engine, graph);
+			doTransformationClassical(module, engine, graph);
 			resourceSet = new HenshinResourceSet(fullUri);
 			module = resourceSet.getModule(transformationModule, false);
 			engine = new EngineImpl();
 			engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		}
-		doLiftingTransformation(module, engine, graph);
+		doTransformationLifting(module, engine, graph);
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();

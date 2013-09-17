@@ -19,18 +19,26 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.Match;
 import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
+import org.eclipse.emf.henshin.model.Action;
+import org.eclipse.emf.henshin.model.Attribute;
+import org.eclipse.emf.henshin.model.Edge;
+import org.eclipse.emf.henshin.model.HenshinFactory;
 import org.eclipse.emf.henshin.model.Module;
+import org.eclipse.emf.henshin.model.NestedCondition;
+import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorExecutableImpl implements Z3SMTSolver {
 
@@ -68,6 +76,17 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 	private static final String[] PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESLIFTING = "transformationRulesLifting";
 
+	protected static final String ANAC_NAME = "A_NAC";
+	protected static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
+	protected static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
+	protected static final String SMTLIB_APPLICABILITY_FUN = "(f";
+	protected static final String SMTLIB_APPLICABILITY_FUN_CONSTRAINTS = SMTLIB_APPLICABILITY_FUN + "X ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_APPLY = SMTLIB_APPLICABILITY_FUN + "Y ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_N = SMTLIB_APPLICABILITY_FUN + "N ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_C = SMTLIB_APPLICABILITY_FUN + "C ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_D = SMTLIB_APPLICABILITY_FUN + "D ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_A = SMTLIB_APPLICABILITY_FUN + "A ";
+
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	protected static final String PROPERTY_OUT_TIMELIFTING = "timeLifting";
 	private static final String PROPERTY_OUT_RULEAPPLICATIONSCLASSICAL = "ruleApplicationsClassical";
@@ -81,18 +100,6 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 	private static final int PROPERTY_OUT_CHAINS_MAX = 10;
 	private static final String PROPERTY_OUT_LITERALS = "literals";
 	private static final int PROPERTY_OUT_LITERALS_MAX = 10;
-
-	protected static final String ANAC_NAME = "A_NAC";
-	protected static final String A_MODELOBJECT_SMTENCODING_PREFIX = "a";
-	protected static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
-	protected static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
-	protected static final String SMTLIB_APPLICABILITY_FUN = "(f";
-	protected static final String SMTLIB_APPLICABILITY_FUN_CONSTRAINTS = SMTLIB_APPLICABILITY_FUN + "X ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_APPLY = SMTLIB_APPLICABILITY_FUN + "Y ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_N = SMTLIB_APPLICABILITY_FUN + "N ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_C = SMTLIB_APPLICABILITY_FUN + "C ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_D = SMTLIB_APPLICABILITY_FUN + "D ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_A = SMTLIB_APPLICABILITY_FUN + "A ";
 
 	protected String constraint;
 	protected String[] constraintVariables;
@@ -108,6 +115,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 	protected int modelObjACounter;
 	protected StringBuilder smtEncoding;
 	protected Set<String> smtEncodingVariables;
+	protected Z3IncResult z3IncResult;
 
 	protected boolean timeClassicalEnabled;
 	protected long timeClassical;
@@ -286,6 +294,37 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		smtEncoding.append(SMTLIB_PREDICATE_END);
 	}
 
+	protected abstract void createZ3ApplyFormula();
+
+	protected boolean checkZ3ApplicabilityFormula() {
+
+		int checkpointUnsat = smtEncoding.length();
+		createZ3ApplyFormula();
+		smtEncoding.append(SMTLIB_ASSERT);
+		smtEncoding.append(SMTLIB_EQUALITY);
+		smtEncoding.append(SMTLIB_AND);
+		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
+		smtEncoding.append(ruleApplicationsLifting);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
+		smtEncoding.append(ruleApplicationsLifting + 1);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+		smtEncoding.append(SMTLIB_TRUE);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+		smtEncoding.append(SMTLIB_PREDICATE_END);
+
+		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtEncoding.substring(checkpointUnsat), 0, 1);
+		if (z3IncResult.flag == Z3_SAT) {
+			satCountLifting++;
+			return true;
+		}
+		//TODO MMTF: we don't need the assertion after the apply formula, find a way to remove it
+		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
+		unsatCountLifting++;
+		return false;
+	}
+
 	protected void updateChains() {
 
 		int maxChain = 0;
@@ -306,7 +345,72 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 
 	protected abstract void updateLiterals();
 
-	protected void matchAndTransform(Rule rule, Engine engine, EGraph graph, boolean isLifting) {
+	protected void getNNodesAndChangeToC(NestedCondition conditionNac, Rule ruleNac, Set<Node> nodesN) {
+
+		// (N)ac nodes
+		Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
+		for (Node nodeNac : conditionNac.getConclusion().getNodes()) {
+			if (nodeNac.getAction() != null && nodeNac.getAction().getType() == Action.Type.FORBID) {
+				Node newNodeNac = HenshinFactory.eINSTANCE.createNode();
+				ruleNac.getLhs().getNodes().add(newNodeNac);
+				nodesN.add(newNodeNac);
+				forbid2preserve.put(nodeNac, newNodeNac);
+				newNodeNac.setType(nodeNac.getType());
+				// Action.Type.PRESERVE has to be set at last
+				newNodeNac.setAction(new Action(Action.Type.PRESERVE));
+				// copy attributes
+				for (Attribute attributeNac : nodeNac.getAttributes()) {
+					Attribute newAttributeNac = HenshinFactory.eINSTANCE.createAttribute();
+					newNodeNac.getAttributes().add(newAttributeNac);
+					newAttributeNac.setType(attributeNac.getType());
+					newAttributeNac.setValue(attributeNac.getValue());
+					newAttributeNac.setAction(new Action(Action.Type.PRESERVE));
+				}
+			}
+		}
+		for (Edge edgeNac : conditionNac.getConclusion().getEdges()) {
+			if (edgeNac.getAction() != null && edgeNac.getAction().getType() == Action.Type.FORBID) {
+				Edge newEdgeNac = HenshinFactory.eINSTANCE.createEdge();
+				ruleNac.getLhs().getEdges().add(newEdgeNac);
+				newEdgeNac.setType(edgeNac.getType());
+				Node newSrcNodeNac = forbid2preserve.get(edgeNac.getSource());
+				if (newSrcNodeNac == null) {
+					newSrcNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getSource());
+				}
+				newEdgeNac.setSource(newSrcNodeNac);
+				Node newTgtNodeNac = forbid2preserve.get(edgeNac.getTarget());
+				if (newTgtNodeNac == null) {
+					newTgtNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getTarget());
+				}
+				newEdgeNac.setTarget(newTgtNodeNac);
+				// Action.Type.PRESERVE has to be set at last
+				newEdgeNac.setAction(new Action(Action.Type.PRESERVE));
+			}
+		}
+		ruleNac.getLhs().setFormula(null);
+	}
+
+	protected boolean overlapCD(Match match1, Match match2, Set<Node> nodesC, Set<Node> nodesD) {
+
+		for (Node nodeC : nodesC) {
+			EObject nodeTargetC1 = match1.getNodeTarget(nodeC);
+			EObject nodeTargetC2 = match2.getNodeTarget(nodeC);
+			if (nodeTargetC1 != nodeTargetC2) {
+				return false;
+			}
+		}
+		for (Node nodeD : nodesD) {
+			EObject nodeTargetD1 = match1.getNodeTarget(nodeD);
+			EObject nodeTargetD2 = match2.getNodeTarget(nodeD);
+			if (nodeTargetD1 != nodeTargetD2) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	protected void matchAndTransformClassical(Rule rule, Engine engine, EGraph graph, boolean isLifting) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		application.setRule(rule);
@@ -323,34 +427,72 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		}
 	}
 
-	protected abstract void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph);
-
-	protected void doClassicalTransformation(Module module, Engine engine, EGraph graph) {
+	protected void doTransformationClassical(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
+
 		for (String transformationRule : transformationRules) {
 			Rule rule = (Rule) module.getUnit(transformationRule);
-			matchAndTransform(rule, engine, graph, false);
+			matchAndTransformClassical(rule, engine, graph, false);
 		}
 		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
-			matchAndTransform(rule, engine, graph, false);
+			matchAndTransformClassical(rule, engine, graph, false);
 		}
 
 		timeClassical = System.nanoTime() - startTime;
 	}
 
-	protected void doLiftingTransformation(Module module, Engine engine, EGraph graph) {
+	protected void transformWhenLifted(MAVOElement modelObjA) {
+		// do nothing
+	}
+
+	protected void transformWhenNotLifted(MAVOElement modelObjA) {
+		// do nothing
+	}
+
+	protected void transformLifting(RuleApplication application, Match match, boolean isLiftedMatch) {
+
+		// apply transformation
+		application.setCompleteMatch(match);
+		application.execute(null);
+
+		// possibly propagate may to (A)dded elements
+		Match resultMatch = application.getResultMatch();
+		for (EObject resultNodeTarget : resultMatch.getNodeTargets()) {
+			if (!(resultNodeTarget instanceof MAVOElement)) {
+				continue;
+			}
+			// (C)ontext/(D)eleted/(N)ac elements
+			if (modelObjsCDN.contains(resultNodeTarget)) {
+				continue;
+			}
+			// (A)dded elements
+			if (isLiftedMatch) {
+				modelObjsA.add((MAVOElement) resultNodeTarget);
+				transformWhenLifted((MAVOElement) resultNodeTarget);
+			}
+			transformWhenNotLifted((MAVOElement) resultNodeTarget);
+			modelObjACounter++;
+		}
+	}
+
+	protected abstract void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph);
+
+	protected void doTransformationLifting(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
+
+		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding.toString());
 		for (String transformationRule : transformationRules) {
 			Rule rule = (Rule) module.getUnit(transformationRule);
-			matchAndTransform(rule, engine, graph, true);
+			matchAndTransformClassical(rule, engine, graph, true);
 		}
 		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransformLifting(rule, engine, graph);
 		}
+		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 
 		timeLifting = System.nanoTime() - startTime;
 	}

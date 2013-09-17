@@ -11,10 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.patch;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -31,9 +29,6 @@ import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
 import org.eclipse.emf.henshin.model.Action;
-import org.eclipse.emf.henshin.model.Attribute;
-import org.eclipse.emf.henshin.model.Edge;
-import org.eclipse.emf.henshin.model.HenshinFactory;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
@@ -50,38 +45,16 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 
 public class ProductLineHenshinTransformation extends LiftingHenshinTransformation {
 
 	protected static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i)";
 	protected static final String SMTLIB_APPLICABILITY_POSTAMBLE = ")))";
 
-	protected Z3IncResult z3IncResult;
+	@Override
+	protected void transformWhenLifted(MAVOElement modelObjA) {
 
-	private void transformMatch(RuleApplication application, Match match, boolean isLiftedMatch) {
-
-		// apply transformation
-		application.setCompleteMatch(match);
-		application.execute(null);
-
-		// possibly propagate may to (A)dded elements
-		Match resultMatch = application.getResultMatch();
-		for (EObject resultNodeTarget : resultMatch.getNodeTargets()) {
-			if (!(resultNodeTarget instanceof MAVOElement)) {
-				continue;
-			}
-			// (C)ontext/(D)eleted/(N)ac elements
-			if (modelObjsCDN.contains(resultNodeTarget)) {
-				continue;
-			}
-			// (A)dded elements
-			if (isLiftedMatch) {
-				modelObjsA.add((MAVOElement) resultNodeTarget);
-				((MAVOElement) resultNodeTarget).setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + SMTLIB_PREDICATE_END);
-			}
-			modelObjACounter++;
-		}
+		modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + SMTLIB_PREDICATE_END);
 	}
 
 	private void getCDNodes(Rule rule, Set<Node> nodesC, Set<Node> nodesD) {
@@ -98,84 +71,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 	}
 
-	private void getNNodesAndChangeToC(NestedCondition conditionNac, Rule ruleNac, Set<Node> nodesN) {
-
-		// (N)ac nodes
-		Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
-		for (Node nodeNac : conditionNac.getConclusion().getNodes()) {
-			if (nodeNac.getAction() != null && nodeNac.getAction().getType() == Action.Type.FORBID) {
-				Node newNodeNac = HenshinFactory.eINSTANCE.createNode();
-				ruleNac.getLhs().getNodes().add(newNodeNac);
-				nodesN.add(newNodeNac);
-				forbid2preserve.put(nodeNac, newNodeNac);
-				newNodeNac.setType(nodeNac.getType());
-				// Action.Type.PRESERVE has to be set at last
-				newNodeNac.setAction(new Action(Action.Type.PRESERVE));
-				// copy attributes
-				for (Attribute attributeNac : nodeNac.getAttributes()) {
-					Attribute newAttributeNac = HenshinFactory.eINSTANCE.createAttribute();
-					newNodeNac.getAttributes().add(newAttributeNac);
-					newAttributeNac.setType(attributeNac.getType());
-					newAttributeNac.setValue(attributeNac.getValue());
-					newAttributeNac.setAction(new Action(Action.Type.PRESERVE));
-				}
-			}
-		}
-		for (Edge edgeNac : conditionNac.getConclusion().getEdges()) {
-			if (edgeNac.getAction() != null && edgeNac.getAction().getType() == Action.Type.FORBID) {
-				Edge newEdgeNac = HenshinFactory.eINSTANCE.createEdge();
-				ruleNac.getLhs().getEdges().add(newEdgeNac);
-				newEdgeNac.setType(edgeNac.getType());
-				Node newSrcNodeNac = forbid2preserve.get(edgeNac.getSource());
-				if (newSrcNodeNac == null) {
-					newSrcNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getSource());
-				}
-				newEdgeNac.setSource(newSrcNodeNac);
-				Node newTgtNodeNac = forbid2preserve.get(edgeNac.getTarget());
-				if (newTgtNodeNac == null) {
-					newTgtNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getTarget());
-				}
-				newEdgeNac.setTarget(newTgtNodeNac);
-				// Action.Type.PRESERVE has to be set at last
-				newEdgeNac.setAction(new Action(Action.Type.PRESERVE));
-			}
-		}
-		ruleNac.getLhs().setFormula(null);
-	}
-
-	private void createZ3ApplyFormula() {
+	@Override
+	protected void createZ3ApplyFormula() {
 
 		createZ3ApplyFormulaMatchSetNIteration();
 		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, SMTLIB_AND, SMTLIB_TRUE);
 		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, SMTLIB_AND, SMTLIB_TRUE);
-	}
-
-	protected boolean checkZ3ApplicabilityFormula() {
-
-		int checkpointUnsat = smtEncoding.length();
-		createZ3ApplyFormula();
-		smtEncoding.append(SMTLIB_ASSERT);
-		smtEncoding.append(SMTLIB_EQUALITY);
-		smtEncoding.append(SMTLIB_AND);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
-		smtEncoding.append(ruleApplicationsLifting);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
-		smtEncoding.append(ruleApplicationsLifting + 1);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_TRUE);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_PREDICATE_END);
-
-		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtEncoding.substring(checkpointUnsat), 0, 1);
-		if (z3IncResult.flag == Z3_SAT) {
-			satCountLifting++;
-			return true;
-		}
-		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
-		unsatCountLifting++;
-		return false;
 	}
 
 	protected void updateLiterals() {
@@ -192,26 +93,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		for (MAVOElement modelObjA : modelObjsA) {
 			modelObjsLiterals.put(modelObjA, new Integer(countLiterals));
 		}
-	}
-
-	private boolean overlapCD(Match match1, Match match2, Set<Node> nodesC, Set<Node> nodesD) {
-
-		for (Node nodeC : nodesC) {
-			EObject nodeTargetC1 = match1.getNodeTarget(nodeC);
-			EObject nodeTargetC2 = match2.getNodeTarget(nodeC);
-			if (nodeTargetC1 != nodeTargetC2) {
-				return false;
-			}
-		}
-		for (Node nodeD : nodesD) {
-			EObject nodeTargetD1 = match1.getNodeTarget(nodeD);
-			EObject nodeTargetD2 = match2.getNodeTarget(nodeD);
-			if (nodeTargetD1 != nodeTargetD2) {
-				return false;
-			}
-		}
-
-		return true;
 	}
 
 	private void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs) {
@@ -304,7 +185,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			application.setEGraph(graph);
 			// transform
 			modelObjsA.clear();
-			transformMatch(application, condition.getMatch(), condition.isLiftedMatch());
+			transformLifting(application, condition.getMatch(), condition.isLiftedMatch());
 			if (condition.isLiftedMatch()) {
 				ruleApplicationsLifting++;
 				updateChains();
@@ -343,16 +224,14 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		if (timeClassicalEnabled) {
-			doClassicalTransformation(module, engine, graph);
+			doTransformationClassical(module, engine, graph);
 			resourceSet = new HenshinResourceSet(fullUri);
 			module = resourceSet.getModule(transformationModule, false);
 			engine = new EngineImpl();
 			engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		}
-		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding.toString());
-		doLiftingTransformation(module, engine, graph);
-		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
+		doTransformationLifting(module, engine, graph);
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();
