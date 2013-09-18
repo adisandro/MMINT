@@ -390,7 +390,21 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		ruleNac.getLhs().setFormula(null);
 	}
 
-	protected boolean overlapCD(Match match1, Match match2, Set<Node> nodesC, Set<Node> nodesD) {
+	protected void getCDNodes(Rule rule, Set<Node> nodesC, Set<Node> nodesD) {
+
+		for (Node node : rule.getLhs().getNodes()) {
+			if (node.getAction() != null) {
+				if (node.getAction().getType() == Action.Type.PRESERVE) {
+					nodesC.add(node);
+				}
+				else if (node.getAction().getType() == Action.Type.DELETE) {
+					nodesD.add(node);
+				}
+			}
+		}
+	}
+
+	protected boolean areMatchesOverlapping(Match match1, Match match2, Set<Node> nodesC, Set<Node> nodesD) {
 
 		for (Node nodeC : nodesC) {
 			EObject nodeTargetC1 = match1.getNodeTarget(nodeC);
@@ -409,6 +423,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 
 		return true;
 	}
+
+	protected abstract void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs);
 
 	protected void matchAndTransformClassical(Rule rule, Engine engine, EGraph graph, boolean isLifting) {
 

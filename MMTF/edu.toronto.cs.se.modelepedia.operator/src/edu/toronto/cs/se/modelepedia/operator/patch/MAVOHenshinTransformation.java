@@ -28,7 +28,6 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
-import org.eclipse.emf.henshin.model.Action;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
@@ -64,20 +63,6 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 	protected void transformWhenNotLifted(MAVOElement modelObjA) {
 
 		modelObjA.setFormulaId(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
-	}
-
-	private void getCDNodes(Rule rule, Set<Node> nodesC, Set<Node> nodesD) {
-
-		for (Node node : rule.getLhs().getNodes()) {
-			if (node.getAction() != null) {
-				if (node.getAction().getType() == Action.Type.PRESERVE) {
-					nodesC.add(node);
-				}
-				else if (node.getAction().getType() == Action.Type.DELETE) {
-					nodesD.add(node);
-				}
-			}
-		}
 	}
 
 	private void createZ3ApplyFormulaConstant(Set<MAVOElement> mavoModelObjs) {
@@ -120,21 +105,17 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		// TODO Auto-generated method stub
 	}
 
-	private boolean isMayMatch(Match match, Set<Node> nodes, Set<MAVOElement> mayModelObjs, Set<MAVOElement> mavoModelObjs) {
+	protected void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs) {
 
-		boolean isMayMatch = false;
 		for (Node node : nodes) {
 			EObject nodeTarget = match.getNodeTarget(node);
 			if (nodeTarget instanceof MAVOElement) {
-				mavoModelObjs.add((MAVOElement) nodeTarget);
+				allModelObjs.add((MAVOElement) nodeTarget);
 				if (((MAVOElement) nodeTarget).isMay()) {
-					mayModelObjs.add((MAVOElement) nodeTarget);
-					isMayMatch = true;
+					modelObjs.add((MAVOElement) nodeTarget);
 				}
 			}
 		}
-
-		return isMayMatch;
 	}
 
 	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph) {
@@ -149,41 +130,43 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		// (N)ac
 		getCDNodes(ruleCopyN, nodesC, nodesD);
 		getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
-		boolean isMayMatchNBar = true;
+		boolean isLiftedMatchNBar = true;
 		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
 matchesN:
 		for (int i = 0; i < matchesN.size(); i++) {
 			modelObjsNBar.clear();
-			Set<MAVOElement> mayModelObjsNi = new HashSet<MAVOElement>();
+			Set<MAVOElement> modelObjsNi = new HashSet<MAVOElement>();
 			modelObjsC.clear();
 			modelObjsD.clear();
 			modelObjsCDN.clear();
 			Match matchNi = matchesN.get(i);
-			isMayMatchNBar &= isMayMatch(matchNi, nodesN, mayModelObjsNi, modelObjsCDN);
+			getMatchedModelObjs(matchNi, nodesN, modelObjsNi, modelObjsCDN);
+			isLiftedMatchNBar &= (modelObjsNi.size() > 0);
 			// check forall NBar condition
-			if (!isMayMatchNBar) {
+			if (!isLiftedMatchNBar) {
 				continue;
 			}
-			modelObjsNBar.add(mayModelObjsNi);
-			isMayMatch(matchNi, nodesC, modelObjsC, modelObjsCDN);
-			isMayMatch(matchNi, nodesD, modelObjsD, modelObjsCDN);
+			modelObjsNBar.add(modelObjsNi);
+			getMatchedModelObjs(matchNi, nodesC, modelObjsC, modelObjsCDN);
+			getMatchedModelObjs(matchNi, nodesD, modelObjsD, modelObjsCDN);
 			for (int j = 0; j < matchesN.size(); j++) {
 				if (i == j) {
 					continue;
 				}
 				Match matchNj = matchesN.get(j);
-				if (!overlapCD(matchNi, matchNj, nodesC, nodesD)) {
+				if (!areMatchesOverlapping(matchNi, matchNj, nodesC, nodesD)) {
 					continue;
 				}
-				Set<MAVOElement> mayModelObjsNj = new HashSet<MAVOElement>();
-				isMayMatchNBar &= isMayMatch(matchNj, nodesN, mayModelObjsNj, modelObjsCDN);
+				Set<MAVOElement> modelObjsNj = new HashSet<MAVOElement>();
+				getMatchedModelObjs(matchNj, nodesN, modelObjsNj, modelObjsCDN);
+				isLiftedMatchNBar &= (modelObjsNj.size() > 0);
 				// check forall NBar condition
-				if (!isMayMatchNBar) {
+				if (!isLiftedMatchNBar) {
 					continue matchesN;
 				}
-				modelObjsNBar.add(mayModelObjsNj);
-				isMayMatch(matchNj, nodesC, modelObjsC, modelObjsCDN);
-				isMayMatch(matchNj, nodesD, modelObjsD, modelObjsCDN);
+				modelObjsNBar.add(modelObjsNj);
+				getMatchedModelObjs(matchNj, nodesC, modelObjsC, modelObjsCDN);
+				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
 			}
 			// check apply formula
 			if (checkZ3ApplicabilityFormula()) {
@@ -197,7 +180,7 @@ matchesN:
 		nodesC = new HashSet<Node>();
 		nodesD = new HashSet<Node>();
 		getCDNodes(ruleCopy, nodesC, nodesD);
-		boolean isMayMatch = false;
+		boolean isLiftedMatch = false;
 		List<Match> matches = InterpreterUtil.findAllMatches(engine, ruleCopy, graph, null);
 		for (int i = 0; i < matches.size(); i++) {
 			modelObjsNBar.clear();
@@ -205,9 +188,11 @@ matchesN:
 			modelObjsD.clear();
 			modelObjsCDN.clear();
 			Match match = matches.get(i);
-			isMayMatch |= isMayMatch(match, nodesC, modelObjsC, modelObjsCDN);
-			isMayMatch |= isMayMatch(match, nodesD, modelObjsD, modelObjsCDN);
-			if (isMayMatch) {
+			getMatchedModelObjs(match, nodesC, modelObjsC, modelObjsCDN);
+			getMatchedModelObjs(match, nodesD, modelObjsD, modelObjsCDN);
+			isLiftedMatch |= (modelObjsC.size() > 0);
+			isLiftedMatch |= (modelObjsD.size() > 0);
+			if (isLiftedMatch) {
 				// check apply formula
 				if (checkZ3ApplicabilityFormula()) {
 					return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> may match

@@ -28,7 +28,6 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
-import org.eclipse.emf.henshin.model.Action;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
@@ -57,20 +56,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + SMTLIB_PREDICATE_END);
 	}
 
-	private void getCDNodes(Rule rule, Set<Node> nodesC, Set<Node> nodesD) {
-
-		for (Node node : rule.getLhs().getNodes()) {
-			if (node.getAction() != null) {
-				if (node.getAction().getType() == Action.Type.PRESERVE) {
-					nodesC.add(node);
-				}
-				else if (node.getAction().getType() == Action.Type.DELETE) {
-					nodesD.add(node);
-				}
-			}
-		}
-	}
-
 	@Override
 	protected void createZ3ApplyFormula() {
 
@@ -95,7 +80,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 	}
 
-	private void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs) {
+	protected void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs) {
 
 		for (Node node : nodes) {
 			EObject nodeTarget = match.getNodeTarget(node);
@@ -123,13 +108,13 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
 		for (int i = 0; i < matchesN.size(); i++) {
 			modelObjsNBar.clear();
-			Set<MAVOElement> mayModelObjsNi = new HashSet<MAVOElement>();
+			Set<MAVOElement> modelObjsNi = new HashSet<MAVOElement>();
 			modelObjsC.clear();
 			modelObjsD.clear();
 			modelObjsCDN.clear();
 			Match matchNi = matchesN.get(i);
-			getMatchedModelObjs(matchNi, nodesN, mayModelObjsNi, modelObjsCDN);
-			modelObjsNBar.add(mayModelObjsNi);
+			getMatchedModelObjs(matchNi, nodesN, modelObjsNi, modelObjsCDN);
+			modelObjsNBar.add(modelObjsNi);
 			getMatchedModelObjs(matchNi, nodesC, modelObjsC, modelObjsCDN);
 			getMatchedModelObjs(matchNi, nodesD, modelObjsD, modelObjsCDN);
 			for (int j = 0; j < matchesN.size(); j++) {
@@ -137,12 +122,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 					continue;
 				}
 				Match matchNj = matchesN.get(j);
-				if (!overlapCD(matchNi, matchNj, nodesC, nodesD)) {
+				if (!areMatchesOverlapping(matchNi, matchNj, nodesC, nodesD)) {
 					continue;
 				}
-				Set<MAVOElement> mayModelObjsNj = new HashSet<MAVOElement>();
-				getMatchedModelObjs(matchNj, nodesN, mayModelObjsNj, modelObjsCDN);
-				modelObjsNBar.add(mayModelObjsNj);
+				Set<MAVOElement> modelObjsNj = new HashSet<MAVOElement>();
+				getMatchedModelObjs(matchNj, nodesN, modelObjsNj, modelObjsCDN);
+				modelObjsNBar.add(modelObjsNj);
 				getMatchedModelObjs(matchNj, nodesC, modelObjsC, modelObjsCDN);
 				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
 			}
