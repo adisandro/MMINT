@@ -178,7 +178,7 @@ void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, i
 		Z3_solver_push(context, solver);
 	}
 	runCheckSatAndGetModelIncremental(incResult, smtEncoding, isTempAssertion);
-	if (isTempAssertion == 1 || (isTempIfUnsatAssertion == 1 && incResult->flag == -1)) {
+	if (isTempAssertion == 1 || (isTempIfUnsatAssertion == 1 && incResult->flag != 1)) {
 		Z3_solver_pop(context, solver, 1);
 	}
 }

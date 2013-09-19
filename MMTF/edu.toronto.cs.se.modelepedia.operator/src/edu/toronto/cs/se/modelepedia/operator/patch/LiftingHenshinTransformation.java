@@ -319,7 +319,6 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 			satCountLifting++;
 			return true;
 		}
-		//TODO MMTF: we don't need the assertion after the apply formula, find a way to remove it
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
 		unsatCountLifting++;
 		return false;
