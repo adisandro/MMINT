@@ -17,11 +17,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.model,
  org.eclipse.acceleo.profiler,
  org.eclipse.acceleo.engine,
- com.google.guava,
  edu.toronto.cs.se.modelepedia.operator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
-Bundle-Activator: edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelOperatorActivator
 Export-Package: edu.toronto.cs.se.modelepedia.randommodel.operator
 Bundle-ClassPath: .
