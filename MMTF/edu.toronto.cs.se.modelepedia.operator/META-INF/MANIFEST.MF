@@ -21,3 +21,4 @@ Export-Package: com.sun.jna,
  edu.toronto.cs.se.modelepedia.operator.experiment,
  edu.toronto.cs.se.modelepedia.operator.patch,
  edu.toronto.cs.se.modelepedia.operator.reasoning
+Bundle-Activator: edu.toronto.cs.se.modelepedia.operator.ModelepediaOperatorActivator

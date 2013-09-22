@@ -42,6 +42,7 @@ public interface Z3SMTSolver {
 
 	public static final int Z3_SAT = 1;
 	public static final int Z3_UNSAT = -1;
+	public static final int Z3_UNKNOWN = 0;
 
 	public interface CLibrary extends Library {
 

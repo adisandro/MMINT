@@ -41,7 +41,7 @@ Z3Result *checkSatAndGetModel(char *smtEncoding) {
 	Z3_solver_assert(context, solver, assert);
 	Z3_dec_ref(context, assert);
 	result->flag = Z3_solver_check(context, solver);
-	if (result->flag == 1) {
+	if (result->flag == Z3_L_TRUE) {
 		Z3_model model = Z3_solver_get_model(context, solver);
 		Z3_model_inc_ref(context, model);
 		Z3_string modelString = Z3_model_to_string(context, model);
@@ -113,7 +113,7 @@ static void runCheckSatAndGetModelIncremental(Z3IncResult *incResult, char *smtE
 
 	// check sat and get model
 	incResult->flag = Z3_solver_check(context, solver);
-	if (incResult->flag == 1) {
+	if (incResult->flag == Z3_L_TRUE) {
 		// get rid of previous model if assertions are piling up
 		if (isTempAssertion == 0 && incResult->modelPointer != NULL) {
 			Z3_model_dec_ref(context, model);
@@ -178,7 +178,7 @@ void checkSatAndGetModelIncremental(Z3IncResult *incResult, char *smtEncoding, i
 		Z3_solver_push(context, solver);
 	}
 	runCheckSatAndGetModelIncremental(incResult, smtEncoding, isTempAssertion);
-	if (isTempAssertion == 1 || (isTempIfUnsatAssertion == 1 && incResult->flag != 1)) {
+	if (isTempAssertion == 1 || (isTempIfUnsatAssertion == 1 && incResult->flag != Z3_L_TRUE)) {
 		Z3_solver_pop(context, solver, 1);
 	}
 }

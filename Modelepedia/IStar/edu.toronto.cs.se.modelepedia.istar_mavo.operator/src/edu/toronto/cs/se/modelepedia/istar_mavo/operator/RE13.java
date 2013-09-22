@@ -29,6 +29,7 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 
 public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
@@ -46,7 +47,10 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private boolean timeTargetsEnabled;
 	private String targetsProperty;
+
 	private Map<String, Intention> intentions;
+	private Z3IncResult z3IncResult;
+
 	private long timeAnalysis;
 	private long timeTargets;
 	private String targets;
@@ -59,10 +63,15 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private void initOutput() {
 
-		intentions = new HashMap<String, Intention>();
 		timeAnalysis = -1;
 		timeTargets = -1;
 		targets = "0";
+	}
+
+	private void init() {
+
+		intentions = new HashMap<String, Intention>();
+		initOutput();
 	}
 
 	private void writeProperties(Properties properties) {
@@ -117,17 +126,17 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		return feature;
 	}
 
-	private void doAnalysis(String smtlibEncoding) {
-
-		int z3Result;
-		String encoding, elementProperty, property;
+	private void doAnalysis(String smtEncoding) {
 
 		long startTime = System.nanoTime();
+
+		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding);
+		String intentionProperty, labelProperty;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
-			elementProperty = "";
+			intentionProperty = SMTLIB_ASSERT;
 			if (intention.isMay()) {
-				elementProperty +=
+				intentionProperty +=
 					SMTLIB_AND +
 					SMTLIB_EXISTS +
 					SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
@@ -137,7 +146,8 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 					SMTLIB_PREDICATE_END
 				;
 			}
-			elementProperty +=
+			//TODO MMTF: shouldn't it be exists?
+			intentionProperty +=
 				SMTLIB_FORALL +
 				SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
 				SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() + SMTLIB_CONCRETIZATIONSUFFIX +
@@ -146,32 +156,32 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				SMTLIB_PREDICATE_START + SMTLIB_NODE + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END
 			;
 			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
-				property = elementProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+				labelProperty = intentionProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 				if (intention.isMay()) {
-					property += SMTLIB_PREDICATE_END;
+					labelProperty += SMTLIB_PREDICATE_END;
 				}
-				encoding = smtlibEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
-				z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
-				if (z3Result == 1) {
+				labelProperty += SMTLIB_PREDICATE_END;System.err.println(labelProperty);
+				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, labelProperty, 1, 0);
+				if (z3IncResult.flag == Z3_SAT) {
 					intention.eSet(labelSwitch(i), true);
 				}
 			}
 		}
-		long endTime = System.nanoTime();
+		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 
-		timeAnalysis = endTime - startTime;
+		timeAnalysis = System.nanoTime() - startTime;
 	}
 
-	private void doTargets(String smtlibEncoding) {
+	private void doTargets(String smtEncoding) {
 
 		long startTime = System.nanoTime();
-		String encoding = (targetsProperty.equals("")) ?
-			smtlibEncoding :
-			smtlibEncoding + SMTLIB_ASSERT + targetsProperty + SMTLIB_PREDICATE_END;
-		targets = Integer.toString(CLibrary.OPERATOR_INSTANCE.checkSat(encoding));
-		long endTime = System.nanoTime();
 
-		timeTargets = endTime - startTime;
+		String encoding = (targetsProperty.equals("")) ?
+			smtEncoding :
+			smtEncoding + SMTLIB_ASSERT + targetsProperty + SMTLIB_PREDICATE_END;
+		targets = Integer.toString(CLibrary.OPERATOR_INSTANCE.checkSat(encoding));
+
+		timeTargets = System.nanoTime() - startTime;
 	}
 
 	@Override
@@ -185,13 +195,13 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 		readProperties(inputProperties);
-		initOutput();
+		init();
 
 		// get output from previous operator
 		IStarMAVOToSMTLIB previousOperator = (previousExecutable == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(IStarMAVOToSMTLIB) previousExecutable;
-		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
+		final String smtEncoding = previousOperator.getSMTLIBEncoding();
 
 		// create list of nodes
 		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
@@ -205,10 +215,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 
 		// run solver
-		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
-		doAnalysis(smtlibEncoding);
+		doAnalysis(smtEncoding);
 		if (timeTargetsEnabled) {
-			doTargets(smtlibEncoding);
+			doTargets(smtEncoding);
 		}
 
 		// save output

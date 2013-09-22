@@ -348,7 +348,6 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 
 		// run solver
-		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
 		doMAVOPropertyCheck(smtlibMavoEncoding, property);
 		if (timeClassicalEnabled) {
 			doClassicalPropertyCheck(smtlibEncoding, property, smtlibConcretizations);

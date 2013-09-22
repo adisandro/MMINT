@@ -203,7 +203,6 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorExecuta
 		smtEncodingVariables = new HashSet<String>();
 		smtEncoding = new StringBuilder();
 		initOutput();
-		System.setProperty(PROPERTY_LIBRARY_PATH, LIBRARY_PATH);
 	}
 
 	protected void initSMTEncoding(String preamble, String postamble) {
