@@ -327,29 +327,50 @@
 ;Model
 (define-sort Node () Int)
 (define-sort Edge () Int)
+
+[let numActors : Integer = 100 + istar.actors->size()]
+[let numTasks : Integer = numActors + getAllIntentions(istar, 'Task')->size()]
+[let numGoals : Integer = numTasks + getAllIntentions(istar, 'Goal')->size()]
+[let numSoftGoals : Integer = numGoals + getAllIntentions(istar, 'SoftGoal')->size()]
+[let numResources : Integer = numSoftGoals + getAllIntentions(istar, 'Resource')->size()]
+[let numContainments : Integer = numResources + istar.actors->collect(intentions)->size()]
+[let numMeansEnds : Integer = numContainments + getAllIntentionLinks(istar, 'MeansEnd')->size()]
+[let numDecompositions : Integer = numMeansEnds + getAllIntentionLinks(istar, 'Decomposition')->size()]
+[let numContributions : Integer = numDecompositions + getAllIntentionLinks(istar, 'Contribution')->size()]
+[let numDependers : Integer = numContributions + getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor))->size()]
 [for (actor : Actor | istar.actors)]
 (declare-const [nodeName(actor)/] Node)
-(assert (= [nodeName(actor)/] [0 + i/]))
+(assert (= [nodeName(actor)/] [100 + i/]))
 [/for]
-[encodeIntentions(istar, 'Task', 0)/]
-[encodeIntentions(istar, 'Goal', 0)/]
-[encodeIntentions(istar, 'SoftGoal', 0)/]
-[encodeIntentions(istar, 'Resource', 0)/]
+[encodeIntentions(istar, 'Task', numActors)/]
+[encodeIntentions(istar, 'Goal', numTasks)/]
+[encodeIntentions(istar, 'SoftGoal', numGoals)/]
+[encodeIntentions(istar, 'Resource', numSoftGoals)/]
 [for (intention : Intention | istar.actors->collect(intentions))]
 (declare-const [edgeName(intention)/] Edge)
-(assert (= [edgeName(intention)/] [0 + i/]))
+(assert (= [edgeName(intention)/] [numResources + i/]))
 [/for]
-[encodeIntentionLinks(istar, 'MeansEnd', 0)/]
-[encodeIntentionLinks(istar, 'Decomposition', 0)/]
-[encodeIntentionLinks(istar, 'Contribution', 0)/]
+[encodeIntentionLinks(istar, 'MeansEnd', numContainments)/]
+[encodeIntentionLinks(istar, 'Decomposition', numMeansEnds)/]
+[encodeIntentionLinks(istar, 'Contribution', numDecompositions)/]
 [for (dependerLink : DependerLink | getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor)))]
 (declare-const [edgeName(dependerLink)/] Edge)
-(assert (= [edgeName(dependerLink)/] [0 + i/]))
+(assert (= [edgeName(dependerLink)/] [numContributions + i/]))
 [/for]
 [for (dependeeLink : DependeeLink | getAllDependeeLinks(istar)->select(not dependee.oclIsTypeOf(Actor)))]
 (declare-const [edgeName(dependeeLink)/] Edge)
-(assert (= [edgeName(dependeeLink)/] [0 + i/]))
+(assert (= [edgeName(dependeeLink)/] [numDependers + i/]))
 [/for]
+[/let]
+[/let]
+[/let]
+[/let]
+[/let]
+[/let]
+[/let]
+[/let]
+[/let]
+[/let]
 
 ;Concretizations
 (declare-sort Actor)

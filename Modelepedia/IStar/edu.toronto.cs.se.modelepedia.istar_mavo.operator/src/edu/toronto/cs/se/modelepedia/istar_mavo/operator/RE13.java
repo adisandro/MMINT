@@ -202,7 +202,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		IStarMAVOToSMTLIB previousOperator = (previousExecutable == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(IStarMAVOToSMTLIB) previousExecutable;
-		final String smtEncoding = previousOperator.getSMTLIBEncoding();
+		final String smtEncoding = previousOperator.getSMTEncoding();
 
 		// create list of nodes
 		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -54,7 +54,7 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 			@Override
 			public void fileGenerated(AcceleoTextGenerationEvent event) {
 
-				smtlibEncoding = textGeneration.toString();
+				smtEncoding = textGeneration.toString();
 			}
 
 			@Override
@@ -83,11 +83,11 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 		}
 	}
 
-	private String smtlibEncoding;
+	private String smtEncoding;
 
-	public String getSMTLIBEncoding() {
+	public String getSMTEncoding() {
 
-		return smtlibEncoding;
+		return smtEncoding;
 	}
 
 	@Override
