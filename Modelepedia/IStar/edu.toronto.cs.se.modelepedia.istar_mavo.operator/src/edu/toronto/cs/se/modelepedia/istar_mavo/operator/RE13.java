@@ -35,6 +35,8 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
 	private static final String PROPERTY_IN_TARGETSPROPERTY = "targetsProperty";
+	private static final String PROPERTY_IN_TARGETSPROPERTY_DEFAULT = "";
+	private static final String PROPERTY_OUT_TIMEPREANALYSIS = "timePreAnalysis";
 	private static final String PROPERTY_OUT_TIMEANALYSIS = "timeAnalysis";
 	private static final String PROPERTY_OUT_TIMETARGETS = "timeTargets";
 	private static final String PROPERTY_OUT_LABELS_SUFFIX = ".labels";
@@ -42,27 +44,30 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private static final String[] SMTLIB_LABELS = {"fs", "ps", "un", "co", "pd", "fd", "n"};
 	private static final String SMTLIB_CONCRETIZATIONVAR = " c ";
-	private static final String SMTLIB_CONCRETIZATIONSUFFIX = "Concretization";
 	private static final String SMTLIB_NODE = "node ";
 
+	private boolean timePreAnalysisEnabled;
 	private boolean timeTargetsEnabled;
 	private String targetsProperty;
 
 	private Map<String, Intention> intentions;
 	private Z3IncResult z3IncResult;
 
+	private long timePreAnalysis;
 	private long timeAnalysis;
 	private long timeTargets;
 	private String targets;
 
 	private void readProperties(Properties properties) throws Exception {
 
+		timePreAnalysisEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEPREANALYSIS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		timeTargetsEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMETARGETS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		targetsProperty = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_TARGETSPROPERTY);
+		targetsProperty = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 
 	private void initOutput() {
 
+		timePreAnalysis = -1;
 		timeAnalysis = -1;
 		timeTargets = -1;
 		targets = "0";
@@ -76,11 +81,11 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private void writeProperties(Properties properties) {
 
-		String labels;
-
+		properties.setProperty(PROPERTY_OUT_TIMEPREANALYSIS, String.valueOf(timePreAnalysis));
 		properties.setProperty(PROPERTY_OUT_TIMEANALYSIS, String.valueOf(timeAnalysis));
 		properties.setProperty(PROPERTY_OUT_TIMETARGETS, String.valueOf(timeTargets));
 		properties.setProperty(PROPERTY_OUT_TARGETS, targets);
+		String labels;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
 			labels = "";
@@ -126,11 +131,10 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		return feature;
 	}
 
-	private void doAnalysis(String smtEncoding) {
+	private void doAnalysis() {
 
 		long startTime = System.nanoTime();
 
-		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding);
 		String intentionProperty, labelProperty;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
@@ -140,17 +144,16 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 					SMTLIB_AND +
 					SMTLIB_EXISTS +
 					SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-					SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() + SMTLIB_CONCRETIZATIONSUFFIX +
+					SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() +
 					SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
 					SMTLIB_PREDICATE_START + SMTLIB_NODE + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END +
 					SMTLIB_PREDICATE_END
 				;
 			}
-			//TODO MMTF: shouldn't it be exists?
 			intentionProperty +=
 				SMTLIB_FORALL +
 				SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-				SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() + SMTLIB_CONCRETIZATIONSUFFIX +
+				SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() +
 				SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
 				SMTLIB_IMPLICATION +
 				SMTLIB_PREDICATE_START + SMTLIB_NODE + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END
@@ -160,26 +163,24 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				if (intention.isMay()) {
 					labelProperty += SMTLIB_PREDICATE_END;
 				}
-				labelProperty += SMTLIB_PREDICATE_END;System.err.println(labelProperty);
+				labelProperty += SMTLIB_PREDICATE_END;
 				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, labelProperty, 1, 0);
 				if (z3IncResult.flag == Z3_SAT) {
 					intention.eSet(labelSwitch(i), true);
 				}
 			}
 		}
-		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 
 		timeAnalysis = System.nanoTime() - startTime;
 	}
 
-	private void doTargets(String smtEncoding) {
+	private void doTargets() {
 
 		long startTime = System.nanoTime();
 
-		String encoding = (targetsProperty.equals("")) ?
-			smtEncoding :
-			smtEncoding + SMTLIB_ASSERT + targetsProperty + SMTLIB_PREDICATE_END;
-		targets = Integer.toString(CLibrary.OPERATOR_INSTANCE.checkSat(encoding));
+		String property = SMTLIB_ASSERT + targetsProperty + SMTLIB_PREDICATE_END;
+		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, property, 0, 0);
+		targets = Integer.toString(z3IncResult.flag);
 
 		timeTargets = System.nanoTime() - startTime;
 	}
@@ -215,10 +216,16 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 
 		// run solver
-		doAnalysis(smtEncoding);
-		if (timeTargetsEnabled) {
-			doTargets(smtEncoding);
+		long startTime = System.nanoTime();
+		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding);
+		if (timePreAnalysisEnabled) {
+			timePreAnalysis = System.nanoTime() - startTime;
 		}
+		doAnalysis();
+		if (timeTargetsEnabled) {
+			doTargets();
+		}
+		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 
 		// save output
 		Properties outputProperties = new Properties();
