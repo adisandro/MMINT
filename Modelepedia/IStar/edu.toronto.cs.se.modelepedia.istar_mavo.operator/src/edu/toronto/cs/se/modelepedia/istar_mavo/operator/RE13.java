@@ -33,16 +33,36 @@ import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3I
 
 public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
+	private enum SMTLIBLabel {
+
+		fs(IStar_MAVOPackage.eINSTANCE.getIntention_FullySatisfied()),
+		ps(IStar_MAVOPackage.eINSTANCE.getIntention_PartiallySatisfied()),
+		un(IStar_MAVOPackage.eINSTANCE.getIntention_Unknown()),
+		co(IStar_MAVOPackage.eINSTANCE.getIntention_Conflict()),
+		pd(IStar_MAVOPackage.eINSTANCE.getIntention_PartiallyDenied()),
+		fd(IStar_MAVOPackage.eINSTANCE.getIntention_FullyDenied()),
+		n(IStar_MAVOPackage.eINSTANCE.getIntention_NoLabel());
+
+		private final EStructuralFeature modelFeature;
+
+		SMTLIBLabel(EStructuralFeature modelFeature) {
+			this.modelFeature = modelFeature;
+		}
+
+		EStructuralFeature getModelFeature() {
+			return modelFeature;
+		}
+	}
+
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
 	private static final String PROPERTY_IN_TARGETSPROPERTY = "targetsProperty";
 	private static final String PROPERTY_IN_TARGETSPROPERTY_DEFAULT = "";
-	private static final String PROPERTY_OUT_TIMEPREANALYSIS = "timePreAnalysis";
+	private static final String PROPERTY_OUT_TIMEMODEL = "timeModel";
 	private static final String PROPERTY_OUT_TIMEANALYSIS = "timeAnalysis";
 	private static final String PROPERTY_OUT_TIMETARGETS = "timeTargets";
 	private static final String PROPERTY_OUT_LABELS_SUFFIX = ".labels";
 	private static final String PROPERTY_OUT_TARGETS = "targets";
 
-	private static final String[] SMTLIB_LABELS = {"fs", "ps", "un", "co", "pd", "fd", "n"};
 	private static final String SMTLIB_CONCRETIZATIONVAR = " c ";
 	private static final String SMTLIB_NODE = "node ";
 
@@ -50,38 +70,38 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private boolean timeTargetsEnabled;
 	private String targetsProperty;
 
-	private Map<String, Intention> intentions;
-	private Z3IncResult z3IncResult;
+	protected Map<String, Intention> intentions;
+	protected Z3IncResult z3IncResult;
 
-	private long timePreAnalysis;
+	private long timeModel;
 	private long timeAnalysis;
 	private long timeTargets;
 	private String targets;
 
-	private void readProperties(Properties properties) throws Exception {
+	protected void readProperties(Properties properties) throws Exception {
 
-		timePreAnalysisEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEPREANALYSIS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timePreAnalysisEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMODEL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		timeTargetsEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMETARGETS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		targetsProperty = MultiModelOperatorUtils.getOptionalStringProperty(properties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 
-	private void initOutput() {
+	protected void initOutput() {
 
-		timePreAnalysis = -1;
+		timeModel = -1;
 		timeAnalysis = -1;
 		timeTargets = -1;
 		targets = "0";
 	}
 
-	private void init() {
+	protected void init() {
 
 		intentions = new HashMap<String, Intention>();
 		initOutput();
 	}
 
-	private void writeProperties(Properties properties) {
+	protected void writeProperties(Properties properties) {
 
-		properties.setProperty(PROPERTY_OUT_TIMEPREANALYSIS, String.valueOf(timePreAnalysis));
+		properties.setProperty(PROPERTY_OUT_TIMEMODEL, String.valueOf(timeModel));
 		properties.setProperty(PROPERTY_OUT_TIMEANALYSIS, String.valueOf(timeAnalysis));
 		properties.setProperty(PROPERTY_OUT_TIMETARGETS, String.valueOf(timeTargets));
 		properties.setProperty(PROPERTY_OUT_TARGETS, targets);
@@ -89,9 +109,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
 			labels = "";
-			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
-				if ((boolean) intention.eGet(labelSwitch(i))) {
-					labels += SMTLIB_LABELS[i] + ",";
+			for (SMTLIBLabel label : SMTLIBLabel.values()) {
+				if ((boolean) intention.eGet(label.getModelFeature())) {
+					labels += label.name() + ",";
 				}
 			}
 			if (!labels.equals("")) {
@@ -99,36 +119,6 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 			}
 			properties.setProperty(entry.getKey()+PROPERTY_OUT_LABELS_SUFFIX, labels);
 		}
-	}
-
-	private EStructuralFeature labelSwitch(int i) {
-
-		EStructuralFeature feature = null;
-		switch (i) {
-			case 0:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntention_FullySatisfied();
-				break;
-			case 1:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntention_PartiallySatisfied();
-				break;
-			case 2:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntention_Unknown();
-				break;
-			case 3:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntention_Conflict();
-				break;
-			case 4:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntention_PartiallyDenied();
-				break;
-			case 5:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntention_FullyDenied();
-				break;
-			case 6:
-				feature = IStar_MAVOPackage.eINSTANCE.getIntention_NoLabel();
-				break;
-		}
-
-		return feature;
 	}
 
 	private void doAnalysis() {
@@ -158,15 +148,15 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				SMTLIB_IMPLICATION +
 				SMTLIB_PREDICATE_START + SMTLIB_NODE + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END
 			;
-			for (int i = 0; i < SMTLIB_LABELS.length; i++) {
-				labelProperty = intentionProperty + SMTLIB_PREDICATE_START + SMTLIB_LABELS[i] + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+			for (SMTLIBLabel label : SMTLIBLabel.values()) {
+				labelProperty = intentionProperty + SMTLIB_PREDICATE_START + label.name() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 				if (intention.isMay()) {
 					labelProperty += SMTLIB_PREDICATE_END;
 				}
 				labelProperty += SMTLIB_PREDICATE_END;
 				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, labelProperty, 1, 0);
 				if (z3IncResult.flag == Z3_SAT) {
-					intention.eSet(labelSwitch(i), true);
+					intention.eSet(label.getModelFeature(), true);
 				}
 			}
 		}
@@ -219,7 +209,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		long startTime = System.nanoTime();
 		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(smtEncoding);
 		if (timePreAnalysisEnabled) {
-			timePreAnalysis = System.nanoTime() - startTime;
+			timeModel = System.nanoTime() - startTime;
 		}
 		doAnalysis();
 		if (timeTargetsEnabled) {
