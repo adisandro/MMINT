@@ -41,7 +41,7 @@ public class FASE14 extends RE13 {
 
 	private static final String SMTLIB_CONCRETIZATIONVAR1 = " c1 ";
 	private static final String SMTLIB_CONCRETIZATIONVAR2 = " c2 ";
-	private static final String SMTLIB_EDGEFUN = "edge ";
+	private static final String SMTLIB_EDGEFUN = "(edge ";
 
 	private static final String PROPERTY_OUT_TIMERNF = "timeRNF";
 	private static final String RNF_OUTPUT_SUFFIX = "_rnf";
@@ -74,7 +74,10 @@ public class FASE14 extends RE13 {
 		try {
 			MultiModelUtils.writeTextFile(
 				MultiModelUtils.prependWorkspaceToUri(
-					MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX)
+					MultiModelUtils.replaceFileExtensionInUri(
+						MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
+						SMTLIB_FILE_EXTENSION
+					)
 				),
 				smtEncodingRNF
 			);
@@ -183,12 +186,12 @@ public class FASE14 extends RE13 {
 				String smtSConstraint = encodeSConstraint(sort, fun, name);
 				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint);
 			}
-//			if (mavoModelObj.isVar()) {
-//				//TODO MMTF: navigate other distincts
-//				String name2 = "";
-//				String smtVConstraint = encodeVConstraint(sort, fun, name, name2);
-//				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
-//			}
+			if (mavoModelObj.isVar()) {
+				//TODO MMTF: navigate other distincts
+				String name2 = "";
+				String smtVConstraint = encodeVConstraint(sort, fun, name, name2);
+				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
+			}
 		}
 		//TODO MMTF: augment RNF with real removal of M nodes
 

@@ -25,6 +25,7 @@ public interface Z3SMTSolver {
 	public static final String LIBRARY_PATH = "/usr/lib";
 	public static final String PROPERTY_LIBRARY_PATH = "jna.library.path";
 
+	public static final String SMTLIB_FILE_EXTENSION = "smt2";
 	public static final String SMTLIB_PREDICATE_START = "(";
 	public static final String SMTLIB_PREDICATE_END = ")";
 	public static final String SMTLIB_TRUE = " true ";
