@@ -63,7 +63,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		String oldUri = MultiModelUtils.prependWorkspaceToUri(oldModel.getUri());
 		String newModelUri = MultiModelUtils.replaceFileNameInUri(oldModel.getUri(), newModelName);
 		String newUri = MultiModelUtils.prependWorkspaceToUri(newModelUri);
-		MultiModelUtils.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
+		MultiModelUtils.copyTextFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
 
 		// copy diagram editors
 		if (copyDiagramEditor) {
@@ -73,7 +73,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 				}
 				oldUri = MultiModelUtils.prependWorkspaceToUri(oldEditor.getUri());
 				newUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName));
-				MultiModelUtils.copyFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
+				MultiModelUtils.copyTextFileAndReplaceText(oldUri, newUri, oldModel.getName(), newModelName);
 				//TODO MMTF: add support for notation extra file (e.g. in UML)
 			}
 		}

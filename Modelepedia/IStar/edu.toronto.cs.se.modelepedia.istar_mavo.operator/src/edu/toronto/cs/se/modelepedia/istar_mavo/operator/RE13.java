@@ -67,10 +67,11 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	protected static final String SMTLIB_NODEFUN = "node ";
 
 	private boolean timeModelEnabled;
-	private boolean timeTargetsEnabled;
+	protected boolean timeTargetsEnabled;
 	private String targetsProperty;
 
-	private Map<String, Intention> intentions;
+	protected Model istarModel;
+	protected Map<String, Intention> intentions;
 	private String smtEncoding;
 	protected Z3IncResult z3IncResult;
 
@@ -126,7 +127,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 	}
 
-	private void doAnalysis() {
+	protected void doAnalysis() {
 
 		long startTime = System.nanoTime();
 
@@ -173,7 +174,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		timeAnalysis = System.nanoTime() - startTime;
 	}
 
-	private void doTargets() {
+	protected void doTargets() {
 
 		long startTime = System.nanoTime();
 
@@ -184,20 +185,8 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		timeTargets = System.nanoTime() - startTime;
 	}
 
-	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	protected void collectAnalysisModelObjs() {
 
-		Model istarModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			istarModel,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
-		init();
-
-		// create list of nodes
 		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
 		for (Actor actor : istar.getActors()) {
 			for (Intention intention : actor.getIntentions()) {
@@ -207,8 +196,23 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		for (Intention intention : istar.getDependums()) {
 			intentions.put(intention.getName().replace(" ", ""), intention);
 		}
+	}
+
+	@Override
+	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+
+		istarModel = actualParameters.get(0);
+		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
+			this,
+			istarModel,
+			null,
+			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
+		);
+		readProperties(inputProperties);
+		init();
 
 		// run solver
+		collectAnalysisModelObjs();
 		doAnalysis();
 		if (timeTargetsEnabled) {
 			doTargets();

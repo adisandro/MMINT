@@ -18,6 +18,11 @@ public class Z3SMTUtils implements Z3SMTSolver {
 		return predicateStart + smtTerms + SMTLIB_PREDICATE_END;
 	}
 
+	public static String emptyPredicate(String smtTerms) {
+
+		return predicate(SMTLIB_PREDICATE_START, smtTerms);
+	}
+
 	public static String assertion(String smtTerms) {
 
 		return predicate(SMTLIB_ASSERT, smtTerms);
@@ -38,11 +43,21 @@ public class Z3SMTUtils implements Z3SMTSolver {
 		return predicate(SMTLIB_OR, smtTerms);
 	}
 
+	public static String equality(String smtTerms) {
+
+		return predicate(SMTLIB_EQUALITY, smtTerms);
+	}
+
+	public static String implication(String smtIfTerms, String smtThenTerms) {
+
+		return predicate(SMTLIB_IMPLICATION, smtIfTerms + smtThenTerms);
+	}
+
 	public static String exists(String smtQuantification, String smtTerms) {
 
 		return predicate(
 			SMTLIB_EXISTS,
-			SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START + smtQuantification + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + smtTerms
+			SMTLIB_PREDICATE_START + smtQuantification + SMTLIB_PREDICATE_END + smtTerms
 		);
 	}
 
@@ -50,7 +65,7 @@ public class Z3SMTUtils implements Z3SMTSolver {
 
 		return predicate(
 			SMTLIB_FORALL,
-			SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START + smtQuantification + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + smtTerms
+			SMTLIB_PREDICATE_START + smtQuantification + SMTLIB_PREDICATE_END + smtTerms
 		);
 	}
 

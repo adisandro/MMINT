@@ -13,9 +13,11 @@ package edu.toronto.cs.se.mmtf.mid.library;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 
@@ -75,19 +77,27 @@ public class MultiModelUtils {
 		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
 	}
 
-	public static void copyFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
+	public static void writeTextFile(String fileUri, String text) throws Exception {
 
-		File oldFile = new File(oldFileUri);
-		File newFile = new File(newFileUri);
-		BufferedReader oldBuffer = new BufferedReader(new FileReader(oldFile));
-		BufferedWriter newBuffer = new BufferedWriter(new FileWriter(newFile));
-		String oldLine;
-		while ((oldLine = oldBuffer.readLine()) != null) {
-			newBuffer.write(oldLine.replaceAll(oldText, newText));
-			newBuffer.newLine();
+		Path filePath = Paths.get(fileUri);
+		try (BufferedWriter writer = Files.newBufferedWriter(filePath, Charset.forName("UTF-8"), StandardOpenOption.CREATE)) {
+			writer.write(text);
 		}
-		oldBuffer.close();
-		newBuffer.close();
+	}
+
+	public static void copyTextFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
+
+		Path oldFilePath = Paths.get(oldFileUri);
+		Path newFilePath = Paths.get(newFileUri);
+		try (BufferedReader oldBuffer = Files.newBufferedReader(oldFilePath, Charset.forName("UTF-8"))) {
+			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"), StandardOpenOption.CREATE)) {
+				String oldLine;
+				while ((oldLine = oldBuffer.readLine()) != null) {
+					newBuffer.write(oldLine.replaceAll(oldText, newText));
+					newBuffer.newLine();
+				}
+			}
+		}
 	}
 
 }
