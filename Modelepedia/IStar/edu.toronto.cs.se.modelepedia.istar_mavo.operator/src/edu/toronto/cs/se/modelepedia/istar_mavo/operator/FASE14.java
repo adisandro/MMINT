@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -29,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
@@ -142,30 +145,34 @@ public class FASE14 extends RE13 {
 		);
 	}
 
-	private String encodeVConstraint(String sort, String fun, String name1, String name2) {
+	private String encodeVConstraint(String sort, String fun, String name1, List<String> names2) {
 
+		String smtOrTerms = "";
+		for (String name2 : names2) {
+			smtOrTerms += Z3SMTUtils.predicate(fun, name2 + SMTLIB_CONCRETIZATIONVAR);
+		}
 		return Z3SMTUtils.forall(
 			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATIONVAR + sort),
 			Z3SMTUtils.implication(
 				Z3SMTUtils.predicate(fun, name1 + SMTLIB_CONCRETIZATIONVAR),
 				Z3SMTUtils.not(
-					Z3SMTUtils.predicate(fun, name2 + SMTLIB_CONCRETIZATIONVAR)
+					Z3SMTUtils.or(smtOrTerms)
 				)
 			)
 		);
 	}
 
 	private void checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint) {
-
-		String smtMavoConstraintNegation = Z3SMTUtils.not(smtMavoConstraint);
-		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, Z3SMTUtils.assertion(smtMavoConstraintNegation), 1, 0);
+System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
+		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), 1, 0);
 		if (z3IncResult.flag == Z3_SAT) {
 			//TODO MMTF: optimize search for other annotations in output model
 		}
 		else {
 			mavoModelObj.eSet(mavoAnnotation, false);
-			smtEncodingRNF += Z3SMTUtils.assertion(smtMavoConstraint);
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, Z3SMTUtils.assertion(smtMavoConstraintNegation), 0, 0);
+			String smtMavoAssertion = Z3SMTUtils.assertion(smtMavoConstraint);
+			smtEncodingRNF += smtMavoAssertion + "\n";
+			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtMavoAssertion, 0, 0);System.err.println(z3IncResult.flag + ":" + Z3SMTUtils.assertion(smtMavoConstraint));
 		}
 	}
 
@@ -173,6 +180,7 @@ public class FASE14 extends RE13 {
 
 		long startTime = System.nanoTime();
 
+		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
 		for (Map.Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
 			String name = mavoModelObjEntry.getKey();
@@ -187,13 +195,80 @@ public class FASE14 extends RE13 {
 				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint);
 			}
 			if (mavoModelObj.isVar()) {
-				//TODO MMTF: navigate other distincts
-				String name2 = "";
-				String smtVConstraint = encodeVConstraint(sort, fun, name, name2);
-				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
+				String name2;
+				List<String> names2 = new ArrayList<String>();
+				if (mavoModelObj instanceof Actor) {
+					//TODO MMTF: what about the containment relation?
+					for (Actor actor : istar.getActors()) {
+						name2 = encodeMAVConstraintName(actor);
+						if (actor.isVar() || name2.equals(name)) {
+							continue;
+						}
+						names2.add(name2);
+					}
+				}
+				else if (mavoModelObj instanceof Intention) {
+					if (mavoModelObj.eContainer() instanceof IStar) {
+						for (Intention intention : istar.getDependums()) {
+							name2 = encodeMAVConstraintName(intention);
+							if (intention.isVar() || name2.equals(name) || !intention.eClass().getName().equals(sort)) {
+								continue;
+							}
+							names2.add(name2);
+						}
+					}
+					else {
+						Actor actor = (Actor) mavoModelObj.eContainer();
+						for (Intention intention : actor.getIntentions()) {
+							name2 = encodeMAVConstraintName(intention);
+							if (intention.isVar() || name2.equals(name) || !intention.eClass().getName().equals(sort)) {
+								continue;
+							}
+							names2.add(name2);
+						}
+					}
+				}
+				else if (mavoModelObj instanceof IntentionLink) {
+					Actor actor = (Actor) mavoModelObj.eContainer().eContainer();
+					for (Intention intention : actor.getIntentions()) {
+						for (IntentionLink intentionLink : intention.getLinksAsSrc()) {
+							name2 = encodeMAVConstraintName(intentionLink);
+							if (intentionLink.isVar() || name2.equals(name) || !intentionLink.eClass().getName().equals(sort)) {
+								continue;
+							}
+							names2.add(name2);
+						}
+					}
+				}
+				else if (mavoModelObj instanceof DependerLink) {
+					for (Intention dependum : istar.getDependums()) {
+						for (DependerLink dependerLink : dependum.getDependerLinks()) {
+							name2 = encodeMAVConstraintName(dependerLink);
+							if (dependerLink.isVar() || name2.equals(name)) {
+								continue;
+							}
+							names2.add(name2);
+						}
+					}
+				}
+				else if (mavoModelObj instanceof DependeeLink) {
+					for (Intention dependum : istar.getDependums()) {
+						for (DependeeLink dependeeLink : dependum.getDependeeLinks()) {
+							name2 = encodeMAVConstraintName(dependeeLink);
+							if (dependeeLink.isVar() || name2.equals(name)) {
+								continue;
+							}
+							names2.add(name2);
+						}
+					}
+				}
+				if (!names2.isEmpty()) {
+					String smtVConstraint = encodeVConstraint(sort, fun, name, names2);
+					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
+				}
 			}
 		}
-		//TODO MMTF: augment RNF with real removal of M nodes
+		//TODO MMTF: augment RNF with real removal of M nodes?
 
 		timeRNF = System.nanoTime() - startTime;
 	}
