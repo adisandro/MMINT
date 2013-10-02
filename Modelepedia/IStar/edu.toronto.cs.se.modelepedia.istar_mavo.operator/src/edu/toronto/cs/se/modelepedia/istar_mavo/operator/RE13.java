@@ -70,7 +70,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	protected boolean timeTargetsEnabled;
 	private String targetsProperty;
 
-	protected Model istarModel;
+	protected IStar istar;
 	protected Map<String, Intention> intentions;
 	private String smtEncoding;
 	protected Z3IncResult z3IncResult;
@@ -185,9 +185,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		timeTargets = System.nanoTime() - startTime;
 	}
 
-	protected void collectAnalysisModelObjs() {
+	protected void collectAnalysisModelObjs(Model istarModel) {
 
-		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
+		istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
 		for (Actor actor : istar.getActors()) {
 			for (Intention intention : actor.getIntentions()) {
 				intentions.put(intention.getName().replace(" ", ""), intention);
@@ -201,7 +201,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		istarModel = actualParameters.get(0);
+		Model istarModel = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
 			istarModel,
@@ -212,7 +212,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		init();
 
 		// run solver
-		collectAnalysisModelObjs();
+		collectAnalysisModelObjs(istarModel);
 		doAnalysis();
 		if (timeTargetsEnabled) {
 			doTargets();

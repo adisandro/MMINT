@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,13 +30,9 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTUtils;
 
 public class FASE14 extends RE13 {
@@ -74,54 +69,14 @@ public class FASE14 extends RE13 {
 
 		super.writeProperties(properties);
 		properties.setProperty(PROPERTY_OUT_TIMERNF, String.valueOf(timeRNF));
-		try {
-			MultiModelUtils.writeTextFile(
-				MultiModelUtils.prependWorkspaceToUri(
-					MultiModelUtils.replaceFileExtensionInUri(
-						MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
-						SMTLIB_FILE_EXTENSION
-					)
-				),
-				smtEncodingRNF
-			);
-		}
-		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "RNF file writing failed", e);
-		}
 	}
 
-	//TODO MMTF: unify these functions with the ones in acceleo
-	//TODO MMTF: refactor when simplifying istar metamodel
-	private String encodeMAVConstraintSort(MAVOElement mavoModelObj) {
-
-		return mavoModelObj.eClass().getName();
-	}
-
+	//TODO MMTF: unify/refactor these functions when 1) simplifying the i* metamodel 2) preparing a generic smtlib encoder
 	private String encodeMAVConstraintFun(MAVOElement mavoModelObj) {
 
 		return (mavoModelObj instanceof DependencyEndpoint) ?
 			SMTLIB_NODEFUN :
 			SMTLIB_EDGEFUN;
-	}
-
-	private String encodeMAVConstraintName(MAVOElement mavoModelObj) {
-
-		String name = "";
-		if (mavoModelObj instanceof DependencyEndpoint) {
-			name = ((DependencyEndpoint) mavoModelObj).getName();
-		}
-		else if (mavoModelObj instanceof IntentionLink) {
-			name = ((IntentionLink) mavoModelObj).getName();
-		}
-		else if (mavoModelObj instanceof DependeeLink) {
-			name = ((DependeeLink) mavoModelObj).getName();
-		}
-		else if (mavoModelObj instanceof DependerLink) {
-			name = ((DependerLink) mavoModelObj).getName();
-		}
-		name = name.replaceAll(" ", "");
-
-		return name;
 	}
 
 	private String encodeMConstraint(String sort, String fun, String name) {
@@ -163,7 +118,7 @@ public class FASE14 extends RE13 {
 	}
 
 	private void checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint) {
-System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
+
 		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), 1, 0);
 		if (z3IncResult.flag == Z3_SAT) {
 			//TODO MMTF: optimize search for other annotations in output model
@@ -172,7 +127,7 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 			mavoModelObj.eSet(mavoAnnotation, false);
 			String smtMavoAssertion = Z3SMTUtils.assertion(smtMavoConstraint);
 			smtEncodingRNF += smtMavoAssertion + "\n";
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtMavoAssertion, 0, 0);System.err.println(z3IncResult.flag + ":" + Z3SMTUtils.assertion(smtMavoConstraint));
+			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtMavoAssertion, 0, 0);
 		}
 	}
 
@@ -180,11 +135,10 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 
 		long startTime = System.nanoTime();
 
-		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
 		for (Map.Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
 			String name = mavoModelObjEntry.getKey();
-			String sort = encodeMAVConstraintSort(mavoModelObj);
+			String sort = mavoModelObj.eClass().getName();
 			String fun = encodeMAVConstraintFun(mavoModelObj);
 			if (mavoModelObj.isMay()) {
 				String smtMConstraint = encodeMConstraint(sort, fun, name);
@@ -195,73 +149,7 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint);
 			}
 			if (mavoModelObj.isVar()) {
-				String name2;
-				List<String> names2 = new ArrayList<String>();
-				if (mavoModelObj instanceof Actor) {
-					//TODO MMTF: what about the containment relation?
-					for (Actor actor : istar.getActors()) {
-						name2 = encodeMAVConstraintName(actor);
-						if (actor.isVar() || name2.equals(name)) {
-							continue;
-						}
-						names2.add(name2);
-					}
-				}
-				else if (mavoModelObj instanceof Intention) {
-					if (mavoModelObj.eContainer() instanceof IStar) {
-						for (Intention intention : istar.getDependums()) {
-							name2 = encodeMAVConstraintName(intention);
-							if (intention.isVar() || name2.equals(name) || !intention.eClass().getName().equals(sort)) {
-								continue;
-							}
-							names2.add(name2);
-						}
-					}
-					else {
-						Actor actor = (Actor) mavoModelObj.eContainer();
-						for (Intention intention : actor.getIntentions()) {
-							name2 = encodeMAVConstraintName(intention);
-							if (intention.isVar() || name2.equals(name) || !intention.eClass().getName().equals(sort)) {
-								continue;
-							}
-							names2.add(name2);
-						}
-					}
-				}
-				else if (mavoModelObj instanceof IntentionLink) {
-					Actor actor = (Actor) mavoModelObj.eContainer().eContainer();
-					for (Intention intention : actor.getIntentions()) {
-						for (IntentionLink intentionLink : intention.getLinksAsSrc()) {
-							name2 = encodeMAVConstraintName(intentionLink);
-							if (intentionLink.isVar() || name2.equals(name) || !intentionLink.eClass().getName().equals(sort)) {
-								continue;
-							}
-							names2.add(name2);
-						}
-					}
-				}
-				else if (mavoModelObj instanceof DependerLink) {
-					for (Intention dependum : istar.getDependums()) {
-						for (DependerLink dependerLink : dependum.getDependerLinks()) {
-							name2 = encodeMAVConstraintName(dependerLink);
-							if (dependerLink.isVar() || name2.equals(name)) {
-								continue;
-							}
-							names2.add(name2);
-						}
-					}
-				}
-				else if (mavoModelObj instanceof DependeeLink) {
-					for (Intention dependum : istar.getDependums()) {
-						for (DependeeLink dependeeLink : dependum.getDependeeLinks()) {
-							name2 = encodeMAVConstraintName(dependeeLink);
-							if (dependeeLink.isVar() || name2.equals(name)) {
-								continue;
-							}
-							names2.add(name2);
-						}
-					}
-				}
+				List<String> names2 = MAVOSMTUtils.getUnmergeableModelObjects(istar, mavoModelObj);
 				if (!names2.isEmpty()) {
 					String smtVConstraint = encodeVConstraint(sort, fun, name, names2);
 					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
@@ -274,14 +162,15 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 	}
 
 	@Override
-	protected void collectAnalysisModelObjs() {
+	protected void collectAnalysisModelObjs(Model istarModel) {
 
-		IStar istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
+		istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
+		MAVOSMTUtils.createFormulaIdsFromNames(istar);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
 			if (modelObj instanceof Intention) {
-				intentions.put(((Intention) modelObj).getName().replace(" ", ""), (Intention) modelObj);
+				intentions.put(((Intention) modelObj).getFormulaId(), (Intention) modelObj);
 			}
 			if (
 				modelObj instanceof MAVOElement && (
@@ -290,8 +179,8 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 					((MAVOElement) modelObj).isVar()
 				)
 			) {
-				String name = encodeMAVConstraintName((MAVOElement) modelObj);
-				mavoModelObjs.put(name, (MAVOElement) modelObj);
+				String id = ((MAVOElement) modelObj).getFormulaId();
+				mavoModelObjs.put(id, (MAVOElement) modelObj);
 			}
 		}
 	}
@@ -299,7 +188,7 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		istarModel = actualParameters.get(0);
+		Model istarModel = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
 			istarModel,
@@ -310,7 +199,7 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 		init();
 
 		// run solver
-		collectAnalysisModelObjs();
+		collectAnalysisModelObjs(istarModel);
 		doAnalysis();
 		if (timeTargetsEnabled) {
 			doTargets();
@@ -328,6 +217,20 @@ System.err.println(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)));
 			null,
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
+		try {
+			MultiModelUtils.writeTextFile(
+				MultiModelUtils.prependWorkspaceToUri(
+					MultiModelUtils.replaceFileExtensionInUri(
+						MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
+						SMTLIB_FILE_EXTENSION
+					)
+				),
+				smtEncodingRNF
+			);
+		}
+		catch (Exception e) {
+			MMTFException.print(Type.WARNING, "RNF file writing failed", e);
+		}
 
 		return actualParameters;
 	}

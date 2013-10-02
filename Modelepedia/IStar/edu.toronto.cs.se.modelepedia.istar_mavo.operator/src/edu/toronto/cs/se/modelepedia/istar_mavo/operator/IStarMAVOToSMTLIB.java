@@ -95,7 +95,6 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 
 		Model istarModel = actualParameters.get(0);
 
-		// generate smt-lib representation of the random model
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(istarModel.getName());
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();

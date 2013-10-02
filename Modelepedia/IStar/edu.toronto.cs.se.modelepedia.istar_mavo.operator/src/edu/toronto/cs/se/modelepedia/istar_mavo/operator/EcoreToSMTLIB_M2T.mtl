@@ -1,0 +1,26 @@
+[comment encoding = UTF-8 /]
+[module EcoreToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmtf/MAVO')]
+
+[query public getTypes(root : EObject, className : String) : Sequence(OclAny) =
+	root->eAllContents()->select(eClass().name = className)
+/]
+
+[query public getKinds(root : EObject, className : String) : Sequence(OclAny) =
+	root->eAllContents()->select(eClass().name = className or eClass().eAllSuperTypes->exists(name = className))
+/]
+
+[query public getUnmergeableModelObjects(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
+	invoke(
+		'edu.toronto.cs.se.modelepedia.istar_mavo.operator.MAVOSMTUtils',
+		'getUnmergeableModelObjects(edu.toronto.cs.se.mmtf.mavo.MAVOModel, edu.toronto.cs.se.mmtf.mavo.MAVOElement)',
+		Sequence{mavoModel, mavoModelObj}
+	)
+/]
+
+[query public createFormulaIdsFromNames(mavoModel : MAVOModel) : OclAny =
+	invoke(
+		'edu.toronto.cs.se.modelepedia.istar_mavo.operator.MAVOSMTUtils',
+		'createFormulaIdsFromNames(edu.toronto.cs.se.mmtf.mavo.MAVOModel)',
+		Sequence{mavoModel}
+	)
+/]
