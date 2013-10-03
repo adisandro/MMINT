@@ -9,18 +9,18 @@
 	root->eAllContents()->select(eClass().name = className or eClass().eAllSuperTypes->exists(name = className))
 /]
 
-[query public getUnmergeableModelObjects(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
+[query public getUnmergeableIds(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
 	invoke(
 		'edu.toronto.cs.se.modelepedia.istar_mavo.operator.MAVOSMTUtils',
-		'getUnmergeableModelObjects(edu.toronto.cs.se.mmtf.mavo.MAVOModel, edu.toronto.cs.se.mmtf.mavo.MAVOElement)',
+		'getUnmergeableIds(edu.toronto.cs.se.mmtf.mavo.MAVOModel, edu.toronto.cs.se.mmtf.mavo.MAVOElement)',
 		Sequence{mavoModel, mavoModelObj}
 	)
 /]
 
-[query public createFormulaIdsFromNames(mavoModel : MAVOModel) : OclAny =
+[query public createIdsFromNames(mavoModel : MAVOModel) : OclAny =
 	invoke(
 		'edu.toronto.cs.se.modelepedia.istar_mavo.operator.MAVOSMTUtils',
-		'createFormulaIdsFromNames(edu.toronto.cs.se.mmtf.mavo.MAVOModel)',
+		'createIdsFromNames(edu.toronto.cs.se.mmtf.mavo.MAVOModel)',
 		Sequence{mavoModel}
 	)
 /]

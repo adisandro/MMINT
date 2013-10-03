@@ -37,9 +37,9 @@ import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTUtils;
 
 public class FASE14 extends RE13 {
 
-	private static final String SMTLIB_CONCRETIZATIONVAR1 = " c1 ";
-	private static final String SMTLIB_CONCRETIZATIONVAR2 = " c2 ";
-	private static final String SMTLIB_EDGEFUN = "(edge ";
+	private static final String SMTLIB_CONCRETIZATION1 = " c1 ";
+	private static final String SMTLIB_CONCRETIZATION2 = " c2 ";
+	private static final String SMTLIB_EDGEFUNCTION = "(edge ";
 
 	private static final String PROPERTY_OUT_TIMERNF = "timeRNF";
 	private static final String RNF_OUTPUT_SUFFIX = "_rnf";
@@ -72,44 +72,44 @@ public class FASE14 extends RE13 {
 	}
 
 	//TODO MMTF: unify/refactor these functions when 1) simplifying the i* metamodel 2) preparing a generic smtlib encoder
-	private String encodeMAVConstraintFun(MAVOElement mavoModelObj) {
+	private String encodeMAVConstraintFunction(MAVOElement mavoModelObj) {
 
 		return (mavoModelObj instanceof DependencyEndpoint) ?
-			SMTLIB_NODEFUN :
-			SMTLIB_EDGEFUN;
+			SMTLIB_NODEFUNCTION :
+			SMTLIB_EDGEFUNCTION;
 	}
 
-	private String encodeMConstraint(String sort, String fun, String name) {
+	private String encodeMConstraint(String sort, String function, String id) {
 
 		return Z3SMTUtils.exists(
-			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATIONVAR + sort),
-			Z3SMTUtils.predicate(fun, name + " " + SMTLIB_CONCRETIZATIONVAR)
+			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + sort),
+			Z3SMTUtils.predicate(function, id + " " + SMTLIB_CONCRETIZATION)
 		);
 	}
 
-	private String encodeSConstraint(String sort, String fun, String name) {
+	private String encodeSConstraint(String sort, String function, String id) {
 
 		return Z3SMTUtils.forall(
-			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATIONVAR1 + sort) + Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATIONVAR2 + sort),
+			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION1 + sort) + Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION2 + sort),
 			Z3SMTUtils.implication(
 				Z3SMTUtils.and(
-					Z3SMTUtils.predicate(fun, name + SMTLIB_CONCRETIZATIONVAR1) + Z3SMTUtils.predicate(fun, name + SMTLIB_CONCRETIZATIONVAR2)
+					Z3SMTUtils.predicate(function, id + SMTLIB_CONCRETIZATION1) + Z3SMTUtils.predicate(function, id + SMTLIB_CONCRETIZATION2)
 				),
-				Z3SMTUtils.equality(SMTLIB_CONCRETIZATIONVAR1 + SMTLIB_CONCRETIZATIONVAR2)
+				Z3SMTUtils.equality(SMTLIB_CONCRETIZATION1 + SMTLIB_CONCRETIZATION2)
 			)
 		);
 	}
 
-	private String encodeVConstraint(String sort, String fun, String name1, List<String> names2) {
+	private String encodeVConstraint(String sort, String function, String id, List<String> unmergeableIds) {
 
 		String smtOrTerms = "";
-		for (String name2 : names2) {
-			smtOrTerms += Z3SMTUtils.predicate(fun, name2 + SMTLIB_CONCRETIZATIONVAR);
+		for (String unmergeableId : unmergeableIds) {
+			smtOrTerms += Z3SMTUtils.predicate(function, unmergeableId + SMTLIB_CONCRETIZATION);
 		}
 		return Z3SMTUtils.forall(
-			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATIONVAR + sort),
+			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + sort),
 			Z3SMTUtils.implication(
-				Z3SMTUtils.predicate(fun, name1 + SMTLIB_CONCRETIZATIONVAR),
+				Z3SMTUtils.predicate(function, id + SMTLIB_CONCRETIZATION),
 				Z3SMTUtils.not(
 					Z3SMTUtils.or(smtOrTerms)
 				)
@@ -121,9 +121,10 @@ public class FASE14 extends RE13 {
 
 		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), 1, 0);
 		if (z3IncResult.flag == Z3_SAT) {
-			//TODO MMTF: optimize search for other annotations in output model
+			//TODO MMTF: optimize search for other annotations in output model using the map mavoModelObjs
 		}
 		else {
+			//TODO MMTF: remove element altogether with M alternative check
 			mavoModelObj.eSet(mavoAnnotation, false);
 			String smtMavoAssertion = Z3SMTUtils.assertion(smtMavoConstraint);
 			smtEncodingRNF += smtMavoAssertion + "\n";
@@ -137,26 +138,27 @@ public class FASE14 extends RE13 {
 
 		for (Map.Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
-			String name = mavoModelObjEntry.getKey();
+			String id = mavoModelObjEntry.getKey();
 			String sort = mavoModelObj.eClass().getName();
-			String fun = encodeMAVConstraintFun(mavoModelObj);
+			String function = encodeMAVConstraintFunction(mavoModelObj);
 			if (mavoModelObj.isMay()) {
-				String smtMConstraint = encodeMConstraint(sort, fun, name);
+				String smtMConstraint = encodeMConstraint(sort, function, id);
 				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint);
+				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint));
 			}
 			if (mavoModelObj.isSet()) {
-				String smtSConstraint = encodeSConstraint(sort, fun, name);
+				String smtSConstraint = encodeSConstraint(sort, function, id);
 				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint);
 			}
 			if (mavoModelObj.isVar()) {
-				List<String> names2 = MAVOSMTUtils.getUnmergeableModelObjects(istar, mavoModelObj);
-				if (!names2.isEmpty()) {
-					String smtVConstraint = encodeVConstraint(sort, fun, name, names2);
+				//TODO MMTF: it might be that here I have to test distinct with the mergeable ones?
+				List<String> unmergeableIds = MAVOSMTUtils.getUnmergeableIds(istar, mavoModelObj);
+				if (!unmergeableIds.isEmpty()) {
+					String smtVConstraint = encodeVConstraint(sort, function, id, unmergeableIds);
 					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
 				}
 			}
 		}
-		//TODO MMTF: augment RNF with real removal of M nodes?
 
 		timeRNF = System.nanoTime() - startTime;
 	}
@@ -165,7 +167,7 @@ public class FASE14 extends RE13 {
 	protected void collectAnalysisModelObjs(Model istarModel) {
 
 		istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
-		MAVOSMTUtils.createFormulaIdsFromNames(istar);
+		MAVOSMTUtils.createIdsFromNames(istar);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
@@ -203,7 +205,9 @@ public class FASE14 extends RE13 {
 		doAnalysis();
 		if (timeTargetsEnabled) {
 			doTargets();
-			doRNF();
+			if (targets.equals(Integer.toString(Z3_SAT))) {
+				doRNF();
+			}
 		}
 		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 

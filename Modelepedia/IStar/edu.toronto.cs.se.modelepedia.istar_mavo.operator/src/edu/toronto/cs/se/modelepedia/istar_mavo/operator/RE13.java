@@ -63,8 +63,8 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private static final String PROPERTY_OUT_LABELS_SUFFIX = ".labels";
 	private static final String PROPERTY_OUT_TARGETS = "targets";
 
-	protected static final String SMTLIB_CONCRETIZATIONVAR = " c ";
-	protected static final String SMTLIB_NODEFUN = "(node ";
+	protected static final String SMTLIB_CONCRETIZATION = " c ";
+	protected static final String SMTLIB_NODEFUNCTION = "(node ";
 
 	private boolean timeModelEnabled;
 	protected boolean timeTargetsEnabled;
@@ -78,7 +78,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private long timeModel;
 	private long timeAnalysis;
 	private long timeTargets;
-	private String targets;
+	protected String targets;
 
 	protected void readProperties(Properties properties) throws Exception {
 
@@ -144,22 +144,22 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 					SMTLIB_AND +
 					SMTLIB_EXISTS +
 					SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-					SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() +
+					SMTLIB_CONCRETIZATION + intention.eClass().getName() +
 					SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
-					SMTLIB_NODEFUN + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END +
+					SMTLIB_NODEFUNCTION + entry.getKey() + SMTLIB_CONCRETIZATION + SMTLIB_PREDICATE_END +
 					SMTLIB_PREDICATE_END
 				;
 			}
 			intentionProperty +=
 				SMTLIB_FORALL +
 				SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-				SMTLIB_CONCRETIZATIONVAR + intention.eClass().getName() +
+				SMTLIB_CONCRETIZATION + intention.eClass().getName() +
 				SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
 				SMTLIB_IMPLICATION +
-				SMTLIB_NODEFUN + entry.getKey() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END
+				SMTLIB_NODEFUNCTION + entry.getKey() + SMTLIB_CONCRETIZATION + SMTLIB_PREDICATE_END
 			;
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
-				labelProperty = intentionProperty + SMTLIB_PREDICATE_START + label.name() + SMTLIB_CONCRETIZATIONVAR + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+				labelProperty = intentionProperty + SMTLIB_PREDICATE_START + label.name() + SMTLIB_CONCRETIZATION + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 				if (intention.isMay()) {
 					labelProperty += SMTLIB_PREDICATE_END;
 				}

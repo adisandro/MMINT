@@ -26,7 +26,12 @@ public class MAVOSMTUtils {
 
 	private static final String NAME_FEATURE = "name";
 
-	public static void createFormulaIdsFromNames(MAVOModel mavoModel) {
+	/*TODO MMTF: make it more integrated with the environment
+	 * e.g. overwrite the model if at least one formulaId is set
+	 * e.g. a separate operator
+	 * e.g. run all times a mavo operator is invoked
+	 */
+	public static void createIdsFromNames(MAVOModel mavoModel) {
 
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
 		while (iterator.hasNext()) {
@@ -45,9 +50,9 @@ public class MAVOSMTUtils {
 		}
 	}
 
-	public static List<String> getUnmergeableModelObjects(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+	public static List<String> getUnmergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
 
-		List<String> unmergeableModelObjs = new ArrayList<String>();
+		List<String> unmergeableIds = new ArrayList<String>();
 		EObject modelObjContainer = mavoModelObj.eContainer();
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
 		while (iterator.hasNext()) {
@@ -68,10 +73,10 @@ public class MAVOSMTUtils {
 			if (isMergeable && (mavoModelObj.isVar() || ((MAVOElement) otherModelObj).isVar())) {
 				continue;
 			}
-			unmergeableModelObjs.add(((MAVOElement) otherModelObj).getFormulaId());
+			unmergeableIds.add(((MAVOElement) otherModelObj).getFormulaId());
 		}
 
-		return unmergeableModelObjs;
+		return unmergeableIds;
 	}
 
 }
