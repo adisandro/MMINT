@@ -50,9 +50,9 @@ public class MAVOSMTUtils {
 		}
 	}
 
-	public static List<String> getUnmergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+	private static List<String> getVIds(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichIds) {
 
-		List<String> unmergeableIds = new ArrayList<String>();
+		List<String> ids = new ArrayList<String>();
 		EObject modelObjContainer = mavoModelObj.eContainer();
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
 		while (iterator.hasNext()) {
@@ -65,18 +65,30 @@ public class MAVOSMTUtils {
 				continue;
 			}
 			EObject otherModelObjContainer = otherModelObj.eContainer();
-			boolean isMergeable = (modelObjContainer == otherModelObjContainer) || ( // ok same container
-				modelObjContainer instanceof MAVOElement && // ok different container: MAVO element
-				modelObjContainer.eClass().getName().equals(otherModelObjContainer.eClass().getName()) && // ok different container: same type
-				(((MAVOElement) modelObjContainer).isVar() || ((MAVOElement) otherModelObjContainer).isVar()) // ok different container: one is V
+			boolean isMergeable = (mavoModelObj.isVar() || ((MAVOElement) otherModelObj).isVar()) && ( // ok one is V
+				(modelObjContainer == otherModelObjContainer) || ( // ok same container
+					modelObjContainer instanceof MAVOElement && // ok different container: MAVO element
+					modelObjContainer.eClass().getName().equals(otherModelObjContainer.eClass().getName()) && // ok different container: same type
+					(((MAVOElement) modelObjContainer).isVar() || ((MAVOElement) otherModelObjContainer).isVar()) // ok different container: one is V
+				)
 			);
-			if (isMergeable && (mavoModelObj.isVar() || ((MAVOElement) otherModelObj).isVar())) {
+			if (whichIds != isMergeable) {
 				continue;
 			}
-			unmergeableIds.add(((MAVOElement) otherModelObj).getFormulaId());
+			ids.add(((MAVOElement) otherModelObj).getFormulaId());
 		}
 
-		return unmergeableIds;
+		return ids;
+	}
+
+	public static List<String> getMergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+
+		return getVIds(mavoModel, mavoModelObj, true);
+	}
+
+	public static List<String> getUnmergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+
+		return getVIds(mavoModel, mavoModelObj, false);
 	}
 
 }

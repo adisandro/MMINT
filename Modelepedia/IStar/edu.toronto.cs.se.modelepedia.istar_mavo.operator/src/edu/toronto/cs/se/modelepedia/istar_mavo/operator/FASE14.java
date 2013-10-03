@@ -100,10 +100,10 @@ public class FASE14 extends RE13 {
 		);
 	}
 
-	private String encodeVConstraint(String sort, String function, String id, List<String> unmergeableIds) {
+	private String encodeVConstraint(String sort, String function, String id, List<String> mergeableIds) {
 
 		String smtOrTerms = "";
-		for (String unmergeableId : unmergeableIds) {
+		for (String unmergeableId : mergeableIds) {
 			smtOrTerms += Z3SMTUtils.predicate(function, unmergeableId + SMTLIB_CONCRETIZATION);
 		}
 		return Z3SMTUtils.forall(
@@ -124,8 +124,12 @@ public class FASE14 extends RE13 {
 			//TODO MMTF: optimize search for other annotations in output model using the map mavoModelObjs
 		}
 		else {
-			//TODO MMTF: remove element altogether with M alternative check
-			mavoModelObj.eSet(mavoAnnotation, false);
+			if (mavoAnnotation == MavoPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(SMTLIB_NOT)) { // M model object deletion
+				EcoreUtil.delete(mavoModelObj, true);
+			}
+			else { // M-S-V removal
+				mavoModelObj.eSet(mavoAnnotation, false);
+			}
 			String smtMavoAssertion = Z3SMTUtils.assertion(smtMavoConstraint);
 			smtEncodingRNF += smtMavoAssertion + "\n";
 			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtMavoAssertion, 0, 0);
@@ -151,10 +155,9 @@ public class FASE14 extends RE13 {
 				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint);
 			}
 			if (mavoModelObj.isVar()) {
-				//TODO MMTF: it might be that here I have to test distinct with the mergeable ones?
-				List<String> unmergeableIds = MAVOSMTUtils.getUnmergeableIds(istar, mavoModelObj);
-				if (!unmergeableIds.isEmpty()) {
-					String smtVConstraint = encodeVConstraint(sort, function, id, unmergeableIds);
+				List<String> mergeableIds = MAVOSMTUtils.getMergeableIds(istar, mavoModelObj);
+				if (!mergeableIds.isEmpty()) {
+					String smtVConstraint = encodeVConstraint(sort, function, id, mergeableIds);
 					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
 				}
 			}
