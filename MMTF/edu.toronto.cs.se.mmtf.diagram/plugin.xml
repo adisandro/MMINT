@@ -721,25 +721,31 @@ Contributors:
                   commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.IconsEnabled"
                   label="Icons Enabled"
                   style="toggle"
-                  tooltip="Enables/disables icons in MID diagrams">
+                  tooltip="Enables/disables icons in MIDs">
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.EndpointsEnabled"
                   label="Endpoints Enabled"
                   style="toggle"
-                  tooltip="Enables/disables endpoint labels in MID diagrams">
+                  tooltip="Enables/disables endpoint labels in MIDs">
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.ModelRelsEnabled"
                   label="ModelRels Enabled"
                   style="toggle"
-                  tooltip="Enables/disables model relationship labels in MID diagrams">
+                  tooltip="Enables/disables model relationship labels in MIDs">
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.LinksEnabled"
                   label="Links Enabled"
                   style="toggle"
-                  tooltip="Enables/disables link labels in MID diagrams">
+                  tooltip="Enables/disables link labels in MIDs">
+            </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmtf.mid.diagram.menu.DiagramsCreationEnabled"
+                  label="Diagrams Creation Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables the automatic creation of diagrams for models used in MIDs">
             </command>
          </menu>
       </menuContribution>
@@ -788,6 +794,15 @@ Contributors:
             defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
             id="edu.toronto.cs.se.mmtf.mid.diagram.menu.LinksEnabled"
             name="Links Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmtf.mid.diagram.menu.AppearanceHandler"
+            id="edu.toronto.cs.se.mmtf.mid.diagram.menu.DiagramsCreationEnabled"
+            name="Diagrams Creation Enabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">

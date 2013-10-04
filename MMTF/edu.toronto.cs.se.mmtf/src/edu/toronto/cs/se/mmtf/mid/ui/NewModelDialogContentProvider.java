@@ -17,10 +17,13 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class NewModelDialogContentProvider implements ITreeContentProvider {
 
@@ -75,7 +78,20 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 			return modelTypes.toArray();
 		}
 		if (parentElement instanceof Model) {
-			return ((Model) parentElement).getEditors().toArray();
+			boolean allowDiagramTypes = (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_DIAGRAMS_CREATION_ENABLED);
+			if (allowDiagramTypes) {
+				return ((Model) parentElement).getEditors().toArray();
+			}
+			else {
+				List<Editor> editorTypes = new ArrayList<Editor>();
+				for (Editor editorType : ((Model) parentElement).getEditors()) {
+					if (editorType instanceof Diagram) {
+						continue;
+					}
+					editorTypes.add(editorType);
+				}
+				return editorTypes.toArray();
+			}
 		}
 
 		return new Object[] {};

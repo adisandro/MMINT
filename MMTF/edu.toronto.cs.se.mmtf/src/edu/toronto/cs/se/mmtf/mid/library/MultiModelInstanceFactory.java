@@ -60,6 +60,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 /**
  * The factory to create/modify/remove instances.
@@ -785,8 +786,11 @@ public class MultiModelInstanceFactory {
 				MultiModelUtils.replaceFileExtensionInUri(modelUri, diagramType.getFileExtensions().get(0))
 			)
 		);
-		// try to build a new diagram through its wizard, inited with the existing model file
 		if (!editorFile.exists()) {
+			if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_DIAGRAMS_CREATION_ENABLED)) {
+				return null;
+			}
+			// try to build a new diagram through its wizard, inited with the existing model file
 			IStructuredSelection modelFile = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFile(
 					new Path(modelUri)
