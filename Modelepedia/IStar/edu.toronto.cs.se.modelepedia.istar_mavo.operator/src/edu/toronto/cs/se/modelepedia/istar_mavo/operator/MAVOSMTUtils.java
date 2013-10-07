@@ -72,6 +72,7 @@ public class MAVOSMTUtils {
 					(((MAVOElement) modelObjContainer).isVar() || ((MAVOElement) otherModelObjContainer).isVar()) // ok different container: one is V
 				)
 			);
+			//TODO MMTF: has to become recursive: if not in the same container, then the different containers have to be mergeables (until root makes a closure)
 			if (whichIds != isMergeable) {
 				continue;
 			}
