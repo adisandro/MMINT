@@ -30,7 +30,10 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
+import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTUtils;
@@ -174,6 +177,9 @@ public class FASE14 extends RE13 {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
+			if (modelObj instanceof DependerLink && ((DependerLink) modelObj).getDepender() instanceof Actor) {
+				
+			}
 			if (modelObj instanceof Intention) {
 				intentions.put(((Intention) modelObj).getFormulaId(), (Intention) modelObj);
 			}
@@ -182,7 +188,9 @@ public class FASE14 extends RE13 {
 					((MAVOElement) modelObj).isMay() ||
 					((MAVOElement) modelObj).isSet() ||
 					((MAVOElement) modelObj).isVar()
-				)
+				) &&
+				!(modelObj instanceof DependerLink && ((DependerLink) modelObj).getDepender() instanceof Actor) &&
+				!(modelObj instanceof DependeeLink && ((DependeeLink) modelObj).getDependee() instanceof Actor)
 			) {
 				String id = ((MAVOElement) modelObj).getFormulaId();
 				mavoModelObjs.put(id, (MAVOElement) modelObj);
@@ -224,19 +232,21 @@ public class FASE14 extends RE13 {
 			null,
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
-		try {
-			MultiModelUtils.writeTextFile(
-				MultiModelUtils.prependWorkspaceToUri(
-					MultiModelUtils.replaceFileExtensionInUri(
-						MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
-						SMTLIB_FILE_EXTENSION
-					)
-				),
-				smtEncodingRNF
-			);
-		}
-		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "RNF file writing failed", e);
+		if (timeRNF != -1) {
+			try {
+				MultiModelUtils.writeTextFile(
+					MultiModelUtils.prependWorkspaceToUri(
+						MultiModelUtils.replaceFileExtensionInUri(
+							MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
+							SMTLIB_FILE_EXTENSION
+						)
+					),
+					smtEncodingRNF
+				);
+			}
+			catch (Exception e) {
+				MMTFException.print(Type.WARNING, "RNF file writing failed", e);
+			}
 		}
 
 		return actualParameters;
