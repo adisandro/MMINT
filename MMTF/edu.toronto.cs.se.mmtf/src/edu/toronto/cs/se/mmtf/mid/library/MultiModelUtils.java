@@ -17,8 +17,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-
 import org.eclipse.core.resources.ResourcesPlugin;
 
 import edu.toronto.cs.se.mmtf.MMTF;
@@ -80,7 +78,7 @@ public class MultiModelUtils {
 	public static void writeTextFile(String fileUri, String text) throws Exception {
 
 		Path filePath = Paths.get(fileUri);
-		try (BufferedWriter writer = Files.newBufferedWriter(filePath, Charset.forName("UTF-8"), StandardOpenOption.CREATE)) {
+		try (BufferedWriter writer = Files.newBufferedWriter(filePath, Charset.forName("UTF-8"))) {
 			writer.write(text);
 		}
 	}
@@ -90,7 +88,7 @@ public class MultiModelUtils {
 		Path oldFilePath = Paths.get(oldFileUri);
 		Path newFilePath = Paths.get(newFileUri);
 		try (BufferedReader oldBuffer = Files.newBufferedReader(oldFilePath, Charset.forName("UTF-8"))) {
-			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"), StandardOpenOption.CREATE)) {
+			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"))) {
 				String oldLine;
 				while ((oldLine = oldBuffer.readLine()) != null) {
 					newBuffer.write(oldLine.replaceAll(oldText, newText));

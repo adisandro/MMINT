@@ -21,7 +21,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
-import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -272,7 +271,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private static void createGnuplotFile(Path outputDirectory, List<DatLine> datLines) {
 
 		Path outputFile = outputDirectory.resolve(GNUPLOT_OUTPUT_FILE);
-		try (BufferedWriter writer = Files.newBufferedWriter(outputFile, Charset.forName("UTF-8"), StandardOpenOption.CREATE)) {
+		try (BufferedWriter writer = Files.newBufferedWriter(outputFile, Charset.forName("UTF-8"))) {
 			double prevSmtEncodingVariables = datLines.get(0).smtEncodingVariables;
 			double[] prevTotals = new double[DatLine.TIMELIFTING_NUMRULEELEMENTS_INDEXES.size()];
 			for (int i = 0; i < prevTotals.length; i++) {
