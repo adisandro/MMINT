@@ -66,13 +66,12 @@ public class MAVOSMTUtils {
 			}
 			EObject otherModelObjContainer = otherModelObj.eContainer();
 			boolean isMergeable = (mavoModelObj.isVar() || ((MAVOElement) otherModelObj).isVar()) && ( // ok one is V
-				(modelObjContainer == otherModelObjContainer) || ( // ok same container
+				(modelObjContainer == otherModelObjContainer) || ( // ok same container (also recursion closure when containers are root)
 					modelObjContainer instanceof MAVOElement && // ok different container: MAVO element
 					modelObjContainer.eClass().getName().equals(otherModelObjContainer.eClass().getName()) && // ok different container: same type
-					(((MAVOElement) modelObjContainer).isVar() || ((MAVOElement) otherModelObjContainer).isVar()) // ok different container: one is V
+					getMergeableIds(mavoModel, (MAVOElement) modelObjContainer).contains(((MAVOElement) otherModelObjContainer).getFormulaId()) // ok different container: mergeable
 				)
 			);
-			//TODO MMTF: has to become recursive: if not in the same container, then the different containers have to be mergeables (until root makes a closure)
 			if (whichIds != isMergeable) {
 				continue;
 			}
