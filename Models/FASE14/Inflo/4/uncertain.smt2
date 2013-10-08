@@ -3154,6 +3154,7 @@
 		(edge UseDiscussions2UseInflo c)
 		(edge ExtensiveModeration2ModerateInflo c)
 		(edge UseAutomatedReputationSystem2ModerateInflo c)
+		(edge LessExtensiveModeration2ModerateInflo c)
 		(edge ModerationTasks2AllowModeration c)
 	))
 )))
@@ -3182,6 +3183,7 @@
 		(edge UseDiscussions2UseInflo c)
 		(edge ExtensiveModeration2ModerateInflo c)
 		(edge UseAutomatedReputationSystem2ModerateInflo c)
+		(edge LessExtensiveModeration2ModerateInflo c)
 		(edge ModerationTasks2AllowModeration c)
 	))
 )))
@@ -3210,6 +3212,7 @@
 		(edge CreateGraph2UseInflo c)
 		(edge ExtensiveModeration2ModerateInflo c)
 		(edge UseAutomatedReputationSystem2ModerateInflo c)
+		(edge LessExtensiveModeration2ModerateInflo c)
 		(edge ModerationTasks2AllowModeration c)
 	))
 )))
@@ -3422,6 +3425,18 @@
 	(and (edge CreateDiscussions2UseDiscussions c1) (edge CreateDiscussions2UseDiscussions c2))
 	(= c1 c2)
 )))
+;CreateDiscussions2UseDiscussions is Distinct
+(assert	(forall ((c Decomposition)) (=>
+	(edge CreateDiscussions2UseDiscussions c)
+	(not (or
+		(edge UseAutomatedReputationSystem2ExtensiveModeration c)
+		(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
+		(edge TrackAuthorship2BeInflo c)
+		(edge DisplayGraphs2BeInflo c)
+		(edge TrackRevisions2BeInflo c)
+		(edge CreateGraphs2BeInflo c)
+	))
+)))
 
 ;CreateDiscussions2UseDiscussions endpoints
 (assert (forall ((c Decomposition)) (=>
@@ -3598,6 +3613,7 @@
 	(not (or
 		(edge MakeViews2Browsing c)
 		(edge AddSourceInDescription2CreateGraph c)
+		(edge CreateDiscussions2UseDiscussions c)
 		(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
 		(edge TrackAuthorship2BeInflo c)
 		(edge DisplayGraphs2BeInflo c)
@@ -3657,6 +3673,7 @@
 	(not (or
 		(edge MakeViews2Browsing c)
 		(edge AddSourceInDescription2CreateGraph c)
+		(edge CreateDiscussions2UseDiscussions c)
 		(edge UseAutomatedReputationSystem2ExtensiveModeration c)
 		(edge TrackAuthorship2BeInflo c)
 		(edge DisplayGraphs2BeInflo c)
@@ -3726,6 +3743,16 @@
 	(and (edge LessExtensiveModeration2ModerateInflo c1) (edge LessExtensiveModeration2ModerateInflo c2))
 	(= c1 c2)
 )))
+;LessExtensiveModeration2ModerateInflo is Distinct
+(assert	(forall ((c MeansEnd)) (=>
+	(edge LessExtensiveModeration2ModerateInflo c)
+	(not (or
+		(edge Browsing2UseInflo c)
+		(edge CreateGraph2UseInflo c)
+		(edge UseDiscussions2UseInflo c)
+		(edge ModerationTasks2AllowModeration c)
+	))
+)))
 
 ;LessExtensiveModeration2ModerateInflo endpoints
 (assert (forall ((c MeansEnd)) (=>
@@ -3789,6 +3816,7 @@
 	(not (or
 		(edge MakeViews2Browsing c)
 		(edge AddSourceInDescription2CreateGraph c)
+		(edge CreateDiscussions2UseDiscussions c)
 		(edge UseAutomatedReputationSystem2ExtensiveModeration c)
 		(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
 		(edge DisplayGraphs2BeInflo c)
@@ -3824,6 +3852,7 @@
 	(not (or
 		(edge MakeViews2Browsing c)
 		(edge AddSourceInDescription2CreateGraph c)
+		(edge CreateDiscussions2UseDiscussions c)
 		(edge UseAutomatedReputationSystem2ExtensiveModeration c)
 		(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
 		(edge TrackAuthorship2BeInflo c)
@@ -3859,6 +3888,7 @@
 	(not (or
 		(edge MakeViews2Browsing c)
 		(edge AddSourceInDescription2CreateGraph c)
+		(edge CreateDiscussions2UseDiscussions c)
 		(edge UseAutomatedReputationSystem2ExtensiveModeration c)
 		(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
 		(edge TrackAuthorship2BeInflo c)
@@ -3894,6 +3924,7 @@
 	(not (or
 		(edge MakeViews2Browsing c)
 		(edge AddSourceInDescription2CreateGraph c)
+		(edge CreateDiscussions2UseDiscussions c)
 		(edge UseAutomatedReputationSystem2ExtensiveModeration c)
 		(edge UseAutomatedReputationSystem2LessExtensiveModeration c)
 		(edge TrackAuthorship2BeInflo c)
@@ -3925,6 +3956,7 @@
 		(edge UseDiscussions2UseInflo c)
 		(edge ExtensiveModeration2ModerateInflo c)
 		(edge UseAutomatedReputationSystem2ModerateInflo c)
+		(edge LessExtensiveModeration2ModerateInflo c)
 	))
 )))
 
