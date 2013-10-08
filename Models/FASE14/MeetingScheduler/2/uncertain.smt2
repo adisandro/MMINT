@@ -1916,6 +1916,8 @@
 		(edge LowEffortMI2OrganizeMeeting c)
 		(edge AttendMeeting2ParticipateInMeeting c)
 		(edge ProvideDetails2ParticipateInMeeting c)
+		(edge AgreeableMeetingDate2ParticipateInMeeting c)
+		(edge ConvenientMeetingDate2ParticipateInMeeting c)
 		(edge LowEffortMP2ProvideDetails c)
 		(edge UseProfiles2ParticipateInMeeting c)
 	))
@@ -2262,6 +2264,7 @@
 (assert	(forall ((c Decomposition)) (=>
 	(edge AgreeableMeetingDate2ParticipateInMeeting c)
 	(not (or
+		(edge MeetingBeScheduledMI2OrganizeMeeting c)
 		(edge Quick2OrganizeMeeting c)
 		(edge LowEffortMI2OrganizeMeeting c)
 		(edge AttendMeeting2ParticipateInMeeting c)
@@ -2294,6 +2297,7 @@
 (assert	(forall ((c Decomposition)) (=>
 	(edge ConvenientMeetingDate2ParticipateInMeeting c)
 	(not (or
+		(edge MeetingBeScheduledMI2OrganizeMeeting c)
 		(edge Quick2OrganizeMeeting c)
 		(edge LowEffortMI2OrganizeMeeting c)
 		(edge AttendMeeting2ParticipateInMeeting c)
