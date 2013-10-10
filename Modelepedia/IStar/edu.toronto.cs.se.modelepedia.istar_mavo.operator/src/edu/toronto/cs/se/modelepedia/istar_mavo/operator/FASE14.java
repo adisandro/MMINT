@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
@@ -158,7 +159,7 @@ public class FASE14 extends RE13 {
 				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint);
 			}
 			if (mavoModelObj.isVar()) {
-				List<String> mergeableIds = MAVOSMTUtils.getMergeableIds(istar, mavoModelObj);
+				List<String> mergeableIds = MAVOUtils.getMergeableIds(istar, mavoModelObj);
 				if (!mergeableIds.isEmpty()) {
 					String smtVConstraint = encodeVConstraint(sort, function, id, mergeableIds);
 					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
@@ -173,7 +174,7 @@ public class FASE14 extends RE13 {
 	protected void collectAnalysisModelObjs(Model istarModel) {
 
 		istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
-		MAVOSMTUtils.createIdsFromNames(istar);
+		MAVOUtils.createIdsFromNames(istar);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();

@@ -42,6 +42,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.gmf.runtime.emf.ui,
  org.eclipse.papyrus.uml.extensionpoints,
- org.eclipse.gmf.runtime.diagram.core
+ org.eclipse.gmf.runtime.diagram.core,
+ org.eclipse.acceleo.engine
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmtf.MMTFActivator

@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module EcoreToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmtf/MAVO')]
+[module EcoreMAVOToSMTLIBUtils_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmtf/MAVO')]
 
 [query public getTypes(root : EObject, className : String) : Sequence(OclAny) =
 	root->eAllContents()->select(eClass().name = className)
@@ -11,7 +11,7 @@
 
 [query public getUnmergeableIds(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
 	invoke(
-		'edu.toronto.cs.se.modelepedia.istar_mavo.operator.MAVOSMTUtils',
+		'edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils',
 		'getUnmergeableIds(edu.toronto.cs.se.mmtf.mavo.MAVOModel, edu.toronto.cs.se.mmtf.mavo.MAVOElement)',
 		Sequence{mavoModel, mavoModelObj}
 	)
@@ -19,7 +19,7 @@
 
 [query public createIdsFromNames(mavoModel : MAVOModel) : OclAny =
 	invoke(
-		'edu.toronto.cs.se.modelepedia.istar_mavo.operator.MAVOSMTUtils',
+		'edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils',
 		'createIdsFromNames(edu.toronto.cs.se.mmtf.mavo.MAVOModel)',
 		Sequence{mavoModel}
 	)

@@ -1,6 +1,6 @@
 [comment encoding = UTF-8 /]
 [module IStarMAVOToSMTLIB_M2T('http://se.cs.toronto.edu/mmtf/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
-[import edu::toronto::cs::se::modelepedia::istar_mavo::operator::EcoreToSMTLIB_M2T /]
+[import edu::toronto::cs::se::mmtf::mavo::library::EcoreMAVOToSMTLIBUtils_M2T /]
 
 [query private getAllIntentions(istar : IStar) : Collection(Intention) =
 	istar.actors->collect(intentions)->addAll(istar.dependums)

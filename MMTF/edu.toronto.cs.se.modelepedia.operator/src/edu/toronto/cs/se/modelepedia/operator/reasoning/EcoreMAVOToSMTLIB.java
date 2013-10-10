@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
+package edu.toronto.cs.se.modelepedia.operator.reasoning;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,26 +24,25 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIB_M2T;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 
-public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
+public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 
-	public class IStarMAVOToSMTLIBWithListeners_M2T extends IStarMAVOToSMTLIB_M2T {
+	public class EcoreMAVOToSMTLIBWithListeners_M2T extends EcoreMAVOToSMTLIB_M2T {
 
-		public class IStarMAVOToSMTLIBListener implements IAcceleoTextGenerationListener {
+		public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener {
 
 			private StringBuilder textGeneration;
 
-			public IStarMAVOToSMTLIBListener() {
-
+			public EcoreMAVOToSMTLIBListener() {
 				textGeneration = new StringBuilder();
 			}
 
 			@Override
 			public void textGenerated(AcceleoTextGenerationEvent event) {
-
 				textGeneration.append(event.getText());
 			}
 
@@ -53,7 +52,6 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 
 			@Override
 			public void fileGenerated(AcceleoTextGenerationEvent event) {
-
 				smtEncoding = textGeneration.toString();
 			}
 
@@ -68,7 +66,7 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 			
 		}
 
-		public IStarMAVOToSMTLIBWithListeners_M2T(EObject model, File targetFolder, List<? extends Object> arguments) throws IOException {
+		public EcoreMAVOToSMTLIBWithListeners_M2T(EObject model, File targetFolder, List<? extends Object> arguments) throws IOException {
 
 			super(model, targetFolder, arguments);
 	    }
@@ -77,7 +75,7 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
 			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
-			listeners.add(new IStarMAVOToSMTLIBListener());
+			listeners.add(new EcoreMAVOToSMTLIBListener());
 
 			return listeners;
 		}
@@ -93,15 +91,15 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		Model istarModel = actualParameters.get(0);
+		Model mavoModel = actualParameters.get(0);
 
 		List<Object> m2tArgs = new ArrayList<Object>();
-		m2tArgs.add(istarModel.getName());
+		m2tArgs.add(mavoModel.getName());
 		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		File folder = (new File(workspaceUri + istarModel.getUri())).getParentFile();
+		File folder = (new File(workspaceUri + mavoModel.getUri())).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
-		IStarMAVOToSMTLIB_M2T m2t = new IStarMAVOToSMTLIBWithListeners_M2T(MultiModelTypeIntrospection.getRoot(istarModel), folder, m2tArgs);
+		EcoreMAVOToSMTLIB_M2T m2t = new EcoreMAVOToSMTLIBWithListeners_M2T(MultiModelTypeIntrospection.getRoot(mavoModel), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;

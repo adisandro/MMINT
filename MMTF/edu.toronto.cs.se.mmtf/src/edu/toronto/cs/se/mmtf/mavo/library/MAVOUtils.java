@@ -11,10 +11,15 @@
  */
 package edu.toronto.cs.se.mmtf.mavo.library;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -39,6 +44,7 @@ public class MAVOUtils {
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "set");
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "var");
 	}
+	private static final String NAME_FEATURE = "name";
 
 	public static String getMAVOElementLabel(MAVOElement NamedElement, boolean withParenthesis) {
 
@@ -245,6 +251,71 @@ public class MAVOUtils {
 		newElement.setSet(oldElement.isSet());
 		newElement.setVar(oldElement.isVar());
 		newElement.setFormulaId(oldElement.getFormulaId());
+	}
+
+	/*TODO MMTF: make it more integrated with the environment
+	 * e.g. overwrite the model if at least one formulaId is set
+	 * e.g. a separate operator
+	 * e.g. run all times a mavo operator is invoked
+	 */
+	public static void createIdsFromNames(MAVOModel mavoModel) {
+
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
+		while (iterator.hasNext()) {
+			EObject modelObj = iterator.next();
+			if (!(modelObj instanceof MAVOElement)) {
+				continue;
+			}
+			MAVOElement mavoModelObj = (MAVOElement) modelObj;
+			if (mavoModelObj.getFormulaId() != null && !mavoModelObj.getFormulaId().equals("")) {
+				continue;
+			}
+			EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(NAME_FEATURE);
+			if (nameFeature != null) {
+				mavoModelObj.setFormulaId(((String) mavoModelObj.eGet(nameFeature)).replaceAll(" ", ""));
+			}
+		}
+	}
+
+	private static List<String> getVarIds(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichIds) {
+
+		List<String> ids = new ArrayList<String>();
+		EObject modelObjContainer = mavoModelObj.eContainer();
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
+		while (iterator.hasNext()) {
+			EObject otherModelObj = iterator.next();
+			if (
+				!(otherModelObj instanceof MAVOElement) || // skip non-MAVO element
+				!(mavoModelObj.eClass().getName().equals(otherModelObj.eClass().getName())) || // skip different type
+				mavoModelObj.getFormulaId().equals(((MAVOElement) otherModelObj).getFormulaId()) // skip current element
+			) {
+				continue;
+			}
+			EObject otherModelObjContainer = otherModelObj.eContainer();
+			boolean isMergeable = (mavoModelObj.isVar() || ((MAVOElement) otherModelObj).isVar()) && ( // ok one is V
+				(modelObjContainer == otherModelObjContainer) || ( // ok same container (also recursion closure when containers are root)
+					modelObjContainer instanceof MAVOElement && // ok different container: MAVO element
+					modelObjContainer.eClass().getName().equals(otherModelObjContainer.eClass().getName()) && // ok different container: same type
+					getMergeableIds(mavoModel, (MAVOElement) modelObjContainer).contains(((MAVOElement) otherModelObjContainer).getFormulaId()) // ok different container: mergeable
+				)
+			);
+			if (whichIds != isMergeable) {
+				continue;
+			}
+			ids.add(((MAVOElement) otherModelObj).getFormulaId());
+		}
+
+		return ids;
+	}
+
+	public static List<String> getMergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+
+		return getVarIds(mavoModel, mavoModelObj, true);
+	}
+
+	public static List<String> getUnmergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+
+		return getVarIds(mavoModel, mavoModelObj, false);
 	}
 
 }
