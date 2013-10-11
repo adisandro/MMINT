@@ -5,6 +5,7 @@
 [template public encodeMAVOModel(mavoModel : MAVOModel, mavoModelName : String)]
 	[comment @main /]
 	[file (mavoModelName + '.smt2', false, 'UTF-8')]
-		[createIdsFromNames(mavoModel)/]
+[createIdsFromNames(mavoModel)/]
+[encodeModel(mavoModel)/]
 	[/file]	
 [/template]

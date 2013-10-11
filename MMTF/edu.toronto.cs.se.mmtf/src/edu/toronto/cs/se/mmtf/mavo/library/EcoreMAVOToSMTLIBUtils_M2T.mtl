@@ -24,3 +24,18 @@
 		Sequence{mavoModel}
 	)
 /]
+
+[template public encodeModel(mavoModel : MAVOModel)]
+;Model
+(define-sort Node () Int)
+(define-sort Edge () Int)
+	[for (mavoElement : MAVOElement | mavoModel.eAllContents(MAVOElement))]
+		[if (mavoElement.eClass().eAnnotations->exists(source = 'gmf.node'))]
+(declare-const [mavoElement.formulaId/] Node)
+(assert (= [mavoElement.formulaId/] [i/]))
+		[elseif (mavoElement.eClass().eAnnotations->exists(source = 'gmf.link'))]
+(declare-const [mavoElement.formulaId/] Edge)
+(assert (= [mavoElement.formulaId/] [i/]))
+		[/if]
+	[/for]
+[/template]
