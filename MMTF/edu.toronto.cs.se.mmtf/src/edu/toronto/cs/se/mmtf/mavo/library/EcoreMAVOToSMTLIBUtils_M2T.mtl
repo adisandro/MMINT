@@ -29,13 +29,32 @@
 ;Model
 (define-sort Node () Int)
 (define-sort Edge () Int)
+(declare-fun src (Edge) Node)
+(declare-fun tgt (Edge) Node)
 	[for (mavoElement : MAVOElement | mavoModel.eAllContents(MAVOElement))]
 		[if (mavoElement.eClass().eAnnotations->exists(source = 'gmf.node'))]
 (declare-const [mavoElement.formulaId/] Node)
 (assert (= [mavoElement.formulaId/] [i/]))
 		[elseif (mavoElement.eClass().eAnnotations->exists(source = 'gmf.link'))]
+			[let srcFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'source')).details->any(key = 'source').value]
+			[let tgtFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'target')).details->any(key = 'target').value]
 (declare-const [mavoElement.formulaId/] Edge)
 (assert (= [mavoElement.formulaId/] [i/]))
+(assert (= (src [mavoElement.formulaId/]) [mavoElement.eGet(srcFeature).oclAsType(MAVOElement).formulaId/]))
+(assert (= (tgt [mavoElement.formulaId/]) [mavoElement.eGet(tgtFeature).oclAsType(MAVOElement).formulaId/]))
+			[/let]
+			[/let]
+		[/if]
+	[/for]
+
+;Concretizations
+	[for (eclass : EClass | mavoModel.eClass().ePackage.eAllContents(EClass)->select(not abstract))]
+		[if (eclass.eAnnotations->exists(source = 'gmf.node'))]
+(declare-sort [eclass.name/])
+(declare-fun node (Node [eclass.name/]) Bool)
+		[elseif (eclass.eAnnotations->exists(source = 'gmf.link'))]
+(declare-sort [eclass.name/])
+(declare-fun edge (Edge [eclass.name/]) Bool)
 		[/if]
 	[/for]
 [/template]
