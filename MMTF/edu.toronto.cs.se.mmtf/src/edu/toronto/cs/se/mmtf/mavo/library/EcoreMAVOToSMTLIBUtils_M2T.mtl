@@ -1,12 +1,32 @@
 [comment encoding = UTF-8 /]
 [module EcoreMAVOToSMTLIBUtils_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmtf/MAVO')]
 
-[query public getTypes(root : EObject, className : String) : Sequence(OclAny) =
-	root->eAllContents()->select(eClass().name = className)
+[query public getObjectsOfType(root : EObject, eclass : EClass) : Sequence(OclAny) =
+	root.eAllContents()->select(eClass().name = eclass.name)
 /]
 
-[query public getKinds(root : EObject, className : String) : Sequence(OclAny) =
-	root->eAllContents()->select(eClass().name = className or eClass().eAllSuperTypes->exists(name = className))
+[query public getObjectsOfKind(root : EObject, eclass : EClass) : Sequence(OclAny) =
+	root.eAllContents()->select(eClass().name = eclass.name or eClass().eAllSuperTypes->exists(name = eclass.name))
+/]
+
+[query public getMAVOElements(root : EObject) : Sequence(MAVOElement) =
+	root.eAllContents(MAVOElement)
+/]
+
+[query public asMAVOElements(objects : Sequence(OclAny)) : Sequence(MAVOElement) =
+	objects->collect(oclAsType(MAVOElement))
+/]
+
+[query public getMetamodelMAVOClasses(mavoModel : MAVOModel) : Sequence(EClass) =
+	mavoModel.eClass().ePackage.eAllContents(EClass)->select(
+		not abstract and
+		eAllSuperTypes->exists(super : EClass | super.name = 'MAVOElement') and
+		eAnnotations->exists(source = 'gmf.node' or source = 'gmf.link')
+	)
+/]
+
+[query public getGraphLiteral(eclass : EClass) : String =
+	if eclass.eAnnotations->exists(source = 'gmf.node') then 'node' else if eclass.eAnnotations->exists(source = 'gmf.link') then 'edge' else null endif endif
 /]
 
 [query public getUnmergeableIds(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
@@ -31,30 +51,57 @@
 (define-sort Edge () Int)
 (declare-fun src (Edge) Node)
 (declare-fun tgt (Edge) Node)
-	[for (mavoElement : MAVOElement | mavoModel.eAllContents(MAVOElement))]
-		[if (mavoElement.eClass().eAnnotations->exists(source = 'gmf.node'))]
-(declare-const [mavoElement.formulaId/] Node)
+	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+		[let function : String = getGraphLiteral(mavoElement.eClass())]
+(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/])
 (assert (= [mavoElement.formulaId/] [i/]))
-		[elseif (mavoElement.eClass().eAnnotations->exists(source = 'gmf.link'))]
+		[if (function = 'edge')]
 			[let srcFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'source')).details->any(key = 'source').value]
 			[let tgtFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'target')).details->any(key = 'target').value]
-(declare-const [mavoElement.formulaId/] Edge)
-(assert (= [mavoElement.formulaId/] [i/]))
 (assert (= (src [mavoElement.formulaId/]) [mavoElement.eGet(srcFeature).oclAsType(MAVOElement).formulaId/]))
 (assert (= (tgt [mavoElement.formulaId/]) [mavoElement.eGet(tgtFeature).oclAsType(MAVOElement).formulaId/]))
 			[/let]
 			[/let]
 		[/if]
+		[/let]
 	[/for]
 
 ;Concretizations
-	[for (eclass : EClass | mavoModel.eClass().ePackage.eAllContents(EClass)->select(not abstract))]
-		[if (eclass.eAnnotations->exists(source = 'gmf.node'))]
+	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
 (declare-sort [eclass.name/])
-(declare-fun node (Node [eclass.name/]) Bool)
-		[elseif (eclass.eAnnotations->exists(source = 'gmf.link'))]
-(declare-sort [eclass.name/])
-(declare-fun edge (Edge [eclass.name/]) Bool)
+		[let function : String = getGraphLiteral(eclass)]
+(declare-fun [function/] ([function.toUpperFirst()/] [eclass.name/]) Bool)
+		[/let]
+	[/for]
+[/template]
+
+[template public encodeConstraints(mavoModel : MAVOModel)]
+;Completeness
+	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+(assert	(forall ((c [eclass.name/])) (or
+		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(eclass)->asMAVOElements())]
+			[let function : String = getGraphLiteral(eclass)]
+	([function/] [mavoElement.formulaId/] c)
+			[/let]
+		[/for]
+)
+	[/for]
+	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+		[let function : String = getGraphLiteral(mavoElement.eClass())]
+		[let sort : String = mavoElement.eClass().name]
+		[if (not mavoElement.may)]
+(assert (exists ((c [sort/])) ([function/] [mavoElement.formulaId/] c)))
 		[/if]
+		[if (not mavoElement.set)]
+(assert	(forall ((c1 [sort/]) (c2 [sort/])) (=>
+	(and ([function/] [mavoElement.formulaId/] c1) ([function/] [mavoElement.formulaId/] c2))
+	(= c1 c2)
+)))
+		[/if]
+		[comment TODO add var constraint /]
+		[comment TODO add edge constraints (edge implies existence of nodes) /]
+		[comment TODO separate well formedness constraints from mavo constraints /]
+		[/let]
+		[/let]
 	[/for]
 [/template]
