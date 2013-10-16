@@ -87,7 +87,6 @@
 		(node (tgt [mavoElement.formulaId/]) c2)
 	))
 )))
-[comment TODO MMTF: check if src and tgt functions are really needed (for i* analysis maybe) /]
 		[/let]
 		[/let]
 		[/let]
@@ -133,7 +132,6 @@
 )))
 		[/if]
 		[/let]
-		[comment TODO add edge constraints (edge implies existence of nodes) /]
 		[/let]
 		[/let]
 	[/for]
