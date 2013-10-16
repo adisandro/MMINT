@@ -9,8 +9,20 @@
 	root.eAllContents()->select(eClass().name = eclass.name or eClass().eAllSuperTypes->exists(name = eclass.name))
 /]
 
+[query public getGraphFunction(eclass : EClass) : String =
+	if eclass.eAnnotations->exists(source = 'gmf.node') then 'node' else if eclass.eAnnotations->exists(source = 'gmf.link') then 'edge' else null endif endif
+/]
+
 [query public getMAVOElements(root : EObject) : Sequence(MAVOElement) =
 	root.eAllContents(MAVOElement)
+/]
+
+[query public getMAVONodes(root : EObject) : Sequence(MAVOElement) =
+	root.getMAVOElements()->select(eClass().getGraphFunction() = 'node')
+/]
+
+[query public getMAVOEdges(root : EObject) : Sequence(MAVOElement) =
+	root.getMAVOElements()->select(eClass().getGraphFunction() = 'edge')
 /]
 
 [query public asMAVOElements(objects : Sequence(OclAny)) : Sequence(MAVOElement) =
@@ -23,10 +35,6 @@
 		eAllSuperTypes->exists(super : EClass | super.name = 'MAVOElement') and
 		eAnnotations->exists(source = 'gmf.node' or source = 'gmf.link')
 	)
-/]
-
-[query public getGraphLiteral(eclass : EClass) : String =
-	if eclass.eAnnotations->exists(source = 'gmf.node') then 'node' else if eclass.eAnnotations->exists(source = 'gmf.link') then 'edge' else null endif endif
 /]
 
 [query public getUnmergeableIds(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
@@ -46,61 +54,86 @@
 /]
 
 [template public encodeModel(mavoModel : MAVOModel)]
-;Model
+;Concretizations
 (define-sort Node () Int)
 (define-sort Edge () Int)
-(declare-fun src (Edge) Node)
-(declare-fun tgt (Edge) Node)
-	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
-		[let function : String = getGraphLiteral(mavoElement.eClass())]
-(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/])
-(assert (= [mavoElement.formulaId/] [i/]))
-		[if (function = 'edge')]
-			[let srcFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'source')).details->any(key = 'source').value]
-			[let tgtFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'target')).details->any(key = 'target').value]
-(assert (= (src [mavoElement.formulaId/]) [mavoElement.eGet(srcFeature).oclAsType(MAVOElement).formulaId/]))
-(assert (= (tgt [mavoElement.formulaId/]) [mavoElement.eGet(tgtFeature).oclAsType(MAVOElement).formulaId/]))
-			[/let]
-			[/let]
-		[/if]
+	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+(declare-sort [eclass.name/])
+		[let function : String = eclass.getGraphFunction()]
+(declare-fun [function/] ([function.toUpperFirst()/] [eclass.name/]) Bool)
 		[/let]
 	[/for]
 
-;Concretizations
-	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
-(declare-sort [eclass.name/])
-		[let function : String = getGraphLiteral(eclass)]
-(declare-fun [function/] ([function.toUpperFirst()/] [eclass.name/]) Bool)
+;Model
+	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+		[let function : String = mavoElement.eClass().getGraphFunction()]
+(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/])
+(assert (= [mavoElement.formulaId/] [i/]))
+		[/let]
+	[/for]
+(declare-fun src (Edge) Node)
+(declare-fun tgt (Edge) Node)
+	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
+		[let srcFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'source')).details->any(key = 'source').value]
+		[let tgtFeature : String = mavoElement.eClass()->union(mavoElement.eClass().eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = 'target')).details->any(key = 'target').value]
+		[let srcMavoElement : MAVOElement = mavoElement.eGet(srcFeature).oclAsType(MAVOElement)]
+		[let tgtMavoElement : MAVOElement = mavoElement.eGet(tgtFeature).oclAsType(MAVOElement)]
+(assert (= (src [mavoElement.formulaId/]) [srcMavoElement.formulaId/]))
+(assert (= (tgt [mavoElement.formulaId/]) [tgtMavoElement.formulaId/]))
+(assert (forall ((c [mavoElement.eClass().name/])) (=>
+	(edge [mavoElement.formulaId/] c)
+	(exists ((c1 [srcMavoElement.eClass().name/]) (c2 [tgtMavoElement.eClass().name/])) (and
+		(node (src [mavoElement.formulaId/]) c1)
+		(node (tgt [mavoElement.formulaId/]) c2)
+	))
+)))
+[comment TODO MMTF: check if src and tgt functions are really needed (for i* analysis maybe) /]
+		[/let]
+		[/let]
+		[/let]
 		[/let]
 	[/for]
 [/template]
 
-[template public encodeConstraints(mavoModel : MAVOModel)]
-;Completeness
+[template public encodeMAVOConstraints(mavoModel : MAVOModel)]
+;Model is Complete
 	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
 (assert	(forall ((c [eclass.name/])) (or
 		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(eclass)->asMAVOElements())]
-			[let function : String = getGraphLiteral(eclass)]
+			[let function : String = eclass.getGraphFunction()]
 	([function/] [mavoElement.formulaId/] c)
 			[/let]
 		[/for]
-)
+)))
 	[/for]
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
-		[let function : String = getGraphLiteral(mavoElement.eClass())]
+		[let function : String = mavoElement.eClass().getGraphFunction()]
 		[let sort : String = mavoElement.eClass().name]
 		[if (not mavoElement.may)]
+;[mavoElement.formulaId/] Exists
 (assert (exists ((c [sort/])) ([function/] [mavoElement.formulaId/] c)))
 		[/if]
 		[if (not mavoElement.set)]
+;[mavoElement.formulaId/] is Unique
 (assert	(forall ((c1 [sort/]) (c2 [sort/])) (=>
 	(and ([function/] [mavoElement.formulaId/] c1) ([function/] [mavoElement.formulaId/] c2))
 	(= c1 c2)
 )))
 		[/if]
-		[comment TODO add var constraint /]
+		[let unmergeableIds : Sequence(String) = mavoModel.getUnmergeableIds(mavoElement)]
+		[if (not unmergeableIds->isEmpty())]
+;[mavoElement.formulaId/] is Distinct
+(assert	(forall ((c [sort/])) (=>
+	([function/] [mavoElement.formulaId/] c)
+	(not (or
+			[for (unmergeableId : String | unmergeableIds)]
+		([function/] [unmergeableId/] c)
+			[/for]
+	))
+)))
+		[/if]
+		[/let]
 		[comment TODO add edge constraints (edge implies existence of nodes) /]
-		[comment TODO separate well formedness constraints from mavo constraints /]
 		[/let]
 		[/let]
 	[/for]

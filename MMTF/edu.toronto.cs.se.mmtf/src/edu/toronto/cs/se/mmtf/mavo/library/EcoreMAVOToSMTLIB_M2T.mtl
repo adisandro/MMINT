@@ -7,6 +7,6 @@
 	[file (mavoModelName + '.smt2', false, 'UTF-8')]
 [createIdsFromNames(mavoModel)/]
 [encodeModel(mavoModel)/]
-[encodeConstraints(mavoModel)/]
+[encodeMAVOConstraints(mavoModel)/]
 	[/file]	
 [/template]
