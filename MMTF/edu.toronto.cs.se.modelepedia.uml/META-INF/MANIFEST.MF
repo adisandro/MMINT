@@ -5,9 +5,9 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.uml;singleton:=true
 Bundle-Version: 1.1.1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
-Require-Bundle: edu.toronto.cs.se.mmtf,
- org.eclipse.papyrus.uml.diagram.wizards,
+Require-Bundle: org.eclipse.papyrus.uml.diagram.wizards,
  org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.uml2.uml,
- org.eclipse.gmf.runtime.notation
+ org.eclipse.gmf.runtime.notation,
+ edu.toronto.cs.se.mmtf

@@ -5,7 +5,7 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.petrinet.operator;singleton:=
 Bundle-Version: 1.1.1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Require-Bundle: edu.toronto.cs.se.mmtf,
- org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ui,
+ edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.modelepedia.petrinet

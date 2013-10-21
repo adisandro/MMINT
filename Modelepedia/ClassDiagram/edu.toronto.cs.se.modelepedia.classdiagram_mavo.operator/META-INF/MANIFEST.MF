@@ -4,15 +4,14 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator;singleton:=true
 Bundle-Version: 1.1.1
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.uml2.uml,
+Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.m2m.atl.engine.emfvm,
- edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.modelepedia.classdiagram_mavo,
- edu.toronto.cs.se.modelepedia.operator,
  org.eclipse.emf.henshin.interpreter,
  org.eclipse.emf.henshin.model,
- org.eclipse.emf.henshin.trace
+ org.eclipse.emf.henshin.trace,
+ edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.modelepedia.operator,
+ edu.toronto.cs.se.modelepedia.classdiagram_mavo
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

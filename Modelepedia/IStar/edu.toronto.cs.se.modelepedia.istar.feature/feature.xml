@@ -19,8 +19,8 @@ Famelis, Rick Salay. All rights reserved.
    </license>
 
    <requires>
-      <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
@@ -28,13 +28,7 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="edu.toronto.cs.se.mmtf"/>
       <import plugin="edu.toronto.cs.se.mmtf.edit"/>
-      <import plugin="org.eclipse.ocl"/>
-      <import plugin="org.eclipse.ocl.ecore"/>
-      <import plugin="org.eclipse.acceleo.common"/>
-      <import plugin="org.eclipse.acceleo.model"/>
-      <import plugin="org.eclipse.acceleo.profiler"/>
       <import plugin="org.eclipse.acceleo.engine"/>
-      <import plugin="com.google.guava"/>
       <import plugin="edu.toronto.cs.se.modelepedia.operator"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>

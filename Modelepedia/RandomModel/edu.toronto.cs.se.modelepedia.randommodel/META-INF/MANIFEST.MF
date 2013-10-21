@@ -10,7 +10,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.randommodel,
  edu.toronto.cs.se.modelepedia.randommodel.impl,
  edu.toronto.cs.se.modelepedia.randommodel.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- edu.toronto.cs.se.mmtf;visibility:=reexport
+Require-Bundle: org.eclipse.emf.ecore,
+ edu.toronto.cs.se.mmtf
 Bundle-ActivationPolicy: lazy

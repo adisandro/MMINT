@@ -4,20 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.istar_mavo.operator;singleton:=true
 Bundle-Version: 1.1.1
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.xmi,
- org.eclipse.ocl,
- org.eclipse.ocl.ecore,
- org.eclipse.acceleo.common,
- org.eclipse.acceleo.model,
- org.eclipse.acceleo.profiler,
- org.eclipse.acceleo.engine,
- com.google.guava,
- edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.modelepedia.istar_mavo,
+Require-Bundle: org.eclipse.acceleo.engine,
  org.eclipse.core.resources,
- edu.toronto.cs.se.modelepedia.operator
+ edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.modelepedia.operator,
+ edu.toronto.cs.se.modelepedia.istar_mavo
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

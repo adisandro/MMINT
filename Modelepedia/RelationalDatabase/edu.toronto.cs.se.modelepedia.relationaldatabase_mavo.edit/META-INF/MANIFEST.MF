@@ -10,8 +10,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.provider
 Require-Bundle: org.eclipse.core.runtime,
- edu.toronto.cs.se.modelepedia.relationaldatabase_mavo;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport,
- edu.toronto.cs.se.mmtf;visibility:=reexport,
- edu.toronto.cs.se.mmtf.edit;visibility:=reexport
+ org.eclipse.emf.edit,
+ edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmtf.edit,
+ edu.toronto.cs.se.modelepedia.relationaldatabase_mavo
 Bundle-ActivationPolicy: lazy

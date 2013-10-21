@@ -7,9 +7,6 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts,
- edu.toronto.cs.se.mmtf.mid.relationship.diagram.part,
- edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,
@@ -31,14 +28,17 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
- org.eclipse.draw2d;visibility:=reexport,
- org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- edu.toronto.cs.se.mmtf;visibility:=reexport,
- edu.toronto.cs.se.mmtf.edit;visibility:=reexport,
- org.eclipse.ocl.ecore;visibility:=reexport,
- org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.gef;visibility:=reexport,
- edu.toronto.cs.se.mmtf.diagram,
- org.eclipse.gmf.tooling.runtime;visibility:=reexport
+ org.eclipse.draw2d,
+ org.eclipse.gmf.runtime.draw2d.ui,
+ org.eclipse.ocl.ecore,
+ org.eclipse.emf.validation,
+ org.eclipse.gef,
+ org.eclipse.gmf.tooling.runtime,
+ edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmtf.edit,
+ edu.toronto.cs.se.mmtf.diagram
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts,
+ edu.toronto.cs.se.mmtf.mid.relationship.diagram.part,
+ edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers

@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../edu.toronto.cs.se.mmtf;${target.folder}/../../edu.toronto.cs.se.modelepedia.istar_mavo;${target.folder}/../../edu.toronto.cs.se.modelepedia.operator;${target.folder}/../../org.eclipse.emf.henshin.interpreter;${target.folder}/../../org.eclipse.emf.henshin.model;${target.folder}/../../org.eclipse.emf.henshin.trace;"
+            dependencies="${target.folder}/../../edu.toronto.cs.se.mmtf;${target.folder}/../../edu.toronto.cs.se.modelepedia.operator;${target.folder}/../../edu.toronto.cs.se.modelepedia.istar_mavo;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

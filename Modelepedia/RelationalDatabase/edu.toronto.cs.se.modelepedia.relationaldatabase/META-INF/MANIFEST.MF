@@ -10,6 +10,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.relationaldatabase,
  edu.toronto.cs.se.modelepedia.relationaldatabase.impl,
  edu.toronto.cs.se.modelepedia.relationaldatabase.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+Require-Bundle: org.eclipse.emf.ecore
 Bundle-ActivationPolicy: lazy

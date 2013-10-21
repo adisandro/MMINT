@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -25,7 +25,6 @@ import java.util.Set;
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.AcceleoTextGenerationEvent;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
@@ -37,6 +36,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
@@ -535,8 +535,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		m2tArgs.add(SMTLIB_CONCRETIZATION_MARKER2);
 		m2tArgs.add(concretizations);
 		m2tArgs.add(groundedProperty);
-		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		File folder = (new File(workspaceUri + randommodelModel.getUri())).getParentFile();
+		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(randommodelModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
 		RandomModelToSMTLIB_M2T m2t = new RandomModelToSMTLIB_M2TWithListeners(MultiModelTypeIntrospection.getRoot(randommodelModel), folder, m2tArgs);

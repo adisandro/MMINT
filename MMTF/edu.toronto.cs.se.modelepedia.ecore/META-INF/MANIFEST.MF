@@ -5,7 +5,5 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.ecore;singleton:=true
 Bundle-Version: 1.1.1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
-Require-Bundle: edu.toronto.cs.se.mmtf,
- org.eclipse.ui,
- org.eclipse.ui.ide,
- org.eclipse.emf.ecoretools.diagram
+Require-Bundle: org.eclipse.emf.ecoretools.diagram,
+ edu.toronto.cs.se.mmtf

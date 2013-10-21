@@ -31,12 +31,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
- org.eclipse.draw2d;visibility:=reexport,
- edu.toronto.cs.se.modelepedia.powerwindow;visibility:=reexport,
- edu.toronto.cs.se.modelepedia.powerwindow.edit;visibility:=reexport,
- org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.gef;visibility:=reexport,
- org.eclipse.gmf.tooling.runtime;visibility:=reexport,
- edu.toronto.cs.se.modelepedia.powerwindow;visibility:=reexport
+ org.eclipse.draw2d,
+ org.eclipse.emf.validation,
+ org.eclipse.gef,
+ org.eclipse.gmf.tooling.runtime,
+ edu.toronto.cs.se.modelepedia.powerwindow,
+ edu.toronto.cs.se.modelepedia.powerwindow.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
