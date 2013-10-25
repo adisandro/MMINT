@@ -1,422 +1,54 @@
 [comment encoding = UTF-8 /]
-[module IStarMAVOToSMTLIB_M2T('http://se.cs.toronto.edu/mmtf/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
+[module IStarMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmtf/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
 [import edu::toronto::cs::se::mmtf::mavo::library::EcoreMAVOToSMTLIBUtils_M2T /]
 
-[query private getAllIntentions(istar : IStar) : Collection(Intention) =
-	istar.actors->collect(intentions)->addAll(istar.dependums)
-/]
-
-[query private getAllIntentions(istar : IStar, intentionClass : String) : Collection(Intention) =
-	istar.actors->collect(intentions)->addAll(istar.dependums)->select(eClass().name = intentionClass)
-/]
-
-[query private getActorIntentions(actor : Actor, intentionClass : String) : Collection(Intention) =
-	actor.intentions->select(eClass().name = intentionClass)
-/]
-
-[query private getDependumIntentions(istar : IStar, intentionClass : String) : Collection(Intention) =
-	istar.dependums->select(eClass().name = intentionClass)
-/]
-
-[query private getAllIntentionLinks(istar : IStar) : Collection(IntentionLink) =
-	istar.actors->collect(intentions)->collect(linksAsSrc)
-/]
-
-[query private getAllIntentionLinks(istar : IStar, intentionLinkClass : String) : Collection(IntentionLink) =
-	istar.actors->collect(intentions)->collect(linksAsSrc)->select(eClass().name = intentionLinkClass)
-/]
-
-[query private getActorIntentionLinks(actor : Actor, intentionLinkClass : String) : Collection(IntentionLink) =
-	actor.intentions->collect(linksAsSrc)->select(eClass().name = intentionLinkClass)
-/]
-
-[query private getAllDependerLinks(istar : IStar) : Collection(DependerLink) =
-	istar.dependums->collect(dependerLinks)
-/]
-
-[query private getAllDependeeLinks(istar : IStar) : Collection(DependeeLink) =
-	istar.dependums->collect(dependeeLinks)
-/]
-
-[query private nodeName(node : DependencyEndpoint) : String =
-	node.name.replaceAll(' ', '')
-/]
-
-[query private edgeName(intention : Intention) : String =
-	nodeName(intention.eContainer().oclAsType(Actor)) + '2' + nodeName(intention)
-/]
-
-[query private edgeName(intentionLink : IntentionLink) : String =
-	nodeName(intentionLink.src) + '2' + nodeName(intentionLink.tgt)
-/]
-
-[query private edgeName(dependerLink : DependerLink) : String =
-	nodeName(dependerLink.depender) + '2' + nodeName(dependerLink.dependum)
-/]
-
-[query private edgeName(dependeeLink : DependeeLink) : String =
-	nodeName(dependeeLink.dependum) + '2' + nodeName(dependeeLink.dependee)
-/]
-
-[template private encodeIntentions(istar : IStar, intentionClass : String, firstIndex : Integer)]
-[for (intention : Intention | getAllIntentions(istar, intentionClass))]
-(declare-const [nodeName(intention)/] Node)
-(assert (= [nodeName(intention)/] [firstIndex + i/]))
-[/for]
-[/template]
-
-[template private encodeIntentionLinks(istar : IStar, intentionLinkClass : String, firstIndex : Integer)]
-[for (intentionLink : IntentionLink | getAllIntentionLinks(istar, intentionLinkClass))]
-(declare-const [edgeName(intentionLink)/] Edge)
-(assert (= [edgeName(intentionLink)/] [firstIndex + i/]))
-[/for]
-[/template]
-
-[template private encodeInitialAnalysis(intention : Intention)]
-;[nodeName(intention)/] initial analysis tag
-(assert (forall ((c [intention.eClass().name/])) (=>
-	(node [nodeName(intention)/] c)
-[if (intention.fullySatisfied or intention.partiallySatisfied or intention.unknown or intention.conflict or intention.partiallyDenied or intention.fullyDenied or intention.noLabel)]
-	(and
-		(= (fs c) [if (intention.fullySatisfied)]true[else]false[/if])
-		(= (ps c) [if (intention.partiallySatisfied)]true[else]false[/if])
-		(= (un c) [if (intention.unknown)]true[else]false[/if])
-		(= (co c) [if (intention.conflict)]true[else]false[/if])
-		(= (pd c) [if (intention.partiallyDenied)]true[else]false[/if])
-		(= (fd c) [if (intention.fullyDenied)]true[else]false[/if])
-		(= (n c) [if (intention.noLabel)]true[else]false[/if])
-		(= (inited c) true)
-	)
-[else]
-	(= (inited c) false)
-[/if]
-)))
-[/template]
-
-[template private encodeOWIntentionConstraint(istar : IStar, intentionClass : String)]
-;[intentionClass/]s are Complete
-(assert (forall ((c [intentionClass/])) (or
-[for (intention : Intention | getAllIntentions(istar, intentionClass))]
-	(node [nodeName(intention)/] c)
-[/for]
-)))
-[/template]
-
-[template private encodeOWIntentionLinkConstraint(istar : IStar, intentionLinkClass : String)]
-;[intentionLinkClass/]s are Complete
-(assert (forall ((c [intentionLinkClass/])) (or
-[for (intentionLink : IntentionLink | getAllIntentionLinks(istar, intentionLinkClass))]
-	(edge [edgeName(intentionLink)/] c)
-[/for]
-)))
-[/template]
-
-[template private encodeMConstraint(sort : String, function : String, id : String)]
-;[id/] Exists
-(assert	(exists ((c [sort/])) ([function/] [id/] c)))
-[/template]
-
-[template private encodeMIntentionConstraint(intention : Intention)]
-[encodeMConstraint(intention.eClass().name, 'node', nodeName(intention))/]
-[/template]
-
-[template private encodeMIntentionLinkConstraint(intentionLink : IntentionLink)]
-[encodeMConstraint(intentionLink.eClass().name, 'edge', edgeName(intentionLink))/]
-[/template]
-
-[template private encodeMDependerLinkConstraint(dependerLink : DependerLink)]
-[encodeMConstraint('DependerLink', 'edge', edgeName(dependerLink))/]
-[/template]
-
-[template private encodeMDependeeLinkConstraint(dependeeLink : DependeeLink)]
-[encodeMConstraint('DependeeLink', 'edge', edgeName(dependeeLink))/]
-[/template]
-
-[template private encodeSConstraint(sort : String, function : String, id : String)]
-;[id/] is Unique
-(assert	(forall ((c1 [sort/]) (c2 [sort/])) (=>
-	(and ([function/] [id/] c1) ([function/] [id/] c2))
-	(= c1 c2)
-)))
-[/template]
-
-[template private encodeSIntentionConstraint(intention : Intention)]
-[encodeSConstraint(intention.eClass().name, 'node', nodeName(intention))/]
-[/template]
-
-[template private encodeSIntentionLinkConstraint(intentionLink : IntentionLink)]
-[encodeSConstraint(intentionLink.eClass().name, 'edge', edgeName(intentionLink))/]
-[/template]
-
-[template private encodeSDependerLinkConstraint(dependerLink : DependerLink)]
-[encodeSConstraint('DependerLink', 'edge', edgeName(dependerLink))/]
-[/template]
-
-[template private encodeSDependeeLinkConstraint(dependeeLink : DependeeLink)]
-[encodeSConstraint('DependeeLink', 'edge', edgeName(dependeeLink))/]
-[/template]
-
-[template private encodeVConstraint(sort : String, function : String, id : String, unmergeableId : String)]
-;[id/] is Distinct from [unmergeableId/]
-(assert	(forall ((c [sort/])) (=>
-	([function/] [id/] c)
-	(not ([function/] [unmergeableId/] c))
-)))
-[/template]
-
-[template private encodeVConstraintPreamble(sort : String, function : String, id : String)]
-;[id/] is Distinct
-(assert	(forall ((c [sort/])) (=>
-	([function/] [id/] c)
-	(not (or
-[/template]
-
-[template private encodeVConstraintBody(function : String, id : String)]
-		([function/] [id/] c)
-[/template]
-
-[template private encodeVConstraintPostamble(traceability : OclAny)]
-	))
-)))
-[/template]
-
-[template private encodeVIntentionConstraint(intention1 : Intention, intention2 : Intention)]
-[encodeVConstraint(intention1.eClass().name, 'node', nodeName(intention1), nodeName(intention2))/]
-[/template]
-
-[template private encodeVIntentionLinkConstraint(intentionLink1 : IntentionLink, intentionLink2 : IntentionLink)]
-[encodeVConstraint(intentionLink1.eClass().name, 'edge', edgeName(intentionLink1), edgeName(intentionLink2))/]
-[/template]
-
-[template private encodeVDependerLinkConstraint(dependerLink1 : DependerLink, dependerLink2 : DependerLink)]
-[encodeVConstraint('DependerLink', 'edge', edgeName(dependerLink1), edgeName(dependerLink2))/]
-[/template]
-
-[template private encodeVDependeeLinkConstraint(dependeeLink1 : DependeeLink, dependeeLink2 : DependeeLink)]
-[encodeVConstraint('DependeeLink', 'edge', edgeName(dependeeLink1), edgeName(dependeeLink2))/]
-[/template]
-
-[template private encodeMAVIntentionConstraints(istar : IStar, intention : Intention)]
-[if (not intention.may)]
-[encodeMIntentionConstraint(intention)/]
-[/if]
-[if (not intention.set)]
-[encodeSIntentionConstraint(intention)/]
-[/if]
-[let unmergeableIntentions : Sequence(String) = getUnmergeableIds(istar, intention)]
-[if (not unmergeableIntentions->isEmpty())]
-[encodeVConstraintPreamble(intention.eClass().name, 'node', nodeName(intention))/]
-	[for (unmergeableIntention : String | unmergeableIntentions)]
-[encodeVConstraintBody('node', unmergeableIntention)/]
-	[/for]
-[encodeVConstraintPostamble()/]
-[/if]
-[/let]
-[/template]
-
-[template private encodeMAVIntentionLinkConstraint(istar : IStar, intentionLink : IntentionLink)]
-[if (not intentionLink.may)]
-[encodeMIntentionLinkConstraint(intentionLink)/]
-[/if]
-[if (not intentionLink.set)]
-[encodeSIntentionLinkConstraint(intentionLink)/]
-[/if]
-[let unmergeableIntentionLinks : Sequence(String) = getUnmergeableIds(istar, intentionLink)]
-[if (not unmergeableIntentionLinks->isEmpty())]
-[encodeVConstraintPreamble(intentionLink.eClass().name, 'edge', edgeName(intentionLink))/]
-	[for (unmergeableIntentionLink : String | unmergeableIntentionLinks)]
-[encodeVConstraintBody('edge', unmergeableIntentionLink)/]
-	[/for]
-[encodeVConstraintPostamble()/]
-[/if]
-[/let]
-[/template]
-
-[template private encodeModelConstant(sort : String, fun : String, name : String, funConst : String, const : String)]
-;[name/] [funConst/] constant
-(assert (forall ((c [sort/])) (=>
-	([fun/] [name/] c)
-	(= ([funConst/] c) [const/])
-)))
-[/template]
-
-[template private encodeIntentionLinkConstant(intentionLink : IntentionLink, funConst : String, const : String)]
-[encodeModelConstant(intentionLink.eClass().name, 'edge', edgeName(intentionLink), funConst, const)/]
-[/template]
-
-[template private encodeEdgeConstraint(sort : String, name : String, classSrc : String, nameSrc : String, classTgt : String, nameTgt : String)]
-;[name/] endpoints
-(assert (forall ((c [sort/])) (=>
-	(edge [name/] c)
-	(and
-		(node [nameSrc/] ([if (classSrc = '')]src[else](as src ([classSrc/]))[/if] c))
-		(node [nameTgt/] ([if (classTgt = '')]tgt[else](as tgt ([classTgt/]))[/if] c))
-	)
-)))
-[/template]
-
-[template private encodeIntentionLinkConstraint(intentionLink : IntentionLink, multipleClassSrc : Boolean, multipleClassTgt : Boolean)]
-	[let classSrc : String = if multipleClassSrc then intentionLink.src.eClass().name else '' endif]
-	[let classTgt : String = if multipleClassTgt then intentionLink.tgt.eClass().name else '' endif]
-[encodeEdgeConstraint(intentionLink.eClass().name, edgeName(intentionLink), classSrc, nodeName(intentionLink.src), classTgt, nodeName(intentionLink.tgt))/]
-	[if (multipleClassSrc)]
-[encodeIntentionLinkConstant(intentionLink, 'srcType', classSrc.toUpper())/]
-	[/if]
-	[if (multipleClassTgt)]
-[encodeIntentionLinkConstant(intentionLink, 'tgtType', classTgt.toUpper())/]
-	[/if]
-	[/let]
-	[/let]
-[/template]
-
-[template private encodeConstants(istar : IStar)]
-;Endpoint Types
-(define-sort NodeType () Int)
-(declare-const TASK NodeType)
-(declare-const GOAL NodeType)
-(declare-const SOFTGOAL NodeType)
-(declare-const RESOURCE NodeType)
-(assert (= TASK 1))
-(assert (= GOAL 2))
-(assert (= SOFTGOAL 3))
-(assert (= RESOURCE 4))
-
+[template private encodeModelIStar(istar : IStar)]
 ;Contribution Types
+	[let startIndex : Integer = istar.getMetamodelMAVOClasses()->size() + istar.getMAVOElements()->size()]
 (define-sort ContributionType () Int)
 (declare-const MAKE ContributionType)
+(assert (= MAKE [startIndex+1/]))
 (declare-const HELP ContributionType)
+(assert (= HELP [startIndex+2/]))
 (declare-const SOMEPLUS ContributionType)
+(assert (= SOMEPLUS [startIndex+3/]))
 (declare-const BREAK ContributionType)
+(assert (= BREAK [startIndex+4/]))
 (declare-const HURT ContributionType)
+(assert (= HURT [startIndex+5/]))
 (declare-const SOMEMINUS ContributionType)
+(assert (= SOMEMINUS [startIndex+6/]))
 (declare-const UNKNOWN ContributionType)
-(assert (= MAKE 11))
-(assert (= HELP 12))
-(assert (= SOMEPLUS 13))
-(assert (= BREAK 14))
-(assert (= HURT 15))
-(assert (= SOMEMINUS 16))
-(assert (= UNKNOWN 17))
+(assert (= UNKNOWN [startIndex+7/]))
+	[/let]
+(declare-fun type (Contribution) ContributionType)
+	[let contributionEclass : EClass = istar.eClass().ePackage.eAllContents(EClass)->any(name = 'Contribution')]
+	[for (contribution : Contribution | istar.getObjectsOfType(contributionEclass)->collect(oclAsType(Contribution)))]
+(assert (forall ((c Contribution)) (=>
+	(edge [contribution.formulaId/] c)
+	(= (type c) [contribution.type.toString()/])
+)))
+	[/for]
+	[/let]
 [/template]
 
-[template private encodeModel(istar : IStar)]
-
-;Model
-(define-sort Node () Int)
-(define-sort Edge () Int)
-
-[let numActors : Integer = 100 + istar.actors->size()]
-[let numTasks : Integer = numActors + getAllIntentions(istar, 'Task')->size()]
-[let numGoals : Integer = numTasks + getAllIntentions(istar, 'Goal')->size()]
-[let numSoftGoals : Integer = numGoals + getAllIntentions(istar, 'SoftGoal')->size()]
-[let numResources : Integer = numSoftGoals + getAllIntentions(istar, 'Resource')->size()]
-[let numContainments : Integer = numResources + istar.actors->collect(intentions)->size()]
-[let numMeansEnds : Integer = numContainments + getAllIntentionLinks(istar, 'MeansEnd')->size()]
-[let numDecompositions : Integer = numMeansEnds + getAllIntentionLinks(istar, 'Decomposition')->size()]
-[let numContributions : Integer = numDecompositions + getAllIntentionLinks(istar, 'Contribution')->size()]
-[let numDependers : Integer = numContributions + getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor))->size()]
-[for (actor : Actor | istar.actors)]
-(declare-const [nodeName(actor)/] Node)
-(assert (= [nodeName(actor)/] [100 + i/]))
-[/for]
-[encodeIntentions(istar, 'Task', numActors)/]
-[encodeIntentions(istar, 'Goal', numTasks)/]
-[encodeIntentions(istar, 'SoftGoal', numGoals)/]
-[encodeIntentions(istar, 'Resource', numSoftGoals)/]
-[for (intention : Intention | istar.actors->collect(intentions))]
-(declare-const [edgeName(intention)/] Edge)
-(assert (= [edgeName(intention)/] [numResources + i/]))
-[/for]
-[encodeIntentionLinks(istar, 'MeansEnd', numContainments)/]
-[encodeIntentionLinks(istar, 'Decomposition', numMeansEnds)/]
-[encodeIntentionLinks(istar, 'Contribution', numDecompositions)/]
-[for (dependerLink : DependerLink | getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor)))]
-(declare-const [edgeName(dependerLink)/] Edge)
-(assert (= [edgeName(dependerLink)/] [numContributions + i/]))
-[/for]
-[for (dependeeLink : DependeeLink | getAllDependeeLinks(istar)->select(not dependee.oclIsTypeOf(Actor)))]
-(declare-const [edgeName(dependeeLink)/] Edge)
-(assert (= [edgeName(dependeeLink)/] [numDependers + i/]))
-[/for]
-[/let]
-[/let]
-[/let]
-[/let]
-[/let]
-[/let]
-[/let]
-[/let]
-[/let]
-[/let]
-
-;Concretizations
-(declare-sort Actor)
-(declare-sort Task)
-(declare-sort Goal)
-(declare-sort SoftGoal)
-(declare-sort Resource)
-(declare-sort Containment)
-(declare-sort MeansEnd)
-(declare-sort Decomposition)
-(declare-sort Contribution)
-(declare-sort DependerLink)
-(declare-sort DependeeLink)
-(declare-fun node (Node Actor) Bool)
-(declare-fun node (Node Task) Bool)
-(declare-fun node (Node Goal) Bool)
-(declare-fun node (Node SoftGoal) Bool)
-(declare-fun node (Node Resource) Bool)
-(declare-fun edge (Edge Containment) Bool)
-(declare-fun tgtType (Containment) NodeType)
-(declare-fun src (Containment) Actor)
-(declare-fun tgt (Containment) Task)
-(declare-fun tgt (Containment) Goal)
-(declare-fun tgt (Containment) SoftGoal)
-(declare-fun tgt (Containment) Resource)
-(declare-fun edge (Edge MeansEnd) Bool)
-(declare-fun src (MeansEnd) Task)
-(declare-fun tgt (MeansEnd) Goal)
-(declare-fun edge (Edge Decomposition) Bool)
-(declare-fun srcType (Decomposition) NodeType)
-(declare-fun src (Decomposition) Task)
-(declare-fun src (Decomposition) Goal)
-(declare-fun src (Decomposition) SoftGoal)
-(declare-fun src (Decomposition) Resource)
-(declare-fun tgt (Decomposition) Task)
-(declare-fun edge (Edge Contribution) Bool)
-(declare-fun srcType (Contribution) NodeType)
-(declare-fun type (Contribution) ContributionType)
-(declare-fun src (Contribution) Task)
-(declare-fun src (Contribution) Goal)
-(declare-fun src (Contribution) SoftGoal)
-(declare-fun src (Contribution) Resource)
-(declare-fun tgt (Contribution) SoftGoal)
-(declare-fun edge (Edge DependerLink) Bool)
-(declare-fun srcType (DependerLink) NodeType)
-(declare-fun tgtType (DependerLink) NodeType)
-(declare-fun src (DependerLink) Task)
-(declare-fun src (DependerLink) Goal)
-(declare-fun src (DependerLink) SoftGoal)
-(declare-fun src (DependerLink) Resource)
-(declare-fun tgt (DependerLink) Task)
-(declare-fun tgt (DependerLink) Goal)
-(declare-fun tgt (DependerLink) SoftGoal)
-(declare-fun tgt (DependerLink) Resource)
-(declare-fun edge (Edge DependeeLink) Bool)
-(declare-fun srcType (DependeeLink) NodeType)
-(declare-fun tgtType (DependeeLink) NodeType)
-(declare-fun src (DependeeLink) Task)
-(declare-fun src (DependeeLink) Goal)
-(declare-fun src (DependeeLink) SoftGoal)
-(declare-fun src (DependeeLink) Resource)
-(declare-fun tgt (DependeeLink) Task)
-(declare-fun tgt (DependeeLink) Goal)
-(declare-fun tgt (DependeeLink) SoftGoal)
-(declare-fun tgt (DependeeLink) Resource)
+[template private encodeConstraints(istar : IStar)]
+;No self-loops:
+;;MeansEnd can't
+;;Decomposition only from Task to Task
+;;Contribution only from SoftGoal to SoftGoal
+;;Depender and Dependee only if there are dependencies among dependums
+(assert (forall ((c Decomposition)) (=>
+	(and (= (srcType c) TASK) (= (tgtType c) TASK))
+	(not (= ((as src (Task)) c) ((as tgt (Task)) c)))
+)))
+(assert (forall ((c Contribution)) (=>
+	(and (= (srcType c) SOFTGOAL) (= (tgtType c) SOFTGOAL))
+	(not (= ((as src (SoftGoal)) c) ((as tgt (SoftGoal)) c)))
+)))
 [/template]
 
 [template private encodeAnalysis(istar : IStar)]
-
 ;Analysis labels
 (declare-fun inited (Task) Bool)
 (declare-fun inited (Goal) Bool)
@@ -482,12 +114,99 @@
 (declare-fun fd (Contribution) Bool)
 (declare-fun fd (DependerLink) Bool)
 (declare-fun fd (DependeeLink) Bool)
-(assert (forall ((c MeansEnd)) (= (fs c) (fs (src c)))))
-(assert (forall ((c MeansEnd)) (= (ps c) (ps (src c)))))
-(assert (forall ((c MeansEnd)) (= (un c) (un (src c)))))
-(assert (forall ((c MeansEnd)) (= (co c) (co (src c)))))
-(assert (forall ((c MeansEnd)) (= (pd c) (pd (src c)))))
-(assert (forall ((c MeansEnd)) (= (fd c) (fd (src c)))))
+(declare-fun n (Task) Bool)
+(declare-fun n (Goal) Bool)
+(declare-fun n (SoftGoal) Bool)
+(declare-fun n (Resource) Bool)
+(declare-fun n (MeansEnd) Bool)
+(declare-fun n (Decomposition) Bool)
+(declare-fun n (Contribution) Bool)
+(declare-fun n (DependerLink) Bool)
+(declare-fun n (DependeeLink) Bool)
+(assert (forall ((c MeansEnd)) (= (fs c)
+	(ite (= (srcType c) TASK)
+		(fs ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(fs ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(fs ((as src (SoftGoal)) c))
+				(fs ((as src (Resource)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c MeansEnd)) (= (ps c)
+	(ite (= (srcType c) TASK)
+		(ps ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(ps ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(ps ((as src (SoftGoal)) c))
+				(ps ((as src (Resource)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c MeansEnd)) (= (un c)
+	(ite (= (srcType c) TASK)
+		(un ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(un ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(un ((as src (SoftGoal)) c))
+				(un ((as src (Resource)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c MeansEnd)) (= (co c)
+	(ite (= (srcType c) TASK)
+		(co ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(co ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(co ((as src (SoftGoal)) c))
+				(co ((as src (Resource)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((dc MeansEnd)) (= (pd dc)
+	(ite (= (srcType dc) TASK)
+		(pd ((as src (Task)) dc))
+		(ite (= (srcType dc) GOAL)
+			(pd ((as src (Goal)) dc))
+			(ite (= (srcType dc) SOFTGOAL)
+				(pd ((as src (SoftGoal)) dc))
+				(pd ((as src (Resource)) dc))
+			)
+		)
+	)
+)))
+(assert (forall ((c MeansEnd)) (= (fd c)
+	(ite (= (srcType c) TASK)
+		(fd ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(fd ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(fd ((as src (SoftGoal)) c))
+				(fd ((as src (Resource)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c MeansEnd)) (= (n c)
+	(ite (= (srcType c) TASK)
+		(n ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(n ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(n ((as src (SoftGoal)) c))
+				(n ((as src (Resource)) c))
+			)
+		)
+	)
+)))
 (assert (forall ((c Decomposition)) (= (fs c)
 	(ite (= (srcType c) TASK)
 		(fs ((as src (Task)) c))
@@ -556,6 +275,18 @@
 			(ite (= (srcType c) SOFTGOAL)
 				(fd ((as src (SoftGoal)) c))
 				(fd ((as src (Resource)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c Decomposition)) (= (n c)
+	(ite (= (srcType c) TASK)
+		(n ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(n ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(n ((as src (SoftGoal)) c))
+				(n ((as src (Resource)) c))
 			)
 		)
 	)
@@ -722,6 +453,18 @@
 		)
 	)
 )))
+(assert (forall ((c Contribution)) (= (n c)
+	(ite (= (srcType c) TASK)
+		(n ((as src (Task)) c))
+		(ite (= (srcType c) GOAL)
+			(n ((as src (Goal)) c))
+			(ite (= (srcType c) SOFTGOAL)
+				(n ((as src (SoftGoal)) c))
+				(n ((as src (Resource)) c))
+			)
+		)
+	)
+)))
 (assert (forall ((c DependerLink)) (= (fs c)
 	(ite (= (tgtType c) TASK)
 		(fs ((as tgt (Task)) c))
@@ -790,6 +533,18 @@
 			(ite (= (tgtType c) SOFTGOAL)
 				(fd ((as tgt (SoftGoal)) c))
 				(fd ((as tgt (Resource)) c))
+			)
+		)
+	)
+)))
+(assert (forall ((c DependerLink)) (= (n c)
+	(ite (= (tgtType c) TASK)
+		(n ((as tgt (Task)) c))
+		(ite (= (tgtType c) GOAL)
+			(n ((as tgt (Goal)) c))
+			(ite (= (tgtType c) SOFTGOAL)
+				(n ((as tgt (SoftGoal)) c))
+				(n ((as tgt (Resource)) c))
 			)
 		)
 	)
@@ -866,54 +621,6 @@
 		)
 	)
 )))
-
-;Uninitialized labels
-(declare-fun n (Task) Bool)
-(declare-fun n (Goal) Bool)
-(declare-fun n (SoftGoal) Bool)
-(declare-fun n (Resource) Bool)
-(declare-fun n (MeansEnd) Bool)
-(declare-fun n (Decomposition) Bool)
-(declare-fun n (Contribution) Bool)
-(declare-fun n (DependerLink) Bool)
-(declare-fun n (DependeeLink) Bool)
-(assert (forall ((c MeansEnd)) (= (n c) (n (src c)))))
-(assert (forall ((c Decomposition)) (= (n c)
-	(ite (= (srcType c) TASK)
-		(n ((as src (Task)) c))
-		(ite (= (srcType c) GOAL)
-			(n ((as src (Goal)) c))
-			(ite (= (srcType c) SOFTGOAL)
-				(n ((as src (SoftGoal)) c))
-				(n ((as src (Resource)) c))
-			)
-		)
-	)
-)))
-(assert (forall ((c Contribution)) (= (n c)
-	(ite (= (srcType c) TASK)
-		(n ((as src (Task)) c))
-		(ite (= (srcType c) GOAL)
-			(n ((as src (Goal)) c))
-			(ite (= (srcType c) SOFTGOAL)
-				(n ((as src (SoftGoal)) c))
-				(n ((as src (Resource)) c))
-			)
-		)
-	)
-)))
-(assert (forall ((c DependerLink)) (= (n c)
-	(ite (= (tgtType c) TASK)
-		(n ((as tgt (Task)) c))
-		(ite (= (tgtType c) GOAL)
-			(n ((as tgt (Goal)) c))
-			(ite (= (tgtType c) SOFTGOAL)
-				(n ((as tgt (SoftGoal)) c))
-				(n ((as tgt (Resource)) c))
-			)
-		)
-	)
-)))
 (assert (forall ((c DependeeLink)) (= (n c)
 	(ite (= (tgtType c) TASK)
 		(n ((as tgt (Task)) c))
@@ -932,171 +639,36 @@
 (assert (forall ((c Goal)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
 (assert (forall ((c SoftGoal)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
 (assert (forall ((c Resource)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
-[/template]
 
-[template private encodeConstraints(istar : IStar)]
-
-;No self-loops:
-;;MeansEnd can't
-;;Decomposition only from Task to Task
-;;Contribution only from SoftGoal to SoftGoal
-;;Depender and Dependee only if there are dependencies among dependums
-(assert (forall ((c Decomposition)) (=>
-	(= (srcType c) TASK)
-	(not (= ((as src (Task)) c) (tgt c)))
+;Initial lables
+	[let intentionEclass : EClass = istar.eClass().ePackage.eAllContents(EClass)->any(name = 'Intention')]
+	[for (intention : Intention | istar.getObjectsOfKind(intentionEclass)->collect(oclAsType(Intention)))]
+(assert (forall ((c [intention.eClass().name/])) (=>
+	(node [intention.formulaId/] c)
+		[if (intention.fullySatisfied or intention.partiallySatisfied or intention.unknown or intention.conflict or intention.partiallyDenied or intention.fullyDenied or intention.noLabel)]
+	(and
+		(= (fs c) [if (intention.fullySatisfied)]true[else]false[/if])
+		(= (ps c) [if (intention.partiallySatisfied)]true[else]false[/if])
+		(= (un c) [if (intention.unknown)]true[else]false[/if])
+		(= (co c) [if (intention.conflict)]true[else]false[/if])
+		(= (pd c) [if (intention.partiallyDenied)]true[else]false[/if])
+		(= (fd c) [if (intention.fullyDenied)]true[else]false[/if])
+		(= (n c) [if (intention.noLabel)]true[else]false[/if])
+		(= (inited c) true)
+	)
+		[else]
+	(= (inited c) false)
+		[/if]
 )))
-(assert (forall ((c Contribution)) (=>
-	(= (srcType c) SOFTGOAL)
-	(not (= ((as src (SoftGoal)) c) (tgt c)))
-)))
-
-;Complete Model
-(assert	(forall ((c Actor)) (or
-[for (actor : Actor | istar.actors)]
-	(node [nodeName(actor)/] c)
-[/for]
-)))
-[encodeOWIntentionConstraint(istar, 'Task')/]
-[encodeOWIntentionConstraint(istar, 'Goal')/]
-[encodeOWIntentionConstraint(istar, 'SoftGoal')/]
-[encodeOWIntentionConstraint(istar, 'Resource')/]
-(assert (forall ((c Containment)) (or
-[for (actor : Actor | istar.actors)]
-	[for (intention : Intention | actor.intentions)]
-	(edge [edgeName(intention)/] c)
 	[/for]
-[/for]
-)))
-[encodeOWIntentionLinkConstraint(istar, 'MeansEnd')/]
-[encodeOWIntentionLinkConstraint(istar, 'Decomposition')/]
-[encodeOWIntentionLinkConstraint(istar, 'Contribution')/]
-(assert (forall ((c DependerLink)) (or
-[for (dependerLink : DependerLink | getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor)))]
-	(edge [edgeName(dependerLink)/] c)
-[/for]
-)))
-(assert (forall ((c DependeeLink)) (or
-[for (dependeeLink : DependeeLink | getAllDependeeLinks(istar)->select(not dependee.oclIsTypeOf(Actor)))]
-	(edge [edgeName(dependeeLink)/] c)
-[/for]
-)))
-
-;Model Elements
-[for (actor : Actor | istar.actors)]
-	[if (not actor.may)]
-[encodeMConstraint('Actor', 'node', nodeName(actor))/]
-	[/if]
-	[if (not actor.set)]
-[encodeSConstraint('Actor', 'node', nodeName(actor))/]
-	[/if]
-	[let unmergeableActors : Sequence(String) = getUnmergeableIds(istar, actor)]
-	[if (not unmergeableActors->isEmpty())]
-[encodeVConstraintPreamble(actor.eClass().name, 'node', nodeName(actor))/]
-		[for (unmergeableActor : String | unmergeableActors)]
-[encodeVConstraintBody('node', unmergeableActor)/]
-		[/for]
-[encodeVConstraintPostamble()/]
-	[/if]
 	[/let]
-[/for]
-[for (intention : Intention | getAllIntentions(istar))]
-[encodeInitialAnalysis(intention)/]
-[encodeMAVIntentionConstraints(istar, intention)/]
-[/for]
-[for (actor : Actor | istar.actors)]
-	[for (intention : Intention | actor.intentions)]
-		[let tgtClass : String = intention.eClass().name]
-[encodeModelConstant('Containment', 'edge', edgeName(intention), 'tgtType', tgtClass.toUpper())/]
-[encodeEdgeConstraint('Containment', edgeName(intention), '', nodeName(intention.eContainer(Actor)), tgtClass, nodeName(intention))/]
-		[if (not intention.may)]
-[encodeMConstraint('Containment', 'edge', edgeName(intention))/]
-		[/if]
-		[if (not intention.set)]
-[encodeSConstraint('Containment', 'edge', edgeName(intention))/]
-		[/if]
-		[/let]
-		[let unmergeableContainments : Sequence(String) = getUnmergeableIds(istar, intention)->reject(dependum : String | istar.dependums->collect(nodeName())->includes(dependum))]
-		[if (not unmergeableContainments->isEmpty())]
-[encodeVConstraintPreamble('Containment', 'edge', edgeName(intention))/]
-			[for (unmergeableContainment : String | unmergeableContainments)]
-				[for (actor2 : Actor | istar.actors)]
-					[if (actor2.intentions->collect(nodeName())->includes(unmergeableContainment))]
-[encodeVConstraintBody('edge', nodeName(actor2) + '2' + unmergeableContainment)/]
-					[/if]
-				[/for]
-			[/for]
-[encodeVConstraintPostamble()/]
-		[/if]
-		[/let]
-	[/for]
-[/for]
-[for (intentionLink : IntentionLink | getAllIntentionLinks(istar))]
-[encodeMAVIntentionLinkConstraint(istar, intentionLink)/]
-	[if (intentionLink.oclIsTypeOf(MeansEnd))]
-[encodeIntentionLinkConstraint(intentionLink, false, false)/]
-	[elseif (intentionLink.oclIsTypeOf(Decomposition))]
-[encodeIntentionLinkConstraint(intentionLink, true, false)/]
-	[elseif (intentionLink.oclIsTypeOf(Contribution))]
-[encodeIntentionLinkConstraint(intentionLink, true, false)/]
-[encodeIntentionLinkConstant(intentionLink, 'type', intentionLink.oclAsType(Contribution).type.toString())/]
-	[/if]
-[/for]
-[for (dependerLink : DependerLink | getAllDependerLinks(istar)->select(not depender.oclIsTypeOf(Actor)))]
-	[let srcClass : String = dependerLink.depender.eClass().name]
-	[let tgtClass : String = dependerLink.dependum.eClass().name]
-[encodeModelConstant('DependerLink', 'edge', edgeName(dependerLink), 'srcType', srcClass.toUpper())/]
-[encodeModelConstant('DependerLink', 'edge', edgeName(dependerLink), 'tgtType', tgtClass.toUpper())/]
-[encodeEdgeConstraint('DependerLink', edgeName(dependerLink), srcClass, nodeName(dependerLink.depender), tgtClass, nodeName(dependerLink.dependum))/]
-	[if (not dependerLink.may)]
-[encodeMDependerLinkConstraint(dependerLink)/]
-	[/if]
-	[if (not dependerLink.set)]
-[encodeSDependerLinkConstraint(dependerLink)/]
-	[/if]
-	[let unmergeableDependerLinks : Sequence(String) = getUnmergeableIds(istar, dependerLink)->reject(actorDepender : String | getAllDependerLinks(istar)->select(depender.oclIsTypeOf(Actor))->collect(edgeName())->includes(actorDepender))]
-	[if (not unmergeableDependerLinks->isEmpty())]
-[encodeVConstraintPreamble(dependerLink.eClass().name, 'edge', edgeName(dependerLink))/]
-		[for (unmergeableDependerLink : String | unmergeableDependerLinks)]
-[encodeVConstraintBody('edge', unmergeableDependerLink)/]
-		[/for]
-[encodeVConstraintPostamble()/]
-	[/if]
-	[/let]
-	[/let]
-	[/let]
-[/for]
-[for (dependeeLink : DependeeLink | getAllDependeeLinks(istar)->select(not dependee.oclIsTypeOf(Actor)))]
-	[let srcClass : String = dependeeLink.dependum.eClass().name]
-	[let tgtClass : String = dependeeLink.dependee.eClass().name]
-[encodeModelConstant('DependeeLink', 'edge', edgeName(dependeeLink), 'srcType', srcClass.toUpper())/]
-[encodeModelConstant('DependeeLink', 'edge', edgeName(dependeeLink), 'tgtType', tgtClass.toUpper())/]
-[encodeEdgeConstraint('DependeeLink', edgeName(dependeeLink), srcClass, nodeName(dependeeLink.dependum), tgtClass, nodeName(dependeeLink.dependee))/]
-	[if (not dependeeLink.may)]
-[encodeMDependeeLinkConstraint(dependeeLink)/]
-	[/if]
-	[if (not dependeeLink.set)]
-[encodeSDependeeLinkConstraint(dependeeLink)/]
-	[/if]
-	[let unmergeableDependeeLinks : Sequence(String) = getUnmergeableIds(istar, dependeeLink)->reject(actorDependee : String | getAllDependeeLinks(istar)->select(dependee.oclIsTypeOf(Actor))->collect(edgeName())->includes(actorDependee))]
-	[if (not unmergeableDependeeLinks->isEmpty())]
-[encodeVConstraintPreamble(dependeeLink.eClass().name, 'edge', edgeName(dependeeLink))/]
-		[for (unmergeableDependeeLink : String | unmergeableDependeeLinks)]
-[encodeVConstraintBody('edge', unmergeableDependeeLink)/]
-		[/for]
-[encodeVConstraintPostamble()/]
-	[/if]
-	[/let]
-	[/let]
-	[/let]
-[/for]
 [/template]
 
 [template private encodePropagation(istar : IStar)]
-
 ;Goal propagation (MeansEnd + Depender + Dependee)
 (assert	(forall ((c Goal)) (=> (not (inited c)) (= (fs c) (ite
 	(or
-		(and (exists ((mec MeansEnd)) (and (= (tgt mec) c) (fs mec))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc) (ps dc))))))
+		(and (exists ((mec MeansEnd)) (and (= (tgtType mec) GOAL) (= ((as tgt (Goal)) mec) c) (fs mec))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc) (ps dc))))))
 		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (fs dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))))
 		(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (fs dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))))
 	)
@@ -1106,7 +678,7 @@
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (fs c)) (= (ps c) false))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c))) (= (ps c) (ite
 	(or
-		(and (exists ((mec1 MeansEnd)) (and (= (tgt mec1) c) (ps mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgt mec2) c) (fs mec2)))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc)))))))
+		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (ps mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (fs mec2)))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc)))))))
 		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (ps dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))))
 		(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (ps dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))))
 	)
@@ -1116,8 +688,8 @@
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c))) (= (n c) false))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c))) (= (n c) (ite
 	(or
-		(and (not (exists ((mec MeansEnd)) (= (tgt mec) c))) (not (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c)))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c)))))
-		(and (exists ((mec1 MeansEnd)) (and (= (tgt mec1) c) (n mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgt mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2) (fd mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc)))))))
+		(and (not (exists ((mec MeansEnd)) (and (= (tgtType mec) GOAL) (= ((as tgt (Goal)) mec) c)))) (not (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c)))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c)))))
+		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (n mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2) (fd mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc)))))))
 		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (n dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
 		(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (n dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))))
 	)
@@ -1127,7 +699,7 @@
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c) (n c))) (= (un c) false))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c))) (= (un c) (ite
 	(or
-		(and (exists ((mec1 MeansEnd)) (and (= (tgt mec1) c) (un mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgt mec2) c) (or (fs mec2) (ps mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc)))))))
+		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (un mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc)))))))
 		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (un dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2))))))
 		(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (un dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2))))))
 	)
@@ -1137,7 +709,7 @@
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c) (n c) (un c))) (= (co c) false))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c)) (not (un c))) (= (co c) (ite
 	(or
-		(and (exists ((mec1 MeansEnd)) (and (= (tgt mec1) c) (co mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgt mec2) c) (or (fs mec2) (ps mec2) (un mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc)))))))
+		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (co mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2) (un mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc)))))))
 		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (co dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2))))))
 		(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (co dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (or (fd dc2) (pd dc2))))))
 	)
@@ -1147,7 +719,7 @@
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c) (n c) (un c) (co c))) (= (pd c) false))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c)) (not (un c)) (not (co c))) (= (pd c) (ite
 	(or
-		(and (exists ((mec1 MeansEnd)) (and (= (tgt mec1) c) (pd mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgt mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (fd dc))))))
+		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (pd mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (fd dc))))))
 		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (pd dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (fd dc2)))))
 		(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c) (pd dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c) (fd dc2)))))
 	)
@@ -1158,7 +730,7 @@
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c)) (not (un c)) (not (co c)) (not (pd c))) (= (fd c) true))))
 ;(assert	(forall ((c Goal)) (=> (not (inited c)) (= (fd c) (ite
 ;	(or
-;		(and (exists ((mec1 MeansEnd)) (and (= (tgt mec1) c) (fd mec1))) (not (exists ((mec2 MeansEnd)) (and (= (tgt mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2))))))
+;		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (fd mec1))) (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2))))))
 ;		(exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (fd dc)))
 ;		(exists ((dc DependeeLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (fd dc)))
 ;	)
@@ -1169,7 +741,7 @@
 ;Task propagation (Decomposition + Depender)
 (assert (forall ((c Task)) (=> (not (inited c)) (= (fd c) (ite
 	(or
-		(exists ((dc Decomposition)) (and (= (tgt dc) c) (fd dc)))
+		(exists ((dc Decomposition)) (and (= (tgtType dc) TASK) (= ((as tgt (Task)) dc) c) (fd dc)))
 		(exists ((dc DependerLink)) (and (= (srcType dc) TASK) (= ((as src (Task)) dc) c) (fd dc)))
 	)
 	true
@@ -1178,8 +750,8 @@
 (assert (forall ((c Task)) (=> (and (not (inited c)) (fd c))  (= (pd c) false))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)))  (= (pd c) (ite
 	(or
-		(and (exists ((dc1 Decomposition)) (and (= (tgt dc1) c) (pd dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgt dc2) c) (fd dc2)))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (fd dc3)))))
-		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (pd dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (fd dc2)))) (not (exists ((dc3 Decomposition)) (and (= (tgt dc3) c) (fd dc3)))))
+		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (pd dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (fd dc2)))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (fd dc3)))))
+		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (pd dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (fd dc2)))) (not (exists ((dc3 Decomposition)) (and (= (tgtType dc3) TASK) (= ((as tgt (Task)) dc3) c) (fd dc3)))))
 	)
 	true
 	false
@@ -1187,8 +759,8 @@
 (assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c)))  (= (co c) false))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)))  (= (co c) (ite
 	(or
-		(and (exists ((dc1 Decomposition)) (and (= (tgt dc1) c) (co dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgt dc2) c) (or (fd dc2) (pd dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3))))))
-		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (co dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgt dc3) c) (or (fd dc3) (pd dc3))))))
+		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (co dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3))))))
+		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (co dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgtType dc3) TASK) (= ((as tgt (Task)) dc3) c) (or (fd dc3) (pd dc3))))))
 	)
 	true
 	false
@@ -1196,8 +768,8 @@
 (assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c)))  (= (un c) false))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)))  (= (un c) (ite
 	(or
-		(and (exists ((dc1 Decomposition)) (and (= (tgt dc1) c) (un dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgt dc2) c) (or (fd dc2) (pd dc2) (co dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3))))))
-		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (un dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgt dc3) c) (or (fd dc3) (pd dc3) (co dc3))))))
+		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (un dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3))))))
+		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (un dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgtType dc3) TASK) (= ((as tgt (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3))))))
 	)
 	true
 	false
@@ -1205,9 +777,9 @@
 (assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c)))  (= (n c) false))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)))  (= (n c) (ite
 	(or
-		(and (not (exists ((dc1 Decomposition)) (= (tgt dc1) c))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c)))))
-		(and (exists ((dc1 Decomposition)) (and (= (tgt dc1) c) (n dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgt dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
-		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (n dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgt dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
+		(and (not (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c)))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c)))))
+		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (n dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
+		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (n dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgtType dc3) TASK) (= ((as tgt (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3))))))
 	)
 	true
 	false
@@ -1215,8 +787,8 @@
 (assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c) (n c)))  (= (ps c) false))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)))  (= (ps c) (ite
 	(or
-		(and (exists ((dc1 Decomposition)) (and (= (tgt dc1) c) (ps dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgt dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3))))))
-		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (ps dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgt dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3))))))
+		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (ps dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3))))))
+		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (ps dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgtType dc3) TASK) (= ((as tgt (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3))))))
 	)
 	true
 	false
@@ -1225,8 +797,8 @@
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c)))  (= (fs c) true))))
 ;(assert (forall ((c Task)) (=> (not (inited c))  (= (fs c) (ite
 ;	(or
-;		(and (exists ((dc1 Decomposition)) (and (= (tgt dc1) c) (fs dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgt dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3) (ps dc3))))))
-;		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (fs dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgt dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3) (ps dc3))))))
+;		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (fs dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3) (ps dc3))))))
+;		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (fs dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))) (not (exists ((dc3 Decomposition)) (and (= (tgtType dc3) TASK) (= ((as tgt (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3) (ps dc3))))))
 ;	)
 ;	true
 ;	false
@@ -1237,8 +809,8 @@
 	(or
 		(and
 			(or
-				(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (co cc1)))
-				(exists ((cc2 Contribution) (cc3 Contribution)) (and (= (tgt cc2) c) (= (tgt cc3) c) (or (fs cc2) (ps cc2)) (or (pd cc3) (fd cc3))))
+				(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (co cc1)))
+				(exists ((cc2 Contribution) (cc3 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (= (tgtType cc3) SOFTGOAL) (= ((as tgt (SoftGoal)) cc3) c) (or (fs cc2) (ps cc2)) (or (pd cc3) (fd cc3))))
 			)
 			(not (exists ((dc DependerLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (or (fd dc) (pd dc)))))
 		)
@@ -1247,8 +819,8 @@
 			(not (exists ((dc2 DependerLink)) (and (= (srcType dc2) SOFTGOAL) (= ((as src (SoftGoal)) dc2) c) (or (fd dc2) (pd dc2)))))
 			;not exists fd|pd
 			(not (and
-				(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (or (fd cc1) (pd cc1))))
-				(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
+				(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (or (fd cc1) (pd cc1))))
+				(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
 			))
 		)
 		(and
@@ -1263,9 +835,9 @@
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c))) (= (un c) (ite
 	(or
 		(and
-			(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (un cc1)))
-			(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (co cc2))))
-			(not (exists ((cc3 Contribution) (cc4 Contribution)) (and (= (tgt cc3) c) (= (tgt cc4) c) (or (fs cc3) (ps cc3)) (or (pd cc4) (fd cc4)))))
+			(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (un cc1)))
+			(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (co cc2))))
+			(not (exists ((cc3 Contribution) (cc4 Contribution)) (and (= (tgtType cc3) SOFTGOAL) (= ((as tgt (SoftGoal)) cc3) c) (= (tgtType cc4) SOFTGOAL) (= ((as tgt (SoftGoal)) cc4) c) (or (fs cc3) (ps cc3)) (or (pd cc4) (fd cc4)))))
 			(not (exists ((dc DependerLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (or (fd dc) (pd dc) (co dc)))))
 		)
 		(and
@@ -1273,11 +845,11 @@
 			(not (exists ((dc2 DependerLink)) (and (= (srcType dc2) SOFTGOAL) (= ((as src (SoftGoal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2)))))
 			;not exists fd|pd|co_
 			(not (and
-				(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (or (fd cc1) (pd cc1))))
-				(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (un cc2))))
+				(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (or (fd cc1) (pd cc1))))
+				(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (un cc2))))
 			))
 			;not exists co
-			(not (exists ((cc3 Contribution)) (and (= (tgt cc3) c) (co cc3))))
+			(not (exists ((cc3 Contribution)) (and (= (tgtType cc3) SOFTGOAL) (= ((as tgt (SoftGoal)) cc3) c) (co cc3))))
 		)
 		(and
 			(exists ((dc1 DependeeLink)) (and (= (srcType dc1) SOFTGOAL) (= ((as src (SoftGoal)) dc1) c) (un dc1)))
@@ -1291,8 +863,8 @@
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c))) (= (fd c) (ite
 	(or
 		(and
-			(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (fd cc1)))
-			(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
+			(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (fd cc1)))
+			(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
 		)
 		(exists ((dc DependerLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (fd dc)))
 		(exists ((dc DependeeLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (fd dc)))
@@ -1304,8 +876,8 @@
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c))) (= (pd c) (ite
 	(or
 		(and
-			(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (pd cc1)))
-			(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (fs cc2) (ps cc2)))))
+			(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (pd cc1)))
+			(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (or (co cc2) (un cc2) (fd cc2) (fs cc2) (ps cc2)))))
 			(not (exists ((dc DependerLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (fd dc))))
 		)
 		(and
@@ -1313,8 +885,8 @@
 			(not (exists ((dc2 DependerLink)) (and (= (srcType dc2) SOFTGOAL) (= ((as src (SoftGoal)) dc2) c) (fd dc2))))
 			;not exists fd
 			(not (and
-				(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (fd cc1)))
-				(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
+				(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (fd cc1)))
+				(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (or (co cc2) (un cc2) (fs cc2) (ps cc2)))))
 			))
 		)
 		(and
@@ -1329,24 +901,24 @@
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c))) (= (fs c) (ite
 	(or
 		(and
-			(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (fs cc1)))
-			(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2)))))
+			(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (fs cc1)))
+			(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2)))))
 			(not (exists ((dc DependerLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc) (ps dc)))))
 		)
 		(and
 			(exists ((dc1 DependerLink)) (and (= (srcType dc1) SOFTGOAL) (= ((as src (SoftGoal)) dc1) c) (fs dc1)))
 			(not (exists ((dc2 DependerLink)) (and (= (srcType dc2) SOFTGOAL) (= ((as src (SoftGoal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2)))))
 			;not exists fd|pd|co|co_|un
-			(not (exists ((cc1 Contribution)) (and (= (tgt cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
+			(not (exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
 			;not exists n
 			(not (and
-				(exists ((cc2 Contribution)) (and (= (tgt cc2) c) (n cc2)))
-				(not (exists ((cc3 Contribution)) (and (= (tgt cc3) c) (or (co cc3) (un cc3) (fd cc3) (pd cc3) (fs cc3) (ps cc3)))))
+				(exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (n cc2)))
+				(not (exists ((cc3 Contribution)) (and (= (tgtType cc3) SOFTGOAL) (= ((as tgt (SoftGoal)) cc3) c) (or (co cc3) (un cc3) (fd cc3) (pd cc3) (fs cc3) (ps cc3)))))
 			))
 			;not exists ps
 			(not (and
-				(exists ((cc4 Contribution)) (and (= (tgt cc4) c) (ps cc4)))
-				(not (exists ((cc5 Contribution)) (and (= (tgt cc5) c) (or (co cc5) (un cc5) (fd cc5) (pd cc5) (fs cc5)))))
+				(exists ((cc4 Contribution)) (and (= (tgtType cc4) SOFTGOAL) (= ((as tgt (SoftGoal)) cc4) c) (ps cc4)))
+				(not (exists ((cc5 Contribution)) (and (= (tgtType cc5) SOFTGOAL) (= ((as tgt (SoftGoal)) cc5) c) (or (co cc5) (un cc5) (fd cc5) (pd cc5) (fs cc5)))))
 			))
 		)
 		(and
@@ -1361,19 +933,19 @@
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c))) (= (ps c) (ite
 	(or
 		(and
-			(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (ps cc1)))
-			(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2) (fs cc2)))))
+			(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (ps cc1)))
+			(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2) (fs cc2)))))
 			(not (exists ((dc DependerLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc)))))
 		)
 		(and
 			(exists ((dc1 DependerLink)) (and (= (srcType dc1) SOFTGOAL) (= ((as src (SoftGoal)) dc1) c) (ps dc1)))
 			(not (exists ((dc2 DependerLink)) (and (= (srcType dc2) SOFTGOAL) (= ((as src (SoftGoal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2)))))
 			;not exists fd|pd|co|co_|un
-			(not (exists ((cc1 Contribution)) (and (= (tgt cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
+			(not (exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
 			;not exists n
 			(not (and
-				(exists ((cc2 Contribution)) (and (= (tgt cc2) c) (n cc2)))
-				(not (exists ((cc3 Contribution)) (and (= (tgt cc3) c) (or (co cc3) (un cc3) (fd cc3) (pd cc3) (fs cc3) (ps cc3)))))
+				(exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (n cc2)))
+				(not (exists ((cc3 Contribution)) (and (= (tgtType cc3) SOFTGOAL) (= ((as tgt (SoftGoal)) cc3) c) (or (co cc3) (un cc3) (fd cc3) (pd cc3) (fs cc3) (ps cc3)))))
 			))
 		)
 		(and
@@ -1389,20 +961,20 @@
 ;(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c))) (= (n c) (ite
 ;	(or
 ;		(and
-;			(not (exists ((cc Contribution)) (= (tgt cc) c)))
+;			(not (exists ((cc Contribution)) (= (tgtType cc) SOFTGOAL) (= ((as tgt (SoftGoal)) cc) c)))
 ;			(not (exists ((dc1 DependerLink)) (and (= (srcType dc1) SOFTGOAL) (= ((as src (SoftGoal)) dc1) c))))
 ;			(not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) SOFTGOAL) (= ((as src (SoftGoal)) dc2) c))))
 ;		)
 ;		(and
-;			(exists ((cc1 Contribution)) (and (= (tgt cc1) c) (n cc1)))
-;			(not (exists ((cc2 Contribution)) (and (= (tgt cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2) (fs cc2) (ps cc2)))))
+;			(exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (n cc1)))
+;			(not (exists ((cc2 Contribution)) (and (= (tgtType cc2) SOFTGOAL) (= ((as tgt (SoftGoal)) cc2) c) (or (co cc2) (un cc2) (fd cc2) (pd cc2) (fs cc2) (ps cc2)))))
 ;			(not (exists ((dc DependerLink)) (and (= (srcType dc) SOFTGOAL) (= ((as src (SoftGoal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc)))))
 ;		)
 ;		(and
 ;			(exists ((dc1 DependerLink)) (and (= (srcType dc1) SOFTGOAL) (= ((as src (SoftGoal)) dc1) c) (n dc1)))
 ;			(not (exists ((dc2 DependerLink)) (and (= (srcType dc2) SOFTGOAL) (= ((as src (SoftGoal)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2)))))
 ;			;not exists fd|pd|co|co_|un
-;			(not (exists ((cc1 Contribution)) (and (= (tgt cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
+;			(not (exists ((cc1 Contribution)) (and (= (tgtType cc1) SOFTGOAL) (= ((as tgt (SoftGoal)) cc1) c) (or (co cc1) (un cc1) (fd cc1) (pd cc1)))))
 ;		)
 ;		(and
 ;			(exists ((dc1 DependeeLink)) (and (= (srcType dc1) SOFTGOAL) (= ((as src (SoftGoal)) dc1) c) (n dc1)))
@@ -1465,10 +1037,11 @@
 [comment @main/]
 [file (modelName + '.smt2', false, 'UTF-8')]
 [createIdsFromNames(istar)/]
-[encodeConstants(istar)/]
 [encodeModel(istar)/]
-[encodeAnalysis(istar)/]
+[encodeMAVOConstraints(istar)/]
+[encodeModelIStar(istar)/]
 [encodeConstraints(istar)/]
+[encodeAnalysis(istar)/]
 [encodePropagation(istar)/]
 [/file]
 [/template]
