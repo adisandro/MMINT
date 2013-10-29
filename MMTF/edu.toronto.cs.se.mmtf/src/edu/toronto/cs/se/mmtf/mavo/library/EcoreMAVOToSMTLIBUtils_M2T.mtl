@@ -110,17 +110,17 @@
 		[/let]
 	[/for]
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
-		[let srcFeature : String = mavoElement.eClass().getEdgeSrcFeatureName()]
-		[let tgtFeature : String = mavoElement.eClass().getEdgeTgtFeatureName()]
-		[let srcEClass : EClass = mavoElement.eGet(srcFeature).eClass()]
-		[let tgtEClass : EClass = mavoElement.eGet(tgtFeature).eClass()]
+		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
+		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]
+		[let srcEclass : EClass = srcMavoElement.eClass()]
+		[let tgtEclass : EClass = tgtMavoElement.eClass()]
 (assert (forall ((c [mavoElement.eClass().name/])) (=>
 	(edge [mavoElement.formulaId/] c)
 	(and
-		(= (srcType c) [srcEClass.name.toUpperCase()/])
-		(= (tgtType c) [tgtEClass.name.toUpperCase()/])
-		(node [mavoElement.formulaId/] ((as src ([srcEClass.name/])) c))
-		(node [mavoElement.formulaId/] ((as tgt ([tgtEClass.name/])) c))
+		(= (srcType c) [srcEclass.name.toUpperCase()/])
+		(= (tgtType c) [tgtEclass.name.toUpperCase()/])
+		(node [srcMavoElement.formulaId/] ((as src ([srcEclass.name/])) c))
+		(node [tgtMavoElement.formulaId/] ((as tgt ([tgtEclass.name/])) c))
 	)
 )))
 		[/let]
