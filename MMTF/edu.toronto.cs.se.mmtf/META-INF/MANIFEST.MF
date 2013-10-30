@@ -3,11 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmtf;singleton:=true
 Bundle-Version: 1.1.1
-Bundle-ClassPath: .
+Bundle-ClassPath: lib/jna.jar,
+ .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.toronto.cs.se.mmtf,
+Export-Package: com.sun.jna,
+ edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.mmtf.mavo,
  edu.toronto.cs.se.mmtf.mavo.impl,
  edu.toronto.cs.se.mmtf.mavo.library,
@@ -27,8 +29,10 @@ Export-Package: edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.mmtf.mid.relationship.util,
  edu.toronto.cs.se.mmtf.mid.ui,
  edu.toronto.cs.se.mmtf.mid.util,
+ edu.toronto.cs.se.mmtf.reasoning,
  edu.toronto.cs.se.mmtf.repository
-Require-Bundle: org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit,
  org.eclipse.emf.edit.ui,

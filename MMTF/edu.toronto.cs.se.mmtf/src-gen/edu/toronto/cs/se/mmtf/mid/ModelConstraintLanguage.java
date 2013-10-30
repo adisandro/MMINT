@@ -49,14 +49,14 @@ public enum ModelConstraintLanguage implements Enumerator {
 	 * @ordered
 	 */
 	JAVA(1, "JAVA", "JAVA"), /**
-	 * The '<em><b>SMT</b></em>' literal object.
+	 * The '<em><b>SMTLIB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SMT_VALUE
+	 * @see #SMTLIB_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SMT(2, "SMT", "SMT");
+	SMTLIB(2, "SMTLIB", "SMTLIB");
 
 	/**
 	 * The '<em><b>OCL</b></em>' literal value.
@@ -87,18 +87,18 @@ public enum ModelConstraintLanguage implements Enumerator {
 	public static final int JAVA_VALUE = 1;
 
 	/**
-	 * The '<em><b>SMT</b></em>' literal value.
+	 * The '<em><b>SMTLIB</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The SMT language.
+	 * The SMTLIB language.
 	 * <!-- end-model-doc -->
-	 * @see #SMT
+	 * @see #SMTLIB
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SMT_VALUE = 2;
+	public static final int SMTLIB_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Model Constraint Language</b></em>' enumerators.
@@ -110,7 +110,7 @@ public enum ModelConstraintLanguage implements Enumerator {
 		new ModelConstraintLanguage[] {
 			OCL,
 			JAVA,
-			SMT,
+			SMTLIB,
 		};
 
 	/**
@@ -163,7 +163,7 @@ public enum ModelConstraintLanguage implements Enumerator {
 		switch (value) {
 			case OCL_VALUE: return OCL;
 			case JAVA_VALUE: return JAVA;
-			case SMT_VALUE: return SMT;
+			case SMTLIB_VALUE: return SMTLIB;
 		}
 		return null;
 	}

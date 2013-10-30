@@ -37,8 +37,8 @@ import org.eclipse.emf.henshin.model.Rule;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
-import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
-import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorExecutableImpl implements Z3SMTSolver {
 

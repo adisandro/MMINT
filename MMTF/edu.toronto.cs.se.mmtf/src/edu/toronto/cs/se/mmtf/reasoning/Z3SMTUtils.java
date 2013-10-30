@@ -9,9 +9,44 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.reasoning;
+package edu.toronto.cs.se.mmtf.reasoning;
 
 public class Z3SMTUtils implements Z3SMTSolver {
+
+	public enum MAVOTruthValue {
+
+		TRUE,
+		FALSE,
+		MAYBE,
+		ERROR;
+
+		public boolean toBoolean() {
+
+			switch (this) {
+				case TRUE:
+				case MAYBE:
+					return true;
+				case FALSE:
+				case ERROR:
+				default:
+					return false;
+			}
+		}
+
+		public static MAVOTruthValue toMAVOTruthValue(boolean propertyTruthValue, boolean notPropertyTruthValue) {
+
+			if (propertyTruthValue == true && notPropertyTruthValue == false) {
+				return TRUE;
+			}
+			if (propertyTruthValue == false && notPropertyTruthValue == true) {
+				return FALSE;
+			}
+			if (propertyTruthValue == true && notPropertyTruthValue == true) {
+				return MAYBE;
+			}
+			return ERROR;
+		}
+	}
 
 	public static String predicate(String predicateStart, String smtTerms) {
 

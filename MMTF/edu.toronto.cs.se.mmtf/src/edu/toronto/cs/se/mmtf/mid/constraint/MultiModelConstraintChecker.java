@@ -17,6 +17,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -46,6 +48,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
@@ -56,6 +59,12 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.reasoning.EcoreMAVOToSMTLIB;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 /**
  * The constraint checker for multimodels.
@@ -69,6 +78,7 @@ public class MultiModelConstraintChecker {
 	private final static String RELATIONSHIP_WILDCARD_FEATURE_NAME = "modelElementRelationshipWildcard";
 	private final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
 	private final static char OCL_VARIABLE_SEPARATOR = '.';
+	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
 	/**
 	 * Checks if an extendible element is a TYPES element or an INSTANCES
@@ -295,8 +305,8 @@ public class MultiModelConstraintChecker {
 				}
 				modelElemTypeEndpointUris.add(modelElemTypeEndpoint.getUri());
 			}
-		}			//TODO MMTF: need to store bundle names to properly use their class loaders
-
+		}
+		//TODO MMTF: need to store bundle names to properly use their class loaders
 
 		return modelElemTypeEndpointUris;
 	}
@@ -413,10 +423,10 @@ linkTypes:
 		return null;
 	}
 
-	private static boolean checkOCLConstraint(Model model, String oclConstraint, boolean isInstanceConstraint) {
+	private static MAVOTruthValue checkOCLConstraint(Model model, String oclConstraint, boolean isInstanceConstraint) {
 
 		if (oclConstraint.equals("")) { // empty constraint
-			return true;
+			return MAVOTruthValue.TRUE;
 		}
 
 		EObject root = null;
@@ -453,15 +463,15 @@ linkTypes:
 
 		try {
 			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
-			return ocl.check(root, expression);
+			return (ocl.check(root, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "OCL constraint error: " + oclConstraint, e);
-			return false;
+			return MAVOTruthValue.FALSE;
 		}
 	}
 
-	private static boolean checkJAVAConstraint(Model model, String modelTypeUri, String javaClassName) {
+	private static MAVOTruthValue checkJAVAConstraint(Model model, String modelTypeUri, String javaClassName) {
 
 		try {
 			JavaModelConstraint javaConstraint = (JavaModelConstraint)
@@ -473,8 +483,36 @@ linkTypes:
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "Java constraint error: " + javaClassName, e);
-			return false;
+			return MAVOTruthValue.FALSE;
 		}
+	}
+
+	private static MAVOTruthValue checkSMTLIBConstraint(Model model, String smtProperty) {
+
+		if (!MAVOUtils.isMAVOModel(model)) {
+			return MAVOTruthValue.FALSE;
+		}
+
+		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI).getExecutable();
+		EList<Model> actualParameters = new BasicEList<Model>();
+		actualParameters.add(model);
+		try {
+			ecore2smt.execute(actualParameters);
+		}
+		catch (Exception e) {
+			return MAVOTruthValue.FALSE;
+		}
+		ecore2smt.cleanup();
+
+		// tri-state logic
+		Z3IncResult z3Result = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(ecore2smt.getSMTEncoding());
+		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(smtProperty), 1, 0);
+		boolean propertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
+		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), 1, 0);
+		boolean notPropertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
+		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3Result);
+
+		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue, notPropertyTruthValue);
 	}
 
 	/**
@@ -487,14 +525,14 @@ linkTypes:
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static boolean checkConstraint(ExtendibleElement element, ModelConstraint constraint) {
+	public static MAVOTruthValue checkConstraint(ExtendibleElement element, ModelConstraint constraint) {
 
 		//TODO MMTF: support all extendible elements?
 		if (!(element instanceof Model)) {
-			return true;
+			return MAVOTruthValue.TRUE;
 		}
 		if (constraint == null || constraint.getImplementation() == null) {
-			return true;
+			return MAVOTruthValue.TRUE;
 		}
 
 		boolean isInstanceConstraint = element.getUri().equals(((Model) constraint.eContainer()).getUri());
@@ -506,11 +544,10 @@ linkTypes:
 					((Model) constraint.eContainer()).getMetatypeUri() :
 					((Model) constraint.eContainer()).getUri();
 				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
-			case SMT:
-				//TODO MMTF: implement it properly
-				return checkOCLConstraint((Model) element, constraint.getImplementation(), isInstanceConstraint);
+			case SMTLIB:
+				return checkSMTLIBConstraint((Model) element, constraint.getImplementation());
 			default:
-				return false;
+				return MAVOTruthValue.FALSE;
 		}
 	}
 

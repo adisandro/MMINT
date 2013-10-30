@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.reasoning;
+package edu.toronto.cs.se.mmtf.reasoning;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +48,7 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 
 			@Override
 			public void filePathComputed(AcceleoTextGenerationEvent event) {
+				smtEncodingUri = event.getText();
 			}
 
 			@Override
@@ -81,6 +82,7 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 		}
 	}
 
+	private String smtEncodingUri;
 	private String smtEncoding;
 
 	public String getSMTEncoding() {
@@ -102,6 +104,11 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;
+	}
+
+	public void cleanup() {
+
+		MultiModelUtils.deleteFile(smtEncodingUri);
 	}
 
 }

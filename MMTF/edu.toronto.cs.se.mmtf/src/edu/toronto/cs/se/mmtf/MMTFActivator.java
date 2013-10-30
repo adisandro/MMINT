@@ -14,6 +14,8 @@ package edu.toronto.cs.se.mmtf;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
+
 /**
  * The activator class that controls the plug-in life cycle.
  * 
@@ -40,6 +42,7 @@ public class MMTFActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		System.setProperty(Z3SMTSolver.PROPERTY_LIBRARY_PATH, Z3SMTSolver.LIBRARY_PATH);
 		@SuppressWarnings("unused")
 		MMTF mmtf = MMTF.INSTANCE;
 	}

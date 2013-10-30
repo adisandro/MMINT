@@ -19,11 +19,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -212,9 +209,7 @@ public class MultiModelOperatorUtils {
 	public static void cleanupTemporaryModel(Model model) throws Exception {
 
 		MultiModelInstanceFactory.removeModel(model);
-		IPath path = new Path(model.getUri());
-		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-		file.delete(true, null);
+		MultiModelUtils.deleteFile(MultiModelUtils.prependWorkspaceToUri(model.getUri()));
 	}
 
 }

@@ -17,6 +17,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public abstract class UMLModelConstraint extends JavaModelConstraint {
 
@@ -25,15 +26,15 @@ public abstract class UMLModelConstraint extends JavaModelConstraint {
 	protected static final String UML_COMPONENTDIAGRAM_TYPE = "PapyrusUMLComponentDiagram";
 	protected static final String UML_DEPLOYMENTDIAGRAM_TYPE = "PapyrusUMLDeploymentDiagram";
 
-	protected boolean validate(String modelTypeName) {
+	protected MAVOTruthValue validate(String modelTypeName) {
 
 		String notationFileUri = MultiModelUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
 			Diagram diagram = (Diagram) MultiModelTypeIntrospection.getRoot(notationFileUri);
-			return diagram.getType().equals(modelTypeName);
+			return (diagram.getType().equals(modelTypeName)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {
-			return false;
+			return MAVOTruthValue.FALSE;
 		}
 	}
 

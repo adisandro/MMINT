@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.uml.constraint;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public class UMLComponentDiagramModelConstraint extends UMLModelConstraint {
 
@@ -21,7 +22,7 @@ public class UMLComponentDiagramModelConstraint extends UMLModelConstraint {
 	}
 
 	@Override
-	public boolean validate() {
+	public MAVOTruthValue validate() {
 
 		return validate(UMLModelConstraint.UML_COMPONENTDIAGRAM_TYPE);
 	}

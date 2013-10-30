@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.constraint;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public abstract class JavaModelConstraint {
 
@@ -22,6 +23,6 @@ public abstract class JavaModelConstraint {
 		this.model = model;
 	}
 
-	public abstract boolean validate();
+	public abstract MAVOTruthValue validate();
 
 }

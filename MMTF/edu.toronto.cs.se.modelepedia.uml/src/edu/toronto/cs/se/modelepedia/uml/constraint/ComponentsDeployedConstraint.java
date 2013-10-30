@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public class ComponentsDeployedConstraint extends JavaModelConstraint {
 
@@ -29,7 +30,7 @@ public class ComponentsDeployedConstraint extends JavaModelConstraint {
 	}
 
 	@Override
-	public boolean validate() {
+	public MAVOTruthValue validate() {
 
 		BinaryModelRel deplRel = (BinaryModelRel) model;
 		org.eclipse.uml2.uml.Model srcUmlModel = (org.eclipse.uml2.uml.Model) MultiModelTypeIntrospection.getRoot(deplRel.getSourceModel());
@@ -39,10 +40,10 @@ public class ComponentsDeployedConstraint extends JavaModelConstraint {
 			}
 			ModelElementReference modelElemRef = MultiModelRegistry.getModelElementReference(deplRel.getModelEndpointRefs().get(0), umlModelObj);
 			if (modelElemRef == null || modelElemRef.getModelElemEndpointRefs().isEmpty()) {
-				return false;
+				return MAVOTruthValue.FALSE;
 			}
 		}
-		return true;
+		return MAVOTruthValue.TRUE;
 	}
 
 }

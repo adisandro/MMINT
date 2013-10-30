@@ -124,7 +124,7 @@ public class MidValidationProvider {
 						.createFailureStatus(modelRel, context.getName(),
 								context.getMetatype().getName());
 				status = (context.getConstraint() != null && context
-						.getConstraint().getLanguage() == ModelConstraintLanguage.SMT) ? new ConstraintStatus(
+						.getConstraint().getLanguage() == ModelConstraintLanguage.SMTLIB) ? new ConstraintStatus(
 						failureStatus.getConstraint(), context,
 						IStatus.WARNING, 200, "Maybe",
 						failureStatus.getResultLocus()) : failureStatus;

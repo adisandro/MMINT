@@ -917,7 +917,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEEnum(modelConstraintLanguageEEnum, ModelConstraintLanguage.class, "ModelConstraintLanguage");
 		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.OCL);
 		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.JAVA);
-		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.SMT);
+		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.SMTLIB);
 
 		initEEnum(modelElementCategoryEEnum, ModelElementCategory.class, "ModelElementCategory");
 		addEEnumLiteral(modelElementCategoryEEnum, ModelElementCategory.ENTITY);

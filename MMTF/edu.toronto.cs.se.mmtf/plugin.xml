@@ -279,4 +279,25 @@
       </profile>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operatorType
+            class="edu.toronto.cs.se.mmtf.reasoning.EcoreMAVOToSMTLIB"
+            isConversion="false">
+         <extendibleType
+               name="EcoreMAVOToSMTLIB"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB">
+         </extendibleType>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="mavoModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+            </parameter>
+         </input>
+         <output>
+         </output>
+      </operatorType>
+   </extension>
+
 </plugin>

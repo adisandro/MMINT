@@ -19,7 +19,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelConstraintLanguage">
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/OCL"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/JAVA"/>
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/SMT"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/SMTLIB"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelElementCategory">
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelElementCategory/ENTITY"/>

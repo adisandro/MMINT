@@ -13,12 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.henshin.interpreter,
  org.eclipse.emf.henshin.model,
  org.eclipse.emf.henshin.trace,
- org.eclipse.acceleo.engine,
  edu.toronto.cs.se.mmtf
-Bundle-ClassPath: lib/jna.jar,
- .
-Export-Package: com.sun.jna,
- edu.toronto.cs.se.modelepedia.operator.experiment,
- edu.toronto.cs.se.modelepedia.operator.patch,
- edu.toronto.cs.se.modelepedia.operator.reasoning
-Bundle-Activator: edu.toronto.cs.se.modelepedia.operator.ModelepediaOperatorActivator
+Bundle-ClassPath: .
+Export-Package: edu.toronto.cs.se.modelepedia.operator.experiment,
+ edu.toronto.cs.se.modelepedia.operator.patch

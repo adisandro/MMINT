@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
@@ -46,23 +47,23 @@ public class MAVOUtils {
 	}
 	private static final String NAME_FEATURE = "name";
 
-	public static String getMAVOElementLabel(MAVOElement NamedElement, boolean withParenthesis) {
+	public static String getMAVOElementLabel(MAVOElement mavoElement, boolean withParenthesis) {
 
 		String label = "";
-		boolean mavo = NamedElement.isMay() | NamedElement.isSet() | NamedElement.isVar();
+		boolean mavo = mavoElement.isMay() | mavoElement.isSet() | mavoElement.isVar();
 		if (mavo) {
 			label =
 				(withParenthesis ? "(" : "") +
-				(NamedElement.isMay() ? "M" : "") +
-				(NamedElement.isSet() ? "S" : "") +
-				(NamedElement.isVar() ? "V" : "") +
+				(mavoElement.isMay() ? "M" : "") +
+				(mavoElement.isSet() ? "S" : "") +
+				(mavoElement.isVar() ? "V" : "") +
 				(withParenthesis ? ")" : "");
 		}
 
 		return label;
 	}
 
-	public static void setMAVOElementLabel(MAVOElement NamedElement, String newLabel) {
+	public static void setMAVOElementLabel(MAVOElement mavoElement, String newLabel) {
 
 		boolean isMay = false, isSet = false, isVar = false;
 		for (char c : newLabel.replace(" ", "").toUpperCase().toCharArray()) {
@@ -89,9 +90,51 @@ public class MAVOUtils {
 					return;
 			}
 		}
-		NamedElement.setMay(isMay);
-		NamedElement.setSet(isSet);
-		NamedElement.setVar(isVar);
+		mavoElement.setMay(isMay);
+		mavoElement.setSet(isSet);
+		mavoElement.setVar(isVar);
+	}
+
+	public static boolean isMAVOModel(EObject rootModelObj) {
+
+		//Ecore
+		if (rootModelObj instanceof MAVOModel) {
+			return true;
+		}
+		//UML
+		if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
+			return ((org.eclipse.uml2.uml.Model) rootModelObj).getAppliedProfile(UML_MAVO_PROFILE) != null;
+		}
+
+		return false;
+	}
+
+	public static boolean isMAVOElement(EObject modelObj) {
+
+		//Ecore
+		if (modelObj instanceof MAVOElement) {
+			return true;
+		}
+		//UML
+		if (modelObj instanceof NamedElement) {
+			NamedElement umlModelObj = (NamedElement) modelObj;
+			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_MAY_STEREOTYPE);
+			if (stereotype != null) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static boolean isMAVOModel(Model model) {
+
+		return isMAVOModel(MultiModelTypeIntrospection.getRoot(model));
+	}
+
+	public static boolean isMAVOElement(ModelElement modelElem) {
+
+		return isMAVOElement(MultiModelTypeIntrospection.getPointer(modelElem));
 	}
 
 	private static void initializeMAVOModel(MAVOModel rootModelObj, Model model) {
@@ -109,13 +152,13 @@ public class MAVOUtils {
 
 	public static void initializeMAVOModel(EObject rootModelObj, Model model) {
 
-		// UML
-		if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
-			initializeMAVOModel((org.eclipse.uml2.uml.Model) rootModelObj, model);
-		}
 		// Ecore
-		else if (rootModelObj instanceof MAVOModel) {
+		if (rootModelObj instanceof MAVOModel) {
 			initializeMAVOModel((MAVOModel) rootModelObj, model);
+		}
+		// UML
+		else if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
+			initializeMAVOModel((org.eclipse.uml2.uml.Model) rootModelObj, model);
 		}
 	}
 
@@ -146,13 +189,13 @@ public class MAVOUtils {
 
 	public static void initializeMAVOModelElement(EObject modelObj, ModelElement modelElem) {
 
-		// UML
-		if (modelObj instanceof NamedElement) {
-			initializeMAVOModelElement((NamedElement) modelObj, modelElem);
-		}
 		//Ecore
-		else if (modelObj instanceof MAVOElement) {
+		if (modelObj instanceof MAVOElement) {
 			initializeMAVOModelElement((MAVOElement) modelObj, modelElem);
+		}
+		// UML
+		else if (modelObj instanceof NamedElement) {
+			initializeMAVOModelElement((NamedElement) modelObj, modelElem);
 		}
 	}
 
@@ -163,8 +206,12 @@ public class MAVOUtils {
 
 	public static void setInc(EObject rootModelObj, boolean inc) {
 
+		//Ecore
+		if (rootModelObj instanceof MAVOModel) {
+			((MAVOModel) rootModelObj).setInc(inc);
+		}
 		//UML
-		if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
+		else if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
 			org.eclipse.uml2.uml.Model umlRootModelObj = (org.eclipse.uml2.uml.Model) rootModelObj;
 			Stereotype stereotype = umlRootModelObj.getApplicableStereotype(UML_INC_STEREOTYPE);
 			if (stereotype != null) {
@@ -176,16 +223,16 @@ public class MAVOUtils {
 				}
 			}
 		}
-		//Ecore
-		else if (rootModelObj instanceof MAVOModel) {
-			((MAVOModel) rootModelObj).setInc(inc);
-		}
 	}
 
 	public static void setMay(EObject modelObj, boolean may) {
 
+		//Ecore
+		if (modelObj instanceof MAVOElement) {
+			((MAVOElement) modelObj).setMay(may);
+		}
 		//UML
-		if (modelObj instanceof NamedElement) {
+		else if (modelObj instanceof NamedElement) {
 			NamedElement umlModelObj = (NamedElement) modelObj;
 			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_MAY_STEREOTYPE);
 			if (stereotype != null) {
@@ -197,16 +244,16 @@ public class MAVOUtils {
 				}
 			}
 		}
-		//Ecore
-		else if (modelObj instanceof MAVOElement) {
-			((MAVOElement) modelObj).setMay(may);
-		}
 	}
 
 	public static void setSet(EObject modelObj, boolean set) {
 
+		//Ecore
+		if (modelObj instanceof MAVOElement) {
+			((MAVOElement) modelObj).setSet(set);
+		}
 		//UML
-		if (modelObj instanceof NamedElement) {
+		else if (modelObj instanceof NamedElement) {
 			NamedElement umlModelObj = (NamedElement) modelObj;
 			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_SET_STEREOTYPE);
 			if (stereotype != null) {
@@ -218,16 +265,16 @@ public class MAVOUtils {
 				}
 			}
 		}
-		//Ecore
-		else if (modelObj instanceof MAVOElement) {
-			((MAVOElement) modelObj).setSet(set);
-		}
 	}
 
 	public static void setVar(EObject modelObj, boolean var) {
 
+		//Ecore
+		if (modelObj instanceof MAVOElement) {
+			((MAVOElement) modelObj).setVar(var);
+		}
 		//UML
-		if (modelObj instanceof NamedElement) {
+		else if (modelObj instanceof NamedElement) {
 			NamedElement umlModelObj = (NamedElement) modelObj;
 			Stereotype stereotype = umlModelObj.getApplicableStereotype(UML_VAR_STEREOTYPE);
 			if (stereotype != null) {
@@ -238,10 +285,6 @@ public class MAVOUtils {
 					umlModelObj.unapplyStereotype(stereotype);
 				}
 			}
-		}
-		//Ecore
-		else if (modelObj instanceof MAVOElement) {
-			((MAVOElement) modelObj).setVar(var);
 		}
 	}
 

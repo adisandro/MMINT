@@ -17,9 +17,11 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import org.eclipse.core.resources.ResourcesPlugin;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
 
 public class MultiModelUtils {
 
@@ -95,6 +97,17 @@ public class MultiModelUtils {
 					newBuffer.newLine();
 				}
 			}
+		}
+	}
+
+	public static void deleteFile(String fileUri) {
+
+		Path filePath = Paths.get(fileUri);
+		try {
+			Files.deleteIfExists(filePath);
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "File " + fileUri +" not deleted", e);
 		}
 	}
 

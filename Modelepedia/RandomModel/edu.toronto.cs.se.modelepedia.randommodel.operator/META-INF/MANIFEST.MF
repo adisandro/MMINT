@@ -7,7 +7,6 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.acceleo.engine,
  edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.modelepedia.operator,
  edu.toronto.cs.se.modelepedia.randommodel
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy

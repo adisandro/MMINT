@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.reasoning;
+package edu.toronto.cs.se.mmtf.reasoning;
 
 import java.util.ArrayList;
 import java.util.List;

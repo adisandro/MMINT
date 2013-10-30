@@ -77,12 +77,12 @@ public class MultiModelTypeIntrospection {
 				return false;
 			}
 			// constraint validation
-			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
+			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint()).toBoolean();
 			if (!validates) {
 				return false;
 			}
 			if (validateInstance && ((Model) element).getConstraint() != null) {
-				validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) element).getConstraint());
+				validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) element).getConstraint()).toBoolean();
 			}
 		}
 

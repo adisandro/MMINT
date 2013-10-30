@@ -275,9 +275,9 @@
         <details key="documentation" value="The JAVA language."/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SMT" value="2" literal="SMT">
+    <eLiterals name="SMTLIB" value="2" literal="SMTLIB">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The SMT language."/>
+        <details key="documentation" value="The SMTLIB language."/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>

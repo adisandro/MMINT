@@ -29,7 +29,6 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="edu.toronto.cs.se.mmtf"/>
       <import plugin="edu.toronto.cs.se.mmtf.edit"/>
       <import plugin="org.eclipse.acceleo.engine"/>
-      <import plugin="edu.toronto.cs.se.modelepedia.operator"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.ui.views"/>

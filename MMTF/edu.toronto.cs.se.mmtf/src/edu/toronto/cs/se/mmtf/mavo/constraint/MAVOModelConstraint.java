@@ -11,13 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mavo.constraint;
 
-import org.eclipse.emf.ecore.EObject;
-
-import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public class MAVOModelConstraint extends JavaModelConstraint {
 
@@ -27,19 +24,12 @@ public class MAVOModelConstraint extends JavaModelConstraint {
 	}
 
 	@Override
-	public boolean validate() {
+	public MAVOTruthValue validate() {
 
-		EObject rootModelObj = MultiModelTypeIntrospection.getRoot(model);
-		if (
-			rootModelObj instanceof MAVOModel || (
-				rootModelObj instanceof org.eclipse.uml2.uml.Model &&
-				((org.eclipse.uml2.uml.Model) rootModelObj).getAppliedProfile(MAVOUtils.UML_MAVO_PROFILE) != null
-			)
-		) {
-			return true;
+		if (MAVOUtils.isMAVOModel(model)) {
+			return MAVOTruthValue.TRUE;
 		}
-
-		return false;
+		return MAVOTruthValue.FALSE;
 	}
 
 }
