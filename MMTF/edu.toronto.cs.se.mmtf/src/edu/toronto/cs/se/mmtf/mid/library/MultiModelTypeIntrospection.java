@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 /**
  * The type introspection engine for multimodels.
@@ -44,17 +45,18 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  */
 public class MultiModelTypeIntrospection {
 
-	public static <T extends ExtendibleElement> boolean validateType(T element, T elementType, boolean validateInstance) {
+	public static <T extends ExtendibleElement> MAVOTruthValue validateType(T element, T elementType, boolean validateInstance) {
 
 		//TODO MMTF: figure out how to have multiple functions that validate
-		boolean validates = false;
+		boolean validates;
+		MAVOTruthValue mavoValidates;
 
 		//TODO MMTF: other extendible elements
 
 		if (element instanceof ModelRel) {
 			validates = MultiModelConstraintChecker.areAllowedModelEndpoints((ModelRel) element, (ModelRel) elementType);
 			if (!validates) {
-				return false;
+				return MAVOTruthValue.FALSE;
 			}
 			for (Link link : ((ModelRel) element).getLinks()) {
 				validates = false;
@@ -65,32 +67,35 @@ public class MultiModelTypeIntrospection {
 					}
 				}
 				if (!validates) {
-					return false;
+					return MAVOTruthValue.FALSE;
 				}
 			}
 			//TODO MMTF: do additional structure checks
 		}
 
+		// model rels go here too
 		if (element instanceof Model) {
 			boolean isModelRel = element instanceof ModelRel;
 			if (!isModelRel && elementType instanceof ModelRel) { // checking against root model rel
-				return false;
+				return MAVOTruthValue.FALSE;
 			}
 			// constraint validation
-			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint()).toBoolean();
-			if (!validates) {
-				return false;
+			mavoValidates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
+			if (!mavoValidates.toBoolean()) {
+				return MAVOTruthValue.FALSE;
 			}
 			if (validateInstance && ((Model) element).getConstraint() != null) {
-				validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) element).getConstraint()).toBoolean();
+				mavoValidates = MultiModelConstraintChecker.checkConstraint(element, ((Model) element).getConstraint());
 			}
+			return mavoValidates;
 		}
 
 		if (element instanceof Link) {
 			validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences((Link) element, (Link) elementType);
+			return MAVOTruthValue.toMAVOTruthValue(validates);
 		}
 
-		return validates;
+		return MAVOTruthValue.FALSE;
 	}
 
 	private static <T extends ExtendibleElement> List<T> filterSubtypes(T element, T elementType, List<T> elementSubtypes) {
@@ -154,7 +159,7 @@ public class MultiModelTypeIntrospection {
 		}
 		else {
 			// third stop condition: validation
-			if (!validateType(element, elementType, false)) {
+			if (!validateType(element, elementType, false).toBoolean()) {
 				return;
 			}
 			elementTypes.add(elementType);

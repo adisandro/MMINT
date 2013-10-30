@@ -22,12 +22,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 /**
  * @generated
@@ -112,22 +112,17 @@ public class MidValidationProvider {
 		 */
 		public IStatus validate(IValidationContext ctx) {
 			Model context = (Model) ctx.getTarget();
-			boolean success = MultiModelTypeIntrospection.validateType(context,
-					context.getMetatype(), true);
-			String modelRel = (context instanceof ModelRel) ? " relationship"
-					: "";
+			MAVOTruthValue validates = MultiModelTypeIntrospection.validateType(context, context.getMetatype(), true);
+			String modelRel = (context instanceof ModelRel) ? " relationship" : "";
 			IStatus status;
-			if (success) {
+			if (validates == MAVOTruthValue.TRUE) {
 				status = ctx.createSuccessStatus();
-			} else {
-				ConstraintStatus failureStatus = (ConstraintStatus) ctx
-						.createFailureStatus(modelRel, context.getName(),
-								context.getMetatype().getName());
-				status = (context.getConstraint() != null && context
-						.getConstraint().getLanguage() == ModelConstraintLanguage.SMTLIB) ? new ConstraintStatus(
-						failureStatus.getConstraint(), context,
-						IStatus.WARNING, 200, "Maybe",
-						failureStatus.getResultLocus()) : failureStatus;
+			}
+			else {
+				ConstraintStatus failureStatus = (ConstraintStatus) ctx.createFailureStatus(modelRel, context.getName(), context.getMetatype().getName());
+				status = (validates == MAVOTruthValue.MAYBE) ?
+					new ConstraintStatus(failureStatus.getConstraint(), context, IStatus.WARNING, 200, "Maybe", failureStatus.getResultLocus()) :
+					failureStatus;
 			}
 			return status;
 		}

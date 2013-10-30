@@ -15,10 +15,7 @@ public class Z3SMTUtils implements Z3SMTSolver {
 
 	public enum MAVOTruthValue {
 
-		TRUE,
-		FALSE,
-		MAYBE,
-		ERROR;
+		TRUE, FALSE, MAYBE, ERROR;
 
 		public boolean toBoolean() {
 
@@ -31,6 +28,11 @@ public class Z3SMTUtils implements Z3SMTSolver {
 				default:
 					return false;
 			}
+		}
+
+		public static MAVOTruthValue toMAVOTruthValue(boolean truthValue) {
+
+			return (truthValue) ? TRUE : FALSE;
 		}
 
 		public static MAVOTruthValue toMAVOTruthValue(boolean propertyTruthValue, boolean notPropertyTruthValue) {
