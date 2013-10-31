@@ -634,12 +634,6 @@
 	)
 )))
 
-;Only one analysis label
-(assert (forall ((c Task)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
-(assert (forall ((c Goal)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
-(assert (forall ((c SoftGoal)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
-(assert (forall ((c Resource)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
-
 ;Initial lables
 	[let intentionEclass : EClass = istar.eClass().ePackage.eAllContents(EClass)->any(name = 'Intention')]
 	[for (intention : Intention | istar.getObjectsOfKind(intentionEclass)->collect(oclAsType(Intention)))]
@@ -675,7 +669,7 @@
 	true
 	false
 )))))
-(assert	(forall ((c Goal)) (=> (and (not (inited c)) (fs c)) (= (ps c) false))))
+(assert	(forall ((c Goal)) (=> (and (not (inited c)) (fs c)) (and (not (ps c)) (not (n c)) (not (un c)) (not (co c)) (not (pd c)) (not (fd c))))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c))) (= (ps c) (ite
 	(or
 		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (ps mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (fs mec2)))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc) (un dc) (n dc)))))))
@@ -685,7 +679,7 @@
 	true
 	false
 )))))
-(assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c))) (= (n c) false))))
+(assert	(forall ((c Goal)) (=> (and (not (inited c)) (ps c)) (and (not (fs c)) (not (n c)) (not (un c)) (not (co c)) (not (pd c)) (not (fd c))))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c))) (= (n c) (ite
 	(or
 		(and (not (exists ((mec MeansEnd)) (and (= (tgtType mec) GOAL) (= ((as tgt (Goal)) mec) c)))) (not (exists ((dc1 DependerLink)) (and (= (srcType dc1) GOAL) (= ((as src (Goal)) dc1) c)))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) GOAL) (= ((as src (Goal)) dc2) c)))))
@@ -696,7 +690,7 @@
 	true
 	false
 )))))
-(assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c) (n c))) (= (un c) false))))
+(assert	(forall ((c Goal)) (=> (and (not (inited c)) (n c)) (and (not (fs c)) (not (ps c)) (not (un c)) (not (co c)) (not (pd c)) (not (fd c))))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c))) (= (un c) (ite
 	(or
 		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (un mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc) (co dc)))))))
@@ -706,7 +700,7 @@
 	true
 	false
 )))))
-(assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c) (n c) (un c))) (= (co c) false))))
+(assert	(forall ((c Goal)) (=> (and (not (inited c)) (un c)) (and (not (fs c)) (not (ps c)) (not (n c)) (not (co c)) (not (pd c)) (not (fd c))))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c)) (not (un c))) (= (co c) (ite
 	(or
 		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (co mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2) (un mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (or (fd dc) (pd dc)))))))
@@ -716,7 +710,7 @@
 	true
 	false
 )))))
-(assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c) (n c) (un c) (co c))) (= (pd c) false))))
+(assert	(forall ((c Goal)) (=> (and (not (inited c)) (co c)) (and (not (fs c)) (not (ps c)) (not (n c)) (not (un c)) (not (pd c)) (not (fd c))))))
 (assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c)) (not (un c)) (not (co c))) (= (pd c) (ite
 	(or
 		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (pd mec1))) (and (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2))))) (not (exists ((dc DependerLink)) (and (= (srcType dc) GOAL) (= ((as src (Goal)) dc) c) (fd dc))))))
@@ -726,8 +720,8 @@
 	true
 	false
 )))))
-(assert	(forall ((c Goal)) (=> (and (not (inited c)) (or (fs c) (ps c) (n c) (un c) (co c) (pd c))) (= (fd c) false))))
-(assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c)) (not (un c)) (not (co c)) (not (pd c))) (= (fd c) true))))
+(assert	(forall ((c Goal)) (=> (and (not (inited c)) (pd c)) (and (not (fs c)) (not (ps c)) (not (n c)) (not (un c)) (not (co c)) (not (fd c))))))
+(assert	(forall ((c Goal)) (=> (and (not (inited c)) (not (fs c)) (not (ps c)) (not (n c)) (not (un c)) (not (co c)) (not (pd c))) (fd c))))
 ;(assert	(forall ((c Goal)) (=> (not (inited c)) (= (fd c) (ite
 ;	(or
 ;		(and (exists ((mec1 MeansEnd)) (and (= (tgtType mec1) GOAL) (= ((as tgt (Goal)) mec1) c) (fd mec1))) (not (exists ((mec2 MeansEnd)) (and (= (tgtType mec2) GOAL) (= ((as tgt (Goal)) mec2) c) (or (fs mec2) (ps mec2) (un mec2) (co mec2) (pd mec2))))))
@@ -747,8 +741,8 @@
 	true
 	false
 )))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (fd c))  (= (pd c) false))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)))  (= (pd c) (ite
+(assert	(forall ((c Task)) (=> (and (not (inited c)) (fd c)) (and (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c)) (not (fs c))))))
+(assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c))) (= (pd c) (ite
 	(or
 		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (pd dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (fd dc2)))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (fd dc3)))))
 		(and (exists ((dc1 DependerLink)) (and (= (srcType dc1) TASK) (= ((as src (Task)) dc1) c) (pd dc1))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c) (fd dc2)))) (not (exists ((dc3 Decomposition)) (and (= (tgtType dc3) TASK) (= ((as tgt (Task)) dc3) c) (fd dc3)))))
@@ -756,7 +750,7 @@
 	true
 	false
 )))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c)))  (= (co c) false))))
+(assert	(forall ((c Task)) (=> (and (not (inited c)) (pd c)) (and (not (fd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)))  (= (co c) (ite
 	(or
 		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (co dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3))))))
@@ -765,7 +759,7 @@
 	true
 	false
 )))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c)))  (= (un c) false))))
+(assert	(forall ((c Task)) (=> (and (not (inited c)) (co c)) (and (not (fd c)) (not (pd c)) (not (un c)) (not (n c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)))  (= (un c) (ite
 	(or
 		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (un dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3))))))
@@ -774,7 +768,7 @@
 	true
 	false
 )))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c)))  (= (n c) false))))
+(assert	(forall ((c Task)) (=> (and (not (inited c)) (un c)) (and (not (fd c)) (not (pd c)) (not (co c)) (not (n c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)))  (= (n c) (ite
 	(or
 		(and (not (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c)))) (not (exists ((dc2 DependerLink)) (and (= (srcType dc2) TASK) (= ((as src (Task)) dc2) c)))))
@@ -784,7 +778,7 @@
 	true
 	false
 )))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c) (n c)))  (= (ps c) false))))
+(assert	(forall ((c Task)) (=> (and (not (inited c)) (n c)) (and (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)))  (= (ps c) (ite
 	(or
 		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (ps dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3))))))
@@ -793,8 +787,8 @@
 	true
 	false
 )))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c) (n c) (ps c)))  (= (fs c) false))))
-(assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c)))  (= (fs c) true))))
+(assert	(forall ((c Task)) (=> (and (not (inited c)) (ps c)) (and (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (fs c))))))
+(assert (forall ((c Task)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c))) (fs c))))
 ;(assert (forall ((c Task)) (=> (not (inited c))  (= (fs c) (ite
 ;	(or
 ;		(and (exists ((dc1 Decomposition)) (and (= (tgtType dc1) TASK) (= ((as tgt (Task)) dc1) c) (fs dc1))) (not (exists ((dc2 Decomposition)) (and (= (tgtType dc2) TASK) (= ((as tgt (Task)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))) (not (exists ((dc3 DependerLink)) (and (= (srcType dc3) TASK) (= ((as src (Task)) dc3) c) (or (fd dc3) (pd dc3) (co dc3) (un dc3) (n dc3) (ps dc3))))))
@@ -831,7 +825,7 @@
 	true
 	false
 )))))
-(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (co c)) (= (un c) false))))
+(assert	(forall ((c SoftGoal)) (=> (and (not (inited c)) (co c)) (and (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c)) (not (n c))))))
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c))) (= (un c) (ite
 	(or
 		(and
@@ -859,7 +853,7 @@
 	true
 	false
 )))))
-(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (or (co c) (un c))) (= (fd c) false))))
+(assert	(forall ((c SoftGoal)) (=> (and (not (inited c)) (un c)) (and (not (co c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c)) (not (n c))))))
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c))) (= (fd c) (ite
 	(or
 		(and
@@ -872,7 +866,7 @@
 	true
 	false
 )))))
-(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (or (co c) (un c) (fd c))) (= (pd c) false))))
+(assert	(forall ((c SoftGoal)) (=> (and (not (inited c)) (fd c)) (and (not (co c)) (not (un c)) (not (pd c)) (not (fs c)) (not (ps c)) (not (n c))))))
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c))) (= (pd c) (ite
 	(or
 		(and
@@ -897,7 +891,7 @@
 	true
 	false
 )))))
-(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (or (co c) (un c) (fd c) (pd c))) (= (fs c) false))))
+(assert	(forall ((c SoftGoal)) (=> (and (not (inited c)) (pd c)) (and (not (co c)) (not (un c)) (not (fd c)) (not (fs c)) (not (ps c)) (not (n c))))))
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c))) (= (fs c) (ite
 	(or
 		(and
@@ -929,7 +923,7 @@
 	true
 	false
 )))))
-(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (or (co c) (un c) (fd c) (pd c) (fs c))) (= (ps c) false))))
+(assert	(forall ((c SoftGoal)) (=> (and (not (inited c)) (fs c)) (and (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (ps c)) (not (n c))))))
 (assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c))) (= (ps c) (ite
 	(or
 		(and
@@ -956,8 +950,8 @@
 	true
 	false
 )))))
-(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (or (co c) (un c) (fd c) (pd c) (fs c) (ps c))) (= (n c) false))))
-(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c))) (= (n c) true))))
+(assert	(forall ((c SoftGoal)) (=> (and (not (inited c)) (ps c)) (and (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (n c))))))
+(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c))) (n c))))
 ;(assert (forall ((c SoftGoal)) (=> (and (not (inited c)) (not (co c)) (not (un c)) (not (fd c)) (not (pd c)) (not (fs c)) (not (ps c))) (= (n c) (ite
 ;	(or
 ;		(and
@@ -991,25 +985,25 @@
 	true
 	false
 )))))
-(assert (forall ((c Resource)) (=> (and (not (inited c)) (fd c))  (= (pd c) false))))
+(assert	(forall ((c Resource)) (=> (and (not (inited c)) (fd c)) (and (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Resource)) (=> (and (not (inited c)) (not (fd c)))  (= (pd c) (ite
 	(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) RESOURCE) (= ((as src (Resource)) dc1) c) (pd dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) RESOURCE) (= ((as src (Resource)) dc2) c) (fd dc2)))))
 	true
 	false
 )))))
-(assert (forall ((c Resource)) (=> (and (not (inited c)) (or (fd c) (pd c)))  (= (co c) false))))
+(assert	(forall ((c Resource)) (=> (and (not (inited c)) (pd c)) (and (not (fd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Resource)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)))  (= (co c) (ite
 	(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) RESOURCE) (= ((as src (Resource)) dc1) c) (co dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) RESOURCE) (= ((as src (Resource)) dc2) c) (or (fd dc2) (pd dc2))))))
 	true
 	false
 )))))
-(assert (forall ((c Resource)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c)))  (= (un c) false))))
+(assert	(forall ((c Resource)) (=> (and (not (inited c)) (co c)) (and (not (fd c)) (not (pd c)) (not (un c)) (not (n c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Resource)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)))  (= (un c) (ite
 	(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) RESOURCE) (= ((as src (Resource)) dc1) c) (un dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) RESOURCE) (= ((as src (Resource)) dc2) c) (or (fd dc2) (pd dc2) (co dc2))))))
 	true
 	false
 )))))
-(assert (forall ((c Resource)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c)))  (= (n c) false))))
+(assert	(forall ((c Resource)) (=> (and (not (inited c)) (un c)) (and (not (fd c)) (not (pd c)) (not (co c)) (not (n c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Resource)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)))  (= (n c) (ite
 	(or
 		(not (exists ((dc DependeeLink)) (and (= (srcType dc) RESOURCE) (= ((as src (Resource)) dc) c))))
@@ -1018,14 +1012,14 @@
 	true
 	false
 )))))
-(assert (forall ((c Resource)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c) (n c)))  (= (ps c) false))))
+(assert	(forall ((c Resource)) (=> (and (not (inited c)) (n c)) (and (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (ps c)) (not (fs c))))))
 (assert (forall ((c Resource)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)))  (= (ps c) (ite
 	(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) RESOURCE) (= ((as src (Resource)) dc1) c) (ps dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) RESOURCE) (= ((as src (Resource)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2))))))
 	true
 	false
 )))))
-(assert (forall ((c Resource)) (=> (and (not (inited c)) (or (fd c) (pd c) (co c) (un c) (n c) (ps c)))  (= (fs c) false))))
-(assert (forall ((c Resource)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c)))  (= (fs c) true))))
+(assert	(forall ((c Resource)) (=> (and (not (inited c)) (ps c)) (and (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (fs c))))))
+(assert (forall ((c Resource)) (=> (and (not (inited c)) (not (fd c)) (not (pd c)) (not (co c)) (not (un c)) (not (n c)) (not (ps c))) (fs c))))
 ;(assert (forall ((c Resource)) (=> (not (inited c))  (= (fs c) (ite
 ;	(and (exists ((dc1 DependeeLink)) (and (= (srcType dc1) RESOURCE) (= ((as src (Resource)) dc1) c) (fs dc1))) (not (exists ((dc2 DependeeLink)) (and (= (srcType dc2) RESOURCE) (= ((as src (Resource)) dc2) c) (or (fd dc2) (pd dc2) (co dc2) (un dc2) (n dc2) (ps dc2))))))
 ;	true
