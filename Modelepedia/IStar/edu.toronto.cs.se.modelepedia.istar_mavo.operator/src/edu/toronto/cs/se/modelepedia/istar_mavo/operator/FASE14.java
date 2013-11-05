@@ -75,7 +75,7 @@ public class FASE14 extends RE13 {
 		properties.setProperty(PROPERTY_OUT_TIMERNF, String.valueOf(timeRNF));
 	}
 
-	//TODO MMTF: unify/refactor these functions when 1) simplifying the i* metamodel 2) preparing a generic smtlib encoder
+	//TODO MMTF: unify/refactor these functions when simplifying the i* metamodel
 	private String encodeMAVConstraintFunction(MAVOElement mavoModelObj) {
 
 		return (mavoModelObj instanceof DependencyEndpoint) ?
@@ -182,7 +182,19 @@ public class FASE14 extends RE13 {
 				
 			}
 			if (modelObj instanceof Intention) {
-				intentions.put(((Intention) modelObj).getFormulaId(), (Intention) modelObj);
+				Intention intention = (Intention) modelObj;
+				intentions.put(intention.getFormulaId(), intention);
+				if (
+					intention.isFullySatisfied() ||
+					intention.isPartiallySatisfied() ||
+					intention.isUnknown() ||
+					intention.isConflict() ||
+					intention.isPartiallyDenied() ||
+					intention.isFullyDenied() ||
+					intention.isNoLabel()
+				) {
+					intentionLeafs.add(intention);
+				}
 			}
 			if (
 				modelObj instanceof MAVOElement && (

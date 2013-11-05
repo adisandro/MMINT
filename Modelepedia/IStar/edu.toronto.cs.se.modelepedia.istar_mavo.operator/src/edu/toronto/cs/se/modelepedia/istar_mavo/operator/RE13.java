@@ -12,8 +12,10 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -26,6 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -72,6 +75,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	protected IStar istar;
 	protected Map<String, Intention> intentions;
+	protected Set<Intention> intentionLeafs;
 	private String smtEncoding;
 	protected Z3IncResult z3IncResult;
 
@@ -98,6 +102,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	protected void init() {
 
 		intentions = new HashMap<String, Intention>();
+		intentionLeafs = new HashSet<Intention>();
 		IStarMAVOToSMTLIB previousOperator = (previousExecutable == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(IStarMAVOToSMTLIB) previousExecutable;
@@ -127,6 +132,26 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 	}
 
+	protected void optimizeAnalysisElements(String z3Model) {
+
+		final Set<String> universes = new HashSet<String>();
+		universes.add("Task");
+		universes.add("Goal");
+		universes.add("SoftGoal");
+		universes.add("Resource");
+
+		String searchString;
+		for (SMTLIBLabel label : SMTLIBLabel.values()) {
+			searchString = "(define-fun " + label.name() + " ((x!1 ";
+			z3Model.indexOf(searchString);
+			// see if type is among universes
+			// foreach line until function end
+			// if truth value, activate proper flag (allTrue, allFalse, elseTrue, elseFalse)
+			// else if function name, look for it and loop
+			// else get element name and truth value for it
+		}
+	}
+
 	protected void doAnalysis() {
 
 		long startTime = System.nanoTime();
@@ -138,28 +163,32 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		String intentionProperty, labelProperty;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
+			if (intentionLeafs.contains(intention)) { // skip leafs
+				continue;
+			}
 			intentionProperty = SMTLIB_ASSERT;
 			if (intention.isMay()) {
 				intentionProperty +=
 					SMTLIB_AND +
-					SMTLIB_EXISTS +
-					SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-					SMTLIB_CONCRETIZATION + intention.eClass().getName() +
-					SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
-					SMTLIB_NODEFUNCTION + entry.getKey() + SMTLIB_CONCRETIZATION + SMTLIB_PREDICATE_END +
-					SMTLIB_PREDICATE_END
+					Z3SMTUtils.exists(
+						Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()),
+						Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, entry.getKey() + SMTLIB_CONCRETIZATION)
+					)
 				;
 			}
 			intentionProperty +=
 				SMTLIB_FORALL +
-				SMTLIB_PREDICATE_START + SMTLIB_PREDICATE_START +
-				SMTLIB_CONCRETIZATION + intention.eClass().getName() +
-				SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END +
+				SMTLIB_PREDICATE_START +
+				Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()) +
+				SMTLIB_PREDICATE_END +
 				SMTLIB_IMPLICATION +
-				SMTLIB_NODEFUNCTION + entry.getKey() + SMTLIB_CONCRETIZATION + SMTLIB_PREDICATE_END
+				Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, entry.getKey() + SMTLIB_CONCRETIZATION)
 			;
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
-				labelProperty = intentionProperty + SMTLIB_PREDICATE_START + label.name() + SMTLIB_CONCRETIZATION + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
+				if ((boolean) intention.eGet(label.getModelFeature())) { // skip already checked
+					continue;
+				}
+				labelProperty = intentionProperty + Z3SMTUtils.predicate(SMTLIB_PREDICATE_START + label.name(), SMTLIB_CONCRETIZATION) + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
 				if (intention.isMay()) {
 					labelProperty += SMTLIB_PREDICATE_END;
 				}
@@ -195,6 +224,19 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 		for (Intention intention : istar.getDependums()) {
 			intentions.put(intention.getName().replace(" ", ""), intention);
+		}
+		for (Intention intention : intentions.values()) {
+			if (
+				intention.isFullySatisfied() ||
+				intention.isPartiallySatisfied() ||
+				intention.isUnknown() ||
+				intention.isConflict() ||
+				intention.isPartiallyDenied() ||
+				intention.isFullyDenied() ||
+				intention.isNoLabel()
+			) {
+				intentionLeafs.add(intention);
+			}
 		}
 	}
 
