@@ -132,23 +132,36 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 	}
 
-	protected void optimizeAnalysisElements(String z3Model) {
+	protected void optimizeAnalysisElements() {
 
-		final Set<String> universes = new HashSet<String>();
-		universes.add("Task");
-		universes.add("Goal");
-		universes.add("SoftGoal");
-		universes.add("Resource");
+		final Set<String> nodeTypes = new HashSet<String>();
+		nodeTypes.add("Task");
+		nodeTypes.add("Goal");
+		nodeTypes.add("SoftGoal");
+		nodeTypes.add("Resource");
 
+		String z3Model = z3IncResult.model.getString(0);
 		String searchString;
+		int a = 0;
 		for (SMTLIBLabel label : SMTLIBLabel.values()) {
-			searchString = "(define-fun " + label.name() + " ((x!1 ";
-			z3Model.indexOf(searchString);
-			// see if type is among universes
-			// foreach line until function end
-			// if truth value, activate proper flag (allTrue, allFalse, elseTrue, elseFalse)
-			// else if function name, look for it and loop
-			// else get element name and truth value for it
+			searchString = label.name() + " -> {\n";
+			while (true) {
+				a = z3Model.indexOf(searchString, a);
+				if (a == -1) {
+					break;
+				}
+				a += searchString.length();
+				int b = z3Model.indexOf(")) Bool");
+				String nodeType = z3Model.substring(a, b);
+				if (!nodeTypes.contains(nodeType)) {
+					continue;
+				}
+				// see if type is among universes
+				// foreach line until function end
+				// if truth value, activate proper flag (allTrue, allFalse, elseTrue, elseFalse)
+				// else if function name, look for it and loop
+				// else get element name and truth value for it
+			}
 		}
 	}
 
@@ -196,6 +209,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, labelProperty, 1, 0);
 				if (z3IncResult.flag == Z3_SAT) {
 					intention.eSet(label.getModelFeature(), true);
+					optimizeAnalysisElements();
 				}
 			}
 		}
