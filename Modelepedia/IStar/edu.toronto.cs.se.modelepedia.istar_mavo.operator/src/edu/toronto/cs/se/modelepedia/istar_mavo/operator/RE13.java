@@ -77,6 +77,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	protected Map<String, Intention> intentions;
 	protected Set<Intention> intentionLeafs;
 	private String smtEncoding;
+	private Map<Integer, String> smtNodes;
 	protected Z3IncResult z3IncResult;
 
 	private long timeModel;
@@ -106,7 +107,8 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		IStarMAVOToSMTLIB previousOperator = (previousExecutable == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(IStarMAVOToSMTLIB) previousExecutable;
-		smtEncoding = previousOperator.getSMTEncoding();
+		smtEncoding = previousOperator.getListener().getSMTEncoding();
+		smtNodes = previousOperator.getListener().getSMTNodes();
 		initOutput();
 	}
 
@@ -132,13 +134,18 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 	}
 
-	protected void optimizeAnalysisElements() {
+	private void innerCycle(String z3Model, int index) {
 
 		final Set<String> nodeTypes = new HashSet<String>();
 		nodeTypes.add("Task");
 		nodeTypes.add("Goal");
 		nodeTypes.add("SoftGoal");
 		nodeTypes.add("Resource");
+
+		
+	}
+
+	private void optimizeAnalysisElements() {
 
 		String z3Model = z3IncResult.model.getString(0);
 		String searchString;
@@ -150,17 +157,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				if (a == -1) {
 					break;
 				}
-				a += searchString.length();
-				int b = z3Model.indexOf(")) Bool");
-				String nodeType = z3Model.substring(a, b);
-				if (!nodeTypes.contains(nodeType)) {
-					continue;
-				}
-				// see if type is among universes
-				// foreach line until function end
-				// if truth value, activate proper flag (allTrue, allFalse, elseTrue, elseFalse)
-				// else if function name, look for it and loop
-				// else get element name and truth value for it
+				innerCycle(z3Model, a);
 			}
 		}
 	}

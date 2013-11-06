@@ -104,11 +104,12 @@
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
-(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/])
+(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/])[if (function = 'node')];Node[/if]
 (assert (= [mavoElement.formulaId/] [numTypes+i/]))
 		[/let]
 		[/let]
 	[/for]
+;End Nodes
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
 		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
 		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]

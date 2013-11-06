@@ -505,7 +505,7 @@ linkTypes:
 		ecore2smt.cleanup();
 
 		// tri-state logic
-		Z3IncResult z3Result = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(ecore2smt.getSMTEncoding());
+		Z3IncResult z3Result = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(ecore2smt.getListener().getSMTEncoding());
 		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(smtProperty), 1, 0);
 		boolean propertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
 		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), 1, 0);

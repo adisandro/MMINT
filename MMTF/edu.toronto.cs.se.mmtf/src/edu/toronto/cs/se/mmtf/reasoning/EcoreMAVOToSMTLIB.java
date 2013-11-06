@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
-import org.eclipse.acceleo.engine.event.AcceleoTextGenerationEvent;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIBListener;
 import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIB_M2T;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
@@ -33,40 +33,6 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 
 	public class EcoreMAVOToSMTLIBWithListeners_M2T extends EcoreMAVOToSMTLIB_M2T {
 
-		public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener {
-
-			private StringBuilder textGeneration;
-
-			public EcoreMAVOToSMTLIBListener() {
-				textGeneration = new StringBuilder();
-			}
-
-			@Override
-			public void textGenerated(AcceleoTextGenerationEvent event) {
-				textGeneration.append(event.getText());
-			}
-
-			@Override
-			public void filePathComputed(AcceleoTextGenerationEvent event) {
-				smtEncodingUri = event.getText();
-			}
-
-			@Override
-			public void fileGenerated(AcceleoTextGenerationEvent event) {
-				smtEncoding = textGeneration.toString();
-			}
-
-			@Override
-			public void generationEnd(AcceleoTextGenerationEvent event) {
-			}
-
-			@Override
-			public boolean listensToGenerationEnd() {
-				return false;
-			}
-			
-		}
-
 		public EcoreMAVOToSMTLIBWithListeners_M2T(EObject model, File targetFolder, List<? extends Object> arguments) throws IOException {
 
 			super(model, targetFolder, arguments);
@@ -76,18 +42,18 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
 			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
-			listeners.add(new EcoreMAVOToSMTLIBListener());
+			smtListener = new EcoreMAVOToSMTLIBListener();
+			listeners.add(smtListener);
 
 			return listeners;
 		}
 	}
 
-	private String smtEncodingUri;
-	private String smtEncoding;
+	private EcoreMAVOToSMTLIBListener smtListener;
 
-	public String getSMTEncoding() {
+	public EcoreMAVOToSMTLIBListener getListener() {
 
-		return smtEncoding;
+		return smtListener;
 	}
 
 	@Override
@@ -108,7 +74,7 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 
 	public void cleanup() {
 
-		MultiModelUtils.deleteFile(smtEncodingUri);
+		MultiModelUtils.deleteFile(smtListener.getSMTEncodingUri());
 	}
 
 }
