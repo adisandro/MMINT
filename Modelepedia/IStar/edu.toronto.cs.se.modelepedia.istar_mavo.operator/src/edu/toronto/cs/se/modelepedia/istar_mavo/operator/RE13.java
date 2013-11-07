@@ -67,7 +67,14 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private static final String PROPERTY_OUT_TARGETS = "targets";
 
 	protected static final String SMTLIB_CONCRETIZATION = " c ";
-	protected static final String SMTLIB_NODEFUNCTION = "(node ";
+	protected static final String SMTLIB_NODEFUNCTION = SMTLIB_PREDICATE_START + "node ";
+	private static final Set<String> Z3_MODEL_NODETYPES = new HashSet<String>();
+	static {
+		Z3_MODEL_NODETYPES.add("Task");
+		Z3_MODEL_NODETYPES.add("Goal");
+		Z3_MODEL_NODETYPES.add("SoftGoal");
+		Z3_MODEL_NODETYPES.add("Resource");
+	}
 
 	private boolean timeModelEnabled;
 	protected boolean timeTargetsEnabled;
@@ -75,7 +82,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	protected IStar istar;
 	protected Map<String, Intention> intentions;
-	protected Set<Intention> intentionLeafs;
+	protected Set<String> intentionLeafs;
 	private String smtEncoding;
 	private Map<Integer, String> smtNodes;
 	protected Z3IncResult z3IncResult;
@@ -103,7 +110,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 	protected void init() {
 
 		intentions = new HashMap<String, Intention>();
-		intentionLeafs = new HashSet<Intention>();
+		intentionLeafs = new HashSet<String>();
 		IStarMAVOToSMTLIB previousOperator = (previousExecutable == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(IStarMAVOToSMTLIB) previousExecutable;
@@ -134,30 +141,117 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 	}
 
-	private void innerCycle(String z3Model, int index) {
+	private void optimizeLabelNodes(Map<String, Integer> z3ModelNodes, Set<String> z3LabelNodes, SMTLIBLabel label, String nodeType, boolean elseValue) {
 
-		final Set<String> nodeTypes = new HashSet<String>();
-		nodeTypes.add("Task");
-		nodeTypes.add("Goal");
-		nodeTypes.add("SoftGoal");
-		nodeTypes.add("Resource");
-
-		
+		EStructuralFeature labelFeature = label.getModelFeature();
+		if (elseValue) {
+			for (Map.Entry<String, Integer> z3ModelNode : z3ModelNodes.entrySet()) {
+				String z3ModelNodeName = z3ModelNode.getKey();
+				if (!z3ModelNodeName.startsWith(nodeType)) {
+					continue;
+				}
+				if (z3LabelNodes.contains(z3ModelNodeName)) {
+					continue;
+				}
+				Integer z3ModelNodeNumber = z3ModelNode.getValue();
+				intentions.get(smtNodes.get(z3ModelNodeNumber)).eSet(labelFeature, true);
+			}
+		}
+		else {
+			for (String z3LabelNodeName : z3LabelNodes) {
+				Integer z3LabelNodeNumber = z3ModelNodes.get(z3LabelNodeName);
+				intentions.get(smtNodes.get(z3LabelNodeNumber)).eSet(labelFeature, true);
+			}
+		}
 	}
 
-	private void optimizeAnalysisElements() {
+	private void optimizeLabelFunction(String z3Model, Map<String, Integer> z3ModelNodes, SMTLIBLabel label, int startIndex) {
+
+		String line;
+		int lineLength;
+		String[] tokens;
+		Set<String> z3LabelNodes = new HashSet<String>();
+		boolean firstCheck = true;
+		String nodeType = "";
+		do {
+			line = z3Model.substring(startIndex, z3Model.indexOf(Z3_MODEL_NEWLINE, startIndex)+1);
+			lineLength = line.length();
+			line = line.trim();
+			if (firstCheck) { // just check it once
+				if (line.equals("false")) { // all false
+					return;
+				}
+				if (line.equals("true")) { // all true
+					//TODO MMTF: do something about it?
+					return;
+				}
+				if (line.startsWith(SMTLIB_PREDICATE_START + label.name())) { // jump to subfunction
+					String subfunction = line.substring(1, line.indexOf(' ')) + Z3_MODEL_DEFINITION + Z3_MODEL_FUNCTION_START + Z3_MODEL_NEWLINE;
+					optimizeLabelFunction(z3Model, z3ModelNodes, label, z3Model.indexOf(subfunction)+subfunction.length());
+					return;
+				}
+				nodeType = line.substring(0, line.indexOf(Z3_MODEL_SEPARATOR));
+				if (!Z3_MODEL_NODETYPES.contains(nodeType)) { // edge function
+					return;
+				}
+			}
+			// node function
+			firstCheck = false;
+			tokens = line.split(Z3_MODEL_DEFINITION);
+			if (tokens[0].equals(Z3_MODEL_ELSE)) {
+				optimizeLabelNodes(z3ModelNodes, z3LabelNodes, label, nodeType, Boolean.parseBoolean(tokens[1]));
+				return;
+			}
+			z3LabelNodes.add(tokens[0]);
+			startIndex += lineLength;
+		}
+		while (!line.equals(Z3_MODEL_FUNCTION_END));
+	}
+
+	private Map<String, Integer> parseZ3ModelNodes(String z3Model) {
+
+		Map<String, Integer> z3ModelNodes = new HashMap<String, Integer>();
+		String nodeFunction = "node" + Z3_MODEL_SEPARATOR;
+		String nodeFunctionDefinition = Z3_MODEL_DEFINITION + Z3_MODEL_FUNCTION_START + Z3_MODEL_NEWLINE;
+		String line;
+		int lineLength;
+
+nextNodeFunction:
+		for (int i = z3Model.indexOf(nodeFunction); i != -1; i = z3Model.indexOf(nodeFunction, i)) {
+			if (z3Model.substring(i-1, i).equals(SMTLIB_PREDICATE_START)) { // function invocation
+				i += nodeFunction.length();
+				continue;
+			}
+			i = z3Model.indexOf(nodeFunctionDefinition, i);
+			i += nodeFunctionDefinition.length();
+			do {
+				line = z3Model.substring(i, z3Model.indexOf(Z3_MODEL_NEWLINE, i)+1);
+				lineLength = line.length();
+				line = line.trim();
+				int spaceIndex = line.indexOf(' ');
+				String z3ModelNodeNumber = line.substring(0, spaceIndex);
+				if (z3ModelNodeNumber.equals(Z3_MODEL_ELSE)) {
+					continue nextNodeFunction;
+				}
+				String z3ModelNodeName = line.substring(spaceIndex+1, line.indexOf(' ', spaceIndex+1));
+				z3ModelNodes.put(z3ModelNodeName, new Integer(z3ModelNodeNumber));
+				i += lineLength;
+			}
+			while (!line.equals(Z3_MODEL_FUNCTION_END));
+		}
+
+		return z3ModelNodes;
+	}
+
+	private void optimizeAnalysis() {
 
 		String z3Model = z3IncResult.model.getString(0);
-		String searchString;
-		int a = 0;
+		Map<String, Integer> z3ModelNodes = parseZ3ModelNodes(z3Model);
 		for (SMTLIBLabel label : SMTLIBLabel.values()) {
-			searchString = label.name() + " -> {\n";
-			while (true) {
-				a = z3Model.indexOf(searchString, a);
-				if (a == -1) {
-					break;
-				}
-				innerCycle(z3Model, a);
+			String labelFunctionDefinition = label.name() + Z3_MODEL_DEFINITION + Z3_MODEL_FUNCTION_START + Z3_MODEL_NEWLINE;
+			for (int i = z3Model.indexOf(labelFunctionDefinition); i != -1; i = z3Model.indexOf(labelFunctionDefinition, i)) {
+				i += labelFunctionDefinition.length();
+				optimizeLabelFunction(z3Model, z3ModelNodes, label, i);
 			}
 		}
 	}
@@ -172,8 +266,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		}
 		String intentionProperty, labelProperty;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
+			String intentionName = entry.getKey();
 			Intention intention = entry.getValue();
-			if (intentionLeafs.contains(intention)) { // skip leafs
+			if (intentionLeafs.contains(intentionName)) { // skip leafs
 				continue;
 			}
 			intentionProperty = SMTLIB_ASSERT;
@@ -182,7 +277,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 					SMTLIB_AND +
 					Z3SMTUtils.exists(
 						Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()),
-						Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, entry.getKey() + SMTLIB_CONCRETIZATION)
+						Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, intentionName + SMTLIB_CONCRETIZATION)
 					)
 				;
 			}
@@ -192,7 +287,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()) +
 				SMTLIB_PREDICATE_END +
 				SMTLIB_IMPLICATION +
-				Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, entry.getKey() + SMTLIB_CONCRETIZATION)
+				Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, intentionName + SMTLIB_CONCRETIZATION)
 			;
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				if ((boolean) intention.eGet(label.getModelFeature())) { // skip already checked
@@ -206,7 +301,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, labelProperty, 1, 0);
 				if (z3IncResult.flag == Z3_SAT) {
 					intention.eSet(label.getModelFeature(), true);
-					optimizeAnalysisElements();
+					optimizeAnalysis();
 				}
 			}
 		}
@@ -236,7 +331,8 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 		for (Intention intention : istar.getDependums()) {
 			intentions.put(intention.getName().replace(" ", ""), intention);
 		}
-		for (Intention intention : intentions.values()) {
+		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
+			Intention intention = entry.getValue();
 			if (
 				intention.isFullySatisfied() ||
 				intention.isPartiallySatisfied() ||
@@ -246,7 +342,7 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 				intention.isFullyDenied() ||
 				intention.isNoLabel()
 			) {
-				intentionLeafs.add(intention);
+				intentionLeafs.add(entry.getKey());
 			}
 		}
 	}

@@ -45,6 +45,13 @@ public interface Z3SMTSolver {
 	public static final int Z3_UNSAT = -1;
 	public static final int Z3_UNKNOWN = 0;
 
+	public static final String Z3_MODEL_SEPARATOR = "!";
+	public static final String Z3_MODEL_DEFINITION = " -> ";
+	public static final String Z3_MODEL_ELSE = "else";
+	public static final String Z3_MODEL_FUNCTION_START = "{";
+	public static final String Z3_MODEL_FUNCTION_END = "}";
+	public static final String Z3_MODEL_NEWLINE = "\n";
+
 	public interface CLibrary extends Library {
 
 		public static final CLibrary Z3_INSTANCE = (CLibrary) Native.loadLibrary(Z3_LIBRARY_NAME, CLibrary.class);

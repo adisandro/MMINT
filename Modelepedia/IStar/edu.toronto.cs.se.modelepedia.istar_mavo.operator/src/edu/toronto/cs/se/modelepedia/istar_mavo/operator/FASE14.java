@@ -193,7 +193,7 @@ public class FASE14 extends RE13 {
 					intention.isFullyDenied() ||
 					intention.isNoLabel()
 				) {
-					intentionLeafs.add(intention);
+					intentionLeafs.add(intention.getFormulaId());
 				}
 			}
 			if (

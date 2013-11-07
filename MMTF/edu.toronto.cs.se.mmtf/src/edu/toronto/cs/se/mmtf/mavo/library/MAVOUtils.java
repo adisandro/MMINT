@@ -315,7 +315,7 @@ public class MAVOUtils {
 			}
 			EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(NAME_FEATURE);
 			if (nameFeature != null) {
-				mavoModelObj.setFormulaId(((String) mavoModelObj.eGet(nameFeature)).replaceAll(" ", ""));
+				mavoModelObj.setFormulaId(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
 			}
 		}
 	}

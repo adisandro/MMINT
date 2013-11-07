@@ -43,12 +43,6 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 	private static final String PROPERTY_OUT_SPEEDUPCLASSICALMAVO = "speedupClassicalMAVO";
 	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE = "speedupMAVOAllsatMAVOBackbone";
 
-	private static final char Z3_ELEMFUNC_PLACEHOLDER = '!';
-	private static final char Z3_ELEMFUNC_BEGIN = '{';
-	private static final char Z3_ELEMFUNC_END = '}';
-	private static final char Z3_ELEMFUNC_NEWLINE = '\n';
-	private static final String Z3_ELEMFUNC_SEPARATOR = " -> ";
-
 	private boolean timeClassicalEnabled;
 	private boolean timeMAVOBackboneEnabled;
 	private boolean timeMAVOAllsatEnabled;
@@ -147,18 +141,18 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 	private void parseZ3Elements(String z3Model, String z3ElemType, int z3MaxElems, Map<String, Boolean> z3ModelElems, Set<String> z3MayModelElems) {
 
-		int z3ElemsIndex = z3Model.indexOf(Z3_ELEMFUNC_NEWLINE + z3ElemType + Z3_ELEMFUNC_PLACEHOLDER);
+		int z3ElemsIndex = z3Model.indexOf(Z3_MODEL_NEWLINE + z3ElemType + Z3_MODEL_SEPARATOR);
 		if (z3ElemsIndex != -1) {
-			int begin = z3Model.indexOf(Z3_ELEMFUNC_BEGIN, z3ElemsIndex) + 1;
-			int end = z3Model.indexOf(Z3_ELEMFUNC_END, z3ElemsIndex);
+			int begin = z3Model.indexOf(Z3_MODEL_FUNCTION_START, z3ElemsIndex) + 1;
+			int end = z3Model.indexOf(Z3_MODEL_FUNCTION_END, z3ElemsIndex);
 			String z3ElemsString = z3Model.substring(begin, end).trim();
-			int newLine = z3ElemsString.indexOf(Z3_ELEMFUNC_NEWLINE);
+			int newLine = z3ElemsString.indexOf(Z3_MODEL_NEWLINE);
 			int z3ElemArg;
 			boolean z3ModelElemValue;
 			while (!z3ElemsString.isEmpty()) {
-				String[] z3ElemFunc = z3ElemsString.substring(0, newLine).split(Z3_ELEMFUNC_SEPARATOR);
+				String[] z3ElemFunc = z3ElemsString.substring(0, newLine).split(Z3_MODEL_DEFINITION);
 				z3ElemsString = z3ElemsString.substring(newLine).trim();
-				newLine = z3ElemsString.indexOf(Z3_ELEMFUNC_NEWLINE);
+				newLine = z3ElemsString.indexOf(Z3_MODEL_NEWLINE);
 				if (newLine == -1) {
 					newLine = z3ElemsString.length();
 				}
@@ -194,17 +188,17 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 		// nodes
 		Map<String, Boolean> z3ModelElems = new HashMap<String, Boolean>();
 		String z3ElemType = RandomModelPackage.eINSTANCE.getNode().getName();
-		String z3ElemString = "numberOf" + z3ElemType + 's' + Z3_ELEMFUNC_SEPARATOR;
+		String z3ElemString = "numberOf" + z3ElemType + 's' + Z3_MODEL_DEFINITION;
 		int begin = z3Model.indexOf(z3ElemString) + z3ElemString.length();
-		int end = z3Model.indexOf(Z3_ELEMFUNC_NEWLINE, begin);
+		int end = z3Model.indexOf(Z3_MODEL_NEWLINE, begin);
 		int z3MaxElems = Integer.parseInt(z3Model.substring(begin, end));
 		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3ModelElems, z3MayModelElems);
 
 		// edges
 		z3ElemType = RandomModelPackage.eINSTANCE.getEdge().getName();
-		z3ElemString = "numberOf" + z3ElemType + 's' + Z3_ELEMFUNC_SEPARATOR;
+		z3ElemString = "numberOf" + z3ElemType + 's' + Z3_MODEL_DEFINITION;
 		begin = z3Model.indexOf(z3ElemString) + z3ElemString.length();
-		end = z3Model.indexOf(Z3_ELEMFUNC_NEWLINE, begin);
+		end = z3Model.indexOf(Z3_MODEL_NEWLINE, begin);
 		z3MaxElems = Integer.parseInt(z3Model.substring(begin, end));
 		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3ModelElems, z3MayModelElems);
 
