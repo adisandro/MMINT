@@ -11,6 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid.ui;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
@@ -26,6 +30,16 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
  * 
  */
 public class MultiModelDialogLabelProvider implements ILabelProvider {
+
+	private AdapterFactoryLabelProvider labelProvider;
+
+	public MultiModelDialogLabelProvider() {
+
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -69,7 +83,8 @@ public class MultiModelDialogLabelProvider implements ILabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
-		return null;
+
+		return labelProvider.getImage(element);
 	}
 
 	/**
