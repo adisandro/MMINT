@@ -106,7 +106,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		Model modelType = MidDiagramUtils.selectModelTypeToExtend(multiModel);
 		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
-		Model newModelType = MultiModelLightTypeFactory.createLightModelType(modelType, newModelTypeName, constraint[0], constraint[1]);
+		boolean isMetamodelExtension = MidDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
+		Model newModelType = MultiModelLightTypeFactory.createLightModelType(modelType, newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
 		MMTF.createTypeHierarchy(multiModel);
 
 		return newModelType;

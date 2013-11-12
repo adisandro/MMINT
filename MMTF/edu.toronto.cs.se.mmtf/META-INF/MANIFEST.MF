@@ -40,6 +40,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.examples.pivot,
  org.eclipse.gmf.runtime.emf.ui,
  org.eclipse.gmf.runtime.diagram.core,
- org.eclipse.acceleo.engine
+ org.eclipse.acceleo.engine,
+ org.eclipse.emf.common
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmtf.MMTFActivator

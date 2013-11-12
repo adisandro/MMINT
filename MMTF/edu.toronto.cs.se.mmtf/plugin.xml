@@ -135,37 +135,6 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/mmtf/MID/Relationship"
-            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"
-            genModel="model/mid.genmodel"/>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmtf.models">
-      <modelType>
-         <extendibleType
-               name="Relationship"
-               uri="http://se.cs.toronto.edu/mmtf/MID/Relationship">
-         </extendibleType>
-      </modelType>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://se.cs.toronto.edu/mmtf/MID/Editor"
-            class="edu.toronto.cs.se.mmtf.mid.editor.EditorPackage"
-            genModel="model/mid.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://se.cs.toronto.edu/mmtf/MID/Operator"
-            class="edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage"
-            genModel="model/mid.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
             uri="http://se.cs.toronto.edu/mmtf/MAVO"
             class="edu.toronto.cs.se.mmtf.mavo.MavoPackage"/>
    </extension>

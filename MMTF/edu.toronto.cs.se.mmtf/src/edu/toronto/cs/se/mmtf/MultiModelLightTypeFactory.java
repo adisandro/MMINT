@@ -13,8 +13,15 @@ package edu.toronto.cs.se.mmtf;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -26,6 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -45,6 +53,11 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
  * 
  */
 public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
+
+	private final static String ECORE_PIVOT_URI = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
+	private final static String ECORE_INVOCATION_DELEGATE = "invocationDelegates";
+	private final static String ECORE_SETTING_DELEGATE = "settingDelegates";
+	private final static String ECORE_VALIDATION_DELEGATE = "validationDelegates";
 
 	/**
 	 * Gets the base uri of a "light" type by cutting its last fragment.
@@ -133,17 +146,49 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 * @param constraintImplementation
 	 *            The constraint implementation of the constraint associated
 	 *            with the new model type, null if no constraint is associated.
+	 * @param isMetamodelExtension
+	 *            True if the new model type is extending the supertype's
+	 *            metamodel, false otherwise.
 	 * @throws MMTFException
 	 *             If the uri of the new model type is already registered in the
 	 *             Type MID.
 	 */
-	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) modelType.eContainer();
 		addLightType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);
 		addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 		newModelType.setFileExtension(modelType.getFileExtension());
+		if (isMetamodelExtension) {
+			//TODO MMTF: try to detect gmf.diagram annotation?
+			//TODO MMTF: avoid doing this for direct subtype of Model, MAVOModel?, UML?
+			EClass eClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+			EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
+			newEPackage.setName(newModelTypeName.toLowerCase());
+			newEPackage.setNsPrefix(newModelTypeName.toLowerCase());
+			newEPackage.setNsURI(newModelType.getUri());
+			EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			newEAnnotation.setSource(EcorePackage.eNS_URI);
+			EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
+			newEAnnotationDetails.put(ECORE_INVOCATION_DELEGATE, ECORE_PIVOT_URI);
+			newEAnnotationDetails.put(ECORE_SETTING_DELEGATE, ECORE_PIVOT_URI);
+			newEAnnotationDetails.put(ECORE_VALIDATION_DELEGATE, ECORE_PIVOT_URI);
+			newEPackage.getEAnnotations().add(newEAnnotation);
+			EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
+			newRootEClass.setName(newModelTypeName);
+			newRootEClass.getESuperTypes().add(eClass);
+			newEPackage.getEClassifiers().add(newRootEClass);
+			String mmtfPath = MMTFActivator.getDefault().getStateLocation().toOSString();
+			String newMetamodelUri = mmtfPath + IPath.SEPARATOR + newModelTypeName.toLowerCase() + "." + EcorePackage.eNAME;
+			try {
+				MultiModelTypeIntrospection.writeRoot(newEPackage, newMetamodelUri, false);
+			}
+			catch (Exception e) {
+				MMTFException.print(Type.WARNING, "Error creating extended metamodel file", e);
+			}
+			//TODO MMTF: associate reflective editor
+		}
 		for (Editor editorType : modelType.getEditors()) {
 			//TODO MMTF: a new editor is created instead of attaching existing ones
 			//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
@@ -171,15 +216,18 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 * @param constraintImplementation
 	 *            The constraint implementation of the constraint associated
 	 *            with the new model type, null if no constraint is associated.
+	 * @param isMetamodelExtension
+	 *            True if the new model type is extending the supertype's
+	 *            metamodel, false otherwise.
 	 * @return The created model type.
 	 * @throws MMTFException
 	 *             If the uri of the new model type is already registered in the
 	 *             Type MID.
 	 */
-	public static Model createLightModelType(Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	public static Model createLightModelType(Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
 
 		Model newModelType = MidFactory.eINSTANCE.createModel();
-		addLightModelType(newModelType, modelType, newModelTypeName, constraintLanguage, constraintImplementation);
+		addLightModelType(newModelType, modelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
 
 		return newModelType;
 	}
@@ -261,7 +309,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	public static ModelRel createLightModelRelType(ModelRel modelRelType, String newModelRelTypeName, EClass newModelRelTypeClass, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(newModelRelTypeClass);
-		addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+		addLightModelType(newModelRelType, modelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation, false);
 		addModelRelType(newModelRelType, modelRelType);
 
 		return newModelRelType;

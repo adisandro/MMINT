@@ -12,22 +12,31 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
+import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -43,7 +52,6 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
  */
 public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
-	private static final String ECORE_METAMODEL_PATTERN = "*.ecore";
 	private static final String ECORE_EDITORID = "org.eclipse.emf.ecore.presentation.EcoreEditorID";
 
 	/** The hint about the editor to open. */
@@ -74,20 +82,31 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
 	protected void doExecuteTypesLevel(Model modelType) throws Exception {
 
-		// climb up light types
-		while (modelType.isDynamic() != false) {
+		List<URI> metamodelUris = new ArrayList<URI>();
+		while (true) {
+			if (!modelType.isDynamic()) { // get metamodel files from bundle
+				Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
+				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
+				while (metamodels.hasMoreElements()) {
+					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toURI().toString()));
+				}
+				break;
+			}
+			String mmtfPath = MMTFActivator.getDefault().getStateLocation().toOSString();
+			String metamodelPath = mmtfPath + IPath.SEPARATOR + modelType.getName().toLowerCase() + "." + EcorePackage.eNAME;
+			Path filePath = Paths.get(metamodelPath);
+			if (Files.exists(filePath)) { // get metamodel file from mmtf state area
+				metamodelUris.add(URI.createFileURI(filePath.toString()));
+				break;
+			}
+			// climb up light types
 			modelType = modelType.getSupertype();
 		}
-		// get metamodel files from bundle
-		Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
-		Enumeration<URL> metamodels = bundle.findEntries("/", ECORE_METAMODEL_PATTERN, true);
-		while (metamodels.hasMoreElements()) {
-			//TODO MMTF: FileLocator here works for sure because it finds my source code directories, don't know what happens in a pure installation
-			URI uri = URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toURI().toString());
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-				new URIEditorInput(uri),
-				ECORE_EDITORID
-			);
+
+		// open editors
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		for (URI metamodelUri : metamodelUris) {
+			activePage.openEditor(new URIEditorInput(metamodelUri), ECORE_EDITORID);
 		}
 	}
 

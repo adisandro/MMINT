@@ -585,7 +585,8 @@ public class MMTF implements MMTFConstants {
 					modelType, 
 					dynamicModelType.getName(),
 					dynamicModelType.getConstraint().getLanguage().getLiteral(),
-					dynamicModelType.getConstraint().getImplementation()
+					dynamicModelType.getConstraint().getImplementation(),
+					false
 				);
 			}
 			catch (MMTFException e) {

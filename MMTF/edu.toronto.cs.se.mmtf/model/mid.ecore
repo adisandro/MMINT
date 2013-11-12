@@ -225,7 +225,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="True if the model type does not have an associated code implementation, false otherwise (instances: always false)."/>
+        <details key="documentation" value="True if the model type can't be instanciated, false otherwise (instances: always false)."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

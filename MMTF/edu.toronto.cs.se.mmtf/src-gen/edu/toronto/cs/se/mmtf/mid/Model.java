@@ -171,7 +171,7 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * True if the model type does not have an associated code implementation, false otherwise (instances: always false).
+	 * True if the model type can't be instanciated, false otherwise (instances: always false).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Abstract</em>' attribute.
 	 * @see #setAbstract(boolean)
