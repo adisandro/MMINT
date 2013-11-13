@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
@@ -58,6 +59,9 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	private final static String ECORE_INVOCATION_DELEGATE = "invocationDelegates";
 	private final static String ECORE_SETTING_DELEGATE = "settingDelegates";
 	private final static String ECORE_VALIDATION_DELEGATE = "validationDelegates";
+	private final static String ECORE_REFLECTIVE_FILE_EXTENSION = "xmi";
+	private final static String ECORE_REFLECTIVE_EDITOR_ID = "org.eclipse.emf.ecore.presentation.ReflectiveEditorID";
+	private final static String ECORE_REFLECTIVE_EDITOR_NAME = "Ecore Reflective tree";
 
 	/**
 	 * Gets the base uri of a "light" type by cutting its last fragment.
@@ -160,10 +164,11 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 		newModelType.setFileExtension(modelType.getFileExtension());
-		if (isMetamodelExtension) {
+
+		if (isMetamodelExtension) { // create new metamodel file
 			//TODO MMTF: try to detect gmf.diagram annotation?
 			//TODO MMTF: avoid doing this for direct subtype of Model, MAVOModel?, UML?
-			EClass eClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
 			EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
 			newEPackage.setName(newModelTypeName.toLowerCase());
 			newEPackage.setNsPrefix(newModelTypeName.toLowerCase());
@@ -177,23 +182,52 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			newEPackage.getEAnnotations().add(newEAnnotation);
 			EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
 			newRootEClass.setName(newModelTypeName);
-			newRootEClass.getESuperTypes().add(eClass);
+			newRootEClass.getESuperTypes().add(rootEClass);
 			newEPackage.getEClassifiers().add(newRootEClass);
 			String mmtfPath = MMTFActivator.getDefault().getStateLocation().toOSString();
 			String newMetamodelUri = mmtfPath + IPath.SEPARATOR + newModelTypeName.toLowerCase() + "." + EcorePackage.eNAME;
 			try {
 				MultiModelTypeIntrospection.writeRoot(newEPackage, newMetamodelUri, false);
+				newModelType.setFileExtension(ECORE_REFLECTIVE_FILE_EXTENSION);
 			}
 			catch (Exception e) {
-				MMTFException.print(Type.WARNING, "Error creating extended metamodel file", e);
+				MMTFException.print(Type.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
+				newModelType.setFileExtension(modelType.getFileExtension());
+				isMetamodelExtension = false;
 			}
-			//TODO MMTF: associate reflective editor
 		}
+		else {
+			newModelType.setFileExtension(modelType.getFileExtension());
+		}
+
+		// create editors
 		for (Editor editorType : modelType.getEditors()) {
+			if (isMetamodelExtension && !(editorType instanceof Diagram)) {
+				Editor newEditorType = createLightEditorType(editorType, newModelType.getName(), ECORE_REFLECTIVE_EDITOR_NAME, newModelType.getUri(), ECORE_REFLECTIVE_EDITOR_ID, editorType.getWizardId(), editorType.getWizardDialogClass(), editorType.eClass());
+				addModelTypeEditor(newEditorType, newModelType);
+				break;
+			}
+		}
+		String newEditorTypeFragmentUri = newModelType.getName(), newEditorTypeName, modelTypeUri = newModelType.getUri(), editorId, wizardId, wizardDialogClassName;
+		EClass newEditorTypeClass;
+		for (Editor editorType : modelType.getEditors()) {
+			newEditorTypeClass = editorType.eClass();
+			if (isMetamodelExtension) {
+				newEditorTypeName = ECORE_REFLECTIVE_EDITOR_NAME;
+				editorId = ECORE_REFLECTIVE_EDITOR_ID;
+				wizardId = "";//TODO MMTF: wizard problem, it has to be new DynamicModelWizard(newRootEClass);
+				wizardDialogClassName = null;
+			}
+			else {
+				newEditorTypeName = editorType.getName();
+				editorId = editorType.getId();
+				wizardId = editorType.getWizardId();
+				wizardDialogClassName = editorType.getWizardDialogClass();
+			}
 			//TODO MMTF: a new editor is created instead of attaching existing ones
 			//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
 			try {
-				Editor newEditorType = createLightEditorType(editorType, newModelType.getName(), editorType.getName(), newModelType.getUri(), editorType.getId(), editorType.getWizardId(), editorType.getWizardDialogClass(), editorType.eClass());
+				Editor newEditorType = createLightEditorType(editorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName, newEditorTypeClass);
 				addModelTypeEditor(newEditorType, newModelType);
 			}
 			catch (MMTFException e) {
@@ -592,8 +626,8 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 */
 	public static Editor createLightEditorType(Editor editorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, EClass newEditorTypeClass) throws MMTFException {
 
-		Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
-		MultiModel multiModel = (MultiModel) editorType.eContainer();
+		Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(newEditorTypeClass);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(editorType);
 		addLightType(newEditorType, editorType, editorType, newEditorTypeFragmentUri, newEditorTypeName, multiModel);
 		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, multiModel);
 
