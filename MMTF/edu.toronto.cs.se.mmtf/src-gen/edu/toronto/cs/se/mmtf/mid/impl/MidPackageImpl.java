@@ -727,6 +727,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		isCreated = true;
 
 		// Create classes and their features
+		multiModelEClass = createEClass(MULTI_MODEL);
+		createEReference(multiModelEClass, MULTI_MODEL__MODELS);
+		createEReference(multiModelEClass, MULTI_MODEL__EDITORS);
+		createEReference(multiModelEClass, MULTI_MODEL__OPERATORS);
+		createEReference(multiModelEClass, MULTI_MODEL__EXTENDIBLE_TABLE);
+		createEAttribute(multiModelEClass, MULTI_MODEL__LEVEL);
+
 		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
 		createEAttribute(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY);
 		createEReference(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE);
@@ -747,13 +754,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI);
 		createEOperation(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE);
 		createEOperation(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE);
-
-		multiModelEClass = createEClass(MULTI_MODEL);
-		createEReference(multiModelEClass, MULTI_MODEL__MODELS);
-		createEReference(multiModelEClass, MULTI_MODEL__EDITORS);
-		createEReference(multiModelEClass, MULTI_MODEL__OPERATORS);
-		createEReference(multiModelEClass, MULTI_MODEL__EXTENDIBLE_TABLE);
-		createEAttribute(multiModelEClass, MULTI_MODEL__LEVEL);
 
 		modelEClass = createEClass(MODEL);
 		createEAttribute(modelEClass, MODEL__ORIGIN);
@@ -830,15 +830,22 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		multiModelEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
 		extendibleElementEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
 		extendibleElementEndpointEClass.getESuperTypes().add(this.getExtendibleElement());
-		multiModelEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
 		modelEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
 		modelElementEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEndpointEClass.getESuperTypes().add(this.getExtendibleElementEndpoint());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMultiModel_Models(), this.getModel(), null, "models", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiModel_Operators(), theOperatorPackage.getOperator(), null, "operators", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiModel_ExtendibleTable(), this.getEStringToExtendibleElementMap(), null, "extendibleTable", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMultiModel_Level(), this.getMidLevel(), "level", null, 1, 1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToExtendibleElementMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEStringToExtendibleElementMap_Value(), this.getExtendibleElement(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -861,13 +868,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEOperation(getExtendibleElementEndpoint__GetMetatype(), this.getExtendibleElementEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getExtendibleElementEndpoint__GetSupertype(), this.getExtendibleElementEndpoint(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiModel_Models(), this.getModel(), null, "models", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiModel_Operators(), theOperatorPackage.getOperator(), null, "operators", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiModel_ExtendibleTable(), this.getEStringToExtendibleElementMap(), null, "extendibleTable", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiModel_Level(), this.getMidLevel(), "level", null, 1, 1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModel_Origin(), this.getModelOrigin(), "origin", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -948,7 +948,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });					
+		   });											
 		addAnnotation
 		  (extendibleElementEClass, 
 		   source, 
@@ -960,7 +960,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																																
+		   });																																										
 	}
 
 	/**
@@ -970,7 +970,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";								
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";														
 		addAnnotation
 		  (extendibleElementEClass, 
 		   source, 
@@ -988,7 +988,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																								
+		   });																																		
 	}
 
 } //MidPackageImpl

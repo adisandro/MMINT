@@ -77,16 +77,16 @@ public class MavoAdapterFactory extends AdapterFactoryImpl {
 	protected MavoSwitch<Adapter> modelSwitch =
 		new MavoSwitch<Adapter>() {
 			@Override
+			public Adapter caseMAVOModel(MAVOModel object) {
+				return createMAVOModelAdapter();
+			}
+			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
 			@Override
 			public Adapter caseMAVOReference(MAVOReference object) {
 				return createMAVOReferenceAdapter();
-			}
-			@Override
-			public Adapter caseMAVOModel(MAVOModel object) {
-				return createMAVOModelAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

@@ -25,6 +25,13 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelElementCategory/ENTITY"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelElementCategory/RELATIONSHIP"/>
     </genEnums>
+    <genClasses ecoreClass="mid.ecore#//MultiModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/editors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/operators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/extendibleTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//MultiModel/level"/>
+    </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToExtendibleElementMap/key"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//EStringToExtendibleElementMap/value"/>
@@ -45,13 +52,6 @@
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/targetUri"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getSupertype"/>
-    </genClasses>
-    <genClasses ecoreClass="mid.ecore#//MultiModel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/editors"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/operators"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/extendibleTable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//MultiModel/level"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/origin"/>
@@ -209,6 +209,9 @@
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Mavo" basePackage="edu.toronto.cs.se.mmtf" ecorePackage="mavo.ecore#/">
+    <genClasses ecoreClass="mavo.ecore#//MAVOModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOModel/inc"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="mavo.ecore#//MAVOElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/may"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/set"/>
@@ -216,8 +219,5 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/formulaId"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mavo.ecore#//MAVOReference"/>
-    <genClasses ecoreClass="mavo.ecore#//MAVOModel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOModel/inc"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -242,6 +242,9 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 		isCreated = true;
 
 		// Create classes and their features
+		mavoModelEClass = createEClass(MAVO_MODEL);
+		createEAttribute(mavoModelEClass, MAVO_MODEL__INC);
+
 		mavoElementEClass = createEClass(MAVO_ELEMENT);
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__MAY);
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__SET);
@@ -249,9 +252,6 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__FORMULA_ID);
 
 		mavoReferenceEClass = createEClass(MAVO_REFERENCE);
-
-		mavoModelEClass = createEClass(MAVO_MODEL);
-		createEAttribute(mavoModelEClass, MAVO_MODEL__INC);
 	}
 
 	/**
@@ -285,6 +285,9 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 		mavoReferenceEClass.getESuperTypes().add(this.getMAVOElement());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMAVOModel_Inc(), ecorePackage.getEBoolean(), "inc", null, 0, 1, MAVOModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(mavoElementEClass, MAVOElement.class, "MAVOElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMAVOElement_May(), ecorePackage.getEBoolean(), "may", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMAVOElement_Set(), ecorePackage.getEBoolean(), "set", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -292,9 +295,6 @@ public class MavoPackageImpl extends EPackageImpl implements MavoPackage {
 		initEAttribute(getMAVOElement_FormulaId(), ecorePackage.getEString(), "formulaId", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mavoReferenceEClass, MAVOReference.class, "MAVOReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMAVOModel_Inc(), ecorePackage.getEBoolean(), "inc", null, 0, 1, MAVOModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

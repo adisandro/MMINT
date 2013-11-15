@@ -169,8 +169,6 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			try {
 				String newMetamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(newModelType);
 				if (newMetamodelUri == null) { // create new metamodel file
-					//TODO MMTF: avoid doing this for direct subtype of Model, MAVOModel?, UML?
-					EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
 					EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
 					newEPackage.setName(newModelTypeName.toLowerCase());
 					newEPackage.setNsPrefix(newModelTypeName.toLowerCase());
@@ -184,7 +182,10 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 					newEPackage.getEAnnotations().add(newEAnnotation);
 					EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
 					newRootEClass.setName(newModelTypeName);
-					newRootEClass.getESuperTypes().add(rootEClass);
+					if (!MultiModelTypeRegistry.isRootType(modelType)) {
+						EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+						newRootEClass.getESuperTypes().add(rootEClass);
+					}
 					newEPackage.getEClassifiers().add(newRootEClass);
 					String mmtfUri = MMTFActivator.getDefault().getStateLocation().toOSString();
 					newMetamodelUri = mmtfUri + IPath.SEPARATOR + newModelTypeName.toLowerCase() + "." + EcorePackage.eNAME;

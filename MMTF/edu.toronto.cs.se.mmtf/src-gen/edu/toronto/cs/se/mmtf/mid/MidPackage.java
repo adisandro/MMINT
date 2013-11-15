@@ -77,7 +77,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElement()
 	 * @generated
 	 */
-	int EXTENDIBLE_ELEMENT = 1;
+	int EXTENDIBLE_ELEMENT = 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -87,7 +87,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElementEndpoint()
 	 * @generated
 	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT = 2;
+	int EXTENDIBLE_ELEMENT_ENDPOINT = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.MultiModelImpl <em>Multi Model</em>}' class.
@@ -97,7 +97,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMultiModel()
 	 * @generated
 	 */
-	int MULTI_MODEL = 3;
+	int MULTI_MODEL = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl <em>Model</em>}' class.
@@ -117,7 +117,79 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEStringToExtendibleElementMap()
 	 * @generated
 	 */
-	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = 0;
+	int ESTRING_TO_EXTENDIBLE_ELEMENT_MAP = 1;
+
+	/**
+	 * The feature id for the '<em><b>Inc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__INC = MavoPackage.MAVO_MODEL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__MODELS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Editors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__EDITORS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__OPERATORS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Extendible Table</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__EXTENDIBLE_TABLE = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL__LEVEL = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Multi Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>Multi Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_MODEL_OPERATION_COUNT = MavoPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -442,78 +514,6 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Inc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__INC = MavoPackage.MAVO_MODEL__INC;
-
-	/**
-	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__MODELS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Editors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__EDITORS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__OPERATORS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Extendible Table</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__EXTENDIBLE_TABLE = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__LEVEL = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Multi Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of operations of the '<em>Multi Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL_OPERATION_COUNT = MavoPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.

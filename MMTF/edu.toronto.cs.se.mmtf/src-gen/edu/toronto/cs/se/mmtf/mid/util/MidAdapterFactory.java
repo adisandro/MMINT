@@ -81,6 +81,10 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	protected MidSwitch<Adapter> modelSwitch =
 		new MidSwitch<Adapter>() {
 			@Override
+			public Adapter caseMultiModel(MultiModel object) {
+				return createMultiModelAdapter();
+			}
+			@Override
 			public Adapter caseEStringToExtendibleElementMap(Map.Entry<String, ExtendibleElement> object) {
 				return createEStringToExtendibleElementMapAdapter();
 			}
@@ -91,10 +95,6 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExtendibleElementEndpoint(ExtendibleElementEndpoint object) {
 				return createExtendibleElementEndpointAdapter();
-			}
-			@Override
-			public Adapter caseMultiModel(MultiModel object) {
-				return createMultiModelAdapter();
 			}
 			@Override
 			public Adapter caseModel(Model object) {
@@ -117,12 +117,12 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 				return createModelEndpointAdapter();
 			}
 			@Override
-			public Adapter caseMAVOElement(MAVOElement object) {
-				return createMAVOElementAdapter();
-			}
-			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
+			}
+			@Override
+			public Adapter caseMAVOElement(MAVOElement object) {
+				return createMAVOElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

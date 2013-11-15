@@ -79,6 +79,13 @@ public class MidSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case MidPackage.MULTI_MODEL: {
+				MultiModel multiModel = (MultiModel)theEObject;
+				T result = caseMultiModel(multiModel);
+				if (result == null) result = caseMAVOModel(multiModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: {
 				@SuppressWarnings("unchecked") Map.Entry<String, ExtendibleElement> eStringToExtendibleElementMap = (Map.Entry<String, ExtendibleElement>)theEObject;
 				T result = caseEStringToExtendibleElementMap(eStringToExtendibleElementMap);
@@ -97,13 +104,6 @@ public class MidSwitch<T> extends Switch<T> {
 				T result = caseExtendibleElementEndpoint(extendibleElementEndpoint);
 				if (result == null) result = caseExtendibleElement(extendibleElementEndpoint);
 				if (result == null) result = caseMAVOElement(extendibleElementEndpoint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MidPackage.MULTI_MODEL: {
-				MultiModel multiModel = (MultiModel)theEObject;
-				T result = caseMultiModel(multiModel);
-				if (result == null) result = caseMAVOModel(multiModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

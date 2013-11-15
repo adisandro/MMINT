@@ -72,7 +72,54 @@ public interface MavoPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MavoPackageImpl#getMAVOElement()
 	 * @generated
 	 */
-	int MAVO_ELEMENT = 0;
+	int MAVO_ELEMENT = 1;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOReferenceImpl <em>MAVO Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MAVOReferenceImpl
+	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MavoPackageImpl#getMAVOReference()
+	 * @generated
+	 */
+	int MAVO_REFERENCE = 2;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOModelImpl <em>MAVO Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MAVOModelImpl
+	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MavoPackageImpl#getMAVOModel()
+	 * @generated
+	 */
+	int MAVO_MODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Inc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL__INC = 0;
+
+	/**
+	 * The number of structural features of the '<em>MAVO Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>MAVO Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -129,16 +176,6 @@ public interface MavoPackage extends EPackage {
 	int MAVO_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOReferenceImpl <em>MAVO Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MAVOReferenceImpl
-	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MavoPackageImpl#getMAVOReference()
-	 * @generated
-	 */
-	int MAVO_REFERENCE = 1;
-
-	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -191,44 +228,6 @@ public interface MavoPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_REFERENCE_OPERATION_COUNT = MAVO_ELEMENT_OPERATION_COUNT + 0;
-
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mavo.impl.MAVOModelImpl <em>MAVO Model</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MAVOModelImpl
-	 * @see edu.toronto.cs.se.mmtf.mavo.impl.MavoPackageImpl#getMAVOModel()
-	 * @generated
-	 */
-	int MAVO_MODEL = 2;
-
-	/**
-	 * The feature id for the '<em><b>Inc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL__INC = 0;
-
-	/**
-	 * The number of structural features of the '<em>MAVO Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>MAVO Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_OPERATION_COUNT = 0;
 
 
 	/**

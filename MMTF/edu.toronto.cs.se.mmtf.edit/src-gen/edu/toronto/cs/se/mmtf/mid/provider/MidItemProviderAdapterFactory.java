@@ -340,8 +340,8 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	 * @generated
 	 */
 	public void dispose() {
-		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
 		if (multiModelItemProvider != null) multiModelItemProvider.dispose();
+		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
 		if (modelItemProvider != null) modelItemProvider.dispose();
 		if (modelConstraintItemProvider != null) modelConstraintItemProvider.dispose();
 		if (modelElementItemProvider != null) modelElementItemProvider.dispose();

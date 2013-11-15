@@ -80,29 +80,6 @@ public class MavoItemProviderAdapterFactory extends MavoAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mavo.MAVOModel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MAVOModelItemProvider mavoModelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mavo.MAVOModel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMAVOModelAdapter() {
-		if (mavoModelItemProvider == null) {
-			mavoModelItemProvider = new MAVOModelItemProvider(this);
-		}
-
-		return mavoModelItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -96,14 +96,14 @@ public class MidValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
+			case MidPackage.MULTI_MODEL:
+				return validateMultiModel((MultiModel)value, diagnostics, context);
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP:
 				return validateEStringToExtendibleElementMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MidPackage.EXTENDIBLE_ELEMENT:
 				return validateExtendibleElement((ExtendibleElement)value, diagnostics, context);
 			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT:
 				return validateExtendibleElementEndpoint((ExtendibleElementEndpoint)value, diagnostics, context);
-			case MidPackage.MULTI_MODEL:
-				return validateMultiModel((MultiModel)value, diagnostics, context);
 			case MidPackage.MODEL:
 				return validateModel((Model)value, diagnostics, context);
 			case MidPackage.MODEL_CONSTRAINT:

@@ -75,6 +75,12 @@ public class MavoSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case MavoPackage.MAVO_MODEL: {
+				MAVOModel mavoModel = (MAVOModel)theEObject;
+				T result = caseMAVOModel(mavoModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MavoPackage.MAVO_ELEMENT: {
 				MAVOElement mavoElement = (MAVOElement)theEObject;
 				T result = caseMAVOElement(mavoElement);
@@ -85,12 +91,6 @@ public class MavoSwitch<T> extends Switch<T> {
 				MAVOReference mavoReference = (MAVOReference)theEObject;
 				T result = caseMAVOReference(mavoReference);
 				if (result == null) result = caseMAVOElement(mavoReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MavoPackage.MAVO_MODEL: {
-				MAVOModel mavoModel = (MAVOModel)theEObject;
-				T result = caseMAVOModel(mavoModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

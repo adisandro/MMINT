@@ -68,8 +68,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
 			case MidPackage.MULTI_MODEL: return createMultiModel();
+			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
 			case MidPackage.MODEL: return createModel();
 			case MidPackage.MODEL_CONSTRAINT: return createModelConstraint();
 			case MidPackage.MODEL_ELEMENT: return createModelElement();
