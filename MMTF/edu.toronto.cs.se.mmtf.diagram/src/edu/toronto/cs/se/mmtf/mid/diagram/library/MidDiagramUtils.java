@@ -112,7 +112,7 @@ public class MidDiagramUtils {
 
 		ElementTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelCreationDialog();
 		dialog.setTitle("Create new model");
-		dialog.setMessage("Choose wizard to create model");
+		dialog.setMessage("Choose editor to create model");
 		dialog.setAllowMultiple(false);
 
 		if (dialog.open() == Window.CANCEL) {

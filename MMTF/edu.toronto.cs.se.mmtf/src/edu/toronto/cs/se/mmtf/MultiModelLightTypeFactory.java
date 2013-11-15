@@ -159,35 +159,37 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 */
 	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
 
-		MultiModel multiModel = (MultiModel) modelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelType);
 		addLightType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);
 		addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 		newModelType.setFileExtension(modelType.getFileExtension());
 
-		if (isMetamodelExtension) { // create new metamodel file
-			//TODO MMTF: try to detect gmf.diagram annotation?
-			//TODO MMTF: avoid doing this for direct subtype of Model, MAVOModel?, UML?
-			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
-			EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
-			newEPackage.setName(newModelTypeName.toLowerCase());
-			newEPackage.setNsPrefix(newModelTypeName.toLowerCase());
-			newEPackage.setNsURI(newModelType.getUri());
-			EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			newEAnnotation.setSource(EcorePackage.eNS_URI);
-			EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
-			newEAnnotationDetails.put(ECORE_INVOCATION_DELEGATE, ECORE_PIVOT_URI);
-			newEAnnotationDetails.put(ECORE_SETTING_DELEGATE, ECORE_PIVOT_URI);
-			newEAnnotationDetails.put(ECORE_VALIDATION_DELEGATE, ECORE_PIVOT_URI);
-			newEPackage.getEAnnotations().add(newEAnnotation);
-			EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
-			newRootEClass.setName(newModelTypeName);
-			newRootEClass.getESuperTypes().add(rootEClass);
-			newEPackage.getEClassifiers().add(newRootEClass);
-			String mmtfPath = MMTFActivator.getDefault().getStateLocation().toOSString();
-			String newMetamodelUri = mmtfPath + IPath.SEPARATOR + newModelTypeName.toLowerCase() + "." + EcorePackage.eNAME;
+		if (isMetamodelExtension) {
 			try {
-				MultiModelTypeIntrospection.writeRoot(newEPackage, newMetamodelUri, false);
+				String newMetamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(newModelType);
+				if (newMetamodelUri == null) { // create new metamodel file
+					//TODO MMTF: avoid doing this for direct subtype of Model, MAVOModel?, UML?
+					EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+					EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
+					newEPackage.setName(newModelTypeName.toLowerCase());
+					newEPackage.setNsPrefix(newModelTypeName.toLowerCase());
+					newEPackage.setNsURI(newModelType.getUri());
+					EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+					newEAnnotation.setSource(EcorePackage.eNS_URI);
+					EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
+					newEAnnotationDetails.put(ECORE_INVOCATION_DELEGATE, ECORE_PIVOT_URI);
+					newEAnnotationDetails.put(ECORE_SETTING_DELEGATE, ECORE_PIVOT_URI);
+					newEAnnotationDetails.put(ECORE_VALIDATION_DELEGATE, ECORE_PIVOT_URI);
+					newEPackage.getEAnnotations().add(newEAnnotation);
+					EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
+					newRootEClass.setName(newModelTypeName);
+					newRootEClass.getESuperTypes().add(rootEClass);
+					newEPackage.getEClassifiers().add(newRootEClass);
+					String mmtfUri = MMTFActivator.getDefault().getStateLocation().toOSString();
+					newMetamodelUri = mmtfUri + IPath.SEPARATOR + newModelTypeName.toLowerCase() + "." + EcorePackage.eNAME;
+					MultiModelTypeIntrospection.writeRoot(newEPackage, newMetamodelUri, false);
+				}
 				newModelType.setFileExtension(ECORE_REFLECTIVE_FILE_EXTENSION);
 			}
 			catch (Exception e) {
@@ -201,21 +203,16 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		}
 
 		// create editors
-		for (Editor editorType : modelType.getEditors()) {
-			if (isMetamodelExtension && !(editorType instanceof Diagram)) {
-				Editor newEditorType = createLightEditorType(editorType, newModelType.getName(), ECORE_REFLECTIVE_EDITOR_NAME, newModelType.getUri(), ECORE_REFLECTIVE_EDITOR_ID, editorType.getWizardId(), editorType.getWizardDialogClass(), editorType.eClass());
-				addModelTypeEditor(newEditorType, newModelType);
-				break;
-			}
-		}
 		String newEditorTypeFragmentUri = newModelType.getName(), newEditorTypeName, modelTypeUri = newModelType.getUri(), editorId, wizardId, wizardDialogClassName;
 		EClass newEditorTypeClass;
 		for (Editor editorType : modelType.getEditors()) {
-			newEditorTypeClass = editorType.eClass();
 			if (isMetamodelExtension) {
+				if (editorType instanceof Diagram) {
+					continue;
+				}
 				newEditorTypeName = ECORE_REFLECTIVE_EDITOR_NAME;
 				editorId = ECORE_REFLECTIVE_EDITOR_ID;
-				wizardId = "";//TODO MMTF: wizard problem, it has to be new DynamicModelWizard(newRootEClass);
+				wizardId = null;
 				wizardDialogClassName = null;
 			}
 			else {
@@ -224,11 +221,17 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 				wizardId = editorType.getWizardId();
 				wizardDialogClassName = editorType.getWizardDialogClass();
 			}
-			//TODO MMTF: a new editor is created instead of attaching existing ones
-			//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
+			newEditorTypeClass = editorType.eClass();
 			try {
+				//TODO MMTF: a new editor is created instead of attaching existing ones
+				//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
 				Editor newEditorType = createLightEditorType(editorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName, newEditorTypeClass);
 				addModelTypeEditor(newEditorType, newModelType);
+				if (isMetamodelExtension) { // reflective editor only
+					newEditorType.getFileExtensions().clear();
+					newEditorType.getFileExtensions().add(ECORE_REFLECTIVE_FILE_EXTENSION);
+					break;
+				}
 			}
 			catch (MMTFException e) {
 				// models created through this editor will have the supermodel as static type
@@ -293,7 +296,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	public static ModelElementReference createLightModelElementTypeAndModelElementTypeReference(ModelElement modelElemType, ModelElementReference modelElemTypeRef, String newModelElemTypeName, ModelElementCategory category, String classLiteral, ModelEndpointReference modelTypeEndpointRef) throws MMTFException {
 
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 		String newTypeUri = createNewLightTypeUri(modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
 		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newTypeUri, multiModel);
 		if (newModelElemType == null) {
@@ -377,7 +380,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 */
 	public static ModelEndpointReference createLightModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint modelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel modelRelType) throws MMTFException {
 
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 		// create the "thing" and the corresponding reference
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		addLightType(newModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
@@ -421,7 +424,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	public static void replaceLightModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpoint modelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
 
 		// modify the "thing" and the corresponding reference
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 		addLightType(oldModelTypeEndpoint, modelTypeEndpoint, modelRelType, modelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
 		oldModelTypeEndpoint.setTarget(newModelType);
 		if (modelTypeEndpointRef != null) {
@@ -466,7 +469,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
 		// create the "thing" and the corresponding reference
 		Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 		addLightType(newLinkType, linkType, modelRelType, modelRelType.getName(), newLinkTypeName, multiModel);
 		addLinkType(newLinkType, linkType, modelRelType);
 		LinkReference newLinkTypeRef = createLinkTypeReference(newLinkType, linkTypeRef, newLinkTypeRefClass, true, modelRelType);
@@ -513,7 +516,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		ModelElement newModelElemType = newModelElemTypeRef.getObject();
 		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) newModelElemTypeRef.eContainer();
-		MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 		// create the "thing" and the corresponding reference
 		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		addLightType(newModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName, multiModel);
@@ -573,7 +576,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		ModelElement newModelElemType = newModelElemTypeRef.getObject();
 		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) newModelElemTypeRef.eContainer();
-		MultiModel multiModel = (MultiModel) linkTypeRef.eContainer().eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(linkTypeRef);
 		// modify the "thing" and the corresponding reference
 		addLightType(oldModelElemTypeEndpoint, modelElemTypeEndpoint, linkType, linkType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelElemType.getName(), newModelElemTypeEndpointName, multiModel);
 		oldModelElemTypeEndpoint.setTarget(newModelElemType);

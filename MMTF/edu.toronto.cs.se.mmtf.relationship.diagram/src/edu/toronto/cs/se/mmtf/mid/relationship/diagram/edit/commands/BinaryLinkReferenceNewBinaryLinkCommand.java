@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
@@ -149,7 +150,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
 			modelRelType
 		);
-		MMTF.createTypeHierarchy((MultiModel) modelRelType.eContainer());
+		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
 		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", null);
 		//TODO MMTF: search for override (only if we're not inheriting from a root type)

@@ -11,6 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +23,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
@@ -565,7 +569,7 @@ public class MultiModelTypeRegistry {
 		List<String> linkTypeUris = null;
 
 		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
-			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
 			linkTypeUris = new ArrayList<String>();
@@ -669,6 +673,29 @@ public class MultiModelTypeRegistry {
 		}
 
 		return bundle;
+	}
+
+	/**
+	 * Gets the uri of the metamodel of a metamodel-extended "light" model type.
+	 * 
+	 * @param modelType
+	 *            The metamodel-extended "light" model type.
+	 * @return The uri of the metamodel extension if it exists, null if it
+	 *         doesn't exist or if the model type is not "light".
+	 */
+	public static String getExtendedMetamodelUri(Model modelType) {
+
+		if (!modelType.isDynamic()) {
+			return null;
+		}
+		String mmtfUri = MMTFActivator.getDefault().getStateLocation().toOSString();
+		String metamodelUri = mmtfUri + IPath.SEPARATOR + modelType.getName().toLowerCase() + "." + EcorePackage.eNAME;
+		Path metamodelPath = Paths.get(metamodelUri);
+		if (!Files.exists(metamodelPath)) {
+			return null;
+		}
+
+		return metamodelUri;
 	}
 
 }

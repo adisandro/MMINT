@@ -161,7 +161,7 @@ public class MultiModelConstraintChecker {
 		ModelRel modelRelTypeSuper = (ModelRel) modelRelType.getSupertype();
 		// checks that the new model type is the same of the super model rel type or is overriding it
 		if (!isRootType(modelRelTypeSuper)) {
-			MultiModel multiModel = (MultiModel) modelRelType.eContainer();
+			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 			if (newSrcModelType != null) {
 				String srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelType.getUri();
@@ -190,7 +190,7 @@ public class MultiModelConstraintChecker {
 		Link linkTypeSuper = linkTypeRef.getObject().getSupertype();
 		// checks that the new model element type is the same of the super link type or is overriding it
 		if (!isRootType(linkTypeSuper)) {
-			MultiModel multiModel = (MultiModel) linkTypeRef.eContainer().eContainer();
+			MultiModel multiModel = MultiModelRegistry.getMultiModel(linkTypeRef);
 			if (newSrcModelElemTypeRef != null) {
 				String srcUri = linkTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelElemTypeRef.getUri();

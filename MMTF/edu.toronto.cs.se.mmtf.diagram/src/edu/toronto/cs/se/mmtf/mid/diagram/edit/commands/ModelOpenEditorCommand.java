@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -12,9 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.edit.commands;
 
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -22,7 +19,6 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
@@ -36,7 +32,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
-import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -92,11 +87,9 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 				}
 				break;
 			}
-			String mmtfPath = MMTFActivator.getDefault().getStateLocation().toOSString();
-			String metamodelPath = mmtfPath + IPath.SEPARATOR + modelType.getName().toLowerCase() + "." + EcorePackage.eNAME;
-			Path filePath = Paths.get(metamodelPath);
-			if (Files.exists(filePath)) { // get metamodel file from mmtf state area
-				metamodelUris.add(URI.createFileURI(filePath.toString()));
+			String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+			if (metamodelUri != null) { // get metamodel file from mmtf state area
+				metamodelUris.add(URI.createFileURI(metamodelUri));
 				break;
 			}
 			// climb up light types

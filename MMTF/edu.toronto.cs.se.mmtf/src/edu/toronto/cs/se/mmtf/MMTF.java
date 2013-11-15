@@ -582,11 +582,11 @@ public class MMTF implements MMTFConstants {
 		else {
 			try {
 				newModelType = MultiModelLightTypeFactory.createLightModelType(
-					modelType, 
+					modelType,
 					dynamicModelType.getName(),
 					dynamicModelType.getConstraint().getLanguage().getLiteral(),
 					dynamicModelType.getConstraint().getImplementation(),
-					false
+					true
 				);
 			}
 			catch (MMTFException e) {

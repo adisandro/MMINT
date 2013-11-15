@@ -70,7 +70,7 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 		if (parentElement instanceof MultiModel) {
 			List<Model> modelTypes = new ArrayList<Model>();
 			for (Model modelType : ((MultiModel) parentElement).getModels()) {
-				if (modelType instanceof ModelRel || modelType.isAbstract() || modelType.isDynamic()) {
+				if (modelType instanceof ModelRel || modelType.isAbstract()) {
 					continue;
 				}
 				modelTypes.add(modelType);

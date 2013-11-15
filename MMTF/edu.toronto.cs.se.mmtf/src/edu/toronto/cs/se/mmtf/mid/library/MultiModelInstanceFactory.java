@@ -21,6 +21,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
@@ -318,8 +320,7 @@ public class MultiModelInstanceFactory {
 	 */
 	public static ModelElementReference createModelElementAndModelElementReference(ModelElement modelElemType, String newModelElemUri, String newModelElemName, ModelElementCategory category, String classLiteral, ModelEndpointReference modelEndpointRef) throws MMTFException {
 
-		ModelRel modelRel = (ModelRel) modelEndpointRef.eContainer();
-		MultiModel multiModel = (MultiModel) modelRel.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelEndpointRef);
 
 		newModelElemUri += MMTF.ROLE_SEPARATOR + modelElemType.getUri();
 		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
@@ -845,11 +846,20 @@ public class MultiModelInstanceFactory {
 	 */
 	public static EditorCreationWizardDialog invokeEditorWizard(Editor editorType, IStructuredSelection initialSelection) throws Exception {
 
-		IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
-		if (descriptor == null) {
-			throw new MMTFException("Wizard " + editorType.getId() + " not found");
+		Model modelType = MultiModelTypeRegistry.<Model>getType(editorType.getModelUri());
+		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+		IWorkbenchWizard wizard;
+		if (metamodelUri == null) {
+			IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
+			if (descriptor == null) {
+				throw new MMTFException("Wizard " + editorType.getId() + " not found");
+			}
+			wizard = descriptor.createWizard();
 		}
-		IWorkbenchWizard wizard = descriptor.createWizard();
+		else {
+			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+			wizard = new DynamicModelWizard(rootEClass);
+		}
 		wizard.init(PlatformUI.getWorkbench(), initialSelection);
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		String wizardDialogClassName = editorType.getWizardDialogClass();
@@ -1076,7 +1086,7 @@ public class MultiModelInstanceFactory {
 	 */
 	public static void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) {
 
-		MultiModel multiModel = (MultiModel) modelElemRef.eContainer().eContainer().eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemRef);
 		removeInstance(modelElemRef.getUri(), multiModel);
 		removeModelElementReference(modelElemRef);
 		ModelElement modelElem = modelElemRef.getObject();

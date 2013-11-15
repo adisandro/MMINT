@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
@@ -610,12 +611,16 @@ public class MultiModelTypeFactory {
 
 		removeType(modelType.getUri(), multiModel);
 		multiModel.getModels().remove(modelType);
-		List<String> delOperatorTypeUris = new ArrayList<String>();
+		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+		if (metamodelUri != null) {
+			MultiModelUtils.deleteFile(metamodelUri);
+		}
 
 		// remove model element types
 		for (ModelElement modelElementType : modelType.getElements()) {
 			removeType(modelElementType.getUri(), multiModel);
 		}
+		List<String> delOperatorTypeUris = new ArrayList<String>();
 		// remove operator types that use this model type
 		for (Operator operatorType : multiModel.getOperators()) {
 			for (Parameter par : operatorType.getInputs()) {

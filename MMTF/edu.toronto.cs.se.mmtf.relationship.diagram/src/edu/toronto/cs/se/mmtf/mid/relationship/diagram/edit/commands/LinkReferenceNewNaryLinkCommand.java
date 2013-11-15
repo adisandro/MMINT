@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -126,7 +127,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 			RelationshipPackage.eINSTANCE.getLinkReference(),
 			modelRelType
 		);
-		MMTF.createTypeHierarchy((MultiModel) modelRelType.eContainer());
+		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
 		return newLinkTypeRef;
 	}

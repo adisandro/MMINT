@@ -241,12 +241,21 @@ public class MultiModelTypeIntrospection {
 				root = getRoot(uri);
 			}
 			else {
-				// climb up light types
-				while (model.isDynamic() != false) {
+				while (true) {
+					if (!model.isDynamic()) { // get package from registry
+						root = EPackage.Registry.INSTANCE.getEPackage(uri);
+						break;
+					}
+					String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(model);
+					if (metamodelUri != null) { // get package from metamodel file
+						URI emfUri = URI.createFileURI(metamodelUri);
+						root = getRoot(emfUri);
+						break;
+					}
+					// climb up light types
 					model = model.getSupertype();
 					uri = model.getUri();
 				}
-				root = EPackage.Registry.INSTANCE.getEPackage(uri);
 				if (root == null) {
 					throw new MMTFException("EPackage for URI " + uri + " is not registered");
 				}
