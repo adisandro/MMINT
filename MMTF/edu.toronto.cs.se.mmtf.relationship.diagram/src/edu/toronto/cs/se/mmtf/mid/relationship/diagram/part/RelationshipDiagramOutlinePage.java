@@ -11,10 +11,17 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory.Descriptor;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -46,8 +53,8 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	protected TreeViewer contentOutlineViewer;
 	/** The adapter factory for content and labels of the tree viewer. */
 	protected ComposedAdapterFactory adapterFactory;
-	/** The Relationship diagram. */
-	protected Diagram diagram;
+	/** The model relationship root of the Relationship diagram. */
+	protected ModelRel modelRel;
 
 	/**
 	 * Constructor: initialises superclass, diagram and creates the adapter
@@ -59,11 +66,24 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	public RelationshipDiagramOutlinePage(Diagram diagram) {
 
 		super();
-
+		this.modelRel = (ModelRel) diagram.getElement();
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
+			EPackage modelTypePackage = (EPackage) MultiModelTypeIntrospection.getRoot(modelEndpointRef.getObject().getTarget().getMetatype());
+			List<Object> descriptorKey = new ArrayList<Object>();
+			descriptorKey.add(modelTypePackage);
+			descriptorKey.add(ITreeItemContentProvider.class);
+			Descriptor descriptor = ComposedAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptor(descriptorKey);
+			if (descriptor != null) {
+				AdapterFactory editFactory = descriptor.createAdapterFactory();
+				adapterFactory.addAdapterFactory(editFactory);
+				//TODO MMTF: find a way to extend/replace/hook my implementation
+				//TODO MMTF: then review all support for dropping attributes and references
+			}
+		}
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-		this.diagram = diagram;
 	}
 
 	/**
@@ -98,9 +118,8 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	 */
 	public void loadOutlineModels() {
 
+		//TODO MMTF: review
 		ResourceSet resourceSet = new ResourceSetImpl();
-		ModelRel modelRel = (ModelRel) diagram.getElement();
-
 		for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 			Model model = modelEndpointRef.getObject().getTarget();
 			try {
