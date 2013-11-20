@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory.Descriptor;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -66,7 +65,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	public RelationshipDiagramOutlinePage(Diagram diagram) {
 
 		super();
-		this.modelRel = (ModelRel) diagram.getElement();
+		modelRel = (ModelRel) diagram.getElement();
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
@@ -78,10 +77,11 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 			if (descriptor != null) {
 				AdapterFactory editFactory = descriptor.createAdapterFactory();
 				adapterFactory.addAdapterFactory(editFactory);
-				//TODO MMTF: find a way to extend/replace/hook my implementation
 				//TODO MMTF: then review all support for dropping attributes and references
+				//TODO MMTF: especially since I need to get info about model and model element types already here
 			}
 		}
+		//TODO MMTF: subclass the reflective one too to support same things for extended metamodels
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 	}
@@ -101,7 +101,8 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 
 		contentOutlineViewer = getTreeViewer();
 		contentOutlineViewer.addSelectionChangedListener(this);
-		contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+		//TODO MMTF: modelRel is useless?
+		contentOutlineViewer.setContentProvider(new RelationshipDiagramOutlineContentProvider(adapterFactory, modelRel));
 		contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 		// add drag support
