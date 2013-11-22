@@ -60,6 +60,8 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 		IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
 
 		// filter current selection to only EObjects
+		//TODO MMTF: wrong for AttributeValueWrapperItemProvider
+		//TODO MMTF: why don't I create my object here to transfer with more intelligence? (anticipating some of the successive actions, like filtering)
 		Iterator<?> it = selection.iterator();
 		while (it.hasNext()) {
 			Object sel = it.next();

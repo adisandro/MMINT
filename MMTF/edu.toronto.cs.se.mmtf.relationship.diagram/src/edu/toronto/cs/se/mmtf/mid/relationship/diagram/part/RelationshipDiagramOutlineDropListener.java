@@ -62,6 +62,7 @@ public class RelationshipDiagramOutlineDropListener extends DiagramDropTargetLis
 			for (Iterator<?> it = selection.iterator(); it.hasNext();) {
 				Object nextSelectedObject = it.next();
 				// allow only EObjects
+				//TODO MMTF: redundant, and wrong for AttributeValueWrapperItemProvider
 				if (nextSelectedObject instanceof EObject) {
 					result.add((EObject) nextSelectedObject);
 				}
