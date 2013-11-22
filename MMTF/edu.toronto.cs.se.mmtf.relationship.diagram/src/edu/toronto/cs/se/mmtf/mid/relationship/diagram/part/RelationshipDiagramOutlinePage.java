@@ -11,20 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory.Descriptor;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -33,7 +24,6 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
@@ -67,21 +57,6 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		super();
 		modelRel = (ModelRel) diagram.getElement();
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
-		for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
-			EPackage modelTypePackage = (EPackage) MultiModelTypeIntrospection.getRoot(modelEndpointRef.getObject().getTarget().getMetatype());
-			List<Object> descriptorKey = new ArrayList<Object>();
-			descriptorKey.add(modelTypePackage);
-			descriptorKey.add(ITreeItemContentProvider.class);
-			Descriptor descriptor = ComposedAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptor(descriptorKey);
-			if (descriptor != null) {
-				AdapterFactory editFactory = descriptor.createAdapterFactory();
-				adapterFactory.addAdapterFactory(editFactory);
-				//TODO MMTF: then review all support for dropping attributes and references
-				//TODO MMTF: especially since I need to get info about model and model element types already here
-			}
-		}
-		//TODO MMTF: subclass the reflective one too to support same things for extended metamodels
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 	}
@@ -101,9 +76,8 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 
 		contentOutlineViewer = getTreeViewer();
 		contentOutlineViewer.addSelectionChangedListener(this);
-		//TODO MMTF: modelRel is useless?
-		contentOutlineViewer.setContentProvider(new RelationshipDiagramOutlineContentProvider(adapterFactory, modelRel));
-		contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		contentOutlineViewer.setContentProvider(new RelationshipDiagramOutlineContentProvider(adapterFactory, MultiModelConstraintChecker.isInstancesLevel(modelRel)));
+		contentOutlineViewer.setLabelProvider(new RelationshipDiagramOutlineLabelProvider(adapterFactory, MultiModelConstraintChecker.isInstancesLevel(modelRel)));
 
 		// add drag support
 		int ops = DND.DROP_LINK | DND.DROP_MOVE;
@@ -119,43 +93,24 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	 */
 	public void loadOutlineModels() {
 
-		//TODO MMTF: review
 		ResourceSet resourceSet = new ResourceSetImpl();
 		for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 			Model model = modelEndpointRef.getObject().getTarget();
-			try {
-				if (MultiModelConstraintChecker.isInstancesLevel(modelRel)) {
-					//TODO MMTF: easier by calling eResource on getRoot (but getRoot does exactly that)?
-					resourceSet.getResource(URI.createPlatformResourceURI(model.getUri(), true), true);
-				}
-				else {
-					//TODO MMTF: What if two models in the reldiag share the same root?
-					resourceSet.getResources().add(MultiModelTypeIntrospection.getRoot(model).eResource());
-				}
-			}
-			catch (Exception e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Model " + model.getUri() + " unavailable", e);
-			}
+			resourceSet.getResources().add(MultiModelTypeIntrospection.getRoot(model).eResource());
 		}
-
 		contentOutlineViewer.setInput(resourceSet);
 	}
 
 	/**
 	 * Adds a new model to the outline tree viewer.
 	 * 
-	 * @param modelUri
-	 *            The uri of the model to add.
+	 * @param model
+	 *            The model to be added.
 	 */
-	public void addInput(URI modelUri) {
+	public void addInput(Model model) {
 
 		ResourceSet resourceSet = (ResourceSet) contentOutlineViewer.getInput();
-		try {
-			resourceSet.getResource(modelUri, true);
-		}
-		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "Model " + modelUri + " unavailable", e);
-		}
+		resourceSet.getResources().add(MultiModelTypeIntrospection.getRoot(model).eResource());
 	}
 
 }

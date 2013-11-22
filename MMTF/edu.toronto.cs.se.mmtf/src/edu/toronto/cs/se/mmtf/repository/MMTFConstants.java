@@ -134,5 +134,6 @@ public interface MMTFConstants {
 	public final static String SETTING_MENU_MODELRELS_ENABLED = SETTING_MENU_ID + ".ModelRelsEnabled";
 	public final static String SETTING_MENU_LINKS_ENABLED = SETTING_MENU_ID + ".LinksEnabled";
 	public final static String SETTING_MENU_DIAGRAMS_CREATION_ENABLED = SETTING_MENU_ID + ".DiagramsCreationEnabled";
+	public final static String SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED = SETTING_MENU_ID + ".AlternativeModelTreeEnabled";
 
 }

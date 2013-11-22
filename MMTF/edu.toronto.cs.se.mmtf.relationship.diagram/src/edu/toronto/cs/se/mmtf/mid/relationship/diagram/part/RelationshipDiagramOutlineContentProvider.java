@@ -11,48 +11,48 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryContentProvider {
 
-	private ModelRel modelRel;
+	private boolean isInstancesLevel;
 
-	public RelationshipDiagramOutlineContentProvider(AdapterFactory adapterFactory, ModelRel modelRel) {
+	public RelationshipDiagramOutlineContentProvider(AdapterFactory adapterFactory, boolean isInstancesLevel) {
 
-		//TODO MMTF: modelRel is useless?
 		super(adapterFactory);
-		this.modelRel = modelRel;
+		this.isInstancesLevel = isInstancesLevel;
+	}
+
+	@Override
+	public boolean hasChildren(Object object) {
+
+		boolean hasChildren;
+		if (isInstancesLevel && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
+			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
+			hasChildren = alternativeProvider.hasChildren(object);
+		}
+		else {
+			hasChildren = super.hasChildren(object);
+		}
+
+		return hasChildren;
 	}
 
 	@Override
 	public Object[] getChildren(Object object) {
 
-		//TODO MMTF: add setting to show the complete thing, since it might get huge and recursive
 		Object[] children;
-		ITreeItemContentProvider defaultContentProvider = (ITreeItemContentProvider) adapterFactory.adapt(object, ITreeItemContentProvider.class);
-		if (defaultContentProvider != null) {
-			Collection<?> defaultChildren = defaultContentProvider.getChildren(object);
-			if (defaultContentProvider instanceof ItemProviderAdapter && object instanceof EObject) {
-				RelationshipDiagramOutlineItemProvider additionalContentProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory, ((EObject) object).eClass());
-				Collection<?> additionalChildren = additionalContentProvider.getChildren(object);
-				children = new Object[defaultChildren.size() + additionalChildren.size()];
-				System.arraycopy(defaultChildren.toArray(), 0, children, 0, defaultChildren.size());
-				System.arraycopy(additionalChildren.toArray(), 0, children, defaultChildren.size(), additionalChildren.size());
-			}
-			else {
-				children = defaultChildren.toArray();
-			}
+		if (isInstancesLevel && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
+			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
+			children = alternativeProvider.getChildren(object).toArray();
 		}
 		else {
-			children = new Object[0];
+			children = super.getChildren(object);
 		}
 
 		return children;
