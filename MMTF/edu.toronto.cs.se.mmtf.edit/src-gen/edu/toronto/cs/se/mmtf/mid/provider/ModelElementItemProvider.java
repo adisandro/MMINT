@@ -66,32 +66,9 @@ public class ModelElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCategoryPropertyDescriptor(object);
 			addClassLiteralPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Category feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCategoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelElement_category_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_category_feature", "_UI_ModelElement_type"),
-				 MidPackage.Literals.MODEL_ELEMENT__CATEGORY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -153,7 +130,6 @@ public class ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElement.class)) {
-			case MidPackage.MODEL_ELEMENT__CATEGORY:
 			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -191,8 +190,6 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            if the root model element type should be used as supertype.
 	 * @param newModelElemTypeName
 	 *            The name of the new model element type.
-	 * @param category
-	 *            The category of the new model element type.
 	 * @param classLiteral
 	 *            The class name of the new model element type.
 	 * @param modelType
@@ -202,13 +199,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model element type is already
 	 *             registered in the repository.
 	 */
-	public static ModelElement createHeavyModelElementType(String newModelElemTypeUri, String modelElemTypeUri, String newModelElemTypeName, ModelElementCategory category, String classLiteral, Model modelType) throws MMTFException {
+	public static ModelElement createHeavyModelElementType(String newModelElemTypeUri, String modelElemTypeUri, String newModelElemTypeName, String classLiteral, Model modelType) throws MMTFException {
 
 		ModelElement newModelElemType = MidFactory.eINSTANCE.createModelElement();
-		newModelElemType.setCategory(category); // needed to get the right root uri
 		ModelElement modelElemType = getSupertype(newModelElemType, newModelElemTypeUri, modelElemTypeUri);
 		addHeavyType(newModelElemType, modelElemType, newModelElemTypeUri, newModelElemTypeName);
-		addModelElementType(newModelElemType, category, classLiteral, modelType);
+		addModelElementType(newModelElemType, classLiteral, modelType);
 
 		return newModelElemType;
 	}

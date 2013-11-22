@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -29,7 +28,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl#getClassLiteral <em>Class Literal</em>}</li>
  * </ul>
  * </p>
@@ -37,26 +35,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class ModelElementImpl extends ExtendibleElementImpl implements ModelElement {
-	/**
-	 * The default value of the '{@link #getCategory() <em>Category</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCategory()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ModelElementCategory CATEGORY_EDEFAULT = ModelElementCategory.ENTITY;
-
-	/**
-	 * The cached value of the '{@link #getCategory() <em>Category</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCategory()
-	 * @generated
-	 * @ordered
-	 */
-	protected ModelElementCategory category = CATEGORY_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getClassLiteral() <em>Class Literal</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,27 +72,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	protected EClass eStaticClass() {
 		return MidPackage.Literals.MODEL_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelElementCategory getCategory() {
-		return category;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCategory(ModelElementCategory newCategory) {
-		ModelElementCategory oldCategory = category;
-		category = newCategory == null ? CATEGORY_EDEFAULT : newCategory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_ELEMENT__CATEGORY, oldCategory, category));
 	}
 
 	/**
@@ -166,8 +123,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CATEGORY:
-				return getCategory();
 			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				return getClassLiteral();
 		}
@@ -182,9 +137,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CATEGORY:
-				setCategory((ModelElementCategory)newValue);
-				return;
 			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				setClassLiteral((String)newValue);
 				return;
@@ -200,9 +152,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CATEGORY:
-				setCategory(CATEGORY_EDEFAULT);
-				return;
 			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				setClassLiteral(CLASS_LITERAL_EDEFAULT);
 				return;
@@ -218,8 +167,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CATEGORY:
-				return category != CATEGORY_EDEFAULT;
 			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
 				return CLASS_LITERAL_EDEFAULT == null ? classLiteral != null : !CLASS_LITERAL_EDEFAULT.equals(classLiteral);
 		}
@@ -252,9 +199,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (category: ");
-		result.append(category);
-		result.append(", classLiteral: ");
+		result.append(" (classLiteral: ");
 		result.append(classLiteral);
 		result.append(')');
 		return result.toString();

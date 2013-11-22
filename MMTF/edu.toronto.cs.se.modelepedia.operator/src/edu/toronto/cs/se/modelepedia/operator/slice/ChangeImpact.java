@@ -88,7 +88,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 
 		// type table
 		Model model = modelEndpointRef.getObject().getTarget();
-		for (ModelElement modelElemType : model.getMetatype().getElements()) {
+		for (ModelElement modelElemType : model.getMetatype().getModelElems()) {
 			List<EObject> unifiablesFromSameType = new ArrayList<EObject>();
 			typeTable.put(modelElemType.getUri(), unifiablesFromSameType);
 		}

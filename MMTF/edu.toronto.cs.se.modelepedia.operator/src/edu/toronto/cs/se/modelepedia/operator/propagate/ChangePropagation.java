@@ -366,7 +366,7 @@ traceLinks:
 
 		List<ModelElement> otherModelElems = new ArrayList<ModelElement>();
 		// first pass, modify model element uris
-		for (ModelElement otherModelElem : modelEndpointRef.getObject().getTarget().getElements()) {
+		for (ModelElement otherModelElem : modelEndpointRef.getObject().getTarget().getModelElems()) {
 			String otherModelElemUri = getModelEObjectUri(otherModelElem.getUri());
 			// other model element to be affected by unification of model elements
 			if (otherModelElemUri.contains(unifiedModelElemUriBase)) {

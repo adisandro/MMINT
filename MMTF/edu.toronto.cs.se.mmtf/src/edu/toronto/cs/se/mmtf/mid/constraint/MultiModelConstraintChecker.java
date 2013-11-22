@@ -22,8 +22,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -43,7 +41,6 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
@@ -74,8 +71,7 @@ import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
  */
 public class MultiModelConstraintChecker {
 
-	private final static String ENTITY_WILDCARD_CLASSIFIER_NAME = "ModelElementEntityWildcard";
-	private final static String RELATIONSHIP_WILDCARD_FEATURE_NAME = "modelElementRelationshipWildcard";
+	private final static String WILDCARD_CLASSIFIER_NAME = "ModelElementWildcard";
 	private final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
 	private final static char OCL_VARIABLE_SEPARATOR = '.';
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
@@ -333,27 +329,11 @@ public class MultiModelConstraintChecker {
 
 	private static boolean isAllowedModelElement(ModelElement modelElemType, EObject newEObject) {
 
-		// entity-relationship differences
-		String metaName;
-		if (newEObject instanceof EReference) {
-			if (modelElemType.getCategory() != ModelElementCategory.RELATIONSHIP) {
-				return false;
-			}
-			EStructuralFeature feature = (EStructuralFeature) MultiModelTypeIntrospection.getPointer(modelElemType);
-			metaName = feature.getName();
-			if (metaName.equals(RELATIONSHIP_WILDCARD_FEATURE_NAME)) {
-				return true;
-			}
-		}
-		else {
-			if (modelElemType.getCategory() != ModelElementCategory.ENTITY) {
-				return false;
-			}
-			EClassifier classifier = (EClassifier) MultiModelTypeIntrospection.getPointer(modelElemType);
-			metaName = classifier.getName();
-			if (metaName.equals(ENTITY_WILDCARD_CLASSIFIER_NAME)) {
-				return true;
-			}
+		// check wildcard
+		EClassifier classifier = (EClassifier) MultiModelTypeIntrospection.getPointer(modelElemType);
+		String metaName = classifier.getName();
+		if (metaName.equals(WILDCARD_CLASSIFIER_NAME)) {
+			return true;
 		}
 
 		// check model element compliance

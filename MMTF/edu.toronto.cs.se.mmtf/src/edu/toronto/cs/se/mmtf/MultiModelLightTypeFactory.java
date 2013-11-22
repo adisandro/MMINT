@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -282,8 +281,6 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 *            endpoint reference container.
 	 * @param newModelElemTypeName
 	 *            The name of the new model element type.
-	 * @param category
-	 *            The category of the new model element type.
 	 * @param classLiteral
 	 *            The class name of the new model element type.
 	 * @param modelTypeEndpointRef
@@ -294,7 +291,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model element type is already
 	 *             registered in the Type MID.
 	 */
-	public static ModelElementReference createLightModelElementTypeAndModelElementTypeReference(ModelElement modelElemType, ModelElementReference modelElemTypeRef, String newModelElemTypeName, ModelElementCategory category, String classLiteral, ModelEndpointReference modelTypeEndpointRef) throws MMTFException {
+	public static ModelElementReference createLightModelElementTypeAndModelElementTypeReference(ModelElement modelElemType, ModelElementReference modelElemTypeRef, String newModelElemTypeName, String classLiteral, ModelEndpointReference modelTypeEndpointRef) throws MMTFException {
 
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
@@ -304,7 +301,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			// create the "thing"
 			newModelElemType = MidFactory.eINSTANCE.createModelElement();
 			addLightType(newModelElemType, modelElemType, modelTypeEndpointRef.getObject(), modelTypeEndpointRef.getObject().getName(), newModelElemTypeName, multiModel);
-			addModelElementType(newModelElemType, category, classLiteral, modelTypeEndpointRef.getObject().getTarget());
+			addModelElementType(newModelElemType, classLiteral, modelTypeEndpointRef.getObject().getTarget());
 		}
 		// create the reference of the "thing"
 		ModelElementReference newModelElemTypeRef = createModelElementTypeReference(newModelElemType, modelElemTypeRef, true, modelTypeEndpointRef);
@@ -689,7 +686,6 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 					modelElemType,
 					modelElemTypeRef,
 					oldModelElemTypeRef.getObject().getName(),
-					oldModelElemTypeRef.getObject().getCategory(),
 					oldModelElemTypeRef.getObject().getClassLiteral(),
 					newModelTypeEndpointRef
 				);

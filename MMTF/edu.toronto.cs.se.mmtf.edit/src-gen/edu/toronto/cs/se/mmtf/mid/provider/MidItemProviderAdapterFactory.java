@@ -173,6 +173,29 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModelElementWildcardItemProvider modelElementWildcardItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementWildcardAdapter() {
+		if (modelElementWildcardItemProvider == null) {
+			modelElementWildcardItemProvider = new ModelElementWildcardItemProvider(this);
+		}
+
+		return modelElementWildcardItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,29 +216,6 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		}
 
 		return modelConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelElementEntityWildcardItemProvider modelElementEntityWildcardItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelElementEntityWildcardAdapter() {
-		if (modelElementEntityWildcardItemProvider == null) {
-			modelElementEntityWildcardItemProvider = new ModelElementEntityWildcardItemProvider(this);
-		}
-
-		return modelElementEntityWildcardItemProvider;
 	}
 
 	/**
@@ -345,7 +345,7 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		if (modelItemProvider != null) modelItemProvider.dispose();
 		if (modelConstraintItemProvider != null) modelConstraintItemProvider.dispose();
 		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
-		if (modelElementEntityWildcardItemProvider != null) modelElementEntityWildcardItemProvider.dispose();
+		if (modelElementWildcardItemProvider != null) modelElementWildcardItemProvider.dispose();
 		if (modelEndpointItemProvider != null) modelEndpointItemProvider.dispose();
 	}
 

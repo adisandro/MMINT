@@ -12,8 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -22,7 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -32,12 +29,12 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelElementEntityWildcardItemProvider
+public class ModelElementWildcardItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +48,7 @@ public class ModelElementEntityWildcardItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElementEntityWildcardItemProvider(AdapterFactory adapterFactory) {
+	public ModelElementWildcardItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,42 +63,19 @@ public class ModelElementEntityWildcardItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addModelElementRelationshipWildcardPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Model Element Relationship Wildcard feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModelElementRelationshipWildcardPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelElementEntityWildcard_modelElementRelationshipWildcard_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementEntityWildcard_modelElementRelationshipWildcard_feature", "_UI_ModelElementEntityWildcard_type"),
-				 MidPackage.Literals.MODEL_ELEMENT_ENTITY_WILDCARD__MODEL_ELEMENT_RELATIONSHIP_WILDCARD,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns ModelElementEntityWildcard.gif.
+	 * This returns ModelElementWildcard.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementEntityWildcard"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementWildcard"));
 	}
 
 	/**
@@ -112,7 +86,7 @@ public class ModelElementEntityWildcardItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ModelElementEntityWildcard_type");
+		return getString("_UI_ModelElementWildcard_type");
 	}
 
 	/**

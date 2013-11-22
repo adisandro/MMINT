@@ -19,7 +19,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
@@ -29,7 +28,6 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
@@ -121,12 +119,10 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
 		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(newModelObj, true); // class literal == type name
 		String newModelElemName = MultiModelRegistry.getModelElementName(newModelObj, true);
-		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(newModelObj);
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
 			modelElemType,
 			newModelElemUri,
 			newModelElemName,
-			category,
 			classLiteral,
 			modelEndpointRef
 		);
@@ -166,22 +162,18 @@ supertypes:
 			}
 		}
 		if (modelElemType == null) {
-			String modelElemTypeUri = (newModelObj instanceof EReference) ?
-				MMTF.ROOT_MODELELEMENT_RELATIONSHIP_URI :
-				MMTF.ROOT_MODELELEMENT_ENTITY_URI;
+			String modelElemTypeUri = MMTF.ROOT_MODELELEM_URI;
 			modelElemType = MultiModelRegistry.getExtendibleElement(modelElemTypeUri, multiModel);
 			//TODO MMTF: move getXType into a generic type registry, I need those functions for instances too (only the ones with a multiModel argument)
 			//TODO MMTF: clean things in instances (order of arguments like in types, URI instead of String uri, name as argument)
 			//TODO MMTF: write a todo somewhere to remember to handle the import of a model rel instance
 		}
 
-		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(newModelObj);
 		String classLiteral = newModelElemUri; // class literal == name
 		ModelElementReference newModelElemTypeRef = MultiModelLightTypeFactory.createLightModelElementTypeAndModelElementTypeReference(
 			modelElemType,
 			modelElemTypeRef,
 			newModelElemUri,
-			category,
 			classLiteral,
 			modelTypeEndpointRef
 		);

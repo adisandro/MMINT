@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -77,13 +76,6 @@ public class MultiModelRegistry {
 		}
 
 		return false;
-	}
-
-	public static ModelElementCategory getModelElementCategory(EObject modelObj) {
-
-		return (modelObj instanceof EReference) ?
-			ModelElementCategory.RELATIONSHIP :
-			ModelElementCategory.ENTITY;
 	}
 
 	public static String[] getModelAndModelElementUris(EObject modelObj, boolean isInstancesLevel) {

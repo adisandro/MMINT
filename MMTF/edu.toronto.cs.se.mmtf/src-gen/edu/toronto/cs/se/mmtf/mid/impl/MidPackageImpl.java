@@ -22,8 +22,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
-import edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard;
+import edu.toronto.cs.se.mmtf.mid.ModelElementWildcard;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -103,14 +102,14 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelConstraintEClass = null;
+	private EClass modelElementWildcardEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelElementEntityWildcardEClass = null;
+	private EClass modelConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,13 +138,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EEnum modelConstraintLanguageEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum modelElementCategoryEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -461,7 +453,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModel_Elements() {
+	public EReference getModel_ModelElems() {
 		return (EReference)modelEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -551,17 +543,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModelElement_Category() {
-		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getModelElement_ClassLiteral() {
-		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -580,6 +563,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EOperation getModelElement__GetSupertype() {
 		return modelElementEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getModelElementWildcard() {
+		return modelElementWildcardEClass;
 	}
 
 	/**
@@ -607,24 +599,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EAttribute getModelConstraint_Language() {
 		return (EAttribute)modelConstraintEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getModelElementEntityWildcard() {
-		return modelElementEntityWildcardEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getModelElementEntityWildcard_ModelElementRelationshipWildcard() {
-		return (EReference)modelElementEntityWildcardEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -695,15 +669,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getModelElementCategory() {
-		return modelElementCategoryEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MidFactory getMidFactory() {
 		return (MidFactory)getEFactoryInstance();
 	}
@@ -759,7 +724,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelEClass, MODEL__ORIGIN);
 		createEAttribute(modelEClass, MODEL__FILE_EXTENSION);
 		createEReference(modelEClass, MODEL__EDITORS);
-		createEReference(modelEClass, MODEL__ELEMENTS);
+		createEReference(modelEClass, MODEL__MODEL_ELEMS);
 		createEReference(modelEClass, MODEL__CONSTRAINT);
 		createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
 		createEAttribute(modelEClass, MODEL__ABSTRACT);
@@ -771,13 +736,11 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelConstraintEClass, MODEL_CONSTRAINT__LANGUAGE);
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__CATEGORY);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CLASS_LITERAL);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
 
-		modelElementEntityWildcardEClass = createEClass(MODEL_ELEMENT_ENTITY_WILDCARD);
-		createEReference(modelElementEntityWildcardEClass, MODEL_ELEMENT_ENTITY_WILDCARD__MODEL_ELEMENT_RELATIONSHIP_WILDCARD);
+		modelElementWildcardEClass = createEClass(MODEL_ELEMENT_WILDCARD);
 
 		modelEndpointEClass = createEClass(MODEL_ENDPOINT);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_SUPERTYPE);
@@ -788,7 +751,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		midLevelEEnum = createEEnum(MID_LEVEL);
 		modelOriginEEnum = createEEnum(MODEL_ORIGIN);
 		modelConstraintLanguageEEnum = createEEnum(MODEL_CONSTRAINT_LANGUAGE);
-		modelElementCategoryEEnum = createEEnum(MODEL_ELEMENT_CATEGORY);
 	}
 
 	/**
@@ -873,7 +835,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getModel_Origin(), this.getModelOrigin(), "origin", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModel_FileExtension(), ecorePackage.getEString(), "fileExtension", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModel_Elements(), this.getModelElement(), null, "elements", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_ModelElems(), this.getModelElement(), null, "modelElems", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_Constraint(), this.getModelConstraint(), null, "constraint", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_ConversionOperators(), theOperatorPackage.getConversionOperator(), null, "conversionOperators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModel_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -887,15 +849,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getModelConstraint_Language(), this.getModelConstraintLanguage(), "language", null, 1, 1, ModelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelElement_Category(), this.getModelElementCategory(), "category", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelElement_ClassLiteral(), ecorePackage.getEString(), "classLiteral", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModelElement__GetMetatype(), this.getModelElement(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModelElement__GetSupertype(), this.getModelElement(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(modelElementEntityWildcardEClass, ModelElementEntityWildcard.class, "ModelElementEntityWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElementEntityWildcard_ModelElementRelationshipWildcard(), this.getModelElementEntityWildcard(), null, "modelElementRelationshipWildcard", null, 0, 1, ModelElementEntityWildcard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(modelElementWildcardEClass, ModelElementWildcard.class, "ModelElementWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(modelEndpointEClass, ModelEndpoint.class, "ModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -918,10 +878,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.OCL);
 		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.JAVA);
 		addEEnumLiteral(modelConstraintLanguageEEnum, ModelConstraintLanguage.SMTLIB);
-
-		initEEnum(modelElementCategoryEEnum, ModelElementCategory.class, "ModelElementCategory");
-		addEEnumLiteral(modelElementCategoryEEnum, ModelElementCategory.ENTITY);
-		addEEnumLiteral(modelElementCategoryEEnum, ModelElementCategory.RELATIONSHIP);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -960,7 +916,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																										
+		   });																																					
 	}
 
 	/**
@@ -988,7 +944,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																		
+		   });																													
 	}
 
 } //MidPackageImpl

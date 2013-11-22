@@ -50,7 +50,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#isAbstract <em>Abstract</em>}</li>
@@ -131,14 +131,14 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	protected EList<Editor> editors;
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+	 * The cached value of the '{@link #getModelElems() <em>Model Elems</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElements()
+	 * @see #getModelElems()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> elements;
+	protected EList<ModelElement> modelElems;
 
 	/**
 	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
@@ -279,11 +279,11 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElement> getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MidPackage.MODEL__ELEMENTS);
+	public EList<ModelElement> getModelElems() {
+		if (modelElems == null) {
+			modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MidPackage.MODEL__MODEL_ELEMS);
 		}
-		return elements;
+		return modelElems;
 	}
 
 	/**
@@ -390,8 +390,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MidPackage.MODEL__ELEMENTS:
-				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+			case MidPackage.MODEL__MODEL_ELEMS:
+				return ((InternalEList<?>)getModelElems()).basicRemove(otherEnd, msgs);
 			case MidPackage.MODEL__CONSTRAINT:
 				return basicSetConstraint(null, msgs);
 		}
@@ -414,8 +414,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getFileExtension();
 			case MidPackage.MODEL__EDITORS:
 				return getEditors();
-			case MidPackage.MODEL__ELEMENTS:
-				return getElements();
+			case MidPackage.MODEL__MODEL_ELEMS:
+				return getModelElems();
 			case MidPackage.MODEL__CONSTRAINT:
 				return getConstraint();
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
@@ -448,9 +448,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				getEditors().clear();
 				getEditors().addAll((Collection<? extends Editor>)newValue);
 				return;
-			case MidPackage.MODEL__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends ModelElement>)newValue);
+			case MidPackage.MODEL__MODEL_ELEMS:
+				getModelElems().clear();
+				getModelElems().addAll((Collection<? extends ModelElement>)newValue);
 				return;
 			case MidPackage.MODEL__CONSTRAINT:
 				setConstraint((ModelConstraint)newValue);
@@ -486,8 +486,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MidPackage.MODEL__EDITORS:
 				getEditors().clear();
 				return;
-			case MidPackage.MODEL__ELEMENTS:
-				getElements().clear();
+			case MidPackage.MODEL__MODEL_ELEMS:
+				getModelElems().clear();
 				return;
 			case MidPackage.MODEL__CONSTRAINT:
 				setConstraint((ModelConstraint)null);
@@ -518,8 +518,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
 			case MidPackage.MODEL__EDITORS:
 				return editors != null && !editors.isEmpty();
-			case MidPackage.MODEL__ELEMENTS:
-				return elements != null && !elements.isEmpty();
+			case MidPackage.MODEL__MODEL_ELEMS:
+				return modelElems != null && !modelElems.isEmpty();
 			case MidPackage.MODEL__CONSTRAINT:
 				return constraint != null;
 			case MidPackage.MODEL__CONVERSION_OPERATORS:

@@ -66,19 +66,10 @@
                   targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
             </typeEndpoint>
             <modelElemType
-                  category="ENTITY"
-                  classLiteral="ModelElementEntityWildcard">
+                  classLiteral="ModelElementWildcard">
                 <extendibleType
-                     name="EntityElem"
-                     uri="http://se.cs.toronto.edu/mmtf/Model/EntityElem">
-                </extendibleType>
-            </modelElemType>
-            <modelElemType
-                  category="RELATIONSHIP"
-                  classLiteral="ModelElementEntityWildcard/modelElementRelationshipWildcard">
-                <extendibleType
-                     name="RelElem"
-                     uri="http://se.cs.toronto.edu/mmtf/Model/RelElem">
+                     name="ModelElem"
+                     uri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
                 </extendibleType>
             </modelElemType>
          </modelTypeEndpoint>
@@ -89,24 +80,13 @@
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
-                     name="EntityElemEndpoint"
-                     uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link-EntityElem/EntityElemEndpoint">
+                     name="ModelElemEndpoint"
+                     uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link-ModelElem/ModelElemEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/EntityElem">
-               </typeEndpoint>
-            </modelElemTypeEndpoint>
-            <modelElemTypeEndpoint>
-               <extendibleType
-                     name="RelElemEndpoint"
-                     uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link-RelElem/RelElemEndpoint">
-               </extendibleType>
-               <typeEndpoint
-                     lowerBound="0"
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/RelElem">
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -190,19 +170,10 @@
                   targetTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
             </typeEndpoint>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="MAVOElement">
                 <extendibleType
                      name="MAVOElement"
                      uri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement">
-                </extendibleType>
-            </modelElemType>
-            <modelElemType
-                  category="RELATIONSHIP"
-                  classLiteral="MAVOReference">
-                <extendibleType
-                     name="MAVOReference"
-                     uri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOReference">
                 </extendibleType>
             </modelElemType>
          </modelTypeEndpoint>
@@ -220,17 +191,6 @@
                      lowerBound="0"
                      upperBound="-1"
                      targetTypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement">
-               </typeEndpoint>
-            </modelElemTypeEndpoint>
-            <modelElemTypeEndpoint>
-               <extendibleType
-                     name="MAVOReferenceEndpoint"
-                     uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOReference/MAVOReferenceEndpoint">
-               </extendibleType>
-               <typeEndpoint
-                     lowerBound="0"
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOReference">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>

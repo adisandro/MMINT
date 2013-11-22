@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getEditors <em>Editors</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#isAbstract <em>Abstract</em>}</li>
@@ -112,19 +112,19 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	EList<Editor> getEditors();
 
 	/**
-	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Model Elems</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mmtf.mid.ModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The list of model elements (types: model element types; instances: model element instances).
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Elements</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Elements()
+	 * @return the value of the '<em>Model Elems</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_ModelElems()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElement> getElements();
+	EList<ModelElement> getModelElems();
 
 	/**
 	 * Returns the value of the '<em><b>Constraint</b></em>' containment reference.

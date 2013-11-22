@@ -110,8 +110,8 @@ public class MidValidator extends EObjectValidator {
 				return validateModelConstraint((ModelConstraint)value, diagnostics, context);
 			case MidPackage.MODEL_ELEMENT:
 				return validateModelElement((ModelElement)value, diagnostics, context);
-			case MidPackage.MODEL_ELEMENT_ENTITY_WILDCARD:
-				return validateModelElementEntityWildcard((ModelElementEntityWildcard)value, diagnostics, context);
+			case MidPackage.MODEL_ELEMENT_WILDCARD:
+				return validateModelElementWildcard((ModelElementWildcard)value, diagnostics, context);
 			case MidPackage.MODEL_ENDPOINT:
 				return validateModelEndpoint((ModelEndpoint)value, diagnostics, context);
 			case MidPackage.MID_LEVEL:
@@ -120,8 +120,6 @@ public class MidValidator extends EObjectValidator {
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
 			case MidPackage.MODEL_CONSTRAINT_LANGUAGE:
 				return validateModelConstraintLanguage((ModelConstraintLanguage)value, diagnostics, context);
-			case MidPackage.MODEL_ELEMENT_CATEGORY:
-				return validateModelElementCategory((ModelElementCategory)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -285,8 +283,8 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConstraint(ModelConstraint modelConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modelConstraint, diagnostics, context);
+	public boolean validateModelElementWildcard(ModelElementWildcard modelElementWildcard, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelElementWildcard, diagnostics, context);
 	}
 
 	/**
@@ -294,8 +292,8 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelElementEntityWildcard(ModelElementEntityWildcard modelElementEntityWildcard, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modelElementEntityWildcard, diagnostics, context);
+	public boolean validateModelConstraint(ModelConstraint modelConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelConstraint, diagnostics, context);
 	}
 
 	/**
@@ -342,15 +340,6 @@ public class MidValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModelConstraintLanguage(ModelConstraintLanguage modelConstraintLanguage, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelElementCategory(ModelElementCategory modelElementCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

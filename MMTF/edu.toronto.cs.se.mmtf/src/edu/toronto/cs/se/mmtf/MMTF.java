@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
@@ -218,14 +217,12 @@ public class MMTF implements MMTFConstants {
 					newType = new ExtensionType(modelElemTypeConfig);
 					ModelElement newModelElemType = MultiModelTypeRegistry.getType(newType.getUri());
 					if (newModelElemType == null) { // create new model element type
-						ModelElementCategory category = ModelElementCategory.get(modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CATEGORY));
 						String classLiteral = modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CLASSLITERAL);
 						try {
 							newModelElemType = MultiModelHeavyTypeFactory.createHeavyModelElementType(
 								newType.getUri(),
 								newType.getSupertypeUri(),
 								newType.getName(),
-								category,
 								classLiteral,
 								newModelType
 							);

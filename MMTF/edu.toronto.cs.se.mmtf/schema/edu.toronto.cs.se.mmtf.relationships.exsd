@@ -94,21 +94,6 @@ The relationship&apos;s enpoints model packages have to be registered too throug
          <sequence>
             <element ref="extendibleType"/>
          </sequence>
-         <attribute name="category" use="required">
-            <annotation>
-               <documentation>
-                  The model element type category.
-               </documentation>
-            </annotation>
-            <simpleType>
-               <restriction base="string">
-                  <enumeration value="ENTITY">
-                  </enumeration>
-                  <enumeration value="RELATIONSHIP">
-                  </enumeration>
-               </restriction>
-            </simpleType>
-         </attribute>
          <attribute name="classLiteral" type="string" use="required">
             <annotation>
                <documentation>

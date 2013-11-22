@@ -651,13 +651,13 @@ public interface MidPackage extends EPackage {
 	int MODEL__EDITORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__ELEMENTS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int MODEL__MODEL_ELEMS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -878,22 +878,13 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
-	 * The feature id for the '<em><b>Category</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__CATEGORY = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Class Literal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__CLASS_LITERAL = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT__CLASS_LITERAL = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
@@ -902,7 +893,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -932,41 +923,32 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementEntityWildcardImpl <em>Model Element Entity Wildcard</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementEntityWildcardImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementEntityWildcard()
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementWildcard()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_ENTITY_WILDCARD = 7;
+	int MODEL_ELEMENT_WILDCARD = 7;
 
 	/**
-	 * The feature id for the '<em><b>Model Element Relationship Wildcard</b></em>' reference.
+	 * The number of structural features of the '<em>Model Element Wildcard</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENTITY_WILDCARD__MODEL_ELEMENT_RELATIONSHIP_WILDCARD = 0;
+	int MODEL_ELEMENT_WILDCARD_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Model Element Entity Wildcard</em>' class.
+	 * The number of operations of the '<em>Model Element Wildcard</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENTITY_WILDCARD_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Model Element Entity Wildcard</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENTITY_WILDCARD_OPERATION_COUNT = 0;
+	int MODEL_ELEMENT_WILDCARD_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.
@@ -1187,16 +1169,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_CONSTRAINT_LANGUAGE = 11;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementCategory()
-	 * @generated
-	 */
-	int MODEL_ELEMENT_CATEGORY = 12;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -1468,15 +1440,15 @@ public interface MidPackage extends EPackage {
 	EReference getModel_Editors();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.Model#getElements <em>Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmtf.mid.Model#getModelElems <em>Model Elems</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Elements</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Model#getElements()
+	 * @return the meta object for the containment reference list '<em>Model Elems</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getModelElems()
 	 * @see #getModel()
 	 * @generated
 	 */
-	EReference getModel_Elements();
+	EReference getModel_ModelElems();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}'.
@@ -1576,17 +1548,6 @@ public interface MidPackage extends EPackage {
 	EClass getModelElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getCategory <em>Category</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Category</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getCategory()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_Category();
-
-	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1616,6 +1577,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelElement__GetSupertype();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard <em>Model Element Wildcard</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model Element Wildcard</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementWildcard
+	 * @generated
+	 */
+	EClass getModelElementWildcard();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint <em>Model Constraint</em>}'.
@@ -1648,27 +1619,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelConstraint_Language();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard <em>Model Element Entity Wildcard</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Element Entity Wildcard</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard
-	 * @generated
-	 */
-	EClass getModelElementEntityWildcard();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard#getModelElementRelationshipWildcard <em>Model Element Relationship Wildcard</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model Element Relationship Wildcard</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementEntityWildcard#getModelElementRelationshipWildcard()
-	 * @see #getModelElementEntityWildcard()
-	 * @generated
-	 */
-	EReference getModelElementEntityWildcard_ModelElementRelationshipWildcard();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint <em>Model Endpoint</em>}'.
@@ -1739,16 +1689,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getModelConstraintLanguage();
-
-	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Model Element Category</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
-	 * @generated
-	 */
-	EEnum getModelElementCategory();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1982,12 +1922,12 @@ public interface MidPackage extends EPackage {
 		EReference MODEL__EDITORS = eINSTANCE.getModel_Editors();
 
 		/**
-		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Model Elems</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL__ELEMENTS = eINSTANCE.getModel_Elements();
+		EReference MODEL__MODEL_ELEMS = eINSTANCE.getModel_ModelElems();
 
 		/**
 		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
@@ -2066,14 +2006,6 @@ public interface MidPackage extends EPackage {
 		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__CATEGORY = eINSTANCE.getModelElement_Category();
-
-		/**
 		 * The meta object literal for the '<em><b>Class Literal</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2096,6 +2028,16 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT___GET_SUPERTYPE = eINSTANCE.getModelElement__GetSupertype();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementWildcard()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT_WILDCARD = eINSTANCE.getModelElementWildcard();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl <em>Model Constraint</em>}' class.
@@ -2122,24 +2064,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_CONSTRAINT__LANGUAGE = eINSTANCE.getModelConstraint_Language();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementEntityWildcardImpl <em>Model Element Entity Wildcard</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementEntityWildcardImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementEntityWildcard()
-		 * @generated
-		 */
-		EClass MODEL_ELEMENT_ENTITY_WILDCARD = eINSTANCE.getModelElementEntityWildcard();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Element Relationship Wildcard</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT_ENTITY_WILDCARD__MODEL_ELEMENT_RELATIONSHIP_WILDCARD = eINSTANCE.getModelElementEntityWildcard_ModelElementRelationshipWildcard();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.
@@ -2204,16 +2128,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MODEL_CONSTRAINT_LANGUAGE = eINSTANCE.getModelConstraintLanguage();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory <em>Model Element Category</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementCategory()
-		 * @generated
-		 */
-		EEnum MODEL_ELEMENT_CATEGORY = eINSTANCE.getModelElementCategory();
 
 	}
 

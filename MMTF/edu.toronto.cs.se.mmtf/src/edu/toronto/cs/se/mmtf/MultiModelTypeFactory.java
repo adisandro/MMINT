@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -181,19 +180,16 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param newModelElemType
 	 *            The new model element type being added.
-	 * @param category
-	 *            The category of the new model element type.
 	 * @param classLiteral
 	 *            The class name of the new model element type.
 	 * @param modelType
 	 *            The model type that will contain the new model element type.
 	 */
-	protected static void addModelElementType(ModelElement newModelElemType, ModelElementCategory category, String classLiteral, Model modelType) {
+	protected static void addModelElementType(ModelElement newModelElemType, String classLiteral, Model modelType) {
 
-		newModelElemType.setCategory(category);
 		newModelElemType.setClassLiteral(classLiteral);
 
-		modelType.getElements().add(newModelElemType);
+		modelType.getModelElems().add(newModelElemType);
 	}
 
 	/**
@@ -306,7 +302,7 @@ public class MultiModelTypeFactory {
 	protected static void addLinkType(Link newLinkType, Link linkType, ModelRel modelRelType) {
 
 		// keep track of inherited model elements, but not root ones
-		if (linkType != null && !linkType.getUri().equals(MMTF.ROOT_MODELREL_LINK_URI)) {
+		if (linkType != null && !linkType.getUri().equals(MMTF.ROOT_LINK_URI)) {
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : linkType.getModelElemEndpointRefs()) {
 				newLinkType.getModelElemEndpointRefs().add(modelElemTypeEndpointRef);
 			}
@@ -617,7 +613,7 @@ public class MultiModelTypeFactory {
 		}
 
 		// remove model element types
-		for (ModelElement modelElementType : modelType.getElements()) {
+		for (ModelElement modelElementType : modelType.getModelElems()) {
 			removeType(modelElementType.getUri(), multiModel);
 		}
 		List<String> delOperatorTypeUris = new ArrayList<String>();

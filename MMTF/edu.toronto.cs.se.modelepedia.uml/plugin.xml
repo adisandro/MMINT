@@ -239,7 +239,6 @@
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram">
             </typeEndpoint>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Usage">
                 <extendibleType
                      name="Usage"
@@ -247,7 +246,6 @@
                 </extendibleType>
             </modelElemType>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Component">
                 <extendibleType
                      name="Component"
@@ -266,7 +264,6 @@
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
             </typeEndpoint>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Node">
                 <extendibleType
                      name="Node"
@@ -274,7 +271,6 @@
                 </extendibleType>
             </modelElemType>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Device">
                 <extendibleType
                      name="Device"
@@ -583,7 +579,6 @@
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO">
             </typeEndpoint>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Usage">
                 <extendibleType
                      name="Usage"
@@ -591,7 +586,6 @@
                 </extendibleType>
             </modelElemType>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Component">
                 <extendibleType
                      name="Component"
@@ -610,7 +604,6 @@
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
             </typeEndpoint>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Node">
                 <extendibleType
                      name="Node"
@@ -618,7 +611,6 @@
                 </extendibleType>
             </modelElemType>
             <modelElemType
-                  category="ENTITY"
                   classLiteral="Device">
                 <extendibleType
                      name="Device"

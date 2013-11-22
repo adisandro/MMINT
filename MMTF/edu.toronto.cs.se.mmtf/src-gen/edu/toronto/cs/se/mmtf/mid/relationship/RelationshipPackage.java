@@ -426,13 +426,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__EDITORS = MidPackage.MODEL__EDITORS;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__ELEMENTS = MidPackage.MODEL__ELEMENTS;
+	int MODEL_REL__MODEL_ELEMS = MidPackage.MODEL__MODEL_ELEMS;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -669,13 +669,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__EDITORS = MODEL_REL__EDITORS;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL__ELEMENTS = MODEL_REL__ELEMENTS;
+	int BINARY_MODEL_REL__MODEL_ELEMS = MODEL_REL__MODEL_ELEMS;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.

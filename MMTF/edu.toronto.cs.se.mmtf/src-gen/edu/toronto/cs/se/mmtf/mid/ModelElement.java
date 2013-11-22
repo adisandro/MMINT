@@ -23,7 +23,6 @@ package edu.toronto.cs.se.mmtf.mid;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getCategory <em>Category</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}</li>
  * </ul>
  * </p>
@@ -33,34 +32,6 @@ package edu.toronto.cs.se.mmtf.mid;
  * @generated
  */
 public interface ModelElement extends ExtendibleElement {
-	/**
-	 * Returns the value of the '<em><b>Category</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.ModelElementCategory}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The category of the model element.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Category</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
-	 * @see #setCategory(ModelElementCategory)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement_Category()
-	 * @model required="true"
-	 * @generated
-	 */
-	ModelElementCategory getCategory();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getCategory <em>Category</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Category</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementCategory
-	 * @see #getCategory()
-	 * @generated
-	 */
-	void setCategory(ModelElementCategory value);
-
 	/**
 	 * Returns the value of the '<em><b>Class Literal</b></em>' attribute.
 	 * <!-- begin-user-doc -->

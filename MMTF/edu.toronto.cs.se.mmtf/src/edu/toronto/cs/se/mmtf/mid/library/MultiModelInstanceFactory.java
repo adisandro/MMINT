@@ -41,7 +41,6 @@ import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -306,8 +305,6 @@ public class MultiModelInstanceFactory {
 	 *            The uri of the new model element.
 	 * @param newModelElemName
 	 *            The name of the new model element.
-	 * @param category
-	 *            The category of the new model element.
 	 * @param classLiteral
 	 *            The class name of the new model element type.
 	 * @param modelEndpointRef
@@ -318,7 +315,7 @@ public class MultiModelInstanceFactory {
 	 *             If the uri of the new model element is already registered in
 	 *             the Instance MID.
 	 */
-	public static ModelElementReference createModelElementAndModelElementReference(ModelElement modelElemType, String newModelElemUri, String newModelElemName, ModelElementCategory category, String classLiteral, ModelEndpointReference modelEndpointRef) throws MMTFException {
+	public static ModelElementReference createModelElementAndModelElementReference(ModelElement modelElemType, String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference modelEndpointRef) throws MMTFException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelEndpointRef);
 
@@ -327,9 +324,8 @@ public class MultiModelInstanceFactory {
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
 			addInstance(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
-			newModelElem.setCategory(category);
 			newModelElem.setClassLiteral(classLiteral);
-			modelEndpointRef.getObject().getTarget().getElements().add(newModelElem);
+			modelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
 		}
 		ModelElementReference newModelElemRef = createModelElementReference(newModelElem, modelEndpointRef);
 
@@ -356,7 +352,6 @@ public class MultiModelInstanceFactory {
 	public static ModelElementReference createModelElementAndModelElementReference(String newModelElemName, EObject modelObj, ModelEndpointReference modelEndpointRef) throws MMTFException {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		ModelElementCategory category = MultiModelRegistry.getModelElementCategory(modelObj);
 		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
 		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true);
 		if (newModelElemName == null) {
@@ -366,7 +361,6 @@ public class MultiModelInstanceFactory {
 			modelElemType,
 			newModelElemUri,
 			newModelElemName,
-			category,
 			classLiteral,
 			modelEndpointRef
 		);
@@ -930,7 +924,7 @@ public class MultiModelInstanceFactory {
 		multiModel.getModels().remove(model);
 
 		//remove model elements
-		for (ModelElement modelElem : model.getElements()) {
+		for (ModelElement modelElem : model.getModelElems()) {
 			removeInstance(modelElem.getUri(), multiModel);
 		}
 		// remove editors
@@ -1090,7 +1084,7 @@ public class MultiModelInstanceFactory {
 		removeInstance(modelElemRef.getUri(), multiModel);
 		removeModelElementReference(modelElemRef);
 		ModelElement modelElem = modelElemRef.getObject();
-		((Model) modelElem.eContainer()).getElements().remove(modelElem);
+		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
 		//TODO MMTF: should remove from all model rels too?
 	}
 

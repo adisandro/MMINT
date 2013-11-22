@@ -21,10 +21,6 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/JAVA"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/SMTLIB"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelElementCategory">
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelElementCategory/ENTITY"/>
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelElementCategory/RELATIONSHIP"/>
-    </genEnums>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/editors"/>
@@ -57,7 +53,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/origin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/fileExtension"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/constraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/abstract"/>
@@ -69,14 +65,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/language"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/category"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/classLiteral"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype"/>
     </genClasses>
-    <genClasses ecoreClass="mid.ecore#//ModelElementEntityWildcard">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElementEntityWildcard/modelElementRelationshipWildcard"/>
-    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//ModelElementWildcard"/>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getSupertype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget"/>

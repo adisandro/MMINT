@@ -31,7 +31,6 @@ import org.osgi.framework.Bundle;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementCategory;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -107,25 +106,13 @@ public class MultiModelTypeRegistry {
 			rootUri = MMTF.ROOT_MODELENDPOINT_URI;
 		}
 		else if (type instanceof ModelElement) {
-			ModelElementCategory category = ((ModelElement) type).getCategory();
-			if (category == null || category == ModelElementCategory.ENTITY) {
-				rootUri = MMTF.ROOT_MODELELEMENT_ENTITY_URI;
-			}
-			else if (category == ModelElementCategory.RELATIONSHIP) {
-				rootUri = MMTF.ROOT_MODELELEMENT_RELATIONSHIP_URI;
-			}
+			rootUri = MMTF.ROOT_MODELELEM_URI;
 		}
 		else if (type instanceof Link) {
-			rootUri = MMTF.ROOT_MODELREL_LINK_URI;
+			rootUri = MMTF.ROOT_LINK_URI;
 		}
 		else if (type instanceof ModelElementEndpoint) {
-			ModelElement target = ((ModelElementEndpoint) type).getTarget();
-			if (target == null || target.getCategory() == ModelElementCategory.ENTITY) {
-				rootUri = MMTF.ROOT_MODELREL_LINKENDPOINT_ENTITY_URI;
-			}
-			else if (target.getCategory() == ModelElementCategory.RELATIONSHIP) {
-				rootUri = MMTF.ROOT_MODELREL_LINKENDPOINT_RELATIONSHIP_URI;
-			}
+			rootUri = MMTF.ROOTMODELELEMENDPOINT_URI;
 		}
 		//TODO MMTF: root text editor and operator?
 
@@ -233,7 +220,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<ModelElement> getModelElementTypes(Model modelType) {
 
-		return modelType.getElements();
+		return modelType.getModelElems();
 	}
 
 	/**
