@@ -39,8 +39,8 @@ public class RelationshipDiagramOutlineLabelProvider extends AdapterFactoryLabel
 				text += ((AttributeValueWrapperItemProvider) object).getFeature().getName();
 			}
 			if (object instanceof EObject) {
-				EObject eObject = (EObject) object;
-				text += (eObject.eContainingFeature() == null) ? "root" : eObject.eContainingFeature().getName();
+				EObject modelObj = (EObject) object;
+				text += (modelObj.eContainingFeature() == null) ? "root" : modelObj.eContainingFeature().getName();
 			}
 			text += "] ";
 		}

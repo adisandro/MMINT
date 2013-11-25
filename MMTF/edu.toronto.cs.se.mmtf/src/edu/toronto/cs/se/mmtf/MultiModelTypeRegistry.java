@@ -112,9 +112,12 @@ public class MultiModelTypeRegistry {
 			rootUri = MMTF.ROOT_LINK_URI;
 		}
 		else if (type instanceof ModelElementEndpoint) {
-			rootUri = MMTF.ROOTMODELELEMENDPOINT_URI;
+			rootUri = MMTF.ROOT_MODELELEMENDPOINT_URI;
 		}
-		//TODO MMTF: root text editor and operator?
+		else if (type instanceof Editor) {
+			rootUri = MMTF.ROOT_EDITOR_URI;
+		}
+		//TODO MMTF: root operator?
 
 		return rootUri;
 	}

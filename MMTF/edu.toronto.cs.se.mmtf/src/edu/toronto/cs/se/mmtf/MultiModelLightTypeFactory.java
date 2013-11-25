@@ -59,8 +59,6 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	private final static String ECORE_SETTING_DELEGATE = "settingDelegates";
 	private final static String ECORE_VALIDATION_DELEGATE = "validationDelegates";
 	private final static String ECORE_REFLECTIVE_FILE_EXTENSION = "xmi";
-	private final static String ECORE_REFLECTIVE_EDITOR_ID = "org.eclipse.emf.ecore.presentation.ReflectiveEditorID";
-	private final static String ECORE_REFLECTIVE_EDITOR_NAME = "Ecore Reflective tree";
 
 	/**
 	 * Gets the base uri of a "light" type by cutting its last fragment.
@@ -210,8 +208,8 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 				if (editorType instanceof Diagram) {
 					continue;
 				}
-				newEditorTypeName = ECORE_REFLECTIVE_EDITOR_NAME;
-				editorId = ECORE_REFLECTIVE_EDITOR_ID;
+				newEditorTypeName = MMTF.ROOT_EDITOR_NAME;
+				editorId = MMTF.ROOT_EDITOR_ID;
 				wizardId = null;
 				wizardDialogClassName = null;
 			}

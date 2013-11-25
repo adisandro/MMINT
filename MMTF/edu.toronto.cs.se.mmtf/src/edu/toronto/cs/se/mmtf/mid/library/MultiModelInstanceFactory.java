@@ -841,18 +841,17 @@ public class MultiModelInstanceFactory {
 	public static EditorCreationWizardDialog invokeEditorWizard(Editor editorType, IStructuredSelection initialSelection) throws Exception {
 
 		Model modelType = MultiModelTypeRegistry.<Model>getType(editorType.getModelUri());
-		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
 		IWorkbenchWizard wizard;
-		if (metamodelUri == null) {
+		if (editorType.getWizardId() == null) {
+			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+			wizard = new DynamicModelWizard(rootEClass);
+		}
+		else {
 			IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
 			if (descriptor == null) {
 				throw new MMTFException("Wizard " + editorType.getId() + " not found");
 			}
 			wizard = descriptor.createWizard();
-		}
-		else {
-			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
-			wizard = new DynamicModelWizard(rootEClass);
 		}
 		wizard.init(PlatformUI.getWorkbench(), initialSelection);
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
@@ -78,21 +79,27 @@ public class MultiModelRegistry {
 		return false;
 	}
 
+	public static String[] getModelAndModelElementUris(AttributeValueWrapperItemProvider modelObj) {
+
+		String[] uris = getModelAndModelElementUris((EObject) modelObj.getOwner(), true);
+		uris[1] = uris[1] + MMTF.URI_SEPARATOR + modelObj.getFeature().getName();
+
+		return uris;
+	}
+
 	public static String[] getModelAndModelElementUris(EObject modelObj, boolean isInstancesLevel) {
 
+		//TODO MMTF: remove type and instance modelElemUri disparity
 		URI uri = EcoreUtil.getURI(modelObj);
 		String modelUri, modelElemUri;
-		if (isInstancesLevel) {
-			modelUri = uri.toPlatformString(true);
-			modelElemUri = uri.toString();
-			if (modelElemUri.startsWith(RESOURCE_URI_PREFIX)) {
-				modelElemUri = uri.toString().substring(RESOURCE_URI_PREFIX.length());
-			}
+		String[] pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
+		modelUri = pieces[0];
+		if (modelUri.startsWith(RESOURCE_URI_PREFIX)) {
+			modelUri = modelUri.substring(RESOURCE_URI_PREFIX.length());
 		}
-		else {
-			String[] pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
-			modelUri = pieces[0];
-			modelElemUri = pieces[1];
+		modelElemUri = pieces[1];
+		if (isInstancesLevel) {
+			modelElemUri = modelUri + ECORE_MODEL_URI_SEPARATOR + modelElemUri;
 		}
 
 		return new String[] {modelUri, modelElemUri};

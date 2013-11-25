@@ -164,9 +164,6 @@ supertypes:
 		if (modelElemType == null) {
 			String modelElemTypeUri = MMTF.ROOT_MODELELEM_URI;
 			modelElemType = MultiModelRegistry.getExtendibleElement(modelElemTypeUri, multiModel);
-			//TODO MMTF: move getXType into a generic type registry, I need those functions for instances too (only the ones with a multiModel argument)
-			//TODO MMTF: clean things in instances (order of arguments like in types, URI instead of String uri, name as argument)
-			//TODO MMTF: write a todo somewhere to remember to handle the import of a model rel instance
 		}
 
 		String classLiteral = newModelElemUri; // class literal == name

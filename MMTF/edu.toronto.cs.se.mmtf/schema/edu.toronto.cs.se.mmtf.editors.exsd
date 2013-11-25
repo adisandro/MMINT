@@ -84,7 +84,7 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="wizardId" type="string" use="required">
+         <attribute name="wizardId" type="string">
             <annotation>
                <documentation>
                   The editor type wizard id.

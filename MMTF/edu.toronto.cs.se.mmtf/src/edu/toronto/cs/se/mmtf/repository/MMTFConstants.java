@@ -21,6 +21,7 @@ public interface MMTFConstants {
 
 	public final static String URI_SEPARATOR = "/";
 	public final static String ENDPOINT_SEPARATOR = "-";
+	public final static String EDITOR_SEPARATOR = "_";
 	//TODO MMTF: MODELELEM->refine everywhere used when introducing additional model element level
 	public final static String ROLE_SEPARATOR = "_AS_";
 	public final static String ROOT_URI = "http://se.cs.toronto.edu/mmtf";
@@ -35,7 +36,13 @@ public interface MMTFConstants {
 	/** The uri of the root link type. */
 	public final static String ROOT_LINK_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link";
 	/** The uri of the root model element type endpoint. */
-	public final static String ROOTMODELELEMENDPOINT_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link" + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
+	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link" + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
+	/** The uri of the root editor type. */
+	public final static String ROOT_EDITOR_URI = ROOT_MODEL_URI + EDITOR_SEPARATOR + "tree";
+	/** The name of the root editor type. */
+	public final static String ROOT_EDITOR_NAME = "Ecore Reflective tree";
+	/** The id of the root editor type. */
+	public final static String ROOT_EDITOR_ID = "org.eclipse.emf.ecore.presentation.ReflectiveEditorID";
 
 	/** An extension point's extendibleType child. */
 	public final static String CHILD_EXTENDIBLETYPE = "extendibleType";

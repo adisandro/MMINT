@@ -16,6 +16,19 @@
 <plugin>
 
    <extension
+         point="edu.toronto.cs.se.mmtf.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmtf/Model"
+            id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID"
+            isDiagram="false">
+         <extendibleType
+               name="Ecore Reflective tree"
+               uri="http://se.cs.toronto.edu/mmtf/Model_tree">
+         </extendibleType>
+      </editorType>
+   </extension>
+
+   <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
          <extendibleType

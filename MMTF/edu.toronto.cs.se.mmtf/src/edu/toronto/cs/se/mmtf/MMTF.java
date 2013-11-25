@@ -665,7 +665,7 @@ public class MMTF implements MMTFConstants {
 		}
 		// editor types
 		configs = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
+		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_EDITOR_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			Editor editorType = createEditorType(config);

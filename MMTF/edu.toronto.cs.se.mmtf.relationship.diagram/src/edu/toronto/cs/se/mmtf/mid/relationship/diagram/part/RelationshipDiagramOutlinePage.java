@@ -82,7 +82,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		// add drag support
 		int ops = DND.DROP_LINK | DND.DROP_MOVE;
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
-		contentOutlineViewer.addDragSupport(ops, transfers, new RelationshipDiagramOutlineDragListener(contentOutlineViewer));
+		contentOutlineViewer.addDragSupport(ops, transfers, new RelationshipDiagramOutlineDragListener(contentOutlineViewer, modelRel));
 
 		// populate tree viewer
 		loadOutlineModels();

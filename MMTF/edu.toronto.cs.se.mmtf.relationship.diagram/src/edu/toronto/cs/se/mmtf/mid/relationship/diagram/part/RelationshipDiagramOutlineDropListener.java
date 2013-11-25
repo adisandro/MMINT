@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -51,20 +50,17 @@ public class RelationshipDiagramOutlineDropListener extends DiagramDropTargetLis
 	 * @return The objects being dropped.
 	 */
 	@Override
-	protected List<EObject> getObjectsBeingDropped() {
+	protected List<RelationshipDiagramOutlineDropObject> getObjectsBeingDropped() {
 
 		TransferData data = getCurrentEvent().currentDataType;
-		ArrayList<EObject> result = new ArrayList<EObject>();
-		Object transferedObject = LocalSelectionTransfer.getTransfer().nativeToJava(data);
+		List<RelationshipDiagramOutlineDropObject> result = new ArrayList<RelationshipDiagramOutlineDropObject>();
+		Object transferedData = LocalSelectionTransfer.getTransfer().nativeToJava(data);
 
-		if (transferedObject instanceof IStructuredSelection) {
-			IStructuredSelection selection = (IStructuredSelection) transferedObject;
-			for (Iterator<?> it = selection.iterator(); it.hasNext();) {
-				Object nextSelectedObject = it.next();
-				// allow only EObjects
-				//TODO MMTF: redundant, and wrong for AttributeValueWrapperItemProvider
-				if (nextSelectedObject instanceof EObject) {
-					result.add((EObject) nextSelectedObject);
+		if (transferedData instanceof IStructuredSelection) {
+			for (Iterator<?> it = ((IStructuredSelection) transferedData).iterator(); it.hasNext();) {
+				Object transferedObject = it.next();
+				if (transferedObject instanceof RelationshipDiagramOutlineDropObject) {
+					result.add((RelationshipDiagramOutlineDropObject) transferedObject);
 				}
 			}
 		}
