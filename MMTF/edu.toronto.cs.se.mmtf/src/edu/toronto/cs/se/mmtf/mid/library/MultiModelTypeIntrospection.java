@@ -350,12 +350,12 @@ public class MultiModelTypeIntrospection {
 				String modelElemUri = modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMTF.ROLE_SEPARATOR));
 				int lastSegmentIndex = modelElemUri.lastIndexOf(MMTF.URI_SEPARATOR);
 				String lastSegment = modelElemUri.substring(lastSegmentIndex, modelElemUri.length()-1);
-				boolean isEAttribute = !lastSegment.startsWith(MultiModelRegistry.ECORE_EREFERENCE_URI_PREFIX);
-				if (isEAttribute) {
+				boolean isPrimitive = !lastSegment.startsWith(MultiModelRegistry.ECORE_EREFERENCE_URI_PREFIX);
+				if (isPrimitive) {
 					modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
 				}
 				pointer = getPointer(modelElemUri);
-				if (isEAttribute) {
+				if (isPrimitive) {
 					EObject owner = ((EObject) pointer);
 					EStructuralFeature feature = owner.eClass().getEStructuralFeature(lastSegment);
 					pointer = new PrimitiveEObjectWrapper(owner, feature, owner.eGet(feature));

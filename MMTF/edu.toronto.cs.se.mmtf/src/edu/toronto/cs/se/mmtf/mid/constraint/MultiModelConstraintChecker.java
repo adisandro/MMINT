@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -46,6 +45,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
@@ -328,36 +328,33 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
-	private static boolean isBasicAllowedModelElement(ModelElement modelElemType, String modelObjClassLiteral) {
-
-		// check wildcard
-		EClassifier classifier = (EClassifier) MultiModelTypeIntrospection.getPointer(modelElemType);
-		String metaName = classifier.getName();
-		if (metaName.equals(WILDCARD_CLASSIFIER_NAME)) {
-			return true;
-		}
-		//TODO MMTF[MODELELEMENT] is class literal really needed?
-		// check model element compliance
-		if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
-			return true;
-		}
-		//TODO MMTF[MODELELEMENT] nope, need to check supertypes as well
-
-		return false;
-	}
-
 	private static boolean isAllowedModelElement(ModelElement modelElemType, EObject modelObj) {
 
+		EObject pointer = MultiModelTypeIntrospection.getPointer(modelElemType);
+		// check wildcard
+		if (pointer instanceof EClassifier && ((EClassifier) pointer).getName().equals(WILDCARD_CLASSIFIER_NAME)) {
+			return true;
+		}
+		//TODO MMTF[MODELELEMENT] is class literal really needed or obtainable from the uri?
+		// check model element compliance
 		String modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true);
-		if (isBasicAllowedModelElement(modelElemType, modelObjClassLiteral)) {
+		if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
 			return true;
 		}
 
 		// look for metamodel supertypes
-		for (EClass modelObjSuper : modelObj.eClass().getEAllSuperTypes()) {
-			modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObjSuper, false);
+		if (modelObj instanceof PrimitiveEObjectWrapper) {
+			modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(((PrimitiveEObjectWrapper) modelObj).getFeature(), false);
 			if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
 				return true;
+			}
+		}
+		else {
+			for (EClass modelObjSuper : modelObj.eClass().getEAllSuperTypes()) {
+				modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObjSuper, false);
+				if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
+					return true;
+				}
 			}
 		}
 		// look for UML stereotypes
@@ -375,30 +372,12 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	private static boolean isAllowedModelElement(ModelElement modelElemType, AttributeValueWrapperItemProvider primitiveModelObj) {
-
-		String modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(primitiveModelObj);
-		if (isBasicAllowedModelElement(modelElemType, modelObjClassLiteral)) {
-			return true;
-		}
-
-		return false;
-	}
-
-	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for model elements
-	public static Iterator<ModelElementReference> getAllowedModelElementTypeIterator(ModelEndpointReference modelEndpointRef) {
-
-		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
-		//TODO MMTF[MODELELEMENT] fix here needed for root model rel
-
-		return MultiModelTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
-	}
-
 	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for model elements
 	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
-		Iterator<ModelElementReference> modelElemTypeRefIter = getAllowedModelElementTypeIterator(modelEndpointRef);
+		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
+		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
+		Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
 			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
 			if (isAllowedModelElement(modelElemTypeRef.getObject(), modelObj)) {
@@ -406,20 +385,6 @@ public class MultiModelConstraintChecker {
 			}
 		}
 		//TODO MMTF[MODELELEMENT] what about dropped supertypes now, since they can be in a different model type ref?
-
-		return null;
-	}
-
-	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for model elements
-	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, AttributeValueWrapperItemProvider primitiveModelObj) {
-
-		Iterator<ModelElementReference> modelElemTypeRefIter = getAllowedModelElementTypeIterator(modelEndpointRef);
-		while (modelElemTypeRefIter.hasNext()) {
-			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
-			if (isAllowedModelElement(modelElemTypeRef.getObject(), primitiveModelObj)) {
-				return modelElemTypeRef.getObject();
-			}
-		}
 
 		return null;
 	}

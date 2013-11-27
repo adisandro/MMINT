@@ -11,27 +11,29 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
 
+import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 
 public class RelationshipDiagramOutlineDropObject {
 
-	private Object modelObj;
+	private EObject modelObj;
 	private boolean isInstancesLevel;
 	private ModelEndpointReference modelEndpointRef;
 	private ModelElement modelElemType;
 	private String modelElemUri;
 
-	public RelationshipDiagramOutlineDropObject(Object modelObj, boolean isInstancesLevel, ModelElement modelElementType, ModelEndpointReference modelEndpointRef, String modelElemUri) {
+	public RelationshipDiagramOutlineDropObject(EObject modelObj, boolean isInstancesLevel, ModelEndpointReference modelEndpointRef, ModelElement modelElementType, String modelElemUri) {
 
 		this.modelObj = modelObj;
 		this.isInstancesLevel = isInstancesLevel;
-		this.modelElemType = modelElementType;
 		this.modelEndpointRef = modelEndpointRef;
+		this.modelElemType = modelElementType;
 		this.modelElemUri = modelElemUri;
 	}
 
-	public Object getModelObject() {
+	public EObject getModelObject() {
 
 		return modelObj;
 	}
@@ -41,14 +43,14 @@ public class RelationshipDiagramOutlineDropObject {
 		return isInstancesLevel;
 	}
 
-	public ModelElement getModelElementType() {
-
-		return modelElemType;
-	}
-
 	public ModelEndpointReference getModelEndpointReference() {
 
 		return modelEndpointRef;
+	}
+
+	public ModelElement getModelElementType() {
+
+		return modelElemType;
 	}
 
 	public String getModelElementUri() {

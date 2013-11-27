@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -77,29 +78,29 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(modelRel);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRel);
 		ModelElement modelElemType = null;
-		ModelElementReference modelElemRef;
 		String[] uris;
 
 		// filtering
-		//TODO MMTF revert every double function and use the primitive wrapper
 		Iterator<?> it = selection.iterator();
 		while (it.hasNext()) {
-			Object modelObj = it.next();
+			Object selected = it.next();
+			EObject modelObj;
 			// filter unallowed objects
 			if (isInstancesLevel) {
-				if (!(modelObj instanceof EObject) && !(modelObj instanceof AttributeValueWrapperItemProvider)) {
+				if (!(selected instanceof EObject) && !(selected instanceof AttributeValueWrapperItemProvider)) {
 					continue;
 				}
-				uris = (modelObj instanceof AttributeValueWrapperItemProvider) ?
-					MultiModelRegistry.getModelAndModelElementUris((AttributeValueWrapperItemProvider) modelObj) :
-					MultiModelRegistry.getModelAndModelElementUris((EObject) modelObj, isInstancesLevel);
+				modelObj = (selected instanceof AttributeValueWrapperItemProvider) ?
+					new PrimitiveEObjectWrapper((AttributeValueWrapperItemProvider) selected) :
+					(EObject) selected;
 			}
 			else {
-				if (!(modelObj instanceof EClass) && !(modelObj instanceof EAttribute)) {
+				if (!(selected instanceof EClass) && !(selected instanceof EAttribute)) {
 					continue;
 				}
-				uris = MultiModelRegistry.getModelAndModelElementUris((EObject) modelObj, isInstancesLevel);
+				modelObj = (EObject) selected;
 			}
+			uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, isInstancesLevel);
 			String modelUri = uris[0], modelElemUri = uris[1];
 modelEndpointRef:
 			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
@@ -112,17 +113,12 @@ modelEndpointRef:
 				) {
 					if (isInstancesLevel) {
 						// filter unallowed model element types
-						modelElemType = (modelObj instanceof AttributeValueWrapperItemProvider) ?
-							MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, (AttributeValueWrapperItemProvider) modelObj) :
-							MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, (EObject) modelObj);
+						modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
 						if (modelElemType == null) {
 							continue;
 						}
 						// filter duplicates
-						modelElemRef = (modelObj instanceof AttributeValueWrapperItemProvider) ?
-							MultiModelRegistry.getModelElementReference(modelEndpointRef, modelElemType, (AttributeValueWrapperItemProvider) modelObj) :
-							MultiModelRegistry.getModelElementReference(modelEndpointRef, modelElemType, (EObject) modelObj);
-						if (modelElemRef != null) {
+						if (MultiModelRegistry.getModelElementReference(modelEndpointRef, modelElemType, modelObj) != null) {
 							continue;
 						}
 					}
@@ -133,12 +129,12 @@ modelEndpointRef:
 //							if (elementRef.getUri().equals(modelUri + MMTF.URI_SEPARATOR + modelElemUri)) {
 //								continue modelEndpointRef;
 //							}
-							if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(elementRef.getObject()), (EObject) modelObj)) {
+							if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(elementRef.getObject()), modelObj)) {
 								continue modelEndpointRef;
 							}
 						}
 					}
-					RelationshipDiagramOutlineDropObject dropObject = new RelationshipDiagramOutlineDropObject(modelObj, isInstancesLevel, modelElemType, modelEndpointRef, modelElemUri);
+					RelationshipDiagramOutlineDropObject dropObject = new RelationshipDiagramOutlineDropObject(modelObj, isInstancesLevel, modelEndpointRef, modelElemType, modelElemUri);
 					transferData.add(dropObject);
 				}
 			}

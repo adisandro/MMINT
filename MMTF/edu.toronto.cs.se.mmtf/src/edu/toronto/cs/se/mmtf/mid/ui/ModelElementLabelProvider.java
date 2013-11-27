@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
@@ -41,6 +42,9 @@ public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 			if (object instanceof EObject) {
 				EObject modelObj = (EObject) object;
 				text += (modelObj.eContainingFeature() == null) ? "root" : modelObj.eContainingFeature().getName();
+				if (object instanceof PrimitiveEObjectWrapper) {
+					object = ((PrimitiveEObjectWrapper) object).getValue();
+				}
 			}
 			text += "] ";
 		}
