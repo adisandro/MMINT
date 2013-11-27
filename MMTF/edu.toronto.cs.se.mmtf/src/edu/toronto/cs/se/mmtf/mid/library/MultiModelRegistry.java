@@ -57,6 +57,7 @@ public class MultiModelRegistry {
 	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + "/";
 	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
+	public final static String ECORE_EREFERENCE_URI_PREFIX = "@";
 
 	public static void initEndpointCardinalities(String uri, HashMap<String, Integer> cardinalityTable) {
 

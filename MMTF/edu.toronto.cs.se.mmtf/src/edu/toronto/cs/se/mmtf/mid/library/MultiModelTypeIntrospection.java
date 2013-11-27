@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -346,7 +347,19 @@ public class MultiModelTypeIntrospection {
 
 		try {
 			if (MultiModelConstraintChecker.isInstancesLevel(modelElem)) {
-				pointer = getPointer(modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMTF.ROLE_SEPARATOR)));
+				String modelElemUri = modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMTF.ROLE_SEPARATOR));
+				int lastSegmentIndex = modelElemUri.lastIndexOf(MMTF.URI_SEPARATOR);
+				String lastSegment = modelElemUri.substring(lastSegmentIndex, modelElemUri.length()-1);
+				boolean isEAttribute = !lastSegment.startsWith(MultiModelRegistry.ECORE_EREFERENCE_URI_PREFIX);
+				if (isEAttribute) {
+					modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
+				}
+				pointer = getPointer(modelElemUri);
+				if (isEAttribute) {
+					EObject owner = ((EObject) pointer);
+					EStructuralFeature feature = owner.eClass().getEStructuralFeature(lastSegment);
+					pointer = new PrimitiveEObjectWrapper(owner, feature, owner.eGet(feature));
+				}
 			}
 			else {
 				String[] literals = modelElem.getClassLiteral().split(MMTF.URI_SEPARATOR);
@@ -359,7 +372,6 @@ public class MultiModelTypeIntrospection {
 			return pointer;
 		}
 		catch (Exception e) {
-
 			MMTFException.print(MMTFException.Type.WARNING, "Error getting pointer for model element " + modelElem.getUri(), e);
 			return null;
 		}

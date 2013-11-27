@@ -81,6 +81,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 		String[] uris;
 
 		// filtering
+		//TODO MMTF revert every double function and use the primitive wrapper
 		Iterator<?> it = selection.iterator();
 		while (it.hasNext()) {
 			Object modelObj = it.next();
