@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -18,14 +18,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xml.type.SimpleAnyType;
-import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -43,8 +37,6 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ModelElementReferenceDropCommand;
 
 /**
  * The outline page drag listener.
@@ -84,13 +76,15 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 		IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
 		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(modelRel);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRel);
-		ModelElement modelElementType = null;
+		ModelElement modelElemType = null;
+		ModelElementReference modelElemRef;
 		String[] uris;
 
-		// filter current selection
+		// filtering
 		Iterator<?> it = selection.iterator();
 		while (it.hasNext()) {
 			Object modelObj = it.next();
+			// filter unallowed objects
 			if (isInstancesLevel) {
 				if (!(modelObj instanceof EObject) && !(modelObj instanceof AttributeValueWrapperItemProvider)) {
 					continue;
@@ -106,27 +100,45 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 				uris = MultiModelRegistry.getModelAndModelElementUris((EObject) modelObj, isInstancesLevel);
 			}
 			String modelUri = uris[0], modelElemUri = uris[1];
-
-			//TODO MMTF: continue from here
 modelEndpointRef:
 			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
+				// find model endpoint reference containers
 				if (
-					modelUri.equals(modelEndpointRef.getTargetUri()) || (
+					modelUri.equals(modelEndpointRef.getTargetUri()) || ( // same model or model type
 						!isInstancesLevel &&
-						MultiModelTypeHierarchy.isSubtypeOf(modelEndpointRef.getTargetUri(), modelUri, multiModel) // for light types
+						MultiModelTypeHierarchy.isSubtypeOf(modelEndpointRef.getTargetUri(), modelUri, multiModel) // light model types with no metamodel extension
 					)
 				) {
-					if (!isInstancesLevel) {
-						for (ModelElementReference elementRef : modelEndpointRef.getModelElemRefs()) { // avoid duplicates
-							//TODO MMTF: why? check this, looks wrong
+					if (isInstancesLevel) {
+						// filter unallowed model element types
+						modelElemType = (modelObj instanceof AttributeValueWrapperItemProvider) ?
+							MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, (AttributeValueWrapperItemProvider) modelObj) :
+							MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, (EObject) modelObj);
+						if (modelElemType == null) {
+							continue;
+						}
+						// filter duplicates
+						modelElemRef = (modelObj instanceof AttributeValueWrapperItemProvider) ?
+							MultiModelRegistry.getModelElementReference(modelEndpointRef, modelElemType, (AttributeValueWrapperItemProvider) modelObj) :
+							MultiModelRegistry.getModelElementReference(modelEndpointRef, modelElemType, (EObject) modelObj);
+						if (modelElemRef != null) {
+							continue;
+						}
+					}
+					else {
+						// filter duplicates
+						for (ModelElementReference elementRef : modelEndpointRef.getModelElemRefs()) {
+							//TODO MMTF[MODELELEMENT] replace with something simpler once model element changes are in place, like:
+//							if (elementRef.getUri().equals(modelUri + MMTF.URI_SEPARATOR + modelElemUri)) {
+//								continue modelEndpointRef;
+//							}
 							if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(elementRef.getObject()), (EObject) modelObj)) {
 								continue modelEndpointRef;
 							}
 						}
 					}
-					//TODO MMTF: do filtering based on allowed model types
-					RelationshipDiagramOutlineDropObject dropObject = new RelationshipDiagramOutlineDropObject(modelObj, isInstancesLevel, modelElementType, modelEndpointRef);
-//					transferData.add(dropObject);
+					RelationshipDiagramOutlineDropObject dropObject = new RelationshipDiagramOutlineDropObject(modelObj, isInstancesLevel, modelElemType, modelEndpointRef, modelElemUri);
+					transferData.add(dropObject);
 				}
 			}
 		}

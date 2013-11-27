@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -327,7 +328,7 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
-	private static boolean isAllowedModelElement(ModelElement modelElemType, EObject newEObject) {
+	private static boolean isBasicAllowedModelElement(ModelElement modelElemType, String modelObjClassLiteral) {
 
 		// check wildcard
 		EClassifier classifier = (EClassifier) MultiModelTypeIntrospection.getPointer(modelElemType);
@@ -335,22 +336,33 @@ public class MultiModelConstraintChecker {
 		if (metaName.equals(WILDCARD_CLASSIFIER_NAME)) {
 			return true;
 		}
-
+		//TODO MMTF[MODELELEMENT] is class literal really needed?
 		// check model element compliance
-		String newEObjectClassLiteral = MultiModelRegistry.getModelElementClassLiteral(newEObject, true);
-		if (modelElemType.getClassLiteral().equals(newEObjectClassLiteral)) {
+		if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
 			return true;
 		}
+		//TODO MMTF[MODELELEMENT] nope, need to check supertypes as well
+
+		return false;
+	}
+
+	private static boolean isAllowedModelElement(ModelElement modelElemType, EObject modelObj) {
+
+		String modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true);
+		if (isBasicAllowedModelElement(modelElemType, modelObjClassLiteral)) {
+			return true;
+		}
+
 		// look for metamodel supertypes
-		for (EClass newEObjectSuper : newEObject.eClass().getEAllSuperTypes()) {
-			newEObjectClassLiteral = MultiModelRegistry.getModelElementClassLiteral(newEObjectSuper, false);
-			if (modelElemType.getClassLiteral().equals(newEObjectClassLiteral)) {
+		for (EClass modelObjSuper : modelObj.eClass().getEAllSuperTypes()) {
+			modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObjSuper, false);
+			if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
 				return true;
 			}
 		}
 		// look for UML stereotypes
-		if (newEObject instanceof NamedElement) {
-			for (Stereotype stereotype : ((NamedElement) newEObject).getApplicableStereotypes()) {
+		if (modelObj instanceof NamedElement) {
+			for (Stereotype stereotype : ((NamedElement) modelObj).getApplicableStereotypes()) {
 				if (
 					modelElemType.getClassLiteral().equals(stereotype.getName()) ||
 					stereotype.getName().equals(MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.get(modelElemType.getClassLiteral()))
@@ -359,30 +371,60 @@ public class MultiModelConstraintChecker {
 				}
 			}
 		}
-		//TODO MMTF: looks like there is no way to drop an EReference instance
 
 		return false;
 	}
 
-	//TODO MMTF: this should be moved, is type introspection for model elements
-	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, EObject newEObject) {
+	private static boolean isAllowedModelElement(ModelElement modelElemType, AttributeValueWrapperItemProvider primitiveModelObj) {
+
+		String modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(primitiveModelObj);
+		if (isBasicAllowedModelElement(modelElemType, modelObjClassLiteral)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for model elements
+	public static Iterator<ModelElementReference> getAllowedModelElementTypeIterator(ModelEndpointReference modelEndpointRef) {
 
 		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
-		//TODO MMTF: fix here needed for root model rel
-		Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
+		//TODO MMTF[MODELELEMENT] fix here needed for root model rel
+
+		return MultiModelTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
+	}
+
+	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for model elements
+	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, EObject modelObj) {
+
+		Iterator<ModelElementReference> modelElemTypeRefIter = getAllowedModelElementTypeIterator(modelEndpointRef);
 		while (modelElemTypeRefIter.hasNext()) {
 			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
-			if (isAllowedModelElement(modelElemTypeRef.getObject(), newEObject)) {
+			if (isAllowedModelElement(modelElemTypeRef.getObject(), modelObj)) {
 				return modelElemTypeRef.getObject();
 			}
 		}
-		//TODO MMTF: what about dropped supertypes now, since they can be in a different model type ref?
+		//TODO MMTF[MODELELEMENT] what about dropped supertypes now, since they can be in a different model type ref?
 
 		return null;
 	}
 
-	//TODO MMTF: this should be moved, is type introspection for links
+	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for model elements
+	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, AttributeValueWrapperItemProvider primitiveModelObj) {
+
+		Iterator<ModelElementReference> modelElemTypeRefIter = getAllowedModelElementTypeIterator(modelEndpointRef);
+		while (modelElemTypeRefIter.hasNext()) {
+			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
+			if (isAllowedModelElement(modelElemTypeRef.getObject(), primitiveModelObj)) {
+				return modelElemTypeRef.getObject();
+			}
+		}
+
+		return null;
+	}
+
+	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for links
 	public static Link getAllowedLinkType(Link link) {
 
 		ModelRel modelRelType = ((ModelRel) link.eContainer()).getMetatype();

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
@@ -35,6 +36,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramOutlineDropObject;
 
 /**
  * The command to create a model element reference from a dropped object.
@@ -44,10 +46,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  */
 public class ModelElementReferenceDropCommand extends ModelElementReferenceCreateCommand {
 
-	String newModelUri;
-	String newModelElemUri;
-	EObject newModelObj;
-	ModelElement modelElemType;
+	RelationshipDiagramOutlineDropObject dropObj;
 
 	/**
 	 * Constructor: initialises the superclass and the dropped element.
@@ -57,13 +56,10 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	 * @param newModelObj
 	 *            The dropped element.
 	 */
-	public ModelElementReferenceDropCommand(CreateElementRequest req, String newModelUri, String newModelElemUri, EObject newModelObj) {
+	public ModelElementReferenceDropCommand(CreateElementRequest req, RelationshipDiagramOutlineDropObject dropObj) {
 
 		super(req);
-		this.newModelUri = newModelUri;
-		this.newModelElemUri = newModelElemUri;
-		this.newModelObj = newModelObj;
-		this.modelElemType = null;
+		this.dropObj = dropObj;
 	}
 
     /**
@@ -105,28 +101,32 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				!MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer()) || (
-					(modelElemType = MultiModelConstraintChecker.getAllowedModelElementType((ModelEndpointReference) getElementToEdit(), newModelObj)) != null &&
-					MultiModelRegistry.getModelElementReference((ModelEndpointReference) getElementToEdit(), modelElemType, newModelObj) == null
-				)
-			);
+		return super.canExecute();
 	}
 
 	protected ModelElementReference doExecuteInstancesLevel() throws MMTFException {
 
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
-		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(newModelObj, true); // class literal == type name
-		String newModelElemName = MultiModelRegistry.getModelElementName(newModelObj, true);
+		Object modelObj = dropObj.getModelObject();
+		String newModelElemName, classLiteral; // class literal == type name
+		if (modelObj instanceof AttributeValueWrapperItemProvider) {
+			newModelElemName = MultiModelRegistry.getModelElementName((AttributeValueWrapperItemProvider) modelObj);
+			classLiteral = MultiModelRegistry.getModelElementClassLiteral((AttributeValueWrapperItemProvider) modelObj);
+		}
+		else {
+			newModelElemName = MultiModelRegistry.getModelElementName((EObject) modelObj, true);
+			classLiteral = MultiModelRegistry.getModelElementClassLiteral((EObject) modelObj, true);
+		}
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
-			modelElemType,
-			newModelElemUri,
+			dropObj.getModelElementType(),
+			dropObj.getModelElementUri(),
 			newModelElemName,
 			classLiteral,
 			modelEndpointRef
 		);
-		MAVOUtils.initializeMAVOModelElementReference(newModelObj, newModelElemRef);
+		if (!(modelObj instanceof AttributeValueWrapperItemProvider)) {
+			MAVOUtils.initializeMAVOModelElementReference((EObject) modelObj, newModelElemRef);
+		}
 
 		return newModelElemRef;
 	}
@@ -134,16 +134,17 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected ModelElementReference doExecuteTypesLevel() throws MMTFException {
 
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) getElementToEdit();
+		Object modelObj = dropObj.getModelObject();
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 
 		// navigate metamodel hierarchy
 		ModelElement modelElemType = null;
 		ModelElementReference modelElemTypeRef = null;
-		if (newModelObj instanceof EClass) {
+		if (modelObj instanceof EClass) {
 supertypes:
-			for (EClass droppedEObject : ((EClass) newModelObj).getEAllSuperTypes()) {
-				String[] uris = MultiModelRegistry.getModelAndModelElementUris(droppedEObject, false);
+			for (EClass modelObjSuper : ((EClass) modelObj).getEAllSuperTypes()) {
+				String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObjSuper, false);
 				String modelTypeUri = uris[0];
 				String modelElemTypeUri = uris[1];
 				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MultiModelTypeHierarchy.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
@@ -166,15 +167,17 @@ supertypes:
 			modelElemType = MultiModelRegistry.getExtendibleElement(modelElemTypeUri, multiModel);
 		}
 
-		String classLiteral = newModelElemUri; // class literal == name
+		String classLiteral = dropObj.getModelElementUri(); // class literal == name
 		ModelElementReference newModelElemTypeRef = MultiModelLightTypeFactory.createLightModelElementTypeAndModelElementTypeReference(
 			modelElemType,
 			modelElemTypeRef,
-			newModelElemUri,
+			dropObj.getModelElementUri(),
 			classLiteral,
 			modelTypeEndpointRef
 		);
-		MAVOUtils.initializeMAVOModelElementReference(newModelObj, newModelElemTypeRef);
+		if (!(modelObj instanceof AttributeValueWrapperItemProvider)) {
+			MAVOUtils.initializeMAVOModelElementReference((EObject) modelObj, newModelElemTypeRef);
+		}
 		MMTF.createTypeHierarchy(multiModel);
 
 		return newModelElemTypeRef;

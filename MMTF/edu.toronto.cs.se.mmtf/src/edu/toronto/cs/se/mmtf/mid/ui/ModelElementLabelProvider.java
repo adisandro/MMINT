@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
+package edu.toronto.cs.se.mmtf.mid.ui;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -19,11 +19,11 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
-public class RelationshipDiagramOutlineLabelProvider extends AdapterFactoryLabelProvider {
+public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 
 	private boolean isInstancesLevel;
 
-	public RelationshipDiagramOutlineLabelProvider(AdapterFactory adapterFactory, boolean isInstancesLevel) {
+	public ModelElementLabelProvider(AdapterFactory adapterFactory, boolean isInstancesLevel) {
 
 		super(adapterFactory);
 		this.isInstancesLevel = isInstancesLevel;

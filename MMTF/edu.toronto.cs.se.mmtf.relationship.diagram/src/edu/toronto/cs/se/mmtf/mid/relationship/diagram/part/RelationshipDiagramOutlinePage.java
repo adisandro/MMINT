@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.ui.ModelElementLabelProvider;
 
 /**
  * The outline page of the Mapping diagram.
@@ -77,7 +78,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		contentOutlineViewer = getTreeViewer();
 		contentOutlineViewer.addSelectionChangedListener(this);
 		contentOutlineViewer.setContentProvider(new RelationshipDiagramOutlineContentProvider(adapterFactory, MultiModelConstraintChecker.isInstancesLevel(modelRel)));
-		contentOutlineViewer.setLabelProvider(new RelationshipDiagramOutlineLabelProvider(adapterFactory, MultiModelConstraintChecker.isInstancesLevel(modelRel)));
+		contentOutlineViewer.setLabelProvider(new ModelElementLabelProvider(adapterFactory, MultiModelConstraintChecker.isInstancesLevel(modelRel)));
 
 		// add drag support
 		int ops = DND.DROP_LINK | DND.DROP_MOVE;

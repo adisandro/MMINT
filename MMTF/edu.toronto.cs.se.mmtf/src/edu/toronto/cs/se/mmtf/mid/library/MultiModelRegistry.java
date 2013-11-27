@@ -16,12 +16,14 @@ import java.util.HashMap;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmtf.MMTF;
@@ -41,6 +43,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.ui.ModelElementLabelProvider;
 
 /**
  * The registry for querying a multimodel.
@@ -51,7 +54,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 public class MultiModelRegistry {
 
 	public final static String MODEL_URI_SEPARATOR = "#";
-	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + "//";
+	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + "/";
 	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
 
@@ -79,17 +82,9 @@ public class MultiModelRegistry {
 		return false;
 	}
 
-	public static String[] getModelAndModelElementUris(AttributeValueWrapperItemProvider modelObj) {
-
-		String[] uris = getModelAndModelElementUris((EObject) modelObj.getOwner(), true);
-		uris[1] = uris[1] + MMTF.URI_SEPARATOR + modelObj.getFeature().getName();
-
-		return uris;
-	}
-
 	public static String[] getModelAndModelElementUris(EObject modelObj, boolean isInstancesLevel) {
 
-		//TODO MMTF: remove type and instance modelElemUri disparity
+		//TODO MMTF[MODELELEMENT] remove type and instance modelElemUri disparity
 		URI uri = EcoreUtil.getURI(modelObj);
 		String modelUri, modelElemUri;
 		String[] pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
@@ -97,40 +92,63 @@ public class MultiModelRegistry {
 		if (modelUri.startsWith(RESOURCE_URI_PREFIX)) {
 			modelUri = modelUri.substring(RESOURCE_URI_PREFIX.length());
 		}
-		modelElemUri = pieces[1];
+		modelElemUri = (pieces.length == 1) ? "" : pieces[1].substring(MMTF.URI_SEPARATOR.length());
 		if (isInstancesLevel) {
-			modelElemUri = modelUri + ECORE_MODEL_URI_SEPARATOR + modelElemUri;
+			modelElemUri = modelUri + ECORE_MODEL_URI_SEPARATOR + MMTF.URI_SEPARATOR + modelElemUri;
 		}
 
 		return new String[] {modelUri, modelElemUri};
+	}
+
+	public static String[] getModelAndModelElementUris(AttributeValueWrapperItemProvider primitiveModelObj) {
+
+		String[] uris = getModelAndModelElementUris((EObject) primitiveModelObj.getOwner(), true);
+		uris[1] += MMTF.URI_SEPARATOR + primitiveModelObj.getFeature().getName();
+
+		return uris;
 	}
 
 	public static String getModelElementClassLiteral(EObject modelObj, boolean isInstancesLevel) {
 
 		String classLiteral = null;
 		if (isInstancesLevel) {
-			//TODO MMTF: EReference is probably wrong here, since we can't even drop it
-			classLiteral = (modelObj instanceof EReference) ?
-				((EReference) modelObj).getEContainingClass().getName() + MMTF.URI_SEPARATOR + ((EReference) modelObj).getName() :
-				modelObj.eClass().getName();
+			classLiteral = modelObj.eClass().getName();
 		}
 		else {
-			classLiteral = (modelObj instanceof EReference) ?
-				((EClass) modelObj.eContainer()).getName() + MMTF.URI_SEPARATOR + ((EReference) modelObj).getName() :
+			classLiteral = (modelObj instanceof EAttribute) ?
+				((EClass) modelObj.eContainer()).getName() + MMTF.URI_SEPARATOR + ((EAttribute) modelObj).getName() :
 				((EClass) modelObj).getName();
 		}
 
 		return classLiteral;
 	}
 
-	public static String getModelElementName(EObject modelObj, boolean isInstancesLevel) {
+	public static String getModelElementClassLiteral(AttributeValueWrapperItemProvider primitiveModelObj) {
+
+		String classLiteral = getModelElementClassLiteral((EObject) primitiveModelObj.getOwner(), true);
+		classLiteral += MMTF.URI_SEPARATOR + primitiveModelObj.getFeature().getName();
+
+		return classLiteral;
+	}
+
+	private static String getModelElementName(Object modelObj, boolean isInstancesLevel) {
 
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		AdapterFactoryLabelProvider labelProvider = new ModelElementLabelProvider(adapterFactory, isInstancesLevel);
 
-		return (labelProvider == null) ?
-			getModelElementClassLiteral(modelObj, isInstancesLevel) :
-			labelProvider.getText(modelObj);
+		return labelProvider.getText(modelObj);
+	}
+
+	public static String getModelElementName(EObject modelObj, boolean isInstancesLevel) {
+
+		return getModelElementName((Object) modelObj, isInstancesLevel);
+	}
+
+	public static String getModelElementName(AttributeValueWrapperItemProvider primitiveModelObj) {
+
+		return getModelElementName(primitiveModelObj, true);
 	}
 
 	/**
@@ -194,11 +212,21 @@ public class MultiModelRegistry {
 		}
 	}
 
-	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, EObject modelObj) {
+	private static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, String modelElemUri) {
 
-		String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1] + MMTF.ROLE_SEPARATOR + modelElemType.getUri();
+		modelElemUri += MMTF.ROLE_SEPARATOR + modelElemType.getUri();
 
 		return MultiModelTypeHierarchy.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
+	}
+
+	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, EObject modelObj) {
+
+		return getModelElementReference(modelEndpointRef, modelElemType, MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1]);
+	}
+
+	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, AttributeValueWrapperItemProvider primitiveModelObj) {
+
+		return getModelElementReference(modelEndpointRef, modelElemType, MultiModelRegistry.getModelAndModelElementUris(primitiveModelObj)[1]);
 	}
 
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
@@ -206,6 +234,13 @@ public class MultiModelRegistry {
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
 
 		return getModelElementReference(modelEndpointRef, modelElemType, modelObj);
+	}
+
+	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, AttributeValueWrapperItemProvider primitiveModelObj) {
+
+		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, primitiveModelObj);
+
+		return getModelElementReference(modelEndpointRef, modelElemType, primitiveModelObj);
 	}
 
 	/**

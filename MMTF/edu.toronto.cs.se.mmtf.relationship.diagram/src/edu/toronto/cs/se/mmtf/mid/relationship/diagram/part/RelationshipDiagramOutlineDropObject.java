@@ -19,17 +19,19 @@ public class RelationshipDiagramOutlineDropObject {
 	private Object modelObj;
 	private boolean isInstancesLevel;
 	private ModelEndpointReference modelEndpointRef;
-	private ModelElement modelElementType;
+	private ModelElement modelElemType;
+	private String modelElemUri;
 
-	public RelationshipDiagramOutlineDropObject(Object modelObj, boolean isInstancesLevel, ModelElement modelElementType, ModelEndpointReference modelEndpointRef) {
+	public RelationshipDiagramOutlineDropObject(Object modelObj, boolean isInstancesLevel, ModelElement modelElementType, ModelEndpointReference modelEndpointRef, String modelElemUri) {
 
 		this.modelObj = modelObj;
 		this.isInstancesLevel = isInstancesLevel;
-		this.modelElementType = modelElementType;
+		this.modelElemType = modelElementType;
 		this.modelEndpointRef = modelEndpointRef;
+		this.modelElemUri = modelElemUri;
 	}
 
-	public Object getDropObject() {
+	public Object getModelObject() {
 
 		return modelObj;
 	}
@@ -41,12 +43,17 @@ public class RelationshipDiagramOutlineDropObject {
 
 	public ModelElement getModelElementType() {
 
-		return modelElementType;
+		return modelElemType;
 	}
 
 	public ModelEndpointReference getModelEndpointReference() {
 
 		return modelEndpointRef;
+	}
+
+	public String getModelElementUri() {
+
+		return modelElemUri;
 	}
 
 }

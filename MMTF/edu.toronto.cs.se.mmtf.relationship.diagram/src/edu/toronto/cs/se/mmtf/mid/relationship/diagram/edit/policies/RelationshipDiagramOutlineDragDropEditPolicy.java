@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -13,10 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -24,20 +21,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.notation.View;
-
-import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.commands.ModelElementReferenceDropCommand;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramOutlineDropObject;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.MidElementTypes;
 
 /**
@@ -59,46 +48,20 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 
 		ModelRelEditPart modelRelEditPart = (ModelRelEditPart) getHost();
-		ModelRel modelRel = (ModelRel) ((View) modelRelEditPart.getModel()).getElement();
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRel);
-		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(modelRel);
 		CompoundCommand command = new CompoundCommand("Add model element references");
 		IElementType elementType = MidElementTypes.getElementType(ModelElementReferenceEditPart.VISUAL_ID);
+		EReference containment = RelationshipPackage.Literals.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS;
 
-		for (Iterator<?> it = dropRequest.getObjects().iterator(); it.hasNext();) {
-			Object nextObject = it.next();
-			if (!(nextObject instanceof EObject) || nextObject instanceof DynamicEObjectImpl) {
-				continue;
-			}
-			EObject modelObj = (EObject) nextObject;
-			String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, isInstancesLevel);
-			String modelUri = uris[0], modelElemUri = uris[1];
-
-modelEndpointRef:
-			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
-				if (
-					modelUri.equals(modelEndpointRef.getTargetUri()) || (
-						!isInstancesLevel &&
-						MultiModelTypeHierarchy.isSubtypeOf(modelEndpointRef.getTargetUri(), modelUri, multiModel) // for light types
-					)
-				) {
-					if (!isInstancesLevel) {
-						for (ModelElementReference elementRef : modelEndpointRef.getModelElemRefs()) { // avoid duplicates
-							//TODO MMTF: why? check this, looks wrong
-							if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(elementRef.getObject()), modelObj)) {
-								continue modelEndpointRef;
-							}
-						}
-					}
-					EReference containment = (EReference) modelEndpointRef.eClass().getEStructuralFeature(RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS);
-					CreateElementRequest createReq = new CreateElementRequest(modelRelEditPart.getEditingDomain(), modelEndpointRef, elementType, containment);
-					command.add(
-						new ICommandProxy( // convert GMF command to GEF command
-							new ModelElementReferenceDropCommand(createReq, modelUri, modelElemUri, modelObj)
-						)
-					);
-				}
-			}
+		Iterator<?> it = dropRequest.getObjects().iterator();
+		while (it.hasNext()) {
+			RelationshipDiagramOutlineDropObject dropObj = (RelationshipDiagramOutlineDropObject) it.next();
+			ModelEndpointReference modelEndpointRef = dropObj.getModelEndpointReference();
+			CreateElementRequest createReq = new CreateElementRequest(modelRelEditPart.getEditingDomain(), modelEndpointRef, elementType, containment);
+			command.add(
+				new ICommandProxy( // convert GMF command to GEF command
+					new ModelElementReferenceDropCommand(createReq, dropObj)
+				)
+			);
 		}
 
 		return command;
