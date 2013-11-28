@@ -36,7 +36,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.tooling.runtime,
  edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.mmtf.edit,
- edu.toronto.cs.se.mmtf.diagram
+ edu.toronto.cs.se.mmtf.diagram,
+ org.eclipse.emf.ecore.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts,

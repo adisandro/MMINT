@@ -108,6 +108,8 @@ public class MultiModelRegistry {
 		return new String[] {modelUri, modelElemUri};
 	}
 
+	//TODO MMTF[MODELELEMENT] figure out a way to drop, e.g. Actor/may instead of MAVOElement/may
+	//TODO MMTF[MODELELEMENT] fix isAllowedModelElement afterwards
 	public static String getModelElementClassLiteral(EObject modelObj, boolean isInstancesLevel) {
 
 		String classLiteral = null;
