@@ -11,6 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -95,9 +98,14 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	public void loadOutlineModels() {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
+		List<Resource> resources = resourceSet.getResources();
 		for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 			Model model = modelEndpointRef.getObject().getTarget();
-			resourceSet.getResources().add(MultiModelTypeIntrospection.getRoot(model).eResource());
+			do {
+				resources.add(MultiModelTypeIntrospection.getRoot(model).eResource());
+				model = model.getSupertype(); // types only
+			}
+			while (model != null && !model.isAbstract());
 		}
 		contentOutlineViewer.setInput(resourceSet);
 	}

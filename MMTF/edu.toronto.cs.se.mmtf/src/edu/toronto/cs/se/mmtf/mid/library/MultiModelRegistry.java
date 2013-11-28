@@ -90,6 +90,7 @@ public class MultiModelRegistry {
 			attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
 			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 		}
+		//TODO problem with extended metamodel, getURI returns a file path, not an epackage uri
 		URI uri = EcoreUtil.getURI(modelObj);
 		String modelUri, modelElemUri;
 		String[] pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
