@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -84,26 +85,32 @@ public class MultiModelRegistry {
 
 	public static String[] getModelAndModelElementUris(EObject modelObj, boolean isInstancesLevel) {
 
-		//TODO MMTF[MODELELEMENT] remove type and instance modelElemUri disparity
-		String attributeFeatureName = null;
-		if (isInstancesLevel && modelObj instanceof PrimitiveEObjectWrapper) {
-			attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
-			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
-		}
-		//TODO problem with extended metamodel, getURI returns a file path, not an epackage uri
-		URI uri = EcoreUtil.getURI(modelObj);
 		String modelUri, modelElemUri;
-		String[] pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
-		modelUri = pieces[0];
-		if (modelUri.startsWith(RESOURCE_URI_PREFIX)) {
-			modelUri = modelUri.substring(RESOURCE_URI_PREFIX.length());
-		}
-		modelElemUri = (pieces.length == 1) ? "" : pieces[1].substring(MMTF.URI_SEPARATOR.length());
+		String[] pieces;
+		URI uri;
+		//TODO MMTF[MODELELEMENT] remove type and instance modelElemUri disparity
 		if (isInstancesLevel) {
-			modelElemUri = modelUri + ECORE_MODEL_URI_SEPARATOR + MMTF.URI_SEPARATOR + modelElemUri;
+			String attributeFeatureName = null;
+			if (modelObj instanceof PrimitiveEObjectWrapper) {
+				attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
+				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
+			}
+			uri = EcoreUtil.getURI(modelObj);
+			pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
+			modelUri = pieces[0].substring(RESOURCE_URI_PREFIX.length());
+			modelElemUri = modelUri + ECORE_MODEL_URI_SEPARATOR + MMTF.URI_SEPARATOR;
+			if (pieces.length > 1) {
+				modelElemUri += pieces[1].substring(MMTF.URI_SEPARATOR.length());
+			}
 			if (attributeFeatureName != null) {
 				modelElemUri += MMTF.URI_SEPARATOR + attributeFeatureName;
 			}
+		}
+		else {
+			uri = EcoreUtil.getURI(modelObj);
+			pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
+			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI();
+			modelElemUri = pieces[1].substring(MMTF.URI_SEPARATOR.length());
 		}
 
 		return new String[] {modelUri, modelElemUri};
