@@ -48,7 +48,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  * @author Alessio Di Sandro
  * 
  */
-public class MMTFActions extends ContributionItem {
+public class MidDiagramActions extends ContributionItem {
 
 	private static final int INVALID_MENU_ITEM_LIMIT = 20;
 	private static final String DOWNCAST_LABEL = " (downcast)";

@@ -686,8 +686,8 @@ Contributors:
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.MMTFActions"
-               id="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.MMTFActions">
+               class="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.MidDiagramActions"
+               id="edu.toronto.cs.se.mmtf.mid.diagram.contextmenu.MidDiagramActions">
             <visibleWhen>
                <with variable="activePartId">
                   <equals value="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"/>
