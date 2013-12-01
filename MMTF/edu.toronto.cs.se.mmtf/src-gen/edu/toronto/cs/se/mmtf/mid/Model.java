@@ -32,7 +32,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getModelElems <em>Model Elems</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.Model#isAbstract <em>Abstract</em>}</li>
  * </ul>
@@ -125,31 +124,6 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @generated
 	 */
 	EList<ModelElement> getModelElems();
-
-	/**
-	 * Returns the value of the '<em><b>Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The constraint associated with this model type (instances: always null).
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Constraint</em>' containment reference.
-	 * @see #setConstraint(ModelConstraint)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModel_Constraint()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ModelConstraint getConstraint();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint</em>' containment reference.
-	 * @see #getConstraint()
-	 * @generated
-	 */
-	void setConstraint(ModelConstraint value);
 
 	/**
 	 * Returns the value of the '<em><b>Conversion Operators</b></em>' reference list.

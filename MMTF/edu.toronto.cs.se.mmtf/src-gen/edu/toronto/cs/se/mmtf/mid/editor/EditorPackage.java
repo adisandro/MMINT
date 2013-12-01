@@ -177,6 +177,15 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__CONSTRAINT = MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
+
+	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -365,6 +374,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM__DYNAMIC = EDITOR__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__CONSTRAINT = EDITOR__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.

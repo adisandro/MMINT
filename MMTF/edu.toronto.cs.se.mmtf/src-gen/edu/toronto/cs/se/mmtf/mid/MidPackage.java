@@ -327,13 +327,22 @@ public interface MidPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT__DYNAMIC = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__CONSTRAINT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Extendible Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 7;
+	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -442,6 +451,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -615,6 +633,15 @@ public interface MidPackage extends EPackage {
 	int MODEL__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -660,22 +687,13 @@ public interface MidPackage extends EPackage {
 	int MODEL__MODEL_ELEMS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__CONSTRAINT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__CONVERSION_OPERATORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 6;
+	int MODEL__CONVERSION_OPERATORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -684,7 +702,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__ABSTRACT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
+	int MODEL__ABSTRACT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -693,7 +711,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 8;
+	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -723,24 +741,14 @@ public interface MidPackage extends EPackage {
 	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl <em>Model Element</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElement()
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElementConstraint()
 	 * @generated
 	 */
-	int MODEL_ELEMENT = 6;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl <em>Model Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraint()
-	 * @generated
-	 */
-	int MODEL_CONSTRAINT = 5;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
@@ -749,7 +757,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONSTRAINT__IMPLEMENTATION = 0;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Language</b></em>' attribute.
@@ -758,25 +766,35 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONSTRAINT__LANGUAGE = 1;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Model Constraint</em>' class.
+	 * The number of structural features of the '<em>Extendible Element Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONSTRAINT_FEATURE_COUNT = 2;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Model Constraint</em>' class.
+	 * The number of operations of the '<em>Extendible Element Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONSTRAINT_OPERATION_COUNT = 0;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl <em>Model Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElement()
+	 * @generated
+	 */
+	int MODEL_ELEMENT = 6;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -876,6 +894,15 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Class Literal</b></em>' attribute.
@@ -1060,6 +1087,15 @@ public interface MidPackage extends EPackage {
 	int MODEL_ENDPOINT__DYNAMIC = EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC;
 
 	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT__CONSTRAINT = EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT;
+
+	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1161,14 +1197,14 @@ public interface MidPackage extends EPackage {
 	int MODEL_ORIGIN = 10;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage <em>Model Constraint Language</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraintLanguage()
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElementConstraintLanguage()
 	 * @generated
 	 */
-	int MODEL_CONSTRAINT_LANGUAGE = 11;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = 11;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -1256,6 +1292,17 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtendibleElement_Dynamic();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getConstraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Constraint</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getConstraint()
+	 * @see #getExtendibleElement()
+	 * @generated
+	 */
+	EReference getExtendibleElement_Constraint();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint <em>Extendible Element Endpoint</em>}'.
@@ -1451,17 +1498,6 @@ public interface MidPackage extends EPackage {
 	EReference getModel_ModelElems();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.Model#getConstraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Constraint</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.Model#getConstraint()
-	 * @see #getModel()
-	 * @generated
-	 */
-	EReference getModel_Constraint();
-
-	/**
 	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmtf.mid.Model#getConversionOperators <em>Conversion Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1502,6 +1538,38 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModel__GetSupertype();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extendible Element Constraint</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint
+	 * @generated
+	 */
+	EClass getExtendibleElementConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getImplementation <em>Implementation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Implementation</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getImplementation()
+	 * @see #getExtendibleElementConstraint()
+	 * @generated
+	 */
+	EAttribute getExtendibleElementConstraint_Implementation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Language</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getLanguage()
+	 * @see #getExtendibleElementConstraint()
+	 * @generated
+	 */
+	EAttribute getExtendibleElementConstraint_Language();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
@@ -1589,38 +1657,6 @@ public interface MidPackage extends EPackage {
 	EClass getModelElementWildcard();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint <em>Model Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Constraint</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint
-	 * @generated
-	 */
-	EClass getModelConstraint();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation <em>Implementation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Implementation</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation()
-	 * @see #getModelConstraint()
-	 * @generated
-	 */
-	EAttribute getModelConstraint_Implementation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage <em>Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Language</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage()
-	 * @see #getModelConstraint()
-	 * @generated
-	 */
-	EAttribute getModelConstraint_Language();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint <em>Model Endpoint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1681,14 +1717,14 @@ public interface MidPackage extends EPackage {
 	EEnum getModelOrigin();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage <em>Model Constraint Language</em>}'.
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Model Constraint Language</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
+	 * @return the meta object for enum '<em>Extendible Element Constraint Language</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage
 	 * @generated
 	 */
-	EEnum getModelConstraintLanguage();
+	EEnum getExtendibleElementConstraintLanguage();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1778,6 +1814,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDIBLE_ELEMENT__DYNAMIC = eINSTANCE.getExtendibleElement_Dynamic();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDIBLE_ELEMENT__CONSTRAINT = eINSTANCE.getExtendibleElement_Constraint();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -1930,14 +1974,6 @@ public interface MidPackage extends EPackage {
 		EReference MODEL__MODEL_ELEMS = eINSTANCE.getModel_ModelElems();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL__CONSTRAINT = eINSTANCE.getModel_Constraint();
-
-		/**
 		 * The meta object literal for the '<em><b>Conversion Operators</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1968,6 +2004,32 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL___GET_SUPERTYPE = eINSTANCE.getModel__GetSupertype();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElementConstraint()
+		 * @generated
+		 */
+		EClass EXTENDIBLE_ELEMENT_CONSTRAINT = eINSTANCE.getExtendibleElementConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION = eINSTANCE.getExtendibleElementConstraint_Implementation();
+
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE = eINSTANCE.getExtendibleElementConstraint_Language();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -2040,32 +2102,6 @@ public interface MidPackage extends EPackage {
 		EClass MODEL_ELEMENT_WILDCARD = eINSTANCE.getModelElementWildcard();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl <em>Model Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraint()
-		 * @generated
-		 */
-		EClass MODEL_CONSTRAINT = eINSTANCE.getModelConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_CONSTRAINT__IMPLEMENTATION = eINSTANCE.getModelConstraint_Implementation();
-
-		/**
-		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_CONSTRAINT__LANGUAGE = eINSTANCE.getModelConstraint_Language();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2120,14 +2156,14 @@ public interface MidPackage extends EPackage {
 		EEnum MODEL_ORIGIN = eINSTANCE.getModelOrigin();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage <em>Model Constraint Language</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelConstraintLanguage()
+		 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElementConstraintLanguage()
 		 * @generated
 		 */
-		EEnum MODEL_CONSTRAINT_LANGUAGE = eINSTANCE.getModelConstraintLanguage();
+		EEnum EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = eINSTANCE.getExtendibleElementConstraintLanguage();
 
 	}
 

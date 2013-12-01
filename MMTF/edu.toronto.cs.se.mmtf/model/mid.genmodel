@@ -16,10 +16,10 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/IMPORTED"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/CREATED"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelConstraintLanguage">
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/OCL"/>
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/JAVA"/>
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelConstraintLanguage/SMTLIB"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ExtendibleElementConstraintLanguage">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/OCL"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/JAVA"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/SMTLIB"/>
     </genEnums>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
@@ -40,6 +40,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/level"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>
@@ -54,15 +55,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/fileExtension"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/constraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/abstract"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getSupertype"/>
     </genClasses>
-    <genClasses ecoreClass="mid.ecore#//ModelConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/implementation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelConstraint/language"/>
+    <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/implementation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/language"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/classLiteral"/>

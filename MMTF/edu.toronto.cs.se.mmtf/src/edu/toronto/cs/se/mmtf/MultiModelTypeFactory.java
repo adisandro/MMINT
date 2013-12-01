@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -164,10 +164,10 @@ public class MultiModelTypeFactory {
 	protected static void addModelType(Model newModelType, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
 
 		newModelType.setAbstract(newModelTypeAbstract);
-		ModelConstraint modelConstraint = null;
+		ExtendibleElementConstraint modelConstraint = null;
 		if (constraintLanguage != null) {
-			modelConstraint = MidFactory.eINSTANCE.createModelConstraint();
-			modelConstraint.setLanguage(ModelConstraintLanguage.valueOf(constraintLanguage));
+			modelConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+			modelConstraint.setLanguage(ExtendibleElementConstraintLanguage.valueOf(constraintLanguage));
 			modelConstraint.setImplementation(constraintImplementation);
 		}
 		newModelType.setConstraint(modelConstraint);

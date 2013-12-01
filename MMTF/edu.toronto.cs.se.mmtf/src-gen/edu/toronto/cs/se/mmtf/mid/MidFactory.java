@@ -49,6 +49,15 @@ public interface MidFactory extends EFactory {
 	Model createModel();
 
 	/**
+	 * Returns a new object of class '<em>Extendible Element Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extendible Element Constraint</em>'.
+	 * @generated
+	 */
+	ExtendibleElementConstraint createExtendibleElementConstraint();
+
+	/**
 	 * Returns a new object of class '<em>Model Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,15 +74,6 @@ public interface MidFactory extends EFactory {
 	 * @generated
 	 */
 	ModelElementWildcard createModelElementWildcard();
-
-	/**
-	 * Returns a new object of class '<em>Model Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Constraint</em>'.
-	 * @generated
-	 */
-	ModelConstraint createModelConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Model Endpoint</em>'.

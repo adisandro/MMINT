@@ -102,6 +102,12 @@
         <details key="documentation" value="True if this element has been dinamically created at runtime through MMTF (types: true for light types, false for heavy types from extensions; instances: always true)."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//ExtendibleElementConstraint"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The constraint associated with this element (types: element type; instances: element instance)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MidLevel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -210,12 +216,6 @@
         <details key="documentation" value="The list of model elements (types: model element types; instances: model element instances)."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//ModelConstraint"
-        containment="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The constraint associated with this model type (instances: always null)."/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conversionOperators" upperBound="-1"
         eType="#//operator/ConversionOperator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -244,9 +244,9 @@
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelConstraint">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementConstraint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A constraint for a model type."/>
+      <details key="documentation" value="A constraint for an extendible element."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -255,15 +255,15 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
-        eType="#//ModelConstraintLanguage">
+        eType="#//ExtendibleElementConstraintLanguage">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The language used to evaluate the constraint."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ModelConstraintLanguage">
+  <eClassifiers xsi:type="ecore:EEnum" name="ExtendibleElementConstraintLanguage">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The language used to evaluate a model type constraint."/>
+      <details key="documentation" value="The language used to evaluate an extendible element constraint."/>
     </eAnnotations>
     <eLiterals name="OCL">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

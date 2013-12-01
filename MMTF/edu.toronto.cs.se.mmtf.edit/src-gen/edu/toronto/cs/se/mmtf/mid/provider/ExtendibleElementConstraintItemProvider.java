@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.mmtf.mid.provider;
 
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,12 +35,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelConstraint} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConstraintItemProvider
+public class ExtendibleElementConstraintItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -54,7 +54,7 @@ public class ModelConstraintItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConstraintItemProvider(AdapterFactory adapterFactory) {
+	public ExtendibleElementConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -86,9 +86,9 @@ public class ModelConstraintItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelConstraint_implementation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelConstraint_implementation_feature", "_UI_ModelConstraint_type"),
-				 MidPackage.Literals.MODEL_CONSTRAINT__IMPLEMENTATION,
+				 getString("_UI_ExtendibleElementConstraint_implementation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementConstraint_implementation_feature", "_UI_ExtendibleElementConstraint_type"),
+				 MidPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION,
 				 true,
 				 false,
 				 false,
@@ -108,9 +108,9 @@ public class ModelConstraintItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelConstraint_language_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelConstraint_language_feature", "_UI_ModelConstraint_type"),
-				 MidPackage.Literals.MODEL_CONSTRAINT__LANGUAGE,
+				 getString("_UI_ExtendibleElementConstraint_language_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementConstraint_language_feature", "_UI_ExtendibleElementConstraint_type"),
+				 MidPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE,
 				 true,
 				 false,
 				 false,
@@ -120,14 +120,14 @@ public class ModelConstraintItemProvider
 	}
 
 	/**
-	 * This returns ModelConstraint.gif.
+	 * This returns ExtendibleElementConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConstraint"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExtendibleElementConstraint"));
 	}
 
 	/**
@@ -138,10 +138,10 @@ public class ModelConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelConstraint)object).getImplementation();
+		String label = ((ExtendibleElementConstraint)object).getImplementation();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ModelConstraint_type") :
-			getString("_UI_ModelConstraint_type") + " " + label;
+			getString("_UI_ExtendibleElementConstraint_type") :
+			getString("_UI_ExtendibleElementConstraint_type") + " " + label;
 	}
 
 	/**
@@ -155,9 +155,9 @@ public class ModelConstraintItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ModelConstraint.class)) {
-			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
-			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+		switch (notification.getFeatureID(ExtendibleElementConstraint.class)) {
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

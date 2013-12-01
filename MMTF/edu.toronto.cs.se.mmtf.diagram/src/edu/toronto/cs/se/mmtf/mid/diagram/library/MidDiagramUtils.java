@@ -32,8 +32,8 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
@@ -267,7 +267,7 @@ public class MidDiagramUtils {
 		if (constraint.length == 1) {
 			String constraintImplementation = constraint[0];
 			constraint = new String[2];
-			constraint[0] = ModelConstraintLanguage.OCL.getLiteral();
+			constraint[0] = ExtendibleElementConstraintLanguage.OCL.getLiteral();
 			constraint[1] = constraintImplementation;
 		}
 

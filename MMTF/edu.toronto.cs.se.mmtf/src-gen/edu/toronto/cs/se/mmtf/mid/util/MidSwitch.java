@@ -116,9 +116,9 @@ public class MidSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidPackage.MODEL_CONSTRAINT: {
-				ModelConstraint modelConstraint = (ModelConstraint)theEObject;
-				T result = caseModelConstraint(modelConstraint);
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: {
+				ExtendibleElementConstraint extendibleElementConstraint = (ExtendibleElementConstraint)theEObject;
+				T result = caseExtendibleElementConstraint(extendibleElementConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -210,6 +210,21 @@ public class MidSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendibleElementConstraint(ExtendibleElementConstraint object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EString To Extendible Element Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -281,21 +296,6 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelElementWildcard(ModelElementWildcard object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelConstraint(ModelConstraint object) {
 		return null;
 	}
 

@@ -224,7 +224,6 @@ public class ModelItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MidPackage.Literals.MODEL__MODEL_ELEMS);
-			childrenFeatures.add(MidPackage.Literals.MODEL__CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -286,7 +285,6 @@ public class ModelItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MidPackage.MODEL__MODEL_ELEMS:
-			case MidPackage.MODEL__CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -308,11 +306,6 @@ public class ModelItemProvider
 			(createChildParameter
 				(MidPackage.Literals.MODEL__MODEL_ELEMS,
 				 MidFactory.eINSTANCE.createModelElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MidPackage.Literals.MODEL__CONSTRAINT,
-				 MidFactory.eINSTANCE.createModelConstraint()));
 	}
 
 }

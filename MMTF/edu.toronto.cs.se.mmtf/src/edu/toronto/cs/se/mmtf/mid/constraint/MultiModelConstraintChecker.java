@@ -37,9 +37,9 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -512,7 +512,7 @@ linkTypes:
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static MAVOTruthValue checkConstraint(ExtendibleElement element, ModelConstraint constraint) {
+	public static MAVOTruthValue checkConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
 
 		//TODO MMTF: support all extendible elements?
 		if (!(element instanceof Model)) {

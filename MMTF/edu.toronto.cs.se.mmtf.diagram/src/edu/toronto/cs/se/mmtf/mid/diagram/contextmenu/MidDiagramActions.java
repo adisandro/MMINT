@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -213,7 +214,7 @@ public class MidDiagramActions extends ContributionItem {
 			MenuItem propertyItem = new MenuItem(mmtfMenu, SWT.NONE);
 			propertyItem.setText("Add/Modify Property");
 			propertyItem.addSelectionListener(
-				new AddModifyPropertyListener(models.get(0))
+				new AddModifyConstraintListener(models.get(0))
 			);
 		}
 		// modelepedia

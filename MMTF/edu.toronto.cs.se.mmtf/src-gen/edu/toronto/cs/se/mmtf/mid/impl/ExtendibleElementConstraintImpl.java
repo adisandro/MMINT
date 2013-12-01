@@ -11,9 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -23,19 +24,19 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model Constraint</b></em>'.
+ * An implementation of the model object '<em><b>Extendible Element Constraint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelConstraintImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl#getImplementation <em>Implementation</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl#getLanguage <em>Language</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint {
+public class ExtendibleElementConstraintImpl extends EObjectImpl implements ExtendibleElementConstraint {
 	/**
 	 * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,7 +65,7 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ModelConstraintLanguage LANGUAGE_EDEFAULT = ModelConstraintLanguage.OCL;
+	protected static final ExtendibleElementConstraintLanguage LANGUAGE_EDEFAULT = ExtendibleElementConstraintLanguage.OCL;
 
 	/**
 	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
@@ -74,14 +75,14 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelConstraintLanguage language = LANGUAGE_EDEFAULT;
+	protected ExtendibleElementConstraintLanguage language = LANGUAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelConstraintImpl() {
+	protected ExtendibleElementConstraintImpl() {
 		super();
 	}
 
@@ -92,7 +93,7 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.MODEL_CONSTRAINT;
+		return MidPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT;
 	}
 
 	/**
@@ -113,7 +114,7 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 		String oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
 	/**
@@ -121,7 +122,7 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConstraintLanguage getLanguage() {
+	public ExtendibleElementConstraintLanguage getLanguage() {
 		return language;
 	}
 
@@ -130,11 +131,11 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguage(ModelConstraintLanguage newLanguage) {
-		ModelConstraintLanguage oldLanguage = language;
+	public void setLanguage(ExtendibleElementConstraintLanguage newLanguage) {
+		ExtendibleElementConstraintLanguage oldLanguage = language;
 		language = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_CONSTRAINT__LANGUAGE, oldLanguage, language));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, language));
 	}
 
 	/**
@@ -145,9 +146,9 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				return getImplementation();
-			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				return getLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -161,11 +162,11 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				setImplementation((String)newValue);
 				return;
-			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
-				setLanguage((ModelConstraintLanguage)newValue);
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+				setLanguage((ExtendibleElementConstraintLanguage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,10 +180,10 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
-			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				setLanguage(LANGUAGE_EDEFAULT);
 				return;
 		}
@@ -197,9 +198,9 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_CONSTRAINT__IMPLEMENTATION:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-			case MidPackage.MODEL_CONSTRAINT__LANGUAGE:
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				return language != LANGUAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -223,4 +224,4 @@ public class ModelConstraintImpl extends EObjectImpl implements ModelConstraint 
 		return result.toString();
 	}
 
-} //ModelConstraintImpl
+} //ExtendibleElementConstraintImpl

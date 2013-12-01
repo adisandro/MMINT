@@ -19,17 +19,17 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Model Constraint Language</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Extendible Element Constraint Language</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The language used to evaluate a model type constraint.
+ * The language used to evaluate an extendible element constraint.
  * <!-- end-model-doc -->
- * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraintLanguage()
+ * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElementConstraintLanguage()
  * @model
  * @generated
  */
-public enum ModelConstraintLanguage implements Enumerator {
+public enum ExtendibleElementConstraintLanguage implements Enumerator {
 	/**
 	 * The '<em><b>OCL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -48,7 +48,9 @@ public enum ModelConstraintLanguage implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	JAVA(1, "JAVA", "JAVA"), /**
+	JAVA(1, "JAVA", "JAVA"),
+
+	/**
 	 * The '<em><b>SMTLIB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,35 +103,35 @@ public enum ModelConstraintLanguage implements Enumerator {
 	public static final int SMTLIB_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Model Constraint Language</b></em>' enumerators.
+	 * An array of all the '<em><b>Extendible Element Constraint Language</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ModelConstraintLanguage[] VALUES_ARRAY =
-		new ModelConstraintLanguage[] {
+	private static final ExtendibleElementConstraintLanguage[] VALUES_ARRAY =
+		new ExtendibleElementConstraintLanguage[] {
 			OCL,
 			JAVA,
 			SMTLIB,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Model Constraint Language</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Extendible Element Constraint Language</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ModelConstraintLanguage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ExtendibleElementConstraintLanguage> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Model Constraint Language</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Extendible Element Constraint Language</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelConstraintLanguage get(String literal) {
+	public static ExtendibleElementConstraintLanguage get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ModelConstraintLanguage result = VALUES_ARRAY[i];
+			ExtendibleElementConstraintLanguage result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -138,14 +140,14 @@ public enum ModelConstraintLanguage implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Model Constraint Language</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Extendible Element Constraint Language</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelConstraintLanguage getByName(String name) {
+	public static ExtendibleElementConstraintLanguage getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ModelConstraintLanguage result = VALUES_ARRAY[i];
+			ExtendibleElementConstraintLanguage result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -154,12 +156,12 @@ public enum ModelConstraintLanguage implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Model Constraint Language</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Extendible Element Constraint Language</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelConstraintLanguage get(int value) {
+	public static ExtendibleElementConstraintLanguage get(int value) {
 		switch (value) {
 			case OCL_VALUE: return OCL;
 			case JAVA_VALUE: return JAVA;
@@ -195,7 +197,7 @@ public enum ModelConstraintLanguage implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ModelConstraintLanguage(int value, String name, String literal) {
+	private ExtendibleElementConstraintLanguage(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -239,4 +241,4 @@ public enum ModelConstraintLanguage implements Enumerator {
 		return literal;
 	}
 	
-} //ModelConstraintLanguage
+} //ExtendibleElementConstraintLanguage

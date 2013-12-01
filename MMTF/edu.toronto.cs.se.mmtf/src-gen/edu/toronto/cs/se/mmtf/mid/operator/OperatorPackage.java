@@ -226,6 +226,15 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__CONSTRAINT = MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -415,6 +424,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.

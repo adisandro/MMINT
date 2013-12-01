@@ -127,6 +127,29 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExtendibleElementConstraintItemProvider extendibleElementConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExtendibleElementConstraintAdapter() {
+		if (extendibleElementConstraintItemProvider == null) {
+			extendibleElementConstraintItemProvider = new ExtendibleElementConstraintItemProvider(this);
+		}
+
+		return extendibleElementConstraintItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,29 +216,6 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		}
 
 		return modelElementWildcardItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.ModelConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelConstraintItemProvider modelConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.ModelConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelConstraintAdapter() {
-		if (modelConstraintItemProvider == null) {
-			modelConstraintItemProvider = new ModelConstraintItemProvider(this);
-		}
-
-		return modelConstraintItemProvider;
 	}
 
 	/**
@@ -343,7 +343,7 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		if (multiModelItemProvider != null) multiModelItemProvider.dispose();
 		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
 		if (modelItemProvider != null) modelItemProvider.dispose();
-		if (modelConstraintItemProvider != null) modelConstraintItemProvider.dispose();
+		if (extendibleElementConstraintItemProvider != null) extendibleElementConstraintItemProvider.dispose();
 		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
 		if (modelElementWildcardItemProvider != null) modelElementWildcardItemProvider.dispose();
 		if (modelEndpointItemProvider != null) modelEndpointItemProvider.dispose();

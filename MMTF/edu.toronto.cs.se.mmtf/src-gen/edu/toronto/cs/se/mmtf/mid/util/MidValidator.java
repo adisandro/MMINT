@@ -106,8 +106,8 @@ public class MidValidator extends EObjectValidator {
 				return validateExtendibleElementEndpoint((ExtendibleElementEndpoint)value, diagnostics, context);
 			case MidPackage.MODEL:
 				return validateModel((Model)value, diagnostics, context);
-			case MidPackage.MODEL_CONSTRAINT:
-				return validateModelConstraint((ModelConstraint)value, diagnostics, context);
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT:
+				return validateExtendibleElementConstraint((ExtendibleElementConstraint)value, diagnostics, context);
 			case MidPackage.MODEL_ELEMENT:
 				return validateModelElement((ModelElement)value, diagnostics, context);
 			case MidPackage.MODEL_ELEMENT_WILDCARD:
@@ -118,8 +118,8 @@ public class MidValidator extends EObjectValidator {
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
-			case MidPackage.MODEL_CONSTRAINT_LANGUAGE:
-				return validateModelConstraintLanguage((ModelConstraintLanguage)value, diagnostics, context);
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
+				return validateExtendibleElementConstraintLanguage((ExtendibleElementConstraintLanguage)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -255,6 +255,15 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateExtendibleElementConstraint(ExtendibleElementConstraint extendibleElementConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(extendibleElementConstraint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateEStringToExtendibleElementMap(Map.Entry<?, ?> eStringToExtendibleElementMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)eStringToExtendibleElementMap, diagnostics, context);
 	}
@@ -285,15 +294,6 @@ public class MidValidator extends EObjectValidator {
 	 */
 	public boolean validateModelElementWildcard(ModelElementWildcard modelElementWildcard, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modelElementWildcard, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelConstraint(ModelConstraint modelConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modelConstraint, diagnostics, context);
 	}
 
 	/**
@@ -339,7 +339,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelConstraintLanguage(ModelConstraintLanguage modelConstraintLanguage, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExtendibleElementConstraintLanguage(ExtendibleElementConstraintLanguage extendibleElementConstraintLanguage, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

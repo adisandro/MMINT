@@ -20,11 +20,11 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 
-public class DerivationListener extends SelectionAdapter {
+public class AddModifyDerivationListener extends SelectionAdapter {
 
 	private ModelElementReference modelElemRef;
 
-	public DerivationListener(ModelElementReference modelElemRef) {
+	public AddModifyDerivationListener(ModelElementReference modelElemRef) {
 
 		this.modelElemRef = modelElemRef;
 	}
@@ -35,22 +35,22 @@ public class DerivationListener extends SelectionAdapter {
 		List<IFile> files = new ArrayList<IFile>();
 		files.add((IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class));
 		//TODO MMTF: need domain file too?
-		AbstractTransactionalCommand derivationCommand = new DerivationCommand(
+		AbstractTransactionalCommand derivationCommand = new AddModifyDerivationCommand(
 			TransactionUtil.getEditingDomain(modelElemRef),
-			"Derivation",
+			"Constraint",
 			files
 		);
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(derivationCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMTFException.print(Type.WARNING, "Copy model history execution error", ex);
+			MMTFException.print(Type.WARNING, "Add/modify derivation history execution error", ex);
 		}
 	}
 
-	protected class DerivationCommand extends AbstractTransactionalCommand {
+	protected class AddModifyDerivationCommand extends AbstractTransactionalCommand {
 
-		public DerivationCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public AddModifyDerivationCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

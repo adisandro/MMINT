@@ -15,26 +15,26 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Model Constraint</b></em>'.
+ * A representation of the model object '<em><b>Extendible Element Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A constraint for a model type.
+ * A constraint for an extendible element.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage <em>Language</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getImplementation <em>Implementation</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getLanguage <em>Language</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraint()
+ * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElementConstraint()
  * @model
  * @generated
  */
-public interface ModelConstraint extends EObject {
+public interface ExtendibleElementConstraint extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Implementation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -44,14 +44,14 @@ public interface ModelConstraint extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Implementation</em>' attribute.
 	 * @see #setImplementation(String)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraint_Implementation()
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElementConstraint_Implementation()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getImplementation();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getImplementation <em>Implementation</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getImplementation <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Implementation</em>' attribute.
@@ -62,30 +62,30 @@ public interface ModelConstraint extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Language</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage}.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The language used to evaluate the constraint.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Language</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
-	 * @see #setLanguage(ModelConstraintLanguage)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelConstraint_Language()
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage
+	 * @see #setLanguage(ExtendibleElementConstraintLanguage)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElementConstraint_Language()
 	 * @model required="true"
 	 * @generated
 	 */
-	ModelConstraintLanguage getLanguage();
+	ExtendibleElementConstraintLanguage getLanguage();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint#getLanguage <em>Language</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint#getLanguage <em>Language</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Language</em>' attribute.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage
 	 * @see #getLanguage()
 	 * @generated
 	 */
-	void setLanguage(ModelConstraintLanguage value);
+	void setLanguage(ExtendibleElementConstraintLanguage value);
 
-} // ModelConstraint
+} // ExtendibleElementConstraint

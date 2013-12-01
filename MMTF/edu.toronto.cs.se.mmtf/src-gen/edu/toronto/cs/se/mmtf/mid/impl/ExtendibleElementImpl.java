@@ -13,11 +13,13 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -36,6 +38,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getMetatypeUri <em>Metatype Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#isDynamic <em>Dynamic</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl#getConstraint <em>Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -151,6 +154,16 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * @ordered
 	 */
 	protected boolean dynamic = DYNAMIC_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExtendibleElementConstraint constraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -351,6 +364,63 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ExtendibleElementConstraint getConstraint() {
+		return constraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetConstraint(ExtendibleElementConstraint newConstraint, NotificationChain msgs) {
+		ExtendibleElementConstraint oldConstraint = constraint;
+		constraint = newConstraint;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstraint(ExtendibleElementConstraint newConstraint) {
+		if (newConstraint != constraint) {
+			NotificationChain msgs = null;
+			if (constraint != null)
+				msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+			if (newConstraint != null)
+				msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+			msgs = basicSetConstraint(newConstraint, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, newConstraint, newConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+				return basicSetConstraint(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -370,6 +440,8 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 				return getMetatypeUri();
 			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				return isDynamic();
+			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+				return getConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -399,6 +471,9 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 				return;
 			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				setDynamic((Boolean)newValue);
+				return;
+			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+				setConstraint((ExtendibleElementConstraint)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -430,6 +505,9 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				setDynamic(DYNAMIC_EDEFAULT);
 				return;
+			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+				setConstraint((ExtendibleElementConstraint)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -456,6 +534,8 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 				return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
 			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				return dynamic != DYNAMIC_EDEFAULT;
+			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+				return constraint != null;
 		}
 		return super.eIsSet(featureID);
 	}

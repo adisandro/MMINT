@@ -71,7 +71,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 			case MidPackage.MULTI_MODEL: return createMultiModel();
 			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
 			case MidPackage.MODEL: return createModel();
-			case MidPackage.MODEL_CONSTRAINT: return createModelConstraint();
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
 			case MidPackage.MODEL_ELEMENT: return createModelElement();
 			case MidPackage.MODEL_ELEMENT_WILDCARD: return createModelElementWildcard();
 			case MidPackage.MODEL_ENDPOINT: return createModelEndpoint();
@@ -92,8 +92,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return createMidLevelFromString(eDataType, initialValue);
 			case MidPackage.MODEL_ORIGIN:
 				return createModelOriginFromString(eDataType, initialValue);
-			case MidPackage.MODEL_CONSTRAINT_LANGUAGE:
-				return createModelConstraintLanguageFromString(eDataType, initialValue);
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
+				return createExtendibleElementConstraintLanguageFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -111,8 +111,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return convertMidLevelToString(eDataType, instanceValue);
 			case MidPackage.MODEL_ORIGIN:
 				return convertModelOriginToString(eDataType, instanceValue);
-			case MidPackage.MODEL_CONSTRAINT_LANGUAGE:
-				return convertModelConstraintLanguageToString(eDataType, instanceValue);
+			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
+				return convertExtendibleElementConstraintLanguageToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -143,6 +143,16 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ExtendibleElementConstraint createExtendibleElementConstraint() {
+		ExtendibleElementConstraintImpl extendibleElementConstraint = new ExtendibleElementConstraintImpl();
+		return extendibleElementConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Map.Entry<String, ExtendibleElement> createEStringToExtendibleElementMap() {
 		EStringToExtendibleElementMapImpl eStringToExtendibleElementMap = new EStringToExtendibleElementMapImpl();
 		return eStringToExtendibleElementMap;
@@ -166,16 +176,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public ModelElementWildcard createModelElementWildcard() {
 		ModelElementWildcardImpl modelElementWildcard = new ModelElementWildcardImpl();
 		return modelElementWildcard;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelConstraint createModelConstraint() {
-		ModelConstraintImpl modelConstraint = new ModelConstraintImpl();
-		return modelConstraint;
 	}
 
 	/**
@@ -233,8 +233,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConstraintLanguage createModelConstraintLanguageFromString(EDataType eDataType, String initialValue) {
-		ModelConstraintLanguage result = ModelConstraintLanguage.get(initialValue);
+	public ExtendibleElementConstraintLanguage createExtendibleElementConstraintLanguageFromString(EDataType eDataType, String initialValue) {
+		ExtendibleElementConstraintLanguage result = ExtendibleElementConstraintLanguage.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -244,7 +244,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertModelConstraintLanguageToString(EDataType eDataType, Object instanceValue) {
+	public String convertExtendibleElementConstraintLanguageToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -101,8 +101,8 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 				return createModelAdapter();
 			}
 			@Override
-			public Adapter caseModelConstraint(ModelConstraint object) {
-				return createModelConstraintAdapter();
+			public Adapter caseExtendibleElementConstraint(ExtendibleElementConstraint object) {
+				return createExtendibleElementConstraintAdapter();
 			}
 			@Override
 			public Adapter caseModelElement(ModelElement object) {
@@ -201,6 +201,20 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint
+	 * @generated
+	 */
+	public Adapter createExtendibleElementConstraintAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -267,20 +281,6 @@ public class MidAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementWildcardAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.ModelConstraint <em>Model Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelConstraint
-	 * @generated
-	 */
-	public Adapter createModelConstraintAdapter() {
 		return null;
 	}
 

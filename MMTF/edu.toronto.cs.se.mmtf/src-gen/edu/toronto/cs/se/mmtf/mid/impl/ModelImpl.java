@@ -16,7 +16,6 @@ import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 
@@ -51,7 +50,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getModelElems <em>Model Elems</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelImpl#isAbstract <em>Abstract</em>}</li>
  * </ul>
@@ -139,16 +137,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @ordered
 	 */
 	protected EList<ModelElement> modelElems;
-
-	/**
-	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraint()
-	 * @generated
-	 * @ordered
-	 */
-	protected ModelConstraint constraint;
 
 	/**
 	 * The cached value of the '{@link #getConversionOperators() <em>Conversion Operators</em>}' reference list.
@@ -291,49 +279,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConstraint getConstraint() {
-		return constraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetConstraint(ModelConstraint newConstraint, NotificationChain msgs) {
-		ModelConstraint oldConstraint = constraint;
-		constraint = newConstraint;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__CONSTRAINT, oldConstraint, newConstraint);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraint(ModelConstraint newConstraint) {
-		if (newConstraint != constraint) {
-			NotificationChain msgs = null;
-			if (constraint != null)
-				msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL__CONSTRAINT, null, msgs);
-			if (newConstraint != null)
-				msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL__CONSTRAINT, null, msgs);
-			msgs = basicSetConstraint(newConstraint, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__CONSTRAINT, newConstraint, newConstraint));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ConversionOperator> getConversionOperators() {
 		if (conversionOperators == null) {
 			conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MidPackage.MODEL__CONVERSION_OPERATORS);
@@ -392,8 +337,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		switch (featureID) {
 			case MidPackage.MODEL__MODEL_ELEMS:
 				return ((InternalEList<?>)getModelElems()).basicRemove(otherEnd, msgs);
-			case MidPackage.MODEL__CONSTRAINT:
-				return basicSetConstraint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -416,8 +359,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getEditors();
 			case MidPackage.MODEL__MODEL_ELEMS:
 				return getModelElems();
-			case MidPackage.MODEL__CONSTRAINT:
-				return getConstraint();
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
 				return getConversionOperators();
 			case MidPackage.MODEL__ABSTRACT:
@@ -451,9 +392,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MidPackage.MODEL__MODEL_ELEMS:
 				getModelElems().clear();
 				getModelElems().addAll((Collection<? extends ModelElement>)newValue);
-				return;
-			case MidPackage.MODEL__CONSTRAINT:
-				setConstraint((ModelConstraint)newValue);
 				return;
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
 				getConversionOperators().clear();
@@ -489,9 +427,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MidPackage.MODEL__MODEL_ELEMS:
 				getModelElems().clear();
 				return;
-			case MidPackage.MODEL__CONSTRAINT:
-				setConstraint((ModelConstraint)null);
-				return;
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
 				getConversionOperators().clear();
 				return;
@@ -520,8 +455,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return editors != null && !editors.isEmpty();
 			case MidPackage.MODEL__MODEL_ELEMS:
 				return modelElems != null && !modelElems.isEmpty();
-			case MidPackage.MODEL__CONSTRAINT:
-				return constraint != null;
 			case MidPackage.MODEL__CONVERSION_OPERATORS:
 				return conversionOperators != null && !conversionOperators.isEmpty();
 			case MidPackage.MODEL__ABSTRACT:

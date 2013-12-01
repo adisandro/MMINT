@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
@@ -84,9 +85,9 @@ public class RelationshipDiagramActions extends ContributionItem {
 		// derivation
 		if (doDerivation) {
 			MenuItem derivationItem = new MenuItem(mmtfMenu, SWT.NONE);
-			derivationItem.setText("Add Derivation");
+			derivationItem.setText("Add/Modify Derivation");
 			derivationItem.addSelectionListener(
-				new DerivationListener(modelElemRef)
+				new AddModifyConstraintListener(modelElemRef)
 			);
 		}
 	}

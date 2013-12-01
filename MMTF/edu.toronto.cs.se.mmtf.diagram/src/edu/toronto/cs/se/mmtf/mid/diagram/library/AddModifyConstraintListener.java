@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmtf.mid.diagram.library;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,19 +29,24 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.ModelConstraintLanguage;
-import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 
-public class AddModifyPropertyListener extends SelectionAdapter {
+public class AddModifyConstraintListener extends SelectionAdapter {
 
-	Model model;
+	ExtendibleElement element;
 
-	public AddModifyPropertyListener(Model model) {
+	public AddModifyConstraintListener(ExtendibleElement element) {
 
-		this.model = model;
+		this.element = element;
+	}
+
+	public AddModifyConstraintListener(ExtendibleElementReference elementRef) {
+
+		element = elementRef.getObject();
 	}
 
 	@Override
@@ -50,9 +55,9 @@ public class AddModifyPropertyListener extends SelectionAdapter {
 		List<IFile> files = new ArrayList<IFile>();
 		files.add((IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class));
 		//TODO MMTF: need domain file too?
-		AbstractTransactionalCommand copyCommand = new AddModifyPropertyCommand(
-			TransactionUtil.getEditingDomain(model),
-			"Copy",
+		AbstractTransactionalCommand copyCommand = new AddModifyConstraintCommand(
+			TransactionUtil.getEditingDomain(element),
+			"Constraint",
 			files
 		);
 		try {
@@ -63,9 +68,9 @@ public class AddModifyPropertyListener extends SelectionAdapter {
 		}
 	}
 
-	protected class AddModifyPropertyCommand extends AbstractTransactionalCommand {
+	protected class AddModifyConstraintCommand extends AbstractTransactionalCommand {
 
-		public AddModifyPropertyCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public AddModifyConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -74,17 +79,17 @@ public class AddModifyPropertyListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				ModelConstraint constraint = model.getConstraint();
+				ExtendibleElementConstraint constraint = element.getConstraint();
 				if (constraint == null) {
-					constraint = MidFactory.eINSTANCE.createModelConstraint();
-					model.setConstraint(constraint);
+					constraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+					element.setConstraint(constraint);
 				}
 				String implementation = constraint.getImplementation();
 				if (implementation == null) {
 					implementation = "";
 				}
 				String[] newConstraint = MidDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MidDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
-				constraint.setLanguage(ModelConstraintLanguage.get(newConstraint[0]));
+				constraint.setLanguage(ExtendibleElementConstraintLanguage.get(newConstraint[0]));
 				constraint.setImplementation(newConstraint[1]);
 
 				return CommandResult.newOKCommandResult(constraint);

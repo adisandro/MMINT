@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getLevel <em>Level</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getMetatypeUri <em>Metatype Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#isDynamic <em>Dynamic</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getConstraint <em>Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -208,5 +209,30 @@ public interface ExtendibleElement extends MAVOElement {
 	 * @generated
 	 */
 	void setDynamic(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The constraint associated with this element (types: element type; instances: element instance).
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Constraint</em>' containment reference.
+	 * @see #setConstraint(ExtendibleElementConstraint)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getExtendibleElement_Constraint()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ExtendibleElementConstraint getConstraint();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#getConstraint <em>Constraint</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Constraint</em>' containment reference.
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	void setConstraint(ExtendibleElementConstraint value);
 
 } // ExtendibleElement
