@@ -9,33 +9,41 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.operator;
+package edu.toronto.cs.se.modelepedia.kleisli;
 
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Conversion Operator Executable</b></em>'.
+ * A representation of the model object '<em><b>Model Endpoint</b></em>'.
  * <!-- end-user-doc -->
  *
- * <!-- begin-model-doc -->
- * The executable implementation interface of a conversion operator.
- * <!-- end-model-doc -->
  *
- *
- * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getConversionOperatorExecutable()
- * @model abstract="true"
+ * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpoint()
+ * @model
  * @generated
  */
-public interface ConversionOperatorExecutable extends OperatorExecutable {
+public interface KleisliModelEndpoint extends ModelEndpoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Cleans up the output of the conversion operator, to allow for a transparent conversion.
+	 * Creates an extended metamodel for the endpoint type.
 	 * <!-- end-model-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.Exception"
 	 * @generated
 	 */
-	void cleanup() throws Exception;
+	void newType() throws Exception;
 
-} // ConversionOperatorExecutable
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Deletes the extended metamodel for the endpoint type.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	void deleteType();
+
+} // KleisliModelEndpoint

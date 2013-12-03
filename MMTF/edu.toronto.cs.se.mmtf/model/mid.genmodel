@@ -7,7 +7,7 @@
     copyrightFields="false" operationReflection="true">
   <foreignModel>mid.ecore</foreignModel>
   <genPackages prefix="Mid" basePackage="edu.toronto.cs.se.mmtf" disposableProviderFactory="true"
-      ecorePackage="mid.ecore#/">
+      extensibleProviderFactory="true" ecorePackage="mid.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//MidLevel">
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MidLevel/INSTANCES"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MidLevel/TYPES"/>
@@ -21,6 +21,7 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/JAVA"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/SMTLIB"/>
     </genEnums>
+    <genDataTypes ecoreDataType="mid.ecore#//Exception"/>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/editors"/>
@@ -41,6 +42,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/newType"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/newInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/deleteInstance"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>
@@ -164,7 +169,6 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Operator" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//operator">
-      <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
       <genClasses ecoreClass="mid.ecore#//operator/EStringToParameterMap">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToParameterMap/key"/>

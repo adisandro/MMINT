@@ -40,6 +40,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -138,6 +139,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EEnum extendibleElementConstraintLanguageEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType exceptionEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -302,6 +310,42 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EReference getExtendibleElement_Constraint() {
 		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__NewType() {
+		return extendibleElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__DeleteType() {
+		return extendibleElementEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__NewInstance() {
+		return extendibleElementEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__DeleteInstance() {
+		return extendibleElementEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -669,6 +713,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getException() {
+		return exceptionEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MidFactory getMidFactory() {
 		return (MidFactory)getEFactoryInstance();
 	}
@@ -712,6 +765,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__METATYPE_URI);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__DYNAMIC);
 		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__CONSTRAINT);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___NEW_TYPE);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___DELETE_TYPE);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___NEW_INSTANCE);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___DELETE_INSTANCE);
 
 		extendibleElementEndpointEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT);
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND);
@@ -751,6 +808,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		midLevelEEnum = createEEnum(MID_LEVEL);
 		modelOriginEEnum = createEEnum(MODEL_ORIGIN);
 		extendibleElementConstraintLanguageEEnum = createEEnum(EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE);
+
+		// Create data types
+		exceptionEDataType = createEDataType(EXCEPTION);
 	}
 
 	/**
@@ -822,6 +882,16 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getExtendibleElement_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElement_Constraint(), this.getExtendibleElementConstraint(), null, "constraint", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = initEOperation(getExtendibleElement__NewType(), null, "newType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
+		initEOperation(getExtendibleElement__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getExtendibleElement__NewInstance(), null, "newInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
+		initEOperation(getExtendibleElement__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(extendibleElementEndpointEClass, ExtendibleElementEndpoint.class, "ExtendibleElementEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementEndpoint_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementEndpoint_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -879,6 +949,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEEnumLiteral(extendibleElementConstraintLanguageEEnum, ExtendibleElementConstraintLanguage.JAVA);
 		addEEnumLiteral(extendibleElementConstraintLanguageEEnum, ExtendibleElementConstraintLanguage.SMTLIB);
 
+		// Initialize data types
+		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+
 		// Create resource
 		createResource(eNS_URI);
 
@@ -910,13 +983,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "typeLevel"
-		   });																
+		   });																				
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																				
+		   });																																					
 	}
 
 	/**
@@ -932,7 +1005,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"
-		   });															
+		   });																			
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
 		   source, 
@@ -944,7 +1017,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																												
+		   });																													
 	}
 
 } //MidPackageImpl

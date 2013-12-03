@@ -94,6 +94,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return createModelOriginFromString(eDataType, initialValue);
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
 				return createExtendibleElementConstraintLanguageFromString(eDataType, initialValue);
+			case MidPackage.EXCEPTION:
+				return createExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -113,6 +115,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return convertModelOriginToString(eDataType, instanceValue);
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
 				return convertExtendibleElementConstraintLanguageToString(eDataType, instanceValue);
+			case MidPackage.EXCEPTION:
+				return convertExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -246,6 +250,24 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 */
 	public String convertExtendibleElementConstraintLanguageToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Exception createExceptionFromString(EDataType eDataType, String initialValue) {
+		return (Exception)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

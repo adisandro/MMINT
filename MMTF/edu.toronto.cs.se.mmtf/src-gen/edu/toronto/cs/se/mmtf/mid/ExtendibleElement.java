@@ -235,4 +235,50 @@ public interface ExtendibleElement extends MAVOElement {
 	 */
 	void setConstraint(ExtendibleElementConstraint value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Performs the necessary actions at type creation. This implementation does nothing, but should be overridden by subclasses.
+	 * <!-- end-model-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.Exception"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return;'"
+	 * @generated
+	 */
+	void newType() throws Exception;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Performs the necessary actions at type deletion. This implementation does nothing, but should be overridden by subclasses.
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return;'"
+	 * @generated
+	 */
+	void deleteType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Performs the necessary actions at instance creation. This implementation does nothing, but should be overridden by subclasses.
+	 * <!-- end-model-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.Exception"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return;'"
+	 * @generated
+	 */
+	void newInstance() throws Exception;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Performs the necessary actions at instance deletion. This implementation does nothing, but should be overridden by subclasses.
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return;'"
+	 * @generated
+	 */
+	void deleteInstance();
+
 } // ExtendibleElement

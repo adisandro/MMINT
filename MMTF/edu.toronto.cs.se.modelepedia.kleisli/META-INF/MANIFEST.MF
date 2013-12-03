@@ -3,9 +3,16 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.kleisli;singleton:=true
 Bundle-Version: 1.1.1
+Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.toronto.cs.se.modelepedia.kleisli,
+ edu.toronto.cs.se.modelepedia.kleisli.impl,
+ edu.toronto.cs.se.modelepedia.kleisli.util
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Require-Bundle: edu.toronto.cs.se.mmtf,
  edu.toronto.cs.se.mmtf.diagram,
+ org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.equinox.registry
+Bundle-ActivationPolicy: lazy

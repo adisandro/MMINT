@@ -18,6 +18,7 @@ Compliance Level -> 6.0 when generating diagrams
 X Directory -> modify to src-gen
 Operation Reflection -> true
 Model Name -> use a nice version of the package name here (uppercase initials), ideally this would also be the model type name
+Edit Child Creation Extenders/Extensible Provider Factory -> true for extended/base
 
 	Ecore Package
 	-------------

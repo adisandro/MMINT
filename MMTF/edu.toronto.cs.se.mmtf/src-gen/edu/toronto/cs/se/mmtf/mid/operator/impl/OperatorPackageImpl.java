@@ -108,13 +108,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType exceptionEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EDataType randomEDataType = null;
 
 	/**
@@ -413,15 +406,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getException() {
-		return exceptionEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EDataType getRandom() {
 		return randomEDataType;
 	}
@@ -485,7 +469,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEAttribute(randomOperatorExecutableEClass, RANDOM_OPERATOR_EXECUTABLE__STATE);
 
 		// Create data types
-		exceptionEDataType = createEDataType(EXCEPTION);
 		randomEDataType = createEDataType(RANDOM);
 	}
 
@@ -553,18 +536,17 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		EOperation op = initEOperation(getOperatorExecutable__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
+		addEException(op, theMidPackage.getException());
 
 		initEClass(conversionOperatorExecutableEClass, ConversionOperatorExecutable.class, "ConversionOperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getConversionOperatorExecutable__Cleanup(), null, "cleanup", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
+		addEException(op, theMidPackage.getException());
 
 		initEClass(randomOperatorExecutableEClass, RandomOperatorExecutable.class, "RandomOperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomOperatorExecutable_State(), this.getRandom(), "state", null, 1, 1, RandomOperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
-		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
@@ -595,7 +577,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   source, 
 		   new String[] {
 			 "constraints", "conversion executable"
-		   });																	
+		   });																
 	}
 
 	/**
@@ -612,7 +594,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   new String[] {
 			 "conversion", "inputs->size() = 1 and outputs->size() = 1",
 			 "executable", "executable.oclIsKindOf(ConversionOperatorExecutable)"
-		   });															
+		   });														
 	}
 
 } //OperatorPackageImpl

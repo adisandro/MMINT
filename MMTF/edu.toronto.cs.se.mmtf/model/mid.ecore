@@ -65,6 +65,30 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="typeLevel" value="level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"/>
     </eAnnotations>
+    <eOperations name="newType" eExceptions="#//Exception">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Performs the necessary actions at type creation. This implementation does nothing, but should be overridden by subclasses."/>
+        <details key="body" value="return;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="deleteType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Performs the necessary actions at type deletion. This implementation does nothing, but should be overridden by subclasses."/>
+        <details key="body" value="return;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="newInstance" eExceptions="#//Exception">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Performs the necessary actions at instance creation. This implementation does nothing, but should be overridden by subclasses."/>
+        <details key="body" value="return;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="deleteInstance">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Performs the necessary actions at instance deletion. This implementation does nothing, but should be overridden by subclasses."/>
+        <details key="body" value="return;"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The supertype (types: can be null; instances: always null)."/>
@@ -331,6 +355,11 @@
         <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
       </eAnnotations>
     </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A wrapper to throw exceptions in various operations."/>
+    </eAnnotations>
   </eClassifiers>
   <eSubpackages name="relationship" nsURI="http://se.cs.toronto.edu/mmtf/MID/Relationship"
       nsPrefix="relationship">
@@ -863,7 +892,7 @@
         <details key="documentation" value="The executable implementation interface of an operator."/>
       </eAnnotations>
       <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
-          eExceptions="#//operator/Exception">
+          eExceptions="#//Exception">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Executes the operator."/>
         </eAnnotations>
@@ -889,16 +918,11 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The executable implementation interface of a conversion operator."/>
       </eAnnotations>
-      <eOperations name="cleanup" eExceptions="#//operator/Exception">
+      <eOperations name="cleanup" eExceptions="#//Exception">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Cleans up the output of the conversion operator, to allow for a transparent conversion."/>
         </eAnnotations>
       </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Any possible exception thrown during the execution of the operator."/>
-      </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomOperatorExecutable" abstract="true"
         eSuperTypes="#//operator/OperatorExecutable">

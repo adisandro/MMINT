@@ -14,6 +14,15 @@
 -->
 
 <plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated kleisli -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel"
+            class="edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage"
+            genModel="model/kleisli.genmodel"/>
+   </extension>
+
    <extension
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>

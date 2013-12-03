@@ -95,7 +95,7 @@ public interface OperatorExecutable extends EObject {
 	 * Executes the operator.
 	 * @param actualParameters The list of model parameters.
 	 * <!-- end-model-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.Exception" actualParametersRequired="true" actualParametersMany="true"
 	 * @generated
 	 */
 	EList<Model> execute(EList<Model> actualParameters) throws Exception;
