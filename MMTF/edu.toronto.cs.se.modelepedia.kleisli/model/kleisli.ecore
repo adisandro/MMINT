@@ -36,4 +36,5 @@
       </eAnnotations>
     </eOperations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KleisliBinaryModelRel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/BinaryModelRel #//KleisliModelRel"/>
 </ecore:EPackage>

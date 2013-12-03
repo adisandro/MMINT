@@ -594,6 +594,314 @@ public interface KleisliPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl <em>Binary Model Rel</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliBinaryModelRel()
+	 * @generated
+	 */
+	int KLEISLI_BINARY_MODEL_REL = 2;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__MAY = RelationshipPackage.BINARY_MODEL_REL__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__SET = RelationshipPackage.BINARY_MODEL_REL__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__VAR = RelationshipPackage.BINARY_MODEL_REL__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__FORMULA_ID = RelationshipPackage.BINARY_MODEL_REL__FORMULA_ID;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL__SUPERTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__METATYPE = RelationshipPackage.BINARY_MODEL_REL__METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__URI = RelationshipPackage.BINARY_MODEL_REL__URI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__NAME = RelationshipPackage.BINARY_MODEL_REL__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__LEVEL = RelationshipPackage.BINARY_MODEL_REL__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__METATYPE_URI = RelationshipPackage.BINARY_MODEL_REL__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__DYNAMIC = RelationshipPackage.BINARY_MODEL_REL__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__CONSTRAINT = RelationshipPackage.BINARY_MODEL_REL__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Inc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__INC = RelationshipPackage.BINARY_MODEL_REL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Origin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__ORIGIN = RelationshipPackage.BINARY_MODEL_REL__ORIGIN;
+
+	/**
+	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__FILE_EXTENSION = RelationshipPackage.BINARY_MODEL_REL__FILE_EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Editors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__EDITORS = RelationshipPackage.BINARY_MODEL_REL__EDITORS;
+
+	/**
+	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__MODEL_ELEMS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ELEMS;
+
+	/**
+	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.BINARY_MODEL_REL__CONVERSION_OPERATORS;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__ABSTRACT = RelationshipPackage.BINARY_MODEL_REL__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINTS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINTS;
+
+	/**
+	 * The feature id for the '<em><b>Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__LINKS = RelationshipPackage.BINARY_MODEL_REL__LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Model Endpoint Refs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINT_REFS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINT_REFS;
+
+	/**
+	 * The feature id for the '<em><b>Link Refs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__LINK_REFS = RelationshipPackage.BINARY_MODEL_REL__LINK_REFS;
+
+	/**
+	 * The feature id for the '<em><b>Source Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL = RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
+
+	/**
+	 * The feature id for the '<em><b>Target Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__TARGET_MODEL = RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
+
+	/**
+	 * The number of structural features of the '<em>Binary Model Rel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___GET_METATYPE = RelationshipPackage.BINARY_MODEL_REL___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___GET_SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL___GET_SUPERTYPE;
+
+	/**
+	 * The operation id for the '<em>New Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___NEW_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>New Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___NEW_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Binary Model Rel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 4;
+
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel <em>Model Rel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -672,6 +980,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getKleisliModelEndpoint__DeleteType();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel <em>Binary Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Binary Model Rel</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel
+	 * @generated
+	 */
+	EClass getKleisliBinaryModelRel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -763,6 +1081,16 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_TYPE = eINSTANCE.getKleisliModelEndpoint__DeleteType();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl <em>Binary Model Rel</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliBinaryModelRel()
+		 * @generated
+		 */
+		EClass KLEISLI_BINARY_MODEL_REL = eINSTANCE.getKleisliBinaryModelRel();
 
 	}
 

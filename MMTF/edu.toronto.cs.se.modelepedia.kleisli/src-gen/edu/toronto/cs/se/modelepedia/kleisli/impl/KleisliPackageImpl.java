@@ -17,6 +17,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -48,6 +49,13 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * @generated
 	 */
 	private EClass kleisliModelEndpointEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass kleisliBinaryModelRelEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -191,6 +199,15 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getKleisliBinaryModelRel() {
+		return kleisliBinaryModelRelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public KleisliFactory getKleisliFactory() {
 		return (KleisliFactory)getEFactoryInstance();
 	}
@@ -223,6 +240,8 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		kleisliModelEndpointEClass = createEClass(KLEISLI_MODEL_ENDPOINT);
 		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___NEW_TYPE);
 		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___DELETE_TYPE);
+
+		kleisliBinaryModelRelEClass = createEClass(KLEISLI_BINARY_MODEL_REL);
 	}
 
 	/**
@@ -259,6 +278,8 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		// Add supertypes to classes
 		kleisliModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
 		kleisliModelEndpointEClass.getESuperTypes().add(theMidPackage.getModelEndpoint());
+		kleisliBinaryModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
+		kleisliBinaryModelRelEClass.getESuperTypes().add(this.getKleisliModelRel());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(kleisliModelRelEClass, KleisliModelRel.class, "KleisliModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -279,6 +300,8 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		addEException(op, theMidPackage.getException());
 
 		initEOperation(getKleisliModelEndpoint__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(kleisliBinaryModelRelEClass, KleisliBinaryModelRel.class, "KleisliBinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

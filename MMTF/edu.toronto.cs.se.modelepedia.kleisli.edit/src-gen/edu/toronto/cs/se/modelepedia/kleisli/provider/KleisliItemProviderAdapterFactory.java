@@ -150,6 +150,29 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected KleisliBinaryModelRelItemProvider kleisliBinaryModelRelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createKleisliBinaryModelRelAdapter() {
+		if (kleisliBinaryModelRelItemProvider == null) {
+			kleisliBinaryModelRelItemProvider = new KleisliBinaryModelRelItemProvider(this);
+		}
+
+		return kleisliBinaryModelRelItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,6 +273,7 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 	public void dispose() {
 		if (kleisliModelRelItemProvider != null) kleisliModelRelItemProvider.dispose();
 		if (kleisliModelEndpointItemProvider != null) kleisliModelEndpointItemProvider.dispose();
+		if (kleisliBinaryModelRelItemProvider != null) kleisliBinaryModelRelItemProvider.dispose();
 	}
 
 	/**
@@ -303,6 +327,11 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 					(createChildParameter
 						(MidPackage.Literals.MULTI_MODEL__MODELS,
 						 KleisliFactory.eINSTANCE.createKleisliModelRel()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(MidPackage.Literals.MULTI_MODEL__MODELS,
+						 KleisliFactory.eINSTANCE.createKleisliBinaryModelRel()));
 
 				return null;
 			}
@@ -395,6 +424,11 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 						 KleisliFactory.eINSTANCE.createKleisliModelEndpoint()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+						 KleisliFactory.eINSTANCE.createKleisliBinaryModelRel()));
 
 				return null;
 			}

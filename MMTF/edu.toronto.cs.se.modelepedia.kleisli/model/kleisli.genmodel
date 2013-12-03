@@ -20,5 +20,6 @@
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/newType"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/deleteType"/>
     </genClasses>
+    <genClasses ecoreClass="kleisli.ecore#//KleisliBinaryModelRel"/>
   </genPackages>
 </genmodel:GenModel>

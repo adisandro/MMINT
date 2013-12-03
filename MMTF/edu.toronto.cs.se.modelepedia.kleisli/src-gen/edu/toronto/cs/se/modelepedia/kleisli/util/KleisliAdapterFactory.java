@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 import edu.toronto.cs.se.modelepedia.kleisli.*;
@@ -95,6 +96,10 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 				return createKleisliModelEndpointAdapter();
 			}
 			@Override
+			public Adapter caseKleisliBinaryModelRel(KleisliBinaryModelRel object) {
+				return createKleisliBinaryModelRelAdapter();
+			}
+			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
@@ -121,6 +126,10 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseModelEndpoint(ModelEndpoint object) {
 				return createModelEndpointAdapter();
+			}
+			@Override
+			public Adapter caseBinaryModelRel(BinaryModelRel object) {
+				return createBinaryModelRelAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -167,6 +176,20 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createKleisliModelEndpointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel <em>Binary Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel
+	 * @generated
+	 */
+	public Adapter createKleisliBinaryModelRelAdapter() {
 		return null;
 	}
 
@@ -265,6 +288,20 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelEndpointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel <em>Binary Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel
+	 * @generated
+	 */
+	public Adapter createBinaryModelRelAdapter() {
 		return null;
 	}
 

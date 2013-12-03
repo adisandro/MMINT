@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 import edu.toronto.cs.se.modelepedia.kleisli.*;
@@ -106,6 +107,19 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL: {
+				KleisliBinaryModelRel kleisliBinaryModelRel = (KleisliBinaryModelRel)theEObject;
+				T result = caseKleisliBinaryModelRel(kleisliBinaryModelRel);
+				if (result == null) result = caseBinaryModelRel(kleisliBinaryModelRel);
+				if (result == null) result = caseKleisliModelRel(kleisliBinaryModelRel);
+				if (result == null) result = caseModelRel(kleisliBinaryModelRel);
+				if (result == null) result = caseModel(kleisliBinaryModelRel);
+				if (result == null) result = caseExtendibleElement(kleisliBinaryModelRel);
+				if (result == null) result = caseMAVOModel(kleisliBinaryModelRel);
+				if (result == null) result = caseMAVOElement(kleisliBinaryModelRel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -137,6 +151,21 @@ public class KleisliSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseKleisliModelEndpoint(KleisliModelEndpoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseKleisliBinaryModelRel(KleisliBinaryModelRel object) {
 		return null;
 	}
 
@@ -242,6 +271,21 @@ public class KleisliSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelEndpoint(ModelEndpoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryModelRel(BinaryModelRel object) {
 		return null;
 	}
 
