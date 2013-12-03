@@ -23,7 +23,6 @@ import java.util.Set;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -42,7 +41,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
@@ -738,10 +737,8 @@ public class MMTF implements MMTFConstants {
 		createTypeHierarchy();
 		copySubtypeTable(subtypeTable, subtypeTableMID);
 		copyConversionTable(conversionTable, conversionTableMID);
-		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-		String uri = path + IPath.SEPARATOR + TYPE_MID_FILENAME;
 		try {
-			MultiModelTypeIntrospection.writeRoot(repository, uri, false);
+			MultiModelUtils.createModelFileInState(repository, TYPE_MID_FILENAME);
 		}
 		catch (Exception e) {
 			MMTFException.print(Type.ERROR, "Error creating Type MID file", e);

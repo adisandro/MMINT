@@ -52,7 +52,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 		// serialize
 		String newPetrinetModelUri = MultiModelUtils.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
 		newPetrinetModelUri = MultiModelUtils.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
-		MultiModelTypeIntrospection.writeRoot(newPetrinet, newPetrinetModelUri, true);
+		MultiModelUtils.createModelFile(newPetrinet, newPetrinetModelUri, true);
 
 		// create model
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(windowModel);

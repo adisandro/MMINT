@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
@@ -650,7 +651,7 @@ traceLinks:
 		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			reduceTraceLinkUncertainty(newPropModelRoot, propTraceLinkRefs, 0, 1);
 		}
-		MultiModelTypeIntrospection.writeRoot(newPropModelRoot, newPropModel.getUri(), true);
+		MultiModelUtils.createModelFile(newPropModelRoot, newPropModel.getUri(), true);
 		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			for (BinaryLinkReference propTraceLinkRef : propTraceLinkRefs) {
 				propagateRefinementLinks(propTraceLinkRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);

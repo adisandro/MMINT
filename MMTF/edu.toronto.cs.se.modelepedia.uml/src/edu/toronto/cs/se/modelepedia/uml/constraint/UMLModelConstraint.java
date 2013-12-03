@@ -15,7 +15,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
@@ -30,7 +29,7 @@ public abstract class UMLModelConstraint extends JavaModelConstraint {
 
 		String notationFileUri = MultiModelUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
-			Diagram diagram = (Diagram) MultiModelTypeIntrospection.getRoot(notationFileUri);
+			Diagram diagram = (Diagram) MultiModelUtils.getModelFile(notationFileUri, true);
 			return (diagram.getType().equals(modelTypeName)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {

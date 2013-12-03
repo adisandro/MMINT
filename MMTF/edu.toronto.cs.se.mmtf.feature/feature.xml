@@ -32,6 +32,7 @@
       <import plugin="org.eclipse.gmf.runtime.emf.ui"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
       <import plugin="org.eclipse.acceleo.engine"/>
+      <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
@@ -64,7 +65,9 @@
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.eclipse.emf.ecoretools.diagram"/>
-      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.emf.ecore.editor"/>
+      <import plugin="org.eclipse.emf.ecore.edit"/>
+      <import plugin="org.eclipse.equinox.registry"/>
    </requires>
 
    <plugin
@@ -118,6 +121,13 @@
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.ecore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.kleisli"
          download-size="0"
          install-size="0"
          version="0.0.0"

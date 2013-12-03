@@ -11,18 +11,13 @@
  */
 package edu.toronto.cs.se.mmtf;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -36,7 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
@@ -78,12 +73,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static MultiModel getTypeMidRepository() throws Exception {
 
-		String path = MMTFActivator.getDefault().getStateLocation().toOSString();
-		MultiModel root = (MultiModel) MultiModelTypeIntrospection.getRoot(
-			URI.createFileURI(path + IPath.SEPARATOR + MMTF.TYPE_MID_FILENAME)
-		);
-
-		return root;
+		return (MultiModel) MultiModelUtils.getModelFileInState(MMTF.TYPE_MID_FILENAME);
 	}
 
 	/**
@@ -678,14 +668,8 @@ public class MultiModelTypeRegistry {
 		if (!modelType.isDynamic()) {
 			return null;
 		}
-		String mmtfUri = MMTFActivator.getDefault().getStateLocation().toOSString();
-		String metamodelUri = mmtfUri + IPath.SEPARATOR + modelType.getName().toLowerCase() + "." + EcorePackage.eNAME;
-		Path metamodelPath = Paths.get(metamodelUri);
-		if (!Files.exists(metamodelPath)) {
-			return null;
-		}
-
-		return metamodelUri;
+		String metamodelUri = modelType.getName() + "." + EcorePackage.eNAME;
+		return MultiModelUtils.isFileInState(metamodelUri);
 	}
 
 }

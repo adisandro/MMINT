@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmtf;
 
 import java.util.Iterator;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -34,6 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -184,9 +184,8 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 						newRootEClass.getESuperTypes().add(rootEClass);
 					}
 					newEPackage.getEClassifiers().add(newRootEClass);
-					String mmtfUri = MMTFActivator.getDefault().getStateLocation().toOSString();
-					newMetamodelUri = mmtfUri + IPath.SEPARATOR + newModelTypeName.toLowerCase() + "." + EcorePackage.eNAME;
-					MultiModelTypeIntrospection.writeRoot(newEPackage, newMetamodelUri, false);
+					newMetamodelUri = newModelTypeName + "." + EcorePackage.eNAME;
+					MultiModelUtils.createModelFileInState(newEPackage, newMetamodelUri);
 				}
 				newModelType.setFileExtension(ECORE_REFLECTIVE_FILE_EXTENSION);
 			}

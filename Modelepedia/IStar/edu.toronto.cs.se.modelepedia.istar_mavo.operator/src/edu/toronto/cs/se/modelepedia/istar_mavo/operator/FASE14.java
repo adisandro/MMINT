@@ -247,7 +247,7 @@ public class FASE14 extends RE13 {
 		);
 		if (timeRNF != -1) {
 			try {
-				MultiModelUtils.writeTextFile(
+				MultiModelUtils.createTextFile(
 					MultiModelUtils.prependWorkspaceToUri(
 						MultiModelUtils.replaceFileExtensionInUri(
 							MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),

@@ -13,14 +13,22 @@ package edu.toronto.cs.se.mmtf.mid.library;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.MMTFException;
 
 public class MultiModelUtils {
@@ -77,12 +85,69 @@ public class MultiModelUtils {
 		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
 	}
 
-	public static void writeTextFile(String fileUri, String text) throws Exception {
+	public static String isFileInState(String relativeFileUri) {
+
+		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
+		Path filePath = Paths.get(fileUri);
+
+		return (Files.exists(filePath)) ? fileUri : null;
+	}
+
+	public static void createTextFile(String fileUri, String text) throws Exception {
 
 		Path filePath = Paths.get(fileUri);
 		try (BufferedWriter writer = Files.newBufferedWriter(filePath, Charset.forName("UTF-8"))) {
 			writer.write(text);
 		}
+	}
+
+	public static void createTextFileInState(String text, String relativeFileUri) throws Exception {
+
+		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
+		createTextFile(fileUri, text);
+	}
+
+	/**
+	 * Writes the root of an ECore model into an ECore model file.
+	 * 
+	 * @param root
+	 *            The ECore model root.
+	 * @param fileUri
+	 *            The uri of the ECore model file.
+	 * @param isWorkspaceRelative
+	 *            True if the uri is relative to the Eclipse workspace, false if
+	 *            it's absolute.
+	 * @throws Exception
+	 *             If the ECore model file could not be created or overwritten.
+	 */
+	public static void createModelFile(EObject root, String fileUri, boolean isWorkspaceRelative) throws Exception {
+	
+		URI emfUri = (isWorkspaceRelative) ?
+			URI.createPlatformResourceURI(fileUri, true) :
+			URI.createFileURI(fileUri);
+		MultiModelTypeIntrospection.writeRoot(root, emfUri);
+	}
+
+	public static void createModelFileInState(EObject root, String relativeFileUri) throws Exception {
+
+		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
+		createModelFile(root, fileUri, false);
+	}
+
+	public static EObject getModelFile(String fileUri, boolean isWorkspaceRelative) throws Exception {
+	
+		URI emfUri = (isWorkspaceRelative) ?
+			URI.createPlatformResourceURI(fileUri, true) :
+			URI.createFileURI(fileUri);
+	
+		return MultiModelTypeIntrospection.getRoot(emfUri);
+	}
+
+	public static EObject getModelFileInState(String relativeFileUri) throws Exception {
+
+		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
+
+		return getModelFile(fileUri, false);
 	}
 
 	public static void copyTextFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
@@ -107,8 +172,59 @@ public class MultiModelUtils {
 			Files.deleteIfExists(filePath);
 		}
 		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "File " + fileUri +" not deleted", e);
+			MMTFException.print(MMTFException.Type.WARNING, "File " + fileUri + " not deleted", e);
 		}
+	}
+
+	public static void deleteFileInState(String relativeFileUri) {
+
+		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
+		deleteFile(fileUri);
+	}
+
+	public static void createDirectory(String directoryUri) throws Exception {
+
+		Path directoryPath = Paths.get(directoryUri);
+		Files.createDirectory(directoryPath);
+	}
+
+	public static void createDirectoryInState(String relativeDirectoryUri) throws Exception {
+
+		String directoryUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeDirectoryUri;
+		createDirectory(directoryUri);
+	}
+
+	public static void deleteDirectory(String directoryUri) {
+
+		Path directoryPath = Paths.get(directoryUri);
+		try {
+			Files.walkFileTree(directoryPath, new SimpleFileVisitor<Path>() {
+				@Override
+				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+					Files.delete(file);
+					return FileVisitResult.CONTINUE;
+				}
+				@Override
+				public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+					Files.delete(file);
+					return FileVisitResult.CONTINUE;
+				}
+				@Override
+				public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+					Files.delete(dir);
+					return FileVisitResult.CONTINUE;
+				}
+			});
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Directory " + directoryUri + " not deleted", e);
+		}
+	}
+
+	public static void deleteDirectoryInState(String relativeDirectoryUri) {
+
+		String directoryUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeDirectoryUri;
+		deleteDirectory(directoryUri);
 	}
 
 }

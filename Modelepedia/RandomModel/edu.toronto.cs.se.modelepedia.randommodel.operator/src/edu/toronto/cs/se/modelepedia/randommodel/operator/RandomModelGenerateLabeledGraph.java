@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
@@ -227,7 +226,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 		RandomModel randomRoot = generateRandomMAVOModel(labeledGraphModel, newRandommodelModel);
 		randomRoot.setName(MultiModelUtils.getFileNameFromUri(newRandommodelModelUri));
 		randomRoot.setType(modelTypeName);
-		MultiModelTypeIntrospection.writeRoot(randomRoot, newRandommodelModelUri, true);
+		MultiModelUtils.createModelFile(randomRoot, newRandommodelModelUri, true);
 
 		return result;
 	}

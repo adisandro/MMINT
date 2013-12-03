@@ -222,13 +222,6 @@ public class MultiModelTypeIntrospection {
 		return root;
 	}
 
-	public static EObject getRoot(String uri) throws Exception {
-
-		URI emfUri = URI.createPlatformResourceURI(uri, true);
-
-		return getRoot(emfUri);
-	}
-
 	public static EObject getRoot(Model model) {
 
 		String uri = model.getUri();
@@ -239,7 +232,7 @@ public class MultiModelTypeIntrospection {
 				if (model instanceof ModelRel) {
 					return model;
 				}
-				root = getRoot(uri);
+				root = MultiModelUtils.getModelFile(uri, true);
 			}
 			else {
 				while (true) {
@@ -249,8 +242,7 @@ public class MultiModelTypeIntrospection {
 					}
 					String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(model);
 					if (metamodelUri != null) { // get package from metamodel file
-						URI emfUri = URI.createFileURI(metamodelUri);
-						root = getRoot(emfUri);
+						root = getRoot(URI.createFileURI(metamodelUri));
 						break;
 					}
 					// climb up light types
@@ -287,27 +279,6 @@ public class MultiModelTypeIntrospection {
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(root);
 		resource.save(Collections.EMPTY_MAP);
-	}
-
-	/**
-	 * Writes the root of an ECore model into an ECore model file.
-	 * 
-	 * @param root
-	 *            The ECore model root.
-	 * @param uri
-	 *            The uri of the ECore model file.
-	 * @param isWorkspace
-	 *            True if the uri is relative to the Eclipse workspace, false if
-	 *            it's absolute.
-	 * @throws Exception
-	 *             If the ECore model file could not be created or overwritten.
-	 */
-	public static void writeRoot(EObject root, String uri, boolean isWorkspace) throws Exception {
-
-		URI emfUri = (isWorkspace) ?
-			URI.createPlatformResourceURI(uri, true) :
-			URI.createFileURI(uri);
-		writeRoot(root, emfUri);
 	}
 
 	public static EObject getPointer(Resource resource, URI emfUri) throws Exception {
