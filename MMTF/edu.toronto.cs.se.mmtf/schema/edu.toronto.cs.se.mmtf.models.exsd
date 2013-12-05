@@ -68,6 +68,16 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="factoryClass" type="string">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java class that handles the creation of types and instances.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.MultiModelHeavyTypeFactory:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

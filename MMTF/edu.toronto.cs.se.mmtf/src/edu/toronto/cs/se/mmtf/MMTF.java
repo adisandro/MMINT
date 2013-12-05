@@ -23,6 +23,7 @@ import java.util.Set;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -30,7 +31,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.RegistryToggleState;
-
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
@@ -85,8 +85,10 @@ import edu.toronto.cs.se.mmtf.repository.RelationshipsExtensionListener;
  */
 public class MMTF implements MMTFConstants {
 
-	/** The singleton instance of MMTF. */
+	/** The singleton instance. */
 	static final MMTF INSTANCE = new MMTF();
+	/** The default "heavy" type factory. */
+	static MultiModelHeavyTypeFactory typeFactory;
 	/** The repository of types. */
 	static MultiModel repository;
 	/**	The table for subtyping in the repository. */
@@ -165,12 +167,14 @@ public class MMTF implements MMTFConstants {
 
 		try {
 			IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
-			boolean newModelRelTypeAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
+			boolean isAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
+			String factoryClass = modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_FACTORYCLASS);
+			MultiModelHeavyTypeFactory factory = (factoryClass == null) ?
+				typeFactory :
+				(MultiModelHeavyTypeFactory) Platform.getBundle(extensionConfig.getContributor().getName()).loadClass(factoryClass).getConstructor().newInstance();
 			ExtensionType newType = new ExtensionType(modelTypeConfig);
 			IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
-			EClass newModelRelTypeClass = (modelTypeEndpointConfigs.length == 2) ?
-				RelationshipPackage.eINSTANCE.getBinaryModelRel() :
-				RelationshipPackage.eINSTANCE.getModelRel();
+			boolean isBinary = (modelTypeEndpointConfigs.length == 2);
 			IConfigurationElement[] constraintConfig = modelTypeConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
 			String constraintLanguage = (constraintConfig.length == 0) ?
 				null :
@@ -178,12 +182,12 @@ public class MMTF implements MMTFConstants {
 			String constraintImplementation = (constraintConfig.length == 0) ?
 				null :
 				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
-			ModelRel newModelRelType = MultiModelHeavyTypeFactory.createHeavyModelRelType(
+			ModelRel newModelRelType = factory.createHeavyModelRelType(
 				newType.getUri(),
 				newType.getSupertypeUri(),
 				newType.getName(),
-				newModelRelTypeAbstract,
-				newModelRelTypeClass,
+				isAbstract,
+				isBinary,
 				constraintLanguage,
 				constraintImplementation
 			);
@@ -196,7 +200,7 @@ public class MMTF implements MMTFConstants {
 				if (newModelType == null) {
 					continue;
 				}
-				ModelEndpointReference newModelTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelTypeEndpointAndModelTypeEndpointReference(
+				ModelEndpointReference newModelTypeEndpointRef = factory.createHeavyModelTypeEndpointAndModelTypeEndpointReference(
 					newType.getUri(),
 					newType.getSupertypeUri(),
 					newType.getName(),
@@ -641,6 +645,7 @@ public class MMTF implements MMTFConstants {
 		repository.setLevel(MidLevel.TYPES);
 		bundleTable = new HashMap<String, String>();
 		multipleInheritanceTable = new HashMap<String, Set<String>>();
+		typeFactory = new MultiModelHeavyTypeFactory();
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;

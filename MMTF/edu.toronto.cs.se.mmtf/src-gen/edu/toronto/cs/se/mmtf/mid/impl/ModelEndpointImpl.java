@@ -11,13 +11,24 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -111,8 +122,125 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				return getTarget();
 			case MidPackage.MODEL_ENDPOINT___GET_METATYPE:
 				return getMetatype();
+			case MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL:
+				try {
+					return createSubtypeAndReference((ModelEndpointReference)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (Boolean)arguments.get(3), (ModelRel)arguments.get(4));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN:
+				try {
+					deleteTypeAndReference((Boolean)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * Adds a subtype of this model type endpoint and a reference to it to the
+	 * Type MID.
+	 * 
+	 * @param newModelTypeEndpoint
+	 *            The new model type endpoint to be added.
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param isBinarySrc
+	 *            True if the model type endpoint is the source in the binary
+	 *            model relationship type container, false otherwise.
+	 * @param containerModelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @return The created reference to the model type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the Type MID.
+	 * @generated NOT
+	 */
+	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
+		// create the "thing" and the corresponding reference
+		MultiModelLightTypeFactory.addLightType(newModelTypeEndpoint, this, containerModelRelType, containerModelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
+		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, newModelType, isBinarySrc, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeFactory.createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, isBinarySrc, containerModelRelType);
+		// create references of the "thing" in subtypes of the container
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, multiModel)) {
+			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
+				null :
+				MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			MultiModelTypeFactory.createModelTypeEndpointReference(newModelTypeEndpoint, modelSubtypeEndpointRef, false, isBinarySrc, modelRelSubtype);
+		}
+
+		return newModelTypeEndpointRef;
+	}
+
+	/**
+	 * Creates and adds a subtype of this model type endpoint and a reference to
+	 * it to the Type MID.
+	 * 
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param isBinarySrc
+	 *            True if the model type endpoint is the source in the binary
+	 *            model relationship type container, false otherwise.
+	 * @param containerModelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @return The created reference to the model type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the Type MID.
+	 * @generated NOT
+	 */
+	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
+
+		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
+		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
+
+		return newModelTypeEndpointRef;
+	}
+
+	/**
+	 * Deletes this model type endpoint and all references to it from the Type
+	 * MID.
+	 * 
+	 * @param isFullDelete
+	 *            True if this model type endpoint is going to be fully deleted,
+	 *            false if it is going to be replaced later.
+	 * @generated NOT
+	 */
+	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		// delete the "thing" and the corresponding reference
+		MultiModelTypeFactory.removeModelTypeEndpoint(this, isFullDelete);
+		ModelRel modelRelType = (ModelRel) eContainer();
+		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
+		MultiModelTypeFactory.removeModelTypeEndpointReference(modelTypeEndpointRef, isFullDelete);
+		// delete references of the "thing" in subtypes of the container
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
+			MultiModelTypeFactory.removeModelTypeEndpointReference(modelSubtypeEndpointRef, isFullDelete);
+		}
 	}
 
 } //ModelEndpointImpl

@@ -280,42 +280,6 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___NEW_TYPE = MidPackage.EXTENDIBLE_ELEMENT___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___NEW_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT___DELETE_INSTANCE;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -514,42 +478,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___NEW_TYPE = OPERATOR___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___NEW_INSTANCE = OPERATOR___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -818,6 +746,17 @@ public interface OperatorPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Exception
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
+	 * @generated
+	 */
+	int EXCEPTION = 8;
+
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Parameter Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1073,6 +1012,17 @@ public interface OperatorPackage extends EPackage {
 	EDataType getRandom();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Exception</em>'.
+	 * @see java.lang.Exception
+	 * @model instanceClass="java.lang.Exception"
+	 * @generated
+	 */
+	EDataType getException();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1302,6 +1252,16 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType RANDOM = eINSTANCE.getRandom();
+
+		/**
+		 * The meta object literal for the '<em>Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Exception
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
+		 * @generated
+		 */
+		EDataType EXCEPTION = eINSTANCE.getException();
 
 	}
 

@@ -11,8 +11,14 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelRelImpl;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
@@ -48,38 +54,72 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
-	public void newType() throws Exception {
+	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
-		MultiModelUtils.createDirectoryInState(getName());
+		ModelRel newModelRelType = (isBinary) ?
+			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
+			KleisliFactory.eINSTANCE.createKleisliModelRel();
+		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+		try {
+			MultiModelUtils.createDirectoryInState(newModelRelTypeName);
+		}
+		catch (Exception e) {
+			super.deleteType();
+			throw new MMTFException("Error creating directory for extended metamodels", e);
+		}
+
+		return newModelRelType;
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteType() {
+	public void deleteType() throws MMTFException {
 
+		super.deleteType();
 		MultiModelUtils.deleteDirectoryInState(getName());
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
-	public void newInstance() throws Exception {
+	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
-		MultiModelUtils.createDirectory(MultiModelUtils.replaceLastSegmentInUri(getUri(), getName()));
+		ModelRel newModelRel = (isBinary) ?
+			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
+			KleisliFactory.eINSTANCE.createKleisliModelRel();
+		MultiModelInstanceFactory.addModel(newModelRel, this, newModelRelUri, origin, containerMultiModel);
+		try {
+			MultiModelUtils.createDirectory(MultiModelUtils.replaceLastSegmentInUri(getUri(), getName()));
+		}
+		catch (Exception e) {
+			super.deleteInstance();
+			throw new MMTFException("Error creating directory for extended models", e);
+		}
+
+		return newModelRel;
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteInstance() {
+	public void deleteInstance() throws MMTFException {
 
+		super.deleteInstance();
 		MultiModelUtils.deleteDirectory(MultiModelUtils.replaceLastSegmentInUri(getUri(), getName()));
 	}
 

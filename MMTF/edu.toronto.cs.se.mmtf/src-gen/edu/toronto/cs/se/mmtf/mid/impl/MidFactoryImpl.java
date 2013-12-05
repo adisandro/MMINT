@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.*;
 
 import java.util.Map;
@@ -94,8 +95,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return createModelOriginFromString(eDataType, initialValue);
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
 				return createExtendibleElementConstraintLanguageFromString(eDataType, initialValue);
-			case MidPackage.EXCEPTION:
-				return createExceptionFromString(eDataType, initialValue);
+			case MidPackage.MMTF_EXCEPTION:
+				return createMMTFExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -115,8 +116,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return convertModelOriginToString(eDataType, instanceValue);
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
 				return convertExtendibleElementConstraintLanguageToString(eDataType, instanceValue);
-			case MidPackage.EXCEPTION:
-				return convertExceptionToString(eDataType, instanceValue);
+			case MidPackage.MMTF_EXCEPTION:
+				return convertMMTFExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -257,8 +258,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Exception createExceptionFromString(EDataType eDataType, String initialValue) {
-		return (Exception)super.createFromString(eDataType, initialValue);
+	public MMTFException createMMTFExceptionFromString(EDataType eDataType, String initialValue) {
+		return (MMTFException)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -266,7 +267,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
+	public String convertMMTFExceptionToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

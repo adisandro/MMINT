@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.util;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.*;
 
 import java.util.Map;
@@ -120,8 +121,8 @@ public class MidValidator extends EObjectValidator {
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
 				return validateExtendibleElementConstraintLanguage((ExtendibleElementConstraintLanguage)value, diagnostics, context);
-			case MidPackage.EXCEPTION:
-				return validateException((Exception)value, diagnostics, context);
+			case MidPackage.MMTF_EXCEPTION:
+				return validateMMTFException((MMTFException)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -350,7 +351,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateException(Exception exception, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMMTFException(MMTFException mmtfException, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

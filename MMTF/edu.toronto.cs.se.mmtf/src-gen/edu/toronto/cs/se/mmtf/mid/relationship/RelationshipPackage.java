@@ -507,42 +507,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL_FEATURE_COUNT = MidPackage.MODEL_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___NEW_TYPE = MidPackage.MODEL___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___DELETE_TYPE = MidPackage.MODEL___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___NEW_INSTANCE = MidPackage.MODEL___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL___DELETE_INSTANCE;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -561,13 +525,49 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___GET_SUPERTYPE = MidPackage.MODEL_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = MidPackage.MODEL_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___DELETE_TYPE = MidPackage.MODEL_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 2;
+	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -804,42 +804,6 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL_FEATURE_COUNT = MODEL_REL_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___NEW_TYPE = MODEL_REL___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___DELETE_TYPE = MODEL_REL___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___NEW_INSTANCE = MODEL_REL___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___DELETE_INSTANCE = MODEL_REL___DELETE_INSTANCE;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -856,6 +820,42 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___GET_SUPERTYPE = MODEL_REL___GET_SUPERTYPE;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___DELETE_TYPE = MODEL_REL___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___DELETE_INSTANCE = MODEL_REL___DELETE_INSTANCE;
 
 	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
@@ -1229,42 +1229,6 @@ public interface RelationshipPackage extends EPackage {
 	int LINK_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK___NEW_TYPE = MidPackage.EXTENDIBLE_ELEMENT___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK___NEW_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT___DELETE_INSTANCE;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1435,42 +1399,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LINK_FEATURE_COUNT = LINK_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK___NEW_TYPE = LINK___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK___DELETE_TYPE = LINK___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK___NEW_INSTANCE = LINK___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK___DELETE_INSTANCE = LINK___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1661,42 +1589,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT___NEW_TYPE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT___NEW_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -2161,6 +2053,46 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelRel__GetSupertype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#createSubtype(java.lang.String, boolean, java.lang.String, java.lang.String) <em>Create Subtype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#createSubtype(java.lang.String, boolean, java.lang.String, java.lang.String)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateSubtype__String_boolean_String_String();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#deleteType()
+	 * @generated
+	 */
+	EOperation getModelRel__DeleteType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#deleteInstance() <em>Delete Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#deleteInstance()
+	 * @generated
+	 */
+	EOperation getModelRel__DeleteInstance();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel <em>Binary Model Rel</em>}'.
@@ -2699,6 +2631,38 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_REL___GET_SUPERTYPE = eINSTANCE.getModelRel__GetSupertype();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = eINSTANCE.getModelRel__CreateSubtype__String_boolean_String_String();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___DELETE_TYPE = eINSTANCE.getModelRel__DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = eINSTANCE.getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___DELETE_INSTANCE = eINSTANCE.getModelRel__DeleteInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.

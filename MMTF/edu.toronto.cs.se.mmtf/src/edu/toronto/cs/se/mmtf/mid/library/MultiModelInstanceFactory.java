@@ -199,7 +199,7 @@ public class MultiModelInstanceFactory {
 	 *             If the uri of the new model is already registered in the
 	 *             Instance MID.
 	 */
-	private static void addModel(Model newModel, Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
+	public static void addModel(Model newModel, Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
 
 		boolean externalElement = newModelUri != null;
 		boolean updateMid = multiModel != null;

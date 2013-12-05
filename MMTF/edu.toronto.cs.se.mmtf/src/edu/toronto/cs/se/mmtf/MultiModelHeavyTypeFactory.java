@@ -53,6 +53,13 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
  */
 public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 
+	/*
+	 * TODO MMTF[OO] 
+	 * only heavy types in the factory
+	 * light types creation are in the element itself, e.g. createSubtype(), deleteSubtype()
+	 * instances are in the element itself, e.g. createInstance(), deleteIsntance()
+	 * the creation is type driven, not container driven
+	 */
 	/**
 	 * Gets the supertype of a new type from the repository.
 	 * 
@@ -66,7 +73,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * @return The supertype of the new type, null if the new type is the root
 	 *         type.
 	 */
-	private static <T extends ExtendibleElement> T getSupertype(T newType, String newTypeUri, String typeUri) {
+	protected static <T extends ExtendibleElement> T getSupertype(T newType, String newTypeUri, String typeUri) {
 
 		T type = null;
 		String rootUri = MultiModelTypeRegistry.getRootTypeUri(newType);
@@ -95,7 +102,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new type is already registered in the
 	 *             repository.
 	 */
-	private static void addHeavyType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName) throws MMTFException {
+	protected static void addHeavyType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName) throws MMTFException {
 
 		addType(newType, type, newTypeUri, newTypeName, MMTF.repository);
 		newType.setDynamic(false);
@@ -113,7 +120,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            root model type should be used as supertype instead.
 	 * @param newModelTypeName
 	 *            The name of the new model type.
-	 * @param newModelTypeAbstract
+	 * @param isAbstract
 	 *            True if the new model type is abstract, false otherwise.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
@@ -127,7 +134,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             or if the uri of the new model type is already registered in
 	 *             the repository.
 	 */
-	private static void addHeavyModelType(Model newModelType, String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	protected static void addHeavyModelType(Model newModelType, String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(newModelTypeUri);
 		if (modelPackage == null) {
@@ -135,7 +142,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		}
 		Model modelType = getSupertype(newModelType, newModelTypeUri, modelTypeUri);
 		addHeavyType(newModelType, modelType, newModelTypeUri, newModelTypeName);
-		addModelType(newModelType, newModelTypeAbstract, constraintLanguage, constraintImplementation, MMTF.repository);
+		addModelType(newModelType, isAbstract, constraintLanguage, constraintImplementation, MMTF.repository);
 		newModelType.setOrigin(ModelOrigin.IMPORTED);
 
 		String modelPackageName = modelPackage.getName();
@@ -148,6 +155,82 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
+	 * Adds a "heavy" model relationship type to the repository.
+	 * 
+	 * @param newModelRelType
+	 *            The new model relationship type to be added.
+	 * @param newModelRelTypeUri
+	 *            The uri of the new model relationship type.
+	 * @param modelRelTypeUri
+	 *            The uri of the supertype of the new model relationship type,
+	 *            null if the root model relationship type should be used as
+	 *            supertype.
+	 * @param newModelRelTypeName
+	 *            The name of the new model relationship type.
+	 * @param isAbstract
+	 *            True if the new model relationship type is abstract, false
+	 *            otherwise.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the
+	 *            new model relationship type, null if no constraint is
+	 *            associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated
+	 *            with the new model relationship type, null if no constraint is
+	 *            associated.
+	 * @throws MMTFException
+	 *             If the package of the new model relationship type is not
+	 *             registered through a org.eclipse.emf.ecore.generated_package
+	 *             extension, or if the uri of the new model relationship type
+	 *             is already registered in the repository.
+	 */
+	protected void addHeavyModelRelType(ModelRel newModelRelType, String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
+
+		if (MMTF.ROOT_MODEL_URI.equals(modelRelTypeUri)) { // root ModelRel's supertype
+			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract, constraintLanguage, constraintImplementation);
+		}
+		else {
+			ModelRel modelRelType = getSupertype(newModelRelType, newModelRelTypeUri, modelRelTypeUri);
+			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract, constraintLanguage, constraintImplementation);
+			addModelRelType(newModelRelType, modelRelType);
+		}
+	}
+
+	/**
+	 * Adds a "heavy" model type endpoint and a reference to it to the
+	 * repository.
+	 * 
+	 * @param newModelTypeEndpointUri
+	 *            The uri of the new model type endpoint.
+	 * @param modelTypeEndpointUri
+	 *            The uri of the supertype of the new model type endpoint, null
+	 *            if the root model type endpoint should be used as supertype.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @return The created reference to the new model type endpoint.
+	 * @throws MMTFException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the repository.
+	 */
+	protected ModelEndpointReference addHeavyModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
+
+		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
+		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
+		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, false, modelRelType);
+		//TODO MMTF: review when functions to detect overriding endpoints are ready
+		ModelEndpointReference modelTypeEndpointRef = null;
+		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, false, modelRelType);
+
+		return newModelTypeEndpointRef;
+	}
+
+	/**
 	 * Creates and adds a "heavy" model type to the repository.
 	 * 
 	 * @param newModelTypeUri
@@ -157,7 +240,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            root model type should be used as supertype.
 	 * @param newModelTypeName
 	 *            The name of the new model type.
-	 * @param newModelTypeAbstract
+	 * @param isAbstract
 	 *            True if the new model type is abstract, false otherwise.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
@@ -172,10 +255,10 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             or if the uri of the new model type is already registered in
 	 *             the repository.
 	 */
-	public static Model createHeavyModelType(String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	public static Model createHeavyModelType(String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		Model newModelType = MidFactory.eINSTANCE.createModel();
-		addHeavyModelType(newModelType, newModelTypeUri, modelTypeUri, newModelTypeName, newModelTypeAbstract, constraintLanguage, constraintImplementation);
+		addHeavyModelType(newModelType, newModelTypeUri, modelTypeUri, newModelTypeName, isAbstract, constraintLanguage, constraintImplementation);
 
 		return newModelType;
 	}
@@ -220,11 +303,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            supertype.
 	 * @param newModelRelTypeName
 	 *            The name of the new model relationship type.
-	 * @param newModelRelTypeAbstract
+	 * @param isAbstract
 	 *            True if the new model relationship type is abstract, false
 	 *            otherwise.
-	 * @param newModelRelTypeClass
-	 *            The class of the new model relationship type.
+	 * @param isBinary
+	 *            True if the new model relationship type is binary, false
+	 *            otherwise.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
 	 *            new model relationship type, null if no constraint is
@@ -240,17 +324,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             extension, or if the uri of the new model relationship type
 	 *             is already registered in the repository.
 	 */
-	public static ModelRel createHeavyModelRelType(String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean newModelRelTypeAbstract, EClass newModelRelTypeClass, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	public ModelRel createHeavyModelRelType(String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
-		ModelRel newModelRelType = (ModelRel) RelationshipFactory.eINSTANCE.create(newModelRelTypeClass);
-		if (MMTF.ROOT_MODEL_URI.equals(modelRelTypeUri)) { // root ModelRel's supertype
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, newModelRelTypeAbstract, constraintLanguage, constraintImplementation);
-		}
-		else {
-			ModelRel modelRelType = getSupertype(newModelRelType, newModelRelTypeUri, modelRelTypeUri);
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, newModelRelTypeAbstract, constraintLanguage, constraintImplementation);
-			addModelRelType(newModelRelType, modelRelType);
-		}
+		ModelRel newModelRelType = (isBinary) ?
+			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
+			RelationshipFactory.eINSTANCE.createModelRel();
+		addHeavyModelRelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
 	}
@@ -277,15 +356,10 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	public static ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
+	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
-		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
-		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, false, modelRelType);
-		//TODO MMTF: review when functions to detect overriding endpoints are ready
-		ModelEndpointReference modelTypeEndpointRef = null;
-		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, false, modelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri, newModelTypeEndpointName, newModelType, modelRelType);
 
 		return newModelTypeEndpointRef;
 	}

@@ -70,6 +70,8 @@ public interface MMTFConstants {
 	public final static String MODELS_CHILD_MODELTYPE = "modelType";
 	/** The Models extension point's modelType's abstract attribute. */
 	public final static String MODELS_MODELTYPE_ATTR_ABSTRACT = "isAbstract";
+	/** The Models extension point's modelType's factoryClass attribute. */
+	public final static String MODELS_MODELTYPE_ATTR_FACTORYCLASS = "factoryClass";
 	/** The Models extension point's modelType's constraint child. */
 	public final static String MODELS_MODELTYPE_CHILD_CONSTRAINT = "constraint";
 	/** The Models extension point's modelType's constraint child's language attribute. */

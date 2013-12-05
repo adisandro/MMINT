@@ -124,6 +124,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateRandomOperatorExecutable((RandomOperatorExecutable)value, diagnostics, context);
 			case OperatorPackage.RANDOM:
 				return validateRandom((Random)value, diagnostics, context);
+			case OperatorPackage.EXCEPTION:
+				return validateException((Exception)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -278,6 +280,15 @@ public class OperatorValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateRandom(Random random, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateException(Exception exception, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

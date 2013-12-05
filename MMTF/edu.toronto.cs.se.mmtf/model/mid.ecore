@@ -65,30 +65,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="typeLevel" value="level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"/>
     </eAnnotations>
-    <eOperations name="newType" eExceptions="#//Exception">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Performs the necessary actions at type creation. This implementation does nothing, but should be overridden by subclasses."/>
-        <details key="body" value="return;"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="deleteType">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Performs the necessary actions at type deletion. This implementation does nothing, but should be overridden by subclasses."/>
-        <details key="body" value="return;"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="newInstance" eExceptions="#//Exception">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Performs the necessary actions at instance creation. This implementation does nothing, but should be overridden by subclasses."/>
-        <details key="body" value="return;"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="deleteInstance">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Performs the necessary actions at instance deletion. This implementation does nothing, but should be overridden by subclasses."/>
-        <details key="body" value="return;"/>
-      </eAnnotations>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The supertype (types: can be null; instances: always null)."/>
@@ -355,8 +331,19 @@
         <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+        eExceptions="#//MMTFException">
+      <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
+      <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="newModelType" lowerBound="1" eType="#//Model"/>
+      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
+    </eOperations>
+    <eOperations name="deleteTypeAndReference" lowerBound="1" eExceptions="#//MMTFException">
+      <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception">
+  <eClassifiers xsi:type="ecore:EDataType" name="MMTFException" instanceClassName="edu.toronto.cs.se.mmtf.MMTFException">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A wrapper to throw exceptions in various operations."/>
     </eAnnotations>
@@ -464,6 +451,22 @@
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="createSubtype" lowerBound="1" eType="#//relationship/ModelRel"
+          eExceptions="#//MMTFException">
+        <eParameters name="newModelRelTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
+      <eOperations name="deleteType" lowerBound="1" eExceptions="#//MMTFException"/>
+      <eOperations name="createInstance" lowerBound="1" eType="#//relationship/ModelRel"
+          eExceptions="#//MMTFException">
+        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
+        <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+      </eOperations>
+      <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelEndpoints" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -892,7 +895,7 @@
         <details key="documentation" value="The executable implementation interface of an operator."/>
       </eAnnotations>
       <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
-          eExceptions="#//Exception">
+          eExceptions="#//operator/Exception">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Executes the operator."/>
         </eAnnotations>
@@ -918,7 +921,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The executable implementation interface of a conversion operator."/>
       </eAnnotations>
-      <eOperations name="cleanup" eExceptions="#//Exception">
+      <eOperations name="cleanup" eExceptions="#//operator/Exception">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Cleans up the output of the conversion operator, to allow for a transparent conversion."/>
         </eAnnotations>
@@ -939,6 +942,11 @@
     <eClassifiers xsi:type="ecore:EDataType" name="Random" instanceClassName="java.util.Random">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The random variable type for a random operator."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A wrapper to throw exceptions in operators."/>
       </eAnnotations>
     </eClassifiers>
   </eSubpackages>

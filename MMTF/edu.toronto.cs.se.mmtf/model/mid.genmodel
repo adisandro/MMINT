@@ -21,7 +21,7 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/JAVA"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/SMTLIB"/>
     </genEnums>
-    <genDataTypes ecoreDataType="mid.ecore#//Exception"/>
+    <genDataTypes ecoreDataType="mid.ecore#//MMTFException"/>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/editors"/>
@@ -42,10 +42,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/newType"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/deleteType"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/newInstance"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/deleteInstance"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>
@@ -79,6 +75,16 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getSupertype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtypeAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/modelTypeEndpointRef"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/newModelType"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/isBinarySrc"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/containerModelRelType"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteTypeAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteTypeAndReference/isFullDelete"/>
+      </genOperations>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">
@@ -104,6 +110,20 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/linkRefs"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getSupertype"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createSubtype">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createSubtype/newModelRelTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createSubtype/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createSubtype/constraintLanguage"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createSubtype/constraintImplementation"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/origin"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/containerMultiModel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -170,6 +190,7 @@
     <nestedGenPackages prefix="Operator" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//operator">
       <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
       <genClasses ecoreClass="mid.ecore#//operator/EStringToParameterMap">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToParameterMap/key"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToParameterMap/value"/>

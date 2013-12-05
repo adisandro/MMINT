@@ -124,7 +124,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new type is already registered in the Type
 	 *             MID.
 	 */
-	private static void addLightType(ExtendibleElement newType, ExtendibleElement type, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName, MultiModel multiModel) throws MMTFException {
+	public static void addLightType(ExtendibleElement newType, ExtendibleElement type, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName, MultiModel multiModel) throws MMTFException {
 
 		String newTypeUri = createNewLightTypeUri(baseType, newTypeFragmentUri, newTypeName);
 		addType(newType, type, newTypeUri, newTypeName, multiModel);
@@ -154,7 +154,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type is already registered in the
 	 *             Type MID.
 	 */
-	private static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
+	public static void addLightModelType(Model newModelType, Model modelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelType);
 		addLightType(newModelType, modelType, modelType, null, newModelTypeName, multiModel);

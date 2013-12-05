@@ -13,10 +13,15 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
@@ -54,11 +59,16 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
-	public void newType() throws Exception {
+	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
 
+		//TODO MMTF[KLEISLI] do the metamodel extension first, because if not just call super
+		ModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
+		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
 		String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(this);
 		boolean isExtendedMetamodel = false;
 		if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
@@ -74,16 +84,20 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				MMTFException.print(Type.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
 			}
 		}
+
+		return newModelTypeEndpointRef;
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteType() {
+	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
 
-		String modelTypeUri = KleisliUtils.getExtendedModelTypeUri(this);
-		MultiModelUtils.deleteFileInState(modelTypeUri);
+		super.deleteTypeAndReference(isFullDelete);
+		MultiModelUtils.deleteFileInState(KleisliUtils.getExtendedModelTypeUri(this));
 	}
 
 } //KleisliModelEndpointImpl

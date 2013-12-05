@@ -294,6 +294,42 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelRel__CreateSubtype__String_boolean_String_String() {
+		return modelRelEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__DeleteType() {
+		return modelRelEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
+		return modelRelEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__DeleteInstance() {
+		return modelRelEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryModelRel() {
 		return binaryModelRelEClass;
 	}
@@ -733,6 +769,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(modelRelEClass, MODEL_REL__LINK_REFS);
 		createEOperation(modelRelEClass, MODEL_REL___GET_METATYPE);
 		createEOperation(modelRelEClass, MODEL_REL___GET_SUPERTYPE);
+		createEOperation(modelRelEClass, MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING);
+		createEOperation(modelRelEClass, MODEL_REL___DELETE_TYPE);
+		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelRelEClass, MODEL_REL___DELETE_INSTANCE);
 
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__SOURCE_MODEL);
@@ -845,6 +885,26 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEOperation(getModelRel__GetMetatype(), this.getModelRel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModelRel__GetSupertype(), theMidPackage.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		EOperation op = initEOperation(getModelRel__CreateSubtype__String_boolean_String_String(), this.getModelRel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelRelTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__DeleteType(), null, "deleteType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel(), this.getModelRel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBinaryModelRel_SourceModel(), theMidPackage.getModel(), null, "sourceModel", null, 1, 1, BinaryModelRel.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);

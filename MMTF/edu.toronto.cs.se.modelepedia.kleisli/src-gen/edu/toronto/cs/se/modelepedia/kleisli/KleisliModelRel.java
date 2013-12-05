@@ -11,6 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
@@ -27,45 +30,33 @@ public interface KleisliModelRel extends ModelRel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Creates a directory to store extended metamodels for the endpoint types.
-	 * <!-- end-model-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.Exception"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRelTypeNameRequired="true" isBinaryRequired="true"
 	 * @generated
 	 */
-	void newType() throws Exception;
+	ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Deletes the directory where extended metamodels for the endpoint types are stored.
-	 * <!-- end-model-doc -->
-	 * @model
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
-	void deleteType();
+	void deleteType() throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Creates a directory to store extended models for the endpoints.
-	 * <!-- end-model-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.Exception"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinaryRequired="true" originRequired="true"
 	 * @generated
 	 */
-	void newInstance() throws Exception;
+	ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Deletes the directory where extended models for the endpoints are stored.
-	 * <!-- end-model-doc -->
-	 * @model
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
-	void deleteInstance();
+	void deleteInstance() throws MMTFException;
 
 } // KleisliModelRel

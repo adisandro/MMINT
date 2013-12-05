@@ -33,7 +33,7 @@ public interface ConversionOperatorExecutable extends OperatorExecutable {
 	 * <!-- begin-model-doc -->
 	 * Cleans up the output of the conversion operator, to allow for a transparent conversion.
 	 * <!-- end-model-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.Exception"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception"
 	 * @generated
 	 */
 	void cleanup() throws Exception;

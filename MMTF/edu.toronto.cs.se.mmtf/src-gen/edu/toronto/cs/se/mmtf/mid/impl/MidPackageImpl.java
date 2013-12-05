@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import edu.toronto.cs.se.mmtf.mavo.impl.MavoPackageImpl;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -145,7 +146,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType exceptionEDataType = null;
+	private EDataType mmtfExceptionEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -310,42 +311,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EReference getExtendibleElement_Constraint() {
 		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExtendibleElement__NewType() {
-		return extendibleElementEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExtendibleElement__DeleteType() {
-		return extendibleElementEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExtendibleElement__NewInstance() {
-		return extendibleElementEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExtendibleElement__DeleteInstance() {
-		return extendibleElementEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -686,6 +651,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel() {
+		return modelEndpointEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__DeleteTypeAndReference__boolean() {
+		return modelEndpointEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMidLevel() {
 		return midLevelEEnum;
 	}
@@ -713,8 +696,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getException() {
-		return exceptionEDataType;
+	public EDataType getMMTFException() {
+		return mmtfExceptionEDataType;
 	}
 
 	/**
@@ -765,10 +748,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__METATYPE_URI);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__DYNAMIC);
 		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__CONSTRAINT);
-		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___NEW_TYPE);
-		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___DELETE_TYPE);
-		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___NEW_INSTANCE);
-		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___DELETE_INSTANCE);
 
 		extendibleElementEndpointEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT);
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND);
@@ -803,6 +782,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_SUPERTYPE);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_TARGET);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_METATYPE);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -810,7 +791,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		extendibleElementConstraintLanguageEEnum = createEEnum(EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE);
 
 		// Create data types
-		exceptionEDataType = createEDataType(EXCEPTION);
+		mmtfExceptionEDataType = createEDataType(MMTF_EXCEPTION);
 	}
 
 	/**
@@ -882,16 +863,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getExtendibleElement_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElement_Constraint(), this.getExtendibleElementConstraint(), null, "constraint", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getExtendibleElement__NewType(), null, "newType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
-
-		initEOperation(getExtendibleElement__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getExtendibleElement__NewInstance(), null, "newInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
-
-		initEOperation(getExtendibleElement__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(extendibleElementEndpointEClass, ExtendibleElementEndpoint.class, "ExtendibleElementEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementEndpoint_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementEndpoint_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -935,6 +906,18 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEOperation(getModelEndpoint__GetMetatype(), this.getModelEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		EOperation op = initEOperation(getModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "modelTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "newModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelEndpoint__DeleteTypeAndReference__boolean(), null, "deleteTypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MidLevel.class, "MidLevel");
 		addEEnumLiteral(midLevelEEnum, MidLevel.INSTANCES);
@@ -950,7 +933,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEEnumLiteral(extendibleElementConstraintLanguageEEnum, ExtendibleElementConstraintLanguage.SMTLIB);
 
 		// Initialize data types
-		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(mmtfExceptionEDataType, MMTFException.class, "MMTFException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -983,7 +966,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "typeLevel"
-		   });																				
+		   });																
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
 		   source, 
@@ -1005,7 +988,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"
-		   });																			
+		   });															
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
 		   source, 

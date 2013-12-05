@@ -136,7 +136,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__NewType() {
+	public EOperation getKleisliModelRel__CreateSubtype__String_boolean_String_String() {
 		return kleisliModelRelEClass.getEOperations().get(0);
 	}
 
@@ -154,7 +154,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__NewInstance() {
+	public EOperation getKleisliModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
 		return kleisliModelRelEClass.getEOperations().get(2);
 	}
 
@@ -181,7 +181,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelEndpoint__NewType() {
+	public EOperation getKleisliModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel() {
 		return kleisliModelEndpointEClass.getEOperations().get(0);
 	}
 
@@ -190,7 +190,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelEndpoint__DeleteType() {
+	public EOperation getKleisliModelEndpoint__DeleteTypeAndReference__boolean() {
 		return kleisliModelEndpointEClass.getEOperations().get(1);
 	}
 
@@ -232,14 +232,14 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 
 		// Create classes and their features
 		kleisliModelRelEClass = createEClass(KLEISLI_MODEL_REL);
-		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___NEW_TYPE);
+		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___DELETE_TYPE);
-		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___NEW_INSTANCE);
+		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___DELETE_INSTANCE);
 
 		kleisliModelEndpointEClass = createEClass(KLEISLI_MODEL_ENDPOINT);
-		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___NEW_TYPE);
-		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___DELETE_TYPE);
+		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL);
+		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN);
 
 		kleisliBinaryModelRelEClass = createEClass(KLEISLI_BINARY_MODEL_REL);
 	}
@@ -284,22 +284,39 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(kleisliModelRelEClass, KleisliModelRel.class, "KleisliModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getKleisliModelRel__NewType(), null, "newType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getException());
+		EOperation op = initEOperation(getKleisliModelRel__CreateSubtype__String_boolean_String_String(), theRelationshipPackage.getModelRel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelRelTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
-		initEOperation(getKleisliModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getKleisliModelRel__DeleteType(), null, "deleteType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
-		op = initEOperation(getKleisliModelRel__NewInstance(), null, "newInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getException());
+		op = initEOperation(getKleisliModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel(), theRelationshipPackage.getModelRel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
-		initEOperation(getKleisliModelRel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getKleisliModelRel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(kleisliModelEndpointEClass, KleisliModelEndpoint.class, "KleisliModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getKleisliModelEndpoint__NewType(), null, "newType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getException());
+		op = initEOperation(getKleisliModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "modelTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "newModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
-		initEOperation(getKleisliModelEndpoint__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getKleisliModelEndpoint__DeleteTypeAndReference__boolean(), null, "deleteTypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(kleisliBinaryModelRelEClass, KleisliBinaryModelRel.class, "KleisliBinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

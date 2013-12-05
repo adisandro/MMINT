@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,14 +20,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 /**
  * The command to create a model relationship.
@@ -91,13 +88,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(null, null);
-		ModelRel newModelRel = MultiModelInstanceFactory.createModelRel(
-			modelRelType,
-			null,
-			RelationshipPackage.eINSTANCE.getModelRel(),
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		ModelRel newModelRel = modelRelType.createInstance(null, false, ModelOrigin.CREATED, multiModel);
 
 		return newModelRel;
 	}
@@ -108,13 +99,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, null, null);
 		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model relationship type", null);
-		ModelRel newModelRelType = MultiModelLightTypeFactory.createLightModelRelType(
-			modelRelType,
-			newModelRelTypeName,
-			RelationshipPackage.eINSTANCE.getModelRel(),
-			constraint[0],
-			constraint[1]
-		);
+		ModelRel newModelRelType = modelRelType.createSubtype(newModelRelTypeName, false, constraint[0], constraint[1]);
 		MMTF.createTypeHierarchy(multiModel);
 
 		return newModelRelType;

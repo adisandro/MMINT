@@ -200,7 +200,7 @@ public class MultiModelTypeFactory {
 	 * @param modelRelType
 	 *            The supertype of the new model relationship type.
 	 */
-	protected static void addModelRelType(ModelRel newModelRelType, ModelRel modelRelType) {
+	public static void addModelRelType(ModelRel newModelRelType, ModelRel modelRelType) {
 
 		if (MultiModelConstraintChecker.isRootType(modelRelType)) {
 			return;
@@ -277,7 +277,7 @@ public class MultiModelTypeFactory {
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
 	 */
-	protected static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model newModelType, boolean isBinarySrc, ModelRel modelRelType) {
+	public static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model newModelType, boolean isBinarySrc, ModelRel modelRelType) {
 
 		addTypeEndpoint(newModelTypeEndpoint, newModelType);
 		if (isBinarySrc) {
@@ -590,7 +590,7 @@ public class MultiModelTypeFactory {
 	 * @return The removed type, null if the uri was not registered in the
 	 *         multimodel.
 	 */
-	private static ExtendibleElement removeType(String typeUri, MultiModel multiModel) {
+	public static ExtendibleElement removeType(String typeUri, MultiModel multiModel) {
 
 		return multiModel.getExtendibleTable().removeKey(typeUri);
 	}
@@ -603,7 +603,7 @@ public class MultiModelTypeFactory {
 	 * @param multiModel
 	 *            The multimodel that contains the model type.
 	 */
-	private static void removeModelType(Model modelType, MultiModel multiModel) {
+	public static void removeModelType(Model modelType, MultiModel multiModel) {
 
 		removeType(modelType.getUri(), multiModel);
 		multiModel.getModels().remove(modelType);
@@ -802,7 +802,7 @@ public class MultiModelTypeFactory {
 	 *            True if the model type endpoint is going to be fully removed,
 	 *            false if it is going to be replaced later.
 	 */
-	private static void removeModelTypeEndpoint(ModelEndpoint modelTypeEndpoint, boolean isFullRemove) {
+	public static void removeModelTypeEndpoint(ModelEndpoint modelTypeEndpoint, boolean isFullRemove) {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelTypeEndpoint);
 		removeType(modelTypeEndpoint.getUri(), multiModel);
@@ -822,7 +822,7 @@ public class MultiModelTypeFactory {
 	 *            True if the reference to the model type endpoint is going to
 	 *            be fully removed, false if it is going to be replaced later.
 	 */
-	private static void removeModelTypeEndpointReference(ModelEndpointReference modelTypeEndpointRef, boolean isFullRemove) {
+	public static void removeModelTypeEndpointReference(ModelEndpointReference modelTypeEndpointRef, boolean isFullRemove) {
 
 		// avoid iterating over the list
 		while (modelTypeEndpointRef.getModelElemRefs().size() > 0) {

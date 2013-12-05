@@ -11,7 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,23 +31,17 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Creates an extended metamodel for the endpoint type.
-	 * <!-- end-model-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.Exception"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	void newType() throws Exception;
+	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Deletes the extended metamodel for the endpoint type.
-	 * <!-- end-model-doc -->
-	 * @model
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
 	 */
-	void deleteType();
+	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
 
 } // KleisliModelEndpoint

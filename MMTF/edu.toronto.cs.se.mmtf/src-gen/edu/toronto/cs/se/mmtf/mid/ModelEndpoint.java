@@ -11,6 +11,10 @@
  */
 package edu.toronto.cs.se.mmtf.mid;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -65,5 +69,21 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @generated
 	 */
 	ModelEndpoint getMetatype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
 
 } // ModelEndpoint

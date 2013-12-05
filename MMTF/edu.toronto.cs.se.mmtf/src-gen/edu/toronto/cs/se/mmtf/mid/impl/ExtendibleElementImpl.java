@@ -18,10 +18,8 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 
-import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -409,42 +407,6 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void newType() throws Exception {
-		return;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void deleteType() {
-		return;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void newInstance() throws Exception {
-		return;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void deleteInstance() {
-		return;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -576,40 +538,6 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 				return constraint != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case MidPackage.EXTENDIBLE_ELEMENT___NEW_TYPE:
-				try {
-					newType();
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case MidPackage.EXTENDIBLE_ELEMENT___DELETE_TYPE:
-				deleteType();
-				return null;
-			case MidPackage.EXTENDIBLE_ELEMENT___NEW_INSTANCE:
-				try {
-					newInstance();
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case MidPackage.EXTENDIBLE_ELEMENT___DELETE_INSTANCE:
-				deleteInstance();
-				return null;
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

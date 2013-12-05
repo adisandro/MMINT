@@ -346,49 +346,13 @@ public interface MidPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT___NEW_TYPE = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT___DELETE_TYPE = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT___NEW_INSTANCE = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT___DELETE_INSTANCE = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 4;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -542,42 +506,6 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT___NEW_TYPE = EXTENDIBLE_ELEMENT___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT___DELETE_TYPE = EXTENDIBLE_ELEMENT___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT___NEW_INSTANCE = EXTENDIBLE_ELEMENT___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -787,42 +715,6 @@ public interface MidPackage extends EPackage {
 	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___NEW_TYPE = EXTENDIBLE_ELEMENT___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___DELETE_TYPE = EXTENDIBLE_ELEMENT___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___NEW_INSTANCE = EXTENDIBLE_ELEMENT___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT___DELETE_INSTANCE;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1030,42 +922,6 @@ public interface MidPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT___NEW_TYPE = EXTENDIBLE_ELEMENT___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT___DELETE_TYPE = EXTENDIBLE_ELEMENT___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT___NEW_INSTANCE = EXTENDIBLE_ELEMENT___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1286,42 +1142,6 @@ public interface MidPackage extends EPackage {
 	int MODEL_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>New Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT___NEW_TYPE = EXTENDIBLE_ELEMENT_ENDPOINT___NEW_TYPE;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT___DELETE_TYPE = EXTENDIBLE_ELEMENT_ENDPOINT___DELETE_TYPE;
-
-	/**
-	 * The operation id for the '<em>New Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT___NEW_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT___NEW_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT___DELETE_INSTANCE;
-
-	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1349,13 +1169,31 @@ public interface MidPackage extends EPackage {
 	int MODEL_ENDPOINT___GET_METATYPE = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
+	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
@@ -1388,14 +1226,14 @@ public interface MidPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = 11;
 
 	/**
-	 * The meta object id for the '<em>Exception</em>' data type.
+	 * The meta object id for the '<em>MMTF Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see java.lang.Exception
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getException()
+	 * @see edu.toronto.cs.se.mmtf.MMTFException
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMMTFException()
 	 * @generated
 	 */
-	int EXCEPTION = 12;
+	int MMTF_EXCEPTION = 12;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -1494,46 +1332,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExtendibleElement_Constraint();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#newType() <em>New Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>New Type</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#newType()
-	 * @generated
-	 */
-	EOperation getExtendibleElement__NewType();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#deleteType() <em>Delete Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Type</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#deleteType()
-	 * @generated
-	 */
-	EOperation getExtendibleElement__DeleteType();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#newInstance() <em>New Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>New Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#newInstance()
-	 * @generated
-	 */
-	EOperation getExtendibleElement__NewInstance();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement#deleteInstance() <em>Delete Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ExtendibleElement#deleteInstance()
-	 * @generated
-	 */
-	EOperation getExtendibleElement__DeleteInstance();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint <em>Extendible Element Endpoint</em>}'.
@@ -1928,6 +1726,26 @@ public interface MidPackage extends EPackage {
 	EOperation getModelEndpoint__GetMetatype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference, java.lang.String, edu.toronto.cs.se.mmtf.mid.Model, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelEndpoint#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference, java.lang.String, edu.toronto.cs.se.mmtf.mid.Model, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint#deleteTypeAndReference(boolean) <em>Delete Type And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelEndpoint#deleteTypeAndReference(boolean)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__DeleteTypeAndReference__boolean();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1958,15 +1776,15 @@ public interface MidPackage extends EPackage {
 	EEnum getExtendibleElementConstraintLanguage();
 
 	/**
-	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
+	 * Returns the meta object for data type '{@link edu.toronto.cs.se.mmtf.MMTFException <em>MMTF Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Exception</em>'.
-	 * @see java.lang.Exception
-	 * @model instanceClass="java.lang.Exception"
+	 * @return the meta object for data type '<em>MMTF Exception</em>'.
+	 * @see edu.toronto.cs.se.mmtf.MMTFException
+	 * @model instanceClass="edu.toronto.cs.se.mmtf.MMTFException"
 	 * @generated
 	 */
-	EDataType getException();
+	EDataType getMMTFException();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2064,38 +1882,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDIBLE_ELEMENT__CONSTRAINT = eINSTANCE.getExtendibleElement_Constraint();
-
-		/**
-		 * The meta object literal for the '<em><b>New Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation EXTENDIBLE_ELEMENT___NEW_TYPE = eINSTANCE.getExtendibleElement__NewType();
-
-		/**
-		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation EXTENDIBLE_ELEMENT___DELETE_TYPE = eINSTANCE.getExtendibleElement__DeleteType();
-
-		/**
-		 * The meta object literal for the '<em><b>New Instance</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation EXTENDIBLE_ELEMENT___NEW_INSTANCE = eINSTANCE.getExtendibleElement__NewInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation EXTENDIBLE_ELEMENT___DELETE_INSTANCE = eINSTANCE.getExtendibleElement__DeleteInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -2410,6 +2196,22 @@ public interface MidPackage extends EPackage {
 		EOperation MODEL_ENDPOINT___GET_METATYPE = eINSTANCE.getModelEndpoint__GetMetatype();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteTypeAndReference__boolean();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2440,14 +2242,14 @@ public interface MidPackage extends EPackage {
 		EEnum EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = eINSTANCE.getExtendibleElementConstraintLanguage();
 
 		/**
-		 * The meta object literal for the '<em>Exception</em>' data type.
+		 * The meta object literal for the '<em>MMTF Exception</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see java.lang.Exception
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getException()
+		 * @see edu.toronto.cs.se.mmtf.MMTFException
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMMTFException()
 		 * @generated
 		 */
-		EDataType EXCEPTION = eINSTANCE.getException();
+		EDataType MMTF_EXCEPTION = eINSTANCE.getMMTFException();
 
 	}
 
