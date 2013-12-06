@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,10 +20,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
@@ -85,21 +85,19 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit()) ||
-				!MultiModelConstraintChecker.isRootType((ModelRel) getElementToDestroy())
+				!MultiModelTypeHierarchy.isRootType((ModelRel) getElementToDestroy())
 			);
 	}
 
-	protected void doExecuteInstancesLevel() {
+	protected void doExecuteInstancesLevel() throws MMTFException {
 
-		MultiModelInstanceFactory.removeModelRel((ModelRel) getElementToDestroy());
+		((ModelRel) getElementToDestroy()).deleteInstance();
 	}
 
-	protected void doExecuteTypesLevel() {
+	protected void doExecuteTypesLevel() throws MMTFException {
 
-		ModelRel modelRelType = (ModelRel) getElementToDestroy();
-		MultiModel multiModel = (MultiModel) getElementToEdit();
-		MultiModelTypeFactory.removeModelRelType(modelRelType);
-		MMTF.createTypeHierarchy(multiModel);
+		((ModelRel) getElementToDestroy()).deleteType();
+		MMTF.createTypeHierarchy((MultiModel) getElementToEdit());
 	}
 
 	/**
@@ -116,14 +114,20 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) {
-			doExecuteInstancesLevel();
+		try {
+			if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) {
+				doExecuteInstancesLevel();
+			}
+			else {
+				doExecuteTypesLevel();
+			}
+	
+			return super.doExecuteWithResult(monitor, info);
 		}
-		else {
-			doExecuteTypesLevel();
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No model relationship deleted", e);
+			return CommandResult.newErrorCommandResult("No model relationship deleted");
 		}
-
-		return super.doExecuteWithResult(monitor, info);
 	}
 
 }

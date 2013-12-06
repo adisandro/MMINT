@@ -155,7 +155,7 @@ public class MidDiagramUtils {
 		return (ModelEndpointReference) openSelectDialog(dialog, title, message);
 	}
 
-	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws Exception {
+	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MMTFException {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelRelCreationDialog(srcModel, tgtModel);
 		String title = "Create new model relationship";

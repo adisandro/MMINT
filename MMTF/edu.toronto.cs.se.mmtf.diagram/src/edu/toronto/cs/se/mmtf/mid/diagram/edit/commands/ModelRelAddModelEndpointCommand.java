@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -72,8 +72,8 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getSource(), (Model) getTarget())) != null
 			) || (
 				!instance &&
-				!MultiModelConstraintChecker.isRootType(getSource()) &&
-				!MultiModelConstraintChecker.isRootType(getTarget())
+				!MultiModelTypeHierarchy.isRootType(getSource()) &&
+				(getTarget() == null || !MultiModelTypeHierarchy.isRootType(getTarget()))
 			));
 	}
 
@@ -93,17 +93,9 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	protected ModelEndpoint doExecuteTypesLevel() throws MMTFException {
 
 		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", null);
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		ModelEndpointReference modelTypeEndpointRef = null;
-		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
-		ModelEndpointReference newModelTypeEndpointRef = MultiModelLightTypeFactory.createLightModelTypeEndpointAndModelTypeEndpointReference(
-			modelTypeEndpoint,
-			modelTypeEndpointRef,
-			newModelTypeEndpointName,
-			(Model) getTarget(),
-			false,
-			getSource()
-		);
+		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(getSource(), (Model) getTarget());
+		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), getSource().getModelEndpointRefs());
+		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, (Model) getTarget(), false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 
 		return newModelTypeEndpointRef.getObject();

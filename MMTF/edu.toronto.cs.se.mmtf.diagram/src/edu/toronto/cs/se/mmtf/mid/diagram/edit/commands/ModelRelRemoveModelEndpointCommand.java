@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -18,7 +18,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
@@ -54,7 +55,7 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MultiModelConstraintChecker.isRootType((ModelEndpoint) getElementToDestroy())
+				!MultiModelTypeHierarchy.isRootType((ModelEndpoint) getElementToDestroy())
 			);
 	}
 
@@ -63,9 +64,9 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 		MultiModelInstanceFactory.removeModelEndpointAndModelEndpointReference((ModelEndpoint) getElementToDestroy(), true);
 	}
 
-	protected void doExecuteTypesLevel() {
+	protected void doExecuteTypesLevel() throws MMTFException {
 
-		MultiModelTypeFactory.removeModelTypeEndpointAndModelTypeEndpointReference((ModelEndpoint) getElementToDestroy(), true);
+		((ModelEndpoint) getElementToDestroy()).deleteTypeAndReference(true);
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
@@ -83,14 +84,20 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
-			doExecuteInstancesLevel();
+		try {
+			if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
+				doExecuteInstancesLevel();
+			}
+			else {
+				doExecuteTypesLevel();
+			}
+	
+			return super.doExecuteWithResult(monitor, info);
 		}
-		else {
-			doExecuteTypesLevel();
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No model endpoint deleted", e);
+			return CommandResult.newErrorCommandResult("No model endpoint deleted");
 		}
-
-		return super.doExecuteWithResult(monitor, info);
 	}
 
 }

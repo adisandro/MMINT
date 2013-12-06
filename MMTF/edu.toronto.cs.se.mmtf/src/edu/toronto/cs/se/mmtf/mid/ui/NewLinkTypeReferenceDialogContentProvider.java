@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -72,7 +72,7 @@ public class NewLinkTypeReferenceDialogContentProvider implements ITreeContentPr
 			// add root link ref first
 			//TODO MMTF: this won't work for standalone model relationship types (will it ever be a usecase?)
 			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(MultiModelTypeRegistry.getRootTypeUri(modelRelType), multiModel);
+			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(MultiModelTypeHierarchy.getRootTypeUri(modelRelType), multiModel);
 			LinkReference rootLinkTypeRef = rootModelRelType.getLinkRefs().get(0);
 			linkTypeRefs.add(rootLinkTypeRef);
 			for (LinkReference linkTypeRef : ((ModelRel) parentElement).getLinkRefs()) {

@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -207,11 +208,16 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 *            type endpoint.
 	 * @return The created reference to the model type endpoint.
 	 * @throws MMTFException
-	 *             If the uri of the new model type endpoint is already
-	 *             registered in the Type MID.
+	 *             If this model relationship is at the INSTANCES level, or if
+	 *             the uri of the new model type endpoint is already registered
+	 *             in the Type MID.
 	 * @generated NOT
 	 */
 	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
@@ -226,9 +232,15 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param isFullDelete
 	 *            True if this model type endpoint is going to be fully deleted,
 	 *            false if it is going to be replaced later.
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level.
 	 * @generated NOT
 	 */
 	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing" and the corresponding reference

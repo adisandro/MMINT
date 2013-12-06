@@ -114,33 +114,6 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
-	/**
-	 * Checks whether a type is actually the root type for its class.
-	 * 
-	 * @param type
-	 *            The type to be checked.
-	 * @return True if the type is the root type, false otherwise.
-	 */
-	public static boolean isRootType(ExtendibleElement type) {
-
-		if (type == null) {
-			return false;
-		}
-		if (type.getUri().equals(MultiModelTypeRegistry.getRootTypeUri(type))) {
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean isRootType(ExtendibleElementReference typeRef) {
-
-		if (typeRef == null) {
-			return false;
-		}
-
-		return isRootType(typeRef.getObject());
-	}
-
 	public static boolean isAllowedModelType(ModelRel modelRelType) {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
@@ -157,7 +130,7 @@ public class MultiModelConstraintChecker {
 
 		ModelRel modelRelTypeSuper = (ModelRel) modelRelType.getSupertype();
 		// checks that the new model type is the same of the super model rel type or is overriding it
-		if (!isRootType(modelRelTypeSuper)) {
+		if (!MultiModelTypeHierarchy.isRootType(modelRelTypeSuper)) {
 			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 			if (newSrcModelType != null) {
 				String srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
@@ -186,7 +159,7 @@ public class MultiModelConstraintChecker {
 
 		Link linkTypeSuper = linkTypeRef.getObject().getSupertype();
 		// checks that the new model element type is the same of the super link type or is overriding it
-		if (!isRootType(linkTypeSuper)) {
+		if (!MultiModelTypeHierarchy.isRootType(linkTypeSuper)) {
 			MultiModel multiModel = MultiModelRegistry.getMultiModel(linkTypeRef);
 			if (newSrcModelElemTypeRef != null) {
 				String srcUri = linkTypeSuper.getModelElemEndpoints().get(0).getTargetUri();

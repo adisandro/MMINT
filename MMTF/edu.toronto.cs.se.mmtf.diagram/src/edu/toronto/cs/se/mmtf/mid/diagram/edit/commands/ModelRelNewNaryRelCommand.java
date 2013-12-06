@@ -84,7 +84,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected ModelRel doExecuteInstancesLevel() throws Exception {
+	protected ModelRel doExecuteInstancesLevel() throws MMTFException {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(null, null);
@@ -131,7 +131,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model relationship created", e);
 			return CommandResult.newErrorCommandResult("No model relationship created");
 		}

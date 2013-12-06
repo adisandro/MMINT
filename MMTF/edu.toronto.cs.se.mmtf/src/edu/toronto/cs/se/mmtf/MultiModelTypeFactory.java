@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
@@ -202,14 +201,19 @@ public class MultiModelTypeFactory {
 	 */
 	public static void addModelRelType(ModelRel newModelRelType, ModelRel modelRelType) {
 
-		if (MultiModelConstraintChecker.isRootType(modelRelType)) {
-			return;
-		}
-
+		List<LinkReference> skipLinkRefs = new ArrayList<LinkReference>();
 		// copy model type references
 		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
 		while (modelTypeEndpointRefIter.hasNext()) {
 			ModelEndpointReference modelTypeEndpointRefSuper = modelTypeEndpointRefIter.next();
+			if (MultiModelTypeHierarchy.isRootType(modelTypeEndpointRefSuper.getObject().getTarget())) { // don't copy model type endpoints to the root model type
+				for (ModelElementReference modelElemTypeRefSuper : modelTypeEndpointRefSuper.getModelElemRefs()) {
+					for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : modelElemTypeRefSuper.getModelElemEndpointRefs()) {
+						skipLinkRefs.add((LinkReference) modelElemTypeEndpointRefSuper.eContainer());
+					}
+				}
+				continue;
+			}
 			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRefSuper.getSupertypeRef(), newModelRelType.getModelEndpointRefs());
 			ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(
 				modelTypeEndpointRefSuper.getObject(),
@@ -235,6 +239,9 @@ public class MultiModelTypeFactory {
 		Iterator<LinkReference> linkTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getLinkRefs());
 		while (linkTypeRefIter.hasNext()) {
 			LinkReference linkTypeRefSuper = linkTypeRefIter.next();
+			if (skipLinkRefs.contains(linkTypeRefSuper)) { // don't copy link types using model element types from the root model type
+				continue;
+			}
 			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeRefSuper.getSupertypeRef(), newModelRelType.getLinkRefs());
 			LinkReference newLinkTypeRef = createLinkTypeReference(
 				linkTypeRefSuper.getObject(),

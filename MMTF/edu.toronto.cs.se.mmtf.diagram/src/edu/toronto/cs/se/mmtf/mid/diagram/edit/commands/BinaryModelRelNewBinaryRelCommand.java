@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -98,8 +99,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((MultiModel) getContainer()) || (
-					!MultiModelConstraintChecker.isRootType(getSource()) &&
-					!MultiModelConstraintChecker.isRootType(getTarget())
+					!MultiModelTypeHierarchy.isRootType(getSource()) &&
+					!MultiModelTypeHierarchy.isRootType(getTarget())
 				)
 			);
 	}

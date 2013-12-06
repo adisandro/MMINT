@@ -280,7 +280,7 @@ public class MMTF implements MMTFConstants {
 					if (modelElemType == null) {
 						continue;
 					}
-					//TODO MMTF: well model elements should *really* be contained in the model endpoint now that they exist
+					//TODO MMTF[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
 					ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
 					ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(newModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 					ModelElementEndpointReference newModelElemTypeEndpointRef = MultiModelHeavyTypeFactory.createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(

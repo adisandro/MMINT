@@ -60,7 +60,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		String newModelRelUri = MidDiagramUtils.selectModelToImport(true);
 		ModelRel newModelRel = null;
-		//TODO MMTF: MultiModelInstanceFactory.copyModelRel(multiModel, newModelRelUri);
+		//TODO MMTF[MODELREL] MultiModelInstanceFactory.copyModelRel(multiModel, newModelRelUri);
 
 		return newModelRel;
 	}

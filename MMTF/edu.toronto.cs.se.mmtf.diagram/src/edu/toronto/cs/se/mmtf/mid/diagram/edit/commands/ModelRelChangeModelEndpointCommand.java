@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -61,7 +62,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				!MultiModelConstraintChecker.isRootType(getLink())
+				!MultiModelTypeHierarchy.isRootType(getLink())
 			);
 	}
 
@@ -108,6 +109,10 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	}
 
 	protected void doExecuteTypesLevel(ModelRel modelRelType, Model modelType) throws MMTFException {
+
+//		getLink().deleteTypeAndReference(false);
+//		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(modelRelType, modelType);
+//		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
 
 		MultiModelTypeFactory.removeModelTypeEndpointAndModelTypeEndpointReference(getLink(), false);
 		String newModelTypeEndpointName = getLink().getName();

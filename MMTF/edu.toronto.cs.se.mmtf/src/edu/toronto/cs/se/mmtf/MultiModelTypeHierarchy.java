@@ -27,13 +27,20 @@ import org.eclipse.emf.common.util.EList;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.ExtensionType;
 
 /**
@@ -673,7 +680,7 @@ nextOperatorType:
 					Model actualParameter = actualModels.get(i);
 					Model formalParameter = parameter.getModel();
 					// easy if formal parameter is root type for actual parameter
-					if (!MultiModelTypeRegistry.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
+					if (!MultiModelTypeHierarchy.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
 						List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualModelTypes.get(i), formalParameter);
 						if (conversionOperatorTypes == null) {
 							continue nextOperatorType;
@@ -699,6 +706,70 @@ nextOperatorType:
 		}
 
 		return executableOperatorTypes;
+	}
+
+	/**
+	 * Gets the uri of the root type for a certain class of types.
+	 * 
+	 * @param type
+	 *            The type from which to understand the class of types.
+	 * @return The uri of the root type.
+	 */
+	public static String getRootTypeUri(ExtendibleElement type) {
+	
+		String rootUri = "";
+		if (type instanceof ModelRel) {
+			rootUri = MMTF.ROOT_MODELREL_URI;
+		}
+		else if (type instanceof Model) {
+			rootUri = MMTF.ROOT_MODEL_URI;
+		}
+		else if (type instanceof ModelEndpoint) {
+			rootUri = MMTF.ROOT_MODELENDPOINT_URI;
+		}
+		else if (type instanceof ModelElement) {
+			rootUri = MMTF.ROOT_MODELELEM_URI;
+		}
+		else if (type instanceof Link) {
+			rootUri = MMTF.ROOT_LINK_URI;
+		}
+		else if (type instanceof ModelElementEndpoint) {
+			rootUri = MMTF.ROOT_MODELELEMENDPOINT_URI;
+		}
+		else if (type instanceof Editor) {
+			rootUri = MMTF.ROOT_EDITOR_URI;
+		}
+		//TODO MMTF: root operator?
+	
+		return rootUri;
+	}
+
+	/**
+	 * Checks if the given type is the root type for its class.
+	 * 
+	 * @param type
+	 *            The type to be checked.
+	 * @return True if the given type is the root type, false otherwise.
+	 */
+	public static boolean isRootType(ExtendibleElement type) {
+	
+		return type.getUri().equals(getRootTypeUri(type));
+	}
+
+	public static ModelEndpoint getOverriddenModelEndpoint(ModelRel modelRelType, Model newModelType) {
+
+		//TODO MMTF[MODELENDPOINT] very dumb first approach to the override problem
+		while (!isRootType(modelRelType)) {
+			for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
+				if (MultiModelTypeHierarchy.isSubtypeOf(newModelType.getUri(), modelTypeEndpointRef.getTargetUri())) {
+					//TODO MMTF[MODELENDPOINT] ask to override or not
+					return modelTypeEndpointRef.getObject();
+				}
+			}
+			modelRelType = (ModelRel) modelRelType.getSupertype();
+		}
+
+		return null;
 	}
 
 }

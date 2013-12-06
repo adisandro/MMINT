@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
@@ -407,11 +408,16 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 *            associated.
 	 * @return The created model relationship type.
 	 * @throws MMTFException
-	 *             If the uri of the new model relationship type is already
+	 *             If this model relationship is at the INSTANCES level, or if
+	 *             the uri of the new model relationship type is already
 	 *             registered in the Type MID.
 	 * @generated NOT
 	 */
 	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
 
 		ModelRel newModelRelType = (isBinary) ?
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
@@ -451,9 +457,15 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * Deletes this model relationship type from the Type MID.
 	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level.
 	 * @generated NOT
 	 */
 	public void deleteType() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
@@ -482,11 +494,16 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 *            be added to it.
 	 * @return The created model relationship.
 	 * @throws MMTFException
-	 *             If the uri of the new model relationship is already
-	 *             registered in the Instance MID.
+	 *             If this model relationship is at the INSTANCES level, or if
+	 *             the uri of the new model relationship is already registered
+	 *             in the Instance MID.
 	 * @generated NOT
 	 */
 	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
 
 		ModelRel newModelRel = (isBinary) ?
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
@@ -499,9 +516,15 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * Deletes this model relationship from the Instance MID that contains it.
 	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the TYPES level.
 	 * @generated NOT
 	 */
 	public void deleteInstance() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
 
 		MultiModelInstanceFactory.removeModel(this);
 	}

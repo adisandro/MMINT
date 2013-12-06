@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -76,7 +75,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	protected static <T extends ExtendibleElement> T getSupertype(T newType, String newTypeUri, String typeUri) {
 
 		T type = null;
-		String rootUri = MultiModelTypeRegistry.getRootTypeUri(newType);
+		String rootUri = MultiModelTypeHierarchy.getRootTypeUri(newType);
 		if (typeUri == null && !newTypeUri.equals(rootUri)) {
 			typeUri = rootUri;
 		}
@@ -436,7 +435,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, linkType);
 		// copy from supertype
 		Link linkTypeSuper = linkType.getSupertype();
-		if (linkTypeSuper != null && !MultiModelConstraintChecker.isRootType(linkTypeSuper)) {
+		if (linkTypeSuper != null && !MultiModelTypeHierarchy.isRootType(linkTypeSuper)) {
 			for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : linkTypeSuper.getModelElemEndpointRefs()) {
 				addModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper, linkType);
 			}

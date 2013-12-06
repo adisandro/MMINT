@@ -339,6 +339,14 @@
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
+    <eOperations name="replaceSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+        eExceptions="#//MMTFException">
+      <eParameters name="oldModelTypeEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
+      <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
+      <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="newModelType" lowerBound="1" eType="#//Model"/>
+      <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
+    </eOperations>
     <eOperations name="deleteTypeAndReference" lowerBound="1" eExceptions="#//MMTFException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>

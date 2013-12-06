@@ -47,11 +47,61 @@
             <modelElemType
                   classLiteral="ModelElementWildcard">
                 <extendibleType
+                     name="KleisliModelElem"
+                     uri="http://se.cs.toronto.edu/mmtf/Model/KleisliModelElem">
+                </extendibleType>
+            </modelElemType>
+         </modelTypeEndpoint>
+<!--
+         <modelTypeEndpoint>
+            <extendibleType
+                  name="ModelEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel-Model/ModelEndpoint">
+            </extendibleType>
+            <typeEndpoint
+                  lowerBound="0"
+                  upperBound="-1"
+                  targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </typeEndpoint>
+            <modelElemType
+                  classLiteral="ModelElementWildcard">
+                <extendibleType
                      name="ModelElem"
                      uri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
                 </extendibleType>
             </modelElemType>
          </modelTypeEndpoint>
+-->
+         <linkType>
+            <extendibleType
+                  name="KleisliLink"
+                  uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink">
+            </extendibleType>
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="KleisliModelElemEndpoint"
+                     uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink-KleisliModelElem/KleisliModelElemEndpoint">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/KleisliModelElem">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+<!--
+            <modelElemTypeEndpoint>
+               <extendibleType
+                     name="ModelElemEndpoint"
+                     uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink-ModelElem/ModelElemEndpoint">
+               </extendibleType>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+-->
+         </linkType>
       </relationshipType>
    </extension>
 

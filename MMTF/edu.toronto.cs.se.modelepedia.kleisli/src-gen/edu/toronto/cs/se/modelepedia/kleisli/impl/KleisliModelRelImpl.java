@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -61,6 +62,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
 		ModelRel newModelRelType = (isBinary) ?
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
@@ -69,7 +74,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			MultiModelUtils.createDirectoryInState(newModelRelTypeName);
 		}
 		catch (Exception e) {
-			super.deleteType();
+			newModelRelType.deleteType();
 			throw new MMTFException("Error creating directory for extended metamodels", e);
 		}
 
@@ -96,6 +101,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
 		ModelRel newModelRel = (isBinary) ?
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
@@ -104,7 +113,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			MultiModelUtils.createDirectory(MultiModelUtils.replaceLastSegmentInUri(getUri(), getName()));
 		}
 		catch (Exception e) {
-			super.deleteInstance();
+			newModelRel.deleteInstance();
 			throw new MMTFException("Error creating directory for extended models", e);
 		}
 

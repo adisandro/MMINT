@@ -12,9 +12,9 @@
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
@@ -66,23 +66,35 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	@Override
 	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
 
-		//TODO MMTF[KLEISLI] do the metamodel extension first, because if not just call super
-		ModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
-		String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(this);
-		boolean isExtendedMetamodel = false;
-		if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
-			isExtendedMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model relationship type", "Extend " + getTarget().getName() + " metamodel?");
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
-		if (isExtendedMetamodel) {
+
+		String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(this);
+		boolean isKleisli = (MultiModelUtils.isFileInState(newModelTypeUriFragment) != null);
+		boolean extendMetamodel = false;
+		if (!isKleisli) {
+			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model relationship type", "Extend " + getTarget().getName() + " metamodel?");
+			isKleisli = extendMetamodel;
+		}
+		if (extendMetamodel) {
 			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(getTarget());
 			rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(this));
 			try {
 				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
 			}
 			catch (Exception e) {
-				MMTFException.print(Type.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
+				throw new MMTFException("Error creating extended metamodel file");
 			}
+		}
+
+		ModelEndpointReference newModelTypeEndpointRef;
+		if (isKleisli) {
+			ModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
+			newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
+		}
+		else {
+			newModelTypeEndpointRef = super.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
 		}
 
 		return newModelTypeEndpointRef;

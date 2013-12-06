@@ -143,7 +143,7 @@ public class MultiModelTypeIntrospection {
 	private static <T extends ExtendibleElement> void getRuntimeTypes(T element, T elementType, List<T> elementTypes) {
 
 		// no need to validate root type
-		if (MultiModelTypeRegistry.isRootType(elementType)) {
+		if (MultiModelTypeHierarchy.isRootType(elementType)) {
 			elementTypes.add(elementType);
 			// first stop condition: model relationship or link without endpoints
 			if (element instanceof ModelRel && ((ModelRel) element).getModelEndpoints().isEmpty()) {
@@ -181,7 +181,7 @@ public class MultiModelTypeIntrospection {
 
 		// start from root
 		List<T> elementTypes = new ArrayList<T>();
-		T rootType = MultiModelTypeRegistry.getType(MultiModelTypeRegistry.getRootTypeUri(element));
+		T rootType = MultiModelTypeRegistry.getType(MultiModelTypeHierarchy.getRootTypeUri(element));
 		getRuntimeTypes(element, rootType, elementTypes);
 
 		return elementTypes;

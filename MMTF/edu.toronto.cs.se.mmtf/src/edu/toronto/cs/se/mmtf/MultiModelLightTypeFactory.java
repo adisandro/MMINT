@@ -179,7 +179,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 					newEPackage.getEAnnotations().add(newEAnnotation);
 					EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
 					newRootEClass.setName(newModelTypeName);
-					if (!MultiModelTypeRegistry.isRootType(modelType)) {
+					if (!MultiModelTypeHierarchy.isRootType(modelType)) {
 						EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
 						newRootEClass.getESuperTypes().add(rootEClass);
 					}
