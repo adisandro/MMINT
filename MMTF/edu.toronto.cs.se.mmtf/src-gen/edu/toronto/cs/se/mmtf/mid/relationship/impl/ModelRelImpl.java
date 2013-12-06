@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
@@ -35,11 +36,15 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -375,6 +380,20 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_TYPES:
+				try {
+					return getOutlineResourceTypes();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES:
+				try {
+					return getOutlineResourceInstances();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -585,6 +604,58 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		}
 
 		openEditor();
+	}
+
+	/**
+	 * Gets the model type resources to be used in the Relationship diagram
+	 * outline for this model relationship type.
+	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level.
+	 * @generated NOT
+	 */
+	public ResourceSet getOutlineResourceTypes() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+		List<Resource> resources = resourceSet.getResources();
+		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
+			Model modelType = modelTypeEndpointRef.getObject().getTarget();
+			do {
+				resources.add(MultiModelTypeIntrospection.getRoot(modelType).eResource());
+				modelType = modelType.getSupertype(); // types only
+			}
+			while (modelType != null && !modelType.isAbstract());
+		}
+
+		return resourceSet;
+	}
+
+	/**
+	 * Gets the model resources to be used in the Relationship diagram outline
+	 * for this model relationship.
+	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the TYPES level.
+	 * @generated NOT
+	 */
+	public ResourceSet getOutlineResourceInstances() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+		List<Resource> resources = resourceSet.getResources();
+		for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
+			Model model = modelEndpointRef.getObject().getTarget();
+			resources.add(MultiModelTypeIntrospection.getRoot(model).eResource());
+		}
+
+		return resourceSet;
 	}
 
 } //ModelRelImpl

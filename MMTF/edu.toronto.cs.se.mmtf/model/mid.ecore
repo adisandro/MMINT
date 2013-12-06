@@ -476,6 +476,10 @@
       <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
       <eOperations name="openType" eExceptions="#//MMTFException"/>
       <eOperations name="openInstance" eExceptions="#//MMTFException"/>
+      <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+          eExceptions="#//MMTFException"/>
+      <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+          eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelEndpoints" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

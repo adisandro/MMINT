@@ -579,13 +579,31 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MidPackage.MODEL_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 9;
+
+	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -892,6 +910,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
 	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
@@ -2151,6 +2187,26 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__OpenInstance();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getOutlineResourceTypes() <em>Get Outline Resource Types</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Outline Resource Types</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getOutlineResourceTypes()
+	 * @generated
+	 */
+	EOperation getModelRel__GetOutlineResourceTypes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getOutlineResourceInstances() <em>Get Outline Resource Instances</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Outline Resource Instances</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getOutlineResourceInstances()
+	 * @generated
+	 */
+	EOperation getModelRel__GetOutlineResourceInstances();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel <em>Binary Model Rel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2735,6 +2791,22 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_REL___OPEN_INSTANCE = eINSTANCE.getModelRel__OpenInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Outline Resource Types</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = eINSTANCE.getModelRel__GetOutlineResourceTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Outline Resource Instances</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = eINSTANCE.getModelRel__GetOutlineResourceInstances();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.

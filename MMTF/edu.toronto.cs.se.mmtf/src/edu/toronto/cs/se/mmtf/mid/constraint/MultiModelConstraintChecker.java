@@ -383,6 +383,53 @@ linkTypes:
 		return null;
 	}
 
+	private static void initOCL(OCL ocl, OCLHelper helper, EObject modelObj) {
+
+		//TODO MMTF: workaround for bug #375485
+		//helper.setInstanceContext(root);
+		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
+		EClass modelObjClass = modelObj.eClass();
+		Type pivotType = metaModelManager.getPivotType(modelObjClass.getName());
+		if (pivotType == null) {
+			Resource resource = modelObjClass.eResource();
+			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
+			pivotType = ecore2Pivot.getCreated(Type.class, modelObjClass);
+		}
+		helper.setContext(pivotType);
+	}
+
+	public static Object deriveOCLConstraint(EObject modelObj, String oclConstraint) {
+
+		OCL ocl = OCL.newInstance();
+		OCLHelper helper = ocl.createOCLHelper();
+		initOCL(ocl, helper, modelObj);
+
+		try {
+			ExpressionInOCL expression = helper.createDerivedValueExpression(oclConstraint);
+			return ocl.evaluate(modelObj, expression);
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "OCL constraint error: " + oclConstraint, e);
+			return null;
+		}
+	}
+
+	public static MAVOTruthValue checkOCLConstraint(EObject modelObj, String oclConstraint) {
+
+		OCL ocl = OCL.newInstance();
+		OCLHelper helper = ocl.createOCLHelper();
+		initOCL(ocl, helper, modelObj);
+
+		try {
+			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
+			return (ocl.check(modelObj, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "OCL constraint error: " + oclConstraint, e);
+			return MAVOTruthValue.FALSE;
+		}
+	}
+
 	private static MAVOTruthValue checkOCLConstraint(Model model, String oclConstraint, boolean isInstanceConstraint) {
 
 		if (oclConstraint.equals("")) { // empty constraint
@@ -407,28 +454,7 @@ linkTypes:
 			root = MultiModelTypeIntrospection.getRoot(model);
 		}
 
-		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper();
-		//TODO MMTF: workaround for bug #375485
-		//helper.setInstanceContext(root);
-		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
-		EClass eClass = root.eClass();
-		Type pivotType = metaModelManager.getPivotType(eClass.getName());
-		if (pivotType == null) {
-			Resource resource = eClass.eResource();
-			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
-			pivotType = ecore2Pivot.getCreated(Type.class, eClass);
-		}
-		helper.setContext(pivotType);
-
-		try {
-			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
-			return (ocl.check(root, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
-		}
-		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "OCL constraint error: " + oclConstraint, e);
-			return MAVOTruthValue.FALSE;
-		}
+		return checkOCLConstraint(root, oclConstraint);
 	}
 
 	private static MAVOTruthValue checkJAVAConstraint(Model model, String modelTypeUri, String javaClassName) {

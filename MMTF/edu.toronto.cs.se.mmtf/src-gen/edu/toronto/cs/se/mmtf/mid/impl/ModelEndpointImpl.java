@@ -300,8 +300,8 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing" and the corresponding reference
-		MultiModelTypeFactory.removeModelTypeEndpoint(this, isFullDelete);
 		ModelRel modelRelType = (ModelRel) eContainer();
+		MultiModelTypeFactory.removeModelTypeEndpoint(this, isFullDelete);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
 		MultiModelTypeFactory.removeModelTypeEndpointReference(modelTypeEndpointRef, isFullDelete);
 		// delete references of the "thing" in subtypes of the container

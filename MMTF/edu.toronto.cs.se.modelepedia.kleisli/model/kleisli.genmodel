@@ -27,6 +27,8 @@
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteInstance"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openType"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openInstance"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceTypes"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceInstances"/>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliModelEndpoint">
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference">

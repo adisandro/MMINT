@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.RegistryToggleState;
+
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
@@ -48,6 +49,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -566,10 +568,9 @@ public class MMTF implements MMTFConstants {
 		Model newModelType = null;
 		if (dynamicModelType instanceof ModelRel) {
 			try {
-				newModelType = MultiModelLightTypeFactory.createLightModelRelType(
-					(ModelRel) modelType,
+				newModelType = ((ModelRel) modelType).createSubtype(
 					dynamicModelType.getName(),
-					dynamicModelType.eClass(),
+					dynamicModelType.eClass() instanceof BinaryModelRel,
 					dynamicModelType.getConstraint().getLanguage().getLiteral(),
 					dynamicModelType.getConstraint().getImplementation()
 				);

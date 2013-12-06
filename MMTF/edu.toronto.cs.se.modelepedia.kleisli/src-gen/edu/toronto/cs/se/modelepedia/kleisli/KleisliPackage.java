@@ -367,13 +367,31 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 7;
+
+	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointImpl <em>Model Endpoint</em>}' class.
@@ -919,13 +937,31 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 7;
+
+	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 6;
+	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 8;
 
 
 	/**
@@ -997,6 +1033,26 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getKleisliModelRel__OpenInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getOutlineResourceTypes() <em>Get Outline Resource Types</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Outline Resource Types</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getOutlineResourceTypes()
+	 * @generated
+	 */
+	EOperation getKleisliModelRel__GetOutlineResourceTypes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getOutlineResourceInstances() <em>Get Outline Resource Instances</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Outline Resource Instances</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getOutlineResourceInstances()
+	 * @generated
+	 */
+	EOperation getKleisliModelRel__GetOutlineResourceInstances();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint <em>Model Endpoint</em>}'.
@@ -1128,6 +1184,22 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation KLEISLI_MODEL_REL___OPEN_INSTANCE = eINSTANCE.getKleisliModelRel__OpenInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Outline Resource Types</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = eINSTANCE.getKleisliModelRel__GetOutlineResourceTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Outline Resource Instances</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = eINSTANCE.getKleisliModelRel__GetOutlineResourceInstances();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointImpl <em>Model Endpoint</em>}' class.

@@ -348,6 +348,24 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelRel__GetOutlineResourceTypes() {
+		return modelRelEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__GetOutlineResourceInstances() {
+		return modelRelEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryModelRel() {
 		return binaryModelRelEClass;
 	}
@@ -793,6 +811,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_INSTANCE);
 		createEOperation(modelRelEClass, MODEL_REL___OPEN_TYPE);
 		createEOperation(modelRelEClass, MODEL_REL___OPEN_INSTANCE);
+		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
+		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES);
 
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__SOURCE_MODEL);
@@ -930,6 +950,12 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getModelRel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__GetOutlineResourceTypes(), ecorePackage.getEResourceSet(), "getOutlineResourceTypes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__GetOutlineResourceInstances(), ecorePackage.getEResourceSet(), "getOutlineResourceInstances", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

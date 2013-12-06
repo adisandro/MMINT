@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -176,5 +177,21 @@ public interface ModelRel extends Model {
 	 * @generated
 	 */
 	void openInstance() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	ResourceSet getOutlineResourceTypes() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	ResourceSet getOutlineResourceInstances() throws MMTFException;
 
 } // ModelRel

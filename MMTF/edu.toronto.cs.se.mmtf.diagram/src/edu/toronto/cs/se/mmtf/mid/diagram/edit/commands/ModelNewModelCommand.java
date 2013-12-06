@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -106,7 +107,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		Model modelType = MidDiagramUtils.selectModelTypeToExtend(multiModel);
 		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
-		boolean isMetamodelExtension = MidDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
+		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?
+			true :
+			MidDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
 		Model newModelType = MultiModelLightTypeFactory.createLightModelType(modelType, newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
 		MMTF.createTypeHierarchy(multiModel);
 

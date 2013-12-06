@@ -17,12 +17,14 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
 
@@ -70,16 +72,17 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(this);
+		String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(newModelType, (KleisliModelRel) containerModelRelType);
 		boolean isKleisli = (MultiModelUtils.isFileInState(newModelTypeUriFragment) != null);
 		boolean extendMetamodel = false;
 		if (!isKleisli) {
-			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model relationship type", "Extend " + getTarget().getName() + " metamodel?");
+			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model relationship type", "Extend " + newModelType.getName() + " metamodel?");
 			isKleisli = extendMetamodel;
 		}
 		if (extendMetamodel) {
 			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
-			rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(this));
+			String extendedMetamodelUri = KleisliUtils.getExtendedModelTypeUri(newModelType, (KleisliModelRel) containerModelRelType);
+//			rootModelTypeObj.setNsURI(extendedMetamodelUri.substring(0, extendedMetamodelUri.lastIndexOf(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR)));
 			try {
 				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
 			}
@@ -96,6 +99,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		else {
 			newModelTypeEndpointRef = super.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
 		}
+		//TODO MMTF[KLEISLI] open metamodel
 
 		return newModelTypeEndpointRef;
 	}
@@ -113,10 +117,10 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
-			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(this);
+			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(newModelType, (KleisliModelRel) containerModelRelType);
 			if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
 				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
-				rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(this));
+//				rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(newModelType, (KleisliModelRel) containerModelRelType));
 				try {
 					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
 				}
@@ -136,8 +140,8 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	@Override
 	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
 
+		MultiModelUtils.deleteFileInState(KleisliUtils.getExtendedModelTypeUriFragment(getTarget(), (KleisliModelRel) eContainer()));
 		super.deleteTypeAndReference(isFullDelete);
-		MultiModelUtils.deleteFileInState(KleisliUtils.getExtendedModelTypeUri(this));
 	}
 
 } //KleisliModelEndpointImpl

@@ -133,6 +133,8 @@
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openType"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

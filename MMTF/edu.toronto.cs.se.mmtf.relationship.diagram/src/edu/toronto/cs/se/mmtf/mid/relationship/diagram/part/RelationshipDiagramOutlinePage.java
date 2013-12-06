@@ -11,9 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -27,10 +24,10 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.ui.ModelElementLabelProvider;
 
@@ -97,15 +94,14 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	 */
 	public void loadOutlineModels() {
 
-		ResourceSet resourceSet = new ResourceSetImpl();
-		List<Resource> resources = resourceSet.getResources();
-		for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
-			Model model = modelEndpointRef.getObject().getTarget();
-			do {
-				resources.add(MultiModelTypeIntrospection.getRoot(model).eResource());
-				model = model.getSupertype(); // types only
-			}
-			while (model != null && !model.isAbstract());
+		ResourceSet resourceSet;
+		try {
+			resourceSet = (MultiModelConstraintChecker.isInstancesLevel(modelRel)) ?
+				modelRel.getOutlineResourceInstances() :
+				modelRel.getOutlineResourceTypes();
+		}
+		catch (MMTFException e) {
+			resourceSet = new ResourceSetImpl();
 		}
 		contentOutlineViewer.setInput(resourceSet);
 	}

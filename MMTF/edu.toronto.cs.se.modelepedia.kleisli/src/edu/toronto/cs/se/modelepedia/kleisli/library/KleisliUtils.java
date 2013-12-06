@@ -14,26 +14,28 @@ package edu.toronto.cs.se.modelepedia.kleisli.library;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EcorePackage;
 
-import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 
 public class KleisliUtils {
 
-	public static String getExtendedModelTypeUriFragment(ModelEndpoint modelTypeEndpoint) {
+	public static String getExtendedModelTypeUriFragment(Model modelType, KleisliModelRel containerModelRelType) {
 
-		return ((ModelRel) modelTypeEndpoint.eContainer()).getName() + IPath.SEPARATOR + modelTypeEndpoint.getTarget().getName() + "." + EcorePackage.eNAME;
+		return containerModelRelType.getName() + IPath.SEPARATOR + modelType.getName() + "." + EcorePackage.eNAME;
 	}
 
-	public static String getExtendedModelTypeUri(ModelEndpoint modelTypeEndpoint) {
+	public static String getExtendedModelTypeUri(Model modelType, KleisliModelRel containerModelRelType) {
 
 		return MultiModelUtils.replaceLastSegmentInUri(
-			modelTypeEndpoint.getTargetUri(),
-			getExtendedModelTypeUriFragment(modelTypeEndpoint)
+			modelType.getUri(),
+			getExtendedModelTypeUriFragment(modelType, containerModelRelType)
 		);
 	}
 
-	public static String getExtendedModelUri(ModelEndpoint modelEndpoint) {
+	public static String getExtendedModelUri(KleisliModelEndpoint modelEndpoint) {
 
 		return MultiModelUtils.replaceLastSegmentInUri(
 			modelEndpoint.getTargetUri(),

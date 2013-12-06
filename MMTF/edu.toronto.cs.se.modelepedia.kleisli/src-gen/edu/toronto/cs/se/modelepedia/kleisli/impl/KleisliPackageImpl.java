@@ -190,6 +190,24 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getKleisliModelRel__GetOutlineResourceTypes() {
+		return kleisliModelRelEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getKleisliModelRel__GetOutlineResourceInstances() {
+		return kleisliModelRelEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getKleisliModelEndpoint() {
 		return kleisliModelEndpointEClass;
 	}
@@ -265,6 +283,8 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___DELETE_INSTANCE);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___OPEN_TYPE);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___OPEN_INSTANCE);
+		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
+		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES);
 
 		kleisliModelEndpointEClass = createEClass(KLEISLI_MODEL_ENDPOINT);
 		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL);
@@ -338,6 +358,12 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getKleisliModelRel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getKleisliModelRel__GetOutlineResourceTypes(), ecorePackage.getEResourceSet(), "getOutlineResourceTypes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getKleisliModelRel__GetOutlineResourceInstances(), ecorePackage.getEResourceSet(), "getOutlineResourceInstances", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(kleisliModelEndpointEClass, KleisliModelEndpoint.class, "KleisliModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
