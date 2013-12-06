@@ -386,7 +386,7 @@ linkTypes:
 	private static void initOCL(OCL ocl, OCLHelper helper, EObject modelObj) {
 
 		//TODO MMTF: workaround for bug #375485
-		//helper.setInstanceContext(root);
+//		helper.setInstanceContext(modelObj);
 		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
 		EClass modelObjClass = modelObj.eClass();
 		Type pivotType = metaModelManager.getPivotType(modelObjClass.getName());

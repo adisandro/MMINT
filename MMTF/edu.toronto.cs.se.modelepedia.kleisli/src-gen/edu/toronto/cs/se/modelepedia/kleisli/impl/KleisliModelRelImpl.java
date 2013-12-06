@@ -199,12 +199,18 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
 			}
-			EFactory modelTypeFactory = ((EPackage) MultiModelTypeIntrospection.getRoot(modelTypeEndpoint.getTarget())).getEFactoryInstance();
-			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), ((ModelRel) modelTypeEndpoint.eContainer()).getModelEndpointRefs());
-			String newModelUri = KleisliUtils.getExtendedModelUri((KleisliModelEndpoint) modelEndpoint);
 			try {
-				//TODO necessary? could just write the modified root at the end
-				MultiModelUtils.copyTextFileAndReplaceText(MultiModelUtils.prependWorkspaceToUri(modelEndpoint.getTargetUri()), MultiModelUtils.prependWorkspaceToUri(newModelUri), modelEndpoint.getTarget().getMetatypeUri(), modelTypeEndpoint.getUri());
+				String extendedMetamodelUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(modelTypeEndpoint.getTarget(), (KleisliModelRel) getMetatype());
+				EPackage modelTypePackage = (EPackage) MultiModelUtils.getModelFileInState(extendedMetamodelUriFragment);
+				EFactory modelTypeFactory = modelTypePackage.getEFactoryInstance();
+				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), ((ModelRel) modelTypeEndpoint.eContainer()).getModelEndpointRefs());
+				String newModelUri = KleisliUtils.getExtendedModelUri((KleisliModelEndpoint) modelEndpoint);
+				MultiModelUtils.copyTextFileAndReplaceText(
+					MultiModelUtils.prependWorkspaceToUri(modelEndpoint.getTargetUri()),
+					MultiModelUtils.prependWorkspaceToUri(newModelUri),
+					MultiModelUtils.getLastSegmentFromUri(extendedMetamodelUriFragment),
+					extendedMetamodelUriFragment
+				);
 				EObject rootModelObj = MultiModelUtils.getModelFile(newModelUri, true);
 				String classLiteral;
 				ExtendibleElementConstraint constraint;
@@ -220,20 +226,23 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
+					EClass h = (EClass) modelTypePackage.getEClassifier(classLiteral);
 					TreeIterator<EObject> modelObjIter = rootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
-						if (!modelObj.eClass().getName().equals(classLiteral)) {
-							continue;
+						for (EClass hh : h.getESuperTypes()) {
+							if (!hh.getName().equals(modelObj.eClass().getName())) {
+								continue;
+							}
+							if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, constraint.getImplementation()) != MAVOTruthValue.TRUE) {
+								continue;
+							}
+							EObject modelObjReplacement = modelTypeFactory.create(h);
+							modelObjReplacements.put(modelObjReplacement, modelObj);
 						}
-						if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, constraint.getImplementation()) != MAVOTruthValue.TRUE) {
-							continue;
-						}
-						EObject modelObjReplacement = modelTypeFactory.create((EClass) MultiModelTypeIntrospection.getPointer(modelElemTypeRef.getObject()));
-						modelObjReplacements.put(modelObj, modelObjReplacement);
 					}
 					for (Map.Entry<EObject, EObject> modelObjReplacementEntry : modelObjReplacements.entrySet()) {
-						EcoreUtil.replace(modelObjReplacementEntry.getKey(), modelObjReplacementEntry.getValue());
+						EcoreUtil.replace(modelObjReplacementEntry.getValue(), modelObjReplacementEntry.getKey());
 					}
 				}
 				// second pass: EAttributes
@@ -252,7 +261,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					TreeIterator<EObject> modelObjIter = rootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
-						if (!modelObj.eClass().getName().equals(classLiterals[0])) {
+						if (!modelObj.eClass().getName().equals(classLiterals[0]) && modelObjReplacements.get(modelObj) == null) {
 							continue;
 						}
 						Object modelObjAttrDerived = MultiModelConstraintChecker.deriveOCLConstraint(modelObj, constraint.getImplementation());
@@ -267,7 +276,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 		}
 
-		//TODO MMTF[KLEISLI] init outline with augmented ones
+		//TODO eattributes pass should look also for previous replacements
+		//TODO derive ocl fails
+		//TODO MMTF[KLEISLI] init outline starts before this
 		super.openInstance();
 	}
 

@@ -80,8 +80,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 		if (extendMetamodel) {
 			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
-			String extendedMetamodelUri = KleisliUtils.getExtendedModelTypeUri(newModelType, (KleisliModelRel) containerModelRelType);
-//TODO			rootModelTypeObj.setNsURI(extendedMetamodelUri.substring(0, extendedMetamodelUri.lastIndexOf(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR)));
 			try {
 				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
 			}
@@ -119,7 +117,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(newModelType, (KleisliModelRel) containerModelRelType);
 			if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
 				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
-//TODO				rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(newModelType, (KleisliModelRel) containerModelRelType));
 				try {
 					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
 				}
