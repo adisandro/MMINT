@@ -25,6 +25,8 @@
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/containerMultiModel"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteInstance"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openType"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openInstance"/>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliModelEndpoint">
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference">

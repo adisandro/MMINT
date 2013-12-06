@@ -339,7 +339,7 @@
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="replaceSubtypeAndReference" lowerBound="1" eExceptions="#//MMTFException">
+    <eOperations name="replaceSubtypeAndReference" eExceptions="#//MMTFException">
       <eParameters name="oldModelTypeEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -474,6 +474,8 @@
         <eParameters name="containerMultiModel" eType="#//MultiModel"/>
       </eOperations>
       <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
+      <eOperations name="openType" eExceptions="#//MMTFException"/>
+      <eOperations name="openInstance" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelEndpoints" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

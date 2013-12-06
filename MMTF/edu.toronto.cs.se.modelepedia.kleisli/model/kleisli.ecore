@@ -19,6 +19,8 @@
       <eParameters name="containerMultiModel" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MultiModel"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="openType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="openInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliModelEndpoint" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint">
     <eOperations name="createSubtypeAndReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"
@@ -29,7 +31,7 @@
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="replaceSubtypeAndReference" lowerBound="1" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+    <eOperations name="replaceSubtypeAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="oldModelTypeEndpoint" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint"/>
       <eParameters name="modelTypeEndpointRef" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"/>
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

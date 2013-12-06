@@ -59,4 +59,20 @@ public interface KleisliModelRel extends ModelRel {
 	 */
 	void deleteInstance() throws MMTFException;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void openType() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void openInstance() throws MMTFException;
+
 } // KleisliModelRel

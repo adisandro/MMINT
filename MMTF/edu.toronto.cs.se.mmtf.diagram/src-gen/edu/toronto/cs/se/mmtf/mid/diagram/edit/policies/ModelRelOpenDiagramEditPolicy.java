@@ -44,6 +44,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.Messages;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorUtil;
@@ -57,7 +59,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getOpenCommand(Request request) {
+	protected Command getOpenCommandGen(Request request) {
 		EditPart targetEditPart = getTargetEditPart(request);
 		if (false == targetEditPart.getModel() instanceof View) {
 			return null;
@@ -69,6 +71,24 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 			return null;
 		}
 		return new ICommandProxy(new OpenDiagramCommand(
+				(HintedDiagramLinkStyle) link));
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected Command getOpenCommand(Request request) {
+		EditPart targetEditPart = getTargetEditPart(request);
+		if (false == targetEditPart.getModel() instanceof View) {
+			return null;
+		}
+		View view = (View) targetEditPart.getModel();
+		Style link = view.getStyle(NotationPackage.eINSTANCE
+				.getHintedDiagramLinkStyle());
+		if (false == link instanceof HintedDiagramLinkStyle) {
+			return null;
+		}
+		return new ICommandProxy(new ModelRelOpenEditorCommand(
 				(HintedDiagramLinkStyle) link));
 	}
 
@@ -99,7 +119,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated
 		 */
-		protected CommandResult doExecuteWithResultGen(
+		protected CommandResult doExecuteWithResult(
 				IProgressMonitor monitor, IAdaptable info)
 				throws ExecutionException {
 			try {
@@ -110,31 +130,6 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				URI uri = EcoreUtil.getURI(diagram);
 				String editorName = uri.lastSegment() + '#'
 						+ diagram.eResource().getContents().indexOf(diagram);
-				IEditorInput editorInput = new URIEditorInput(uri, editorName);
-				IWorkbenchPage page = PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getActivePage();
-				page.openEditor(editorInput, getEditorID());
-				return CommandResult.newOKCommandResult();
-			} catch (Exception ex) {
-				throw new ExecutionException("Can't open diagram", ex);
-			}
-		}
-
-		/**
-		 * Sets the title of the diagram using the model relationship name.
-		 * 
-		 * @generated NOT
-		 */
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
-			try {
-				Diagram diagram = getDiagramToOpen();
-				if (diagram == null) {
-					diagram = intializeNewDiagram();
-				}
-				URI uri = EcoreUtil.getURI(diagram);
-				String editorName = ((ModelRel) diagram.getElement()).getName()
-						+ ".relationshipdiag";
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);
 				IWorkbenchPage page = PlatformUI.getWorkbench()
 						.getActiveWorkbenchWindow().getActivePage();
@@ -232,6 +227,69 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		protected String getEditorID() {
 			return "edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID";
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static class ModelRelOpenEditorCommand extends OpenDiagramCommand {
+
+		/**
+		 * @generated NOT
+		 */
+		ModelRelOpenEditorCommand(HintedDiagramLinkStyle linkStyle) {
+
+			super(linkStyle);
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		protected void doExecuteInstancesLevel(ModelRel modelRel) throws MMTFException {
+
+			modelRel.openInstance();
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		protected void doExecuteTypesLevel(ModelRel modelRelType) throws MMTFException {
+
+			modelRelType.openType();
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+			try {
+				Diagram diagram = getDiagramToOpen();
+				if (diagram == null) {
+					diagram = intializeNewDiagram();
+				}
+				URI uri = EcoreUtil.getURI(diagram);
+				ModelRel modelRel = (ModelRel) diagram.getElement();
+				String editorName = modelRel.getName() + ".relationshipdiag";
+				IEditorInput editorInput = new URIEditorInput(uri, editorName);
+				IWorkbenchPage page = PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getActivePage();
+				page.openEditor(editorInput, getEditorID());
+				if (MultiModelConstraintChecker.isInstancesLevel(modelRel)) {
+					doExecuteInstancesLevel(modelRel);
+				}
+				else {
+					doExecuteTypesLevel(modelRel);
+				}
+
+				return CommandResult.newOKCommandResult();
+			}
+			catch (Exception e) {
+				throw new ExecutionException("No editor opened", e);
+			}
+		}
+
 	}
 
 }

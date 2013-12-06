@@ -330,6 +330,24 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelRel__OpenType() {
+		return modelRelEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__OpenInstance() {
+		return modelRelEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryModelRel() {
 		return binaryModelRelEClass;
 	}
@@ -773,6 +791,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_TYPE);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_INSTANCE);
+		createEOperation(modelRelEClass, MODEL_REL___OPEN_TYPE);
+		createEOperation(modelRelEClass, MODEL_REL___OPEN_INSTANCE);
 
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__SOURCE_MODEL);
@@ -904,6 +924,12 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getModelRel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

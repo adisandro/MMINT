@@ -924,7 +924,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
-		op = initEOperation(getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_ModelEndpointReference_String_Model_ModelRel(), null, "replaceSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_ModelEndpointReference_String_Model_ModelRel(), null, "replaceSubtypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelEndpoint(), "oldModelTypeEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "modelTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);

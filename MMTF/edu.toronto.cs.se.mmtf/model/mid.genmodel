@@ -131,6 +131,8 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/containerMultiModel"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openType"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openInstance"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

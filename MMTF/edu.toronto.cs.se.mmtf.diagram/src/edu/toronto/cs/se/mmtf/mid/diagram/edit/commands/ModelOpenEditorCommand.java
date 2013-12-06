@@ -23,8 +23,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -60,7 +60,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 	 */
 	public ModelOpenEditorCommand(HintedDiagramLinkStyle linkStyle) {
 
-		super(DiagramEditingDomainFactory.getInstance().createEditingDomain(), Messages.CommandName_OpenDiagram, null);
+		super(TransactionUtil.getEditingDomain(linkStyle), Messages.CommandName_OpenDiagram, null);
 		editorFacet = linkStyle;
 	}
 
@@ -127,12 +127,13 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 			else {
 				doExecuteTypesLevel(model);
 			}
+
+			return CommandResult.newOKCommandResult();
 		}
 		catch (Exception e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No editor associated", e);
 			return CommandResult.newErrorCommandResult("No editor associated");
 		}
-
-		return CommandResult.newOKCommandResult();
 	}
+
 }

@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -22,8 +24,10 @@ import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,6 +134,48 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		super.deleteInstance();
 		MultiModelUtils.deleteDirectory(MultiModelUtils.replaceLastSegmentInUri(getUri(), getName()));
+	}
+
+	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void openType() throws MMTFException {
+
+		super.openType();
+
+		//TODO open metamodels for endpoints
+		//TODO init outline with augmented ones
+		//TODO what about the previous wizard dialog class thing?
+	}
+
+	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void openInstance() throws MMTFException {
+
+		super.openInstance();
+
+		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
+			ModelEndpoint modelTypeEndpoint = modelEndpoint.getMetatype();
+			if (MultiModelUtils.isFileInState(KleisliUtils.getExtendedModelTypeUri(modelTypeEndpoint)) != null) {
+				String newModelUri = KleisliUtils.getExtendedModelUri(modelEndpoint);
+				try {
+					MultiModelUtils.copyTextFileAndReplaceText(modelEndpoint.getTargetUri(), newModelUri, modelEndpoint.getTarget().getMetatypeUri(), modelTypeEndpoint.getUri());
+					EObject rootModelObj = MultiModelUtils.getModelFile(newModelUri, true);
+					//TODO derive the augmented model
+				}
+				catch (Exception e) {
+					MMTFException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
+				}
+			}
+		}
+		//TODO init outline with augmented ones
 	}
 
 } //KleisliModelRelImpl

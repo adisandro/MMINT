@@ -359,6 +359,22 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case RelationshipPackage.MODEL_REL___OPEN_TYPE:
+				try {
+					openType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_REL___OPEN_INSTANCE:
+				try {
+					openInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -527,6 +543,48 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		}
 
 		MultiModelInstanceFactory.removeModel(this);
+	}
+
+	/**
+	 * Opens this editor.
+	 * 
+	 * @generated NOT
+	 */
+	protected void openEditor() {
+
+		// do nothing
+	}
+
+	/**
+	 * Opens this editor type.
+	 * 
+	 * @throws MMTFException
+	 *             If this editor is at the INSTANCES level.
+	 * @generated NOT
+	 */
+	public void openType() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		openEditor();
+	}
+
+	/**
+	 * Opens this editor instance.
+	 * 
+	 * @throws MMTFException
+	 *             If this editor is at the TYPES level.
+	 * @generated NOT
+	 */
+	public void openInstance() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		openEditor();
 	}
 
 } //ModelRelImpl
