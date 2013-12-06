@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
@@ -70,7 +71,7 @@ public class BinaryLinkReferenceDelCommand extends DestroyElementCommand {
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MultiModelConstraintChecker.isRootType((BinaryLinkReference) getElementToDestroy())
+				!MultiModelTypeHierarchy.isRootType(((BinaryLinkReference) getElementToDestroy()).getObject())
 			);
 	}
 

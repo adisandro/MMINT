@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -43,7 +44,7 @@ public class LinkReferenceRemoveModelElementEndpointReferenceCommand extends Des
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((LinkReference) getElementToEdit()) ||
-				!MultiModelConstraintChecker.isRootType((ModelElementEndpointReference) getElementToDestroy())
+				!MultiModelTypeHierarchy.isRootType(((ModelElementEndpointReference) getElementToDestroy()).getObject())
 			);
 	}
 

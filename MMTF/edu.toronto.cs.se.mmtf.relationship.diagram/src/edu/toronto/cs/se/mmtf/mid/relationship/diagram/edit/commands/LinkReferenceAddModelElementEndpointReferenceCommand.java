@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
@@ -71,8 +72,8 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getSource(), getTarget())) != null
 			) || (
 				!instance &&
-				!MultiModelConstraintChecker.isRootType(getSource()) &&
-				!MultiModelConstraintChecker.isRootType(getTarget())
+				!MultiModelTypeHierarchy.isRootType(getSource().getObject()) &&
+				(getTarget() == null || !MultiModelTypeHierarchy.isRootType(getTarget().getObject()))
 			));
 	}
 

@@ -146,7 +146,7 @@ public class MidDiagramUtils {
 		return MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri());
 	}
 
-	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws Exception {
+	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MMTFException {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
 		String title = "Create new model endpoint";

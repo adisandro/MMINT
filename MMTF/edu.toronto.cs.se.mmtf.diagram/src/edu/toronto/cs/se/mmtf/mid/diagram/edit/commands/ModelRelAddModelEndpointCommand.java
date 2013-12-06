@@ -77,7 +77,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			));
 	}
 
-	protected ModelEndpoint doExecuteInstancesLevel() throws Exception {
+	protected ModelEndpoint doExecuteInstancesLevel() throws MMTFException {
 
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
@@ -131,7 +131,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model endpoint created", e);
 			return CommandResult.newErrorCommandResult("No model endpoint created");
 		}

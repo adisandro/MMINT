@@ -130,6 +130,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_MODELENDPOINTREFERENCE_STRING_MODEL_MODELREL:
+				try {
+					replaceSubtypeAndReference((ModelEndpoint)arguments.get(0), (ModelEndpointReference)arguments.get(1), (String)arguments.get(2), (Model)arguments.get(3), (ModelRel)arguments.get(4));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN:
 				try {
 					deleteTypeAndReference((Boolean)arguments.get(0));
@@ -223,6 +231,54 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
+	}
+
+	/**
+	 * Replaces an old subtype of this model type endpoint and a reference to it
+	 * with new ones in the Type MID.
+	 * 
+	 * @param oldModelTypeEndpoint
+	 *            The old model type endpoint to be replaced.
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level, or if
+	 *             the uri of the new model type endpoint is already registered
+	 *             in the Type MID.
+	 * @generated NOT
+	 */
+	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, ModelRel containerModelRelType) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
+		// modify the "thing" and the corresponding reference
+		MultiModelLightTypeFactory.addLightType(oldModelTypeEndpoint, this, containerModelRelType, containerModelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
+		oldModelTypeEndpoint.setTarget(newModelType);
+		if (modelTypeEndpointRef != null) {
+			ModelEndpointReference oldModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
+			oldModelTypeEndpointRef.setSupertypeRef(modelTypeEndpointRef);
+		}
+		// modify references of the "thing" in subtypes of the container
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, multiModel)) {
+			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
+				null :
+				MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference oldModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
+			oldModelTypeEndpointRef.setSupertypeRef(modelSubtypeEndpointRef);
+		}
 	}
 
 	/**

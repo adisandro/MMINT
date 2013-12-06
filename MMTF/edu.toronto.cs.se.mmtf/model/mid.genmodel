@@ -82,6 +82,13 @@
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/containerModelRelType"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/oldModelTypeEndpoint"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/modelTypeEndpointRef"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/newModelTypeEndpointName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/newModelType"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/containerModelRelType"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteTypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteTypeAndReference/isFullDelete"/>
       </genOperations>

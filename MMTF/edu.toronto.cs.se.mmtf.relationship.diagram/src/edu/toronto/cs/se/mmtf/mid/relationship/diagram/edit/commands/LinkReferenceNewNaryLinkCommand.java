@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
@@ -92,7 +92,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MultiModelConstraintChecker.isRootType((ModelRel) getElementToEdit())
+				!MultiModelTypeHierarchy.isRootType((ModelRel) getElementToEdit())
 			);
 	}
 
@@ -115,7 +115,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, null, null);
 		Link linkType = linkTypeRef.getObject();
-		if (MultiModelTypeRegistry.getRootTypeUri(linkType).equals(linkType.getUri())) {
+		if (MultiModelTypeHierarchy.getRootTypeUri(linkType).equals(linkType.getUri())) {
 			linkTypeRef = null; // the link reference to the root is never shown
 		}
 		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);

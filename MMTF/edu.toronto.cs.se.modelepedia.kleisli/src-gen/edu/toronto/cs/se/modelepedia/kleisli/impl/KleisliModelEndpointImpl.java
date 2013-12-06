@@ -78,7 +78,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			isKleisli = extendMetamodel;
 		}
 		if (extendMetamodel) {
-			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(getTarget());
+			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
 			rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(this));
 			try {
 				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
@@ -98,6 +98,34 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		return newModelTypeEndpointRef;
+	}
+
+	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, ModelRel containerModelRelType) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
+			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(this);
+			if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
+				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
+				rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(this));
+				try {
+					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
+				}
+				catch (Exception e) {
+					throw new MMTFException("Error creating extended metamodel file");
+				}
+			}
+		}
+		super.replaceSubtypeAndReference(oldModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, containerModelRelType);
 	}
 
 	/**

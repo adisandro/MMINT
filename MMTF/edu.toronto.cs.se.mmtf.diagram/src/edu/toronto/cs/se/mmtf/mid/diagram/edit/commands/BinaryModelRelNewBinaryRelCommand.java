@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -35,7 +34,6 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 /**
  * The command to create a binary model relationship.
@@ -100,22 +98,16 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel((MultiModel) getContainer()) || (
 					!MultiModelTypeHierarchy.isRootType(getSource()) &&
-					!MultiModelTypeHierarchy.isRootType(getTarget())
+					(getTarget() == null || !MultiModelTypeHierarchy.isRootType(getTarget()))
 				)
 			);
 	}
 
-	protected BinaryModelRel doExecuteInstancesLevel() throws Exception {
+	protected BinaryModelRel doExecuteInstancesLevel() throws MMTFException {
 
 		MultiModel multiModel = getContainer();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(getSource(), getTarget());
-		BinaryModelRel newModelRel = (BinaryModelRel) MultiModelInstanceFactory.createModelRel(
-			modelRelType,
-			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		BinaryModelRel newModelRel = (BinaryModelRel) modelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 
 		List<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
@@ -143,39 +135,17 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, getSource(), getTarget());
 		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light binary model relationship type", null);
-		BinaryModelRel newModelRelType = (BinaryModelRel) MultiModelLightTypeFactory.createLightModelRelType(
-			modelRelType,
-			newModelRelTypeName,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
-			constraint[0],
-			constraint[1]
-		);
+		BinaryModelRel newModelRelType = (BinaryModelRel) modelRelType.createSubtype(newModelRelTypeName, true, constraint[0], constraint[1]);
 		MMTF.createTypeHierarchy(multiModel);
 
 		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", null);
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		ModelEndpointReference modelTypeEndpointRef = null;
-		ModelEndpoint modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
-		MultiModelLightTypeFactory.createLightModelTypeEndpointAndModelTypeEndpointReference(
-			modelTypeEndpoint,
-			modelTypeEndpointRef,
-			newModelTypeEndpointName,
-			getSource(),
-			false,
-			newModelRelType
-		);
+		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(newModelRelType, getSource());
+		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
+		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, getSource(), false, newModelRelType);
 		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", null);
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		modelTypeEndpointRef = null;
-		modelTypeEndpoint = (modelTypeEndpointRef == null) ? null : modelTypeEndpointRef.getObject();
-		MultiModelLightTypeFactory.createLightModelTypeEndpointAndModelTypeEndpointReference(
-			modelTypeEndpoint,
-			modelTypeEndpointRef,
-			newModelTypeEndpointName,
-			getTarget(),
-			false,
-			newModelRelType
-		);
+		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(newModelRelType, getTarget());
+		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
+		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, getTarget(), false, newModelRelType);
 
 		return newModelRelType;
 	}
@@ -210,7 +180,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No binary model relationship created", e);
 			return CommandResult.newErrorCommandResult("No binary model relationship created");
 		}

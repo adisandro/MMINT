@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -62,7 +63,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		return
 			super.canExecute() && (
 				MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				!MultiModelConstraintChecker.isRootType(getLink())
+				!MultiModelTypeHierarchy.isRootType(getLink().getObject())
 			);
 	}
 
