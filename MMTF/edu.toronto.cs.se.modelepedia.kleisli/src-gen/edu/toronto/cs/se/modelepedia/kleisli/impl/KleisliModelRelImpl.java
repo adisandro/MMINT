@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
@@ -41,7 +42,9 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
 
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -51,6 +54,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * <!-- begin-user-doc -->
@@ -163,9 +169,19 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		super.openType();
 
-		//TODO open metamodels for endpoints
-		//TODO init outline with augmented ones
-		//TODO what about the previous wizard dialog class thing?
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
+			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(modelTypeEndpoint.getTarget(), (KleisliModelRel) this);
+			URI uri = URI.createFileURI(MultiModelUtils.isFileInState(newModelTypeUriFragment));
+			try {
+				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
+			}
+			catch (PartInitException e) {
+				MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
+			}
+		}
+
+		//TODO MMTF[KLEISLI] init outline with augmented ones
 	}
 
 	/**
@@ -176,9 +192,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public void openInstance() throws MMTFException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		super.openInstance();
 
 		// create directory if it doesn't exist
 		try {
@@ -276,10 +290,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 		}
 
-		//TODO eattributes pass should look also for previous replacements
-		//TODO derive ocl fails
+		//TODO MMTF[KLEISLI] eattributes pass should look also for previous replacements
+		//TODO MMTF[KLEISLI] derive ocl fails
 		//TODO MMTF[KLEISLI] init outline starts before this
-		super.openInstance();
 	}
 
 	/**

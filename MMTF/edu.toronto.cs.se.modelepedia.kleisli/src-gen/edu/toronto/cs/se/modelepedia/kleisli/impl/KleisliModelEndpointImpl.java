@@ -12,9 +12,11 @@
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
@@ -27,8 +29,13 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
 
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,11 +99,18 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		if (isKleisli) {
 			ModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
 			newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
+			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			URI uri = URI.createFileURI(MultiModelUtils.isFileInState(newModelTypeUriFragment));
+			try {
+				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
+			}
+			catch (PartInitException e) {
+				MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
+			}
 		}
 		else {
 			newModelTypeEndpointRef = super.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
 		}
-		//TODO MMTF[KLEISLI] open metamodel
 
 		return newModelTypeEndpointRef;
 	}

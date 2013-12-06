@@ -47,7 +47,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
  */
 public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
-	private static final String ECORE_EDITORID = "org.eclipse.emf.ecore.presentation.EcoreEditorID";
+	public static final String ECORE_EDITORID = "org.eclipse.emf.ecore.presentation.EcoreEditorID";
 
 	/** The hint about the editor to open. */
 	private final HintedDiagramLinkStyle editorFacet;

@@ -405,7 +405,7 @@ linkTypes:
 		initOCL(ocl, helper, modelObj);
 
 		try {
-			ExpressionInOCL expression = helper.createDerivedValueExpression(oclConstraint);
+			ExpressionInOCL expression = helper.createQuery(oclConstraint);
 			return ocl.evaluate(modelObj, expression);
 		}
 		catch (Exception e) {

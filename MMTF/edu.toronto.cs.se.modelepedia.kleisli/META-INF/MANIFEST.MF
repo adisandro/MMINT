@@ -15,5 +15,7 @@ Require-Bundle: edu.toronto.cs.se.mmtf,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.equinox.registry,
- org.eclipse.emf.common
+ org.eclipse.emf.common,
+ org.eclipse.ui.workbench,
+ org.eclipse.emf.common.ui
 Bundle-ActivationPolicy: lazy
