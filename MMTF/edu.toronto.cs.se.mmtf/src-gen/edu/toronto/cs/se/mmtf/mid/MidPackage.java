@@ -1196,13 +1196,31 @@ public interface MidPackage extends EPackage {
 	int MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
+
+	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
@@ -1765,6 +1783,26 @@ public interface MidPackage extends EPackage {
 	EOperation getModelEndpoint__DeleteTypeAndReference__boolean();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmtf.mid.Model, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmtf.mid.Model, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__CreateInstanceAndReference__Model_boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint#deleteInstanceAndReference(boolean) <em>Delete Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelEndpoint#deleteInstanceAndReference(boolean)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__DeleteInstanceAndReference__boolean();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2237,6 +2275,22 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteTypeAndReference__boolean();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateInstanceAndReference__Model_boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteInstanceAndReference__boolean();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.

@@ -117,7 +117,7 @@ public class MultiModelInstanceFactory {
 	 * @param newInstanceName
 	 *            The name of the new instance.
 	 */
-	private static void addBasicInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName) {
+	public static void addBasicInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName) {
 
 		if (newInstanceUri == null) {
 			newInstanceUri = EMPTY_URI;
@@ -147,7 +147,7 @@ public class MultiModelInstanceFactory {
 	 *            The new instance that is the target of the new instance
 	 *            endpoint.
 	 */
-	private static void addInstanceEndpoint(ExtendibleElementEndpoint newInstanceEndpoint, ExtendibleElement newInstance) {
+	public static void addInstanceEndpoint(ExtendibleElementEndpoint newInstanceEndpoint, ExtendibleElement newInstance) {
 
 		newInstanceEndpoint.setTarget(newInstance);
 		newInstanceEndpoint.setLowerBound(1);

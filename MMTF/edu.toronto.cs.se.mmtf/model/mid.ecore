@@ -346,7 +346,16 @@
       <eParameters name="newModelType" lowerBound="1" eType="#//Model"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="deleteTypeAndReference" lowerBound="1" eExceptions="#//MMTFException">
+    <eOperations name="deleteTypeAndReference" eExceptions="#//MMTFException">
+      <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+        eExceptions="#//MMTFException">
+      <eParameters name="newModel" lowerBound="1" eType="#//Model"/>
+      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+    </eOperations>
+    <eOperations name="deleteInstanceAndReference" eExceptions="#//MMTFException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
   </eClassifiers>
@@ -465,7 +474,7 @@
         <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
-      <eOperations name="deleteType" lowerBound="1" eExceptions="#//MMTFException"/>
+      <eOperations name="deleteType" eExceptions="#//MMTFException"/>
       <eOperations name="createInstance" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMTFException">
         <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

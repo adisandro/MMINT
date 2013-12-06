@@ -933,7 +933,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
-		op = initEOperation(getModelRel__DeleteType(), null, "deleteType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel(), this.getModelRel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);

@@ -94,4 +94,20 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 */
 	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRequired="true" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createInstanceAndReference(Model newModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException;
+
 } // ModelEndpoint

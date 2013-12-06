@@ -48,6 +48,14 @@
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/deleteTypeAndReference">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/deleteTypeAndReference/isFullDelete"/>
       </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference/newModel"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference/isBinarySrc"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference/containerModelRel"/>
+      </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/deleteInstanceAndReference">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/deleteInstanceAndReference/isFullDelete"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliBinaryModelRel"/>
   </genPackages>

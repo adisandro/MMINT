@@ -10,7 +10,7 @@
       <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="deleteType" lowerBound="1" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="deleteType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
     <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -42,7 +42,16 @@
       <eParameters name="newModelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="deleteTypeAndReference" lowerBound="1" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+    <eOperations name="deleteTypeAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="createInstanceAndReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="newModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
+      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="containerModelRel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
+    </eOperations>
+    <eOperations name="deleteInstanceAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
   </eClassifiers>

@@ -678,6 +678,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelEndpoint__CreateInstanceAndReference__Model_boolean_ModelRel() {
+		return modelEndpointEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__DeleteInstanceAndReference__boolean() {
+		return modelEndpointEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMidLevel() {
 		return midLevelEEnum;
 	}
@@ -794,6 +812,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_MODELENDPOINTREFERENCE_STRING_MODEL_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -932,7 +952,17 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
-		op = initEOperation(getModelEndpoint__DeleteTypeAndReference__boolean(), null, "deleteTypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__DeleteTypeAndReference__boolean(), null, "deleteTypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelEndpoint__CreateInstanceAndReference__Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "newModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelEndpoint__DeleteInstanceAndReference__boolean(), null, "deleteInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 

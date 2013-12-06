@@ -611,13 +611,31 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
+	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
 
 
 	/**
@@ -1095,6 +1113,26 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModelEndpoint__DeleteTypeAndReference__boolean();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmtf.mid.Model, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmtf.mid.Model, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getKleisliModelEndpoint__CreateInstanceAndReference__Model_boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteInstanceAndReference(boolean) <em>Delete Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteInstanceAndReference(boolean)
+	 * @generated
+	 */
+	EOperation getKleisliModelEndpoint__DeleteInstanceAndReference__boolean();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel <em>Binary Model Rel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1234,6 +1272,22 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteTypeAndReference__boolean();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateInstanceAndReference__Model_boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteInstanceAndReference__boolean();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl <em>Binary Model Rel</em>}' class.

@@ -92,6 +92,14 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteTypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteTypeAndReference/isFullDelete"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/newModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/isBinarySrc"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/containerModelRel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstanceAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstanceAndReference/isFullDelete"/>
+      </genOperations>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">

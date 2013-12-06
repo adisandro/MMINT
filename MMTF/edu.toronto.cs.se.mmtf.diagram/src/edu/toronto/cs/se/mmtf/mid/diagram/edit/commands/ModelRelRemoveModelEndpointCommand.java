@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 /**
@@ -59,9 +58,9 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 			);
 	}
 
-	protected void doExecuteInstancesLevel() {
+	protected void doExecuteInstancesLevel() throws MMTFException {
 
-		MultiModelInstanceFactory.removeModelEndpointAndModelEndpointReference((ModelEndpoint) getElementToDestroy(), true);
+		((ModelEndpoint) getElementToDestroy()).deleteInstanceAndReference(true);
 	}
 
 	protected void doExecuteTypesLevel() throws MMTFException {

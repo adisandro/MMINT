@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
+import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,15 +136,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
 		MultiModelInstanceFactory.addModel(newModelRel, this, newModelRelUri, origin, containerMultiModel);
-		try {
-			//TODO
-			String x = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(newModelRel, true)[0], getName());
-			MultiModelUtils.createDirectory(MultiModelUtils.prependWorkspaceToUri(x));
-		}
-		catch (Exception e) {
-			newModelRel.deleteInstance();
-			throw new MMTFException("Error creating directory for extended models", e);
-		}
 
 		return newModelRel;
 	}
@@ -156,10 +148,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public void deleteInstance() throws MMTFException {
 
-		//TODO
-		String x = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
-		MultiModelUtils.deleteDirectory(MultiModelUtils.prependWorkspaceToUri(x));
+		String kleisliDirectoryUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
 		super.deleteInstance();
+		MultiModelUtils.deleteDirectory(MultiModelUtils.prependWorkspaceToUri(kleisliDirectoryUri));
 	}
 
 	/**
@@ -185,6 +176,24 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public void openInstance() throws MMTFException {
 
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		// create directory if it doesn't exist
+		try {
+			//TODO
+			String kleisliDirectoryUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
+			MultiModelUtils.createDirectory(MultiModelUtils.prependWorkspaceToUri(kleisliDirectoryUri));
+		}
+		catch (FileAlreadyExistsException fe) {
+			// continue
+		}
+		catch (Exception e) {
+			throw new MMTFException("Error creating directory for extended models", e);
+		}
+
+		// extend models
 		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
 			ModelEndpoint modelTypeEndpoint = modelEndpoint.getMetatype();
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
@@ -195,7 +204,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			String newModelUri = KleisliUtils.getExtendedModelUri((KleisliModelEndpoint) modelEndpoint);
 			try {
 				//TODO necessary? could just write the modified root at the end
-				MultiModelUtils.copyTextFileAndReplaceText(modelEndpoint.getTargetUri(), newModelUri, modelEndpoint.getTarget().getMetatypeUri(), modelTypeEndpoint.getUri());
+				MultiModelUtils.copyTextFileAndReplaceText(MultiModelUtils.prependWorkspaceToUri(modelEndpoint.getTargetUri()), MultiModelUtils.prependWorkspaceToUri(newModelUri), modelEndpoint.getTarget().getMetatypeUri(), modelTypeEndpoint.getUri());
 				EObject rootModelObj = MultiModelUtils.getModelFile(newModelUri, true);
 				String classLiteral;
 				ExtendibleElementConstraint constraint;

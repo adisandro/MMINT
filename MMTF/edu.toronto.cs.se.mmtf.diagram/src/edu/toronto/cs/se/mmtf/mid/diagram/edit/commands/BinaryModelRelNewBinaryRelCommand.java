@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -111,20 +110,10 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		List<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
-		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			modelTypeEndpointRef.getObject(),
-			getSource(),
-			false,
-			newModelRel
-		);
+		modelTypeEndpointRef.getObject().createInstanceAndReference(getSource(), false, newModelRel);
 		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getTarget());
 		modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
-		MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			modelTypeEndpointRef.getObject(),
-			getTarget(),
-			false,
-			newModelRel
-		);
+		modelTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, newModelRel);
 
 		return newModelRel;
 	}

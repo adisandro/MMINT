@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 
 /**
@@ -80,12 +79,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	protected ModelEndpoint doExecuteInstancesLevel() throws MMTFException {
 
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
-		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			modelTypeEndpointRef.getObject(),
-			(Model) getTarget(),
-			false,
-			getSource()
-		);
+		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstanceAndReference((Model) getTarget(), false, getSource());
 
 		return newModelEndpointRef.getObject();
 	}

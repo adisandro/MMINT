@@ -17,7 +17,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
@@ -82,7 +81,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		if (extendMetamodel) {
 			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
 			String extendedMetamodelUri = KleisliUtils.getExtendedModelTypeUri(newModelType, (KleisliModelRel) containerModelRelType);
-//			rootModelTypeObj.setNsURI(extendedMetamodelUri.substring(0, extendedMetamodelUri.lastIndexOf(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR)));
+//TODO			rootModelTypeObj.setNsURI(extendedMetamodelUri.substring(0, extendedMetamodelUri.lastIndexOf(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR)));
 			try {
 				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
 			}
@@ -120,7 +119,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(newModelType, (KleisliModelRel) containerModelRelType);
 			if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
 				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
-//				rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(newModelType, (KleisliModelRel) containerModelRelType));
+//TODO				rootModelTypeObj.setNsURI(KleisliUtils.getExtendedModelTypeUri(newModelType, (KleisliModelRel) containerModelRelType));
 				try {
 					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);
 				}
@@ -142,6 +141,35 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 
 		MultiModelUtils.deleteFileInState(KleisliUtils.getExtendedModelTypeUriFragment(getTarget(), (KleisliModelRel) eContainer()));
 		super.deleteTypeAndReference(isFullDelete);
+	}
+
+	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public ModelEndpointReference createInstanceAndReference(Model newModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelEndpoint newModelEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
+		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, newModel, isBinarySrc, containerModelRel);
+
+		return newModelEndpointRef;
+	}
+
+	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException {
+
+		super.deleteInstanceAndReference(isFullDelete);
 	}
 
 } //KleisliModelEndpointImpl
