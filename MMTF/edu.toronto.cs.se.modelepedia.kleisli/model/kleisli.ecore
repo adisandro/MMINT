@@ -54,6 +54,10 @@
     <eOperations name="deleteInstanceAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
+    <eOperations name="replaceInstanceAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="oldModelEndpoint" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint"/>
+      <eParameters name="newModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliBinaryModelRel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/BinaryModelRel #//KleisliModelRel"/>
 </ecore:EPackage>

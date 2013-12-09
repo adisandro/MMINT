@@ -128,11 +128,11 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		MMTF.createTypeHierarchy(multiModel);
 
 		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", null);
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(newModelRelType, getSource());
+		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
 		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, getSource(), false, newModelRelType);
 		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", null);
-		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(newModelRelType, getTarget());
+		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, getTarget());
 		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
 		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, getTarget(), false, newModelRelType);
 

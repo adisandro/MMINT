@@ -255,9 +255,15 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 							modelObjReplacements.put(modelObjReplacement, modelObj);
 						}
 					}
-					for (Map.Entry<EObject, EObject> modelObjReplacementEntry : modelObjReplacements.entrySet()) {
-						EcoreUtil.replace(modelObjReplacementEntry.getValue(), modelObjReplacementEntry.getKey());
+				}
+				for (Map.Entry<EObject, EObject> modelObjReplacementEntry : modelObjReplacements.entrySet()) {
+					EObject modelObjReplaced = modelObjReplacementEntry.getValue(), modelObjReplacement = modelObjReplacementEntry.getKey();
+					for (EStructuralFeature replacedFeature : modelObjReplaced.eClass().getEAllStructuralFeatures()) {
+						EStructuralFeature replacementFeature = modelObjReplacement.eClass().getEStructuralFeature(replacedFeature.getName());
+						modelObjReplacement.eSet(replacementFeature, modelObjReplaced.eGet(replacedFeature));
 					}
+					EcoreUtil.replace(modelObjReplaced, modelObjReplacement);
+					//TODO MMTF[KLEISLI] check how it works with containments
 				}
 				// second pass: EAttributes
 				String[] classLiterals;

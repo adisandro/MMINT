@@ -68,4 +68,12 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 */
 	void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelEndpointRequired="true" newModelRequired="true"
+	 * @generated
+	 */
+	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException;
+
 } // KleisliModelEndpoint

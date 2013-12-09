@@ -162,6 +162,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL:
+				try {
+					replaceInstanceAndReference((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -279,6 +287,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
+		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
 		// modify the "thing" and the corresponding reference
 		MultiModelLightTypeFactory.addLightType(oldModelTypeEndpoint, this, containerModelRelType, containerModelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
@@ -419,6 +428,29 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			modelRel.getModelEndpoints().remove(this);
 			modelRel.getModelEndpointRefs().remove(modelEndpointRef);
 		}
+	}
+
+	/**
+	 * Replaces an old model endpoint and the reference to it with new ones in
+	 * an Instance MID.
+	 * 
+	 * @param oldModelEndpoint
+	 *            The old model endpoint to be replaced.
+	 * @param newModel
+	 *            The new model that is the target of the new model endpoint.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the INSTANCES level.
+	 * @generated NOT
+	 */
+	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		oldModelEndpoint.deleteInstanceAndReference(false);
+		MultiModelInstanceFactory.addBasicInstance(oldModelEndpoint, this, null, null);
+		oldModelEndpoint.setTarget(newModel);
 	}
 
 } //ModelEndpointImpl

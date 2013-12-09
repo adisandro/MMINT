@@ -756,7 +756,7 @@ nextOperatorType:
 		return type.getUri().equals(getRootTypeUri(type));
 	}
 
-	public static ModelEndpoint getOverriddenModelEndpoint(ModelRel modelRelType, Model newModelType) {
+	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model newModelType) {
 
 		//TODO MMTF[MODELENDPOINT] very dumb first approach to the override problem
 		while (!isRootType(modelRelType)) {

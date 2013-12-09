@@ -56,6 +56,10 @@
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/deleteInstanceAndReference">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/deleteInstanceAndReference/isFullDelete"/>
       </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/replaceInstanceAndReference">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceInstanceAndReference/oldModelEndpoint"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceInstanceAndReference/newModel"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliBinaryModelRel"/>
   </genPackages>

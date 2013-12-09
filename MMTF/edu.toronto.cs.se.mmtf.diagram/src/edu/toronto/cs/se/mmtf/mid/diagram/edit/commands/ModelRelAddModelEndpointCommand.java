@@ -87,7 +87,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	protected ModelEndpoint doExecuteTypesLevel() throws MMTFException {
 
 		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", null);
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(getSource(), (Model) getTarget());
+		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(getSource(), (Model) getTarget());
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), getSource().getModelEndpointRefs());
 		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, (Model) getTarget(), false, getSource());
 		// no need to init type hierarchy, no need for undo/redo

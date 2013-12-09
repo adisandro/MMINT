@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -12,8 +12,9 @@
 package edu.toronto.cs.se.mmtf.mid.library;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
@@ -278,7 +280,9 @@ public class MultiModelTypeIntrospection {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(root);
-		resource.save(Collections.EMPTY_MAP);
+		Map<String, Object> options = new HashMap<String, Object>();
+		options.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
+		resource.save(options);
 	}
 
 	public static EObject getPointer(Resource resource, URI emfUri) throws Exception {

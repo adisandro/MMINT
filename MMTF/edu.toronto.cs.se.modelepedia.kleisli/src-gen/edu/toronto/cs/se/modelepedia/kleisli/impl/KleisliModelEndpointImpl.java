@@ -82,7 +82,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		boolean isKleisli = (MultiModelUtils.isFileInState(newModelTypeUriFragment) != null);
 		boolean extendMetamodel = false;
 		if (!isKleisli) {
-			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model relationship type", "Extend " + newModelType.getName() + " metamodel?");
+			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + newModelType.getName() + " metamodel?");
 			isKleisli = extendMetamodel;
 		}
 		if (extendMetamodel) {
@@ -127,6 +127,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
+		// keep choice of kleisli model type endpoint
 		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
 			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(newModelType, (KleisliModelRel) containerModelRelType);
 			if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
@@ -180,7 +181,23 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	@Override
 	public void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException {
 
+		//TODO delete extended model?
 		super.deleteInstanceAndReference(isFullDelete);
+	}
+
+	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException {
+
+		//TODO if the previous wasn't kleisli and the current is, or the opposite, we can 1) throw error 2) handle the case with more difficulty
+		//TODO previous kleisli, current not: full remove, new super.createInstance
+		//TODO previous not, current kleisli: full remove, new createInstance
+		//TODO similar reasoning for types
+		super.replaceInstanceAndReference(oldModelEndpoint, newModel);
 	}
 
 } //KleisliModelEndpointImpl

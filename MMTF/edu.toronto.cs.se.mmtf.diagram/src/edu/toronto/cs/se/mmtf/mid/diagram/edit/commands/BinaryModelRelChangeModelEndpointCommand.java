@@ -23,7 +23,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 
@@ -109,13 +108,8 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
 			modelRel.getModelEndpoints().get(0) :
 			modelRel.getModelEndpoints().get(1);
-		MultiModelInstanceFactory.removeModelEndpointAndModelEndpointReference(oldModelEndpoint, false);
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
-		MultiModelInstanceFactory.replaceModelEndpointAndModelEndpointReference(
-			oldModelEndpoint,
-			modelTypeEndpointRef.getObject(),
-			model
-		);
+		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, model);
 	}
 
 	protected void doExecuteTypesLevel(BinaryModelRel modelRelType, Model modelType, boolean isBinarySrc) throws MMTFException {
@@ -123,8 +117,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		ModelEndpoint oldModelTypeEndpoint = (isBinarySrc) ?
 			modelRelType.getModelEndpoints().get(0) :
 			modelRelType.getModelEndpoints().get(1);
-		oldModelTypeEndpoint.deleteTypeAndReference(false);
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelEndpoint(modelRelType, modelType);
+		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
 		modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, modelTypeEndpointRef, oldModelTypeEndpoint.getName(), modelType, modelRelType);
 		// no need to init type hierarchy, no need for undo/redo

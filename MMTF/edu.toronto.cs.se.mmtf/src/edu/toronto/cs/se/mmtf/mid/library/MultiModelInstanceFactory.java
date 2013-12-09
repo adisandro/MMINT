@@ -414,7 +414,7 @@ public class MultiModelInstanceFactory {
 	public static ModelEndpointReference createModelEndpointReference(ModelEndpoint newModelEndpoint, boolean isBinarySrc, ModelRel modelRel) {
 
 		ModelEndpointReference newModelEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
-		boolean isContainer = modelRel.eContainer() == null;
+		boolean isContainer = (modelRel.eContainer() == null);
 		addInstanceReference(newModelEndpointRef, newModelEndpoint, isContainer);
 
 		if (isBinarySrc) {
