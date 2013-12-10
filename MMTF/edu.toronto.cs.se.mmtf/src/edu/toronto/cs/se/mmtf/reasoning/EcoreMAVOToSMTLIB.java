@@ -74,7 +74,7 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 
 	public void cleanup() {
 
-		MultiModelUtils.deleteFile(smtListener.getSMTEncodingUri());
+		MultiModelUtils.deleteFile(smtListener.getSMTEncodingUri(), false);
 	}
 
 }

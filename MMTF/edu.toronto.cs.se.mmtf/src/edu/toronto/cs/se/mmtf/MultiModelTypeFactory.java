@@ -616,7 +616,7 @@ public class MultiModelTypeFactory {
 		multiModel.getModels().remove(modelType);
 		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
 		if (metamodelUri != null) {
-			MultiModelUtils.deleteFile(metamodelUri);
+			MultiModelUtils.deleteFile(metamodelUri, false);
 		}
 
 		// remove model element types

@@ -156,9 +156,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public void deleteInstance() throws MMTFException {
 
-		String kleisliDirectoryUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
+		String kModelRelUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
 		super.deleteInstance();
-		MultiModelUtils.deleteDirectory(MultiModelUtils.prependWorkspaceToUri(kleisliDirectoryUri));
+		MultiModelUtils.deleteDirectory(kModelRelUri, true);
 	}
 
 	/**
@@ -198,10 +198,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		// possibly create directory here because at instance creation time the model relationship name is unknown
 		try {
-			String kleisliDirectoryUri = MultiModelUtils.prependWorkspaceToUri(
-				MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName())
-			);
-			MultiModelUtils.createDirectory(kleisliDirectoryUri);
+			String kModelRelUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
+			MultiModelUtils.createDirectory(kModelRelUri, true);
 		}
 		catch (FileAlreadyExistsException fe) {
 			// do nothing
@@ -299,8 +297,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 		}
 
-		//TODO MMTF[KLEISLI] eattributes pass should look also for previous replacements
-		//TODO MMTF[KLEISLI] derive ocl fails
 		//TODO MMTF[KLEISLI] init outline starts before this
 		//TODO MMTF[KLEISLI] persistence still misses model elements (KleisliModelElement?)
 		//TODO MMTF[KLEISLI] KleisliModelElement and KleisliModel could be used to extend getRoot and getPointer, in order to use them here

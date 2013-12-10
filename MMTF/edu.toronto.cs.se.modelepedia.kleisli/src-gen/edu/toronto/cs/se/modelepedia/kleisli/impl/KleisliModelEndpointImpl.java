@@ -151,8 +151,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	@Override
 	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
 
-		MultiModelUtils.deleteFileInState(KleisliUtils.getExtendedModelTypeUriFragment(getTarget(), (KleisliModelRel) eContainer()));
+		String kModelTypeUri = KleisliUtils.getExtendedModelTypeUriFragment(getTarget(), (KleisliModelRel) eContainer());
 		super.deleteTypeAndReference(isFullDelete);
+		MultiModelUtils.deleteFileInState(kModelTypeUri);
 	}
 
 	/**
@@ -179,10 +180,13 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException {
+	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException {
 
-		//TODO delete extended model?
-		super.deleteInstanceAndReference(isFullDelete);
+		//TODO if the previous wasn't kleisli and the current is, or the opposite, we can 1) throw error 2) handle the case with more difficulty
+		//TODO previous kleisli, current not: full remove, new super.createInstance
+		//TODO previous not, current kleisli: full remove, new createInstance
+		//TODO similar reasoning for types
+		super.replaceInstanceAndReference(oldModelEndpoint, newModel);
 	}
 
 	/**
@@ -191,13 +195,11 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException {
+	public void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException {
 
-		//TODO if the previous wasn't kleisli and the current is, or the opposite, we can 1) throw error 2) handle the case with more difficulty
-		//TODO previous kleisli, current not: full remove, new super.createInstance
-		//TODO previous not, current kleisli: full remove, new createInstance
-		//TODO similar reasoning for types
-		super.replaceInstanceAndReference(oldModelEndpoint, newModel);
+		String kModelUri = KleisliUtils.getExtendedModelUri(this);
+		super.deleteInstanceAndReference(isFullDelete);
+		MultiModelUtils.deleteFile(kModelUri, true);
 	}
 
 } //KleisliModelEndpointImpl

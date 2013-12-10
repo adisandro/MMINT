@@ -85,14 +85,6 @@ public class MultiModelUtils {
 		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
 	}
 
-	public static String isFileOrDirectoryInState(String relativeFileUri) {
-
-		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
-		Path filePath = Paths.get(fileUri);
-
-		return (Files.exists(filePath)) ? fileUri : null;
-	}
-
 	public static void createTextFile(String fileUri, String text) throws Exception {
 
 		Path filePath = Paths.get(fileUri);
@@ -105,6 +97,38 @@ public class MultiModelUtils {
 
 		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
 		createTextFile(fileUri, text);
+	}
+
+	public static void copyTextFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
+
+		Path oldFilePath = Paths.get(oldFileUri);
+		Path newFilePath = Paths.get(newFileUri);
+		try (BufferedReader oldBuffer = Files.newBufferedReader(oldFilePath, Charset.forName("UTF-8"))) {
+			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"))) {
+				String oldLine;
+				while ((oldLine = oldBuffer.readLine()) != null) {
+					newBuffer.write(oldLine.replaceAll(oldText, newText));
+					newBuffer.newLine();
+				}
+			}
+		}
+	}
+
+	public static String isFileOrDirectory(String uri, boolean isWorkspaceRelative) {
+
+		if (isWorkspaceRelative) {
+			uri = prependWorkspaceToUri(uri);
+		}
+		Path filePath = Paths.get(uri);
+
+		return (Files.exists(filePath)) ? uri : null;
+	}
+
+	public static String isFileOrDirectoryInState(String relativeUri) {
+
+		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeUri;
+
+		return isFileOrDirectory(fileUri, false);
 	}
 
 	/**
@@ -150,23 +174,11 @@ public class MultiModelUtils {
 		return getModelFile(fileUri, false);
 	}
 
-	public static void copyTextFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
+	public static void deleteFile(String fileUri, boolean isWorkspaceRelative) {
 
-		Path oldFilePath = Paths.get(oldFileUri);
-		Path newFilePath = Paths.get(newFileUri);
-		try (BufferedReader oldBuffer = Files.newBufferedReader(oldFilePath, Charset.forName("UTF-8"))) {
-			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"))) {
-				String oldLine;
-				while ((oldLine = oldBuffer.readLine()) != null) {
-					newBuffer.write(oldLine.replaceAll(oldText, newText));
-					newBuffer.newLine();
-				}
-			}
+		if (isWorkspaceRelative) {
+			fileUri = prependWorkspaceToUri(fileUri);
 		}
-	}
-
-	public static void deleteFile(String fileUri) {
-
 		Path filePath = Paths.get(fileUri);
 		try {
 			Files.deleteIfExists(filePath);
@@ -179,11 +191,14 @@ public class MultiModelUtils {
 	public static void deleteFileInState(String relativeFileUri) {
 
 		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
-		deleteFile(fileUri);
+		deleteFile(fileUri, false);
 	}
 
-	public static void createDirectory(String directoryUri) throws Exception {
+	public static void createDirectory(String directoryUri, boolean isWorkspaceRelative) throws Exception {
 
+		if (isWorkspaceRelative) {
+			directoryUri = prependWorkspaceToUri(directoryUri);
+		}
 		Path directoryPath = Paths.get(directoryUri);
 		Files.createDirectory(directoryPath);
 	}
@@ -191,11 +206,14 @@ public class MultiModelUtils {
 	public static void createDirectoryInState(String relativeDirectoryUri) throws Exception {
 
 		String directoryUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeDirectoryUri;
-		createDirectory(directoryUri);
+		createDirectory(directoryUri, false);
 	}
 
-	public static void deleteDirectory(String directoryUri) {
+	public static void deleteDirectory(String directoryUri, boolean isWorkspaceRelative) {
 
+		if (isWorkspaceRelative) {
+			prependWorkspaceToUri(directoryUri);
+		}
 		Path directoryPath = Paths.get(directoryUri);
 		try {
 			Files.walkFileTree(directoryPath, new SimpleFileVisitor<Path>() {
@@ -224,7 +242,7 @@ public class MultiModelUtils {
 	public static void deleteDirectoryInState(String relativeDirectoryUri) {
 
 		String directoryUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeDirectoryUri;
-		deleteDirectory(directoryUri);
+		deleteDirectory(directoryUri, false);
 	}
 
 }
