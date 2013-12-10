@@ -570,14 +570,14 @@ public class MMTF implements MMTFConstants {
 			try {
 				newModelType = ((ModelRel) modelType).createSubtype(
 					dynamicModelType.getName(),
-					dynamicModelType.eClass() instanceof BinaryModelRel,
+					(dynamicModelType.eClass() instanceof BinaryModelRel),
 					dynamicModelType.getConstraint().getLanguage().getLiteral(),
 					dynamicModelType.getConstraint().getImplementation()
 				);
 				MultiModelLightTypeFactory.copyLightModelRelType((ModelRel) dynamicModelType, (ModelRel) newModelType);
 			}
 			catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model rel type " + dynamicModelType.getName() + " can't be recreated", e);
+				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model relationship type " + dynamicModelType.getName() + " can't be recreated", e);
 			}
 		}
 		else {

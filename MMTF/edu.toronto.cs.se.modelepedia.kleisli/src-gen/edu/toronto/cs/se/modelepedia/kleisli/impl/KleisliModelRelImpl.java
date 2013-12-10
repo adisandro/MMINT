@@ -103,12 +103,14 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
 		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
-		try {
-			MultiModelUtils.createDirectoryInState(newModelRelTypeName);
-		}
-		catch (Exception e) {
-			newModelRelType.deleteType();
-			throw new MMTFException("Error creating directory for extended metamodels", e);
+		if (MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeName) == null) {
+			try {
+				MultiModelUtils.createDirectoryInState(newModelRelTypeName);
+			}
+			catch (Exception e) {
+				newModelRelType.deleteType();
+				throw new MMTFException("Error creating directory for extended metamodels", e);
+			}
 		}
 
 		return newModelRelType;
@@ -172,7 +174,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
 			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(modelTypeEndpoint.getTarget(), (KleisliModelRel) this);
-			URI uri = URI.createFileURI(MultiModelUtils.isFileInState(newModelTypeUriFragment));
+			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(newModelTypeUriFragment));
 			try {
 				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
 			}
@@ -194,14 +196,15 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		super.openInstance();
 
-		// create directory if it doesn't exist
+		// possibly create directory here because at instance creation time the model relationship name is unknown
 		try {
-			//TODO
-			String kleisliDirectoryUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
-			MultiModelUtils.createDirectory(MultiModelUtils.prependWorkspaceToUri(kleisliDirectoryUri));
+			String kleisliDirectoryUri = MultiModelUtils.prependWorkspaceToUri(
+				MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName())
+			);
+			MultiModelUtils.createDirectory(kleisliDirectoryUri);
 		}
 		catch (FileAlreadyExistsException fe) {
-			// continue
+			// do nothing
 		}
 		catch (Exception e) {
 			throw new MMTFException("Error creating directory for extended models", e);
@@ -240,18 +243,18 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					EClass h = (EClass) modelTypePackage.getEClassifier(classLiteral);
+					EClass modelElemTypeClass = (EClass) modelTypePackage.getEClassifier(classLiteral);
 					TreeIterator<EObject> modelObjIter = rootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
-						for (EClass hh : h.getESuperTypes()) {
-							if (!hh.getName().equals(modelObj.eClass().getName())) {
+						for (EClass modelElemTypeClassSuper : modelElemTypeClass.getESuperTypes()) {
+							if (!modelElemTypeClassSuper.getName().equals(modelObj.eClass().getName())) {
 								continue;
 							}
 							if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, constraint.getImplementation()) != MAVOTruthValue.TRUE) {
 								continue;
 							}
-							EObject modelObjReplacement = modelTypeFactory.create(h);
+							EObject modelObjReplacement = modelTypeFactory.create(modelElemTypeClass);
 							modelObjReplacements.put(modelObjReplacement, modelObj);
 						}
 					}
@@ -263,7 +266,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 						modelObjReplacement.eSet(replacementFeature, modelObjReplaced.eGet(replacedFeature));
 					}
 					EcoreUtil.replace(modelObjReplaced, modelObjReplacement);
-					//TODO MMTF[KLEISLI] check how it works with containments
 				}
 				// second pass: EAttributes
 				String[] classLiterals;
@@ -284,8 +286,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 						if (!modelObj.eClass().getName().equals(classLiterals[0]) && modelObjReplacements.get(modelObj) == null) {
 							continue;
 						}
-						Object modelObjAttrDerived = MultiModelConstraintChecker.deriveOCLConstraint(modelObj, constraint.getImplementation());
-						modelObj.eSet((EStructuralFeature) MultiModelTypeIntrospection.getPointer(modelElemTypeRef.getObject()), modelObjAttrDerived);
+						Object derivedModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(modelObj, constraint.getImplementation());
+						EStructuralFeature derivedFeature = modelObj.eClass().getEStructuralFeature(classLiterals[1]);
+						modelObj.eSet(derivedFeature, derivedModelObjAttr);
 					}
 				}
 				// save the derived model
@@ -299,6 +302,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		//TODO MMTF[KLEISLI] eattributes pass should look also for previous replacements
 		//TODO MMTF[KLEISLI] derive ocl fails
 		//TODO MMTF[KLEISLI] init outline starts before this
+		//TODO MMTF[KLEISLI] persistence still misses model elements (KleisliModelElement?)
+		//TODO MMTF[KLEISLI] KleisliModelElement and KleisliModel could be used to extend getRoot and getPointer, in order to use them here
 	}
 
 	/**
@@ -329,7 +334,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			else {
 				do {
 					resources.add(MultiModelTypeIntrospection.getRoot(modelType).eResource());
-					modelType = modelType.getSupertype(); // types only
+					modelType = modelType.getSupertype();
 				}
 				while (modelType != null && !modelType.isAbstract());
 			}

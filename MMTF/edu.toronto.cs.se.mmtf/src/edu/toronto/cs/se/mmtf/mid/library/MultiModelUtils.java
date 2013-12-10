@@ -85,7 +85,7 @@ public class MultiModelUtils {
 		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
 	}
 
-	public static String isFileInState(String relativeFileUri) {
+	public static String isFileOrDirectoryInState(String relativeFileUri) {
 
 		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
 		Path filePath = Paths.get(fileUri);

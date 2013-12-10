@@ -79,7 +79,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(newModelType, (KleisliModelRel) containerModelRelType);
-		boolean isKleisli = (MultiModelUtils.isFileInState(newModelTypeUriFragment) != null);
+		boolean isKleisli = (MultiModelUtils.isFileOrDirectoryInState(newModelTypeUriFragment) != null);
 		boolean extendMetamodel = false;
 		if (!isKleisli) {
 			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + newModelType.getName() + " metamodel?");
@@ -100,7 +100,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			ModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
 			newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			URI uri = URI.createFileURI(MultiModelUtils.isFileInState(newModelTypeUriFragment));
+			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(newModelTypeUriFragment));
 			try {
 				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
 			}
@@ -130,7 +130,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		// keep choice of kleisli model type endpoint
 		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
 			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(newModelType, (KleisliModelRel) containerModelRelType);
-			if (MultiModelUtils.isFileInState(newModelTypeUriFragment) == null) {
+			if (MultiModelUtils.isFileOrDirectoryInState(newModelTypeUriFragment) == null) {
 				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
 				try {
 					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeUriFragment);

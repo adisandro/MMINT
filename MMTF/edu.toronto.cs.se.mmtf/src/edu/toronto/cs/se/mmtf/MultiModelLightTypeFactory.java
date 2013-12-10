@@ -662,7 +662,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 				modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(oldModelTypeEndpoint.getSupertype().getUri(), multiModel);
 				modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getSupertype().getUri(), newModelRelType.getModelEndpointRefs());
 			}
-			createLightModelTypeEndpointAndModelTypeEndpointReference(modelTypeEndpoint, modelTypeEndpointRef, oldModelTypeEndpoint.getName(), newModelType, false, newModelRelType);
+			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, oldModelTypeEndpoint.getName(), newModelType, false, newModelRelType);
 		}
 		// model element types
 		Iterator<ModelEndpointReference> oldModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(oldModelRelType.getModelEndpointRefs());
