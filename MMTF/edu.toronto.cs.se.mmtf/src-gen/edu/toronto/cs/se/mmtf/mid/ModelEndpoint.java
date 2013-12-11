@@ -72,6 +72,29 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Creates and adds a subtype of this model type endpoint and a reference to
+	 * it to the Type MID.
+	 * 
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param isBinarySrc
+	 *            True if the model type endpoint is the source in the binary
+	 *            model relationship type container, false otherwise.
+	 * @param containerModelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @return The created reference to the model type endpoint.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the INSTANCES level, or if the
+	 *             uri of the new model type endpoint is already registered in
+	 *             the Type MID.
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
@@ -80,6 +103,27 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Replaces an old subtype of this model type endpoint and a reference to it
+	 * with new ones in the Type MID.
+	 * 
+	 * @param oldModelTypeEndpoint
+	 *            The old model type endpoint to be replaced.
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param newModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param modelRelType
+	 *            The model relationship type that will contain the new model
+	 *            type endpoint.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the INSTANCES level, or if the
+	 *             uri of the new model type endpoint is already registered in
+	 *             the Type MID.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
@@ -88,6 +132,14 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Deletes this model type endpoint and all references to it from the Type
+	 * MID.
+	 * 
+	 * @param isFullDelete
+	 *            True if this model type endpoint is going to be fully deleted,
+	 *            false if it is going to be replaced later.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the INSTANCES level.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
@@ -96,6 +148,20 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Creates and adds a model endpoint and a reference to it to an Instance
+	 * MID.
+	 * 
+	 * @param newModel
+	 *            The new model that is the target of the new model endpoint.
+	 * @param isBinarySrc
+	 *            True if the model endpoint is the source in the binary model
+	 *            relationship container, false otherwise.
+	 * @param modelRel
+	 *            The model relationship that will contain the new model
+	 *            endpoint.
+	 * @return The created reference to the model endpoint.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the INSTANCES level.
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRequired="true" isBinarySrcRequired="true" containerModelRelRequired="true"
 	 * @generated
@@ -104,6 +170,14 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Deletes this model endpoint and the reference to it from the Instance MID
+	 * that contains them.
+	 * 
+	 * @param isFullDelete
+	 *            True if this model endpoint is going to be fully deleted,
+	 *            false if it is going to be replaced later.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the TYPES level.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
@@ -112,6 +186,17 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Replaces an old model endpoint and the reference to it with new ones in
+	 * an Instance MID.
+	 * 
+	 * @param oldModelEndpoint
+	 *            The old model endpoint to be replaced.
+	 * @param newModel
+	 *            The new model that is the target of the new model endpoint.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the INSTANCES level, or if a
+	 *             user-defined model endpoint is being replaced with a native
+	 *             one.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelEndpointRequired="true" newModelRequired="true"
 	 * @generated

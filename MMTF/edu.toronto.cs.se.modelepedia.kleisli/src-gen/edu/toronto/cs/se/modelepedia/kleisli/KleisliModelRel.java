@@ -42,6 +42,7 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -50,6 +51,7 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinaryRequired="true" originRequired="true"
 	 * @generated
@@ -58,6 +60,7 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -66,6 +69,7 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -74,6 +78,7 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -82,6 +87,7 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -90,6 +96,7 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated

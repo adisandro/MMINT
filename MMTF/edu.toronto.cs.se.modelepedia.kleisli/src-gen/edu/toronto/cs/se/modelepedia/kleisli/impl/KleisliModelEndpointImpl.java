@@ -220,8 +220,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -270,8 +268,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -297,8 +293,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -309,8 +303,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -328,12 +320,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
-	 * @throws MMTFException
-	 *             If a native model endpoint is being replaced with a Kleisli
-	 *             one.
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -348,8 +334,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override

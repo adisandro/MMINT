@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleElement {
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
@@ -42,6 +43,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
@@ -50,6 +52,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
@@ -58,6 +61,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRequired="true" isBinarySrcRequired="true" containerModelRelRequired="true"
 	 * @generated
@@ -66,6 +70,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
@@ -74,6 +79,11 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
+	 * 
+	 * @throws MMTFException
+	 *             If a native model endpoint is being replaced with a Kleisli
+	 *             one. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelEndpointRequired="true" newModelRequired="true"
 	 * @generated

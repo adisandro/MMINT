@@ -270,8 +270,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -282,8 +280,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -311,8 +307,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -323,8 +317,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -345,8 +337,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -468,8 +458,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -505,8 +493,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override

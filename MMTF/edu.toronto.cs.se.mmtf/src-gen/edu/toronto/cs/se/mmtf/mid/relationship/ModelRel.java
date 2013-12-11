@@ -132,6 +132,27 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Creates and adds a subtype of this model relationship type to the Type
+	 * MID.
+	 * 
+	 * @param newModelRelTypeName
+	 *            The name of the new model relationship type.
+	 * @param isBinary
+	 *            True if the new model relationship type is binary, false
+	 *            otherwise.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the
+	 *            new model relationship type, null if no constraint is
+	 *            associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated
+	 *            with the new model relationship type, null if no constraint is
+	 *            associated.
+	 * @return The created model relationship type.
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level, or if
+	 *             the uri of the new model relationship type is already
+	 *             registered in the Type MID.
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRelTypeNameRequired="true" isBinaryRequired="true"
 	 * @generated
@@ -140,6 +161,10 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Deletes this model relationship type from the Type MID.
+	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -148,6 +173,26 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Creates and possibly adds a model relationship instance of this type to
+	 * an Instance MID.
+	 * 
+	 * @param newModelRelUri
+	 *            The uri of the new model relationship, null if the new model
+	 *            relationship is not in a separate file; e.g. a standalone
+	 *            model relationship is in its own files, a plain model
+	 *            relationship is not.
+	 * @param isBinary
+	 *            True if the new model relationship is binary, false otherwise.
+	 * @param origin
+	 *            The origin of the new model relationship.
+	 * @param containerMultiModel
+	 *            An Instance MID, null if the model relationship isn't going to
+	 *            be added to it.
+	 * @return The created model relationship.
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level, or if
+	 *             the uri of the new model relationship is already registered
+	 *             in the Instance MID.
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinaryRequired="true" originRequired="true"
 	 * @generated
@@ -156,6 +201,10 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Deletes this model relationship from the Instance MID that contains it.
+	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the TYPES level.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -164,6 +213,10 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Opens this editor type.
+	 * 
+	 * @throws MMTFException
+	 *             If this editor is at the INSTANCES level.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -172,6 +225,10 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Opens this editor instance.
+	 * 
+	 * @throws MMTFException
+	 *             If this editor is at the TYPES level.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -180,6 +237,11 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Gets the model type resources to be used in the Relationship diagram
+	 * outline for this model relationship type.
+	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the INSTANCES level.
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -188,6 +250,11 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Gets the model resources to be used in the Relationship diagram outline
+	 * for this model relationship.
+	 * 
+	 * @throws MMTFException
+	 *             If this model relationship is at the TYPES level.
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
