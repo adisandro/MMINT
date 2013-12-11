@@ -414,6 +414,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				// second pass: EAttributes
 				String[] classLiterals;
 				for (ModelElementReference modelElemTypeRef : modelTypeEndpointRef.getModelElemRefs()) {
+					Map<EObject, EObject> modelObjCopies = new HashMap<EObject, EObject>();
 					classLiteral = modelElemTypeRef.getObject().getClassLiteral();
 					constraint = modelElemTypeRef.getObject().getConstraint();
 					if (
@@ -430,9 +431,27 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 						if (!modelObj.eClass().getName().equals(classLiterals[0]) && modelObjReplacements.get(modelObj) == null) {
 							continue;
 						}
-						Object derivedModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(modelObj, constraint.getImplementation());
-						EStructuralFeature derivedFeature = modelObj.eClass().getEStructuralFeature(classLiterals[1]);
-						modelObj.eSet(derivedFeature, derivedModelObjAttr);
+						if (modelObjReplacements.get(modelObj) == null) {
+							// need to make a copy from extended factory for the ocl derivation to work
+							EObject modelObjCopy = modelTypeExtendedFactory.create((EClass) modelTypeExtendedPackage.getEClassifier(classLiterals[0]));
+							modelObjCopies.put(modelObjCopy, modelObj);
+						}
+						else {
+							modelObjCopies.put(modelObj, null);
+						}
+					}
+					for (Map.Entry<EObject, EObject> modelObjCopyEntry : modelObjCopies.entrySet()) {
+						EObject modelObjCopied = modelObjCopyEntry.getValue(), modelObjCopy = modelObjCopyEntry.getKey();
+						if (modelObjCopied != null) {
+							for (EStructuralFeature copiedFeature : modelObjCopied.eClass().getEAllStructuralFeatures()) {
+								EStructuralFeature copyFeature = modelObjCopy.eClass().getEStructuralFeature(copiedFeature.getName());
+								modelObjCopy.eSet(copyFeature, modelObjCopied.eGet(copiedFeature));
+							}
+							EcoreUtil.replace(modelObjCopied, modelObjCopy);
+						}
+						Object derivedModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(modelObjCopy, constraint.getImplementation());
+						EStructuralFeature derivedFeature = modelObjCopy.eClass().getEStructuralFeature(classLiterals[1]);
+						modelObjCopy.eSet(derivedFeature, derivedModelObjAttr);
 					}
 				}
 				// save the derived model
@@ -443,6 +462,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 		}
 
+		//TODO MMTF[KLEISLI] drop doesn't work, it should use extendedUri
 		//TODO MMTF[KLEISLI] persistence still misses model elements (KleisliModelElement?)
 		//TODO MMTF[KLEISLI] KleisliModelElement and KleisliModel could be used to extend getRoot and getPointer, in order to use them here
 	}
