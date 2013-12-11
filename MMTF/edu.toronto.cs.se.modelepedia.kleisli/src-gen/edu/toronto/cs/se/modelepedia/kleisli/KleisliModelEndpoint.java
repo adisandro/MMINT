@@ -22,12 +22,16 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  * A representation of the model object '<em><b>Model Endpoint</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Kleisli version. {@inheritDoc}
+ * <!-- end-model-doc -->
+ *
  *
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpoint()
  * @model
  * @generated
  */
-public interface KleisliModelEndpoint extends ModelEndpoint {
+public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

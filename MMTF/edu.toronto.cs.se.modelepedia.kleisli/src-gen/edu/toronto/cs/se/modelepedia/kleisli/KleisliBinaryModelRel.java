@@ -18,6 +18,10 @@ import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
  * A representation of the model object '<em><b>Binary Model Rel</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Kleisli version. {@inheritDoc}
+ * <!-- end-model-doc -->
+ *
  *
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliBinaryModelRel()
  * @model

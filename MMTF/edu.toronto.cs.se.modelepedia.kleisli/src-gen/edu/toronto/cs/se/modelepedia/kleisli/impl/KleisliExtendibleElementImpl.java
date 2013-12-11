@@ -11,31 +11,30 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryModelRelImpl;
-
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binary Model Rel</b></em>'.
+ * An implementation of the model object '<em><b>Extendible Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getExtendedUri <em>Extended Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliExtendibleElementImpl#getExtendedUri <em>Extended Uri</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements KleisliBinaryModelRel {
+public abstract class KleisliExtendibleElementImpl extends MinimalEObjectImpl.Container implements KleisliExtendibleElement {
 	/**
 	 * The default value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,6 +44,7 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 * @ordered
 	 */
 	protected static final String EXTENDED_URI_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected KleisliBinaryModelRelImpl() {
+	protected KleisliExtendibleElementImpl() {
 		super();
 	}
 
@@ -71,7 +71,7 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return KleisliPackage.Literals.KLEISLI_BINARY_MODEL_REL;
+		return KleisliPackage.Literals.KLEISLI_EXTENDIBLE_ELEMENT;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 		String oldExtendedUri = extendedUri;
 		extendedUri = newExtendedUri;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI, oldExtendedUri, extendedUri));
+			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI, oldExtendedUri, extendedUri));
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
+			case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI:
 				return getExtendedUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
+			case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI:
 				setExtendedUri((String)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
+			case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI:
 				setExtendedUri(EXTENDED_URI_EDEFAULT);
 				return;
 		}
@@ -147,52 +147,10 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
+			case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI:
 				return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliExtendibleElement.class) {
-			switch (derivedFeatureID) {
-				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI;
-				default: return -1;
-			}
-		}
-		if (baseClass == KleisliModelRel.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliExtendibleElement.class) {
-			switch (baseFeatureID) {
-				case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI;
-				default: return -1;
-			}
-		}
-		if (baseClass == KleisliModelRel.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -211,4 +169,4 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 		return result.toString();
 	}
 
-} //KleisliBinaryModelRelImpl
+} //KleisliExtendibleElementImpl

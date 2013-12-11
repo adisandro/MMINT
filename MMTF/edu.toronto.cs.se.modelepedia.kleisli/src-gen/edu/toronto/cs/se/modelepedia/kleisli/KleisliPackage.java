@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -286,13 +287,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL__LINK_REFS = RelationshipPackage.MODEL_REL__LINK_REFS;
 
 	/**
+	 * The feature id for the '<em><b>Extended Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL__EXTENDED_URI = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL_FEATURE_COUNT = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 0;
+	int KLEISLI_MODEL_REL_FEATURE_COUNT = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -548,13 +558,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT__TARGET_URI = MidPackage.MODEL_ENDPOINT__TARGET_URI;
 
 	/**
+	 * The feature id for the '<em><b>Extended Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT__EXTENDED_URI = MidPackage.MODEL_ENDPOINT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Model Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT_FEATURE_COUNT = MidPackage.MODEL_ENDPOINT_FEATURE_COUNT + 0;
+	int KLEISLI_MODEL_ENDPOINT_FEATURE_COUNT = MidPackage.MODEL_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -883,13 +902,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL__TARGET_MODEL = RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
 
 	/**
+	 * The feature id for the '<em><b>Extended Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__EXTENDED_URI = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Binary Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 0;
+	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -989,6 +1017,44 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 8;
+
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliExtendibleElementImpl <em>Extendible Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliExtendibleElementImpl
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliExtendibleElement()
+	 * @generated
+	 */
+	int KLEISLI_EXTENDIBLE_ELEMENT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Extended Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI = 0;
+
+	/**
+	 * The number of structural features of the '<em>Extendible Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_EXTENDIBLE_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Extendible Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_EXTENDIBLE_ELEMENT_OPERATION_COUNT = 0;
 
 
 	/**
@@ -1162,6 +1228,27 @@ public interface KleisliPackage extends EPackage {
 	EClass getKleisliBinaryModelRel();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement <em>Extendible Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extendible Element</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement
+	 * @generated
+	 */
+	EClass getKleisliExtendibleElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement#getExtendedUri <em>Extended Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extended Uri</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement#getExtendedUri()
+	 * @see #getKleisliExtendibleElement()
+	 * @generated
+	 */
+	EAttribute getKleisliExtendibleElement_ExtendedUri();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1325,6 +1412,24 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EClass KLEISLI_BINARY_MODEL_REL = eINSTANCE.getKleisliBinaryModelRel();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliExtendibleElementImpl <em>Extendible Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliExtendibleElementImpl
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliExtendibleElement()
+		 * @generated
+		 */
+		EClass KLEISLI_EXTENDIBLE_ELEMENT = eINSTANCE.getKleisliExtendibleElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI = eINSTANCE.getKleisliExtendibleElement_ExtendedUri();
 
 	}
 

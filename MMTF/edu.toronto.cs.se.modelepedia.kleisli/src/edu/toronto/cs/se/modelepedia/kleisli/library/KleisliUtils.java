@@ -15,32 +15,38 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 
 public class KleisliUtils {
 
-	public static String getExtendedModelTypeUriFragment(Model modelType, KleisliModelRel containerModelRelType) {
+	public static String getModelRelTypeExtendedUri(KleisliModelRel modelRelType) {
 
-		return containerModelRelType.getName() + IPath.SEPARATOR + modelType.getName() + "." + EcorePackage.eNAME;
+		return modelRelType.getName();
 	}
 
-	public static String getExtendedModelTypeUri(Model modelType, KleisliModelRel containerModelRelType) {
+	public static String getModelRelExtendedUri(KleisliModelRel modelRel) {
 
-		return MultiModelUtils.replaceLastSegmentInUri(
-			modelType.getUri(),
-			getExtendedModelTypeUriFragment(modelType, containerModelRelType)
-		);
+		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(modelRel, true)[0], modelRel.getMetatype().getName());
+		int iModelRelExtendedUri = -1;
+		do {
+			iModelRelExtendedUri++;
+		}
+		while (MultiModelUtils.isFileOrDirectory(baseModelRelExtendedUri + iModelRelExtendedUri, true) != null);
+
+		return baseModelRelExtendedUri + iModelRelExtendedUri;
 	}
 
-	public static String getExtendedModelUri(KleisliModelEndpoint modelEndpoint) {
+	public static String getModelTypeEndpointExtendedUri(Model modelType, KleisliModelRel containerModelRelType) {
 
-		return MultiModelUtils.replaceLastSegmentInUri(
-			modelEndpoint.getTargetUri(),
-			((ModelRel) modelEndpoint.eContainer()).getName() + IPath.SEPARATOR + modelEndpoint.getTarget().getName() + "." + modelEndpoint.getTarget().getFileExtension()
-		);
+		return containerModelRelType.getExtendedUri() + IPath.SEPARATOR + modelType.getName() + "." + EcorePackage.eNAME;
+	}
+
+	public static String getModelEndpointExtendedUri(KleisliModelEndpoint modelEndpoint) {
+
+		return ((KleisliModelRel) modelEndpoint.eContainer()).getExtendedUri() + IPath.SEPARATOR + modelEndpoint.getTarget().getName() + "." + modelEndpoint.getTarget().getFileExtension();
 	}
 
 }

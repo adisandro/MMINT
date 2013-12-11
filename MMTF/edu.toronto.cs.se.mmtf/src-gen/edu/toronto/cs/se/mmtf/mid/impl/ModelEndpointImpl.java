@@ -439,13 +439,18 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param newModel
 	 *            The new model that is the target of the new model endpoint.
 	 * @throws MMTFException
-	 *             If this model endpoint is at the INSTANCES level.
+	 *             If this model endpoint is at the INSTANCES level, or if a
+	 *             user-defined model endpoint is being replaced with a native
+	 *             one.
 	 * @generated NOT
 	 */
 	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if (this.eClass() != oldModelEndpoint.eClass() && this.eClass().isSuperTypeOf(oldModelEndpoint.eClass())) {
+			throw new MMTFException("Can't replace a user-defined model endpoint with a native one");
 		}
 
 		oldModelEndpoint.deleteInstanceAndReference(false);

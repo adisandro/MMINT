@@ -269,19 +269,19 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				if (diagram == null) {
 					diagram = intializeNewDiagram();
 				}
-				URI uri = EcoreUtil.getURI(diagram);
 				ModelRel modelRel = (ModelRel) diagram.getElement();
-				String editorName = modelRel.getName() + ".relationshipdiag";
-				IEditorInput editorInput = new URIEditorInput(uri, editorName);
-				IWorkbenchPage page = PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getActivePage();
-				page.openEditor(editorInput, getEditorID());
 				if (MultiModelConstraintChecker.isInstancesLevel(modelRel)) {
 					doExecuteInstancesLevel(modelRel);
 				}
 				else {
 					doExecuteTypesLevel(modelRel);
 				}
+				URI uri = EcoreUtil.getURI(diagram);
+				String editorName = modelRel.getName() + ".relationshipdiag";
+				IEditorInput editorInput = new URIEditorInput(uri, editorName);
+				IWorkbenchPage page = PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getActivePage();
+				page.openEditor(editorInput, getEditorID());
 
 				return CommandResult.newOKCommandResult();
 			}

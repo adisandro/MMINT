@@ -18,11 +18,13 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -56,6 +58,13 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * @generated
 	 */
 	private EClass kleisliBinaryModelRelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass kleisliExtendibleElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -280,6 +289,24 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getKleisliExtendibleElement() {
+		return kleisliExtendibleElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getKleisliExtendibleElement_ExtendedUri() {
+		return (EAttribute)kleisliExtendibleElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public KleisliFactory getKleisliFactory() {
 		return (KleisliFactory)getEFactoryInstance();
 	}
@@ -322,6 +349,9 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		createEOperation(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL);
 
 		kleisliBinaryModelRelEClass = createEClass(KLEISLI_BINARY_MODEL_REL);
+
+		kleisliExtendibleElementEClass = createEClass(KLEISLI_EXTENDIBLE_ELEMENT);
+		createEAttribute(kleisliExtendibleElementEClass, KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI);
 	}
 
 	/**
@@ -357,7 +387,9 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 
 		// Add supertypes to classes
 		kleisliModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
+		kleisliModelRelEClass.getESuperTypes().add(this.getKleisliExtendibleElement());
 		kleisliModelEndpointEClass.getESuperTypes().add(theMidPackage.getModelEndpoint());
+		kleisliModelEndpointEClass.getESuperTypes().add(this.getKleisliExtendibleElement());
 		kleisliBinaryModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
 		kleisliBinaryModelRelEClass.getESuperTypes().add(this.getKleisliModelRel());
 
@@ -434,6 +466,9 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(kleisliBinaryModelRelEClass, KleisliBinaryModelRel.class, "KleisliBinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(kleisliExtendibleElementEClass, KleisliExtendibleElement.class, "KleisliExtendibleElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getKleisliExtendibleElement_ExtendedUri(), ecorePackage.getEString(), "extendedUri", null, 1, 1, KleisliExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

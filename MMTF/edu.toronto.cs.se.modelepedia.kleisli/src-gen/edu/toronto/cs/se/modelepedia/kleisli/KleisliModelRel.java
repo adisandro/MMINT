@@ -22,12 +22,16 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * A representation of the model object '<em><b>Model Rel</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Kleisli version. {@inheritDoc}
+ * <!-- end-model-doc -->
+ *
  *
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelRel()
  * @model
  * @generated
  */
-public interface KleisliModelRel extends ModelRel {
+public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

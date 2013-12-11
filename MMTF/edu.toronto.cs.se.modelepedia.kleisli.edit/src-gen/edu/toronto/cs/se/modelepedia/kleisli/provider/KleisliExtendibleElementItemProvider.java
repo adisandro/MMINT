@@ -12,11 +12,9 @@
 package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.provider.ModelEndpointItemProvider;
-
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
-
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -33,16 +31,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class KleisliModelEndpointItemProvider
-	extends ModelEndpointItemProvider
+public class KleisliExtendibleElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -55,7 +54,7 @@ public class KleisliModelEndpointItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KleisliModelEndpointItemProvider(AdapterFactory adapterFactory) {
+	public KleisliExtendibleElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -98,17 +97,6 @@ public class KleisliModelEndpointItemProvider
 	}
 
 	/**
-	 * This returns KleisliModelEndpoint.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/KleisliModelEndpoint"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,10 +104,10 @@ public class KleisliModelEndpointItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((KleisliModelEndpoint)object).getName();
+		String label = ((KleisliExtendibleElement)object).getExtendedUri();
 		return label == null || label.length() == 0 ?
-			getString("_UI_KleisliModelEndpoint_type") :
-			getString("_UI_KleisliModelEndpoint_type") + " " + label;
+			getString("_UI_KleisliExtendibleElement_type") :
+			getString("_UI_KleisliExtendibleElement_type") + " " + label;
 	}
 
 	/**
@@ -133,8 +121,8 @@ public class KleisliModelEndpointItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(KleisliModelEndpoint.class)) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_URI:
+		switch (notification.getFeatureID(KleisliExtendibleElement.class)) {
+			case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

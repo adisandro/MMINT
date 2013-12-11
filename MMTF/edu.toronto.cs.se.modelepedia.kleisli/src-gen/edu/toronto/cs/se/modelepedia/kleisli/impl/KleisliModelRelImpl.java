@@ -11,11 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -36,6 +35,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -50,6 +50,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -63,11 +64,34 @@ import org.eclipse.ui.PlatformUI;
  * An implementation of the model object '<em><b>Model Rel</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelRelImpl#getExtendedUri <em>Extended Uri</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
  */
 public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel {
+	/**
+	 * The default value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXTENDED_URI_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String extendedUri = EXTENDED_URI_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,6 +112,133 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getExtendedUri() {
+		return extendedUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtendedUri(String newExtendedUri) {
+		String oldExtendedUri = extendedUri;
+		extendedUri = newExtendedUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI, oldExtendedUri, extendedUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+				return getExtendedUri();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+				setExtendedUri((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+				setExtendedUri(EXTENDED_URI_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+				return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == KleisliExtendibleElement.class) {
+			switch (derivedFeatureID) {
+				case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == KleisliExtendibleElement.class) {
+			switch (baseFeatureID) {
+				case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI: return KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (extendedUri: ");
+		result.append(extendedUri);
+		result.append(')');
+		return result.toString();
+	}
+
+	/**
 	 * Kleisli version. {@inheritDoc}
 	 * 
 	 * @generated NOT
@@ -99,13 +250,15 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		ModelRel newModelRelType = (isBinary) ?
+		KleisliModelRel newModelRelType = (isBinary) ?
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
 		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
-		if (MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeName) == null) {
+		String newModelRelTypeExtendedUri = KleisliUtils.getModelRelTypeExtendedUri(newModelRelType);
+		newModelRelType.setExtendedUri(newModelRelTypeExtendedUri);
+		if (MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri) == null) {
 			try {
-				MultiModelUtils.createDirectoryInState(newModelRelTypeName);
+				MultiModelUtils.createDirectoryInState(newModelRelTypeExtendedUri);
 			}
 			catch (Exception e) {
 				newModelRelType.deleteType();
@@ -125,7 +278,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public void deleteType() throws MMTFException {
 
 		super.deleteType();
-		MultiModelUtils.deleteDirectoryInState(getName());
+		MultiModelUtils.deleteDirectoryInState(getExtendedUri());
 	}
 
 	/**
@@ -140,10 +293,19 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		ModelRel newModelRel = (isBinary) ?
+		KleisliModelRel newModelRel = (isBinary) ?
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
 		MultiModelInstanceFactory.addModel(newModelRel, this, newModelRelUri, origin, containerMultiModel);
+		String modelRelExtendedUri = KleisliUtils.getModelRelExtendedUri(newModelRel);
+		newModelRel.setExtendedUri(modelRelExtendedUri);
+		try {
+			MultiModelUtils.createDirectory(modelRelExtendedUri, true);
+		}
+		catch (Exception e) {
+			newModelRel.deleteInstance();
+			throw new MMTFException("Error creating directory for extended models", e);
+		}
 
 		return newModelRel;
 	}
@@ -156,9 +318,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public void deleteInstance() throws MMTFException {
 
-		String kModelRelUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
 		super.deleteInstance();
-		MultiModelUtils.deleteDirectory(kModelRelUri, true);
+		MultiModelUtils.deleteDirectory(getExtendedUri(), true);
 	}
 
 	/**
@@ -173,8 +334,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
-			String newModelTypeUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(modelTypeEndpoint.getTarget(), (KleisliModelRel) this);
-			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(newModelTypeUriFragment));
+			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedUri()));
 			try {
 				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
 			}
@@ -182,8 +342,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
 			}
 		}
-
-		//TODO MMTF[KLEISLI] init outline with augmented ones
 	}
 
 	/**
@@ -196,37 +354,25 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		super.openInstance();
 
-		// possibly create directory here because at instance creation time the model relationship name is unknown
-		try {
-			String kModelRelUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(this, true)[0], getName());
-			MultiModelUtils.createDirectory(kModelRelUri, true);
-		}
-		catch (FileAlreadyExistsException fe) {
-			// do nothing
-		}
-		catch (Exception e) {
-			throw new MMTFException("Error creating directory for extended models", e);
-		}
-
-		// extend models
+		// extend models (doing it at every open is robust against model change)
 		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
 			ModelEndpoint modelTypeEndpoint = modelEndpoint.getMetatype();
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
 			}
 			try {
-				String extendedMetamodelUriFragment = KleisliUtils.getExtendedModelTypeUriFragment(modelTypeEndpoint.getTarget(), (KleisliModelRel) getMetatype());
-				EPackage modelTypePackage = (EPackage) MultiModelUtils.getModelFileInState(extendedMetamodelUriFragment);
-				EFactory modelTypeFactory = modelTypePackage.getEFactoryInstance();
+				String modelTypeEndpointExtendedUri = ((KleisliModelEndpoint) modelTypeEndpoint).getExtendedUri();
+				EPackage modelTypeExtendedPackage = (EPackage) MultiModelUtils.getModelFileInState(modelTypeEndpointExtendedUri);
+				EFactory modelTypeExtendedFactory = modelTypeExtendedPackage.getEFactoryInstance();
 				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), ((ModelRel) modelTypeEndpoint.eContainer()).getModelEndpointRefs());
-				String newModelUri = KleisliUtils.getExtendedModelUri((KleisliModelEndpoint) modelEndpoint);
+				String modelEndpointExtendedUri = ((KleisliModelEndpoint) modelEndpoint).getExtendedUri();
 				MultiModelUtils.copyTextFileAndReplaceText(
 					MultiModelUtils.prependWorkspaceToUri(modelEndpoint.getTargetUri()),
-					MultiModelUtils.prependWorkspaceToUri(newModelUri),
-					MultiModelUtils.getLastSegmentFromUri(extendedMetamodelUriFragment),
-					extendedMetamodelUriFragment
+					MultiModelUtils.prependWorkspaceToUri(modelEndpointExtendedUri),
+					MultiModelUtils.getLastSegmentFromUri(modelTypeEndpointExtendedUri),
+					modelTypeEndpointExtendedUri
 				);
-				EObject rootModelObj = MultiModelUtils.getModelFile(newModelUri, true);
+				EObject rootModelObj = MultiModelUtils.getModelFile(modelEndpointExtendedUri, true);
 				String classLiteral;
 				ExtendibleElementConstraint constraint;
 				// first pass: EClasses
@@ -241,7 +387,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					EClass modelElemTypeClass = (EClass) modelTypePackage.getEClassifier(classLiteral);
+					EClass modelElemTypeClass = (EClass) modelTypeExtendedPackage.getEClassifier(classLiteral);
 					TreeIterator<EObject> modelObjIter = rootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
@@ -252,7 +398,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 							if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, constraint.getImplementation()) != MAVOTruthValue.TRUE) {
 								continue;
 							}
-							EObject modelObjReplacement = modelTypeFactory.create(modelElemTypeClass);
+							EObject modelObjReplacement = modelTypeExtendedFactory.create(modelElemTypeClass);
 							modelObjReplacements.put(modelObjReplacement, modelObj);
 						}
 					}
@@ -290,14 +436,13 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					}
 				}
 				// save the derived model
-				MultiModelUtils.createModelFile(rootModelObj, newModelUri, true);
+				MultiModelUtils.createModelFile(rootModelObj, modelEndpointExtendedUri, true);
 			}
 			catch (Exception e) {
 				MMTFException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
 
-		//TODO MMTF[KLEISLI] init outline starts before this
 		//TODO MMTF[KLEISLI] persistence still misses model elements (KleisliModelElement?)
 		//TODO MMTF[KLEISLI] KleisliModelElement and KleisliModel could be used to extend getRoot and getPointer, in order to use them here
 	}
@@ -320,7 +465,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			Model modelType = modelTypeEndpointRef.getObject().getTarget();
 			if (modelTypeEndpointRef.getObject() instanceof KleisliModelEndpoint) {
 				try {
-					resources.add(MultiModelUtils.getModelFileInState(KleisliUtils.getExtendedModelTypeUriFragment(modelType, this)).eResource());
+					resources.add(MultiModelUtils.getModelFileInState(((KleisliModelEndpoint) modelTypeEndpointRef.getObject()).getExtendedUri()).eResource());
 				}
 				catch (Exception e) {
 					MMTFException.print(Type.WARNING, "Error getting extended metamodel file", e);
@@ -357,7 +502,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			Model model = modelEndpointRef.getObject().getTarget();
 			if (modelEndpointRef.getObject() instanceof KleisliModelEndpoint) {
 				try {
-					resources.add(MultiModelUtils.getModelFile(KleisliUtils.getExtendedModelUri((KleisliModelEndpoint) modelEndpointRef.getObject()), true).eResource());
+					resources.add(MultiModelUtils.getModelFile(((KleisliModelEndpoint) modelEndpointRef.getObject()).getExtendedUri(), true).eResource());
 				}
 				catch (Exception e) {
 					MMTFException.print(Type.WARNING, "Error getting extended model file", e);

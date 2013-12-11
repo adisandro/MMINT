@@ -100,6 +100,10 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 				return createKleisliBinaryModelRelAdapter();
 			}
 			@Override
+			public Adapter caseKleisliExtendibleElement(KleisliExtendibleElement object) {
+				return createKleisliExtendibleElementAdapter();
+			}
+			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
@@ -190,6 +194,20 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createKleisliBinaryModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement <em>Extendible Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement
+	 * @generated
+	 */
+	public Adapter createKleisliExtendibleElementAdapter() {
 		return null;
 	}
 
