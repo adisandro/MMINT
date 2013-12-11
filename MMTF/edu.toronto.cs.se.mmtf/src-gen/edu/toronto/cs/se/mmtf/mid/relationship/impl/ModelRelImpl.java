@@ -341,25 +341,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___DELETE_TYPE:
-				try {
-					deleteType();
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (MultiModel)arguments.get(3));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case RelationshipPackage.MODEL_REL___DELETE_INSTANCE:
-				try {
-					deleteInstance();
-					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);

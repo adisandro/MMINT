@@ -733,13 +733,49 @@ public interface MidPackage extends EPackage {
 	int MODEL___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -1605,6 +1641,46 @@ public interface MidPackage extends EPackage {
 	EOperation getModel__GetSupertype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#createSubtype(java.lang.String, java.lang.String, java.lang.String, boolean) <em>Create Subtype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#createSubtype(java.lang.String, java.lang.String, java.lang.String, boolean)
+	 * @generated
+	 */
+	EOperation getModel__CreateSubtype__String_String_String_boolean();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#deleteType()
+	 * @generated
+	 */
+	EOperation getModel__DeleteType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getModel__CreateInstance__String_ModelOrigin_MultiModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#deleteInstance() <em>Delete Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#deleteInstance()
+	 * @generated
+	 */
+	EOperation getModel__DeleteInstance();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2140,6 +2216,38 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL___GET_SUPERTYPE = eINSTANCE.getModel__GetSupertype();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = eINSTANCE.getModel__CreateSubtype__String_String_String_boolean();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___DELETE_TYPE = eINSTANCE.getModel__DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateInstance__String_ModelOrigin_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___DELETE_INSTANCE = eINSTANCE.getModel__DeleteInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.

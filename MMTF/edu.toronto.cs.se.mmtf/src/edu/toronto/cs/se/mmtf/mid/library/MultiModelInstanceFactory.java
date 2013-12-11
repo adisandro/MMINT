@@ -905,7 +905,7 @@ public class MultiModelInstanceFactory {
 	 * @return The removed instance, null if the uri was not registered in the
 	 *         Instance MID.
 	 */
-	private static ExtendibleElement removeInstance(String instanceUri, MultiModel multiModel) {
+	public static ExtendibleElement removeInstance(String instanceUri, MultiModel multiModel) {
 
 		return multiModel.getExtendibleTable().removeKey(instanceUri);
 	}

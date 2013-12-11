@@ -516,6 +516,42 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModel__CreateSubtype__String_String_String_boolean() {
+		return modelEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__DeleteType() {
+		return modelEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__CreateInstance__String_ModelOrigin_MultiModel() {
+		return modelEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__DeleteInstance() {
+		return modelEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExtendibleElementConstraint() {
 		return extendibleElementConstraintEClass;
 	}
@@ -802,6 +838,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelEClass, MODEL__ABSTRACT);
 		createEOperation(modelEClass, MODEL___GET_METATYPE);
 		createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
+		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
+		createEOperation(modelEClass, MODEL___DELETE_TYPE);
+		createEOperation(modelEClass, MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
 
 		extendibleElementConstraintEClass = createEClass(EXTENDIBLE_ELEMENT_CONSTRAINT);
 		createEAttribute(extendibleElementConstraintEClass, EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION);
@@ -925,6 +965,25 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEOperation(getModel__GetSupertype(), this.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		EOperation op = initEOperation(getModel__CreateSubtype__String_String_String_boolean(), this.getModel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isMetamodelExtension", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModel__CreateInstance__String_ModelOrigin_MultiModel(), this.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
 		initEClass(extendibleElementConstraintEClass, ExtendibleElementConstraint.class, "ExtendibleElementConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementConstraint_Implementation(), ecorePackage.getEString(), "implementation", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementConstraint_Language(), this.getExtendibleElementConstraintLanguage(), "language", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -946,7 +1005,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEOperation(getModelEndpoint__GetMetatype(), this.getModelEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "modelTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "newModelType", 1, 1, IS_UNIQUE, IS_ORDERED);

@@ -60,6 +60,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/abstract"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getSupertype"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/createSubtype">
+        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/newModelTypeName"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/constraintLanguage"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/constraintImplementation"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/isMetamodelExtension"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/createInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/origin"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/containerMultiModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/implementation"/>

@@ -192,6 +192,19 @@
         <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="createSubtype" lowerBound="1" eType="#//Model" eExceptions="#//MMTFException">
+      <eParameters name="newModelTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="isMetamodelExtension" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+    <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMTFException">
+      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
+      <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+    </eOperations>
+    <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

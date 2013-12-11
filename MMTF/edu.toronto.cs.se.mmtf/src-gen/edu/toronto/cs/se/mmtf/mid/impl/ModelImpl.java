@@ -11,29 +11,43 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
+import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -507,6 +521,36 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getMetatype();
 			case MidPackage.MODEL___GET_SUPERTYPE:
 				return getSupertype();
+			case MidPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
+				try {
+					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL___DELETE_TYPE:
+				try {
+					deleteType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
+				try {
+					return createInstance((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL___DELETE_INSTANCE:
+				try {
+					deleteInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -531,6 +575,187 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		result.append(abstract_);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Model newModelType = MidFactory.eINSTANCE.createModel();
+		MultiModelLightTypeFactory.addLightModelType(newModelType, this, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
+
+		return newModelType;
+	}
+
+	/**
+	 * Deletes a model type from a multimodel.
+	 * 
+	 * @param modelType
+	 *            The model type to be removed.
+	 * @param multiModel
+	 *            The multimodel that contains the model type.
+	 * @throws MMTFException
+	 *             If this model is at the INSTANCES level.
+	 * @generated NOT
+	 */
+	protected void deleteModelType(Model modelType, MultiModel multiModel) {
+
+		MultiModelTypeFactory.removeType(modelType.getUri(), multiModel);
+		multiModel.getModels().remove(modelType);
+		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+		if (metamodelUri != null) {
+			MultiModelUtils.deleteFile(metamodelUri, false);
+		}
+
+		// remove model element types
+		for (ModelElement modelElementType : modelType.getModelElems()) {
+			MultiModelTypeFactory.removeType(modelElementType.getUri(), multiModel);
+		}
+		List<String> delOperatorTypeUris = new ArrayList<String>();
+		// remove operator types that use this model type
+		for (Operator operatorType : multiModel.getOperators()) {
+			for (Parameter par : operatorType.getInputs()) {
+				if (par.getModel().getUri().equals(modelType.getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+					delOperatorTypeUris.add(operatorType.getUri());
+				}
+			}
+			for (Parameter par : operatorType.getOutputs()) {
+				if (par.getModel().getUri().equals(modelType.getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+					delOperatorTypeUris.add(operatorType.getUri());
+				}
+			}
+		}
+		for (String operatorTypeUri : delOperatorTypeUris) {
+			Operator operatorType = MultiModelRegistry.getExtendibleElement(operatorTypeUri, multiModel);
+			MultiModelTypeFactory.removeOperatorType(operatorType);
+		}
+		// remove model relationship types and endpoints that use this model type
+		List<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
+		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
+		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
+			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
+				if (modelTypeEndpoint.getTargetUri().equals(modelType.getUri())) {
+					if (modelRelType instanceof BinaryModelRel) {
+						if (!delModelRelTypes.contains(modelRelType)) {
+							delModelRelTypes.add(modelRelType);
+						}
+					}
+					else {
+						delModelTypeEndpoints.add(modelTypeEndpoint);
+					}
+				}
+			}
+		}
+		for (ModelEndpoint modelTypeEndpoint : delModelTypeEndpoints) {
+			try {
+				modelTypeEndpoint.deleteTypeAndReference(true);
+			}
+			catch (MMTFException e) {
+				continue;
+			}
+		}
+		for (ModelRel modelRelType : delModelRelTypes) {
+			try {
+				modelRelType.deleteType();
+			}
+			catch (MMTFException e) {
+				continue;
+			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteType() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		// delete the "thing"
+		deleteModelType(this, multiModel);
+		// delete the subtypes of the "thing"
+		for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(this, multiModel)) {
+			deleteModelType(modelSubtype, multiModel);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Model newModel = MidFactory.eINSTANCE.createModel();
+		MultiModelInstanceFactory.addModel(newModel, this, newModelUri, origin, containerMultiModel);
+
+		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstance() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MultiModelInstanceFactory.removeInstance(getUri(), multiModel);
+		multiModel.getModels().remove(this);
+
+		//remove model elements
+		for (ModelElement modelElem : getModelElems()) {
+			MultiModelInstanceFactory.removeInstance(modelElem.getUri(), multiModel);
+		}
+		// remove editors
+		for (Editor editor : getEditors()) {
+			MultiModelInstanceFactory.removeEditor(editor);
+		}
+		// remove model relationships and endpoints that use this model
+		List<ModelRel> delModelRels = new ArrayList<ModelRel>();
+		List<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
+		for (ModelRel modelRel : MultiModelRegistry.getModelRels(multiModel)) {
+			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
+				if (modelEndpoint.getTargetUri().equals(getUri())) {
+					if (modelRel instanceof BinaryModelRel) {
+						if (!delModelRels.contains(modelRel)) {
+							delModelRels.add(modelRel);
+						}
+					}
+					else {
+						delModelEndpoints.add(modelEndpoint);
+					}
+				}
+			}
+		}
+		for (ModelEndpoint modelEndpoint : delModelEndpoints) {
+			try {
+				modelEndpoint.deleteInstanceAndReference(true);
+			}
+			catch (MMTFException e) {
+				continue;
+			}
+		}
+		for (ModelRel modelRel : delModelRels) {
+			try {
+				modelRel.deleteInstance();
+			}
+			catch (MMTFException e) {
+				continue;
+			}
+		}
 	}
 
 } //ModelImpl

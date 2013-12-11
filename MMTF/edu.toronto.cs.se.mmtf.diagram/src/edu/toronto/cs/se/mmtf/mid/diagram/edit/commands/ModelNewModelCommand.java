@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,10 +20,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -95,7 +93,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		Editor newEditor = MidDiagramUtils.selectModelTypeToCreate(multiModel);
 		Model modelType = MultiModelTypeRegistry.getType(newEditor.getMetatype().getModelUri());
-		Model newModel = MultiModelMAVOInstanceFactory.createModel(modelType, newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
+		Model newModel = modelType.createInstance(newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
 		MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
 
 		return newModel;
@@ -110,7 +108,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?
 			true :
 			MidDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
-		Model newModelType = MultiModelLightTypeFactory.createLightModelType(modelType, newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
+		Model newModelType = modelType.createSubtype(newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
 		MMTF.createTypeHierarchy(multiModel);
 
 		return newModelType;

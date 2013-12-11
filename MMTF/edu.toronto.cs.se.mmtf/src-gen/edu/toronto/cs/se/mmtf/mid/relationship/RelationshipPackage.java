@@ -507,6 +507,24 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL_FEATURE_COUNT = MidPackage.MODEL_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MidPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -838,6 +856,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL_FEATURE_COUNT = MODEL_REL_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
